@@ -21,6 +21,47 @@
  *
  ***********************************************************************/
 class Net {
+  public INITIALIZED = false;
+  /* Create a new rectangle for the bounds of this component */
+  public bounds = new RectF(0, 0, 0, 0);
+  /* Inititalize the element2 class that will hold the basic data about our component */
+  public elm = new Element1(-1, -1, -1);
+
+  /* Create some points to hold the node locations, this will be used for drawing components */
+  public p1 = new PointF(0, 0);
+
+  /* The spacing of the nodes in the x-direction, divided by 2 */
+  public x_space = global.node_space_x >> 1;
+  /* The spacing of the nodes in the y-direction, divided by 2 */
+  public y_space = global.node_space_y >> 1;
+  /* used for snapping the elements to the grid (and also for bounding them) */
+  public grid_point = [];
+  /* This paint is used for drawing the "lines" that the component is comprised of. */
+  public line_paint = new Paint();
+  /* This paint is used for drawing the "nodes" that the component is connected to. */
+  public point_paint = new Paint();
+  /* This paint is used for drawing the "text" that the component needs to display */
+  public text_paint = new Paint();
+  /* Flag to denote when the component is actually moving. */
+  public is_translating = false;
+  public temp_color = global.GENERAL_RED_COLOR;
+  public wire_reference = [];
+  /* This is to keep track of the simulation id's */
+  public simulation_id = 0;
+  /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
+or overlapped)*/
+  public indexer = 0;
+  public m_x = 0;
+  public m_y = 0;
+  public c_x = 0;
+  public c_y = 0;
+  public MULTI_SELECTED = false;
+  /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
+  public LINE_BUFFER = [];
+  public CIRCLE_BUFFER = [];
+  public BUILD_ELEMENT = true;
+  public ANGLE = 0;
+
   constructor(type, id, n1) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -272,7 +313,7 @@ class Net {
           global.focused_type === this.elm.type
         ) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
-          global.is_dragging = false;
+          global.IS_DRAGGING = false;
           if (!this.is_translating) {
             if (
               !this.bounds.contains_xywh(
@@ -339,20 +380,20 @@ class Net {
               global.selected_id === this.elm.id &&
               global.selected_type === this.elm.type
             ) {
-              global.selected_id = global._NULL;
-              global.selected_type = global._NULL;
-              global.selected_bounds = global._NULL;
-              global.selected_properties = global._NULL;
-              global.selected_wire_style = global._NULL;
+              global.selected_id = global.NULL;
+              global.selected_type = global.NULL;
+              global.selected_bounds = global.NULL;
+              global.selected_properties = global.NULL;
+              global.selected_wire_style = global.NULL;
               global.selected = false;
             } else {
               this.select();
             }
           }
         }
-        global.focused_id = global._NULL;
-        global.focused_type = global._NULL;
-        global.focused_bounds = global._NULL;
+        global.focused_id = global.NULL;
+        global.focused_type = global.NULL;
+        global.focused_bounds = global.NULL;
         global.focused = false;
       }
       if (
@@ -371,7 +412,7 @@ class Net {
     global.selected_type = this.elm.type;
     global.selected_bounds = global.copy(this.bounds);
     global.selected_properties = global.copy(this.elm.properties);
-    global.selected_wire_style = global._NULL;
+    global.selected_wire_style = global.NULL;
     global.selected = true;
   }
   remove_focus() {
@@ -380,9 +421,9 @@ class Net {
       global.focused_id === this.elm.id &&
       global.focused_type === this.elm.type
     ) {
-      global.focused_id = global._NULL;
-      global.focused_type = global._NULL;
-      global.focused_bounds = global._NULL;
+      global.focused_id = global.NULL;
+      global.focused_type = global.NULL;
+      global.focused_bounds = global.NULL;
       global.focused = false;
     }
   }
@@ -391,11 +432,11 @@ class Net {
       global.selected_id === this.elm.id &&
       global.selected_type === this.elm.type
     ) {
-      global.selected_id = global._NULL;
-      global.selected_type = global._NULL;
-      global.selected_bounds = global._NULL;
-      global.selected_properties = global._NULL;
-      global.selected_wire_style = global._NULL;
+      global.selected_id = global.NULL;
+      global.selected_type = global.NULL;
+      global.selected_bounds = global.NULL;
+      global.selected_properties = global.NULL;
+      global.selected_wire_style = global.NULL;
       global.selected = false;
     }
   }

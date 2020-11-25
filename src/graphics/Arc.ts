@@ -20,7 +20,7 @@
  ***********************************************************************/
 class Arc {
   /* The amplitude of the arc. */
-  private amplitude: number = 1;
+  public amplitude: number = 1;
   private arc_paint: Paint = new Paint();
   /* This sets the x and y locations of the arc (start and stop point) */
   private x1: number = 0;

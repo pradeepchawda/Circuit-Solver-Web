@@ -980,7 +980,7 @@ class VoltageControlledSwitch {
             global.ELEMENT_TAG_TEMPLATE.replace(
               '{TAG}',
               this.elm.properties['tag']
-            ).replace('{ID}', this.elm.id),
+            ).replace('{ID}', String(this.elm.id)),
             this.c_x,
             this.bounds.top + this.bounds.get_height() * 0.1,
             this.text_paint
@@ -990,7 +990,7 @@ class VoltageControlledSwitch {
             global.ELEMENT_TAG_TEMPLATE.replace(
               '{TAG}',
               this.elm.properties['tag']
-            ).replace('{ID}', this.elm.id),
+            ).replace('{ID}', String(this.elm.id)),
             this.c_x,
             this.bounds.bottom - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -1001,7 +1001,7 @@ class VoltageControlledSwitch {
             global.ELEMENT_TAG_TEMPLATE.replace(
               '{TAG}',
               this.elm.properties['tag']
-            ).replace('{ID}', this.elm.id),
+            ).replace('{ID}', String(this.elm.id)),
             this.c_x,
             this.bounds.bottom - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -1013,7 +1013,7 @@ class VoltageControlledSwitch {
             global.ELEMENT_TAG_TEMPLATE.replace(
               '{TAG}',
               this.elm.properties['tag']
-            ).replace('{ID}', this.elm.id),
+            ).replace('{ID}', String(this.elm.id)),
             this.c_x,
             this.bounds.top + this.bounds.get_height() * 0.1,
             this.text_paint
