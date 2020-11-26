@@ -41,7 +41,7 @@ class Button extends RectF {
 
   private TEXT_UNDERSCORE_TEMPLATE: string = '{TEXT}_';
 
-  constructor(left, top, right, bottom) {
+  constructor(left: number, top: number, right: number, bottom: number) {
     super(left, top, right, bottom);
     /* The text that will be drawn by the button. */
     this.text = '';
@@ -92,14 +92,8 @@ class Button extends RectF {
     this.text_paint.set_paint_align(this.text_paint.align.CENTER);
     this.TEXT_UNDERSCORE_TEMPLATE = '{TEXT}_';
   }
-  /* Handling any mouse down events. */
-  mouse_down() {}
-  /* Handling any mouse move events. */
-  mouse_move() {}
-  /* Handling any mouse up events. */
-  mouse_up() {}
   /* Resize the stroke widths and the text sizes. */
-  resize_paint() {
+  resize_paint(): void {
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
     this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
     this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -112,70 +106,39 @@ class Button extends RectF {
     }
   }
   /* Resize the buttons and the paint stroke and text sizes. */
-  resize_button() {
+  resize_button(): void {
     this.resize();
   }
   /* Draw the button text. */
-  draw_button_text(canvas, x, y) {
+  draw_button_text(canvas: GraphicsEngine, x: number, y: number): void {
     if (!this.draw_cursor) {
       canvas.draw_text(this.text, x, y, this.text_paint);
     } else {
-      canvas.draw_text(
-        this.TEXT_UNDERSCORE_TEMPLATE.replace('{TEXT}', this.text),
-        x,
-        y,
-        this.text_paint
-      );
+      canvas.draw_text(this.TEXT_UNDERSCORE_TEMPLATE.replace('{TEXT}', this.text), x, y, this.text_paint);
     }
   }
   /* Draws the button to screen. */
-  draw_button(canvas) {
+  draw_button(canvas: GraphicsEngine): void {
     if (this.draw_fill) {
-      canvas.draw_round_rect2(
-        this,
-        this.fill_paint.get_stroke_width(),
-        this.fill_paint
-      );
+      canvas.draw_round_rect2(this, this.fill_paint.get_stroke_width(), this.fill_paint);
     }
     if (this.draw_stroke) {
-      canvas.draw_round_rect2(
-        this,
-        this.line_paint.get_stroke_width(),
-        this.line_paint
-      );
+      canvas.draw_round_rect2(this, this.line_paint.get_stroke_width(), this.line_paint);
     }
     if (this.draw_text) {
       this.draw_button_text(canvas, this.get_center_x(), this.get_center_y());
     }
   }
   /* Draws the button to screen. */
-  draw_button_dxdy(canvas, offset_x, offset_y) {
+  draw_button_dxdy(canvas: GraphicsEngine, offset_x: number, offset_y: number) {
     if (this.draw_fill) {
-      canvas.draw_round_rect(
-        this.left + offset_x,
-        this.top + offset_y,
-        this.right + offset_x,
-        this.bottom + offset_y,
-        this.fill_paint.get_stroke_width(),
-        this.fill_paint
-      );
+      canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint.get_stroke_width(), this.fill_paint);
     }
     if (this.draw_stroke) {
-      canvas.draw_round_rect(
-        this.left + offset_x,
-        this.top + offset_y,
-        this.right + offset_x,
-        this.bottom + offset_y,
-        this.line_paint.get_stroke_width(),
-        this.line_paint
-      );
+      canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.line_paint.get_stroke_width(), this.line_paint);
     }
     if (this.draw_text) {
-      this.draw_button_text(
-        canvas,
-        this.get_center_x() + offset_x,
-        this.get_center_y() + offset_y
-      );
+      this.draw_button_text(canvas, this.get_center_x() + offset_x, this.get_center_y() + offset_y);
     }
   }
 }

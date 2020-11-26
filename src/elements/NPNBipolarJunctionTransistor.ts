@@ -21,6 +21,84 @@
  *
  ***********************************************************************/
 class NPNBipolarJunctionTransistor {
+  public INITIALIZED = false;
+  /* Create a new rectangle for the bounds of this component */
+  public bounds = new RectF(0, 0, 0, 0);
+  /* Inititalize the element2 class that will hold the basic data about our component */
+  public elm = new Element3(-1, -1, -1);
+
+  public p1 = new PointF(0, 0);
+  public p2 = new PointF(0, 0);
+  public p3 = new PointF(0, 0);
+
+  public npn_0 = new PointF(0, 0);
+  public npn_1 = new PointF(0, 0);
+  public npn_2 = new PointF(0, 0);
+  public npn_3 = new PointF(0, 0);
+  public npn_4 = new PointF(0, 0);
+  public npn_5 = new PointF(0, 0);
+  public npn_6 = new PointF(0, 0);
+  public npn_7 = new PointF(0, 0);
+  public npn_8 = new PointF(0, 0);
+  /* Calculating the "true" center of an equilateral triangle, not the centroid. */
+  public equilateral_center = [];
+  /* The center (x-coord) of the bounds */
+  public c_x = this.bounds.get_center_x();
+  /* The center (y-coord) of the bounds */
+  public c_y = this.bounds.get_center_y();
+  /* The spacing of the nodes in the x-direction, divided by 2 */
+  public x_space = global.node_space_x >> 1;
+  /* The spacing of the nodes in the y-direction, divided by 2 */
+  public y_space = global.node_space_y >> 1;
+  /* Some points we'll be extending the leads of the resistor to. */
+  public connect1_x = 0;
+  public connect1_y = 0;
+  public connect2_x = 0;
+  public connect2_y = 0;
+  /* Angle from p1 to p2 minus 90 degrees */
+  public theta_m90 =
+    global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
+    global.PI_DIV_2;
+
+  /* Angle from p1 to p2 */
+  public theta = global.retrieve_angle_radian(
+    this.p2.x - this.p1.x,
+    this.p2.y - this.p1.y
+  );
+  /* Angle from center to p2 */
+  public phi = global.retrieve_angle_radian(
+    this.c_x - this.p2.x,
+    this.c_y - this.p2.y
+  );
+  public grid_point = [];
+  /* This paint is used for drawing the "lines" that the component is comprised of. */
+  public line_paint = new Paint();
+  /* This paint is used for drawing the "nodes" that the component is connected to. */
+  public point_paint = new Paint();
+  /* This paint is used for drawing the "text" that the component needs to display */
+  public text_paint = new Paint();
+  /* Flag to denote when the component is actually moving. */
+  public is_translating = false;
+  public wire_reference = [];
+  /* This is to keep track of the simulation id's */
+  public simulation_id = 0;
+  public GAMMA = 0.12;
+  public KAPPA = 0.414;
+  public GMIN = 1e-9;
+  public GMIN_START = 12;
+  public DAMPING_SAFETY_FACTOR = 0.97;
+  /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
+or overlapped)*/
+  public indexer = 0;
+  public m_x = 0;
+  public m_y = 0;
+  public MULTI_SELECTED = false;
+  /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
+  public LINE_BUFFER = [];
+  public CIRCLE_BUFFER = [];
+  public BUILD_ELEMENT = true;
+  public ANGLE = 0;
+
   constructor(type, id, n1, n2, n3) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -696,7 +774,7 @@ class NPNBipolarJunctionTransistor {
           global.focused_type === this.elm.type
         ) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
-          global.is_dragging = false;
+          global.IS_DRAGGING = false;
           if (!this.is_translating) {
             if (
               !this.bounds.contains_xywh(
@@ -763,20 +841,20 @@ class NPNBipolarJunctionTransistor {
               global.selected_id === this.elm.id &&
               global.selected_type === this.elm.type
             ) {
-              global.selected_id = global._NULL;
-              global.selected_type = global._NULL;
-              global.selected_bounds = global._NULL;
-              global.selected_properties = global._NULL;
-              global.selected_wire_style = global._NULL;
+              global.selected_id = global.NULL;
+              global.selected_type = global.NULL;
+              global.selected_bounds = global.NULL;
+              global.selected_properties = global.NULL;
+              global.selected_wire_style = global.NULL;
               global.selected = false;
             } else {
               this.select();
             }
           }
         }
-        global.focused_id = global._NULL;
-        global.focused_type = global._NULL;
-        global.focused_bounds = global._NULL;
+        global.focused_id = global.NULL;
+        global.focused_type = global.NULL;
+        global.focused_bounds = global.NULL;
         global.focused = false;
       }
       if (
@@ -795,7 +873,7 @@ class NPNBipolarJunctionTransistor {
     global.selected_type = this.elm.type;
     global.selected_bounds = global.copy(this.bounds);
     global.selected_properties = global.copy(this.elm.properties);
-    global.selected_wire_style = global._NULL;
+    global.selected_wire_style = global.NULL;
     global.selected = true;
   }
   remove_focus() {
@@ -804,9 +882,9 @@ class NPNBipolarJunctionTransistor {
       global.focused_id === this.elm.id &&
       global.focused_type === this.elm.type
     ) {
-      global.focused_id = global._NULL;
-      global.focused_type = global._NULL;
-      global.focused_bounds = global._NULL;
+      global.focused_id = global.NULL;
+      global.focused_type = global.NULL;
+      global.focused_bounds = global.NULL;
       global.focused = false;
     }
   }
@@ -815,11 +893,11 @@ class NPNBipolarJunctionTransistor {
       global.selected_id === this.elm.id &&
       global.selected_type === this.elm.type
     ) {
-      global.selected_id = global._NULL;
-      global.selected_type = global._NULL;
-      global.selected_bounds = global._NULL;
-      global.selected_properties = global._NULL;
-      global.selected_wire_style = global._NULL;
+      global.selected_id = global.NULL;
+      global.selected_type = global.NULL;
+      global.selected_bounds = global.NULL;
+      global.selected_properties = global.NULL;
+      global.selected_wire_style = global.NULL;
       global.selected = false;
     }
   }

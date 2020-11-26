@@ -20,9 +20,9 @@
  *
  ***********************************************************************/
 class PaintJoin {
-  public readonly BEVEL: string = 'bevel';
-  public readonly ROUND: string = 'round';
-  public readonly MITER: string = 'miter';
+  public readonly BEVEL: CanvasLineJoin = 'bevel';
+  public readonly ROUND: CanvasLineJoin = 'round';
+  public readonly MITER: CanvasLineJoin = 'miter';
 
   constructor() {}
 }

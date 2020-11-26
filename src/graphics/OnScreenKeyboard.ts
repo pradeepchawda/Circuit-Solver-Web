@@ -19,75 +19,70 @@
  *
  ***********************************************************************/
 class OnScreenKeyboard {
-  private KEYBOARD_MAX_KEYS: number = 67;
+  public KEYBOARD_MAX_KEYS: number = 67;
   public bounds: RectF = new RectF(0, 0, 0, 0);
-  private HEIGHT_RATIO: number = 0.5;
-
+  public HEIGHT_RATIO: number = 0.5;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  private line_paint: Paint = new Paint();
-
+  public line_paint: Paint = new Paint();
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  private bounds_paint: Paint = new Paint();
-
+  public bounds_paint: Paint = new Paint();
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  private fill_paint: Paint = new Paint();
-
+  public fill_paint: Paint = new Paint();
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  private fill_paint_alt: Paint = new Paint();
-
+  public fill_paint_alt: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  private text_paint: Paint = new Paint();
-
+  public text_paint: Paint = new Paint();
   /* Flags to help us determine what keys are being pressed. */
-  private FLAG_CAPS_LOCK: boolean = false;
-  private FLAG_SHIFT: boolean = false;
-  private FLAG_ENTER: boolean = false;
-  private CAP_REF: number = 0;
-  private LETTER_ROW_1: string = 'qwertyuiop';
-  private LETTER_ROW_2: string = 'asdfghjkl';
-  private LETTER_ROW_3: string = 'zxcvbnm';
-  private ALT_1_REF: number = 0;
-  private ALT_2_REF: number = 0;
-  private EXIT_REF: number = 0;
-  private TAB_REF: number = 0;
-  private BACKSPACE_REF: number = 0;
-  private SHIFT_1_REF: number = 0;
-  private ENTER_REF: number = 0;
-  private CTRL_1_REF: number = 0;
-  private CTRL_2_REF: number = 0;
-  private SHIFT_2_REF: number = 0;
-  private KEYBOARD_LETTER_REF: Array<number> = [];
-  private KEYBOARD_SPECIAL_REF: Array<number> = [];
-  private KEYBOARD_MAPPING: Array<String> = [];
-  private KEYBOARD_INCREMENT_AT: Array<number> = [];
-  private KEYBOARD_BLOCK_EXPAND: Array<number> = [];
-
-  private KEYBOARD_EXPAND_TEMPLATE = {
+  public FLAG_CAPS_LOCK: boolean = false;
+  public FLAG_SHIFT: boolean = false;
+  public FLAG_ENTER: boolean = false;
+  public CAP_REF: number = 0;
+  public LETTER_ROW_1: string = 'qwertyuiop';
+  public LETTER_ROW_2: string = 'asdfghjkl';
+  public LETTER_ROW_3: string = 'zxcvbnm';
+  public ALT_1_REF: number = 0;
+  public ALT_2_REF: number = 0;
+  public EXIT_REF: number = 0;
+  public TAB_REF: number = 0;
+  public BACKSPACE_REF: number = 0;
+  public SHIFT_1_REF: number = 0;
+  public ENTER_REF: number = 0;
+  public CTRL_1_REF: number = 0;
+  public CTRL_2_REF: number = 0;
+  public SHIFT_2_REF: number = 0;
+  public KEYBOARD_LETTER_REF: Array<number> = [];
+  public KEYBOARD_SPECIAL_REF: Array<number> = [];
+  public KEYBOARD_MAPPING: Array<string> = [];
+  public KEYBOARD_INCREMENT_AT: Array<number> = [];
+  public KEYBOARD_BLOCK_EXPAND: Array<number> = [];
+  public KEYBOARD_EXPAND_TEMPLATE: KEYBOARD_EXPAND_T = {
     Id: null,
     Factor: null
   };
-
-  private KEYBOARD_KEYS: Array<RectF> = [];
-  private FLAG_KEY_DOWN: boolean = false;
-  private FLAG_KEY_UP: boolean = false;
-  private ENGINEERING_KEYBOARD_MODE: boolean = false;
-  private ENGINEERING_KEYBOARD_FILTER: RegExp = /[-.kmu0123456789MnGpf]/;
-  private FILE_NAME_KEYBOARD_FILTER: RegExp = /[-abcdefghijklmn opqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()]/;
-  private ENGINEERING_KEYBOARD_FILTER_INDEX: Array<boolean> = [];
-  private FILE_NAME_KEYBOARD_FILTER_INDEX: Array<boolean> = [];
-  private HOVER_INDEX: number = -1;
-  private KEYBOARD_EVENT_KEY_EVENT = {
-    keyCode: 0
+  public KEYBOARD_KEYS: Array<RectF> = [];
+  public FLAG_KEY_DOWN: boolean = false;
+  public FLAG_KEY_UP: boolean = false;
+  public ENGINEERING_KEYBOARD_MODE: boolean = false;
+  public ENGINEERING_KEYBOARD_FILTER: RegExp = /[-.kmu0123456789MnGpf]/;
+  public FILE_NAME_KEYBOARD_FILTER: RegExp = /[-abcdefghijklmn opqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()]/;
+  public ENGINEERING_KEYBOARD_FILTER_INDEX: Array<boolean> = [];
+  public FILE_NAME_KEYBOARD_FILTER_INDEX: Array<boolean> = [];
+  public HOVER_INDEX: number = -1;
+  public KEYBOARD_KEY_EVENT: ON_SCREEN_KEYBOARD_KEY_EVENT_T = {
+    code: 'keyA'
   };
-  private LINE_BUFFER = [];
+  public LINE_BUFFER: Array<Array<number>> = [];
 
   constructor() {
+    this.KEYBOARD_MAX_KEYS = 67;
+    this.bounds = new RectF(0, 0, 0, 0);
+    this.HEIGHT_RATIO = 0.5;
     this.bounds.left = view_port.left;
     this.bounds.right = view_port.right;
-    this.bounds.top =
-      view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
+    this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
     this.bounds.bottom = view_port.bottom;
-
+    /* This paint is used for drawing the "lines" that the component is comprised of. */
+    this.line_paint = new Paint();
     this.line_paint.set_paint_style(this.line_paint.style.STROKE);
     this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
     this.line_paint.set_paint_join(this.line_paint.join.MITER);
@@ -97,7 +92,8 @@ class OnScreenKeyboard {
     this.line_paint.set_font(global.DEFAULT_FONT);
     this.line_paint.set_alpha(255);
     this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-
+    /* This paint is used for drawing the "fill" that the component is comprised of. */
+    this.bounds_paint = new Paint();
     this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
     this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
     this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
@@ -107,7 +103,8 @@ class OnScreenKeyboard {
     this.bounds_paint.set_font(global.DEFAULT_FONT);
     this.bounds_paint.set_alpha(255);
     this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
-
+    /* This paint is used for drawing the "fill" that the component is comprised of. */
+    this.fill_paint = new Paint();
     this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
     this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
     this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
@@ -117,7 +114,8 @@ class OnScreenKeyboard {
     this.fill_paint.set_font(global.DEFAULT_FONT);
     this.fill_paint.set_alpha(255);
     this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-
+    /* This paint is used for drawing the "fill" that the component is comprised of. */
+    this.fill_paint_alt = new Paint();
     this.fill_paint_alt.set_paint_style(this.fill_paint_alt.style.FILL);
     this.fill_paint_alt.set_paint_cap(this.fill_paint_alt.cap.ROUND);
     this.fill_paint_alt.set_paint_join(this.fill_paint_alt.join.MITER);
@@ -127,7 +125,8 @@ class OnScreenKeyboard {
     this.fill_paint_alt.set_font(global.DEFAULT_FONT);
     this.fill_paint_alt.set_alpha(255);
     this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
-
+    /* This paint is used for drawing the "text" that the component needs to display */
+    this.text_paint = new Paint();
     this.text_paint.set_paint_style(this.text_paint.style.FILL);
     this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
     this.text_paint.set_paint_join(this.text_paint.join.MITER);
@@ -137,12 +136,37 @@ class OnScreenKeyboard {
     this.text_paint.set_font(global.DEFAULT_FONT);
     this.text_paint.set_alpha(255);
     this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-
+    /* Flags to help us determine what keys are being pressed. */
+    this.FLAG_CAPS_LOCK = false;
+    this.FLAG_SHIFT = false;
+    this.FLAG_ENTER = false;
+    this.CAP_REF = 0;
+    this.LETTER_ROW_1 = 'qwertyuiop';
+    this.LETTER_ROW_2 = 'asdfghjkl';
+    this.LETTER_ROW_3 = 'zxcvbnm';
+    this.ALT_1_REF = 0;
+    this.ALT_2_REF = 0;
+    this.EXIT_REF = 0;
+    this.TAB_REF = 0;
+    this.BACKSPACE_REF = 0;
+    this.SHIFT_1_REF = 0;
+    this.ENTER_REF = 0;
+    this.CTRL_1_REF = 0;
+    this.CTRL_2_REF = 0;
+    this.SHIFT_2_REF = 0;
+    this.KEYBOARD_LETTER_REF = [];
+    this.KEYBOARD_SPECIAL_REF = [];
+    this.KEYBOARD_MAPPING = [];
+    this.KEYBOARD_INCREMENT_AT = [];
+    this.KEYBOARD_BLOCK_EXPAND = [];
     this.KEYBOARD_INCREMENT_AT.push(14);
     this.KEYBOARD_INCREMENT_AT.push(29);
     this.KEYBOARD_INCREMENT_AT.push(42);
     this.KEYBOARD_INCREMENT_AT.push(55);
-
+    this.KEYBOARD_EXPAND_TEMPLATE = {
+      Id: null,
+      Factor: null
+    };
     this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 14;
     this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 1.5;
     this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
@@ -164,22 +188,28 @@ class OnScreenKeyboard {
     this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 60;
     this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 5.5;
     this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
-
+    this.KEYBOARD_KEYS = [];
+    this.FLAG_KEY_DOWN = false;
+    this.FLAG_KEY_UP = false;
+    this.ENGINEERING_KEYBOARD_MODE = false;
+    this.ENGINEERING_KEYBOARD_FILTER = /[-.kmu0123456789MnGpf]/;
+    this.FILE_NAME_KEYBOARD_FILTER = /[-abcdefghijklmn opqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()]/;
+    this.ENGINEERING_KEYBOARD_FILTER_INDEX = [];
+    this.FILE_NAME_KEYBOARD_FILTER_INDEX = [];
+    this.HOVER_INDEX = -1;
+    this.KEYBOARD_KEY_EVENT = {
+      code: 'keyA'
+    };
+    this.LINE_BUFFER = [];
     this.load_keyboard();
   }
   /* Load the structure of the on screen keyboard. */
-  load_keyboard() {
+  load_keyboard(): void {
     this.KEYBOARD_KEYS.splice(0, this.KEYBOARD_KEYS.length);
     this.KEYBOARD_MAPPING.splice(0, this.KEYBOARD_MAPPING.length);
     this.KEYBOARD_LETTER_REF.splice(0, this.KEYBOARD_LETTER_REF.length);
-    this.ENGINEERING_KEYBOARD_FILTER_INDEX.splice(
-      0,
-      this.ENGINEERING_KEYBOARD_FILTER_INDEX.length
-    );
-    this.FILE_NAME_KEYBOARD_FILTER_INDEX.splice(
-      0,
-      this.FILE_NAME_KEYBOARD_FILTER_INDEX.length
-    );
+    this.ENGINEERING_KEYBOARD_FILTER_INDEX.splice(0, this.ENGINEERING_KEYBOARD_FILTER_INDEX.length);
+    this.FILE_NAME_KEYBOARD_FILTER_INDEX.splice(0, this.FILE_NAME_KEYBOARD_FILTER_INDEX.length);
     let DEFAULT_WIDTH = this.bounds.get_width() * 0.06452 - 1.0;
     let DEFAULT_HEIGHT = this.bounds.get_height() * 0.2;
     let Y_COUNTER = 0;
@@ -192,20 +222,13 @@ class OnScreenKeyboard {
       IS_SPECIAL_KEY = false;
       if (i === 0) {
         this.KEYBOARD_KEYS.push(
-          new RectF(
-            this.bounds.left,
-            this.bounds.top + Y_COUNTER * DEFAULT_HEIGHT,
-            this.bounds.left + DEFAULT_WIDTH,
-            this.bounds.top + (Y_COUNTER + 1) * DEFAULT_HEIGHT
-          )
+          new RectF(this.bounds.left, this.bounds.top + Y_COUNTER * DEFAULT_HEIGHT, this.bounds.left + DEFAULT_WIDTH, this.bounds.top + (Y_COUNTER + 1) * DEFAULT_HEIGHT)
         );
       } else {
         if (BLOCK_EXPAND_INDEX < this.KEYBOARD_BLOCK_EXPAND.length) {
           if (i === this.KEYBOARD_BLOCK_EXPAND[BLOCK_EXPAND_INDEX]['Id']) {
             IS_SPECIAL_KEY = true;
-            MULTIPLIER = this.KEYBOARD_BLOCK_EXPAND[BLOCK_EXPAND_INDEX][
-              'Factor'
-            ];
+            MULTIPLIER = this.KEYBOARD_BLOCK_EXPAND[BLOCK_EXPAND_INDEX]['Factor'];
             BLOCK_EXPAND_INDEX++;
           }
         }
@@ -221,12 +244,7 @@ class OnScreenKeyboard {
             );
           } else {
             this.KEYBOARD_KEYS.push(
-              new RectF(
-                this.bounds.left,
-                this.bounds.top + Y_COUNTER * DEFAULT_HEIGHT,
-                this.bounds.left + DEFAULT_WIDTH,
-                this.bounds.top + (Y_COUNTER + 1) * DEFAULT_HEIGHT
-              )
+              new RectF(this.bounds.left, this.bounds.top + Y_COUNTER * DEFAULT_HEIGHT, this.bounds.left + DEFAULT_WIDTH, this.bounds.top + (Y_COUNTER + 1) * DEFAULT_HEIGHT)
             );
           }
         } else {
@@ -352,13 +370,12 @@ class OnScreenKeyboard {
     }
   }
   /* Resize the on-screen keyboard */
-  resize_keyboard() {
+  resize_keyboard(): void {
     if (global.MOBILE_MODE) {
       /* Padding for the graph window. */
       this.bounds.left = view_port.left;
       this.bounds.right = view_port.right;
-      this.bounds.top =
-        view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
+      this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
       this.bounds.bottom = view_port.bottom;
       this.load_keyboard();
       /* Resize the stroke widths and the text sizes. */
@@ -374,7 +391,7 @@ class OnScreenKeyboard {
       this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
     }
   }
-  mouse_down() {
+  mouse_down(): void {
     if (global.MOBILE_MODE) {
       this.FLAG_KEY_UP = false;
       for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
@@ -386,65 +403,23 @@ class OnScreenKeyboard {
       }
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (global.MOBILE_MODE) {
     }
   }
-  mouse_up() {
-    if (
-      global.MOBILE_MODE &&
-      (global.FLAG_SAVE_CIRCUIT ||
-        global.FLAG_SAVE_IMAGE ||
-        global.FLAG_SELECT_TIMESTEP ||
-        global.FLAG_ELEMENT_OPTIONS_EDIT)
-    ) {
+  mouse_up(): void {
+    if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
       this.HOVER_INDEX = -1;
       let FOUND = false;
       for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
         if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
           FOUND = true;
           if (this.KEYBOARD_MAPPING[i].length === 1 && this.approve_keys(i)) {
-            if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
-              this.KEYBOARD_EVENT_KEY_EVENT.keyCode = this.KEYBOARD_MAPPING[i]
-                .toUpperCase()
-                .charCodeAt(0);
-            } else {
-              let char_code = this.KEYBOARD_MAPPING[i].charCodeAt(0);
-              if (
-                ((char_code >= 58 && char_code <= 90) ||
-                  (char_code >= 97 && char_code <= 122)) &&
-                char_code != 61
-              ) {
-                this.KEYBOARD_EVENT_KEY_EVENT.keyCode = char_code - 32;
-              } else {
-                if (
-                  char_code === 45 ||
-                  char_code === 61 ||
-                  char_code === 46 ||
-                  char_code === 32
-                ) {
-                  if (char_code === 45) {
-                    this.KEYBOARD_EVENT_KEY_EVENT.keyCode =
-                      global.KEY_CODE_MINUS;
-                  } else if (char_code === 61) {
-                    this.KEYBOARD_EVENT_KEY_EVENT.keyCode =
-                      global.KEY_CODE_EQUAL;
-                  } else if (char_code === 46) {
-                    this.KEYBOARD_EVENT_KEY_EVENT.keyCode =
-                      global.KEY_CODE_PERIOD;
-                  } else if (char_code === 32) {
-                    this.KEYBOARD_EVENT_KEY_EVENT.keyCode =
-                      global.KEY_CODE_SPACE;
-                  }
-                } else {
-                  this.KEYBOARD_EVENT_KEY_EVENT.keyCode = char_code;
-                }
-              }
-            }
+            this.KEYBOARD_KEY_EVENT.code = global.key_to_code(this.KEYBOARD_MAPPING[i]);
             global.KEY_DOWN_EVENT = true;
             global.KEY_UP_EVENT = true;
             global.key_down_event_queue.push({
-              event: global.copy(this.KEYBOARD_EVENT_KEY_EVENT),
+              event: global.copy(this.KEYBOARD_KEY_EVENT),
               alt: false,
               shift: this.FLAG_SHIFT,
               ctrl: false,
@@ -462,11 +437,11 @@ class OnScreenKeyboard {
             } else if (this.KEYBOARD_MAPPING[i] === 'ENTER') {
               /* ENTER */
               this.FLAG_ENTER = !this.FLAG_ENTER;
-              this.KEYBOARD_EVENT_KEY_EVENT.keyCode = global.KEY_CODE_ENTER;
+              this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_ENTER;
               global.KEY_DOWN_EVENT = true;
               global.KEY_UP_EVENT = true;
               global.key_down_event_queue.push({
-                event: global.copy(this.KEYBOARD_EVENT_KEY_EVENT),
+                event: global.copy(this.KEYBOARD_KEY_EVENT),
                 alt: false,
                 shift: this.FLAG_SHIFT,
                 ctrl: false,
@@ -475,11 +450,11 @@ class OnScreenKeyboard {
               break;
             } else if (this.KEYBOARD_MAPPING[i] === '<<') {
               /* BACK SPACE */
-              this.KEYBOARD_EVENT_KEY_EVENT.keyCode = global.KEY_CODE_BACKSPACE;
+              this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_BACKSPACE;
               global.KEY_DOWN_EVENT = true;
               global.KEY_UP_EVENT = true;
               global.key_down_event_queue.push({
-                event: global.copy(this.KEYBOARD_EVENT_KEY_EVENT),
+                event: global.copy(this.KEYBOARD_KEY_EVENT),
                 alt: false,
                 shift: this.FLAG_SHIFT,
                 ctrl: false,
@@ -498,9 +473,9 @@ class OnScreenKeyboard {
       this.FLAG_KEY_UP = true;
     }
   }
-  filter_keys(input) {
+  filter_keys(input: string): boolean {
     let output = false;
-    let filter = RegExp('');
+    let filter: RegExp;
     if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
       input = input.toUpperCase();
     }
@@ -510,27 +485,12 @@ class OnScreenKeyboard {
       filter = this.FILE_NAME_KEYBOARD_FILTER;
     }
     output = filter.test(input);
-    if (
-      input === 'INS' ||
-      input === 'CTRL' ||
-      input === 'ALT' ||
-      input === 'WIN' ||
-      input === 'FN' ||
-      input === 'TAB' ||
-      input === 'ESC'
-    ) {
+    if (input === 'INS' || input === 'CTRL' || input === 'ALT' || input === 'WIN' || input === 'FN' || input === 'TAB' || input === 'ESC') {
       output = false;
     }
-    return (
-      output ||
-      input === 'CAPS' ||
-      input === 'ENTER' ||
-      input === '<<' ||
-      input === 'SHIFT' ||
-      input === ' '
-    );
+    return output || input === 'CAPS' || input === 'ENTER' || input === '<<' || input === 'SHIFT' || input === ' ';
   }
-  approve_keys(index) {
+  approve_keys(index: number): boolean {
     if (this.ENGINEERING_KEYBOARD_MODE === true) {
       return this.ENGINEERING_KEYBOARD_FILTER_INDEX[index];
     } else {
@@ -538,22 +498,10 @@ class OnScreenKeyboard {
     }
   }
   /* Draw the on screen keyboard */
-  draw_keyboard(canvas) {
-    if (
-      global.MOBILE_MODE &&
-      (global.FLAG_SAVE_CIRCUIT ||
-        global.FLAG_SAVE_IMAGE ||
-        global.FLAG_SELECT_TIMESTEP ||
-        global.FLAG_ELEMENT_OPTIONS_EDIT)
-    ) {
-      if (
-        global.FLAG_ELEMENT_OPTIONS_EDIT === true ||
-        global.FLAG_SELECT_TIMESTEP === true
-      ) {
-        if (
-          global.selected_type != global.TYPE_NOTE &&
-          global.selected_type != global.TYPE_NET
-        ) {
+  draw_keyboard(canvas: GraphicsEngine): void {
+    if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
+      if (global.FLAG_ELEMENT_OPTIONS_EDIT === true || global.FLAG_SELECT_TIMESTEP === true) {
+        if (global.selected_type != global.TYPE_NOTE && global.selected_type != global.TYPE_NET) {
           this.ENGINEERING_KEYBOARD_MODE = true;
         } else {
           if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
@@ -568,118 +516,40 @@ class OnScreenKeyboard {
       canvas.draw_rect2(this.bounds, this.bounds_paint);
       let indexer = 0;
       for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
-        this.LINE_BUFFER[indexer++] = Array(
-          this.KEYBOARD_KEYS[i].left,
-          this.KEYBOARD_KEYS[i].top,
-          this.KEYBOARD_KEYS[i].left,
-          this.KEYBOARD_KEYS[i].bottom
-        );
-        this.LINE_BUFFER[indexer++] = Array(
-          this.KEYBOARD_KEYS[i].right,
-          this.KEYBOARD_KEYS[i].top,
-          this.KEYBOARD_KEYS[i].right,
-          this.KEYBOARD_KEYS[i].bottom
-        );
+        this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].bottom);
+        this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].bottom);
         if (this.ENGINEERING_KEYBOARD_MODE) {
           if (this.ENGINEERING_KEYBOARD_FILTER_INDEX[i]) {
             if (this.HOVER_INDEX === i) {
-              canvas.draw_round_rect2(
-                this.KEYBOARD_KEYS[i],
-                this.fill_paint.get_stroke_width() << 1,
-                this.fill_paint
-              );
+              canvas.draw_round_rect2(this.KEYBOARD_KEYS[i], this.fill_paint.get_stroke_width() << 1, this.fill_paint);
             }
             if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
-              canvas.draw_text(
-                this.KEYBOARD_MAPPING[i].toUpperCase(),
-                this.KEYBOARD_KEYS[i].get_center_x(),
-                this.KEYBOARD_KEYS[i].get_center_y(),
-                this.text_paint
-              );
+              canvas.draw_text(this.KEYBOARD_MAPPING[i].toUpperCase(), this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
             } else {
-              canvas.draw_text(
-                this.KEYBOARD_MAPPING[i],
-                this.KEYBOARD_KEYS[i].get_center_x(),
-                this.KEYBOARD_KEYS[i].get_center_y(),
-                this.text_paint
-              );
+              canvas.draw_text(this.KEYBOARD_MAPPING[i], this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
             }
           }
         } else {
           if (this.FILE_NAME_KEYBOARD_FILTER_INDEX[i]) {
             if (this.HOVER_INDEX === i) {
-              canvas.draw_round_rect2(
-                this.KEYBOARD_KEYS[i],
-                this.fill_paint.get_stroke_width() << 1,
-                this.fill_paint
-              );
+              canvas.draw_round_rect2(this.KEYBOARD_KEYS[i], this.fill_paint.get_stroke_width() << 1, this.fill_paint);
             }
             if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
-              canvas.draw_text(
-                this.KEYBOARD_MAPPING[i].toUpperCase(),
-                this.KEYBOARD_KEYS[i].get_center_x(),
-                this.KEYBOARD_KEYS[i].get_center_y(),
-                this.text_paint
-              );
+              canvas.draw_text(this.KEYBOARD_MAPPING[i].toUpperCase(), this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
             } else {
-              canvas.draw_text(
-                this.KEYBOARD_MAPPING[i],
-                this.KEYBOARD_KEYS[i].get_center_x(),
-                this.KEYBOARD_KEYS[i].get_center_y(),
-                this.text_paint
-              );
+              canvas.draw_text(this.KEYBOARD_MAPPING[i], this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
             }
           }
         }
       }
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.left,
-        this.bounds.top,
-        this.bounds.right,
-        this.bounds.top
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.left,
-        this.bounds.bottom,
-        this.bounds.right,
-        this.bounds.bottom
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.left,
-        this.bounds.top,
-        this.bounds.left,
-        this.bounds.bottom
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.right,
-        this.bounds.top,
-        this.bounds.right,
-        this.bounds.bottom
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.left,
-        this.KEYBOARD_KEYS[0].bottom,
-        this.bounds.right,
-        this.KEYBOARD_KEYS[0].bottom
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.left,
-        this.KEYBOARD_KEYS[15].bottom,
-        this.bounds.right,
-        this.KEYBOARD_KEYS[15].bottom
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.left,
-        this.KEYBOARD_KEYS[30].bottom,
-        this.bounds.right,
-        this.KEYBOARD_KEYS[30].bottom
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.bounds.left,
-        this.KEYBOARD_KEYS[43].bottom,
-        this.bounds.right,
-        this.KEYBOARD_KEYS[43].bottom
-      );
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[0].bottom, this.bounds.right, this.KEYBOARD_KEYS[0].bottom);
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[15].bottom, this.bounds.right, this.KEYBOARD_KEYS[15].bottom);
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[30].bottom, this.bounds.right, this.KEYBOARD_KEYS[30].bottom);
+      this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[43].bottom, this.bounds.right, this.KEYBOARD_KEYS[43].bottom);
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
     }
     if (this.FLAG_KEY_UP) {

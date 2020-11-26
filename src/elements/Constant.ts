@@ -25,7 +25,7 @@ class Constant {
   /* Create a new rectangle for the bounds of this component */
   public bounds = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element1(-1, -1, -1);
+  public elm = new Element1(-1, -1, global.NULL);
   /* Create some points to hold the node locations, this will be used for drawing components */
   public p1 = new PointF(0, 0);
   /* The spacing of the nodes in the x-direction, divided by 2 */

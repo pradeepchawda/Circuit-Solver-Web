@@ -19,6 +19,19 @@
  *
  ***********************************************************************/
 class MeterSymbols {
+  public bounds = new RectF(0, 0, 0, 0);
+  public METER_VOLTAGE = 0;
+  public METER_CURRENT = 1;
+  public METER_RESISTANCE = 2;
+  public METER_POWER = 3;
+  public STYLE_0 = 0;
+  public STYLE_1 = 1;
+  public meter_type = this.METER_VOLTAGE;
+  public meter_paint = new Paint();
+  public points = [];
+  public LINE_BUFFER = [];
+  public CIRCLE_BUFFER = [];
+
   constructor() {
     this.bounds = new RectF(0, 0, 0, 0);
     this.METER_VOLTAGE = 0;

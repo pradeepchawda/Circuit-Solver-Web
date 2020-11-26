@@ -31,6 +31,23 @@ class EngineFunctions {
   public v_node_1 = 0;
   public v_node_2 = 0;
   public meta_data = new Metadata();
+  /* Temporary position holders for the generation of new elements. */
+  public x1 = -1;
+  public y1 = -1;
+  public x2 = -1;
+  public y2 = -1;
+  public x3 = -1;
+  public y3 = -1;
+  public x4 = -1;
+  public y4 = -1;
+  /* Solely for mapping nodes (single nodes) baby! */
+  public mapper1 = new Element1(-1, -1, global.NULL);
+  /* Solely for mapping nodes (double nodes) baby! */
+  public mapper2 = new Element2(-1, -1, global.NULL);
+  /* Solely for mapping nodes (triple nodes) baby! */
+  public mapper3 = new Element3(-1, -1, global.NULL);
+  /* Solely for mapping nodes (quadruple nodes) baby! */
+  public mapper4 = new Element4(-1, -1, global.NULL);
 
   constructor() {
     this.node_1 = -1;
@@ -44,6 +61,23 @@ class EngineFunctions {
     this.v_node_1 = 0;
     this.v_node_2 = 0;
     this.meta_data = new Metadata();
+    /* Temporary position holders for the generation of new elements. */
+    this.x1 = -1;
+    this.y1 = -1;
+    this.x2 = -1;
+    this.y2 = -1;
+    this.x3 = -1;
+    this.y3 = -1;
+    this.x4 = -1;
+    this.y4 = -1;
+    /* Solely for mapping nodes (single nodes) baby! */
+    this.mapper1 = new Element1(-1, -1, global.NULL);
+    /* Solely for mapping nodes (double nodes) baby! */
+    this.mapper2 = new Element2(-1, -1, global.NULL);
+    /* Solely for mapping nodes (triple nodes) baby! */
+    this.mapper3 = new Element3(-1, -1, global.NULL);
+    /* Solely for mapping nodes (quadruple nodes) baby! */
+    this.mapper4 = new Element4(-1, -1, global.NULL);
   }
   /* Create a series of nodes based on some arbitrary bounds. We will use this for the initial generation
   of the nodes, after that they should resize them selves. */
@@ -79,23 +113,6 @@ class EngineFunctions {
         }
       }
     }
-    /* Temporary position holders for the generation of new elements. */
-    this.x1 = -1;
-    this.y1 = -1;
-    this.x2 = -1;
-    this.y2 = -1;
-    this.x3 = -1;
-    this.y3 = -1;
-    this.x4 = -1;
-    this.y4 = -1;
-    /* Solely for mapping nodes (single nodes) baby! */
-    this.mapper1 = new Element1(-1, -1, {});
-    /* Solely for mapping nodes (double nodes) baby! */
-    this.mapper2 = new Element2(-1, -1, {});
-    /* Solely for mapping nodes (triple nodes) baby! */
-    this.mapper3 = new Element3(-1, -1, {});
-    /* Solely for mapping nodes (quadruple nodes) baby! */
-    this.mapper4 = new Element4(-1, -1, {});
   }
   handle_nearest_neighbors(temp_transition_lock) {
     /* History lock is only set when moving elements on new add or on paste. */
@@ -11690,7 +11707,7 @@ class EngineFunctions {
     if (global.selected) {
       if (global.selected_type === global.TYPE_RESISTOR) {
         for (var i = 0; i < resistors.length; i++) {
-          if (global.selected_index === resistors[i].elm.id) {
+          if (global.selected_id === resistors[i].elm.id) {
             resistors[i].draw_component(canvas);
             break;
           }
@@ -11698,7 +11715,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_CAPACITOR) {
         for (var i = 0; i < capacitors.length; i++) {
-          if (global.selected_index === capacitors[i].elm.id) {
+          if (global.selected_id === capacitors[i].elm.id) {
             capacitors[i].draw_component(canvas);
             break;
           }
@@ -11706,7 +11723,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_INDUCTOR) {
         for (var i = 0; i < inductors.length; i++) {
-          if (global.selected_index === inductors[i].elm.id) {
+          if (global.selected_id === inductors[i].elm.id) {
             inductors[i].draw_component(canvas);
             break;
           }
@@ -11714,7 +11731,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_GROUND) {
         for (var i = 0; i < grounds.length; i++) {
-          if (global.selected_index === grounds[i].elm.id) {
+          if (global.selected_id === grounds[i].elm.id) {
             grounds[i].draw_component(canvas);
             break;
           }
@@ -11722,7 +11739,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_DCSOURCE) {
         for (var i = 0; i < dcsources.length; i++) {
-          if (global.selected_index === dcsources[i].elm.id) {
+          if (global.selected_id === dcsources[i].elm.id) {
             dcsources[i].draw_component(canvas);
             break;
           }
@@ -11730,7 +11747,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_DCCURRENT) {
         for (var i = 0; i < dccurrents.length; i++) {
-          if (global.selected_index === dccurrents[i].elm.id) {
+          if (global.selected_id === dccurrents[i].elm.id) {
             dccurrents[i].draw_component(canvas);
             break;
           }
@@ -11738,7 +11755,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_ACSOURCE) {
         for (var i = 0; i < acsources.length; i++) {
-          if (global.selected_index === acsources[i].elm.id) {
+          if (global.selected_id === acsources[i].elm.id) {
             acsources[i].draw_component(canvas);
             break;
           }
@@ -11746,7 +11763,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_ACCURRENT) {
         for (var i = 0; i < accurrents.length; i++) {
-          if (global.selected_index === accurrents[i].elm.id) {
+          if (global.selected_id === accurrents[i].elm.id) {
             accurrents[i].draw_component(canvas);
             break;
           }
@@ -11754,7 +11771,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_SQUAREWAVE) {
         for (var i = 0; i < squarewaves.length; i++) {
-          if (global.selected_index === squarewaves[i].elm.id) {
+          if (global.selected_id === squarewaves[i].elm.id) {
             squarewaves[i].draw_component(canvas);
             break;
           }
@@ -11762,7 +11779,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_SAW) {
         for (var i = 0; i < sawwaves.length; i++) {
-          if (global.selected_index === sawwaves[i].elm.id) {
+          if (global.selected_id === sawwaves[i].elm.id) {
             sawwaves[i].draw_component(canvas);
             break;
           }
@@ -11770,7 +11787,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_TRI) {
         for (var i = 0; i < trianglewaves.length; i++) {
-          if (global.selected_index === trianglewaves[i].elm.id) {
+          if (global.selected_id === trianglewaves[i].elm.id) {
             trianglewaves[i].draw_component(canvas);
             break;
           }
@@ -11778,7 +11795,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_CONSTANT) {
         for (var i = 0; i < constants.length; i++) {
-          if (global.selected_index === constants[i].elm.id) {
+          if (global.selected_id === constants[i].elm.id) {
             constants[i].draw_component(canvas);
             break;
           }
@@ -11786,7 +11803,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_WIRE) {
         for (var i = 0; i < wires.length; i++) {
-          if (global.selected_index === wires[i].elm.id) {
+          if (global.selected_id === wires[i].elm.id) {
             wires[i].draw_component(canvas);
             break;
           }
@@ -11794,7 +11811,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_NET) {
         for (var i = 0; i < nets.length; i++) {
-          if (global.selected_index === nets[i].elm.id) {
+          if (global.selected_id === nets[i].elm.id) {
             nets[i].draw_component(canvas);
             break;
           }
@@ -11802,7 +11819,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_NOTE) {
         for (var i = 0; i < notes.length; i++) {
-          if (global.selected_index === notes[i].elm.id) {
+          if (global.selected_id === notes[i].elm.id) {
             notes[i].draw_component(canvas);
             break;
           }
@@ -11810,7 +11827,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_RAIL) {
         for (var i = 0; i < rails.length; i++) {
-          if (global.selected_index === rails[i].elm.id) {
+          if (global.selected_id === rails[i].elm.id) {
             rails[i].draw_component(canvas);
             break;
           }
@@ -11818,7 +11835,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_VOLTMETER) {
         for (var i = 0; i < voltmeters.length; i++) {
-          if (global.selected_index === voltmeters[i].elm.id) {
+          if (global.selected_id === voltmeters[i].elm.id) {
             voltmeters[i].draw_component(canvas);
             break;
           }
@@ -11826,7 +11843,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_OHMMETER) {
         for (var i = 0; i < ohmmeters.length; i++) {
-          if (global.selected_index === ohmmeters[i].elm.id) {
+          if (global.selected_id === ohmmeters[i].elm.id) {
             ohmmeters[i].draw_component(canvas);
             break;
           }
@@ -11834,7 +11851,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_AMMETER) {
         for (var i = 0; i < ammeters.length; i++) {
-          if (global.selected_index === ammeters[i].elm.id) {
+          if (global.selected_id === ammeters[i].elm.id) {
             ammeters[i].draw_component(canvas);
             break;
           }
@@ -11842,7 +11859,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_WATTMETER) {
         for (var i = 0; i < wattmeters.length; i++) {
-          if (global.selected_index === wattmeters[i].elm.id) {
+          if (global.selected_id === wattmeters[i].elm.id) {
             wattmeters[i].draw_component(canvas);
             break;
           }
@@ -11850,7 +11867,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_FUSE) {
         for (var i = 0; i < fuses.length; i++) {
-          if (global.selected_index === fuses[i].elm.id) {
+          if (global.selected_id === fuses[i].elm.id) {
             fuses[i].draw_component(canvas);
             break;
           }
@@ -11858,7 +11875,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_SPST) {
         for (var i = 0; i < spsts.length; i++) {
-          if (global.selected_index === spsts[i].elm.id) {
+          if (global.selected_id === spsts[i].elm.id) {
             spsts[i].draw_component(canvas);
             break;
           }
@@ -11866,7 +11883,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_SPDT) {
         for (var i = 0; i < spdts.length; i++) {
-          if (global.selected_index === spdts[i].elm.id) {
+          if (global.selected_id === spdts[i].elm.id) {
             spdts[i].draw_component(canvas);
             break;
           }
@@ -11874,7 +11891,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_NOT) {
         for (var i = 0; i < nots.length; i++) {
-          if (global.selected_index === nots[i].elm.id) {
+          if (global.selected_id === nots[i].elm.id) {
             nots[i].draw_component(canvas);
             break;
           }
@@ -11882,7 +11899,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_DIODE) {
         for (var i = 0; i < diodes.length; i++) {
-          if (global.selected_index === diodes[i].elm.id) {
+          if (global.selected_id === diodes[i].elm.id) {
             diodes[i].draw_component(canvas);
             break;
           }
@@ -11890,7 +11907,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_LED) {
         for (var i = 0; i < leds.length; i++) {
-          if (global.selected_index === leds[i].elm.id) {
+          if (global.selected_id === leds[i].elm.id) {
             leds[i].draw_component(canvas);
             break;
           }
@@ -11898,7 +11915,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_ZENER) {
         for (var i = 0; i < zeners.length; i++) {
-          if (global.selected_index === zeners[i].elm.id) {
+          if (global.selected_id === zeners[i].elm.id) {
             zeners[i].draw_component(canvas);
             break;
           }
@@ -11906,7 +11923,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_POTENTIOMETER) {
         for (var i = 0; i < potentiometers.length; i++) {
-          if (global.selected_index === potentiometers[i].elm.id) {
+          if (global.selected_id === potentiometers[i].elm.id) {
             potentiometers[i].draw_component(canvas);
             break;
           }
@@ -11914,7 +11931,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_AND) {
         for (var i = 0; i < ands.length; i++) {
-          if (global.selected_index === ands[i].elm.id) {
+          if (global.selected_id === ands[i].elm.id) {
             ands[i].draw_component(canvas);
             break;
           }
@@ -11922,7 +11939,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_OR) {
         for (var i = 0; i < ors.length; i++) {
-          if (global.selected_index === ors[i].elm.id) {
+          if (global.selected_id === ors[i].elm.id) {
             ors[i].draw_component(canvas);
             break;
           }
@@ -11930,7 +11947,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_NAND) {
         for (var i = 0; i < nands.length; i++) {
-          if (global.selected_index === nands[i].elm.id) {
+          if (global.selected_id === nands[i].elm.id) {
             nands[i].draw_component(canvas);
             break;
           }
@@ -11938,7 +11955,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_NOR) {
         for (var i = 0; i < nors.length; i++) {
-          if (global.selected_index === nors[i].elm.id) {
+          if (global.selected_id === nors[i].elm.id) {
             nors[i].draw_component(canvas);
             break;
           }
@@ -11946,7 +11963,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_XOR) {
         for (var i = 0; i < xors.length; i++) {
-          if (global.selected_index === xors[i].elm.id) {
+          if (global.selected_id === xors[i].elm.id) {
             xors[i].draw_component(canvas);
             break;
           }
@@ -11954,7 +11971,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_XNOR) {
         for (var i = 0; i < xnors.length; i++) {
-          if (global.selected_index === xnors[i].elm.id) {
+          if (global.selected_id === xnors[i].elm.id) {
             xnors[i].draw_component(canvas);
             break;
           }
@@ -11962,7 +11979,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_DFF) {
         for (var i = 0; i < dffs.length; i++) {
-          if (global.selected_index === dffs[i].elm.id) {
+          if (global.selected_id === dffs[i].elm.id) {
             dffs[i].draw_component(canvas);
             break;
           }
@@ -11970,7 +11987,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_VSAT) {
         for (var i = 0; i < vsats.length; i++) {
-          if (global.selected_index === vsats[i].elm.id) {
+          if (global.selected_id === vsats[i].elm.id) {
             vsats[i].draw_component(canvas);
             break;
           }
@@ -11978,7 +11995,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_ADD) {
         for (var i = 0; i < adders.length; i++) {
-          if (global.selected_index === adders[i].elm.id) {
+          if (global.selected_id === adders[i].elm.id) {
             adders[i].draw_component(canvas);
             break;
           }
@@ -11986,7 +12003,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_SUB) {
         for (var i = 0; i < subtractors.length; i++) {
-          if (global.selected_index === subtractors[i].elm.id) {
+          if (global.selected_id === subtractors[i].elm.id) {
             subtractors[i].draw_component(canvas);
             break;
           }
@@ -11994,7 +12011,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_MUL) {
         for (var i = 0; i < multipliers.length; i++) {
-          if (global.selected_index === multipliers[i].elm.id) {
+          if (global.selected_id === multipliers[i].elm.id) {
             multipliers[i].draw_component(canvas);
             break;
           }
@@ -12002,7 +12019,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_DIV) {
         for (var i = 0; i < dividers.length; i++) {
-          if (global.selected_index === dividers[i].elm.id) {
+          if (global.selected_id === dividers[i].elm.id) {
             dividers[i].draw_component(canvas);
             break;
           }
@@ -12010,7 +12027,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_GAIN) {
         for (var i = 0; i < gains.length; i++) {
-          if (global.selected_index === gains[i].elm.id) {
+          if (global.selected_id === gains[i].elm.id) {
             gains[i].draw_component(canvas);
             break;
           }
@@ -12018,7 +12035,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_ABS) {
         for (var i = 0; i < absvals.length; i++) {
-          if (global.selected_index === absvals[i].elm.id) {
+          if (global.selected_id === absvals[i].elm.id) {
             absvals[i].draw_component(canvas);
             break;
           }
@@ -12026,7 +12043,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_VCSW) {
         for (var i = 0; i < vcsws.length; i++) {
-          if (global.selected_index === vcsws[i].elm.id) {
+          if (global.selected_id === vcsws[i].elm.id) {
             vcsws[i].draw_component(canvas);
             break;
           }
@@ -12034,7 +12051,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_VCVS) {
         for (var i = 0; i < vcvss.length; i++) {
-          if (global.selected_index === vcvss[i].elm.id) {
+          if (global.selected_id === vcvss[i].elm.id) {
             vcvss[i].draw_component(canvas);
             break;
           }
@@ -12042,7 +12059,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_VCCS) {
         for (var i = 0; i < vccss.length; i++) {
-          if (global.selected_index === vccss[i].elm.id) {
+          if (global.selected_id === vccss[i].elm.id) {
             vccss[i].draw_component(canvas);
             break;
           }
@@ -12050,7 +12067,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_CCCS) {
         for (var i = 0; i < cccss.length; i++) {
-          if (global.selected_index === cccss[i].elm.id) {
+          if (global.selected_id === cccss[i].elm.id) {
             cccss[i].draw_component(canvas);
             break;
           }
@@ -12058,7 +12075,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_CCVS) {
         for (var i = 0; i < ccvss.length; i++) {
-          if (global.selected_index === ccvss[i].elm.id) {
+          if (global.selected_id === ccvss[i].elm.id) {
             ccvss[i].draw_component(canvas);
             break;
           }
@@ -12066,7 +12083,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_OPAMP) {
         for (var i = 0; i < opamps.length; i++) {
-          if (global.selected_index === opamps[i].elm.id) {
+          if (global.selected_id === opamps[i].elm.id) {
             opamps[i].draw_component(canvas);
             break;
           }
@@ -12074,7 +12091,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_NMOS) {
         for (var i = 0; i < nmosfets.length; i++) {
-          if (global.selected_index === nmosfets[i].elm.id) {
+          if (global.selected_id === nmosfets[i].elm.id) {
             nmosfets[i].draw_component(canvas);
             break;
           }
@@ -12082,7 +12099,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_PMOS) {
         for (var i = 0; i < pmosfets.length; i++) {
-          if (global.selected_index === pmosfets[i].elm.id) {
+          if (global.selected_id === pmosfets[i].elm.id) {
             pmosfets[i].draw_component(canvas);
             break;
           }
@@ -12090,7 +12107,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_NPN) {
         for (var i = 0; i < npns.length; i++) {
-          if (global.selected_index === npns[i].elm.id) {
+          if (global.selected_id === npns[i].elm.id) {
             npns[i].draw_component(canvas);
             break;
           }
@@ -12098,7 +12115,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_PNP) {
         for (var i = 0; i < pnps.length; i++) {
-          if (global.selected_index === pnps[i].elm.id) {
+          if (global.selected_id === pnps[i].elm.id) {
             pnps[i].draw_component(canvas);
             break;
           }
@@ -12106,7 +12123,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_ADC) {
         for (var i = 0; i < adcs.length; i++) {
-          if (global.selected_index === adcs[i].elm.id) {
+          if (global.selected_id === adcs[i].elm.id) {
             adcs[i].draw_component(canvas);
             break;
           }
@@ -12114,7 +12131,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_DAC) {
         for (var i = 0; i < dacs.length; i++) {
-          if (global.selected_index === dacs[i].elm.id) {
+          if (global.selected_id === dacs[i].elm.id) {
             dacs[i].draw_component(canvas);
             break;
           }
@@ -12122,7 +12139,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_SAH) {
         for (var i = 0; i < sandhs.length; i++) {
-          if (global.selected_index === sandhs[i].elm.id) {
+          if (global.selected_id === sandhs[i].elm.id) {
             sandhs[i].draw_component(canvas);
             break;
           }
@@ -12130,7 +12147,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_PWM) {
         for (var i = 0; i < pwms.length; i++) {
-          if (global.selected_index === pwms[i].elm.id) {
+          if (global.selected_id === pwms[i].elm.id) {
             pwms[i].draw_component(canvas);
             break;
           }
@@ -12138,7 +12155,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_INTEGRATOR) {
         for (var i = 0; i < integrators.length; i++) {
-          if (global.selected_index === integrators[i].elm.id) {
+          if (global.selected_id === integrators[i].elm.id) {
             integrators[i].draw_component(canvas);
             break;
           }
@@ -12146,7 +12163,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_DIFFERENTIATOR) {
         for (var i = 0; i < differentiators.length; i++) {
-          if (global.selected_index === differentiators[i].elm.id) {
+          if (global.selected_id === differentiators[i].elm.id) {
             differentiators[i].draw_component(canvas);
             break;
           }
@@ -12154,7 +12171,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_LPF) {
         for (var i = 0; i < lowpasses.length; i++) {
-          if (global.selected_index === lowpasses[i].elm.id) {
+          if (global.selected_id === lowpasses[i].elm.id) {
             lowpasses[i].draw_component(canvas);
             break;
           }
@@ -12162,7 +12179,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_HPF) {
         for (var i = 0; i < highpasses.length; i++) {
-          if (global.selected_index === highpasses[i].elm.id) {
+          if (global.selected_id === highpasses[i].elm.id) {
             highpasses[i].draw_component(canvas);
             break;
           }
@@ -12170,7 +12187,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_REL) {
         for (var i = 0; i < relays.length; i++) {
-          if (global.selected_index === relays[i].elm.id) {
+          if (global.selected_id === relays[i].elm.id) {
             relays[i].draw_component(canvas);
             break;
           }
@@ -12178,7 +12195,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_PID) {
         for (var i = 0; i < pids.length; i++) {
-          if (global.selected_index === pids[i].elm.id) {
+          if (global.selected_id === pids[i].elm.id) {
             pids[i].draw_component(canvas);
             break;
           }
@@ -12186,7 +12203,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_LUT) {
         for (var i = 0; i < luts.length; i++) {
-          if (global.selected_index === luts[i].elm.id) {
+          if (global.selected_id === luts[i].elm.id) {
             luts[i].draw_component(canvas);
             break;
           }
@@ -12194,7 +12211,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_VCR) {
         for (var i = 0; i < vcrs.length; i++) {
-          if (global.selected_index === vcrs[i].elm.id) {
+          if (global.selected_id === vcrs[i].elm.id) {
             vcrs[i].draw_component(canvas);
             break;
           }
@@ -12202,7 +12219,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_GRT) {
         for (var i = 0; i < grts.length; i++) {
-          if (global.selected_index === grts[i].elm.id) {
+          if (global.selected_id === grts[i].elm.id) {
             grts[i].draw_component(canvas);
             break;
           }
@@ -12210,7 +12227,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_TPTZ) {
         for (var i = 0; i < tptzs.length; i++) {
-          if (global.selected_index === tptzs[i].elm.id) {
+          if (global.selected_id === tptzs[i].elm.id) {
             tptzs[i].draw_component(canvas);
             break;
           }
@@ -12218,7 +12235,7 @@ class EngineFunctions {
       }
       if (global.selected_type === global.TYPE_TRAN) {
         for (var i = 0; i < transformers.length; i++) {
-          if (global.selected_index === transformers[i].elm.id) {
+          if (global.selected_id === transformers[i].elm.id) {
             transformers[i].draw_component(canvas);
             break;
           }
@@ -12310,8 +12327,8 @@ class EngineFunctions {
     /* Access the styling for the canvas. */
     /* Keep it hidden! */
     temp_surface.style.position = 'absolute';
-    temp_surface.style.padding = 0;
-    temp_surface.style.margin = 0;
+    temp_surface.style.padding = '0';
+    temp_surface.style.margin = '0';
     temp_surface.style.zIndex = '0';
     temp_surface.style.visibility = 'hidden';
     temp_surface.style.display = 'none';

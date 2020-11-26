@@ -39,13 +39,13 @@ class ElectricalNode {
   /* This is used to re-map the nodes when doing simulation. */
   public simulation_id: number = -1;
   /* The references attached to this node, essentially whatever is residing the the same location of this node. */
-  public references = [];
+  public references: Array<NodeReference> = [];
   /* Mapping the ID to a row and column. This is useful to know where the node must go upon resizing. */
   public column: number = -1;
   public row: number = -1;
   public bounds: RectF = new RectF(0, 0, 0, 0);
 
-  constructor(x, y, id) {
+  constructor(x: number, y: number, id: number) {
     /* The radius of the node when it is drawn. */
     /* The location of the node */
     this.location = new PointF(x, y);
@@ -114,7 +114,7 @@ class ElectricalNode {
   }
   /* A resizing handler, it will compute the new locations of the nodes as well as handle any zooming
   the user does. */
-  resize(n_x, n_y, m_n_x, m_n_y) {
+  resize(n_x: number, n_y: number, m_n_x: number, m_n_y: number) {
     if (global.SIGNAL_BUILD_ELEMENT) {
       this.location.x =
         workspace.bounds.left +
@@ -148,7 +148,7 @@ class ElectricalNode {
     }
   }
   /* Sets the color of the node interface paint */
-  set_color(color) {
+  set_color(color: string) {
     this.node_line_paint.set_color(color);
     this.node_fill_paint.set_color(color);
     this.node_fill_paint_alt.set_color(color);
@@ -158,11 +158,11 @@ class ElectricalNode {
     return this.bounds;
   }
   /* A quick check to see if the rectangle contains an x,y coordinate */
-  contains_xy(x, y) {
+  contains_xy(x: number, y: number) {
     return this.bounds.contains_xy(x, y);
   }
   /* A quick check to see if the rectangle contains an x,y coordinate (width and height constraints) */
-  contains_xywh(x, y, w, h) {
+  contains_xywh(x: number, y: number, w: number, h: number) {
     return this.bounds.contains_xywh(x, y, w, h);
   }
   /* Gets the node's ID */
@@ -175,13 +175,13 @@ class ElectricalNode {
     node_manager.remove_node(this.id);
   }
   /* Add a reference list to this node. */
-  add_reference_list(reference_list) {
+  add_reference_list(reference_list: Array<NodeReference>) {
     for (var i = 0; i < reference_list.length; i++) {
       this.add_reference(reference_list[i].id, reference_list[i].type);
     }
   }
   /* Add a reference to this node. */
-  add_reference(id, type) {
+  add_reference(id: number, type: number) {
     let is_found = false;
     for (var i = 0; i < this.references.length; i++) {
       if (this.references[i].id === id && this.references[i].type === type) {
@@ -197,7 +197,7 @@ class ElectricalNode {
     }
   }
   /* Removes the reference from this node. */
-  remove_reference(id, type) {
+  remove_reference(id: number, type: number) {
     if (this.references.length > 0) {
       for (var i = 0; i < this.references.length; i++) {
         if (this.references[i].id === id && this.references[i].type === type) {
@@ -211,7 +211,7 @@ class ElectricalNode {
     }
   }
   /* Checks to see if the references contain an element type */
-  contains_element_type(type) {
+  contains_element_type(type: number) {
     let out = false;
     for (var i = 0; i < this.references.length; i++) {
       if (this.references[i].type === type) {
@@ -248,10 +248,10 @@ class ElectricalNode {
     let str = '';
     let DEBUG_TEMPLATE = '({ID},{TYPE}),';
     for (var i = 0; i < this.references.length; i++) {
-      str += DEBUG_TEMPLATE.replace('{ID}', this.references[i].id).replace(
-        '{TYPE}',
-        this.references[i].type
-      );
+      str += DEBUG_TEMPLATE.replace(
+        '{ID}',
+        String(this.references[i].id)
+      ).replace('{TYPE}', String(this.references[i].type));
     }
     return str;
   }

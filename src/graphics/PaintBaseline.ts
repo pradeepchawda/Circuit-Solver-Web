@@ -20,10 +20,10 @@
  *
  ***********************************************************************/
 class PaintBaseline {
-  public readonly TOP: string = 'top';
-  public readonly MIDDLE: string = 'middle';
-  public readonly BOTTOM: string = 'bottom';
-  public readonly ALPHABETIC: string = 'alphabetic';
-  public readonly HANGING: string = 'hanging';
+  public readonly TOP: CanvasTextBaseline = 'top';
+  public readonly MIDDLE: CanvasTextBaseline = 'middle';
+  public readonly BOTTOM: CanvasTextBaseline = 'bottom';
+  public readonly ALPHABETIC: CanvasTextBaseline = 'alphabetic';
+  public readonly HANGING: CanvasTextBaseline = 'hanging';
   constructor() {}
 }

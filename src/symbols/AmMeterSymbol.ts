@@ -20,6 +20,53 @@
  *
  ***********************************************************************/
 class AmMeterSymbol {
+  /* Index of the bounds (Inside New Element Window) */
+  public index = -1;
+  /* Page to be drawn on (Inside New Element Window) */
+  public page = -1;
+  public bounds = new RectF(0, 0, 0, 0);
+
+  public p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
+  public p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
+  /* Angle from p1 to p2 minus 90 degrees */
+  public theta_m90 =
+    global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
+    global.PI_DIV_2;
+  /* Angle from p1 to p2 */
+  public theta = global.retrieve_angle_radian(
+    this.p2.x - this.p1.x,
+    this.p2.y - this.p1.y
+  );
+  /* The center (x-coord) of the bounds */
+  public c_x = this.bounds.get_center_x();
+  /* The center (y-coord) of the bounds */
+  public c_y = this.bounds.get_center_y();
+  /* The spacing of the nodes in the x-direction, divided by 2 */
+  public x_space = this.bounds.get_width() >> 2;
+  /* The spacing of the nodes in the y-direction, divided by 2 */
+  public y_space = this.bounds.get_height() >> 2;
+  /* Some points we'll be extending the leads of the resistor to. */
+  public connect1_x = 0;
+  public connect1_y = 0;
+  public connect2_x = 0;
+  public connect2_y = 0;
+  /* This paint is used for drawing the "lines" that the component is comprised of. */
+  public line_paint = new Paint();
+  /* This paint is used for drawing the "nodes" that the component is connected to. */
+  public point_paint = new Paint();
+  /* This paint is used for drawing the "text" that the component needs to display */
+  public text_paint = new Paint();
+  /* Text background paint */
+  public text_background_paint = new Paint();
+  public meter_symbol = new MeterSymbols();
+  public FLAG_ADD_ELEMENT = false;
+  public TAG = language_manager.TAG_AMMETER;
+  public DRAW_TAG = false;
+  public text_bounds = new RectF(0, 0, 0, 0);
+  public HEIGHT_RATIO = 0.35;
+  public LINE_BUFFER = [];
+  public CIRCLE_BUFFER = [];
+
   constructor(rect, index, page) {
     /* Index of the bounds (Inside New Element Window) */
     this.index = index;

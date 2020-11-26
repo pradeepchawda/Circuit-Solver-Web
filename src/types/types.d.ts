@@ -42,8 +42,51 @@ declare type HISTORY_MANAGER_T = {
 
 /* Base structure for system properties */
 declare type SYSTEM_OPTIONS_T = {
-  options: Array<String>;
-  values: Array<String>;
+  options: Array<string>;
+  values: Array<string>;
+};
+
+declare type PATH_1P_T = {
+  command: string;
+  x1: number;
+  y1: number;
+};
+
+declare type PATH_2P_T = {
+  command: string;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+};
+
+declare type PATH_3P_T = {
+  command: string;
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  x3: number;
+  y3: number;
+  x4: number;
+  y4: number;
+};
+
+declare type PATH_T = PATH_1P_T | PATH_2P_T | PATH_3P_T;
+
+declare type KEYBOARD_EXPAND_T = {
+  Id: number;
+  Factor: number;
+};
+
+declare type ON_SCREEN_KEYBOARD_KEY_EVENT_T = {
+  code: string;
+};
+
+declare type PAINT_METRICS_T = {
+  width: number;
+  ascent: number;
+  descent: number;
 };
 
 declare type ANGLE_STRUCT_T = {
@@ -1108,3 +1151,73 @@ declare type PROPERTY_DFF_T = {
   options_units: Array<string>;
   option_limits: {};
 };
+
+declare type ELEMENT_PROPERTY_T =
+  | PROPERTY_META_DATA_T
+  | PROPERTY_RESISTOR_T
+  | PROPERTY_SPST_T
+  | PROPERTY_NOT_T
+  | PROPERTY_DIODE_T
+  | PROPERTY_LED_T
+  | PROPERTY_ZENER_T
+  | PROPERTY_VOLTMETER_T
+  | PROPERTY_WATTMETER_T
+  | PROPERTY_AMMETER_T
+  | PROPERTY_OHMMETER_T
+  | PROPERTY_WIRE_T
+  | PROPERTY_DCSOURCE_T
+  | PROPERTY_ACSOURCE_T
+  | PROPERTY_SQUAREWAVE_T
+  | PROPERTY_ACCURRENT_T
+  | PROPERTY_DCCURRENT_T
+  | PROPERTY_CAPACITOR_T
+  | PROPERTY_INDUCTOR_T
+  | PROPERTY_GROUND_T
+  | PROPERTY_NET_T
+  | PROPERTY_CONSTANT_T
+  | PROPERTY_POTENTIOMETER_T
+  | PROPERTY_AND_T
+  | PROPERTY_OR_T
+  | PROPERTY_NAND_T
+  | PROPERTY_NOR_T
+  | PROPERTY_XOR_T
+  | PROPERTY_XNOR_T
+  | PROPERTY_VCSW_T
+  | PROPERTY_VCR_T
+  | PROPERTY_VCVS_T
+  | PROPERTY_VCCS_T
+  | PROPERTY_CCCS_T
+  | PROPERTY_CCVS_T
+  | PROPERTY_SPDT_T
+  | PROPERTY_OPAMP_T
+  | PROPERTY_VSAT_T
+  | PROPERTY_SAW_T
+  | PROPERTY_TRI_T
+  | PROPERTY_ADD_T
+  | PROPERTY_SUB_T
+  | PROPERTY_MUL_T
+  | PROPERTY_GRT_T
+  | PROPERTY_DIV_T
+  | PROPERTY_NMOS_T
+  | PROPERTY_PMOS_T
+  | PROPERTY_NPN_T
+  | PROPERTY_PNP_T
+  | PROPERTY_TRAN_T
+  | PROPERTY_ADC_T
+  | PROPERTY_DAC_T
+  | PROPERTY_PWM_T
+  | PROPERTY_INTEGRATOR_T
+  | PROPERTY_DIFFERENTIATOR_T
+  | PROPERTY_GAIN_T
+  | PROPERTY_ABS_T
+  | PROPERTY_LPF_T
+  | PROPERTY_HPF_T
+  | PROPERTY_RAIL_T
+  | PROPERTY_REL_T
+  | PROPERTY_PID_T
+  | PROPERTY_SAH_T
+  | PROPERTY_LUT_T
+  | PROPERTY_TPTZ_T
+  | PROPERTY_NOTE_T
+  | PROPERTY_FUSE_T
+  | PROPERTY_DFF_T;

@@ -20,7 +20,7 @@
  *
  ***********************************************************************/
 class Path {
-  private path_2d = [];
+  public path_2d: Array<PATH_T> = [];
   private indexer: number = 0;
 
   constructor() {
@@ -28,7 +28,7 @@ class Path {
     this.indexer = 0;
   }
   resize() {
-    let temp = [];
+    let temp: PATH_T;
     for (var i = 0; i < this.path_2d.length; i++) {
       temp = this.path_2d[i];
       if (temp['command'] === 'MOVE') {
@@ -53,7 +53,7 @@ class Path {
     }
   }
   /* Moves the location of the path element */
-  move_to(x, y) {
+  move_to(x: number, y: number): void {
     this.path_2d[this.indexer++] = {
       command: 'MOVE',
       x1: (global.ZERO_PT_FIVE + x) >> global.ZERO,
@@ -62,7 +62,7 @@ class Path {
   }
   /* creates a curve from the current location of the path element to the
   destination point */
-  curve_to(x1, y1, x2, y2, x3, y3) {
+  curve_to(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): void {
     this.path_2d[this.indexer++] = {
       command: 'CURVE',
       x1: (global.ZERO_PT_FIVE + x1) >> global.ZERO,
@@ -75,7 +75,7 @@ class Path {
   }
   /* creates a quadratic bezier spline from the current location of the path element to the
   destination point */
-  quad_to(x1, y1, x2, y2) {
+  quad_to(x1: number, y1: number, x2: number, y2: number): void {
     this.path_2d[this.indexer++] = {
       command: 'QUAD',
       x1: (global.ZERO_PT_FIVE + (x2 + x1) * 0.5) >> global.ZERO,
@@ -85,7 +85,7 @@ class Path {
     };
   }
   /* Creates a line from the current location to the detailed point */
-  line_to(x, y) {
+  line_to(x: number, y: number): void {
     this.path_2d[this.indexer++] = {
       command: 'LINE',
       x1: (global.ZERO_PT_FIVE + x) >> global.ZERO,
@@ -93,7 +93,7 @@ class Path {
     };
   }
   /* Closes the path */
-  close() {
+  close(): void {
     this.path_2d[this.indexer++] = {
       command: 'CLOSE',
       x1: 0,
@@ -101,12 +101,12 @@ class Path {
     };
   }
   /* Reset the path element */
-  reset() {
+  reset(): void {
     this.indexer = 0;
     this.path_2d = [];
   }
   /* Get the path element */
-  get_path() {
+  get_path(): Array<PATH_T> {
     return this.path_2d;
   }
 }

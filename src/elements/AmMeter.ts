@@ -34,7 +34,7 @@ class AmMeter {
     this.RATIO
   );
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, -1);
+  public elm = new Element2(-1, -1, global.NULL);
   public plus_point = new PointF(0, 0);
   public p1 = new PointF(0, 0);
   public p2 = new PointF(0, 0);

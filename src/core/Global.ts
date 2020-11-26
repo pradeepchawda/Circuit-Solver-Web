@@ -408,8 +408,8 @@ class Global {
     step: 0
   };
   /* Accessing the limits of each variable in the element properties structures below.*/
-  public PROPERTY_LIMIT_MIN: number = 0;
-  public PROPERTY_LIMIT_MAX: number = 1;
+  public readonly PROPERTY_LIMIT_MIN: number = 0;
+  public readonly PROPERTY_LIMIT_MAX: number = 1;
   /* A builder to help create new wires. */
   public readonly WIRE_REFERENCE: WIRE_REFERENCE_T = {
     wire_id: -1,
@@ -1604,46 +1604,171 @@ class Global {
   public USER_FILE_SELECTED: boolean = false;
   /* A descriptor for the users circuit */
   public USER_FILE: Circuit = new Circuit();
-  /* Key Event Constants */
-  public readonly KEY_CODE_EQUAL: number = 29;
-  public readonly KEY_CODE_ESCAPE: number = 27;
-  public readonly KEY_CODE_SPACE: number = 32;
-  public readonly KEY_CODE_A: number = 65;
-  public readonly KEY_CODE_END: number = 35;
-  public readonly KEY_CODE_HOME: number = 36;
-  public readonly KEY_CODE_BACKSPACE: number = 8;
-  public readonly KEY_CODE_BACKSLASH: number = 220;
-  public readonly KEY_CODE_COMMA: number = 188;
-  public readonly KEY_CODE_ENTER: number = 13;
-  public readonly KEY_CODE_MINUS: number = 173;
-  public readonly KEY_CODE_MINUS_ALT: number = 189;
-  public readonly KEY_CODE_PERIOD: number = 190;
-  public readonly KEY_CODE_FORWARD_SLASH: number = 191;
-  public readonly KEY_CODE_DELETE: number = 46;
-  public readonly KEY_CODE_ARROW_LEFT: number = 37;
-  public readonly KEY_CODE_ARROW_UP: number = 38;
-  public readonly KEY_CODE_ARROW_RIGHT: number = 39;
-  public readonly KEY_CODE_ARROW_DOWN: number = 40;
-  public readonly KEY_CODE_COLON: number = 186;
-  public readonly KEY_CODE_SINGLE_QUOTE: number = 222;
-  public readonly KEY_CODE_BACK_TICK: number = 192;
-  public readonly KEY_CODE_LEFT_BRACKET: number = 219;
-  public readonly KEY_CODE_RIGHT_BRACKET: number = 221;
-  public readonly KEY_CODE_NUMPAD0: number = 96;
-  public readonly KEY_CODE_NUMPAD1: number = 97;
-  public readonly KEY_CODE_NUMPAD2: number = 98;
-  public readonly KEY_CODE_NUMPAD3: number = 99;
-  public readonly KEY_CODE_NUMPAD4: number = 100;
-  public readonly KEY_CODE_NUMPAD5: number = 101;
-  public readonly KEY_CODE_NUMPAD6: number = 102;
-  public readonly KEY_CODE_NUMPAD7: number = 103;
-  public readonly KEY_CODE_NUMPAD8: number = 104;
-  public readonly KEY_CODE_NUMPAD9: number = 105;
-  public readonly KEY_CODE_MULTIPLY: number = 106;
-  public readonly KEY_CODE_ADD: number = 107;
-  public readonly KEY_CODE_SUBTRACT: number = 109;
-  public readonly KEY_CODE_DECIMALPOINT: number = 110;
-  public readonly KEY_CODE_DIVIDE: number = 111;
+  /* Key Event Code Constants */
+  public KEY_CODE_ESCAPE = 'Escape';
+  public KEY_CODE_BACK_QUOTE = 'Backquote';
+  public KEY_CODE_0 = 'Digit0';
+  public KEY_CODE_1 = 'Digit1';
+  public KEY_CODE_2 = 'Digit2';
+  public KEY_CODE_3 = 'Digit3';
+  public KEY_CODE_4 = 'Digit4';
+  public KEY_CODE_5 = 'Digit5';
+  public KEY_CODE_6 = 'Digit6';
+  public KEY_CODE_7 = 'Digit7';
+  public KEY_CODE_8 = 'Digit8';
+  public KEY_CODE_9 = 'Digit9';
+  public KEY_CODE_MINUS = 'Minus';
+  public KEY_CODE_EQUAL = 'Equal';
+  public KEY_CODE_BACKSPACE = 'Backspace';
+  public KEY_CODE_Q = 'KeyQ';
+  public KEY_CODE_W = 'KeyW';
+  public KEY_CODE_E = 'KeyE';
+  public KEY_CODE_R = 'KeyR';
+  public KEY_CODE_T = 'KeyT';
+  public KEY_CODE_Y = 'KeyY';
+  public KEY_CODE_U = 'KeyU';
+  public KEY_CODE_I = 'KeyI';
+  public KEY_CODE_O = 'KeyO';
+  public KEY_CODE_P = 'KeyP';
+  public KEY_CODE_LEFT_BRACKET = 'BracketLeft';
+  public KEY_CODE_RIGHT_BRACKET = 'BracketRight';
+  public KEY_CODE_BACKSLASH = 'Backslash';
+  public KEY_CODE_A = 'KeyA';
+  public KEY_CODE_S = 'KeyS';
+  public KEY_CODE_D = 'KeyD';
+  public KEY_CODE_F = 'KeyF';
+  public KEY_CODE_G = 'KeyG';
+  public KEY_CODE_H = 'KeyH';
+  public KEY_CODE_J = 'KeyJ';
+  public KEY_CODE_K = 'KeyK';
+  public KEY_CODE_L = 'KeyL';
+  public KEY_CODE_SEMI_COLON = 'Semicolon';
+  public KEY_CODE_QUOTE = 'Quote';
+  public KEY_CODE_ENTER = 'Enter';
+  public KEY_CODE_LEFT_SHIFT = 'ShiftLeft';
+  public KEY_CODE_Z = 'KeyZ';
+  public KEY_CODE_X = 'KeyX';
+  public KEY_CODE_C = 'KeyC';
+  public KEY_CODE_V = 'KeyV';
+  public KEY_CODE_B = 'KeyB';
+  public KEY_CODE_N = 'KeyN';
+  public KEY_CODE_M = 'KeyM';
+  public KEY_CODE_COMMA = 'Comma';
+  public KEY_CODE_PERIOD = 'Period';
+  public KEY_CODE_FORWARD_SLASH = 'Slash';
+  public KEY_CODE_RIGHT_SHIFT = 'ShiftRight';
+  public KEY_CODE_LEFT_CONTROL = 'ControlLeft';
+  public KEY_CODE_LEFT_ALT = 'AltLeft';
+  public KEY_CODE_SPACE = 'Space';
+  public KEY_CODE_RIGHT_ALT = 'AltRight';
+  public KEY_CODE_RIGHT_CONTROL = 'ControlRight';
+  public KEY_CODE_DELETE = 'Delete';
+  public KEY_CODE_HOME = 'Home';
+  public KEY_CODE_END = 'End';
+  public KEY_CODE_NUMPAD_MINUS = 'NumpadSubtract';
+  public KEY_CODE_NUMPAD_DIVIDE = 'NumpadDivide';
+  public KEY_CODE_NUMPAD_MULTIPLY = 'NumpadMultiply';
+  public KEY_CODE_NUMPAD_SUBTRACT = 'NumpadSubtract';
+  public KEY_CODE_NUMPAD_ENTER = 'NumpadEnter';
+  public KEY_CODE_NUMPAD_DECIMAL = 'NumpadDecimal';
+  public KEY_CODE_ARROW_LEFT = 'ArrowLeft';
+  public KEY_CODE_ARROW_UP = 'ArrowUp';
+  public KEY_CODE_ARROW_DOWN = 'ArrowDown';
+  public KEY_CODE_ARROW_RIGHT = 'ArrowRight';
+  public KEY_CODE_NUMPAD0 = 'Numpad0';
+  public KEY_CODE_NUMPAD1 = 'Numpad1';
+  public KEY_CODE_NUMPAD2 = 'Numpad2';
+  public KEY_CODE_NUMPAD3 = 'Numpad3';
+  public KEY_CODE_NUMPAD4 = 'Numpad4';
+  public KEY_CODE_NUMPAD5 = 'Numpad5';
+  public KEY_CODE_NUMPAD6 = 'Numpad6';
+  public KEY_CODE_NUMPAD7 = 'Numpad7';
+  public KEY_CODE_NUMPAD8 = 'Numpad8';
+  public KEY_CODE_NUMPAD9 = 'Numpad9';
+  /* No modifier, Shift, Capslock */
+  public KEY_EVENT_CODES = {
+    Escape: ['', '', ''],
+    Backquote: ['`', '~', ''],
+    Digit0: ['0', ')', ''],
+    Digit1: ['1', '!', ''],
+    Digit2: ['2', '@', ''],
+    Digit3: ['3', '#', ''],
+    Digit4: ['4', '$', ''],
+    Digit5: ['5', '%', ''],
+    Digit6: ['6', '^', ''],
+    Digit7: ['7', '&', ''],
+    Digit8: ['8', '*', ''],
+    Digit9: ['9', '(', ''],
+    Minus: ['-', '_', ''],
+    Equal: ['=', '+', ''],
+    Backspace: ['', '', ''],
+    KeyQ: ['q', 'Q', 'Q'],
+    KeyW: ['w', 'W', 'W'],
+    KeyE: ['e', 'E', 'E'],
+    KeyR: ['r', 'R', 'R'],
+    KeyT: ['t', 'T', 'T'],
+    KeyY: ['y', 'Y', 'Y'],
+    KeyU: ['u', 'U', 'U'],
+    KeyI: ['i', 'I', 'I'],
+    KeyO: ['o', 'O', 'O'],
+    KeyP: ['p', 'P', 'P'],
+    BracketLeft: ['[', '{', ''],
+    BracketRight: [']', '}', ''],
+    Backslash: ['\\', '|', ''],
+    KeyA: ['a', 'A', 'A'],
+    KeyS: ['s', 'S', 'S'],
+    KeyD: ['d', 'D', 'D'],
+    KeyF: ['f', 'F', 'F'],
+    KeyG: ['g', 'G', 'G'],
+    KeyH: ['h', 'H', 'H'],
+    KeyJ: ['j', 'J', 'J'],
+    KeyK: ['k', 'K', 'K'],
+    KeyL: ['l', 'L', 'L'],
+    Semicolon: [';', ':', ''],
+    Quote: ["'", '"', ''],
+    Enter: ['', '', ''],
+    ShiftLeft: ['', '', ''],
+    KeyZ: ['z', 'Z', 'Z'],
+    KeyX: ['x', 'X', 'X'],
+    KeyC: ['c', 'C', 'C'],
+    KeyV: ['v', 'V', 'V'],
+    KeyB: ['b', 'B', 'B'],
+    KeyN: ['n', 'N', 'N'],
+    KeyM: ['m', 'M', 'M'],
+    Comma: [',', '<', ''],
+    Period: ['.', '>', ''],
+    Slash: ['/', '?', ''],
+    ShiftRight: ['', '', ''],
+    ControlLeft: ['', '', ''],
+    AltLeft: ['', '', ''],
+    Space: [' ', ' ', ' '],
+    AltRight: ['', '', ''],
+    ControlRight: ['', '', ''],
+    Delete: ['', '', ''],
+    Home: ['', '', ''],
+    End: ['', '', ''],
+    NumpadSubtract: ['-', '', ''],
+    NumpadDivide: ['/', '', ''],
+    NumpadMultiply: ['*', '', ''],
+    NumpadAdd: ['+', '', ''],
+    NumpadEnter: ['', '', ''],
+    NumpadDecimal: ['', '', ''],
+    ArrowLeft: ['', '', ''],
+    ArrowUp: ['', '', ''],
+    ArrowDown: ['', '', ''],
+    ArrowRight: ['', '', ''],
+    Numpad0: ['0', '', ''],
+    Numpad1: ['1', '', ''],
+    Numpad2: ['2', '', ''],
+    Numpad3: ['3', '', ''],
+    Numpad4: ['4', '', ''],
+    Numpad5: ['5', '', ''],
+    Numpad6: ['6', '', ''],
+    Numpad7: ['7', '', ''],
+    Numpad8: ['8', '', ''],
+    Numpad9: ['9', '', '']
+  };
+  public KEY_EVENT_KEYS = Object.keys(this.KEY_EVENT_CODES);
   /* Variables for Circuit Simulation */
   public TIME_STEP: number = 1e-6;
   /* The magnitude of the random variable for the entire simulation. */
@@ -2105,8 +2230,6 @@ class Global {
     this.last_view_port_height = 0;
     this.last_view_port_right = 0;
     this.last_view_port_bottom = 0;
-    /* Zero as far as the simulator is concerned. */
-    this.ZERO = 1e-18;
     /* Used to determine which wire point is associated to an elements nodes. */
     this.ANCHOR_POINT = {
       p1: 0,
@@ -3415,46 +3538,171 @@ class Global {
     this.USER_FILE_SELECTED = false;
     /* A descriptor for the users circuit */
     this.USER_FILE = new Circuit();
-    /* Key Event Constants */
-    this.KEY_CODE_EQUAL = 29;
-    this.KEY_CODE_ESCAPE = 27;
-    this.KEY_CODE_SPACE = 32;
-    this.KEY_CODE_A = 65;
-    this.KEY_CODE_END = 35;
-    this.KEY_CODE_HOME = 36;
-    this.KEY_CODE_BACKSPACE = 8;
-    this.KEY_CODE_BACKSLASH = 220;
-    this.KEY_CODE_COMMA = 188;
-    this.KEY_CODE_ENTER = 13;
-    this.KEY_CODE_MINUS = 173;
-    this.KEY_CODE_MINUS_ALT = 189;
-    this.KEY_CODE_PERIOD = 190;
-    this.KEY_CODE_FORWARD_SLASH = 191;
-    this.KEY_CODE_DELETE = 46;
-    this.KEY_CODE_ARROW_LEFT = 37;
-    this.KEY_CODE_ARROW_UP = 38;
-    this.KEY_CODE_ARROW_RIGHT = 39;
-    this.KEY_CODE_ARROW_DOWN = 40;
-    this.KEY_CODE_COLON = 186;
-    this.KEY_CODE_SINGLE_QUOTE = 222;
-    this.KEY_CODE_BACK_TICK = 192;
-    this.KEY_CODE_LEFT_BRACKET = 219;
-    this.KEY_CODE_RIGHT_BRACKET = 221;
-    this.KEY_CODE_NUMPAD0 = 96;
-    this.KEY_CODE_NUMPAD1 = 97;
-    this.KEY_CODE_NUMPAD2 = 98;
-    this.KEY_CODE_NUMPAD3 = 99;
-    this.KEY_CODE_NUMPAD4 = 100;
-    this.KEY_CODE_NUMPAD5 = 101;
-    this.KEY_CODE_NUMPAD6 = 102;
-    this.KEY_CODE_NUMPAD7 = 103;
-    this.KEY_CODE_NUMPAD8 = 104;
-    this.KEY_CODE_NUMPAD9 = 105;
-    this.KEY_CODE_MULTIPLY = 106;
-    this.KEY_CODE_ADD = 107;
-    this.KEY_CODE_SUBTRACT = 109;
-    this.KEY_CODE_DECIMALPOINT = 110;
-    this.KEY_CODE_DIVIDE = 111;
+    /* Key Event Code Constants */
+    this.KEY_CODE_ESCAPE = 'Escape';
+    this.KEY_CODE_BACK_QUOTE = 'Backquote';
+    this.KEY_CODE_0 = 'Digit0';
+    this.KEY_CODE_1 = 'Digit1';
+    this.KEY_CODE_2 = 'Digit2';
+    this.KEY_CODE_3 = 'Digit3';
+    this.KEY_CODE_4 = 'Digit4';
+    this.KEY_CODE_5 = 'Digit5';
+    this.KEY_CODE_6 = 'Digit6';
+    this.KEY_CODE_7 = 'Digit7';
+    this.KEY_CODE_8 = 'Digit8';
+    this.KEY_CODE_9 = 'Digit9';
+    this.KEY_CODE_MINUS = 'Minus';
+    this.KEY_CODE_EQUAL = 'Equal';
+    this.KEY_CODE_BACKSPACE = 'Backspace';
+    this.KEY_CODE_Q = 'KeyQ';
+    this.KEY_CODE_W = 'KeyW';
+    this.KEY_CODE_E = 'KeyE';
+    this.KEY_CODE_R = 'KeyR';
+    this.KEY_CODE_T = 'KeyT';
+    this.KEY_CODE_Y = 'KeyY';
+    this.KEY_CODE_U = 'KeyU';
+    this.KEY_CODE_I = 'KeyI';
+    this.KEY_CODE_O = 'KeyO';
+    this.KEY_CODE_P = 'KeyP';
+    this.KEY_CODE_LEFT_BRACKET = 'BracketLeft';
+    this.KEY_CODE_RIGHT_BRACKET = 'BracketRight';
+    this.KEY_CODE_BACKSLASH = 'Backslash';
+    this.KEY_CODE_A = 'KeyA';
+    this.KEY_CODE_S = 'KeyS';
+    this.KEY_CODE_D = 'KeyD';
+    this.KEY_CODE_F = 'KeyF';
+    this.KEY_CODE_G = 'KeyG';
+    this.KEY_CODE_H = 'KeyH';
+    this.KEY_CODE_J = 'KeyJ';
+    this.KEY_CODE_K = 'KeyK';
+    this.KEY_CODE_L = 'KeyL';
+    this.KEY_CODE_SEMI_COLON = 'Semicolon';
+    this.KEY_CODE_QUOTE = 'Quote';
+    this.KEY_CODE_ENTER = 'Enter';
+    this.KEY_CODE_LEFT_SHIFT = 'ShiftLeft';
+    this.KEY_CODE_Z = 'KeyZ';
+    this.KEY_CODE_X = 'KeyX';
+    this.KEY_CODE_C = 'KeyC';
+    this.KEY_CODE_V = 'KeyV';
+    this.KEY_CODE_B = 'KeyB';
+    this.KEY_CODE_N = 'KeyN';
+    this.KEY_CODE_M = 'KeyM';
+    this.KEY_CODE_COMMA = 'Comma';
+    this.KEY_CODE_PERIOD = 'Period';
+    this.KEY_CODE_FORWARD_SLASH = 'Slash';
+    this.KEY_CODE_RIGHT_SHIFT = 'ShiftRight';
+    this.KEY_CODE_LEFT_CONTROL = 'ControlLeft';
+    this.KEY_CODE_LEFT_ALT = 'AltLeft';
+    this.KEY_CODE_SPACE = 'Space';
+    this.KEY_CODE_RIGHT_ALT = 'AltRight';
+    this.KEY_CODE_RIGHT_CONTROL = 'ControlRight';
+    this.KEY_CODE_DELETE = 'Delete';
+    this.KEY_CODE_HOME = 'Home';
+    this.KEY_CODE_END = 'End';
+    this.KEY_CODE_NUMPAD_MINUS = 'NumpadSubtract';
+    this.KEY_CODE_NUMPAD_DIVIDE = 'NumpadDivide';
+    this.KEY_CODE_NUMPAD_MULTIPLY = 'NumpadMultiply';
+    this.KEY_CODE_NUMPAD_SUBTRACT = 'NumpadSubtract';
+    this.KEY_CODE_NUMPAD_ENTER = 'NumpadEnter';
+    this.KEY_CODE_NUMPAD_DECIMAL = 'NumpadDecimal';
+    this.KEY_CODE_ARROW_LEFT = 'ArrowLeft';
+    this.KEY_CODE_ARROW_UP = 'ArrowUp';
+    this.KEY_CODE_ARROW_DOWN = 'ArrowDown';
+    this.KEY_CODE_ARROW_RIGHT = 'ArrowRight';
+    this.KEY_CODE_NUMPAD0 = 'Numpad0';
+    this.KEY_CODE_NUMPAD1 = 'Numpad1';
+    this.KEY_CODE_NUMPAD2 = 'Numpad2';
+    this.KEY_CODE_NUMPAD3 = 'Numpad3';
+    this.KEY_CODE_NUMPAD4 = 'Numpad4';
+    this.KEY_CODE_NUMPAD5 = 'Numpad5';
+    this.KEY_CODE_NUMPAD6 = 'Numpad6';
+    this.KEY_CODE_NUMPAD7 = 'Numpad7';
+    this.KEY_CODE_NUMPAD8 = 'Numpad8';
+    this.KEY_CODE_NUMPAD9 = 'Numpad9';
+    /* No modifier, Shift, Capslock */
+    this.KEY_EVENT_CODES = {
+      Escape: ['', '', ''],
+      Backquote: ['`', '~', ''],
+      Digit0: ['0', ')', ''],
+      Digit1: ['1', '!', ''],
+      Digit2: ['2', '@', ''],
+      Digit3: ['3', '#', ''],
+      Digit4: ['4', '$', ''],
+      Digit5: ['5', '%', ''],
+      Digit6: ['6', '^', ''],
+      Digit7: ['7', '&', ''],
+      Digit8: ['8', '*', ''],
+      Digit9: ['9', '(', ''],
+      Minus: ['-', '_', ''],
+      Equal: ['=', '+', ''],
+      Backspace: ['', '', ''],
+      KeyQ: ['q', 'Q', 'Q'],
+      KeyW: ['w', 'W', 'W'],
+      KeyE: ['e', 'E', 'E'],
+      KeyR: ['r', 'R', 'R'],
+      KeyT: ['t', 'T', 'T'],
+      KeyY: ['y', 'Y', 'Y'],
+      KeyU: ['u', 'U', 'U'],
+      KeyI: ['i', 'I', 'I'],
+      KeyO: ['o', 'O', 'O'],
+      KeyP: ['p', 'P', 'P'],
+      BracketLeft: ['[', '{', ''],
+      BracketRight: [']', '}', ''],
+      Backslash: ['\\', '|', ''],
+      KeyA: ['a', 'A', 'A'],
+      KeyS: ['s', 'S', 'S'],
+      KeyD: ['d', 'D', 'D'],
+      KeyF: ['f', 'F', 'F'],
+      KeyG: ['g', 'G', 'G'],
+      KeyH: ['h', 'H', 'H'],
+      KeyJ: ['j', 'J', 'J'],
+      KeyK: ['k', 'K', 'K'],
+      KeyL: ['l', 'L', 'L'],
+      Semicolon: [';', ':', ''],
+      Quote: ["'", '"', ''],
+      Enter: ['', '', ''],
+      ShiftLeft: ['', '', ''],
+      KeyZ: ['z', 'Z', 'Z'],
+      KeyX: ['x', 'X', 'X'],
+      KeyC: ['c', 'C', 'C'],
+      KeyV: ['v', 'V', 'V'],
+      KeyB: ['b', 'B', 'B'],
+      KeyN: ['n', 'N', 'N'],
+      KeyM: ['m', 'M', 'M'],
+      Comma: [',', '<', ''],
+      Period: ['.', '>', ''],
+      Slash: ['/', '?', ''],
+      ShiftRight: ['', '', ''],
+      ControlLeft: ['', '', ''],
+      AltLeft: ['', '', ''],
+      Space: [' ', ' ', ' '],
+      AltRight: ['', '', ''],
+      ControlRight: ['', '', ''],
+      Delete: ['', '', ''],
+      Home: ['', '', ''],
+      End: ['', '', ''],
+      NumpadSubtract: ['-', '', ''],
+      NumpadDivide: ['/', '', ''],
+      NumpadMultiply: ['*', '', ''],
+      NumpadAdd: ['+', '', ''],
+      NumpadEnter: ['', '', ''],
+      NumpadDecimal: ['', '', ''],
+      ArrowLeft: ['', '', ''],
+      ArrowUp: ['', '', ''],
+      ArrowDown: ['', '', ''],
+      ArrowRight: ['', '', ''],
+      Numpad0: ['0', '', ''],
+      Numpad1: ['1', '', ''],
+      Numpad2: ['2', '', ''],
+      Numpad3: ['3', '', ''],
+      Numpad4: ['4', '', ''],
+      Numpad5: ['5', '', ''],
+      Numpad6: ['6', '', ''],
+      Numpad7: ['7', '', ''],
+      Numpad8: ['8', '', ''],
+      Numpad9: ['9', '', '']
+    };
+    this.KEY_EVENT_KEYS = Object.keys(this.KEY_EVENT_CODES);
     /* Variables for Circuit Simulation */
     this.TIME_STEP = 1e-6;
     /* The magnitude of the random variable for the entire simulation. */
@@ -4120,172 +4368,35 @@ class Global {
   }
   /* Decodes a key code from a key event */
   decode_key(key_event) {
-    let is_numpad = false;
     let shift = key_event['shift'];
-    let ret = String.fromCharCode(key_event['event'].keyCode);
     let caps = key_event['caps'];
-    let keyCode = key_event['event'].keyCode;
-    if (keyCode === this.KEY_CODE_BACKSLASH) {
-      ret = '\\';
-    } else if (keyCode === this.KEY_CODE_COMMA) {
-      ret = ',';
-    } else if (keyCode === this.KEY_CODE_PERIOD) {
-      ret = '.';
-    } else if (keyCode === this.KEY_CODE_FORWARD_SLASH) {
-      ret = '/';
-    } else if (keyCode === this.KEY_CODE_COLON) {
-      ret = ';';
-    } else if (keyCode === this.KEY_CODE_SINGLE_QUOTE) {
-      ret = "'";
-    } else if (keyCode === this.KEY_CODE_BACK_TICK) {
-      ret = '`';
-    } else if (keyCode === this.KEY_CODE_ARROW_LEFT) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_ARROW_RIGHT) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_ARROW_UP) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_ARROW_DOWN) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_BACKSPACE) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_ENTER) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_DELETE) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_ESCAPE) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_END) {
-      ret = '';
-    } else if (keyCode === this.KEY_CODE_HOME) {
-      ret = '';
-    } else if (
-      keyCode === this.KEY_CODE_MINUS ||
-      keyCode === this.KEY_CODE_MINUS_ALT
-    ) {
-      ret = '-';
-    } else if (keyCode === this.KEY_CODE_LEFT_BRACKET) {
-      ret = '[';
-    } else if (keyCode === this.KEY_CODE_RIGHT_BRACKET) {
-      ret = ']';
-    } else if (keyCode === this.KEY_CODE_NUMPAD0) {
-      ret = '0';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD1) {
-      ret = '1';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD2) {
-      ret = '2';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD3) {
-      ret = '3';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD4) {
-      ret = '4';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD5) {
-      ret = '5';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD6) {
-      ret = '6';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD7) {
-      ret = '7';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD8) {
-      ret = '8';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_NUMPAD9) {
-      ret = '9';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_MULTIPLY) {
-      ret = '*';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_DIVIDE) {
-      ret = '/';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_ADD) {
-      ret = '+';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_SUBTRACT) {
-      ret = '-';
-      is_numpad = true;
-    } else if (keyCode === this.KEY_CODE_DECIMALPOINT) {
-      ret = '.';
-      is_numpad = true;
-    } else {
-      if (!this.is_allowed_key_code(keyCode)) {
-        ret = '';
-      }
-    }
-    if (!shift && !caps) {
-      ret = ret.toLowerCase();
-    } else {
-      if (shift) {
-        if (ret === '=') {
-          ret = '+';
-        } else if (ret === '0' && !is_numpad) {
-          ret = ')';
-        } else if (ret === '1' && !is_numpad) {
-          ret = '!';
-        } else if (ret === '2' && !is_numpad) {
-          ret = '@';
-        } else if (ret === '3' && !is_numpad) {
-          ret = '#';
-        } else if (ret === '4' && !is_numpad) {
-          ret = '$';
-        } else if (ret === '5' && !is_numpad) {
-          ret = '%';
-        } else if (ret === '6' && !is_numpad) {
-          ret = '^';
-        } else if (ret === '7' && !is_numpad) {
-          ret = '&';
-        } else if (ret === '8' && !is_numpad) {
-          ret = '*';
-        } else if (ret === '9' && !is_numpad) {
-          ret = '(';
-        } else if (ret === ';') {
-          ret = ':';
-        } else if (ret === '-' && !is_numpad) {
-          ret = '_';
-        } else if (ret === '\\') {
-          ret = '|';
-        } else if (ret === ',') {
-          ret = '<';
-        } else if (ret === '.' && !is_numpad) {
-          ret = '>';
-        } else if (ret === '/') {
-          ret = '?';
-        } else if (ret === ';') {
-          ret = ':';
-        } else if (ret === "'") {
-          ret = '"';
-        } else if (ret === '`') {
-          ret = '~';
-        } else if (ret === '[') {
-          ret = '{';
-        } else if (ret === ']') {
-          ret = '}';
+    let code = key_event['event'].code;
+    let ret = '';
+    for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
+      if (code === this.KEY_EVENT_KEYS[i]) {
+        if (shift) {
+          ret = this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1];
+        } else if (caps) {
+          ret = this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][2];
+        } else {
+          ret = this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0];
         }
       }
     }
-    /* This has to be here because the rest of the code triggers off of the keycode not the character. I also need - to produce the under score.  */
-    if (ret === '-') {
-      ret = '';
-    }
     return ret;
   }
-  is_allowed_key_code(key_code) {
-    if (
-      (key_code >= 48 && key_code <= 90) ||
-      (key_code >= 97 && key_code <= 122) ||
-      key_code === this.KEY_CODE_SPACE ||
-      key_code === this.KEY_CODE_MINUS_ALT
-    ) {
-      return true;
-    } else {
-      return false;
+  key_to_code(character) {
+    let ret = '';
+    for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
+      if (
+        character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] ||
+        character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]
+      ) {
+        ret = global.copy(this.KEY_EVENT_KEYS[i]);
+        break;
+      }
     }
+    return ret;
   }
   /* Detects if a key is alpha numeric or not. */
   is_alpha_numeric(key_event) {

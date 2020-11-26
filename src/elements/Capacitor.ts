@@ -25,7 +25,7 @@ class Capacitor {
   /* Create a new rectangle for the bounds of this component */
   public bounds = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, -1);
+  public elm = new Element2(-1, -1, global.NULL);
   /* These points will be used to capture the vertices of the component */
   public p1 = new PointF(0, 0);
   public p2 = new PointF(0, 0);

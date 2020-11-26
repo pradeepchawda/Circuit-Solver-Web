@@ -21,6 +21,50 @@
  *
  ***********************************************************************/
 class Wire {
+  public INITIALIZED = false;
+  /* Inititalize the element2 class that will hold the basic data about our component */
+  public elm = new Element2(-1, -1, global.NULL);
+  public p1 = new PointF(0, 0);
+  public p2 = new PointF(0, 0);
+
+  /* Angle from p1 to p2 minus 90 degrees */
+  public theta_m90 =
+    global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
+    global.PI_DIV_2;
+  /* Angle from p1 to p2 */
+  public theta = global.retrieve_angle_radian(
+    this.p2.x - this.p1.x,
+    this.p2.y - this.p1.y
+  );
+  public c_x = 0;
+  public c_y = 0;
+
+  /* The spacing of the nodes in the x-direction, divided by 2 */
+  public x_space = global.node_space_x >> 1;
+  /* The spacing of the nodes in the y-direction, divided by 2 */
+  public y_space = global.node_space_y >> 1;
+  /* This paint is used for drawing the "lines" that the component is comprised of. */
+  public line_paint = new Paint();
+  /* This paint is used for drawing the "nodes" that the component is connected to. */
+  public point_paint = new Paint();
+  /* This paint is used for drawing the "text" that the component needs to display */
+  public text_paint = new Paint();
+  /* This is for handling the different styles of the wire (center point) */
+  public wire_point = new PointF(0, 0);
+  /* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
+  public bounds = new RectF(0, 0, 0, 0);
+  public total_bounds = new RectF(0, 0, 0, 0);
+  /* The voltage of the wire. */
+  public wire_voltage = 0;
+  public MULTI_SELECTED = false;
+  /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
+  public LINE_BUFFER = [];
+  public CIRCLE_BUFFER = [];
+  public BUILD_ELEMENT = true;
+  public ANGLE = 0;
+  public indexer = 0;
+  public is_translating = false;
+
   constructor(type, id, n1, n2) {
     this.INITIALIZED = false;
     /* Inititalize the element2 class that will hold the basic data about our component */
@@ -119,6 +163,8 @@ class Wire {
     this.CIRCLE_BUFFER = [];
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
+    this.indexer = 0;
+    this.is_translating = false;
   }
   refresh_bounds() {
     if (this.elm.consistent()) {
@@ -194,7 +240,7 @@ class Wire {
         if (this.wire_collision() && !global.component_touched) {
           global.focused_id = this.elm.id;
           global.focused_type = this.elm.type;
-          global.focused_bounds = global._NULL;
+          global.focused_bounds = global.NULL;
           global.focused = true;
           global.component_touched = true;
         }
@@ -218,19 +264,19 @@ class Wire {
             global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type
           ) {
-            global.selected_id = global._NULL;
-            global.selected_type = global._NULL;
-            global.selected_bounds = global._NULL;
-            global.selected_properties = global._NULL;
-            global.selected_wire_style = global._NULL;
+            global.selected_id = global.NULL;
+            global.selected_type = global.NULL;
+            global.selected_bounds = global.NULL;
+            global.selected_properties = global.NULL;
+            global.selected_wire_style = global.NULL;
             global.selected = false;
           } else {
             this.select();
           }
         }
-        global.focused_id = global._NULL;
-        global.focused_type = global._NULL;
-        global.focused_bounds = global._NULL;
+        global.focused_id = global.NULL;
+        global.focused_type = global.NULL;
+        global.focused_bounds = global.NULL;
         global.focused = false;
       }
       if (
@@ -410,9 +456,9 @@ class Wire {
       global.focused_id === this.elm.id &&
       global.focused_type === this.elm.type
     ) {
-      global.focused_id = global._NULL;
-      global.focused_type = global._NULL;
-      global.focused_bounds = global._NULL;
+      global.focused_id = global.NULL;
+      global.focused_type = global.NULL;
+      global.focused_bounds = global.NULL;
       global.focused = false;
     }
   }
@@ -421,11 +467,11 @@ class Wire {
       global.selected_id === this.elm.id &&
       global.selected_type === this.elm.type
     ) {
-      global.selected_id = global._NULL;
-      global.selected_type = global._NULL;
-      global.selected_bounds = global._NULL;
-      global.selected_properties = global._NULL;
-      global.selected_wire_style = global._NULL;
+      global.selected_id = global.NULL;
+      global.selected_type = global.NULL;
+      global.selected_bounds = global.NULL;
+      global.selected_properties = global.NULL;
+      global.selected_wire_style = global.NULL;
       global.selected = false;
     }
   }

@@ -606,12 +606,9 @@ class TimeStepWindow {
         }
       }
     } else if (
-      ((key_event['event'].keyCode === global.KEY_CODE_MINUS ||
-        key_event['event'].keyCode === global.KEY_CODE_MINUS_ALT) &&
-        !key_event['shift']) ||
-      (key_event['event'].keyCode === global.KEY_CODE_SUBTRACT &&
-        !key_event['shift'] &&
-        !key_event['ctrl'])
+      (key_event['event'].keyCode === global.KEY_CODE_MINUS ||
+        key_event['event'].keyCode === global.KEY_CODE_NUMPAD_MINUS) &&
+      !key_event['shift']
     ) {
       if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
         if (!this.SELECT_ALL) {

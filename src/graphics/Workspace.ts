@@ -21,29 +21,35 @@
  ***********************************************************************/
 class Workspace {
   /* Flag to make sure that the bounds are resized before we draw it to the screen. */
-  public FIRST_RESIZE_FLAG = false;
+  public FIRST_RESIZE_FLAG: boolean = false;
   /* Flag to control when we draw things to the screen. */
-  public DRAW_TO_SCREEN = false;
+  public DRAW_TO_SCREEN: boolean = false;
   /* A rectangle that outlines the html canvas */
-  public view = new RectF(0, 0, 0, 0);
+  public view: RectF = new RectF(0, 0, 0, 0);
   /* The workspace that we will be using. Initial sizing */
-  public bounds = new RectF(0, 0, 0, 0);
+  public bounds: RectF = new RectF(0, 0, 0, 0);
   /* The paint for the view's outline! */
-  public view_paint = new Paint();
+  public view_paint: Paint = new Paint();
   /* The paint for the bounds line! */
-  public bounds_paint = new Paint();
+  public bounds_paint: Paint = new Paint();
   /* Paint for the grid of the workspace. */
-  public grid_paint = new Paint();
+  public grid_paint: Paint = new Paint();
   /* Paint for the workarea of the workspace. */
-  public work_area_paint = new Paint();
-  public sqrt = -1;
-  public sqrt_m_1 = -1;
-  public DRAW_GRID = false;
+  public work_area_paint: Paint = new Paint();
+  public sqrt: number = -1;
+  public sqrt_m_1: number = -1;
+  public DRAW_GRID: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER = [];
-  public GRID_MOVED = true;
+  public LINE_BUFFER: Array<Array<number>> = [];
+  public GRID_MOVED: boolean = true;
 
-  constructor(left, top, right, bottom, scale) {
+  constructor(
+    left: number,
+    top: number,
+    right: number,
+    bottom: number,
+    scale: number
+  ) {
     /* Flag to make sure that the bounds are resized before we draw it to the screen. */
     this.FIRST_RESIZE_FLAG = false;
     /* Flag to control when we draw things to the screen. */
@@ -190,7 +196,7 @@ class Workspace {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
   /* This is for a translation event, it will just shift the bounds by dx and dy*/
-  workspace_translate_bounds(dx, dy) {
+  workspace_translate_bounds(dx: number, dy: number) {
     this.GRID_MOVED = true;
     global.SIGNAL_BUILD_ELEMENT = true;
     global.SIGNAL_BUILD_COUNTER = 0;
@@ -199,7 +205,7 @@ class Workspace {
     this.bounds.top += dy;
     this.bounds.bottom += dy;
   }
-  workspace_draw(canvas) {
+  workspace_draw(canvas: GraphicsEngine) {
     if (this.DRAW_TO_SCREEN) {
       /* Draw the work area (background of bounds)*/
       if (this.DRAW_GRID === true) {

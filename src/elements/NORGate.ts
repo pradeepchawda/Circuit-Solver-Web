@@ -21,160 +21,79 @@
  *
  ***********************************************************************/
 class NORGate {
-
   public INITIALIZED = false;
-/* Create a new rectangle for the bounds of this component */
-public bounds = new RectF(0, 0, 0, 0);
-/* Inititalize the element2 class that will hold the basic data about our component */
-public elm = new Element3(id, type, global.copy(global.PROPERTY_NOR));
-/* Initialize the initial nodes that the component will be occupying */
-public elm.set_nodes(n1, n2, n3);
-if (this.elm.consistent()) {
-  /* Re-locate the bounds of the component to the center of the two points. */
-  this.equilateral_center = global.equilateral_triangle_center(
-	nodes[this.elm.n1].location.x,
-	nodes[this.elm.n2].location.x,
-	nodes[this.elm.n3].location.x,
-	nodes[this.elm.n1].location.y,
-	nodes[this.elm.n2].location.y,
-	nodes[this.elm.n3].location.y
+  /* Create a new rectangle for the bounds of this component */
+  public bounds = new RectF(0, 0, 0, 0);
+  /* Inititalize the element2 class that will hold the basic data about our component */
+  public elm = new Element3(-1, -1, -1);
+
+  public p1 = new PointF(0, 0);
+  public p2 = new PointF(0, 0);
+  public p3 = new PointF(0, 0);
+
+  public nor_0 = new PointF(0, 0);
+  public nor_1 = new PointF(0, 0);
+  public nor_2 = new PointF(0, 0);
+  public nor_3 = new PointF(0, 0);
+  public nor_4 = new PointF(0, 0);
+  public nor_5 = new PointF(0, 0);
+  public nor_6 = new PointF(0, 0);
+  public nor_7 = new PointF(0, 0);
+  public nor_8 = new PointF(0, 0);
+  public nor_9 = new PointF(0, 0);
+  public nor_10 = new PointF(0, 0);
+  /* Calculating the "true" center of an equilateral triangle, not the centroid. */
+  public equilateral_center = [];
+  /* The center (x-coord) of the bounds */
+  public c_x = this.bounds.get_center_x();
+  /* The center (y-coord) of the bounds */
+  public c_y = this.bounds.get_center_y();
+  /* The spacing of the nodes in the x-direction, divided by 2 */
+  public x_space = global.node_space_x >> 1;
+  /* The spacing of the nodes in the y-direction, divided by 2 */
+  public y_space = global.node_space_y >> 1;
+  /* Some points we'll be extending the leads of the resistor to. */
+  public connect1_x = 0;
+  public connect1_y = 0;
+  public connect2_x = 0;
+  public connect2_y = 0;
+  /* Angle from p1 to p2 minus 90 degrees */
+  public theta_m90 =
+    global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
+    global.PI_DIV_2;
+  /* Angle from p1 to p2 */
+  public theta = global.retrieve_angle_radian(
+    this.p2.x - this.p1.x,
+    this.p2.y - this.p1.y
   );
-  this.bounds.set_center2(
-	this.equilateral_center[0],
-	this.equilateral_center[1],
-	global.node_space_x * 2,
-	global.node_space_y * 2
+  /* Angle from center to p2 */
+  public phi = global.retrieve_angle_radian(
+    this.c_x - this.p2.x,
+    this.c_y - this.p2.y
   );
-}
-/* Set the rotation of this component to 0. */
-public elm.set_rotation(global.ROTATION_0);
-/* Set the flip of the component to 0, resistors should not be flippable. */
-public elm.set_flip(global.FLIP_0);
-/* Re-map those bad boys! */
-public release_nodes();
-let vertices = this.get_vertices();
-public elm.map_node3(
-  vertices[0],
-  vertices[1],
-  vertices[2],
-  vertices[3],
-  vertices[4],
-  vertices[5]
-);
-/* Add this components references to the nodes it's attached to currently. */
-public capture_nodes();
-public p1 = new PointF(0, 0);
-public p2 = new PointF(0, 0);
-public p3 = new PointF(0, 0);
-if (this.elm.consistent()) {
-  /* Create some points to hold the node locations, this will be used for drawing components */
-  this.p1.set_point(
-	nodes[this.elm.n1].location.x,
-	nodes[this.elm.n1].location.y
-  );
-  this.p2.set_point(
-	nodes[this.elm.n2].location.x,
-	nodes[this.elm.n2].location.y
-  );
-  this.p3.set_point(
-	nodes[this.elm.n3].location.x,
-	nodes[this.elm.n3].location.y
-  );
-}
-public nor_0 = new PointF(0, 0);
-public nor_1 = new PointF(0, 0);
-public nor_2 = new PointF(0, 0);
-public nor_3 = new PointF(0, 0);
-public nor_4 = new PointF(0, 0);
-public nor_5 = new PointF(0, 0);
-public nor_6 = new PointF(0, 0);
-public nor_7 = new PointF(0, 0);
-public nor_8 = new PointF(0, 0);
-public nor_9 = new PointF(0, 0);
-public nor_10 = new PointF(0, 0);
-/* Calculating the "true" center of an equilateral triangle, not the centroid. */
-public equilateral_center = [];
-/* The center (x-coord) of the bounds */
-public c_x = this.bounds.get_center_x();
-/* The center (y-coord) of the bounds */
-public c_y = this.bounds.get_center_y();
-/* The spacing of the nodes in the x-direction, divided by 2 */
-public x_space = global.node_space_x >> 1;
-/* The spacing of the nodes in the y-direction, divided by 2 */
-public y_space = global.node_space_y >> 1;
-/* Some points we'll be extending the leads of the resistor to. */
-public connect1_x = 0;
-public connect1_y = 0;
-public connect2_x = 0;
-public connect2_y = 0;
-/* Angle from p1 to p2 minus 90 degrees */
-public theta_m90 =
-  global.retrieve_angle_radian(
-	this.p2.x - this.p1.x,
-	this.p2.y - this.p1.y
-  ) - global.PI_DIV_2;
-/* Angle from p1 to p2 */
-public theta = global.retrieve_angle_radian(
-  this.p2.x - this.p1.x,
-  this.p2.y - this.p1.y
-);
-/* Angle from center to p2 */
-public phi = global.retrieve_angle_radian(
-  this.c_x - this.p2.x,
-  this.c_y - this.p2.y
-);
-public grid_point = [];
-/* This paint is used for drawing the "lines" that the component is comprised of. */
-public line_paint = new Paint();
-public line_paint.set_paint_style(this.line_paint.style.STROKE);
-public line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-public line_paint.set_paint_join(this.line_paint.join.MITER);
-public line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-public line_paint.set_color(global.ELEMENT_COLOR);
-public line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-public line_paint.set_font(global.DEFAULT_FONT);
-public line_paint.set_alpha(255);
-public line_paint.set_paint_align(this.line_paint.align.CENTER);
-/* This paint is used for drawing the "nodes" that the component is connected to. */
-public point_paint = new Paint();
-public point_paint.set_paint_style(this.point_paint.style.FILL);
-public point_paint.set_paint_cap(this.point_paint.cap.ROUND);
-public point_paint.set_paint_join(this.point_paint.join.MITER);
-public point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-public point_paint.set_color(global.ELEMENT_COLOR);
-public point_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-public point_paint.set_font(global.DEFAULT_FONT);
-public point_paint.set_alpha(255);
-public point_paint.set_paint_align(this.point_paint.align.CENTER);
-/* This paint is used for drawing the "text" that the component needs to display */
-public text_paint = new Paint();
-public text_paint.set_paint_style(this.text_paint.style.FILL);
-public text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-public text_paint.set_paint_join(this.text_paint.join.MITER);
-public text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-public text_paint.set_color(global.ELEMENT_COLOR);
-public text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-public text_paint.set_font(global.DEFAULT_FONT);
-public text_paint.set_alpha(255);
-public text_paint.set_paint_align(this.text_paint.align.CENTER);
-/* Flag to denote when the component is actually moving. */
-public is_translating = false;
-public build_element();
-public wire_reference = [];
-/* This is to keep track of the simulation id's */
-public simulation_id = 0;
-/* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
+  public grid_point = [];
+  /* This paint is used for drawing the "lines" that the component is comprised of. */
+  public line_paint = new Paint();
+  /* This paint is used for drawing the "nodes" that the component is connected to. */
+  public point_paint = new Paint();
+  /* This paint is used for drawing the "text" that the component needs to display */
+  public text_paint = new Paint();
+  /* Flag to denote when the component is actually moving. */
+  public is_translating = false;
+  public wire_reference = [];
+  /* This is to keep track of the simulation id's */
+  public simulation_id = 0;
+  /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
-public indexer = 0;
-public m_x = 0;
-public m_y = 0;
-public INITIALIZED = true;
-public MULTI_SELECTED = false;
-/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-public LINE_BUFFER = [];
-public CIRCLE_BUFFER = [];
-public BUILD_ELEMENT = true;
-public ANGLE = 0;
+  public indexer = 0;
+  public m_x = 0;
+  public m_y = 0;
+  public MULTI_SELECTED = false;
+  /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
+  public LINE_BUFFER = [];
+  public CIRCLE_BUFFER = [];
+  public BUILD_ELEMENT = true;
+  public ANGLE = 0;
 
   constructor(type, id, n1, n2, n3) {
     this.INITIALIZED = false;
@@ -590,7 +509,7 @@ public ANGLE = 0;
           global.focused_type === this.elm.type
         ) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
-          global.is_dragging = false;
+          global.IS_DRAGGING = false;
           if (!this.is_translating) {
             if (
               !this.bounds.contains_xywh(

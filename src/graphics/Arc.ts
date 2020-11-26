@@ -27,9 +27,9 @@ class Arc {
   private x2: number = 0;
   private y1: number = 0;
   private y2: number = 0;
-  private IS_TRANSFORM_SCALED: boolean = true;
+  public IS_TRANSFORM_SCALED: boolean = true;
 
-  constructor(x1, y1, x2, y2, amplitude) {
+  constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
     /* A paint object to paint the arc with. */
     this.arc_paint.set_paint_style(this.arc_paint.style.STROKE);
     this.arc_paint.set_paint_cap(this.arc_paint.cap.ROUND);
@@ -48,42 +48,35 @@ class Arc {
     this.IS_TRANSFORM_SCALED = true;
   }
   /* A quick function to re-set the points of the arc. */
-  set_points(x1, y1, x2, y2) {
+  set_points(x1: number, y1: number, x2: number, y2: number): void {
     this.x1 = x1;
     this.y1 = y1;
     this.x2 = x2;
     this.y2 = y2;
   }
   /* Resize the arc paint stroke width and the text size. */
-  resize() {
+  resize(): void {
     /* Resize the stroke widths and the text sizes. */
     this.arc_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
     this.arc_paint.set_text_size(global.CANVAS_TEXT_SIZE_4_ZOOM);
   }
   /* Resize the arc paint stroke width and the text size. */
-  resize2() {
+  resize2(): void {
     /* Resize the stroke widths and the text sizes. */
     this.arc_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.arc_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
   }
   /* Change the paint objects color. */
-  set_color(color) {
+  set_color(color: string): void {
     this.arc_paint.set_color(color);
   }
   /* Draw the arc w/ the instance of graphics engine */
-  draw_arc(canvas) {
+  draw_arc(canvas: GraphicsEngine): void {
     if (this.IS_TRANSFORM_SCALED) {
       this.resize();
     } else {
       this.resize2();
     }
-    canvas.draw_arc2(
-      this.x1,
-      this.y1,
-      this.x2,
-      this.y2,
-      -this.amplitude,
-      this.arc_paint
-    );
+    canvas.draw_arc2(this.x1, this.y1, this.x2, this.y2, -this.amplitude, this.arc_paint);
   }
 }

@@ -1,0 +1,106 @@
+/**********************************************************************
+ * Project           : Circuit Solver
+ * File		        : SineWave.js
+ * Author            : nboatengc
+ * Date created      : 20190928
+ *
+ * Purpose           : A class to handle drawing sine waves and editing their properties on
+ *                   the fly.
+ *
+ * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
+ * UNPUBLISHED, LICENSED SOFTWARE.
+ *
+ * CONFIDENTIAL AND PROPRIETARY INFORMATION
+ * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
+ *
+ * Revision History  :
+ *
+ * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
+ * 20190928    nboatengc     1      Initial Commit.
+ *
+ ***********************************************************************/
+var SineWave = /** @class */ (function () {
+    function SineWave(x1, y1, x2, y2, amplitude) {
+        this.STYLE_0 = 0;
+        this.STYLE_1 = 1;
+        this.amplitude = 0.1;
+        this.sine_wave_paint = new Paint();
+        this.x1 = 0;
+        this.x2 = 0;
+        this.y1 = 0;
+        this.y2 = 0;
+        this.c_x = 0;
+        this.c_y = 0;
+        this.last_x1 = -1;
+        this.last_x2 = -1;
+        this.last_y1 = -1;
+        this.last_y2 = -1;
+        this.amplitude = amplitude;
+        this.sine_wave_paint = new Paint();
+        this.sine_wave_paint.set_paint_style(this.sine_wave_paint.style.STROKE);
+        this.sine_wave_paint.set_paint_cap(this.sine_wave_paint.cap.ROUND);
+        this.sine_wave_paint.set_paint_join(this.sine_wave_paint.join.MITER);
+        this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+        this.sine_wave_paint.set_color(global.ELEMENT_COLOR);
+        this.sine_wave_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.sine_wave_paint.set_font(global.DEFAULT_FONT);
+        this.sine_wave_paint.set_alpha(255);
+        this.sine_wave_paint.set_paint_align(this.sine_wave_paint.align.CENTER);
+        this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
+        this.c_x = 0;
+        this.c_y = 0;
+        this.last_x1 = -1;
+        this.last_x2 = -1;
+        this.last_y1 = -1;
+        this.last_y2 = -1;
+    }
+    SineWave.prototype.set_points = function (x1, y1, x2, y2) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.last_x1 = -1;
+        this.last_x2 = -1;
+        this.last_y1 = -1;
+        this.last_y2 = -1;
+    };
+    SineWave.prototype.set_amplitude = function (amplitude) {
+        this.amplitude = amplitude;
+    };
+    SineWave.prototype.set_color = function (color) {
+        this.sine_wave_paint.set_color(color);
+    };
+    SineWave.prototype.resize = function (style) {
+        /* Resize the stroke widths and the text sizes. */
+        if (style === this.STYLE_0) {
+            this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            this.sine_wave_paint.set_text_size(global.CANVAS_TEXT_SIZE_4_ZOOM);
+        }
+        else if (style === this.STYLE_1) {
+            this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+            this.sine_wave_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        }
+        this.last_x1 = -1;
+        this.last_x2 = -1;
+        this.last_y1 = -1;
+        this.last_y2 = -1;
+    };
+    SineWave.prototype.draw_sine_wave = function (canvas, style) {
+        if (this.last_x1 != this.x1 || this.last_x2 != this.x2) {
+            this.last_x1 = this.x1;
+            this.last_x2 = this.x2;
+            this.c_x = (this.x2 + this.x1) * 0.5;
+        }
+        if (this.last_y1 != this.y1 || this.last_y2 != this.y2) {
+            this.last_y1 = this.y1;
+            this.last_y2 = this.y2;
+            this.c_y = (this.y2 + this.y1) * 0.5;
+        }
+        canvas.draw_arc2(this.x1, this.y1, this.c_x, this.c_y, this.amplitude, this.sine_wave_paint);
+        canvas.draw_arc2(this.c_x, this.c_y, this.x2, this.y2, -this.amplitude, this.sine_wave_paint);
+    };
+    return SineWave;
+}());

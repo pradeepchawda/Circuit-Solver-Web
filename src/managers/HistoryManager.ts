@@ -42,7 +42,7 @@ class HistoryManager {
     }
   }
   /* A request to update the history */
-  push(packet) {
+  push(...packet: Array<string>) {
     if (!global.SIGNAL_ADD_ELEMENT && !global.SIGNAL_HISTORY_LOCK) {
       /* Logic to prevent multiples of the same events from being registered. */
       if (this.history.length > 0) {
