@@ -372,23 +372,7 @@ class Global {
     0.99 * 1e-18,
     0.99 * 1e-21
   ];
-  public SI_UNIT_ABBREVIATION: Array<string> = [
-    'Z',
-    'E',
-    'P',
-    'T',
-    'G',
-    'M',
-    'k',
-    '',
-    'm',
-    'u',
-    'n',
-    'p',
-    'f',
-    'a',
-    'z'
-  ];
+  public SI_UNIT_ABBREVIATION: Array<string> = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
   /* To facilitate the generation of new wires. */
   public WIRE_BUILDER: WIRE_BUILDER_T = {
     n1: -1,
@@ -443,10 +427,7 @@ class Global {
     options: ['Closed Resistance', 'Switch State'],
     options_units: ['Ω', ''],
     option_limits: {
-      'Closed Resistance': [
-        this.settings.WIRE_RESISTANCE,
-        this.settings.R_MAX * 0.5
-      ]
+      'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
   };
   /* Base structure for NOT properties */
@@ -477,10 +458,7 @@ class Global {
     options_units: ['', 'A'],
     option_limits: {
       'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      'Saturation Current': [
-        this.settings.MIN_CURRENT,
-        this.settings.MAX_CURRENT
-      ]
+      'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
     }
   };
   /* Base structure for led properties */
@@ -500,10 +478,7 @@ class Global {
     options_units: ['', 'A', 'nm'],
     option_limits: {
       'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      'Saturation Current': [
-        this.settings.MIN_CURRENT,
-        this.settings.MAX_CURRENT
-      ],
+      'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
       Wavelength: [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
     }
   };
@@ -524,10 +499,7 @@ class Global {
     option_limits: {
       'Zener Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      'Saturation Current': [
-        this.settings.MIN_CURRENT,
-        this.settings.MAX_CURRENT
-      ]
+      'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
     }
   };
   /* Base structure for voltmeter properties */
@@ -662,10 +634,7 @@ class Global {
     options: ['Capacitance', 'Initial Voltage'],
     options_units: ['F', 'V'],
     option_limits: {
-      Capacitance: [
-        this.settings.MIN_CAPACITANCE,
-        this.settings.MAX_CAPACITANCE
-      ],
+      Capacitance: [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
       'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -724,10 +693,7 @@ class Global {
     options_units: ['Ω', '%'],
     option_limits: {
       Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
-      'Wiper Percentage': [
-        this.settings.MIN_POTENTIOMETER_WIPER,
-        this.settings.MAX_POTENTIOMETER_WIPER
-      ]
+      'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
     }
   };
   /* Base structure for and properties */
@@ -826,10 +792,7 @@ class Global {
     options_units: ['V', 'Ω'],
     option_limits: {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-      'Closed Resistance': [
-        this.settings.WIRE_RESISTANCE,
-        this.settings.R_MAX * 0.5
-      ]
+      'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
   };
   /* Base structure for vcr properties */
@@ -911,10 +874,7 @@ class Global {
     options: ['Closed Resistance', 'Switch State'],
     options_units: ['Ω', ''],
     option_limits: {
-      'Closed Resistance': [
-        this.settings.WIRE_RESISTANCE,
-        this.settings.R_MAX * 0.5
-      ]
+      'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
   };
   /* Base structure for opamp properties */
@@ -1104,10 +1064,7 @@ class Global {
     option_limits: {
       'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      'Saturation Current': [
-        this.settings.MIN_CURRENT,
-        this.settings.MAX_CURRENT
-      ]
+      'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
     }
   };
   /* Base structure for pnpbjt properties */
@@ -1135,10 +1092,7 @@ class Global {
     option_limits: {
       'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      'Saturation Current': [
-        this.settings.MIN_CURRENT,
-        this.settings.MAX_CURRENT
-      ]
+      'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
     }
   };
   /* Base structure for transformer properties */
@@ -1165,14 +1119,8 @@ class Global {
     options: ['Bit Resolution', 'Reference Voltage'],
     options_units: ['Bits', 'V'],
     option_limits: {
-      'Bit Resolution': [
-        this.settings.MIN_BIT_RESOLUTION,
-        this.settings.MAX_BIT_RESOLUTION
-      ],
-      'Reference Voltage': [
-        this.settings.MIN_VOLTAGE,
-        this.settings.MAX_VOLTAGE
-      ]
+      'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+      'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
   /* Base structure for dac properties */
@@ -1188,14 +1136,8 @@ class Global {
     options: ['Bit Resolution', 'Reference Voltage'],
     options_units: ['Bits', 'V'],
     option_limits: {
-      'Bit Resolution': [
-        this.settings.MIN_BIT_RESOLUTION,
-        this.settings.MAX_BIT_RESOLUTION
-      ],
-      'Reference Voltage': [
-        this.settings.MIN_VOLTAGE,
-        this.settings.MAX_VOLTAGE
-      ]
+      'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+      'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
   /* Base structure for pwm properties */
@@ -1219,24 +1161,11 @@ class Global {
     'Last Output Voltage': 0,
     tag: 'PWM',
     units: 'V',
-    options: [
-      'Max Frequency',
-      'Min Frequency',
-      'Max Duty',
-      'Min Duty',
-      'Phase',
-      'Postscaler'
-    ],
+    options: ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
     options_units: ['Hz', 'Hz', '%', '%', ' º', ''],
     option_limits: {
-      'Max Frequency': [
-        this.settings.MIN_FREQUENCY,
-        this.settings.MAX_FREQUENCY
-      ],
-      'Min Frequency': [
-        this.settings.MIN_FREQUENCY,
-        this.settings.MAX_FREQUENCY
-      ],
+      'Max Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
+      'Min Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
       'Max Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
       'Min Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
       Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
@@ -1315,10 +1244,7 @@ class Global {
     options: ['Cutoff Frequency'],
     options_units: ['Hz'],
     option_limits: {
-      'Cutoff Frequency': [
-        this.settings.MIN_FREQUENCY,
-        this.settings.MAX_FREQUENCY
-      ]
+      'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
     }
   };
   /* Base structure for hpf properties */
@@ -1335,10 +1261,7 @@ class Global {
     options: ['Cutoff Frequency'],
     options_units: ['Hz'],
     option_limits: {
-      'Cutoff Frequency': [
-        this.settings.MIN_FREQUENCY,
-        this.settings.MAX_FREQUENCY
-      ]
+      'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
     }
   };
   /* Base structure for rail properties */
@@ -1364,21 +1287,13 @@ class Global {
     'Open Resistance': this.settings.R_MAX * 0.5,
     tag: 'RELAY',
     units: 'H',
-    options: [
-      'Inductance',
-      'Initial Current',
-      'Turn on Current',
-      'Closed Resistance'
-    ],
+    options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
     options_units: ['H', 'A', 'A', 'Ω'],
     option_limits: {
       Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
       'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
       'Turn on Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-      'Closed Resistance': [
-        this.settings.WIRE_RESISTANCE,
-        this.settings.R_MAX * 0.5
-      ]
+      'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
   };
   /* Base structure for pid properties */
@@ -1515,16 +1430,7 @@ class Global {
     packet: []
   };
   /* The various landuages available to pick from. */
-  public readonly LANGUAGES: Array<string> = [
-    'English',
-    'Spanish',
-    'French',
-    'Italian',
-    'Dutch',
-    'Russian',
-    'German',
-    'Indonesian'
-  ];
+  public readonly LANGUAGES: Array<string> = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];
   public LANGUGE_INDEX_COUNTER: number = 0;
   public readonly LANGUAGE_INDEX_ENGLISH: number = this.LANGUGE_INDEX_COUNTER++;
   public readonly LANGUAGE_INDEX_SPANISH: number = this.LANGUGE_INDEX_COUNTER++;
@@ -1533,28 +1439,13 @@ class Global {
   public readonly LANGUAGE_INDEX_DUTCH: number = this.LANGUGE_INDEX_COUNTER++;
   public readonly LANGUAGE_INDEX_RUSSIAN: number = this.LANGUGE_INDEX_COUNTER++;
   public readonly LANGUAGE_INDEX_GERMAN: number = this.LANGUGE_INDEX_COUNTER++;
-  public readonly LANGUAGE_INDEX_INDONESIAN: number = this
-    .LANGUGE_INDEX_COUNTER++;
+  public readonly LANGUAGE_INDEX_INDONESIAN: number = this.LANGUGE_INDEX_COUNTER++;
   /* The current language index. */
   public LANGUAGE_INDEX: number = this.LANGUAGE_INDEX_ENGLISH;
   /* Base structure for system properties */
   public SYSTEM_OPTIONS: SYSTEM_OPTIONS_T = {
-    options: [
-      'Language',
-      'Automatic Timestep',
-      'Shortcut Hints',
-      'Full Window',
-      '',
-      ''
-    ],
-    values: [
-      this.LANGUAGES[this.LANGUAGE_INDEX],
-      this.OFF,
-      this.ON,
-      this.OFF,
-      this.OFF,
-      this.OFF
-    ]
+    options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
+    values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.OFF, this.ON, this.OFF, this.OFF, this.OFF]
   };
   /* Index's to access system options. Make sure they're in order. */
   public indexer: number = 0;
@@ -1571,9 +1462,7 @@ class Global {
   public readonly ELEMENT_COLOR: string = this.ColorNameToHex('silver');
   public readonly SELECTED_COLOR: string = this.ColorNameToHex('cyan');
   public readonly MULTI_SELECTED_COLOR: string = this.ColorNameToHex('yellow');
-  public readonly WORKSPACE_WORK_AREA_COLOR: string = this.ColorNameToHex(
-    '#292D29'
-  );
+  public readonly WORKSPACE_WORK_AREA_COLOR: string = this.ColorNameToHex('#292D29');
   public readonly GRAPH_AREA_COLOR: string = this.ColorNameToHex('#282828');
   public readonly ZOOM_AREA_COLOR: string = this.ColorNameToHex('#3C3C3C');
   public readonly TRACE_I_COLOR: string = this.ColorNameToHex('cyan');
@@ -1581,12 +1470,8 @@ class Global {
   public readonly TRACE_III_COLOR: string = this.ColorNameToHex('green');
   public readonly TRACE_DEFAULT_COLOR: string = this.ColorNameToHex('yellow');
   public readonly MENU_ICON_ACTIVE_COLOR: string = this.ColorNameToHex('cyan');
-  public readonly MENU_ICON_INACTIVE_COLOR: string = this.ColorNameToHex(
-    '#9B9B9B'
-  );
-  public readonly MENU_ICON_DEFAULT_COLOR: string = this.ColorNameToHex(
-    'white'
-  );
+  public readonly MENU_ICON_INACTIVE_COLOR: string = this.ColorNameToHex('#9B9B9B');
+  public readonly MENU_ICON_DEFAULT_COLOR: string = this.ColorNameToHex('white');
   public readonly MENU_HIGHLIGHT_COLOR: string = this.ColorNameToHex('#606060');
   public readonly MENU_FILL_COLOR: string = this.ColorNameToHex('gray');
   public readonly GENERAL_WHITE_COLOR: string = this.ColorNameToHex('white');
@@ -1858,12 +1743,9 @@ class Global {
   /* Dividing PI into a 16-bit number (Qx) */
   public TRIG_TABLE_Q_NUMBER: number = 12;
   public TRIG_SINE_TABLE: Array<number> = [];
-  public TRIG_TABLE_SIZE: number = Math.round(
-    Math.pow(2, this.TRIG_TABLE_Q_NUMBER)
-  );
+  public TRIG_TABLE_SIZE: number = Math.round(Math.pow(2, this.TRIG_TABLE_Q_NUMBER));
   public TRIG_TABLE_SCALE_CONSTANT: number = 2.0 / this.TRIG_TABLE_SIZE;
-  public TRIG_TABLE_INDEX_CONSTANT: number =
-    (this.TRIG_TABLE_SIZE * 0.5) / Math.PI;
+  public TRIG_TABLE_INDEX_CONSTANT: number = (this.TRIG_TABLE_SIZE * 0.5) / Math.PI;
   public TRIG_TABLE_MASK: number = this.TRIG_TABLE_SIZE - 1;
   public TRIG_TABLE_ROUND: number = this.TRIG_TABLE_SIZE * 0.25;
 
@@ -2238,23 +2120,7 @@ class Global {
       p4: 3
     };
     /* Store the pre-divided SI units to save some computation time. */
-    this.SI_UNIT_ARRAY = [
-      1 / 1e21,
-      1 / 1e18,
-      1 / 1e15,
-      1 / 1e12,
-      1 / 1e9,
-      1 / 1e6,
-      1 / 1e3,
-      1,
-      1 / 1e-3,
-      1 / 1e-6,
-      1 / 1e-9,
-      1 / 1e-12,
-      1 / 1e-15,
-      1 / 1e-18,
-      1 / 1e-21
-    ];
+    this.SI_UNIT_ARRAY = [1 / 1e21, 1 / 1e18, 1 / 1e15, 1 / 1e12, 1 / 1e9, 1 / 1e6, 1 / 1e3, 1, 1 / 1e-3, 1 / 1e-6, 1 / 1e-9, 1 / 1e-12, 1 / 1e-15, 1 / 1e-18, 1 / 1e-21];
     /* Cache the thresholds.. */
     this.SI_UNIT_THRESHOLD_ARRAY = [
       0.99 * 1e21,
@@ -2273,23 +2139,7 @@ class Global {
       0.99 * 1e-18,
       0.99 * 1e-21
     ];
-    this.SI_UNIT_ABBREVIATION = [
-      'Z',
-      'E',
-      'P',
-      'T',
-      'G',
-      'M',
-      'k',
-      '',
-      'm',
-      'u',
-      'n',
-      'p',
-      'f',
-      'a',
-      'z'
-    ];
+    this.SI_UNIT_ABBREVIATION = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
     /* To facilitate the generation of new wires. */
     this.WIRE_BUILDER = {
       n1: -1,
@@ -2344,10 +2194,7 @@ class Global {
       options: ['Closed Resistance', 'Switch State'],
       options_units: ['Ω', ''],
       option_limits: {
-        'Closed Resistance': [
-          this.settings.WIRE_RESISTANCE,
-          this.settings.R_MAX * 0.5
-        ]
+        'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
     /* Base structure for NOT properties */
@@ -2377,14 +2224,8 @@ class Global {
       options: ['Emission Coefficient', 'Saturation Current'],
       options_units: ['', 'A'],
       option_limits: {
-        'Emission Coefficient': [
-          this.settings.MIN_GAIN,
-          this.settings.MAX_GAIN
-        ],
-        'Saturation Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ]
+        'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+        'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
       }
     };
     /* Base structure for led properties */
@@ -2403,14 +2244,8 @@ class Global {
       options: ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
       options_units: ['', 'A', 'nm'],
       option_limits: {
-        'Emission Coefficient': [
-          this.settings.MIN_GAIN,
-          this.settings.MAX_GAIN
-        ],
-        'Saturation Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ],
+        'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+        'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
         Wavelength: [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
       }
     };
@@ -2430,14 +2265,8 @@ class Global {
       options_units: ['V', '', 'A'],
       option_limits: {
         'Zener Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-        'Emission Coefficient': [
-          this.settings.MIN_GAIN,
-          this.settings.MAX_GAIN
-        ],
-        'Saturation Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ]
+        'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+        'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
       }
     };
     /* Base structure for voltmeter properties */
@@ -2572,14 +2401,8 @@ class Global {
       options: ['Capacitance', 'Initial Voltage'],
       options_units: ['F', 'V'],
       option_limits: {
-        Capacitance: [
-          this.settings.MIN_CAPACITANCE,
-          this.settings.MAX_CAPACITANCE
-        ],
-        'Initial Voltage': [
-          this.settings.MIN_VOLTAGE,
-          this.settings.MAX_VOLTAGE
-        ]
+        Capacitance: [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
+        'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
     /* Base structure for inductor properties */
@@ -2594,14 +2417,8 @@ class Global {
       options: ['Inductance', 'Initial Current'],
       options_units: ['H', 'A'],
       option_limits: {
-        Inductance: [
-          this.settings.MIN_INDUCTANCE,
-          this.settings.MAX_INDUCTANCE
-        ],
-        'Initial Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ]
+        Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+        'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
       }
     };
     /* Base structure for ground properties */
@@ -2643,10 +2460,7 @@ class Global {
       options_units: ['Ω', '%'],
       option_limits: {
         Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
-        'Wiper Percentage': [
-          this.settings.MIN_POTENTIOMETER_WIPER,
-          this.settings.MAX_POTENTIOMETER_WIPER
-        ]
+        'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
       }
     };
     /* Base structure for and properties */
@@ -2745,10 +2559,7 @@ class Global {
       options_units: ['V', 'Ω'],
       option_limits: {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-        'Closed Resistance': [
-          this.settings.WIRE_RESISTANCE,
-          this.settings.R_MAX * 0.5
-        ]
+        'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
     /* Base structure for vcr properties */
@@ -2830,10 +2641,7 @@ class Global {
       options: ['Closed Resistance', 'Switch State'],
       options_units: ['Ω', ''],
       option_limits: {
-        'Closed Resistance': [
-          this.settings.WIRE_RESISTANCE,
-          this.settings.R_MAX * 0.5
-        ]
+        'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
     /* Base structure for opamp properties */
@@ -3023,10 +2831,7 @@ class Global {
       option_limits: {
         'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-        'Saturation Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ]
+        'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
       }
     };
     /* Base structure for pnpbjt properties */
@@ -3054,10 +2859,7 @@ class Global {
       option_limits: {
         'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-        'Saturation Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ]
+        'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
       }
     };
     /* Base structure for transformer properties */
@@ -3084,14 +2886,8 @@ class Global {
       options: ['Bit Resolution', 'Reference Voltage'],
       options_units: ['Bits', 'V'],
       option_limits: {
-        'Bit Resolution': [
-          this.settings.MIN_BIT_RESOLUTION,
-          this.settings.MAX_BIT_RESOLUTION
-        ],
-        'Reference Voltage': [
-          this.settings.MIN_VOLTAGE,
-          this.settings.MAX_VOLTAGE
-        ]
+        'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+        'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
     /* Base structure for dac properties */
@@ -3107,14 +2903,8 @@ class Global {
       options: ['Bit Resolution', 'Reference Voltage'],
       options_units: ['Bits', 'V'],
       option_limits: {
-        'Bit Resolution': [
-          this.settings.MIN_BIT_RESOLUTION,
-          this.settings.MAX_BIT_RESOLUTION
-        ],
-        'Reference Voltage': [
-          this.settings.MIN_VOLTAGE,
-          this.settings.MAX_VOLTAGE
-        ]
+        'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+        'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
     /* Base structure for pwm properties */
@@ -3138,32 +2928,13 @@ class Global {
       'Last Output Voltage': 0,
       tag: 'PWM',
       units: 'V',
-      options: [
-        'Max Frequency',
-        'Min Frequency',
-        'Max Duty',
-        'Min Duty',
-        'Phase',
-        'Postscaler'
-      ],
+      options: ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
       options_units: ['Hz', 'Hz', '%', '%', ' º', ''],
       option_limits: {
-        'Max Frequency': [
-          this.settings.MIN_FREQUENCY,
-          this.settings.MAX_FREQUENCY
-        ],
-        'Min Frequency': [
-          this.settings.MIN_FREQUENCY,
-          this.settings.MAX_FREQUENCY
-        ],
-        'Max Duty': [
-          this.settings.MIN_DUTY_CYCLE,
-          this.settings.MAX_DUTY_CYCLE
-        ],
-        'Min Duty': [
-          this.settings.MIN_DUTY_CYCLE,
-          this.settings.MAX_DUTY_CYCLE
-        ],
+        'Max Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
+        'Min Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
+        'Max Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
+        'Min Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
         Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
         Postscaler: [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
       }
@@ -3240,10 +3011,7 @@ class Global {
       options: ['Cutoff Frequency'],
       options_units: ['Hz'],
       option_limits: {
-        'Cutoff Frequency': [
-          this.settings.MIN_FREQUENCY,
-          this.settings.MAX_FREQUENCY
-        ]
+        'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
       }
     };
     /* Base structure for hpf properties */
@@ -3260,10 +3028,7 @@ class Global {
       options: ['Cutoff Frequency'],
       options_units: ['Hz'],
       option_limits: {
-        'Cutoff Frequency': [
-          this.settings.MIN_FREQUENCY,
-          this.settings.MAX_FREQUENCY
-        ]
+        'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
       }
     };
     /* Base structure for rail properties */
@@ -3289,30 +3054,13 @@ class Global {
       'Open Resistance': this.settings.R_MAX * 0.5,
       tag: 'RELAY',
       units: 'H',
-      options: [
-        'Inductance',
-        'Initial Current',
-        'Turn on Current',
-        'Closed Resistance'
-      ],
+      options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
       options_units: ['H', 'A', 'A', 'Ω'],
       option_limits: {
-        Inductance: [
-          this.settings.MIN_INDUCTANCE,
-          this.settings.MAX_INDUCTANCE
-        ],
-        'Initial Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ],
-        'Turn on Current': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ],
-        'Closed Resistance': [
-          this.settings.WIRE_RESISTANCE,
-          this.settings.R_MAX * 0.5
-        ]
+        Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+        'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
+        'Turn on Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
+        'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
     /* Base structure for pid properties */
@@ -3425,10 +3173,7 @@ class Global {
       options: ['Current Rating', 'Resistance'],
       options_units: ['A', 'Ω'],
       option_limits: {
-        'Current Rating': [
-          this.settings.MIN_CURRENT,
-          this.settings.MAX_CURRENT
-        ],
+        'Current Rating': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
         Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
@@ -3452,16 +3197,7 @@ class Global {
       packet: []
     };
     /* The various landuages available to pick from. */
-    this.LANGUAGES = [
-      'English',
-      'Spanish',
-      'French',
-      'Italian',
-      'Dutch',
-      'Russian',
-      'German',
-      'Indonesian'
-    ];
+    this.LANGUAGES = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];
     this.LANGUGE_INDEX_COUNTER = 0;
     this.LANGUAGE_INDEX_ENGLISH = this.LANGUGE_INDEX_COUNTER++;
     this.LANGUAGE_INDEX_SPANISH = this.LANGUGE_INDEX_COUNTER++;
@@ -3475,22 +3211,8 @@ class Global {
     this.LANGUAGE_INDEX = this.LANGUAGE_INDEX_ENGLISH;
     /* Base structure for resistor properties */
     this.SYSTEM_OPTIONS = {
-      options: [
-        'Language',
-        'Automatic Timestep',
-        'Shortcut Hints',
-        'Full Window',
-        '',
-        ''
-      ],
-      values: [
-        this.LANGUAGES[this.LANGUAGE_INDEX],
-        this.OFF,
-        this.ON,
-        this.OFF,
-        this.OFF,
-        this.OFF
-      ]
+      options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
+      values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.OFF, this.ON, this.OFF, this.OFF, this.OFF]
     };
     /* Index's to access system options. Make sure they're in order. */
     let indexer = 0;
@@ -3501,9 +3223,7 @@ class Global {
     this.SYSTEM_OPTION_SHORTCUT_HINTS = indexer++;
     this.SYSTEM_OPTION_STRETCH_WINDOW = indexer++;
     if (this.MOBILE_MODE) {
-      this.SYSTEM_OPTIONS['values'][
-        this.SYSTEM_OPTION_SHORTCUT_HINTS
-      ] = this.OFF;
+      this.SYSTEM_OPTIONS['values'][this.SYSTEM_OPTION_SHORTCUT_HINTS] = this.OFF;
     }
     /* 99.999% Of the colors are stored here for conveinence. This is to help when moving from canvas-2d to some other libraries
     in the future. Paint.js has one definition there... (The order of includes are hard to manage.)*/
@@ -3796,9 +3516,7 @@ class Global {
     this.TRIG_TABLE_MASK = this.TRIG_TABLE_SIZE - 1;
     this.TRIG_TABLE_ROUND = this.TRIG_TABLE_SIZE * 0.25;
     for (var i = 0; i < this.TRIG_TABLE_SIZE; i++) {
-      this.TRIG_SINE_TABLE.push(
-        Math.sin(i * Math.PI * this.TRIG_TABLE_SCALE_CONSTANT)
-      );
+      this.TRIG_SINE_TABLE.push(Math.sin(i * Math.PI * this.TRIG_TABLE_SCALE_CONSTANT));
     }
     this.TIME_DATA_TEMPLATE = {
       Frequency: -1,
@@ -3980,33 +3698,21 @@ class Global {
       yellow: '#ffff00',
       yellowgreen: '#9acd32'
     };
-    if (typeof colors[color.toLowerCase()] != 'undefined')
-      return colors[color.toLowerCase()];
+    if (typeof colors[color.toLowerCase()] != 'undefined') return colors[color.toLowerCase()];
     return color;
   }
   sine(theta) {
-    return this.TRIG_SINE_TABLE[
-      (theta * this.TRIG_TABLE_INDEX_CONSTANT) & this.TRIG_TABLE_MASK
-    ];
+    return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT) & this.TRIG_TABLE_MASK];
   }
   cosine(theta) {
-    return this.TRIG_SINE_TABLE[
-      (theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) &
-        this.TRIG_TABLE_MASK
-    ];
+    return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) & this.TRIG_TABLE_MASK];
   }
   /* Re-calculates the new position of an object based on the last screen width and the current screen width. */
   remap_position(input, is_width) {
     if (is_width === true) {
-      return (
-        view_port.right -
-        (this.last_view_port_right - input) * this.RESIZE_W_FACTOR
-      );
+      return view_port.right - (this.last_view_port_right - input) * this.RESIZE_W_FACTOR;
     } else {
-      return (
-        view_port.bottom -
-        (this.last_view_port_bottom - input) * this.RESIZE_H_FACTOR
-      );
+      return view_port.bottom - (this.last_view_port_bottom - input) * this.RESIZE_H_FACTOR;
     }
   }
   reset_angle_cache() {
@@ -4022,10 +3728,7 @@ class Global {
     for (var i = 0; i < this.ANGLE_ARRAY.length; i++) {
       if (!this.TEMP_BOOLEAN) {
         this.ANGLE_SEARCH_OBJ = this.ANGLE_ARRAY[i];
-        if (
-          this.ANGLE_SEARCH_OBJ['x'] === x &&
-          this.ANGLE_SEARCH_OBJ['y'] === y
-        ) {
+        if (this.ANGLE_SEARCH_OBJ['x'] === x && this.ANGLE_SEARCH_OBJ['y'] === y) {
           this.SAVED_ANGLE = this.ANGLE_SEARCH_OBJ['angle'];
           this.TEMP_BOOLEAN = true;
           break;
@@ -4041,10 +3744,7 @@ class Global {
     for (var i = 0; i < this.ANGLE_RADIAN_ARRAY.length; i++) {
       if (!this.TEMP_BOOLEAN) {
         this.ANGLE_RADIAN_SEARCH_OBJ = this.ANGLE_RADIAN_ARRAY[i];
-        if (
-          this.ANGLE_RADIAN_SEARCH_OBJ['x'] === x &&
-          this.ANGLE_RADIAN_SEARCH_OBJ['y'] === y
-        ) {
+        if (this.ANGLE_RADIAN_SEARCH_OBJ['x'] === x && this.ANGLE_RADIAN_SEARCH_OBJ['y'] === y) {
           this.SAVED_ANGLE_RADIANS = this.ANGLE_RADIAN_SEARCH_OBJ['angle'];
           this.TEMP_BOOLEAN = true;
           break;
@@ -4080,9 +3780,7 @@ class Global {
         y: y,
         angle: this.calc_degree_radians(x, y)
       });
-      return this.ANGLE_RADIAN_ARRAY[this.ANGLE_RADIAN_ARRAY.length - 1][
-        'angle'
-      ];
+      return this.ANGLE_RADIAN_ARRAY[this.ANGLE_RADIAN_ARRAY.length - 1]['angle'];
     }
   }
   house_keeping(x, y) {
@@ -4131,9 +3829,7 @@ class Global {
     this.general_integer = y / x;
     this.general_integer2 = 0;
     if (Math.abs(this.general_integer) < 1.0) {
-      this.general_integer2 =
-        this.general_integer /
-        (1.0 + 0.28 * this.general_integer * this.general_integer);
+      this.general_integer2 = this.general_integer / (1.0 + 0.28 * this.general_integer * this.general_integer);
       if (x < 0.0) {
         if (y < 0.0) {
           return this.general_integer2 - Math.PI;
@@ -4141,10 +3837,7 @@ class Global {
         return this.general_integer2 + Math.PI;
       }
     } else {
-      this.general_integer2 =
-        this.PI_DIV_2 -
-        this.general_integer /
-          (this.general_integer * this.general_integer + 0.28);
+      this.general_integer2 = this.PI_DIV_2 - this.general_integer / (this.general_integer * this.general_integer + 0.28);
       if (y < 0.0) {
         return this.general_integer2 - Math.PI;
       }
@@ -4213,10 +3906,7 @@ class Global {
         break;
       } else if (abs_input === 0) {
         val = 0;
-        str = this.ELEMENT_VAL_TEMPLATE.replace('{VAL}', String(val)).replace(
-          '{UNIT}',
-          ''
-        );
+        str = this.ELEMENT_VAL_TEMPLATE.replace('{VAL}', String(val)).replace('{UNIT}', '');
         found = true;
         break;
       }
@@ -4315,12 +4005,7 @@ class Global {
   meter_max() {
     /* #INSERT_GENERATE_MAX_METER# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    this.METER_MAX = Array(
-      voltmeters.length,
-      ohmmeters.length,
-      ammeters.length,
-      wattmeters.length
-    );
+    this.METER_MAX = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     this.MAX_GENERAL_NUMBER = 0;
     for (var i = 0; i < this.METER_MAX.length; i++) {
@@ -4334,15 +4019,7 @@ class Global {
   non_linear_max() {
     /* #INSERT_GENERATE_MAX_NON_LINEAR# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    this.NON_LINEAR_MAX = Array(
-      diodes.length,
-      leds.length,
-      zeners.length,
-      nmosfets.length,
-      pmosfets.length,
-      npns.length,
-      pnps.length
-    );
+    this.NON_LINEAR_MAX = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     this.MAX_GENERAL_NUMBER = 0;
     for (var i = 0; i < this.NON_LINEAR_MAX.length; i++) {
@@ -4358,12 +4035,8 @@ class Global {
     let s1_y = p1_y - p0_y;
     let s2_x = p3_x - p2_x;
     let s2_y = p3_y - p2_y;
-    let s =
-      (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) /
-      (-s2_x * s1_y + s1_x * s2_y);
-    let t =
-      (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) /
-      (-s2_x * s1_y + s1_x * s2_y);
+    let s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+    let t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
     return s >= 0 && s <= 1 && t >= 0 && t <= 1;
   }
   /* Decodes a key code from a key event */
@@ -4388,10 +4061,7 @@ class Global {
   key_to_code(character) {
     let ret = '';
     for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
-      if (
-        character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] ||
-        character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]
-      ) {
+      if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] || character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
         ret = global.copy(this.KEY_EVENT_KEYS[i]);
         break;
       }
@@ -4404,9 +4074,7 @@ class Global {
   }
   /* Detects if a key is alpha numeric or not. */
   is_alpha_numeric_note(key_event) {
-    return /[!@#$%`~^&_{}()a-z A-Z0-9=:'",?<>;:*/+-|]/.test(
-      this.decode_key(key_event)
-    );
+    return /[!@#$%`~^&_{}()a-z A-Z0-9=:'",?<>;:*/+-|]/.test(this.decode_key(key_event));
   }
   /* Detects if a key is a valid si unit or a number. */
   is_valid_si_units(key_event) {
@@ -4431,19 +4099,11 @@ class Global {
   get_time_stamp() {
     let date = new Date();
     let TIMESTAMP_TEMPLATE = '{DATE}->{TIME_ZONE}';
-    return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace(
-      '{TIME_ZONE}',
-      String(date.getTimezoneOffset())
-    );
+    return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', String(date.getTimezoneOffset()));
   }
   /* Logarithmic Damping Algorithm. Base E. */
   log_damping(next, now, gamma, kappa) {
-    return (
-      now +
-      (gamma / kappa) *
-        this.signum(next - now) *
-        this.logbx(Math.E, 1 + Math.abs(next - now) * kappa)
-    );
+    return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
   }
   /* Returns the sign of the number.*/
   signum(inp) {

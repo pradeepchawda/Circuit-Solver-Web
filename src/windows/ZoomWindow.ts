@@ -65,12 +65,7 @@ class ZoomWindow {
   };
   public width = view_port.view_width * 0.1;
   public height = view_port.view_height * 0.075;
-  public bounds = new RectF(
-    view_port.center_x - this.width,
-    view_port.center_y - this.height,
-    view_port.center_x + this.width,
-    view_port.center_y + this.height
-  );
+  public bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
   public option_0 = new RectF(0, 0, 0, 0);
   public option_1 = new RectF(0, 0, 0, 0);
   public option_2 = new RectF(0, 0, 0, 0);
@@ -219,39 +214,14 @@ class ZoomWindow {
       this.width = view_port.view_width * 0.1;
       this.height = view_port.view_height * 0.075;
     }
-    this.bounds = new RectF(
-      view_port.center_x - this.width,
-      view_port.center_y - this.height,
-      view_port.center_x + this.width,
-      view_port.center_y + this.height
-    );
+    this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
     let padding = this.PADDING * this.bounds.get_width();
     let width = (this.bounds.get_width() - 2 * padding) * 0.5;
     let height = (this.bounds.get_height() - 2 * padding) * 0.5;
-    this.option_0 = new RectF(
-      this.bounds.left + padding,
-      this.bounds.top + padding,
-      this.bounds.get_center_x() - padding * 0.5,
-      this.bounds.get_center_y() - padding * 0.5
-    );
-    this.option_1 = new RectF(
-      this.bounds.get_center_x() + padding * 0.5,
-      this.bounds.top + padding,
-      this.bounds.right - padding,
-      this.bounds.get_center_y() - padding * 0.5
-    );
-    this.option_2 = new RectF(
-      this.bounds.left + padding,
-      this.bounds.get_center_y() + padding * 0.5,
-      this.bounds.get_center_x() - padding * 0.5,
-      this.bounds.bottom - padding
-    );
-    this.option_3 = new RectF(
-      this.bounds.get_center_x() + padding * 0.5,
-      this.bounds.get_center_y() + padding * 0.5,
-      this.bounds.right - padding,
-      this.bounds.bottom - padding
-    );
+    this.option_0 = new RectF(this.bounds.left + padding, this.bounds.top + padding, this.bounds.get_center_x() - padding * 0.5, this.bounds.get_center_y() - padding * 0.5);
+    this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
+    this.option_2 = new RectF(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
+    this.option_3 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.get_center_y() + padding * 0.5, this.bounds.right - padding, this.bounds.bottom - padding);
     /* Enforcing the system from cascading events. */
     this.first_touch_x = 0;
     this.first_touch_y = 0;
@@ -272,41 +242,26 @@ class ZoomWindow {
   mouse_up() {
     if (global.FLAG_ZOOM) {
       if (!global.MOUSE_KEYBOARD_LOCK) {
-        if (
-          !this.bounds.contains_xy(global.mouse_x, global.mouse_y) &&
-          !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)
-        ) {
+        if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
           menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
           /* Block out the reset selection portion of the code! */
           global.component_touched = true;
-        } else if (
-          this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
-          this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)
-        ) {
+        } else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
           this.set_zoom(this.options['c0']['number']);
           menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
           /* Block out the reset selection portion of the code! */
           global.component_touched = true;
-        } else if (
-          this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
-          this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)
-        ) {
+        } else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
           this.set_zoom(this.options['c1']['number']);
           menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
           /* Block out the reset selection portion of the code! */
           global.component_touched = true;
-        } else if (
-          this.option_2.contains_xy(global.mouse_x, global.mouse_y) &&
-          this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)
-        ) {
+        } else if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
           this.set_zoom(this.options['c2']['number']);
           menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
           /* Block out the reset selection portion of the code! */
           global.component_touched = true;
-        } else if (
-          this.option_3.contains_xy(global.mouse_x, global.mouse_y) &&
-          this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)
-        ) {
+        } else if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
           menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
           /* Block out the reset selection portion of the code! */
           global.component_touched = true;
@@ -316,10 +271,7 @@ class ZoomWindow {
   }
   key_down(key_event) {
     if (global.FLAG_ZOOM) {
-      if (
-        key_event['event'].keyCode === global.KEY_CODE_ENTER ||
-        key_event['event'].keyCode === global.KEY_CODE_ESCAPE
-      ) {
+      if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
         menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
         /* Block out the reset selection portion of the code! */
         global.component_touched = true;
@@ -375,37 +327,12 @@ class ZoomWindow {
       this.width = view_port.view_width * 0.1;
       this.height = view_port.view_height * 0.075;
     }
-    this.bounds.set_bounds(
-      view_port.center_x - this.width,
-      view_port.center_y - this.height,
-      view_port.center_x + this.width,
-      view_port.center_y + this.height
-    );
+    this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
     let padding = this.PADDING * this.bounds.get_width();
-    this.option_0.set_bounds(
-      this.bounds.left + padding,
-      this.bounds.top + padding,
-      this.bounds.get_center_x() - padding * 0.5,
-      this.bounds.get_center_y() - padding * 0.5
-    );
-    this.option_1.set_bounds(
-      this.bounds.get_center_x() + padding * 0.5,
-      this.bounds.top + padding,
-      this.bounds.right - padding,
-      this.bounds.get_center_y() - padding * 0.5
-    );
-    this.option_2.set_bounds(
-      this.bounds.left + padding,
-      this.bounds.get_center_y() + padding * 0.5,
-      this.bounds.get_center_x() - padding * 0.5,
-      this.bounds.bottom - padding
-    );
-    this.option_3.set_bounds(
-      this.bounds.get_center_x() + padding * 0.5,
-      this.bounds.get_center_y() + padding * 0.5,
-      this.bounds.right - padding,
-      this.bounds.bottom - padding
-    );
+    this.option_0.set_bounds(this.bounds.left + padding, this.bounds.top + padding, this.bounds.get_center_x() - padding * 0.5, this.bounds.get_center_y() - padding * 0.5);
+    this.option_1.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
+    this.option_2.set_bounds(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
+    this.option_3.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.get_center_y() + padding * 0.5, this.bounds.right - padding, this.bounds.bottom - padding);
     /* Resize the stroke widths and the text sizes. */
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
     this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
@@ -422,55 +349,15 @@ class ZoomWindow {
   }
   draw_window(canvas) {
     if (global.FLAG_ZOOM) {
-      canvas.draw_round_rect2(
-        this.bounds,
-        this.bounds_paint.get_stroke_width(),
-        this.bounds_paint
-      );
-      canvas.draw_round_rect2(
-        this.option_0,
-        this.fill_paint.get_stroke_width(),
-        this.option_0_paint
-      );
-      canvas.draw_text(
-        this.options['c0']['string'],
-        this.option_0.get_center_x(),
-        this.option_0.get_center_y(),
-        this.text_paint
-      );
-      canvas.draw_round_rect2(
-        this.option_1,
-        this.fill_paint.get_stroke_width(),
-        this.option_1_paint
-      );
-      canvas.draw_text(
-        this.options['c1']['string'],
-        this.option_1.get_center_x(),
-        this.option_1.get_center_y(),
-        this.text_paint
-      );
-      canvas.draw_round_rect2(
-        this.option_2,
-        this.fill_paint.get_stroke_width(),
-        this.option_2_paint
-      );
-      canvas.draw_text(
-        this.options['c2']['string'],
-        this.option_2.get_center_x(),
-        this.option_2.get_center_y(),
-        this.text_paint
-      );
-      canvas.draw_round_rect2(
-        this.option_3,
-        this.fill_paint.get_stroke_width(),
-        this.option_3_paint
-      );
-      canvas.draw_text(
-        language_manager.EXIT[global.LANGUAGES[global.LANGUAGE_INDEX]],
-        this.option_3.get_center_x(),
-        this.option_3.get_center_y(),
-        this.text_paint
-      );
+      canvas.draw_round_rect2(this.bounds, this.bounds_paint.get_stroke_width(), this.bounds_paint);
+      canvas.draw_round_rect2(this.option_0, this.fill_paint.get_stroke_width(), this.option_0_paint);
+      canvas.draw_text(this.options['c0']['string'], this.option_0.get_center_x(), this.option_0.get_center_y(), this.text_paint);
+      canvas.draw_round_rect2(this.option_1, this.fill_paint.get_stroke_width(), this.option_1_paint);
+      canvas.draw_text(this.options['c1']['string'], this.option_1.get_center_x(), this.option_1.get_center_y(), this.text_paint);
+      canvas.draw_round_rect2(this.option_2, this.fill_paint.get_stroke_width(), this.option_2_paint);
+      canvas.draw_text(this.options['c2']['string'], this.option_2.get_center_x(), this.option_2.get_center_y(), this.text_paint);
+      canvas.draw_round_rect2(this.option_3, this.fill_paint.get_stroke_width(), this.option_3_paint);
+      canvas.draw_text(language_manager.EXIT[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_3.get_center_x(), this.option_3.get_center_y(), this.text_paint);
     }
   }
 }

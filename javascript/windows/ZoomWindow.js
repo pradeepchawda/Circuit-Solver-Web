@@ -236,35 +236,30 @@ var ZoomWindow = /** @class */ (function () {
     ZoomWindow.prototype.mouse_up = function () {
         if (global.FLAG_ZOOM) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
-                if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) &&
-                    !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
-                else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
-                    this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     this.set_zoom(this.options['c0']['number']);
                     menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
-                else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
-                    this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     this.set_zoom(this.options['c1']['number']);
                     menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
-                else if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) &&
-                    this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                else if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     this.set_zoom(this.options['c2']['number']);
                     menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
-                else if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) &&
-                    this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                else if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
@@ -274,8 +269,7 @@ var ZoomWindow = /** @class */ (function () {
     };
     ZoomWindow.prototype.key_down = function (key_event) {
         if (global.FLAG_ZOOM) {
-            if (key_event['event'].keyCode === global.KEY_CODE_ENTER ||
-                key_event['event'].keyCode === global.KEY_CODE_ESCAPE) {
+            if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
                 /* Block out the reset selection portion of the code! */
                 global.component_touched = true;

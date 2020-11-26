@@ -150,14 +150,12 @@ var YesNoWindow = /** @class */ (function () {
     YesNoWindow.prototype.mouse_up = function () {
         if (global.FLAG_REMOVE_ALL) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
-                if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) &&
-                    !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
-                else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
-                    this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     engine_functions.clear_all_elements();
                     scope_manager.clear_entries();
                     graph_window.reset();
@@ -168,8 +166,7 @@ var YesNoWindow = /** @class */ (function () {
                     global.component_touched = true;
                     bottom_menu.resize_bottom_menu();
                 }
-                else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
-                    this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
@@ -179,8 +176,7 @@ var YesNoWindow = /** @class */ (function () {
     };
     YesNoWindow.prototype.key_down = function (key_event) {
         if (global.FLAG_REMOVE_ALL) {
-            if (key_event['event'].keyCode === global.KEY_CODE_ENTER ||
-                key_event['event'].keyCode === global.KEY_CODE_ESCAPE) {
+            if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
                 /* Block out the reset selection portion of the code! */
                 global.component_touched = true;

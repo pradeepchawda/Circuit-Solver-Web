@@ -21,12 +21,7 @@
 class MenuBar {
   public MAX_ICONS = 8;
   public HEIGHT_RATIO = 0.1;
-  public bounds = new RectF(
-    view_port.left,
-    view_port.top,
-    view_port.right,
-    view_port.top + view_port.view_height * this.HEIGHT_RATIO
-  );
+  public bounds = new RectF(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.HEIGHT_RATIO);
   public menu_icons = [];
   public REMOVE_ALL_INDEX = 0;
   public SAVE_INDEX = 1;
@@ -86,9 +81,7 @@ during simulation. */
     this.bounds.left,
     this.bounds.bottom + (global.CANVAS_STROKE_WIDTH_4 >> 1),
     this.bounds.right,
-    this.bounds.bottom +
-      this.bounds.get_height() -
-      (global.CANVAS_STROKE_WIDTH_4 >> 1)
+    this.bounds.bottom + this.bounds.get_height() - (global.CANVAS_STROKE_WIDTH_4 >> 1)
   );
   /* Enforcing the system from cascading events. */
   public first_touch_x = 0;
@@ -105,12 +98,7 @@ during simulation. */
     } else {
       this.HEIGHT_RATIO = 0.1;
     }
-    this.bounds = new RectF(
-      view_port.left,
-      view_port.top,
-      view_port.right,
-      view_port.top + view_port.view_height * this.HEIGHT_RATIO
-    );
+    this.bounds = new RectF(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.HEIGHT_RATIO);
     this.menu_icons = [];
     this.REMOVE_ALL_INDEX = 0;
     this.SAVE_INDEX = 1;
@@ -275,28 +263,18 @@ during simulation. */
     this.save_circuit_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
     this.save_circuit_paint.set_font(global.DEFAULT_FONT);
     this.save_circuit_paint.set_alpha(255);
-    this.save_circuit_paint.set_paint_align(
-      this.save_circuit_paint.align.CENTER
-    );
+    this.save_circuit_paint.set_paint_align(this.save_circuit_paint.align.CENTER);
     /* This paint is used for drawing the icons that the component is comprised of. */
     this.save_image_fill_paint = new Paint();
-    this.save_image_fill_paint.set_paint_style(
-      this.save_image_fill_paint.style.FILL
-    );
-    this.save_image_fill_paint.set_paint_cap(
-      this.save_image_fill_paint.cap.ROUND
-    );
-    this.save_image_fill_paint.set_paint_join(
-      this.save_image_fill_paint.join.MITER
-    );
+    this.save_image_fill_paint.set_paint_style(this.save_image_fill_paint.style.FILL);
+    this.save_image_fill_paint.set_paint_cap(this.save_image_fill_paint.cap.ROUND);
+    this.save_image_fill_paint.set_paint_join(this.save_image_fill_paint.join.MITER);
     this.save_image_fill_paint.set_stroke_width(temp_stroke_width);
     this.save_image_fill_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
     this.save_image_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
     this.save_image_fill_paint.set_font(global.DEFAULT_FONT);
     this.save_image_fill_paint.set_alpha(255);
-    this.save_image_fill_paint.set_paint_align(
-      this.save_image_fill_paint.align.CENTER
-    );
+    this.save_image_fill_paint.set_paint_align(this.save_image_fill_paint.align.CENTER);
     /* This paint is used for drawing the "text" that the component needs to display */
     this.text_paint = new Paint();
     this.text_paint.set_paint_style(this.text_paint.style.FILL);
@@ -326,9 +304,7 @@ during simulation. */
       this.bounds.left,
       this.bounds.bottom + (global.CANVAS_STROKE_WIDTH_4 >> 1),
       this.bounds.right,
-      this.bounds.bottom +
-        this.bounds.get_height() -
-        (global.CANVAS_STROKE_WIDTH_4 >> 1)
+      this.bounds.bottom + this.bounds.get_height() - (global.CANVAS_STROKE_WIDTH_4 >> 1)
     );
     /* Enforcing the system from cascading events. */
     this.first_touch_x = 0;
@@ -341,47 +317,25 @@ during simulation. */
     this.menu_icons.splice(0, this.menu_icons.length);
     let height = 0;
     for (var i = 0; i < this.MAX_ICONS; i++) {
-      temp_bounds.left =
-        this.bounds.left +
-        i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
+      temp_bounds.left = this.bounds.left + i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
       temp_bounds.top = this.bounds.top + global.CANVAS_STROKE_WIDTH_4;
-      temp_bounds.right =
-        this.bounds.left +
-        ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
+      temp_bounds.right = this.bounds.left + ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
       temp_bounds.bottom = this.bounds.bottom - global.CANVAS_STROKE_WIDTH_4;
       height = temp_bounds.get_height();
-      temp_bounds.set_center2(
-        temp_bounds.get_center_x(),
-        temp_bounds.get_center_y(),
-        height,
-        height
-      );
-      this.menu_icons.push(
-        new RectF(
-          temp_bounds.left,
-          temp_bounds.top,
-          temp_bounds.right,
-          temp_bounds.bottom
-        )
-      );
+      temp_bounds.set_center2(temp_bounds.get_center_x(), temp_bounds.get_center_y(), height, height);
+      this.menu_icons.push(new RectF(temp_bounds.left, temp_bounds.top, temp_bounds.right, temp_bounds.bottom));
     }
     this.graph_button.set_bounds(
       this.menu_icons[this.REMOVE_ALL_INDEX].left,
-      this.menu_icons[this.REMOVE_ALL_INDEX].bottom +
-        2 * global.CANVAS_STROKE_WIDTH_4,
+      this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 2 * global.CANVAS_STROKE_WIDTH_4,
       this.menu_icons[this.REMOVE_ALL_INDEX].right,
-      this.menu_icons[this.REMOVE_ALL_INDEX].bottom +
-        3 * global.CANVAS_STROKE_WIDTH_4 +
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_height() -
-        global.CANVAS_STROKE_WIDTH_4
+      this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 3 * global.CANVAS_STROKE_WIDTH_4 + this.menu_icons[this.REMOVE_ALL_INDEX].get_height() - global.CANVAS_STROKE_WIDTH_4
     );
     this.settings_button.set_bounds(
       this.menu_icons[this.REMOVE_ALL_INDEX].left,
-      view_port.bottom -
-        2.5 * this.menu_icons[this.REMOVE_ALL_INDEX].get_height(),
+      view_port.bottom - 2.5 * this.menu_icons[this.REMOVE_ALL_INDEX].get_height(),
       this.menu_icons[this.REMOVE_ALL_INDEX].right,
-      view_port.bottom -
-        1.5 * this.menu_icons[this.REMOVE_ALL_INDEX].get_height()
+      view_port.bottom - 1.5 * this.menu_icons[this.REMOVE_ALL_INDEX].get_height()
     );
     this.sine_wave.set_points(
       this.graph_button.left + this.graph_button.get_width() * 0.235,
@@ -419,12 +373,8 @@ during simulation. */
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          this.menu_icons[this.SAVE_INDEX].left +
-            this.menu_icons[this.SAVE_INDEX].get_width() *
-              parseFloat(holder_x[i]),
-          this.menu_icons[this.SAVE_INDEX].top +
-            this.menu_icons[this.SAVE_INDEX].get_height() *
-              parseFloat(holder_y[i])
+          this.menu_icons[this.SAVE_INDEX].left + this.menu_icons[this.SAVE_INDEX].get_width() * parseFloat(holder_x[i]),
+          this.menu_icons[this.SAVE_INDEX].top + this.menu_icons[this.SAVE_INDEX].get_height() * parseFloat(holder_y[i])
         )
       );
     }
@@ -444,12 +394,8 @@ during simulation. */
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          this.menu_icons[this.SAVE_INDEX].left +
-            this.menu_icons[this.SAVE_INDEX].get_width() *
-              parseFloat(holder_x[i]),
-          this.menu_icons[this.SAVE_INDEX].top +
-            this.menu_icons[this.SAVE_INDEX].get_height() *
-              parseFloat(holder_y[i])
+          this.menu_icons[this.SAVE_INDEX].left + this.menu_icons[this.SAVE_INDEX].get_width() * parseFloat(holder_x[i]),
+          this.menu_icons[this.SAVE_INDEX].top + this.menu_icons[this.SAVE_INDEX].get_height() * parseFloat(holder_y[i])
         )
       );
     }
@@ -469,12 +415,8 @@ during simulation. */
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          this.menu_icons[this.GO_INDEX].left +
-            this.menu_icons[this.GO_INDEX].get_width() *
-              parseFloat(holder_x[i]),
-          this.menu_icons[this.GO_INDEX].top +
-            this.menu_icons[this.GO_INDEX].get_height() *
-              parseFloat(holder_y[i])
+          this.menu_icons[this.GO_INDEX].left + this.menu_icons[this.GO_INDEX].get_width() * parseFloat(holder_x[i]),
+          this.menu_icons[this.GO_INDEX].top + this.menu_icons[this.GO_INDEX].get_height() * parseFloat(holder_y[i])
         )
       );
     }
@@ -494,12 +436,8 @@ during simulation. */
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          this.menu_icons[this.UNDO_INDEX].left +
-            this.menu_icons[this.UNDO_INDEX].get_width() *
-              parseFloat(holder_x[i]),
-          this.menu_icons[this.UNDO_INDEX].top +
-            this.menu_icons[this.UNDO_INDEX].get_height() *
-              parseFloat(holder_y[i])
+          this.menu_icons[this.UNDO_INDEX].left + this.menu_icons[this.UNDO_INDEX].get_width() * parseFloat(holder_x[i]),
+          this.menu_icons[this.UNDO_INDEX].top + this.menu_icons[this.UNDO_INDEX].get_height() * parseFloat(holder_y[i])
         )
       );
     }
@@ -519,12 +457,8 @@ during simulation. */
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          this.menu_icons[this.REDO_INDEX].left +
-            this.menu_icons[this.REDO_INDEX].get_width() *
-              parseFloat(holder_x[i]),
-          this.menu_icons[this.REDO_INDEX].top +
-            this.menu_icons[this.REDO_INDEX].get_height() *
-              parseFloat(holder_y[i])
+          this.menu_icons[this.REDO_INDEX].left + this.menu_icons[this.REDO_INDEX].get_width() * parseFloat(holder_x[i]),
+          this.menu_icons[this.REDO_INDEX].top + this.menu_icons[this.REDO_INDEX].get_height() * parseFloat(holder_y[i])
         )
       );
     }
@@ -544,12 +478,8 @@ during simulation. */
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          this.menu_icons[this.SAVE_IMG_INDEX].left +
-            this.menu_icons[this.SAVE_IMG_INDEX].get_width() *
-              parseFloat(holder_x[i]),
-          this.menu_icons[this.SAVE_IMG_INDEX].top +
-            this.menu_icons[this.SAVE_IMG_INDEX].get_height() *
-              parseFloat(holder_y[i])
+          this.menu_icons[this.SAVE_IMG_INDEX].left + this.menu_icons[this.SAVE_IMG_INDEX].get_width() * parseFloat(holder_x[i]),
+          this.menu_icons[this.SAVE_IMG_INDEX].top + this.menu_icons[this.SAVE_IMG_INDEX].get_height() * parseFloat(holder_y[i])
         )
       );
     }
@@ -570,16 +500,8 @@ during simulation. */
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          this.settings_button.left +
-            this.settings_button.get_width() * (1 - scale) +
-            (1 - 2 * (1 - scale)) *
-              this.settings_button.get_width() *
-              parseFloat(holder_x[i]),
-          this.settings_button.top +
-            this.settings_button.get_height() * (1 - scale) +
-            (1 - 2 * (1 - scale)) *
-              this.settings_button.get_height() *
-              parseFloat(holder_y[i])
+          this.settings_button.left + this.settings_button.get_width() * (1 - scale) + (1 - 2 * (1 - scale)) * this.settings_button.get_width() * parseFloat(holder_x[i]),
+          this.settings_button.top + this.settings_button.get_height() * (1 - scale) + (1 - 2 * (1 - scale)) * this.settings_button.get_height() * parseFloat(holder_y[i])
         )
       );
     }
@@ -598,12 +520,7 @@ during simulation. */
     if (global.MOBILE_MODE) {
       temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
     }
-    this.bounds.set_bounds(
-      view_port.left,
-      view_port.top,
-      view_port.right,
-      view_port.top + view_port.view_height * this.HEIGHT_RATIO
-    );
+    this.bounds.set_bounds(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.HEIGHT_RATIO);
     this.BASE_WIDTH = this.bounds.get_width() / this.MAX_ICONS;
     this.load_icons();
     /* Resize the stroke widths and the text sizes. */
@@ -643,9 +560,7 @@ during simulation. */
       this.bounds.left,
       this.bounds.bottom + (global.CANVAS_STROKE_WIDTH_4 >> 1),
       this.bounds.right,
-      this.bounds.bottom +
-        this.bounds.get_height() -
-        (global.CANVAS_STROKE_WIDTH_4 >> 1)
+      this.bounds.bottom + this.bounds.get_height() - (global.CANVAS_STROKE_WIDTH_4 >> 1)
     );
     this.sine_wave.resize(this.sine_wave.STYLE_1);
     this.sine_wave.sine_wave_paint.set_stroke_width(temp_stroke_width);
@@ -669,17 +584,11 @@ during simulation. */
           global.component_touched = true;
         }
       } else {
-        if (
-          this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], false) ||
-          this.contains(this.menu_icons[this.UP_DOWN_INDEX], true)
-        ) {
+        if (this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], false) || this.contains(this.menu_icons[this.UP_DOWN_INDEX], true)) {
           global.component_touched = true;
         }
       }
-      if (
-        this.contains(this.graph_button, false) ||
-        this.contains(this.settings_button, false)
-      ) {
+      if (this.contains(this.graph_button, false) || this.contains(this.settings_button, false)) {
         global.component_touched = true;
       }
       this.first_touch_x = global.mouse_x;
@@ -693,20 +602,11 @@ during simulation. */
   }
   mouse_up() {
     if (!global.IS_RIGHT_CLICK && !this.ESCAPE_INTERRUPT) {
-      if (
-        !global.MOUSE_KEYBOARD_LOCK &&
-        !multi_select_manager.CTRL_PRESSED &&
-        global.component_touched
-      ) {
+      if (!global.MOUSE_KEYBOARD_LOCK && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
         let cached_value = this.BASE_WIDTH;
         if (
           this.contains(this.menu_icons[this.UP_DOWN_INDEX], true) &&
-          this.menu_icons[this.UP_DOWN_INDEX].contains_xywh(
-            this.first_touch_x,
-            this.first_touch_y,
-            cached_value,
-            this.bounds.get_height()
-          )
+          this.menu_icons[this.UP_DOWN_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
         ) {
           if (
             !global.FLAG_ZOOM &&
@@ -733,14 +633,8 @@ during simulation. */
           }
         } else if (
           ((this.contains(this.menu_icons[this.ADD_INDEX], true) &&
-            this.menu_icons[this.ADD_INDEX].contains_xywh(
-              this.first_touch_x,
-              this.first_touch_y,
-              cached_value,
-              this.bounds.get_height()
-            )) ||
-            (!this.contains(this.element_window.bounds, false) &&
-              global.FLAG_MENU_OPEN_DOWN)) &&
+            this.menu_icons[this.ADD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) ||
+            (!this.contains(this.element_window.bounds, false) && global.FLAG_MENU_OPEN_DOWN)) &&
           !global.FLAG_GRAPH &&
           !global.SIGNAL_ADD_ELEMENT
         ) {
@@ -763,14 +657,7 @@ during simulation. */
                 /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
               } else {
-                if (
-                  global.FLAG_MENU_OPEN_DOWN &&
-                  !global.SIGNAL_ADD_ELEMENT &&
-                  !this.element_window.bounds.contains_xy(
-                    this.first_touch_x,
-                    this.first_touch_y
-                  )
-                ) {
+                if (global.FLAG_MENU_OPEN_DOWN && !global.SIGNAL_ADD_ELEMENT && !this.element_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                   this.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
                   /* Block out the reset selection portion of the code! */
                   global.component_touched = true;
@@ -781,20 +668,9 @@ during simulation. */
         } else if (
           this.contains(this.graph_button, false) ||
           (!this.contains(graph_window.bounds, false) &&
-            ((!this.contains(this.menu_icons[this.GO_INDEX], true) &&
-              global.FLAG_GRAPH) ||
-              (this.contains(this.menu_icons[this.GO_INDEX], true) &&
-                !global.FLAG_MENU_OPEN)))
+            ((!this.contains(this.menu_icons[this.GO_INDEX], true) && global.FLAG_GRAPH) || (this.contains(this.menu_icons[this.GO_INDEX], true) && !global.FLAG_MENU_OPEN)))
         ) {
-          if (
-            this.contains(this.graph_button, false) &&
-            this.graph_button.contains_xywh(
-              this.first_touch_x,
-              this.first_touch_y,
-              cached_value,
-              this.bounds.get_height()
-            )
-          ) {
+          if (this.contains(this.graph_button, false) && this.graph_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
             if (
               !global.FLAG_SAVE_IMAGE &&
               !global.FLAG_SAVE_CIRCUIT &&
@@ -824,10 +700,7 @@ during simulation. */
                 !global.FLAG_SELECT_SETTINGS &&
                 !global.FLAG_REMOVE_ALL &&
                 !global.FLAG_MENU_OPEN_DOWN &&
-                !graph_window.bounds.contains_xy(
-                  this.first_touch_x,
-                  this.first_touch_y
-                )
+                !graph_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)
               ) {
                 this.handle_graph_flag(!global.FLAG_GRAPH);
                 /* Block out the reset selection portion of the code! */
@@ -835,18 +708,11 @@ during simulation. */
               }
             }
           }
-        } else if (
-          this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], true)
-        ) {
+        } else if (this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], true)) {
           if (!global.FLAG_MENU_OPEN) {
             if (
               this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], false) &&
-              this.menu_icons[this.REMOVE_ALL_INDEX].contains_xywh(
-                this.first_touch_x,
-                this.first_touch_y,
-                cached_value,
-                this.bounds.get_height()
-              )
+              this.menu_icons[this.REMOVE_ALL_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
             ) {
               if (
                 !global.FLAG_SAVE_IMAGE &&
@@ -881,12 +747,7 @@ during simulation. */
               !global.FLAG_REMOVE_ALL &&
               global.FLAG_MENU_OPEN &&
               !global.FLAG_MENU_OPEN_DOWN &&
-              this.menu_icons[this.REMOVE_ALL_INDEX].contains_xywh(
-                this.first_touch_x,
-                this.first_touch_y,
-                cached_value,
-                this.bounds.get_height()
-              )
+              this.menu_icons[this.REMOVE_ALL_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
             ) {
               this.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
               /* Block out the reset selection portion of the code! */
@@ -895,12 +756,7 @@ during simulation. */
           }
         } else if (
           this.contains(this.settings_button, false) &&
-          this.settings_button.contains_xywh(
-            this.first_touch_x,
-            this.first_touch_y,
-            cached_value,
-            this.bounds.get_height()
-          )
+          this.settings_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
         ) {
           if (
             !global.FLAG_SIMULATING &&
@@ -921,12 +777,7 @@ during simulation. */
           }
         } else if (
           this.contains(this.menu_icons[this.SAVE_INDEX], true) &&
-          this.menu_icons[this.SAVE_INDEX].contains_xywh(
-            this.first_touch_x,
-            this.first_touch_y,
-            cached_value,
-            this.bounds.get_height()
-          )
+          this.menu_icons[this.SAVE_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
         ) {
           if (
             !global.FLAG_SAVE_IMAGE &&
@@ -948,12 +799,7 @@ during simulation. */
           }
         } else if (
           this.contains(this.menu_icons[this.SAVE_IMG_INDEX], true) &&
-          this.menu_icons[this.SAVE_IMG_INDEX].contains_xywh(
-            this.first_touch_x,
-            this.first_touch_y,
-            cached_value,
-            this.bounds.get_height()
-          )
+          this.menu_icons[this.SAVE_IMG_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
         ) {
           if (
             !global.FLAG_SAVE_IMAGE &&
@@ -975,12 +821,7 @@ during simulation. */
           }
         } else if (
           this.contains(this.menu_icons[this.UNDO_INDEX], true) &&
-          this.menu_icons[this.UNDO_INDEX].contains_xywh(
-            this.first_touch_x,
-            this.first_touch_y,
-            cached_value,
-            this.bounds.get_height()
-          )
+          this.menu_icons[this.UNDO_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
         ) {
           if (
             !global.FLAG_SIMULATING &&
@@ -1003,12 +844,7 @@ during simulation. */
           }
         } else if (
           this.contains(this.menu_icons[this.REDO_INDEX], true) &&
-          this.menu_icons[this.REDO_INDEX].contains_xywh(
-            this.first_touch_x,
-            this.first_touch_y,
-            cached_value,
-            this.bounds.get_height()
-          )
+          this.menu_icons[this.REDO_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
         ) {
           if (
             !global.FLAG_SIMULATING &&
@@ -1031,12 +867,7 @@ during simulation. */
           }
         } else if (
           this.contains(this.menu_icons[this.GO_INDEX], true) &&
-          this.menu_icons[this.GO_INDEX].contains_xywh(
-            this.first_touch_x,
-            this.first_touch_y,
-            cached_value,
-            this.bounds.get_height()
-          )
+          this.menu_icons[this.GO_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
         ) {
           if (
             !global.FLAG_SAVE_IMAGE &&
@@ -1057,14 +888,9 @@ during simulation. */
           }
         }
         this.element_window.mouse_up();
-      } else if (
-        !global.MOUSE_KEYBOARD_LOCK &&
-        !multi_select_manager.CTRL_PRESSED
-      ) {
+      } else if (!global.MOUSE_KEYBOARD_LOCK && !multi_select_manager.CTRL_PRESSED) {
         if (
-          (this.contains(this.menu_icons[this.ADD_INDEX], true) ||
-            (!this.contains(this.element_window.bounds, false) &&
-              global.FLAG_MENU_OPEN_DOWN)) &&
+          (this.contains(this.menu_icons[this.ADD_INDEX], true) || (!this.contains(this.element_window.bounds, false) && global.FLAG_MENU_OPEN_DOWN)) &&
           !global.FLAG_GRAPH &&
           !global.SIGNAL_ADD_ELEMENT
         ) {
@@ -1107,8 +933,7 @@ during simulation. */
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_ELEMENT_OPTIONS = ON;
     if (ON) {
-      element_options_window.title_bounds.text =
-        global.selected_properties['tag'] + global.selected_id;
+      element_options_window.title_bounds.text = global.selected_properties['tag'] + global.selected_id;
     }
     if (global.DEVELOPER_MODE) {
       console.log('ELEMENT OPTIONS');
@@ -1237,7 +1062,7 @@ during simulation. */
       ) {
         if (global.FLAG_MENU_OPEN) {
           if (global.FLAG_MENU_OPEN_DOWN && !global.SIGNAL_ADD_ELEMENT) {
-            if (key_event['event'].keyCode === global.KEY_CODE_ESCAPE) {
+            if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
               this.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
               /* Block out the reset selection portion of the code! */
               global.component_touched = true;
@@ -1251,12 +1076,7 @@ during simulation. */
     if (!adjust) {
       return rect.contains_xy(global.mouse_x, global.mouse_y);
     } else {
-      return rect.contains_xywh(
-        global.mouse_x,
-        global.mouse_y,
-        this.BASE_WIDTH,
-        this.bounds.get_height()
-      );
+      return rect.contains_xywh(global.mouse_x, global.mouse_y, this.BASE_WIDTH, this.bounds.get_height());
     }
   }
   recolor() {
@@ -1275,42 +1095,26 @@ during simulation. */
       this.sine_wave.sine_wave_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
     }
     if (history_manager.history_index > 0) {
-      if (
-        !global.FLAG_SIMULATING &&
-        !global.FLAG_GRAPH &&
-        !global.FLAG_MENU_OPEN_DOWN
-      ) {
+      if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.FLAG_MENU_OPEN_DOWN) {
         this.undo_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
       } else {
         this.undo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
       }
     } else {
-      if (
-        !global.FLAG_SIMULATING &&
-        !global.FLAG_GRAPH &&
-        !global.FLAG_MENU_OPEN_DOWN
-      ) {
+      if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.FLAG_MENU_OPEN_DOWN) {
         this.undo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
       } else {
         this.undo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
       }
     }
     if (history_manager.history_index < history_manager.history.length - 1) {
-      if (
-        !global.FLAG_SIMULATING &&
-        !global.FLAG_GRAPH &&
-        !global.FLAG_MENU_OPEN_DOWN
-      ) {
+      if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.FLAG_MENU_OPEN_DOWN) {
         this.redo_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
       } else {
         this.redo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
       }
     } else {
-      if (
-        !global.FLAG_SIMULATING &&
-        !global.FLAG_GRAPH &&
-        !global.FLAG_MENU_OPEN_DOWN
-      ) {
+      if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.FLAG_MENU_OPEN_DOWN) {
         this.redo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
       } else {
         this.redo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
@@ -1330,21 +1134,13 @@ during simulation. */
       }
     }
     if (global.FLAG_MENU_OPEN) {
-      if (
-        !global.FLAG_SIMULATING &&
-        !global.FLAG_GRAPH &&
-        !global.FLAG_MENU_OPEN_DOWN
-      ) {
+      if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.FLAG_MENU_OPEN_DOWN) {
         this.remove_all_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
       } else {
         this.remove_all_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
       }
     }
-    if (
-      !global.FLAG_SIMULATING &&
-      !global.FLAG_GRAPH &&
-      !global.FLAG_MENU_OPEN_DOWN
-    ) {
+    if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.FLAG_MENU_OPEN_DOWN) {
       this.settings_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
     } else {
       this.settings_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
@@ -1387,14 +1183,7 @@ during simulation. */
       ) {
         let cached_value = this.BASE_WIDTH;
         for (var i = 0; i < this.menu_icons.length; i++) {
-          if (
-            this.menu_icons[i].contains_xywh(
-              global.mouse_x,
-              global.mouse_y,
-              cached_value,
-              this.bounds.get_height()
-            )
-          ) {
+          if (this.menu_icons[i].contains_xywh(global.mouse_x, global.mouse_y, cached_value, this.bounds.get_height())) {
             canvas.draw_round_rect3(
               this.menu_icons[i].get_center_x(),
               this.menu_icons[i].get_center_y(),
@@ -1406,10 +1195,8 @@ during simulation. */
           }
         }
       }
-      let width_mul_0p64 =
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.64;
-      let height_mul_0p64 =
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.64;
+      let width_mul_0p64 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.64;
+      let height_mul_0p64 = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.64;
       canvas.draw_arc3(
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x(),
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y(),
@@ -1436,30 +1223,14 @@ during simulation. */
       canvas.draw_line_buffer(this.LINE_BUFFER, this.remove_all_paint);
       indexer = 0;
       this.LINE_BUFFER = [];
-      if (
-        global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] ===
-        global.ON
-      ) {
-        canvas.draw_text(
-          'X',
-          this.menu_icons[this.REMOVE_ALL_INDEX].left,
-          this.menu_icons[this.REMOVE_ALL_INDEX].top,
-          this.text_paint
-        );
+      if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+        canvas.draw_text('X', this.menu_icons[this.REMOVE_ALL_INDEX].left, this.menu_icons[this.REMOVE_ALL_INDEX].top, this.text_paint);
       }
       /* Drawing Save Circuit Path */
       canvas.draw_path(this.save_ckt_path1, this.save_circuit_paint);
       canvas.draw_path(this.save_ckt_path2, this.save_circuit_paint);
-      if (
-        global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] ===
-        global.ON
-      ) {
-        canvas.draw_text(
-          'S',
-          this.menu_icons[this.SAVE_INDEX].left,
-          this.menu_icons[this.SAVE_INDEX].top,
-          this.text_paint
-        );
+      if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+        canvas.draw_text('S', this.menu_icons[this.SAVE_INDEX].left, this.menu_icons[this.SAVE_INDEX].top, this.text_paint);
       }
       /* Drawing Save Image Path */
       canvas.draw_path(this.save_img_path, this.save_image_fill_paint);
@@ -1469,16 +1240,8 @@ during simulation. */
         this.menu_icons[this.SAVE_IMG_INDEX].get_width() >> 3,
         this.fill_paint_alt
       );
-      if (
-        global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] ===
-        global.ON
-      ) {
-        canvas.draw_text(
-          'I',
-          this.menu_icons[this.SAVE_IMG_INDEX].left,
-          this.menu_icons[this.SAVE_IMG_INDEX].top,
-          this.text_paint
-        );
+      if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+        canvas.draw_text('I', this.menu_icons[this.SAVE_IMG_INDEX].left, this.menu_icons[this.SAVE_IMG_INDEX].top, this.text_paint);
       }
       let width_rshift_3 = this.menu_icons[this.ADD_INDEX].get_width() >> 3;
       let height_rshift_3 = this.menu_icons[this.ADD_INDEX].get_height() >> 3;
@@ -1507,16 +1270,8 @@ during simulation. */
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       indexer = 0;
       this.LINE_BUFFER = [];
-      if (
-        global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] ===
-        global.ON
-      ) {
-        canvas.draw_text(
-          'N',
-          this.menu_icons[this.ADD_INDEX].left,
-          this.menu_icons[this.ADD_INDEX].top,
-          this.text_paint
-        );
+      if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+        canvas.draw_text('N', this.menu_icons[this.ADD_INDEX].left, this.menu_icons[this.ADD_INDEX].top, this.text_paint);
       }
       if (!global.FLAG_SIMULATING) {
         canvas.draw_path(this.go_path, this.go_paint);
@@ -1531,40 +1286,16 @@ during simulation. */
           this.go_paint
         );
       }
-      if (
-        global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] ===
-        global.ON
-      ) {
-        canvas.draw_text(
-          'A',
-          this.menu_icons[this.GO_INDEX].left,
-          this.menu_icons[this.GO_INDEX].top,
-          this.text_paint
-        );
+      if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+        canvas.draw_text('A', this.menu_icons[this.GO_INDEX].left, this.menu_icons[this.GO_INDEX].top, this.text_paint);
       }
       canvas.draw_path(this.undo_path, this.undo_paint);
-      if (
-        global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] ===
-        global.ON
-      ) {
-        canvas.draw_text(
-          'Z',
-          this.menu_icons[this.UNDO_INDEX].left,
-          this.menu_icons[this.UNDO_INDEX].top,
-          this.text_paint
-        );
+      if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+        canvas.draw_text('Z', this.menu_icons[this.UNDO_INDEX].left, this.menu_icons[this.UNDO_INDEX].top, this.text_paint);
       }
       canvas.draw_path(this.redo_path, this.redo_paint);
-      if (
-        global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] ===
-        global.ON
-      ) {
-        canvas.draw_text(
-          'Y',
-          this.menu_icons[this.REDO_INDEX].left,
-          this.menu_icons[this.REDO_INDEX].top,
-          this.text_paint
-        );
+      if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+        canvas.draw_text('Y', this.menu_icons[this.REDO_INDEX].left, this.menu_icons[this.REDO_INDEX].top, this.text_paint);
       }
       canvas.draw_arrow(
         this.menu_icons[this.UP_DOWN_INDEX].get_center_x(),
@@ -1586,10 +1317,7 @@ during simulation. */
         this.fill_paint
       );
       if (
-        this.menu_icons[this.REMOVE_ALL_INDEX].contains_xy(
-          global.mouse_x,
-          global.mouse_y
-        ) &&
+        this.menu_icons[this.REMOVE_ALL_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
         !global.FLAG_MENU_OPEN_DOWN &&
         !global.FLAG_MENU_OPEN_DOWN &&
         !global.FLAG_SIMULATING &&
@@ -1624,10 +1352,7 @@ during simulation. */
         this.fill_paint
       );
       if (
-        this.menu_icons[this.UP_DOWN_INDEX].contains_xy(
-          global.mouse_x,
-          global.mouse_y
-        ) &&
+        this.menu_icons[this.UP_DOWN_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
         !global.FLAG_ZOOM &&
         !global.FLAG_SELECT_SETTINGS &&
         !global.FLAG_SAVE_IMAGE &&
@@ -1659,10 +1384,8 @@ during simulation. */
       /* Drawing the magnifying icon (Zoom) */
       let pad_w = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.075;
       let pad_h = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.075;
-      let width_rshift_3 =
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 3;
-      let width_rshift_2 =
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 2;
+      let width_rshift_3 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 3;
+      let width_rshift_2 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 2;
       this.LINE_BUFFER = [];
       indexer = 0;
       canvas.draw_circle(
@@ -1672,43 +1395,29 @@ during simulation. */
         this.zoom_paint
       );
       this.LINE_BUFFER[indexer++] = Array(
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() +
-          (this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 4),
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() +
-          (this.menu_icons[this.REMOVE_ALL_INDEX].get_height() >> 4),
+        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() + (this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 4),
+        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() + (this.menu_icons[this.REMOVE_ALL_INDEX].get_height() >> 4),
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() + width_rshift_2,
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() + width_rshift_2
       );
       this.LINE_BUFFER[indexer++] = Array(
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() -
-          width_rshift_3 -
-          pad_w,
+        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3 - pad_w,
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3,
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() -
-          width_rshift_3 +
-          pad_w,
+        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3 + pad_w,
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3
       );
       this.LINE_BUFFER[indexer++] = Array(
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3,
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() -
-          width_rshift_3 -
-          pad_h,
+        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 - pad_h,
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3,
-        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() -
-          width_rshift_3 +
-          pad_h
+        this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 + pad_h
       );
       canvas.draw_line_buffer(this.LINE_BUFFER, this.zoom_paint);
     }
     if (!global.FLAG_MENU_OPEN_DOWN) {
       let indexer = 0;
       this.LINE_BUFFER = [];
-      canvas.draw_round_rect2(
-        this.graph_button,
-        temp_stroke_width,
-        this.fill_paint
-      );
+      canvas.draw_round_rect2(this.graph_button, temp_stroke_width, this.fill_paint);
       if (
         this.graph_button.contains_xy(global.mouse_x, global.mouse_y) &&
         !global.FLAG_MENU_OPEN_DOWN &&
@@ -1725,11 +1434,7 @@ during simulation. */
         !multi_select_manager.CTRL_PRESSED_STARTED &&
         !global.MOBILE_MODE
       ) {
-        canvas.draw_round_rect2(
-          this.graph_button,
-          temp_stroke_width,
-          this.hover_paint
-        );
+        canvas.draw_round_rect2(this.graph_button, temp_stroke_width, this.hover_paint);
       }
       this.sine_wave.draw_sine_wave(canvas, 1);
       let pad = 0.2;
@@ -1747,11 +1452,7 @@ during simulation. */
       );
       canvas.draw_line_buffer(this.LINE_BUFFER, this.sine_wave.sine_wave_paint);
     }
-    canvas.draw_round_rect2(
-      this.settings_button,
-      temp_stroke_width,
-      this.fill_paint
-    );
+    canvas.draw_round_rect2(this.settings_button, temp_stroke_width, this.fill_paint);
     if (
       this.settings_button.contains_xy(global.mouse_x, global.mouse_y) &&
       !global.FLAG_MENU_OPEN_DOWN &&
@@ -1768,11 +1469,7 @@ during simulation. */
       !multi_select_manager.CTRL_PRESSED_STARTED &&
       !global.MOBILE_MODE
     ) {
-      canvas.draw_round_rect2(
-        this.settings_button,
-        temp_stroke_width,
-        this.hover_paint
-      );
+      canvas.draw_round_rect2(this.settings_button, temp_stroke_width, this.hover_paint);
     }
     canvas.draw_path(this.settings_path, this.settings_paint);
     if (
@@ -1792,19 +1489,9 @@ during simulation. */
       !multi_select_manager.CTRL_PRESSED_STARTED &&
       !global.MOBILE_MODE
     ) {
-      canvas.draw_circle(
-        this.settings_button.get_center_x(),
-        this.settings_button.get_center_y(),
-        this.settings_button.get_width() * 0.125,
-        this.hover_paint
-      );
+      canvas.draw_circle(this.settings_button.get_center_x(), this.settings_button.get_center_y(), this.settings_button.get_width() * 0.125, this.hover_paint);
     } else {
-      canvas.draw_circle(
-        this.settings_button.get_center_x(),
-        this.settings_button.get_center_y(),
-        this.settings_button.get_width() * 0.125,
-        this.fill_paint_alt
-      );
+      canvas.draw_circle(this.settings_button.get_center_x(), this.settings_button.get_center_y(), this.settings_button.get_width() * 0.125, this.fill_paint_alt);
     }
     this.element_window.draw_window(canvas);
   }

@@ -69,7 +69,7 @@ class OnScreenKeyboard {
   public FILE_NAME_KEYBOARD_FILTER_INDEX: Array<boolean> = [];
   public HOVER_INDEX: number = -1;
   public KEYBOARD_KEY_EVENT: ON_SCREEN_KEYBOARD_KEY_EVENT_T = {
-    code: 'keyA'
+    code: 'KeyA'
   };
   public LINE_BUFFER: Array<Array<number>> = [];
 

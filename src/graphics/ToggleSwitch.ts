@@ -41,7 +41,7 @@ class ToggleSwitch extends RectF {
   /* Keeps track of the toggle state. */
   public STATE: string = '';
 
-  constructor(left, top, right, bottom) {
+  constructor(left: number, top: number, right: number, bottom: number) {
     super(left, top, right, bottom);
     /* A flag to indicate whether or not to draw the fill of the button. */
     this.draw_fill = false;
@@ -100,14 +100,8 @@ class ToggleSwitch extends RectF {
     /* Keeps track of the toggle state. */
     this.STATE = global.ON;
   }
-  /* Handling any mouse down events. */
-  mouse_down() {}
-  /* Handling any mouse move events. */
-  mouse_move() {}
-  /* Handling any mouse up events. */
-  mouse_up() {}
   /* Resize the stroke widths and the text sizes. */
-  resize_paint() {
+  resize_paint(): void {
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
     this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -122,18 +116,14 @@ class ToggleSwitch extends RectF {
     }
   }
   /* Resize the buttons and the paint stroke and text sizes. */
-  resize_toggle_switch() {
+  resize_toggle_switch(): void {
     this.resize();
   }
   /* Draws the button to screen. */
-  draw_toggle_switch(canvas) {
-    let padding = this.get_height() * 0.15;
+  draw_toggle_switch(canvas: GraphicsEngine): void {
+    let padding: number = this.get_height() * 0.15;
     if (this.draw_fill) {
-      canvas.draw_round_rect2(
-        this,
-        this.fill_paint.get_stroke_width(),
-        this.fill_paint
-      );
+      canvas.draw_round_rect2(this, this.fill_paint.get_stroke_width(), this.fill_paint);
     }
     if (this.STATE === global.ON) {
       canvas.draw_round_rect(
@@ -145,12 +135,7 @@ class ToggleSwitch extends RectF {
         this.toggle_paint
       );
       if (this.draw_text) {
-        canvas.draw_text(
-          this.STATE,
-          this.left + this.get_width() * 0.25,
-          this.get_center_y(),
-          this.text_paint
-        );
+        canvas.draw_text(this.STATE, this.left + this.get_width() * 0.25, this.get_center_y(), this.text_paint);
       }
     } else if (this.STATE === global.OFF) {
       canvas.draw_round_rect(
@@ -162,34 +147,18 @@ class ToggleSwitch extends RectF {
         this.toggle_paint
       );
       if (this.draw_text) {
-        canvas.draw_text(
-          this.STATE,
-          this.right - this.get_width() * 0.25,
-          this.get_center_y(),
-          this.text_paint
-        );
+        canvas.draw_text(this.STATE, this.right - this.get_width() * 0.25, this.get_center_y(), this.text_paint);
       }
     }
     if (this.draw_stroke) {
-      canvas.draw_round_rect2(
-        this,
-        this.line_paint.get_stroke_width(),
-        this.line_paint
-      );
+      canvas.draw_round_rect2(this, this.line_paint.get_stroke_width(), this.line_paint);
     }
   }
   /* Draws the button to screen. */
   draw_toggle_switch_dxdy(canvas, offset_x, offset_y) {
-    let padding = this.get_height() * 0.175;
+    let padding: number = this.get_height() * 0.175;
     if (this.draw_fill) {
-      canvas.draw_round_rect(
-        this.left + offset_x,
-        this.top + offset_y,
-        this.right + offset_x,
-        this.bottom + offset_y,
-        this.fill_paint.get_stroke_width(),
-        this.fill_paint
-      );
+      canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint.get_stroke_width(), this.fill_paint);
     }
     if (this.STATE === global.ON) {
       canvas.draw_round_rect(
@@ -201,43 +170,23 @@ class ToggleSwitch extends RectF {
         this.toggle_paint
       );
       if (this.draw_text) {
-        canvas.draw_text(
-          this.STATE,
-          this.left + this.get_width() * 0.25 + offset_x,
-          this.get_center_y() + offset_y,
-          this.text_paint
-        );
+        canvas.draw_text(this.STATE, this.left + this.get_width() * 0.25 + offset_x, this.get_center_y() + offset_y, this.text_paint);
       }
     } else if (this.STATE === global.OFF) {
       canvas.draw_round_rect(
         this.left + padding + offset_x,
         this.top + padding + offset_y,
-        this.get_center_x() -
-          this.get_height() * 0.1 +
-          offset_x -
-          (padding >> 1),
+        this.get_center_x() - this.get_height() * 0.1 + offset_x - (padding >> 1),
         this.bottom - padding + offset_y,
         this.toggle_paint.get_stroke_width(),
         this.toggle_paint
       );
       if (this.draw_text) {
-        canvas.draw_text(
-          this.STATE,
-          this.right - this.get_width() * 0.25 + offset_x,
-          this.get_center_y() + offset_y,
-          this.text_paint
-        );
+        canvas.draw_text(this.STATE, this.right - this.get_width() * 0.25 + offset_x, this.get_center_y() + offset_y, this.text_paint);
       }
     }
     if (this.draw_stroke) {
-      canvas.draw_round_rect(
-        this.left + offset_x,
-        this.top + offset_y,
-        this.right + offset_x,
-        this.bottom + offset_y,
-        this.line_paint.get_stroke_width(),
-        this.line_paint
-      );
+      canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.line_paint.get_stroke_width(), this.line_paint);
     }
   }
 }

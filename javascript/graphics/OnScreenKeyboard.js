@@ -70,7 +70,7 @@ var OnScreenKeyboard = /** @class */ (function () {
         this.FILE_NAME_KEYBOARD_FILTER_INDEX = [];
         this.HOVER_INDEX = -1;
         this.KEYBOARD_KEY_EVENT = {
-            code: 'keyA'
+            code: 'KeyA'
         };
         this.LINE_BUFFER = [];
         this.KEYBOARD_MAX_KEYS = 67;

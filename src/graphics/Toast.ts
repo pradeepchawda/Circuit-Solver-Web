@@ -111,7 +111,7 @@ class Toast {
     this.last_text = '-';
     this.text_measure_div2 = -1;
   }
-  update() {
+  update(): void {
     if (this.draw_text) {
       this.timer++;
       if (this.timer >= this.MAX_TIME * this.MAX_SECONDS) {
@@ -119,23 +119,22 @@ class Toast {
       }
     }
   }
-  reset() {
+  reset(): void {
     this.text = '';
     this.last_text = '-';
     this.timer = 0;
     this.draw_text = false;
     this.TOAST_REQUEST_DRAW = true;
   }
-  set_text(str) {
-    this.text =
-      language_manager.TEXT_PADDING + str + language_manager.TEXT_PADDING;
+  set_text(str: string): void {
+    this.text = language_manager.TEXT_PADDING + str + language_manager.TEXT_PADDING;
     this.last_text = '-';
   }
-  show() {
+  show(): void {
     this.timer = 0;
     this.draw_text = true;
   }
-  resize_toast() {
+  resize_toast(): void {
     /* Resize the stroke widths and the text sizes. */
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
     this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -150,36 +149,19 @@ class Toast {
     this.last_text = this.text;
     this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;
   }
-  draw_toast(canvas: GraphicsEngine) {
+  draw_toast(canvas: GraphicsEngine): void {
     if (this.draw_text) {
       if (this.last_text != this.text) {
         this.last_text = this.text;
         this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;
       }
       this.bounds.left = view_port.center_x - this.text_measure_div2;
-      this.bounds.top =
-        view_port.top + view_port.view_height * this.HEIGHT_RATIO;
+      this.bounds.top = view_port.top + view_port.view_height * this.HEIGHT_RATIO;
       this.bounds.right = view_port.center_x + this.text_measure_div2;
-      this.bounds.bottom =
-        view_port.top +
-        view_port.view_height *
-          (this.HEIGHT_RATIO + (1.0 - this.HEIGHT_RATIO) * this.HEIGHT_FACTOR);
-      canvas.draw_round_rect2(
-        this.bounds,
-        this.fill_paint.get_stroke_width(),
-        this.fill_paint
-      );
-      canvas.draw_round_rect2(
-        this.bounds,
-        this.fill_paint.get_stroke_width(),
-        this.line_paint
-      );
-      canvas.draw_text(
-        this.text,
-        this.bounds.get_center_x(),
-        this.bounds.get_center_y(),
-        this.text_paint
-      );
+      this.bounds.bottom = view_port.top + view_port.view_height * (this.HEIGHT_RATIO + (1.0 - this.HEIGHT_RATIO) * this.HEIGHT_FACTOR);
+      canvas.draw_round_rect2(this.bounds, this.fill_paint.get_stroke_width(), this.fill_paint);
+      canvas.draw_round_rect2(this.bounds, this.fill_paint.get_stroke_width(), this.line_paint);
+      canvas.draw_text(this.text, this.bounds.get_center_x(), this.bounds.get_center_y(), this.text_paint);
       this.update();
     }
     if (this.TOAST_REQUEST_DRAW) {

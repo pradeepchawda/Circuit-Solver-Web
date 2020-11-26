@@ -35,7 +35,7 @@ class SineWave {
   public last_y1: number = -1;
   public last_y2: number = -1;
 
-  constructor(x1, y1, x2, y2, amplitude) {
+  constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
     this.amplitude = amplitude;
     this.sine_wave_paint = new Paint();
     this.sine_wave_paint.set_paint_style(this.sine_wave_paint.style.STROKE);
@@ -58,7 +58,7 @@ class SineWave {
     this.last_y1 = -1;
     this.last_y2 = -1;
   }
-  set_points(x1, y1, x2, y2) {
+  set_points(x1: number, y1: number, x2: number, y2: number): void {
     this.x1 = x1;
     this.y1 = y1;
     this.x2 = x2;
@@ -68,13 +68,13 @@ class SineWave {
     this.last_y1 = -1;
     this.last_y2 = -1;
   }
-  set_amplitude(amplitude) {
+  set_amplitude(amplitude: number): void {
     this.amplitude = amplitude;
   }
-  set_color(color) {
+  set_color(color: string): void {
     this.sine_wave_paint.set_color(color);
   }
-  resize(style) {
+  resize(style: number): void {
     /* Resize the stroke widths and the text sizes. */
     if (style === this.STYLE_0) {
       this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2_ZOOM);
@@ -89,7 +89,7 @@ class SineWave {
     this.last_y1 = -1;
     this.last_y2 = -1;
   }
-  draw_sine_wave(canvas, style) {
+  draw_sine_wave(canvas: GraphicsEngine, style: number): void {
     if (this.last_x1 != this.x1 || this.last_x2 != this.x2) {
       this.last_x1 = this.x1;
       this.last_x2 = this.x2;
@@ -100,21 +100,7 @@ class SineWave {
       this.last_y2 = this.y2;
       this.c_y = (this.y2 + this.y1) * 0.5;
     }
-    canvas.draw_arc2(
-      this.x1,
-      this.y1,
-      this.c_x,
-      this.c_y,
-      this.amplitude,
-      this.sine_wave_paint
-    );
-    canvas.draw_arc2(
-      this.c_x,
-      this.c_y,
-      this.x2,
-      this.y2,
-      -this.amplitude,
-      this.sine_wave_paint
-    );
+    canvas.draw_arc2(this.x1, this.y1, this.c_x, this.c_y, this.amplitude, this.sine_wave_paint);
+    canvas.draw_arc2(this.c_x, this.c_y, this.x2, this.y2, -this.amplitude, this.sine_wave_paint);
   }
 }

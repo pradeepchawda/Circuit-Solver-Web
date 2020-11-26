@@ -46,7 +46,7 @@ class RectF {
   private w_last_top: number = -1;
   private w_last_bottom: number = -1;
 
-  constructor(left, top, right, bottom) {
+  constructor(left: number, top: number, right: number, bottom: number) {
     /* left, top, right, and bottom of the rectangle */
     this.left = left;
     this.top = top;
@@ -74,14 +74,14 @@ class RectF {
     this.w_last_bottom = -1;
   }
   /* Easy method of changing the bounds at once. */
-  set_bounds(left, top, right, bottom) {
+  set_bounds(left: number, top: number, right: number, bottom: number): void {
     this.left = left;
     this.top = top;
     this.right = right;
     this.bottom = bottom;
   }
   /* Handles resizing the RectF Element */
-  resize() {
+  resize(): void {
     this.left = global.remap_position(this.left, true);
     this.top = global.remap_position(this.top, false);
     this.right = global.remap_position(this.right, true);
@@ -99,11 +99,8 @@ class RectF {
     this.w_last_top = -1;
     this.w_last_bottom = -1;
   }
-  is_near(bounds, norm_magnitude) {
-    let norm = global.norm(
-      this.get_center_x() - bounds.get_center_x(),
-      this.get_center_y() - bounds.get_center_y()
-    );
+  is_near(bounds: RectF, norm_magnitude: number): boolean {
+    let norm: number = global.norm(this.get_center_x() - bounds.get_center_x(), this.get_center_y() - bounds.get_center_y());
     if (norm <= norm_magnitude) {
       return true;
     } else {
@@ -111,24 +108,17 @@ class RectF {
     }
   }
   /* A quick check to see if the rectangle contains an x,y coordinate */
-  contains_xy(x, y) {
-    return (
-      x >= this.left && x <= this.right && y >= this.top && y <= this.bottom
-    );
+  contains_xy(x: number, y: number): boolean {
+    return x >= this.left && x <= this.right && y >= this.top && y <= this.bottom;
   }
   /* A quick check to see if the rectangle contains an x,y coordinate */
-  contains_xywh(x, y, w, h) {
-    let h_prime = h * 0.5;
-    let w_prime = w * 0.5;
-    return (
-      x >= this.get_center_x() - w_prime &&
-      x <= this.get_center_x() + w_prime &&
-      y >= this.get_center_y() - h_prime &&
-      y <= this.get_center_y() + h_prime
-    );
+  contains_xywh(x: number, y: number, w: number, h: number): boolean {
+    let h_prime: number = h * 0.5;
+    let w_prime: number = w * 0.5;
+    return x >= this.get_center_x() - w_prime && x <= this.get_center_x() + w_prime && y >= this.get_center_y() - h_prime && y <= this.get_center_y() + h_prime;
   }
   /* Set the center of the rectangle, keeping the width and height intact! */
-  set_center(x, y) {
+  set_center(x: number, y: number): void {
     this.temp_width = this.get_width() * 0.5;
     this.temp_height = this.get_height() * 0.5;
     this.left = x - this.temp_width;
@@ -136,7 +126,7 @@ class RectF {
     this.top = y - this.temp_height;
     this.bottom = y + this.temp_height;
   }
-  set_center2(x, y, w, h) {
+  set_center2(x: number, y: number, w: number, h: number): void {
     this.temp_width = w * 0.5;
     this.temp_height = h * 0.5;
     this.left = x - this.temp_width;
@@ -145,7 +135,7 @@ class RectF {
     this.bottom = y + this.temp_height;
   }
   /* Get the center x */
-  get_center_x() {
+  get_center_x(): number {
     if (this.last_left != this.left || this.last_right != this.right) {
       this.last_left = this.left;
       this.last_right = this.right;
@@ -154,7 +144,7 @@ class RectF {
     return this.last_center_x;
   }
   /* Get the center y */
-  get_center_y() {
+  get_center_y(): number {
     if (this.last_top != this.top || this.last_bottom != this.bottom) {
       this.last_top = this.top;
       this.last_bottom = this.bottom;
@@ -163,7 +153,7 @@ class RectF {
     return this.last_center_y;
   }
   /* Get the width of the rectangle */
-  get_width() {
+  get_width(): number {
     if (this.w_last_left != this.left || this.w_last_right != this.right) {
       this.w_last_left = this.left;
       this.w_last_right = this.right;
@@ -172,7 +162,7 @@ class RectF {
     return this.last_width;
   }
   /* Get the height of the rectangle */
-  get_height() {
+  get_height(): number {
     if (this.w_last_top != this.top || this.w_last_bottom != this.bottom) {
       this.w_last_top = this.top;
       this.w_last_bottom = this.bottom;
@@ -180,7 +170,7 @@ class RectF {
     }
     return this.last_height;
   }
-  round(value) {
+  round(value: number): number {
     return Math.round((value + Number.EPSILON) * 1000) / 1000;
   }
 }

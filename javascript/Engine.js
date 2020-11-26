@@ -22,32 +22,36 @@
 /* NOTE: ALL COMMENTS MUST BE ON THEIR OWN LINES!!!!! This is to be safe when obfuscating. */
 /* Prevent the backspace from navigating! Disable scrolling w/ backspace or arrow keys! */
 /* #START_GLOBAL_EXTRACT# */
-window.addEventListener('keydown', function (e) {
-    /* space, page up, page down and arrow keys: */
-    if ([
-        9,
-        17,
-        32,
-        33,
-        34,
-        37,
-        38,
-        39,
-        40,
-        8,
-        13,
-        111,
-        61,
-        65,
-        107,
-        173,
-        109,
-        187,
-        189
-    ].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
-    }
-}, false);
+// window.addEventListener(
+//   'keydown',
+//   function (e) {
+//     if (
+//       e.code === 'Tab' ||
+//       e.code === 'ControlLeft' ||
+//       e.code === 'ControlRight' ||
+//       e.code === 'Space' ||
+//       e.code === 'PageUp' ||
+//       e.code === 'PageDown' ||
+//       e.code === 'ArrowLeft' ||
+//       e.code === 'ArrowUp' ||
+//       e.code === 'ArrowRight' ||
+//       e.code === 'ArrowDown' ||
+//       e.code === 'Backspace' ||
+//       e.code === 'Delete' ||
+//       e.code === 'NumpadDivide' ||
+//       e.code === 'Equal' ||
+//       e.code === 'KeyA' ||
+//       e.code === 'NumpadAdd' ||
+//       e.code === 'Minus' ||
+//       e.code === 'NumpadMinus' ||
+//       e.code === 'Slash' ||
+//       e.code === 'Backslash'
+//     ) {
+//       e.preventDefault();
+//     }
+//   },
+//   false
+// );
 /* add the hashCode function for all strings. */
 String.prototype.hashCode = function () {
     var hash = 0;
@@ -531,8 +535,7 @@ function load_app() {
         surface.width = view_port.right;
         surface.height = view_port.bottom;
         global.RESIZE_W_FACTOR = view_port.view_width / global.last_view_port_width;
-        global.RESIZE_H_FACTOR =
-            view_port.view_height / global.last_view_port_height;
+        global.RESIZE_H_FACTOR = view_port.view_height / global.last_view_port_height;
         /* Resize all the text and stroke widths */
         if (global.MOBILE_MODE) {
             global.CANVAS_STROKE_WIDTH_BASE = 0.000775 * view_port.view_width;
@@ -597,10 +600,7 @@ function load_app() {
             else {
                 if (!MOUSE_EVENT_LATCH) {
                     if (global.MOBILE_MODE) {
-                        if (global.mouse_x >= view_port.left &&
-                            global.mouse_x <= view_port.right &&
-                            global.mouse_y >= view_port.top &&
-                            global.mouse_y <= view_port.bottom) {
+                        if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
                             global.MOUSE_DOWN_EVENT = true;
                             global.mouse_down_event_queue.push(mouse_event);
                         }
@@ -620,10 +620,7 @@ function load_app() {
         mouse_event.stopPropagation();
         if (!global.MOUSE_MOVE_EVENT) {
             if (global.MOBILE_MODE) {
-                if (global.mouse_x >= view_port.left &&
-                    global.mouse_x <= view_port.right &&
-                    global.mouse_y >= view_port.top &&
-                    global.mouse_y <= view_port.bottom) {
+                if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
                     global.mouse_move_event = mouse_event;
                     global.MOUSE_MOVE_EVENT = true;
                 }
@@ -639,10 +636,7 @@ function load_app() {
         mouse_event.stopPropagation();
         if (MOUSE_EVENT_LATCH) {
             if (global.MOBILE_MODE) {
-                if (global.mouse_x >= view_port.left &&
-                    global.mouse_x <= view_port.right &&
-                    global.mouse_y >= view_port.top &&
-                    global.mouse_y <= view_port.bottom) {
+                if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
                     global.MOUSE_UP_EVENT = true;
                     global.mouse_up_event_queue.push(mouse_event);
                 }
@@ -669,6 +663,7 @@ function load_app() {
         }
     }
     function key_down(key_event) {
+        key_event.preventDefault();
         global.KEY_DOWN_EVENT = true;
         global.key_down_event_queue.push({
             event: key_event,
@@ -679,6 +674,7 @@ function load_app() {
         });
     }
     function key_up(key_event) {
+        key_event.preventDefault();
         global.KEY_UP_EVENT = true;
         global.key_up_event_queue.push({
             event: key_event,
@@ -690,14 +686,12 @@ function load_app() {
     }
     function resize_components() {
         /* Always resize the workspace first! */
-        global.natural_height =
-            2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
+        global.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
         if (global.settings.WORKSPACE_PERFECT_SQUARE) {
             global.natural_width = global.natural_height;
         }
         else {
-            global.natural_width =
-                2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
+            global.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
         }
         workspace.workspace_resize();
         reset_zoom();
@@ -732,10 +726,8 @@ function load_app() {
     }
     function handle_zoom(mouse_event) {
         if (!global.focused) {
-            global.x_offset =
-                (global.mouse_x - global.delta_x) / global.WORKSPACE_ZOOM_SCALE;
-            global.y_offset =
-                (global.mouse_y - global.delta_y) / global.WORKSPACE_ZOOM_SCALE;
+            global.x_offset = (global.mouse_x - global.delta_x) / global.WORKSPACE_ZOOM_SCALE;
+            global.y_offset = (global.mouse_y - global.delta_y) / global.WORKSPACE_ZOOM_SCALE;
             if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
                 if (global.WORKSPACE_ZOOM_SCALE > global.ZOOM_MIN) {
                     global.WORKSPACE_ZOOM_SCALE /= global.ZOOM_FACTOR;
@@ -746,10 +738,8 @@ function load_app() {
                     global.WORKSPACE_ZOOM_SCALE *= global.ZOOM_FACTOR;
                 }
             }
-            global.delta_x =
-                global.mouse_x - global.x_offset * global.WORKSPACE_ZOOM_SCALE;
-            global.delta_y =
-                global.mouse_y - global.y_offset * global.WORKSPACE_ZOOM_SCALE;
+            global.delta_x = global.mouse_x - global.x_offset * global.WORKSPACE_ZOOM_SCALE;
+            global.delta_y = global.mouse_y - global.y_offset * global.WORKSPACE_ZOOM_SCALE;
             workspace.workspace_zoom();
         }
     }
@@ -823,11 +813,9 @@ function load_app() {
                     resize_canvas();
                 }
                 FPS_DIV ^= 1;
-                if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.FLAG_SIMULATING) ||
-                    !global.FLAG_SIMULATING) {
+                if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.FLAG_SIMULATING) || !global.FLAG_SIMULATING) {
                     if (global.SYSTEM_INITIALIZATION['completed']) {
-                        if ((global.FLAG_SIMULATING && global.CANVAS_DRAW_REQUEST) ||
-                            TEMP_DRAW_SIGNAL) {
+                        if ((global.FLAG_SIMULATING && global.CANVAS_DRAW_REQUEST) || TEMP_DRAW_SIGNAL) {
                             if (!global.ON_RESTORE_EVENT) {
                                 canvas.release();
                                 if (!global.DRAW_BLOCK) {
@@ -842,8 +830,7 @@ function load_app() {
                             if (global.CANVAS_DRAW_REQUEST) {
                                 global.CANVAS_DRAW_REQUEST_COUNTER++;
                             }
-                            if (global.CANVAS_DRAW_REQUEST_COUNTER >=
-                                global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+                            if (global.CANVAS_DRAW_REQUEST_COUNTER >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
                                 global.CANVAS_DRAW_REQUEST_COUNTER = 0;
                                 global.CANVAS_DRAW_REQUEST = false;
                             }
@@ -859,8 +846,7 @@ function load_app() {
                 }
                 if (global.SIGNAL_WIRE_DELETED) {
                     global.SIGNAL_WIRE_DELETED_COUNTER++;
-                    if (global.SIGNAL_WIRE_DELETED_COUNTER >=
-                        global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+                    if (global.SIGNAL_WIRE_DELETED_COUNTER >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
                         global.SIGNAL_WIRE_DELETED = false;
                         global.SIGNAL_WIRE_DELETED_COUNTER = 0;
                     }
@@ -929,8 +915,7 @@ function load_app() {
             }
             if (global.mouse_double_click_event_queue.length > 0) {
                 FIFO_INDEX = global.mouse_double_click_event_queue.length - 1;
-                global.mouse_double_click_event =
-                    global.mouse_double_click_event_queue[FIFO_INDEX];
+                global.mouse_double_click_event = global.mouse_double_click_event_queue[FIFO_INDEX];
                 handle_double_click();
                 global.mouse_double_click_event_queue.splice(FIFO_INDEX, 1);
                 if (global.mouse_double_click_event_queue.length === 0) {
@@ -1192,8 +1177,7 @@ function load_app() {
         else {
             initialize(global.SYSTEM_INITIALIZATION['step']);
             global.SYSTEM_INITIALIZATION['step']++;
-            if (global.SYSTEM_INITIALIZATION['step'] >=
-                global.SYSTEM_INITIALIZATION['max']) {
+            if (global.SYSTEM_INITIALIZATION['step'] >= global.SYSTEM_INITIALIZATION['max']) {
                 if (global.MOBILE_MODE) {
                     global.ON_RESTORE_EVENT = true;
                 }
@@ -1203,30 +1187,18 @@ function load_app() {
         }
     }
     function refactor_sizes() {
-        global.CANVAS_STROKE_WIDTH_1_ZOOM =
-            global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_2_ZOOM =
-            global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_3_ZOOM =
-            global.CANVAS_STROKE_WIDTH_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_4_ZOOM =
-            global.CANVAS_STROKE_WIDTH_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_5_ZOOM =
-            global.CANVAS_STROKE_WIDTH_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_6_ZOOM =
-            global.CANVAS_STROKE_WIDTH_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_1_ZOOM =
-            global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_2_ZOOM =
-            global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_3_ZOOM =
-            global.CANVAS_TEXT_SIZE_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_4_ZOOM =
-            global.CANVAS_TEXT_SIZE_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_5_ZOOM =
-            global.CANVAS_TEXT_SIZE_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_6_ZOOM =
-            global.CANVAS_TEXT_SIZE_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_4_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_5_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_6_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_TEXT_SIZE_1_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_TEXT_SIZE_2_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_TEXT_SIZE_3_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
     }
     function draw() {
         refactor_sizes();
@@ -1273,8 +1245,7 @@ function load_app() {
                     for (var i = 0; i < nodes.length; i++) {
                         nodes[i].draw(canvas);
                     }
-                    if (global.WIRE_BUILDER['n1'] > -1 &&
-                        global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+                    if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
                         canvas.draw_line_buffer(global.NODE_LINE_BUFFER, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
                         canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
                     }
@@ -1330,8 +1301,7 @@ function load_app() {
                             for (var i = 0; i < nodes.length; i++) {
                                 nodes[i].draw(canvas);
                             }
-                            if (global.WIRE_BUILDER['n1'] > -1 &&
-                                global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+                            if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
                                 canvas.draw_line_buffer(global.NODE_LINE_BUFFER, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
                                 canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
                             }
@@ -1664,14 +1634,9 @@ function load_app() {
             global.mouse_x = touch.clientX;
             global.mouse_y = touch.clientY;
         }
-        global.dx =
-            -(global.last_mouse_x - global.mouse_x) *
-                global.settings.TRANSLATION_SCALE;
-        global.dy =
-            -(global.last_mouse_y - global.mouse_y) *
-                global.settings.TRANSLATION_SCALE;
-        if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) >
-            0.5 * Math.min(global.node_space_x, global.node_space_y) &&
+        global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
+        global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
+        if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) &&
             global.TRANSLATION_LOCK) {
             global.TRANSLATION_LOCK = false;
             global.IS_DRAGGING = global.TEMP_IS_DRAGGING;
@@ -1944,8 +1909,7 @@ function load_app() {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL) {
             if (!global.component_touched && !global.IS_RIGHT_CLICK) {
-                if (global.WIRE_BUILDER['n1'] > -1 &&
-                    global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+                if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
                     wire_manager.reset_wire_builder();
                 }
             }
@@ -2275,8 +2239,7 @@ function load_app() {
         }
     }
     function browser_detection() {
-        if ((navigator.userAgent.indexOf('Opera') ||
-            navigator.userAgent.indexOf('OPR')) != -1) {
+        if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) != -1) {
             global.BROWSER_OPERA = true;
         }
         else if (navigator.userAgent.indexOf('Chrome') != -1) {
@@ -2288,8 +2251,7 @@ function load_app() {
         else if (navigator.userAgent.indexOf('Firefox') != -1) {
             global.BROWSER_FIREFOX = true;
         }
-        else if (navigator.userAgent.indexOf('MSIE') != -1 ||
-            !!document.documentMode === true) {
+        else if (navigator.userAgent.indexOf('MSIE') != -1 || !!document.documentMode === true) {
             global.BROWSER_IE = true;
         }
     }

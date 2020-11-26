@@ -373,23 +373,7 @@ var Global = /** @class */ (function () {
             0.99 * 1e-18,
             0.99 * 1e-21
         ];
-        this.SI_UNIT_ABBREVIATION = [
-            'Z',
-            'E',
-            'P',
-            'T',
-            'G',
-            'M',
-            'k',
-            '',
-            'm',
-            'u',
-            'n',
-            'p',
-            'f',
-            'a',
-            'z'
-        ];
+        this.SI_UNIT_ABBREVIATION = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
         /* To facilitate the generation of new wires. */
         this.WIRE_BUILDER = {
             n1: -1,
@@ -444,10 +428,7 @@ var Global = /** @class */ (function () {
             options: ['Closed Resistance', 'Switch State'],
             options_units: ['Ω', ''],
             option_limits: {
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for NOT properties */
@@ -478,10 +459,7 @@ var Global = /** @class */ (function () {
             options_units: ['', 'A'],
             option_limits: {
                 'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for led properties */
@@ -501,10 +479,7 @@ var Global = /** @class */ (function () {
             options_units: ['', 'A', 'nm'],
             option_limits: {
                 'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ],
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
                 Wavelength: [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
             }
         };
@@ -525,10 +500,7 @@ var Global = /** @class */ (function () {
             option_limits: {
                 'Zener Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
                 'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for voltmeter properties */
@@ -663,10 +635,7 @@ var Global = /** @class */ (function () {
             options: ['Capacitance', 'Initial Voltage'],
             options_units: ['F', 'V'],
             option_limits: {
-                Capacitance: [
-                    this.settings.MIN_CAPACITANCE,
-                    this.settings.MAX_CAPACITANCE
-                ],
+                Capacitance: [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
                 'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
             }
         };
@@ -725,10 +694,7 @@ var Global = /** @class */ (function () {
             options_units: ['Ω', '%'],
             option_limits: {
                 Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
-                'Wiper Percentage': [
-                    this.settings.MIN_POTENTIOMETER_WIPER,
-                    this.settings.MAX_POTENTIOMETER_WIPER
-                ]
+                'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
             }
         };
         /* Base structure for and properties */
@@ -827,10 +793,7 @@ var Global = /** @class */ (function () {
             options_units: ['V', 'Ω'],
             option_limits: {
                 'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for vcr properties */
@@ -912,10 +875,7 @@ var Global = /** @class */ (function () {
             options: ['Closed Resistance', 'Switch State'],
             options_units: ['Ω', ''],
             option_limits: {
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for opamp properties */
@@ -1105,10 +1065,7 @@ var Global = /** @class */ (function () {
             option_limits: {
                 'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
                 'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for pnpbjt properties */
@@ -1136,10 +1093,7 @@ var Global = /** @class */ (function () {
             option_limits: {
                 'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
                 'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for transformer properties */
@@ -1166,14 +1120,8 @@ var Global = /** @class */ (function () {
             options: ['Bit Resolution', 'Reference Voltage'],
             options_units: ['Bits', 'V'],
             option_limits: {
-                'Bit Resolution': [
-                    this.settings.MIN_BIT_RESOLUTION,
-                    this.settings.MAX_BIT_RESOLUTION
-                ],
-                'Reference Voltage': [
-                    this.settings.MIN_VOLTAGE,
-                    this.settings.MAX_VOLTAGE
-                ]
+                'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+                'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
             }
         };
         /* Base structure for dac properties */
@@ -1189,14 +1137,8 @@ var Global = /** @class */ (function () {
             options: ['Bit Resolution', 'Reference Voltage'],
             options_units: ['Bits', 'V'],
             option_limits: {
-                'Bit Resolution': [
-                    this.settings.MIN_BIT_RESOLUTION,
-                    this.settings.MAX_BIT_RESOLUTION
-                ],
-                'Reference Voltage': [
-                    this.settings.MIN_VOLTAGE,
-                    this.settings.MAX_VOLTAGE
-                ]
+                'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+                'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
             }
         };
         /* Base structure for pwm properties */
@@ -1220,24 +1162,11 @@ var Global = /** @class */ (function () {
             'Last Output Voltage': 0,
             tag: 'PWM',
             units: 'V',
-            options: [
-                'Max Frequency',
-                'Min Frequency',
-                'Max Duty',
-                'Min Duty',
-                'Phase',
-                'Postscaler'
-            ],
+            options: ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
             options_units: ['Hz', 'Hz', '%', '%', ' º', ''],
             option_limits: {
-                'Max Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ],
-                'Min Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ],
+                'Max Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
+                'Min Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
                 'Max Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
                 'Min Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
                 Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
@@ -1316,10 +1245,7 @@ var Global = /** @class */ (function () {
             options: ['Cutoff Frequency'],
             options_units: ['Hz'],
             option_limits: {
-                'Cutoff Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ]
+                'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
             }
         };
         /* Base structure for hpf properties */
@@ -1336,10 +1262,7 @@ var Global = /** @class */ (function () {
             options: ['Cutoff Frequency'],
             options_units: ['Hz'],
             option_limits: {
-                'Cutoff Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ]
+                'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
             }
         };
         /* Base structure for rail properties */
@@ -1365,21 +1288,13 @@ var Global = /** @class */ (function () {
             'Open Resistance': this.settings.R_MAX * 0.5,
             tag: 'RELAY',
             units: 'H',
-            options: [
-                'Inductance',
-                'Initial Current',
-                'Turn on Current',
-                'Closed Resistance'
-            ],
+            options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
             options_units: ['H', 'A', 'A', 'Ω'],
             option_limits: {
                 Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
                 'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
                 'Turn on Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for pid properties */
@@ -1516,16 +1431,7 @@ var Global = /** @class */ (function () {
             packet: []
         };
         /* The various landuages available to pick from. */
-        this.LANGUAGES = [
-            'English',
-            'Spanish',
-            'French',
-            'Italian',
-            'Dutch',
-            'Russian',
-            'German',
-            'Indonesian'
-        ];
+        this.LANGUAGES = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];
         this.LANGUGE_INDEX_COUNTER = 0;
         this.LANGUAGE_INDEX_ENGLISH = this.LANGUGE_INDEX_COUNTER++;
         this.LANGUAGE_INDEX_SPANISH = this.LANGUGE_INDEX_COUNTER++;
@@ -1534,28 +1440,13 @@ var Global = /** @class */ (function () {
         this.LANGUAGE_INDEX_DUTCH = this.LANGUGE_INDEX_COUNTER++;
         this.LANGUAGE_INDEX_RUSSIAN = this.LANGUGE_INDEX_COUNTER++;
         this.LANGUAGE_INDEX_GERMAN = this.LANGUGE_INDEX_COUNTER++;
-        this.LANGUAGE_INDEX_INDONESIAN = this
-            .LANGUGE_INDEX_COUNTER++;
+        this.LANGUAGE_INDEX_INDONESIAN = this.LANGUGE_INDEX_COUNTER++;
         /* The current language index. */
         this.LANGUAGE_INDEX = this.LANGUAGE_INDEX_ENGLISH;
         /* Base structure for system properties */
         this.SYSTEM_OPTIONS = {
-            options: [
-                'Language',
-                'Automatic Timestep',
-                'Shortcut Hints',
-                'Full Window',
-                '',
-                ''
-            ],
-            values: [
-                this.LANGUAGES[this.LANGUAGE_INDEX],
-                this.OFF,
-                this.ON,
-                this.OFF,
-                this.OFF,
-                this.OFF
-            ]
+            options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
+            values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.OFF, this.ON, this.OFF, this.OFF, this.OFF]
         };
         /* Index's to access system options. Make sure they're in order. */
         this.indexer = 0;
@@ -2225,23 +2116,7 @@ var Global = /** @class */ (function () {
             p4: 3
         };
         /* Store the pre-divided SI units to save some computation time. */
-        this.SI_UNIT_ARRAY = [
-            1 / 1e21,
-            1 / 1e18,
-            1 / 1e15,
-            1 / 1e12,
-            1 / 1e9,
-            1 / 1e6,
-            1 / 1e3,
-            1,
-            1 / 1e-3,
-            1 / 1e-6,
-            1 / 1e-9,
-            1 / 1e-12,
-            1 / 1e-15,
-            1 / 1e-18,
-            1 / 1e-21
-        ];
+        this.SI_UNIT_ARRAY = [1 / 1e21, 1 / 1e18, 1 / 1e15, 1 / 1e12, 1 / 1e9, 1 / 1e6, 1 / 1e3, 1, 1 / 1e-3, 1 / 1e-6, 1 / 1e-9, 1 / 1e-12, 1 / 1e-15, 1 / 1e-18, 1 / 1e-21];
         /* Cache the thresholds.. */
         this.SI_UNIT_THRESHOLD_ARRAY = [
             0.99 * 1e21,
@@ -2260,23 +2135,7 @@ var Global = /** @class */ (function () {
             0.99 * 1e-18,
             0.99 * 1e-21
         ];
-        this.SI_UNIT_ABBREVIATION = [
-            'Z',
-            'E',
-            'P',
-            'T',
-            'G',
-            'M',
-            'k',
-            '',
-            'm',
-            'u',
-            'n',
-            'p',
-            'f',
-            'a',
-            'z'
-        ];
+        this.SI_UNIT_ABBREVIATION = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
         /* To facilitate the generation of new wires. */
         this.WIRE_BUILDER = {
             n1: -1,
@@ -2331,10 +2190,7 @@ var Global = /** @class */ (function () {
             options: ['Closed Resistance', 'Switch State'],
             options_units: ['Ω', ''],
             option_limits: {
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for NOT properties */
@@ -2364,14 +2220,8 @@ var Global = /** @class */ (function () {
             options: ['Emission Coefficient', 'Saturation Current'],
             options_units: ['', 'A'],
             option_limits: {
-                'Emission Coefficient': [
-                    this.settings.MIN_GAIN,
-                    this.settings.MAX_GAIN
-                ],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for led properties */
@@ -2390,14 +2240,8 @@ var Global = /** @class */ (function () {
             options: ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
             options_units: ['', 'A', 'nm'],
             option_limits: {
-                'Emission Coefficient': [
-                    this.settings.MIN_GAIN,
-                    this.settings.MAX_GAIN
-                ],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ],
+                'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
                 Wavelength: [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
             }
         };
@@ -2417,14 +2261,8 @@ var Global = /** @class */ (function () {
             options_units: ['V', '', 'A'],
             option_limits: {
                 'Zener Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                'Emission Coefficient': [
-                    this.settings.MIN_GAIN,
-                    this.settings.MAX_GAIN
-                ],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for voltmeter properties */
@@ -2559,14 +2397,8 @@ var Global = /** @class */ (function () {
             options: ['Capacitance', 'Initial Voltage'],
             options_units: ['F', 'V'],
             option_limits: {
-                Capacitance: [
-                    this.settings.MIN_CAPACITANCE,
-                    this.settings.MAX_CAPACITANCE
-                ],
-                'Initial Voltage': [
-                    this.settings.MIN_VOLTAGE,
-                    this.settings.MAX_VOLTAGE
-                ]
+                Capacitance: [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
+                'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
             }
         };
         /* Base structure for inductor properties */
@@ -2581,14 +2413,8 @@ var Global = /** @class */ (function () {
             options: ['Inductance', 'Initial Current'],
             options_units: ['H', 'A'],
             option_limits: {
-                Inductance: [
-                    this.settings.MIN_INDUCTANCE,
-                    this.settings.MAX_INDUCTANCE
-                ],
-                'Initial Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+                'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for ground properties */
@@ -2630,10 +2456,7 @@ var Global = /** @class */ (function () {
             options_units: ['Ω', '%'],
             option_limits: {
                 Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
-                'Wiper Percentage': [
-                    this.settings.MIN_POTENTIOMETER_WIPER,
-                    this.settings.MAX_POTENTIOMETER_WIPER
-                ]
+                'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
             }
         };
         /* Base structure for and properties */
@@ -2732,10 +2555,7 @@ var Global = /** @class */ (function () {
             options_units: ['V', 'Ω'],
             option_limits: {
                 'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for vcr properties */
@@ -2817,10 +2637,7 @@ var Global = /** @class */ (function () {
             options: ['Closed Resistance', 'Switch State'],
             options_units: ['Ω', ''],
             option_limits: {
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for opamp properties */
@@ -3010,10 +2827,7 @@ var Global = /** @class */ (function () {
             option_limits: {
                 'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
                 'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for pnpbjt properties */
@@ -3041,10 +2855,7 @@ var Global = /** @class */ (function () {
             option_limits: {
                 'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
                 'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-                'Saturation Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ]
+                'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
             }
         };
         /* Base structure for transformer properties */
@@ -3071,14 +2882,8 @@ var Global = /** @class */ (function () {
             options: ['Bit Resolution', 'Reference Voltage'],
             options_units: ['Bits', 'V'],
             option_limits: {
-                'Bit Resolution': [
-                    this.settings.MIN_BIT_RESOLUTION,
-                    this.settings.MAX_BIT_RESOLUTION
-                ],
-                'Reference Voltage': [
-                    this.settings.MIN_VOLTAGE,
-                    this.settings.MAX_VOLTAGE
-                ]
+                'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+                'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
             }
         };
         /* Base structure for dac properties */
@@ -3094,14 +2899,8 @@ var Global = /** @class */ (function () {
             options: ['Bit Resolution', 'Reference Voltage'],
             options_units: ['Bits', 'V'],
             option_limits: {
-                'Bit Resolution': [
-                    this.settings.MIN_BIT_RESOLUTION,
-                    this.settings.MAX_BIT_RESOLUTION
-                ],
-                'Reference Voltage': [
-                    this.settings.MIN_VOLTAGE,
-                    this.settings.MAX_VOLTAGE
-                ]
+                'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
+                'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
             }
         };
         /* Base structure for pwm properties */
@@ -3125,32 +2924,13 @@ var Global = /** @class */ (function () {
             'Last Output Voltage': 0,
             tag: 'PWM',
             units: 'V',
-            options: [
-                'Max Frequency',
-                'Min Frequency',
-                'Max Duty',
-                'Min Duty',
-                'Phase',
-                'Postscaler'
-            ],
+            options: ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
             options_units: ['Hz', 'Hz', '%', '%', ' º', ''],
             option_limits: {
-                'Max Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ],
-                'Min Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ],
-                'Max Duty': [
-                    this.settings.MIN_DUTY_CYCLE,
-                    this.settings.MAX_DUTY_CYCLE
-                ],
-                'Min Duty': [
-                    this.settings.MIN_DUTY_CYCLE,
-                    this.settings.MAX_DUTY_CYCLE
-                ],
+                'Max Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
+                'Min Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
+                'Max Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
+                'Min Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
                 Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
                 Postscaler: [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
             }
@@ -3227,10 +3007,7 @@ var Global = /** @class */ (function () {
             options: ['Cutoff Frequency'],
             options_units: ['Hz'],
             option_limits: {
-                'Cutoff Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ]
+                'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
             }
         };
         /* Base structure for hpf properties */
@@ -3247,10 +3024,7 @@ var Global = /** @class */ (function () {
             options: ['Cutoff Frequency'],
             options_units: ['Hz'],
             option_limits: {
-                'Cutoff Frequency': [
-                    this.settings.MIN_FREQUENCY,
-                    this.settings.MAX_FREQUENCY
-                ]
+                'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
             }
         };
         /* Base structure for rail properties */
@@ -3276,30 +3050,13 @@ var Global = /** @class */ (function () {
             'Open Resistance': this.settings.R_MAX * 0.5,
             tag: 'RELAY',
             units: 'H',
-            options: [
-                'Inductance',
-                'Initial Current',
-                'Turn on Current',
-                'Closed Resistance'
-            ],
+            options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
             options_units: ['H', 'A', 'A', 'Ω'],
             option_limits: {
-                Inductance: [
-                    this.settings.MIN_INDUCTANCE,
-                    this.settings.MAX_INDUCTANCE
-                ],
-                'Initial Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ],
-                'Turn on Current': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ],
-                'Closed Resistance': [
-                    this.settings.WIRE_RESISTANCE,
-                    this.settings.R_MAX * 0.5
-                ]
+                Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+                'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
+                'Turn on Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
+                'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
         /* Base structure for pid properties */
@@ -3412,10 +3169,7 @@ var Global = /** @class */ (function () {
             options: ['Current Rating', 'Resistance'],
             options_units: ['A', 'Ω'],
             option_limits: {
-                'Current Rating': [
-                    this.settings.MIN_CURRENT,
-                    this.settings.MAX_CURRENT
-                ],
+                'Current Rating': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
                 Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
             }
         };
@@ -3439,16 +3193,7 @@ var Global = /** @class */ (function () {
             packet: []
         };
         /* The various landuages available to pick from. */
-        this.LANGUAGES = [
-            'English',
-            'Spanish',
-            'French',
-            'Italian',
-            'Dutch',
-            'Russian',
-            'German',
-            'Indonesian'
-        ];
+        this.LANGUAGES = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];
         this.LANGUGE_INDEX_COUNTER = 0;
         this.LANGUAGE_INDEX_ENGLISH = this.LANGUGE_INDEX_COUNTER++;
         this.LANGUAGE_INDEX_SPANISH = this.LANGUGE_INDEX_COUNTER++;
@@ -3462,22 +3207,8 @@ var Global = /** @class */ (function () {
         this.LANGUAGE_INDEX = this.LANGUAGE_INDEX_ENGLISH;
         /* Base structure for resistor properties */
         this.SYSTEM_OPTIONS = {
-            options: [
-                'Language',
-                'Automatic Timestep',
-                'Shortcut Hints',
-                'Full Window',
-                '',
-                ''
-            ],
-            values: [
-                this.LANGUAGES[this.LANGUAGE_INDEX],
-                this.OFF,
-                this.ON,
-                this.OFF,
-                this.OFF,
-                this.OFF
-            ]
+            options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
+            values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.OFF, this.ON, this.OFF, this.OFF, this.OFF]
         };
         /* Index's to access system options. Make sure they're in order. */
         var indexer = 0;
@@ -3971,18 +3702,15 @@ var Global = /** @class */ (function () {
         return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT) & this.TRIG_TABLE_MASK];
     };
     Global.prototype.cosine = function (theta) {
-        return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) &
-            this.TRIG_TABLE_MASK];
+        return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) & this.TRIG_TABLE_MASK];
     };
     /* Re-calculates the new position of an object based on the last screen width and the current screen width. */
     Global.prototype.remap_position = function (input, is_width) {
         if (is_width === true) {
-            return (view_port.right -
-                (this.last_view_port_right - input) * this.RESIZE_W_FACTOR);
+            return view_port.right - (this.last_view_port_right - input) * this.RESIZE_W_FACTOR;
         }
         else {
-            return (view_port.bottom -
-                (this.last_view_port_bottom - input) * this.RESIZE_H_FACTOR);
+            return view_port.bottom - (this.last_view_port_bottom - input) * this.RESIZE_H_FACTOR;
         }
     };
     Global.prototype.reset_angle_cache = function () {
@@ -3998,8 +3726,7 @@ var Global = /** @class */ (function () {
         for (var i = 0; i < this.ANGLE_ARRAY.length; i++) {
             if (!this.TEMP_BOOLEAN) {
                 this.ANGLE_SEARCH_OBJ = this.ANGLE_ARRAY[i];
-                if (this.ANGLE_SEARCH_OBJ['x'] === x &&
-                    this.ANGLE_SEARCH_OBJ['y'] === y) {
+                if (this.ANGLE_SEARCH_OBJ['x'] === x && this.ANGLE_SEARCH_OBJ['y'] === y) {
                     this.SAVED_ANGLE = this.ANGLE_SEARCH_OBJ['angle'];
                     this.TEMP_BOOLEAN = true;
                     break;
@@ -4015,8 +3742,7 @@ var Global = /** @class */ (function () {
         for (var i = 0; i < this.ANGLE_RADIAN_ARRAY.length; i++) {
             if (!this.TEMP_BOOLEAN) {
                 this.ANGLE_RADIAN_SEARCH_OBJ = this.ANGLE_RADIAN_ARRAY[i];
-                if (this.ANGLE_RADIAN_SEARCH_OBJ['x'] === x &&
-                    this.ANGLE_RADIAN_SEARCH_OBJ['y'] === y) {
+                if (this.ANGLE_RADIAN_SEARCH_OBJ['x'] === x && this.ANGLE_RADIAN_SEARCH_OBJ['y'] === y) {
                     this.SAVED_ANGLE_RADIANS = this.ANGLE_RADIAN_SEARCH_OBJ['angle'];
                     this.TEMP_BOOLEAN = true;
                     break;
@@ -4103,9 +3829,7 @@ var Global = /** @class */ (function () {
         this.general_integer = y / x;
         this.general_integer2 = 0;
         if (Math.abs(this.general_integer) < 1.0) {
-            this.general_integer2 =
-                this.general_integer /
-                    (1.0 + 0.28 * this.general_integer * this.general_integer);
+            this.general_integer2 = this.general_integer / (1.0 + 0.28 * this.general_integer * this.general_integer);
             if (x < 0.0) {
                 if (y < 0.0) {
                     return this.general_integer2 - Math.PI;
@@ -4114,10 +3838,7 @@ var Global = /** @class */ (function () {
             }
         }
         else {
-            this.general_integer2 =
-                this.PI_DIV_2 -
-                    this.general_integer /
-                        (this.general_integer * this.general_integer + 0.28);
+            this.general_integer2 = this.PI_DIV_2 - this.general_integer / (this.general_integer * this.general_integer + 0.28);
             if (y < 0.0) {
                 return this.general_integer2 - Math.PI;
             }
@@ -4252,10 +3973,8 @@ var Global = /** @class */ (function () {
         var s1_y = p1_y - p0_y;
         var s2_x = p3_x - p2_x;
         var s2_y = p3_y - p2_y;
-        var s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) /
-            (-s2_x * s1_y + s1_x * s2_y);
-        var t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) /
-            (-s2_x * s1_y + s1_x * s2_y);
+        var s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+        var t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
         return s >= 0 && s <= 1 && t >= 0 && t <= 1;
     };
     /* Decodes a key code from a key event */
@@ -4282,8 +4001,7 @@ var Global = /** @class */ (function () {
     Global.prototype.key_to_code = function (character) {
         var ret = '';
         for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
-            if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] ||
-                character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
+            if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] || character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
                 ret = global.copy(this.KEY_EVENT_KEYS[i]);
                 break;
             }
@@ -4327,10 +4045,7 @@ var Global = /** @class */ (function () {
     };
     /* Logarithmic Damping Algorithm. Base E. */
     Global.prototype.log_damping = function (next, now, gamma, kappa) {
-        return (now +
-            (gamma / kappa) *
-                this.signum(next - now) *
-                this.logbx(Math.E, 1 + Math.abs(next - now) * kappa));
+        return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
     };
     /* Returns the sign of the number.*/
     Global.prototype.signum = function (inp) {

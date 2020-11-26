@@ -35,12 +35,7 @@ class ElementOptionsEditWindow {
   public bounds_paint = new Paint();
   public width = view_port.view_width * 0.15;
   public height = view_port.view_height * 0.075;
-  public bounds = new RectF(
-    view_port.center_x - this.width,
-    view_port.center_y - this.height,
-    view_port.center_x + this.width,
-    view_port.center_y + this.height
-  );
+  public bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
   public title_bounds = new Button(0, 0, 0, 0);
 
   public okay_button = new Button(0, 0, 0, 0);
@@ -148,22 +143,10 @@ class ElementOptionsEditWindow {
       this.width = view_port.view_width * 0.15;
       this.height = view_port.view_height * 0.075;
     }
-    this.bounds = new RectF(
-      view_port.center_x - this.width,
-      view_port.center_y - this.height,
-      view_port.center_x + this.width,
-      view_port.center_y + this.height
-    );
-    this.title_bounds = new Button(
-      this.bounds.left,
-      this.bounds.top,
-      this.bounds.right,
-      this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height()
-    );
+    this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+    this.title_bounds = new Button(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
     this.title_bounds.text = '';
-    this.title_bounds.text_paint.set_paint_align(
-      this.title_bounds.text_paint.align.LEFT
-    );
+    this.title_bounds.text_paint.set_paint_align(this.title_bounds.text_paint.align.LEFT);
     this.title_bounds.text_paint.set_color(global.GENERAL_WHITE_COLOR);
     this.title_bounds.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
     this.title_bounds.fill_paint.set_alpha(130);
@@ -185,33 +168,18 @@ class ElementOptionsEditWindow {
     this.okay_button.fill_paint.set_alpha(130);
     this.okay_button.draw_stroke = false;
     this.okay_button.draw_fill = true;
-    this.cancel_button = new Button(
-      this.bounds.right - padding - width,
-      this.bounds.bottom - height - padding,
-      this.bounds.right - padding,
-      this.bounds.bottom - padding
-    );
+    this.cancel_button = new Button(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
     this.cancel_button.text = '';
     this.cancel_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
     this.cancel_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
     this.cancel_button.fill_paint.set_alpha(130);
     this.cancel_button.draw_stroke = false;
     this.cancel_button.draw_fill = true;
-    this.exit_button = new Button(
-      this.title_bounds.right - this.title_bounds.get_height(),
-      this.title_bounds.top,
-      this.title_bounds.right,
-      this.title_bounds.bottom
-    );
+    this.exit_button = new Button(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
     this.exit_button.draw_stroke = true;
     this.exit_button.draw_fill = false;
     this.exit_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-    this.input_button = new Button(
-      this.title_bounds.left + padding,
-      this.title_bounds.bottom + padding,
-      this.cancel_button.right,
-      this.okay_button.top - padding
-    );
+    this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
     this.input_button.text = '';
     this.input_button.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
     this.input_button.line_paint.set_color(global.GENERAL_BLACK_COLOR);
@@ -264,14 +232,8 @@ class ElementOptionsEditWindow {
   mouse_down() {
     if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
       if (
-        this.title_bounds.contains_xy(
-          global.mouse_x - this.OFFSET_X,
-          global.mouse_y - this.OFFSET_Y
-        ) &&
-        !this.exit_button.contains_xy(
-          global.mouse_x - this.OFFSET_X,
-          global.mouse_y - this.OFFSET_Y
-        )
+        this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
+        !this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)
       ) {
         this.ANCHOR_X = global.mouse_x - this.OFFSET_X;
         this.ANCHOR_Y = global.mouse_y - this.OFFSET_Y;
@@ -298,10 +260,7 @@ class ElementOptionsEditWindow {
           this.OFFSET_Y = view_port.top - this.bounds.top;
         }
         if (global.MOBILE_MODE) {
-          if (
-            this.bounds.bottom + this.OFFSET_Y >=
-            on_screen_keyboard.bounds.top
-          ) {
+          if (this.bounds.bottom + this.OFFSET_Y >= on_screen_keyboard.bounds.top) {
             this.OFFSET_Y = on_screen_keyboard.bounds.top - this.bounds.bottom;
           }
         } else {
@@ -323,107 +282,56 @@ class ElementOptionsEditWindow {
           this.insert_cursor(true, false);
           this.INITIAL_CURSOR_DOWN = -1;
           if (
-            !this.bounds.contains_xy(
-              global.mouse_x - this.OFFSET_X,
-              global.mouse_y - this.OFFSET_Y
-            ) &&
-            !this.bounds.contains_xy(
-              this.first_touch_x - this.OFFSET_X,
-              this.first_touch_y - this.OFFSET_Y
-            )
+            !this.bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
+            !this.bounds.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
           ) {
             if (global.MOBILE_MODE) {
-              if (
-                !on_screen_keyboard.bounds.contains_xy(
-                  global.mouse_x,
-                  global.mouse_y
-                )
-              ) {
-                menu_bar.handle_element_options_edit_flag(
-                  !global.FLAG_ELEMENT_OPTIONS_EDIT
-                );
-                menu_bar.handle_element_options_flag(
-                  !global.FLAG_ELEMENT_OPTIONS
-                );
+              if (!on_screen_keyboard.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
+                menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
+                menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                 /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
                 global.MOUSE_KEYBOARD_LOCK = true;
               }
             } else {
-              menu_bar.handle_element_options_edit_flag(
-                !global.FLAG_ELEMENT_OPTIONS_EDIT
-              );
-              menu_bar.handle_element_options_flag(
-                !global.FLAG_ELEMENT_OPTIONS
-              );
+              menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
+              menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
               /* Block out the reset selection portion of the code! */
               global.component_touched = true;
               global.MOUSE_KEYBOARD_LOCK = true;
             }
           } else if (
-            this.okay_button.contains_xy(
-              global.mouse_x - this.OFFSET_X,
-              global.mouse_y - this.OFFSET_Y
-            ) &&
-            this.okay_button.contains_xy(
-              this.first_touch_x - this.OFFSET_X,
-              this.first_touch_y - this.OFFSET_Y
-            )
+            this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
+            this.okay_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
           ) {
             if (!this.push_property_update()) {
-              menu_bar.handle_element_options_edit_flag(
-                !global.FLAG_ELEMENT_OPTIONS_EDIT
-              );
-              menu_bar.handle_element_options_flag(
-                !global.FLAG_ELEMENT_OPTIONS
-              );
+              menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
+              menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             }
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
             global.MOUSE_KEYBOARD_LOCK = true;
           } else if (
-            this.cancel_button.contains_xy(
-              global.mouse_x - this.OFFSET_X,
-              global.mouse_y - this.OFFSET_Y
-            ) &&
-            this.cancel_button.contains_xy(
-              this.first_touch_x - this.OFFSET_X,
-              this.first_touch_y - this.OFFSET_Y
-            )
+            this.cancel_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
+            this.cancel_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
           ) {
-            menu_bar.handle_element_options_edit_flag(
-              !global.FLAG_ELEMENT_OPTIONS_EDIT
-            );
+            menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
             global.MOUSE_KEYBOARD_LOCK = true;
           } else if (
-            this.exit_button.contains_xy(
-              global.mouse_x - this.OFFSET_X,
-              global.mouse_y - this.OFFSET_Y
-            ) &&
-            this.exit_button.contains_xy(
-              this.first_touch_x - this.OFFSET_X,
-              this.first_touch_y - this.OFFSET_Y
-            )
+            this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
+            this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
           ) {
-            menu_bar.handle_element_options_edit_flag(
-              !global.FLAG_ELEMENT_OPTIONS_EDIT
-            );
+            menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
             global.MOUSE_KEYBOARD_LOCK = true;
           } else if (
-            this.input_button.contains_xy(
-              global.mouse_x - this.OFFSET_X,
-              global.mouse_y - this.OFFSET_Y
-            ) &&
-            this.input_button.contains_xy(
-              this.first_touch_x - this.OFFSET_X,
-              this.first_touch_y - this.OFFSET_Y
-            )
+            this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
+            this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
           ) {
             if (this.SELECT_ALL) {
               if (this.SELECT_ALL && !global.MOUSE_DOUBLE_CLICK_EVENT) {
@@ -453,32 +361,17 @@ class ElementOptionsEditWindow {
       remapped_x = max;
     }
     let width = max - min;
-    let char_length = (
-      this.input_button.text.substring(0, this.CURSOR_POSITION) +
-      this.input_button.text.substring(
-        this.CURSOR_POSITION,
-        this.input_button.text.length
-      )
-    ).length;
+    let char_length = (this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length)).length;
     let percent = (remapped_x - min) / width;
     let insert_at = Math.ceil(percent * char_length);
-    if (
-      is_mouse_up &&
-      this.input_button.contains_xy(
-        this.first_touch_x - this.OFFSET_X,
-        this.first_touch_y - this.OFFSET_Y
-      )
-    ) {
+    if (is_mouse_up && this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
       /* Only update cursor position on mouse up. We will use mouse move to make it possible to update the highlight when the mouse is moving.*/
       if (!is_mouse_move) {
         /* Assign the cursor position to the calculated insert. */
         this.CURSOR_POSITION = insert_at;
       }
       /* Make sure initial cursor down is calculated. */
-      if (
-        this.INITIAL_CURSOR_DOWN != -1 &&
-        insert_at != this.INITIAL_CURSOR_DOWN
-      ) {
+      if (this.INITIAL_CURSOR_DOWN != -1 && insert_at != this.INITIAL_CURSOR_DOWN) {
         if (this.INITIAL_CURSOR_DOWN < insert_at) {
           this.ASCENDING = true;
         } else {
@@ -507,11 +400,7 @@ class ElementOptionsEditWindow {
   /* Handle the user's input! */
   handle_keyboard(key_event) {
     if (!this.special_type(global.selected_type)) {
-      if (
-        global.is_valid_si_units(key_event) &&
-        key_event.keyCode != global.KEY_CODE_DELETE &&
-        !key_event['ctrl']
-      ) {
+      if (global.is_valid_si_units(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
         if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
           if (!this.SELECT_ALL) {
             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
@@ -520,10 +409,7 @@ class ElementOptionsEditWindow {
             this.input_button.text =
               this.input_button.text.substring(0, this.CURSOR_POSITION) +
               global.decode_key(key_event) +
-              this.input_button.text.substring(
-                this.CURSOR_POSITION,
-                this.input_button.text.length
-              );
+              this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION < this.input_button.text.length) {
               this.CURSOR_POSITION++;
             }
@@ -534,10 +420,7 @@ class ElementOptionsEditWindow {
             this.input_button.text =
               this.input_button.text.substring(0, this.CURSOR_POSITION) +
               global.decode_key(key_event) +
-              this.input_button.text.substring(
-                this.CURSOR_POSITION,
-                this.input_button.text.length
-              );
+              this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION < this.input_button.text.length) {
               this.CURSOR_POSITION++;
             }
@@ -550,19 +433,13 @@ class ElementOptionsEditWindow {
             this.input_button.text =
               this.input_button.text.substring(0, this.CURSOR_POSITION) +
               global.decode_key(key_event) +
-              this.input_button.text.substring(
-                this.CURSOR_POSITION,
-                this.input_button.text.length
-              );
+              this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION < this.input_button.text.length) {
               this.CURSOR_POSITION++;
             }
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_BACKSPACE &&
-        !key_event['ctrl']
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
         if (this.input_button.text.length > 0) {
           if (!this.SELECT_ALL) {
             if (this.SELECT_START === this.SELECT_END) {
@@ -573,11 +450,7 @@ class ElementOptionsEditWindow {
               this.handle_partial_select();
             } else {
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION - 1) +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION > 0) {
                 this.CURSOR_POSITION--;
               }
@@ -588,10 +461,7 @@ class ElementOptionsEditWindow {
             this.SELECT_ALL = false;
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_DELETE &&
-        !key_event['ctrl']
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
         if (this.input_button.text.length > 0) {
           if (!this.SELECT_ALL) {
             if (this.SELECT_START === this.SELECT_END) {
@@ -603,11 +473,7 @@ class ElementOptionsEditWindow {
             } else {
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.input_button.text =
-                  this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                  this.input_button.text.substring(
-                    this.CURSOR_POSITION + 1,
-                    this.input_button.text.length
-                  );
+                  this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
               }
             }
           } else {
@@ -616,23 +482,14 @@ class ElementOptionsEditWindow {
             this.SELECT_ALL = false;
           }
         }
-      } else if (
-        (key_event['event'].keyCode === global.KEY_CODE_MINUS ||
-          key_event['event'].keyCode === global.KEY_CODE_NUMPAD_MINUS) &&
-        !key_event['shift']
-      ) {
+      } else if ((key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) && !key_event['shift']) {
         if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
           if (!this.SELECT_ALL) {
             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
               this.handle_partial_select();
             }
             this.input_button.text =
-              this.input_button.text.substring(0, this.CURSOR_POSITION) +
-              '-' +
-              this.input_button.text.substring(
-                this.CURSOR_POSITION,
-                this.input_button.text.length
-              );
+              this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION < this.input_button.text.length) {
               this.CURSOR_POSITION++;
             }
@@ -641,34 +498,20 @@ class ElementOptionsEditWindow {
             this.CURSOR_POSITION = 0;
             this.SELECT_ALL = false;
             this.input_button.text =
-              this.input_button.text.substring(0, this.CURSOR_POSITION) +
-              '-' +
-              this.input_button.text.substring(
-                this.CURSOR_POSITION,
-                this.input_button.text.length
-              );
+              this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION < this.input_button.text.length) {
               this.CURSOR_POSITION++;
             }
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_PERIOD &&
-        !key_event['shift'] &&
-        !key_event['ctrl']
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
         if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
           if (!this.SELECT_ALL) {
             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
               this.handle_partial_select();
             }
             this.input_button.text =
-              this.input_button.text.substring(0, this.CURSOR_POSITION) +
-              '.' +
-              this.input_button.text.substring(
-                this.CURSOR_POSITION,
-                this.input_button.text.length
-              );
+              this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION < this.input_button.text.length) {
               this.CURSOR_POSITION++;
             }
@@ -677,31 +520,18 @@ class ElementOptionsEditWindow {
             this.CURSOR_POSITION = 0;
             this.SELECT_ALL = false;
             this.input_button.text =
-              this.input_button.text.substring(0, this.CURSOR_POSITION) +
-              '.' +
-              this.input_button.text.substring(
-                this.CURSOR_POSITION,
-                this.input_button.text.length
-              );
+              this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION < this.input_button.text.length) {
               this.CURSOR_POSITION++;
             }
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_ENTER &&
-        !key_event['ctrl']
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
         if (!this.push_property_update()) {
-          menu_bar.handle_element_options_edit_flag(
-            !global.FLAG_ELEMENT_OPTIONS_EDIT
-          );
+          menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
           menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_ARROW_LEFT &&
-        !key_event['ctrl']
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
         if (key_event['shift'] === false) {
           this.SELECT_START = -1;
           this.SELECT_END = -1;
@@ -733,10 +563,7 @@ class ElementOptionsEditWindow {
             }
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_ARROW_RIGHT &&
-        !key_event['ctrl']
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
         if (key_event['shift'] === false) {
           this.SELECT_START = -1;
           this.SELECT_END = -1;
@@ -768,15 +595,10 @@ class ElementOptionsEditWindow {
             }
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_ESCAPE &&
-        !key_event['ctrl']
-      ) {
-        menu_bar.handle_element_options_edit_flag(
-          !global.FLAG_ELEMENT_OPTIONS_EDIT
-        );
+      } else if (key_event['event'].code === global.KEY_CODE_ESCAPE && !key_event['ctrl']) {
+        menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-      } else if (key_event['event'].keyCode === global.KEY_CODE_HOME) {
+      } else if (key_event['event'].code === global.KEY_CODE_HOME) {
         if (key_event['shift'] === false) {
           this.SELECT_START = -1;
           this.SELECT_END = -1;
@@ -809,10 +631,7 @@ class ElementOptionsEditWindow {
             }
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_END &&
-        !key_event['ctrl']
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_END && !key_event['ctrl']) {
         if (key_event['shift'] === false) {
           this.reset_cursor();
         } else {
@@ -842,10 +661,7 @@ class ElementOptionsEditWindow {
             }
           }
         }
-      } else if (
-        key_event['event'].keyCode === global.KEY_CODE_A &&
-        key_event['ctrl'] === true
-      ) {
+      } else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
         this.SELECT_ALL = false;
         this.SELECT_START = 0;
         this.ASCENDING = true;
@@ -854,11 +670,7 @@ class ElementOptionsEditWindow {
       }
     } else {
       if (global.selected_type === global.TYPE_NOTE) {
-        if (
-          global.is_alpha_numeric_note(key_event) &&
-          key_event.keyCode != global.KEY_CODE_DELETE &&
-          !key_event['ctrl']
-        ) {
+        if (global.is_alpha_numeric_note(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
           if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START != -1 && this.SELECT_END != -1) {
@@ -867,10 +679,7 @@ class ElementOptionsEditWindow {
               this.input_button.text =
                 this.input_button.text.substring(0, this.CURSOR_POSITION) +
                 global.decode_key(key_event) +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -881,10 +690,7 @@ class ElementOptionsEditWindow {
               this.input_button.text =
                 this.input_button.text.substring(0, this.CURSOR_POSITION) +
                 global.decode_key(key_event) +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -897,19 +703,13 @@ class ElementOptionsEditWindow {
               this.input_button.text =
                 this.input_button.text.substring(0, this.CURSOR_POSITION) +
                 global.decode_key(key_event) +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_BACKSPACE &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
           if (this.input_button.text.length > 0) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START === this.SELECT_END) {
@@ -920,14 +720,7 @@ class ElementOptionsEditWindow {
                 this.handle_partial_select();
               } else {
                 this.input_button.text =
-                  this.input_button.text.substring(
-                    0,
-                    this.CURSOR_POSITION - 1
-                  ) +
-                  this.input_button.text.substring(
-                    this.CURSOR_POSITION,
-                    this.input_button.text.length
-                  );
+                  this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                 if (this.CURSOR_POSITION > 0) {
                   this.CURSOR_POSITION--;
                 }
@@ -938,10 +731,7 @@ class ElementOptionsEditWindow {
               this.SELECT_ALL = false;
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_DELETE &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
           if (this.input_button.text.length > 0) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START === this.SELECT_END) {
@@ -953,11 +743,7 @@ class ElementOptionsEditWindow {
               } else {
                 if (this.CURSOR_POSITION < this.input_button.text.length) {
                   this.input_button.text =
-                    this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                    this.input_button.text.substring(
-                      this.CURSOR_POSITION + 1,
-                      this.input_button.text.length
-                    );
+                    this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
                 }
               }
             } else {
@@ -966,22 +752,14 @@ class ElementOptionsEditWindow {
               this.SELECT_ALL = false;
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_MINUS ||
-          key_event['event'].keyCode === global.KEY_CODE_NUMPAD_MINUS
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) {
           if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                 this.handle_partial_select();
               }
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '-' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -990,34 +768,20 @@ class ElementOptionsEditWindow {
               this.CURSOR_POSITION = 0;
               this.SELECT_ALL = false;
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '-' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_PERIOD &&
-          !key_event['shift'] &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
           if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                 this.handle_partial_select();
               }
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '.' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -1026,31 +790,18 @@ class ElementOptionsEditWindow {
               this.CURSOR_POSITION = 0;
               this.SELECT_ALL = false;
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '.' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ENTER &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
           if (!this.push_property_update()) {
-            menu_bar.handle_element_options_edit_flag(
-              !global.FLAG_ELEMENT_OPTIONS_EDIT
-            );
+            menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ARROW_LEFT &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
           if (key_event['shift'] === false) {
             this.SELECT_START = -1;
             this.SELECT_END = -1;
@@ -1082,10 +833,7 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ARROW_RIGHT &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
           if (key_event['shift'] === false) {
             this.SELECT_START = -1;
             this.SELECT_END = -1;
@@ -1117,15 +865,10 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ESCAPE &&
-          !key_event['ctrl']
-        ) {
-          menu_bar.handle_element_options_edit_flag(
-            !global.FLAG_ELEMENT_OPTIONS_EDIT
-          );
+        } else if (key_event['event'].code === global.KEY_CODE_ESCAPE && !key_event['ctrl']) {
+          menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
           menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-        } else if (key_event['event'].keyCode === global.KEY_CODE_HOME) {
+        } else if (key_event['event'].code === global.KEY_CODE_HOME) {
           if (key_event['shift'] === false) {
             this.SELECT_START = -1;
             this.SELECT_END = -1;
@@ -1158,10 +901,7 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_END &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_END && !key_event['ctrl']) {
           if (key_event['shift'] === false) {
             this.reset_cursor();
           } else {
@@ -1191,10 +931,7 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_A &&
-          key_event['ctrl'] === true
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
           this.SELECT_ALL = false;
           this.SELECT_START = 0;
           this.ASCENDING = true;
@@ -1202,11 +939,7 @@ class ElementOptionsEditWindow {
           this.CURSOR_POSITION = this.input_button.text.length;
         }
       } else if (global.selected_type === global.TYPE_NET) {
-        if (
-          global.is_alpha_numeric(key_event) &&
-          key_event.keyCode != global.KEY_CODE_DELETE &&
-          !key_event['ctrl']
-        ) {
+        if (global.is_alpha_numeric(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
           if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START != -1 && this.SELECT_END != -1) {
@@ -1215,10 +948,7 @@ class ElementOptionsEditWindow {
               this.input_button.text =
                 this.input_button.text.substring(0, this.CURSOR_POSITION) +
                 global.decode_key(key_event) +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -1229,10 +959,7 @@ class ElementOptionsEditWindow {
               this.input_button.text =
                 this.input_button.text.substring(0, this.CURSOR_POSITION) +
                 global.decode_key(key_event) +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -1245,19 +972,13 @@ class ElementOptionsEditWindow {
               this.input_button.text =
                 this.input_button.text.substring(0, this.CURSOR_POSITION) +
                 global.decode_key(key_event) +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_BACKSPACE &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
           if (this.input_button.text.length > 0) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START === this.SELECT_END) {
@@ -1268,14 +989,7 @@ class ElementOptionsEditWindow {
                 this.handle_partial_select();
               } else {
                 this.input_button.text =
-                  this.input_button.text.substring(
-                    0,
-                    this.CURSOR_POSITION - 1
-                  ) +
-                  this.input_button.text.substring(
-                    this.CURSOR_POSITION,
-                    this.input_button.text.length
-                  );
+                  this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                 if (this.CURSOR_POSITION > 0) {
                   this.CURSOR_POSITION--;
                 }
@@ -1286,10 +1000,7 @@ class ElementOptionsEditWindow {
               this.SELECT_ALL = false;
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_DELETE &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
           if (this.input_button.text.length > 0) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START === this.SELECT_END) {
@@ -1301,11 +1012,7 @@ class ElementOptionsEditWindow {
               } else {
                 if (this.CURSOR_POSITION < this.input_button.text.length) {
                   this.input_button.text =
-                    this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                    this.input_button.text.substring(
-                      this.CURSOR_POSITION + 1,
-                      this.input_button.text.length
-                    );
+                    this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
                 }
               }
             } else {
@@ -1314,22 +1021,14 @@ class ElementOptionsEditWindow {
               this.SELECT_ALL = false;
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_MINUS ||
-          key_event['event'].keyCode === global.KEY_CODE_NUMPAD_MINUS
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) {
           if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                 this.handle_partial_select();
               }
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '-' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -1338,34 +1037,20 @@ class ElementOptionsEditWindow {
               this.CURSOR_POSITION = 0;
               this.SELECT_ALL = false;
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '-' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_PERIOD &&
-          !key_event['shift'] &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
           if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
             if (!this.SELECT_ALL) {
               if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                 this.handle_partial_select();
               }
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '.' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
@@ -1374,31 +1059,18 @@ class ElementOptionsEditWindow {
               this.CURSOR_POSITION = 0;
               this.SELECT_ALL = false;
               this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                '.' +
-                this.input_button.text.substring(
-                  this.CURSOR_POSITION,
-                  this.input_button.text.length
-                );
+                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
               if (this.CURSOR_POSITION < this.input_button.text.length) {
                 this.CURSOR_POSITION++;
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ENTER &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
           if (!this.push_property_update()) {
-            menu_bar.handle_element_options_edit_flag(
-              !global.FLAG_ELEMENT_OPTIONS_EDIT
-            );
+            menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ARROW_LEFT &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
           if (key_event['shift'] === false) {
             this.SELECT_START = -1;
             this.SELECT_END = -1;
@@ -1430,10 +1102,7 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ARROW_RIGHT &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
           if (key_event['shift'] === false) {
             this.SELECT_START = -1;
             this.SELECT_END = -1;
@@ -1465,15 +1134,10 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_ESCAPE &&
-          !key_event['ctrl']
-        ) {
-          menu_bar.handle_element_options_edit_flag(
-            !global.FLAG_ELEMENT_OPTIONS_EDIT
-          );
+        } else if (key_event['event'].code === global.KEY_CODE_ESCAPE && !key_event['ctrl']) {
+          menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
           menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-        } else if (key_event['event'].keyCode === global.KEY_CODE_HOME) {
+        } else if (key_event['event'].code === global.KEY_CODE_HOME) {
           if (key_event['shift'] === false) {
             this.SELECT_START = -1;
             this.SELECT_END = -1;
@@ -1506,10 +1170,7 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_END &&
-          !key_event['ctrl']
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_END && !key_event['ctrl']) {
           if (key_event['shift'] === false) {
             this.reset_cursor();
           } else {
@@ -1539,10 +1200,7 @@ class ElementOptionsEditWindow {
               }
             }
           }
-        } else if (
-          key_event['event'].keyCode === global.KEY_CODE_A &&
-          key_event['ctrl'] === true
-        ) {
+        } else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
           this.SELECT_ALL = false;
           this.SELECT_START = 0;
           this.ASCENDING = true;
@@ -1570,40 +1228,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          resistors[index].elm.properties[
-            resistors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          resistors[index].elm.properties[resistors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1617,40 +1253,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          capacitors[index].elm.properties[
-            capacitors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          capacitors[index].elm.properties[capacitors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1658,10 +1272,7 @@ class ElementOptionsEditWindow {
         }
 
         /* Conservation of energy */
-        if (
-          capacitors[index].elm.properties['options'][this.option_index] ===
-          'Capacitance'
-        ) {
+        if (capacitors[index].elm.properties['options'][this.option_index] === 'Capacitance') {
           capacitors[index].conserve_energy();
         }
       }
@@ -1672,40 +1283,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          inductors[index].elm.properties[
-            inductors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          inductors[index].elm.properties[inductors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1713,10 +1302,7 @@ class ElementOptionsEditWindow {
         }
 
         /* Conservation of energy */
-        if (
-          inductors[index].elm.properties['options'][this.option_index] ===
-          'Inductance'
-        ) {
+        if (inductors[index].elm.properties['options'][this.option_index] === 'Inductance') {
           inductors[index].conserve_energy();
         }
       }
@@ -1727,40 +1313,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          grounds[index].elm.properties[
-            grounds[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          grounds[index].elm.properties[grounds[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1774,40 +1338,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          dcsources[index].elm.properties[
-            dcsources[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          dcsources[index].elm.properties[dcsources[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1821,40 +1363,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          dccurrents[index].elm.properties[
-            dccurrents[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          dccurrents[index].elm.properties[dccurrents[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1868,40 +1388,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          acsources[index].elm.properties[
-            acsources[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          acsources[index].elm.properties[acsources[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1915,40 +1413,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          accurrents[index].elm.properties[
-            accurrents[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          accurrents[index].elm.properties[accurrents[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -1962,40 +1438,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          squarewaves[index].elm.properties[
-            squarewaves[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          squarewaves[index].elm.properties[squarewaves[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2009,40 +1463,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          sawwaves[index].elm.properties[
-            sawwaves[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          sawwaves[index].elm.properties[sawwaves[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2056,40 +1488,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          trianglewaves[index].elm.properties[
-            trianglewaves[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          trianglewaves[index].elm.properties[trianglewaves[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2103,40 +1513,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          constants[index].elm.properties[
-            constants[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          constants[index].elm.properties[constants[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2148,24 +1536,16 @@ class ElementOptionsEditWindow {
       index = engine_functions.get_net(global.selected_id);
       if (index < nets.length) {
         let value = global.copy(this.input_button.text);
-        global.selected_properties[
-          global.selected_properties['options'][this.option_index]
-        ] = value;
-        nets[index].elm.properties[
-          nets[index].elm.properties['options'][this.option_index]
-        ] = value;
+        global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+        nets[index].elm.properties[nets[index].elm.properties['options'][this.option_index]] = value;
       }
     } else if (global.selected_type === global.TYPE_NOTE) {
       var index = -1;
       index = engine_functions.get_note(global.selected_id);
       if (index < notes.length) {
         let value = global.copy(this.input_button.text);
-        global.selected_properties[
-          global.selected_properties['options'][this.option_index]
-        ] = value;
-        notes[index].elm.properties[
-          notes[index].elm.properties['options'][this.option_index]
-        ] = value;
+        global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+        notes[index].elm.properties[notes[index].elm.properties['options'][this.option_index]] = value;
       }
     } else if (global.selected_type === global.TYPE_RAIL) {
       var index = -1;
@@ -2174,40 +1554,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          rails[index].elm.properties[
-            rails[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          rails[index].elm.properties[rails[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2221,40 +1579,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          voltmeters[index].elm.properties[
-            voltmeters[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          voltmeters[index].elm.properties[voltmeters[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2268,40 +1604,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          ohmmeters[index].elm.properties[
-            ohmmeters[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          ohmmeters[index].elm.properties[ohmmeters[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2315,40 +1629,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          ammeters[index].elm.properties[
-            ammeters[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          ammeters[index].elm.properties[ammeters[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2362,40 +1654,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          wattmeters[index].elm.properties[
-            wattmeters[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          wattmeters[index].elm.properties[wattmeters[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2409,40 +1679,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          fuses[index].elm.properties[
-            fuses[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          fuses[index].elm.properties[fuses[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2456,40 +1704,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          spsts[index].elm.properties[
-            spsts[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          spsts[index].elm.properties[spsts[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2503,40 +1729,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          spdts[index].elm.properties[
-            spdts[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          spdts[index].elm.properties[spdts[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2550,40 +1754,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          nots[index].elm.properties[
-            nots[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          nots[index].elm.properties[nots[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2597,40 +1779,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          diodes[index].elm.properties[
-            diodes[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          diodes[index].elm.properties[diodes[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2644,40 +1804,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          leds[index].elm.properties[
-            leds[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          leds[index].elm.properties[leds[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2691,40 +1829,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          zeners[index].elm.properties[
-            zeners[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          zeners[index].elm.properties[zeners[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2738,40 +1854,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          potentiometers[index].elm.properties[
-            potentiometers[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          potentiometers[index].elm.properties[potentiometers[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2785,40 +1879,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          ands[index].elm.properties[
-            ands[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          ands[index].elm.properties[ands[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2832,40 +1904,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          ors[index].elm.properties[
-            ors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          ors[index].elm.properties[ors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2879,40 +1929,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          nands[index].elm.properties[
-            nands[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          nands[index].elm.properties[nands[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2926,40 +1954,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          nors[index].elm.properties[
-            nors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          nors[index].elm.properties[nors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -2973,40 +1979,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          xors[index].elm.properties[
-            xors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          xors[index].elm.properties[xors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3020,40 +2004,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          xnors[index].elm.properties[
-            xnors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          xnors[index].elm.properties[xnors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3067,40 +2029,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          dffs[index].elm.properties[
-            dffs[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          dffs[index].elm.properties[dffs[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3114,40 +2054,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          vsats[index].elm.properties[
-            vsats[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          vsats[index].elm.properties[vsats[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3161,40 +2079,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          adders[index].elm.properties[
-            adders[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          adders[index].elm.properties[adders[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3208,40 +2104,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          subtractors[index].elm.properties[
-            subtractors[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          subtractors[index].elm.properties[subtractors[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3255,40 +2129,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          multipliers[index].elm.properties[
-            multipliers[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          multipliers[index].elm.properties[multipliers[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3302,40 +2154,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          dividers[index].elm.properties[
-            dividers[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          dividers[index].elm.properties[dividers[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3349,40 +2179,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          gains[index].elm.properties[
-            gains[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          gains[index].elm.properties[gains[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3396,40 +2204,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          absvals[index].elm.properties[
-            absvals[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          absvals[index].elm.properties[absvals[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3443,40 +2229,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          vcsws[index].elm.properties[
-            vcsws[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          vcsws[index].elm.properties[vcsws[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3490,40 +2254,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          vcvss[index].elm.properties[
-            vcvss[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          vcvss[index].elm.properties[vcvss[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3537,40 +2279,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          vccss[index].elm.properties[
-            vccss[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          vccss[index].elm.properties[vccss[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3584,40 +2304,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          cccss[index].elm.properties[
-            cccss[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          cccss[index].elm.properties[cccss[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3631,40 +2329,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          ccvss[index].elm.properties[
-            ccvss[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          ccvss[index].elm.properties[ccvss[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3678,40 +2354,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          opamps[index].elm.properties[
-            opamps[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          opamps[index].elm.properties[opamps[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3725,40 +2379,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          nmosfets[index].elm.properties[
-            nmosfets[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          nmosfets[index].elm.properties[nmosfets[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3772,40 +2404,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          pmosfets[index].elm.properties[
-            pmosfets[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          pmosfets[index].elm.properties[pmosfets[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3819,40 +2429,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          npns[index].elm.properties[
-            npns[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          npns[index].elm.properties[npns[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3866,40 +2454,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          pnps[index].elm.properties[
-            pnps[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          pnps[index].elm.properties[pnps[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3913,40 +2479,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          adcs[index].elm.properties[
-            adcs[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          adcs[index].elm.properties[adcs[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -3960,40 +2504,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          dacs[index].elm.properties[
-            dacs[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          dacs[index].elm.properties[dacs[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4007,40 +2529,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          sandhs[index].elm.properties[
-            sandhs[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          sandhs[index].elm.properties[sandhs[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4054,40 +2554,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          pwms[index].elm.properties[
-            pwms[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          pwms[index].elm.properties[pwms[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4101,40 +2579,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          integrators[index].elm.properties[
-            integrators[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          integrators[index].elm.properties[integrators[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4148,40 +2604,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          differentiators[index].elm.properties[
-            differentiators[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          differentiators[index].elm.properties[differentiators[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4195,40 +2629,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          lowpasses[index].elm.properties[
-            lowpasses[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          lowpasses[index].elm.properties[lowpasses[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4242,40 +2654,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          highpasses[index].elm.properties[
-            highpasses[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          highpasses[index].elm.properties[highpasses[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4289,40 +2679,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          relays[index].elm.properties[
-            relays[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          relays[index].elm.properties[relays[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4330,10 +2698,7 @@ class ElementOptionsEditWindow {
         }
 
         /* Conservation of energy */
-        if (
-          relays[index].elm.properties['options'][this.option_index] ===
-          'Inductance'
-        ) {
+        if (relays[index].elm.properties['options'][this.option_index] === 'Inductance') {
           relays[index].conserve_energy();
         }
       }
@@ -4344,40 +2709,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          pids[index].elm.properties[
-            pids[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          pids[index].elm.properties[pids[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4391,40 +2734,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          luts[index].elm.properties[
-            luts[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          luts[index].elm.properties[luts[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4438,40 +2759,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          vcrs[index].elm.properties[
-            vcrs[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          vcrs[index].elm.properties[vcrs[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4485,40 +2784,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          grts[index].elm.properties[
-            grts[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          grts[index].elm.properties[grts[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4532,40 +2809,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          tptzs[index].elm.properties[
-            tptzs[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          tptzs[index].elm.properties[tptzs[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4579,40 +2834,18 @@ class ElementOptionsEditWindow {
         let value = string_operator.parse(this.input_button.text);
         if (
           Math.abs(value) === 0 ||
-          (Math.abs(value) >=
-            Math.abs(
-              global.selected_properties['option_limits'][
-                global.selected_properties['options'][this.option_index]
-              ][global.PROPERTY_LIMIT_MIN]
-            ) &&
-            Math.abs(value) <=
-              Math.abs(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ))
+          (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
+            Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[
-            global.selected_properties['options'][this.option_index]
-          ] = value;
-          transformers[index].elm.properties[
-            transformers[index].elm.properties['options'][this.option_index]
-          ] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+          transformers[index].elm.properties[transformers[index].elm.properties['options'][this.option_index]] = value;
         } else {
           toast.set_text(
             'PARAM = [|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MIN]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
               '|, ' +
               '|' +
-              global.exponentiate_quickly(
-                global.selected_properties['option_limits'][
-                  global.selected_properties['options'][this.option_index]
-                ][global.PROPERTY_LIMIT_MAX]
-              ) +
+              global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
               '|]'
           );
           toast.show();
@@ -4623,9 +2856,7 @@ class ElementOptionsEditWindow {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     if (!ERROR_FLAG) {
       /* We changed something! */
-      global.HISTORY_MANAGER['packet'].push(
-        engine_functions.history_snapshot()
-      );
+      global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       this.option_index = -1;
     }
     return ERROR_FLAG;
@@ -4634,9 +2865,7 @@ class ElementOptionsEditWindow {
     if (this.SELECT_START != this.SELECT_END) {
       let min = Math.min(this.SELECT_START, this.SELECT_END);
       let max = Math.max(this.SELECT_START, this.SELECT_END);
-      this.input_button.text =
-        this.input_button.text.substring(0, min) +
-        this.input_button.text.substring(max, this.input_button.text.length);
+      this.input_button.text = this.input_button.text.substring(0, min) + this.input_button.text.substring(max, this.input_button.text.length);
       if (this.CURSOR_POSITION > 0) {
         this.CURSOR_POSITION = Math.min(min, max);
       }
@@ -4652,12 +2881,7 @@ class ElementOptionsEditWindow {
   }
   double_click(mouse_event) {
     if (global.MOUSE_DOUBLE_CLICK_EVENT) {
-      if (
-        this.input_button.contains_xy(
-          global.mouse_x - this.OFFSET_X,
-          global.mouse_y - this.OFFSET_Y
-        )
-      ) {
+      if (this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)) {
         this.SELECT_ALL = !this.SELECT_ALL;
         if (this.SELECT_ALL) {
           this.SELECT_START = 0;
@@ -4676,18 +2900,8 @@ class ElementOptionsEditWindow {
       this.width = view_port.view_width * 0.15;
       this.height = view_port.view_height * 0.075;
     }
-    this.bounds.set_bounds(
-      view_port.center_x - this.width,
-      view_port.center_y - this.height,
-      view_port.center_x + this.width,
-      view_port.center_y + this.height
-    );
-    this.title_bounds.set_bounds(
-      this.bounds.left,
-      this.bounds.top,
-      this.bounds.right,
-      this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height()
-    );
+    this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+    this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
     this.title_bounds.resize_paint();
     let padding = this.PADDING * this.bounds.get_width();
     let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
@@ -4699,26 +2913,11 @@ class ElementOptionsEditWindow {
       this.bounds.bottom - padding
     );
     this.okay_button.resize_paint();
-    this.cancel_button.set_bounds(
-      this.bounds.right - padding - width,
-      this.bounds.bottom - height - padding,
-      this.bounds.right - padding,
-      this.bounds.bottom - padding
-    );
+    this.cancel_button.set_bounds(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
     this.cancel_button.resize_paint();
-    this.exit_button.set_bounds(
-      this.title_bounds.right - this.title_bounds.get_height(),
-      this.title_bounds.top,
-      this.title_bounds.right,
-      this.title_bounds.bottom
-    );
+    this.exit_button.set_bounds(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
     this.exit_button.resize_paint();
-    this.input_button.set_bounds(
-      this.title_bounds.left + padding,
-      this.title_bounds.bottom + padding,
-      this.cancel_button.right,
-      this.okay_button.top - padding
-    );
+    this.input_button.set_bounds(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
     this.input_button.resize_paint();
     /* Resize the stroke widths and the text sizes. */
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -4749,17 +2948,12 @@ class ElementOptionsEditWindow {
     if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
       /* Makes sure the window is always visisble. */
       if (global.MOBILE_MODE) {
-        if (
-          this.bounds.bottom + this.OFFSET_Y >=
-          on_screen_keyboard.bounds.top
-        ) {
+        if (this.bounds.bottom + this.OFFSET_Y >= on_screen_keyboard.bounds.top) {
           this.OFFSET_Y = on_screen_keyboard.bounds.top - this.bounds.bottom;
         }
       }
-      this.okay_button.text =
-        language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
-      this.cancel_button.text =
-        language_manager.CANCEL[global.LANGUAGES[global.LANGUAGE_INDEX]];
+      this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
+      this.cancel_button.text = language_manager.CANCEL[global.LANGUAGES[global.LANGUAGE_INDEX]];
 
       /* This draws the bounds of the interface. */
       canvas.draw_round_rect(
@@ -4774,19 +2968,10 @@ class ElementOptionsEditWindow {
       this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
       this.title_bounds.draw_button_text(
         canvas,
-        this.title_bounds.left +
-          this.PADDING * this.title_bounds.get_width() +
-          this.OFFSET_X,
+        this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X,
         this.title_bounds.get_center_y() + this.OFFSET_Y
       );
-      if (
-        this.okay_button.contains_xy(
-          global.mouse_x - this.OFFSET_X,
-          global.mouse_y - this.OFFSET_Y
-        ) &&
-        this.WINDOW_ANCHORED &&
-        !global.MOBILE_MODE
-      ) {
+      if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
         canvas.draw_round_rect(
           this.okay_button.left + this.OFFSET_X,
           this.okay_button.top + this.OFFSET_Y,
@@ -4797,14 +2982,7 @@ class ElementOptionsEditWindow {
         );
       }
       this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-      if (
-        this.cancel_button.contains_xy(
-          global.mouse_x - this.OFFSET_X,
-          global.mouse_y - this.OFFSET_Y
-        ) &&
-        this.WINDOW_ANCHORED &&
-        !global.MOBILE_MODE
-      ) {
+      if (this.cancel_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
         canvas.draw_round_rect(
           this.cancel_button.left + this.OFFSET_X,
           this.cancel_button.top + this.OFFSET_Y,
@@ -4816,25 +2994,11 @@ class ElementOptionsEditWindow {
       }
       this.cancel_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
       this.input_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-      let text =
-        this.input_button.text.substring(0, this.CURSOR_POSITION) +
-        this.input_button.text.substring(
-          this.CURSOR_POSITION,
-          this.input_button.text.length
-        );
-      canvas.draw_text(
-        text,
-        this.input_button.get_center_x() + this.OFFSET_X,
-        this.input_button.get_center_y() + this.OFFSET_Y,
-        this.input_button.text_paint
-      );
+      let text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+      canvas.draw_text(text, this.input_button.get_center_x() + this.OFFSET_X, this.input_button.get_center_y() + this.OFFSET_Y, this.input_button.text_paint);
       this.measured_text = this.input_button.text_paint.measure_text(text);
       let adj_text = this.input_button.text;
-      if (
-        this.SELECT_ALL &&
-        this.SELECT_START === -1 &&
-        this.SELECT_END === -1
-      ) {
+      if (this.SELECT_ALL && this.SELECT_START === -1 && this.SELECT_END === -1) {
         canvas.draw_rect3(
           this.input_button.get_center_x() + this.OFFSET_X,
           this.input_button.get_center_y() + this.OFFSET_Y,
@@ -4847,50 +3011,23 @@ class ElementOptionsEditWindow {
       if (this.SELECT_START != -1 && this.SELECT_END != -1) {
         let min = Math.min(this.SELECT_START, this.SELECT_END);
         let max = Math.max(this.SELECT_START, this.SELECT_END);
-        this.SELECT_WIDTH = this.text_paint.measure_text(
-          adj_text.substring(min, max)
-        );
-        this.SELECT_OFFSET_X = this.text_paint.measure_text(
-          adj_text.substring(0, min)
-        );
+        this.SELECT_WIDTH = this.text_paint.measure_text(adj_text.substring(min, max));
+        this.SELECT_OFFSET_X = this.text_paint.measure_text(adj_text.substring(0, min));
         canvas.draw_rect(
-          this.input_button.get_center_x() -
-            cached_measured_text +
-            this.SELECT_OFFSET_X +
-            this.OFFSET_X,
-          this.input_button.get_center_y() -
-            this.input_button.get_height() * 0.35 +
-            this.OFFSET_Y,
-          this.input_button.get_center_x() -
-            cached_measured_text +
-            this.SELECT_OFFSET_X +
-            this.OFFSET_X +
-            this.SELECT_WIDTH,
-          this.input_button.get_center_y() +
-            this.input_button.get_height() * 0.35 +
-            this.OFFSET_Y,
+          this.input_button.get_center_x() - cached_measured_text + this.SELECT_OFFSET_X + this.OFFSET_X,
+          this.input_button.get_center_y() - this.input_button.get_height() * 0.35 + this.OFFSET_Y,
+          this.input_button.get_center_x() - cached_measured_text + this.SELECT_OFFSET_X + this.OFFSET_X + this.SELECT_WIDTH,
+          this.input_button.get_center_y() + this.input_button.get_height() * 0.35 + this.OFFSET_Y,
           this.select_paint
         );
       }
       canvas.draw_text(
         '  _',
-        this.input_button.get_center_x() -
-          cached_measured_text +
-          this.input_button.text_paint.measure_text(
-            adj_text.substring(0, this.CURSOR_POSITION)
-          ) +
-          this.OFFSET_X,
+        this.input_button.get_center_x() - cached_measured_text + this.input_button.text_paint.measure_text(adj_text.substring(0, this.CURSOR_POSITION)) + this.OFFSET_X,
         this.input_button.get_center_y() + this.OFFSET_Y,
         this.input_button.text_paint
       );
-      if (
-        this.exit_button.contains_xy(
-          global.mouse_x - this.OFFSET_X,
-          global.mouse_y - this.OFFSET_Y
-        ) &&
-        this.WINDOW_ANCHORED &&
-        !global.MOBILE_MODE
-      ) {
+      if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
         canvas.draw_round_rect(
           this.exit_button.left + this.OFFSET_X,
           this.exit_button.top + this.OFFSET_Y,
@@ -4917,11 +3054,7 @@ class ElementOptionsEditWindow {
         this.line_paint
       );
       canvas.draw_text(
-        '(' +
-          this.input_button.text.length +
-          ' / ' +
-          global.MAX_TEXT_LENGTH +
-          ')',
+        '(' + this.input_button.text.length + ' / ' + global.MAX_TEXT_LENGTH + ')',
         this.input_button.left + this.OFFSET_X,
         this.okay_button.get_center_y() + this.OFFSET_Y,
         this.text_paint

@@ -51,21 +51,9 @@ class GraphWindow {
   public graph_text_c_paint = new Paint();
   public x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
   public y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-  public graph_trace_a = new Trace(
-    this.X_AXIS_LENGTH,
-    this.Y_AXIS_LENGTH,
-    this.RATIO
-  );
-  public graph_trace_b = new Trace(
-    this.X_AXIS_LENGTH,
-    this.Y_AXIS_LENGTH,
-    this.RATIO
-  );
-  public graph_trace_c = new Trace(
-    this.X_AXIS_LENGTH,
-    this.Y_AXIS_LENGTH,
-    this.RATIO
-  );
+  public graph_trace_a = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+  public graph_trace_b = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+  public graph_trace_c = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
   public meter_hover_index = -1;
   public time_axis_value = '';
   public time_tag = '';
@@ -91,8 +79,7 @@ class GraphWindow {
     this.SCOPE_2_INDEX = 2;
     this.bounds.left = view_port.left;
     this.bounds.right = view_port.right;
-    this.bounds.top =
-      menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
+    this.bounds.top = menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
     this.bounds.bottom = view_port.bottom;
     /* Padding for the graph window. */
     this.PADDING = global.CANVAS_STROKE_WIDTH_5;
@@ -201,23 +188,11 @@ class GraphWindow {
     this.graph_text_c_paint.set_paint_align(this.graph_text_c_paint.align.LEFT);
     this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
     this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-    this.graph_trace_a = new Trace(
-      this.X_AXIS_LENGTH,
-      this.Y_AXIS_LENGTH,
-      this.RATIO
-    );
+    this.graph_trace_a = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
     this.graph_trace_a.set_color(global.TRACE_I_COLOR);
-    this.graph_trace_b = new Trace(
-      this.X_AXIS_LENGTH,
-      this.Y_AXIS_LENGTH,
-      this.RATIO
-    );
+    this.graph_trace_b = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
     this.graph_trace_b.set_color(global.TRACE_II_COLOR);
-    this.graph_trace_c = new Trace(
-      this.X_AXIS_LENGTH,
-      this.Y_AXIS_LENGTH,
-      this.RATIO
-    );
+    this.graph_trace_c = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
     this.graph_trace_c.set_color(global.TRACE_III_COLOR);
     this.meter_hover_index = -1;
     this.time_axis_value = '';
@@ -258,45 +233,15 @@ class GraphWindow {
     this.trim = (this.bounds.get_width() - this.inner_bounds.get_width()) * 0.5;
     this.width = this.inner_bounds.get_width();
     this.height = this.inner_bounds.get_height();
-    this.graph_trace_a.update_parameters(
-      this.inner_bounds,
-      this.RATIO,
-      this.width,
-      this.height,
-      this.trim
-    );
-    this.graph_trace_b.update_parameters(
-      this.inner_bounds,
-      this.RATIO,
-      this.width,
-      this.height,
-      this.trim
-    );
-    this.graph_trace_c.update_parameters(
-      this.inner_bounds,
-      this.RATIO,
-      this.width,
-      this.height,
-      this.trim
-    );
+    this.graph_trace_a.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
+    this.graph_trace_b.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
+    this.graph_trace_c.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
     for (var i = 0; i < this.X_AXIS_LENGTH >> 1; i++) {
-      this.x_axis[i] = new PointF(
-        left + (this.width / (this.x_axis.length >> 1)) * i,
-        top
-      );
-      this.x_axis[i + (this.x_axis.length >> 1)] = new PointF(
-        left + (this.width / (this.x_axis.length >> 1)) * i,
-        bottom
-      );
+      this.x_axis[i] = new PointF(left + (this.width / (this.x_axis.length >> 1)) * i, top);
+      this.x_axis[i + (this.x_axis.length >> 1)] = new PointF(left + (this.width / (this.x_axis.length >> 1)) * i, bottom);
       if (i < this.y_axis.length * 0.5) {
-        this.y_axis[i] = new PointF(
-          left,
-          top + (this.height / (this.y_axis.length * 0.5)) * i
-        );
-        this.y_axis[i + this.y_axis.length * 0.5] = new PointF(
-          right,
-          top + (this.height / (this.y_axis.length * 0.5)) * i
-        );
+        this.y_axis[i] = new PointF(left, top + (this.height / (this.y_axis.length * 0.5)) * i);
+        this.y_axis[i + this.y_axis.length * 0.5] = new PointF(right, top + (this.height / (this.y_axis.length * 0.5)) * i);
       }
     }
   }
@@ -305,8 +250,7 @@ class GraphWindow {
     this.PADDING = global.CANVAS_STROKE_WIDTH_5;
     this.bounds.left = view_port.left;
     this.bounds.right = view_port.right;
-    this.bounds.top =
-      menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
+    this.bounds.top = menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
     this.bounds.bottom = view_port.bottom;
     this.load_axis();
     /* Resize the stroke widths and the text sizes. */
@@ -341,12 +285,7 @@ class GraphWindow {
     }
     let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
     let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
-    this.download_button.set_bounds(
-      this.inner_bounds.right - width,
-      this.inner_bounds.top + padding,
-      this.inner_bounds.right - padding,
-      this.inner_bounds.top + padding + height
-    );
+    this.download_button.set_bounds(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
     this.download_button.resize_paint();
   }
   reset_trace(index) {
@@ -392,13 +331,7 @@ class GraphWindow {
     let temp_str = '';
     let time_stamp = '';
     str += 'time, trace_a, trace_b, trace_c\n';
-    let max = Math.max(
-      Math.max(
-        this.graph_trace_a.trace.length,
-        this.graph_trace_b.trace.length
-      ),
-      this.graph_trace_c.trace.length
-    );
+    let max = Math.max(Math.max(this.graph_trace_a.trace.length, this.graph_trace_b.trace.length), this.graph_trace_c.trace.length);
     let updated_time = false;
     for (var i = 0; i < max; i++) {
       time_stamp = '0, ';
@@ -438,11 +371,7 @@ class GraphWindow {
     if (!global.MOBILE_MODE) {
       save_file(global.USER_FILE.title + '_csv.txt', str);
     } else {
-      window.JsInterface.javascript_native_hook(
-        'push-csv',
-        global.USER_FILE.title + '_csv.txt',
-        str
-      );
+      window.JsInterface.javascript_native_hook('push-csv', global.USER_FILE.title + '_csv.txt', str);
     }
   }
   mouse_move() {
@@ -455,18 +384,14 @@ class GraphWindow {
   information can be displayed for easy visualization. */
   mouse_hover() {
     if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-      this.meter_hover_index = Math.round(
-        ((global.mouse_x - this.inner_bounds.left) /
-          (this.inner_bounds.get_width() / this.X_AXIS_LENGTH)) *
-          0.5
-      );
+      this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.X_AXIS_LENGTH)) * 0.5);
     } else {
       this.meter_hover_index = -1;
     }
   }
   key_down(key_event) {
     if (global.FLAG_GRAPH) {
-      if (key_event['event'].keyCode === global.KEY_CODE_ESCAPE) {
+      if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
         menu_bar.handle_graph_flag(!global.FLAG_GRAPH);
         /* Block out the reset selection portion of the code! */
         global.component_touched = true;
@@ -480,24 +405,14 @@ class GraphWindow {
       /* First we draw the main bounds and then the inner bounds. Note the types of paint
       being used to draw each one of these portions. */
       canvas.draw_rect2(this.bounds, this.fill_paint);
-      canvas.draw_round_rect2(
-        this.inner_bounds,
-        this.PADDING >> 1,
-        this.line_paint
-      );
+      canvas.draw_round_rect2(this.inner_bounds, this.PADDING >> 1, this.line_paint);
       let cached_value = this.x_axis.length >> 1;
-      let cached_value_t_p_o1 =
-        (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
+      let cached_value_t_p_o1 = (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
       let temp = 0;
       let index = 0;
       for (var i = 0; i < cached_value; i += cached_value_t_p_o1) {
         temp = i + cached_value;
-        this.LINE_BUFFER[index++] = Array(
-          this.x_axis[temp].x,
-          this.x_axis[temp].y,
-          this.x_axis[temp].x,
-          this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01
-        );
+        this.LINE_BUFFER[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
       }
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       /* This handles all the bells and whistles for drawing scope trace number one! */
@@ -505,29 +420,17 @@ class GraphWindow {
         /* Display the element that is attached to scope trace number one. */
         canvas.draw_text(
           scope_manager.get_scope_name(this.SCOPE_0_INDEX),
-          this.bounds.get_center_x() -
-            1.25 *
-              global.CANVAS_TEXT_SIZE_BASE *
-              (3.5 *
-                this.text_paint.measure_text(
-                  scope_manager.get_scope_name(this.SCOPE_0_INDEX)
-                )),
-          this.inner_bounds.top -
-            ((this.inner_bounds.top - this.bounds.top) >> 1),
+          this.bounds.get_center_x() - 1.25 * global.CANVAS_TEXT_SIZE_BASE * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))),
+          this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
           this.graph_text_a_paint
         );
         /* Draw the meter value that corresponds to the location of the mouse. */
-        if (
-          this.meter_hover_index > -1 &&
-          this.meter_hover_index < this.graph_trace_a.trace.length
-        ) {
+        if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_a.trace.length) {
           if (this.graph_trace_a.get_value(this.meter_hover_index)[1] != '') {
             canvas.draw_text(
-              this.graph_trace_a.get_value(this.meter_hover_index)[1] +
-                scope_manager.get_units(this.SCOPE_0_INDEX),
+              this.graph_trace_a.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_0_INDEX),
               this.inner_bounds.left,
-              this.inner_bounds.top -
-                ((this.inner_bounds.top - this.bounds.top) >> 1),
+              this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
               this.graph_text_a_paint
             );
           } else {
@@ -535,24 +438,19 @@ class GraphWindow {
             canvas.draw_text(
               '0' + scope_manager.get_units(this.SCOPE_0_INDEX),
               this.inner_bounds.left,
-              this.inner_bounds.top -
-                (this.inner_bounds.top - this.bounds.top) * 0.5,
+              this.inner_bounds.top - (this.inner_bounds.top - this.bounds.top) * 0.5,
               this.graph_text_a_paint
             );
           }
           /* Pick up the time index from the trace, we shall do this 3x, this is out of
           laziness in figuring out if theres atleast one scope trace to grab this value
           from (they should all be the same! (after the graphs line up) )*/
-          this.time_axis_value = this.graph_trace_a.get_value(
-            this.meter_hover_index
-          )[0];
+          this.time_axis_value = this.graph_trace_a.get_value(this.meter_hover_index)[0];
           if (global.MOBILE_MODE) {
             canvas.draw_line(
-              this.bounds.left +
-                this.graph_trace_a.trace[this.meter_hover_index].x,
+              this.bounds.left + this.graph_trace_a.trace[this.meter_hover_index].x,
               this.inner_bounds.top,
-              this.bounds.left +
-                this.graph_trace_a.trace[this.meter_hover_index].x,
+              this.bounds.left + this.graph_trace_a.trace[this.meter_hover_index].x,
               this.inner_bounds.bottom,
               this.line_paint
             );
@@ -564,22 +462,16 @@ class GraphWindow {
         canvas.draw_text(
           scope_manager.get_scope_name(this.SCOPE_1_INDEX),
           this.bounds.get_center_x(),
-          this.inner_bounds.top -
-            ((this.inner_bounds.top - this.bounds.top) >> 1),
+          this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
           this.graph_text_b_paint
         );
         /* Draw the meter value that corresponds to the location of the mouse. */
-        if (
-          this.meter_hover_index > -1 &&
-          this.meter_hover_index < this.graph_trace_b.trace.length
-        ) {
+        if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_b.trace.length) {
           if (this.graph_trace_b.get_value(this.meter_hover_index)[1] != '') {
             canvas.draw_text(
-              this.graph_trace_b.get_value(this.meter_hover_index)[1] +
-                scope_manager.get_units(this.SCOPE_1_INDEX),
+              this.graph_trace_b.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_1_INDEX),
               this.inner_bounds.left + view_port.view_width * 0.1,
-              this.inner_bounds.top -
-                ((this.inner_bounds.top - this.bounds.top) >> 1),
+              this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
               this.graph_text_b_paint
             );
           } else {
@@ -587,21 +479,16 @@ class GraphWindow {
             canvas.draw_text(
               '0' + scope_manager.get_units(this.SCOPE_1_INDEX),
               this.inner_bounds.left + view_port.view_width * 0.1,
-              this.inner_bounds.top -
-                (this.inner_bounds.top - this.bounds.top) * 0.5,
+              this.inner_bounds.top - (this.inner_bounds.top - this.bounds.top) * 0.5,
               this.graph_text_b_paint
             );
           }
-          this.time_axis_value = this.graph_trace_b.get_value(
-            this.meter_hover_index
-          )[0];
+          this.time_axis_value = this.graph_trace_b.get_value(this.meter_hover_index)[0];
           if (global.MOBILE_MODE) {
             canvas.draw_line(
-              this.bounds.left +
-                this.graph_trace_b.trace[this.meter_hover_index].x,
+              this.bounds.left + this.graph_trace_b.trace[this.meter_hover_index].x,
               this.inner_bounds.top,
-              this.bounds.left +
-                this.graph_trace_b.trace[this.meter_hover_index].x,
+              this.bounds.left + this.graph_trace_b.trace[this.meter_hover_index].x,
               this.inner_bounds.bottom,
               this.line_paint
             );
@@ -612,29 +499,17 @@ class GraphWindow {
       if (scope_manager.ENTRY.length > 2) {
         canvas.draw_text(
           scope_manager.get_scope_name(this.SCOPE_2_INDEX),
-          this.bounds.get_center_x() +
-            1.25 *
-              global.CANVAS_TEXT_SIZE_BASE *
-              (3.5 *
-                this.text_paint.measure_text(
-                  scope_manager.get_scope_name(this.SCOPE_2_INDEX)
-                )),
-          this.inner_bounds.top -
-            ((this.inner_bounds.top - this.bounds.top) >> 1),
+          this.bounds.get_center_x() + 1.25 * global.CANVAS_TEXT_SIZE_BASE * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX))),
+          this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
           this.graph_text_c_paint
         );
         /* Draw the meter value that corresponds to the location of the mouse. */
-        if (
-          this.meter_hover_index > -1 &&
-          this.meter_hover_index < this.graph_trace_c.trace.length
-        ) {
+        if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_c.trace.length) {
           if (this.graph_trace_c.get_value(this.meter_hover_index)[1] != '') {
             canvas.draw_text(
-              this.graph_trace_c.get_value(this.meter_hover_index)[1] +
-                scope_manager.get_units(this.SCOPE_2_INDEX),
+              this.graph_trace_c.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_2_INDEX),
               this.inner_bounds.left + view_port.view_width * 0.2,
-              this.inner_bounds.top -
-                ((this.inner_bounds.top - this.bounds.top) >> 1),
+              this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
               this.graph_text_c_paint
             );
           } else {
@@ -642,21 +517,16 @@ class GraphWindow {
             canvas.draw_text(
               '0' + scope_manager.get_units(this.SCOPE_2_INDEX),
               this.inner_bounds.left + view_port.view_width * 0.2,
-              this.inner_bounds.top -
-                (this.inner_bounds.top - this.bounds.top) * 0.5,
+              this.inner_bounds.top - (this.inner_bounds.top - this.bounds.top) * 0.5,
               this.graph_text_c_paint
             );
           }
-          this.time_axis_value = this.graph_trace_c.get_value(
-            this.meter_hover_index
-          )[0];
+          this.time_axis_value = this.graph_trace_c.get_value(this.meter_hover_index)[0];
           if (global.MOBILE_MODE) {
             canvas.draw_line(
-              this.bounds.left +
-                this.graph_trace_c.trace[this.meter_hover_index].x,
+              this.bounds.left + this.graph_trace_c.trace[this.meter_hover_index].x,
               this.inner_bounds.top,
-              this.bounds.left +
-                this.graph_trace_c.trace[this.meter_hover_index].x,
+              this.bounds.left + this.graph_trace_c.trace[this.meter_hover_index].x,
               this.inner_bounds.bottom,
               this.line_paint
             );
@@ -675,13 +545,10 @@ class GraphWindow {
           canvas.draw_text(
             this.time_axis_value + 's',
             this.inner_bounds.right -
-              this.text_paint.measure_text(
-                global.exponentiate_quickly(global.TIME_STEP) + 's/step   '
-              ) -
+              this.text_paint.measure_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step   ') -
               this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
               view_port.view_width * 0.1,
-            this.inner_bounds.top -
-              ((this.inner_bounds.top - this.bounds.top) >> 1),
+            this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
             this.text_paint
           );
         }
@@ -690,20 +557,12 @@ class GraphWindow {
       do it though! */
       if (this.graph_trace_a.magnitude_list.length > 0) {
         /* Stepping at a fixed interval through the elements. */
-        for (
-          var i = Math.round(this.X_AXIS_LENGTH * 0.1);
-          i < Math.round(this.X_AXIS_LENGTH >> 1);
-          i += Math.round(this.X_AXIS_LENGTH * 0.1)
-        ) {
+        for (var i = Math.round(this.X_AXIS_LENGTH * 0.1); i < Math.round(this.X_AXIS_LENGTH >> 1); i += Math.round(this.X_AXIS_LENGTH * 0.1)) {
           if (i < this.graph_trace_a.magnitude_list.length) {
-            this.time_tag = global.exponentiate_quickly(
-              this.graph_trace_a.magnitude_list[i].x
-            );
+            this.time_tag = global.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
             canvas.draw_text(
               this.time_tag + 's',
-              view_port.left +
-                this.graph_trace_a.trace[i].x -
-                (this.text_paint.measure_text(this.time_tag) >> 1),
+              view_port.left + this.graph_trace_a.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
               this.inner_bounds.bottom - global.CANVAS_STROKE_WIDTH_6,
               this.text_paint
             );
@@ -711,24 +570,13 @@ class GraphWindow {
             break;
           }
         }
-      } else if (
-        this.graph_trace_a.magnitude_list.length === 0 &&
-        this.graph_trace_b.magnitude_list.length > 0
-      ) {
-        for (
-          var i = (this.X_AXIS_LENGTH >> 1) * 0.1;
-          i < this.X_AXIS_LENGTH >> 1;
-          i += (this.X_AXIS_LENGTH >> 1) * 0.1
-        ) {
+      } else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length > 0) {
+        for (var i = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
           if (i < this.graph_trace_b.magnitude_list.length) {
-            this.time_tag = global.exponentiate_quickly(
-              this.graph_trace_b.magnitude_list[i].x
-            );
+            this.time_tag = global.exponentiate_quickly(this.graph_trace_b.magnitude_list[i].x);
             canvas.draw_text(
               this.time_tag + 's',
-              view_port.left +
-                this.graph_trace_b.trace[i].x -
-                (this.text_paint.measure_text(this.time_tag) >> 1),
+              view_port.left + this.graph_trace_b.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
               this.inner_bounds.bottom - global.CANVAS_STROKE_WIDTH_6,
               this.text_paint
             );
@@ -736,25 +584,13 @@ class GraphWindow {
             break;
           }
         }
-      } else if (
-        this.graph_trace_a.magnitude_list.length === 0 &&
-        this.graph_trace_b.magnitude_list.length === 0 &&
-        this.graph_trace_c.magnitude_list.length > 0
-      ) {
-        for (
-          var i = (this.X_AXIS_LENGTH >> 1) * 0.1;
-          i < this.X_AXIS_LENGTH >> 1;
-          i += (this.X_AXIS_LENGTH >> 1) * 0.1
-        ) {
+      } else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length === 0 && this.graph_trace_c.magnitude_list.length > 0) {
+        for (var i = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
           if (i < this.graph_trace_c.magnitude_list.length) {
-            this.time_tag = global.exponentiate_quickly(
-              this.graph_trace_c.magnitude_list[i].x
-            );
+            this.time_tag = global.exponentiate_quickly(this.graph_trace_c.magnitude_list[i].x);
             canvas.draw_text(
               this.time_tag + 's',
-              view_port.left +
-                this.graph_trace_c.trace[i].x -
-                (this.text_paint.measure_text(this.time_tag) >> 1),
+              view_port.left + this.graph_trace_c.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
               this.inner_bounds.bottom - global.CANVAS_STROKE_WIDTH_6,
               this.text_paint
             );
@@ -766,23 +602,12 @@ class GraphWindow {
       /* Draw the timestep of the graph at the top right. */
       canvas.draw_text(
         global.exponentiate_quickly(global.TIME_STEP) + 's/step',
-        this.inner_bounds.right -
-          this.text_paint.measure_text(
-            global.exponentiate_quickly(global.TIME_STEP) + 's/step   '
-          ),
-        this.inner_bounds.top -
-          ((this.inner_bounds.top - this.bounds.top) >> 1),
+        this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step   '),
+        this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
         this.text_paint
       );
-      if (
-        this.download_button.contains_xy(global.mouse_x, global.mouse_y) &&
-        !global.MOBILE_MODE
-      ) {
-        canvas.draw_round_rect2(
-          this.download_button,
-          0.6 * global.CANVAS_STROKE_WIDTH_3,
-          this.hover_paint
-        );
+      if (this.download_button.contains_xy(global.mouse_x, global.mouse_y) && !global.MOBILE_MODE) {
+        canvas.draw_round_rect2(this.download_button, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.hover_paint);
       }
       this.download_button.draw_button(canvas);
       /* Last but not least, draw trace a, b, and c */
