@@ -89,10 +89,28 @@ declare type PAINT_METRICS_T = {
   descent: number;
 };
 
+declare type PAINT_METRICS_ARRAY_T = {
+  text: string;
+  font: string;
+  'text size': number;
+  metric: PAINT_METRICS_T;
+};
+
 declare type ANGLE_STRUCT_T = {
   x: number;
   y: number;
   angle: number;
+};
+
+declare type LANGUAGE_T = {
+  English: string;
+  Spanish: string;
+  French: string;
+  Italian: string;
+  Dutch: string;
+  Russian: string;
+  German: string;
+  Indonesian: string;
 };
 
 declare type SCOPE_ENTRY_T = {

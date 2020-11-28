@@ -43,7 +43,7 @@ class VirtualCanvas {
       alpha: false
     });
   }
-  resize() {
+  resize(): void {
     this.surface.width = view_port.right;
     this.surface.height = view_port.bottom;
     try {
@@ -65,7 +65,7 @@ class VirtualCanvas {
     } catch (e) {}
   }
 
-  get_surface() {
+  get_surface(): HTMLCanvasElement {
     return this.surface;
   }
 }

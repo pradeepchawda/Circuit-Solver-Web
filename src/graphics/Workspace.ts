@@ -43,13 +43,7 @@ class Workspace {
   public LINE_BUFFER: Array<Array<number>> = [];
   public GRID_MOVED: boolean = true;
 
-  constructor(
-    left: number,
-    top: number,
-    right: number,
-    bottom: number,
-    scale: number
-  ) {
+  constructor(left: number, top: number, right: number, bottom: number, scale: number) {
     /* Flag to make sure that the bounds are resized before we draw it to the screen. */
     this.FIRST_RESIZE_FLAG = false;
     /* Flag to control when we draw things to the screen. */
@@ -58,20 +52,14 @@ class Workspace {
     this.view = new RectF(left, top, right, bottom);
     /* The workspace that we will be using. Initial sizing */
     this.bounds = new RectF(
-      view_port.center_x -
-        view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale,
-      view_port.center_y -
-        view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale,
-      view_port.center_x +
-        view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale,
-      view_port.center_y +
-        view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale
+      view_port.center_x - view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale,
+      view_port.center_y - view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale,
+      view_port.center_x + view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale,
+      view_port.center_y + view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale
     );
     /* Compute the node space (x and y) based on how many nodes we are to generate. */
-    global.node_space_x =
-      this.bounds.get_width() / global.settings.SQRT_MAXNODES;
-    global.node_space_y =
-      this.bounds.get_height() / global.settings.SQRT_MAXNODES;
+    global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
+    global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
     /* The paint for the view's outline! */
     this.view_paint = new Paint();
     this.view_paint.set_paint_style(this.view_paint.style.STROKE);
@@ -124,7 +112,7 @@ class Workspace {
     this.GRID_MOVED = true;
   }
   /* Resize the workspace. This is called whenever the screen size changes. */
-  workspace_resize() {
+  workspace_resize(): void {
     this.GRID_MOVED = true;
     this.view_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
     this.view_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -149,10 +137,8 @@ class Workspace {
       );
     }
     /* Once we change bounds, we must compute the new node spaces (x and y) */
-    global.node_space_x =
-      this.bounds.get_width() / global.settings.SQRT_MAXNODES;
-    global.node_space_y =
-      this.bounds.get_height() / global.settings.SQRT_MAXNODES;
+    global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
+    global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
     /* Report that we have resized atleast once. */
     if (!this.FIRST_RESIZE_FLAG || global.FORCE_RESIZE_EVENT) {
       zoom_window.set_zoom(global.WORKSPACE_ZOOM_SCALE);
@@ -161,7 +147,7 @@ class Workspace {
     this.grid_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
   }
   /* This is for zooming the bounds to a specified point (mouse_x and mouse_y) */
-  workspace_zoom() {
+  workspace_zoom(): void {
     this.GRID_MOVED = true;
     global.SIGNAL_BUILD_ELEMENT = true;
     global.SIGNAL_BUILD_COUNTER = 0;
@@ -169,15 +155,11 @@ class Workspace {
     bounds around a point. delta_x/y and scale are calculated in Engine */
     this.bounds.left = global.delta_x;
     this.bounds.top = global.delta_y;
-    this.bounds.right =
-      this.bounds.left + global.natural_width * global.WORKSPACE_ZOOM_SCALE;
-    this.bounds.bottom =
-      this.bounds.top + global.natural_height * global.WORKSPACE_ZOOM_SCALE;
+    this.bounds.right = this.bounds.left + global.natural_width * global.WORKSPACE_ZOOM_SCALE;
+    this.bounds.bottom = this.bounds.top + global.natural_height * global.WORKSPACE_ZOOM_SCALE;
     /* We changed the bounds, we must re-compute the node spaces (x and y) */
-    global.node_space_x =
-      this.bounds.get_width() / global.settings.SQRT_MAXNODES;
-    global.node_space_y =
-      this.bounds.get_height() / global.settings.SQRT_MAXNODES;
+    global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
+    global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
 
     /* #INSERT_METER_RESIZE_TRACE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -196,7 +178,7 @@ class Workspace {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
   /* This is for a translation event, it will just shift the bounds by dx and dy*/
-  workspace_translate_bounds(dx: number, dy: number) {
+  workspace_translate_bounds(dx: number, dy: number): void {
     this.GRID_MOVED = true;
     global.SIGNAL_BUILD_ELEMENT = true;
     global.SIGNAL_BUILD_COUNTER = 0;
@@ -205,7 +187,7 @@ class Workspace {
     this.bounds.top += dy;
     this.bounds.bottom += dy;
   }
-  workspace_draw(canvas: GraphicsEngine) {
+  workspace_draw(canvas: GraphicsEngine): void {
     if (this.DRAW_TO_SCREEN) {
       /* Draw the work area (background of bounds)*/
       if (this.DRAW_GRID === true) {
@@ -216,20 +198,20 @@ class Workspace {
       /* This is a performance hit. */
       if (this.DRAW_GRID === true) {
         if (this.GRID_MOVED === true) {
-          let floored_sqrt_m_1 = Math.floor(global.settings.SQRT_MAXNODES_M1);
-          let floored_sqrt = Math.floor(global.settings.SQRT_MAXNODES);
-          let x_space = Math.floor(global.node_space_x >> 1);
-          let y_space = Math.floor(global.node_space_y >> 1);
-          let loop_temp = Math.floor(nodes.length - floored_sqrt);
-          let horizontal_index = 0;
-          let index = 0;
-          let node_index = 0;
-          let node_index_alt = 0;
-          let cached_location_i = global.NULL;
-          let cached_location_horizontal = global.NULL;
-          let cached_location_index = global.NULL;
-          let cached_location_alt = global.NULL;
-          let temp_index = 0;
+          let floored_sqrt_m_1: number = Math.floor(global.settings.SQRT_MAXNODES_M1);
+          let floored_sqrt: number = Math.floor(global.settings.SQRT_MAXNODES);
+          let x_space: number = Math.floor(global.node_space_x >> 1);
+          let y_space: number = Math.floor(global.node_space_y >> 1);
+          let loop_temp: number = Math.floor(nodes.length - floored_sqrt);
+          let horizontal_index: number = 0;
+          let index: number = 0;
+          let node_index: number = 0;
+          let node_index_alt: number = 0;
+          let cached_location_i: PointF = global.NULL;
+          let cached_location_horizontal: PointF = global.NULL;
+          let cached_location_index: PointF = global.NULL;
+          let cached_location_alt: PointF = global.NULL;
+          let temp_index: number = 0;
           for (var i = 0; i < floored_sqrt; i++) {
             node_index = (horizontal_index + floored_sqrt_m_1) >> global.ZERO;
             node_index_alt = (loop_temp + i) >> global.ZERO;
@@ -239,32 +221,12 @@ class Workspace {
               cached_location_index = nodes[node_index].location;
               cached_location_alt = nodes[node_index_alt].location;
               if (i > 0) {
-                this.LINE_BUFFER[index++] = Array(
-                  cached_location_i.x,
-                  cached_location_i.y,
-                  cached_location_alt.x,
-                  cached_location_alt.y
-                );
-                this.LINE_BUFFER[index++] = Array(
-                  cached_location_horizontal.x,
-                  cached_location_horizontal.y,
-                  cached_location_index.x,
-                  cached_location_index.y
-                );
+                this.LINE_BUFFER[index++] = Array(cached_location_i.x, cached_location_i.y, cached_location_alt.x, cached_location_alt.y);
+                this.LINE_BUFFER[index++] = Array(cached_location_horizontal.x, cached_location_horizontal.y, cached_location_index.x, cached_location_index.y);
               }
               temp_index = (nodes.length - floored_sqrt + i) >> global.ZERO;
-              this.LINE_BUFFER[index++] = Array(
-                cached_location_i.x + x_space,
-                cached_location_i.y,
-                cached_location_alt.x + x_space,
-                nodes[temp_index].location.y
-              );
-              this.LINE_BUFFER[index++] = Array(
-                cached_location_horizontal.x,
-                cached_location_horizontal.y + y_space,
-                cached_location_index.x,
-                cached_location_index.y + y_space
-              );
+              this.LINE_BUFFER[index++] = Array(cached_location_i.x + x_space, cached_location_i.y, cached_location_alt.x + x_space, nodes[temp_index].location.y);
+              this.LINE_BUFFER[index++] = Array(cached_location_horizontal.x, cached_location_horizontal.y + y_space, cached_location_index.x, cached_location_index.y + y_space);
             }
             horizontal_index += floored_sqrt;
           }

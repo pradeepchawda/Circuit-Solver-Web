@@ -47,56 +47,48 @@ used to determine the best time-step for the system. */
   public TIME_DATA = [];
   /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
   /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  public ELEMENT_DCSOURCE_OFFSET = 0;
-  public ELEMENT_ACSOURCE_OFFSET =
-    this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-  public ELEMENT_SQUAREWAVE_OFFSET =
-    this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-  public ELEMENT_SAW_OFFSET =
-    this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
-  public ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-  public ELEMENT_CONSTANT_OFFSET =
-    this.ELEMENT_TRI_OFFSET + trianglewaves.length;
-  public ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
-  public ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
-  public ELEMENT_AMMETER_OFFSET =
-    this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-  public ELEMENT_WATTMETER_OFFSET =
-    this.ELEMENT_AMMETER_OFFSET + ammeters.length;
-  public ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
-  public ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
-  public ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
-  public ELEMENT_NAND_OFFSET = this.ELEMENT_OR_OFFSET + ors.length;
-  public ELEMENT_NOR_OFFSET = this.ELEMENT_NAND_OFFSET + nands.length;
-  public ELEMENT_XOR_OFFSET = this.ELEMENT_NOR_OFFSET + nors.length;
-  public ELEMENT_XNOR_OFFSET = this.ELEMENT_XOR_OFFSET + xors.length;
-  public ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
-  public ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + dffs.length;
-  public ELEMENT_ADD_OFFSET = this.ELEMENT_VSAT_OFFSET + vsats.length;
-  public ELEMENT_SUB_OFFSET = this.ELEMENT_ADD_OFFSET + adders.length;
-  public ELEMENT_MUL_OFFSET = this.ELEMENT_SUB_OFFSET + subtractors.length;
-  public ELEMENT_DIV_OFFSET = this.ELEMENT_MUL_OFFSET + multipliers.length;
-  public ELEMENT_GAIN_OFFSET = this.ELEMENT_DIV_OFFSET + dividers.length;
-  public ELEMENT_ABS_OFFSET = this.ELEMENT_GAIN_OFFSET + gains.length;
-  public ELEMENT_VCVS_OFFSET = this.ELEMENT_ABS_OFFSET + absvals.length;
-  public ELEMENT_CCCS_OFFSET = this.ELEMENT_VCVS_OFFSET + vcvss.length;
-  public ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
-  public ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + ccvss.length;
-  public ELEMENT_ADC_OFFSET = this.ELEMENT_OPAMP_OFFSET + opamps.length;
-  public ELEMENT_DAC_OFFSET = this.ELEMENT_ADC_OFFSET + adcs.length;
-  public ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
-  public ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
-  public ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
-  public ELEMENT_DIFFERENTIATOR_OFFSET =
-    this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-  public ELEMENT_LPF_OFFSET =
-    this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
-  public ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
-  public ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
-  public ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
-  public ELEMENT_GRT_OFFSET = this.ELEMENT_LUT_OFFSET + luts.length;
-  public ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
-  public ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
+  public ELEMENT_DCSOURCE_OFFSET: number = 0;
+  public ELEMENT_ACSOURCE_OFFSET: number = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
+  public ELEMENT_SQUAREWAVE_OFFSET: number = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
+  public ELEMENT_SAW_OFFSET: number = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
+  public ELEMENT_TRI_OFFSET: number = this.ELEMENT_SAW_OFFSET + sawwaves.length;
+  public ELEMENT_CONSTANT_OFFSET: number = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
+  public ELEMENT_RAIL_OFFSET: number = this.ELEMENT_CONSTANT_OFFSET + constants.length;
+  public ELEMENT_OHMMETER_OFFSET: number = this.ELEMENT_RAIL_OFFSET + rails.length;
+  public ELEMENT_AMMETER_OFFSET: number = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
+  public ELEMENT_WATTMETER_OFFSET: number = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
+  public ELEMENT_NOT_OFFSET: number = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
+  public ELEMENT_AND_OFFSET: number = this.ELEMENT_NOT_OFFSET + nots.length;
+  public ELEMENT_OR_OFFSET: number = this.ELEMENT_AND_OFFSET + ands.length;
+  public ELEMENT_NAND_OFFSET: number = this.ELEMENT_OR_OFFSET + ors.length;
+  public ELEMENT_NOR_OFFSET: number = this.ELEMENT_NAND_OFFSET + nands.length;
+  public ELEMENT_XOR_OFFSET: number = this.ELEMENT_NOR_OFFSET + nors.length;
+  public ELEMENT_XNOR_OFFSET: number = this.ELEMENT_XOR_OFFSET + xors.length;
+  public ELEMENT_DFF_OFFSET: number = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
+  public ELEMENT_VSAT_OFFSET: number = this.ELEMENT_DFF_OFFSET + dffs.length;
+  public ELEMENT_ADD_OFFSET: number = this.ELEMENT_VSAT_OFFSET + vsats.length;
+  public ELEMENT_SUB_OFFSET: number = this.ELEMENT_ADD_OFFSET + adders.length;
+  public ELEMENT_MUL_OFFSET: number = this.ELEMENT_SUB_OFFSET + subtractors.length;
+  public ELEMENT_DIV_OFFSET: number = this.ELEMENT_MUL_OFFSET + multipliers.length;
+  public ELEMENT_GAIN_OFFSET: number = this.ELEMENT_DIV_OFFSET + dividers.length;
+  public ELEMENT_ABS_OFFSET: number = this.ELEMENT_GAIN_OFFSET + gains.length;
+  public ELEMENT_VCVS_OFFSET: number = this.ELEMENT_ABS_OFFSET + absvals.length;
+  public ELEMENT_CCCS_OFFSET: number = this.ELEMENT_VCVS_OFFSET + vcvss.length;
+  public ELEMENT_CCVS_OFFSET: number = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
+  public ELEMENT_OPAMP_OFFSET: number = this.ELEMENT_CCVS_OFFSET + ccvss.length;
+  public ELEMENT_ADC_OFFSET: number = this.ELEMENT_OPAMP_OFFSET + opamps.length;
+  public ELEMENT_DAC_OFFSET: number = this.ELEMENT_ADC_OFFSET + adcs.length;
+  public ELEMENT_SAH_OFFSET: number = this.ELEMENT_DAC_OFFSET + dacs.length;
+  public ELEMENT_PWM_OFFSET: number = this.ELEMENT_SAH_OFFSET + sandhs.length;
+  public ELEMENT_INTEGRATOR_OFFSET: number = this.ELEMENT_PWM_OFFSET + pwms.length;
+  public ELEMENT_DIFFERENTIATOR_OFFSET: number = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
+  public ELEMENT_LPF_OFFSET: number = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
+  public ELEMENT_HPF_OFFSET: number = this.ELEMENT_LPF_OFFSET + lowpasses.length;
+  public ELEMENT_PID_OFFSET: number = this.ELEMENT_HPF_OFFSET + highpasses.length;
+  public ELEMENT_LUT_OFFSET: number = this.ELEMENT_PID_OFFSET + pids.length;
+  public ELEMENT_GRT_OFFSET: number = this.ELEMENT_LUT_OFFSET + luts.length;
+  public ELEMENT_TPTZ_OFFSET: number = this.ELEMENT_GRT_OFFSET + grts.length;
+  public ELEMENT_TRAN_OFFSET: number = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
   /* <!-- END AUTOMATICALLY GENERATED !--> */
 
   constructor() {
@@ -128,21 +120,15 @@ used to determine the best time-step for the system. */
     /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     this.ELEMENT_DCSOURCE_OFFSET = 0;
-    this.ELEMENT_ACSOURCE_OFFSET =
-      this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-    this.ELEMENT_SQUAREWAVE_OFFSET =
-      this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-    this.ELEMENT_SAW_OFFSET =
-      this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
+    this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
+    this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
+    this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
     this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-    this.ELEMENT_CONSTANT_OFFSET =
-      this.ELEMENT_TRI_OFFSET + trianglewaves.length;
+    this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
     this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
     this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
-    this.ELEMENT_AMMETER_OFFSET =
-      this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-    this.ELEMENT_WATTMETER_OFFSET =
-      this.ELEMENT_AMMETER_OFFSET + ammeters.length;
+    this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
+    this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
     this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
     this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
     this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
@@ -167,10 +153,8 @@ used to determine the best time-step for the system. */
     this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
     this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
     this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
-    this.ELEMENT_DIFFERENTIATOR_OFFSET =
-      this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-    this.ELEMENT_LPF_OFFSET =
-      this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
+    this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
+    this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
     this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
     this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
     this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
@@ -180,7 +164,7 @@ used to determine the best time-step for the system. */
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
   /* Prepare the system for another simulation! (Called once, like an init) */
-  reset_simulation() {
+  reset_simulation(): void {
     /* Reset the initialized flag, we haven't setup the environment yet. */
     this.INITIALIZED = false;
     /* Start the simulation back at time 0 */
@@ -197,7 +181,7 @@ used to determine the best time-step for the system. */
     this.FIST_X_MATRIX_SOLUTION = false;
     linear_algebra.FIRST_LUP_SOLVE = true;
   }
-  setup() {
+  setup(): void {
     this.patch();
     /* Reset the singular matrix flag. */
     global.IS_SINGULAR = false;
@@ -205,11 +189,7 @@ used to determine the best time-step for the system. */
     /* Reset the system and get it ready for simulation! */
     this.reset_simulation();
     /* Determine the optimal time-step. */
-    if (
-      global.SYSTEM_OPTIONS['values'][
-        global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP
-      ] === global.ON
-    ) {
+    if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
       global.TIME_STEP = this.determine_optimal_timestep();
       bottom_menu.resize_bottom_menu();
     } else {
@@ -280,21 +260,15 @@ used to determine the best time-step for the system. */
     /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     this.ELEMENT_DCSOURCE_OFFSET = 0;
-    this.ELEMENT_ACSOURCE_OFFSET =
-      this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-    this.ELEMENT_SQUAREWAVE_OFFSET =
-      this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-    this.ELEMENT_SAW_OFFSET =
-      this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
+    this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
+    this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
+    this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
     this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-    this.ELEMENT_CONSTANT_OFFSET =
-      this.ELEMENT_TRI_OFFSET + trianglewaves.length;
+    this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
     this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
     this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
-    this.ELEMENT_AMMETER_OFFSET =
-      this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-    this.ELEMENT_WATTMETER_OFFSET =
-      this.ELEMENT_AMMETER_OFFSET + ammeters.length;
+    this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
+    this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
     this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
     this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
     this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
@@ -319,10 +293,8 @@ used to determine the best time-step for the system. */
     this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
     this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
     this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
-    this.ELEMENT_DIFFERENTIATOR_OFFSET =
-      this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-    this.ELEMENT_LPF_OFFSET =
-      this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
+    this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
+    this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
     this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
     this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
     this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
@@ -331,15 +303,13 @@ used to determine the best time-step for the system. */
     this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     /* Let's display that we are simulating to the user! */
-    toast.set_text(
-      language_manager.START_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]
-    );
+    toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
     toast.show();
     this.SOLUTIONS_READY = false;
     /* Set the flag to indicate that we have prepared the system. */
     this.INITIALIZED = true;
   }
-  determine_optimal_timestep() {
+  determine_optimal_timestep(): number {
     /* Remove all time data */
     this.TIME_DATA.splice(0, this.TIME_DATA.length);
     /* #INSERT_GENERATE_PUSH_TIME_DATA# */
@@ -546,102 +516,76 @@ used to determine the best time-step for the system. */
       this.TIME_DATA.push(transformers[i].time_data());
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    let max_frequency = global.ZERO;
-    let min_frequency = Number.MAX_VALUE;
-    let max_resistance = global.ZERO;
-    let min_resistance = Number.MAX_VALUE;
-    let max_capacitance = global.ZERO;
-    let min_capacitance = Number.MAX_VALUE;
-    let max_inductance = global.ZERO;
-    let min_inductance = Number.MAX_VALUE;
-    let parallel_resistance = global.ZERO;
-    let series_resistance = global.ZERO;
-    let parallel_series_updated = false;
-    let min_freq_updated = false;
-    let max_freq_updated = false;
-    let min_res_updated = false;
-    let max_res_updated = false;
-    let min_cap_updated = false;
-    let max_cap_updated = false;
-    let min_ind_updated = false;
-    let max_ind_updated = false;
+    let max_frequency: number = global.ZERO;
+    let min_frequency: number = Number.MAX_VALUE;
+    let max_resistance: number = global.ZERO;
+    let min_resistance: number = Number.MAX_VALUE;
+    let max_capacitance: number = global.ZERO;
+    let min_capacitance: number = Number.MAX_VALUE;
+    let max_inductance: number = global.ZERO;
+    let min_inductance: number = Number.MAX_VALUE;
+    let parallel_resistance: number = global.ZERO;
+    let series_resistance: number = global.ZERO;
+    let parallel_series_updated: boolean = false;
+    let min_freq_updated: boolean = false;
+    let max_freq_updated: boolean = false;
+    let min_res_updated: boolean = false;
+    let max_res_updated: boolean = false;
+    let min_cap_updated: boolean = false;
+    let max_cap_updated: boolean = false;
+    let min_ind_updated: boolean = false;
+    let max_ind_updated: boolean = false;
     for (var i = 0; i < this.TIME_DATA.length; i++) {
       if (this.TIME_DATA[i]['Resistance'] > 0) {
-        parallel_resistance += global.copy(
-          1.0 / this.TIME_DATA[i]['Resistance']
-        );
+        parallel_resistance += global.copy(1.0 / this.TIME_DATA[i]['Resistance']);
         series_resistance += global.copy(this.TIME_DATA[i]['Resistance']);
         if (!parallel_series_updated) {
           parallel_series_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Frequency'] < min_frequency &&
-        this.TIME_DATA[i]['Frequency'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Frequency'] < min_frequency && this.TIME_DATA[i]['Frequency'] > 0) {
         min_frequency = global.copy(this.TIME_DATA[i]['Frequency']);
         if (!min_freq_updated) {
           min_freq_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Frequency'] > max_frequency &&
-        this.TIME_DATA[i]['Frequency'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Frequency'] > max_frequency && this.TIME_DATA[i]['Frequency'] > 0) {
         max_frequency = global.copy(this.TIME_DATA[i]['Frequency']);
         if (!max_freq_updated) {
           max_freq_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Capacitance'] > max_capacitance &&
-        this.TIME_DATA[i]['Capacitance'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Capacitance'] > max_capacitance && this.TIME_DATA[i]['Capacitance'] > 0) {
         max_capacitance = global.copy(this.TIME_DATA[i]['Capacitance']);
         if (!max_cap_updated) {
           max_cap_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Resistance'] > max_resistance &&
-        this.TIME_DATA[i]['Resistance'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Resistance'] > max_resistance && this.TIME_DATA[i]['Resistance'] > 0) {
         max_resistance = global.copy(this.TIME_DATA[i]['Resistance']);
         if (!max_res_updated) {
           max_res_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Inductance'] > max_inductance &&
-        this.TIME_DATA[i]['Inductance'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Inductance'] > max_inductance && this.TIME_DATA[i]['Inductance'] > 0) {
         max_inductance = global.copy(this.TIME_DATA[i]['Inductance']);
         if (!max_ind_updated) {
           max_ind_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Capacitance'] < min_capacitance &&
-        this.TIME_DATA[i]['Capacitance'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Capacitance'] < min_capacitance && this.TIME_DATA[i]['Capacitance'] > 0) {
         min_capacitance = global.copy(this.TIME_DATA[i]['Capacitance']);
         if (!min_cap_updated) {
           min_cap_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Resistance'] < min_resistance &&
-        this.TIME_DATA[i]['Resistance'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Resistance'] < min_resistance && this.TIME_DATA[i]['Resistance'] > 0) {
         min_resistance = global.copy(this.TIME_DATA[i]['Resistance']);
         if (!min_res_updated) {
           min_res_updated = true;
         }
       }
-      if (
-        this.TIME_DATA[i]['Inductance'] < min_inductance &&
-        this.TIME_DATA[i]['Inductance'] > 0
-      ) {
+      if (this.TIME_DATA[i]['Inductance'] < min_inductance && this.TIME_DATA[i]['Inductance'] > 0) {
         min_inductance = global.copy(this.TIME_DATA[i]['Inductance']);
         if (!min_ind_updated) {
           min_ind_updated = true;
@@ -678,92 +622,36 @@ used to determine the best time-step for the system. */
     if (!max_ind_updated) {
       max_inductance = global.settings.MAX_INDUCTANCE;
     }
-    let ts_final = 1;
-    let multiplier = 0.016;
+    let ts_final: number = 1;
+    let multiplier: number = 0.016;
     if (parallel_series_updated) {
-      let rc_parallel = Math.min(
-        Math.max(
-          parallel_resistance * min_capacitance * multiplier,
-          global.settings.MIN_TIME_CONSTANT
-        ),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      let rl_parallel = Math.min(
-        Math.max(
-          (min_inductance / parallel_resistance) * multiplier,
-          global.settings.MIN_TIME_CONSTANT
-        ),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      let t_lc = Math.min(
-        Math.max(
-          Math.sqrt(min_capacitance * min_inductance) * multiplier,
-          global.settings.MIN_TIME_CONSTANT
-        ),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      let max_period = (1.0 / max_frequency) * multiplier;
-      let rc_series = Math.min(
-        Math.max(
-          series_resistance * min_capacitance * multiplier,
-          global.settings.MIN_TIME_CONSTANT
-        ),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      let rl_series = Math.min(
-        Math.max(
-          (min_inductance / series_resistance) * multiplier,
-          global.settings.MIN_TIME_CONSTANT
-        ),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      let min_period = (1.0 / min_frequency) * multiplier;
-      let ts1 = global.min3(rc_parallel, rl_parallel, max_period);
-      let ts2 = global.min3(rc_series, rl_series, min_period);
+      let rc_parallel: number = Math.min(Math.max(parallel_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      let rl_parallel: number = Math.min(Math.max((min_inductance / parallel_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      let t_lc: number = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      let max_period: number = (1.0 / max_frequency) * multiplier;
+      let rc_series: number = Math.min(Math.max(series_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      let rl_series: number = Math.min(Math.max((min_inductance / series_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      let min_period: number = (1.0 / min_frequency) * multiplier;
+      let ts1: number = global.min3(rc_parallel, rl_parallel, max_period);
+      let ts2: number = global.min3(rc_series, rl_series, min_period);
       ts_final = global.min3(ts1, ts2, t_lc);
-      ts_final = Math.min(
-        Math.max(ts_final, global.settings.MIN_TIME_CONSTANT),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      if (
-        !max_freq_updated &&
-        !min_freq_updated &&
-        !min_cap_updated &&
-        !max_cap_updated &&
-        !min_ind_updated &&
-        !max_ind_updated
-      ) {
+      ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      if (!max_freq_updated && !min_freq_updated && !min_cap_updated && !max_cap_updated && !min_ind_updated && !max_ind_updated) {
         ts_final = 1;
       }
     } else {
-      let t_lc = Math.min(
-        Math.max(
-          Math.sqrt(min_capacitance * min_inductance) * multiplier,
-          global.settings.MIN_TIME_CONSTANT
-        ),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      let max_period = (1.0 / max_frequency) * multiplier;
-      let min_period = (1.0 / min_frequency) * multiplier;
+      let t_lc: number = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      let max_period: number = (1.0 / max_frequency) * multiplier;
+      let min_period: number = (1.0 / min_frequency) * multiplier;
       ts_final = global.min3(max_period, min_period, t_lc);
-      ts_final = Math.min(
-        Math.max(ts_final, global.settings.MIN_TIME_CONSTANT),
-        global.settings.MAX_TIME_CONSTANT
-      );
-      if (
-        !max_freq_updated &&
-        !min_freq_updated &&
-        !min_cap_updated &&
-        !max_cap_updated &&
-        !min_ind_updated &&
-        !max_ind_updated
-      ) {
+      ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+      if (!max_freq_updated && !min_freq_updated && !min_cap_updated && !max_cap_updated && !min_ind_updated && !max_ind_updated) {
         ts_final = 1;
       }
     }
     return ts_final;
   }
-  terminate() {
+  terminate(): void {
     this.NODE_SIZE = 0;
     this.OFFSET = 0;
     this.INITIALIZED = false;
@@ -774,12 +662,10 @@ used to determine the best time-step for the system. */
     this.SOLUTIONS_READY = false;
     global.IS_SINGULAR = false;
     /* Let's display that we are not simulating to the user! */
-    toast.set_text(
-      language_manager.STOP_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]
-    );
+    toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
     toast.show();
   }
-  reset_elements() {
+  reset_elements(): void {
     /* #INSERT_GENERATE_RESET_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i = 0; i < resistors.length; i++) {
@@ -985,7 +871,7 @@ used to determine the best time-step for the system. */
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset_memory_devices() {
+  reset_memory_devices(): void {
     /* #INSERT_GENERATE_RESET_MEMORY_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i = 0; i < fuses.length; i++) {
@@ -1011,7 +897,7 @@ used to determine the best time-step for the system. */
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset_reactive_elements() {
+  reset_reactive_elements(): void {
     /* #INSERT_GENERATE_RESET_REACTIVE_ELEMENTS_TEMPLATE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i = 0; i < capacitors.length; i++) {
@@ -1025,7 +911,7 @@ used to determine the best time-step for the system. */
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset_non_linear_elements() {
+  reset_non_linear_elements(): void {
     /* #INSERT_GENERATE_RESET_NON_LINEAR_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i = 0; i < diodes.length; i++) {
@@ -1051,7 +937,7 @@ used to determine the best time-step for the system. */
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset_meter_values() {
+  reset_meter_values(): void {
     graph_window.reset();
     /* #INSERT_GENERATE_RESET_METER_TRACE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -1070,7 +956,7 @@ used to determine the best time-step for the system. */
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
   /* Clear the immediate value used for i,v,r calculation */
-  clear_meter_values() {
+  clear_meter_values(): void {
     /* #INSERT_GENERATE_RESET_METER# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i = 0; i < voltmeters.length; i++) {
@@ -1087,7 +973,7 @@ used to determine the best time-step for the system. */
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  update_vir() {
+  update_vir(): void {
     if (global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP) {
       scope_manager.update_scopes();
     } else {
@@ -1095,24 +981,18 @@ used to determine the best time-step for the system. */
     }
   }
   /* Check to see if the LED's should be on! */
-  led_turn_on_check() {
+  led_turn_on_check(): void {
     for (var i = 0; i < leds.length; i++) {
       leds[i].turn_on_check();
     }
   }
   /* Alternate convergence algorithm */
-  alternative_convergence() {
+  alternative_convergence(): void {
     /* Run the other convergence algorithm */
     if (this.NODE_SIZE > 0 && matrix_x.length === matrix_x_copy.length) {
       if (this.FIRST_ERROR_CHECK) {
-        global.V_MAX_ERR = linear_algebra.matrix(
-          matrix_x.length,
-          matrix_x[0].length
-        );
-        global.I_MAX_ERR = linear_algebra.matrix(
-          matrix_x.length,
-          matrix_x[0].length
-        );
+        global.V_MAX_ERR = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
+        global.I_MAX_ERR = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
         this.FIRST_ERROR_CHECK = false;
       } else {
         for (var i = 0; i < global.V_MAX_ERR.length; i++) {
@@ -1128,24 +1008,14 @@ used to determine the best time-step for the system. */
       global.I_CONV = false;
       for (var i = 0; i < matrix_x.length; i++) {
         if (i < this.NODE_SIZE) {
-          global.V_MAX_ERR[i][0] = Math.max(
-            Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])),
-            global.settings.VNTOL
-          );
+          global.V_MAX_ERR[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
         } else {
-          global.I_MAX_ERR[i][0] = Math.max(
-            Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])),
-            global.settings.ABSTOL
-          );
+          global.I_MAX_ERR[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
         }
       }
       for (var i = 0; i < matrix_x.length; i++) {
         if (i < this.NODE_SIZE) {
-          if (
-            Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) <
-            global.settings.RELTOL * global.V_MAX_ERR[i][0] +
-              global.settings.VNTOL
-          ) {
+          if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.V_MAX_ERR[i][0] + global.settings.VNTOL) {
             if (!global.V_LOCKED) {
               global.V_CONV = true;
             }
@@ -1154,11 +1024,7 @@ used to determine the best time-step for the system. */
             global.V_CONV = false;
           }
         } else {
-          if (
-            Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) <
-            global.settings.RELTOL * global.I_MAX_ERR[i][0] +
-              global.settings.ABSTOL
-          ) {
+          if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.I_MAX_ERR[i][0] + global.settings.ABSTOL) {
             if (!global.I_LOCKED) {
               global.I_CONV = true;
             }
@@ -1177,8 +1043,8 @@ used to determine the best time-step for the system. */
       }
     }
   }
-  non_linear_check() {
-    let convergence = true;
+  non_linear_check(): void {
+    let convergence: boolean = true;
     /* #INSERT_GENERATE_NON_LINEAR_CHECK# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i = 0; i < diodes.length; i++) {
@@ -1237,7 +1103,7 @@ used to determine the best time-step for the system. */
       this.CONTINUE_SOLVING = false;
     }
   }
-  update_reactive_elements() {
+  update_reactive_elements(): void {
     /* #INSERT_GENERATE_UPDATE_REACTIVE_ELEMENTS_TEMPLATE_II# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i = 0; i < capacitors.length; i++) {
@@ -1251,7 +1117,7 @@ used to determine the best time-step for the system. */
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  simulate() {
+  simulate(): void {
     if (global.FLAG_SIMULATING && this.INITIALIZED) {
       if (this.SIMULATION_STEP === 0) {
         /* Try to simulate at least two matrices per frame. */
@@ -1262,35 +1128,18 @@ used to determine the best time-step for the system. */
       } else {
         /* Update capacitors and inductors */
         this.update_reactive_elements();
-        if (
-          !this.CONTINUE_SOLVING ||
-          this.ITERATOR >= global.settings.ITL4 ||
-          global.IS_SINGULAR ||
-          global.SIMULATION_TIME >= this.SIMULATION_MAX_TIME
-        ) {
+        if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.IS_SINGULAR || global.SIMULATION_TIME >= this.SIMULATION_MAX_TIME) {
           if (this.ITERATOR >= global.settings.ITL4) {
             menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-            toast.set_text(
-              language_manager.CONVERGENCE_ERROR[
-                global.LANGUAGES[global.LANGUAGE_INDEX]
-              ]
-            );
+            toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.LANGUAGE_INDEX]]);
             toast.show();
           } else if (global.IS_SINGULAR) {
             menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-            toast.set_text(
-              language_manager.SINGULAR_MATRIX[
-                global.LANGUAGES[global.LANGUAGE_INDEX]
-              ]
-            );
+            toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.LANGUAGE_INDEX]]);
             toast.show();
           } else if (global.SIMULATION_TIME >= this.SIMULATION_MAX_TIME) {
             menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-            toast.set_text(
-              language_manager.END_OF_TIME[
-                global.LANGUAGES[global.LANGUAGE_INDEX]
-              ]
-            );
+            toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.LANGUAGE_INDEX]]);
             toast.show();
           }
         }
@@ -1305,14 +1154,11 @@ used to determine the best time-step for the system. */
       }
     }
   }
-  solve() {
+  solve(): void {
     if (this.CONTINUE_SOLVING && this.ITERATOR < global.settings.ITL4) {
       this.CONTINUE_SOLVING = false;
       if (this.FIRST_MATRIX_BUILD) {
-        matrix_a = linear_algebra.matrix(
-          this.NODE_SIZE + this.OFFSET,
-          this.NODE_SIZE + this.OFFSET
-        );
+        matrix_a = linear_algebra.matrix(this.NODE_SIZE + this.OFFSET, this.NODE_SIZE + this.OFFSET);
         matrix_z = linear_algebra.matrix(this.NODE_SIZE + this.OFFSET, 1);
         this.FIRST_MATRIX_BUILD = false;
       } else {
@@ -1326,20 +1172,13 @@ used to determine the best time-step for the system. */
         }
       }
       /* Sprinkle some resistance in the diagonal to avoid a singular matrix. */
-      linear_algebra.set_matrix_diagonal(
-        matrix_a,
-        global.settings.INV_R_MAX,
-        this.NODE_SIZE
-      );
+      linear_algebra.set_matrix_diagonal(matrix_a, global.settings.INV_R_MAX, this.NODE_SIZE);
       /* Stamp all the elements into the matrix! */
       engine_functions.stamp_elements();
       /* Copy the x-matrix! */
       if (this.FIRST_X_MATRIX_COPY) {
         if (!this.FIST_X_MATRIX_SOLUTION) {
-          matrix_x_copy = linear_algebra.matrix(
-            this.NODE_SIZE + this.OFFSET,
-            1
-          );
+          matrix_x_copy = linear_algebra.matrix(this.NODE_SIZE + this.OFFSET, 1);
         } else {
           matrix_x_copy = global.copy(matrix_x);
           this.FIRST_X_MATRIX_COPY = false;
@@ -1387,7 +1226,7 @@ used to determine the best time-step for the system. */
     }
   }
   /* Handles furture proofing of system settings. */
-  patch() {
+  patch(): void {
     if (global.settings.WIRE_RESISTANCE != 1e-3) {
       global.settings.WIRE_RESISTANCE = 1e-3;
     }

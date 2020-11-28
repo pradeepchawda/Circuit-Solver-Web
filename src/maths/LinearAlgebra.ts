@@ -20,20 +20,21 @@
  *
  ***********************************************************************/
 class LinearAlgebra {
-  public x_matrix = [[], []];
-  public det_threshold = 0;
-  public row = [];
-  public _i = 0;
-  public SIZE = 0;
-  public _j = 0;
-  public _k = 0;
-  public _i_max = 0;
-  public max_a = 0;
-  public abs_a = 0;
-  public P = [];
-  public lup_det = 0;
-  public GENERAL_ARRAY;
-  public FIRST_LUP_SOLVE = true;
+  public x_matrix: Array<Array<number>> = [[], []];
+  public det_threshold: number = 0;
+  public row: Array<number> = [];
+  public _i: number = 0;
+  public SIZE: number = 0;
+  public _j: number = 0;
+  public _k: number = 0;
+  public _i_max: number = 0;
+  public max_a: number = 0;
+  public abs_a: number = 0;
+  public P: Array<number> = [];
+  public lup_det: number = 0;
+  public GENERAL_VECTOR: Array<number>;
+  public GENERAL_MATRIX: Array<Array<number>>;
+  public FIRST_LUP_SOLVE: boolean = true;
 
   constructor() {
     this.x_matrix = [[], []];
@@ -48,7 +49,8 @@ class LinearAlgebra {
     this.abs_a = 0;
     this.P = [];
     this.lup_det = 0;
-    this.GENERAL_ARRAY;
+    this.GENERAL_MATRIX;
+    this.GENERAL_VECTOR;
     this.FIRST_LUP_SOLVE = true;
   }
   lup_solve(a_matrix, b_matrix) {
@@ -65,7 +67,7 @@ class LinearAlgebra {
         this.x_matrix = this.matrix(this.SIZE, 1);
         this.FIRST_LUP_SOLVE = false;
       } else {
-        for (var i = 0; i < this.P.length; i++) {
+        for (var i: number = 0; i < this.P.length; i++) {
           this.P[i] = i;
         }
         for (var i = 0; i < this.x_matrix.length; i++) {
@@ -78,9 +80,7 @@ class LinearAlgebra {
         this.max_a = 0.0;
         this._i_max = this._i;
         for (this._k = this._i; this._k < this.SIZE; this._k++) {
-          if (
-            (this.abs_a = Math.abs(a_matrix[this._k][this._i])) > this.max_a
-          ) {
+          if ((this.abs_a = Math.abs(a_matrix[this._k][this._i])) > this.max_a) {
             this.max_a = this.abs_a;
             this._i_max = this._k;
           }
@@ -97,8 +97,7 @@ class LinearAlgebra {
         for (this._j = this._i + 1; this._j < this.SIZE; this._j++) {
           a_matrix[this._j][this._i] /= a_matrix[this._i][this._i];
           for (this._k = this._i + 1; this._k < this.SIZE; this._k++) {
-            a_matrix[this._j][this._k] -=
-              a_matrix[this._j][this._i] * a_matrix[this._i][this._k];
+            a_matrix[this._j][this._k] -= a_matrix[this._j][this._i] * a_matrix[this._i][this._k];
           }
         }
       }
@@ -116,17 +115,14 @@ class LinearAlgebra {
       for (this._i = 0; this._i < this.SIZE; this._i++) {
         this.x_matrix[this._i][0] = b_matrix[this.P[this._i]][0];
         for (this._k = 0; this._k < this._i; this._k++) {
-          this.x_matrix[this._i][0] -=
-            a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
+          this.x_matrix[this._i][0] -= a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
         }
       }
       for (this._i = this.SIZE - 1; this._i >= 0; this._i--) {
         for (this._k = this._i + 1; this._k < this.SIZE; this._k++) {
-          this.x_matrix[this._i][0] -=
-            a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
+          this.x_matrix[this._i][0] -= a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
         }
-        this.x_matrix[this._i][0] =
-          this.x_matrix[this._i][0] / a_matrix[this._i][this._i];
+        this.x_matrix[this._i][0] = this.x_matrix[this._i][0] / a_matrix[this._i][this._i];
       }
     }
     return this.x_matrix;
@@ -137,29 +133,28 @@ class LinearAlgebra {
       matrix[i][i] = value;
     }
   }
-  matrix(rows, cols) {
-    this.GENERAL_ARRAY = [];
+  matrix(rows: number, cols: number): Array<Array<number>> {
+    this.GENERAL_MATRIX = [];
     for (var i = 0; i < rows; i++) {
-      this.GENERAL_ARRAY.push(Array());
-      this.GENERAL_ARRAY[i].push(new Array(cols));
+      this.GENERAL_MATRIX.push(new Array(cols));
       for (var j = 0; j < cols; j++) {
-        this.GENERAL_ARRAY[i][j] = 0;
+        this.GENERAL_MATRIX[i][j] = 0;
       }
     }
-    return this.GENERAL_ARRAY;
+    return this.GENERAL_MATRIX;
   }
-  vector(size) {
-    this.GENERAL_ARRAY = new Array(size);
+  vector(size: number): Array<number> {
+    this.GENERAL_VECTOR = new Array(size);
     for (var i = 0; i < size; i++) {
-      this.GENERAL_ARRAY[i] = 0;
+      this.GENERAL_VECTOR[i] = 0;
     }
-    return this.GENERAL_ARRAY;
+    return this.GENERAL_VECTOR;
   }
-  vector2(size) {
-    this.GENERAL_ARRAY = new Array(size);
+  vector2(size: number): Array<number> {
+    this.GENERAL_VECTOR = new Array(size);
     for (var i = 0; i < size; i++) {
-      this.GENERAL_ARRAY[i] = i;
+      this.GENERAL_VECTOR[i] = i;
     }
-    return this.GENERAL_ARRAY;
+    return this.GENERAL_VECTOR;
   }
 }

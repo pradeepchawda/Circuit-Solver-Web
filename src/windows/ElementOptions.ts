@@ -26,9 +26,7 @@ class ElementOptions {
   /* The menu bar icons width */
   public mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
   /* The menu bar icons height */
-  public mb_height = menu_bar.menu_icons[
-    menu_bar.REMOVE_ALL_INDEX
-  ].get_height();
+  public mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
   public option_0 = new RectF(
     this.mb_x - this.mb_width * 0.5,
     menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3,
@@ -107,9 +105,7 @@ class ElementOptions {
     /* The menu bar icons width */
     this.mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
     /* The menu bar icons height */
-    this.mb_height = menu_bar.menu_icons[
-      menu_bar.REMOVE_ALL_INDEX
-    ].get_height();
+    this.mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
     this.option_0 = new RectF(
       this.mb_x - this.mb_width * 0.5,
       menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3,
@@ -251,7 +247,7 @@ class ElementOptions {
     let holder_y = [];
     let edit_x0 = '0.746,0.274,0.114,0.112,0.584';
     let edit_y0 = '0.406,0.874,0.876,0.734,0.264';
-    let edit_x1 = '0.902,0.784,0.626,0.75';
+    let edit_x1 = '0.902,0.784,0.63,0.75';
     let edit_y1 = '0.244,0.368,0.226,0.104';
     let padding = 0.1;
     /* Loading the first path of edit  */
@@ -262,12 +258,8 @@ class ElementOptions {
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          rect.left +
-            padding * rect.get_width() +
-            rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
-          rect.top +
-            padding * rect.get_height() +
-            rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])
+          rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
+          rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])
         )
       );
     }
@@ -287,12 +279,8 @@ class ElementOptions {
     for (var i = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
-          rect.left +
-            padding * rect.get_width() +
-            rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
-          rect.top +
-            padding * rect.get_height() +
-            rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])
+          rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
+          rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])
         )
       );
     }
@@ -319,12 +307,7 @@ class ElementOptions {
     let points = [];
     points = [];
     for (var i = 0; i < holder_x.length; i++) {
-      points.push(
-        new PointF(
-          rect.left + rect.get_width() * parseFloat(holder_x[i]),
-          rect.top + rect.get_height() * parseFloat(holder_y[i])
-        )
-      );
+      points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.trash_path0.reset();
     for (var i = 0; i < points.length; i++) {
@@ -340,12 +323,7 @@ class ElementOptions {
     holder_y = trash_y1.split(',');
     points = [];
     for (var i = 0; i < holder_x.length; i++) {
-      points.push(
-        new PointF(
-          rect.left + rect.get_width() * parseFloat(holder_x[i]),
-          rect.top + rect.get_height() * parseFloat(holder_y[i])
-        )
-      );
+      points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.trash_path1.reset();
     for (var i = 0; i < points.length; i++) {
@@ -370,12 +348,7 @@ class ElementOptions {
     let points = [];
     points = [];
     for (var i = 0; i < holder_x.length; i++) {
-      points.push(
-        new PointF(
-          rect.left + rect.get_width() * parseFloat(holder_x[i]),
-          rect.top + rect.get_height() * parseFloat(holder_y[i])
-        )
-      );
+      points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.flip_path0.reset();
     for (var i = 0; i < points.length; i++) {
@@ -391,12 +364,7 @@ class ElementOptions {
     holder_y = flip_y1.split(',');
     points = [];
     for (var i = 0; i < holder_x.length; i++) {
-      points.push(
-        new PointF(
-          rect.left + rect.get_width() * parseFloat(holder_x[i]),
-          rect.top + rect.get_height() * parseFloat(holder_y[i])
-        )
-      );
+      points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.flip_path1.reset();
     for (var i = 0; i < points.length; i++) {
@@ -418,9 +386,7 @@ class ElementOptions {
     /* The menu bar icons width */
     this.mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
     /* The menu bar icons height */
-    this.mb_height = menu_bar.menu_icons[
-      menu_bar.REMOVE_ALL_INDEX
-    ].get_height();
+    this.mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
     this.option_0.set_bounds(
       this.mb_x - this.mb_width * 0.5,
       menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3,
@@ -460,6 +426,7 @@ class ElementOptions {
     this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
     this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
     this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+    this.map_options();
   }
   update() {
     /* Based on the selected element it'll draw the options available! */
@@ -693,53 +660,25 @@ class ElementOptions {
       if (global.selected) {
         /* Block around c0 (so components don't register mouse down)*/
         if (this.opts['c0'] != this.NO_ICON) {
-          if (
-            this.option_0.contains_xywh(
-              global.mouse_x,
-              global.mouse_y,
-              this.option_0.get_width() * 1.25,
-              this.option_0.get_height() * 1.25
-            )
-          ) {
+          if (this.option_0.contains_xywh(global.mouse_x, global.mouse_y, this.option_0.get_width() * 1.25, this.option_0.get_height() * 1.25)) {
             global.component_touched = true;
           }
         }
         /* Block around c1 (so components don't register mouse down)*/
         if (this.opts['c1'] != this.NO_ICON) {
-          if (
-            this.option_1.contains_xywh(
-              global.mouse_x,
-              global.mouse_y,
-              this.option_1.get_width() * 1.25,
-              this.option_1.get_height() * 1.25
-            )
-          ) {
+          if (this.option_1.contains_xywh(global.mouse_x, global.mouse_y, this.option_1.get_width() * 1.25, this.option_1.get_height() * 1.25)) {
             global.component_touched = true;
           }
         }
         /* Block around c2 (so components don't register mouse down)*/
         if (this.opts['c2'] != this.NO_ICON) {
-          if (
-            this.option_2.contains_xywh(
-              global.mouse_x,
-              global.mouse_y,
-              this.option_2.get_width() * 1.25,
-              this.option_2.get_height() * 1.25
-            )
-          ) {
+          if (this.option_2.contains_xywh(global.mouse_x, global.mouse_y, this.option_2.get_width() * 1.25, this.option_2.get_height() * 1.25)) {
             global.component_touched = true;
           }
         }
         /* Block around c3 (so components don't register mouse down)*/
         if (this.opts['c3'] != this.NO_ICON) {
-          if (
-            this.option_3.contains_xywh(
-              global.mouse_x,
-              global.mouse_y,
-              this.option_3.get_width() * 1.25,
-              this.option_3.get_height() * 1.25
-            )
-          ) {
+          if (this.option_3.contains_xywh(global.mouse_x, global.mouse_y, this.option_3.get_width() * 1.25, this.option_3.get_height() * 1.25)) {
             global.component_touched = true;
           }
         }
@@ -765,31 +704,19 @@ class ElementOptions {
         !global.FLAG_GRAPH
       ) {
         if (global.selected) {
-          if (
-            this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
-            this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)
-          ) {
+          if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
             this.handle_options('c0');
             global.SIGNAL_BUILD_ELEMENT = true;
           }
-          if (
-            this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
-            this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)
-          ) {
+          if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
             this.handle_options('c1');
             global.SIGNAL_BUILD_ELEMENT = true;
           }
-          if (
-            this.option_2.contains_xy(global.mouse_x, global.mouse_y) &&
-            this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)
-          ) {
+          if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
             this.handle_options('c2');
             global.SIGNAL_BUILD_ELEMENT = true;
           }
-          if (
-            this.option_3.contains_xy(global.mouse_x, global.mouse_y) &&
-            this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)
-          ) {
+          if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
             this.handle_options('c3');
             global.SIGNAL_BUILD_ELEMENT = true;
           }
@@ -1241,112 +1168,48 @@ class ElementOptions {
       index = engine_functions.get_voltmeter(global.selected_id);
 
       if (index < voltmeters.length) {
-        if (
-          !scope_manager.find_entry(
-            voltmeters[index].elm.id,
-            voltmeters[index].elm.type
-          )
-        ) {
-          scope_manager.push(
-            voltmeters[index].elm.id,
-            voltmeters[index].elm.type,
-            voltmeters[index].elm.properties['tag']
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+        if (!scope_manager.find_entry(voltmeters[index].elm.id, voltmeters[index].elm.type)) {
+          scope_manager.push(voltmeters[index].elm.id, voltmeters[index].elm.type, voltmeters[index].elm.properties['tag']);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         } else {
-          scope_manager.remove(
-            voltmeters[index].elm.id,
-            voltmeters[index].elm.type
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+          scope_manager.remove(voltmeters[index].elm.id, voltmeters[index].elm.type);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
       }
     } else if (global.selected_type === global.TYPE_OHMMETER) {
       index = engine_functions.get_ohmmeter(global.selected_id);
 
       if (index < ohmmeters.length) {
-        if (
-          !scope_manager.find_entry(
-            ohmmeters[index].elm.id,
-            ohmmeters[index].elm.type
-          )
-        ) {
-          scope_manager.push(
-            ohmmeters[index].elm.id,
-            ohmmeters[index].elm.type,
-            ohmmeters[index].elm.properties['tag']
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+        if (!scope_manager.find_entry(ohmmeters[index].elm.id, ohmmeters[index].elm.type)) {
+          scope_manager.push(ohmmeters[index].elm.id, ohmmeters[index].elm.type, ohmmeters[index].elm.properties['tag']);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         } else {
-          scope_manager.remove(
-            ohmmeters[index].elm.id,
-            ohmmeters[index].elm.type
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+          scope_manager.remove(ohmmeters[index].elm.id, ohmmeters[index].elm.type);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
       }
     } else if (global.selected_type === global.TYPE_AMMETER) {
       index = engine_functions.get_ammeter(global.selected_id);
 
       if (index < ammeters.length) {
-        if (
-          !scope_manager.find_entry(
-            ammeters[index].elm.id,
-            ammeters[index].elm.type
-          )
-        ) {
-          scope_manager.push(
-            ammeters[index].elm.id,
-            ammeters[index].elm.type,
-            ammeters[index].elm.properties['tag']
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+        if (!scope_manager.find_entry(ammeters[index].elm.id, ammeters[index].elm.type)) {
+          scope_manager.push(ammeters[index].elm.id, ammeters[index].elm.type, ammeters[index].elm.properties['tag']);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         } else {
-          scope_manager.remove(
-            ammeters[index].elm.id,
-            ammeters[index].elm.type
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+          scope_manager.remove(ammeters[index].elm.id, ammeters[index].elm.type);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
       }
     } else if (global.selected_type === global.TYPE_WATTMETER) {
       index = engine_functions.get_wattmeter(global.selected_id);
 
       if (index < wattmeters.length) {
-        if (
-          !scope_manager.find_entry(
-            wattmeters[index].elm.id,
-            wattmeters[index].elm.type
-          )
-        ) {
-          scope_manager.push(
-            wattmeters[index].elm.id,
-            wattmeters[index].elm.type,
-            wattmeters[index].elm.properties['tag']
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+        if (!scope_manager.find_entry(wattmeters[index].elm.id, wattmeters[index].elm.type)) {
+          scope_manager.push(wattmeters[index].elm.id, wattmeters[index].elm.type, wattmeters[index].elm.properties['tag']);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         } else {
-          scope_manager.remove(
-            wattmeters[index].elm.id,
-            wattmeters[index].elm.type
-          );
-          global.HISTORY_MANAGER['packet'].push(
-            engine_functions.history_snapshot()
-          );
+          scope_manager.remove(wattmeters[index].elm.id, wattmeters[index].elm.type);
+          global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
       }
     }
@@ -1764,603 +1627,469 @@ class ElementOptions {
 
       if (index < resistors.length) {
         engine_functions.remove_resistor(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_CAPACITOR) {
       index = engine_functions.get_capacitor(global.selected_id);
 
       if (index < capacitors.length) {
         engine_functions.remove_capacitor(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_INDUCTOR) {
       index = engine_functions.get_inductor(global.selected_id);
 
       if (index < inductors.length) {
         engine_functions.remove_inductor(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_GROUND) {
       index = engine_functions.get_ground(global.selected_id);
 
       if (index < grounds.length) {
         engine_functions.remove_ground(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_DCSOURCE) {
       index = engine_functions.get_dcsource(global.selected_id);
 
       if (index < dcsources.length) {
         engine_functions.remove_dcsource(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_DCCURRENT) {
       index = engine_functions.get_dccurrent(global.selected_id);
 
       if (index < dccurrents.length) {
         engine_functions.remove_dccurrent(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_ACSOURCE) {
       index = engine_functions.get_acsource(global.selected_id);
 
       if (index < acsources.length) {
         engine_functions.remove_acsource(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_ACCURRENT) {
       index = engine_functions.get_accurrent(global.selected_id);
 
       if (index < accurrents.length) {
         engine_functions.remove_accurrent(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_SQUAREWAVE) {
       index = engine_functions.get_squarewave(global.selected_id);
 
       if (index < squarewaves.length) {
         engine_functions.remove_squarewave(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_SAW) {
       index = engine_functions.get_sawwave(global.selected_id);
 
       if (index < sawwaves.length) {
         engine_functions.remove_sawwave(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_TRI) {
       index = engine_functions.get_trianglewave(global.selected_id);
 
       if (index < trianglewaves.length) {
         engine_functions.remove_trianglewave(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_CONSTANT) {
       index = engine_functions.get_constant(global.selected_id);
 
       if (index < constants.length) {
         engine_functions.remove_constant(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_WIRE) {
       index = engine_functions.get_wire(global.selected_id);
 
       if (index < wires.length) {
         engine_functions.remove_wire(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_NET) {
       index = engine_functions.get_net(global.selected_id);
 
       if (index < nets.length) {
         engine_functions.remove_net(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_NOTE) {
       index = engine_functions.get_note(global.selected_id);
 
       if (index < notes.length) {
         engine_functions.remove_note(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_RAIL) {
       index = engine_functions.get_rail(global.selected_id);
 
       if (index < rails.length) {
         engine_functions.remove_rail(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_VOLTMETER) {
       index = engine_functions.get_voltmeter(global.selected_id);
 
       if (index < voltmeters.length) {
         engine_functions.remove_voltmeter(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_OHMMETER) {
       index = engine_functions.get_ohmmeter(global.selected_id);
 
       if (index < ohmmeters.length) {
         engine_functions.remove_ohmmeter(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_AMMETER) {
       index = engine_functions.get_ammeter(global.selected_id);
 
       if (index < ammeters.length) {
         engine_functions.remove_ammeter(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_WATTMETER) {
       index = engine_functions.get_wattmeter(global.selected_id);
 
       if (index < wattmeters.length) {
         engine_functions.remove_wattmeter(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_FUSE) {
       index = engine_functions.get_fuse(global.selected_id);
 
       if (index < fuses.length) {
         engine_functions.remove_fuse(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_SPST) {
       index = engine_functions.get_spst(global.selected_id);
 
       if (index < spsts.length) {
         engine_functions.remove_spst(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_SPDT) {
       index = engine_functions.get_spdt(global.selected_id);
 
       if (index < spdts.length) {
         engine_functions.remove_spdt(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_NOT) {
       index = engine_functions.get_not(global.selected_id);
 
       if (index < nots.length) {
         engine_functions.remove_not(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_DIODE) {
       index = engine_functions.get_diode(global.selected_id);
 
       if (index < diodes.length) {
         engine_functions.remove_diode(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_LED) {
       index = engine_functions.get_led(global.selected_id);
 
       if (index < leds.length) {
         engine_functions.remove_led(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_ZENER) {
       index = engine_functions.get_zener(global.selected_id);
 
       if (index < zeners.length) {
         engine_functions.remove_zener(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_POTENTIOMETER) {
       index = engine_functions.get_potentiometer(global.selected_id);
 
       if (index < potentiometers.length) {
         engine_functions.remove_potentiometer(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_AND) {
       index = engine_functions.get_and(global.selected_id);
 
       if (index < ands.length) {
         engine_functions.remove_and(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_OR) {
       index = engine_functions.get_or(global.selected_id);
 
       if (index < ors.length) {
         engine_functions.remove_or(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_NAND) {
       index = engine_functions.get_nand(global.selected_id);
 
       if (index < nands.length) {
         engine_functions.remove_nand(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_NOR) {
       index = engine_functions.get_nor(global.selected_id);
 
       if (index < nors.length) {
         engine_functions.remove_nor(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_XOR) {
       index = engine_functions.get_xor(global.selected_id);
 
       if (index < xors.length) {
         engine_functions.remove_xor(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_XNOR) {
       index = engine_functions.get_xnor(global.selected_id);
 
       if (index < xnors.length) {
         engine_functions.remove_xnor(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_DFF) {
       index = engine_functions.get_dff(global.selected_id);
 
       if (index < dffs.length) {
         engine_functions.remove_dff(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_VSAT) {
       index = engine_functions.get_vsat(global.selected_id);
 
       if (index < vsats.length) {
         engine_functions.remove_vsat(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_ADD) {
       index = engine_functions.get_adder(global.selected_id);
 
       if (index < adders.length) {
         engine_functions.remove_adder(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_SUB) {
       index = engine_functions.get_subtractor(global.selected_id);
 
       if (index < subtractors.length) {
         engine_functions.remove_subtractor(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_MUL) {
       index = engine_functions.get_multiplier(global.selected_id);
 
       if (index < multipliers.length) {
         engine_functions.remove_multiplier(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_DIV) {
       index = engine_functions.get_divider(global.selected_id);
 
       if (index < dividers.length) {
         engine_functions.remove_divider(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_GAIN) {
       index = engine_functions.get_gain(global.selected_id);
 
       if (index < gains.length) {
         engine_functions.remove_gain(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_ABS) {
       index = engine_functions.get_absval(global.selected_id);
 
       if (index < absvals.length) {
         engine_functions.remove_absval(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_VCSW) {
       index = engine_functions.get_vcsw(global.selected_id);
 
       if (index < vcsws.length) {
         engine_functions.remove_vcsw(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_VCVS) {
       index = engine_functions.get_vcvs(global.selected_id);
 
       if (index < vcvss.length) {
         engine_functions.remove_vcvs(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_VCCS) {
       index = engine_functions.get_vccs(global.selected_id);
 
       if (index < vccss.length) {
         engine_functions.remove_vccs(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_CCCS) {
       index = engine_functions.get_cccs(global.selected_id);
 
       if (index < cccss.length) {
         engine_functions.remove_cccs(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_CCVS) {
       index = engine_functions.get_ccvs(global.selected_id);
 
       if (index < ccvss.length) {
         engine_functions.remove_ccvs(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_OPAMP) {
       index = engine_functions.get_opamp(global.selected_id);
 
       if (index < opamps.length) {
         engine_functions.remove_opamp(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_NMOS) {
       index = engine_functions.get_nmosfet(global.selected_id);
 
       if (index < nmosfets.length) {
         engine_functions.remove_nmosfet(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_PMOS) {
       index = engine_functions.get_pmosfet(global.selected_id);
 
       if (index < pmosfets.length) {
         engine_functions.remove_pmosfet(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_NPN) {
       index = engine_functions.get_npn(global.selected_id);
 
       if (index < npns.length) {
         engine_functions.remove_npn(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_PNP) {
       index = engine_functions.get_pnp(global.selected_id);
 
       if (index < pnps.length) {
         engine_functions.remove_pnp(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_ADC) {
       index = engine_functions.get_adc(global.selected_id);
 
       if (index < adcs.length) {
         engine_functions.remove_adc(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_DAC) {
       index = engine_functions.get_dac(global.selected_id);
 
       if (index < dacs.length) {
         engine_functions.remove_dac(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_SAH) {
       index = engine_functions.get_samplers(global.selected_id);
 
       if (index < sandhs.length) {
         engine_functions.remove_samplers(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_PWM) {
       index = engine_functions.get_pwm(global.selected_id);
 
       if (index < pwms.length) {
         engine_functions.remove_pwm(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_INTEGRATOR) {
       index = engine_functions.get_integrator(global.selected_id);
 
       if (index < integrators.length) {
         engine_functions.remove_integrator(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_DIFFERENTIATOR) {
       index = engine_functions.get_differentiator(global.selected_id);
 
       if (index < differentiators.length) {
         engine_functions.remove_differentiator(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_LPF) {
       index = engine_functions.get_lowpass(global.selected_id);
 
       if (index < lowpasses.length) {
         engine_functions.remove_lowpass(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_HPF) {
       index = engine_functions.get_highpass(global.selected_id);
 
       if (index < highpasses.length) {
         engine_functions.remove_highpass(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_REL) {
       index = engine_functions.get_relay(global.selected_id);
 
       if (index < relays.length) {
         engine_functions.remove_relay(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_PID) {
       index = engine_functions.get_pid(global.selected_id);
 
       if (index < pids.length) {
         engine_functions.remove_pid(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_LUT) {
       index = engine_functions.get_lut(global.selected_id);
 
       if (index < luts.length) {
         engine_functions.remove_lut(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_VCR) {
       index = engine_functions.get_vcr(global.selected_id);
 
       if (index < vcrs.length) {
         engine_functions.remove_vcr(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_GRT) {
       index = engine_functions.get_grt(global.selected_id);
 
       if (index < grts.length) {
         engine_functions.remove_grt(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_TPTZ) {
       index = engine_functions.get_tptz(global.selected_id);
 
       if (index < tptzs.length) {
         engine_functions.remove_tptz(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     } else if (global.selected_type === global.TYPE_TRAN) {
       index = engine_functions.get_transformer(global.selected_id);
 
       if (index < transformers.length) {
         engine_functions.remove_transformer(index);
-        global.HISTORY_MANAGER['packet'].push(
-          engine_functions.history_snapshot()
-        );
+        global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
       }
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -3063,50 +2792,24 @@ class ElementOptions {
             !global.FLAG_REMOVE_ALL &&
             !global.MOBILE_MODE
           ) {
-            canvas.draw_round_rect2(
-              this.option_0,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.hover_paint
-            );
+            canvas.draw_round_rect2(this.option_0, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.hover_paint);
           } else {
-            canvas.draw_round_rect2(
-              this.option_0,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.fill_paint
-            );
+            canvas.draw_round_rect2(this.option_0, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.fill_paint);
           }
           switch (this.opts['c0']) {
             case this.ROTATE_ICON:
               this.update_color();
               this.draw_rotate(this.option_0, canvas);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'R',
-                  this.option_0.left - (this.option_0.get_width() >> 2),
-                  this.option_0.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('R', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
               }
               break;
             case this.EDIT_ICON:
               canvas.draw_path(this.edit_path0, this.icon_paint);
               canvas.draw_path(this.edit_path1, this.icon_paint);
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'E',
-                  this.option_0.left - (this.option_0.get_width() >> 2),
-                  this.option_0.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('E', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
               }
               break;
             case this.TRASH_ICON:
@@ -3114,17 +2817,8 @@ class ElementOptions {
               canvas.draw_path(this.trash_path0, this.icon_paint);
               canvas.draw_path(this.trash_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'DEL',
-                  this.option_0.left - (this.option_0.get_width() >> 2),
-                  this.option_0.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('DEL', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
               }
               break;
             case this.FLIP_ICON:
@@ -3132,32 +2826,14 @@ class ElementOptions {
               canvas.draw_path(this.flip_path0, this.icon_paint);
               canvas.draw_path(this.flip_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'F',
-                  this.option_0.left - (this.option_0.get_width() >> 2),
-                  this.option_0.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('F', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
               }
               break;
             case this.WIRE_ICON:
               this.draw_wire_style(this.option_0, canvas);
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'R',
-                  this.option_0.left - (this.option_0.get_width() >> 2),
-                  this.option_0.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('R', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
               }
               break;
             default:
@@ -3179,17 +2855,9 @@ class ElementOptions {
             !global.FLAG_REMOVE_ALL &&
             !global.MOBILE_MODE
           ) {
-            canvas.draw_round_rect2(
-              this.option_1,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.hover_paint
-            );
+            canvas.draw_round_rect2(this.option_1, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.hover_paint);
           } else {
-            canvas.draw_round_rect2(
-              this.option_1,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.fill_paint
-            );
+            canvas.draw_round_rect2(this.option_1, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.fill_paint);
           }
           let width_mul_0p2 = this.option_1.get_width() * 0.2;
           let height_mul_0p2 = this.option_1.get_height() * 0.2;
@@ -3198,33 +2866,15 @@ class ElementOptions {
               this.update_color();
               this.draw_rotate(this.option_1, canvas);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'R',
-                  this.option_1.left - (this.option_1.get_width() >> 2),
-                  this.option_1.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('R', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
               }
               break;
             case this.EDIT_ICON:
               canvas.draw_path(this.edit_path0, this.icon_paint);
               canvas.draw_path(this.edit_path1, this.icon_paint);
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'E',
-                  this.option_1.left - (this.option_1.get_width() >> 2),
-                  this.option_1.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('E', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
               }
               break;
             case this.TRASH_ICON:
@@ -3232,17 +2882,8 @@ class ElementOptions {
               canvas.draw_path(this.trash_path0, this.icon_paint);
               canvas.draw_path(this.trash_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'DEL',
-                  this.option_1.left - (this.option_1.get_width() >> 2),
-                  this.option_1.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('DEL', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
               }
               break;
             case this.FLIP_ICON:
@@ -3250,26 +2891,12 @@ class ElementOptions {
               canvas.draw_path(this.flip_path0, this.icon_paint);
               canvas.draw_path(this.flip_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'F',
-                  this.option_1.left - (this.option_1.get_width() >> 2),
-                  this.option_1.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('F', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
               }
               break;
             case this.EYE_ICON:
-              if (
-                scope_manager.find_entry(
-                  global.selected_id,
-                  global.selected_type
-                )
-              ) {
+              if (scope_manager.find_entry(global.selected_id, global.selected_type)) {
                 this.meter_line_paint.set_color(global.SELECTED_COLOR);
               } else {
                 this.meter_line_paint.set_color(global.GENERAL_WHITE_COLOR);
@@ -3290,23 +2917,9 @@ class ElementOptions {
                 -this.option_1.get_height() >> 1,
                 this.meter_line_paint
               );
-              canvas.draw_circle(
-                this.option_1.get_center_x(),
-                this.option_1.get_center_y(),
-                this.option_1.get_width() * 0.1,
-                this.meter_line_paint
-              );
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'E',
-                  this.option_1.left - (this.option_1.get_width() >> 2),
-                  this.option_1.get_center_y(),
-                  this.text_paint
-                );
+              canvas.draw_circle(this.option_1.get_center_x(), this.option_1.get_center_y(), this.option_1.get_width() * 0.1, this.meter_line_paint);
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('E', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
               }
               break;
             default:
@@ -3328,50 +2941,24 @@ class ElementOptions {
             !global.FLAG_REMOVE_ALL &&
             !global.MOBILE_MODE
           ) {
-            canvas.draw_round_rect2(
-              this.option_2,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.hover_paint
-            );
+            canvas.draw_round_rect2(this.option_2, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.hover_paint);
           } else {
-            canvas.draw_round_rect2(
-              this.option_2,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.fill_paint
-            );
+            canvas.draw_round_rect2(this.option_2, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.fill_paint);
           }
           switch (this.opts['c2']) {
             case this.ROTATE_ICON:
               this.update_color();
               this.draw_rotate(this.option_2, canvas);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'R',
-                  this.option_2.left - (this.option_2.get_width() >> 2),
-                  this.option_2.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('R', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
               }
               break;
             case this.EDIT_ICON:
               canvas.draw_path(this.edit_path0, this.icon_paint);
               canvas.draw_path(this.edit_path1, this.icon_paint);
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'E',
-                  this.option_2.left - (this.option_2.get_width() >> 2),
-                  this.option_2.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('E', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
               }
               break;
             case this.TRASH_ICON:
@@ -3379,17 +2966,8 @@ class ElementOptions {
               canvas.draw_path(this.trash_path0, this.icon_paint);
               canvas.draw_path(this.trash_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'DEL',
-                  this.option_2.left - (this.option_2.get_width() >> 2),
-                  this.option_2.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('DEL', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
               }
               break;
             case this.FLIP_ICON:
@@ -3397,17 +2975,8 @@ class ElementOptions {
               canvas.draw_path(this.flip_path0, this.icon_paint);
               canvas.draw_path(this.flip_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'F',
-                  this.option_2.left - (this.option_2.get_width() >> 2),
-                  this.option_2.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('F', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
               }
               break;
             default:
@@ -3429,50 +2998,24 @@ class ElementOptions {
             !global.FLAG_REMOVE_ALL &&
             !global.MOBILE_MODE
           ) {
-            canvas.draw_round_rect2(
-              this.option_3,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.hover_paint
-            );
+            canvas.draw_round_rect2(this.option_3, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.hover_paint);
           } else {
-            canvas.draw_round_rect2(
-              this.option_3,
-              0.6 * global.CANVAS_STROKE_WIDTH_3,
-              this.fill_paint
-            );
+            canvas.draw_round_rect2(this.option_3, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.fill_paint);
           }
           switch (this.opts['c3']) {
             case this.ROTATE_ICON:
               this.update_color();
               this.draw_rotate(this.option_3, canvas);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'R',
-                  this.option_3.left - (this.option_3.get_width() >> 2),
-                  this.option_3.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('R', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
               }
               break;
             case this.EDIT_ICON:
               canvas.draw_path(this.edit_path0, this.icon_paint);
               canvas.draw_path(this.edit_path1, this.icon_paint);
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'E',
-                  this.option_3.left - (this.option_3.get_width() >> 2),
-                  this.option_3.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('E', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
               }
               break;
             case this.TRASH_ICON:
@@ -3480,17 +3023,8 @@ class ElementOptions {
               canvas.draw_path(this.trash_path0, this.icon_paint);
               canvas.draw_path(this.trash_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'DEL',
-                  this.option_3.left - (this.option_3.get_width() >> 2),
-                  this.option_3.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('DEL', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
               }
               break;
             case this.FLIP_ICON:
@@ -3498,17 +3032,8 @@ class ElementOptions {
               canvas.draw_path(this.flip_path0, this.icon_paint);
               canvas.draw_path(this.flip_path1, this.icon_paint);
               this.restore_color();
-              if (
-                global.SYSTEM_OPTIONS['values'][
-                  global.SYSTEM_OPTION_SHORTCUT_HINTS
-                ] === global.ON
-              ) {
-                canvas.draw_text(
-                  'F',
-                  this.option_3.left - (this.option_3.get_width() >> 2),
-                  this.option_3.get_center_y(),
-                  this.text_paint
-                );
+              if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                canvas.draw_text('F', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
               }
               break;
             default:
@@ -3523,173 +3048,39 @@ class ElementOptions {
     let cached_height = rect.get_height() * 0.303;
     let width_mul_0p125 = rect.get_width() * 0.125;
     let height_mul_0p125 = rect.get_height() * 0.125;
-    canvas.draw_line(
-      rect.left + cached_width,
-      rect.top + cached_width,
-      rect.right - cached_width,
-      rect.top + cached_width,
-      this.line_paint_alt
-    );
-    canvas.draw_line(
-      rect.left + cached_width,
-      rect.top + cached_width,
-      rect.left + cached_width,
-      rect.bottom - cached_width,
-      this.line_paint_alt
-    );
-    canvas.draw_line(
-      rect.right - cached_width,
-      rect.top + cached_width,
-      rect.right - cached_width,
-      rect.bottom - cached_height,
-      this.line_paint_alt
-    );
-    canvas.draw_line(
-      rect.right - cached_width,
-      rect.bottom - cached_height,
-      rect.right - cached_width - width_mul_0p125,
-      rect.bottom - cached_height - height_mul_0p125,
-      this.line_paint_alt
-    );
-    canvas.draw_line(
-      rect.right - cached_width,
-      rect.bottom - cached_height,
-      rect.right - cached_width + width_mul_0p125,
-      rect.bottom - cached_height - height_mul_0p125,
-      this.line_paint_alt
-    );
+    canvas.draw_line(rect.left + cached_width, rect.top + cached_width, rect.right - cached_width, rect.top + cached_width, this.line_paint_alt);
+    canvas.draw_line(rect.left + cached_width, rect.top + cached_width, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
+    canvas.draw_line(rect.right - cached_width, rect.top + cached_width, rect.right - cached_width, rect.bottom - cached_height, this.line_paint_alt);
+    canvas.draw_line(rect.right - cached_width, rect.bottom - cached_height, rect.right - cached_width - width_mul_0p125, rect.bottom - cached_height - height_mul_0p125, this.line_paint_alt);
+    canvas.draw_line(rect.right - cached_width, rect.bottom - cached_height, rect.right - cached_width + width_mul_0p125, rect.bottom - cached_height - height_mul_0p125, this.line_paint_alt);
   }
   draw_wire_style(rect, canvas) {
     let cached_width = rect.get_width() * 0.303;
     let cached_height = rect.get_height() * 0.303;
     if (global.selected_wire_style === global.WIRE_STYLE_0) {
-      canvas.draw_circle(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_circle(
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        this.line_paint_alt
-      );
+      canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
     } else if (global.selected_wire_style === global.WIRE_STYLE_1) {
-      canvas.draw_circle(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_circle(
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        rect.right - cached_width,
-        rect.top + cached_height,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.right - cached_width,
-        rect.top + cached_height,
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        this.line_paint_alt
-      );
+      canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.top + cached_height, this.line_paint_alt);
+      canvas.draw_line(rect.right - cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
     } else if (global.selected_wire_style === global.WIRE_STYLE_2) {
-      canvas.draw_circle(
-        rect.right - cached_width,
-        rect.top + cached_height,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_circle(
-        rect.left + cached_width,
-        rect.bottom - cached_width,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.right - cached_width,
-        rect.top + cached_height,
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.left + cached_width,
-        rect.bottom - cached_width,
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        this.line_paint_alt
-      );
+      canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_line(rect.right - cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
+      canvas.draw_line(rect.left + cached_width, rect.bottom - cached_width, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
     } else if (global.selected_wire_style === global.WIRE_STYLE_3) {
-      canvas.draw_circle(
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_circle(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        rect.left + cached_width,
-        rect.bottom - cached_width,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.left + cached_width,
-        rect.bottom - cached_width,
-        rect.right - cached_width,
-        rect.bottom - cached_width,
-        this.line_paint_alt
-      );
+      canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
+      canvas.draw_line(rect.left + cached_width, rect.bottom - cached_width, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
     } else if (global.selected_wire_style === global.WIRE_STYLE_4) {
-      canvas.draw_circle(
-        rect.left + cached_width,
-        rect.bottom - cached_width,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_circle(
-        rect.right - cached_width,
-        rect.top + cached_height,
-        global.CANVAS_STROKE_WIDTH_1,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        rect.right - cached_width,
-        rect.top + cached_height,
-        this.line_paint_alt
-      );
-      canvas.draw_line(
-        rect.left + cached_width,
-        rect.top + cached_height,
-        rect.left + cached_width,
-        rect.bottom - cached_width,
-        this.line_paint_alt
-      );
+      canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+      canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.top + cached_height, this.line_paint_alt);
+      canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
     }
   }
 }

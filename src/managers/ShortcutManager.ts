@@ -19,29 +19,29 @@
  *
  ***********************************************************************/
 class ShortcutManager {
-  public SHORTCUT_COPY = global.KEY_CODE_C;
-  public SHORTCUT_PASTE = global.KEY_CODE_V;
-  public SHORTCUT_UNDO = global.KEY_CODE_Z;
-  public SHORTCUT_ADD_ELEMENT = global.KEY_CODE_N;
-  public SHORTCUT_REDO = global.KEY_CODE_Y;
-  public SHORTCUT_SAVE_IMAGE = global.KEY_CODE_I;
-  public SHORTCUT_SAVE_CIRCUIT = global.KEY_CODE_S;
-  public SHORTCUT_ROTATE = global.KEY_CODE_R;
-  public SHORTCUT_DELETE = global.KEY_CODE_DELETE;
-  public SHORTCUT_FLIP = global.KEY_CODE_F;
-  public SHORTCUT_EDIT = global.KEY_CODE_E;
-  public SHORTCUT_REMOVE_ALL = global.KEY_CODE_X;
-  public SHORTCUT_SIMULATE = global.KEY_CODE_A;
-  public SHORTCUT_QUERY = global.KEY_CODE_Q;
-  public SHORTCUT_RESET_WINDOW = global.KEY_CODE_M;
-  public SHORTCUT_TOGGLE_SWITCH = global.KEY_CODE_SPACE;
-  public MULTI_MOVED_ELEMENT = false;
-  public MULTI_DELETED_ELEMENT = false;
-  public ENABLE_ARROW_KEYS = true;
-  public TEMP_HISTORY_SNAPSHOT = '';
-  public command = '';
-  public shift = '';
-  public caps = '';
+  public SHORTCUT_COPY: string = global.KEY_CODE_C;
+  public SHORTCUT_PASTE: string = global.KEY_CODE_V;
+  public SHORTCUT_UNDO: string = global.KEY_CODE_Z;
+  public SHORTCUT_ADD_ELEMENT: string = global.KEY_CODE_N;
+  public SHORTCUT_REDO: string = global.KEY_CODE_Y;
+  public SHORTCUT_SAVE_IMAGE: string = global.KEY_CODE_I;
+  public SHORTCUT_SAVE_CIRCUIT: string = global.KEY_CODE_S;
+  public SHORTCUT_ROTATE: string = global.KEY_CODE_R;
+  public SHORTCUT_DELETE: string = global.KEY_CODE_DELETE;
+  public SHORTCUT_FLIP: string = global.KEY_CODE_F;
+  public SHORTCUT_EDIT: string = global.KEY_CODE_E;
+  public SHORTCUT_REMOVE_ALL: string = global.KEY_CODE_X;
+  public SHORTCUT_SIMULATE: string = global.KEY_CODE_A;
+  public SHORTCUT_QUERY: string = global.KEY_CODE_Q;
+  public SHORTCUT_RESET_WINDOW: string = global.KEY_CODE_M;
+  public SHORTCUT_TOGGLE_SWITCH: string = global.KEY_CODE_SPACE;
+  public MULTI_MOVED_ELEMENT: boolean = false;
+  public MULTI_DELETED_ELEMENT: boolean = false;
+  public ENABLE_ARROW_KEYS: boolean = true;
+  public TEMP_HISTORY_SNAPSHOT: string = '';
+  public command: string = '';
+  public shift: boolean = false;
+  public caps: boolean = false;
 
   constructor() {
     this.SHORTCUT_COPY = global.KEY_CODE_C;
@@ -65,10 +65,10 @@ class ShortcutManager {
     this.ENABLE_ARROW_KEYS = true;
     this.TEMP_HISTORY_SNAPSHOT = '';
     this.command = '';
-    this.shift = '';
-    this.caps = '';
+    this.shift = false;
+    this.caps = false;
   }
-  listen(key_event) {
+  listen(key_event: KEY_EVENT_T): void {
     if (
       !global.FLAG_SAVE_IMAGE &&
       !global.FLAG_SAVE_CIRCUIT &&
@@ -139,7 +139,7 @@ class ShortcutManager {
       this.handle_save_circuit_flag(key_event);
     }
   }
-  handle_select_all(key_event) {
+  handle_select_all(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -358,14 +358,14 @@ class ShortcutManager {
       /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
   }
-  handle_toggle_switches(key_event) {
+  handle_toggle_switches(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
     this.caps = key_event['caps'];
     if (key_event['event'].code === this.SHORTCUT_TOGGLE_SWITCH) {
       if (global.selected_type === global.TYPE_SPST) {
-        let index = engine_functions.get_spst(global.selected_id);
+        let index: number = engine_functions.get_spst(global.selected_id);
         if (index > -1 && index < spsts.length) {
           if (spsts[index].elm.properties['Switch State'] === global.ON) {
             spsts[index].elm.properties['Switch State'] = global.OFF;
@@ -375,7 +375,7 @@ class ShortcutManager {
           global.selected_properties['Switch State'] = spsts[index].elm.properties['Switch State'];
         }
       } else if (global.selected_type === global.TYPE_SPDT) {
-        let index = engine_functions.get_spdt(global.selected_id);
+        let index: number = engine_functions.get_spdt(global.selected_id);
         if (index > -1 && index < spdts.length) {
           if (spdts[index].elm.properties['Switch State'] === global.ON) {
             spdts[index].elm.properties['Switch State'] = global.OFF;
@@ -387,7 +387,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_escape_shortcut(key_event) {
+  handle_escape_shortcut(key_event: KEY_EVENT_T): void {
     if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
       if (global.SIGNAL_HISTORY_LOCK && this.TEMP_HISTORY_SNAPSHOT != '') {
         engine_functions.parse_elements(this.TEMP_HISTORY_SNAPSHOT);
@@ -402,7 +402,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_add_element_flag(key_event) {
+  handle_add_element_flag(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -414,7 +414,7 @@ class ShortcutManager {
       menu_bar.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
     }
   }
-  handle_arrow_keys_menu_open_down(key_event) {
+  handle_arrow_keys_menu_open_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_MENU_OPEN_DOWN) {
       if (!global.focused) {
         if (
@@ -425,8 +425,8 @@ class ShortcutManager {
         ) {
           /* Left. */
           if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-            let temp_x = global.mouse_x;
-            let temp_y = global.mouse_y;
+            let temp_x: number = global.mouse_x;
+            let temp_y: number = global.mouse_y;
             global.mouse_x = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_BACK].get_center_x();
             global.mouse_y = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_BACK].get_center_y();
             menu_bar.element_window.mouse_down();
@@ -435,8 +435,8 @@ class ShortcutManager {
             global.mouse_y = temp_y;
           } else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
             /* Right. */
-            let temp_x = global.mouse_x;
-            let temp_y = global.mouse_y;
+            let temp_x: number = global.mouse_x;
+            let temp_y: number = global.mouse_y;
             global.mouse_x = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_FORWARD].get_center_x();
             global.mouse_y = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_FORWARD].get_center_y();
             menu_bar.element_window.mouse_down();
@@ -454,7 +454,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_arrow_keys_select(key_event) {
+  handle_arrow_keys_select(key_event: KEY_EVENT_T): void {
     if (
       key_event['event'].code === global.KEY_CODE_ARROW_UP ||
       key_event['event'].code === global.KEY_CODE_ARROW_DOWN ||
@@ -1725,7 +1725,7 @@ class ShortcutManager {
     }
   }
   /* Look at where this is called, it could be that the SELECTED_COMPONENTS_BOUNDS is reset to max when it's called <_< */
-  handle_arrow_keys_multi_select(key_event) {
+  handle_arrow_keys_multi_select(key_event: KEY_EVENT_T): void {
     if (
       key_event['event'].code === global.KEY_CODE_ARROW_UP ||
       key_event['event'].code === global.KEY_CODE_ARROW_DOWN ||
@@ -1734,7 +1734,7 @@ class ShortcutManager {
     ) {
       global.SIGNAL_BUILD_ELEMENT = true;
       this.MULTI_MOVED_ELEMENT = false;
-      let elm_max = global.element_max();
+      let elm_max: number = global.element_max();
       for (var i = 0; i < elm_max; i++) {
         /* #INSERT_GENERATE_HANDLE_MULTI_SELECT_ELEMENTS_MOVE_CALL# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -1813,14 +1813,14 @@ class ShortcutManager {
       }
     }
   }
-  handle_delete_shortcut(key_event) {
+  handle_delete_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
     this.caps = key_event['caps'];
     if (key_event['event'].code === this.SHORTCUT_DELETE) {
       if (!global.multi_selected) {
-        let index = -1;
+        let index: number = -1;
         /* #INSERT_GENERATE_REMOVE_ELEMENTS_SHORTCUT# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.selected_type === global.TYPE_RESISTOR) {
@@ -2299,14 +2299,14 @@ class ShortcutManager {
       }
     }
   }
-  handle_rotate_shortcut(key_event) {
+  handle_rotate_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
     this.caps = key_event['caps'];
     if (this.command === this.SHORTCUT_ROTATE) {
       global.SIGNAL_BUILD_ELEMENT = true;
-      let index = -1;
+      let index: number = -1;
       /* #INSERT_GENERATE_ELEMENT_ROTATE_SHORTCUT# */
       /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
       if (global.selected_type === global.TYPE_RESISTOR) {
@@ -2715,7 +2715,7 @@ class ShortcutManager {
       /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
   }
-  handle_reset_window_shortcut(key_event) {
+  handle_reset_window_shortcut(key_event: KEY_EVENT_T): void {
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
     this.caps = key_event['caps'];
@@ -2742,19 +2742,19 @@ class ShortcutManager {
       bottom_menu.handle_timestep_flag(false);
     }
   }
-  handle_query_shortcut(key_event) {
+  handle_query_shortcut(key_event: KEY_EVENT_T): void {
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
     this.caps = key_event['caps'];
     if (this.command === this.SHORTCUT_QUERY) {
       /* Get the text field */
       var text_input = document.getElementById('text_input');
-      let MeterTemplate = {
+      let MeterTemplate: MeterTemplate_T = {
         Tag: -1,
         Value: -1
       };
-      let solution_vector = [];
-      let met_max = global.meter_max();
+      let solution_vector: Array<MeterTemplate_T> = [];
+      let met_max: number = global.meter_max();
       for (var i = 0; i < met_max; i++) {
         if (i < voltmeters.length) {
           MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + voltmeters[i].elm.id;
@@ -2789,7 +2789,7 @@ class ShortcutManager {
       document.execCommand('copy');
     }
   }
-  handle_undo_shortcut(key_event) {
+  handle_undo_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -2798,7 +2798,7 @@ class ShortcutManager {
       history_manager.undo();
     }
   }
-  handle_redo_shortcut(key_event) {
+  handle_redo_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -2807,7 +2807,7 @@ class ShortcutManager {
       history_manager.redo();
     }
   }
-  handle_save_image_flag(key_event) {
+  handle_save_image_flag(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -2816,7 +2816,7 @@ class ShortcutManager {
       menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
     }
   }
-  handle_save_circuit_flag(key_event) {
+  handle_save_circuit_flag(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -2825,14 +2825,14 @@ class ShortcutManager {
       menu_bar.handle_save_circuit_flag(!global.FLAG_SAVE_CIRCUIT);
     }
   }
-  handle_flip_shortcut(key_event) {
+  handle_flip_shortcut(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
     this.caps = key_event['caps'];
     if (this.command === this.SHORTCUT_FLIP) {
       global.SIGNAL_BUILD_ELEMENT = true;
-      let index = -1;
+      let index: number = -1;
       /* #INSERT_GENERATE_ELEMENT_FLIP_SHORTCUT# */
       /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
       if (global.selected_type === global.TYPE_RESISTOR) {
@@ -3241,13 +3241,13 @@ class ShortcutManager {
       /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
   }
-  handle_edit_shortcut(key_event) {
+  handle_edit_shortcut(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
     this.caps = key_event['caps'];
     if (this.command === this.SHORTCUT_EDIT) {
-      let index = -1;
+      let index: number = -1;
       if (global.not_null(global.selected_properties)) {
         if (global.not_null(global.selected_properties['options'])) {
           if (
@@ -3270,7 +3270,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_remove_all_shortcut(key_event) {
+  handle_remove_all_shortcut(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3281,7 +3281,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_simulate_shortcut(key_event) {
+  handle_simulate_shortcut(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3290,7 +3290,7 @@ class ShortcutManager {
       menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
     }
   }
-  handle_copy_shortcut(key_event) {
+  handle_copy_shortcut(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3302,7 +3302,7 @@ class ShortcutManager {
             global.CLIPBOARD_TYPE = global.selected_type;
             global.CLIPBOARD_ROTATION = -1;
             global.CLIPBOARD_FLIP = -1;
-            let index = -1;
+            let index: number = -1;
             /* #INSERT_GENERATE_COPY_ELEMENT# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
             if (global.CLIPBOARD_TYPE === global.TYPE_RESISTOR) {
@@ -3717,7 +3717,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_paste_shortcut(key_event) {
+  handle_paste_shortcut(key_event: KEY_EVENT_T) {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3725,8 +3725,8 @@ class ShortcutManager {
     if (this.command === this.SHORTCUT_PASTE) {
       global.SIGNAL_BUILD_ELEMENT = true;
       this.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
-      let id = -1;
-      let index = -1;
+      let id: number = -1;
+      let index: number = -1;
       if (global.not_null(global.CLIPBOARD_TYPE) && global.not_null(global.CLIPBOARD_PROPERTY)) {
         /* #INSERT_GENERATE_PASTE_ELEMENT# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -6614,7 +6614,7 @@ class ShortcutManager {
   /* <!-- END AUTOMATICALLY GENERATED !--> */
   handle_remove_multi_select_elements() {
     this.MULTI_DELETED_ELEMENT = false;
-    let elm_max = global.element_max();
+    let elm_max: number = global.element_max();
     for (var i = elm_max - 1; i > -1; i--) {
       /* #INSERT_GENERATE_HANDLE_REMOVE_MULTI_SELECT_ELEMENTS# */
       /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */

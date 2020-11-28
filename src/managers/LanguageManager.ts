@@ -22,11 +22,10 @@
  ***********************************************************************/
 class LanguageManager {
   /* Do not create any functions in this class. */
-  public WATERMARK =
-    'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
+  public WATERMARK: string = 'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
   /* Padding for the text bounds! */
-  public TEXT_PADDING = '    ';
-  public CONNECTION_NOT_ALLOWED = {
+  public TEXT_PADDING: string = '    ';
+  public CONNECTION_NOT_ALLOWED: LANGUAGE_T = {
     English: 'Connection not allowed',
     Spanish: 'Conexión no permitida',
     French: 'Connexion non autorisée',
@@ -36,7 +35,7 @@ class LanguageManager {
     German: 'Verbindung nicht erlaubt',
     Indonesian: 'Koneksi tidak diizinkan'
   };
-  public STRETCH_WINDOW = {
+  public STRETCH_WINDOW: LANGUAGE_T = {
     English: 'Strech Window',
     Spanish: 'Ventana elástica',
     French: 'Fenêtre extensible',
@@ -46,7 +45,7 @@ class LanguageManager {
     German: 'Stretch-Fenster',
     Indonesian: 'Regangkan Jendela'
   };
-  public LANGUAGE = {
+  public LANGUAGE: LANGUAGE_T = {
     English: 'Language',
     Spanish: 'Idioma',
     French: 'Langue',
@@ -56,7 +55,7 @@ class LanguageManager {
     German: 'Sprache',
     Indonesian: 'Bahasa'
   };
-  public AUTOMATIC_TIMESTEP = {
+  public AUTOMATIC_TIMESTEP: LANGUAGE_T = {
     English: 'Automatic Timestep',
     Spanish: 'Paso de tiempo automático',
     French: 'Timestep automatique',
@@ -66,7 +65,7 @@ class LanguageManager {
     German: 'Automatischer Zeitschritt',
     Indonesian: 'Pencatat Waktu Otomatis'
   };
-  public SHORTCUT_HINTS = {
+  public SHORTCUT_HINTS: LANGUAGE_T = {
     English: 'Shortcut Hints',
     Spanish: 'Sugerencias de acceso directo',
     French: 'Conseils de raccourci',
@@ -76,7 +75,7 @@ class LanguageManager {
     German: 'Verknüpfungshinweise',
     Indonesian: 'Petunjuk Pintasan'
   };
-  public CONVERGENCE_ERROR = {
+  public CONVERGENCE_ERROR: LANGUAGE_T = {
     English: 'Convergence Error',
     Spanish: 'Error de Convergencia',
     French: 'Erreur de Convergence',
@@ -86,7 +85,7 @@ class LanguageManager {
     German: 'Konvergenzfehler',
     Indonesian: 'Konvergensi Kesalahan'
   };
-  public SINGULAR_MATRIX = {
+  public SINGULAR_MATRIX: LANGUAGE_T = {
     English: 'Singular Matrix',
     Spanish: 'Matriz Singular',
     French: 'Matrice Singulière',
@@ -96,7 +95,7 @@ class LanguageManager {
     German: 'Singuläre Matrix',
     Indonesian: 'Singular Matrix'
   };
-  public CONFIRM_REMOVE_ALL = {
+  public CONFIRM_REMOVE_ALL: LANGUAGE_T = {
     English: 'Remove All?',
     Spanish: '¿Eliminar todo?',
     French: 'Enlever tout?',
@@ -106,7 +105,7 @@ class LanguageManager {
     German: 'Alles entfernen?',
     Indonesian: 'Menghapus semua?'
   };
-  public CONFIRM_YES = {
+  public CONFIRM_YES: LANGUAGE_T = {
     English: 'Yes',
     Spanish: 'Sí',
     French: 'Oui',
@@ -116,7 +115,7 @@ class LanguageManager {
     German: 'ja',
     Indonesian: 'iya nih'
   };
-  public CONFIRM_NO = {
+  public CONFIRM_NO: LANGUAGE_T = {
     English: 'No',
     Spanish: 'No',
     French: 'non',
@@ -126,7 +125,7 @@ class LanguageManager {
     German: 'Nein',
     Indonesian: 'tidak'
   };
-  public FILE_EXPLORER_TITLE = {
+  public FILE_EXPLORER_TITLE: LANGUAGE_T = {
     English: 'Select Simulation File',
     Spanish: 'Seleccionar archivo de simulación',
     French: 'Sélectionner un fichier de simulation',
@@ -136,7 +135,7 @@ class LanguageManager {
     German: 'Wählen Sie Simulationsdatei',
     Indonesian: 'Pilih File Simulasi'
   };
-  public NO_NETWORK = {
+  public NO_NETWORK: LANGUAGE_T = {
     English: 'No network detected.',
     Spanish: 'No se detecta la red.',
     French: 'Aucun réseau détecté.',
@@ -146,7 +145,7 @@ class LanguageManager {
     German: 'Kein Netzwerk erkannt.',
     Indonesian: 'Tidak ada jaringan yang terdeteksi.'
   };
-  public END_OF_TIME = {
+  public END_OF_TIME: LANGUAGE_T = {
     English: 'End of simulation time.',
     Spanish: 'Fin del tiempo de simulación.',
     French: 'Fin du temps de simulation.',
@@ -156,7 +155,7 @@ class LanguageManager {
     German: 'Ende der Simulationszeit.',
     Indonesian: 'Akhir waktu simulasi.'
   };
-  public EXIT = {
+  public EXIT: LANGUAGE_T = {
     English: 'EXIT',
     Spanish: 'SALIDA',
     French: 'SORTIE',
@@ -166,7 +165,7 @@ class LanguageManager {
     German: 'BEENDEN',
     Indonesian: 'KELUAR'
   };
-  public SET_TIME_STEP = {
+  public SET_TIME_STEP: LANGUAGE_T = {
     English: 'Set Time Step',
     Spanish: 'Establecer el tiempo de paso',
     French: 'Set pas de temps',
@@ -176,7 +175,7 @@ class LanguageManager {
     German: 'Zeitschritt einstellen',
     Indonesian: 'Set Waktu Langkah'
   };
-  public SAVE_CIRCUIT = {
+  public SAVE_CIRCUIT: LANGUAGE_T = {
     English: 'Save Circuit',
     Spanish: 'Guardar circuito',
     French: 'Enregistrer circuit',
@@ -186,7 +185,7 @@ class LanguageManager {
     German: 'Schaltung speichern',
     Indonesian: 'Simpan sirkit'
   };
-  public SAVE_IMAGE = {
+  public SAVE_IMAGE: LANGUAGE_T = {
     English: 'Save Image',
     Spanish: 'Guardar imagen',
     French: "Enregistrer l'image",
@@ -196,7 +195,7 @@ class LanguageManager {
     German: 'Bild speichern',
     Indonesian: 'Menyimpan gambar'
   };
-  public SET = {
+  public SET: LANGUAGE_T = {
     English: 'Set',
     Spanish: 'Set',
     French: 'Set',
@@ -206,7 +205,7 @@ class LanguageManager {
     German: 'Set',
     Indonesian: 'Set'
   };
-  public FILE = {
+  public FILE: LANGUAGE_T = {
     English: 'File:=',
     Spanish: 'Archivo:=',
     French: 'Fichier:=',
@@ -216,7 +215,7 @@ class LanguageManager {
     German: 'Datei:=',
     Indonesian: 'Mengajukan:='
   };
-  public SYSTEM_SETTINGS = {
+  public SYSTEM_SETTINGS: LANGUAGE_T = {
     English: 'System Settings',
     Spanish: 'Ajustes del sistema',
     French: 'Les paramètres du système',
@@ -226,7 +225,7 @@ class LanguageManager {
     German: 'Systemeinstellungen',
     Indonesian: 'Pengaturan sistem'
   };
-  public MY_DOCUMENTS_TITLE = {
+  public MY_DOCUMENTS_TITLE: LANGUAGE_T = {
     English: 'My Documents',
     Spanish: 'Ajustes del sistema',
     French: 'Les paramètres du système',
@@ -236,7 +235,7 @@ class LanguageManager {
     German: 'Systemeinstellungen',
     Indonesian: 'Pengaturan sistem'
   };
-  public OKAY = {
+  public OKAY: LANGUAGE_T = {
     English: 'OK',
     Spanish: 'Bueno',
     French: "d'accord",
@@ -246,7 +245,7 @@ class LanguageManager {
     German: 'okay',
     Indonesian: 'baik'
   };
-  public CANCEL = {
+  public CANCEL: LANGUAGE_T = {
     English: 'Cancel',
     Spanish: 'Cancelar',
     French: 'Annuler',
@@ -256,7 +255,7 @@ class LanguageManager {
     German: 'Stornieren',
     Indonesian: 'Membatalkan'
   };
-  public START_SIMULATION = {
+  public START_SIMULATION: LANGUAGE_T = {
     English: 'Starting Simulation',
     Spanish: 'Iniciando simulación',
     French: 'Lancer la simulation',
@@ -266,7 +265,7 @@ class LanguageManager {
     German: 'Simulation starten',
     Indonesian: 'Memulai Simulasi'
   };
-  public STOP_SIMULATION = {
+  public STOP_SIMULATION: LANGUAGE_T = {
     English: 'Stopping Simulation',
     Spanish: 'Detener la simulación',
     French: 'Arrêt de la simulation',
@@ -276,7 +275,7 @@ class LanguageManager {
     German: 'Simulation stoppen',
     Indonesian: 'Menghentikan Simulasi'
   };
-  public TRY_AGAIN = {
+  public TRY_AGAIN: LANGUAGE_T = {
     English: 'Try again',
     Spanish: 'Inténtalo de nuevo',
     French: 'Réessayer',
@@ -286,7 +285,7 @@ class LanguageManager {
     German: 'Versuch es noch einmal',
     Indonesian: 'Coba lagi'
   };
-  public COPIED = {
+  public COPIED: LANGUAGE_T = {
     English: 'Copied',
     Spanish: 'Copiada',
     French: 'Copié',
@@ -296,7 +295,7 @@ class LanguageManager {
     German: 'Kopiert',
     Indonesian: 'Disalin'
   };
-  public CANNOT_COPY_WIRE = {
+  public CANNOT_COPY_WIRE: LANGUAGE_T = {
     English: 'Wires cannot be copied',
     Spanish: 'Los cables no se pueden copiar',
     French: 'Les fils ne peuvent pas être copiés',
@@ -306,7 +305,7 @@ class LanguageManager {
     German: 'Drähte können nicht kopiert werden',
     Indonesian: 'Kabel tidak dapat disalin'
   };
-  public CANNOT_MULTI_SELECT = {
+  public CANNOT_MULTI_SELECT: LANGUAGE_T = {
     English: 'Only one element can be copied at a time',
     Spanish: 'Solo se puede copiar un elemento a la vez',
     French: 'Un seul élément peut être copié à la fois',
@@ -316,7 +315,7 @@ class LanguageManager {
     German: 'Es kann jeweils nur ein Element kopiert werden',
     Indonesian: 'Hanya satu elemen yang dapat disalin sekaligus'
   };
-  public NO_CLIPBOARD_DATA = {
+  public NO_CLIPBOARD_DATA: LANGUAGE_T = {
     English: "There's nothing to paste in the clipboard",
     Spanish: 'No hay nada que pegar en el portapapeles',
     French: "Il n'y a rien à coller dans le presse-papiers",
@@ -326,7 +325,7 @@ class LanguageManager {
     German: 'Es gibt nichts in die Zwischenablage einzufügen',
     Indonesian: 'Tidak ada yang bisa disisipkan di clipboard'
   };
-  public SAVE_IMAGE_SUCCESS = {
+  public SAVE_IMAGE_SUCCESS: LANGUAGE_T = {
     English: 'Successfully Saved Image.',
     Spanish: 'Imagen guardada con éxito.',
     French: 'Image enregistrée avec succès.',
@@ -336,7 +335,7 @@ class LanguageManager {
     German: 'Erfolgreich gespeichertes Bild.',
     Indonesian: 'Gambar Berhasil Disimpan.'
   };
-  public SAVE_FILE_SUCCESS = {
+  public SAVE_FILE_SUCCESS: LANGUAGE_T = {
     English: 'Successfully Saved File.',
     Spanish: 'Archivo guardado correctamente.',
     French: 'Fichier enregistré avec succès.',
@@ -346,7 +345,7 @@ class LanguageManager {
     German: 'Erfolgreich gespeicherte Datei.',
     Indonesian: 'File Berhasil Disimpan.'
   };
-  public ACTION_NOT_COMPLETED = {
+  public ACTION_NOT_COMPLETED: LANGUAGE_T = {
     English: 'Action not completed.',
     Spanish: 'Acción no completada.',
     French: 'Action non terminée.',
@@ -356,7 +355,7 @@ class LanguageManager {
     German: 'Aktion nicht abgeschlossen.',
     Indonesian: 'CSV Berhasil Disimpan.'
   };
-  public FILE_MANAGER_ERROR = {
+  public FILE_MANAGER_ERROR: LANGUAGE_T = {
     English: 'Please Install a File Manager.',
     Spanish: 'Instale un administrador de archivos.',
     French: 'Veuillez installer un gestionnaire de fichiers.',
@@ -366,82 +365,81 @@ class LanguageManager {
     German: 'Bitte installieren Sie einen Dateimanager.',
     Indonesian: 'Silakan Instal Manajer File.'
   };
-  public SPACE = ' ';
-  public QUOTE_ESCAPE = /#QUOTE#/g;
+  public SPACE: string = ' ';
+  public QUOTE_ESCAPE: RegExp = /#QUOTE#/g;
   /* #INSERT_GENERATE_ELEMENT_TAG# */
   /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  public TAG_RESISTOR = 'Resistor';
-  public TAG_CAPACITOR = 'Capacitor';
-  public TAG_INDUCTOR = 'Inductor';
-  public TAG_GROUND = 'Ground';
-  public TAG_DCSOURCE = 'DC Source';
-  public TAG_DCCURRENT = 'DC Current';
-  public TAG_ACSOURCE = 'AC Source';
-  public TAG_ACCURRENT = 'AC Current';
-  public TAG_SQUAREWAVE = 'Square Wave Source';
-  public TAG_SAW = 'Saw Wave Source';
-  public TAG_TRI = 'Triangle Wave Source';
-  public TAG_CONSTANT = 'Constant Voltage';
-  public TAG_WIRE = 'Wire';
-  public TAG_NET = 'Virtual Wire';
-  public TAG_NOTE = 'Note';
-  public TAG_RAIL = 'Power Rail';
-  public TAG_VOLTMETER = 'Voltmeter';
-  public TAG_OHMMETER = 'Ohmmeter';
-  public TAG_AMMETER = 'Ammeter';
-  public TAG_WATTMETER = 'Wattmeter';
-  public TAG_FUSE = 'Fuse';
-  public TAG_SPST = 'Single Pole Single Throw';
-  public TAG_SPDT = 'Single Pole Double Throw';
-  public TAG_NOT = 'NOT Gate';
-  public TAG_DIODE = 'Diode';
-  public TAG_LED = 'Light Emitting Diode';
-  public TAG_ZENER = 'Zener Diode';
-  public TAG_POTENTIOMETER = 'Potentiometer';
-  public TAG_AND = 'AND Gate';
-  public TAG_OR = 'OR Gate';
-  public TAG_NAND = 'NAND Gate';
-  public TAG_NOR = 'NOR Gate';
-  public TAG_XOR = 'XOR Gate';
-  public TAG_XNOR = 'XNOR Gate';
-  public TAG_DFF = 'D Flip Flop';
-  public TAG_VSAT = 'Voltage Saturation';
-  public TAG_ADD = 'Voltage Adder';
-  public TAG_SUB = 'Voltage Subtractor';
-  public TAG_MUL = 'Voltage Multiplier';
-  public TAG_DIV = 'Voltage Divider';
-  public TAG_GAIN = 'Voltage Gain';
-  public TAG_ABS = 'Voltage Absolute Value';
-  public TAG_VCSW = 'Voltage Controlled Switch';
-  public TAG_VCVS = 'Voltage Controlled Voltage Source';
-  public TAG_VCCS = 'Voltage Controlled Current Source';
-  public TAG_CCCS = 'Current Controlled Current Source';
-  public TAG_CCVS = 'Current Controlled Voltage Source';
-  public TAG_OPAMP = 'Ideal Operational Amplifier';
-  public TAG_NMOS = 'NChannel MOSFET';
-  public TAG_PMOS = 'PChannel MOSFET';
-  public TAG_NPN = 'NPN BJT';
-  public TAG_PNP = 'PNP BJT';
-  public TAG_ADC = 'Analog-to-Digital Converter';
-  public TAG_DAC = 'Digital-to-Analog Converter';
-  public TAG_SAH = 'Sample-and-Hold';
-  public TAG_PWM = 'Pulse Width Modulator';
-  public TAG_INTEGRATOR = 'Integrator';
-  public TAG_DIFFERENTIATOR = 'Differentiator';
-  public TAG_LPF = '1st Order Low Pass Filter';
-  public TAG_HPF = '1st Order High Pass Filter';
-  public TAG_REL = 'SPST Relay';
-  public TAG_PID = 'PID Controller';
-  public TAG_LUT = 'Look-up Table';
-  public TAG_VCR = 'Voltage Controlled Resistor';
-  public TAG_GRT = 'Voltage Greater Than';
-  public TAG_TPTZ = 'Two-Pole-Two-Zero';
-  public TAG_TRAN = 'Ideal Transformer';
+  public TAG_RESISTOR: string = 'Resistor';
+  public TAG_CAPACITOR: string = 'Capacitor';
+  public TAG_INDUCTOR: string = 'Inductor';
+  public TAG_GROUND: string = 'Ground';
+  public TAG_DCSOURCE: string = 'DC Source';
+  public TAG_DCCURRENT: string = 'DC Current';
+  public TAG_ACSOURCE: string = 'AC Source';
+  public TAG_ACCURRENT: string = 'AC Current';
+  public TAG_SQUAREWAVE: string = 'Square Wave Source';
+  public TAG_SAW: string = 'Saw Wave Source';
+  public TAG_TRI: string = 'Triangle Wave Source';
+  public TAG_CONSTANT: string = 'Constant Voltage';
+  public TAG_WIRE: string = 'Wire';
+  public TAG_NET: string = 'Virtual Wire';
+  public TAG_NOTE: string = 'Note';
+  public TAG_RAIL: string = 'Power Rail';
+  public TAG_VOLTMETER: string = 'Voltmeter';
+  public TAG_OHMMETER: string = 'Ohmmeter';
+  public TAG_AMMETER: string = 'Ammeter';
+  public TAG_WATTMETER: string = 'Wattmeter';
+  public TAG_FUSE: string = 'Fuse';
+  public TAG_SPST: string = 'Single Pole Single Throw';
+  public TAG_SPDT: string = 'Single Pole Double Throw';
+  public TAG_NOT: string = 'NOT Gate';
+  public TAG_DIODE: string = 'Diode';
+  public TAG_LED: string = 'Light Emitting Diode';
+  public TAG_ZENER: string = 'Zener Diode';
+  public TAG_POTENTIOMETER: string = 'Potentiometer';
+  public TAG_AND: string = 'AND Gate';
+  public TAG_OR: string = 'OR Gate';
+  public TAG_NAND: string = 'NAND Gate';
+  public TAG_NOR: string = 'NOR Gate';
+  public TAG_XOR: string = 'XOR Gate';
+  public TAG_XNOR: string = 'XNOR Gate';
+  public TAG_DFF: string = 'D Flip Flop';
+  public TAG_VSAT: string = 'Voltage Saturation';
+  public TAG_ADD: string = 'Voltage Adder';
+  public TAG_SUB: string = 'Voltage Subtractor';
+  public TAG_MUL: string = 'Voltage Multiplier';
+  public TAG_DIV: string = 'Voltage Divider';
+  public TAG_GAIN: string = 'Voltage Gain';
+  public TAG_ABS: string = 'Voltage Absolute Value';
+  public TAG_VCSW: string = 'Voltage Controlled Switch';
+  public TAG_VCVS: string = 'Voltage Controlled Voltage Source';
+  public TAG_VCCS: string = 'Voltage Controlled Current Source';
+  public TAG_CCCS: string = 'Current Controlled Current Source';
+  public TAG_CCVS: string = 'Current Controlled Voltage Source';
+  public TAG_OPAMP: string = 'Ideal Operational Amplifier';
+  public TAG_NMOS: string = 'NChannel MOSFET';
+  public TAG_PMOS: string = 'PChannel MOSFET';
+  public TAG_NPN: string = 'NPN BJT';
+  public TAG_PNP: string = 'PNP BJT';
+  public TAG_ADC: string = 'Analog-to-Digital Converter';
+  public TAG_DAC: string = 'Digital-to-Analog Converter';
+  public TAG_SAH: string = 'Sample-and-Hold';
+  public TAG_PWM: string = 'Pulse Width Modulator';
+  public TAG_INTEGRATOR: string = 'Integrator';
+  public TAG_DIFFERENTIATOR: string = 'Differentiator';
+  public TAG_LPF: string = '1st Order Low Pass Filter';
+  public TAG_HPF: string = '1st Order High Pass Filter';
+  public TAG_REL: string = 'SPST Relay';
+  public TAG_PID: string = 'PID Controller';
+  public TAG_LUT: string = 'Look-up Table';
+  public TAG_VCR: string = 'Voltage Controlled Resistor';
+  public TAG_GRT: string = 'Voltage Greater Than';
+  public TAG_TPTZ: string = 'Two-Pole-Two-Zero';
+  public TAG_TRAN: string = 'Ideal Transformer';
   /* <!-- END AUTOMATICALLY GENERATED !--> */
   constructor() {
     /* Do not create any functions in this class. */
-    this.WATERMARK =
-      'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
+    this.WATERMARK = 'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
     /* Padding for the text bounds! */
     this.TEXT_PADDING = '    ';
     this.CONNECTION_NOT_ALLOWED = {

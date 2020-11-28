@@ -21,11 +21,11 @@
  *
  ***********************************************************************/
 class NodeNetwork {
-  public references = [];
+  public references: Array<number> = [];
   public lowest: number = -1;
   public general_boolean: boolean = false;
 
-  constructor(node_a, node_b) {
+  constructor(node_a: number, node_b: number) {
     this.references = [];
     this.lowest = -1;
     if (node_a != node_b) {
@@ -36,7 +36,7 @@ class NodeNetwork {
     }
     this.general_boolean = false;
   }
-  get_lowest_id(node) {
+  get_lowest_id(node: number): number {
     this.lowest = this.find_lowest_id();
     if (this.is_found(node) && this.lowest != -1) {
       return this.lowest;
@@ -44,7 +44,7 @@ class NodeNetwork {
       return node;
     }
   }
-  is_found(node) {
+  is_found(node: number): boolean {
     this.general_boolean = false;
     for (var i = 0; i < this.references.length; i++) {
       if (this.references[i] === node) {
@@ -54,18 +54,18 @@ class NodeNetwork {
     }
     return this.general_boolean;
   }
-  get_references() {
+  get_references(): Array<number> {
     return this.references;
   }
-  add_references(refs) {
+  add_references(refs: Array<number>): void {
     for (var i = 0; i < refs.length; i++) {
       if (!this.is_found(refs[i])) {
         this.references.push(refs[i]);
       }
     }
   }
-  is_connected(inp) {
-    let is_found = false;
+  is_connected(inp: Array<number>): boolean {
+    let is_found: boolean = false;
     for (var i = 0; i < inp.length; i++) {
       if (this.is_found(inp[i])) {
         is_found = true;
@@ -74,15 +74,11 @@ class NodeNetwork {
     }
     return is_found;
   }
-  is_removed(node) {
-    return (
-      (this.is_found(node) && node != this.find_lowest_id()) ||
-      this.find_lowest_id() === -1 ||
-      node === -1
-    );
+  is_removed(node: number): boolean {
+    return (this.is_found(node) && node != this.find_lowest_id()) || this.find_lowest_id() === -1 || node === -1;
   }
-  find_lowest_id() {
-    let lowest = -1;
+  find_lowest_id(): number {
+    let lowest: number = -1;
     if (this.references.length > 0) {
       lowest = this.references[0];
     } else {

@@ -210,14 +210,14 @@ class OnScreenKeyboard {
     this.KEYBOARD_LETTER_REF.splice(0, this.KEYBOARD_LETTER_REF.length);
     this.ENGINEERING_KEYBOARD_FILTER_INDEX.splice(0, this.ENGINEERING_KEYBOARD_FILTER_INDEX.length);
     this.FILE_NAME_KEYBOARD_FILTER_INDEX.splice(0, this.FILE_NAME_KEYBOARD_FILTER_INDEX.length);
-    let DEFAULT_WIDTH = this.bounds.get_width() * 0.06452 - 1.0;
-    let DEFAULT_HEIGHT = this.bounds.get_height() * 0.2;
-    let Y_COUNTER = 0;
-    let BLOCK_EXPAND_INDEX = 0;
-    let INCREMENT_INDEX = 0;
-    let IS_SPECIAL_KEY = false;
-    let MULTIPLIER = 0;
-    let SKIP_INDEX = 0;
+    let DEFAULT_WIDTH: number = this.bounds.get_width() * 0.06452 - 1.0;
+    let DEFAULT_HEIGHT: number = this.bounds.get_height() * 0.2;
+    let Y_COUNTER: number = 0;
+    let BLOCK_EXPAND_INDEX: number = 0;
+    let INCREMENT_INDEX: number = 0;
+    let IS_SPECIAL_KEY: boolean = false;
+    let MULTIPLIER: number = 0;
+    let SKIP_INDEX: number = 0;
     for (var i = 0; i < this.KEYBOARD_MAX_KEYS; i++) {
       IS_SPECIAL_KEY = false;
       if (i === 0) {
@@ -410,7 +410,7 @@ class OnScreenKeyboard {
   mouse_up(): void {
     if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
       this.HOVER_INDEX = -1;
-      let FOUND = false;
+      let FOUND: boolean = false;
       for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
         if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
           FOUND = true;
@@ -474,7 +474,7 @@ class OnScreenKeyboard {
     }
   }
   filter_keys(input: string): boolean {
-    let output = false;
+    let output: boolean = false;
     let filter: RegExp;
     if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
       input = input.toUpperCase();
@@ -514,7 +514,7 @@ class OnScreenKeyboard {
         this.ENGINEERING_KEYBOARD_MODE = false;
       }
       canvas.draw_rect2(this.bounds, this.bounds_paint);
-      let indexer = 0;
+      let indexer: number = 0;
       for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
         this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].bottom);
         this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].bottom);

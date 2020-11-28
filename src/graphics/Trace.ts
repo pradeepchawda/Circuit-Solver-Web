@@ -228,7 +228,7 @@ outer bounds)*/
     this.last_norm = this.norm;
     this.norm = 0;
     this.plot_magnitude = 0;
-    let abs_temp = 0;
+    let abs_temp: number = 0;
     for (var i = 0; i < this.magnitude_list.length; i++) {
       abs_temp = Math.abs(this.magnitude_list[i].y);
       if (abs_temp > this.norm) {
@@ -238,15 +238,15 @@ outer bounds)*/
     this.norm = 2 * this.norm;
     this.temporary_norm = this.norm;
     if (this.last_norm != 0 && this.temporary_norm != 0) {
-      let temp_div = this.last_norm / (this.height * this.ratio);
-      let temp_const = (this.height * this.ratio) / this.temporary_norm;
+      let temp_div: number = this.last_norm / (this.height * this.ratio);
+      let temp_const: number = (this.height * this.ratio) / this.temporary_norm;
       for (var i = 0; i < this.trace.length; i++) {
         this.plot_magnitude = this.trace[i].y * temp_div;
         this.trace[i].y = this.plot_magnitude * temp_const;
       }
     }
-    let constant = this.width / (this.X_AXIS_LENGTH >> 1);
-    let constant2 = (this.height * this.ratio) / this.temporary_norm;
+    let constant: number = this.width / (this.X_AXIS_LENGTH >> 1);
+    let constant2: number = (this.height * this.ratio) / this.temporary_norm;
     if (this.temporary_norm > 0) {
       if (global.not_null(value / this.temporary_norm)) {
         this.trace.push(new PointF(this.trace.length * constant + this.trim, value * constant2));
@@ -275,7 +275,7 @@ outer bounds)*/
   /* Create the path of the trace based on the trace points */
   create_path() {
     if (this.trace.length > 0) {
-      let temp_height = this.height >> 1;
+      let temp_height: number = this.height >> 1;
       this.previous_point.set_point(this.trace[0].x, this.trace[0].y + this.bounds.top + temp_height);
       this.trace_path.reset();
       for (var i = 1; i < this.trace.length; i++) {

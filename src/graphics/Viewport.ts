@@ -38,21 +38,14 @@ class Viewport {
   public width_spread_factor: number = this.screen_width / this.view_width;
   public height_spread_factor: number = this.screen_height / this.view_height;
   /* Take the smallest spread factor to make sure we aren't going to get clipped off the screen.  */
-  public spread_factor: number = Math.min(
-    this.width_spread_factor,
-    this.height_spread_factor
-  );
+  public spread_factor: number = Math.min(this.width_spread_factor, this.height_spread_factor);
   /* left, top, right, and bottom of the rectangle */
   public left: number = this.center_x - (this.view_width >> 1);
   public top: number = this.center_y - (this.view_height >> 1);
   public right: number = this.center_x + (this.view_width >> 1);
   public bottom: number = this.center_y + (this.view_height >> 1);
 
-  constructor(
-    aspect_ratio: number,
-    screen_width: number,
-    screen_height: number
-  ) {
+  constructor(aspect_ratio: number, screen_width: number, screen_height: number) {
     /* This paint is used for drawing the "lines" that the component is comprised of. */
     this.line_paint = new Paint();
     this.line_paint.set_paint_style(this.line_paint.style.STROKE);
@@ -82,10 +75,7 @@ class Viewport {
       this.width_spread_factor = this.screen_width / this.view_width;
       this.height_spread_factor = this.screen_height / this.view_height;
       /* Take the smallest spread factor to make sure we aren't going to get clipped off the screen.  */
-      this.spread_factor = Math.min(
-        this.width_spread_factor,
-        this.height_spread_factor
-      );
+      this.spread_factor = Math.min(this.width_spread_factor, this.height_spread_factor);
       /* Apply the spread factor to the width and height, maintaining the aspect ratio. */
       this.view_width *= this.spread_factor;
       this.view_height *= this.spread_factor;
@@ -101,7 +91,7 @@ class Viewport {
     global.SIGNAL_BUILD_COUNTER = 0;
   }
   /* Handles resizing the RectF Element */
-  resize(aspect_ratio: number, screen_width: number, screen_height: number) {
+  resize(aspect_ratio: number, screen_width: number, screen_height: number): void {
     this.screen_width = screen_width;
     this.screen_height = screen_height;
     this.center_x = this.screen_width >> 1;
@@ -114,10 +104,7 @@ class Viewport {
       this.width_spread_factor = this.screen_width / this.view_width;
       this.height_spread_factor = this.screen_height / this.view_height;
       /* Take the smallest spread factor to make sure we aren't going to get clipped off the screen.  */
-      this.spread_factor = Math.min(
-        this.width_spread_factor,
-        this.height_spread_factor
-      );
+      this.spread_factor = Math.min(this.width_spread_factor, this.height_spread_factor);
       /* Apply the spread factor to the width and height, maintaining the aspect ratio. */
       this.view_width *= this.spread_factor;
       this.view_height *= this.spread_factor;
@@ -132,15 +119,9 @@ class Viewport {
     global.SIGNAL_BUILD_ELEMENT = true;
     global.SIGNAL_BUILD_COUNTER = 0;
   }
-  draw_viewport(canvas) {
+  draw_viewport(canvas: GraphicsEngine): void {
     if (this.DRAW_BOUNDS) {
-      canvas.draw_rect(
-        this.left,
-        this.top,
-        this.right,
-        this.bottom,
-        this.line_paint
-      );
+      canvas.draw_rect(this.left, this.top, this.right, this.bottom, this.line_paint);
     }
   }
 }

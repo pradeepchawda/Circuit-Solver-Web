@@ -21,20 +21,20 @@
  *
  ***********************************************************************/
 class TPTZController {
-  public buffer = [];
-  public x = [0, 0];
-  public y = [0, 0];
-  public a1 = 0;
-  public a2 = 1;
-  public b0 = 2;
-  public b1 = 3;
-  public b2 = 4;
-  public n_1 = 0;
-  public n_2 = 1;
-  public center = 0;
-  public _y = 0;
+  public buffer: Array<number> = [];
+  public x: Array<number> = [0, 0];
+  public y: Array<number> = [0, 0];
+  public a1: number = 0;
+  public a2: number = 1;
+  public b0: number = 2;
+  public b1: number = 3;
+  public b2: number = 4;
+  public n_1: number = 0;
+  public n_2: number = 1;
+  public center: number = 0;
+  public _y: number = 0;
 
-  constructor(tptz_buffer) {
+  constructor(tptz_buffer: Array<number>) {
     this.buffer = global.copy(tptz_buffer);
     this.x = [0, 0];
     this.y = [0, 0];
@@ -49,24 +49,18 @@ class TPTZController {
     this._y = 0;
   }
   /* Compute the two-pole two-zero output given the error signal. */
-  get_output(input_error) {
+  get_output(input_error: number): number {
     return this._2p2z(input_error);
   }
   /* Set the initial value of the two-pole two-zero compensator. */
-  set_initial(setter) {
+  set_initial(setter: number): void {
     this.y[this.n_1] = setter;
     this.y[this.n_2] = setter;
   }
   /* The difference equation that realizes the compensator. */
-  _2p2z(_x) {
-    this.center =
-      _x * this.buffer[this.b0] +
-      this.buffer[this.b1] * this.x[this.n_1] +
-      this.buffer[this.b2] * this.x[this.n_2];
-    this._y =
-      this.center -
-      this.buffer[this.a1] * this.y[this.n_1] -
-      this.buffer[this.a2] * this.y[this.n_2];
+  _2p2z(_x: number): number {
+    this.center = _x * this.buffer[this.b0] + this.buffer[this.b1] * this.x[this.n_1] + this.buffer[this.b2] * this.x[this.n_2];
+    this._y = this.center - this.buffer[this.a1] * this.y[this.n_1] - this.buffer[this.a2] * this.y[this.n_2];
 
     this.x[this.n_2] = this.x[this.n_1];
     this.x[this.n_1] = _x;
@@ -75,7 +69,7 @@ class TPTZController {
     return this._y;
   }
   /* Update the coefficients of the compensator. */
-  set_tptz_coefficients(tptz_buffer) {
+  set_tptz_coefficients(tptz_buffer: Array<number>): void {
     this.buffer = global.copy(tptz_buffer);
   }
 }

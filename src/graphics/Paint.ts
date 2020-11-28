@@ -52,8 +52,8 @@ class Paint {
   /* The alpha (transparency) of the paint element */
   public alpha: number = 1;
   /* A maintained array of computed text sizes.*/
-  public metric_array = [];
-  public saved_metric = null;
+  public metric_array: Array<PAINT_METRICS_ARRAY_T> = [];
+  public saved_metric: PAINT_METRICS_T = null;
   public GARBAGE_COLLECTOR_SIZE: number = 16;
   private temp_boolean: boolean = false;
   private general_index: number = 0;
