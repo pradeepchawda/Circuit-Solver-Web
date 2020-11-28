@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var WattMeter = /** @class */ (function () {
-    function WattMeter(type, id, n1, n2, n3) {
+class WattMeter {
+    constructor(type, id, n1, n2, n3) {
         this.INITIALIZED = false;
         this.X_AXIS_LENGTH = 600;
         this.Y_AXIS_LENGTH = 100;
@@ -31,7 +31,7 @@ var WattMeter = /** @class */ (function () {
         this.trace_bounds = new RectF(0, 0, 0, 0);
         this.meter_trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element3(-1, -1, -1);
+        this.elm = new Element3(-1, -1, global.NULL);
         this.plus_point = new PointF(0, 0);
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
@@ -121,7 +121,7 @@ var WattMeter = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -239,7 +239,7 @@ var WattMeter = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    WattMeter.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -254,31 +254,31 @@ var WattMeter = /** @class */ (function () {
             this.trace_bounds.set_bounds(this.c_x - global.node_space_x, this.c_y - 2 * global.node_space_y, this.c_x + global.node_space_x, this.c_y - 1 * global.node_space_y);
             this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
         }
-    };
-    WattMeter.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
+    }
     /* General function to handle any processing required by the component */
-    WattMeter.prototype.update = function () {
+    update() {
         if (global.FLAG_SIMULATING &&
             simulation_manager.SOLUTIONS_READY &&
             simulation_manager.SIMULATION_STEP != 0) {
             if (this.elm.consistent()) {
             }
         }
-    };
-    WattMeter.prototype.stamp = function () {
+    }
+    stamp() {
         if (this.elm.consistent()) {
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, global.settings.WIRE_RESISTANCE);
             engine_functions.stamp_voltage(this.elm.n3, -1, this.elm.properties['Wattage'], simulation_manager.ELEMENT_WATTMETER_OFFSET + this.simulation_id);
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    WattMeter.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
-        var p3 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
+        let p3 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             if (this.elm.flip === global.FLIP_0) {
                 p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
@@ -370,10 +370,10 @@ var WattMeter = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
         return vertices;
-    };
-    WattMeter.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -383,28 +383,28 @@ var WattMeter = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    WattMeter.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n3].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    WattMeter.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    WattMeter.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -448,9 +448,9 @@ var WattMeter = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    WattMeter.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -467,8 +467,8 @@ var WattMeter = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    WattMeter.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -491,14 +491,14 @@ var WattMeter = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
-    WattMeter.prototype.reset_trace_path = function () {
+    }
+    reset_trace_path() {
         if (global.not_null(this.meter_trace)) {
             this.meter_trace.trace_path.reset();
         }
-    };
+    }
     /* Handling a mouse move event. */
-    WattMeter.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
@@ -544,9 +544,9 @@ var WattMeter = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    WattMeter.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused &&
                 global.focused_id === this.elm.id &&
@@ -587,8 +587,8 @@ var WattMeter = /** @class */ (function () {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    WattMeter.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -598,8 +598,8 @@ var WattMeter = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    WattMeter.prototype.remove_focus = function () {
+    }
+    remove_focus() {
         if (global.focused &&
             global.focused_id === this.elm.id &&
             global.focused_type === this.elm.type) {
@@ -608,8 +608,8 @@ var WattMeter = /** @class */ (function () {
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    WattMeter.prototype.remove_selection = function () {
+    }
+    remove_selection() {
         if (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
@@ -619,10 +619,10 @@ var WattMeter = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    WattMeter.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -630,11 +630,11 @@ var WattMeter = /** @class */ (function () {
                 }
             }
         }
-    };
-    WattMeter.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -677,11 +677,11 @@ var WattMeter = /** @class */ (function () {
                 }
             }
         }
-    };
-    WattMeter.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -724,8 +724,8 @@ var WattMeter = /** @class */ (function () {
                 }
             }
         }
-    };
-    WattMeter.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -735,9 +735,9 @@ var WattMeter = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    WattMeter.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -747,26 +747,26 @@ var WattMeter = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    WattMeter.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    WattMeter.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 1.5 * this.x_space;
-            var cache_1 = 1.414 * this.x_space;
-            var cache_2 = 1.5 * this.y_space;
-            var cache_3 = 1.414 * this.y_space;
-            var cache_4 = 2.0 * this.x_space;
-            var cache_5 = 2.0 * this.y_space;
-            var cache_6 = 0.75 * this.x_space;
-            var cache_7 = 0.75 * this.y_space;
-            var cache_8 = this.x_space;
-            var cache_9 = this.y_space;
+            let cache_0 = 1.5 * this.x_space;
+            let cache_1 = 1.414 * this.x_space;
+            let cache_2 = 1.5 * this.y_space;
+            let cache_3 = 1.414 * this.y_space;
+            let cache_4 = 2.0 * this.x_space;
+            let cache_5 = 2.0 * this.y_space;
+            let cache_6 = 0.75 * this.x_space;
+            let cache_7 = 0.75 * this.y_space;
+            let cache_8 = this.x_space;
+            let cache_9 = this.y_space;
             this.plus_point.x =
                 this.c_x -
                     cache_0 * global.cosine(this.theta) -
@@ -804,9 +804,9 @@ var WattMeter = /** @class */ (function () {
             this.meter_symbol.resize_symbol(this.meter_symbol.STYLE_0);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    WattMeter.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -835,12 +835,12 @@ var WattMeter = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    WattMeter.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -871,45 +871,45 @@ var WattMeter = /** @class */ (function () {
         /* Angle from center to p2 */
         this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
         this.build_element();
-    };
-    WattMeter.prototype.increment_rotation = function () {
+    }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    WattMeter.prototype.increment_flip = function () {
+    }
+    increment_flip() {
         this.elm.flip++;
         if (this.elm.flip > global.FLIP_180) {
             this.elm.flip = global.FLIP_0;
         }
         this.set_flip(this.elm.flip);
-    };
-    WattMeter.prototype.reset_trace = function () {
+    }
+    reset_trace() {
         this.meter_trace.reset();
-    };
-    WattMeter.prototype.reset_meter = function () {
+    }
+    reset_meter() {
         this.elm.properties['Wattage'] = 0;
-    };
-    WattMeter.prototype.push_voltage = function (v1, v2) {
+    }
+    push_voltage(v1, v2) {
         if (global.FLAG_SIMULATING &&
             global.SIMULATION_TIME >=
                 global.TIME_STEP + global.TIME_STEP + global.TIME_STEP &&
             simulation_manager.SOLUTIONS_READY) {
-            var curr = (v1 - v2) / global.settings.WIRE_RESISTANCE;
-            var voltage = Math.max(v1, v2);
-            var power = curr * voltage;
+            let curr = (v1 - v2) / global.settings.WIRE_RESISTANCE;
+            let voltage = Math.max(v1, v2);
+            let power = curr * voltage;
             this.elm.properties['Wattage'] = power;
             this.meter_trace.push(power, global.SIMULATION_TIME);
         }
-    };
-    WattMeter.prototype.get_simulation_index = function () {
+    }
+    get_simulation_index() {
         return (simulation_manager.NODE_SIZE +
             simulation_manager.ELEMENT_WATTMETER_OFFSET +
             this.simulation_id);
-    };
-    WattMeter.prototype.recolor = function () {
+    }
+    recolor() {
         if (global.selected) {
             if (global.selected_id === this.elm.id &&
                 global.selected_type === this.elm.type) {
@@ -957,13 +957,13 @@ var WattMeter = /** @class */ (function () {
         else {
             this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
         }
-    };
-    WattMeter.prototype.is_selected_element = function () {
+    }
+    is_selected_element() {
         return (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type);
-    };
+    }
     /* Draws the component */
-    WattMeter.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -1035,14 +1035,14 @@ var WattMeter = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
-    WattMeter.prototype.draw_trace = function (canvas) {
+    }
+    draw_trace(canvas) {
         if (global.FLAG_SIMULATING) {
             this.meter_trace.draw_trace(canvas, this.bounds.left, 0);
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    WattMeter.prototype.patch = function () {
+    patch() {
         if (this.elm.properties['Test Voltage'] != 1e-9) {
             this.elm.properties['Test Voltage'] = 1e-9;
         }
@@ -1062,12 +1062,12 @@ var WattMeter = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    WattMeter.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
                 if (keys[i] === 'Frequency' ||
@@ -1080,9 +1080,8 @@ var WattMeter = /** @class */ (function () {
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    WattMeter.prototype.reset = function () {
+    }
+    reset() {
         this.elm.properties['Wattage'] = 0;
-    };
-    return WattMeter;
-}());
+    }
+}

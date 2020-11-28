@@ -126,6 +126,7 @@ class GraphicsEngine {
   }
   /* Applies the paint's properties to the context */
   apply_paint(paint: Paint, is_text: boolean): void {
+    this.ctx.beginPath();
     if (this.last_fill_color != paint.color && paint.style.FILL === paint.paint_style) {
       this.ctx.fillStyle = paint.color;
       this.last_fill_color = paint.color;
@@ -149,7 +150,6 @@ class GraphicsEngine {
         this.last_text_baseline = paint.text_baseline;
       }
     } else {
-      this.ctx.beginPath();
       if (paint.style.STROKE === paint.paint_style || paint.style.FILL_AND_STROKE === paint.paint_style) {
         if (this.last_stroke_color != paint.color) {
           this.ctx.strokeStyle = paint.color;
@@ -585,5 +585,6 @@ class GraphicsEngine {
     this.general_path.reset();
     this.cache = [];
     this.dict = global.NULL;
+    this.restore();
   }
 }

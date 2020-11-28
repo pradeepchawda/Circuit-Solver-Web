@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var MeterSymbols = /** @class */ (function () {
-    function MeterSymbols() {
+class MeterSymbols {
+    constructor() {
         this.bounds = new RectF(0, 0, 0, 0);
         this.METER_VOLTAGE = 0;
         this.METER_CURRENT = 1;
@@ -54,17 +54,17 @@ var MeterSymbols = /** @class */ (function () {
         this.LINE_BUFFER = [];
         this.CIRCLE_BUFFER = [];
     }
-    MeterSymbols.prototype.set_bounds = function (left, top, right, bottom) {
+    set_bounds(left, top, right, bottom) {
         this.bounds.left = left;
         this.bounds.top = top;
         this.bounds.right = right;
         this.bounds.bottom = bottom;
         this.edit(this.meter_type);
-    };
-    MeterSymbols.prototype.set_stroke_width = function (setter) {
+    }
+    set_stroke_width(setter) {
         this.meter_paint.set_stroke_width(setter);
-    };
-    MeterSymbols.prototype.reset = function (setter, style) {
+    }
+    reset(setter, style) {
         this.meter_type = setter;
         if (style === this.STYLE_0) {
             this.meter_paint.set_color(global.ELEMENT_COLOR);
@@ -80,13 +80,13 @@ var MeterSymbols = /** @class */ (function () {
         }
         this.points.splice(0, this.points.length);
         this.populate();
-    };
-    MeterSymbols.prototype.set_color = function (color) {
+    }
+    set_color(color) {
         this.meter_paint.set_color(color);
-    };
-    MeterSymbols.prototype.populate = function () {
-        var temp_width = this.bounds.get_width() >> 2;
-        var temp_height = this.bounds.get_height() >> 2;
+    }
+    populate() {
+        let temp_width = this.bounds.get_width() >> 2;
+        let temp_height = this.bounds.get_height() >> 2;
         if (this.meter_type === this.METER_CURRENT) {
             this.points.push(new PointF(this.bounds.get_center_x(), this.bounds.top));
             this.points.push(new PointF(this.bounds.get_center_x() - temp_width, this.bounds.get_center_y()));
@@ -120,10 +120,10 @@ var MeterSymbols = /** @class */ (function () {
             this.points.push(new PointF(this.bounds.left + this.bounds.get_width() * 0.75, this.bounds.bottom));
             this.points.push(new PointF(this.bounds.right, this.bounds.top));
         }
-    };
-    MeterSymbols.prototype.edit = function (type) {
-        var temp_width = this.bounds.get_width() >> 2;
-        var temp_height = this.bounds.get_height() >> 2;
+    }
+    edit(type) {
+        let temp_width = this.bounds.get_width() >> 2;
+        let temp_height = this.bounds.get_height() >> 2;
         if (type === this.METER_CURRENT) {
             this.points[0].x = this.bounds.get_center_x();
             this.points[0].y = this.bounds.top;
@@ -182,8 +182,8 @@ var MeterSymbols = /** @class */ (function () {
             this.points[4].x = this.bounds.right;
             this.points[4].y = this.bounds.top;
         }
-    };
-    MeterSymbols.prototype.resize_symbol = function (style) {
+    }
+    resize_symbol(style) {
         if (style === this.STYLE_0) {
             this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.meter_paint.set_text_size(global.CANVAS_TEXT_SIZE_1);
@@ -192,9 +192,9 @@ var MeterSymbols = /** @class */ (function () {
             this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
             this.meter_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         }
-    };
-    MeterSymbols.prototype.draw_symbol = function (canvas) {
-        var indexer = 0;
+    }
+    draw_symbol(canvas) {
+        let indexer = 0;
         this.CIRCLE_BUFFER = [];
         this.LINE_BUFFER = [];
         if (this.meter_type === this.METER_CURRENT) {
@@ -228,6 +228,5 @@ var MeterSymbols = /** @class */ (function () {
             this.LINE_BUFFER[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
         }
         canvas.draw_line_buffer(this.LINE_BUFFER, this.meter_paint);
-    };
-    return MeterSymbols;
-}());
+    }
+}

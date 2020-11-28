@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var YesNoWindow = /** @class */ (function () {
-    function YesNoWindow() {
+class YesNoWindow {
+    constructor() {
         /* The padding for the window */
         this.PADDING = 0.025;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
@@ -124,30 +124,30 @@ var YesNoWindow = /** @class */ (function () {
             this.height = view_port.view_height * 0.075;
         }
         this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = (this.bounds.get_width() - 2 * padding) * 0.5;
-        var height = (this.bounds.get_height() - 2 * padding) * 0.3571;
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = (this.bounds.get_width() - 2 * padding) * 0.5;
+        let height = (this.bounds.get_height() - 2 * padding) * 0.3571;
         this.option_0 = new RectF(this.bounds.left + padding, this.bounds.bottom - padding - height, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
         this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.bottom - padding - height, this.bounds.right - padding, this.bounds.bottom - padding);
         /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
     }
-    YesNoWindow.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_REMOVE_ALL) {
             /* Enforcing the system from cascading events. */
             this.first_touch_x = global.mouse_x;
             this.first_touch_y = global.mouse_y;
         }
-    };
-    YesNoWindow.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.FLAG_REMOVE_ALL) {
             if (!global.MOBILE_MODE) {
                 this.hover();
             }
         }
-    };
-    YesNoWindow.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         if (global.FLAG_REMOVE_ALL) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
@@ -173,8 +173,8 @@ var YesNoWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    YesNoWindow.prototype.key_down = function (key_event) {
+    }
+    key_down(key_event) {
         if (global.FLAG_REMOVE_ALL) {
             if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
@@ -182,8 +182,8 @@ var YesNoWindow = /** @class */ (function () {
                 global.component_touched = true;
             }
         }
-    };
-    YesNoWindow.prototype.hover = function () {
+    }
+    hover() {
         if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
             this.yes_paint.set_color(global.GENERAL_CYAN_COLOR);
         }
@@ -196,8 +196,8 @@ var YesNoWindow = /** @class */ (function () {
         else {
             this.no_paint.set_color(global.GENERAL_WHITE_COLOR);
         }
-    };
-    YesNoWindow.prototype.resize_window = function () {
+    }
+    resize_window() {
         if (global.MOBILE_MODE) {
             this.width = view_port.view_width * 0.175;
             this.height = view_port.view_height * 0.13125;
@@ -207,9 +207,9 @@ var YesNoWindow = /** @class */ (function () {
             this.height = view_port.view_height * 0.075;
         }
         this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = (this.bounds.get_width() - 2 * padding) * 0.5;
-        var height = (this.bounds.get_height() - 2 * padding) * 0.3571;
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = (this.bounds.get_width() - 2 * padding) * 0.5;
+        let height = (this.bounds.get_height() - 2 * padding) * 0.3571;
         this.option_0.set_bounds(this.bounds.left + padding, this.bounds.bottom - padding - height, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
         this.option_1.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.bottom - padding - height, this.bounds.right - padding, this.bounds.bottom - padding);
         /* Resize the stroke widths and the text sizes. */
@@ -226,8 +226,8 @@ var YesNoWindow = /** @class */ (function () {
         this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-    };
-    YesNoWindow.prototype.draw_window = function (canvas) {
+    }
+    draw_window(canvas) {
         if (global.FLAG_REMOVE_ALL) {
             canvas.draw_round_rect2(this.bounds, this.bounds_paint.get_stroke_width(), this.bounds_paint);
             canvas.draw_text(language_manager.CONFIRM_REMOVE_ALL[global.LANGUAGES[global.LANGUAGE_INDEX]], this.bounds.get_center_x(), this.bounds.top + this.bounds.get_height() * 0.33, this.text_paint);
@@ -236,6 +236,5 @@ var YesNoWindow = /** @class */ (function () {
             canvas.draw_round_rect2(this.option_1, this.fill_paint.get_stroke_width(), this.no_paint);
             canvas.draw_text(language_manager.CONFIRM_NO[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_1.get_center_x(), this.option_1.get_center_y(), this.text_paint);
         }
-    };
-    return YesNoWindow;
-}());
+    }
+}

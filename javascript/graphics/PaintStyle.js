@@ -19,11 +19,10 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PaintStyle = /** @class */ (function () {
-    function PaintStyle() {
+class PaintStyle {
+    constructor() {
         this.STROKE = 0;
         this.FILL = 1;
         this.FILL_AND_STROKE = 2;
     }
-    return PaintStyle;
-}());
+}

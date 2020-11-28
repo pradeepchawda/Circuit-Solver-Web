@@ -18,9 +18,9 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ElementWindow = /** @class */ (function () {
+class ElementWindow {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    function ElementWindow(left, top, right, bottom) {
+    constructor(left, top, right, bottom) {
         this.ENABLE_MOUSE_WHEEL = true;
         this.positions = [];
         /* Controls the rate of the mouse wheel event for this specific element. */
@@ -325,10 +325,10 @@ var ElementWindow = /** @class */ (function () {
         this.transformer_symbol = new TransformerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    ElementWindow.prototype.load_positions = function () {
-        var temp_bounds = new RectF(0, 0, 0, 0);
+    load_positions() {
+        let temp_bounds = new RectF(0, 0, 0, 0);
         this.positions.splice(0, this.positions.length);
-        var height = 0;
+        let height = 0;
         for (var i = 0; i < this.MAX_ICONS; i++) {
             temp_bounds.left =
                 this.bounds.left +
@@ -342,8 +342,8 @@ var ElementWindow = /** @class */ (function () {
             temp_bounds.set_center2(temp_bounds.get_center_x(), temp_bounds.get_center_y(), height, height);
             this.positions.push(new RectF(temp_bounds.left, temp_bounds.top, temp_bounds.right, temp_bounds.bottom));
         }
-    };
-    ElementWindow.prototype.update = function () {
+    }
+    update() {
         if (global.FLAG_MENU_OPEN_DOWN) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 {
@@ -419,8 +419,8 @@ var ElementWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    ElementWindow.prototype.mouse_wheel = function () {
+    }
+    mouse_wheel() {
         if (this.ENABLE_MOUSE_WHEEL) {
             if (global.FLAG_MENU_OPEN_DOWN) {
                 if (!global.MOUSE_KEYBOARD_LOCK) {
@@ -442,13 +442,13 @@ var ElementWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    ElementWindow.prototype.mouse_down = function () {
+    }
+    mouse_down() {
         if (global.FLAG_MENU_OPEN_DOWN) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 this.first_touch_x = global.mouse_x;
                 this.first_touch_y = global.mouse_y;
-                var cached_value = this.bounds.get_width() / this.MAX_ICONS;
+                let cached_value = this.bounds.get_width() / this.MAX_ICONS;
                 /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_DOWN */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 this.resistor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -530,11 +530,11 @@ var ElementWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    ElementWindow.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.FLAG_MENU_OPEN_DOWN) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
-                var cached_value = this.bounds.get_width() / this.MAX_ICONS;
+                let cached_value = this.bounds.get_width() / this.MAX_ICONS;
                 /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 this.resistor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -606,8 +606,8 @@ var ElementWindow = /** @class */ (function () {
                 /* <!-- END AUTOMATICALLY GENERATED !--> */
             }
         }
-    };
-    ElementWindow.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         if (global.FLAG_MENU_OPEN_DOWN) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 if (this.positions[this.NAVIGATE_BACK].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
@@ -626,7 +626,7 @@ var ElementWindow = /** @class */ (function () {
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
-                var cached_value = this.bounds.get_width() / this.MAX_ICONS;
+                let cached_value = this.bounds.get_width() / this.MAX_ICONS;
                 /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_UP */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 this.resistor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -698,8 +698,8 @@ var ElementWindow = /** @class */ (function () {
                 /* <!-- END AUTOMATICALLY GENERATED !--> */
             }
         }
-    };
-    ElementWindow.prototype.resize_window = function (left, top, right, bottom) {
+    }
+    resize_window(left, top, right, bottom) {
         this.bounds.set_bounds(left, top, right, bottom);
         this.load_positions();
         /* #INSERT_GENERATE_ELEMENT_WINDOW_RESIZE_WINDOW */
@@ -785,8 +785,8 @@ var ElementWindow = /** @class */ (function () {
         }
         this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
         this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-    };
-    ElementWindow.prototype.draw_hover = function (canvas) {
+    }
+    draw_hover(canvas) {
         /* Handle the hover here! */
         for (var i = 0; i < this.positions.length; i++) {
             if (this.positions[i].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
@@ -809,9 +809,9 @@ var ElementWindow = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Check the limits of the hover effect on the elements. */
-    ElementWindow.prototype.hover_limits = function (current_page, index, overflow, max_pages) {
+    hover_limits(current_page, index, overflow, max_pages) {
         if (current_page <= max_pages) {
             if (current_page < max_pages) {
                 return true;
@@ -826,8 +826,8 @@ var ElementWindow = /** @class */ (function () {
         else {
             return false;
         }
-    };
-    ElementWindow.prototype.draw_window = function (canvas) {
+    }
+    draw_window(canvas) {
         if (global.FLAG_MENU_OPEN_DOWN) {
             canvas.draw_round_rect2(this.bounds, global.CANVAS_STROKE_WIDTH_3, this.fill_paint);
             if (global.MOBILE_MODE === false) {
@@ -909,6 +909,5 @@ var ElementWindow = /** @class */ (function () {
             this.transformer_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
             /* <!-- END AUTOMATICALLY GENERATED !--> */
         }
-    };
-    return ElementWindow;
-}());
+    }
+}

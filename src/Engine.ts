@@ -27,7 +27,9 @@ String.prototype.hashCode = function () {
   let hash: number = 0;
   let i = 0;
   let chr = '';
-  if (this.length === 0) return hash;
+  if (this.length === 0) {
+    return hash;
+  }
   for (i = 0; i < this.length; i++) {
     chr = this.charCodeAt(i);
     hash = (hash << 5) - hash + Number(chr);
@@ -58,8 +60,9 @@ function save_image_mobile(title, canvas) {
     };
   });
 }
+
 /* Global state variable */
-var global = new Global();
+var global: Global = new Global();
 /* Create a global variable to access the "file_explorer" element in HTML. */
 var file_reader = global.NULL;
 if (global.MOBILE_MODE) {
@@ -194,7 +197,7 @@ var matrix_x_copy = linear_algebra.matrix(1, 1);
 /* #INSERT_GENERATE_CREATE_ELEMENT_INSTANCE# */
 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 /* All the resistors in the system! */
-var resistors = [];
+var resistors: Array<Resistor> = [];
 /* All the capacitors in the system! */
 var capacitors = [];
 /* All the inductors in the system! */
@@ -416,10 +419,10 @@ function load_app() {
   general_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
   general_paint.set_font(global.DEFAULT_FONT);
   general_paint.set_alpha(255);
-  general_paint.set_paint_align(general_paint.align.LEFT);
+  general_paint.set_paint_align(general_paint.align.CENTER);
   /* Inititalize the system. This is called at the end of this file.
   (After everything is initialized) */
-  function initialize(step) {
+  function initialize(step: number) {
     if (step === 0) {
       resize_canvas();
       engine_functions.create_nodes(workspace.bounds);

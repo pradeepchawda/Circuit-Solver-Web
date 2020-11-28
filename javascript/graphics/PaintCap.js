@@ -19,11 +19,10 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PaintCap = /** @class */ (function () {
-    function PaintCap() {
+class PaintCap {
+    constructor() {
         this.ROUND = 'round';
         this.SQUARE = 'square';
         this.BUTT = 'butt';
     }
-    return PaintCap;
-}());
+}

@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var LightEmittingDiode = /** @class */ (function () {
-    function LightEmittingDiode(type, id, n1, n2) {
+class LightEmittingDiode {
+    constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
@@ -106,7 +106,7 @@ var LightEmittingDiode = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -207,7 +207,7 @@ var LightEmittingDiode = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    LightEmittingDiode.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -217,32 +217,32 @@ var LightEmittingDiode = /** @class */ (function () {
             /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
-    };
-    LightEmittingDiode.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
-    LightEmittingDiode.prototype.stamp = function () {
+    }
+    stamp() {
         if (this.elm.consistent()) {
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.GMIN);
             engine_functions.stamp_current(this.elm.n1, this.elm.n2, this.elm.properties['Equivalent Current']);
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, this.elm.properties['Resistance']);
         }
-    };
-    LightEmittingDiode.prototype.calculate_vcrit = function () {
+    }
+    calculate_vcrit() {
         return (this.elm.properties['Emission Coefficient'] *
             global.vt *
             Math.log((this.elm.properties['Emission Coefficient'] * global.vt) /
                 (1.41421 * this.elm.properties['Saturation Current'])));
-    };
-    LightEmittingDiode.prototype.is_converged = function () {
+    }
+    is_converged() {
         if (this.get_led_error() < global.settings.TOLERANCE) {
             return true;
         }
         else {
             return false;
         }
-    };
-    LightEmittingDiode.prototype.reset_led = function () {
+    }
+    reset_led() {
         this.elm.properties['Voltage'] = 0;
         this.elm.properties['Last Voltage'] = this.calculate_vcrit();
         this.elm.properties['Last Current'] = global.settings.TOLERANCE * 2;
@@ -250,20 +250,20 @@ var LightEmittingDiode = /** @class */ (function () {
         this.elm.properties['Equivalent Current'] = 0;
         this.LED_STATUS = global.OFF;
         this.update();
-    };
-    LightEmittingDiode.prototype.get_led_error = function () {
+    }
+    get_led_error() {
         return Math.abs(this.elm.properties['Voltage'] - this.elm.properties['Last Voltage']);
-    };
+    }
     /* General function to handle any processing required by the component */
-    LightEmittingDiode.prototype.update = function () {
+    update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
             if (this.elm.consistent()) {
                 /* Save the last voltages and currents */
                 this.elm.properties['Last Voltage'] = this.elm.properties['Voltage'];
                 this.elm.properties['Last Current'] = this.elm.properties['Equivalent Current'];
-                var next_voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
-                var vcrit = this.calculate_vcrit();
-                var diode_voltage = 0;
+                let next_voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+                let vcrit = this.calculate_vcrit();
+                let diode_voltage = 0;
                 if (next_voltage > this.DAMPING_SAFETY_FACTOR * vcrit) {
                     diode_voltage = global.log_damping(next_voltage, this.elm.properties['Voltage'], this.GAMMA, this.KAPPA);
                 }
@@ -295,8 +295,8 @@ var LightEmittingDiode = /** @class */ (function () {
         else {
             this.LED_STATUS = global.OFF;
         }
-    };
-    LightEmittingDiode.prototype.turn_on_check = function () {
+    }
+    turn_on_check() {
         if (Math.abs(this.elm.properties['Equivalent Current']) >
             this.elm.properties['Turn On Current'] &&
             this.elm.properties['Last Current'] >
@@ -307,20 +307,20 @@ var LightEmittingDiode = /** @class */ (function () {
         else {
             this.LED_STATUS = global.OFF;
         }
-    };
-    LightEmittingDiode.prototype.gmin_step = function (step, error) {
+    }
+    gmin_step(step, error) {
         this.GMIN = global.GMIN_DEFAULT;
         if (simulation_manager.ITERATOR > step &&
             error > global.settings.TOLERANCE) {
             this.GMIN = Math.exp(-24.723 *
                 (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    LightEmittingDiode.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
@@ -347,10 +347,10 @@ var LightEmittingDiode = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1]);
         }
         return vertices;
-    };
-    LightEmittingDiode.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -360,26 +360,26 @@ var LightEmittingDiode = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    LightEmittingDiode.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    LightEmittingDiode.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    LightEmittingDiode.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -419,9 +419,9 @@ var LightEmittingDiode = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    LightEmittingDiode.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -438,8 +438,8 @@ var LightEmittingDiode = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    LightEmittingDiode.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -462,9 +462,9 @@ var LightEmittingDiode = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Handling a mouse move event. */
-    LightEmittingDiode.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
@@ -507,9 +507,9 @@ var LightEmittingDiode = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    LightEmittingDiode.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused &&
                 global.focused_id === this.elm.id &&
@@ -549,8 +549,8 @@ var LightEmittingDiode = /** @class */ (function () {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    LightEmittingDiode.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -560,8 +560,8 @@ var LightEmittingDiode = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    LightEmittingDiode.prototype.remove_focus = function () {
+    }
+    remove_focus() {
         if (global.focused &&
             global.focused_id === this.elm.id &&
             global.focused_type === this.elm.type) {
@@ -570,8 +570,8 @@ var LightEmittingDiode = /** @class */ (function () {
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    LightEmittingDiode.prototype.remove_selection = function () {
+    }
+    remove_selection() {
         if (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
@@ -581,10 +581,10 @@ var LightEmittingDiode = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    LightEmittingDiode.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -592,11 +592,11 @@ var LightEmittingDiode = /** @class */ (function () {
                 }
             }
         }
-    };
-    LightEmittingDiode.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -628,11 +628,11 @@ var LightEmittingDiode = /** @class */ (function () {
                 }
             }
         }
-    };
-    LightEmittingDiode.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -664,8 +664,8 @@ var LightEmittingDiode = /** @class */ (function () {
                 }
             }
         }
-    };
-    LightEmittingDiode.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -675,9 +675,9 @@ var LightEmittingDiode = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    LightEmittingDiode.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -687,24 +687,24 @@ var LightEmittingDiode = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    LightEmittingDiode.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    LightEmittingDiode.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 1.25 * this.x_space;
-            var cache_1 = 1.25 * this.y_space;
-            var cache_2 = 2.25 * this.x_space;
-            var cache_3 = 2.25 * this.y_space;
-            var cache_4 = this.x_space;
-            var cache_5 = this.y_space;
-            var delta_x = 0;
-            var delta_y = 0;
+            let cache_0 = 1.25 * this.x_space;
+            let cache_1 = 1.25 * this.y_space;
+            let cache_2 = 2.25 * this.x_space;
+            let cache_3 = 2.25 * this.y_space;
+            let cache_4 = this.x_space;
+            let cache_5 = this.y_space;
+            let delta_x = 0;
+            let delta_y = 0;
             this.led_0.x =
                 this.c_x +
                     (cache_4 >> 1) * global.cosine(this.theta) +
@@ -796,9 +796,9 @@ var LightEmittingDiode = /** @class */ (function () {
                 this.led_3.y + cache_5 * 0.5 * global.sine(this.theta + 35);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    LightEmittingDiode.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -820,12 +820,12 @@ var LightEmittingDiode = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    LightEmittingDiode.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -838,16 +838,16 @@ var LightEmittingDiode = /** @class */ (function () {
             global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
-    };
-    LightEmittingDiode.prototype.increment_rotation = function () {
+    }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    LightEmittingDiode.prototype.increment_flip = function () { };
-    LightEmittingDiode.prototype.map_rotation = function () {
+    }
+    increment_flip() { }
+    map_rotation() {
         if (this.elm.rotation === global.ROTATION_0 ||
             this.elm.rotation === global.ROTATION_180) {
             return this.x_space;
@@ -856,8 +856,8 @@ var LightEmittingDiode = /** @class */ (function () {
             this.elm.rotation === global.ROTATION_270) {
             return this.y_space;
         }
-    };
-    LightEmittingDiode.prototype.recolor = function () {
+    }
+    recolor() {
         if (global.selected) {
             if (global.selected_id === this.elm.id &&
                 global.selected_type === this.elm.type) {
@@ -883,14 +883,14 @@ var LightEmittingDiode = /** @class */ (function () {
                 this.text_paint.set_color(global.ELEMENT_COLOR);
             }
         }
-    };
-    LightEmittingDiode.prototype.is_selected_element = function () {
+    }
+    is_selected_element() {
         return (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type);
-    };
+    }
     /* takes wavelength in nm and returns an rgba value */
-    LightEmittingDiode.prototype.wavelength_to_color = function (wavelength) {
-        var R, G, B, alpha, color_space, wl = wavelength, gamma = 1;
+    wavelength_to_color(wavelength) {
+        let R, G, B, alpha, color_space, wl = wavelength, gamma = 1;
         if (wl >= 380 && wl < 440) {
             R = (-1 * (wl - 440)) / (440 - 380);
             G = 0;
@@ -944,9 +944,9 @@ var LightEmittingDiode = /** @class */ (function () {
             alpha
         ];
         return color_space;
-    };
+    }
     /* Draws the component */
-    LightEmittingDiode.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -961,9 +961,9 @@ var LightEmittingDiode = /** @class */ (function () {
                 this.c_y >= view_port.top + -global.node_space_y &&
                 this.c_y - global.node_space_y <= view_port.bottom)) {
             if (global.FLAG_SIMULATING && this.LED_STATUS === global.ON) {
-                var color = this.point_paint.color;
-                var alpha = this.point_paint.alpha;
-                var new_color = this.wavelength_to_color(this.elm.properties['Wavelength']);
+                let color = this.point_paint.color;
+                let alpha = this.point_paint.alpha;
+                let new_color = this.wavelength_to_color(this.elm.properties['Wavelength']);
                 this.point_paint.set_color(new_color[0]);
                 this.point_paint.set_alpha(new_color[1] * 255);
                 canvas.draw_circle(this.c_x, this.c_y, this.x_space, this.point_paint);
@@ -1017,9 +1017,9 @@ var LightEmittingDiode = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    LightEmittingDiode.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.GMIN)) {
             this.GMIN = 1e-9;
         }
@@ -1054,12 +1054,12 @@ var LightEmittingDiode = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    LightEmittingDiode.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
                 if (keys[i] === 'Frequency' ||
@@ -1072,7 +1072,6 @@ var LightEmittingDiode = /** @class */ (function () {
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    LightEmittingDiode.prototype.reset = function () { };
-    return LightEmittingDiode;
-}());
+    }
+    reset() { }
+}

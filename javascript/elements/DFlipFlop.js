@@ -20,13 +20,13 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var DFlipFlop = /** @class */ (function () {
-    function DFlipFlop(type, id, n1, n2, n3, n4) {
+class DFlipFlop {
+    constructor(type, id, n1, n2, n3, n4) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element4(-1, -1, -1);
+        this.elm = new Element4(-1, -1, global.NULL);
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         this.p3 = new PointF(0, 0);
@@ -58,8 +58,7 @@ var DFlipFlop = /** @class */ (function () {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -104,7 +103,7 @@ var DFlipFlop = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -146,8 +145,7 @@ var DFlipFlop = /** @class */ (function () {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -205,7 +203,7 @@ var DFlipFlop = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    DFlipFlop.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -219,32 +217,29 @@ var DFlipFlop = /** @class */ (function () {
             /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x), global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
-    };
-    DFlipFlop.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
-    DFlipFlop.prototype.reset_dff = function () {
+    }
+    reset_dff() {
         this.elm.properties['Clock'] = 0;
         this.elm.properties['Last Clock'] = 1;
         this.elm.properties['Q'] = 0;
         this.elm.properties['!Q'] = 1;
-    };
+    }
     /* General function to handle any processing required by the component */
-    DFlipFlop.prototype.update = function () {
+    update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
             if (this.elm.consistent()) {
                 this.elm.properties['Last Clock'] = global.copy(this.elm.properties['Clock']);
                 this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) - 0.5));
                 this.elm.properties['Clock'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n2, -1) - 0.5));
-                if (Math.abs(this.elm.properties['Last Clock'] - this.elm.properties['Clock']) > 0.5 &&
-                    this.elm.properties['Clock'] > 0.5) {
-                    var q_next = 0;
-                    if (this.elm.properties['Clock'] >= 0.5 &&
-                        this.elm.properties['Input Voltage1'] <= 0.5) {
+                if (Math.abs(this.elm.properties['Last Clock'] - this.elm.properties['Clock']) > 0.5 && this.elm.properties['Clock'] > 0.5) {
+                    let q_next = 0;
+                    if (this.elm.properties['Clock'] >= 0.5 && this.elm.properties['Input Voltage1'] <= 0.5) {
                         q_next = 0;
                     }
-                    else if (this.elm.properties['Clock'] >= 0.5 &&
-                        this.elm.properties['Input Voltage1'] >= 0.5) {
+                    else if (this.elm.properties['Clock'] >= 0.5 && this.elm.properties['Input Voltage1'] >= 0.5) {
                         q_next = 1;
                     }
                     this.elm.properties['Q'] = q_next;
@@ -258,20 +253,20 @@ var DFlipFlop = /** @class */ (function () {
             this.elm.properties['Q'] = 0;
             this.elm.properties['!Q'] = 1;
         }
-    };
-    DFlipFlop.prototype.stamp = function () {
+    }
+    stamp() {
         if (this.elm.consistent()) {
             engine_functions.stamp_voltage(this.elm.n3, -1, this.elm.properties['Q'], simulation_manager.ELEMENT_DFF_OFFSET + (this.simulation_id << 1));
             engine_functions.stamp_voltage(this.elm.n4, -1, this.elm.properties['!Q'], simulation_manager.ELEMENT_DFF_OFFSET + (this.simulation_id << 1) + 1);
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    DFlipFlop.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
-        var p3 = [];
-        var p4 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
+        let p3 = [];
+        let p4 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
             p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
@@ -308,10 +303,10 @@ var DFlipFlop = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
         }
         return vertices;
-    };
-    DFlipFlop.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -321,9 +316,9 @@ var DFlipFlop = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    DFlipFlop.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
@@ -331,10 +326,10 @@ var DFlipFlop = /** @class */ (function () {
             nodes[this.elm.n4].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1, -1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    DFlipFlop.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
@@ -342,9 +337,9 @@ var DFlipFlop = /** @class */ (function () {
             nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n4].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    DFlipFlop.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -356,11 +351,8 @@ var DFlipFlop = /** @class */ (function () {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -369,9 +361,7 @@ var DFlipFlop = /** @class */ (function () {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -392,9 +382,9 @@ var DFlipFlop = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    DFlipFlop.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -411,8 +401,8 @@ var DFlipFlop = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    DFlipFlop.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -435,14 +425,13 @@ var DFlipFlop = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Handling a mouse move event. */
-    DFlipFlop.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -460,15 +449,13 @@ var DFlipFlop = /** @class */ (function () {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -480,13 +467,11 @@ var DFlipFlop = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    DFlipFlop.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -499,8 +484,7 @@ var DFlipFlop = /** @class */ (function () {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = -1;
                             global.selected_bounds = global.NULL;
@@ -518,13 +502,12 @@ var DFlipFlop = /** @class */ (function () {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    DFlipFlop.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -534,20 +517,17 @@ var DFlipFlop = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    DFlipFlop.prototype.remove_focus = function () {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+    }
+    remove_focus() {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    DFlipFlop.prototype.remove_selection = function () {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+    }
+    remove_selection() {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = -1;
             global.selected_bounds = global.NULL;
@@ -555,10 +535,10 @@ var DFlipFlop = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    DFlipFlop.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -566,11 +546,11 @@ var DFlipFlop = /** @class */ (function () {
                 }
             }
         }
-    };
-    DFlipFlop.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -624,11 +604,11 @@ var DFlipFlop = /** @class */ (function () {
                 }
             }
         }
-    };
-    DFlipFlop.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -682,8 +662,8 @@ var DFlipFlop = /** @class */ (function () {
                 }
             }
         }
-    };
-    DFlipFlop.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -693,9 +673,9 @@ var DFlipFlop = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    DFlipFlop.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -705,22 +685,22 @@ var DFlipFlop = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    DFlipFlop.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    DFlipFlop.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 0.5 * this.x_space;
-            var cache_1 = 0.5 * this.y_space;
-            var cache_2 = 0.75 * this.x_space;
-            var cache_3 = 0.75 * this.y_space;
-            var cache_4 = this.x_space;
-            var cache_5 = this.y_space;
+            let cache_0 = 0.5 * this.x_space;
+            let cache_1 = 0.5 * this.y_space;
+            let cache_2 = 0.75 * this.x_space;
+            let cache_3 = 0.75 * this.y_space;
+            let cache_4 = this.x_space;
+            let cache_5 = this.y_space;
             /* Top Left Node */
             this.dff_0.x = this.p1.x + cache_0 * global.cosine(this.theta_m90);
             this.dff_0.y = this.p1.y + cache_1 * global.sine(this.theta_m90);
@@ -752,28 +732,19 @@ var DFlipFlop = /** @class */ (function () {
             this.dff_9.x = this.dff_1.x - cache_0 * global.cosine(this.theta);
             this.dff_9.y = this.dff_1.y - cache_1 * global.sine(this.theta);
             /* D Tag Point */
-            this.dff_10.x =
-                this.dff_0.x +
-                    cache_2 * global.cosine(this.theta_m90 + global.PI_DIV_4);
-            this.dff_10.y =
-                this.dff_0.y + cache_3 * global.sine(this.theta_m90 + global.PI_DIV_4);
+            this.dff_10.x = this.dff_0.x + cache_2 * global.cosine(this.theta_m90 + global.PI_DIV_4);
+            this.dff_10.y = this.dff_0.y + cache_3 * global.sine(this.theta_m90 + global.PI_DIV_4);
             /* Q Tag Point */
-            this.dff_11.x =
-                this.dff_2.x -
-                    cache_2 * global.cosine(this.theta_m90 - global.PI_DIV_4);
-            this.dff_11.y =
-                this.dff_2.y - cache_3 * global.sine(this.theta_m90 - global.PI_DIV_4);
+            this.dff_11.x = this.dff_2.x - cache_2 * global.cosine(this.theta_m90 - global.PI_DIV_4);
+            this.dff_11.y = this.dff_2.y - cache_3 * global.sine(this.theta_m90 - global.PI_DIV_4);
             /* !Q Tag Point */
-            this.dff_12.x =
-                this.dff_3.x -
-                    cache_2 * global.cosine(this.theta_m90 + global.PI_DIV_4);
-            this.dff_12.y =
-                this.dff_3.y - cache_3 * global.sine(this.theta_m90 + global.PI_DIV_4);
+            this.dff_12.x = this.dff_3.x - cache_2 * global.cosine(this.theta_m90 + global.PI_DIV_4);
+            this.dff_12.y = this.dff_3.y - cache_3 * global.sine(this.theta_m90 + global.PI_DIV_4);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    DFlipFlop.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -795,12 +766,12 @@ var DFlipFlop = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    DFlipFlop.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -814,26 +785,24 @@ var DFlipFlop = /** @class */ (function () {
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
         this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
         this.build_element();
-    };
-    DFlipFlop.prototype.increment_rotation = function () {
+    }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    DFlipFlop.prototype.increment_flip = function () { };
-    DFlipFlop.prototype.recolor = function () {
+    }
+    increment_flip() { }
+    recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -856,13 +825,12 @@ var DFlipFlop = /** @class */ (function () {
                 this.text_paint.set_color(global.ELEMENT_COLOR);
             }
         }
-    };
-    DFlipFlop.prototype.is_selected_element = function () {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
-    };
+    }
+    is_selected_element() {
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
+    }
     /* Draws the component */
-    DFlipFlop.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -901,10 +869,8 @@ var DFlipFlop = /** @class */ (function () {
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-            if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                (this.ANGLE > -10 && this.ANGLE < 10)) {
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                    (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.35, this.text_paint);
                     canvas.restore();
@@ -913,10 +879,8 @@ var DFlipFlop = /** @class */ (function () {
                 canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
                 canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);
             }
-            else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                (this.ANGLE > 80 && this.ANGLE < 100)) {
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                    (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
+                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.35, this.text_paint);
                 }
                 canvas.draw_text('D', this.dff_10.x, this.dff_10.y, this.text_paint);
@@ -927,9 +891,9 @@ var DFlipFlop = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    DFlipFlop.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.LINE_BUFFER)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
             this.LINE_BUFFER = [];
@@ -946,30 +910,26 @@ var DFlipFlop = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    DFlipFlop.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    DFlipFlop.prototype.reset = function () {
+    }
+    reset() {
         this.elm.properties['Clock'] = 0;
         this.elm.properties['Last Clock'] = 1;
         this.elm.properties['Q'] = 0;
         this.elm.properties['!Q'] = 1;
-    };
-    return DFlipFlop;
-}());
+    }
+}

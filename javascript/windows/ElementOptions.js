@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ElementOptions = /** @class */ (function () {
-    function ElementOptions() {
+class ElementOptions {
+    constructor() {
         this.MAX_ICONS = 8;
         /* The menu bar icons center_x (last box) */
         this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
@@ -74,7 +74,7 @@ var ElementOptions = /** @class */ (function () {
         /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
-        var temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
+        let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
         this.MAX_ICONS = 8;
         if (global.MOBILE_MODE) {
             temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
@@ -195,24 +195,24 @@ var ElementOptions = /** @class */ (function () {
         this.first_touch_x = 0;
         this.first_touch_y = 0;
     }
-    ElementOptions.prototype.set_show = function (show_0, show_1, show_2, show_3) {
+    set_show(show_0, show_1, show_2, show_3) {
         this.show_0 = show_0;
         this.show_1 = show_1;
         this.show_2 = show_2;
         this.show_3 = show_3;
-    };
-    ElementOptions.prototype.load_edit_svg = function (rect) {
-        var holder_x = [];
-        var holder_y = [];
-        var edit_x0 = '0.746,0.274,0.114,0.112,0.584';
-        var edit_y0 = '0.406,0.874,0.876,0.734,0.264';
-        var edit_x1 = '0.902,0.784,0.626,0.75';
-        var edit_y1 = '0.244,0.368,0.226,0.104';
-        var padding = 0.1;
+    }
+    load_edit_svg(rect) {
+        let holder_x = [];
+        let holder_y = [];
+        let edit_x0 = '0.746,0.274,0.114,0.112,0.584';
+        let edit_y0 = '0.406,0.874,0.876,0.734,0.264';
+        let edit_x1 = '0.902,0.784,0.626,0.75';
+        let edit_y1 = '0.244,0.368,0.226,0.104';
+        let padding = 0.1;
         /* Loading the first path of edit  */
         holder_x = edit_x0.split(',');
         holder_y = edit_y0.split(',');
-        var points = [];
+        let points = [];
         points = [];
         for (var i = 0; i < holder_x.length; i++) {
             points.push(new PointF(rect.left +
@@ -252,18 +252,18 @@ var ElementOptions = /** @class */ (function () {
             }
         }
         this.edit_path1.close();
-    };
-    ElementOptions.prototype.load_trash_svg = function (rect) {
-        var holder_x = [];
-        var holder_y = [];
-        var trash_x0 = '0.28,0.72,0.72,0.28';
-        var trash_y0 = '0.4,0.4,0.75,0.75';
-        var trash_x1 = '0.28,0.45,0.45,0.55,0.55,0.72,0.72,0.28';
-        var trash_y1 = '0.27,0.27,0.21,0.21,0.27,0.27,0.325,0.325';
+    }
+    load_trash_svg(rect) {
+        let holder_x = [];
+        let holder_y = [];
+        let trash_x0 = '0.28,0.72,0.72,0.28';
+        let trash_y0 = '0.4,0.4,0.75,0.75';
+        let trash_x1 = '0.28,0.45,0.45,0.55,0.55,0.72,0.72,0.28';
+        let trash_y1 = '0.27,0.27,0.21,0.21,0.27,0.27,0.325,0.325';
         /* Loading the first path of edit  */
         holder_x = trash_x0.split(',');
         holder_y = trash_y0.split(',');
-        var points = [];
+        let points = [];
         points = [];
         for (var i = 0; i < holder_x.length; i++) {
             points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
@@ -295,18 +295,18 @@ var ElementOptions = /** @class */ (function () {
             }
         }
         this.trash_path1.close();
-    };
-    ElementOptions.prototype.load_flip_svg = function (rect) {
-        var holder_x = [];
-        var holder_y = [];
-        var flip_x0 = '0.45,0.45,0.15';
-        var flip_y0 = '0.2,0.7,0.7';
-        var flip_x1 = '0.55,0.55,0.85';
-        var flip_y1 = '0.2,0.7,0.7';
+    }
+    load_flip_svg(rect) {
+        let holder_x = [];
+        let holder_y = [];
+        let flip_x0 = '0.45,0.45,0.15';
+        let flip_y0 = '0.2,0.7,0.7';
+        let flip_x1 = '0.55,0.55,0.85';
+        let flip_y1 = '0.2,0.7,0.7';
         /* Loading the first path of edit  */
         holder_x = flip_x0.split(',');
         holder_y = flip_y0.split(',');
-        var points = [];
+        let points = [];
         points = [];
         for (var i = 0; i < holder_x.length; i++) {
             points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
@@ -338,9 +338,9 @@ var ElementOptions = /** @class */ (function () {
             }
         }
         this.flip_path1.close();
-    };
-    ElementOptions.prototype.resize = function () {
-        var temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
+    }
+    resize() {
+        let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
         if (global.MOBILE_MODE) {
             temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
         }
@@ -369,8 +369,8 @@ var ElementOptions = /** @class */ (function () {
         this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
         this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-    };
-    ElementOptions.prototype.update = function () {
+    }
+    update() {
         /* Based on the selected element it'll draw the options available! */
         if (global.selected) {
             switch (global.selected_type) {
@@ -585,8 +585,8 @@ var ElementOptions = /** @class */ (function () {
         else {
             this.reset_options();
         }
-    };
-    ElementOptions.prototype.mouse_down = function () {
+    }
+    mouse_down() {
         if (!global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
             !global.FLAG_ZOOM &&
@@ -627,9 +627,9 @@ var ElementOptions = /** @class */ (function () {
                 this.first_touch_y = global.mouse_y;
             }
         }
-    };
-    ElementOptions.prototype.mouse_move = function () { };
-    ElementOptions.prototype.mouse_up = function () {
+    }
+    mouse_move() { }
+    mouse_up() {
         if (!global.MOUSE_KEYBOARD_LOCK) {
             if (!global.FLAG_SAVE_IMAGE &&
                 !global.FLAG_SAVE_CIRCUIT &&
@@ -666,9 +666,9 @@ var ElementOptions = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handy function for handling all the possibile options for every element! */
-    ElementOptions.prototype.handle_options = function (key) {
+    handle_options(key) {
         if (this.opts[key] === this.EDIT_ICON) {
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
         }
@@ -689,18 +689,18 @@ var ElementOptions = /** @class */ (function () {
         }
         /* Block out the reset selection portion of the code! */
         global.component_touched = true;
-    };
-    ElementOptions.prototype.handle_wire_option = function () {
-        var index = -1;
+    }
+    handle_wire_option() {
+        let index = -1;
         if (global.selected_type === global.TYPE_WIRE) {
             index = engine_functions.get_wire(global.selected_id);
             if (index > -1 && index < wires.length) {
                 wires[index].increment_style();
             }
         }
-    };
-    ElementOptions.prototype.handle_flip_option = function () {
-        var index = -1;
+    }
+    handle_flip_option() {
+        let index = -1;
         /* #INSERT_GENERATE_ELEMENT_OPTIONS_FLIP# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.selected_type === global.TYPE_RESISTOR) {
@@ -1106,9 +1106,9 @@ var ElementOptions = /** @class */ (function () {
             }
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    ElementOptions.prototype.handle_eye_option = function () {
-        var index = -1;
+    }
+    handle_eye_option() {
+        let index = -1;
         /* #INSERT_GENERATE_ELEMENT_OPTIONS_SCOPE_ENTRY# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.selected_type === global.TYPE_VOLTMETER) {
@@ -1164,9 +1164,9 @@ var ElementOptions = /** @class */ (function () {
             }
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    ElementOptions.prototype.handle_rotate_option = function () {
-        var index = -1;
+    }
+    handle_rotate_option() {
+        let index = -1;
         /* #INSERT_GENERATE_ELEMENT_OPTIONS_ROTATE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.selected_type === global.TYPE_RESISTOR) {
@@ -1566,9 +1566,9 @@ var ElementOptions = /** @class */ (function () {
             }
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    ElementOptions.prototype.handle_trash_option = function () {
-        var index = -1;
+    }
+    handle_trash_option() {
+        let index = -1;
         /* #INSERT_GENERATE_ELEMENT_OPTIONS_REMOVE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.selected_type === global.TYPE_RESISTOR) {
@@ -2041,555 +2041,555 @@ var ElementOptions = /** @class */ (function () {
             }
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    ElementOptions.prototype.reset_options = function () {
+    }
+    reset_options() {
         this.set_show(false, false, false, false);
         this.opts['c0'] = this.NO_ICON;
         this.opts['c1'] = this.NO_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
-    };
+    }
     /* #INSERT_GENERATE_ELEMENT_OPTIONS_ICON_PATTERN */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    ElementOptions.prototype.handle_resistor = function () {
+    handle_resistor() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_capacitor = function () {
+    }
+    handle_capacitor() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_inductor = function () {
+    }
+    handle_inductor() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_ground = function () {
+    }
+    handle_ground() {
         this.set_show(true, true, false, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.TRASH_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_dcsource = function () {
+    }
+    handle_dcsource() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_dccurrent = function () {
+    }
+    handle_dccurrent() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_acsource = function () {
+    }
+    handle_acsource() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_accurrent = function () {
+    }
+    handle_accurrent() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_squarewave = function () {
+    }
+    handle_squarewave() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_sawwave = function () {
+    }
+    handle_sawwave() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_trianglewave = function () {
+    }
+    handle_trianglewave() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_constant = function () {
+    }
+    handle_constant() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_wire = function () {
+    }
+    handle_wire() {
         this.set_show(true, true, false, false);
         this.opts['c0'] = this.WIRE_ICON;
         this.opts['c1'] = this.TRASH_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_net = function () {
+    }
+    handle_net() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_note = function () {
+    }
+    handle_note() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_rail = function () {
+    }
+    handle_rail() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_voltmeter = function () {
+    }
+    handle_voltmeter() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EYE_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_ohmmeter = function () {
+    }
+    handle_ohmmeter() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EYE_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_ammeter = function () {
+    }
+    handle_ammeter() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EYE_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_wattmeter = function () {
+    }
+    handle_wattmeter() {
         this.set_show(true, true, true, true);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EYE_ICON;
         this.opts['c2'] = this.FLIP_ICON;
         this.opts['c3'] = this.TRASH_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_fuse = function () {
+    }
+    handle_fuse() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_spst = function () {
+    }
+    handle_spst() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_spdt = function () {
+    }
+    handle_spdt() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_not = function () {
+    }
+    handle_not() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_diode = function () {
+    }
+    handle_diode() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_led = function () {
+    }
+    handle_led() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_zener = function () {
+    }
+    handle_zener() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_potentiometer = function () {
+    }
+    handle_potentiometer() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_and = function () {
+    }
+    handle_and() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_or = function () {
+    }
+    handle_or() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_nand = function () {
+    }
+    handle_nand() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_nor = function () {
+    }
+    handle_nor() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_xor = function () {
+    }
+    handle_xor() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_xnor = function () {
+    }
+    handle_xnor() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_dff = function () {
+    }
+    handle_dff() {
         this.set_show(true, true, false, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.TRASH_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_vsat = function () {
+    }
+    handle_vsat() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_adder = function () {
+    }
+    handle_adder() {
         this.set_show(true, true, false, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.TRASH_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_subtractor = function () {
+    }
+    handle_subtractor() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.FLIP_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_multiplier = function () {
+    }
+    handle_multiplier() {
         this.set_show(true, true, false, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.TRASH_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_divider = function () {
+    }
+    handle_divider() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.FLIP_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_gain = function () {
+    }
+    handle_gain() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_absval = function () {
+    }
+    handle_absval() {
         this.set_show(true, true, false, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.TRASH_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_vcsw = function () {
+    }
+    handle_vcsw() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_vcvs = function () {
+    }
+    handle_vcvs() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_vccs = function () {
+    }
+    handle_vccs() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_cccs = function () {
+    }
+    handle_cccs() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_ccvs = function () {
+    }
+    handle_ccvs() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_opamp = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.FLIP_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_nmosfet = function () {
-        this.set_show(true, true, true, true);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.FLIP_ICON;
-        this.opts['c3'] = this.TRASH_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_pmosfet = function () {
-        this.set_show(true, true, true, true);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.FLIP_ICON;
-        this.opts['c3'] = this.TRASH_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_npn = function () {
-        this.set_show(true, true, true, true);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.FLIP_ICON;
-        this.opts['c3'] = this.TRASH_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_pnp = function () {
-        this.set_show(true, true, true, true);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.FLIP_ICON;
-        this.opts['c3'] = this.TRASH_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_adc = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_dac = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_samplers = function () {
+    }
+    handle_opamp() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.FLIP_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_pwm = function () {
+    }
+    handle_nmosfet() {
         this.set_show(true, true, true, true);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.FLIP_ICON;
         this.opts['c3'] = this.TRASH_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_integrator = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_differentiator = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_lowpass = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_highpass = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_relay = function () {
-        this.set_show(true, true, true, false);
-        this.opts['c0'] = this.ROTATE_ICON;
-        this.opts['c1'] = this.EDIT_ICON;
-        this.opts['c2'] = this.TRASH_ICON;
-        this.opts['c3'] = this.NO_ICON;
-        this.map_options();
-    };
-    ElementOptions.prototype.handle_pid = function () {
+    }
+    handle_pmosfet() {
         this.set_show(true, true, true, true);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.FLIP_ICON;
         this.opts['c3'] = this.TRASH_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_lut = function () {
+    }
+    handle_npn() {
+        this.set_show(true, true, true, true);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.FLIP_ICON;
+        this.opts['c3'] = this.TRASH_ICON;
+        this.map_options();
+    }
+    handle_pnp() {
+        this.set_show(true, true, true, true);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.FLIP_ICON;
+        this.opts['c3'] = this.TRASH_ICON;
+        this.map_options();
+    }
+    handle_adc() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_vcr = function () {
+    }
+    handle_dac() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_grt = function () {
+    }
+    handle_samplers() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.FLIP_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_pwm() {
+        this.set_show(true, true, true, true);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.FLIP_ICON;
+        this.opts['c3'] = this.TRASH_ICON;
+        this.map_options();
+    }
+    handle_integrator() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_differentiator() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_lowpass() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_highpass() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_relay() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_pid() {
+        this.set_show(true, true, true, true);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.FLIP_ICON;
+        this.opts['c3'] = this.TRASH_ICON;
+        this.map_options();
+    }
+    handle_lut() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_vcr() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_grt() {
         this.set_show(true, true, false, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.TRASH_ICON;
         this.opts['c2'] = this.NO_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_tptz = function () {
+    }
+    handle_tptz() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
-    ElementOptions.prototype.handle_transformer = function () {
+    }
+    handle_transformer() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;
         this.opts['c2'] = this.TRASH_ICON;
         this.opts['c3'] = this.NO_ICON;
         this.map_options();
-    };
+    }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     /* Don't assign an icon to multiple buttons! */
-    ElementOptions.prototype.map_options = function () {
+    map_options() {
         switch (this.opts['c0']) {
             case this.EDIT_ICON:
                 this.load_edit_svg(this.option_0);
@@ -2642,11 +2642,11 @@ var ElementOptions = /** @class */ (function () {
             default:
                 break;
         }
-    };
-    ElementOptions.prototype.restore_color = function () {
+    }
+    restore_color() {
         this.icon_paint.set_color(global.GENERAL_WHITE_COLOR);
-    };
-    ElementOptions.prototype.update_color = function () {
+    }
+    update_color() {
         if (!global.FLAG_SIMULATING) {
             this.icon_paint.set_color(global.GENERAL_WHITE_COLOR);
             this.line_paint_alt.set_color(global.GENERAL_WHITE_COLOR);
@@ -2655,8 +2655,8 @@ var ElementOptions = /** @class */ (function () {
             this.icon_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
             this.line_paint_alt.set_color(global.MENU_ICON_INACTIVE_COLOR);
         }
-    };
-    ElementOptions.prototype.draw_options = function (canvas) {
+    }
+    draw_options(canvas) {
         if (global.FLAG_IDLE && !global.FLAG_MENU_OPEN_DOWN && !global.FLAG_GRAPH) {
             if (global.selected) {
                 if (this.show_0) {
@@ -2739,8 +2739,8 @@ var ElementOptions = /** @class */ (function () {
                     else {
                         canvas.draw_round_rect2(this.option_1, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.fill_paint);
                     }
-                    var width_mul_0p2 = this.option_1.get_width() * 0.2;
-                    var height_mul_0p2 = this.option_1.get_height() * 0.2;
+                    let width_mul_0p2 = this.option_1.get_width() * 0.2;
+                    let height_mul_0p2 = this.option_1.get_height() * 0.2;
                     switch (this.opts['c1']) {
                         case this.ROTATE_ICON:
                             this.update_color();
@@ -2907,21 +2907,21 @@ var ElementOptions = /** @class */ (function () {
                 }
             }
         }
-    };
-    ElementOptions.prototype.draw_rotate = function (rect, canvas) {
-        var cached_width = rect.get_width() * 0.303;
-        var cached_height = rect.get_height() * 0.303;
-        var width_mul_0p125 = rect.get_width() * 0.125;
-        var height_mul_0p125 = rect.get_height() * 0.125;
+    }
+    draw_rotate(rect, canvas) {
+        let cached_width = rect.get_width() * 0.303;
+        let cached_height = rect.get_height() * 0.303;
+        let width_mul_0p125 = rect.get_width() * 0.125;
+        let height_mul_0p125 = rect.get_height() * 0.125;
         canvas.draw_line(rect.left + cached_width, rect.top + cached_width, rect.right - cached_width, rect.top + cached_width, this.line_paint_alt);
         canvas.draw_line(rect.left + cached_width, rect.top + cached_width, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
         canvas.draw_line(rect.right - cached_width, rect.top + cached_width, rect.right - cached_width, rect.bottom - cached_height, this.line_paint_alt);
         canvas.draw_line(rect.right - cached_width, rect.bottom - cached_height, rect.right - cached_width - width_mul_0p125, rect.bottom - cached_height - height_mul_0p125, this.line_paint_alt);
         canvas.draw_line(rect.right - cached_width, rect.bottom - cached_height, rect.right - cached_width + width_mul_0p125, rect.bottom - cached_height - height_mul_0p125, this.line_paint_alt);
-    };
-    ElementOptions.prototype.draw_wire_style = function (rect, canvas) {
-        var cached_width = rect.get_width() * 0.303;
-        var cached_height = rect.get_height() * 0.303;
+    }
+    draw_wire_style(rect, canvas) {
+        let cached_width = rect.get_width() * 0.303;
+        let cached_height = rect.get_height() * 0.303;
         if (global.selected_wire_style === global.WIRE_STYLE_0) {
             canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
             canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
@@ -2951,6 +2951,5 @@ var ElementOptions = /** @class */ (function () {
             canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.top + cached_height, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
         }
-    };
-    return ElementOptions;
-}());
+    }
+}

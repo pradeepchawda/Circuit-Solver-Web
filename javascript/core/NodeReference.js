@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var NodeReference = /** @class */ (function () {
-    function NodeReference(id, type) {
+class NodeReference {
+    constructor(id, type) {
         /* id of the node */
         this.id = -1;
         /* The type of component attached to this node */
@@ -30,5 +30,4 @@ var NodeReference = /** @class */ (function () {
         /* The type of component attached to this node */
         this.type = type;
     }
-    return NodeReference;
-}());
+}

@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var OnScreenKeyboard = /** @class */ (function () {
-    function OnScreenKeyboard() {
+class OnScreenKeyboard {
+    constructor() {
         this.KEYBOARD_MAX_KEYS = 67;
         this.bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.5;
@@ -203,20 +203,20 @@ var OnScreenKeyboard = /** @class */ (function () {
         this.load_keyboard();
     }
     /* Load the structure of the on screen keyboard. */
-    OnScreenKeyboard.prototype.load_keyboard = function () {
+    load_keyboard() {
         this.KEYBOARD_KEYS.splice(0, this.KEYBOARD_KEYS.length);
         this.KEYBOARD_MAPPING.splice(0, this.KEYBOARD_MAPPING.length);
         this.KEYBOARD_LETTER_REF.splice(0, this.KEYBOARD_LETTER_REF.length);
         this.ENGINEERING_KEYBOARD_FILTER_INDEX.splice(0, this.ENGINEERING_KEYBOARD_FILTER_INDEX.length);
         this.FILE_NAME_KEYBOARD_FILTER_INDEX.splice(0, this.FILE_NAME_KEYBOARD_FILTER_INDEX.length);
-        var DEFAULT_WIDTH = this.bounds.get_width() * 0.06452 - 1.0;
-        var DEFAULT_HEIGHT = this.bounds.get_height() * 0.2;
-        var Y_COUNTER = 0;
-        var BLOCK_EXPAND_INDEX = 0;
-        var INCREMENT_INDEX = 0;
-        var IS_SPECIAL_KEY = false;
-        var MULTIPLIER = 0;
-        var SKIP_INDEX = 0;
+        let DEFAULT_WIDTH = this.bounds.get_width() * 0.06452 - 1.0;
+        let DEFAULT_HEIGHT = this.bounds.get_height() * 0.2;
+        let Y_COUNTER = 0;
+        let BLOCK_EXPAND_INDEX = 0;
+        let INCREMENT_INDEX = 0;
+        let IS_SPECIAL_KEY = false;
+        let MULTIPLIER = 0;
+        let SKIP_INDEX = 0;
         for (var i = 0; i < this.KEYBOARD_MAX_KEYS; i++) {
             IS_SPECIAL_KEY = false;
             if (i === 0) {
@@ -349,9 +349,9 @@ var OnScreenKeyboard = /** @class */ (function () {
                 this.FILE_NAME_KEYBOARD_FILTER_INDEX.push(false);
             }
         }
-    };
+    }
     /* Resize the on-screen keyboard */
-    OnScreenKeyboard.prototype.resize_keyboard = function () {
+    resize_keyboard() {
         if (global.MOBILE_MODE) {
             /* Padding for the graph window. */
             this.bounds.left = view_port.left;
@@ -371,8 +371,8 @@ var OnScreenKeyboard = /** @class */ (function () {
             this.fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
             this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
         }
-    };
-    OnScreenKeyboard.prototype.mouse_down = function () {
+    }
+    mouse_down() {
         if (global.MOBILE_MODE) {
             this.FLAG_KEY_UP = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
@@ -383,15 +383,15 @@ var OnScreenKeyboard = /** @class */ (function () {
                 }
             }
         }
-    };
-    OnScreenKeyboard.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.MOBILE_MODE) {
         }
-    };
-    OnScreenKeyboard.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
             this.HOVER_INDEX = -1;
-            var FOUND = false;
+            let FOUND = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
                 if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
                     FOUND = true;
@@ -457,10 +457,10 @@ var OnScreenKeyboard = /** @class */ (function () {
             }
             this.FLAG_KEY_UP = true;
         }
-    };
-    OnScreenKeyboard.prototype.filter_keys = function (input) {
-        var output = false;
-        var filter;
+    }
+    filter_keys(input) {
+        let output = false;
+        let filter;
         if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
             input = input.toUpperCase();
         }
@@ -475,17 +475,17 @@ var OnScreenKeyboard = /** @class */ (function () {
             output = false;
         }
         return output || input === 'CAPS' || input === 'ENTER' || input === '<<' || input === 'SHIFT' || input === ' ';
-    };
-    OnScreenKeyboard.prototype.approve_keys = function (index) {
+    }
+    approve_keys(index) {
         if (this.ENGINEERING_KEYBOARD_MODE === true) {
             return this.ENGINEERING_KEYBOARD_FILTER_INDEX[index];
         }
         else {
             return this.FILE_NAME_KEYBOARD_FILTER_INDEX[index];
         }
-    };
+    }
     /* Draw the on screen keyboard */
-    OnScreenKeyboard.prototype.draw_keyboard = function (canvas) {
+    draw_keyboard(canvas) {
         if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
             if (global.FLAG_ELEMENT_OPTIONS_EDIT === true || global.FLAG_SELECT_TIMESTEP === true) {
                 if (global.selected_type != global.TYPE_NOTE && global.selected_type != global.TYPE_NET) {
@@ -504,7 +504,7 @@ var OnScreenKeyboard = /** @class */ (function () {
                 this.ENGINEERING_KEYBOARD_MODE = false;
             }
             canvas.draw_rect2(this.bounds, this.bounds_paint);
-            var indexer = 0;
+            let indexer = 0;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
                 this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].bottom);
                 this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].bottom);
@@ -549,6 +549,5 @@ var OnScreenKeyboard = /** @class */ (function () {
             this.FLAG_KEY_UP = false;
             this.FLAG_KEY_DOWN = false;
         }
-    };
-    return OnScreenKeyboard;
-}());
+    }
+}

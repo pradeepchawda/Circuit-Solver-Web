@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PulseWidthModulatorSymbol = /** @class */ (function () {
-    function PulseWidthModulatorSymbol(rect, index, page) {
+class PulseWidthModulatorSymbol {
+    constructor(rect, index, page) {
         /* Index of the bounds (Inside New Element Window) */
         this.index = -1;
         /* Page to be drawn on (Inside New Element Window) */
@@ -178,7 +178,7 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
         this.LINE_BUFFER = [];
         this.CIRCLE_BUFFER = [];
     }
-    PulseWidthModulatorSymbol.prototype.update = function () {
+    update() {
         if (this.FLAG_ADD_ELEMENT) {
             if (workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
                 !this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
@@ -188,8 +188,8 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
                 this.FLAG_ADD_ELEMENT = false;
             }
         }
-    };
-    PulseWidthModulatorSymbol.prototype.mouse_down = function (page, width, height) {
+    }
+    mouse_down(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
                 if (!this.FLAG_ADD_ELEMENT) {
@@ -200,8 +200,8 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
                 }
             }
         }
-    };
-    PulseWidthModulatorSymbol.prototype.mouse_move = function (page, width, height) {
+    }
+    mouse_move(page, width, height) {
         if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
             !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
@@ -211,17 +211,17 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
         }
         if (this.page === page) {
         }
-    };
-    PulseWidthModulatorSymbol.prototype.mouse_up = function (page, width, height) {
+    }
+    mouse_up(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
             }
             this.FLAG_ADD_ELEMENT = false;
             global.SIGNAL_ADD_ELEMENT = false;
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    PulseWidthModulatorSymbol.prototype.build_element = function () {
+    build_element() {
         /* Top segment */
         this.pwm_0.x =
             this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
@@ -244,8 +244,8 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
         /* End Segment */
         this.pwm_6.x = this.p3.x - this.x_space * global.cosine(this.theta_m90);
         this.pwm_6.y = this.p3.y - this.y_space * global.sine(this.theta_m90);
-    };
-    PulseWidthModulatorSymbol.prototype.resize = function (rect) {
+    }
+    resize(rect) {
         /* Create a new rectangle for the bounds of this component */
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
         /* The center (x-coord) of the bounds */
@@ -275,8 +275,8 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
         this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3);
         this.text_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.text_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
-    };
-    PulseWidthModulatorSymbol.prototype.recolor = function () {
+    }
+    recolor() {
         if (this.FLAG_ADD_ELEMENT) {
             this.line_paint.set_color(global.SELECTED_COLOR);
             this.point_paint.set_color(global.SELECTED_COLOR);
@@ -289,12 +289,12 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
             this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
             this.text_paint_alt.set_color(global.GENERAL_WHITE_COLOR);
         }
-    };
+    }
     /* Draws the Symbol */
-    PulseWidthModulatorSymbol.prototype.draw_symbol = function (canvas, page) {
+    draw_symbol(canvas, page) {
         this.recolor();
         if (this.page === page) {
-            var indexer = 0;
+            let indexer = 0;
             this.CIRCLE_BUFFER = [];
             this.LINE_BUFFER = [];
             this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.pwm_0.x, this.pwm_0.y);
@@ -331,6 +331,5 @@ var PulseWidthModulatorSymbol = /** @class */ (function () {
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint_alt);
             }
         }
-    };
-    return PulseWidthModulatorSymbol;
-}());
+    }
+}

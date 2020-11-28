@@ -19,8 +19,8 @@
 * 20190928    nboatengc     1      Initial Commit.
 *
 ***********************************************************************/
-var BottomMenu = /** @class */ (function () {
-    function BottomMenu() {
+class BottomMenu {
+    constructor() {
         /* A flag to dictate if we draw the bottom path or not. */
         this.DRAW_BOTTOM_PATH = true;
         this.TIME_STEP_BUTTON_WIDTH = 1;
@@ -118,7 +118,7 @@ var BottomMenu = /** @class */ (function () {
         this.RELOAD_BOTTOM_PATH = true;
     }
     /* Loads the bottom path. */
-    BottomMenu.prototype.load_bottom_path = function () {
+    load_bottom_path() {
         this.bottom_path.reset();
         this.bottom_path.move_to(view_port.left, this.file_button.top);
         this.bottom_path.line_to(this.file_button.right + global.CANVAS_STROKE_WIDTH_3, this.file_button.top);
@@ -129,11 +129,11 @@ var BottomMenu = /** @class */ (function () {
         this.bottom_path.line_to(view_port.right, view_port.bottom);
         this.bottom_path.line_to(view_port.left, view_port.bottom);
         this.bottom_path.close();
-    };
+    }
     /* Incase there is any proccessing required for this element. */
-    BottomMenu.prototype.update = function () { };
+    update() { }
     /* This is an event that will fire when the screen is resized. */
-    BottomMenu.prototype.resize_bottom_menu = function () {
+    resize_bottom_menu() {
         this.INITIAL_RESIZE_COUNTER = 0;
         this.RELOAD_BOTTOM_PATH = true;
         this.file_button.resize();
@@ -163,9 +163,9 @@ var BottomMenu = /** @class */ (function () {
         else {
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         }
-    };
+    }
     /* Handling any mouse down events. */
-    BottomMenu.prototype.mouse_down = function () {
+    mouse_down() {
         if (this.time_step_button.contains_xy(global.mouse_x, global.mouse_y)) {
             global.component_touched = true;
         }
@@ -174,11 +174,11 @@ var BottomMenu = /** @class */ (function () {
         }
         this.first_touch_x = global.mouse_x;
         this.first_touch_y = global.mouse_y;
-    };
+    }
     /* Handling any mouse move events. */
-    BottomMenu.prototype.mouse_move = function () { };
+    mouse_move() { }
     /* Handling any mouse up events. */
-    BottomMenu.prototype.mouse_up = function () {
+    mouse_up() {
         if (!global.IS_RIGHT_CLICK &&
             this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
             if (!global.MOUSE_KEYBOARD_LOCK &&
@@ -204,8 +204,8 @@ var BottomMenu = /** @class */ (function () {
                 }
             }
         }
-    };
-    BottomMenu.prototype.handle_file_explorer = function () {
+    }
+    handle_file_explorer() {
         if (global.MOBILE_MODE) {
             global.MOUSE_KEYBOARD_LOCK = false;
             global.component_touched = false;
@@ -232,16 +232,16 @@ var BottomMenu = /** @class */ (function () {
             }
         }
         return false;
-    };
-    BottomMenu.prototype.handle_timestep_flag = function (ON) {
+    }
+    handle_timestep_flag(ON) {
         global.MOUSE_KEYBOARD_LOCK = true;
         if (ON) {
             time_step_window.reset_cursor();
         }
         bottom_menu.resize_bottom_menu();
         global.FLAG_SELECT_TIMESTEP = ON;
-    };
-    BottomMenu.prototype.recolor = function () {
+    }
+    recolor() {
         if (!global.FLAG_SIMULATING &&
             !global.FLAG_GRAPH &&
             !global.FLAG_MENU_OPEN_DOWN) {
@@ -328,9 +328,9 @@ var BottomMenu = /** @class */ (function () {
                 this.time_step_button.text_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
             }
         }
-    };
+    }
     /* Draws the bottom menu. */
-    BottomMenu.prototype.draw_bottom_menu = function (canvas) {
+    draw_bottom_menu(canvas) {
         this.recolor();
         this.file_button.text =
             language_manager.FILE[global.LANGUAGES[global.LANGUAGE_INDEX]] +
@@ -339,7 +339,7 @@ var BottomMenu = /** @class */ (function () {
         this.TIME_STEP_BUTTON_WIDTH =
             1.25 *
                 this.time_step_button.text_paint.measure_text(this.time_step_button.text);
-        var padding = 2 * global.CANVAS_STROKE_WIDTH_4;
+        let padding = 2 * global.CANVAS_STROKE_WIDTH_4;
         /* Keep updating that bottom path's width baby! */
         this.file_button.set_bounds(view_port.left, menu_bar.settings_button.bottom + padding, view_port.left +
             this.file_button.text_paint.measure_text(this.FILE_BUTTON_TEXT_TEMPLATE.replace('{TEXT}', this.file_button.text)), view_port.bottom);
@@ -372,6 +372,5 @@ var BottomMenu = /** @class */ (function () {
         this.file_button.draw_button(canvas);
         this.time_step_button.draw_button(canvas);
         canvas.draw_text(this.VERSION_TAG_TEMPLATE.replace('{VERSION_TAG}', global.VERSION_TAG), view_port.right, menu_bar.settings_button.bottom, this.text_paint);
-    };
-    return BottomMenu;
-}());
+    }
+}

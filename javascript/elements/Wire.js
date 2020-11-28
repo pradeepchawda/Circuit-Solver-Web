@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Wire = /** @class */ (function () {
-    function Wire(type, id, n1, n2) {
+class Wire {
+    constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
         /* Inititalize the element2 class that will hold the basic data about our component */
         this.elm = new Element2(-1, -1, global.NULL);
@@ -141,7 +141,7 @@ var Wire = /** @class */ (function () {
         this.indexer = 0;
         this.is_translating = false;
     }
-    Wire.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -149,45 +149,45 @@ var Wire = /** @class */ (function () {
             this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
-    };
+    }
     /* Stamp for MNA wire (should be empty.) */
-    Wire.prototype.stamp = function () { };
-    Wire.prototype.release_wires = function () { };
+    stamp() { }
+    release_wires() { }
     /* Handle capture and release from nodes themselves... (references) */
-    Wire.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1);
         }
         this.BUILD_ELEMENT = true;
-    };
-    Wire.prototype.release_node_1 = function () {
+    }
+    release_node_1() {
         if (this.elm.n1 != -1) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_node_1(-1);
         }
         this.BUILD_ELEMENT = true;
-    };
-    Wire.prototype.release_node_2 = function () {
+    }
+    release_node_2() {
         if (this.elm.n2 != -1) {
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_node_2(-1);
         }
         this.BUILD_ELEMENT = true;
-    };
+    }
     /* Push the components references to the Nodes */
-    Wire.prototype.capture_nodes = function () {
+    capture_nodes() {
         this.elm.map_node2(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
         }
         this.BUILD_ELEMENT = true;
-    };
-    Wire.prototype.move_element = function (dx, dy) { };
+    }
+    move_element(dx, dy) { }
     /* Handling a mouse down event. */
-    Wire.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -211,11 +211,11 @@ var Wire = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse move event. */
-    Wire.prototype.mouse_move = function () { };
+    mouse_move() { }
     /* Handling a mouse up event. */
-    Wire.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused &&
                 global.focused_id === this.elm.id &&
@@ -248,8 +248,8 @@ var Wire = /** @class */ (function () {
                 global.selected_bounds = global.copy(this.total_bounds);
             }
         }
-    };
-    Wire.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -260,8 +260,8 @@ var Wire = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = this.elm.wire_style;
         global.selected = true;
-    };
-    Wire.prototype.update_total_bounds = function () {
+    }
+    update_total_bounds() {
         /* Calculate the bounds of the wire (always enclose the wire)) */
         this.total_bounds.left = Math.min(this.p1.x, this.p2.x);
         this.total_bounds.top = Math.min(this.p1.y, this.p2.y);
@@ -273,8 +273,8 @@ var Wire = /** @class */ (function () {
         if (this.total_bounds.get_height() < 2 * global.node_space_y) {
             this.total_bounds.set_center2(this.c_x, this.c_y, this.total_bounds.get_width(), 2 * global.node_space_y);
         }
-    };
-    Wire.prototype.update_wire_style = function () {
+    }
+    update_wire_style() {
         if (this.elm.wire_style === global.WIRE_STYLE_1) {
             this.wire_point.x = Math.max(this.p1.x, this.p2.x);
             this.wire_point.y = Math.min(this.p1.y, this.p2.y);
@@ -296,18 +296,18 @@ var Wire = /** @class */ (function () {
             this.wire_point.y = global.get_average2(this.p1.y, this.p2.y);
         }
         global.SIGNAL_BUILD_ELEMENT = true;
-    };
+    }
     /* This is used to update the SVG */
-    Wire.prototype.refactor = function () {
+    refactor() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             this.x_space = global.node_space_x >> 1;
             this.y_space = global.node_space_y >> 1;
             this.c_x = this.bounds.get_center_x();
             this.c_y = this.bounds.get_center_y();
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    Wire.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             this.update_wire_style();
             if (this.elm.consistent()) {
@@ -340,40 +340,40 @@ var Wire = /** @class */ (function () {
             }
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to handle any processing required by the component */
-    Wire.prototype.update = function () {
+    update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
             if (this.elm.consistent()) {
                 this.wire_voltage = Math.max(engine_functions.get_voltage(this.elm.n1, -1), engine_functions.get_voltage(this.elm.n2, -1));
             }
         }
-    };
-    Wire.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.release_nodes();
         this.elm.set_flip(flip);
         this.refactor();
         this.capture_nodes();
-    };
+    }
     /* Sets the rotation of the component */
-    Wire.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.release_nodes();
         this.elm.set_rotation(rotation);
         this.refactor();
         this.capture_nodes();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    Wire.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Sets the wire style of the component */
-    Wire.prototype.set_wire_style = function (style) {
+    set_wire_style(style) {
         this.elm.set_wire_style(style);
         this.refactor();
         if (global.selected_id === this.elm.id &&
@@ -381,16 +381,16 @@ var Wire = /** @class */ (function () {
             global.selected_wire_style = this.elm.wire_style;
         }
         this.push_history();
-    };
-    Wire.prototype.increment_style = function () {
+    }
+    increment_style() {
         this.elm.wire_style++;
         if (this.elm.wire_style > global.WIRE_STYLE_4) {
             this.elm.wire_style = global.WIRE_STYLE_0;
         }
         this.set_wire_style(this.elm.wire_style);
-    };
-    Wire.prototype.increment_flip = function () { };
-    Wire.prototype.remove_focus = function () {
+    }
+    increment_flip() { }
+    remove_focus() {
         if (global.focused &&
             global.focused_id === this.elm.id &&
             global.focused_type === this.elm.type) {
@@ -399,8 +399,8 @@ var Wire = /** @class */ (function () {
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    Wire.prototype.remove_selection = function () {
+    }
+    remove_selection() {
         if (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
@@ -410,8 +410,8 @@ var Wire = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    Wire.prototype.recolor = function () {
+    }
+    recolor() {
         if (global.selected) {
             if (global.selected_id === this.elm.id &&
                 global.selected_type === this.elm.type) {
@@ -437,27 +437,27 @@ var Wire = /** @class */ (function () {
                 this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
             }
         }
-    };
-    Wire.prototype.wire_collision = function () {
+    }
+    wire_collision() {
         if (this.elm.wire_style === global.WIRE_STYLE_0) {
-            var collision_0 = global.line_collision(global.mouse_x - (global.node_space_x >> 1), global.mouse_y - global.CANVAS_STROKE_WIDTH_1_ZOOM, global.mouse_x + (global.node_space_x >> 1), global.mouse_y + global.CANVAS_STROKE_WIDTH_1_ZOOM, this.p1.x, this.p1.y, this.p2.x, this.p2.y);
-            var collision_1 = global.line_collision(global.mouse_x - global.CANVAS_STROKE_WIDTH_1_ZOOM, global.mouse_y - (global.node_space_x >> 1), global.mouse_x + global.CANVAS_STROKE_WIDTH_1, global.mouse_y + (global.node_space_x >> 1), this.p1.x, this.p1.y, this.p2.x, this.p2.y);
+            let collision_0 = global.line_collision(global.mouse_x - (global.node_space_x >> 1), global.mouse_y - global.CANVAS_STROKE_WIDTH_1_ZOOM, global.mouse_x + (global.node_space_x >> 1), global.mouse_y + global.CANVAS_STROKE_WIDTH_1_ZOOM, this.p1.x, this.p1.y, this.p2.x, this.p2.y);
+            let collision_1 = global.line_collision(global.mouse_x - global.CANVAS_STROKE_WIDTH_1_ZOOM, global.mouse_y - (global.node_space_x >> 1), global.mouse_x + global.CANVAS_STROKE_WIDTH_1, global.mouse_y + (global.node_space_x >> 1), this.p1.x, this.p1.y, this.p2.x, this.p2.y);
             return collision_0 || collision_1;
         }
         else {
-            var collision_2 = global.line_collision(global.mouse_x - (global.node_space_x >> 1), global.mouse_y, global.mouse_x + (global.node_space_x >> 1), global.mouse_y, this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
-            var collision_3 = global.line_collision(global.mouse_x, global.mouse_y - (global.node_space_x >> 1), global.mouse_x, global.mouse_y + global.node_space_x / 2, this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
-            var collision_4 = global.line_collision(global.mouse_x - (global.node_space_x >> 1), global.mouse_y, global.mouse_x + (global.node_space_x >> 1), global.mouse_y, this.wire_point.x, this.wire_point.y, this.p2.x, this.p2.y);
-            var collision_5 = global.line_collision(global.mouse_x, global.mouse_y - (global.node_space_x >> 1), global.mouse_x, global.mouse_y + global.node_space_x / 2, this.wire_point.x, this.wire_point.y, this.p2.x, this.p2.y);
+            let collision_2 = global.line_collision(global.mouse_x - (global.node_space_x >> 1), global.mouse_y, global.mouse_x + (global.node_space_x >> 1), global.mouse_y, this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
+            let collision_3 = global.line_collision(global.mouse_x, global.mouse_y - (global.node_space_x >> 1), global.mouse_x, global.mouse_y + global.node_space_x / 2, this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
+            let collision_4 = global.line_collision(global.mouse_x - (global.node_space_x >> 1), global.mouse_y, global.mouse_x + (global.node_space_x >> 1), global.mouse_y, this.wire_point.x, this.wire_point.y, this.p2.x, this.p2.y);
+            let collision_5 = global.line_collision(global.mouse_x, global.mouse_y - (global.node_space_x >> 1), global.mouse_x, global.mouse_y + global.node_space_x / 2, this.wire_point.x, this.wire_point.y, this.p2.x, this.p2.y);
             return collision_2 || collision_3 || collision_4 || collision_5;
         }
-    };
-    Wire.prototype.is_selected_element = function () {
+    }
+    is_selected_element() {
         return (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type);
-    };
+    }
     /* Draws the component */
-    Wire.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.refactor();
         this.recolor();
         this.resize();
@@ -564,9 +564,9 @@ var Wire = /** @class */ (function () {
             canvas.draw_text(this.elm.id, this.c_x, this.c_y, this.text_paint);
             canvas.draw_rect2(this.total_bounds, this.line_paint);
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    Wire.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.total_bounds)) {
             this.total_bounds = new RectF(0, 0, 0, 0);
         }
@@ -586,12 +586,12 @@ var Wire = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    Wire.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
                 if (keys[i] === 'Frequency' ||
@@ -604,7 +604,6 @@ var Wire = /** @class */ (function () {
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    Wire.prototype.reset = function () { };
-    return Wire;
-}());
+    }
+    reset() { }
+}

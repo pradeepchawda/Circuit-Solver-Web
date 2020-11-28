@@ -22,8 +22,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var StringOperator = /** @class */ (function () {
-    function StringOperator() {
+class StringOperator {
+    constructor() {
         /* The available bases for si uinits (base 10) */
         this.bases = [-18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18];
         /* The prefixes for the SI units. */
@@ -54,19 +54,19 @@ var StringOperator = /** @class */ (function () {
         this.DECIMAL_POINT = Math.round(100);
     }
     /* This takes a number in si units and generates the string representation of it w/ modified units. The input is a string. */
-    StringOperator.prototype.exponentiate_string = function (input) {
+    exponentiate_string(input) {
         return this.correction(this.process(this.correction(input)) + this.prefix[this.index]);
-    };
+    }
     /* This function handles pre and post cleanup of the input. The input is a list of digits. */
-    StringOperator.prototype.correction = function (input) {
-        var output = '';
+    correction(input) {
+        let output = '';
         /* Handling empty strings. */
         if (input === '') {
             input = '0';
         }
         /* This handles situations when the user places "k" or "u" i.e., a singular unit. It
         assigns the implied "1" in front of the unit. */
-        var is_found = false;
+        let is_found = false;
         if (input.length === 1) {
             for (var i = 0; i < this.prefix.length; i++) {
                 if (i != 6 && input.charAt(0) === this.prefix[i].charAt(0)) {
@@ -81,12 +81,12 @@ var StringOperator = /** @class */ (function () {
             output = input;
         }
         return output;
-    };
+    }
     /* This will truncate the number to a precision. It will start at the end and strip off
     decimals until it reaches the desired number. i.e., 1.0000 -> if we wanted decimal place = 3, it would strip it to 1.000.
     The input is a list of digits. */
-    StringOperator.prototype.truncate = function (input, decimal_place) {
-        var decimal_location = -1;
+    truncate(input, decimal_place) {
+        let decimal_location = -1;
         decimal_location = this.get_decimal_index(input);
         /* Step backwards because we are removing indices from the list. */
         if (decimal_location != -1) {
@@ -95,10 +95,10 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return input;
-    };
+    }
     /* A quick check to see if the input is a valid prefix. The input is a string */
-    StringOperator.prototype.is_valid_prefix = function (input) {
-        var index = -1;
+    is_valid_prefix(input) {
+        let index = -1;
         for (var i = 0; i < this.prefix.length; i++) {
             if (this.prefix[i] === input) {
                 index = i;
@@ -107,10 +107,10 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return index;
-    };
+    }
     /* Quickly check if all the characters inside the input are valid or not. The input is a string */
-    StringOperator.prototype.is_valid = function (input) {
-        var is_valid = false;
+    is_valid(input) {
+        let is_valid = false;
         for (var i = 0; i < this.valid_characters.length; i++) {
             if (this.valid_characters[i] === input) {
                 is_valid = true;
@@ -118,9 +118,9 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return is_valid;
-    };
+    }
     /* Given an input generate the exponential notation. The input is a list of digits  */
-    StringOperator.prototype.exponentiate = function (input) {
+    exponentiate(input) {
         if (input === 0) {
             return '0';
         }
@@ -130,14 +130,14 @@ var StringOperator = /** @class */ (function () {
         else {
             return this.correction(this.process(this.format_exponent(input)) + this.prefix[this.index]);
         }
-    };
+    }
     /* This will generate a string from an input of a string. It will also fix the decimal place to match
     the list of pre-determined prefixes. */
-    StringOperator.prototype.process = function (input) {
-        var number = [];
-        var round = 3;
-        var exponent = 0;
-        var str = '';
+    process(input) {
+        let number = [];
+        let round = 3;
+        let exponent = 0;
+        let str = '';
         this.shift_variable = 0;
         number = this.generate(input);
         number = this.format(this.copy_num(number));
@@ -151,26 +151,26 @@ var StringOperator = /** @class */ (function () {
         number = this.format(this.copy_num(number));
         str = this.stringify(number);
         return str;
-    };
+    }
     /* It will copy a list of digits and return the copied list. The number is a list of digits. */
-    StringOperator.prototype.copy_num = function (number) {
-        var output = [];
+    copy_num(number) {
+        let output = [];
         for (var i = 0; i < number.length; i++) {
             output.push(new Digit(number[i].get_digit()));
         }
         return output;
-    };
+    }
     /* This computes the absolute value of the input. The input is a number. */
-    StringOperator.prototype.absolute_value = function (input) {
+    absolute_value(input) {
         if (input < 0) {
             return Math.round(-input);
         }
         else {
             return Math.round(input);
         }
-    };
+    }
     /* This will place a set of zeros at the beginning and the end of the list of digits. The input is a list of digits. */
-    StringOperator.prototype.pad = function (input, padding) {
+    pad(input, padding) {
         for (var i = 0; i < padding; i++) {
             input.splice(0, 0, new Digit(0));
         }
@@ -178,12 +178,12 @@ var StringOperator = /** @class */ (function () {
             input.splice(input.length, 0, new Digit(0));
         }
         return input;
-    };
+    }
     /* This will shift a number around a the decimal point. The input is a list of digits. */
-    StringOperator.prototype.shift = function (input, shift) {
-        var decimal_location = this.get_decimal_index(input);
+    shift(input, shift) {
+        let decimal_location = this.get_decimal_index(input);
         if (shift != 0) {
-            var place_at = decimal_location + (shift + 1);
+            let place_at = decimal_location + (shift + 1);
             input.splice(place_at, 0, new Digit(this.DECIMAL_POINT));
             for (var i = 0; i < input.length; i++) {
                 if (input[i].get_digit() === this.DECIMAL_POINT && i != place_at) {
@@ -193,11 +193,11 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return input;
-    };
+    }
     /* This function will determine the closest exponent to the input exponent. The exponent is a number. */
-    StringOperator.prototype.get_closest = function (exponent) {
-        var closest = 30;
-        var location = -1;
+    get_closest(exponent) {
+        let closest = 30;
+        let location = -1;
         for (var i = 0; i < this.bases.length; i++) {
             if (exponent - this.bases[i] < closest) {
                 if (Math.pow(10, exponent) >= Math.pow(10, this.bases[i])) {
@@ -217,16 +217,16 @@ var StringOperator = /** @class */ (function () {
         else {
             return exponent;
         }
-    };
+    }
     /* This function will take a string and generate a list of digits that represent that string. */
-    StringOperator.prototype.generate = function (input) {
-        var string_input = input + '';
-        var output = [];
-        var index = -1;
-        var magnitude = '';
-        var base = 0;
-        var exp = -100;
-        var exponent = '';
+    generate(input) {
+        let string_input = input + '';
+        let output = [];
+        let index = -1;
+        let magnitude = '';
+        let base = 0;
+        let exp = -100;
+        let exponent = '';
         /* generate the string that will hold all the magnitude digits */
         for (var i = 0; i < string_input.length; i++) {
             if (this.is_valid_prefix(string_input.charAt(i) + '') > -1) {
@@ -293,13 +293,13 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return output;
-    };
+    }
     /* Try to put the digits into "left most decimal" notation. The input is a list of digits. */
-    StringOperator.prototype.left_most_decimal = function (input) {
-        var first_bit = 0;
-        var second_bit = 0;
-        var begin = false;
-        var decimal = -1;
+    left_most_decimal(input) {
+        let first_bit = 0;
+        let second_bit = 0;
+        let begin = false;
+        let decimal = -1;
         if (input.length > 1) {
             first_bit = input[0].get_digit();
             second_bit = input[1].get_digit();
@@ -337,10 +337,10 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return input;
-    };
+    }
     /* This will genertate a string from the a list of difits. The input is a list of digits. */
-    StringOperator.prototype.stringify = function (input) {
-        var output = '';
+    stringify(input) {
+        let output = '';
         for (var i = 0; i < input.length; i++) {
             if (input[i].get_digit() < this.NEGATIVE_SIGN) {
                 output = output + Math.round(input[i].get_digit());
@@ -355,10 +355,10 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return output;
-    };
+    }
     /* This will scan then list of digits until it reaches a decimal point. The input is a list of digits. */
-    StringOperator.prototype.get_decimal_index = function (input) {
-        var output = -1;
+    get_decimal_index(input) {
+        let output = -1;
         for (var i = 0; i < input.length; i++) {
             if (input[i].get_digit() === this.DECIMAL_POINT) {
                 output = i;
@@ -366,10 +366,10 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return output;
-    };
+    }
     /* This will scan the list of digits and check if it contains a decimal point. The input is a list of digits. */
-    StringOperator.prototype.has_decimal = function (input) {
-        var output = false;
+    has_decimal(input) {
+        let output = false;
         for (var i = 0; i < input.length; i++) {
             if (input[i].get_digit() === this.DECIMAL_POINT) {
                 output = true;
@@ -377,18 +377,18 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return output;
-    };
+    }
     /* This will invert the list of digits. 1234 -> 4321 */
-    StringOperator.prototype.invert = function (input) {
-        var output = [];
+    invert(input) {
+        let output = [];
         for (var i = input.length - 1; i > -1; i--) {
             output.push(input[i]);
         }
         return output;
-    };
+    }
     /* Clean up a list of digits. */
-    StringOperator.prototype.format = function (input) {
-        var has_decimal = this.has_decimal(input);
+    format(input) {
+        let has_decimal = this.has_decimal(input);
         if (!has_decimal) {
             input.push(new Digit(this.DECIMAL_POINT));
         }
@@ -426,14 +426,14 @@ var StringOperator = /** @class */ (function () {
             }
         }
         return input;
-    };
+    }
     /* Determine the exponent that best describes the system (in terms of si units) */
-    StringOperator.prototype.get_exponent = function (input) {
-        var count = 0;
-        var begin = false;
-        var first_bit = 0;
-        var second_bit = 0;
-        var loop = 0;
+    get_exponent(input) {
+        let count = 0;
+        let begin = false;
+        let first_bit = 0;
+        let second_bit = 0;
+        let loop = 0;
         if (input.length > 1) {
             first_bit = input[0].get_digit();
             second_bit = input[1].get_digit();
@@ -475,16 +475,16 @@ var StringOperator = /** @class */ (function () {
             count--;
         }
         return count;
-    };
+    }
     /* Generate a number from a list of digits. The input is a string. */
-    StringOperator.prototype.parse = function (input) {
-        var inp = [];
+    parse(input) {
+        let inp = [];
         inp = this.copy_num(this.generate(input));
         inp = this.copy_num(this.format(inp));
-        var decimal = this.get_decimal_index(inp);
-        var output = 0;
-        var negate = false;
-        var count = 0;
+        let decimal = this.get_decimal_index(inp);
+        let output = 0;
+        let negate = false;
+        let count = 0;
         for (var i = decimal; i < inp.length; i++) {
             if (Math.round(inp[i].get_digit()) != this.DECIMAL_POINT &&
                 Math.round(inp[i].get_digit()) != this.NEGATIVE_SIGN) {
@@ -510,16 +510,16 @@ var StringOperator = /** @class */ (function () {
             output = -output;
         }
         return output;
-    };
+    }
     /* Format a string in expoential notation. (Make it nice to work with). The input is a string */
-    StringOperator.prototype.format_exponent = function (input) {
-        var symbolic = [];
-        var inp = input + '';
-        var output = '';
-        var exponent = '';
-        var negate = false;
-        var _switch = false;
-        var loop = 0;
+    format_exponent(input) {
+        let symbolic = [];
+        let inp = input + '';
+        let output = '';
+        let exponent = '';
+        let negate = false;
+        let _switch = false;
+        let loop = 0;
         if (inp.length > 0) {
             if ('-' === inp.charAt(0) + '') {
                 negate = true;
@@ -557,6 +557,5 @@ var StringOperator = /** @class */ (function () {
             output = '-' + output;
         }
         return output;
-    };
-    return StringOperator;
-}());
+    }
+}

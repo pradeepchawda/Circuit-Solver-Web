@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Capacitor = /** @class */ (function () {
-    function Capacitor(type, id, n1, n2) {
+class Capacitor {
+    constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
@@ -97,7 +97,7 @@ var Capacitor = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -189,7 +189,7 @@ var Capacitor = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    Capacitor.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -199,21 +199,21 @@ var Capacitor = /** @class */ (function () {
             /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
-    };
+    }
     /* Add a wire reference to the capacitor element. */
-    Capacitor.prototype.push_reference = function (ref) {
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
-    Capacitor.prototype.stamp = function () {
+    }
+    stamp() {
         if (this.elm.consistent()) {
             engine_functions.stamp_capacitor(this.elm.n1, this.elm.n2, this.elm.properties['Transient Resistance'], this.elm.properties['Equivalent Current']);
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    Capacitor.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
@@ -240,12 +240,12 @@ var Capacitor = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1]);
         }
         return vertices;
-    };
+    }
     /* Release the wires from this element. Making sure to release their node references
     before we do so. */
-    Capacitor.prototype.release_wires = function () {
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -255,26 +255,26 @@ var Capacitor = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    Capacitor.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    Capacitor.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    Capacitor.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -314,9 +314,9 @@ var Capacitor = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    Capacitor.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -333,8 +333,8 @@ var Capacitor = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    Capacitor.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -357,9 +357,9 @@ var Capacitor = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Handling a mouse move event. */
-    Capacitor.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
@@ -402,9 +402,9 @@ var Capacitor = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    Capacitor.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused &&
                 global.focused_id === this.elm.id &&
@@ -444,8 +444,8 @@ var Capacitor = /** @class */ (function () {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    Capacitor.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -455,9 +455,9 @@ var Capacitor = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
+    }
     /* Release this element from the system focus. */
-    Capacitor.prototype.remove_focus = function () {
+    remove_focus() {
         if (global.focused &&
             global.focused_id === this.elm.id &&
             global.focused_type === this.elm.type) {
@@ -466,9 +466,9 @@ var Capacitor = /** @class */ (function () {
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
+    }
     /* Release this element from the system selection. */
-    Capacitor.prototype.remove_selection = function () {
+    remove_selection() {
         if (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
@@ -478,10 +478,10 @@ var Capacitor = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    Capacitor.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -489,12 +489,12 @@ var Capacitor = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Pull the wires node indices from nodes. (Move the wires) */
-    Capacitor.prototype.unanchor_wires = function () {
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -526,11 +526,11 @@ var Capacitor = /** @class */ (function () {
                 }
             }
         }
-    };
-    Capacitor.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -562,8 +562,8 @@ var Capacitor = /** @class */ (function () {
                 }
             }
         }
-    };
-    Capacitor.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -573,9 +573,9 @@ var Capacitor = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    Capacitor.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -585,22 +585,22 @@ var Capacitor = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    Capacitor.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    Capacitor.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 0.75 * this.x_space;
-            var cache_1 = 0.667 * this.x_space;
-            var cache_2 = 0.75 * this.y_space;
-            var cache_3 = 0.667 * this.y_space;
-            var cache_4 = this.x_space;
-            var cache_5 = this.y_space;
+            let cache_0 = 0.75 * this.x_space;
+            let cache_1 = 0.667 * this.x_space;
+            let cache_2 = 0.75 * this.y_space;
+            let cache_3 = 0.667 * this.y_space;
+            let cache_4 = this.x_space;
+            let cache_5 = this.y_space;
             this.cap_0.x =
                 this.c_x +
                     cache_0 * global.cosine(this.theta) +
@@ -639,9 +639,9 @@ var Capacitor = /** @class */ (function () {
             this.connect2_y = this.c_y + cache_2 * global.sine(this.theta);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming */
-    Capacitor.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -664,12 +664,12 @@ var Capacitor = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    Capacitor.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -682,11 +682,11 @@ var Capacitor = /** @class */ (function () {
             global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
-    };
+    }
     /* Update the transients as the simulation progresses. */
-    Capacitor.prototype.update_capacitor = function () {
+    update_capacitor() {
         if (this.elm.consistent() && simulation_manager.SOLUTIONS_READY) {
-            var voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+            let voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
             this.elm.properties['Transient Voltage'] = voltage;
             this.elm.properties['Transient Current'] =
                 voltage / this.elm.properties['Transient Resistance'] +
@@ -696,9 +696,9 @@ var Capacitor = /** @class */ (function () {
                     this.elm.properties['Transient Resistance'] -
                     this.elm.properties['Transient Current'];
         }
-    };
+    }
     /* Reset the capacitor to its initial conditions (usually done at time = 0) */
-    Capacitor.prototype.reset_capacitor = function () {
+    reset_capacitor() {
         this.elm.properties['Transient Resistance'] =
             global.TIME_STEP / (2 * this.elm.properties['Capacitance']);
         this.elm.properties['Transient Voltage'] = global.copy(this.elm.properties['Initial Voltage']);
@@ -707,29 +707,29 @@ var Capacitor = /** @class */ (function () {
             -this.elm.properties['Transient Voltage'] /
                 this.elm.properties['Transient Resistance'] -
                 this.elm.properties['Transient Current'];
-    };
+    }
     /* This is for energy conservation */
-    Capacitor.prototype.conserve_energy = function () {
+    conserve_energy() {
         this.elm.properties['Transient Resistance'] =
             global.TIME_STEP / (2 * this.elm.properties['Capacitance']);
         this.elm.properties['Equivalent Current'] =
             -this.elm.properties['Transient Voltage'] /
                 this.elm.properties['Transient Resistance'] -
                 this.elm.properties['Transient Current'];
-    };
+    }
     /* General function to handle any processing required by the component */
-    Capacitor.prototype.update = function () { };
+    update() { }
     /* Increment the rotation of the element. */
-    Capacitor.prototype.increment_rotation = function () {
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    Capacitor.prototype.increment_flip = function () { };
+    }
+    increment_flip() { }
     /* Handle any events that warrant the element to be recolored */
-    Capacitor.prototype.recolor = function () {
+    recolor() {
         if (global.selected) {
             if (global.selected_id === this.elm.id &&
                 global.selected_type === this.elm.type) {
@@ -755,13 +755,13 @@ var Capacitor = /** @class */ (function () {
                 this.text_paint.set_color(global.ELEMENT_COLOR);
             }
         }
-    };
-    Capacitor.prototype.is_selected_element = function () {
+    }
+    is_selected_element() {
         return (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type);
-    };
+    }
     /* Draws the component */
-    Capacitor.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -810,9 +810,9 @@ var Capacitor = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    Capacitor.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.LINE_BUFFER)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
             this.LINE_BUFFER = [];
@@ -829,12 +829,12 @@ var Capacitor = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    Capacitor.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
                 if (keys[i] === 'Frequency' ||
@@ -847,7 +847,6 @@ var Capacitor = /** @class */ (function () {
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    Capacitor.prototype.reset = function () { };
-    return Capacitor;
-}());
+    }
+    reset() { }
+}

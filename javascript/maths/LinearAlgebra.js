@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var LinearAlgebra = /** @class */ (function () {
-    function LinearAlgebra() {
+class LinearAlgebra {
+    constructor() {
         this.x_matrix = [[], []];
         this.det_threshold = 0;
         this.row = [];
@@ -49,7 +49,7 @@ var LinearAlgebra = /** @class */ (function () {
         this.GENERAL_ARRAY;
         this.FIRST_LUP_SOLVE = true;
     }
-    LinearAlgebra.prototype.lup_solve = function (a_matrix, b_matrix) {
+    lup_solve(a_matrix, b_matrix) {
         if (a_matrix.length > 0 && a_matrix[0].length > 0) {
             this.SIZE = a_matrix[0].length;
             this._i = 0;
@@ -127,13 +127,13 @@ var LinearAlgebra = /** @class */ (function () {
             }
         }
         return this.x_matrix;
-    };
-    LinearAlgebra.prototype.set_matrix_diagonal = function (matrix, value, n) {
+    }
+    set_matrix_diagonal(matrix, value, n) {
         for (var i = 0; i < n; i++) {
             matrix[i][i] = value;
         }
-    };
-    LinearAlgebra.prototype.matrix = function (rows, cols) {
+    }
+    matrix(rows, cols) {
         this.GENERAL_ARRAY = [];
         for (var i = 0; i < rows; i++) {
             this.GENERAL_ARRAY.push(Array());
@@ -143,20 +143,19 @@ var LinearAlgebra = /** @class */ (function () {
             }
         }
         return this.GENERAL_ARRAY;
-    };
-    LinearAlgebra.prototype.vector = function (size) {
+    }
+    vector(size) {
         this.GENERAL_ARRAY = new Array(size);
         for (var i = 0; i < size; i++) {
             this.GENERAL_ARRAY[i] = 0;
         }
         return this.GENERAL_ARRAY;
-    };
-    LinearAlgebra.prototype.vector2 = function (size) {
+    }
+    vector2(size) {
         this.GENERAL_ARRAY = new Array(size);
         for (var i = 0; i < size; i++) {
             this.GENERAL_ARRAY[i] = i;
         }
         return this.GENERAL_ARRAY;
-    };
-    return LinearAlgebra;
-}());
+    }
+}

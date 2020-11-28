@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Trace = /** @class */ (function () {
-    function Trace(x_len, y_len, ratio) {
+class Trace {
+    constructor(x_len, y_len, ratio) {
         /* The trace path of the trace itself. */
         this.trace_path = new Path();
         /* The list of all the trace points magnitudes */
@@ -124,58 +124,58 @@ var Trace = /** @class */ (function () {
         this.trace_fill_paint.set_paint_align(this.trace_fill_paint.align.CENTER);
     }
     /* Set the color of the trace */
-    Trace.prototype.set_color = function (color) {
+    set_color(color) {
         this.trace_stroke_paint.set_color(color);
         this.trace_fill_paint.set_color(color);
-    };
+    }
     /* Set the x axis length of the trace */
-    Trace.prototype.set_x_axis_length = function (len) {
+    set_x_axis_length(len) {
         this.X_AXIS_LENGTH = len;
-    };
+    }
     /* Set the the y axis length of the trace */
-    Trace.prototype.set_y_axis_length = function (len) {
+    set_y_axis_length(len) {
         this.Y_AXIS_LENGTH = len;
-    };
+    }
     /* Set the ratio of the trace */
-    Trace.prototype.set_ratio = function (ratio) {
+    set_ratio(ratio) {
         this.ratio = ratio;
-    };
+    }
     /* Set the maximum width of the trace (spacial confinds) */
-    Trace.prototype.set_width = function (width) {
+    set_width(width) {
         this.width = width;
-    };
+    }
     /* Set the maximum height of the trace (spacial confinds) */
-    Trace.prototype.set_height = function (height) {
+    set_height(height) {
         this.height = height;
-    };
+    }
     /* Set the trim of the trace */
-    Trace.prototype.set_trim = function (trim) {
+    set_trim(trim) {
         this.trim = trim;
-    };
+    }
     /* A nice function to handle updating all of the parameters of the trace at once. */
-    Trace.prototype.update_parameters = function (bounds, ratio, width, height, trim) {
+    update_parameters(bounds, ratio, width, height, trim) {
         this.set_bounds(bounds);
         this.set_ratio(ratio);
         this.set_width(width);
         this.set_height(height);
         this.set_trim(trim);
-    };
+    }
     /* Set the bounds of the trace */
-    Trace.prototype.set_bounds = function (rect) {
+    set_bounds(rect) {
         this.bounds.left = rect.left;
         this.bounds.top = rect.top;
         this.bounds.right = rect.right;
         this.bounds.bottom = rect.bottom;
-    };
+    }
     /* Resize the trace (dynamically) */
-    Trace.prototype.resize_trace = function () {
+    resize_trace() {
         if (this.trace.length > 0) {
             this.trace_stroke_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
             this.trace_stroke_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
             this.trace_fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
             this.trace_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-            var constant = this.width / (this.X_AXIS_LENGTH >> 1);
-            var constant2 = (this.height * this.ratio) / this.temporary_norm;
+            let constant = this.width / (this.X_AXIS_LENGTH >> 1);
+            let constant2 = (this.height * this.ratio) / this.temporary_norm;
             for (var i = 0; i < this.trace.length; i++) {
                 this.trace[i].x = i * constant + this.trim;
                 if (this.temporary_norm > 0 && i < this.magnitude_list.length) {
@@ -187,43 +187,39 @@ var Trace = /** @class */ (function () {
             }
             this.create_path();
         }
-    };
+    }
     /* Reset the trace. (Remove data and remove the trace path) */
-    Trace.prototype.reset = function () {
+    reset() {
         this.trace.splice(0, this.trace.length);
         this.magnitude_list.splice(0, this.magnitude_list.length);
         this.norm = 1;
         this.last_norm = 1;
         this.temporary_norm = 1;
         this.reset_path();
-    };
-    Trace.prototype.reset_path = function () {
+    }
+    reset_path() {
         this.trace_path.reset();
-    };
+    }
     /* Get a specific value of the trace at at specific index. */
-    Trace.prototype.get_value = function (index) {
-        var ret = [];
-        if (index > -1 &&
-            index < this.magnitude_list.length &&
-            index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
+    get_value(index) {
+        let ret = [];
+        if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
             ret.push(global.exponentiate_quickly(this.magnitude_list[index].x));
             ret.push(global.exponentiate_quickly(-this.magnitude_list[index].y));
         }
         return ret;
-    };
+    }
     /* Get a specific value of the trace at at specific index. */
-    Trace.prototype.get_value_double = function (index) {
-        var ret = [];
-        if (index > -1 &&
-            index < this.magnitude_list.length &&
-            index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
+    get_value_double(index) {
+        let ret = [];
+        if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
             ret.push(this.magnitude_list[index].x);
             ret.push(-this.magnitude_list[index].y);
         }
         return ret;
-    };
+    }
     /* Add a new entry to the trace. */
-    Trace.prototype.push = function (value, t) {
+    push(value, t) {
         value *= -1;
         if (Math.abs(value) < 1e-18) {
             value = 0;
@@ -232,7 +228,7 @@ var Trace = /** @class */ (function () {
         this.last_norm = this.norm;
         this.norm = 0;
         this.plot_magnitude = 0;
-        var abs_temp = 0;
+        let abs_temp = 0;
         for (var i = 0; i < this.magnitude_list.length; i++) {
             abs_temp = Math.abs(this.magnitude_list[i].y);
             if (abs_temp > this.norm) {
@@ -242,15 +238,15 @@ var Trace = /** @class */ (function () {
         this.norm = 2 * this.norm;
         this.temporary_norm = this.norm;
         if (this.last_norm != 0 && this.temporary_norm != 0) {
-            var temp_div = this.last_norm / (this.height * this.ratio);
-            var temp_const = (this.height * this.ratio) / this.temporary_norm;
+            let temp_div = this.last_norm / (this.height * this.ratio);
+            let temp_const = (this.height * this.ratio) / this.temporary_norm;
             for (var i = 0; i < this.trace.length; i++) {
                 this.plot_magnitude = this.trace[i].y * temp_div;
                 this.trace[i].y = this.plot_magnitude * temp_const;
             }
         }
-        var constant = this.width / (this.X_AXIS_LENGTH >> 1);
-        var constant2 = (this.height * this.ratio) / this.temporary_norm;
+        let constant = this.width / (this.X_AXIS_LENGTH >> 1);
+        let constant2 = (this.height * this.ratio) / this.temporary_norm;
         if (this.temporary_norm > 0) {
             if (global.not_null(value / this.temporary_norm)) {
                 this.trace.push(new PointF(this.trace.length * constant + this.trim, value * constant2));
@@ -277,11 +273,11 @@ var Trace = /** @class */ (function () {
             }
         }
         this.create_path();
-    };
+    }
     /* Create the path of the trace based on the trace points */
-    Trace.prototype.create_path = function () {
+    create_path() {
         if (this.trace.length > 0) {
-            var temp_height = this.height >> 1;
+            let temp_height = this.height >> 1;
             this.previous_point.set_point(this.trace[0].x, this.trace[0].y + this.bounds.top + temp_height);
             this.trace_path.reset();
             for (var i = 1; i < this.trace.length; i++) {
@@ -302,12 +298,11 @@ var Trace = /** @class */ (function () {
             }
             this.trace_path.line_to(this.previous_point.x, this.previous_point.y);
         }
-    };
+    }
     /* Draw the trace itself! */
-    Trace.prototype.draw_trace = function (canvas, x_offset, y_offset) {
+    draw_trace(canvas, x_offset, y_offset) {
         if (this.trace.length > 0) {
             canvas.draw_path2(this.trace_path, x_offset, y_offset, this.trace_stroke_paint);
         }
-    };
-    return Trace;
-}());
+    }
+}

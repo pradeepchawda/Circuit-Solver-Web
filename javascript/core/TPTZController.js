@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var TPTZController = /** @class */ (function () {
-    function TPTZController(tptz_buffer) {
+class TPTZController {
+    constructor(tptz_buffer) {
         this.buffer = [];
         this.x = [0, 0];
         this.y = [0, 0];
@@ -48,16 +48,16 @@ var TPTZController = /** @class */ (function () {
         this._y = 0;
     }
     /* Compute the two-pole two-zero output given the error signal. */
-    TPTZController.prototype.get_output = function (input_error) {
+    get_output(input_error) {
         return this._2p2z(input_error);
-    };
+    }
     /* Set the initial value of the two-pole two-zero compensator. */
-    TPTZController.prototype.set_initial = function (setter) {
+    set_initial(setter) {
         this.y[this.n_1] = setter;
         this.y[this.n_2] = setter;
-    };
+    }
     /* The difference equation that realizes the compensator. */
-    TPTZController.prototype._2p2z = function (_x) {
+    _2p2z(_x) {
         this.center =
             _x * this.buffer[this.b0] +
                 this.buffer[this.b1] * this.x[this.n_1] +
@@ -71,10 +71,9 @@ var TPTZController = /** @class */ (function () {
         this.y[this.n_2] = this.y[this.n_1];
         this.y[this.n_1] = this._y;
         return this._y;
-    };
+    }
     /* Update the coefficients of the compensator. */
-    TPTZController.prototype.set_tptz_coefficients = function (tptz_buffer) {
+    set_tptz_coefficients(tptz_buffer) {
         this.buffer = global.copy(tptz_buffer);
-    };
-    return TPTZController;
-}());
+    }
+}

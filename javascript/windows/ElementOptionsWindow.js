@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ElementOptionsWindow = /** @class */ (function () {
-    function ElementOptionsWindow() {
+class ElementOptionsWindow {
+    constructor() {
         /* This controls the height of the title bar relative to the height of the window */
         this.TITLE_HEIGHT_RATIO = 0.1;
         /* This controls the width of the buttons relative to the width of the window */
@@ -183,9 +183,9 @@ var ElementOptionsWindow = /** @class */ (function () {
         this.title_bounds.draw_stroke = false;
         this.title_bounds.draw_fill = true;
         this.title_bounds.draw_text = false;
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.okay_button = new Button(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
         this.okay_button.text = '';
         this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
@@ -219,7 +219,7 @@ var ElementOptionsWindow = /** @class */ (function () {
         this.toggle_switch_button.draw_text = true;
         this.toggle_switch_button.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
     }
-    ElementOptionsWindow.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_ELEMENT_OPTIONS) {
             if (this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                 !this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)) {
@@ -230,8 +230,8 @@ var ElementOptionsWindow = /** @class */ (function () {
             this.first_touch_x = global.mouse_x;
             this.first_touch_y = global.mouse_y;
         }
-    };
-    ElementOptionsWindow.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.FLAG_ELEMENT_OPTIONS) {
             if (!this.WINDOW_ANCHORED) {
                 this.OFFSET_X = global.mouse_x - this.ANCHOR_X;
@@ -250,8 +250,8 @@ var ElementOptionsWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    ElementOptionsWindow.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         if (global.FLAG_ELEMENT_OPTIONS) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 if (this.WINDOW_ANCHORED) {
@@ -297,8 +297,8 @@ var ElementOptionsWindow = /** @class */ (function () {
                 this.WINDOW_ANCHORED = true;
             }
         }
-    };
-    ElementOptionsWindow.prototype.on_attribute_clicked = function (index) {
+    }
+    on_attribute_clicked(index) {
         if (index < global.selected_properties['options'].length) {
             if (this.special_property(global.selected_properties['options'][index])) {
                 this.toggle_switch(global.selected_properties['options'][index], index, global.selected_properties[global.selected_properties['options'][index]]);
@@ -323,8 +323,8 @@ var ElementOptionsWindow = /** @class */ (function () {
             global.MOUSE_KEYBOARD_LOCK = true;
             global.SIGNAL_BUILD_ELEMENT = true;
         }
-    };
-    ElementOptionsWindow.prototype.key_down = function (key_event) {
+    }
+    key_down(key_event) {
         if (global.FLAG_ELEMENT_OPTIONS) {
             if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
@@ -344,23 +344,23 @@ var ElementOptionsWindow = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Text based classes (i.e., net)*/
-    ElementOptionsWindow.prototype.special_type = function (elm_type) {
+    special_type(elm_type) {
         if (elm_type === global.TYPE_NET || elm_type === global.TYPE_NOTE) {
             return true;
         }
         return false;
-    };
-    ElementOptionsWindow.prototype.special_property = function (property) {
+    }
+    special_property(property) {
         if (property === 'Switch State' || property === 'Show Name' || property === 'Interpolate' || property === 'Show Marker' || property === 'Text Style') {
             return true;
         }
         return false;
-    };
-    ElementOptionsWindow.prototype.toggle_switch = function (property, i, state) {
+    }
+    toggle_switch(property, i, state) {
         if (property === 'Switch State' || property === 'Show Name' || property === 'Interpolate' || property === 'Show Marker' || property === 'Text Style') {
-            var next_state = '';
+            let next_state = '';
             if (state === global.OFF) {
                 next_state = global.ON;
             }
@@ -379,51 +379,51 @@ var ElementOptionsWindow = /** @class */ (function () {
                 }
             }
             if (global.selected_type === global.TYPE_SPST) {
-                var index = engine_functions.get_spst(global.selected_id);
+                let index = engine_functions.get_spst(global.selected_id);
                 if (index > -1 && index < spsts.length) {
                     global.selected_properties[global.selected_properties['options'][i]] = next_state;
                     spsts[index].elm.properties[spsts[index].elm.properties['options'][i]] = next_state;
                 }
             }
             else if (global.selected_type === global.TYPE_SPDT) {
-                var index = engine_functions.get_spdt(global.selected_id);
+                let index = engine_functions.get_spdt(global.selected_id);
                 if (index > -1 && index < spdts.length) {
                     global.selected_properties[global.selected_properties['options'][i]] = next_state;
                     spdts[index].elm.properties[spdts[index].elm.properties['options'][i]] = next_state;
                 }
             }
             else if (global.selected_type === global.TYPE_NET) {
-                var index = engine_functions.get_net(global.selected_id);
+                let index = engine_functions.get_net(global.selected_id);
                 if (index > -1 && index < nets.length) {
                     global.selected_properties[global.selected_properties['options'][i]] = next_state;
                     nets[index].elm.properties[nets[index].elm.properties['options'][i]] = next_state;
                 }
             }
             else if (global.selected_type === global.TYPE_LUT) {
-                var index = engine_functions.get_lut(global.selected_id);
+                let index = engine_functions.get_lut(global.selected_id);
                 if (index > -1 && index < luts.length) {
                     global.selected_properties[global.selected_properties['options'][i]] = next_state;
                     luts[index].elm.properties[luts[index].elm.properties['options'][i]] = next_state;
                 }
             }
             else if (global.selected_type === global.TYPE_VCR) {
-                var index = engine_functions.get_vcr(global.selected_id);
+                let index = engine_functions.get_vcr(global.selected_id);
                 if (index > -1 && index < vcrs.length) {
                     global.selected_properties[global.selected_properties['options'][i]] = next_state;
                     vcrs[index].elm.properties[vcrs[index].elm.properties['options'][i]] = next_state;
                 }
             }
             else if (global.selected_type === global.TYPE_NOTE) {
-                var index = engine_functions.get_note(global.selected_id);
+                let index = engine_functions.get_note(global.selected_id);
                 if (index > -1 && index < notes.length) {
                     global.selected_properties[global.selected_properties['options'][i]] = next_state;
                     notes[index].elm.properties[notes[index].elm.properties['options'][i]] = next_state;
                 }
             }
         }
-    };
+    }
     /* A function to resize the entire component. */
-    ElementOptionsWindow.prototype.resize_window = function () {
+    resize_window() {
         if (global.MOBILE_MODE) {
             this.width = view_port.view_width * 0.2;
             this.height = view_port.view_height * 0.4;
@@ -437,9 +437,9 @@ var ElementOptionsWindow = /** @class */ (function () {
         this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
         this.title_bounds.resize_paint();
         /* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.okay_button.set_bounds(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
         this.okay_button.resize_paint();
         this.exit_button.set_bounds(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
@@ -477,9 +477,9 @@ var ElementOptionsWindow = /** @class */ (function () {
             this.toggle_switch_button.resize_toggle_switch();
             this.toggle_switch_button.resize_paint();
         }
-    };
+    }
     /* A function to handle the drawing of the component. */
-    ElementOptionsWindow.prototype.draw_window = function (canvas) {
+    draw_window(canvas) {
         if (global.FLAG_ELEMENT_OPTIONS) {
             this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
             /* This draws the bounds of the interface. */
@@ -513,7 +513,7 @@ var ElementOptionsWindow = /** @class */ (function () {
                             else {
                                 if (global.selected_properties[global.selected_properties['options'][i]] === global.ON ||
                                     global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
-                                    var padding = this.attributes[i].get_height() * 0.1;
+                                    let padding = this.attributes[i].get_height() * 0.1;
                                     this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                                     this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
                                     this.toggle_switch_button.right = this.attributes[i].right - this.PADDING * this.bounds.get_width();
@@ -537,7 +537,7 @@ var ElementOptionsWindow = /** @class */ (function () {
                         else {
                             if (global.selected_properties[global.selected_properties['options'][i]] === global.ON ||
                                 global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
-                                var padding = this.attributes[i].get_height() * 0.1;
+                                let padding = this.attributes[i].get_height() * 0.1;
                                 this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                                 this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
                                 this.toggle_switch_button.right = this.attributes[i].right - this.PADDING * this.bounds.get_width();
@@ -563,11 +563,10 @@ var ElementOptionsWindow = /** @class */ (function () {
             if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
                 canvas.draw_rect(this.exit_button.left + this.OFFSET_X, this.exit_button.top + this.OFFSET_Y, this.exit_button.right + this.OFFSET_X, this.exit_button.bottom + this.OFFSET_Y, this.hover_paint);
             }
-            var width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
-            var height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
+            let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
+            let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
             canvas.draw_line(this.exit_button.left + width_mul_0p3636 + this.OFFSET_X, this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y, this.exit_button.right - width_mul_0p3636 + this.OFFSET_X, this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y, this.line_paint);
             canvas.draw_line(this.exit_button.right - width_mul_0p3636 + this.OFFSET_X, this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y, this.exit_button.left + width_mul_0p3636 + this.OFFSET_X, this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y, this.line_paint);
         }
-    };
-    return ElementOptionsWindow;
-}());
+    }
+}

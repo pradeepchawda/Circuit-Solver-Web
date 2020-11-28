@@ -21,15 +21,15 @@
  ***********************************************************************/
 class Paint {
   /* A paint style to standardize the different styles available in the html canvas */
-  public readonly style: PaintStyle = new PaintStyle();
+  public style: PaintStyle = new PaintStyle();
   /* A paint align to standardize the different alignments available in the html canvas */
-  public readonly align: PaintAlign = new PaintAlign();
+  public align: PaintAlign = new PaintAlign();
   /* A paint cap to standardize the different alignments available in the html canvas */
-  public readonly cap: PaintCap = new PaintCap();
+  public cap: PaintCap = new PaintCap();
   /* A paint join to standardize the different alignments available in the html canvas */
-  public readonly join: PaintJoin = new PaintJoin();
+  public join: PaintJoin = new PaintJoin();
   /* A paint text baseline to standardize the different alignments available in the html canvas */
-  public readonly baseline: PaintBaseline = new PaintBaseline();
+  public baseline: PaintBaseline = new PaintBaseline();
   /* A color object to hold the color of the paint using TinyColor */
   /* Don't use global, not sure what the order of the calls are but it errors out...
     thanks javascript. */
@@ -263,6 +263,10 @@ class Paint {
   }
   /* Future proofing objects! */
   patch(): void {
+    /* A paint text baseline to standardize the different alignments available in the html canvas */
+    if (!global.not_null(this.baseline)) {
+      this.baseline = new PaintBaseline();
+    }
     /* A maintained array of computed text sizes.*/
     if (!global.not_null(this.metric_array)) {
       this.metric_array = [];
@@ -272,6 +276,25 @@ class Paint {
     }
     if (!global.not_null(this.GARBAGE_COLLECTOR_SIZE)) {
       this.GARBAGE_COLLECTOR_SIZE = 16;
+    }
+    /* The paint style of the paint element */
+    if (!global.not_null(this.paint_style)) {
+      this.paint_style = this.style.STROKE;
+    }
+    /* The paint cap of the paint element */
+    if (!global.not_null(this.paint_cap)) {
+      this.paint_cap = this.cap.ROUND;
+    }
+    if (!global.not_null(this.paint_join)) {
+      this.paint_join = this.join.MITER;
+    }
+    /* The alignment of the text when drawing drawing text. */
+    if (!global.not_null(this.text_align)) {
+      this.text_align = this.align.CENTER;
+    }
+    /* The paint cap of the paint element */
+    if (!global.not_null(this.text_baseline)) {
+      this.text_baseline = this.baseline.MIDDLE;
     }
   }
 }

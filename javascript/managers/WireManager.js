@@ -19,14 +19,14 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var WireManager = /** @class */ (function () {
-    function WireManager() {
+class WireManager {
+    constructor() {
         this.wire_id = -1;
         this.unique_wire = true;
         this.wire_id = -1;
         this.unique_wire = true;
     }
-    WireManager.prototype.watch = function () {
+    watch() {
         if (global.WIRE_BUILDER['step'] > 0) {
             if (global.WIRE_BUILDER['step'] >= 2) {
                 if ((global.WIRE_BUILDER['n1'] != global.WIRE_BUILDER['n2'] &&
@@ -55,7 +55,7 @@ var WireManager = /** @class */ (function () {
                     }
                     if (this.unique_wire) {
                         wires.push(new Wire(global.TYPE_WIRE, this.wire_id, global.copy(global.WIRE_BUILDER['n1']), global.copy(global.WIRE_BUILDER['n2'])));
-                        var index = engine_functions.get_wire(this.wire_id);
+                        let index = engine_functions.get_wire(this.wire_id);
                         this.handle_wire_references(this.wire_id);
                         if (index > -1 && index < wires.length) {
                             wires[index].select();
@@ -74,48 +74,48 @@ var WireManager = /** @class */ (function () {
                 this.reset_wire_builder();
             }
         }
-    };
-    WireManager.prototype.exclude_nmosfet = function () {
+    }
+    exclude_nmosfet() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_NMOS &&
             global.WIRE_BUILDER['type2'] === global.TYPE_NMOS);
-    };
-    WireManager.prototype.exclude_pmosfet = function () {
+    }
+    exclude_pmosfet() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_PMOS &&
             global.WIRE_BUILDER['type2'] === global.TYPE_PMOS);
-    };
-    WireManager.prototype.exclude_npn = function () {
+    }
+    exclude_npn() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_NPN &&
             global.WIRE_BUILDER['type2'] === global.TYPE_NPN);
-    };
-    WireManager.prototype.exclude_pnp = function () {
+    }
+    exclude_pnp() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_PNP &&
             global.WIRE_BUILDER['type2'] === global.TYPE_PNP);
-    };
-    WireManager.prototype.exclude_opamps = function () {
+    }
+    exclude_opamps() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_OPAMP &&
             global.WIRE_BUILDER['type2'] === global.TYPE_OPAMP);
-    };
-    WireManager.prototype.exclude_vcvs = function () {
+    }
+    exclude_vcvs() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_VCVS &&
             global.WIRE_BUILDER['type2'] === global.TYPE_VCVS);
-    };
-    WireManager.prototype.exclude_vccs = function () {
+    }
+    exclude_vccs() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_VCCS &&
             global.WIRE_BUILDER['type2'] === global.TYPE_VCCS);
-    };
-    WireManager.prototype.exclude_ccvs = function () {
+    }
+    exclude_ccvs() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_CCVS &&
             global.WIRE_BUILDER['type2'] === global.TYPE_CCVS);
-    };
-    WireManager.prototype.exclude_cccs = function () {
+    }
+    exclude_cccs() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_CCCS &&
             global.WIRE_BUILDER['type2'] === global.TYPE_CCCS);
-    };
-    WireManager.prototype.exclude_dffs = function () {
+    }
+    exclude_dffs() {
         return (global.WIRE_BUILDER['type1'] === global.TYPE_DFF &&
             global.WIRE_BUILDER['type2'] === global.TYPE_DFF);
-    };
-    WireManager.prototype.reset_wire_builder = function () {
+    }
+    reset_wire_builder() {
         if (global.WIRE_BUILDER['n1'] != -1 || global.WIRE_BUILDER['n2'] != -1) {
             global.WIRE_BUILDER['n1'] = -1;
             global.WIRE_BUILDER['id1'] = -1;
@@ -130,8 +130,8 @@ var WireManager = /** @class */ (function () {
             /* Reset it! */
             global.WIRE_BUILDER['step'] = 0;
         }
-    };
-    WireManager.prototype.handle_wire_references = function (wire_id) {
+    }
+    handle_wire_references(wire_id) {
         /* #INSERT_GENERATE_WIRE_GENERATION# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.WIRE_BUILDER['type1'] === global.TYPE_RESISTOR) {
@@ -1587,6 +1587,5 @@ var WireManager = /** @class */ (function () {
             }
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    return WireManager;
-}());
+    }
+}

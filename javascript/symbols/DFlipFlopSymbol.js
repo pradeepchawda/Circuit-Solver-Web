@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var DFlipFlopSymbol = /** @class */ (function () {
-    function DFlipFlopSymbol(rect, index, page) {
+class DFlipFlopSymbol {
+    constructor(rect, index, page) {
         /* Index of the bounds (Inside New Element Window) */
         this.index = -1;
         /* Page to be drawn on (Inside New Element Window) */
@@ -195,7 +195,7 @@ var DFlipFlopSymbol = /** @class */ (function () {
         this.LINE_BUFFER = [];
         this.CIRCLE_BUFFER = [];
     }
-    DFlipFlopSymbol.prototype.update = function () {
+    update() {
         if (this.FLAG_ADD_ELEMENT) {
             if (workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
                 !this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
@@ -205,8 +205,8 @@ var DFlipFlopSymbol = /** @class */ (function () {
                 this.FLAG_ADD_ELEMENT = false;
             }
         }
-    };
-    DFlipFlopSymbol.prototype.mouse_down = function (page, width, height) {
+    }
+    mouse_down(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
                 if (!this.FLAG_ADD_ELEMENT) {
@@ -217,8 +217,8 @@ var DFlipFlopSymbol = /** @class */ (function () {
                 }
             }
         }
-    };
-    DFlipFlopSymbol.prototype.mouse_move = function (page, width, height) {
+    }
+    mouse_move(page, width, height) {
         if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
             !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
@@ -228,17 +228,17 @@ var DFlipFlopSymbol = /** @class */ (function () {
         }
         if (this.page === page) {
         }
-    };
-    DFlipFlopSymbol.prototype.mouse_up = function (page, width, height) {
+    }
+    mouse_up(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
             }
             this.FLAG_ADD_ELEMENT = false;
             global.SIGNAL_ADD_ELEMENT = false;
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    DFlipFlopSymbol.prototype.build_element = function () {
+    build_element() {
         /* Top Left Node */
         this.dff_0.x =
             this.p1.x + 0.5 * this.x_space * global.cosine(this.theta_m90);
@@ -301,8 +301,8 @@ var DFlipFlopSymbol = /** @class */ (function () {
         this.dff_12.y =
             this.dff_3.y -
                 0.75 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_4);
-    };
-    DFlipFlopSymbol.prototype.resize = function (rect) {
+    }
+    resize(rect) {
         /* Create a new rectangle for the bounds of this component */
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
         /* The center (x-coord) of the bounds */
@@ -338,8 +338,8 @@ var DFlipFlopSymbol = /** @class */ (function () {
         }
         this.text_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.text_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
-    };
-    DFlipFlopSymbol.prototype.recolor = function () {
+    }
+    recolor() {
         if (this.FLAG_ADD_ELEMENT) {
             this.line_paint.set_color(global.SELECTED_COLOR);
             this.point_paint.set_color(global.SELECTED_COLOR);
@@ -350,12 +350,12 @@ var DFlipFlopSymbol = /** @class */ (function () {
             this.point_paint.set_color(global.GENERAL_WHITE_COLOR);
             this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         }
-    };
+    }
     /* Draws the Symbol */
-    DFlipFlopSymbol.prototype.draw_symbol = function (canvas, page) {
+    draw_symbol(canvas, page) {
         this.recolor();
         if (this.page === page) {
-            var indexer = 0;
+            let indexer = 0;
             this.CIRCLE_BUFFER = [];
             this.LINE_BUFFER = [];
             this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.dff_0.x, this.dff_0.y);
@@ -397,6 +397,5 @@ var DFlipFlopSymbol = /** @class */ (function () {
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint_alt);
             }
         }
-    };
-    return DFlipFlopSymbol;
-}());
+    }
+}

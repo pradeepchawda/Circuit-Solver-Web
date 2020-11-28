@@ -20,13 +20,13 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PChannelMOSFET = /** @class */ (function () {
-    function PChannelMOSFET(type, id, n1, n2, n3) {
+class PChannelMOSFET {
+    constructor(type, id, n1, n2, n3) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element3(-1, -1, -1);
+        this.elm = new Element3(-1, -1, global.NULL);
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         this.p3 = new PointF(0, 0);
@@ -55,8 +55,7 @@ var PChannelMOSFET = /** @class */ (function () {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -111,7 +110,7 @@ var PChannelMOSFET = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -150,18 +149,15 @@ var PChannelMOSFET = /** @class */ (function () {
         this.connect2_y = 0;
         if (this.elm.flip === global.FLIP_180) {
             /* Angle from p1 to p2 minus 90 degrees */
-            this.theta_m90 =
-                global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+            this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         }
         else if (this.elm.flip === global.FLIP_0) {
             /* Angle from p1 to p2 minus 90 degrees */
-            this.theta_m90 =
-                global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
+            this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
         }
         else {
             /* Angle from p1 to p2 minus 90 degrees */
-            this.theta_m90 =
-                global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+            this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         }
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
@@ -229,15 +225,13 @@ var PChannelMOSFET = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    PChannelMOSFET.prototype.lpf = function (inp) {
-        this._alpha =
-            (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff) /
-                (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff + 1.0);
+    lpf(inp) {
+        this._alpha = (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff) / (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff + 1.0);
         this.y_hat = this._alpha * inp + (1 - this._alpha) * this.y_out;
         this.y_out = this.y_hat;
         return this.y_hat;
-    };
-    PChannelMOSFET.prototype.refresh_bounds = function () {
+    }
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -250,11 +244,11 @@ var PChannelMOSFET = /** @class */ (function () {
             this.equilateral_center = global.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
             this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
         }
-    };
-    PChannelMOSFET.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
-    PChannelMOSFET.prototype.stamp = function () {
+    }
+    stamp() {
         if (this.elm.consistent()) {
             if (this.elm.properties['Mosfet Mode'] != 0) {
                 engine_functions.stamp_vccs(this.elm.n1, this.elm.n3, this.elm.n2, this.elm.n1, this.elm.properties['gm']);
@@ -263,16 +257,16 @@ var PChannelMOSFET = /** @class */ (function () {
             engine_functions.stamp_current(this.elm.n1, this.elm.n2, this.elm.properties['Io']);
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.elm.properties['gsd']);
         }
-    };
-    PChannelMOSFET.prototype.is_converged = function () {
+    }
+    is_converged() {
         if (this.get_pmosfet_error() < global.settings.TOLERANCE) {
             return true;
         }
         else {
             return false;
         }
-    };
-    PChannelMOSFET.prototype.reset_pmosfet = function () {
+    }
+    reset_pmosfet() {
         this.y_out = 0;
         this.y_hat = 0;
         this.elm.properties['Mosfet Mode'] = 0;
@@ -281,12 +275,12 @@ var PChannelMOSFET = /** @class */ (function () {
         this.elm.properties['Last Vsg'] = 2;
         this.elm.properties['Last Io'] = global.settings.TOLERANCE * 2;
         this.update();
-    };
-    PChannelMOSFET.prototype.get_pmosfet_error = function () {
+    }
+    get_pmosfet_error() {
         return Math.abs(this.elm.properties['Vsg'] - this.elm.properties['Last Vsg']);
-    };
+    }
     /* General function to handle any processing required by the component */
-    PChannelMOSFET.prototype.update = function () {
+    update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
             if (this.elm.consistent()) {
                 this.elm.properties['Last Vsg'] = global.copy(this.elm.properties['Vsg']);
@@ -295,70 +289,46 @@ var PChannelMOSFET = /** @class */ (function () {
                 this.elm.properties['Vsd'] = global.log_damping(engine_functions.get_voltage(this.elm.n1, this.elm.n2), this.elm.properties['Vsd'], this.GAMMA, this.KAPPA);
                 /* Handle PN Junciton GMIN iteration. */
                 this.gmin_step(this.GMIN_START, this.get_pmosfet_error());
-                var kp = 0.5 * this.elm.properties['W/L Ratio'] * -this.elm.properties["K'p"];
+                let kp = 0.5 * this.elm.properties['W/L Ratio'] * -this.elm.properties["K'p"];
                 if (this.elm.properties['Vsg'] <= -this.elm.properties['VTP']) {
                     this.elm.properties['Mosfet Mode'] = 0;
                     this.elm.properties['gm'] = 0;
                     this.elm.properties['gsd'] = 1.0 / global.settings.R_MAX;
                     this.elm.properties['Io'] = 0;
                 }
-                else if (this.elm.properties['Vsd'] <=
-                    this.elm.properties['Vsg'] + this.elm.properties['VTP']) {
+                else if (this.elm.properties['Vsd'] <= this.elm.properties['Vsg'] + this.elm.properties['VTP']) {
                     this.elm.properties['Mosfet Mode'] = 1;
-                    this.elm.properties['gsd'] =
-                        2.0 *
-                            kp *
-                            (this.elm.properties['Vsg'] +
-                                this.elm.properties['VTP'] -
-                                this.elm.properties['Vsd']);
+                    this.elm.properties['gsd'] = 2.0 * kp * (this.elm.properties['Vsg'] + this.elm.properties['VTP'] - this.elm.properties['Vsd']);
                     this.elm.properties['gm'] = 2.0 * kp * this.elm.properties['Vsd'];
                     this.elm.properties['Io'] =
-                        2.0 *
-                            kp *
-                            ((this.elm.properties['Vsg'] + this.elm.properties['VTP']) *
-                                this.elm.properties['Vsd'] -
-                                0.5 * this.elm.properties['Vsd'] * this.elm.properties['Vsd']) -
+                        2.0 * kp * ((this.elm.properties['Vsg'] + this.elm.properties['VTP']) * this.elm.properties['Vsd'] - 0.5 * this.elm.properties['Vsd'] * this.elm.properties['Vsd']) -
                             this.elm.properties['Vsg'] * this.elm.properties['gm'] -
                             this.elm.properties['Vsd'] * this.elm.properties['gsd'];
                 }
-                else if (this.elm.properties['Vsd'] >=
-                    this.elm.properties['Vsg'] + this.elm.properties['VTP']) {
+                else if (this.elm.properties['Vsd'] >= this.elm.properties['Vsg'] + this.elm.properties['VTP']) {
                     this.elm.properties['Mosfet Mode'] = 2;
-                    this.elm.properties['gsd'] =
-                        kp *
-                            this.elm.properties['Lambda'] *
-                            Math.pow(this.elm.properties['Vsg'] + this.elm.properties['VTP'], 2);
-                    this.elm.properties['gm'] =
-                        2.0 *
-                            kp *
-                            ((this.elm.properties['Vsg'] + this.elm.properties['VTP']) *
-                                (1.0 +
-                                    this.elm.properties['Lambda'] * this.elm.properties['Vsd']));
+                    this.elm.properties['gsd'] = kp * this.elm.properties['Lambda'] * Math.pow(this.elm.properties['Vsg'] + this.elm.properties['VTP'], 2);
+                    this.elm.properties['gm'] = 2.0 * kp * ((this.elm.properties['Vsg'] + this.elm.properties['VTP']) * (1.0 + this.elm.properties['Lambda'] * this.elm.properties['Vsd']));
                     this.elm.properties['Io'] =
-                        kp *
-                            Math.pow(this.elm.properties['Vsg'] + this.elm.properties['VTP'], 2) *
-                            (1.0 +
-                                this.elm.properties['Lambda'] * this.elm.properties['Vsd']) -
+                        kp * Math.pow(this.elm.properties['Vsg'] + this.elm.properties['VTP'], 2) * (1.0 + this.elm.properties['Lambda'] * this.elm.properties['Vsd']) -
                             this.elm.properties['Vsg'] * this.elm.properties['gm'] -
                             this.elm.properties['Vsd'] * this.elm.properties['gsd'];
                 }
             }
         }
-    };
-    PChannelMOSFET.prototype.gmin_step = function (step, error) {
+    }
+    gmin_step(step, error) {
         this.GMIN = global.GMIN_DEFAULT;
-        if (simulation_manager.ITERATOR > step &&
-            error > global.settings.TOLERANCE) {
-            this.GMIN = Math.exp(-24.723 *
-                (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
+        if (simulation_manager.ITERATOR > step && error > global.settings.TOLERANCE) {
+            this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    PChannelMOSFET.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
-        var p3 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
+        let p3 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             if (this.elm.flip === global.FLIP_0) {
                 p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
@@ -450,10 +420,10 @@ var PChannelMOSFET = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
         return vertices;
-    };
-    PChannelMOSFET.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -463,28 +433,28 @@ var PChannelMOSFET = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    PChannelMOSFET.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n3].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    PChannelMOSFET.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    PChannelMOSFET.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -496,11 +466,8 @@ var PChannelMOSFET = /** @class */ (function () {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -509,9 +476,7 @@ var PChannelMOSFET = /** @class */ (function () {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -528,9 +493,9 @@ var PChannelMOSFET = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    PChannelMOSFET.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -547,8 +512,8 @@ var PChannelMOSFET = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    PChannelMOSFET.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -571,14 +536,13 @@ var PChannelMOSFET = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Handling a mouse move event. */
-    PChannelMOSFET.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -596,15 +560,13 @@ var PChannelMOSFET = /** @class */ (function () {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -616,13 +578,11 @@ var PChannelMOSFET = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    PChannelMOSFET.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -635,8 +595,7 @@ var PChannelMOSFET = /** @class */ (function () {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = -1;
                             global.selected_bounds = global.NULL;
@@ -654,13 +613,12 @@ var PChannelMOSFET = /** @class */ (function () {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    PChannelMOSFET.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -670,20 +628,17 @@ var PChannelMOSFET = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    PChannelMOSFET.prototype.remove_focus = function () {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+    }
+    remove_focus() {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    PChannelMOSFET.prototype.remove_selection = function () {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+    }
+    remove_selection() {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = -1;
             global.selected_bounds = global.NULL;
@@ -691,10 +646,10 @@ var PChannelMOSFET = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    PChannelMOSFET.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -702,11 +657,11 @@ var PChannelMOSFET = /** @class */ (function () {
                 }
             }
         }
-    };
-    PChannelMOSFET.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -749,11 +704,11 @@ var PChannelMOSFET = /** @class */ (function () {
                 }
             }
         }
-    };
-    PChannelMOSFET.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -796,8 +751,8 @@ var PChannelMOSFET = /** @class */ (function () {
                 }
             }
         }
-    };
-    PChannelMOSFET.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -807,9 +762,9 @@ var PChannelMOSFET = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    PChannelMOSFET.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -819,75 +774,53 @@ var PChannelMOSFET = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    PChannelMOSFET.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    PChannelMOSFET.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 1.5 * this.x_space;
-            var cache_1 = 2.5 * this.x_space;
-            var cache_2 = 1.5 * this.y_space;
-            var cache_3 = 2.5 * this.y_space;
-            var cache_4 = 3.0 * this.x_space;
-            var cache_5 = 3.0 * this.y_space;
-            var cache_6 = 1.605 * this.x_space;
-            var cache_7 = 1.605 * this.y_space;
-            var cache_8 = 0.707 * this.x_space;
-            var cache_9 = 0.707 * this.y_space;
-            var cache_10 = this.x_space;
-            var cache_11 = this.y_space;
+            let cache_0 = 1.5 * this.x_space;
+            let cache_1 = 2.5 * this.x_space;
+            let cache_2 = 1.5 * this.y_space;
+            let cache_3 = 2.5 * this.y_space;
+            let cache_4 = 3.0 * this.x_space;
+            let cache_5 = 3.0 * this.y_space;
+            let cache_6 = 1.605 * this.x_space;
+            let cache_7 = 1.605 * this.y_space;
+            let cache_8 = 0.707 * this.x_space;
+            let cache_9 = 0.707 * this.y_space;
+            let cache_10 = this.x_space;
+            let cache_11 = this.y_space;
             /* Top segment */
             this.pmos_0.x = this.p1.x + cache_10 * global.cosine(this.theta);
             this.pmos_0.y = this.p1.y + cache_11 * global.sine(this.theta);
-            this.pmos_1.x =
-                this.pmos_0.x + 2 * cache_10 * global.cosine(this.theta_m90);
-            this.pmos_1.y =
-                this.pmos_0.y + 2 * cache_11 * global.sine(this.theta_m90);
-            this.pmos_2.x =
-                this.p1.x +
-                    cache_0 * global.cosine(this.theta) +
-                    cache_1 * global.cosine(this.theta_m90);
-            this.pmos_2.y =
-                this.p1.y +
-                    cache_2 * global.sine(this.theta) +
-                    cache_3 * global.sine(this.theta_m90);
+            this.pmos_1.x = this.pmos_0.x + 2 * cache_10 * global.cosine(this.theta_m90);
+            this.pmos_1.y = this.pmos_0.y + 2 * cache_11 * global.sine(this.theta_m90);
+            this.pmos_2.x = this.p1.x + cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(this.theta_m90);
+            this.pmos_2.y = this.p1.y + cache_2 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
             this.pmos_3.x = this.p1.x + cache_4 * global.cosine(this.theta);
             this.pmos_3.y = this.p1.y + cache_5 * global.sine(this.theta);
-            this.pmos_4.x =
-                this.pmos_3.x + 2 * cache_10 * global.cosine(this.theta_m90);
-            this.pmos_4.y =
-                this.pmos_3.y + 2 * cache_11 * global.sine(this.theta_m90);
-            this.pmos_5.x =
-                this.p1.x +
-                    cache_1 * global.cosine(this.theta) +
-                    cache_1 * global.cosine(this.theta_m90);
-            this.pmos_5.y =
-                this.p1.y +
-                    cache_3 * global.sine(this.theta) +
-                    cache_3 * global.sine(this.theta_m90);
+            this.pmos_4.x = this.pmos_3.x + 2 * cache_10 * global.cosine(this.theta_m90);
+            this.pmos_4.y = this.pmos_3.y + 2 * cache_11 * global.sine(this.theta_m90);
+            this.pmos_5.x = this.p1.x + cache_1 * global.cosine(this.theta) + cache_1 * global.cosine(this.theta_m90);
+            this.pmos_5.y = this.p1.y + cache_3 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
             this.pmos_6.x = this.p3.x - cache_6 * global.cosine(this.theta_m90);
             this.pmos_6.y = this.p3.y - cache_7 * global.sine(this.theta_m90);
             /* Arrow */
-            this.pmos_7.x =
-                this.pmos_1.x -
-                    cache_8 * global.cosine(this.theta_m90 + global.PI_DIV_6);
-            this.pmos_7.y =
-                this.pmos_1.y - cache_9 * global.sine(this.theta_m90 + global.PI_DIV_6);
-            this.pmos_8.x =
-                this.pmos_1.x -
-                    cache_8 * global.cosine(this.theta_m90 - global.PI_DIV_6);
-            this.pmos_8.y =
-                this.pmos_1.y - cache_9 * global.sine(this.theta_m90 - global.PI_DIV_6);
+            this.pmos_7.x = this.pmos_1.x - cache_8 * global.cosine(this.theta_m90 + global.PI_DIV_6);
+            this.pmos_7.y = this.pmos_1.y - cache_9 * global.sine(this.theta_m90 + global.PI_DIV_6);
+            this.pmos_8.x = this.pmos_1.x - cache_8 * global.cosine(this.theta_m90 - global.PI_DIV_6);
+            this.pmos_8.y = this.pmos_1.y - cache_9 * global.sine(this.theta_m90 - global.PI_DIV_6);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    PChannelMOSFET.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -910,12 +843,12 @@ var PChannelMOSFET = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    PChannelMOSFET.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -928,43 +861,39 @@ var PChannelMOSFET = /** @class */ (function () {
         this.c_y = this.bounds.get_center_y();
         if (this.elm.flip === global.FLIP_180) {
             /* Angle from p1 to p2 minus 90 degrees */
-            this.theta_m90 =
-                global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+            this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         }
         else if (this.elm.flip === global.FLIP_0) {
             /* Angle from p1 to p2 minus 90 degrees */
-            this.theta_m90 =
-                global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
+            this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
         }
         else {
             /* Angle from p1 to p2 minus 90 degrees */
-            this.theta_m90 =
-                global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+            this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         }
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
         this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
         this.build_element();
-    };
-    PChannelMOSFET.prototype.increment_rotation = function () {
+    }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    PChannelMOSFET.prototype.increment_flip = function () {
+    }
+    increment_flip() {
         this.elm.flip++;
         if (this.elm.flip > global.FLIP_180) {
             this.elm.flip = global.FLIP_0;
         }
         this.set_flip(this.elm.flip);
-    };
-    PChannelMOSFET.prototype.recolor = function () {
+    }
+    recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -987,13 +916,12 @@ var PChannelMOSFET = /** @class */ (function () {
                 this.text_paint.set_color(global.ELEMENT_COLOR);
             }
         }
-    };
-    PChannelMOSFET.prototype.is_selected_element = function () {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
-    };
+    }
+    is_selected_element() {
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
+    }
     /* Draws the component */
-    PChannelMOSFET.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -1029,18 +957,15 @@ var PChannelMOSFET = /** @class */ (function () {
                 canvas.draw_rect2(this.bounds, this.line_paint);
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                    (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['W/L Ratio'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.restore();
                 }
-                else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                    (this.ANGLE > 80 && this.ANGLE < 100)) {
+                else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['W/L Ratio'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                 }
@@ -1049,9 +974,9 @@ var PChannelMOSFET = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    PChannelMOSFET.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.GMIN)) {
             this.GMIN = 1e-9;
         }
@@ -1086,25 +1011,21 @@ var PChannelMOSFET = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    PChannelMOSFET.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    PChannelMOSFET.prototype.reset = function () { };
-    return PChannelMOSFET;
-}());
+    }
+    reset() { }
+}

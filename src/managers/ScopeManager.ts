@@ -71,10 +71,7 @@ class ScopeManager {
   /* Check to see if a meter is in the list of entries. */
   find_entry(id, type) {
     for (var i = 0; i < this.ENTRY.length; i++) {
-      if (
-        this.ENTRY[i]['element_type'] === type &&
-        this.ENTRY[i]['element_id'] === id
-      ) {
+      if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
         return true;
       }
     }
@@ -83,10 +80,7 @@ class ScopeManager {
   /* Grab the index of the meter is it is within the list of entries. */
   find_entry_index(id, type) {
     for (var i = 0; i < this.ENTRY.length; i++) {
-      if (
-        this.ENTRY[i]['element_type'] === type &&
-        this.ENTRY[i]['element_id'] === id
-      ) {
+      if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
         return i;
       }
     }
@@ -94,12 +88,7 @@ class ScopeManager {
   }
   /* A quick check to see if an element is a meter type or not. */
   is_meter(type) {
-    return (
-      type === global.TYPE_VOLTMETER ||
-      type === global.TYPE_OHMMETER ||
-      type === global.TYPE_AMMETER ||
-      type === global.TYPE_WATTMETER
-    );
+    return type === global.TYPE_VOLTMETER || type === global.TYPE_OHMMETER || type === global.TYPE_AMMETER || type === global.TYPE_WATTMETER;
   }
   /* Request a meter to be added to the list of entries. */
   push(id, type, tag) {
@@ -143,59 +132,30 @@ class ScopeManager {
     for (var i = 0; i < this.iteration_size; i++) {
       if (i < this.ENTRY.length) {
         if (this.ENTRY[i]['element_type'] === global.TYPE_VOLTMETER) {
-          this.index = engine_functions.get_voltmeter(
-            this.ENTRY[i]['element_id']
-          );
+          this.index = engine_functions.get_voltmeter(this.ENTRY[i]['element_id']);
           if (this.index > -1 && this.index < voltmeters.length) {
-            this.push_to_graph(
-              i,
-              engine_functions.get_voltage(
-                voltmeters[this.index].elm.n1,
-                voltmeters[this.index].elm.n2
-              ),
-              global.SIMULATION_TIME
-            );
+            this.push_to_graph(i, engine_functions.get_voltage(voltmeters[this.index].elm.n1, voltmeters[this.index].elm.n2), global.SIMULATION_TIME);
           }
         } else if (this.ENTRY[i]['element_type'] === global.TYPE_AMMETER) {
-          this.index = engine_functions.get_ammeter(
-            this.ENTRY[i]['element_id']
-          );
+          this.index = engine_functions.get_ammeter(this.ENTRY[i]['element_id']);
           if (this.index > -1 && this.index < ammeters.length) {
-            this.push_to_graph(
-              i,
-              matrix_x[ammeters[this.index].get_simulation_index()],
-              global.SIMULATION_TIME
-            );
+            this.push_to_graph(i, matrix_x[ammeters[this.index].get_simulation_index()], global.SIMULATION_TIME);
           }
         } else if (this.ENTRY[i]['element_type'] === global.TYPE_OHMMETER) {
-          this.index = engine_functions.get_ohmmeter(
-            this.ENTRY[i]['element_id']
-          );
+          this.index = engine_functions.get_ohmmeter(this.ENTRY[i]['element_id']);
           if (this.index > -1 && this.index < ohmmeters.length) {
             this.push_to_graph(
               i,
-              Math.abs(
-                engine_functions.get_voltage(
-                  ohmmeters[this.index].elm.n1,
-                  ohmmeters[this.index].elm.n2
-                ) / matrix_x[ohmmeters[this.index].get_simulation_index()]
-              ),
+              Math.abs(engine_functions.get_voltage(ohmmeters[this.index].elm.n1, ohmmeters[this.index].elm.n2) / matrix_x[ohmmeters[this.index].get_simulation_index()]),
               global.SIMULATION_TIME
             );
           }
         } else if (this.ENTRY[i]['element_type'] === global.TYPE_WATTMETER) {
-          this.index = engine_functions.get_wattmeter(
-            this.ENTRY[i]['element_id']
-          );
+          this.index = engine_functions.get_wattmeter(this.ENTRY[i]['element_id']);
           if (this.index > -1 && this.index < wattmeters.length) {
-            this.v_side_1 = Math.abs(
-              engine_functions.get_voltage(wattmeters[this.index].elm.n1, -1)
-            );
-            this.v_side_2 = Math.abs(
-              engine_functions.get_voltage(wattmeters[this.index].elm.n2, -1)
-            );
-            this.curr =
-              (this.v_side_1 - this.v_side_2) / global.settings.WIRE_RESISTANCE;
+            this.v_side_1 = Math.abs(engine_functions.get_voltage(wattmeters[this.index].elm.n1, -1));
+            this.v_side_2 = Math.abs(engine_functions.get_voltage(wattmeters[this.index].elm.n2, -1));
+            this.curr = (this.v_side_1 - this.v_side_2) / global.settings.WIRE_RESISTANCE;
             this.voltage = Math.max(this.v_side_1, this.v_side_1);
             this.power = this.curr * this.voltage;
             this.push_to_graph(i, this.power, global.SIMULATION_TIME);
@@ -205,42 +165,25 @@ class ScopeManager {
       /* #METER_TAG# */
       if (i < voltmeters.length) {
         /* Push to the element. */
-        voltmeters[i].push_voltage(
-          engine_functions.get_voltage(
-            voltmeters[i].elm.n1,
-            voltmeters[i].elm.n2
-          )
-        );
+        voltmeters[i].push_voltage(engine_functions.get_voltage(voltmeters[i].elm.n1, voltmeters[i].elm.n2));
       }
       if (i < ammeters.length) {
         /* Push to the element. */
         if (ammeters[i].get_simulation_index() < matrix_x.length) {
-          ammeters[i].push_current(
-            matrix_x[ammeters[i].get_simulation_index()]
-          );
+          ammeters[i].push_current(matrix_x[ammeters[i].get_simulation_index()]);
         }
       }
       if (i < ohmmeters.length) {
         /* Push to the element. */
         if (ohmmeters[i].get_simulation_index() < matrix_x.length) {
-          ohmmeters[i].push_voltage_current(
-            engine_functions.get_voltage(
-              ohmmeters[i].elm.n1,
-              ohmmeters[i].elm.n2
-            ),
-            matrix_x[ohmmeters[i].get_simulation_index()]
-          );
+          ohmmeters[i].push_voltage_current(engine_functions.get_voltage(ohmmeters[i].elm.n1, ohmmeters[i].elm.n2), matrix_x[ohmmeters[i].get_simulation_index()]);
         }
       }
       if (i < wattmeters.length) {
         /* Push to the element. */
         if (wattmeters[i].get_simulation_index() < matrix_x.length) {
-          this.v_side_1 = Math.abs(
-            engine_functions.get_voltage(wattmeters[i].elm.n1, -1)
-          );
-          this.v_side_2 = Math.abs(
-            engine_functions.get_voltage(wattmeters[i].elm.n2, -1)
-          );
+          this.v_side_1 = Math.abs(engine_functions.get_voltage(wattmeters[i].elm.n1, -1));
+          this.v_side_2 = Math.abs(engine_functions.get_voltage(wattmeters[i].elm.n2, -1));
           wattmeters[i].push_voltage(this.v_side_1, this.v_side_2);
         }
       }

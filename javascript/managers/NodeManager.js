@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var NodeManager = /** @class */ (function () {
-    function NodeManager() {
+class NodeManager {
+    constructor() {
         /* The list of active nodes, it makes it easier when building the circuit.
       public is just a list of their id's  */
         this.active_nodes = [];
@@ -34,51 +34,51 @@ var NodeManager = /** @class */ (function () {
         /* This is done to gurantee we are solving the smallest possible circuit. */
         this.unique_nodes = [];
     }
-    NodeManager.prototype.clear_active_nodes = function () {
+    clear_active_nodes() {
         this.active_nodes.splice(0, this.active_nodes.length);
-    };
+    }
     /* Add a node id to the list! (If it already doesn't exist!)*/
-    NodeManager.prototype.add_node = function (id) {
+    add_node(id) {
         if (id > -1 && id < global.settings.MAXNODES) {
             if (this.find_node(id) === false) {
                 this.active_nodes.push(id);
             }
         }
-    };
+    }
     /* Remove a node id from the list! (If it actually exists!) */
-    NodeManager.prototype.remove_node = function (id) {
+    remove_node(id) {
         if (id > -1 && id < global.settings.MAXNODES) {
-            var index = this.find_node_index(id);
+            let index = this.find_node_index(id);
             if (index > -1 && index < this.active_nodes.length) {
                 this.active_nodes.splice(index, 1);
             }
         }
-    };
+    }
     /* Check if we can actually find the node id inside the list already */
-    NodeManager.prototype.find_node = function (id) {
+    find_node(id) {
         for (var i = 0; i < this.active_nodes.length; i++) {
             if (this.active_nodes[i] === id) {
                 return true;
             }
         }
         return false;
-    };
+    }
     /* Let's grab the indicies of the node id (if we can find it!) */
-    NodeManager.prototype.find_node_index = function (id) {
+    find_node_index(id) {
         for (var i = 0; i < this.active_nodes.length; i++) {
             if (this.active_nodes[i] === id) {
                 return i;
             }
         }
         return -1;
-    };
+    }
     /* Assign the simulation ids of the active nodes! */
-    NodeManager.prototype.assign_node_simulation_ids = function () {
+    assign_node_simulation_ids() {
         for (var i = 0; i < this.active_nodes.length; i++) {
             nodes[this.active_nodes[i]].simulation_id = i;
         }
-    };
-    NodeManager.prototype.generate_unique_nodes_list = function () {
+    }
+    generate_unique_nodes_list() {
         this.unique_nodes.splice(0, this.unique_nodes.length);
         /* All the references for ground node id's */
         for (var i = 0; i < grounds.length; i++) {
@@ -92,7 +92,7 @@ var NodeManager = /** @class */ (function () {
                 }
             }
         }
-        var net_list = [];
+        let net_list = [];
         for (var i = 0; i < nets.length; i++) {
             for (var j = 0; j < nets.length; j++) {
                 if (i != j) {
@@ -128,9 +128,9 @@ var NodeManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    NodeManager.prototype.net_redundancy_check = function (n1, n2, net_list) {
-        var output = false;
+    }
+    net_redundancy_check(n1, n2, net_list) {
+        let output = false;
         for (var i = 0; i < net_list.length; i++) {
             if ((n1 === net_list[i][0] && n2 === net_list[i][1]) ||
                 (n2 === net_list[i][0] && n1 === net_list[i][1])) {
@@ -139,6 +139,5 @@ var NodeManager = /** @class */ (function () {
             }
         }
         return output;
-    };
-    return NodeManager;
-}());
+    }
+}

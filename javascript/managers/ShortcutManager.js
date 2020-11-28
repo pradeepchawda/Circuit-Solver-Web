@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ShortcutManager = /** @class */ (function () {
-    function ShortcutManager() {
+class ShortcutManager {
+    constructor() {
         this.SHORTCUT_COPY = global.KEY_CODE_C;
         this.SHORTCUT_PASTE = global.KEY_CODE_V;
         this.SHORTCUT_UNDO = global.KEY_CODE_Z;
@@ -67,7 +67,7 @@ var ShortcutManager = /** @class */ (function () {
         this.shift = '';
         this.caps = '';
     }
-    ShortcutManager.prototype.listen = function (key_event) {
+    listen(key_event) {
         if (!global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
             !global.FLAG_ZOOM &&
@@ -139,8 +139,8 @@ var ShortcutManager = /** @class */ (function () {
             this.handle_save_image_flag(key_event);
             this.handle_save_circuit_flag(key_event);
         }
-    };
-    ShortcutManager.prototype.handle_select_all = function (key_event) {
+    }
+    handle_select_all(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -358,15 +358,15 @@ var ShortcutManager = /** @class */ (function () {
             }
             /* <!-- END AUTOMATICALLY GENERATED !--> */
         }
-    };
-    ShortcutManager.prototype.handle_toggle_switches = function (key_event) {
+    }
+    handle_toggle_switches(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (key_event['event'].code === this.SHORTCUT_TOGGLE_SWITCH) {
             if (global.selected_type === global.TYPE_SPST) {
-                var index = engine_functions.get_spst(global.selected_id);
+                let index = engine_functions.get_spst(global.selected_id);
                 if (index > -1 && index < spsts.length) {
                     if (spsts[index].elm.properties['Switch State'] === global.ON) {
                         spsts[index].elm.properties['Switch State'] = global.OFF;
@@ -379,7 +379,7 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
             else if (global.selected_type === global.TYPE_SPDT) {
-                var index = engine_functions.get_spdt(global.selected_id);
+                let index = engine_functions.get_spdt(global.selected_id);
                 if (index > -1 && index < spdts.length) {
                     if (spdts[index].elm.properties['Switch State'] === global.ON) {
                         spdts[index].elm.properties['Switch State'] = global.OFF;
@@ -392,8 +392,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_escape_shortcut = function (key_event) {
+    }
+    handle_escape_shortcut(key_event) {
         if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
             if (global.SIGNAL_HISTORY_LOCK && this.TEMP_HISTORY_SNAPSHOT != '') {
                 engine_functions.parse_elements(this.TEMP_HISTORY_SNAPSHOT);
@@ -407,8 +407,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_add_element_flag = function (key_event) {
+    }
+    handle_add_element_flag(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -419,8 +419,8 @@ var ShortcutManager = /** @class */ (function () {
             }
             menu_bar.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
         }
-    };
-    ShortcutManager.prototype.handle_arrow_keys_menu_open_down = function (key_event) {
+    }
+    handle_arrow_keys_menu_open_down(key_event) {
         if (global.FLAG_MENU_OPEN_DOWN) {
             if (!global.focused) {
                 if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT ||
@@ -429,8 +429,8 @@ var ShortcutManager = /** @class */ (function () {
                     key_event['event'].code === global.KEY_CODE_HOME) {
                     /* Left. */
                     if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-                        var temp_x = global.mouse_x;
-                        var temp_y = global.mouse_y;
+                        let temp_x = global.mouse_x;
+                        let temp_y = global.mouse_y;
                         global.mouse_x = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_BACK].get_center_x();
                         global.mouse_y = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_BACK].get_center_y();
                         menu_bar.element_window.mouse_down();
@@ -440,8 +440,8 @@ var ShortcutManager = /** @class */ (function () {
                     }
                     else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
                         /* Right. */
-                        var temp_x = global.mouse_x;
-                        var temp_y = global.mouse_y;
+                        let temp_x = global.mouse_x;
+                        let temp_y = global.mouse_y;
                         global.mouse_x = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_FORWARD].get_center_x();
                         global.mouse_y = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_FORWARD].get_center_y();
                         menu_bar.element_window.mouse_down();
@@ -461,8 +461,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_arrow_keys_select = function (key_event) {
+    }
+    handle_arrow_keys_select(key_event) {
         if (key_event['event'].code === global.KEY_CODE_ARROW_UP ||
             key_event['event'].code === global.KEY_CODE_ARROW_DOWN ||
             key_event['event'].code === global.KEY_CODE_ARROW_LEFT ||
@@ -1926,16 +1926,16 @@ var ShortcutManager = /** @class */ (function () {
                 /* <!-- END AUTOMATICALLY GENERATED !--> */
             }
         }
-    };
+    }
     /* Look at where this is called, it could be that the SELECTED_COMPONENTS_BOUNDS is reset to max when it's called <_< */
-    ShortcutManager.prototype.handle_arrow_keys_multi_select = function (key_event) {
+    handle_arrow_keys_multi_select(key_event) {
         if (key_event['event'].code === global.KEY_CODE_ARROW_UP ||
             key_event['event'].code === global.KEY_CODE_ARROW_DOWN ||
             key_event['event'].code === global.KEY_CODE_ARROW_LEFT ||
             key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
             global.SIGNAL_BUILD_ELEMENT = true;
             this.MULTI_MOVED_ELEMENT = false;
-            var elm_max = global.element_max();
+            let elm_max = global.element_max();
             for (var i = 0; i < elm_max; i++) {
                 /* #INSERT_GENERATE_HANDLE_MULTI_SELECT_ELEMENTS_MOVE_CALL# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -2013,15 +2013,15 @@ var ShortcutManager = /** @class */ (function () {
                 this.MULTI_MOVED_ELEMENT = false;
             }
         }
-    };
-    ShortcutManager.prototype.handle_delete_shortcut = function (key_event) {
+    }
+    handle_delete_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (key_event['event'].code === this.SHORTCUT_DELETE) {
             if (!global.multi_selected) {
-                var index = -1;
+                let index = -1;
                 /* #INSERT_GENERATE_REMOVE_ELEMENTS_SHORTCUT# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 if (global.selected_type === global.TYPE_RESISTOR) {
@@ -2499,15 +2499,15 @@ var ShortcutManager = /** @class */ (function () {
                 this.handle_remove_multi_select_elements();
             }
         }
-    };
-    ShortcutManager.prototype.handle_rotate_shortcut = function (key_event) {
+    }
+    handle_rotate_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (this.command === this.SHORTCUT_ROTATE) {
             global.SIGNAL_BUILD_ELEMENT = true;
-            var index = -1;
+            let index = -1;
             /* #INSERT_GENERATE_ELEMENT_ROTATE_SHORTCUT# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
             if (global.selected_type === global.TYPE_RESISTOR) {
@@ -2914,8 +2914,8 @@ var ShortcutManager = /** @class */ (function () {
             }
             /* <!-- END AUTOMATICALLY GENERATED !--> */
         }
-    };
-    ShortcutManager.prototype.handle_reset_window_shortcut = function (key_event) {
+    }
+    handle_reset_window_shortcut(key_event) {
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
@@ -2941,20 +2941,20 @@ var ShortcutManager = /** @class */ (function () {
             }
             bottom_menu.handle_timestep_flag(false);
         }
-    };
-    ShortcutManager.prototype.handle_query_shortcut = function (key_event) {
+    }
+    handle_query_shortcut(key_event) {
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (this.command === this.SHORTCUT_QUERY) {
             /* Get the text field */
             var text_input = document.getElementById('text_input');
-            var MeterTemplate = {
+            let MeterTemplate = {
                 Tag: -1,
                 Value: -1
             };
-            var solution_vector = [];
-            var met_max = global.meter_max();
+            let solution_vector = [];
+            let met_max = global.meter_max();
             for (var i = 0; i < met_max; i++) {
                 if (i < voltmeters.length) {
                     MeterTemplate['Tag'] =
@@ -2990,8 +2990,8 @@ var ShortcutManager = /** @class */ (function () {
             /* Copy the text inside the text field */
             document.execCommand('copy');
         }
-    };
-    ShortcutManager.prototype.handle_undo_shortcut = function (key_event) {
+    }
+    handle_undo_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -2999,8 +2999,8 @@ var ShortcutManager = /** @class */ (function () {
         if (this.command === this.SHORTCUT_UNDO) {
             history_manager.undo();
         }
-    };
-    ShortcutManager.prototype.handle_redo_shortcut = function (key_event) {
+    }
+    handle_redo_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -3008,8 +3008,8 @@ var ShortcutManager = /** @class */ (function () {
         if (this.command === this.SHORTCUT_REDO) {
             history_manager.redo();
         }
-    };
-    ShortcutManager.prototype.handle_save_image_flag = function (key_event) {
+    }
+    handle_save_image_flag(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -3017,8 +3017,8 @@ var ShortcutManager = /** @class */ (function () {
         if (this.command === this.SHORTCUT_SAVE_IMAGE) {
             menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
         }
-    };
-    ShortcutManager.prototype.handle_save_circuit_flag = function (key_event) {
+    }
+    handle_save_circuit_flag(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -3026,15 +3026,15 @@ var ShortcutManager = /** @class */ (function () {
         if (this.command === this.SHORTCUT_SAVE_CIRCUIT) {
             menu_bar.handle_save_circuit_flag(!global.FLAG_SAVE_CIRCUIT);
         }
-    };
-    ShortcutManager.prototype.handle_flip_shortcut = function (key_event) {
+    }
+    handle_flip_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (this.command === this.SHORTCUT_FLIP) {
             global.SIGNAL_BUILD_ELEMENT = true;
-            var index = -1;
+            let index = -1;
             /* #INSERT_GENERATE_ELEMENT_FLIP_SHORTCUT# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
             if (global.selected_type === global.TYPE_RESISTOR) {
@@ -3441,14 +3441,14 @@ var ShortcutManager = /** @class */ (function () {
             }
             /* <!-- END AUTOMATICALLY GENERATED !--> */
         }
-    };
-    ShortcutManager.prototype.handle_edit_shortcut = function (key_event) {
+    }
+    handle_edit_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (this.command === this.SHORTCUT_EDIT) {
-            var index = -1;
+            let index = -1;
             if (global.not_null(global.selected_properties)) {
                 if (global.not_null(global.selected_properties['options'])) {
                     if (element_options.opts['c1'] === element_options.EDIT_ICON ||
@@ -3466,8 +3466,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_remove_all_shortcut = function (key_event) {
+    }
+    handle_remove_all_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -3477,8 +3477,8 @@ var ShortcutManager = /** @class */ (function () {
                 menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
             }
         }
-    };
-    ShortcutManager.prototype.handle_simulate_shortcut = function (key_event) {
+    }
+    handle_simulate_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -3487,8 +3487,8 @@ var ShortcutManager = /** @class */ (function () {
             key_event['ctrl'] === false) {
             menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
         }
-    };
-    ShortcutManager.prototype.handle_copy_shortcut = function (key_event) {
+    }
+    handle_copy_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -3502,7 +3502,7 @@ var ShortcutManager = /** @class */ (function () {
                         global.CLIPBOARD_TYPE = global.selected_type;
                         global.CLIPBOARD_ROTATION = -1;
                         global.CLIPBOARD_FLIP = -1;
-                        var index = -1;
+                        let index = -1;
                         /* #INSERT_GENERATE_COPY_ELEMENT# */
                         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                         if (global.CLIPBOARD_TYPE === global.TYPE_RESISTOR) {
@@ -3987,8 +3987,8 @@ var ShortcutManager = /** @class */ (function () {
                 toast.show();
             }
         }
-    };
-    ShortcutManager.prototype.handle_paste_shortcut = function (key_event) {
+    }
+    handle_paste_shortcut(key_event) {
         /* Extract the essentials. */
         this.shift = key_event['shift'];
         this.command = key_event['event'].code;
@@ -3996,8 +3996,8 @@ var ShortcutManager = /** @class */ (function () {
         if (this.command === this.SHORTCUT_PASTE) {
             global.SIGNAL_BUILD_ELEMENT = true;
             this.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
-            var id = -1;
-            var index = -1;
+            let id = -1;
+            let index = -1;
             if (global.not_null(global.CLIPBOARD_TYPE) &&
                 global.not_null(global.CLIPBOARD_PROPERTY)) {
                 /* #INSERT_GENERATE_PASTE_ELEMENT# */
@@ -4735,10 +4735,10 @@ var ShortcutManager = /** @class */ (function () {
                 toast.show();
             }
         }
-    };
+    }
     /* #INSERT_GENERATE_HANDLE_MULTI_SELECT_ELEMENTS_MOVE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    ShortcutManager.prototype.handle_move_resistors = function (i, key_event) {
+    handle_move_resistors(i, key_event) {
         if (i > -1 && i < resistors.length) {
             if (resistors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -4776,8 +4776,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_capacitors = function (i, key_event) {
+    }
+    handle_move_capacitors(i, key_event) {
         if (i > -1 && i < capacitors.length) {
             if (capacitors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -4815,8 +4815,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_inductors = function (i, key_event) {
+    }
+    handle_move_inductors(i, key_event) {
         if (i > -1 && i < inductors.length) {
             if (inductors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -4854,8 +4854,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_grounds = function (i, key_event) {
+    }
+    handle_move_grounds(i, key_event) {
         if (i > -1 && i < grounds.length) {
             if (grounds[i].MULTI_SELECTED) {
                 /* Up. */
@@ -4893,8 +4893,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_dcsources = function (i, key_event) {
+    }
+    handle_move_dcsources(i, key_event) {
         if (i > -1 && i < dcsources.length) {
             if (dcsources[i].MULTI_SELECTED) {
                 /* Up. */
@@ -4932,8 +4932,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_dccurrents = function (i, key_event) {
+    }
+    handle_move_dccurrents(i, key_event) {
         if (i > -1 && i < dccurrents.length) {
             if (dccurrents[i].MULTI_SELECTED) {
                 /* Up. */
@@ -4971,8 +4971,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_acsources = function (i, key_event) {
+    }
+    handle_move_acsources(i, key_event) {
         if (i > -1 && i < acsources.length) {
             if (acsources[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5010,8 +5010,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_accurrents = function (i, key_event) {
+    }
+    handle_move_accurrents(i, key_event) {
         if (i > -1 && i < accurrents.length) {
             if (accurrents[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5049,8 +5049,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_squarewaves = function (i, key_event) {
+    }
+    handle_move_squarewaves(i, key_event) {
         if (i > -1 && i < squarewaves.length) {
             if (squarewaves[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5088,8 +5088,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_sawwaves = function (i, key_event) {
+    }
+    handle_move_sawwaves(i, key_event) {
         if (i > -1 && i < sawwaves.length) {
             if (sawwaves[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5127,8 +5127,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_trianglewaves = function (i, key_event) {
+    }
+    handle_move_trianglewaves(i, key_event) {
         if (i > -1 && i < trianglewaves.length) {
             if (trianglewaves[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5166,8 +5166,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_constants = function (i, key_event) {
+    }
+    handle_move_constants(i, key_event) {
         if (i > -1 && i < constants.length) {
             if (constants[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5205,8 +5205,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_wires = function (i, key_event) {
+    }
+    handle_move_wires(i, key_event) {
         if (i > -1 && i < wires.length) {
             if (wires[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5244,8 +5244,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_nets = function (i, key_event) {
+    }
+    handle_move_nets(i, key_event) {
         if (i > -1 && i < nets.length) {
             if (nets[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5283,8 +5283,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_notes = function (i, key_event) {
+    }
+    handle_move_notes(i, key_event) {
         if (i > -1 && i < notes.length) {
             if (notes[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5322,8 +5322,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_rails = function (i, key_event) {
+    }
+    handle_move_rails(i, key_event) {
         if (i > -1 && i < rails.length) {
             if (rails[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5361,8 +5361,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_voltmeters = function (i, key_event) {
+    }
+    handle_move_voltmeters(i, key_event) {
         if (i > -1 && i < voltmeters.length) {
             if (voltmeters[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5400,8 +5400,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_ohmmeters = function (i, key_event) {
+    }
+    handle_move_ohmmeters(i, key_event) {
         if (i > -1 && i < ohmmeters.length) {
             if (ohmmeters[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5439,8 +5439,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_ammeters = function (i, key_event) {
+    }
+    handle_move_ammeters(i, key_event) {
         if (i > -1 && i < ammeters.length) {
             if (ammeters[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5478,8 +5478,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_wattmeters = function (i, key_event) {
+    }
+    handle_move_wattmeters(i, key_event) {
         if (i > -1 && i < wattmeters.length) {
             if (wattmeters[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5517,8 +5517,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_fuses = function (i, key_event) {
+    }
+    handle_move_fuses(i, key_event) {
         if (i > -1 && i < fuses.length) {
             if (fuses[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5556,8 +5556,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_spsts = function (i, key_event) {
+    }
+    handle_move_spsts(i, key_event) {
         if (i > -1 && i < spsts.length) {
             if (spsts[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5595,8 +5595,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_spdts = function (i, key_event) {
+    }
+    handle_move_spdts(i, key_event) {
         if (i > -1 && i < spdts.length) {
             if (spdts[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5634,8 +5634,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_nots = function (i, key_event) {
+    }
+    handle_move_nots(i, key_event) {
         if (i > -1 && i < nots.length) {
             if (nots[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5673,8 +5673,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_diodes = function (i, key_event) {
+    }
+    handle_move_diodes(i, key_event) {
         if (i > -1 && i < diodes.length) {
             if (diodes[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5712,8 +5712,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_leds = function (i, key_event) {
+    }
+    handle_move_leds(i, key_event) {
         if (i > -1 && i < leds.length) {
             if (leds[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5751,8 +5751,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_zeners = function (i, key_event) {
+    }
+    handle_move_zeners(i, key_event) {
         if (i > -1 && i < zeners.length) {
             if (zeners[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5790,8 +5790,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_potentiometers = function (i, key_event) {
+    }
+    handle_move_potentiometers(i, key_event) {
         if (i > -1 && i < potentiometers.length) {
             if (potentiometers[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5829,8 +5829,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_ands = function (i, key_event) {
+    }
+    handle_move_ands(i, key_event) {
         if (i > -1 && i < ands.length) {
             if (ands[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5868,8 +5868,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_ors = function (i, key_event) {
+    }
+    handle_move_ors(i, key_event) {
         if (i > -1 && i < ors.length) {
             if (ors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5907,8 +5907,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_nands = function (i, key_event) {
+    }
+    handle_move_nands(i, key_event) {
         if (i > -1 && i < nands.length) {
             if (nands[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5946,8 +5946,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_nors = function (i, key_event) {
+    }
+    handle_move_nors(i, key_event) {
         if (i > -1 && i < nors.length) {
             if (nors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -5985,8 +5985,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_xors = function (i, key_event) {
+    }
+    handle_move_xors(i, key_event) {
         if (i > -1 && i < xors.length) {
             if (xors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6024,8 +6024,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_xnors = function (i, key_event) {
+    }
+    handle_move_xnors(i, key_event) {
         if (i > -1 && i < xnors.length) {
             if (xnors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6063,8 +6063,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_dffs = function (i, key_event) {
+    }
+    handle_move_dffs(i, key_event) {
         if (i > -1 && i < dffs.length) {
             if (dffs[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6102,8 +6102,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_vsats = function (i, key_event) {
+    }
+    handle_move_vsats(i, key_event) {
         if (i > -1 && i < vsats.length) {
             if (vsats[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6141,8 +6141,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_adders = function (i, key_event) {
+    }
+    handle_move_adders(i, key_event) {
         if (i > -1 && i < adders.length) {
             if (adders[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6180,8 +6180,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_subtractors = function (i, key_event) {
+    }
+    handle_move_subtractors(i, key_event) {
         if (i > -1 && i < subtractors.length) {
             if (subtractors[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6219,8 +6219,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_multipliers = function (i, key_event) {
+    }
+    handle_move_multipliers(i, key_event) {
         if (i > -1 && i < multipliers.length) {
             if (multipliers[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6258,8 +6258,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_dividers = function (i, key_event) {
+    }
+    handle_move_dividers(i, key_event) {
         if (i > -1 && i < dividers.length) {
             if (dividers[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6297,8 +6297,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_gains = function (i, key_event) {
+    }
+    handle_move_gains(i, key_event) {
         if (i > -1 && i < gains.length) {
             if (gains[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6336,8 +6336,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_absvals = function (i, key_event) {
+    }
+    handle_move_absvals(i, key_event) {
         if (i > -1 && i < absvals.length) {
             if (absvals[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6375,8 +6375,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_vcsws = function (i, key_event) {
+    }
+    handle_move_vcsws(i, key_event) {
         if (i > -1 && i < vcsws.length) {
             if (vcsws[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6414,8 +6414,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_vcvss = function (i, key_event) {
+    }
+    handle_move_vcvss(i, key_event) {
         if (i > -1 && i < vcvss.length) {
             if (vcvss[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6453,8 +6453,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_vccss = function (i, key_event) {
+    }
+    handle_move_vccss(i, key_event) {
         if (i > -1 && i < vccss.length) {
             if (vccss[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6492,8 +6492,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_cccss = function (i, key_event) {
+    }
+    handle_move_cccss(i, key_event) {
         if (i > -1 && i < cccss.length) {
             if (cccss[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6531,8 +6531,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_ccvss = function (i, key_event) {
+    }
+    handle_move_ccvss(i, key_event) {
         if (i > -1 && i < ccvss.length) {
             if (ccvss[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6570,8 +6570,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_opamps = function (i, key_event) {
+    }
+    handle_move_opamps(i, key_event) {
         if (i > -1 && i < opamps.length) {
             if (opamps[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6609,8 +6609,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_nmosfets = function (i, key_event) {
+    }
+    handle_move_nmosfets(i, key_event) {
         if (i > -1 && i < nmosfets.length) {
             if (nmosfets[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6648,8 +6648,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_pmosfets = function (i, key_event) {
+    }
+    handle_move_pmosfets(i, key_event) {
         if (i > -1 && i < pmosfets.length) {
             if (pmosfets[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6687,8 +6687,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_npns = function (i, key_event) {
+    }
+    handle_move_npns(i, key_event) {
         if (i > -1 && i < npns.length) {
             if (npns[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6726,8 +6726,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_pnps = function (i, key_event) {
+    }
+    handle_move_pnps(i, key_event) {
         if (i > -1 && i < pnps.length) {
             if (pnps[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6765,8 +6765,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_adcs = function (i, key_event) {
+    }
+    handle_move_adcs(i, key_event) {
         if (i > -1 && i < adcs.length) {
             if (adcs[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6804,8 +6804,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_dacs = function (i, key_event) {
+    }
+    handle_move_dacs(i, key_event) {
         if (i > -1 && i < dacs.length) {
             if (dacs[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6843,8 +6843,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_sandhs = function (i, key_event) {
+    }
+    handle_move_sandhs(i, key_event) {
         if (i > -1 && i < sandhs.length) {
             if (sandhs[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6882,8 +6882,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_pwms = function (i, key_event) {
+    }
+    handle_move_pwms(i, key_event) {
         if (i > -1 && i < pwms.length) {
             if (pwms[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6921,8 +6921,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_integrators = function (i, key_event) {
+    }
+    handle_move_integrators(i, key_event) {
         if (i > -1 && i < integrators.length) {
             if (integrators[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6960,8 +6960,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_differentiators = function (i, key_event) {
+    }
+    handle_move_differentiators(i, key_event) {
         if (i > -1 && i < differentiators.length) {
             if (differentiators[i].MULTI_SELECTED) {
                 /* Up. */
@@ -6999,8 +6999,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_lowpasses = function (i, key_event) {
+    }
+    handle_move_lowpasses(i, key_event) {
         if (i > -1 && i < lowpasses.length) {
             if (lowpasses[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7038,8 +7038,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_highpasses = function (i, key_event) {
+    }
+    handle_move_highpasses(i, key_event) {
         if (i > -1 && i < highpasses.length) {
             if (highpasses[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7077,8 +7077,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_relays = function (i, key_event) {
+    }
+    handle_move_relays(i, key_event) {
         if (i > -1 && i < relays.length) {
             if (relays[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7116,8 +7116,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_pids = function (i, key_event) {
+    }
+    handle_move_pids(i, key_event) {
         if (i > -1 && i < pids.length) {
             if (pids[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7155,8 +7155,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_luts = function (i, key_event) {
+    }
+    handle_move_luts(i, key_event) {
         if (i > -1 && i < luts.length) {
             if (luts[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7194,8 +7194,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_vcrs = function (i, key_event) {
+    }
+    handle_move_vcrs(i, key_event) {
         if (i > -1 && i < vcrs.length) {
             if (vcrs[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7233,8 +7233,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_grts = function (i, key_event) {
+    }
+    handle_move_grts(i, key_event) {
         if (i > -1 && i < grts.length) {
             if (grts[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7272,8 +7272,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_tptzs = function (i, key_event) {
+    }
+    handle_move_tptzs(i, key_event) {
         if (i > -1 && i < tptzs.length) {
             if (tptzs[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7311,8 +7311,8 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    ShortcutManager.prototype.handle_move_transformers = function (i, key_event) {
+    }
+    handle_move_transformers(i, key_event) {
         if (i > -1 && i < transformers.length) {
             if (transformers[i].MULTI_SELECTED) {
                 /* Up. */
@@ -7350,11 +7350,11 @@ var ShortcutManager = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    ShortcutManager.prototype.handle_remove_multi_select_elements = function () {
+    handle_remove_multi_select_elements() {
         this.MULTI_DELETED_ELEMENT = false;
-        var elm_max = global.element_max();
+        let elm_max = global.element_max();
         for (var i = elm_max - 1; i > -1; i--) {
             /* #INSERT_GENERATE_HANDLE_REMOVE_MULTI_SELECT_ELEMENTS# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -7766,6 +7766,5 @@ var ShortcutManager = /** @class */ (function () {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
             this.MULTI_DELETED_ELEMENT = false;
         }
-    };
-    return ShortcutManager;
-}());
+    }
+}

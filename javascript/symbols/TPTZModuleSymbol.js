@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var TPTZModuleSymbol = /** @class */ (function () {
-    function TPTZModuleSymbol(rect, index, page) {
+class TPTZModuleSymbol {
+    constructor(rect, index, page) {
         /* Index of the bounds (Inside New Element Window) */
         this.index = -1;
         /* Page to be drawn on (Inside New Element Window) */
@@ -175,7 +175,7 @@ var TPTZModuleSymbol = /** @class */ (function () {
         this.LINE_BUFFER = [];
         this.CIRCLE_BUFFER = [];
     }
-    TPTZModuleSymbol.prototype.update = function () {
+    update() {
         if (this.FLAG_ADD_ELEMENT) {
             if (workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
                 !this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
@@ -185,8 +185,8 @@ var TPTZModuleSymbol = /** @class */ (function () {
                 this.FLAG_ADD_ELEMENT = false;
             }
         }
-    };
-    TPTZModuleSymbol.prototype.mouse_down = function (page, width, height) {
+    }
+    mouse_down(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
                 if (!this.FLAG_ADD_ELEMENT) {
@@ -197,8 +197,8 @@ var TPTZModuleSymbol = /** @class */ (function () {
                 }
             }
         }
-    };
-    TPTZModuleSymbol.prototype.mouse_move = function (page, width, height) {
+    }
+    mouse_move(page, width, height) {
         if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
             !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
@@ -208,17 +208,17 @@ var TPTZModuleSymbol = /** @class */ (function () {
         }
         if (this.page === page) {
         }
-    };
-    TPTZModuleSymbol.prototype.mouse_up = function (page, width, height) {
+    }
+    mouse_up(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
             }
             this.FLAG_ADD_ELEMENT = false;
             global.SIGNAL_ADD_ELEMENT = false;
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    TPTZModuleSymbol.prototype.build_element = function () {
+    build_element() {
         this.tptz_0.x =
             this.c_x -
                 this.x_space * global.cosine(this.theta) +
@@ -257,8 +257,8 @@ var TPTZModuleSymbol = /** @class */ (function () {
         this.connect1_y = this.c_y - this.y_space * global.sine(this.theta);
         this.connect2_x = this.c_x + this.x_space * global.cosine(this.theta);
         this.connect2_y = this.c_y + this.y_space * global.sine(this.theta);
-    };
-    TPTZModuleSymbol.prototype.resize = function (rect) {
+    }
+    resize(rect) {
         /* Create a new rectangle for the bounds of this component */
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
         /* The center (x-coord) of the bounds */
@@ -290,8 +290,8 @@ var TPTZModuleSymbol = /** @class */ (function () {
         }
         this.text_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.text_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
-    };
-    TPTZModuleSymbol.prototype.recolor = function () {
+    }
+    recolor() {
         if (this.FLAG_ADD_ELEMENT) {
             this.line_paint.set_color(global.SELECTED_COLOR);
             this.point_paint.set_color(global.SELECTED_COLOR);
@@ -304,12 +304,12 @@ var TPTZModuleSymbol = /** @class */ (function () {
             this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
             this.text_paint_alt.set_color(global.GENERAL_WHITE_COLOR);
         }
-    };
+    }
     /* Draws the Symbol */
-    TPTZModuleSymbol.prototype.draw_symbol = function (canvas, page) {
+    draw_symbol(canvas, page) {
         this.recolor();
         if (this.page === page) {
-            var indexer = 0;
+            let indexer = 0;
             this.CIRCLE_BUFFER = [];
             this.LINE_BUFFER = [];
             this.LINE_BUFFER[indexer++] = Array(this.tptz_0.x, this.tptz_0.y, this.tptz_2.x, this.tptz_2.y);
@@ -343,6 +343,5 @@ var TPTZModuleSymbol = /** @class */ (function () {
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint_alt);
             }
         }
-    };
-    return TPTZModuleSymbol;
-}());
+    }
+}

@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Paint = /** @class */ (function () {
-    function Paint() {
+class Paint {
+    constructor() {
         /* A paint style to standardize the different styles available in the html canvas */
         this.style = new PaintStyle();
         /* A paint align to standardize the different alignments available in the html canvas */
@@ -110,89 +110,89 @@ var Paint = /** @class */ (function () {
         this.reset_array();
     }
     /* Set the alpha (transparency) of the paint element */
-    Paint.prototype.set_alpha = function (alpha) {
+    set_alpha(alpha) {
         this.alpha = alpha * 0.0039215686;
-    };
+    }
     /* get the alpha (transparency) of the paint element */
-    Paint.prototype.get_alpha = function () {
+    get_alpha() {
         return this.alpha;
-    };
+    }
     /* Set the font of the paint element */
-    Paint.prototype.set_font = function (font) {
+    set_font(font) {
         this.last_font = '';
         this.font = font;
-    };
+    }
     /* Get the font of the paint element */
-    Paint.prototype.get_font = function () {
+    get_font() {
         return this.font;
-    };
+    }
     /* Set the color of the paint element */
-    Paint.prototype.set_color = function (color) {
+    set_color(color) {
         this.color = color;
-    };
+    }
     /* Get the color of the paint element */
-    Paint.prototype.get_color = function () {
+    get_color() {
         return this.color;
-    };
+    }
     /* Set the stroke width of the paint element */
-    Paint.prototype.set_stroke_width = function (setter) {
+    set_stroke_width(setter) {
         this.stroke_width = setter;
-    };
+    }
     /* Get the stroke width of the paint element */
-    Paint.prototype.get_stroke_width = function () {
+    get_stroke_width() {
         return this.stroke_width;
-    };
+    }
     /* Set the paint style of the paint element */
-    Paint.prototype.set_paint_style = function (setter) {
+    set_paint_style(setter) {
         this.paint_style = setter;
-    };
+    }
     /* Get the paint style of the paint element */
-    Paint.prototype.get_paint_style = function () {
+    get_paint_style() {
         return this.paint_style;
-    };
+    }
     /* Set the paint join of the paint element */
-    Paint.prototype.set_paint_join = function (setter) {
+    set_paint_join(setter) {
         this.paint_join = setter;
-    };
+    }
     /* Get the paint join of the paint element */
-    Paint.prototype.get_paint_join = function () {
+    get_paint_join() {
         return this.paint_join;
-    };
+    }
     /* Set the paint join of the paint element */
-    Paint.prototype.set_paint_baseline = function (setter) {
+    set_paint_baseline(setter) {
         this.text_baseline = setter;
-    };
+    }
     /* Get the paint join of the paint element */
-    Paint.prototype.get_paint_baseline = function () {
+    get_paint_baseline() {
         return this.text_baseline;
-    };
+    }
     /* Set the text size of the paint element */
-    Paint.prototype.set_text_size = function (setter) {
+    set_text_size(setter) {
         this.last_size = -1;
         this.text_size = setter;
-    };
+    }
     /* Get the text size of the paint element */
-    Paint.prototype.get_text_size = function () {
+    get_text_size() {
         return this.text_size;
-    };
+    }
     /* Set the paint cap of the paint element */
-    Paint.prototype.set_paint_cap = function (setter) {
+    set_paint_cap(setter) {
         this.paint_cap = setter;
-    };
+    }
     /* Get the paint cap of the paint element */
-    Paint.prototype.get_paint_cap = function () {
+    get_paint_cap() {
         return this.paint_cap;
-    };
+    }
     /* Set the paint alignment of the paint element */
-    Paint.prototype.set_paint_align = function (setter) {
+    set_paint_align(setter) {
         this.text_align = setter;
-    };
+    }
     /* Get the paint alignment of the paint element */
-    Paint.prototype.get_paint_align = function () {
+    get_paint_align() {
         return this.text_align;
-    };
+    }
     /* Get the font metrics */
-    Paint.prototype.measure = function (txt) {
+    measure(txt) {
         if (this.last_font != this.font || this.last_text_size != this.text_size) {
             this.paint_surface.context.font = this.FONT_TEMPLATE.replace('s', this.text_size + '').replace('f', this.font);
             this.last_font = this.font;
@@ -204,25 +204,25 @@ var Paint = /** @class */ (function () {
             ascent: this.metric.fontBoundingBoxAscent,
             descent: this.metric.fontBoundingBoxDescent
         };
-    };
+    }
     /* Measure arbitrary text length using the current settings of the paint element */
-    Paint.prototype.measure_text = function (txt) {
+    measure_text(txt) {
         return this.retrieve_metrics(txt)['width'];
-    };
+    }
     /* Measure arbitrary text ascent using the current settings of the paint element */
-    Paint.prototype.measure_ascent = function (txt) {
+    measure_ascent(txt) {
         return this.retrieve_metrics(txt)['ascent'];
-    };
+    }
     /* Measure arbitrary text descent using the current settings of the paint element */
-    Paint.prototype.measure_descent = function (txt) {
+    measure_descent(txt) {
         return this.retrieve_metrics(txt)['descent'];
-    };
+    }
     /* Clear the contents of the metrics array. */
-    Paint.prototype.reset_array = function () {
+    reset_array() {
         this.metric_array = [];
-    };
+    }
     /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-    Paint.prototype.search_array = function (txt) {
+    search_array(txt) {
         this.temp_boolean = false;
         this.saved_metric = global.NULL;
         for (var i = 0; i < this.metric_array.length; i++) {
@@ -235,8 +235,8 @@ var Paint = /** @class */ (function () {
             }
         }
         return this.temp_boolean;
-    };
-    Paint.prototype.retrieve_metrics = function (txt) {
+    }
+    retrieve_metrics(txt) {
         if (this.search_array(txt)) {
             return this.saved_metric;
         }
@@ -252,16 +252,20 @@ var Paint = /** @class */ (function () {
             });
             return this.metric_array[this.metric_array.length - 1]['metric'];
         }
-    };
-    Paint.prototype.house_keeping = function (txt) {
+    }
+    house_keeping(txt) {
         for (var i = this.metric_array.length - 1; i > -1; i--) {
             if (this.metric_array[i]['text'] === txt && this.metric_array[i]['font'] === this.font && this.metric_array[i]['text size'] != this.text_size) {
                 this.metric_array.splice(i, 1);
             }
         }
-    };
+    }
     /* Future proofing objects! */
-    Paint.prototype.patch = function () {
+    patch() {
+        /* A paint text baseline to standardize the different alignments available in the html canvas */
+        if (!global.not_null(this.baseline)) {
+            this.baseline = new PaintBaseline();
+        }
         /* A maintained array of computed text sizes.*/
         if (!global.not_null(this.metric_array)) {
             this.metric_array = [];
@@ -272,6 +276,24 @@ var Paint = /** @class */ (function () {
         if (!global.not_null(this.GARBAGE_COLLECTOR_SIZE)) {
             this.GARBAGE_COLLECTOR_SIZE = 16;
         }
-    };
-    return Paint;
-}());
+        /* The paint style of the paint element */
+        if (!global.not_null(this.paint_style)) {
+            this.paint_style = this.style.STROKE;
+        }
+        /* The paint cap of the paint element */
+        if (!global.not_null(this.paint_cap)) {
+            this.paint_cap = this.cap.ROUND;
+        }
+        if (!global.not_null(this.paint_join)) {
+            this.paint_join = this.join.MITER;
+        }
+        /* The alignment of the text when drawing drawing text. */
+        if (!global.not_null(this.text_align)) {
+            this.text_align = this.align.CENTER;
+        }
+        /* The paint cap of the paint element */
+        if (!global.not_null(this.text_baseline)) {
+            this.text_baseline = this.baseline.MIDDLE;
+        }
+    }
+}

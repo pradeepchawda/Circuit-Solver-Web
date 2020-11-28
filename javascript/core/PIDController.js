@@ -5,8 +5,8 @@
  * License : MIT
  * @author Charles Grassin
  */
-var PIDController = /** @class */ (function () {
-    function PIDController(set_point, k_p, k_i, k_d) {
+class PIDController {
+    constructor(set_point, k_p, k_i, k_d) {
         /* User set-point */
         this.set_point = 0;
         /* PID Coefficients */
@@ -35,11 +35,11 @@ var PIDController = /** @class */ (function () {
         this.integral_error = 0;
     }
     /* Compute the output of the controller given the current time and the current input value. */
-    PIDController.prototype.get_output = function (current_time, current_value) {
-        var error = this.set_point - current_value;
-        var dt = current_time - this.previous_time;
+    get_output(current_time, current_value) {
+        let error = this.set_point - current_value;
+        let dt = current_time - this.previous_time;
         /* Compute integral & derative error */
-        var derivative_error = dt != 0 ? (error - this.last_error) / dt : 0;
+        let derivative_error = dt != 0 ? (error - this.last_error) / dt : 0;
         this.integral_error += error * dt;
         /* Save history */
         this.previous_time = current_time;
@@ -47,13 +47,13 @@ var PIDController = /** @class */ (function () {
         return this.check_limits(this.k_p * error +
             this.k_i * this.integral_error +
             this.k_d * derivative_error);
-    };
-    PIDController.prototype.reset = function () {
+    }
+    reset() {
         this.previous_time = 0;
         this.last_error = 0;
         this.integral_error = 0;
-    };
-    PIDController.prototype.check_limits = function (output) {
+    }
+    check_limits(output) {
         if (output < this.min_limit) {
             return this.min_limit;
         }
@@ -63,8 +63,8 @@ var PIDController = /** @class */ (function () {
         else {
             return output;
         }
-    };
-    PIDController.prototype.set_output_limits = function (min_limit, max_limit) {
+    }
+    set_output_limits(min_limit, max_limit) {
         if (min_limit < max_limit) {
             this.min_limit = min_limit;
             this.max_limit = max_limit;
@@ -73,26 +73,25 @@ var PIDController = /** @class */ (function () {
             this.min_limit = max_limit;
             this.max_limit = min_limit;
         }
-    };
+    }
     /* Set the propertional parameter. */
-    PIDController.prototype.set_kp = function (k_p) {
+    set_kp(k_p) {
         this.k_p = k_p;
         this.reset();
-    };
+    }
     /* Set the integeral parameter. */
-    PIDController.prototype.set_ki = function (k_i) {
+    set_ki(k_i) {
         this.k_i = k_i;
         this.reset();
-    };
+    }
     /* Set the derivative parameter. */
-    PIDController.prototype.set_kd = function (k_d) {
+    set_kd(k_d) {
         this.k_d = k_d;
         this.reset();
-    };
+    }
     /* Set the set-point parameter. */
-    PIDController.prototype.set_setpoint = function (set_point) {
+    set_setpoint(set_point) {
         this.reset();
         this.set_point = set_point;
-    };
-    return PIDController;
-}());
+    }
+}

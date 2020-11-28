@@ -19,13 +19,12 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PaintBaseline = /** @class */ (function () {
-    function PaintBaseline() {
+class PaintBaseline {
+    constructor() {
         this.TOP = 'top';
         this.MIDDLE = 'middle';
         this.BOTTOM = 'bottom';
         this.ALPHABETIC = 'alphabetic';
         this.HANGING = 'hanging';
     }
-    return PaintBaseline;
-}());
+}

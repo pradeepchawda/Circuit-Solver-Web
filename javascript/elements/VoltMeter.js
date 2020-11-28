@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var VoltMeter = /** @class */ (function () {
-    function VoltMeter(type, id, n1, n2) {
+class VoltMeter {
+    constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
         this.X_AXIS_LENGTH = 600;
         this.Y_AXIS_LENGTH = 100;
@@ -108,7 +108,7 @@ var VoltMeter = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -201,7 +201,7 @@ var VoltMeter = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    VoltMeter.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -213,16 +213,16 @@ var VoltMeter = /** @class */ (function () {
             this.trace_bounds.set_bounds(this.c_x - global.node_space_x, this.c_y - 2 * global.node_space_y, this.c_x + global.node_space_x, this.c_y - 1 * global.node_space_y);
             this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
         }
-    };
-    VoltMeter.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
-    VoltMeter.prototype.stamp = function () { };
+    }
+    stamp() { }
     /* Vertex handling (for rotation) */
-    VoltMeter.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
@@ -249,10 +249,10 @@ var VoltMeter = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1]);
         }
         return vertices;
-    };
-    VoltMeter.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -262,26 +262,26 @@ var VoltMeter = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    VoltMeter.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    VoltMeter.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    VoltMeter.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -321,9 +321,9 @@ var VoltMeter = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    VoltMeter.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -340,8 +340,8 @@ var VoltMeter = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    VoltMeter.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -364,14 +364,14 @@ var VoltMeter = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
-    VoltMeter.prototype.reset_trace_path = function () {
+    }
+    reset_trace_path() {
         if (global.not_null(this.meter_trace)) {
             this.meter_trace.trace_path.reset();
         }
-    };
+    }
     /* Handling a mouse move event. */
-    VoltMeter.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
@@ -417,9 +417,9 @@ var VoltMeter = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    VoltMeter.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused &&
                 global.focused_id === this.elm.id &&
@@ -460,8 +460,8 @@ var VoltMeter = /** @class */ (function () {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    VoltMeter.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -471,8 +471,8 @@ var VoltMeter = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    VoltMeter.prototype.remove_focus = function () {
+    }
+    remove_focus() {
         if (global.focused &&
             global.focused_id === this.elm.id &&
             global.focused_type === this.elm.type) {
@@ -481,8 +481,8 @@ var VoltMeter = /** @class */ (function () {
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    VoltMeter.prototype.remove_selection = function () {
+    }
+    remove_selection() {
         if (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
@@ -492,10 +492,10 @@ var VoltMeter = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    VoltMeter.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -503,11 +503,11 @@ var VoltMeter = /** @class */ (function () {
                 }
             }
         }
-    };
-    VoltMeter.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -539,11 +539,11 @@ var VoltMeter = /** @class */ (function () {
                 }
             }
         }
-    };
-    VoltMeter.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -575,8 +575,8 @@ var VoltMeter = /** @class */ (function () {
                 }
             }
         }
-    };
-    VoltMeter.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -586,9 +586,9 @@ var VoltMeter = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    VoltMeter.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -598,20 +598,20 @@ var VoltMeter = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    VoltMeter.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    VoltMeter.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 1.25 * this.x_space;
-            var cache_1 = 1.25 * this.y_space;
-            var cache_2 = this.x_space;
-            var cache_3 = this.y_space;
+            let cache_0 = 1.25 * this.x_space;
+            let cache_1 = 1.25 * this.y_space;
+            let cache_2 = this.x_space;
+            let cache_3 = this.y_space;
             this.connect1_x = this.c_x - cache_2 * global.cosine(this.theta);
             this.connect1_y = this.c_y - cache_3 * global.sine(this.theta);
             this.connect2_x = this.c_x + cache_2 * global.cosine(this.theta);
@@ -628,9 +628,9 @@ var VoltMeter = /** @class */ (function () {
             this.meter_symbol.resize_symbol(this.meter_symbol.STYLE_0);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    VoltMeter.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -658,12 +658,12 @@ var VoltMeter = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    VoltMeter.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -676,18 +676,18 @@ var VoltMeter = /** @class */ (function () {
             global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
-    };
+    }
     /* General function to handle any processing required by the component */
-    VoltMeter.prototype.update = function () { };
-    VoltMeter.prototype.increment_rotation = function () {
+    update() { }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    VoltMeter.prototype.increment_flip = function () { };
-    VoltMeter.prototype.map_rotation = function () {
+    }
+    increment_flip() { }
+    map_rotation() {
         if (this.elm.rotation === global.ROTATION_0 ||
             this.elm.rotation === global.ROTATION_180) {
             return this.x_space;
@@ -696,14 +696,14 @@ var VoltMeter = /** @class */ (function () {
             this.elm.rotation === global.ROTATION_270) {
             return this.y_space;
         }
-    };
-    VoltMeter.prototype.reset_trace = function () {
+    }
+    reset_trace() {
         this.meter_trace.reset();
-    };
-    VoltMeter.prototype.reset_meter = function () {
+    }
+    reset_meter() {
         this.elm.properties['Voltage'] = 0;
-    };
-    VoltMeter.prototype.push_voltage = function (voltage) {
+    }
+    push_voltage(voltage) {
         if (global.FLAG_SIMULATING &&
             global.SIMULATION_TIME >=
                 global.TIME_STEP + global.TIME_STEP + global.TIME_STEP &&
@@ -711,8 +711,8 @@ var VoltMeter = /** @class */ (function () {
             this.elm.properties['Voltage'] = voltage;
             this.meter_trace.push(voltage, global.SIMULATION_TIME);
         }
-    };
-    VoltMeter.prototype.recolor = function () {
+    }
+    recolor() {
         if (global.selected) {
             if (global.selected_id === this.elm.id &&
                 global.selected_type === this.elm.type) {
@@ -760,13 +760,13 @@ var VoltMeter = /** @class */ (function () {
         else {
             this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
         }
-    };
-    VoltMeter.prototype.is_selected_element = function () {
+    }
+    is_selected_element() {
         return (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type);
-    };
+    }
     /* Draws the component */
-    VoltMeter.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -839,14 +839,14 @@ var VoltMeter = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
-    VoltMeter.prototype.draw_trace = function (canvas) {
+    }
+    draw_trace(canvas) {
         if (global.FLAG_SIMULATING) {
             this.meter_trace.draw_trace(canvas, this.bounds.left, 0);
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    VoltMeter.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.LINE_BUFFER)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
             this.LINE_BUFFER = [];
@@ -863,12 +863,12 @@ var VoltMeter = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    VoltMeter.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
                 if (keys[i] === 'Frequency' ||
@@ -881,9 +881,8 @@ var VoltMeter = /** @class */ (function () {
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    VoltMeter.prototype.reset = function () {
+    }
+    reset() {
         this.elm.properties['Voltage'] = 0;
-    };
-    return VoltMeter;
-}());
+    }
+}

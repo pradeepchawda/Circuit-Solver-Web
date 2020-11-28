@@ -20,13 +20,13 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var VoltageControlledVoltageSource = /** @class */ (function () {
-    function VoltageControlledVoltageSource(type, id, n1, n2, n3, n4) {
+class VoltageControlledVoltageSource {
+    constructor(type, id, n1, n2, n3, n4) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element4(-1, -1, -1);
+        this.elm = new Element4(-1, -1, global.NULL);
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         this.p3 = new PointF(0, 0);
@@ -108,7 +108,7 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -213,7 +213,7 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    VoltageControlledVoltageSource.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -227,24 +227,24 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x), global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
-    };
-    VoltageControlledVoltageSource.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
+    }
     /* General function to handle any processing required by the component */
-    VoltageControlledVoltageSource.prototype.update = function () { };
-    VoltageControlledVoltageSource.prototype.stamp = function () {
+    update() { }
+    stamp() {
         if (this.elm.consistent()) {
             engine_functions.stamp_vcvs(this.elm.n1, this.elm.n2, this.elm.n3, this.elm.n4, -this.elm.properties['Gain'], simulation_manager.ELEMENT_VCVS_OFFSET + this.simulation_id);
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    VoltageControlledVoltageSource.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
-        var p3 = [];
-        var p4 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
+        let p3 = [];
+        let p4 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
             p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
@@ -281,10 +281,10 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
         }
         return vertices;
-    };
-    VoltageControlledVoltageSource.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -294,9 +294,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    VoltageControlledVoltageSource.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
@@ -304,10 +304,10 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             nodes[this.elm.n4].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1, -1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    VoltageControlledVoltageSource.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
@@ -315,9 +315,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n4].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    VoltageControlledVoltageSource.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -365,9 +365,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    VoltageControlledVoltageSource.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -384,8 +384,8 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    VoltageControlledVoltageSource.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -408,9 +408,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Handling a mouse move event. */
-    VoltageControlledVoltageSource.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
@@ -453,9 +453,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    VoltageControlledVoltageSource.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused &&
                 global.focused_id === this.elm.id &&
@@ -496,8 +496,8 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    VoltageControlledVoltageSource.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -507,8 +507,8 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    VoltageControlledVoltageSource.prototype.remove_focus = function () {
+    }
+    remove_focus() {
         if (global.focused &&
             global.focused_id === this.elm.id &&
             global.focused_type === this.elm.type) {
@@ -517,8 +517,8 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    VoltageControlledVoltageSource.prototype.remove_selection = function () {
+    }
+    remove_selection() {
         if (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
@@ -528,10 +528,10 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    VoltageControlledVoltageSource.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -539,11 +539,11 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 }
             }
         }
-    };
-    VoltageControlledVoltageSource.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -597,11 +597,11 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 }
             }
         }
-    };
-    VoltageControlledVoltageSource.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -655,8 +655,8 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 }
             }
         }
-    };
-    VoltageControlledVoltageSource.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -666,9 +666,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    VoltageControlledVoltageSource.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -678,32 +678,32 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    VoltageControlledVoltageSource.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    VoltageControlledVoltageSource.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 3.0 * this.x_space;
-            var cache_1 = 3.0 * this.y_space;
-            var cache_2 = 1.414 * this.x_space;
-            var cache_3 = 1.414 * this.y_space;
-            var cache_4 = 1.5 * this.x_space;
-            var cache_5 = 1.5 * this.y_space;
-            var cache_6 = 2.0 * this.x_space;
-            var cache_7 = 2.0 * this.y_space;
-            var cache_8 = 1.75 * this.x_space;
-            var cache_9 = 1.75 * this.y_space;
-            var cache_10 = 2.25 * this.x_space;
-            var cache_11 = 2.25 * this.y_space;
-            var cache_12 = 0.75 * this.x_space;
-            var cache_13 = 0.75 * this.y_space;
-            var cache_14 = this.x_space;
-            var cache_15 = this.y_space;
+            let cache_0 = 3.0 * this.x_space;
+            let cache_1 = 3.0 * this.y_space;
+            let cache_2 = 1.414 * this.x_space;
+            let cache_3 = 1.414 * this.y_space;
+            let cache_4 = 1.5 * this.x_space;
+            let cache_5 = 1.5 * this.y_space;
+            let cache_6 = 2.0 * this.x_space;
+            let cache_7 = 2.0 * this.y_space;
+            let cache_8 = 1.75 * this.x_space;
+            let cache_9 = 1.75 * this.y_space;
+            let cache_10 = 2.25 * this.x_space;
+            let cache_11 = 2.25 * this.y_space;
+            let cache_12 = 0.75 * this.x_space;
+            let cache_13 = 0.75 * this.y_space;
+            let cache_14 = this.x_space;
+            let cache_15 = this.y_space;
             /* Top segment (left) */
             this.vcvs_0.x = this.p1.x + cache_14 * global.cosine(this.theta_m90);
             this.vcvs_0.y = this.p1.y + cache_15 * global.sine(this.theta_m90);
@@ -783,9 +783,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 this.p1.y + cache_13 * global.sine(this.theta_m90 + global.PI_DIV_4);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    VoltageControlledVoltageSource.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -807,12 +807,12 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    VoltageControlledVoltageSource.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -833,16 +833,16 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         /* Angle from center to p2 */
         this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
         this.build_element();
-    };
-    VoltageControlledVoltageSource.prototype.increment_rotation = function () {
+    }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    VoltageControlledVoltageSource.prototype.increment_flip = function () { };
-    VoltageControlledVoltageSource.prototype.recolor = function () {
+    }
+    increment_flip() { }
+    recolor() {
         if (global.selected) {
             if (global.selected_id === this.elm.id &&
                 global.selected_type === this.elm.type) {
@@ -868,13 +868,13 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 this.text_paint.set_color(global.ELEMENT_COLOR);
             }
         }
-    };
-    VoltageControlledVoltageSource.prototype.is_selected_element = function () {
+    }
+    is_selected_element() {
         return (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type);
-    };
+    }
     /* Draws the component */
-    VoltageControlledVoltageSource.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -941,9 +941,9 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    VoltageControlledVoltageSource.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.LINE_BUFFER)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
             this.LINE_BUFFER = [];
@@ -960,12 +960,12 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    VoltageControlledVoltageSource.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
                 if (keys[i] === 'Frequency' ||
@@ -978,7 +978,6 @@ var VoltageControlledVoltageSource = /** @class */ (function () {
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    VoltageControlledVoltageSource.prototype.reset = function () { };
-    return VoltageControlledVoltageSource;
-}());
+    }
+    reset() { }
+}

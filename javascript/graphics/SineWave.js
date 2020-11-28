@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var SineWave = /** @class */ (function () {
-    function SineWave(x1, y1, x2, y2, amplitude) {
+class SineWave {
+    constructor(x1, y1, x2, y2, amplitude) {
         this.STYLE_0 = 0;
         this.STYLE_1 = 1;
         this.amplitude = 0.1;
@@ -57,7 +57,7 @@ var SineWave = /** @class */ (function () {
         this.last_y1 = -1;
         this.last_y2 = -1;
     }
-    SineWave.prototype.set_points = function (x1, y1, x2, y2) {
+    set_points(x1, y1, x2, y2) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -66,14 +66,14 @@ var SineWave = /** @class */ (function () {
         this.last_x2 = -1;
         this.last_y1 = -1;
         this.last_y2 = -1;
-    };
-    SineWave.prototype.set_amplitude = function (amplitude) {
+    }
+    set_amplitude(amplitude) {
         this.amplitude = amplitude;
-    };
-    SineWave.prototype.set_color = function (color) {
+    }
+    set_color(color) {
         this.sine_wave_paint.set_color(color);
-    };
-    SineWave.prototype.resize = function (style) {
+    }
+    resize(style) {
         /* Resize the stroke widths and the text sizes. */
         if (style === this.STYLE_0) {
             this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2_ZOOM);
@@ -87,8 +87,8 @@ var SineWave = /** @class */ (function () {
         this.last_x2 = -1;
         this.last_y1 = -1;
         this.last_y2 = -1;
-    };
-    SineWave.prototype.draw_sine_wave = function (canvas, style) {
+    }
+    draw_sine_wave(canvas, style) {
         if (this.last_x1 != this.x1 || this.last_x2 != this.x2) {
             this.last_x1 = this.x1;
             this.last_x2 = this.x2;
@@ -101,6 +101,5 @@ var SineWave = /** @class */ (function () {
         }
         canvas.draw_arc2(this.x1, this.y1, this.c_x, this.c_y, this.amplitude, this.sine_wave_paint);
         canvas.draw_arc2(this.c_x, this.c_y, this.x2, this.y2, -this.amplitude, this.sine_wave_paint);
-    };
-    return SineWave;
-}());
+    }
+}

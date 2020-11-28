@@ -20,13 +20,13 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Relay = /** @class */ (function () {
-    function Relay(type, id, n1, n2, n3, n4) {
+class Relay {
+    constructor(type, id, n1, n2, n3, n4) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element4(-1, -1, -1);
+        this.elm = new Element4(-1, -1, global.NULL);
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         this.p3 = new PointF(0, 0);
@@ -57,8 +57,7 @@ var Relay = /** @class */ (function () {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -103,7 +102,7 @@ var Relay = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -144,8 +143,7 @@ var Relay = /** @class */ (function () {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -203,7 +201,7 @@ var Relay = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    Relay.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -217,59 +215,43 @@ var Relay = /** @class */ (function () {
             /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x), global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
-    };
-    Relay.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
+    }
     /* Update the transients as the simulation progresses. */
-    Relay.prototype.update_relay = function () {
+    update_relay() {
         if (this.elm.consistent() && simulation_manager.SOLUTIONS_READY) {
-            var voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+            let voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
             this.elm.properties['Transient Voltage'] = voltage;
-            this.elm.properties['Transient Current'] =
-                voltage / this.elm.properties['Transient Resistance'] +
-                    this.elm.properties['Equivalent Current'];
-            this.elm.properties['Equivalent Current'] =
-                this.elm.properties['Transient Voltage'] /
-                    this.elm.properties['Transient Resistance'] +
-                    this.elm.properties['Transient Current'];
+            this.elm.properties['Transient Current'] = voltage / this.elm.properties['Transient Resistance'] + this.elm.properties['Equivalent Current'];
+            this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
         }
-    };
+    }
     /* Reset the relay to its initial conditions (usually done at time = 0) */
-    Relay.prototype.reset_relay = function () {
-        this.elm.properties['Transient Resistance'] =
-            (2 * this.elm.properties['Inductance']) / global.TIME_STEP;
+    reset_relay() {
+        this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / global.TIME_STEP;
         this.elm.properties['Transient Voltage'] = 0;
         this.elm.properties['Transient Current'] = global.copy(this.elm.properties['Initial Current']);
-        this.elm.properties['Equivalent Current'] =
-            this.elm.properties['Transient Voltage'] /
-                this.elm.properties['Transient Resistance'] +
-                this.elm.properties['Transient Current'];
-    };
+        this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
+    }
     /* This is for energy conservation */
-    Relay.prototype.conserve_energy = function () {
-        this.elm.properties['Transient Resistance'] =
-            (2 * this.elm.properties['Inductance']) / global.TIME_STEP;
-        this.elm.properties['Equivalent Current'] =
-            this.elm.properties['Transient Voltage'] /
-                this.elm.properties['Transient Resistance'] +
-                this.elm.properties['Transient Current'];
-    };
+    conserve_energy() {
+        this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / global.TIME_STEP;
+        this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
+    }
     /* General function to handle any processing required by the component */
-    Relay.prototype.update = function () {
-        if (global.FLAG_SIMULATING &&
-            simulation_manager.SOLUTIONS_READY &&
-            simulation_manager.SIMULATION_STEP != 0) {
+    update() {
+        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
             if (this.elm.consistent()) {
             }
         }
-    };
+    }
     /* Stamp for MNA relay */
-    Relay.prototype.stamp = function () {
+    stamp() {
         if (this.elm.consistent()) {
             engine_functions.stamp_inductor(this.elm.n1, this.elm.n2, this.elm.properties['Transient Resistance'], this.elm.properties['Equivalent Current']);
-            if (this.elm.properties['Transient Current'] >=
-                this.elm.properties['Turn on Current']) {
+            if (this.elm.properties['Transient Current'] >= this.elm.properties['Turn on Current']) {
                 engine_functions.stamp_resistor(this.elm.n3, this.elm.n4, this.elm.properties['Closed Resistance']);
             }
             else {
@@ -277,14 +259,14 @@ var Relay = /** @class */ (function () {
                 engine_functions.stamp_node(this.elm.n4, this.elm.properties['Open Resistance']);
             }
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    Relay.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
-        var p3 = [];
-        var p4 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
+        let p3 = [];
+        let p4 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
             p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
@@ -321,10 +303,10 @@ var Relay = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
         }
         return vertices;
-    };
-    Relay.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -334,9 +316,9 @@ var Relay = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    Relay.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
@@ -344,10 +326,10 @@ var Relay = /** @class */ (function () {
             nodes[this.elm.n4].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1, -1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    Relay.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
@@ -355,9 +337,9 @@ var Relay = /** @class */ (function () {
             nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n4].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    Relay.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -369,11 +351,8 @@ var Relay = /** @class */ (function () {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -382,9 +361,7 @@ var Relay = /** @class */ (function () {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -405,9 +382,9 @@ var Relay = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    Relay.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -424,8 +401,8 @@ var Relay = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    Relay.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -448,14 +425,13 @@ var Relay = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Handling a mouse move event. */
-    Relay.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -473,15 +449,13 @@ var Relay = /** @class */ (function () {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -493,13 +467,11 @@ var Relay = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    Relay.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -512,8 +484,7 @@ var Relay = /** @class */ (function () {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = -1;
                             global.selected_bounds = global.NULL;
@@ -531,13 +502,12 @@ var Relay = /** @class */ (function () {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    Relay.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -547,20 +517,17 @@ var Relay = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    Relay.prototype.remove_focus = function () {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+    }
+    remove_focus() {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    Relay.prototype.remove_selection = function () {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+    }
+    remove_selection() {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = -1;
             global.selected_bounds = global.NULL;
@@ -568,10 +535,10 @@ var Relay = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    Relay.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -579,11 +546,11 @@ var Relay = /** @class */ (function () {
                 }
             }
         }
-    };
-    Relay.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -637,11 +604,11 @@ var Relay = /** @class */ (function () {
                 }
             }
         }
-    };
-    Relay.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -695,8 +662,8 @@ var Relay = /** @class */ (function () {
                 }
             }
         }
-    };
-    Relay.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -706,9 +673,9 @@ var Relay = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    Relay.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -718,25 +685,25 @@ var Relay = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    Relay.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    Relay.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = 3.0 * this.x_space;
-            var cache_1 = 3.0 * this.y_space;
-            var cache_2 = 2.0 * this.x_space;
-            var cache_3 = 2.0 * this.y_space;
-            var cache_4 = 0.75 * this.x_space;
-            var cache_5 = 0.5 * this.y_space;
-            var cache_6 = 0.75 * this.y_space;
-            var cache_7 = this.x_space;
-            var cache_8 = this.y_space;
+            let cache_0 = 3.0 * this.x_space;
+            let cache_1 = 3.0 * this.y_space;
+            let cache_2 = 2.0 * this.x_space;
+            let cache_3 = 2.0 * this.y_space;
+            let cache_4 = 0.75 * this.x_space;
+            let cache_5 = 0.5 * this.y_space;
+            let cache_6 = 0.75 * this.y_space;
+            let cache_7 = this.x_space;
+            let cache_8 = this.y_space;
             /* Top segment (left) */
             this.relay_0.x = this.p1.x + cache_7 * global.cosine(this.theta_m90);
             this.relay_0.y = this.p1.y + cache_8 * global.sine(this.theta_m90);
@@ -759,29 +726,21 @@ var Relay = /** @class */ (function () {
             /* right Arc */
             this.relay_7.x = this.relay_2.x + cache_7 * global.cosine(this.theta);
             this.relay_7.y = this.relay_2.y + cache_8 * global.sine(this.theta);
-            this.relay_8.x =
-                this.relay_2.x +
-                    cache_2 * global.cosine(this.theta) +
-                    cache_7 * global.cosine(this.theta_m90);
-            this.relay_8.y =
-                this.relay_2.y +
-                    cache_3 * global.sine(this.theta) +
-                    cache_8 * global.sine(this.theta_m90);
+            this.relay_8.x = this.relay_2.x + cache_2 * global.cosine(this.theta) + cache_7 * global.cosine(this.theta_m90);
+            this.relay_8.y = this.relay_2.y + cache_3 * global.sine(this.theta) + cache_8 * global.sine(this.theta_m90);
             this.relay_9.x = this.relay_2.x + cache_0 * global.cosine(this.theta);
             this.relay_9.y = this.relay_2.y + cache_1 * global.sine(this.theta);
             /* Left current dot */
-            this.relay_10.x =
-                this.relay_4.x - cache_4 * global.cosine(this.theta_m90);
+            this.relay_10.x = this.relay_4.x - cache_4 * global.cosine(this.theta_m90);
             this.relay_10.y = this.relay_4.y - cache_5 * global.sine(this.theta_m90);
             /* Right current dot */
             this.relay_11.y = this.relay_7.y + cache_6 * global.sine(this.theta_m90);
-            this.relay_11.x =
-                this.relay_7.x + cache_4 * global.cosine(this.theta_m90);
+            this.relay_11.x = this.relay_7.x + cache_4 * global.cosine(this.theta_m90);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    Relay.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -803,12 +762,12 @@ var Relay = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    Relay.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -822,26 +781,24 @@ var Relay = /** @class */ (function () {
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
         this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
         this.build_element();
-    };
-    Relay.prototype.increment_rotation = function () {
+    }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    Relay.prototype.increment_flip = function () { };
-    Relay.prototype.recolor = function () {
+    }
+    increment_flip() { }
+    recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -864,13 +821,12 @@ var Relay = /** @class */ (function () {
                 this.text_paint.set_color(global.ELEMENT_COLOR);
             }
         }
-    };
-    Relay.prototype.is_selected_element = function () {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
-    };
+    }
+    is_selected_element() {
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
+    }
     /* Draws the component */
-    Relay.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -897,11 +853,8 @@ var Relay = /** @class */ (function () {
             this.LINE_BUFFER[this.indexer++] = Array(this.p3.x, this.p3.y, this.relay_2.x, this.relay_2.y);
             this.LINE_BUFFER[this.indexer++] = Array(this.p4.x, this.p4.y, this.relay_3.x, this.relay_3.y);
             this.LINE_BUFFER[this.indexer++] = Array(this.relay_2.x, this.relay_2.y, this.relay_7.x, this.relay_7.y);
-            if (this.elm.properties['Transient Current'] >=
-                this.elm.properties['Turn on Current']) {
-                if (global.FLAG_SIMULATING &&
-                    simulation_manager.SOLUTIONS_READY &&
-                    global.SIMULATION_TIME > global.TIME_STEP + global.TIME_STEP) {
+            if (this.elm.properties['Transient Current'] >= this.elm.properties['Turn on Current']) {
+                if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && global.SIMULATION_TIME > global.TIME_STEP + global.TIME_STEP) {
                     this.LINE_BUFFER[this.indexer++] = Array(this.relay_7.x, this.relay_7.y, this.relay_9.x, this.relay_9.y);
                 }
                 else {
@@ -923,18 +876,15 @@ var Relay = /** @class */ (function () {
                 canvas.draw_rect2(this.bounds, this.line_paint);
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                    (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.restore();
                 }
-                else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                    (this.ANGLE > 80 && this.ANGLE < 100)) {
+                else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                 }
@@ -943,9 +893,9 @@ var Relay = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    Relay.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.LINE_BUFFER)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
             this.LINE_BUFFER = [];
@@ -962,25 +912,21 @@ var Relay = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    Relay.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    Relay.prototype.reset = function () { };
-    return Relay;
-}());
+    }
+    reset() { }
+}

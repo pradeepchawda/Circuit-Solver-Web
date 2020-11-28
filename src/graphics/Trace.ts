@@ -202,7 +202,7 @@ outer bounds)*/
   }
   /* Get a specific value of the trace at at specific index. */
   get_value(index: number): Array<string> {
-    let ret: Array<string>;
+    let ret: Array<string> = [];
     if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
       ret.push(global.exponentiate_quickly(this.magnitude_list[index].x));
       ret.push(global.exponentiate_quickly(-this.magnitude_list[index].y));
@@ -211,7 +211,7 @@ outer bounds)*/
   }
   /* Get a specific value of the trace at at specific index. */
   get_value_double(index: number): Array<number> {
-    let ret = [];
+    let ret: Array<number> = [];
     if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
       ret.push(this.magnitude_list[index].x);
       ret.push(-this.magnitude_list[index].y);
@@ -219,7 +219,7 @@ outer bounds)*/
     return ret;
   }
   /* Add a new entry to the trace. */
-  push(value, t) {
+  push(value: number, t: number): void {
     value *= -1;
     if (Math.abs(value) < 1e-18) {
       value = 0;

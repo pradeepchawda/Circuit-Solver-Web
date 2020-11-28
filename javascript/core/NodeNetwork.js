@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var NodeNetwork = /** @class */ (function () {
-    function NodeNetwork(node_a, node_b) {
+class NodeNetwork {
+    constructor(node_a, node_b) {
         this.references = [];
         this.lowest = -1;
         this.general_boolean = false;
@@ -36,7 +36,7 @@ var NodeNetwork = /** @class */ (function () {
         }
         this.general_boolean = false;
     }
-    NodeNetwork.prototype.get_lowest_id = function (node) {
+    get_lowest_id(node) {
         this.lowest = this.find_lowest_id();
         if (this.is_found(node) && this.lowest != -1) {
             return this.lowest;
@@ -44,8 +44,8 @@ var NodeNetwork = /** @class */ (function () {
         else {
             return node;
         }
-    };
-    NodeNetwork.prototype.is_found = function (node) {
+    }
+    is_found(node) {
         this.general_boolean = false;
         for (var i = 0; i < this.references.length; i++) {
             if (this.references[i] === node) {
@@ -54,19 +54,19 @@ var NodeNetwork = /** @class */ (function () {
             }
         }
         return this.general_boolean;
-    };
-    NodeNetwork.prototype.get_references = function () {
+    }
+    get_references() {
         return this.references;
-    };
-    NodeNetwork.prototype.add_references = function (refs) {
+    }
+    add_references(refs) {
         for (var i = 0; i < refs.length; i++) {
             if (!this.is_found(refs[i])) {
                 this.references.push(refs[i]);
             }
         }
-    };
-    NodeNetwork.prototype.is_connected = function (inp) {
-        var is_found = false;
+    }
+    is_connected(inp) {
+        let is_found = false;
         for (var i = 0; i < inp.length; i++) {
             if (this.is_found(inp[i])) {
                 is_found = true;
@@ -74,14 +74,14 @@ var NodeNetwork = /** @class */ (function () {
             }
         }
         return is_found;
-    };
-    NodeNetwork.prototype.is_removed = function (node) {
+    }
+    is_removed(node) {
         return ((this.is_found(node) && node != this.find_lowest_id()) ||
             this.find_lowest_id() === -1 ||
             node === -1);
-    };
-    NodeNetwork.prototype.find_lowest_id = function () {
-        var lowest = -1;
+    }
+    find_lowest_id() {
+        let lowest = -1;
         if (this.references.length > 0) {
             lowest = this.references[0];
         }
@@ -94,6 +94,5 @@ var NodeNetwork = /** @class */ (function () {
             }
         }
         return lowest;
-    };
-    return NodeNetwork;
-}());
+    }
+}

@@ -21,8 +21,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ElectricalNode = /** @class */ (function () {
-    function ElectricalNode(x, y, id) {
+class ElectricalNode {
+    constructor(x, y, id) {
         /* The radius of the node when it is drawn. */
         /* The location of the node */
         this.location = new PointF(0, 0);
@@ -87,8 +87,8 @@ var ElectricalNode = /** @class */ (function () {
         /* Mapping the ID to a row and column. This is useful to know where the node must go upon resizing. */
         this.column = Math.floor(this.id / Math.round(global.settings.SQRT_MAXNODES));
         this.row = this.id % Math.round(global.settings.SQRT_MAXNODES);
-        var node_space_x = 1.175 * (global.node_space_x >> 2);
-        var node_space_y = 1.175 * (global.node_space_y >> 2);
+        let node_space_x = 1.175 * (global.node_space_x >> 2);
+        let node_space_y = 1.175 * (global.node_space_y >> 2);
         if (global.MOBILE_MODE) {
             node_space_x *= 1.25;
             node_space_y *= 1.25;
@@ -97,16 +97,10 @@ var ElectricalNode = /** @class */ (function () {
     }
     /* A resizing handler, it will compute the new locations of the nodes as well as handle any zooming
     the user does. */
-    ElectricalNode.prototype.resize = function (n_x, n_y, m_n_x, m_n_y) {
+    resize(n_x, n_y, m_n_x, m_n_y) {
         if (global.SIGNAL_BUILD_ELEMENT) {
-            this.location.x =
-                workspace.bounds.left +
-                    this.row *
-                        (workspace.bounds.get_width() * global.settings.INV_SQRT_M_1);
-            this.location.y =
-                workspace.bounds.top +
-                    this.column *
-                        (workspace.bounds.get_height() * global.settings.INV_SQRT_M_1);
+            this.location.x = workspace.bounds.left + this.row * (workspace.bounds.get_width() * global.settings.INV_SQRT_M_1);
+            this.location.y = workspace.bounds.top + this.column * (workspace.bounds.get_height() * global.settings.INV_SQRT_M_1);
             if (!global.MOBILE_MODE) {
                 this.bounds.set_bounds(this.location.x - n_x, this.location.y - n_y, this.location.x + n_x, this.location.y + n_y);
             }
@@ -120,43 +114,43 @@ var ElectricalNode = /** @class */ (function () {
             this.node_fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
             this.node_fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
         }
-    };
+    }
     /* Sets the color of the node interface paint */
-    ElectricalNode.prototype.set_color = function (color) {
+    set_color(color) {
         this.node_line_paint.set_color(color);
         this.node_fill_paint.set_color(color);
         this.node_fill_paint_alt.set_color(color);
-    };
+    }
     /* Gets the bounds of the node (some default padding is applied)*/
-    ElectricalNode.prototype.get_bounds = function () {
+    get_bounds() {
         return this.bounds;
-    };
+    }
     /* A quick check to see if the rectangle contains an x,y coordinate */
-    ElectricalNode.prototype.contains_xy = function (x, y) {
+    contains_xy(x, y) {
         return this.bounds.contains_xy(x, y);
-    };
+    }
     /* A quick check to see if the rectangle contains an x,y coordinate (width and height constraints) */
-    ElectricalNode.prototype.contains_xywh = function (x, y, w, h) {
+    contains_xywh(x, y, w, h) {
         return this.bounds.contains_xywh(x, y, w, h);
-    };
+    }
     /* Gets the node's ID */
-    ElectricalNode.prototype.get_id = function () {
+    get_id() {
         return this.id;
-    };
+    }
     /* Clears the references attached to this node */
-    ElectricalNode.prototype.clear_references = function () {
+    clear_references() {
         this.references = [];
         node_manager.remove_node(this.id);
-    };
+    }
     /* Add a reference list to this node. */
-    ElectricalNode.prototype.add_reference_list = function (reference_list) {
+    add_reference_list(reference_list) {
         for (var i = 0; i < reference_list.length; i++) {
             this.add_reference(reference_list[i].id, reference_list[i].type);
         }
-    };
+    }
     /* Add a reference to this node. */
-    ElectricalNode.prototype.add_reference = function (id, type) {
-        var is_found = false;
+    add_reference(id, type) {
+        let is_found = false;
         for (var i = 0; i < this.references.length; i++) {
             if (this.references[i].id === id && this.references[i].type === type) {
                 is_found = true;
@@ -169,9 +163,9 @@ var ElectricalNode = /** @class */ (function () {
                 node_manager.add_node(this.id);
             }
         }
-    };
+    }
     /* Removes the reference from this node. */
-    ElectricalNode.prototype.remove_reference = function (id, type) {
+    remove_reference(id, type) {
         if (this.references.length > 0) {
             for (var i = 0; i < this.references.length; i++) {
                 if (this.references[i].id === id && this.references[i].type === type) {
@@ -183,10 +177,10 @@ var ElectricalNode = /** @class */ (function () {
                 node_manager.remove_node(this.id);
             }
         }
-    };
+    }
     /* Checks to see if the references contain an element type */
-    ElectricalNode.prototype.contains_element_type = function (type) {
-        var out = false;
+    contains_element_type(type) {
+        let out = false;
         for (var i = 0; i < this.references.length; i++) {
             if (this.references[i].type === type) {
                 out = true;
@@ -194,11 +188,11 @@ var ElectricalNode = /** @class */ (function () {
             }
         }
         return out;
-    };
+    }
     /* Checks to see if the references contain an element type */
-    ElectricalNode.prototype.draw_node_builder_helper = function () {
-        var count = 0;
-        var index = -1;
+    draw_node_builder_helper() {
+        let count = 0;
+        let index = -1;
         for (var i = 0; i < this.references.length; i++) {
             if (this.references[i].type === global.TYPE_NOTE) {
                 index = engine_functions.get_note(this.references[i].id);
@@ -219,17 +213,17 @@ var ElectricalNode = /** @class */ (function () {
         else {
             return true;
         }
-    };
-    ElectricalNode.prototype.debug_info = function () {
-        var str = '';
-        var DEBUG_TEMPLATE = '({ID},{TYPE}),';
+    }
+    debug_info() {
+        let str = '';
+        let DEBUG_TEMPLATE = '({ID},{TYPE}),';
         for (var i = 0; i < this.references.length; i++) {
             str += DEBUG_TEMPLATE.replace('{ID}', String(this.references[i].id)).replace('{TYPE}', String(this.references[i].type));
         }
         return str;
-    };
+    }
     /* Draw the node using the graphics engine */
-    ElectricalNode.prototype.draw = function (canvas) {
+    draw(canvas) {
         if (this.references.length > 0) {
             if (global.DEVELOPER_MODE) {
                 canvas.draw_circle(this.location.x, this.location.y, 2 * global.CANVAS_STROKE_WIDTH_3, this.node_line_paint);
@@ -237,10 +231,8 @@ var ElectricalNode = /** @class */ (function () {
             }
             else {
                 if (global.WIRE_BUILDER['step'] > 0) {
-                    if (global.WIRE_BUILDER['n1'] > -1 &&
-                        global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-                        if (global.WIRE_BUILDER['n1'] != this.id &&
-                            this.draw_node_builder_helper()) {
+                    if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+                        if (global.WIRE_BUILDER['n1'] != this.id && this.draw_node_builder_helper()) {
                             global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
                             global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
                             global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
@@ -253,6 +245,5 @@ var ElectricalNode = /** @class */ (function () {
         else {
             this.simulation_id = -1;
         }
-    };
-    return ElectricalNode;
-}());
+    }
+}

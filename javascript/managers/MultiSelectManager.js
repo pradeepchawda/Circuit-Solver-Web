@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var MultiSelectManager = /** @class */ (function () {
-    function MultiSelectManager() {
+class MultiSelectManager {
+    constructor() {
         this.OFFSCREEN_X = -500e3;
         this.OFFSCREEN_Y = -500e3;
         this.MULTI_SELECT_BOUNDS = new RectF(this.OFFSCREEN_X, this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
@@ -98,14 +98,14 @@ var MultiSelectManager = /** @class */ (function () {
         this.DRAW_BOUNDS = new RectF(0, 0, 0, 0);
     }
     /* Reset the enveloping bounds. */
-    MultiSelectManager.prototype.reset_enveloping_bounds = function () {
+    reset_enveloping_bounds() {
         global.multi_selected = false;
         this.SELECTED_COMPONENTS_BOUNDS.left = -this.OFFSCREEN_X;
         this.SELECTED_COMPONENTS_BOUNDS.top = -this.OFFSCREEN_Y;
         this.SELECTED_COMPONENTS_BOUNDS.right = this.OFFSCREEN_X + 1;
         this.SELECTED_COMPONENTS_BOUNDS.bottom = this.OFFSCREEN_Y + 1;
-    };
-    MultiSelectManager.prototype.refresh_multi_select = function () {
+    }
+    refresh_multi_select() {
         this.MULTI_SELECTED_ELEMENT = false;
         if (global.selected) {
             if (!global.component_touched) {
@@ -531,8 +531,8 @@ var MultiSelectManager = /** @class */ (function () {
         this.MULTI_SELECT_BOUNDS.right = this.OFFSCREEN_X + 1;
         this.MULTI_SELECT_BOUNDS.bottom = this.OFFSCREEN_Y + 1;
         this.MULTI_SELECT = false;
-    };
-    MultiSelectManager.prototype.key_down = function (key_event) {
+    }
+    key_down(key_event) {
         if (this.ENABLE_KEYS) {
             if (!global.FLAG_SIMULATING &&
                 !global.FLAG_SAVE_IMAGE &&
@@ -552,8 +552,8 @@ var MultiSelectManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    MultiSelectManager.prototype.key_up = function (key_event) {
+    }
+    key_up(key_event) {
         if (this.ENABLE_KEYS && !global.SIGNAL_HISTORY_LOCK) {
             if (!this.MOUSE_DOWN) {
                 this.CTRL_PRESSED_STARTED = false;
@@ -561,8 +561,8 @@ var MultiSelectManager = /** @class */ (function () {
                 this.DELTA_LATCH = false;
             }
         }
-    };
-    MultiSelectManager.prototype.mouse_down = function () {
+    }
+    mouse_down() {
         if (!global.FLAG_SIMULATING &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -625,8 +625,8 @@ var MultiSelectManager = /** @class */ (function () {
                 }
             }
         }
-    };
-    MultiSelectManager.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (!global.FLAG_SIMULATING &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -683,8 +683,8 @@ var MultiSelectManager = /** @class */ (function () {
                 this.MULTI_SELECT_BOUNDS.top = global.mouse_y;
             }
         }
-    };
-    MultiSelectManager.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         this.MOUSE_DOWN = false;
         this.CTRL_PRESSED_STARTED = false;
         this.CTRL_PRESSED = false;
@@ -693,12 +693,12 @@ var MultiSelectManager = /** @class */ (function () {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
             this.ELEMENTS_MOVED = false;
         }
-    };
-    MultiSelectManager.prototype.handle_multi_move = function () {
+    }
+    handle_multi_move() {
         /* This logic works... i'll have to block the actual mouse movements for the rest of the elements... */
         /* Add undo / redo capabilities. */
-        var dx = (this.DELTA_DX - this.DELTA_LAST_DX) * global.node_space_x;
-        var dy = (this.DELTA_DY - this.DELTA_LAST_DY) * global.node_space_y;
+        let dx = (this.DELTA_DX - this.DELTA_LAST_DX) * global.node_space_x;
+        let dy = (this.DELTA_DY - this.DELTA_LAST_DY) * global.node_space_y;
         /* Block the selected components if the bounding rect is too close to the top. */
         if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top >
             workspace.bounds.top + global.node_space_y)) {
@@ -1207,9 +1207,9 @@ var MultiSelectManager = /** @class */ (function () {
                 global.component_touched = true;
             }
         }
-    };
+    }
     /* Called by all elements in update... */
-    MultiSelectManager.prototype.determine_enveloping_bounds = function (bounds) {
+    determine_enveloping_bounds(bounds) {
         if (!global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
             !global.FLAG_ZOOM &&
@@ -1227,8 +1227,8 @@ var MultiSelectManager = /** @class */ (function () {
             this.SELECTED_COMPONENTS_BOUNDS.right = Math.max(this.SELECTED_COMPONENTS_BOUNDS.right, bounds.right + global.node_space_x);
             this.SELECTED_COMPONENTS_BOUNDS.bottom = Math.max(this.SELECTED_COMPONENTS_BOUNDS.bottom, bounds.bottom + global.node_space_y);
         }
-    };
-    MultiSelectManager.prototype.draw_bounds = function (canvas) {
+    }
+    draw_bounds(canvas) {
         if (this.MULTI_SELECT) {
             if (!global.FLAG_SAVE_IMAGE &&
                 !global.FLAG_SAVE_CIRCUIT &&
@@ -1259,6 +1259,5 @@ var MultiSelectManager = /** @class */ (function () {
         if (global.DEVELOPER_MODE) {
             canvas.draw_line(this.DELTA_CENTER_X, this.DELTA_CENTER_Y, this.DELTA_END_X, this.DELTA_END_Y, this.line_paint);
         }
-    };
-    return MultiSelectManager;
-}());
+    }
+}

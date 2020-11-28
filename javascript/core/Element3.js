@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Element3 = /** @class */ (function () {
-    function Element3(id, type, properties) {
+class Element3 {
+    constructor(id, type, properties) {
         /* Node 1 id */
         this.n1 = -1;
         /* Node 2 id */
@@ -64,119 +64,106 @@ var Element3 = /** @class */ (function () {
         this.FUDGE_FACTOR = 0.98;
     }
     /* Set the properties of the component */
-    Element3.prototype.set_properties = function (properties) {
+    set_properties(properties) {
         this.properties = properties;
-    };
+    }
     /* Get the properties of the component */
-    Element3.prototype.get_properties = function () {
+    get_properties() {
         return this.properties;
-    };
+    }
     /* Set the rotation of the component */
-    Element3.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.rotation = rotation;
-    };
+    }
     /* Get the rotation of the component */
-    Element3.prototype.get_rotation = function () {
+    get_rotation() {
         return this.rotation;
-    };
+    }
     /* Sets the flip of the component */
-    Element3.prototype.set_flip = function (flip) {
+    set_flip(flip) {
         this.flip = flip;
-    };
+    }
     /* Get the flip of hte component */
-    Element3.prototype.get_flip = function () {
+    get_flip() {
         return this.flip;
-    };
+    }
     /* Get the component port size */
-    Element3.prototype.get_port_size = function () {
+    get_port_size() {
         return this.port_size;
-    };
+    }
     /* Set the id of attached node 1 */
-    Element3.prototype.set_node_1 = function (n1) {
+    set_node_1(n1) {
         this.n1 = n1;
-    };
+    }
     /* Set the id of attached node 2 */
-    Element3.prototype.set_node_2 = function (n2) {
+    set_node_2(n2) {
         this.n2 = n2;
-    };
-    Element3.prototype.set_node_3 = function (n3) {
+    }
+    set_node_3(n3) {
         this.n3 = n3;
-    };
+    }
     /* Get the id of attached node 1 */
-    Element3.prototype.get_node_1 = function () {
+    get_node_1() {
         return this.n1;
-    };
+    }
     /* Get the id of attached node 2 */
-    Element3.prototype.get_node_2 = function () {
+    get_node_2() {
         return this.n2;
-    };
-    Element3.prototype.get_node_3 = function () {
+    }
+    get_node_3() {
         return this.n3;
-    };
+    }
     /* Set multiple nodes */
-    Element3.prototype.set_nodes = function (n1, n2, n3) {
+    set_nodes(n1, n2, n3) {
         this.n1 = n1;
         this.n2 = n2;
         this.n3 = n3;
-    };
+    }
     /* Get multiple nodes */
-    Element3.prototype.get_nodes = function () {
+    get_nodes() {
         return Array(this.n1, this.n2, this.n3);
-    };
+    }
     /* A quick check to see if the element is consistent, elements will have
     -1 as their reference when they are not anchored. */
-    Element3.prototype.consistent = function () {
+    consistent() {
         return this.n1 > -1 && this.n2 > -1 && this.n3 > -1;
-    };
+    }
     /* General algorithm to map the spacial location to nodes */
-    Element3.prototype.map_node3 = function (x1, y1, x2, y2, x3, y3) {
-        var sqrt = this.round(global.settings.SQRT_MAXNODES);
-        var w_factor = (this.FUDGE_FACTOR / workspace.bounds.get_width()) * sqrt;
-        var h_factor = (this.FUDGE_FACTOR / workspace.bounds.get_height()) * sqrt;
-        var x_1 = Math.floor((x1 - workspace.bounds.left) * w_factor);
-        var y_1 = Math.floor((y1 - workspace.bounds.top) * h_factor);
-        var x_2 = Math.floor((x2 - workspace.bounds.left) * w_factor);
-        var y_2 = Math.floor((y2 - workspace.bounds.top) * h_factor);
-        var x_3 = Math.floor((x3 - workspace.bounds.left) * w_factor);
-        var y_3 = Math.floor((y3 - workspace.bounds.top) * h_factor);
-        var n1 = this.to_index(sqrt, x_1, y_1);
-        var n2 = this.to_index(sqrt, x_2, y_2);
-        var n3 = this.to_index(sqrt, x_3, y_3);
-        if (n1 >= 0 &&
-            n1 < global.settings.MAXNODES &&
-            n2 >= 0 &&
-            n2 < global.settings.MAXNODES &&
-            n3 >= 0 &&
-            n3 < global.settings.MAXNODES) {
+    map_node3(x1, y1, x2, y2, x3, y3) {
+        let sqrt = this.round(global.settings.SQRT_MAXNODES);
+        let w_factor = (this.FUDGE_FACTOR / workspace.bounds.get_width()) * sqrt;
+        let h_factor = (this.FUDGE_FACTOR / workspace.bounds.get_height()) * sqrt;
+        let x_1 = Math.floor((x1 - workspace.bounds.left) * w_factor);
+        let y_1 = Math.floor((y1 - workspace.bounds.top) * h_factor);
+        let x_2 = Math.floor((x2 - workspace.bounds.left) * w_factor);
+        let y_2 = Math.floor((y2 - workspace.bounds.top) * h_factor);
+        let x_3 = Math.floor((x3 - workspace.bounds.left) * w_factor);
+        let y_3 = Math.floor((y3 - workspace.bounds.top) * h_factor);
+        let n1 = this.to_index(sqrt, x_1, y_1);
+        let n2 = this.to_index(sqrt, x_2, y_2);
+        let n3 = this.to_index(sqrt, x_3, y_3);
+        if (n1 >= 0 && n1 < global.settings.MAXNODES && n2 >= 0 && n2 < global.settings.MAXNODES && n3 >= 0 && n3 < global.settings.MAXNODES) {
             this.n1 = n1;
             this.n2 = n2;
             this.n3 = n3;
         }
-    };
-    Element3.prototype.to_index = function (sqrt) {
-        var i = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            i[_i - 1] = arguments[_i];
-        }
+    }
+    to_index(sqrt, ...i) {
         return i[1] * sqrt + i[0];
-    };
-    Element3.prototype.snap_to_grid = function (x1, y1) {
+    }
+    snap_to_grid(x1, y1) {
         x1 = this.limit(x1, workspace.bounds.left + global.node_space_x * 1.5, workspace.bounds.right - global.node_space_x * 1.25);
         y1 = this.limit(y1, workspace.bounds.top + global.node_space_y * 1.5, workspace.bounds.bottom - global.node_space_y * 1.25);
-        var sqrt = this.round(global.settings.SQRT_MAXNODES);
-        var x_1 = Math.floor((((x1 - workspace.bounds.left) * this.FUDGE_FACTOR) /
-            workspace.bounds.get_width()) *
-            sqrt);
-        var y_1 = Math.floor((((y1 - workspace.bounds.top) * this.FUDGE_FACTOR) /
-            workspace.bounds.get_height()) *
-            sqrt);
-        var n1 = this.to_index(sqrt, x_1, y_1);
+        let sqrt = this.round(global.settings.SQRT_MAXNODES);
+        let x_1 = Math.floor((((x1 - workspace.bounds.left) * this.FUDGE_FACTOR) / workspace.bounds.get_width()) * sqrt);
+        let y_1 = Math.floor((((y1 - workspace.bounds.top) * this.FUDGE_FACTOR) / workspace.bounds.get_height()) * sqrt);
+        let n1 = this.to_index(sqrt, x_1, y_1);
         if (n1 >= 0 && n1 < global.settings.MAXNODES) {
             return Array(nodes[n1].location.x, nodes[n1].location.y);
         }
         return Array(x1, y1);
-    };
-    Element3.prototype.limit = function (inp, low, high) {
+    }
+    limit(inp, low, high) {
         if (inp < low) {
             return low;
         }
@@ -186,9 +173,8 @@ var Element3 = /** @class */ (function () {
         else {
             return inp;
         }
-    };
-    Element3.prototype.round = function (value) {
+    }
+    round(value) {
         return Math.round((value + Number.EPSILON) * 1000) / 1000;
-    };
-    return Element3;
-}());
+    }
+}

@@ -22,43 +22,14 @@
 /* NOTE: ALL COMMENTS MUST BE ON THEIR OWN LINES!!!!! This is to be safe when obfuscating. */
 /* Prevent the backspace from navigating! Disable scrolling w/ backspace or arrow keys! */
 /* #START_GLOBAL_EXTRACT# */
-// window.addEventListener(
-//   'keydown',
-//   function (e) {
-//     if (
-//       e.code === 'Tab' ||
-//       e.code === 'ControlLeft' ||
-//       e.code === 'ControlRight' ||
-//       e.code === 'Space' ||
-//       e.code === 'PageUp' ||
-//       e.code === 'PageDown' ||
-//       e.code === 'ArrowLeft' ||
-//       e.code === 'ArrowUp' ||
-//       e.code === 'ArrowRight' ||
-//       e.code === 'ArrowDown' ||
-//       e.code === 'Backspace' ||
-//       e.code === 'Delete' ||
-//       e.code === 'NumpadDivide' ||
-//       e.code === 'Equal' ||
-//       e.code === 'KeyA' ||
-//       e.code === 'NumpadAdd' ||
-//       e.code === 'Minus' ||
-//       e.code === 'NumpadMinus' ||
-//       e.code === 'Slash' ||
-//       e.code === 'Backslash'
-//     ) {
-//       e.preventDefault();
-//     }
-//   },
-//   false
-// );
 /* add the hashCode function for all strings. */
 String.prototype.hashCode = function () {
-    var hash = 0;
-    var i = 0;
-    var chr = '';
-    if (this.length === 0)
+    let hash = 0;
+    let i = 0;
+    let chr = '';
+    if (this.length === 0) {
         return hash;
+    }
     for (i = 0; i < this.length; i++) {
         chr = this.charCodeAt(i);
         hash = (hash << 5) - hash + Number(chr);
@@ -68,7 +39,7 @@ String.prototype.hashCode = function () {
 };
 /* Save a file for the user! */
 function save_file(title, content) {
-    var blob = new Blob([content], {
+    let blob = new Blob([content], {
         type: 'text/plain;charset=utf-8'
     });
     saveAs(blob, title);
@@ -82,7 +53,7 @@ function save_image(title, canvas) {
 /* Save an image for the user! */
 function save_image_mobile(title, canvas) {
     canvas.toBlob(function (blob) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onloadend = function () {
             window.JsInterface.javascript_native_hook('push-image', title, reader.result);
@@ -105,14 +76,14 @@ var file_saver = document.getElementById('file_saver');
 var file_loader = document.getElementById('file_loader');
 /* Handles any file events that take place. */
 function file_event(input) {
-    var file = input.files[0];
-    var reader = new FileReader();
+    let file = input.files[0];
+    let reader = new FileReader();
     reader.onload = function (e) {
         /* Grab the contents of the file. */
-        var text = String(reader.result);
+        let text = String(reader.result);
         /* Save the name of the file to global. */
         /* Remove the extension :3 */
-        var title = input.files[0].name.split('.')[0];
+        let title = input.files[0].name.split('.')[0];
         if (title.length > global.MAX_TEXT_LENGTH) {
             title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
         }
@@ -422,16 +393,16 @@ function load_app() {
     global.last_surface_width = 0;
     global.last_surface_height = 0;
     /* Create the drawing engine */
-    var canvas = new GraphicsEngine(virtual_surface.context);
-    var FIFO_INDEX = 0;
-    var touch = global.NULL;
-    var met_max = -1;
-    var TEMP_DRAW_SIGNAL = false;
+    let canvas = new GraphicsEngine(virtual_surface.context);
+    let FIFO_INDEX = 0;
+    let touch = global.NULL;
+    let met_max = -1;
+    let TEMP_DRAW_SIGNAL = false;
     /* Used to calculate node spacing. */
-    var NSX = 0;
-    var NSY = 0;
-    var MNSX = 0;
-    var MNSY = 0;
+    let NSX = 0;
+    let NSY = 0;
+    let MNSX = 0;
+    let MNSY = 0;
     /* In case canvas is scaled inside an html element. If it is, then look at the commented code
     inside resize_canvas() to handle how these values should be re-calculated. */
     general_paint.set_paint_style(general_paint.style.FILL);
@@ -447,7 +418,7 @@ function load_app() {
     general_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
     general_paint.set_font(global.DEFAULT_FONT);
     general_paint.set_alpha(255);
-    general_paint.set_paint_align(general_paint.align.LEFT);
+    general_paint.set_paint_align(general_paint.align.CENTER);
     /* Inititalize the system. This is called at the end of this file.
     (After everything is initialized) */
     function initialize(step) {
@@ -545,10 +516,6 @@ function load_app() {
             global.CANVAS_STROKE_WIDTH_BASE = 0.000725 * view_port.view_width;
             global.CANVAS_TEXT_SIZE_BASE = 0.000725 * view_port.view_width;
         }
-        virtual_surface.resize();
-        on_screen_keyboard.resize_keyboard();
-        global.RESIZE_EVENT = true;
-        canvas.on_resize();
         try {
             ctx.globalCompositeOperation = 'copy';
             ctx.imageSmoothingEnabled = false;
@@ -572,6 +539,9 @@ function load_app() {
         global.CANVAS_TEXT_SIZE_6 = global.CANVAS_TEXT_SIZE_BASE * 43;
         global.SIGNAL_BUILD_ELEMENT = true;
         global.SIGNAL_BUILD_COUNTER = 0;
+        virtual_surface.resize();
+        global.RESIZE_EVENT = true;
+        canvas.on_resize();
         surface.style.backfaceVisibility = 'hidden';
         if (surface.style.visibility === 'hidden') {
             surface.style.visibility = 'visible';
@@ -708,6 +678,7 @@ function load_app() {
         yes_no_window.resize_window();
         graph_window.resize_window();
         toast.resize_toast();
+        on_screen_keyboard.resize_keyboard();
         /* #INSERT_METER_RESIZE_TRACE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {
@@ -861,18 +832,18 @@ function load_app() {
         }
         catch (e) {
             if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
-                var post_data = e + '\r\n' + e.stack + '\r\n';
-                var url = 'solver_errors.php?msg="' + post_data + '"';
-                var method = 'POST';
-                var should_be_async = true;
-                var request_1 = new XMLHttpRequest();
-                request_1.onload = function () {
-                    var status = request_1.status;
-                    var data = request_1.responseText;
+                let post_data = e + '\r\n' + e.stack + '\r\n';
+                let url = 'solver_errors.php?msg="' + post_data + '"';
+                let method = 'POST';
+                let should_be_async = true;
+                let request = new XMLHttpRequest();
+                request.onload = function () {
+                    let status = request.status;
+                    let data = request.responseText;
                 };
-                request_1.open(method, url, should_be_async);
-                request_1.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-                request_1.send(post_data);
+                request.open(method, url, should_be_async);
+                request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+                request.send(post_data);
             }
         }
     }
@@ -1881,7 +1852,7 @@ function load_app() {
         }
     }
     function handle_mouse_up() {
-        var temp_transition_lock = global.TRANSLATION_LOCK;
+        let temp_transition_lock = global.TRANSLATION_LOCK;
         global.TRANSLATION_LOCK = true;
         global.mouse_down_x = -1;
         global.mouse_down_y = -1;
@@ -2123,7 +2094,7 @@ function load_app() {
             global.SIGNAL_WIRE_CREATED = false;
         }
         /* Handle menu_bar mouse up event. */
-        var component_touched = global.component_touched;
+        let component_touched = global.component_touched;
         if (!global.component_touched) {
             global.component_touched = true;
         }
@@ -2198,9 +2169,9 @@ function load_app() {
         }
     }
     function handle_workspace_drag() {
-        var sqrt = Math.round(global.settings.SQRT_MAXNODES * 0.75);
-        var x_space = sqrt * global.node_space_x;
-        var y_space = sqrt * global.node_space_y;
+        let sqrt = Math.round(global.settings.SQRT_MAXNODES * 0.75);
+        let x_space = sqrt * global.node_space_x;
+        let y_space = sqrt * global.node_space_y;
         /* Limit the travel in the -x direction */
         if (workspace.bounds.left + global.dx < view_port.left - x_space) {
             global.dx = view_port.left - x_space - workspace.bounds.left;
@@ -2224,18 +2195,18 @@ function load_app() {
     /* Register web analytics */
     function register() {
         if (!global.DEVELOPER_MODE) {
-            var post_data = 'pinged @ {' + global.get_time_stamp() + '}';
-            var url = 'analytics.php?msg="' + post_data + '"';
-            var method = 'POST';
-            var should_be_async = true;
-            var request_2 = new XMLHttpRequest();
-            request_2.onload = function () {
-                var status = request_2.status;
-                var data = request_2.responseText;
+            let post_data = 'pinged @ {' + global.get_time_stamp() + '}';
+            let url = 'analytics.php?msg="' + post_data + '"';
+            let method = 'POST';
+            let should_be_async = true;
+            let request = new XMLHttpRequest();
+            request.onload = function () {
+                let status = request.status;
+                let data = request.responseText;
             };
-            request_2.open(method, url, should_be_async);
-            request_2.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-            request_2.send(post_data);
+            request.open(method, url, should_be_async);
+            request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+            request.send(post_data);
         }
     }
     function browser_detection() {

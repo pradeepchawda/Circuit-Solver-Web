@@ -19,12 +19,11 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Circuit = /** @class */ (function () {
-    function Circuit() {
+class Circuit {
+    constructor() {
         this.title = 'untitled';
         this.content = '';
         this.title = 'untitled';
         this.content = '';
     }
-    return Circuit;
-}());
+}

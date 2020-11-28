@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Settings = /** @class */ (function () {
-    function Settings() {
+class Settings {
+    constructor() {
         /* A flag to make the camra view a perfect square. */
         this.WORKSPACE_PERFECT_SQUARE = true;
         /* The Workspace Scaling (ultimately determines width and height of workspace view) */
@@ -203,5 +203,4 @@ var Settings = /** @class */ (function () {
         /* The minimum time_constant   */
         this.MAX_TIME_CONSTANT = 10;
     }
-    return Settings;
-}());
+}

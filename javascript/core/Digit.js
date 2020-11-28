@@ -19,13 +19,12 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Digit = /** @class */ (function () {
-    function Digit(setter) {
+class Digit {
+    constructor(setter) {
         this.num = 0;
         this.num = setter;
     }
-    Digit.prototype.get_digit = function () {
+    get_digit() {
         return this.num;
-    };
-    return Digit;
-}());
+    }
+}

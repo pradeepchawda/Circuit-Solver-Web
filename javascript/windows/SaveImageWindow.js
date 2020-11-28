@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var SaveImageWindow = /** @class */ (function () {
-    function SaveImageWindow() {
+class SaveImageWindow {
+    constructor() {
         this.TITLE_HEIGHT_RATIO = 0.25;
         this.BUTTON_WIDTH_RATIO = 0.3;
         this.BUTTON_HEIGHT_RATIO = 0.25;
@@ -157,9 +157,9 @@ var SaveImageWindow = /** @class */ (function () {
         this.title_bounds.draw_stroke = false;
         this.title_bounds.draw_fill = true;
         this.title_bounds.draw_text = false;
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.okay_button = new Button(this.bounds.right - 2 * padding - 2 * width, this.bounds.bottom - height - padding, this.bounds.right - 2 * padding - width, this.bounds.bottom - padding);
         this.okay_button.text = '';
         this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
@@ -210,7 +210,7 @@ var SaveImageWindow = /** @class */ (function () {
         this.MOUSE_DOWN = false;
         this.ASCENDING = false;
     }
-    SaveImageWindow.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_SAVE_IMAGE) {
             if (this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                 !this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)) {
@@ -223,8 +223,8 @@ var SaveImageWindow = /** @class */ (function () {
             this.INITIAL_CURSOR_DOWN = this.insert_cursor(false, false);
             this.MOUSE_DOWN = true;
         }
-    };
-    SaveImageWindow.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.FLAG_SAVE_IMAGE) {
             if (!this.WINDOW_ANCHORED) {
                 this.OFFSET_X = global.mouse_x - this.ANCHOR_X;
@@ -255,8 +255,8 @@ var SaveImageWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    SaveImageWindow.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         if (global.FLAG_SAVE_IMAGE) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 if (this.WINDOW_ANCHORED) {
@@ -315,23 +315,23 @@ var SaveImageWindow = /** @class */ (function () {
                 this.MOUSE_DOWN = false;
             }
         }
-    };
-    SaveImageWindow.prototype.insert_cursor = function (is_mouse_up, is_mouse_move) {
+    }
+    insert_cursor(is_mouse_up, is_mouse_move) {
         /* Figuring out where the cursor should go. */
-        var min = this.input_button.get_center_x() - this.measured_text * 0.5;
-        var max = this.input_button.get_center_x() + this.measured_text * 0.5;
-        var remapped_x = global.mouse_x - this.OFFSET_X;
-        var remapped_y = global.mouse_y - this.OFFSET_Y;
+        let min = this.input_button.get_center_x() - this.measured_text * 0.5;
+        let max = this.input_button.get_center_x() + this.measured_text * 0.5;
+        let remapped_x = global.mouse_x - this.OFFSET_X;
+        let remapped_y = global.mouse_y - this.OFFSET_Y;
         if (remapped_x <= min) {
             remapped_x = min;
         }
         if (remapped_x >= max) {
             remapped_x = max;
         }
-        var width = max - min;
-        var char_length = (this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length)).length;
-        var percent = (remapped_x - min) / width;
-        var insert_at = Math.ceil(percent * char_length);
+        let width = max - min;
+        let char_length = (this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length)).length;
+        let percent = (remapped_x - min) / width;
+        let insert_at = Math.ceil(percent * char_length);
         if (is_mouse_up && this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
             /* Only update cursor position on mouse up. We will use mouse move to make it possible to update the highlight when the mouse is moving.*/
             if (!is_mouse_move) {
@@ -355,18 +355,18 @@ var SaveImageWindow = /** @class */ (function () {
             }
         }
         return insert_at;
-    };
-    SaveImageWindow.prototype.key_down = function (key_event) {
+    }
+    key_down(key_event) {
         if (global.FLAG_SAVE_IMAGE) {
             this.handle_keyboard(key_event);
         }
-    };
-    SaveImageWindow.prototype.key_up = function (key_event) {
+    }
+    key_up(key_event) {
         if (global.FLAG_SAVE_IMAGE) {
         }
-    };
+    }
     /* Handle the user's input! */
-    SaveImageWindow.prototype.handle_keyboard = function (key_event) {
+    handle_keyboard(key_event) {
         if (global.is_alpha_numeric(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
             if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
                 if (!this.SELECT_ALL) {
@@ -665,11 +665,11 @@ var SaveImageWindow = /** @class */ (function () {
             this.SELECT_END = this.input_button.text.length;
             this.CURSOR_POSITION = this.input_button.text.length;
         }
-    };
-    SaveImageWindow.prototype.handle_partial_select = function () {
+    }
+    handle_partial_select() {
         if (this.SELECT_START != this.SELECT_END) {
-            var min = Math.min(this.SELECT_START, this.SELECT_END);
-            var max = Math.max(this.SELECT_START, this.SELECT_END);
+            let min = Math.min(this.SELECT_START, this.SELECT_END);
+            let max = Math.max(this.SELECT_START, this.SELECT_END);
             this.input_button.text = this.input_button.text.substring(0, min) + this.input_button.text.substring(max, this.input_button.text.length);
             if (this.CURSOR_POSITION > 0) {
                 this.CURSOR_POSITION = Math.min(min, max);
@@ -677,14 +677,14 @@ var SaveImageWindow = /** @class */ (function () {
         }
         this.SELECT_START = -1;
         this.SELECT_END = -1;
-    };
-    SaveImageWindow.prototype.reset_cursor = function () {
+    }
+    reset_cursor() {
         this.CURSOR_POSITION = this.input_button.text.length;
         this.SELECT_ALL = false;
         this.SELECT_START = -1;
         this.SELECT_END = -1;
-    };
-    SaveImageWindow.prototype.double_click = function (mouse_event) {
+    }
+    double_click(mouse_event) {
         if (global.MOUSE_DOUBLE_CLICK_EVENT) {
             if (this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)) {
                 this.SELECT_ALL = !this.SELECT_ALL;
@@ -696,8 +696,8 @@ var SaveImageWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    SaveImageWindow.prototype.resize_window = function () {
+    }
+    resize_window() {
         if (global.MOBILE_MODE) {
             this.width = view_port.view_width * 0.2625;
             this.height = view_port.view_height * 0.15;
@@ -709,9 +709,9 @@ var SaveImageWindow = /** @class */ (function () {
         this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
         this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
         this.title_bounds.resize_paint();
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.okay_button.set_bounds(this.bounds.right - 2 * padding - 2 * width, this.bounds.bottom - height - padding, this.bounds.right - 2 * padding - width, this.bounds.bottom - padding);
         this.okay_button.resize_paint();
         this.cancel_button.set_bounds(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
@@ -744,8 +744,8 @@ var SaveImageWindow = /** @class */ (function () {
                 this.OFFSET_Y = -0.25 * view_port.view_height;
             }
         }
-    };
-    SaveImageWindow.prototype.draw_window = function (canvas) {
+    }
+    draw_window(canvas) {
         if (global.FLAG_SAVE_IMAGE) {
             /* Makes sure the window is always visisble. */
             if (global.MOBILE_MODE) {
@@ -770,17 +770,17 @@ var SaveImageWindow = /** @class */ (function () {
             }
             this.cancel_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
             this.input_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-            var text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+            let text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             canvas.draw_text(text, this.input_button.get_center_x() + this.OFFSET_X, this.input_button.get_center_y() + this.OFFSET_Y, this.input_button.text_paint);
             this.measured_text = this.input_button.text_paint.measure_text(text);
-            var adj_text = this.input_button.text;
+            let adj_text = this.input_button.text;
             if (this.SELECT_ALL && this.SELECT_START === -1 && this.SELECT_END === -1) {
                 canvas.draw_rect3(this.input_button.get_center_x() + this.OFFSET_X, this.input_button.get_center_y() + this.OFFSET_Y, this.measured_text * 1.1, this.input_button.get_height() * 0.7, this.select_paint);
             }
-            var cached_measured_text = this.measured_text * 0.5;
+            let cached_measured_text = this.measured_text * 0.5;
             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
-                var min = Math.min(this.SELECT_START, this.SELECT_END);
-                var max = Math.max(this.SELECT_START, this.SELECT_END);
+                let min = Math.min(this.SELECT_START, this.SELECT_END);
+                let max = Math.max(this.SELECT_START, this.SELECT_END);
                 this.SELECT_WIDTH = this.text_paint.measure_text(adj_text.substring(min, max));
                 this.SELECT_OFFSET_X = this.text_paint.measure_text(adj_text.substring(0, min));
                 canvas.draw_rect(this.input_button.get_center_x() - cached_measured_text + this.SELECT_OFFSET_X + this.OFFSET_X, this.input_button.get_center_y() - this.input_button.get_height() * 0.35 + this.OFFSET_Y, this.input_button.get_center_x() - cached_measured_text + this.SELECT_OFFSET_X + this.OFFSET_X + this.SELECT_WIDTH, this.input_button.get_center_y() + this.input_button.get_height() * 0.35 + this.OFFSET_Y, this.select_paint);
@@ -789,12 +789,11 @@ var SaveImageWindow = /** @class */ (function () {
             if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
                 canvas.draw_round_rect(this.exit_button.left + this.OFFSET_X, this.exit_button.top + this.OFFSET_Y, this.exit_button.right + this.OFFSET_X, this.exit_button.bottom + this.OFFSET_Y, this.exit_button.line_paint.get_stroke_width(), this.hover_paint);
             }
-            var width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
-            var height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
+            let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
+            let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
             canvas.draw_line(this.exit_button.left + width_mul_0p3636 + this.OFFSET_X, this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y, this.exit_button.right - width_mul_0p3636 + this.OFFSET_X, this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y, this.line_paint);
             canvas.draw_line(this.exit_button.right - width_mul_0p3636 + this.OFFSET_X, this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y, this.exit_button.left + width_mul_0p3636 + this.OFFSET_X, this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y, this.line_paint);
             canvas.draw_text('(' + this.input_button.text.length + ' / ' + global.MAX_TEXT_LENGTH + ')', this.input_button.left + this.OFFSET_X, this.okay_button.get_center_y() + this.OFFSET_Y, this.text_paint);
         }
-    };
-    return SaveImageWindow;
-}());
+    }
+}

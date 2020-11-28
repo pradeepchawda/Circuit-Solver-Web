@@ -1,16 +1,3 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 /**********************************************************************
  * Project           : Circuit Solver
  * File		        : ToggleSwitch.js
@@ -32,93 +19,85 @@ var __extends = (this && this.__extends) || (function () {
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ToggleSwitch = /** @class */ (function (_super) {
-    __extends(ToggleSwitch, _super);
-    function ToggleSwitch(left, top, right, bottom) {
-        var _this = _super.call(this, left, top, right, bottom) || this;
+class ToggleSwitch extends RectF {
+    constructor(left, top, right, bottom) {
+        super(left, top, right, bottom);
         /* A flag to indicate whether or not to draw the fill of the button. */
-        _this.draw_fill = false;
+        this.draw_fill = false;
         /* A flag to indicate whether or not to draw the trim of the button. */
-        _this.draw_stroke = true;
+        this.draw_stroke = true;
         /* A flag to indicate whether or not to draw the text of the button. */
-        _this.draw_text = true;
+        this.draw_text = true;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
-        _this.line_paint = new Paint();
+        this.line_paint = new Paint();
         /* This paint is used for drawing the "fill" that the component is comprised of. */
-        _this.fill_paint = new Paint();
+        this.fill_paint = new Paint();
         /* This paint is used for drawing the "fill" that the component is comprised of. */
-        _this.toggle_paint = new Paint();
+        this.toggle_paint = new Paint();
         /* This paint is used for drawing the "text" that the component needs to display */
-        _this.text_paint = new Paint();
+        this.text_paint = new Paint();
         /* Keeps track of the toggle state. */
-        _this.STATE = '';
+        this.STATE = '';
         /* A flag to indicate whether or not to draw the fill of the button. */
-        _this.draw_fill = false;
+        this.draw_fill = false;
         /* A flag to indicate whether or not to draw the trim of the button. */
-        _this.draw_stroke = true;
+        this.draw_stroke = true;
         /* A flag to indicate whether or not to draw the text of the button. */
-        _this.draw_text = true;
+        this.draw_text = true;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
-        _this.line_paint = new Paint();
-        _this.line_paint.set_paint_style(_this.line_paint.style.STROKE);
-        _this.line_paint.set_paint_cap(_this.line_paint.cap.ROUND);
-        _this.line_paint.set_paint_join(_this.line_paint.join.MITER);
-        _this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-        _this.line_paint.set_color(global.GENERAL_GRAY_COLOR);
-        _this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        _this.line_paint.set_font(global.DEFAULT_FONT);
-        _this.line_paint.set_alpha(255);
-        _this.line_paint.set_paint_align(_this.line_paint.align.CENTER);
+        this.line_paint = new Paint();
+        this.line_paint.set_paint_style(this.line_paint.style.STROKE);
+        this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
+        this.line_paint.set_paint_join(this.line_paint.join.MITER);
+        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+        this.line_paint.set_color(global.GENERAL_GRAY_COLOR);
+        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.line_paint.set_font(global.DEFAULT_FONT);
+        this.line_paint.set_alpha(255);
+        this.line_paint.set_paint_align(this.line_paint.align.CENTER);
         /* This paint is used for drawing the "fill" that the component is comprised of. */
-        _this.fill_paint = new Paint();
-        _this.fill_paint.set_paint_style(_this.fill_paint.style.FILL);
-        _this.fill_paint.set_paint_cap(_this.fill_paint.cap.ROUND);
-        _this.fill_paint.set_paint_join(_this.fill_paint.join.MITER);
-        _this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        _this.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
-        _this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        _this.fill_paint.set_font(global.DEFAULT_FONT);
-        _this.fill_paint.set_alpha(255);
-        _this.fill_paint.set_paint_align(_this.fill_paint.align.CENTER);
+        this.fill_paint = new Paint();
+        this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
+        this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
+        this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
+        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
+        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.fill_paint.set_font(global.DEFAULT_FONT);
+        this.fill_paint.set_alpha(255);
+        this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
         /* This paint is used for drawing the "fill" that the component is comprised of. */
-        _this.toggle_paint = new Paint();
-        _this.toggle_paint.set_paint_style(_this.toggle_paint.style.FILL);
-        _this.toggle_paint.set_paint_cap(_this.toggle_paint.cap.ROUND);
-        _this.toggle_paint.set_paint_join(_this.toggle_paint.join.MITER);
-        _this.toggle_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        _this.toggle_paint.set_color(global.GENERAL_CYAN_COLOR);
-        _this.toggle_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        _this.toggle_paint.set_font(global.DEFAULT_FONT);
-        _this.toggle_paint.set_alpha(192);
-        _this.toggle_paint.set_paint_align(_this.toggle_paint.align.CENTER);
+        this.toggle_paint = new Paint();
+        this.toggle_paint.set_paint_style(this.toggle_paint.style.FILL);
+        this.toggle_paint.set_paint_cap(this.toggle_paint.cap.ROUND);
+        this.toggle_paint.set_paint_join(this.toggle_paint.join.MITER);
+        this.toggle_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.toggle_paint.set_color(global.GENERAL_CYAN_COLOR);
+        this.toggle_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.toggle_paint.set_font(global.DEFAULT_FONT);
+        this.toggle_paint.set_alpha(192);
+        this.toggle_paint.set_paint_align(this.toggle_paint.align.CENTER);
         /* This paint is used for drawing the "text" that the component needs to display */
-        _this.text_paint = new Paint();
-        _this.text_paint.set_paint_style(_this.text_paint.style.FILL);
-        _this.text_paint.set_paint_cap(_this.text_paint.cap.ROUND);
-        _this.text_paint.set_paint_join(_this.text_paint.join.MITER);
-        _this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        _this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
+        this.text_paint = new Paint();
+        this.text_paint.set_paint_style(this.text_paint.style.FILL);
+        this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
+        this.text_paint.set_paint_join(this.text_paint.join.MITER);
+        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         if (global.MOBILE_MODE) {
-            _this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         }
         else {
-            _this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         }
-        _this.text_paint.set_font(global.DEFAULT_FONT);
-        _this.text_paint.set_alpha(255);
-        _this.text_paint.set_paint_align(_this.text_paint.align.CENTER);
+        this.text_paint.set_font(global.DEFAULT_FONT);
+        this.text_paint.set_alpha(255);
+        this.text_paint.set_paint_align(this.text_paint.align.CENTER);
         /* Keeps track of the toggle state. */
-        _this.STATE = global.ON;
-        return _this;
+        this.STATE = global.ON;
     }
-    /* Handling any mouse down events. */
-    ToggleSwitch.prototype.mouse_down = function () { };
-    /* Handling any mouse move events. */
-    ToggleSwitch.prototype.mouse_move = function () { };
-    /* Handling any mouse up events. */
-    ToggleSwitch.prototype.mouse_up = function () { };
     /* Resize the stroke widths and the text sizes. */
-    ToggleSwitch.prototype.resize_paint = function () {
+    resize_paint() {
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -132,14 +111,14 @@ var ToggleSwitch = /** @class */ (function (_super) {
         else {
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         }
-    };
+    }
     /* Resize the buttons and the paint stroke and text sizes. */
-    ToggleSwitch.prototype.resize_toggle_switch = function () {
+    resize_toggle_switch() {
         this.resize();
-    };
+    }
     /* Draws the button to screen. */
-    ToggleSwitch.prototype.draw_toggle_switch = function (canvas) {
-        var padding = this.get_height() * 0.15;
+    draw_toggle_switch(canvas) {
+        let padding = this.get_height() * 0.15;
         if (this.draw_fill) {
             canvas.draw_round_rect2(this, this.fill_paint.get_stroke_width(), this.fill_paint);
         }
@@ -158,10 +137,10 @@ var ToggleSwitch = /** @class */ (function (_super) {
         if (this.draw_stroke) {
             canvas.draw_round_rect2(this, this.line_paint.get_stroke_width(), this.line_paint);
         }
-    };
+    }
     /* Draws the button to screen. */
-    ToggleSwitch.prototype.draw_toggle_switch_dxdy = function (canvas, offset_x, offset_y) {
-        var padding = this.get_height() * 0.175;
+    draw_toggle_switch_dxdy(canvas, offset_x, offset_y) {
+        let padding = this.get_height() * 0.175;
         if (this.draw_fill) {
             canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint.get_stroke_width(), this.fill_paint);
         }
@@ -172,10 +151,7 @@ var ToggleSwitch = /** @class */ (function (_super) {
             }
         }
         else if (this.STATE === global.OFF) {
-            canvas.draw_round_rect(this.left + padding + offset_x, this.top + padding + offset_y, this.get_center_x() -
-                this.get_height() * 0.1 +
-                offset_x -
-                (padding >> 1), this.bottom - padding + offset_y, this.toggle_paint.get_stroke_width(), this.toggle_paint);
+            canvas.draw_round_rect(this.left + padding + offset_x, this.top + padding + offset_y, this.get_center_x() - this.get_height() * 0.1 + offset_x - (padding >> 1), this.bottom - padding + offset_y, this.toggle_paint.get_stroke_width(), this.toggle_paint);
             if (this.draw_text) {
                 canvas.draw_text(this.STATE, this.right - this.get_width() * 0.25 + offset_x, this.get_center_y() + offset_y, this.text_paint);
             }
@@ -183,6 +159,5 @@ var ToggleSwitch = /** @class */ (function (_super) {
         if (this.draw_stroke) {
             canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.line_paint.get_stroke_width(), this.line_paint);
         }
-    };
-    return ToggleSwitch;
-}(RectF));
+    }
+}

@@ -19,9 +19,9 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var SimulationManager = /** @class */ (function () {
+class SimulationManager {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    function SimulationManager() {
+    constructor() {
         /* The amount of unique nodes in the system. Each one will have a voltage associated with it
       after we solve the modified nodal analysis matrix. */
         this.NODE_SIZE = 0;
@@ -171,7 +171,7 @@ var SimulationManager = /** @class */ (function () {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     /* Prepare the system for another simulation! (Called once, like an init) */
-    SimulationManager.prototype.reset_simulation = function () {
+    reset_simulation() {
         /* Reset the initialized flag, we haven't setup the environment yet. */
         this.INITIALIZED = false;
         /* Start the simulation back at time 0 */
@@ -187,8 +187,8 @@ var SimulationManager = /** @class */ (function () {
         this.FIRST_X_MATRIX_COPY = true;
         this.FIST_X_MATRIX_SOLUTION = false;
         linear_algebra.FIRST_LUP_SOLVE = true;
-    };
-    SimulationManager.prototype.setup = function () {
+    }
+    setup() {
         this.patch();
         /* Reset the singular matrix flag. */
         global.IS_SINGULAR = false;
@@ -324,8 +324,8 @@ var SimulationManager = /** @class */ (function () {
         this.SOLUTIONS_READY = false;
         /* Set the flag to indicate that we have prepared the system. */
         this.INITIALIZED = true;
-    };
-    SimulationManager.prototype.determine_optimal_timestep = function () {
+    }
+    determine_optimal_timestep() {
         /* Remove all time data */
         this.TIME_DATA.splice(0, this.TIME_DATA.length);
         /* #INSERT_GENERATE_PUSH_TIME_DATA# */
@@ -532,25 +532,25 @@ var SimulationManager = /** @class */ (function () {
             this.TIME_DATA.push(transformers[i].time_data());
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        var max_frequency = global.ZERO;
-        var min_frequency = Number.MAX_VALUE;
-        var max_resistance = global.ZERO;
-        var min_resistance = Number.MAX_VALUE;
-        var max_capacitance = global.ZERO;
-        var min_capacitance = Number.MAX_VALUE;
-        var max_inductance = global.ZERO;
-        var min_inductance = Number.MAX_VALUE;
-        var parallel_resistance = global.ZERO;
-        var series_resistance = global.ZERO;
-        var parallel_series_updated = false;
-        var min_freq_updated = false;
-        var max_freq_updated = false;
-        var min_res_updated = false;
-        var max_res_updated = false;
-        var min_cap_updated = false;
-        var max_cap_updated = false;
-        var min_ind_updated = false;
-        var max_ind_updated = false;
+        let max_frequency = global.ZERO;
+        let min_frequency = Number.MAX_VALUE;
+        let max_resistance = global.ZERO;
+        let min_resistance = Number.MAX_VALUE;
+        let max_capacitance = global.ZERO;
+        let min_capacitance = Number.MAX_VALUE;
+        let max_inductance = global.ZERO;
+        let min_inductance = Number.MAX_VALUE;
+        let parallel_resistance = global.ZERO;
+        let series_resistance = global.ZERO;
+        let parallel_series_updated = false;
+        let min_freq_updated = false;
+        let max_freq_updated = false;
+        let min_res_updated = false;
+        let max_res_updated = false;
+        let min_cap_updated = false;
+        let max_cap_updated = false;
+        let min_ind_updated = false;
+        let max_ind_updated = false;
         for (var i = 0; i < this.TIME_DATA.length; i++) {
             if (this.TIME_DATA[i]['Resistance'] > 0) {
                 parallel_resistance += global.copy(1.0 / this.TIME_DATA[i]['Resistance']);
@@ -646,18 +646,18 @@ var SimulationManager = /** @class */ (function () {
         if (!max_ind_updated) {
             max_inductance = global.settings.MAX_INDUCTANCE;
         }
-        var ts_final = 1;
-        var multiplier = 0.016;
+        let ts_final = 1;
+        let multiplier = 0.016;
         if (parallel_series_updated) {
-            var rc_parallel = Math.min(Math.max(parallel_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            var rl_parallel = Math.min(Math.max((min_inductance / parallel_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            var t_lc = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            var max_period = (1.0 / max_frequency) * multiplier;
-            var rc_series = Math.min(Math.max(series_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            var rl_series = Math.min(Math.max((min_inductance / series_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            var min_period = (1.0 / min_frequency) * multiplier;
-            var ts1 = global.min3(rc_parallel, rl_parallel, max_period);
-            var ts2 = global.min3(rc_series, rl_series, min_period);
+            let rc_parallel = Math.min(Math.max(parallel_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+            let rl_parallel = Math.min(Math.max((min_inductance / parallel_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+            let t_lc = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+            let max_period = (1.0 / max_frequency) * multiplier;
+            let rc_series = Math.min(Math.max(series_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+            let rl_series = Math.min(Math.max((min_inductance / series_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+            let min_period = (1.0 / min_frequency) * multiplier;
+            let ts1 = global.min3(rc_parallel, rl_parallel, max_period);
+            let ts2 = global.min3(rc_series, rl_series, min_period);
             ts_final = global.min3(ts1, ts2, t_lc);
             ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             if (!max_freq_updated &&
@@ -670,9 +670,9 @@ var SimulationManager = /** @class */ (function () {
             }
         }
         else {
-            var t_lc = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            var max_period = (1.0 / max_frequency) * multiplier;
-            var min_period = (1.0 / min_frequency) * multiplier;
+            let t_lc = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+            let max_period = (1.0 / max_frequency) * multiplier;
+            let min_period = (1.0 / min_frequency) * multiplier;
             ts_final = global.min3(max_period, min_period, t_lc);
             ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             if (!max_freq_updated &&
@@ -685,8 +685,8 @@ var SimulationManager = /** @class */ (function () {
             }
         }
         return ts_final;
-    };
-    SimulationManager.prototype.terminate = function () {
+    }
+    terminate() {
         this.NODE_SIZE = 0;
         this.OFFSET = 0;
         this.INITIALIZED = false;
@@ -699,8 +699,8 @@ var SimulationManager = /** @class */ (function () {
         /* Let's display that we are not simulating to the user! */
         toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
         toast.show();
-    };
-    SimulationManager.prototype.reset_elements = function () {
+    }
+    reset_elements() {
         /* #INSERT_GENERATE_RESET_ELEMENTS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < resistors.length; i++) {
@@ -905,8 +905,8 @@ var SimulationManager = /** @class */ (function () {
             transformers[i].reset();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    SimulationManager.prototype.reset_memory_devices = function () {
+    }
+    reset_memory_devices() {
         /* #INSERT_GENERATE_RESET_MEMORY_ELEMENTS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < fuses.length; i++) {
@@ -931,8 +931,8 @@ var SimulationManager = /** @class */ (function () {
             tptzs[i].reset_tptz();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    SimulationManager.prototype.reset_reactive_elements = function () {
+    }
+    reset_reactive_elements() {
         /* #INSERT_GENERATE_RESET_REACTIVE_ELEMENTS_TEMPLATE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < capacitors.length; i++) {
@@ -945,8 +945,8 @@ var SimulationManager = /** @class */ (function () {
             relays[i].reset_relay();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    SimulationManager.prototype.reset_non_linear_elements = function () {
+    }
+    reset_non_linear_elements() {
         /* #INSERT_GENERATE_RESET_NON_LINEAR_ELEMENTS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < diodes.length; i++) {
@@ -971,8 +971,8 @@ var SimulationManager = /** @class */ (function () {
             pnps[i].reset_pnp();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    SimulationManager.prototype.reset_meter_values = function () {
+    }
+    reset_meter_values() {
         graph_window.reset();
         /* #INSERT_GENERATE_RESET_METER_TRACE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -989,9 +989,9 @@ var SimulationManager = /** @class */ (function () {
             wattmeters[i].reset_trace();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
+    }
     /* Clear the immediate value used for i,v,r calculation */
-    SimulationManager.prototype.clear_meter_values = function () {
+    clear_meter_values() {
         /* #INSERT_GENERATE_RESET_METER# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {
@@ -1007,23 +1007,23 @@ var SimulationManager = /** @class */ (function () {
             wattmeters[i].reset_meter();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    SimulationManager.prototype.update_vir = function () {
+    }
+    update_vir() {
         if (global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP) {
             scope_manager.update_scopes();
         }
         else {
             this.clear_meter_values();
         }
-    };
+    }
     /* Check to see if the LED's should be on! */
-    SimulationManager.prototype.led_turn_on_check = function () {
+    led_turn_on_check() {
         for (var i = 0; i < leds.length; i++) {
             leds[i].turn_on_check();
         }
-    };
+    }
     /* Alternate convergence algorithm */
-    SimulationManager.prototype.alternative_convergence = function () {
+    alternative_convergence() {
         /* Run the other convergence algorithm */
         if (this.NODE_SIZE > 0 && matrix_x.length === matrix_x_copy.length) {
             if (this.FIRST_ERROR_CHECK) {
@@ -1087,9 +1087,9 @@ var SimulationManager = /** @class */ (function () {
                 this.CONTINUE_SOLVING = true;
             }
         }
-    };
-    SimulationManager.prototype.non_linear_check = function () {
-        var convergence = true;
+    }
+    non_linear_check() {
+        let convergence = true;
         /* #INSERT_GENERATE_NON_LINEAR_CHECK# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < diodes.length; i++) {
@@ -1141,8 +1141,8 @@ var SimulationManager = /** @class */ (function () {
         else {
             this.CONTINUE_SOLVING = false;
         }
-    };
-    SimulationManager.prototype.update_reactive_elements = function () {
+    }
+    update_reactive_elements() {
         /* #INSERT_GENERATE_UPDATE_REACTIVE_ELEMENTS_TEMPLATE_II# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < capacitors.length; i++) {
@@ -1155,8 +1155,8 @@ var SimulationManager = /** @class */ (function () {
             relays[i].update_relay();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    SimulationManager.prototype.simulate = function () {
+    }
+    simulate() {
         if (global.FLAG_SIMULATING && this.INITIALIZED) {
             if (this.SIMULATION_STEP === 0) {
                 /* Try to simulate at least two matrices per frame. */
@@ -1198,8 +1198,8 @@ var SimulationManager = /** @class */ (function () {
                 this.SIMULATION_STEP = 0;
             }
         }
-    };
-    SimulationManager.prototype.solve = function () {
+    }
+    solve() {
         if (this.CONTINUE_SOLVING && this.ITERATOR < global.settings.ITL4) {
             this.CONTINUE_SOLVING = false;
             if (this.FIRST_MATRIX_BUILD) {
@@ -1272,9 +1272,9 @@ var SimulationManager = /** @class */ (function () {
         else {
             this.SIMULATION_STEP++;
         }
-    };
+    }
     /* Handles furture proofing of system settings. */
-    SimulationManager.prototype.patch = function () {
+    patch() {
         if (global.settings.WIRE_RESISTANCE != 1e-3) {
             global.settings.WIRE_RESISTANCE = 1e-3;
         }
@@ -1306,6 +1306,5 @@ var SimulationManager = /** @class */ (function () {
         if (global.settings.MAX_TIME_CONSTANT != 10) {
             global.settings.MAX_TIME_CONSTANT = 10;
         }
-    };
-    return SimulationManager;
-}());
+    }
+}

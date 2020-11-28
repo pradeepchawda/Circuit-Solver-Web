@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Arc = /** @class */ (function () {
-    function Arc(x1, y1, x2, y2, amplitude) {
+class Arc {
+    constructor(x1, y1, x2, y2, amplitude) {
         /* The amplitude of the arc. */
         this.amplitude = 1;
         this.arc_paint = new Paint();
@@ -47,30 +47,30 @@ var Arc = /** @class */ (function () {
         this.IS_TRANSFORM_SCALED = true;
     }
     /* A quick function to re-set the points of the arc. */
-    Arc.prototype.set_points = function (x1, y1, x2, y2) {
+    set_points(x1, y1, x2, y2) {
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
-    };
+    }
     /* Resize the arc paint stroke width and the text size. */
-    Arc.prototype.resize = function () {
+    resize() {
         /* Resize the stroke widths and the text sizes. */
         this.arc_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
         this.arc_paint.set_text_size(global.CANVAS_TEXT_SIZE_4_ZOOM);
-    };
+    }
     /* Resize the arc paint stroke width and the text size. */
-    Arc.prototype.resize2 = function () {
+    resize2() {
         /* Resize the stroke widths and the text sizes. */
         this.arc_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.arc_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-    };
+    }
     /* Change the paint objects color. */
-    Arc.prototype.set_color = function (color) {
+    set_color(color) {
         this.arc_paint.set_color(color);
-    };
+    }
     /* Draw the arc w/ the instance of graphics engine */
-    Arc.prototype.draw_arc = function (canvas) {
+    draw_arc(canvas) {
         if (this.IS_TRANSFORM_SCALED) {
             this.resize();
         }
@@ -78,6 +78,5 @@ var Arc = /** @class */ (function () {
             this.resize2();
         }
         canvas.draw_arc2(this.x1, this.y1, this.x2, this.y2, -this.amplitude, this.arc_paint);
-    };
-    return Arc;
-}());
+    }
+}

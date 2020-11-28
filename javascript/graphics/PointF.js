@@ -19,33 +19,32 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PointF = /** @class */ (function () {
-    function PointF(x, y) {
+class PointF {
+    constructor(x, y) {
         this.x = 0;
         this.y = 0;
         this.x = x;
         this.y = y;
     }
     /* Get the x location */
-    PointF.prototype.get_x = function () {
+    get_x() {
         return this.x;
-    };
+    }
     /* Set the x location */
-    PointF.prototype.set_x = function (x) {
+    set_x(x) {
         this.x = x;
-    };
+    }
     /* Get the y location */
-    PointF.prototype.get_y = function () {
+    get_y() {
         return this.y;
-    };
+    }
     /* Set the y location */
-    PointF.prototype.set_y = function (y) {
+    set_y(y) {
         this.y = y;
-    };
+    }
     /* Set both the x and y location */
-    PointF.prototype.set_point = function (x, y) {
+    set_point(x, y) {
         this.x = x;
         this.y = y;
-    };
-    return PointF;
-}());
+    }
+}

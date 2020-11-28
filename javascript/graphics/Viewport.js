@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Viewport = /** @class */ (function () {
-    function Viewport(aspect_ratio, screen_width, screen_height) {
+class Viewport {
+    constructor(aspect_ratio, screen_width, screen_height) {
         /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.DRAW_BOUNDS = false;
@@ -88,7 +88,7 @@ var Viewport = /** @class */ (function () {
         global.SIGNAL_BUILD_COUNTER = 0;
     }
     /* Handles resizing the RectF Element */
-    Viewport.prototype.resize = function (aspect_ratio, screen_width, screen_height) {
+    resize(aspect_ratio, screen_width, screen_height) {
         this.screen_width = screen_width;
         this.screen_height = screen_height;
         this.center_x = this.screen_width >> 1;
@@ -115,11 +115,10 @@ var Viewport = /** @class */ (function () {
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         global.SIGNAL_BUILD_ELEMENT = true;
         global.SIGNAL_BUILD_COUNTER = 0;
-    };
-    Viewport.prototype.draw_viewport = function (canvas) {
+    }
+    draw_viewport(canvas) {
         if (this.DRAW_BOUNDS) {
             canvas.draw_rect(this.left, this.top, this.right, this.bottom, this.line_paint);
         }
-    };
-    return Viewport;
-}());
+    }
+}

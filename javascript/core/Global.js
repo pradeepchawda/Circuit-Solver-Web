@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Global = /** @class */ (function () {
-    function Global() {
+class Global {
+    constructor() {
         this.NULL = null;
         this.MOBILE_MODE = false;
         this.SYSTEM_INITIALIZATION = {
@@ -3211,7 +3211,7 @@ var Global = /** @class */ (function () {
             values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.OFF, this.ON, this.OFF, this.OFF, this.OFF]
         };
         /* Index's to access system options. Make sure they're in order. */
-        var indexer = 0;
+        let indexer = 0;
         this.CIRCLE_BUFFER = [];
         this.LINE_BUFFER = [];
         this.SYSTEM_OPTION_LANGUAGE = indexer++;
@@ -3550,7 +3550,7 @@ var Global = /** @class */ (function () {
         this.NON_LINEAR_MAX = [];
         this.MAX_GENERAL_NUMBER = 0;
     }
-    Global.prototype.ColorNameToHex = function (color) {
+    ColorNameToHex(color) {
         var colors = {
             aliceblue: '#f0f8ff',
             antiquewhite: '#faebd7',
@@ -3697,30 +3697,30 @@ var Global = /** @class */ (function () {
         if (typeof colors[color.toLowerCase()] != 'undefined')
             return colors[color.toLowerCase()];
         return color;
-    };
-    Global.prototype.sine = function (theta) {
+    }
+    sine(theta) {
         return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT) & this.TRIG_TABLE_MASK];
-    };
-    Global.prototype.cosine = function (theta) {
+    }
+    cosine(theta) {
         return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) & this.TRIG_TABLE_MASK];
-    };
+    }
     /* Re-calculates the new position of an object based on the last screen width and the current screen width. */
-    Global.prototype.remap_position = function (input, is_width) {
+    remap_position(input, is_width) {
         if (is_width === true) {
             return view_port.right - (this.last_view_port_right - input) * this.RESIZE_W_FACTOR;
         }
         else {
             return view_port.bottom - (this.last_view_port_bottom - input) * this.RESIZE_H_FACTOR;
         }
-    };
-    Global.prototype.reset_angle_cache = function () {
+    }
+    reset_angle_cache() {
         this.ANGLE_ARRAY = [];
-    };
-    Global.prototype.reset_angle_radian_cache = function () {
+    }
+    reset_angle_radian_cache() {
         this.ANGLE_RADIAN_ARRAY = [];
-    };
+    }
     /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-    Global.prototype.search_angle_array = function (x, y) {
+    search_angle_array(x, y) {
         this.TEMP_BOOLEAN = false;
         this.SAVED_ANGLE = -1;
         for (var i = 0; i < this.ANGLE_ARRAY.length; i++) {
@@ -3734,9 +3734,9 @@ var Global = /** @class */ (function () {
             }
         }
         return this.TEMP_BOOLEAN;
-    };
+    }
     /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-    Global.prototype.search_angle_radian_array = function (x, y) {
+    search_angle_radian_array(x, y) {
         this.TEMP_BOOLEAN = false;
         this.SAVED_ANGLE_RADIANS = -1;
         for (var i = 0; i < this.ANGLE_RADIAN_ARRAY.length; i++) {
@@ -3750,8 +3750,8 @@ var Global = /** @class */ (function () {
             }
         }
         return this.TEMP_BOOLEAN;
-    };
-    Global.prototype.retrieve_angle = function (x, y) {
+    }
+    retrieve_angle(x, y) {
         if (this.search_angle_array(x, y)) {
             return this.SAVED_ANGLE;
         }
@@ -3766,8 +3766,8 @@ var Global = /** @class */ (function () {
             });
             return this.ANGLE_ARRAY[this.ANGLE_ARRAY.length - 1]['angle'];
         }
-    };
-    Global.prototype.retrieve_angle_radian = function (x, y) {
+    }
+    retrieve_angle_radian(x, y) {
         if (this.search_angle_radian_array(x, y)) {
             return this.SAVED_ANGLE_RADIANS;
         }
@@ -3782,41 +3782,41 @@ var Global = /** @class */ (function () {
             });
             return this.ANGLE_RADIAN_ARRAY[this.ANGLE_RADIAN_ARRAY.length - 1]['angle'];
         }
-    };
-    Global.prototype.house_keeping = function (x, y) {
+    }
+    house_keeping(x, y) {
         this.ANGLE_ARRAY.splice(this.ANGLE_ARRAY.length - 1, 1);
-    };
-    Global.prototype.house_keeping_radians = function (x, y) {
+    }
+    house_keeping_radians(x, y) {
         this.ANGLE_RADIAN_ARRAY.splice(this.ANGLE_RADIAN_ARRAY.length - 1, 1);
-    };
+    }
     /* Calculate the angle of a vector in degrees */
-    Global.prototype.calc_degree = function (x, y) {
+    calc_degree(x, y) {
         this.general_integer = this.atan2_approx2(y, x) * global._180_DIV_PI;
         if (this.general_integer < 0) {
             this.general_integer += 360;
         }
         return this.general_integer;
-    };
+    }
     /* calculate the angle of a vector in radians */
-    Global.prototype.calc_degree_radians = function (x, y) {
+    calc_degree_radians(x, y) {
         this.general_integer = this.atan2_approx2(y, x);
         if (this.general_integer < 0) {
             this.general_integer += this.PI_MUL_2;
         }
         return this.general_integer;
-    };
+    }
     /* Converts degrees to radians */
-    Global.prototype.to_radians = function (degrees) {
+    to_radians(degrees) {
         return degrees * this.PI_DIV_180;
-    };
-    Global.prototype.inv_sqrt = function (x) {
+    }
+    inv_sqrt(x) {
         var x2 = 0.5 * (this.inv_sqrt_f32[0] = x);
         this.inv_sqrt_u32[0] = 0x5f3759df - (this.inv_sqrt_u32[0] >> 1);
         var y = this.inv_sqrt_f32[0];
         y = y * (1.5 - x2 * y * y);
         return y;
-    };
-    Global.prototype.atan2_approx2 = function (y, x) {
+    }
+    atan2_approx2(y, x) {
         if (x === 0.0) {
             if (y > 0.0) {
                 return this.PI_DIV_2;
@@ -3844,65 +3844,61 @@ var Global = /** @class */ (function () {
             }
         }
         return this.general_integer2;
-    };
+    }
     /* Calculates the norm of a vector */
-    Global.prototype.norm = function (x, y) {
+    norm(x, y) {
         return Math.sqrt(x * x + y * y);
-    };
+    }
     /* Rounds a value to three decimal places */
-    Global.prototype.round = function (value) {
+    round(value) {
         return Math.round((value + Number.EPSILON) * 1000) / 1000;
-    };
+    }
     /* A function to try and safely cast a float to an "int" */
-    Global.prototype.cast_int = function (value) {
+    cast_int(value) {
         return Math.trunc(Math.round(value));
-    };
+    }
     /* Returns the average of two numbers: a and b */
-    Global.prototype.get_average2 = function (a, b) {
+    get_average2(a, b) {
         return (a + b) * 0.5;
-    };
+    }
     /* Calculate the incenter of a triangle. NOTE: Don't use this.general_integerx here..., it'll cause a value change.
     because of calc_degree_radians */
-    Global.prototype.equilateral_triangle_center = function (p1_x, p2_x, p3_x, p1_y, p2_y, p3_y) {
-        var temp = 0;
+    equilateral_triangle_center(p1_x, p2_x, p3_x, p1_y, p2_y, p3_y) {
+        let temp = 0;
         temp = this.norm(p2_x - p1_x, p2_y - p1_y) * 0.5;
-        var theta_p1_p2 = this.retrieve_angle_radian(p2_x - p1_x, p2_y - p1_y);
-        var p_x = p1_x + temp * this.cosine(theta_p1_p2);
-        var p_y = p1_y + temp * this.sine(theta_p1_p2);
-        var theta_p_p3 = this.retrieve_angle_radian(p3_x - p_x, p3_y - p_y);
-        var c_x = p_x + temp * this.cosine(theta_p_p3);
-        var c_y = p_y + temp * this.sine(theta_p_p3);
+        let theta_p1_p2 = this.retrieve_angle_radian(p2_x - p1_x, p2_y - p1_y);
+        let p_x = p1_x + temp * this.cosine(theta_p1_p2);
+        let p_y = p1_y + temp * this.sine(theta_p1_p2);
+        let theta_p_p3 = this.retrieve_angle_radian(p3_x - p_x, p3_y - p_y);
+        let c_x = p_x + temp * this.cosine(theta_p_p3);
+        let c_y = p_y + temp * this.sine(theta_p_p3);
         return Array(c_x, c_y);
-    };
+    }
     /* Returns the average of four numbers: a, b, c, and d */
-    Global.prototype.get_average4 = function (a, b, c, d) {
+    get_average4(a, b, c, d) {
         return (a + b + c + d) * 0.25;
-    };
+    }
     /* Check to see if an element is null or undefined. */
-    Global.prototype.not_null = function (obj) {
+    not_null(obj) {
         return !(obj == this.NULL);
-    };
+    }
     /* Using lodash to deep clone an object. */
-    Global.prototype.copy = function (obj) {
+    copy(obj) {
         return _.cloneDeep(obj);
-    };
+    }
     /* A safe function to print stuff out when debugging. Developer mode is automatically set to false
     when the production script is run. */
-    Global.prototype.print = function () {
-        var obj = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            obj[_i] = arguments[_i];
-        }
+    print(...obj) {
         if (this.DEVELOPER_MODE) {
             console.log(obj);
         }
-    };
+    }
     /* A function to quickly format a number into SI units */
-    Global.prototype.exponentiate_quickly = function (input) {
-        var str = '';
-        var val = 0;
-        var abs_input = Math.abs(input);
-        var found = false;
+    exponentiate_quickly(input) {
+        let str = '';
+        let val = 0;
+        let abs_input = Math.abs(input);
+        let found = false;
         for (var i = 0; i < this.SI_UNIT_THRESHOLD_ARRAY.length; i++) {
             if (abs_input >= this.SI_UNIT_THRESHOLD_ARRAY[i]) {
                 val = input * this.SI_UNIT_ARRAY[i];
@@ -3921,11 +3917,11 @@ var Global = /** @class */ (function () {
             str = '--- ';
         }
         return str;
-    };
+    }
     /* Find the max of the elements. This is so we don't waste time looping
     through each element.
     This is automatically generated, no touchy! */
-    Global.prototype.element_max = function () {
+    element_max() {
         /* #INSERT_GENERATE_MAX_ELEMENT# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.ELEMENT_MAX = Array(resistors.length, capacitors.length, inductors.length, grounds.length, dcsources.length, dccurrents.length, acsources.length, accurrents.length, squarewaves.length, sawwaves.length, trianglewaves.length, constants.length, wires.length, nets.length, notes.length, rails.length, voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length, fuses.length, spsts.length, spdts.length, nots.length, diodes.length, leds.length, zeners.length, potentiometers.length, ands.length, ors.length, nands.length, nors.length, xors.length, xnors.length, dffs.length, vsats.length, adders.length, subtractors.length, multipliers.length, dividers.length, gains.length, absvals.length, vcsws.length, vcvss.length, vccss.length, cccss.length, ccvss.length, opamps.length, nmosfets.length, pmosfets.length, npns.length, pnps.length, adcs.length, dacs.length, sandhs.length, pwms.length, integrators.length, differentiators.length, lowpasses.length, highpasses.length, relays.length, pids.length, luts.length, vcrs.length, grts.length, tptzs.length, transformers.length);
@@ -3937,10 +3933,10 @@ var Global = /** @class */ (function () {
             }
         }
         return this.MAX_GENERAL_NUMBER;
-    };
+    }
     /* Find the highest number of meter type elements.
     This is automatially generated! */
-    Global.prototype.meter_max = function () {
+    meter_max() {
         /* #INSERT_GENERATE_MAX_METER# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.METER_MAX = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
@@ -3952,9 +3948,9 @@ var Global = /** @class */ (function () {
             }
         }
         return this.MAX_GENERAL_NUMBER;
-    };
+    }
     /* Find the maximum size of non-linear elements. */
-    Global.prototype.non_linear_max = function () {
+    non_linear_max() {
         /* #INSERT_GENERATE_MAX_NON_LINEAR# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.NON_LINEAR_MAX = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
@@ -3966,23 +3962,23 @@ var Global = /** @class */ (function () {
             }
         }
         return this.MAX_GENERAL_NUMBER;
-    };
+    }
     /* Line collision baby! */
-    Global.prototype.line_collision = function (p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
-        var s1_x = p1_x - p0_x;
-        var s1_y = p1_y - p0_y;
-        var s2_x = p3_x - p2_x;
-        var s2_y = p3_y - p2_y;
-        var s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
-        var t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+    line_collision(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
+        let s1_x = p1_x - p0_x;
+        let s1_y = p1_y - p0_y;
+        let s2_x = p3_x - p2_x;
+        let s2_y = p3_y - p2_y;
+        let s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+        let t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
         return s >= 0 && s <= 1 && t >= 0 && t <= 1;
-    };
+    }
     /* Decodes a key code from a key event */
-    Global.prototype.decode_key = function (key_event) {
-        var shift = key_event['shift'];
-        var caps = key_event['caps'];
-        var code = key_event['event'].code;
-        var ret = '';
+    decode_key(key_event) {
+        let shift = key_event['shift'];
+        let caps = key_event['caps'];
+        let code = key_event['event'].code;
+        let ret = '';
         for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
             if (code === this.KEY_EVENT_KEYS[i]) {
                 if (shift) {
@@ -3997,9 +3993,9 @@ var Global = /** @class */ (function () {
             }
         }
         return ret;
-    };
-    Global.prototype.key_to_code = function (character) {
-        var ret = '';
+    }
+    key_to_code(character) {
+        let ret = '';
         for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
             if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] || character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
                 ret = global.copy(this.KEY_EVENT_KEYS[i]);
@@ -4007,21 +4003,21 @@ var Global = /** @class */ (function () {
             }
         }
         return ret;
-    };
+    }
     /* Detects if a key is alpha numeric or not. */
-    Global.prototype.is_alpha_numeric = function (key_event) {
+    is_alpha_numeric(key_event) {
         return /[a-z A-Z0-9]/.test(this.decode_key(key_event));
-    };
+    }
     /* Detects if a key is alpha numeric or not. */
-    Global.prototype.is_alpha_numeric_note = function (key_event) {
+    is_alpha_numeric_note(key_event) {
         return /[!@#$%`~^&_{}()a-z A-Z0-9=:'",?<>;:*/+-|]/.test(this.decode_key(key_event));
-    };
+    }
     /* Detects if a key is a valid si unit or a number. */
-    Global.prototype.is_valid_si_units = function (key_event) {
+    is_valid_si_units(key_event) {
         return /[-.kmu0123456789MnGpf]/.test(this.decode_key(key_event));
-    };
+    }
     /* General function to limit a number within a range. */
-    Global.prototype.limit = function (inp, low, high) {
+    limit(inp, low, high) {
         if (inp < low) {
             return low;
         }
@@ -4031,42 +4027,42 @@ var Global = /** @class */ (function () {
         else {
             return inp;
         }
-    };
+    }
     /* General function for creating getting the current date */
-    Global.prototype.get_date_stamp = function () {
-        var date = new Date();
+    get_date_stamp() {
+        let date = new Date();
         return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-    };
+    }
     /* Genetating a timestamp! */
-    Global.prototype.get_time_stamp = function () {
-        var date = new Date();
-        var TIMESTAMP_TEMPLATE = '{DATE}->{TIME_ZONE}';
+    get_time_stamp() {
+        let date = new Date();
+        let TIMESTAMP_TEMPLATE = '{DATE}->{TIME_ZONE}';
         return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', String(date.getTimezoneOffset()));
-    };
+    }
     /* Logarithmic Damping Algorithm. Base E. */
-    Global.prototype.log_damping = function (next, now, gamma, kappa) {
+    log_damping(next, now, gamma, kappa) {
         return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
-    };
+    }
     /* Returns the sign of the number.*/
-    Global.prototype.signum = function (inp) {
+    signum(inp) {
         if (inp < 0) {
             return -1;
         }
         else {
             return 1;
         }
-    };
+    }
     /* Change of base formula. */
-    Global.prototype.logbx = function (b, x) {
+    logbx(b, x) {
         return Math.log(x) / Math.log(b);
-    };
-    Global.prototype.map_range = function (inp, lower_bound, upper_bound) {
+    }
+    map_range(inp, lower_bound, upper_bound) {
         return lower_bound + inp * (upper_bound - lower_bound);
-    };
-    Global.prototype.perm32 = function (inp) {
+    }
+    perm32(inp) {
         this.general_integer = 12;
         /* 12 Rounds */
-        var x = ((inp >> 8) ^ inp) * 0x6b + this.general_integer--;
+        let x = ((inp >> 8) ^ inp) * 0x6b + this.general_integer--;
         x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
         x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
         x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
@@ -4079,21 +4075,21 @@ var Global = /** @class */ (function () {
         x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
         x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
         return x;
-    };
-    Global.prototype.unique_color = function (net_name) {
-        var rgb = this.perm32(net_name.hashCode());
-        var r, g, b = 0;
+    }
+    unique_color(net_name) {
+        let rgb = this.perm32(net_name.hashCode());
+        let r, g, b = 0;
         r = (rgb & 0x00ff0000) >> 16;
         g = (rgb & 0x0000ff00) >> 8;
         b = rgb & 0x000000ff;
         return 'rgb(' + r + ', ' + g + ', ' + b + ')';
-    };
-    Global.prototype.wrap = function (inp, max) {
+    }
+    wrap(inp, max) {
         return inp - max * Math.floor(inp / max);
-    };
-    Global.prototype.linterp = function (x_arr, y_arr, inp) {
-        var k = this.linsearch(x_arr, inp, y_arr.length);
-        var x0 = x_arr[k], x1 = x_arr[k + 1], y0 = y_arr[k], y1 = y_arr[k + 1];
+    }
+    linterp(x_arr, y_arr, inp) {
+        let k = this.linsearch(x_arr, inp, y_arr.length);
+        let x0 = x_arr[k], x1 = x_arr[k + 1], y0 = y_arr[k], y1 = y_arr[k + 1];
         if (inp > x_arr[x_arr.length - 1]) {
             return y_arr[y_arr.length - 1];
         }
@@ -4101,10 +4097,10 @@ var Global = /** @class */ (function () {
             return y_arr[0];
         }
         return y0 + ((y1 - y0) / (x1 - x0)) * (inp - x0);
-    };
-    Global.prototype.linsearch = function (x_arr, inp, size) {
-        var i = 0;
-        var out = 0;
+    }
+    linsearch(x_arr, inp, size) {
+        let i = 0;
+        let out = 0;
         for (i = 0; i < size - 1; i++) {
             if (inp >= x_arr[i] && inp <= x_arr[i + 1]) {
                 out = i;
@@ -4112,9 +4108,8 @@ var Global = /** @class */ (function () {
             }
         }
         return out;
-    };
-    Global.prototype.min3 = function (a, b, c) {
+    }
+    min3(a, b, c) {
         return Math.min(a, Math.min(b, c));
-    };
-    return Global;
-}());
+    }
+}

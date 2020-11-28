@@ -20,9 +20,9 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var LanguageManager = /** @class */ (function () {
+class LanguageManager {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    function LanguageManager() {
+    constructor() {
         /* Do not create any functions in this class. */
         this.WATERMARK = 'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
         /* Padding for the text bounds! */
@@ -856,5 +856,4 @@ var LanguageManager = /** @class */ (function () {
         this.TAG_TRAN = 'Ideal Transformer';
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    return LanguageManager;
-}());
+}

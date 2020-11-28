@@ -19,11 +19,10 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PaintAlign = /** @class */ (function () {
-    function PaintAlign() {
+class PaintAlign {
+    constructor() {
         this.LEFT = 'left';
         this.CENTER = 'center';
         this.RIGHT = 'right';
     }
-    return PaintAlign;
-}());
+}

@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var GraphWindow = /** @class */ (function () {
-    function GraphWindow() {
+class GraphWindow {
+    constructor() {
         this.bounds = new RectF(0, 0, 0, 0);
         this.inner_bounds = new RectF(0, 0, 0, 0);
         this.X_AXIS_LENGTH = 1200;
@@ -198,12 +198,12 @@ var GraphWindow = /** @class */ (function () {
         this.time_axis_value = '';
         this.time_tag = '';
         this.load_axis();
-        var padding = 0.0125 * this.bounds.get_width();
+        let padding = 0.0125 * this.bounds.get_width();
         if (global.MOBILE_MODE) {
             padding = 0.00875 * this.bounds.get_width();
         }
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.download_button = new Button(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
         this.download_button.text = 'CSV';
         this.download_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
@@ -217,13 +217,13 @@ var GraphWindow = /** @class */ (function () {
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
         this.LINE_BUFFER = [];
     }
-    GraphWindow.prototype.load_axis = function () {
+    load_axis() {
         this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
         this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-        var left = this.bounds.left + this.PADDING;
-        var top = this.bounds.top + 2 * this.PADDING;
-        var right = this.bounds.right - this.PADDING;
-        var bottom = this.bounds.bottom - this.PADDING;
+        let left = this.bounds.left + this.PADDING;
+        let top = this.bounds.top + 2 * this.PADDING;
+        let right = this.bounds.right - this.PADDING;
+        let bottom = this.bounds.bottom - this.PADDING;
         this.inner_bounds = new RectF(left, top, right, bottom);
         this.trim = (this.bounds.get_width() - this.inner_bounds.get_width()) * 0.5;
         this.width = this.inner_bounds.get_width();
@@ -239,8 +239,8 @@ var GraphWindow = /** @class */ (function () {
                 this.y_axis[i + this.y_axis.length * 0.5] = new PointF(right, top + (this.height / (this.y_axis.length * 0.5)) * i);
             }
         }
-    };
-    GraphWindow.prototype.resize_window = function () {
+    }
+    resize_window() {
         /* Padding for the graph window. */
         this.PADDING = global.CANVAS_STROKE_WIDTH_5;
         this.bounds.left = view_port.left;
@@ -275,16 +275,16 @@ var GraphWindow = /** @class */ (function () {
         this.graph_trace_b.resize_trace();
         this.graph_trace_c.resize_trace();
         /* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
-        var padding = 0.0125 * this.bounds.get_width();
+        let padding = 0.0125 * this.bounds.get_width();
         if (global.MOBILE_MODE) {
             padding = 0.00875 * this.bounds.get_width();
         }
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.download_button.set_bounds(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
         this.download_button.resize_paint();
-    };
-    GraphWindow.prototype.reset_trace = function (index) {
+    }
+    reset_trace(index) {
         if (index === 0) {
             this.graph_trace_a.reset();
         }
@@ -294,28 +294,28 @@ var GraphWindow = /** @class */ (function () {
         else if (index === 2) {
             this.graph_trace_c.reset();
         }
-    };
+    }
     /* reset the trace and remove all the points. */
-    GraphWindow.prototype.reset = function () {
+    reset() {
         this.graph_trace_a.reset();
         this.graph_trace_b.reset();
         this.graph_trace_c.reset();
-    };
+    }
     /* Add a new value to the trace (A) */
-    GraphWindow.prototype.push_trace_a = function (value, t) {
+    push_trace_a(value, t) {
         this.graph_trace_a.push(value, t);
-    };
+    }
     /* Add a new value to the trace (B) */
-    GraphWindow.prototype.push_trace_b = function (value, t) {
+    push_trace_b(value, t) {
         this.graph_trace_b.push(value, t);
-    };
+    }
     /* Add a new value to the trace (C) */
-    GraphWindow.prototype.push_trace_c = function (value, t) {
+    push_trace_c(value, t) {
         this.graph_trace_c.push(value, t);
-    };
+    }
     /* Catch any mouse events within the graph view, this makes the main program look
     cleaner! */
-    GraphWindow.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_GRAPH) {
             this.first_touch_x = global.mouse_x;
             this.first_touch_y = global.mouse_y;
@@ -323,14 +323,14 @@ var GraphWindow = /** @class */ (function () {
                 this.generate_csv();
             }
         }
-    };
-    GraphWindow.prototype.generate_csv = function () {
-        var str = '';
-        var temp_str = '';
-        var time_stamp = '';
+    }
+    generate_csv() {
+        let str = '';
+        let temp_str = '';
+        let time_stamp = '';
         str += 'time, trace_a, trace_b, trace_c\n';
-        var max = Math.max(Math.max(this.graph_trace_a.trace.length, this.graph_trace_b.trace.length), this.graph_trace_c.trace.length);
-        var updated_time = false;
+        let max = Math.max(Math.max(this.graph_trace_a.trace.length, this.graph_trace_b.trace.length), this.graph_trace_c.trace.length);
+        let updated_time = false;
         for (var i = 0; i < max; i++) {
             time_stamp = '0, ';
             updated_time = false;
@@ -375,24 +375,24 @@ var GraphWindow = /** @class */ (function () {
         else {
             window.JsInterface.javascript_native_hook('push-csv', global.USER_FILE.title + '_csv.txt', str);
         }
-    };
-    GraphWindow.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.FLAG_GRAPH) {
             this.mouse_hover();
         }
-    };
-    GraphWindow.prototype.mouse_up = function () { };
+    }
+    mouse_up() { }
     /* This function converts the users xy coordinates into an index so the graph's
     information can be displayed for easy visualization. */
-    GraphWindow.prototype.mouse_hover = function () {
+    mouse_hover() {
         if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
             this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.X_AXIS_LENGTH)) * 0.5);
         }
         else {
             this.meter_hover_index = -1;
         }
-    };
-    GraphWindow.prototype.key_down = function (key_event) {
+    }
+    key_down(key_event) {
         if (global.FLAG_GRAPH) {
             if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_graph_flag(!global.FLAG_GRAPH);
@@ -400,19 +400,19 @@ var GraphWindow = /** @class */ (function () {
                 global.component_touched = true;
             }
         }
-    };
+    }
     /* Draw the Graph Window */
-    GraphWindow.prototype.draw_window = function (canvas) {
+    draw_window(canvas) {
         if (global.FLAG_GRAPH) {
             /* The graph view is comprised of two views, a main bounds and an inner bounds. */
             /* First we draw the main bounds and then the inner bounds. Note the types of paint
             being used to draw each one of these portions. */
             canvas.draw_rect2(this.bounds, this.fill_paint);
             canvas.draw_round_rect2(this.inner_bounds, this.PADDING >> 1, this.line_paint);
-            var cached_value = this.x_axis.length >> 1;
-            var cached_value_t_p_o1 = (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
-            var temp = 0;
-            var index = 0;
+            let cached_value = this.x_axis.length >> 1;
+            let cached_value_t_p_o1 = (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
+            let temp = 0;
+            let index = 0;
             for (var i = 0; i < cached_value; i += cached_value_t_p_o1) {
                 temp = i + cached_value;
                 this.LINE_BUFFER[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
@@ -536,6 +536,5 @@ var GraphWindow = /** @class */ (function () {
             this.graph_trace_b.draw_trace(canvas, view_port.left, 0);
             this.graph_trace_c.draw_trace(canvas, view_port.left, 0);
         }
-    };
-    return GraphWindow;
-}());
+    }
+}

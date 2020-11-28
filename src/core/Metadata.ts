@@ -1,9 +1,5 @@
 class Metadata {
-  public elm: Element1 = new Element1(
-    -1,
-    global.TYPE_META_DATA,
-    global.copy(global.PROPERTY_META_DATA)
-  );
+  public elm: Element1 = new Element1(-1, global.TYPE_META_DATA, global.copy(global.PROPERTY_META_DATA));
   /* A snapshot of the scope settings */
   public user_scope_settings: SCOPE_ENTRY_T = global.NULL;
   /* A snapshot of the user settings */

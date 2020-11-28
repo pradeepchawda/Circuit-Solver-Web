@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var PIDModuleSymbol = /** @class */ (function () {
-    function PIDModuleSymbol(rect, index, page) {
+class PIDModuleSymbol {
+    constructor(rect, index, page) {
         /* Index of the bounds (Inside New Element Window) */
         this.index = -1;
         /* Page to be drawn on (Inside New Element Window) */
@@ -183,7 +183,7 @@ var PIDModuleSymbol = /** @class */ (function () {
         this.LINE_BUFFER = [];
         this.CIRCLE_BUFFER = [];
     }
-    PIDModuleSymbol.prototype.update = function () {
+    update() {
         if (this.FLAG_ADD_ELEMENT) {
             if (workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
                 !this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
@@ -193,8 +193,8 @@ var PIDModuleSymbol = /** @class */ (function () {
                 this.FLAG_ADD_ELEMENT = false;
             }
         }
-    };
-    PIDModuleSymbol.prototype.mouse_down = function (page, width, height) {
+    }
+    mouse_down(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
                 if (!this.FLAG_ADD_ELEMENT) {
@@ -205,8 +205,8 @@ var PIDModuleSymbol = /** @class */ (function () {
                 }
             }
         }
-    };
-    PIDModuleSymbol.prototype.mouse_move = function (page, width, height) {
+    }
+    mouse_move(page, width, height) {
         if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
             !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
@@ -216,17 +216,17 @@ var PIDModuleSymbol = /** @class */ (function () {
         }
         if (this.page === page) {
         }
-    };
-    PIDModuleSymbol.prototype.mouse_up = function (page, width, height) {
+    }
+    mouse_up(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
             }
             this.FLAG_ADD_ELEMENT = false;
             global.SIGNAL_ADD_ELEMENT = false;
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    PIDModuleSymbol.prototype.build_element = function () {
+    build_element() {
         /* Top segment */
         this.pid_0.x =
             this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
@@ -249,8 +249,8 @@ var PIDModuleSymbol = /** @class */ (function () {
         /* End Segment */
         this.pid_6.x = this.p3.x - this.x_space * global.cosine(this.theta_m90);
         this.pid_6.y = this.p3.y - this.y_space * global.sine(this.theta_m90);
-    };
-    PIDModuleSymbol.prototype.resize = function (rect) {
+    }
+    resize(rect) {
         /* Create a new rectangle for the bounds of this component */
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
         /* The center (x-coord) of the bounds */
@@ -285,8 +285,8 @@ var PIDModuleSymbol = /** @class */ (function () {
         }
         this.text_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.text_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
-    };
-    PIDModuleSymbol.prototype.recolor = function () {
+    }
+    recolor() {
         if (this.FLAG_ADD_ELEMENT) {
             this.line_paint.set_color(global.SELECTED_COLOR);
             this.point_paint.set_color(global.SELECTED_COLOR);
@@ -299,12 +299,12 @@ var PIDModuleSymbol = /** @class */ (function () {
             this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
             this.text_paint_alt.set_color(global.GENERAL_WHITE_COLOR);
         }
-    };
+    }
     /* Draws the Symbol */
-    PIDModuleSymbol.prototype.draw_symbol = function (canvas, page) {
+    draw_symbol(canvas, page) {
         this.recolor();
         if (this.page === page) {
-            var indexer = 0;
+            let indexer = 0;
             this.CIRCLE_BUFFER = [];
             this.LINE_BUFFER = [];
             this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.pid_0.x, this.pid_0.y);
@@ -339,6 +339,5 @@ var PIDModuleSymbol = /** @class */ (function () {
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint_alt);
             }
         }
-    };
-    return PIDModuleSymbol;
-}());
+    }
+}

@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Workspace = /** @class */ (function () {
-    function Workspace(left, top, right, bottom, scale) {
+class Workspace {
+    constructor(left, top, right, bottom, scale) {
         /* Flag to make sure that the bounds are resized before we draw it to the screen. */
         this.FIRST_RESIZE_FLAG = false;
         /* Flag to control when we draw things to the screen. */
@@ -112,7 +112,7 @@ var Workspace = /** @class */ (function () {
         this.GRID_MOVED = true;
     }
     /* Resize the workspace. This is called whenever the screen size changes. */
-    Workspace.prototype.workspace_resize = function () {
+    workspace_resize() {
         this.GRID_MOVED = true;
         this.view_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.view_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -142,9 +142,9 @@ var Workspace = /** @class */ (function () {
             this.FIRST_RESIZE_FLAG = true;
         }
         this.grid_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-    };
+    }
     /* This is for zooming the bounds to a specified point (mouse_x and mouse_y) */
-    Workspace.prototype.workspace_zoom = function () {
+    workspace_zoom() {
         this.GRID_MOVED = true;
         global.SIGNAL_BUILD_ELEMENT = true;
         global.SIGNAL_BUILD_COUNTER = 0;
@@ -176,9 +176,9 @@ var Workspace = /** @class */ (function () {
             wattmeters[i].RESIZE_METER_TRACE = true;
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
+    }
     /* This is for a translation event, it will just shift the bounds by dx and dy*/
-    Workspace.prototype.workspace_translate_bounds = function (dx, dy) {
+    workspace_translate_bounds(dx, dy) {
         this.GRID_MOVED = true;
         global.SIGNAL_BUILD_ELEMENT = true;
         global.SIGNAL_BUILD_COUNTER = 0;
@@ -186,8 +186,8 @@ var Workspace = /** @class */ (function () {
         this.bounds.right += dx;
         this.bounds.top += dy;
         this.bounds.bottom += dy;
-    };
-    Workspace.prototype.workspace_draw = function (canvas) {
+    }
+    workspace_draw(canvas) {
         if (this.DRAW_TO_SCREEN) {
             /* Draw the work area (background of bounds)*/
             if (this.DRAW_GRID === true) {
@@ -198,20 +198,20 @@ var Workspace = /** @class */ (function () {
             /* This is a performance hit. */
             if (this.DRAW_GRID === true) {
                 if (this.GRID_MOVED === true) {
-                    var floored_sqrt_m_1 = Math.floor(global.settings.SQRT_MAXNODES_M1);
-                    var floored_sqrt = Math.floor(global.settings.SQRT_MAXNODES);
-                    var x_space = Math.floor(global.node_space_x >> 1);
-                    var y_space = Math.floor(global.node_space_y >> 1);
-                    var loop_temp = Math.floor(nodes.length - floored_sqrt);
-                    var horizontal_index = 0;
-                    var index = 0;
-                    var node_index = 0;
-                    var node_index_alt = 0;
-                    var cached_location_i = global.NULL;
-                    var cached_location_horizontal = global.NULL;
-                    var cached_location_index = global.NULL;
-                    var cached_location_alt = global.NULL;
-                    var temp_index = 0;
+                    let floored_sqrt_m_1 = Math.floor(global.settings.SQRT_MAXNODES_M1);
+                    let floored_sqrt = Math.floor(global.settings.SQRT_MAXNODES);
+                    let x_space = Math.floor(global.node_space_x >> 1);
+                    let y_space = Math.floor(global.node_space_y >> 1);
+                    let loop_temp = Math.floor(nodes.length - floored_sqrt);
+                    let horizontal_index = 0;
+                    let index = 0;
+                    let node_index = 0;
+                    let node_index_alt = 0;
+                    let cached_location_i = global.NULL;
+                    let cached_location_horizontal = global.NULL;
+                    let cached_location_index = global.NULL;
+                    let cached_location_alt = global.NULL;
+                    let temp_index = 0;
                     for (var i = 0; i < floored_sqrt; i++) {
                         node_index = (horizontal_index + floored_sqrt_m_1) >> global.ZERO;
                         node_index_alt = (loop_temp + i) >> global.ZERO;
@@ -242,6 +242,5 @@ var Workspace = /** @class */ (function () {
                 this.DRAW_TO_SCREEN = true;
             }
         }
-    };
-    return Workspace;
-}());
+    }
+}

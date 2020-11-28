@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ScopeManager = /** @class */ (function () {
-    function ScopeManager() {
+class ScopeManager {
+    constructor() {
         this.MAX_ENTRIES = 3;
         this.ENTRY = [];
         this.index = -1;
@@ -42,11 +42,11 @@ var ScopeManager = /** @class */ (function () {
         this.power = -1;
     }
     /* Clear all entries. */
-    ScopeManager.prototype.clear_entries = function () {
+    clear_entries() {
         this.ENTRY.splice(0, this.ENTRY.length);
-    };
+    }
     /* Automatically generate the units of the scope based on the type of meter. */
-    ScopeManager.prototype.get_units = function (index) {
+    get_units(index) {
         if (index > -1 && index < this.ENTRY.length) {
             if (this.ENTRY[index]['element_type'] === global.TYPE_VOLTMETER) {
                 return global.PROPERTY_VOLTMETER['units'];
@@ -62,43 +62,38 @@ var ScopeManager = /** @class */ (function () {
             }
         }
         return '';
-    };
+    }
     /* Generate the scope name, i.e. "VM1", tag + id */
-    ScopeManager.prototype.get_scope_name = function (index) {
+    get_scope_name(index) {
         if (index > -1 && index < this.ENTRY.length) {
             return this.ENTRY[index]['element_tag'] + this.ENTRY[index]['element_id'];
         }
         return '';
-    };
+    }
     /* Check to see if a meter is in the list of entries. */
-    ScopeManager.prototype.find_entry = function (id, type) {
+    find_entry(id, type) {
         for (var i = 0; i < this.ENTRY.length; i++) {
-            if (this.ENTRY[i]['element_type'] === type &&
-                this.ENTRY[i]['element_id'] === id) {
+            if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
                 return true;
             }
         }
         return false;
-    };
+    }
     /* Grab the index of the meter is it is within the list of entries. */
-    ScopeManager.prototype.find_entry_index = function (id, type) {
+    find_entry_index(id, type) {
         for (var i = 0; i < this.ENTRY.length; i++) {
-            if (this.ENTRY[i]['element_type'] === type &&
-                this.ENTRY[i]['element_id'] === id) {
+            if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
                 return i;
             }
         }
         return -1;
-    };
+    }
     /* A quick check to see if an element is a meter type or not. */
-    ScopeManager.prototype.is_meter = function (type) {
-        return (type === global.TYPE_VOLTMETER ||
-            type === global.TYPE_OHMMETER ||
-            type === global.TYPE_AMMETER ||
-            type === global.TYPE_WATTMETER);
-    };
+    is_meter(type) {
+        return type === global.TYPE_VOLTMETER || type === global.TYPE_OHMMETER || type === global.TYPE_AMMETER || type === global.TYPE_WATTMETER;
+    }
     /* Request a meter to be added to the list of entries. */
-    ScopeManager.prototype.push = function (id, type, tag) {
+    push(id, type, tag) {
         if (this.is_meter(type)) {
             if (this.ENTRY.length < this.MAX_ENTRIES) {
                 if (!this.find_entry(id, type)) {
@@ -120,19 +115,19 @@ var ScopeManager = /** @class */ (function () {
         else {
             /* This should never fire unless we make a mistake :> */
         }
-    };
+    }
     /* Remove a meter from the list of entries based on its id and type (unique combination) */
-    ScopeManager.prototype.remove = function (id, type) {
-        var index = this.find_entry_index(id, type);
+    remove(id, type) {
+        let index = this.find_entry_index(id, type);
         if (index != -1) {
             graph_window.reset_trace(index);
             this.ENTRY.splice(index, 1);
         }
-    };
+    }
     /* Automatically update the scopes when the system is simulating. It will add the new
     solutions values into the scope trace. If a meter is connected to the graph trace it will
     update that as well. */
-    ScopeManager.prototype.update_scopes = function () {
+    update_scopes() {
         this.index = -1;
         this.met_max = global.meter_max();
         this.iteration_size = Math.max(this.met_max, this.ENTRY.length);
@@ -163,8 +158,7 @@ var ScopeManager = /** @class */ (function () {
                     if (this.index > -1 && this.index < wattmeters.length) {
                         this.v_side_1 = Math.abs(engine_functions.get_voltage(wattmeters[this.index].elm.n1, -1));
                         this.v_side_2 = Math.abs(engine_functions.get_voltage(wattmeters[this.index].elm.n2, -1));
-                        this.curr =
-                            (this.v_side_1 - this.v_side_2) / global.settings.WIRE_RESISTANCE;
+                        this.curr = (this.v_side_1 - this.v_side_2) / global.settings.WIRE_RESISTANCE;
                         this.voltage = Math.max(this.v_side_1, this.v_side_1);
                         this.power = this.curr * this.voltage;
                         this.push_to_graph(i, this.power, global.SIMULATION_TIME);
@@ -197,9 +191,9 @@ var ScopeManager = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Push the meter values tothe graph window. */
-    ScopeManager.prototype.push_to_graph = function (selector, value, time) {
+    push_to_graph(selector, value, time) {
         if (selector === 0) {
             /* Push to the scope A. */
             graph_window.push_trace_a(value, time);
@@ -212,6 +206,5 @@ var ScopeManager = /** @class */ (function () {
             /* Push to the scope C. */
             graph_window.push_trace_c(value, time);
         }
-    };
-    return ScopeManager;
-}());
+    }
+}

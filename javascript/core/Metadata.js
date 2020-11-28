@@ -1,5 +1,5 @@
-var Metadata = /** @class */ (function () {
-    function Metadata() {
+class Metadata {
+    constructor() {
         this.elm = new Element1(-1, global.TYPE_META_DATA, global.copy(global.PROPERTY_META_DATA));
         /* A snapshot of the scope settings */
         this.user_scope_settings = global.NULL;
@@ -12,5 +12,4 @@ var Metadata = /** @class */ (function () {
         /* Calibration String */
         this.calibration_string = '';
     }
-    return Metadata;
-}());
+}

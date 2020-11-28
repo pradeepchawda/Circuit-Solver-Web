@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var VirtualCanvas = /** @class */ (function () {
-    function VirtualCanvas(width, height, id) {
+class VirtualCanvas {
+    constructor(width, height, id) {
         this.ASSIGN_ID = false;
         this.id = -1;
         this.ASSIGN_ID = false;
@@ -38,7 +38,7 @@ var VirtualCanvas = /** @class */ (function () {
             alpha: false
         });
     }
-    VirtualCanvas.prototype.resize = function () {
+    resize() {
         this.surface.width = view_port.right;
         this.surface.height = view_port.bottom;
         try {
@@ -55,9 +55,8 @@ var VirtualCanvas = /** @class */ (function () {
             this.context.msImageSmoothingEnabled = false;
         }
         catch (e) { }
-    };
-    VirtualCanvas.prototype.get_surface = function () {
+    }
+    get_surface() {
         return this.surface;
-    };
-    return VirtualCanvas;
-}());
+    }
+}

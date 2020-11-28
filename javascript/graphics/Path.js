@@ -19,15 +19,15 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Path = /** @class */ (function () {
-    function Path() {
+class Path {
+    constructor() {
         this.path_2d = [];
         this.indexer = 0;
         this.path_2d = [];
         this.indexer = 0;
     }
-    Path.prototype.resize = function () {
-        var temp;
+    resize() {
+        let temp;
         for (var i = 0; i < this.path_2d.length; i++) {
             temp = this.path_2d[i];
             if (temp['command'] === 'MOVE') {
@@ -53,18 +53,18 @@ var Path = /** @class */ (function () {
                 temp['y3'] = global.remap_position(temp['y3'], false);
             }
         }
-    };
+    }
     /* Moves the location of the path element */
-    Path.prototype.move_to = function (x, y) {
+    move_to(x, y) {
         this.path_2d[this.indexer++] = {
             command: 'MOVE',
             x1: (global.ZERO_PT_FIVE + x) >> global.ZERO,
             y1: (global.ZERO_PT_FIVE + y) >> global.ZERO
         };
-    };
+    }
     /* creates a curve from the current location of the path element to the
     destination point */
-    Path.prototype.curve_to = function (x1, y1, x2, y2, x3, y3) {
+    curve_to(x1, y1, x2, y2, x3, y3) {
         this.path_2d[this.indexer++] = {
             command: 'CURVE',
             x1: (global.ZERO_PT_FIVE + x1) >> global.ZERO,
@@ -74,10 +74,10 @@ var Path = /** @class */ (function () {
             x3: (global.ZERO_PT_FIVE + x3) >> global.ZERO,
             y3: (global.ZERO_PT_FIVE + y3) >> global.ZERO
         };
-    };
+    }
     /* creates a quadratic bezier spline from the current location of the path element to the
     destination point */
-    Path.prototype.quad_to = function (x1, y1, x2, y2) {
+    quad_to(x1, y1, x2, y2) {
         this.path_2d[this.indexer++] = {
             command: 'QUAD',
             x1: (global.ZERO_PT_FIVE + (x2 + x1) * 0.5) >> global.ZERO,
@@ -85,31 +85,30 @@ var Path = /** @class */ (function () {
             x2: (global.ZERO_PT_FIVE + x2) >> global.ZERO,
             y2: (global.ZERO_PT_FIVE + y2) >> global.ZERO
         };
-    };
+    }
     /* Creates a line from the current location to the detailed point */
-    Path.prototype.line_to = function (x, y) {
+    line_to(x, y) {
         this.path_2d[this.indexer++] = {
             command: 'LINE',
             x1: (global.ZERO_PT_FIVE + x) >> global.ZERO,
             y1: (global.ZERO_PT_FIVE + y) >> global.ZERO
         };
-    };
+    }
     /* Closes the path */
-    Path.prototype.close = function () {
+    close() {
         this.path_2d[this.indexer++] = {
             command: 'CLOSE',
             x1: 0,
             y1: 0
         };
-    };
+    }
     /* Reset the path element */
-    Path.prototype.reset = function () {
+    reset() {
         this.indexer = 0;
         this.path_2d = [];
-    };
+    }
     /* Get the path element */
-    Path.prototype.get_path = function () {
+    get_path() {
         return this.path_2d;
-    };
-    return Path;
-}());
+    }
+}

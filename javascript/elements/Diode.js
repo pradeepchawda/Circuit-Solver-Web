@@ -20,8 +20,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Diode = /** @class */ (function () {
-    function Diode(type, id, n1, n2) {
+class Diode {
+    constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
@@ -97,7 +97,7 @@ var Diode = /** @class */ (function () {
         this.elm.set_flip(global.FLIP_0);
         /* Re-map those bad boys! */
         this.release_nodes();
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
@@ -189,7 +189,7 @@ var Diode = /** @class */ (function () {
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
-    Diode.prototype.refresh_bounds = function () {
+    refresh_bounds() {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
@@ -199,52 +199,52 @@ var Diode = /** @class */ (function () {
             /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
-    };
-    Diode.prototype.push_reference = function (ref) {
+    }
+    push_reference(ref) {
         this.wire_reference.push(ref);
-    };
-    Diode.prototype.stamp = function () {
+    }
+    stamp() {
         if (this.elm.consistent()) {
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.GMIN);
             engine_functions.stamp_current(this.elm.n1, this.elm.n2, this.elm.properties['Equivalent Current']);
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, this.elm.properties['Resistance']);
         }
-    };
-    Diode.prototype.calculate_vcrit = function () {
+    }
+    calculate_vcrit() {
         return (this.elm.properties['Emission Coefficient'] *
             global.vt *
             Math.log((this.elm.properties['Emission Coefficient'] * global.vt) /
                 (1.41421 * this.elm.properties['Saturation Current'])));
-    };
-    Diode.prototype.is_converged = function () {
+    }
+    is_converged() {
         if (this.get_diode_error() < global.settings.TOLERANCE) {
             return true;
         }
         else {
             return false;
         }
-    };
-    Diode.prototype.reset_diode = function () {
+    }
+    reset_diode() {
         this.elm.properties['Voltage'] = 0;
         this.elm.properties['Last Voltage'] = this.calculate_vcrit();
         this.elm.properties['Last Current'] = global.settings.TOLERANCE * 2;
         this.elm.properties['Resistance'] = global.settings.R_MAX;
         this.elm.properties['Equivalent Current'] = 0;
         this.update();
-    };
-    Diode.prototype.get_diode_error = function () {
+    }
+    get_diode_error() {
         return Math.abs(this.elm.properties['Voltage'] - this.elm.properties['Last Voltage']);
-    };
+    }
     /* General function to handle any processing required by the component */
-    Diode.prototype.update = function () {
+    update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
             if (this.elm.consistent()) {
                 /* Save the last voltages and currents */
                 this.elm.properties['Last Voltage'] = this.elm.properties['Voltage'];
                 this.elm.properties['Last Current'] = this.elm.properties['Equivalent Current'];
-                var next_voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
-                var vcrit = this.calculate_vcrit();
-                var diode_voltage = 0;
+                let next_voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+                let vcrit = this.calculate_vcrit();
+                let diode_voltage = 0;
                 if (next_voltage > this.DAMPING_SAFETY_FACTOR * vcrit) {
                     diode_voltage = global.log_damping(next_voltage, this.elm.properties['Voltage'], this.GAMMA, this.KAPPA);
                 }
@@ -273,20 +273,20 @@ var Diode = /** @class */ (function () {
                     this.elm.properties['Voltage'] / this.elm.properties['Resistance']);
             }
         }
-    };
-    Diode.prototype.gmin_step = function (step, error) {
+    }
+    gmin_step(step, error) {
         this.GMIN = global.GMIN_DEFAULT;
         if (simulation_manager.ITERATOR > step &&
             error > global.settings.TOLERANCE) {
             this.GMIN = Math.exp(-24.723 *
                 (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
         }
-    };
+    }
     /* Vertex handling (for rotation) */
-    Diode.prototype.get_vertices = function () {
-        var vertices = [];
-        var p1 = [];
-        var p2 = [];
+    get_vertices() {
+        let vertices = [];
+        let p1 = [];
+        let p2 = [];
         if (this.elm.rotation === global.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
@@ -313,10 +313,10 @@ var Diode = /** @class */ (function () {
             vertices = Array(p1[0], p1[1], p2[0], p2[1]);
         }
         return vertices;
-    };
-    Diode.prototype.release_wires = function () {
+    }
+    release_wires() {
         if (this.wire_reference.length > 0) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -326,26 +326,26 @@ var Diode = /** @class */ (function () {
             }
             this.wire_reference = [];
         }
-    };
+    }
     /* Handle capture and release from nodes themselves... (references) */
-    Diode.prototype.release_nodes = function () {
+    release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_nodes(-1, -1);
         }
-    };
+    }
     /* Push the components references to the Nodes */
-    Diode.prototype.capture_nodes = function () {
-        var vertices = this.get_vertices();
+    capture_nodes() {
+        let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
         if (this.elm.consistent() && !this.is_translating) {
             nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
         }
-    };
+    }
     /* Handling a mouse down event. */
-    Diode.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&
@@ -385,9 +385,9 @@ var Diode = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* This is to help build wires! */
-    Diode.prototype.handle_wire_builder = function (n, anchor) {
+    handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
             global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -404,8 +404,8 @@ var Diode = /** @class */ (function () {
             global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
             global.WIRE_BUILDER['step']++;
         }
-    };
-    Diode.prototype.move_element = function (dx, dy) {
+    }
+    move_element(dx, dy) {
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.release_nodes();
@@ -428,9 +428,9 @@ var Diode = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Handling a mouse move event. */
-    Diode.prototype.mouse_move = function () {
+    mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
@@ -473,9 +473,9 @@ var Diode = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* Handling a mouse up event. */
-    Diode.prototype.mouse_up = function () {
+    mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused &&
                 global.focused_id === this.elm.id &&
@@ -515,8 +515,8 @@ var Diode = /** @class */ (function () {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
-    };
-    Diode.prototype.select = function () {
+    }
+    select() {
         if (global.WIRE_BUILDER['step'] != 0) {
             wire_manager.reset_wire_builder();
         }
@@ -526,8 +526,8 @@ var Diode = /** @class */ (function () {
         global.selected_properties = global.copy(this.elm.properties);
         global.selected_wire_style = global.NULL;
         global.selected = true;
-    };
-    Diode.prototype.remove_focus = function () {
+    }
+    remove_focus() {
         if (global.focused &&
             global.focused_id === this.elm.id &&
             global.focused_type === this.elm.type) {
@@ -536,8 +536,8 @@ var Diode = /** @class */ (function () {
             global.focused_bounds = global.NULL;
             global.focused = false;
         }
-    };
-    Diode.prototype.remove_selection = function () {
+    }
+    remove_selection() {
         if (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
@@ -547,10 +547,10 @@ var Diode = /** @class */ (function () {
             global.selected_wire_style = global.NULL;
             global.selected = false;
         }
-    };
-    Diode.prototype.wire_reference_maintenance = function () {
+    }
+    wire_reference_maintenance() {
         if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-            var id = -1;
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (!(id > -1 && id < wires.length)) {
@@ -558,11 +558,11 @@ var Diode = /** @class */ (function () {
                 }
             }
         }
-    };
-    Diode.prototype.unanchor_wires = function () {
+    }
+    unanchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -594,11 +594,11 @@ var Diode = /** @class */ (function () {
                 }
             }
         }
-    };
-    Diode.prototype.anchor_wires = function () {
+    }
+    anchor_wires() {
         if (this.wire_reference.length > 0) {
-            var vertices = this.get_vertices();
-            var id = -1;
+            let vertices = this.get_vertices();
+            let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
@@ -630,8 +630,8 @@ var Diode = /** @class */ (function () {
                 }
             }
         }
-    };
-    Diode.prototype.set_flip = function (flip) {
+    }
+    set_flip(flip) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -641,9 +641,9 @@ var Diode = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Sets the rotation of the component */
-    Diode.prototype.set_rotation = function (rotation) {
+    set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
@@ -653,18 +653,18 @@ var Diode = /** @class */ (function () {
         this.refactor();
         this.capture_nodes();
         this.anchor_wires();
-    };
+    }
     /* Push the changes of this object to the element observer */
-    Diode.prototype.push_history = function () {
+    push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
-    };
+    }
     /* Generate the SVG for the component. */
-    Diode.prototype.build_element = function () {
+    build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            var cache_0 = this.x_space >> 1;
-            var cache_1 = this.y_space >> 1;
+            let cache_0 = this.x_space >> 1;
+            let cache_1 = this.y_space >> 1;
             this.dio_0.x =
                 this.c_x +
                     cache_0 * global.cosine(this.theta) +
@@ -703,9 +703,9 @@ var Diode = /** @class */ (function () {
             this.connect2_y = this.c_y + cache_1 * global.sine(this.theta);
             this.BUILD_ELEMENT = false;
         }
-    };
+    }
     /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-    Diode.prototype.resize = function () {
+    resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
@@ -727,12 +727,12 @@ var Diode = /** @class */ (function () {
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
-    };
+    }
     /* This is used to update the SVG */
-    Diode.prototype.refactor = function () {
+    refactor() {
         /* Movement of the bounds is handled in mouse move */
         /* Re-factor the vector graphics */
-        var vertices = this.get_vertices();
+        let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
         this.p2.x = vertices[2];
@@ -745,16 +745,16 @@ var Diode = /** @class */ (function () {
             global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
-    };
-    Diode.prototype.increment_rotation = function () {
+    }
+    increment_rotation() {
         this.elm.rotation++;
         if (this.elm.rotation > global.ROTATION_270) {
             this.elm.rotation = global.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
-    };
-    Diode.prototype.increment_flip = function () { };
-    Diode.prototype.map_rotation = function () {
+    }
+    increment_flip() { }
+    map_rotation() {
         if (this.elm.rotation === global.ROTATION_0 ||
             this.elm.rotation === global.ROTATION_180) {
             return this.x_space;
@@ -763,8 +763,8 @@ var Diode = /** @class */ (function () {
             this.elm.rotation === global.ROTATION_270) {
             return this.y_space;
         }
-    };
-    Diode.prototype.recolor = function () {
+    }
+    recolor() {
         if (global.selected) {
             if (global.selected_id === this.elm.id &&
                 global.selected_type === this.elm.type) {
@@ -790,13 +790,13 @@ var Diode = /** @class */ (function () {
                 this.text_paint.set_color(global.ELEMENT_COLOR);
             }
         }
-    };
-    Diode.prototype.is_selected_element = function () {
+    }
+    is_selected_element() {
         return (global.selected_id === this.elm.id &&
             global.selected_type === this.elm.type);
-    };
+    }
     /* Draws the component */
-    Diode.prototype.draw_component = function (canvas) {
+    draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
@@ -846,9 +846,9 @@ var Diode = /** @class */ (function () {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }
         }
-    };
+    }
     /* Handles future proofing of elements! */
-    Diode.prototype.patch = function () {
+    patch() {
         if (!global.not_null(this.GMIN)) {
             this.GMIN = 1e-9;
         }
@@ -883,12 +883,12 @@ var Diode = /** @class */ (function () {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
-    };
-    Diode.prototype.time_data = function () {
+    }
+    time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        var time_data = global.copy(global.TIME_DATA_TEMPLATE);
-        var keys = Object.keys(this.elm.properties);
+        let time_data = global.copy(global.TIME_DATA_TEMPLATE);
+        let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
                 if (keys[i] === 'Frequency' ||
@@ -901,7 +901,6 @@ var Diode = /** @class */ (function () {
         }
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-    };
-    Diode.prototype.reset = function () { };
-    return Diode;
-}());
+    }
+    reset() { }
+}

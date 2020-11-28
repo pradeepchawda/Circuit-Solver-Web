@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var HistoryManager = /** @class */ (function () {
-    function HistoryManager() {
+class HistoryManager {
+    constructor() {
         /* A variable to keep track of the changes of the system */
         this.history = [];
         /* History index */
@@ -31,22 +31,18 @@ var HistoryManager = /** @class */ (function () {
         this.history_index = -1;
     }
     /* Master function to handle the main logic for adding new history events */
-    HistoryManager.prototype.watch = function () {
+    watch() {
         if (global.HISTORY_MANAGER['packet'].length > 0) {
-            this.push.apply(this, global.HISTORY_MANAGER['packet']);
+            this.push(...global.HISTORY_MANAGER['packet']);
             global.HISTORY_MANAGER['packet'].splice(0, global.HISTORY_MANAGER['packet'].length);
         }
-    };
+    }
     /* A request to update the history */
-    HistoryManager.prototype.push = function () {
-        var packet = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            packet[_i] = arguments[_i];
-        }
+    push(...packet) {
         if (!global.SIGNAL_ADD_ELEMENT && !global.SIGNAL_HISTORY_LOCK) {
             /* Logic to prevent multiples of the same events from being registered. */
             if (this.history.length > 0) {
-                var last_history_index = this.history.length - 1;
+                let last_history_index = this.history.length - 1;
                 if (this.history[last_history_index] != packet) {
                     /* If we're back in time, remove all the future events that might have taken place */
                     if (this.history_index > -1) {
@@ -67,24 +63,23 @@ var HistoryManager = /** @class */ (function () {
                 this.history_index = this.history.length - 1;
             }
         }
-    };
+    }
     /* Going back in time */
-    HistoryManager.prototype.undo = function () {
+    undo() {
         if (this.history_index > 0) {
             this.history_index--;
             engine_functions.parse_elements(this.history[this.history_index]);
         }
-    };
+    }
     /* Going forward in time */
-    HistoryManager.prototype.redo = function () {
+    redo() {
         if (this.history_index < this.history.length - 1) {
             this.history_index++;
             engine_functions.parse_elements(this.history[this.history_index]);
         }
-    };
+    }
     /* Erase all history */
-    HistoryManager.prototype.clear = function () {
+    clear() {
         this.history.splice(0, this.history.length);
-    };
-    return HistoryManager;
-}());
+    }
+}

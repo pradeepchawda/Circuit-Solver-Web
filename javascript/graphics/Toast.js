@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var Toast = /** @class */ (function () {
-    function Toast() {
+class Toast {
+    constructor() {
         /* This is used to place the height at which the toast will display its bounds. */
         this.HEIGHT_RATIO = 0.85;
         this.HEIGHT_FACTOR = 0.7;
@@ -108,31 +108,30 @@ var Toast = /** @class */ (function () {
         this.last_text = '-';
         this.text_measure_div2 = -1;
     }
-    Toast.prototype.update = function () {
+    update() {
         if (this.draw_text) {
             this.timer++;
             if (this.timer >= this.MAX_TIME * this.MAX_SECONDS) {
                 this.reset();
             }
         }
-    };
-    Toast.prototype.reset = function () {
+    }
+    reset() {
         this.text = '';
         this.last_text = '-';
         this.timer = 0;
         this.draw_text = false;
         this.TOAST_REQUEST_DRAW = true;
-    };
-    Toast.prototype.set_text = function (str) {
-        this.text =
-            language_manager.TEXT_PADDING + str + language_manager.TEXT_PADDING;
+    }
+    set_text(str) {
+        this.text = language_manager.TEXT_PADDING + str + language_manager.TEXT_PADDING;
         this.last_text = '-';
-    };
-    Toast.prototype.show = function () {
+    }
+    show() {
         this.timer = 0;
         this.draw_text = true;
-    };
-    Toast.prototype.resize_toast = function () {
+    }
+    resize_toast() {
         /* Resize the stroke widths and the text sizes. */
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -147,21 +146,17 @@ var Toast = /** @class */ (function () {
         }
         this.last_text = this.text;
         this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;
-    };
-    Toast.prototype.draw_toast = function (canvas) {
+    }
+    draw_toast(canvas) {
         if (this.draw_text) {
             if (this.last_text != this.text) {
                 this.last_text = this.text;
                 this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;
             }
             this.bounds.left = view_port.center_x - this.text_measure_div2;
-            this.bounds.top =
-                view_port.top + view_port.view_height * this.HEIGHT_RATIO;
+            this.bounds.top = view_port.top + view_port.view_height * this.HEIGHT_RATIO;
             this.bounds.right = view_port.center_x + this.text_measure_div2;
-            this.bounds.bottom =
-                view_port.top +
-                    view_port.view_height *
-                        (this.HEIGHT_RATIO + (1.0 - this.HEIGHT_RATIO) * this.HEIGHT_FACTOR);
+            this.bounds.bottom = view_port.top + view_port.view_height * (this.HEIGHT_RATIO + (1.0 - this.HEIGHT_RATIO) * this.HEIGHT_FACTOR);
             canvas.draw_round_rect2(this.bounds, this.fill_paint.get_stroke_width(), this.fill_paint);
             canvas.draw_round_rect2(this.bounds, this.fill_paint.get_stroke_width(), this.line_paint);
             canvas.draw_text(this.text, this.bounds.get_center_x(), this.bounds.get_center_y(), this.text_paint);
@@ -170,6 +165,5 @@ var Toast = /** @class */ (function () {
         if (this.TOAST_REQUEST_DRAW) {
             this.TOAST_REQUEST_DRAW = false;
         }
-    };
-    return Toast;
-}());
+    }
+}

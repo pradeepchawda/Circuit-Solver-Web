@@ -19,8 +19,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var SettingsWindow = /** @class */ (function () {
-    function SettingsWindow() {
+class SettingsWindow {
+    constructor() {
         /**
          * [TITLE_HEIGHT_RATIO This controls the height of the title bar relative to the height of the window]
          * @type {Number}
@@ -208,9 +208,9 @@ var SettingsWindow = /** @class */ (function () {
         this.title_bounds.draw_stroke = false;
         this.title_bounds.draw_fill = true;
         this.title_bounds.draw_text = false;
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.okay_button = new Button(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
         this.okay_button.text = '';
         this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
@@ -244,7 +244,7 @@ var SettingsWindow = /** @class */ (function () {
         this.toggle_switch_button.draw_text = true;
         this.toggle_switch_button.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
     }
-    SettingsWindow.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_SELECT_SETTINGS) {
             if (this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                 !this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)) {
@@ -256,8 +256,8 @@ var SettingsWindow = /** @class */ (function () {
             this.first_touch_x = global.mouse_x;
             this.first_touch_y = global.mouse_y;
         }
-    };
-    SettingsWindow.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.FLAG_SELECT_SETTINGS) {
             if (!this.WINDOW_ANCHORED) {
                 this.OFFSET_X = global.mouse_x - this.ANCHOR_X;
@@ -276,8 +276,8 @@ var SettingsWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    SettingsWindow.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         if (global.FLAG_SELECT_SETTINGS) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 if (this.WINDOW_ANCHORED) {
@@ -329,11 +329,11 @@ var SettingsWindow = /** @class */ (function () {
                 this.WINDOW_ANCHORED = true;
             }
         }
-    };
-    SettingsWindow.prototype.null_index_check = function (param, index) {
+    }
+    null_index_check(param, index) {
         return global.not_null(param[index]);
-    };
-    SettingsWindow.prototype.on_attribute_clicked = function (index) {
+    }
+    on_attribute_clicked(index) {
         if (index < this.ATTRIBUTE_SHOW_SIZE) {
             if (index === global.SYSTEM_OPTION_LANGUAGE) {
                 if (global.SYSTEM_OPTION_LANGUAGE < this.ATTRIBUTE_SHOW_SIZE) {
@@ -388,8 +388,8 @@ var SettingsWindow = /** @class */ (function () {
             }
         }
         bottom_menu.resize_bottom_menu();
-    };
-    SettingsWindow.prototype.key_down = function (key_event) {
+    }
+    key_down(key_event) {
         if (global.FLAG_SELECT_SETTINGS) {
             if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_select_settings_flag(!global.FLAG_SELECT_SETTINGS);
@@ -408,9 +408,9 @@ var SettingsWindow = /** @class */ (function () {
                 }
             }
         }
-    };
+    }
     /* A function to resize the entire component. */
-    SettingsWindow.prototype.resize_window = function () {
+    resize_window() {
         if (global.MOBILE_MODE) {
             this.width = view_port.view_width * 0.2;
             this.height = view_port.view_height * 0.4;
@@ -424,9 +424,9 @@ var SettingsWindow = /** @class */ (function () {
         this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
         this.title_bounds.resize_paint();
         /* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-        var height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+        let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.okay_button.set_bounds(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
         this.okay_button.resize_paint();
         this.exit_button.set_bounds(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
@@ -464,9 +464,9 @@ var SettingsWindow = /** @class */ (function () {
             this.toggle_switch_button.resize_toggle_switch();
             this.toggle_switch_button.resize_paint();
         }
-    };
+    }
     /* A function to handle the drawing of the component. */
-    SettingsWindow.prototype.draw_window = function (canvas) {
+    draw_window(canvas) {
         if (global.FLAG_SELECT_SETTINGS) {
             this.title_bounds.text = language_manager.SYSTEM_SETTINGS[global.LANGUAGES[global.LANGUAGE_INDEX]];
             this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
@@ -509,7 +509,7 @@ var SettingsWindow = /** @class */ (function () {
                             canvas.draw_text(i + 1 + '', this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.shorcut_text_paint);
                         }
                         if (global.SYSTEM_OPTIONS['values'][i] === global.ON || global.SYSTEM_OPTIONS['values'][i] === global.OFF) {
-                            var padding = this.attributes[i].get_height() * 0.1;
+                            let padding = this.attributes[i].get_height() * 0.1;
                             this.toggle_switch_button.STATE = global.SYSTEM_OPTIONS['values'][i];
                             this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
                             this.toggle_switch_button.right = this.attributes[i].right - this.PADDING * this.bounds.get_width();
@@ -534,11 +534,10 @@ var SettingsWindow = /** @class */ (function () {
             if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
                 canvas.draw_round_rect(this.exit_button.left + this.OFFSET_X, this.exit_button.top + this.OFFSET_Y, this.exit_button.right + this.OFFSET_X, this.exit_button.bottom + this.OFFSET_Y, this.exit_button.line_paint.get_stroke_width(), this.hover_paint);
             }
-            var width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
-            var height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
+            let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
+            let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
             canvas.draw_line(this.exit_button.left + width_mul_0p3636 + this.OFFSET_X, this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y, this.exit_button.right - width_mul_0p3636 + this.OFFSET_X, this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y, this.line_paint);
             canvas.draw_line(this.exit_button.right - width_mul_0p3636 + this.OFFSET_X, this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y, this.exit_button.left + width_mul_0p3636 + this.OFFSET_X, this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y, this.line_paint);
         }
-    };
-    return SettingsWindow;
-}());
+    }
+}

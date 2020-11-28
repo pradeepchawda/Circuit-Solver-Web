@@ -18,8 +18,8 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-var ZoomWindow = /** @class */ (function () {
-    function ZoomWindow() {
+class ZoomWindow {
+    constructor() {
         /* The padding for the window */
         this.PADDING = 0.025;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
@@ -209,9 +209,9 @@ var ZoomWindow = /** @class */ (function () {
             this.height = view_port.view_height * 0.075;
         }
         this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-        var padding = this.PADDING * this.bounds.get_width();
-        var width = (this.bounds.get_width() - 2 * padding) * 0.5;
-        var height = (this.bounds.get_height() - 2 * padding) * 0.5;
+        let padding = this.PADDING * this.bounds.get_width();
+        let width = (this.bounds.get_width() - 2 * padding) * 0.5;
+        let height = (this.bounds.get_height() - 2 * padding) * 0.5;
         this.option_0 = new RectF(this.bounds.left + padding, this.bounds.top + padding, this.bounds.get_center_x() - padding * 0.5, this.bounds.get_center_y() - padding * 0.5);
         this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
         this.option_2 = new RectF(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
@@ -220,20 +220,20 @@ var ZoomWindow = /** @class */ (function () {
         this.first_touch_x = 0;
         this.first_touch_y = 0;
     }
-    ZoomWindow.prototype.mouse_down = function () {
+    mouse_down() {
         if (global.FLAG_ZOOM) {
             this.first_touch_x = global.mouse_x;
             this.first_touch_y = global.mouse_y;
         }
-    };
-    ZoomWindow.prototype.mouse_move = function () {
+    }
+    mouse_move() {
         if (global.FLAG_ZOOM) {
             if (!global.MOBILE_MODE) {
                 this.hover();
             }
         }
-    };
-    ZoomWindow.prototype.mouse_up = function () {
+    }
+    mouse_up() {
         if (global.FLAG_ZOOM) {
             if (!global.MOUSE_KEYBOARD_LOCK) {
                 if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
@@ -266,8 +266,8 @@ var ZoomWindow = /** @class */ (function () {
                 }
             }
         }
-    };
-    ZoomWindow.prototype.key_down = function (key_event) {
+    }
+    key_down(key_event) {
         if (global.FLAG_ZOOM) {
             if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
@@ -275,8 +275,8 @@ var ZoomWindow = /** @class */ (function () {
                 global.component_touched = true;
             }
         }
-    };
-    ZoomWindow.prototype.hover = function () {
+    }
+    hover() {
         if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
             this.option_0_paint.set_color(global.GENERAL_CYAN_COLOR);
         }
@@ -301,9 +301,9 @@ var ZoomWindow = /** @class */ (function () {
         else {
             this.option_3_paint.set_color(global.GENERAL_GRAY_COLOR);
         }
-    };
+    }
     /* Zoom to the center of the screen! */
-    ZoomWindow.prototype.set_zoom = function (zoom) {
+    set_zoom(zoom) {
         if (zoom >= global.ZOOM_MIN && zoom <= global.ZOOM_MAX) {
             global.SIGNAL_BUILD_ELEMENT = true;
             global.SIGNAL_BUILD_COUNTER = 0;
@@ -314,14 +314,14 @@ var ZoomWindow = /** @class */ (function () {
             global.delta_x = workspace.bounds.left;
             global.delta_y = workspace.bounds.top;
             workspace.workspace_zoom();
-            var dx = view_port.center_x - workspace.bounds.get_center_x();
-            var dy = view_port.center_y - workspace.bounds.get_center_y();
+            let dx = view_port.center_x - workspace.bounds.get_center_x();
+            let dy = view_port.center_y - workspace.bounds.get_center_y();
             workspace.workspace_translate_bounds(dx, dy);
             global.delta_x += dx;
             global.delta_y += dy;
         }
-    };
-    ZoomWindow.prototype.resize_window = function () {
+    }
+    resize_window() {
         if (global.MOBILE_MODE) {
             this.width = view_port.view_width * 0.175;
             this.height = view_port.view_height * 0.13125;
@@ -331,7 +331,7 @@ var ZoomWindow = /** @class */ (function () {
             this.height = view_port.view_height * 0.075;
         }
         this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-        var padding = this.PADDING * this.bounds.get_width();
+        let padding = this.PADDING * this.bounds.get_width();
         this.option_0.set_bounds(this.bounds.left + padding, this.bounds.top + padding, this.bounds.get_center_x() - padding * 0.5, this.bounds.get_center_y() - padding * 0.5);
         this.option_1.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
         this.option_2.set_bounds(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
@@ -350,8 +350,8 @@ var ZoomWindow = /** @class */ (function () {
         this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-    };
-    ZoomWindow.prototype.draw_window = function (canvas) {
+    }
+    draw_window(canvas) {
         if (global.FLAG_ZOOM) {
             canvas.draw_round_rect2(this.bounds, this.bounds_paint.get_stroke_width(), this.bounds_paint);
             canvas.draw_round_rect2(this.option_0, this.fill_paint.get_stroke_width(), this.option_0_paint);
@@ -363,6 +363,5 @@ var ZoomWindow = /** @class */ (function () {
             canvas.draw_round_rect2(this.option_3, this.fill_paint.get_stroke_width(), this.option_3_paint);
             canvas.draw_text(language_manager.EXIT[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_3.get_center_x(), this.option_3.get_center_y(), this.text_paint);
         }
-    };
-    return ZoomWindow;
-}());
+    }
+}
