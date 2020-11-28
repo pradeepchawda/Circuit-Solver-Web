@@ -1427,7 +1427,7 @@ class Global {
     the history generated inside the application. Its queued up so we don't miss
     anything! */
   public readonly HISTORY_MANAGER: HISTORY_MANAGER_T = {
-    packet : []
+    packet: []
   };
   /* The various landuages available to pick from. */
   public readonly LANGUAGES: Array<string> = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];

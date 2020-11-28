@@ -23,6 +23,7 @@
 /* Prevent the backspace from navigating! Disable scrolling w/ backspace or arrow keys! */
 /* #START_GLOBAL_EXTRACT# */
 /* add the hashCode function for all strings. */
+//@ts-ignore
 String.prototype.hashCode = function () {
   let hash: number = 0;
   let i = 0;
@@ -517,9 +518,13 @@ function load_app() {
     try {
       ctx.globalCompositeOperation = 'copy';
       ctx.imageSmoothingEnabled = false;
+      //@ts-ignore
       ctx.mozImageSmoothingEnabled = false;
+      //@ts-ignore
       ctx.oImageSmoothingEnabled = false;
+      //@ts-ignore
       ctx.webkitImageSmoothingEnabled = false;
+      //@ts-ignore
       ctx.msImageSmoothingEnabled = false;
     } catch (e) {}
     global.CANVAS_STROKE_WIDTH_1 = global.CANVAS_STROKE_WIDTH_BASE * 2.25;
@@ -2251,6 +2256,7 @@ function load_app() {
       global.BROWSER_SAFARI = true;
     } else if (navigator.userAgent.indexOf('Firefox') != -1) {
       global.BROWSER_FIREFOX = true;
+      //@ts-ignore
     } else if (navigator.userAgent.indexOf('MSIE') != -1 || !!document.documentMode === true) {
       global.BROWSER_IE = true;
     }

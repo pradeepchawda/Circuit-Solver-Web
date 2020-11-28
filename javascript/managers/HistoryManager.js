@@ -33,12 +33,12 @@ class HistoryManager {
     /* Master function to handle the main logic for adding new history events */
     watch() {
         if (global.HISTORY_MANAGER['packet'].length > 0) {
-            this.push(...global.HISTORY_MANAGER['packet']);
-            global.HISTORY_MANAGER['packet'].splice(0, global.HISTORY_MANAGER['packet'].length);
+            this.push(global.HISTORY_MANAGER['packet'][0]);
+            global.HISTORY_MANAGER['packet'].splice(0, 1);
         }
     }
     /* A request to update the history */
-    push(...packet) {
+    push(packet) {
         if (!global.SIGNAL_ADD_ELEMENT && !global.SIGNAL_HISTORY_LOCK) {
             /* Logic to prevent multiples of the same events from being registered. */
             if (this.history.length > 0) {
