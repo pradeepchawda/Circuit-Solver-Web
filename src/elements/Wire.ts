@@ -186,9 +186,9 @@ class Wire {
     }
     this.BUILD_ELEMENT = true;
   }
-  move_element(dx, dy) {}
+  move_element(dx : number, dy : number) : void {}
   /* Handling a mouse down event. */
-  mouse_down() {
+  mouse_down() : void {
     if (
       global.FLAG_IDLE &&
       !global.FLAG_SAVE_IMAGE &&
@@ -214,9 +214,9 @@ class Wire {
     }
   }
   /* Handling a mouse move event. */
-  mouse_move() {}
+  mouse_move() : void {}
   /* Handling a mouse up event. */
-  mouse_up() {
+  mouse_up() : void {
     if (global.FLAG_IDLE) {
       if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
         if (!global.selected) {
@@ -244,7 +244,7 @@ class Wire {
       }
     }
   }
-  select() {
+  select() : void {
     if (global.WIRE_BUILDER['step'] != 0) {
       wire_manager.reset_wire_builder();
     }
@@ -289,7 +289,7 @@ class Wire {
     global.SIGNAL_BUILD_ELEMENT = true;
   }
   /* This is used to update the SVG */
-  refactor() {
+  refactor() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
       this.x_space = global.node_space_x >> 1;
       this.y_space = global.node_space_y >> 1;
@@ -298,7 +298,7 @@ class Wire {
     }
   }
   /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-  resize() {
+  resize() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
       this.update_wire_style();
       if (this.elm.consistent()) {
@@ -342,7 +342,7 @@ class Wire {
       }
     }
   }
-  set_flip(flip) {
+  set_flip(flip : number) : void{
     this.BUILD_ELEMENT = true;
     wire_manager.reset_wire_builder();
     this.release_nodes();
@@ -351,7 +351,7 @@ class Wire {
     this.capture_nodes();
   }
   /* Sets the rotation of the component */
-  set_rotation(rotation) {
+  set_rotation(rotation : number) : void {
     this.BUILD_ELEMENT = true;
     wire_manager.reset_wire_builder();
     this.release_nodes();
@@ -360,7 +360,7 @@ class Wire {
     this.capture_nodes();
   }
   /* Push the changes of this object to the element observer */
-  push_history() {
+  push_history() : void {
     if (this.INITIALIZED) {
       global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
     }
@@ -381,8 +381,8 @@ class Wire {
     }
     this.set_wire_style(this.elm.wire_style);
   }
-  increment_flip() {}
-  remove_focus() {
+  increment_flip() : void {}
+  remove_focus() : void {
     if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
       global.focused_id = global.NULL;
       global.focused_type = global.NULL;
@@ -390,7 +390,7 @@ class Wire {
       global.focused = false;
     }
   }
-  remove_selection() {
+  remove_selection() : void {
     if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
       global.selected_id = global.NULL;
       global.selected_type = global.NULL;
@@ -400,7 +400,7 @@ class Wire {
       global.selected = false;
     }
   }
-  recolor() {
+  recolor() : void {
     if (global.selected) {
       if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
         this.line_paint.set_color(global.SELECTED_COLOR);
@@ -490,11 +490,11 @@ class Wire {
       return collision_2 || collision_3 || collision_4 || collision_5;
     }
   }
-  is_selected_element() {
+  is_selected_element() : boolean {
     return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
   }
   /* Draws the component */
-  draw_component(canvas) {
+  draw_component(canvas : GraphicsEngine) : void {
     this.refactor();
     this.recolor();
     this.resize();
@@ -618,7 +618,7 @@ class Wire {
     }
   }
   /* Handles future proofing of elements! */
-  patch() {
+  patch() : void {
     if (!global.not_null(this.total_bounds)) {
       this.total_bounds = new RectF(0, 0, 0, 0);
     }
@@ -639,7 +639,7 @@ class Wire {
       this.indexer = 0;
     }
   }
-  time_data() {
+  time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     let time_data = global.copy(global.TIME_DATA_TEMPLATE);
@@ -655,5 +655,5 @@ class Wire {
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset() {}
+  reset() : void {}
 }

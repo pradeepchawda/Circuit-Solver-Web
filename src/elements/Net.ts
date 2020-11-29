@@ -198,7 +198,7 @@ or overlapped)*/
     }
   }
   /* Handling a mouse down event. */
-  mouse_down() {
+  mouse_down() : void {
     if (
       global.FLAG_IDLE &&
       !global.FLAG_SAVE_IMAGE &&
@@ -230,7 +230,7 @@ or overlapped)*/
     }
   }
   /* This is to help build wires! */
-  handle_wire_builder(n, anchor) {
+  handle_wire_builder(n : number, anchor : number) : void {
     if (global.WIRE_BUILDER['step'] === 0) {
       global.WIRE_BUILDER['n1'] = n;
       global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -247,7 +247,7 @@ or overlapped)*/
       global.WIRE_BUILDER['step']++;
     }
   }
-  move_element(dx, dy) {
+  move_element(dx : number, dy : number) : void {
     wire_manager.reset_wire_builder();
     this.unanchor_wires();
     this.release_nodes();
@@ -270,7 +270,7 @@ or overlapped)*/
     this.anchor_wires();
   }
   /* Handling a mouse move event. */
-  mouse_move() {
+  mouse_move() : void {
     if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
       /* Move the bounds of the element. Re-locates the center of the bounds. */
       if (global.focused) {
@@ -309,7 +309,7 @@ or overlapped)*/
     }
   }
   /* Handling a mouse up event. */
-  mouse_up() {
+  mouse_up() : void {
     if (global.FLAG_IDLE) {
       if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
         if (this.is_translating) {
@@ -344,7 +344,7 @@ or overlapped)*/
       }
     }
   }
-  select() {
+  select() : void {
     if (global.WIRE_BUILDER['step'] != 0) {
       wire_manager.reset_wire_builder();
     }
@@ -355,7 +355,7 @@ or overlapped)*/
     global.selected_wire_style = global.NULL;
     global.selected = true;
   }
-  remove_focus() {
+  remove_focus() : void {
     if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
       global.focused_id = global.NULL;
       global.focused_type = global.NULL;
@@ -363,7 +363,7 @@ or overlapped)*/
       global.focused = false;
     }
   }
-  remove_selection() {
+  remove_selection() : void {
     if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
       global.selected_id = global.NULL;
       global.selected_type = global.NULL;
@@ -373,7 +373,7 @@ or overlapped)*/
       global.selected = false;
     }
   }
-  wire_reference_maintenance() {
+  wire_reference_maintenance() : void {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
       let id = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
@@ -384,7 +384,7 @@ or overlapped)*/
       }
     }
   }
-  unanchor_wires() {
+  unanchor_wires() : void {
     if (this.wire_reference.length > 0) {
       let vertices : Array<number> = this.get_vertices();
       let id = -1;
@@ -416,7 +416,7 @@ or overlapped)*/
       }
     }
   }
-  anchor_wires() {
+  anchor_wires() : void {
     if (this.wire_reference.length > 0) {
       let vertices : Array<number> = this.get_vertices();
       let id = -1;
@@ -449,13 +449,13 @@ or overlapped)*/
     }
   }
   /* Push the changes of this object to the element observer */
-  push_history() {
+  push_history() : void {
     if (this.INITIALIZED) {
       global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
     }
   }
   /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-  resize() {
+  resize() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
       if (this.bounds.anchored) {
         if (this.elm.consistent()) {
@@ -478,7 +478,7 @@ or overlapped)*/
     }
   }
   /* This is used to update the SVG */
-  refactor() {
+  refactor() : void {
     /* Movement of the bounds is handled in mouse move */
     /* Re-factor the vector graphics */
     let vertices : Array<number> = this.get_vertices();
@@ -492,9 +492,9 @@ or overlapped)*/
   }
   /* General function to handle any processing required by the component */
   update() {}
-  set_flip(flip) {}
+  set_flip(flip : number) : void{}
   /* Sets the rotation of the component */
-  set_rotation(rotation) {
+  set_rotation(rotation : number) : void {
     this.BUILD_ELEMENT = true;
     wire_manager.reset_wire_builder();
     this.push_history();
@@ -503,15 +503,15 @@ or overlapped)*/
     this.refactor();
     this.capture_nodes();
   }
-  increment_rotation() {
+  increment_rotation() : void {
     this.elm.rotation++;
     if (this.elm.rotation > global.ROTATION_270) {
       this.elm.rotation = global.ROTATION_0;
     }
     this.set_rotation(this.elm.rotation);
   }
-  increment_flip() {}
-  recolor() {
+  increment_flip() : void {}
+  recolor() : void {
     if (global.selected) {
       if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
         this.line_paint.set_color(global.SELECTED_COLOR);
@@ -534,11 +534,11 @@ or overlapped)*/
       }
     }
   }
-  is_selected_element() {
+  is_selected_element() : boolean {
     return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
   }
   /* Draws the component */
-  draw_component(canvas) {
+  draw_component(canvas : GraphicsEngine) : void {
     this.wire_reference_maintenance();
     this.recolor();
     this.resize();
@@ -646,7 +646,7 @@ or overlapped)*/
     }
   }
   /* Handles future proofing of elements! */
-  patch() {
+  patch() : void {
     if (!global.not_null(this.elm.properties['Show Name'])) {
       this.elm.properties['Show Name'] = global.ON;
     }
@@ -667,7 +667,7 @@ or overlapped)*/
       this.indexer = 0;
     }
   }
-  time_data() {
+  time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     let time_data = global.copy(global.TIME_DATA_TEMPLATE);
@@ -683,5 +683,5 @@ or overlapped)*/
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset() {}
+  reset() : void {}
 }
