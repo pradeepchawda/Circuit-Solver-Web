@@ -66,7 +66,7 @@ class ACCurrent {
   /* Flag to denote when the component is actually moving. */
   public is_translating: boolean = false;
   public sine_wave : SineWave = new SineWave(0, 0, 0, 0, this.x_space >> 1);
-  public wire_reference: Array<number> = [];
+  public wire_reference: Array<WIRE_REFERENCE_T> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id: number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
@@ -213,7 +213,7 @@ or overlapped)*/
       );
     }
   }
-  push_reference(ref: number): void {
+  push_reference(ref: WIRE_REFERENCE_T): void {
     this.wire_reference.push(ref);
   }
   stamp(): void {

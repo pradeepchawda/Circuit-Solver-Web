@@ -21,46 +21,46 @@
  *
  ***********************************************************************/
 class Wire {
-  public INITIALIZED : boolean = false;
+  public INITIALIZED: boolean = false;
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm : Element2 = new Element2(-1, -1, global.NULL);
-  public p1 : PointF = new PointF(0, 0);
-  public p2 : PointF = new PointF(0, 0);
+  public elm: Element2 = new Element2(-1, -1, global.NULL);
+  public p1: PointF = new PointF(0, 0);
+  public p2: PointF = new PointF(0, 0);
 
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
-  public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-  public c_x : number = 0;
-  public c_y : number = 0;
+  public theta: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+  public c_x: number = 0;
+  public c_y: number = 0;
 
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space : number = global.node_space_x >> 1;
+  public x_space: number = global.node_space_x >> 1;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space : number = global.node_space_y >> 1;
+  public y_space: number = global.node_space_y >> 1;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint : Paint = new Paint();
+  public line_paint: Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint : Paint = new Paint();
+  public point_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint : Paint = new Paint();
+  public text_paint: Paint = new Paint();
   /* This is for handling the different styles of the wire (center point) */
   public wire_point = new PointF(0, 0);
   /* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
-  public bounds : RectF = new RectF(0, 0, 0, 0);
+  public bounds: RectF = new RectF(0, 0, 0, 0);
   public total_bounds = new RectF(0, 0, 0, 0);
   /* The voltage of the wire. */
   public wire_voltage = 0;
-  public MULTI_SELECTED : boolean = false;
+  public MULTI_SELECTED: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER : Array<Array<number>> = [];
+  public LINE_BUFFER: Array<Array<number>> = [];
   public CIRCLE_BUFFER: Array<Array<number>> = [];
-  public BUILD_ELEMENT : boolean = true;
-  public ANGLE : number = 0;
-  public indexer : number = 0;
-  public is_translating : boolean = false;
+  public BUILD_ELEMENT: boolean = true;
+  public ANGLE: number = 0;
+  public indexer: number = 0;
+  public is_translating: boolean = false;
 
-  constructor(type : number, id : number , n1 : number, n2 : number) {
+  constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;
     /* Inititalize the element2 class that will hold the basic data about our component */
     this.elm = new Element2(id, type, global.copy(global.PROPERTY_WIRE));
@@ -142,7 +142,7 @@ class Wire {
     this.indexer = 0;
     this.is_translating = false;
   }
-  refresh_bounds() : void {
+  refresh_bounds(): void {
     if (this.elm.consistent()) {
       this.p1 = new PointF(0, 0);
       this.p2 = new PointF(0, 0);
@@ -152,10 +152,10 @@ class Wire {
     }
   }
   /* Stamp for MNA wire (should be empty.) */
-  stamp() : void {}
-  release_wires() : void {}
+  stamp(): void {}
+  release_wires(): void {}
   /* Handle capture and release from nodes themselves... (references) */
-  release_nodes() : void {
+  release_nodes(): void {
     if (this.elm.consistent()) {
       nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
       nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
@@ -178,7 +178,7 @@ class Wire {
     this.BUILD_ELEMENT = true;
   }
   /* Push the components references to the Nodes */
-  capture_nodes() : void {
+  capture_nodes(): void {
     this.elm.map_node2(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
     if (this.elm.consistent() && !this.is_translating) {
       nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
@@ -186,9 +186,9 @@ class Wire {
     }
     this.BUILD_ELEMENT = true;
   }
-  move_element(dx : number, dy : number) : void {}
+  move_element(dx: number, dy: number): void {}
   /* Handling a mouse down event. */
-  mouse_down() : void {
+  mouse_down(): void {
     if (
       global.FLAG_IDLE &&
       !global.FLAG_SAVE_IMAGE &&
@@ -214,9 +214,9 @@ class Wire {
     }
   }
   /* Handling a mouse move event. */
-  mouse_move() : void {}
+  mouse_move(): void {}
   /* Handling a mouse up event. */
-  mouse_up() : void {
+  mouse_up(): void {
     if (global.FLAG_IDLE) {
       if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
         if (!global.selected) {
@@ -244,7 +244,7 @@ class Wire {
       }
     }
   }
-  select() : void {
+  select(): void {
     if (global.WIRE_BUILDER['step'] != 0) {
       wire_manager.reset_wire_builder();
     }
@@ -289,7 +289,7 @@ class Wire {
     global.SIGNAL_BUILD_ELEMENT = true;
   }
   /* This is used to update the SVG */
-  refactor() : void {
+  refactor(): void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
       this.x_space = global.node_space_x >> 1;
       this.y_space = global.node_space_y >> 1;
@@ -298,7 +298,7 @@ class Wire {
     }
   }
   /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-  resize() : void {
+  resize(): void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
       this.update_wire_style();
       if (this.elm.consistent()) {
@@ -335,14 +335,14 @@ class Wire {
     }
   }
   /* General function to handle any processing required by the component */
-  update() : void {
+  update(): void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
       if (this.elm.consistent()) {
         this.wire_voltage = Math.max(engine_functions.get_voltage(this.elm.n1, -1), engine_functions.get_voltage(this.elm.n2, -1));
       }
     }
   }
-  set_flip(flip : number) : void{
+  set_flip(flip: number): void {
     this.BUILD_ELEMENT = true;
     wire_manager.reset_wire_builder();
     this.release_nodes();
@@ -351,7 +351,7 @@ class Wire {
     this.capture_nodes();
   }
   /* Sets the rotation of the component */
-  set_rotation(rotation : number) : void {
+  set_rotation(rotation: number): void {
     this.BUILD_ELEMENT = true;
     wire_manager.reset_wire_builder();
     this.release_nodes();
@@ -360,13 +360,13 @@ class Wire {
     this.capture_nodes();
   }
   /* Push the changes of this object to the element observer */
-  push_history() : void {
+  push_history(): void {
     if (this.INITIALIZED) {
       global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
     }
   }
   /* Sets the wire style of the component */
-  set_wire_style(style) {
+  set_wire_style(style: number): void {
     this.elm.set_wire_style(style);
     this.refactor();
     if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
@@ -381,8 +381,8 @@ class Wire {
     }
     this.set_wire_style(this.elm.wire_style);
   }
-  increment_flip() : void {}
-  remove_focus() : void {
+  increment_flip(): void {}
+  remove_focus(): void {
     if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
       global.focused_id = global.NULL;
       global.focused_type = global.NULL;
@@ -390,7 +390,7 @@ class Wire {
       global.focused = false;
     }
   }
-  remove_selection() : void {
+  remove_selection(): void {
     if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
       global.selected_id = global.NULL;
       global.selected_type = global.NULL;
@@ -400,7 +400,7 @@ class Wire {
       global.selected = false;
     }
   }
-  recolor() : void {
+  recolor(): void {
     if (global.selected) {
       if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
         this.line_paint.set_color(global.SELECTED_COLOR);
@@ -490,11 +490,11 @@ class Wire {
       return collision_2 || collision_3 || collision_4 || collision_5;
     }
   }
-  is_selected_element() : boolean {
+  is_selected_element(): boolean {
     return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
   }
   /* Draws the component */
-  draw_component(canvas : GraphicsEngine) : void {
+  draw_component(canvas: GraphicsEngine): void {
     this.refactor();
     this.recolor();
     this.resize();
@@ -613,12 +613,12 @@ class Wire {
       }
     }
     if (global.DEVELOPER_MODE) {
-      canvas.draw_text(this.elm.id, this.c_x, this.c_y, this.text_paint);
+      canvas.draw_text(String(this.elm.id), this.c_x, this.c_y, this.text_paint);
       canvas.draw_rect2(this.total_bounds, this.line_paint);
     }
   }
   /* Handles future proofing of elements! */
-  patch() : void {
+  patch(): void {
     if (!global.not_null(this.total_bounds)) {
       this.total_bounds = new RectF(0, 0, 0, 0);
     }
@@ -639,11 +639,11 @@ class Wire {
       this.indexer = 0;
     }
   }
-  time_data() : TIME_DATA_TEMPLATE_T {
+  time_data(): TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
+    let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys: Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
@@ -655,5 +655,5 @@ class Wire {
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset() : void {}
+  reset(): void {}
 }

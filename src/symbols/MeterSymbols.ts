@@ -29,7 +29,7 @@ class MeterSymbols {
   public meter_type = this.METER_VOLTAGE;
   public meter_paint = new Paint();
   public points = [];
-  public LINE_BUFFER = [];
+  public LINE_BUFFER : Array<Array<number>> = [];
   public CIRCLE_BUFFER = [];
 
   constructor() {

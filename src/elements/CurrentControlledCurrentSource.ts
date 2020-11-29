@@ -77,7 +77,7 @@ class CurrentControlledCurrentSource {
   public text_paint: Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
   public is_translating: boolean = false;
-  public wire_reference: Array<number> = [];
+  public wire_reference: Array<WIRE_REFERENCE_T> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id: number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
@@ -239,7 +239,7 @@ or overlapped)*/
       );
     }
   }
-  push_reference(ref: number): void {
+  push_reference(ref: WIRE_REFERENCE_T): void {
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */

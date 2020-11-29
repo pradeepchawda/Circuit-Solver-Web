@@ -82,7 +82,7 @@ class InductorSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER = [];
+  public LINE_BUFFER : Array<Array<number>> = [];
   public CIRCLE_BUFFER = [];
 
   constructor(rect, index, page) {

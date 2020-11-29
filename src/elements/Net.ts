@@ -45,7 +45,7 @@ class Net {
   /* Flag to denote when the component is actually moving. */
   public is_translating : boolean = false;
   public temp_color : string = global.GENERAL_RED_COLOR;
-  public wire_reference : Array<number> = [];
+  public wire_reference : Array<WIRE_REFERENCE_T> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
@@ -159,7 +159,7 @@ or overlapped)*/
       this.bounds.set_center2(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y, global.node_space_x * 2, global.node_space_y * 2);
     }
   }
-  push_reference(ref : number) : void {
+  push_reference(ref : WIRE_REFERENCE_T) : void {
     this.wire_reference.push(ref);
   }
   stamp() : void {}

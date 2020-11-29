@@ -61,7 +61,7 @@ class Diode {
   public text_paint: Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
   public is_translating: boolean = false;
-  public wire_reference: Array<number> = [];
+  public wire_reference: Array<WIRE_REFERENCE_T> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id: number = 0;
   public GAMMA: number = 0.12;
@@ -211,7 +211,7 @@ or overlapped)*/
       );
     }
   }
-  push_reference(ref: number): void {
+  push_reference(ref: WIRE_REFERENCE_T): void {
     this.wire_reference.push(ref);
   }
   stamp(): void {
@@ -224,14 +224,14 @@ or overlapped)*/
   calculate_vcrit(): number {
     return this.elm.properties['Emission Coefficient'] * global.vt * Math.log((this.elm.properties['Emission Coefficient'] * global.vt) / (1.41421 * this.elm.properties['Saturation Current']));
   }
-  is_converged() {
+  is_converged() : boolean {
     if (this.get_diode_error() < global.settings.TOLERANCE) {
       return true;
     } else {
       return false;
     }
   }
-  reset_diode() {
+  reset_diode() : void {
     this.elm.properties['Voltage'] = 0;
     this.elm.properties['Last Voltage'] = this.calculate_vcrit();
     this.elm.properties['Last Current'] = global.settings.TOLERANCE * 2;
@@ -239,7 +239,7 @@ or overlapped)*/
     this.elm.properties['Equivalent Current'] = 0;
     this.update();
   }
-  get_diode_error() {
+  get_diode_error() : number {
     return Math.abs(this.elm.properties['Voltage'] - this.elm.properties['Last Voltage']);
   }
   /* General function to handle any processing required by the component */
@@ -276,7 +276,7 @@ or overlapped)*/
       }
     }
   }
-  gmin_step(step, error) {
+  gmin_step(step:number, error:number) : void {
     this.GMIN = global.GMIN_DEFAULT;
     if (simulation_manager.ITERATOR > step && error > global.settings.TOLERANCE) {
       this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));

@@ -27,8 +27,8 @@ class AmMeter {
   public RATIO: number = 0.75;
   /* Create a new rectangle for the bounds of this component */
   public bounds: RectF = new RectF(0, 0, 0, 0);
-  public trace_bounds = new RectF(0, 0, 0, 0);
-  public meter_trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+  public trace_bounds : RectF = new RectF(0, 0, 0, 0);
+  public meter_trace : Trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm : Element2 = new Element2(-1, -1, global.NULL);
   public plus_point: PointF = new PointF(0, 0);
@@ -67,7 +67,7 @@ event is being called continuously for the elements but it's wasteful for the
 traces. */
   public RESIZE_METER_TRACE : boolean = false;
   public SCOPE_INDEX_CHECK : number = -1;
-  public wire_reference: Array<number> = [];
+  public wire_reference: Array<WIRE_REFERENCE_T> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id: number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
@@ -228,7 +228,7 @@ or overlapped)*/
       this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
     }
   }
-  push_reference(ref: number): void {
+  push_reference(ref: WIRE_REFERENCE_T): void {
     this.wire_reference.push(ref);
   }
   stamp(): void {

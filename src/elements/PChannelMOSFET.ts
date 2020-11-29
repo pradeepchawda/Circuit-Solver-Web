@@ -21,81 +21,81 @@
  *
  ***********************************************************************/
 class PChannelMOSFET {
-  public INITIALIZED : boolean = false;
+  public INITIALIZED: boolean = false;
   /* Create a new rectangle for the bounds of this component */
-  public bounds : RectF = new RectF(0, 0, 0, 0);
+  public bounds: RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm = new Element3(-1, -1, global.NULL);
 
-  public p1 : PointF = new PointF(0, 0);
-  public p2 : PointF = new PointF(0, 0);
-  public p3 : PointF = new PointF(0, 0);
+  public p1: PointF = new PointF(0, 0);
+  public p2: PointF = new PointF(0, 0);
+  public p3: PointF = new PointF(0, 0);
 
-  public pmos_0 = new PointF(0, 0);
-  public pmos_1 = new PointF(0, 0);
-  public pmos_2 = new PointF(0, 0);
-  public pmos_3 = new PointF(0, 0);
-  public pmos_4 = new PointF(0, 0);
-  public pmos_5 = new PointF(0, 0);
-  public pmos_6 = new PointF(0, 0);
-  public pmos_7 = new PointF(0, 0);
-  public pmos_8 = new PointF(0, 0);
+  public pmos_0: PointF = new PointF(0, 0);
+  public pmos_1: PointF = new PointF(0, 0);
+  public pmos_2: PointF = new PointF(0, 0);
+  public pmos_3: PointF = new PointF(0, 0);
+  public pmos_4: PointF = new PointF(0, 0);
+  public pmos_5: PointF = new PointF(0, 0);
+  public pmos_6: PointF = new PointF(0, 0);
+  public pmos_7: PointF = new PointF(0, 0);
+  public pmos_8: PointF = new PointF(0, 0);
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
-  public equilateral_center : Array<number> = [];
+  public equilateral_center: Array<number> = [];
   /* The center (x-coord) of the bounds */
-  public c_x : number = this.bounds.get_center_x();
+  public c_x: number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
-  public c_y : number = this.bounds.get_center_y();
+  public c_y: number = this.bounds.get_center_y();
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space : number = global.node_space_x >> 1;
+  public x_space: number = global.node_space_x >> 1;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space : number = global.node_space_y >> 1;
+  public y_space: number = global.node_space_y >> 1;
   /* Some points we'll be extending the leads of the resistor to. */
-  public connect1_x : number = 0;
-  public connect1_y : number = 0;
-  public connect2_x : number = 0;
-  public connect2_y : number = 0;
+  public connect1_x: number = 0;
+  public connect1_y: number = 0;
+  public connect2_x: number = 0;
+  public connect2_y: number = 0;
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
 
   /* Angle from p1 to p2 */
-  public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+  public theta: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Angle from center to p2 */
-  public phi : number = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
-  public grid_point : Array<number> = [];
+  public phi: number = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
+  public grid_point: Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint : Paint = new Paint();
+  public line_paint: Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint : Paint = new Paint();
+  public point_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint : Paint = new Paint();
+  public text_paint: Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
-  public is_translating : boolean = false;
-  public wire_reference : Array<number> = [];
+  public is_translating: boolean = false;
+  public wire_reference: Array<WIRE_REFERENCE_T> = [];
   /* This is to keep track of the simulation id's */
-  public simulation_id : number = 0;
-  public GAMMA : number = 0.12;
-  public KAPPA : number = 0.414;
-  public GMIN : number = 1e-9;
-  public GMIN_START : number = 12;
+  public simulation_id: number = 0;
+  public GAMMA: number = 0.12;
+  public KAPPA: number = 0.414;
+  public GMIN: number = 1e-9;
+  public GMIN_START: number = 12;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
-  public indexer : number = 0;
-  public m_x : number = 0;
-  public m_y : number = 0;
+  public indexer: number = 0;
+  public m_x: number = 0;
+  public m_y: number = 0;
   /* Ideal low poss filter to extract the dc value...*/
   public y_hat = 0;
   public y_out = 0;
   public _alpha = 0;
   public f_cutoff = 250;
-  public MULTI_SELECTED : boolean = false;
+  public MULTI_SELECTED: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER : Array<Array<number>> = [];
+  public LINE_BUFFER: Array<Array<number>> = [];
   public CIRCLE_BUFFER: Array<Array<number>> = [];
-  public BUILD_ELEMENT : boolean = true;
-  public ANGLE : number = 0;
+  public BUILD_ELEMENT: boolean = true;
+  public ANGLE: number = 0;
 
-  constructor(type:number, id:number, n1:number, n2:number, n3:number) {
+  constructor(type: number, id: number, n1: number, n2: number, n3: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
     this.bounds = new RectF(0, 0, 0, 0);
@@ -121,7 +121,7 @@ or overlapped)*/
     this.elm.set_flip(global.FLIP_0);
     /* Re-map those bad boys! */
     this.release_nodes();
-    let vertices : Array<number> = this.get_vertices();
+    let vertices: Array<number> = this.get_vertices();
     this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
     /* Add this components references to the nodes it's attached to currently. */
     this.capture_nodes();
@@ -234,13 +234,13 @@ or overlapped)*/
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
-  lpf(inp) {
+  lpf(inp: number): number {
     this._alpha = (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff) / (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff + 1.0);
     this.y_hat = this._alpha * inp + (1 - this._alpha) * this.y_out;
     this.y_out = this.y_hat;
     return this.y_hat;
   }
-  refresh_bounds() : void {
+  refresh_bounds(): void {
     if (this.elm.consistent()) {
       this.p1 = new PointF(0, 0);
       this.p2 = new PointF(0, 0);
@@ -261,10 +261,10 @@ or overlapped)*/
       this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
     }
   }
-  push_reference(ref : number) : void {
+  push_reference(ref: WIRE_REFERENCE_T): void {
     this.wire_reference.push(ref);
   }
-  stamp() : void {
+  stamp(): void {
     if (this.elm.consistent()) {
       if (this.elm.properties['Mosfet Mode'] != 0) {
         engine_functions.stamp_vccs(this.elm.n1, this.elm.n3, this.elm.n2, this.elm.n1, this.elm.properties['gm']);
@@ -274,7 +274,7 @@ or overlapped)*/
       engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.elm.properties['gsd']);
     }
   }
-  is_converged() {
+  is_converged(): boolean {
     if (this.get_pmosfet_error() < global.settings.TOLERANCE) {
       return true;
     } else {
@@ -295,7 +295,7 @@ or overlapped)*/
     return Math.abs(this.elm.properties['Vsg'] - this.elm.properties['Last Vsg']);
   }
   /* General function to handle any processing required by the component */
-  update() : void {
+  update(): void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
       if (this.elm.consistent()) {
         this.elm.properties['Last Vsg'] = global.copy(this.elm.properties['Vsg']);
@@ -330,17 +330,17 @@ or overlapped)*/
       }
     }
   }
-  gmin_step(step, error) {
+  gmin_step(step: number, error: number): void {
     this.GMIN = global.GMIN_DEFAULT;
     if (simulation_manager.ITERATOR > step && error > global.settings.TOLERANCE) {
       this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
     }
   }
   /* Vertex handling (for rotation) */
-  get_vertices() : Array<number> {
-    let vertices : Array<number> = [];
-    let p1 : Array<number> = [];
-    let p2 : Array<number> = [];
+  get_vertices(): Array<number> {
+    let vertices: Array<number> = [];
+    let p1: Array<number> = [];
+    let p2: Array<number> = [];
     let p3 = [];
     if (this.elm.rotation === global.ROTATION_0) {
       if (this.elm.flip === global.FLIP_0) {
@@ -420,9 +420,9 @@ or overlapped)*/
     }
     return vertices;
   }
-  release_wires() : void {
+  release_wires(): void {
     if (this.wire_reference.length > 0) {
-      let id : number = -1;
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -434,7 +434,7 @@ or overlapped)*/
     }
   }
   /* Handle capture and release from nodes themselves... (references) */
-  release_nodes() : void {
+  release_nodes(): void {
     if (this.elm.consistent()) {
       nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
       nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
@@ -443,8 +443,8 @@ or overlapped)*/
     }
   }
   /* Push the components references to the Nodes */
-  capture_nodes() : void {
-    let vertices : Array<number> = this.get_vertices();
+  capture_nodes(): void {
+    let vertices: Array<number> = this.get_vertices();
     this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
     if (this.elm.consistent() && !this.is_translating) {
       nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
@@ -453,7 +453,7 @@ or overlapped)*/
     }
   }
   /* Handling a mouse down event. */
-  mouse_down() : void {
+  mouse_down(): void {
     if (
       global.FLAG_IDLE &&
       !global.FLAG_SAVE_IMAGE &&
@@ -493,7 +493,7 @@ or overlapped)*/
     }
   }
   /* This is to help build wires! */
-  handle_wire_builder(n : number, anchor : number) : void {
+  handle_wire_builder(n: number, anchor: number): void {
     if (global.WIRE_BUILDER['step'] === 0) {
       global.WIRE_BUILDER['n1'] = n;
       global.WIRE_BUILDER['type1'] = this.elm.type;
@@ -510,7 +510,7 @@ or overlapped)*/
       global.WIRE_BUILDER['step']++;
     }
   }
-  move_element(dx : number, dy : number) : void {
+  move_element(dx: number, dy: number): void {
     wire_manager.reset_wire_builder();
     this.unanchor_wires();
     this.release_nodes();
@@ -533,7 +533,7 @@ or overlapped)*/
     this.anchor_wires();
   }
   /* Handling a mouse move event. */
-  mouse_move() : void {
+  mouse_move(): void {
     if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
       /* Move the bounds of the element. Re-locates the center of the bounds. */
       if (global.focused) {
@@ -572,7 +572,7 @@ or overlapped)*/
     }
   }
   /* Handling a mouse up event. */
-  mouse_up() : void {
+  mouse_up(): void {
     if (global.FLAG_IDLE) {
       if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
         if (this.is_translating) {
@@ -607,7 +607,7 @@ or overlapped)*/
       }
     }
   }
-  select() : void {
+  select(): void {
     if (global.WIRE_BUILDER['step'] != 0) {
       wire_manager.reset_wire_builder();
     }
@@ -618,7 +618,7 @@ or overlapped)*/
     global.selected_wire_style = global.NULL;
     global.selected = true;
   }
-  remove_focus() : void {
+  remove_focus(): void {
     if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
       global.focused_id = global.NULL;
       global.focused_type = global.NULL;
@@ -626,7 +626,7 @@ or overlapped)*/
       global.focused = false;
     }
   }
-  remove_selection() : void {
+  remove_selection(): void {
     if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
       global.selected_id = global.NULL;
       global.selected_type = -1;
@@ -636,9 +636,9 @@ or overlapped)*/
       global.selected = false;
     }
   }
-  wire_reference_maintenance() : void {
+  wire_reference_maintenance(): void {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-      let id : number = -1;
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (!(id > -1 && id < wires.length)) {
@@ -647,10 +647,10 @@ or overlapped)*/
       }
     }
   }
-  unanchor_wires() : void {
+  unanchor_wires(): void {
     if (this.wire_reference.length > 0) {
-      let vertices : Array<number> = this.get_vertices();
-      let id : number = -1;
+      let vertices: Array<number> = this.get_vertices();
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -688,10 +688,10 @@ or overlapped)*/
       }
     }
   }
-  anchor_wires() : void {
+  anchor_wires(): void {
     if (this.wire_reference.length > 0) {
-      let vertices : Array<number> = this.get_vertices();
-      let id : number = -1;
+      let vertices: Array<number> = this.get_vertices();
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -729,7 +729,7 @@ or overlapped)*/
       }
     }
   }
-  set_flip(flip : number) : void{
+  set_flip(flip: number): void {
     this.BUILD_ELEMENT = true;
     wire_manager.reset_wire_builder();
     this.unanchor_wires();
@@ -741,7 +741,7 @@ or overlapped)*/
     this.anchor_wires();
   }
   /* Sets the rotation of the component */
-  set_rotation(rotation : number) : void {
+  set_rotation(rotation: number): void {
     this.BUILD_ELEMENT = true;
     wire_manager.reset_wire_builder();
     this.unanchor_wires();
@@ -753,26 +753,26 @@ or overlapped)*/
     this.anchor_wires();
   }
   /* Push the changes of this object to the element observer */
-  push_history() : void {
+  push_history(): void {
     if (this.INITIALIZED) {
       global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
     }
   }
   /* Generate the SVG for the component. */
-  build_element() : void {
+  build_element(): void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 : number = 1.5 * this.x_space;
-      let cache_1 : number = 2.5 * this.x_space;
-      let cache_2 : number = 1.5 * this.y_space;
-      let cache_3 : number = 2.5 * this.y_space;
-      let cache_4 : number = 3.0 * this.x_space;
-      let cache_5 : number = 3.0 * this.y_space;
-      let cache_6 : number = 1.605 * this.x_space;
-      let cache_7 : number = 1.605 * this.y_space;
-      let cache_8 : number = 0.707 * this.x_space;
-      let cache_9 : number = 0.707 * this.y_space;
-      let cache_10 : number = this.x_space;
-      let cache_11 : number = this.y_space;
+      let cache_0: number = 1.5 * this.x_space;
+      let cache_1: number = 2.5 * this.x_space;
+      let cache_2: number = 1.5 * this.y_space;
+      let cache_3: number = 2.5 * this.y_space;
+      let cache_4: number = 3.0 * this.x_space;
+      let cache_5: number = 3.0 * this.y_space;
+      let cache_6: number = 1.605 * this.x_space;
+      let cache_7: number = 1.605 * this.y_space;
+      let cache_8: number = 0.707 * this.x_space;
+      let cache_9: number = 0.707 * this.y_space;
+      let cache_10: number = this.x_space;
+      let cache_11: number = this.y_space;
       /* Top segment */
       this.pmos_0.x = this.p1.x + cache_10 * global.cosine(this.theta);
       this.pmos_0.y = this.p1.y + cache_11 * global.sine(this.theta);
@@ -797,7 +797,7 @@ or overlapped)*/
     }
   }
   /* General function to help with resizing, i.e., canvas dimension change, zooming*/
-  resize() : void {
+  resize(): void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
       if (this.bounds.anchored) {
         if (this.elm.consistent()) {
@@ -828,10 +828,10 @@ or overlapped)*/
     }
   }
   /* This is used to update the SVG */
-  refactor() : void {
+  refactor(): void {
     /* Movement of the bounds is handled in mouse move */
     /* Re-factor the vector graphics */
-    let vertices : Array<number> = this.get_vertices();
+    let vertices: Array<number> = this.get_vertices();
     this.p1.x = vertices[0];
     this.p1.y = vertices[1];
     this.p2.x = vertices[2];
@@ -858,21 +858,21 @@ or overlapped)*/
     this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
     this.build_element();
   }
-  increment_rotation() : void {
+  increment_rotation(): void {
     this.elm.rotation++;
     if (this.elm.rotation > global.ROTATION_270) {
       this.elm.rotation = global.ROTATION_0;
     }
     this.set_rotation(this.elm.rotation);
   }
-  increment_flip() : void {
+  increment_flip(): void {
     this.elm.flip++;
     if (this.elm.flip > global.FLIP_180) {
       this.elm.flip = global.FLIP_0;
     }
     this.set_flip(this.elm.flip);
   }
-  recolor() : void {
+  recolor(): void {
     if (global.selected) {
       if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
         this.line_paint.set_color(global.SELECTED_COLOR);
@@ -895,11 +895,11 @@ or overlapped)*/
       }
     }
   }
-  is_selected_element() : boolean {
+  is_selected_element(): boolean {
     return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
   }
   /* Draws the component */
-  draw_component(canvas : GraphicsEngine) : void {
+  draw_component(canvas: GraphicsEngine): void {
     this.wire_reference_maintenance();
     this.recolor();
     this.resize();
@@ -975,7 +975,7 @@ or overlapped)*/
     }
   }
   /* Handles future proofing of elements! */
-  patch() : void {
+  patch(): void {
     if (!global.not_null(this.GMIN)) {
       this.GMIN = 1e-9;
     }
@@ -1011,11 +1011,11 @@ or overlapped)*/
       this.indexer = 0;
     }
   }
-  time_data() : TIME_DATA_TEMPLATE_T {
+  time_data(): TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
+    let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys: Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
@@ -1027,5 +1027,5 @@ or overlapped)*/
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  reset() : void {}
+  reset(): void {}
 }
