@@ -78,14 +78,14 @@ class PIDModule {
 or overlapped)*/
   public indexer : number = 0;
   public m_x : number = 0;
-  public m_y = 0;
+  public m_y : number = 0;
   public pid_controller = new PIDController(this.elm.properties['Setpoint'], this.elm.properties['Kp'], this.elm.properties['Ki'], this.elm.properties['Kd']);
-  public MULTI_SELECTED = false;
+  public MULTI_SELECTED : boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER = [];
-  public CIRCLE_BUFFER = [];
-  public BUILD_ELEMENT = true;
-  public ANGLE = 0;
+  public LINE_BUFFER : Array<Array<number>> = [];
+  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public BUILD_ELEMENT : boolean = true;
+  public ANGLE : number = 0;
 
   constructor(type, id, n1, n2, n3) {
     this.INITIALIZED = false;
