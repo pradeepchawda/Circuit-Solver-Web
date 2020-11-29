@@ -208,7 +208,7 @@ or overlapped)*/
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
-  refresh_bounds() {
+  refresh_bounds() : void {
     if (this.elm.consistent()) {
       this.p1 = new PointF(0, 0);
       this.p2 = new PointF(0, 0);
@@ -229,7 +229,7 @@ or overlapped)*/
       this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
     }
   }
-  push_reference(ref) {
+  push_reference(ref : number) : void {
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */
@@ -242,7 +242,7 @@ or overlapped)*/
       }
     }
   }
-  stamp() {
+  stamp() : void {
     if (this.elm.consistent()) {
       engine_functions.stamp_voltage(this.elm.n3, -1, this.elm.properties['Output Voltage'], simulation_manager.ELEMENT_ADD_OFFSET + this.simulation_id);
     }
@@ -333,7 +333,7 @@ or overlapped)*/
   }
   release_wires() : void {
     if (this.wire_reference.length > 0) {
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -549,7 +549,7 @@ or overlapped)*/
   }
   wire_reference_maintenance() : void {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (!(id > -1 && id < wires.length)) {
@@ -561,7 +561,7 @@ or overlapped)*/
   unanchor_wires() : void {
     if (this.wire_reference.length > 0) {
       let vertices : Array<number> = this.get_vertices();
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -602,7 +602,7 @@ or overlapped)*/
   anchor_wires() : void {
     if (this.wire_reference.length > 0) {
       let vertices : Array<number> = this.get_vertices();
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {

@@ -247,7 +247,7 @@ or overlapped)*/
   }
   release_wires(): void {
     if (this.wire_reference.length > 0) {
-      let id = -1;
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -457,7 +457,7 @@ or overlapped)*/
   }
   wire_reference_maintenance(): void {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-      let id = -1;
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (!(id > -1 && id < wires.length)) {
@@ -469,7 +469,7 @@ or overlapped)*/
   unanchor_wires(): void {
     if (this.wire_reference.length > 0) {
       let vertices: Array<number> = this.get_vertices();
-      let id = -1;
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -501,7 +501,7 @@ or overlapped)*/
   anchor_wires(): void {
     if (this.wire_reference.length > 0) {
       let vertices: Array<number> = this.get_vertices();
-      let id = -1;
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -562,10 +562,10 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element(): void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 1.3 * this.x_space;
-      let cache_1 = 0.4 * this.x_space;
-      let cache_2 = this.x_space;
-      let cache_3 = this.y_space;
+      let cache_0: number = 1.3 * this.x_space;
+      let cache_1: number = 0.4 * this.x_space;
+      let cache_2: number = this.x_space;
+      let cache_3: number = this.y_space;
       this.gain_0.x = this.c_x - cache_2 * global.cosine(this.theta) + cache_2 * global.cosine(this.theta_m90);
       this.gain_0.y = this.c_y - cache_2 * global.sine(this.theta) + cache_2 * global.sine(this.theta_m90);
       this.gain_1.x = this.c_x - cache_2 * global.cosine(this.theta) - cache_2 * global.cosine(this.theta_m90);
@@ -602,8 +602,8 @@ or overlapped)*/
       } else {
         this.refactor();
       }
-      let temp1 = global.CANVAS_STROKE_WIDTH_1_ZOOM;
-      let temp2 = global.CANVAS_TEXT_SIZE_3_ZOOM;
+      let temp1: number = global.CANVAS_STROKE_WIDTH_1_ZOOM;
+      let temp2: number = global.CANVAS_TEXT_SIZE_3_ZOOM;
       /* Resize the stroke widths and the text sizes. */
       this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
       this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
@@ -752,8 +752,8 @@ or overlapped)*/
   time_data(): TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys: Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

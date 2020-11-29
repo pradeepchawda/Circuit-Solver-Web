@@ -142,7 +142,7 @@ class Wire {
     this.indexer = 0;
     this.is_translating = false;
   }
-  refresh_bounds() {
+  refresh_bounds() : void {
     if (this.elm.consistent()) {
       this.p1 = new PointF(0, 0);
       this.p2 = new PointF(0, 0);
@@ -152,7 +152,7 @@ class Wire {
     }
   }
   /* Stamp for MNA wire (should be empty.) */
-  stamp() {}
+  stamp() : void {}
   release_wires() : void {}
   /* Handle capture and release from nodes themselves... (references) */
   release_nodes() : void {

@@ -219,7 +219,7 @@ or overlapped)*/
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
-  refresh_bounds() {
+  refresh_bounds() : void {
     if (this.elm.consistent()) {
       this.p1 = new PointF(0, 0);
       this.p2 = new PointF(0, 0);
@@ -235,10 +235,10 @@ or overlapped)*/
       );
     }
   }
-  push_reference(ref) {
+  push_reference(ref : number) : void {
     this.wire_reference.push(ref);
   }
-  stamp() {
+  stamp() : void {
     if (this.elm.consistent()) {
       if (this.elm.properties['Switch State'] === global.ON) {
         engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, this.elm.properties['Closed Resistance']);
@@ -278,7 +278,7 @@ or overlapped)*/
   }
   release_wires() : void {
     if (this.wire_reference.length > 0) {
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -489,7 +489,7 @@ or overlapped)*/
   }
   wire_reference_maintenance() : void {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (!(id > -1 && id < wires.length)) {
@@ -501,7 +501,7 @@ or overlapped)*/
   unanchor_wires() : void {
     if (this.wire_reference.length > 0) {
       let vertices : Array<number> = this.get_vertices();
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
@@ -533,7 +533,7 @@ or overlapped)*/
   anchor_wires() : void {
     if (this.wire_reference.length > 0) {
       let vertices : Array<number> = this.get_vertices();
-      let id = -1;
+      let id : number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
