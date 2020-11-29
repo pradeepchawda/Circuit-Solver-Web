@@ -587,10 +587,10 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 1.5 * this.x_space;
-      let cache_1 = 1.5 * this.y_space;
-      let cache_2 = this.x_space;
-      let cache_3 = this.y_space;
+      let cache_0 : number = 1.5 * this.x_space;
+      let cache_1 : number = 1.5 * this.y_space;
+      let cache_2 : number = this.x_space;
+      let cache_3 : number = this.y_space;
       this.connect1_x = this.c_x - cache_2 * global.cosine(this.theta);
       this.connect1_y = this.c_y - cache_3 * global.sine(this.theta);
       this.connect2_x = this.c_x + cache_2 * global.cosine(this.theta);
@@ -693,7 +693,7 @@ or overlapped)*/
     this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
   }
   /* General function to handle any processing required by the component */
-  update() {}
+  update() : void {}
   increment_rotation() : void {
     this.elm.rotation++;
     if (this.elm.rotation > global.ROTATION_270) {
@@ -865,8 +865,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

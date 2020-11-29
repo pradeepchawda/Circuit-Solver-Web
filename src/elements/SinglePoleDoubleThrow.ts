@@ -35,7 +35,7 @@ class SinglePoleDoubleThrow {
   public spdt_1 = new PointF(0, 0);
   public spdt_2 = new PointF(0, 0);
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
-  public equilateral_center = [];
+  public equilateral_center : Array<number> = [];
   /* The center (x-coord) of the bounds */
   public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
@@ -220,7 +220,7 @@ or overlapped)*/
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */
-  update() {}
+  update() : void {}
   stamp() : void {
     if (this.elm.consistent()) {
       if (this.elm.properties['Switch State'] === global.ON) {
@@ -789,8 +789,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

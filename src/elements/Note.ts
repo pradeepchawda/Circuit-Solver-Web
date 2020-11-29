@@ -44,7 +44,7 @@ class Note {
   public text_paint : Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
   public is_translating : boolean = false;
-  public temp_color = global.GENERAL_RED_COLOR;
+  public temp_color : string = global.GENERAL_RED_COLOR;
   public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
@@ -501,7 +501,7 @@ or overlapped)*/
     this.BUILD_ELEMENT = false;
   }
   /* General function to handle any processing required by the component */
-  update() {}
+  update() : void {}
   set_flip(flip : number) : void{}
   /* Sets the rotation of the component */
   set_rotation(rotation : number) : void {
@@ -653,8 +653,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

@@ -45,7 +45,7 @@ class OperationalAmplifier {
   public op_11 = new PointF(0, 0);
   public op_12 = new PointF(0, 0);
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
-  public equilateral_center = [];
+  public equilateral_center : Array<number> = [];
   /* The center (x-coord) of the bounds */
   public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
@@ -254,7 +254,7 @@ or overlapped)*/
     }
   }
   /* General function to handle any processing required by the component */
-  update() {}
+  update() : void {}
   /* Vertex handling (for rotation) */
   /* Work on this... IT's not 100%, the locations of plus and minus need to be looked at...*/
   get_vertices() : Array<number> {
@@ -681,17 +681,17 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 1.5 * this.x_space;
-      let cache_1 = 1.5 * this.y_space;
-      let cache_2 = 0.75 * this.x_space;
-      let cache_3 = 0.75 * this.y_space;
-      let cache_4 = 2.5 * this.x_space;
-      let cache_5 = 2.5 * this.y_space;
-      let cache_6 = 1.4 * this.x_space;
-      let cache_7 = 1.4 * this.y_space;
-      let cache_8 = 1.3 * this.x_space;
-      let cache_9 = 1.2 * this.x_space;
-      let cache_10 = 1.3 * this.y_space;
+      let cache_0 : number = 1.5 * this.x_space;
+      let cache_1 : number = 1.5 * this.y_space;
+      let cache_2 : number = 0.75 * this.x_space;
+      let cache_3 : number = 0.75 * this.y_space;
+      let cache_4 : number = 2.5 * this.x_space;
+      let cache_5 : number = 2.5 * this.y_space;
+      let cache_6 : number = 1.4 * this.x_space;
+      let cache_7 : number = 1.4 * this.y_space;
+      let cache_8 : number = 1.3 * this.x_space;
+      let cache_9 : number = 1.2 * this.x_space;
+      let cache_10 : number = 1.3 * this.y_space;
       let cache_11 = 1.2 * this.y_space;
       let cache_12 = 1.7 * this.x_space;
       let cache_13 = 1.7 * this.y_space;
@@ -921,8 +921,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

@@ -41,7 +41,7 @@ class PulseWidthModulator {
   public pwm_7 = new PointF(0, 0);
   public pwm_8 = new PointF(0, 0);
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
-  public equilateral_center = [];
+  public equilateral_center : Array<number> = [];
   /* The center (x-coord) of the bounds */
   public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
@@ -241,7 +241,7 @@ or overlapped)*/
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */
-  update() {
+  update() : void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
       if (this.elm.consistent()) {
         if (global.SIMULATION_TIME < global.TIME_STEP + global.TIME_STEP || this.elm.properties['Counter'] >= this.elm.properties['Postscaler']) {
@@ -699,14 +699,14 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 2.0 * this.x_space;
-      let cache_1 = 2.0 * this.y_space;
-      let cache_2 = 0.75 * this.x_space;
-      let cache_3 = 0.75 * this.y_space;
-      let cache_4 = 0.6 * this.x_space;
-      let cache_5 = 1.4 * this.y_space;
-      let cache_6 = this.x_space;
-      let cache_7 = this.y_space;
+      let cache_0 : number = 2.0 * this.x_space;
+      let cache_1 : number = 2.0 * this.y_space;
+      let cache_2 : number = 0.75 * this.x_space;
+      let cache_3 : number = 0.75 * this.y_space;
+      let cache_4 : number = 0.6 * this.x_space;
+      let cache_5 : number = 1.4 * this.y_space;
+      let cache_6 : number = this.x_space;
+      let cache_7 : number = this.y_space;
       /* Top segment */
       this.pwm_0.x = this.p1.x + cache_0 * global.cosine(this.theta_m90);
       this.pwm_0.y = this.p1.y + cache_1 * global.sine(this.theta_m90);
@@ -939,8 +939,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

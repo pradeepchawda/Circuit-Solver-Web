@@ -32,7 +32,7 @@ class WattMeter {
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm = new Element3(-1, -1, global.NULL);
 
-  public plus_point = new PointF(0, 0);
+  public plus_point : PointF = new PointF(0, 0);
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);
   public p3 = new PointF(0, 0);
@@ -45,7 +45,7 @@ class WattMeter {
   public wattmeter_5 = new PointF(0, 0);
   public wattmeter_6 = new PointF(0, 0);
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
-  public equilateral_center = [];
+  public equilateral_center : Array<number> = [];
   /* The center (x-coord) of the bounds */
   public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
@@ -77,7 +77,7 @@ class WattMeter {
   public is_translating : boolean = false;
   public meter_symbol = new MeterSymbols();
 
-  public temp_color = global.GENERAL_RED_COLOR;
+  public temp_color : string = global.GENERAL_RED_COLOR;
   /* A flag to detail when a meter trace will be resized. This is because the resize
 event is being called continuously for the elements but it's wasteful for the
 traces. */
@@ -277,7 +277,7 @@ or overlapped)*/
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */
-  update() {
+  update() : void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
       if (this.elm.consistent()) {
       }
@@ -722,16 +722,16 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 1.5 * this.x_space;
-      let cache_1 = 1.414 * this.x_space;
-      let cache_2 = 1.5 * this.y_space;
-      let cache_3 = 1.414 * this.y_space;
-      let cache_4 = 2.0 * this.x_space;
-      let cache_5 = 2.0 * this.y_space;
-      let cache_6 = 0.75 * this.x_space;
-      let cache_7 = 0.75 * this.y_space;
-      let cache_8 = this.x_space;
-      let cache_9 = this.y_space;
+      let cache_0 : number = 1.5 * this.x_space;
+      let cache_1 : number = 1.414 * this.x_space;
+      let cache_2 : number = 1.5 * this.y_space;
+      let cache_3 : number = 1.414 * this.y_space;
+      let cache_4 : number = 2.0 * this.x_space;
+      let cache_5 : number = 2.0 * this.y_space;
+      let cache_6 : number = 0.75 * this.x_space;
+      let cache_7 : number = 0.75 * this.y_space;
+      let cache_8 : number = this.x_space;
+      let cache_9 : number = this.y_space;
       this.plus_point.x = this.c_x - cache_0 * global.cosine(this.theta) - cache_1 * global.cosine(this.theta_m90);
       this.plus_point.y = this.c_y - cache_2 * global.sine(this.theta) - cache_3 * global.sine(this.theta_m90);
       /* Top segment */
@@ -1020,8 +1020,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

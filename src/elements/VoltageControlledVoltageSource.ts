@@ -243,7 +243,7 @@ or overlapped)*/
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */
-  update() {}
+  update() : void {}
   stamp() : void {
     if (this.elm.consistent()) {
       engine_functions.stamp_vcvs(this.elm.n1, this.elm.n2, this.elm.n3, this.elm.n4, -this.elm.properties['Gain'], simulation_manager.ELEMENT_VCVS_OFFSET + this.simulation_id);
@@ -653,17 +653,17 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 3.0 * this.x_space;
-      let cache_1 = 3.0 * this.y_space;
-      let cache_2 = 1.414 * this.x_space;
-      let cache_3 = 1.414 * this.y_space;
-      let cache_4 = 1.5 * this.x_space;
-      let cache_5 = 1.5 * this.y_space;
-      let cache_6 = 2.0 * this.x_space;
-      let cache_7 = 2.0 * this.y_space;
-      let cache_8 = 1.75 * this.x_space;
-      let cache_9 = 1.75 * this.y_space;
-      let cache_10 = 2.25 * this.x_space;
+      let cache_0 : number = 3.0 * this.x_space;
+      let cache_1 : number = 3.0 * this.y_space;
+      let cache_2 : number = 1.414 * this.x_space;
+      let cache_3 : number = 1.414 * this.y_space;
+      let cache_4 : number = 1.5 * this.x_space;
+      let cache_5 : number = 1.5 * this.y_space;
+      let cache_6 : number = 2.0 * this.x_space;
+      let cache_7 : number = 2.0 * this.y_space;
+      let cache_8 : number = 1.75 * this.x_space;
+      let cache_9 : number = 1.75 * this.y_space;
+      let cache_10 : number = 2.25 * this.x_space;
       let cache_11 = 2.25 * this.y_space;
       let cache_12 = 0.75 * this.x_space;
       let cache_13 = 0.75 * this.y_space;
@@ -911,8 +911,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

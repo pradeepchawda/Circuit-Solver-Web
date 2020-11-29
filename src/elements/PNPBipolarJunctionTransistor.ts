@@ -41,7 +41,7 @@ class PNPBipolarJunctionTransistor {
   public pnp_7 = new PointF(0, 0);
   public pnp_8 = new PointF(0, 0);
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
-  public equilateral_center = [];
+  public equilateral_center : Array<number> = [];
   /* The center (x-coord) of the bounds */
   public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
@@ -296,7 +296,7 @@ or overlapped)*/
     return Math.abs(this.elm.properties['Veb'] - this.elm.properties['Last Veb']);
   }
   /* General function to handle any processing required by the component */
-  update() {
+  update() : void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
       if (this.elm.consistent()) {
         /* Save the last voltages and currents */
@@ -781,17 +781,17 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 2.075 * this.x_space;
-      let cache_1 = 2.075 * this.y_space;
-      let cache_2 = 2.0 * this.x_space;
-      let cache_3 = 2.0 * this.y_space;
-      let cache_4 = 3.0 * this.x_space;
-      let cache_5 = 3.0 * this.y_space;
-      let cache_6 = 2.1 * this.x_space;
-      let cache_7 = 2.1 * this.y_space;
-      let cache_8 = 0.707 * this.x_space;
-      let cache_9 = 0.707 * this.y_space;
-      let cache_10 = this.x_space;
+      let cache_0 : number = 2.075 * this.x_space;
+      let cache_1 : number = 2.075 * this.y_space;
+      let cache_2 : number = 2.0 * this.x_space;
+      let cache_3 : number = 2.0 * this.y_space;
+      let cache_4 : number = 3.0 * this.x_space;
+      let cache_5 : number = 3.0 * this.y_space;
+      let cache_6 : number = 2.1 * this.x_space;
+      let cache_7 : number = 2.1 * this.y_space;
+      let cache_8 : number = 0.707 * this.x_space;
+      let cache_9 : number = 0.707 * this.y_space;
+      let cache_10 : number = this.x_space;
       let cache_11 = this.y_space;
       /* Top segment */
       this.pnp_0.x = this.p1.x + cache_10 * global.cosine(this.theta);
@@ -1062,8 +1062,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

@@ -43,7 +43,7 @@ class NORGate {
   public nor_9 = new PointF(0, 0);
   public nor_10 = new PointF(0, 0);
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
-  public equilateral_center = [];
+  public equilateral_center : Array<number> = [];
   /* The center (x-coord) of the bounds */
   public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
@@ -236,7 +236,7 @@ or overlapped)*/
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */
-  update() {
+  update() : void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
       if (this.elm.consistent()) {
         this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) / this.elm.properties['High Voltage'] - 0.5));
@@ -625,17 +625,17 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 1.5 * this.x_space;
-      let cache_1 = 1.5 * this.y_space;
-      let cache_2 = 0.75 * this.x_space;
-      let cache_3 = 0.75 * this.y_space;
-      let cache_4 = 1.05 * this.x_space;
-      let cache_5 = 1.05 * this.y_space;
-      let cache_6 = 2.5 * this.x_space;
-      let cache_7 = 2.5 * this.y_space;
-      let cache_8 = 0.9 * this.x_space;
-      let cache_9 = 0.9 * this.y_space;
-      let cache_10 = 0.6 * this.x_space;
+      let cache_0 : number = 1.5 * this.x_space;
+      let cache_1 : number = 1.5 * this.y_space;
+      let cache_2 : number = 0.75 * this.x_space;
+      let cache_3 : number = 0.75 * this.y_space;
+      let cache_4 : number = 1.05 * this.x_space;
+      let cache_5 : number = 1.05 * this.y_space;
+      let cache_6 : number = 2.5 * this.x_space;
+      let cache_7 : number = 2.5 * this.y_space;
+      let cache_8 : number = 0.9 * this.x_space;
+      let cache_9 : number = 0.9 * this.y_space;
+      let cache_10 : number = 0.6 * this.x_space;
       let cache_11 = 0.6 * this.y_space;
       let cache_12 = 0.3 * this.x_space;
       let cache_13 = 0.3 * this.y_space;
@@ -857,8 +857,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {

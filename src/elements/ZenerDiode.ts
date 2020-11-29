@@ -259,7 +259,7 @@ or overlapped)*/
     return Math.abs(this.elm.properties['Voltage'] - this.elm.properties['Last Voltage']);
   }
   /* General function to handle any processing required by the component */
-  update() {
+  update() : void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
       if (this.elm.consistent()) {
         /* Save the last voltages and currents */
@@ -655,12 +655,12 @@ or overlapped)*/
   /* Generate the SVG for the component. */
   build_element() : void {
     if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-      let cache_0 = 0.7 * this.x_space;
-      let cache_1 = 0.7 * this.y_space;
-      let cache_2 = 0.75 * this.x_space;
-      let cache_3 = 0.75 * this.y_space;
-      let cache_4 = this.x_space;
-      let cache_5 = this.y_space;
+      let cache_0 : number = 0.7 * this.x_space;
+      let cache_1 : number = 0.7 * this.y_space;
+      let cache_2 : number = 0.75 * this.x_space;
+      let cache_3 : number = 0.75 * this.y_space;
+      let cache_4 : number = this.x_space;
+      let cache_5 : number = this.y_space;
       let w_cache = cache_4 >> 1;
       let h_cache = cache_5 >> 1;
       this.zen_0.x = this.c_x + w_cache * global.cosine(this.theta) + w_cache * global.cosine(this.theta_m90);
@@ -869,8 +869,8 @@ or overlapped)*/
   time_data() : TIME_DATA_TEMPLATE_T {
     /* #INSERT_GENERATE_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    let time_data = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys = Object.keys(this.elm.properties);
+    let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
     for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
