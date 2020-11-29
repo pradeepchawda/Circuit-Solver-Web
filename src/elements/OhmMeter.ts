@@ -22,15 +22,15 @@
  ***********************************************************************/
 class OhmMeter {
   public INITIALIZED : boolean = false;
-  public X_AXIS_LENGTH = 600;
-  public Y_AXIS_LENGTH = 100;
-  public RATIO = 0.75;
+  public X_AXIS_LENGTH : number = 600;
+  public Y_AXIS_LENGTH : number = 100;
+  public RATIO : number = 0.75;
   /* Create a new rectangle for the bounds of this component */
   public bounds : RectF = new RectF(0, 0, 0, 0);
   public trace_bounds = new RectF(0, 0, 0, 0);
   public meter_trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, global.NULL);
+  public elm : Element2 = new Element2(-1, -1, global.NULL);
 
   public plus_point : PointF = new PointF(0, 0);
   public p1 : PointF = new PointF(0, 0);
@@ -62,13 +62,13 @@ class OhmMeter {
   public text_paint : Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
   public is_translating : boolean = false;
-  public meter_symbol = new MeterSymbols();
+  public meter_symbol  : MeterSymbols = new MeterSymbols();
   public temp_color : string = global.GENERAL_RED_COLOR;
   /* A flag to detail when a meter trace will be resized. This is because the resize
 event is being called continuously for the elements but it's wasteful for the
 traces. */
-  public RESIZE_METER_TRACE = false;
-  public SCOPE_INDEX_CHECK = -1;
+  public RESIZE_METER_TRACE : boolean = false;
+  public SCOPE_INDEX_CHECK : number = -1;
   public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
@@ -373,7 +373,7 @@ or overlapped)*/
     this.capture_nodes();
     this.anchor_wires();
   }
-  reset_trace_path() {
+  reset_trace_path() : void {
     if (global.not_null(this.meter_trace)) {
       this.meter_trace.trace_path.reset();
     }
@@ -596,8 +596,8 @@ or overlapped)*/
       let cache_1 : number = 1.25 * this.y_space;
       let cache_2 : number = this.x_space;
       let cache_3 : number = this.y_space;
-      let w_cache = this.bounds.get_width() * 0.4;
-      let h_cache = this.bounds.get_height() * 0.4;
+      let w_cache : number = this.bounds.get_width() * 0.4;
+      let h_cache : number = this.bounds.get_height() * 0.4;
       this.connect1_x = this.c_x - cache_2 * global.cosine(this.theta);
       this.connect1_y = this.c_y - cache_3 * global.sine(this.theta);
       this.connect2_x = this.c_x + cache_2 * global.cosine(this.theta);
@@ -677,10 +677,10 @@ or overlapped)*/
       return this.y_space;
     }
   }
-  reset_trace() {
+  reset_trace() : void {
     this.meter_trace.reset();
   }
-  reset_meter() {
+  reset_meter() : void {
     this.elm.properties['Voltage'] = 0;
   }
   push_voltage_current(voltage, current) {
@@ -689,7 +689,7 @@ or overlapped)*/
       this.meter_trace.push(this.elm.properties['Sensed Resistance'], global.SIMULATION_TIME);
     }
   }
-  get_simulation_index() {
+  get_simulation_index() : number {
     return simulation_manager.NODE_SIZE + simulation_manager.ELEMENT_OHMMETER_OFFSET + this.simulation_id;
   }
   recolor() : void {
@@ -821,7 +821,7 @@ or overlapped)*/
       }
     }
   }
-  draw_trace(canvas) {
+  draw_trace(canvas : GraphicsEngine) : void {
     if (global.FLAG_SIMULATING) {
       this.meter_trace.draw_trace(canvas, this.bounds.left, 0);
     }

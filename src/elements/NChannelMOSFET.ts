@@ -29,7 +29,7 @@ class NChannelMOSFET {
 
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);
-  public p3 = new PointF(0, 0);
+  public p3 : PointF = new PointF(0, 0);
 
   public nmos_0 = new PointF(0, 0);
   public nmos_1 = new PointF(0, 0);
@@ -62,7 +62,7 @@ class NChannelMOSFET {
   /* Angle from p1 to p2 */
   public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Angle from center to p2 */
-  public phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
+  public phi : number = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
   public grid_point : Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
   public line_paint : Paint = new Paint();
@@ -75,10 +75,10 @@ class NChannelMOSFET {
   public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
-  public GAMMA = 0.12;
-  public KAPPA = 0.414;
-  public GMIN = 1e-9;
-  public GMIN_START = 12;
+  public GAMMA : number = 0.12;
+  public KAPPA : number = 0.414;
+  public GMIN : number = 1e-9;
+  public GMIN_START : number = 12;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
   public indexer : number = 0;
@@ -96,7 +96,7 @@ or overlapped)*/
   public BUILD_ELEMENT : boolean = true;
   public ANGLE : number = 0;
 
-  constructor(type, id, n1, n2, n3) {
+  constructor(type:number, id:number, n1:number, n2:number, n3:number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
     this.bounds = new RectF(0, 0, 0, 0);
@@ -773,7 +773,7 @@ or overlapped)*/
       let cache_8 : number = 0.7 * this.x_space;
       let cache_9 : number = 0.7 * this.y_space;
       let cache_10 : number = this.x_space;
-      let cache_11 = this.y_space;
+      let cache_11 : number = this.y_space;
       /* Top segment */
       this.nmos_0.x = this.p1.x + cache_10 * global.cosine(this.theta);
       this.nmos_0.y = this.p1.y + cache_11 * global.sine(this.theta);
@@ -936,7 +936,7 @@ or overlapped)*/
       canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
       if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
         this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);

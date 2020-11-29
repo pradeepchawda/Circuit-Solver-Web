@@ -25,12 +25,12 @@ class Relay {
   /* Create a new rectangle for the bounds of this component */
   public bounds : RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element4(-1, -1, global.NULL);
+  public elm : Element4 = new Element4(-1, -1, global.NULL);
 
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);
-  public p3 = new PointF(0, 0);
-  public p4 = new PointF(0, 0);
+  public p3 : PointF = new PointF(0, 0);
+  public p4 : PointF = new PointF(0, 0);
 
   public relay_0 = new PointF(0, 0);
   public relay_1 = new PointF(0, 0);
@@ -62,7 +62,7 @@ class Relay {
   /* Angle from p1 to p2 */
   public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Angle from center to p2 */
-  public phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
+  public phi : number = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
   public grid_point : Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
   public line_paint : Paint = new Paint();
@@ -87,7 +87,7 @@ or overlapped)*/
   public BUILD_ELEMENT : boolean = true;
   public ANGLE : number = 0;
 
-  constructor(type, id, n1, n2, n3, n4) {
+  constructor(type:number, id:number, n1:number, n2:number, n3:number, n4:number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
     this.bounds = new RectF(0, 0, 0, 0);
@@ -249,7 +249,7 @@ or overlapped)*/
     this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
   }
   /* This is for energy conservation */
-  conserve_energy() {
+  conserve_energy() : void {
     this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / global.TIME_STEP;
     this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
   }
@@ -860,7 +860,7 @@ or overlapped)*/
       canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
       if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
         this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);

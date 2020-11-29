@@ -25,7 +25,7 @@ class Ground {
   /* Create a new rectangle for the bounds of this component */
   public bounds : RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element1(-1, -1, global.NULL);
+  public elm : Element1 = new Element1(-1, -1, global.NULL);
 
   /* Create some points to hold the node locations, this will be used for drawing components */
   public p1 : PointF = new PointF(0, 0);
@@ -52,8 +52,8 @@ or overlapped)*/
   public indexer : number = 0;
   public m_x : number = 0;
   public m_y : number = 0;
-  public c_x = 0;
-  public c_y = 0;
+  public c_x : number = 0;
+  public c_y : number = 0;
   public MULTI_SELECTED : boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
   public LINE_BUFFER : Array<Array<number>> = [];
@@ -61,7 +61,7 @@ or overlapped)*/
   public BUILD_ELEMENT : boolean = true;
   public ANGLE : number = 0;
 
-  constructor(type, id, n1) {
+  constructor(type: number, id: number, n1 : number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
     this.bounds = new RectF(0, 0, 0, 0);
@@ -589,7 +589,7 @@ or overlapped)*/
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
       if (this.is_translating) {
         canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);

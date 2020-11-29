@@ -25,7 +25,7 @@ class NOTGate {
   /* Create a new rectangle for the bounds of this component */
   public bounds : RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, global.NULL);
+  public elm : Element2 = new Element2(-1, -1, global.NULL);
 
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);

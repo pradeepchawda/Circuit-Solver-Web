@@ -30,7 +30,7 @@ class Divider {
   public plus_point : PointF = new PointF(0, 0);
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);
-  public p3 = new PointF(0, 0);
+  public p3 : PointF = new PointF(0, 0);
 
   public divider_0 = new PointF(0, 0);
   public divider_1 = new PointF(0, 0);
@@ -54,11 +54,11 @@ class Divider {
   public connect1_y : number = 0;
   public connect2_x : number = 0;
   public connect2_y : number = 0;
-  public theta_m90 = 0;
+  public theta_m90 : number = 0;
   /* Angle from p1 to p2 */
   public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Angle from center to p2 */
-  public phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
+  public phi : number = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
   public grid_point : Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
   public line_paint : Paint = new Paint();
@@ -84,7 +84,7 @@ or overlapped)*/
   public BUILD_ELEMENT : boolean = true;
   public ANGLE : number = 0;
 
-  constructor(type, id, n1, n2, n3) {
+  constructor(type:number, id:number, n1:number, n2:number, n3:number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
     this.bounds = new RectF(0, 0, 0, 0);
@@ -858,7 +858,7 @@ or overlapped)*/
       canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
       if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
         this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);

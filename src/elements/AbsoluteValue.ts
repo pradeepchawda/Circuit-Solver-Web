@@ -23,7 +23,7 @@
 class AbsoluteValue {
   public INITIALIZED: boolean = false;
   public bounds: RectF = new RectF(0, 0, 0, 0);
-  public elm: Element2;
+  public elm: Element2 = new Element2(-1, -1, global.NULL);
   public p1: PointF = new PointF(0, 0);
   public p2: PointF = new PointF(0, 0);
   /* Angle from p1 to p2 minus 90 degrees */

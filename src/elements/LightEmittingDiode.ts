@@ -25,7 +25,7 @@ class LightEmittingDiode {
   /* Create a new rectangle for the bounds of this component */
   public bounds : RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, global.NULL);
+  public elm : Element2 = new Element2(-1, -1, global.NULL);
 
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);
@@ -72,11 +72,11 @@ class LightEmittingDiode {
   public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
-  public GAMMA = 0.12;
-  public KAPPA = 0.414;
-  public GMIN = 1e-9;
-  public GMIN_START = 12;
-  public DAMPING_SAFETY_FACTOR = 0.97;
+  public GAMMA : number = 0.12;
+  public KAPPA : number = 0.414;
+  public GMIN : number = 1e-9;
+  public GMIN_START : number = 12;
+  public DAMPING_SAFETY_FACTOR : number = 0.97;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
   public indexer : number = 0;
@@ -239,7 +239,7 @@ or overlapped)*/
       engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, this.elm.properties['Resistance']);
     }
   }
-  calculate_vcrit() {
+  calculate_vcrit() : void {
     return this.elm.properties['Emission Coefficient'] * global.vt * Math.log((this.elm.properties['Emission Coefficient'] * global.vt) / (1.41421 * this.elm.properties['Saturation Current']));
   }
   is_converged() {

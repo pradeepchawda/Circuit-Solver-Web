@@ -22,15 +22,15 @@
  ***********************************************************************/
 class VoltMeter {
   public INITIALIZED : boolean = false;
-  public X_AXIS_LENGTH = 600;
-  public Y_AXIS_LENGTH = 100;
-  public RATIO = 0.75;
+  public X_AXIS_LENGTH : number = 600;
+  public Y_AXIS_LENGTH : number = 100;
+  public RATIO : number = 0.75;
   /* Create a new rectangle for the bounds of this component */
   public bounds : RectF = new RectF(0, 0, 0, 0);
   public trace_bounds = new RectF(0, 0, 0, 0);
   public meter_trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, global.NULL);
+  public elm : Element2 = new Element2(-1, -1, global.NULL);
 
   public plus_point : PointF = new PointF(0, 0);
   public p1 : PointF = new PointF(0, 0);
@@ -62,13 +62,13 @@ class VoltMeter {
   public text_paint : Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
   public is_translating : boolean = false;
-  public meter_symbol = new MeterSymbols();
+  public meter_symbol  : MeterSymbols = new MeterSymbols();
   public temp_color : string = global.GENERAL_RED_COLOR;
   /* A flag to detail when a meter trace will be resized. This is because the resize
 event is being called continuously for the elements but it's wasteful for the
 traces. */
-  public RESIZE_METER_TRACE = false;
-  public SCOPE_INDEX_CHECK = -1;
+  public RESIZE_METER_TRACE : boolean = false;
+  public SCOPE_INDEX_CHECK : number = -1;
   public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
@@ -369,7 +369,7 @@ or overlapped)*/
     this.capture_nodes();
     this.anchor_wires();
   }
-  reset_trace_path() {
+  reset_trace_path() : void {
     if (global.not_null(this.meter_trace)) {
       this.meter_trace.trace_path.reset();
     }
@@ -676,10 +676,10 @@ or overlapped)*/
       return this.y_space;
     }
   }
-  reset_trace() {
+  reset_trace() : void {
     this.meter_trace.reset();
   }
-  reset_meter() {
+  reset_meter() : void {
     this.elm.properties['Voltage'] = 0;
   }
   push_voltage(voltage) {
@@ -767,7 +767,7 @@ or overlapped)*/
       canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
 
       this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
@@ -819,7 +819,7 @@ or overlapped)*/
       }
     }
   }
-  draw_trace(canvas) {
+  draw_trace(canvas : GraphicsEngine) : void {
     if (global.FLAG_SIMULATING) {
       this.meter_trace.draw_trace(canvas, this.bounds.left, 0);
     }

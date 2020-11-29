@@ -23,7 +23,7 @@
 class Wire {
   public INITIALIZED : boolean = false;
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, global.NULL);
+  public elm : Element2 = new Element2(-1, -1, global.NULL);
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);
 
@@ -31,8 +31,8 @@ class Wire {
   public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
   public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-  public c_x = 0;
-  public c_y = 0;
+  public c_x : number = 0;
+  public c_y : number = 0;
 
   /* The spacing of the nodes in the x-direction, divided by 2 */
   public x_space : number = global.node_space_x >> 1;

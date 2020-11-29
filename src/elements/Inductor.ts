@@ -25,7 +25,7 @@ class Inductor {
   /* Create a new rectangle for the bounds of this component */
   public bounds : RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm = new Element2(-1, -1, global.NULL);
+  public elm : Element2 = new Element2(-1, -1, global.NULL);
 
   public p1 : PointF = new PointF(0, 0);
   public p2 : PointF = new PointF(0, 0);
@@ -688,7 +688,7 @@ or overlapped)*/
     this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
   }
   /* This is for energy conservation */
-  conserve_energy() {
+  conserve_energy() : void {
     this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / global.TIME_STEP;
     this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
   }
