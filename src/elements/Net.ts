@@ -21,19 +21,19 @@
  *
  ***********************************************************************/
 class Net {
-  public INITIALIZED = false;
+  public INITIALIZED : boolean = false;
   /* Create a new rectangle for the bounds of this component */
-  public bounds = new RectF(0, 0, 0, 0);
+  public bounds : RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm = new Element1(-1, -1, global.NULL);
 
   /* Create some points to hold the node locations, this will be used for drawing components */
-  public p1 = new PointF(0, 0);
+  public p1 : PointF = new PointF(0, 0);
 
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space = global.node_space_x >> 1;
+  public x_space : number = global.node_space_x >> 1;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space = global.node_space_y >> 1;
+  public y_space : number = global.node_space_y >> 1;
   /* used for snapping the elements to the grid (and also for bounding them) */
   public grid_point = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */

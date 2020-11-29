@@ -21,23 +21,23 @@
  *
  ***********************************************************************/
 class Wire {
-  public INITIALIZED = false;
+  public INITIALIZED : boolean = false;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm = new Element2(-1, -1, global.NULL);
-  public p1 = new PointF(0, 0);
-  public p2 = new PointF(0, 0);
+  public p1 : PointF = new PointF(0, 0);
+  public p2 : PointF = new PointF(0, 0);
 
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
-  public theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+  public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   public c_x = 0;
   public c_y = 0;
 
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space = global.node_space_x >> 1;
+  public x_space : number = global.node_space_x >> 1;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space = global.node_space_y >> 1;
+  public y_space : number = global.node_space_y >> 1;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
   public line_paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
@@ -47,7 +47,7 @@ class Wire {
   /* This is for handling the different styles of the wire (center point) */
   public wire_point = new PointF(0, 0);
   /* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
-  public bounds = new RectF(0, 0, 0, 0);
+  public bounds : RectF = new RectF(0, 0, 0, 0);
   public total_bounds = new RectF(0, 0, 0, 0);
   /* The voltage of the wire. */
   public wire_voltage = 0;

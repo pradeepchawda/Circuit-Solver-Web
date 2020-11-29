@@ -21,19 +21,19 @@
  *
  ***********************************************************************/
 class Resistor {
-  public INITIALIZED = false;
+  public INITIALIZED : boolean = false;
   /* Create a new rectangle for the bounds of this component */
-  public bounds = new RectF(0, 0, 0, 0);
+  public bounds : RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm = new Element2(-1, -1, global.NULL);
 
-  public p1 = new PointF(0, 0);
-  public p2 = new PointF(0, 0);
+  public p1 : PointF = new PointF(0, 0);
+  public p2 : PointF = new PointF(0, 0);
 
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
-  public theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+  public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Resistor point 0 */
   public res_0 = new PointF(0, 0);
   /* Resistor point 1 */
@@ -53,17 +53,17 @@ class Resistor {
   /* Resistor point 8 */
   public res_8 = new PointF(0, 0);
   /* The center (x-coord) of the bounds */
-  public c_x = this.bounds.get_center_x();
+  public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
-  public c_y = this.bounds.get_center_y();
+  public c_y : number = this.bounds.get_center_y();
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space = global.node_space_x >> 1;
+  public x_space : number = global.node_space_x >> 1;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space = global.node_space_y >> 1;
+  public y_space : number = global.node_space_y >> 1;
   /* Some points we'll be extending the leads of the resistor to. */
-  public connect1_x = 0;
-  public connect1_y = 0;
-  public connect2_x = 0;
+  public connect1_x : number = 0;
+  public connect1_y : number = 0;
+  public connect2_x : number = 0;
   public connect2_y = 0;
   public grid_point = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */

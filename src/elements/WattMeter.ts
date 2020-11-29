@@ -21,20 +21,20 @@
  *
  ***********************************************************************/
 class WattMeter {
-  public INITIALIZED = false;
+  public INITIALIZED : boolean = false;
   public X_AXIS_LENGTH = 600;
   public Y_AXIS_LENGTH = 100;
   public RATIO = 0.75;
   /* Create a new rectangle for the bounds of this component */
-  public bounds = new RectF(0, 0, 0, 0);
+  public bounds : RectF = new RectF(0, 0, 0, 0);
   public trace_bounds = new RectF(0, 0, 0, 0);
   public meter_trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm = new Element3(-1, -1, global.NULL);
 
   public plus_point = new PointF(0, 0);
-  public p1 = new PointF(0, 0);
-  public p2 = new PointF(0, 0);
+  public p1 : PointF = new PointF(0, 0);
+  public p2 : PointF = new PointF(0, 0);
   public p3 = new PointF(0, 0);
 
   public wattmeter_0 = new PointF(0, 0);
@@ -47,23 +47,23 @@ class WattMeter {
   /* Calculating the "true" center of an equilateral triangle, not the centroid. */
   public equilateral_center = [];
   /* The center (x-coord) of the bounds */
-  public c_x = this.bounds.get_center_x();
+  public c_x : number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
-  public c_y = this.bounds.get_center_y();
+  public c_y : number = this.bounds.get_center_y();
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space = global.node_space_x >> 1;
+  public x_space : number = global.node_space_x >> 1;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space = global.node_space_y >> 1;
+  public y_space : number = global.node_space_y >> 1;
   /* Some points we'll be extending the leads of the resistor to. */
-  public connect1_x = 0;
-  public connect1_y = 0;
-  public connect2_x = 0;
+  public connect1_x : number = 0;
+  public connect1_y : number = 0;
+  public connect2_x : number = 0;
   public connect2_y = 0;
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
 
   /* Angle from p1 to p2 */
-  public theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+  public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Angle from center to p2 */
   public phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
   public grid_point = [];
