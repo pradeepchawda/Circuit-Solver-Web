@@ -147,14 +147,14 @@ class ElectricalNode {
   }
   /* Add a reference list to this node. */
   add_reference_list(reference_list: Array<NodeReference>): void {
-    for (var i = 0; i < reference_list.length; i++) {
+    for (var i: number = 0; i < reference_list.length; i++) {
       this.add_reference(reference_list[i].id, reference_list[i].type);
     }
   }
   /* Add a reference to this node. */
   add_reference(id: number, type: number): void {
     let is_found = false;
-    for (var i = 0; i < this.references.length; i++) {
+    for (var i: number = 0; i < this.references.length; i++) {
       if (this.references[i].id === id && this.references[i].type === type) {
         is_found = true;
         break;
@@ -170,7 +170,7 @@ class ElectricalNode {
   /* Removes the reference from this node. */
   remove_reference(id: number, type: number): void {
     if (this.references.length > 0) {
-      for (var i = 0; i < this.references.length; i++) {
+      for (var i: number = 0; i < this.references.length; i++) {
         if (this.references[i].id === id && this.references[i].type === type) {
           this.references.splice(i, 1);
           break;
@@ -184,7 +184,7 @@ class ElectricalNode {
   /* Checks to see if the references contain an element type */
   contains_element_type(type: number): boolean {
     let out = false;
-    for (var i = 0; i < this.references.length; i++) {
+    for (var i: number = 0; i < this.references.length; i++) {
       if (this.references[i].type === type) {
         out = true;
         break;
@@ -196,7 +196,7 @@ class ElectricalNode {
   draw_node_builder_helper(): boolean {
     let count = 0;
     let index = -1;
-    for (var i = 0; i < this.references.length; i++) {
+    for (var i: number = 0; i < this.references.length; i++) {
       if (this.references[i].type === global.TYPE_NOTE) {
         index = engine_functions.get_note(this.references[i].id);
         if (index > -1 && index < notes.length) {
@@ -218,7 +218,7 @@ class ElectricalNode {
   debug_info(): string {
     let str = '';
     let DEBUG_TEMPLATE = '({ID},{TYPE}),';
-    for (var i = 0; i < this.references.length; i++) {
+    for (var i: number = 0; i < this.references.length; i++) {
       str += DEBUG_TEMPLATE.replace('{ID}', String(this.references[i].id)).replace('{TYPE}', String(this.references[i].type));
     }
     return str;

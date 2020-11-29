@@ -89,6 +89,25 @@ declare type PAINT_METRICS_T = {
   descent: number;
 };
 
+declare type OPTIONS_T = {
+  c0: {
+    string: string;
+    number: number;
+  };
+  c1: {
+    string: string;
+    number: number;
+  };
+  c2: {
+    string: string;
+    number: number;
+  };
+  c3: {
+    string: string;
+    number: number;
+  };
+};
+
 declare type PAINT_METRICS_ARRAY_T = {
   text: string;
   font: string;

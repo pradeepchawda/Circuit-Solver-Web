@@ -23,11 +23,12 @@
 /* Prevent the backspace from navigating! Disable scrolling w/ backspace or arrow keys! */
 /* #START_GLOBAL_EXTRACT# */
 /* add the hashCode function for all strings. */
+
 //@ts-ignore
 String.prototype.hashCode = function () {
   let hash: number = 0;
-  let i = 0;
-  let chr = '';
+  let i: number = 0;
+  let chr: string = '';
   if (this.length === 0) {
     return hash;
   }
@@ -39,22 +40,22 @@ String.prototype.hashCode = function () {
   return hash;
 };
 /* Save a file for the user! */
-function save_file(title, content) {
-  let blob = new Blob([content], {
+function save_file(title: string, content: string) {
+  let blob: Blob = new Blob([content], {
     type: 'text/plain;charset=utf-8'
   });
   saveAs(blob, title);
 }
 /* Save an image for the user! */
-function save_image(title, canvas) {
+function save_image(title: string, canvas: HTMLCanvasElement) {
   canvas.toBlob(function (blob) {
     saveAs(blob, title);
   });
 }
 /* Save an image for the user! */
-function save_image_mobile(title, canvas) {
+function save_image_mobile(title: string, canvas: HTMLCanvasElement) {
   canvas.toBlob(function (blob) {
-    let reader = new FileReader();
+    let reader: FileReader = new FileReader();
     reader.readAsDataURL(blob);
     reader.onloadend = function () {
       window.JsInterface.javascript_native_hook('push-image', title, reader.result);
@@ -76,15 +77,15 @@ var file_saver = document.getElementById('file_saver');
 /* Create a global variable to access the "file_saver" element in HTML. */
 var file_loader = document.getElementById('file_loader');
 /* Handles any file events that take place. */
-function file_event(input) {
-  let file = input.files[0];
-  let reader = new FileReader();
+function file_event(input): void {
+  let file: File = input.files[0];
+  let reader: FileReader = new FileReader();
   reader.onload = function (e) {
     /* Grab the contents of the file. */
     let text: string = String(reader.result);
     /* Save the name of the file to global. */
     /* Remove the extension :3 */
-    let title = input.files[0].name.split('.')[0];
+    let title: string = input.files[0].name.split('.')[0];
     if (title.length > global.MAX_TEXT_LENGTH) {
       title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
     }
@@ -103,7 +104,7 @@ function file_event(input) {
   reader.readAsText(input.files[0]);
 }
 /* Handles any file events that take place. */
-function file_event_mobile(title, data) {
+function file_event_mobile(title: string, data: string) {
   if (title.length > global.MAX_TEXT_LENGTH) {
     title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
   }
@@ -113,9 +114,9 @@ function file_event_mobile(title, data) {
   global.USER_FILE.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
 }
 
-function restore_system_options(index, value) {
+function restore_system_options(index: number, value: string) {
   if (index === global.SYSTEM_OPTION_LANGUAGE) {
-    for (var i = 0; i < global.LANGUAGES.length; i++) {
+    for (var i: number = 0; i < global.LANGUAGES.length; i++) {
       if (value === global.LANGUAGES[i]) {
         global.LANGUAGE_INDEX = i;
       }
@@ -124,7 +125,7 @@ function restore_system_options(index, value) {
   global.SYSTEM_OPTIONS['values'][index] = value;
 }
 
-function restore_zoom_offset(zoom, delta_x, dx, x_offset, delta_y, dy, y_offset) {
+function restore_zoom_offset(zoom: number, delta_x: number, dx: number, x_offset: number, delta_y: number, dy: number, y_offset: number): void {
   global.WORKSPACE_ZOOM_SCALE = Number(zoom);
   global.dx = Number(dx);
   global.dy = Number(dy);
@@ -137,7 +138,7 @@ function restore_zoom_offset(zoom, delta_x, dx, x_offset, delta_y, dy, y_offset)
   global.SIGNAL_BUILD_ELEMENT = true;
 }
 
-function handle_file_loading() {
+function handle_file_loading(): void {
   /* Enable a flag to dictate that a user selected a file. */
   global.USER_FILE_SELECTED = true;
   /* Restart the canvas drawing events. */
@@ -150,9 +151,9 @@ function handle_file_loading() {
   global.USER_FILE_SELECTED = false;
   MOUSE_EVENT_LATCH = false;
 }
-var solver_container = document.getElementById('solver');
+var solver_container: HTMLElement = document.getElementById('solver');
 /* The HTML canvas, changed to surface for my convenience. */
-var surface = document.createElement('canvas');
+var surface: HTMLCanvasElement = document.createElement('canvas');
 /* Virtual Canvas to draw on */
 /* Assign the surface an id */
 surface.id = 'canvas';
@@ -162,232 +163,232 @@ surface.style.position = 'absolute';
 /* Add the surface to the body of the html window. */
 solver_container.appendChild(surface);
 /* Get the 2d context of the surface (used for drawing)*/
-var ctx = surface.getContext('2d');
+var ctx: CanvasRenderingContext2D = surface.getContext('2d');
 /* A virtual surface */
-var virtual_surface = new VirtualCanvas(1, 1, global.VIRTUAL_CANVAS_ID++);
+var virtual_surface: VirtualCanvas = new VirtualCanvas(1, 1, global.VIRTUAL_CANVAS_ID++);
 /* Global Linear Algebra instance */
-var linear_algebra = new LinearAlgebra();
+var linear_algebra: LinearAlgebra = new LinearAlgebra();
 /* Storage for all the different languages supported by Circuit Solver. */
-var language_manager = new LanguageManager();
+var language_manager: LanguageManager = new LanguageManager();
 /* Manager for all the different shortcuts supported by Circuit Solver. */
-var shortcut_manager = new ShortcutManager();
+var shortcut_manager: ShortcutManager = new ShortcutManager();
 /* General class to handle all of the string formating in this application */
-var string_operator = new StringOperator();
+var string_operator: StringOperator = new StringOperator();
 /* General class to handle multi-selecing elements. */
-var multi_select_manager = new MultiSelectManager();
+var multi_select_manager: MultiSelectManager = new MultiSelectManager();
 /* The aspect ratio for the view port */
-var CANVAS_ASPECT_RATIO = 1.333;
+var CANVAS_ASPECT_RATIO: number = 1.333;
 if (global.MOBILE_MODE) {
   CANVAS_ASPECT_RATIO = 1.618;
 }
 /* The viewport we will be drawing within! */
-var view_port = new Viewport(CANVAS_ASPECT_RATIO, 800, 800 / CANVAS_ASPECT_RATIO);
+var view_port: Viewport = new Viewport(CANVAS_ASPECT_RATIO, 800, 800 / CANVAS_ASPECT_RATIO);
 /* Global workspace */
-var workspace = new Workspace(0, 0, 0, 0, global.WORKSPACE_ZOOM_SCALE);
+var workspace: Workspace = new Workspace(0, 0, 0, 0, global.WORKSPACE_ZOOM_SCALE);
 /* A class to help handle simulations. It keeps track of all the things that are
 necessary to be done for simulation (node assignment, element assignment, matrix
 sizing, stamping, etc. ) */
-var simulation_manager = global.NULL;
+var simulation_manager: SimulationManager = global.NULL;
 /* A manager to handle tracking of the scopes. */
-var scope_manager = new ScopeManager();
+var scope_manager: ScopeManager = new ScopeManager();
 /* Maticies for solving the system of equations generated by the components */
-var matrix_a = linear_algebra.matrix(1, 1);
-var matrix_z = linear_algebra.matrix(1, 1);
-var matrix_x = linear_algebra.matrix(1, 1);
-var matrix_x_copy = linear_algebra.matrix(1, 1);
+var matrix_a: Array<Array<number>> = linear_algebra.matrix(1, 1);
+var matrix_z: Array<Array<number>> = linear_algebra.matrix(1, 1);
+var matrix_x: Array<Array<number>> = linear_algebra.matrix(1, 1);
+var matrix_x_copy: Array<Array<number>> = linear_algebra.matrix(1, 1);
 /* #INSERT_GENERATE_CREATE_ELEMENT_INSTANCE# */
 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 /* All the resistors in the system! */
 var resistors: Array<Resistor> = [];
 /* All the capacitors in the system! */
-var capacitors = [];
+var capacitors: Array<Capacitor> = [];
 /* All the inductors in the system! */
-var inductors = [];
+var inductors: Array<Inductor> = [];
 /* All the grounds in the system! */
-var grounds = [];
+var grounds: Array<Ground> = [];
 /* All the dcsources in the system! */
-var dcsources = [];
+var dcsources: Array<DCSource> = [];
 /* All the dccurrents in the system! */
-var dccurrents = [];
+var dccurrents: Array<DCCurrent> = [];
 /* All the acsources in the system! */
-var acsources = [];
+var acsources: Array<ACSource> = [];
 /* All the accurrents in the system! */
-var accurrents = [];
+var accurrents: Array<ACCurrent> = [];
 /* All the squarewaves in the system! */
-var squarewaves = [];
+var squarewaves: Array<SquareWave> = [];
 /* All the sawwaves in the system! */
-var sawwaves = [];
+var sawwaves: Array<SawWave> = [];
 /* All the trianglewaves in the system! */
-var trianglewaves = [];
+var trianglewaves: Array<TriangleWave> = [];
 /* All the constants in the system! */
-var constants = [];
+var constants: Array<Constant> = [];
 /* All the wires in the system! */
-var wires = [];
+var wires: Array<Wire> = [];
 /* All the nets in the system! */
-var nets = [];
+var nets: Array<Net> = [];
 /* All the notes in the system! */
-var notes = [];
+var notes: Array<Note> = [];
 /* All the rails in the system! */
-var rails = [];
+var rails: Array<Rail> = [];
 /* All the voltmeters in the system! */
 var voltmeters: Array<VoltMeter> = [];
 /* All the ohmmeters in the system! */
-var ohmmeters = [];
+var ohmmeters: Array<OhmMeter> = [];
 /* All the ammeters in the system! */
-var ammeters = [];
+var ammeters: Array<AmMeter> = [];
 /* All the wattmeters in the system! */
-var wattmeters = [];
+var wattmeters: Array<WattMeter> = [];
 /* All the fuses in the system! */
-var fuses = [];
+var fuses: Array<Fuse> = [];
 /* All the spsts in the system! */
-var spsts = [];
+var spsts: Array<SinglePoleSingleThrow> = [];
 /* All the spdts in the system! */
-var spdts = [];
+var spdts: Array<SinglePoleDoubleThrow> = [];
 /* All the nots in the system! */
-var nots = [];
+var nots: Array<NOTGate> = [];
 /* All the diodes in the system! */
-var diodes = [];
+var diodes: Array<Diode> = [];
 /* All the leds in the system! */
-var leds = [];
+var leds: Array<LightEmittingDiode> = [];
 /* All the zeners in the system! */
-var zeners = [];
+var zeners: Array<ZenerDiode> = [];
 /* All the potentiometers in the system! */
-var potentiometers = [];
+var potentiometers: Array<Potentiometer> = [];
 /* All the ands in the system! */
-var ands = [];
+var ands: Array<ANDGate> = [];
 /* All the ors in the system! */
-var ors = [];
+var ors: Array<ORGate> = [];
 /* All the nands in the system! */
-var nands = [];
+var nands: Array<NANDGate> = [];
 /* All the nors in the system! */
-var nors = [];
+var nors: Array<NORGate> = [];
 /* All the xors in the system! */
-var xors = [];
+var xors: Array<XORGate> = [];
 /* All the xnors in the system! */
-var xnors = [];
+var xnors: Array<XNORGate> = [];
 /* All the dffs in the system! */
-var dffs = [];
+var dffs: Array<DFlipFlop> = [];
 /* All the vsats in the system! */
-var vsats = [];
+var vsats: Array<VoltageSaturation> = [];
 /* All the adders in the system! */
-var adders = [];
+var adders: Array<Adder> = [];
 /* All the subtractors in the system! */
-var subtractors = [];
+var subtractors: Array<Subtractor> = [];
 /* All the multipliers in the system! */
-var multipliers = [];
+var multipliers: Array<Multiplier> = [];
 /* All the dividers in the system! */
-var dividers = [];
+var dividers: Array<Divider> = [];
 /* All the gains in the system! */
-var gains = [];
+var gains: Array<GainBlock> = [];
 /* All the absvals in the system! */
-var absvals = [];
+var absvals: Array<AbsoluteValue> = [];
 /* All the vcsws in the system! */
-var vcsws = [];
+var vcsws: Array<VoltageControlledSwitch> = [];
 /* All the vcvss in the system! */
-var vcvss = [];
+var vcvss: Array<VoltageControlledVoltageSource> = [];
 /* All the vccss in the system! */
-var vccss = [];
+var vccss: Array<VoltageControlledCurrentSource> = [];
 /* All the cccss in the system! */
-var cccss = [];
+var cccss: Array<CurrentControlledCurrentSource> = [];
 /* All the ccvss in the system! */
-var ccvss = [];
+var ccvss: Array<CurrentControlledVoltageSource> = [];
 /* All the opamps in the system! */
-var opamps = [];
+var opamps: Array<OperationalAmplifier> = [];
 /* All the nmosfets in the system! */
-var nmosfets = [];
+var nmosfets: Array<NChannelMOSFET> = [];
 /* All the pmosfets in the system! */
-var pmosfets = [];
+var pmosfets: Array<PChannelMOSFET> = [];
 /* All the npns in the system! */
-var npns = [];
+var npns: Array<NPNBipolarJunctionTransistor> = [];
 /* All the pnps in the system! */
-var pnps = [];
+var pnps: Array<PNPBipolarJunctionTransistor> = [];
 /* All the adcs in the system! */
-var adcs = [];
+var adcs: Array<ADCModule> = [];
 /* All the dacs in the system! */
-var dacs = [];
+var dacs: Array<DACModule> = [];
 /* All the sandhs in the system! */
-var sandhs = [];
+var sandhs: Array<SampleAndHold> = [];
 /* All the pwms in the system! */
-var pwms = [];
+var pwms: Array<PulseWidthModulator> = [];
 /* All the integrators in the system! */
-var integrators = [];
+var integrators: Array<IntegratorModule> = [];
 /* All the differentiators in the system! */
-var differentiators = [];
+var differentiators: Array<DifferentiatorModule> = [];
 /* All the lowpasses in the system! */
-var lowpasses = [];
+var lowpasses: Array<LowPassFilter> = [];
 /* All the highpasses in the system! */
-var highpasses = [];
+var highpasses: Array<HighPassFilter> = [];
 /* All the relays in the system! */
-var relays = [];
+var relays: Array<Relay> = [];
 /* All the pids in the system! */
-var pids = [];
+var pids: Array<PIDModule> = [];
 /* All the luts in the system! */
-var luts = [];
+var luts: Array<LookUpTable> = [];
 /* All the vcrs in the system! */
-var vcrs = [];
+var vcrs: Array<VoltageControlledResistor> = [];
 /* All the grts in the system! */
-var grts = [];
+var grts: Array<GreaterThan> = [];
 /* All the tptzs in the system! */
-var tptzs = [];
+var tptzs: Array<TPTZModule> = [];
 /* All the transformers in the system! */
-var transformers = [];
+var transformers: Array<Transformer> = [];
 /* <!-- END AUTOMATICALLY GENERATED !--> */
 /* A generic class to manage the on screen keyboard. */
-var on_screen_keyboard = new OnScreenKeyboard();
+var on_screen_keyboard: OnScreenKeyboard = new OnScreenKeyboard();
 /* A toast for me matey! Argghhh */
-var toast = new Toast();
+var toast: Toast = new Toast();
 /* The history manager of the whole system */
-var history_manager = new HistoryManager();
+var history_manager: HistoryManager = new HistoryManager();
 /* The options observer of the whole system */
-var element_options = global.NULL;
+var element_options: ElementOptions = global.NULL;
 /* The system menu bar. */
-var menu_bar = global.NULL;
+var menu_bar: MenuBar = global.NULL;
 /* The system bottom menu */
-var bottom_menu = global.NULL;
+var bottom_menu: BottomMenu = global.NULL;
 /* Window for changing the timestep. */
-var time_step_window = global.NULL;
+var time_step_window: TimeStepWindow = global.NULL;
 /* Window for saving circuits */
-var save_circuit_window = global.NULL;
+var save_circuit_window: SaveCircuitWindow = global.NULL;
 /* Window for saving images */
-var save_image_window = global.NULL;
+var save_image_window: SaveImageWindow = global.NULL;
 /* Window for element options */
-var element_options_window = global.NULL;
+var element_options_window: ElementOptionsWindow = global.NULL;
 /* Window for element options editing */
-var element_options_edit_window = global.NULL;
+var element_options_edit_window: ElementOptionsEditWindow = global.NULL;
 /* Window for setting a pre-determined amount of zoom */
-var zoom_window = global.NULL;
+var zoom_window: ZoomWindow = global.NULL;
 /* Window for setting system options */
-var settings_window = global.NULL;
+var settings_window: SettingsWindow = global.NULL;
 /* Window for choosing yes or no */
-var yes_no_window = global.NULL;
+var yes_no_window: YesNoWindow = global.NULL;
 /* A class to manage all the wires that get generated */
-var wire_manager = new WireManager();
+var wire_manager: WireManager = new WireManager();
 /* One of the helper classes for main */
-var engine_functions = new EngineFunctions();
+var engine_functions: EngineFunctions = new EngineFunctions();
 /* The nodes for the components to attach to! */
-var nodes = [];
+var nodes: Array<ElectricalNode> = [];
 /* A helper class for managing the active nodes */
-var node_manager = new NodeManager();
+var node_manager: NodeManager = new NodeManager();
 /* The graph window (graph interface) */
-var graph_window = global.NULL;
+var graph_window: GraphWindow = global.NULL;
 /* FPS must be changed to match constants in FPS_DIV_ARRAY */
-var FPS = 30;
+var FPS: number = 30;
 /* Average FPS Equation: 1/((3/(60.0/x) + 2/(60.0/y))/5) , 60/3 -> 20, 60/2 - 30 */
-var FPS_DIV_ARRAY = [2, 2];
-var FPS_COUNTER = 0;
-var FPS_INDEX = 0;
-var FPS_COMPARE = FPS_DIV_ARRAY[FPS_INDEX];
+var FPS_DIV_ARRAY: Array<number> = [2, 2];
+var FPS_COUNTER: number = 0;
+var FPS_INDEX: number = 0;
+var FPS_COMPARE: number = FPS_DIV_ARRAY[FPS_INDEX];
 /* Divide down the FPS. */
-var FPS_DIV = 0;
+var FPS_DIV: number = 0;
 /* A general paint instance to draw things with. */
-var general_paint = new Paint();
+var general_paint: Paint = new Paint();
 /* A link to the document title, so we can edit it. */
-var webpage_document_title = global.NULL;
-var last_webpage_document_title = 'untitled';
+var webpage_document_title: HTMLElement = global.NULL;
+var last_webpage_document_title: string = 'untitled';
 /* prevent mouse events from happening out of order. */
-var MOUSE_EVENT_LATCH = false;
+var MOUSE_EVENT_LATCH: boolean = false;
 /* #END_GLOBAL_EXTRACT# */
-function load_app() {
+function load_app(): void {
   /* Found out which browser we are running on! */
   browser_detection();
   /* Initialize the system workspace */
@@ -396,16 +397,16 @@ function load_app() {
   global.last_surface_width = 0;
   global.last_surface_height = 0;
   /* Create the drawing engine */
-  let canvas = new GraphicsEngine(virtual_surface.context);
-  let FIFO_INDEX = 0;
+  let canvas: GraphicsEngine = new GraphicsEngine(virtual_surface.context);
+  let FIFO_INDEX: number = 0;
   let touch = global.NULL;
-  let met_max = -1;
+  let met_max: number = -1;
   let TEMP_DRAW_SIGNAL: boolean = false;
   /* Used to calculate node spacing. */
-  let NSX = 0;
-  let NSY = 0;
-  let MNSX = 0;
-  let MNSY = 0;
+  let NSX: number = 0;
+  let NSY: number = 0;
+  let MNSX: number = 0;
+  let MNSY: number = 0;
   /* In case canvas is scaled inside an html element. If it is, then look at the commented code
   inside resize_canvas() to handle how these values should be re-calculated. */
   general_paint.set_paint_style(general_paint.style.FILL);
@@ -423,7 +424,7 @@ function load_app() {
   general_paint.set_paint_align(general_paint.align.CENTER);
   /* Inititalize the system. This is called at the end of this file.
   (After everything is initialized) */
-  function initialize(step: number) {
+  function initialize(step: number): void {
     if (step === 0) {
       resize_canvas();
       engine_functions.create_nodes(workspace.bounds);
@@ -460,7 +461,7 @@ function load_app() {
     }
   }
 
-  function register_cross_platform_listeners() {
+  function register_cross_platform_listeners(): void {
     if (global.MOBILE_MODE === true) {
       surface.addEventListener('touchstart', mouse_down, false);
       surface.addEventListener('touchmove', mouse_move, false);
@@ -481,14 +482,14 @@ function load_app() {
     }
   }
 
-  function start_system() {
+  function start_system(): void {
     if (!global.MOBILE_MODE) {
       register();
     }
     main();
   }
 
-  function resize_canvas() {
+  function resize_canvas(): void {
     /* Wait until the system proccesses the information then over-write the data. */
     if (global.RESIZE_EVENT === false) {
       global.last_view_port_right = view_port.right;
@@ -550,12 +551,13 @@ function load_app() {
     }
   }
 
-  function mouse_down(mouse_event) {
+  function mouse_down(mouse_event: MouseEvent): void {
     if (global.SYSTEM_INITIALIZATION['completed']) {
       if (global.MOBILE_MODE === false) {
         global.mouse_x = mouse_event.clientX;
         global.mouse_y = mouse_event.clientY;
       } else {
+        //@ts-ignore
         touch = mouse_event.touches[0];
         global.mouse_x = touch.clientX;
         global.mouse_y = touch.clientY;
@@ -585,7 +587,7 @@ function load_app() {
     mouse_event.stopPropagation();
   }
 
-  function mouse_move(mouse_event) {
+  function mouse_move(mouse_event: MouseEvent): void {
     mouse_event.preventDefault();
     mouse_event.stopPropagation();
     if (!global.MOUSE_MOVE_EVENT) {
@@ -601,7 +603,7 @@ function load_app() {
     }
   }
 
-  function mouse_up(mouse_event) {
+  function mouse_up(mouse_event: MouseEvent): void {
     mouse_event.preventDefault();
     mouse_event.stopPropagation();
     if (MOUSE_EVENT_LATCH) {
@@ -617,7 +619,7 @@ function load_app() {
     }
   }
 
-  function mouse_wheel(mouse_event) {
+  function mouse_wheel(mouse_event: MouseEvent): void {
     /* Intentionally blocking. */
     if (!global.MOUSE_WHEEL_EVENT && !global.MOBILE_MODE) {
       global.MOUSE_WHEEL_EVENT = true;
@@ -625,7 +627,7 @@ function load_app() {
     }
   }
 
-  function double_click(mouse_event) {
+  function double_click(mouse_event: MouseEvent): void {
     mouse_event.preventDefault();
     mouse_event.stopPropagation();
     if (!global.MOBILE_MODE) {
@@ -634,7 +636,7 @@ function load_app() {
     }
   }
 
-  function key_down(key_event) {
+  function key_down(key_event: KeyboardEvent): void {
     key_event.preventDefault();
     global.KEY_DOWN_EVENT = true;
     global.key_down_event_queue.push({
@@ -646,7 +648,7 @@ function load_app() {
     });
   }
 
-  function key_up(key_event) {
+  function key_up(key_event: KeyboardEvent): void {
     key_event.preventDefault();
     global.KEY_UP_EVENT = true;
     global.key_up_event_queue.push({
@@ -658,7 +660,7 @@ function load_app() {
     });
   }
 
-  function resize_components() {
+  function resize_components(): void {
     /* Always resize the workspace first! */
     global.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
     if (global.settings.WORKSPACE_PERFECT_SQUARE) {
@@ -684,25 +686,26 @@ function load_app() {
     on_screen_keyboard.resize_keyboard();
     /* #INSERT_METER_RESIZE_TRACE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < voltmeters.length; i++) {
+    for (var i: number = 0; i < voltmeters.length; i++) {
       voltmeters[i].RESIZE_METER_TRACE = true;
     }
-    for (var i = 0; i < ohmmeters.length; i++) {
+    for (var i: number = 0; i < ohmmeters.length; i++) {
       ohmmeters[i].RESIZE_METER_TRACE = true;
     }
-    for (var i = 0; i < ammeters.length; i++) {
+    for (var i: number = 0; i < ammeters.length; i++) {
       ammeters[i].RESIZE_METER_TRACE = true;
     }
-    for (var i = 0; i < wattmeters.length; i++) {
+    for (var i: number = 0; i < wattmeters.length; i++) {
       wattmeters[i].RESIZE_METER_TRACE = true;
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
 
-  function handle_zoom(mouse_event) {
+  function handle_zoom(mouse_event: MouseEvent): void {
     if (!global.focused) {
       global.x_offset = (global.mouse_x - global.delta_x) / global.WORKSPACE_ZOOM_SCALE;
       global.y_offset = (global.mouse_y - global.delta_y) / global.WORKSPACE_ZOOM_SCALE;
+      //@ts-ignore
       if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
         if (global.WORKSPACE_ZOOM_SCALE > global.ZOOM_MIN) {
           global.WORKSPACE_ZOOM_SCALE /= global.ZOOM_FACTOR;
@@ -718,14 +721,14 @@ function load_app() {
     }
   }
 
-  function reset_zoom() {
+  function reset_zoom(): void {
     global.x_offset = 0;
     global.y_offset = 0;
     global.delta_x = workspace.bounds.left;
     global.delta_y = workspace.bounds.top;
   }
 
-  function normal_draw_permissions() {
+  function normal_draw_permissions(): boolean {
     if (global.SYSTEM_INITIALIZATION['completed']) {
       return (
         global.RESIZE_EVENT ||
@@ -757,7 +760,7 @@ function load_app() {
     }
   }
 
-  function system_loop() {
+  function system_loop(): void {
     try {
       /* Optimizing the drawing frames for the canvas. */
       if (normal_draw_permissions()) {
@@ -850,12 +853,12 @@ function load_app() {
       }
     } catch (e) {
       if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
-        let post_data = e + '\r\n' + e.stack + '\r\n';
-        let url = 'solver_errors.php?msg="' + post_data + '"';
-        let method = 'POST';
-        let should_be_async = true;
-        let request = new XMLHttpRequest();
-        request.onload = function () {
+        let post_data: string = e + '\r\n' + e.stack + '\r\n';
+        let url: string = 'solver_errors.php?msg="' + post_data + '"';
+        let method: string = 'POST';
+        let should_be_async: boolean = true;
+        let request: XMLHttpRequest = new XMLHttpRequest();
+        request.onload = function (): void {
           let status = request.status;
           let data = request.responseText;
         };
@@ -866,7 +869,7 @@ function load_app() {
     }
   }
 
-  function update() {
+  function update(): void {
     if (global.SYSTEM_INITIALIZATION['completed']) {
       engine_functions.file_manager();
       /* Reset the component translating flag. */
@@ -971,184 +974,184 @@ function load_app() {
         simulation_manager.simulate();
         /* #INSERT_GENERATE_UPDATE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        for (var i = 0; i < resistors.length; i++) {
+        for (var i: number = 0; i < resistors.length; i++) {
           resistors[i].update();
         }
-        for (var i = 0; i < capacitors.length; i++) {
+        for (var i: number = 0; i < capacitors.length; i++) {
           capacitors[i].update();
         }
-        for (var i = 0; i < inductors.length; i++) {
+        for (var i: number = 0; i < inductors.length; i++) {
           inductors[i].update();
         }
-        for (var i = 0; i < grounds.length; i++) {
+        for (var i: number = 0; i < grounds.length; i++) {
           grounds[i].update();
         }
-        for (var i = 0; i < dcsources.length; i++) {
+        for (var i: number = 0; i < dcsources.length; i++) {
           dcsources[i].update();
         }
-        for (var i = 0; i < dccurrents.length; i++) {
+        for (var i: number = 0; i < dccurrents.length; i++) {
           dccurrents[i].update();
         }
-        for (var i = 0; i < acsources.length; i++) {
+        for (var i: number = 0; i < acsources.length; i++) {
           acsources[i].update();
         }
-        for (var i = 0; i < accurrents.length; i++) {
+        for (var i: number = 0; i < accurrents.length; i++) {
           accurrents[i].update();
         }
-        for (var i = 0; i < squarewaves.length; i++) {
+        for (var i: number = 0; i < squarewaves.length; i++) {
           squarewaves[i].update();
         }
-        for (var i = 0; i < sawwaves.length; i++) {
+        for (var i: number = 0; i < sawwaves.length; i++) {
           sawwaves[i].update();
         }
-        for (var i = 0; i < trianglewaves.length; i++) {
+        for (var i: number = 0; i < trianglewaves.length; i++) {
           trianglewaves[i].update();
         }
-        for (var i = 0; i < constants.length; i++) {
+        for (var i: number = 0; i < constants.length; i++) {
           constants[i].update();
         }
-        for (var i = 0; i < wires.length; i++) {
+        for (var i: number = 0; i < wires.length; i++) {
           wires[i].update();
         }
-        for (var i = 0; i < nets.length; i++) {
+        for (var i: number = 0; i < nets.length; i++) {
           nets[i].update();
         }
-        for (var i = 0; i < notes.length; i++) {
+        for (var i: number = 0; i < notes.length; i++) {
           notes[i].update();
         }
-        for (var i = 0; i < rails.length; i++) {
+        for (var i: number = 0; i < rails.length; i++) {
           rails[i].update();
         }
-        for (var i = 0; i < voltmeters.length; i++) {
+        for (var i: number = 0; i < voltmeters.length; i++) {
           voltmeters[i].update();
         }
-        for (var i = 0; i < ohmmeters.length; i++) {
+        for (var i: number = 0; i < ohmmeters.length; i++) {
           ohmmeters[i].update();
         }
-        for (var i = 0; i < ammeters.length; i++) {
+        for (var i: number = 0; i < ammeters.length; i++) {
           ammeters[i].update();
         }
-        for (var i = 0; i < wattmeters.length; i++) {
+        for (var i: number = 0; i < wattmeters.length; i++) {
           wattmeters[i].update();
         }
-        for (var i = 0; i < fuses.length; i++) {
+        for (var i: number = 0; i < fuses.length; i++) {
           fuses[i].update();
         }
-        for (var i = 0; i < spsts.length; i++) {
+        for (var i: number = 0; i < spsts.length; i++) {
           spsts[i].update();
         }
-        for (var i = 0; i < spdts.length; i++) {
+        for (var i: number = 0; i < spdts.length; i++) {
           spdts[i].update();
         }
-        for (var i = 0; i < nots.length; i++) {
+        for (var i: number = 0; i < nots.length; i++) {
           nots[i].update();
         }
-        for (var i = 0; i < potentiometers.length; i++) {
+        for (var i: number = 0; i < potentiometers.length; i++) {
           potentiometers[i].update();
         }
-        for (var i = 0; i < ands.length; i++) {
+        for (var i: number = 0; i < ands.length; i++) {
           ands[i].update();
         }
-        for (var i = 0; i < ors.length; i++) {
+        for (var i: number = 0; i < ors.length; i++) {
           ors[i].update();
         }
-        for (var i = 0; i < nands.length; i++) {
+        for (var i: number = 0; i < nands.length; i++) {
           nands[i].update();
         }
-        for (var i = 0; i < nors.length; i++) {
+        for (var i: number = 0; i < nors.length; i++) {
           nors[i].update();
         }
-        for (var i = 0; i < xors.length; i++) {
+        for (var i: number = 0; i < xors.length; i++) {
           xors[i].update();
         }
-        for (var i = 0; i < xnors.length; i++) {
+        for (var i: number = 0; i < xnors.length; i++) {
           xnors[i].update();
         }
-        for (var i = 0; i < dffs.length; i++) {
+        for (var i: number = 0; i < dffs.length; i++) {
           dffs[i].update();
         }
-        for (var i = 0; i < vsats.length; i++) {
+        for (var i: number = 0; i < vsats.length; i++) {
           vsats[i].update();
         }
-        for (var i = 0; i < adders.length; i++) {
+        for (var i: number = 0; i < adders.length; i++) {
           adders[i].update();
         }
-        for (var i = 0; i < subtractors.length; i++) {
+        for (var i: number = 0; i < subtractors.length; i++) {
           subtractors[i].update();
         }
-        for (var i = 0; i < multipliers.length; i++) {
+        for (var i: number = 0; i < multipliers.length; i++) {
           multipliers[i].update();
         }
-        for (var i = 0; i < dividers.length; i++) {
+        for (var i: number = 0; i < dividers.length; i++) {
           dividers[i].update();
         }
-        for (var i = 0; i < gains.length; i++) {
+        for (var i: number = 0; i < gains.length; i++) {
           gains[i].update();
         }
-        for (var i = 0; i < absvals.length; i++) {
+        for (var i: number = 0; i < absvals.length; i++) {
           absvals[i].update();
         }
-        for (var i = 0; i < vcsws.length; i++) {
+        for (var i: number = 0; i < vcsws.length; i++) {
           vcsws[i].update();
         }
-        for (var i = 0; i < vcvss.length; i++) {
+        for (var i: number = 0; i < vcvss.length; i++) {
           vcvss[i].update();
         }
-        for (var i = 0; i < vccss.length; i++) {
+        for (var i: number = 0; i < vccss.length; i++) {
           vccss[i].update();
         }
-        for (var i = 0; i < cccss.length; i++) {
+        for (var i: number = 0; i < cccss.length; i++) {
           cccss[i].update();
         }
-        for (var i = 0; i < ccvss.length; i++) {
+        for (var i: number = 0; i < ccvss.length; i++) {
           ccvss[i].update();
         }
-        for (var i = 0; i < opamps.length; i++) {
+        for (var i: number = 0; i < opamps.length; i++) {
           opamps[i].update();
         }
-        for (var i = 0; i < adcs.length; i++) {
+        for (var i: number = 0; i < adcs.length; i++) {
           adcs[i].update();
         }
-        for (var i = 0; i < dacs.length; i++) {
+        for (var i: number = 0; i < dacs.length; i++) {
           dacs[i].update();
         }
-        for (var i = 0; i < sandhs.length; i++) {
+        for (var i: number = 0; i < sandhs.length; i++) {
           sandhs[i].update();
         }
-        for (var i = 0; i < pwms.length; i++) {
+        for (var i: number = 0; i < pwms.length; i++) {
           pwms[i].update();
         }
-        for (var i = 0; i < integrators.length; i++) {
+        for (var i: number = 0; i < integrators.length; i++) {
           integrators[i].update();
         }
-        for (var i = 0; i < differentiators.length; i++) {
+        for (var i: number = 0; i < differentiators.length; i++) {
           differentiators[i].update();
         }
-        for (var i = 0; i < lowpasses.length; i++) {
+        for (var i: number = 0; i < lowpasses.length; i++) {
           lowpasses[i].update();
         }
-        for (var i = 0; i < highpasses.length; i++) {
+        for (var i: number = 0; i < highpasses.length; i++) {
           highpasses[i].update();
         }
-        for (var i = 0; i < relays.length; i++) {
+        for (var i: number = 0; i < relays.length; i++) {
           relays[i].update();
         }
-        for (var i = 0; i < pids.length; i++) {
+        for (var i: number = 0; i < pids.length; i++) {
           pids[i].update();
         }
-        for (var i = 0; i < luts.length; i++) {
+        for (var i: number = 0; i < luts.length; i++) {
           luts[i].update();
         }
-        for (var i = 0; i < vcrs.length; i++) {
+        for (var i: number = 0; i < vcrs.length; i++) {
           vcrs[i].update();
         }
-        for (var i = 0; i < grts.length; i++) {
+        for (var i: number = 0; i < grts.length; i++) {
           grts[i].update();
         }
-        for (var i = 0; i < tptzs.length; i++) {
+        for (var i: number = 0; i < tptzs.length; i++) {
           tptzs[i].update();
         }
-        for (var i = 0; i < transformers.length; i++) {
+        for (var i: number = 0; i < transformers.length; i++) {
           transformers[i].update();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -1177,7 +1180,7 @@ function load_app() {
     }
   }
 
-  function refactor_sizes() {
+  function refactor_sizes(): void {
     global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
     global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
     global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
@@ -1192,7 +1195,7 @@ function load_app() {
     global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
   }
 
-  function draw() {
+  function draw(): void {
     refactor_sizes();
     engine_functions.image_manager();
     if (!global.PICTURE_REQUEST) {
@@ -1219,12 +1222,12 @@ function load_app() {
           NSY = 0.29375 * global.node_space_y;
           MNSX = 1.25 * NSX;
           MNSY = 1.25 * NSY;
-          for (var i = 0; i < nodes.length; i++) {
+          for (var i: number = 0; i < nodes.length; i++) {
             nodes[i].resize(NSX, NSY, MNSX, MNSY);
           }
         }
         if (global.DEVELOPER_MODE) {
-          for (var i = 0; i < nodes.length; i++) {
+          for (var i: number = 0; i < nodes.length; i++) {
             nodes[i].draw(canvas);
           }
         }
@@ -1236,7 +1239,7 @@ function load_app() {
         if (global.WIRE_BUILDER['step'] > 0) {
           global.NODE_LINE_BUFFER = [];
           global.NODE_LINE_BUFFER_INDEX = 0;
-          for (var i = 0; i < nodes.length; i++) {
+          for (var i: number = 0; i < nodes.length; i++) {
             nodes[i].draw(canvas);
           }
           if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
@@ -1277,12 +1280,12 @@ function load_app() {
               NSY = 0.29375 * global.node_space_y;
               MNSX = 1.25 * NSX;
               MNSY = 1.25 * NSY;
-              for (var i = 0; i < nodes.length; i++) {
+              for (var i: number = 0; i < nodes.length; i++) {
                 nodes[i].resize(NSX, NSY, MNSX, MNSY);
               }
             }
             if (global.DEVELOPER_MODE) {
-              for (var i = 0; i < nodes.length; i++) {
+              for (var i: number = 0; i < nodes.length; i++) {
                 nodes[i].draw(canvas);
               }
             }
@@ -1293,7 +1296,7 @@ function load_app() {
             if (global.WIRE_BUILDER['step'] > 0) {
               global.NODE_LINE_BUFFER = [];
               global.NODE_LINE_BUFFER_INDEX = 0;
-              for (var i = 0; i < nodes.length; i++) {
+              for (var i: number = 0; i < nodes.length; i++) {
                 nodes[i].draw(canvas);
               }
               if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
@@ -1326,7 +1329,7 @@ function load_app() {
     view_port.draw_viewport(canvas);
   }
 
-  function handle_mouse_down() {
+  function handle_mouse_down(): void {
     global.component_touched = false;
     if (global.MOBILE_MODE === false) {
       global.mouse_x = global.mouse_down_event.clientX;
@@ -1401,207 +1404,207 @@ function load_app() {
       if (!global.IS_DRAGGING) {
         /* #INSERT_GENERATE_MOUSE_DOWN# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        for (var i = 0; i < resistors.length; i++) {
+        for (var i: number = 0; i < resistors.length; i++) {
           resistors[i].mouse_down();
         }
-        for (var i = 0; i < capacitors.length; i++) {
+        for (var i: number = 0; i < capacitors.length; i++) {
           capacitors[i].mouse_down();
         }
-        for (var i = 0; i < inductors.length; i++) {
+        for (var i: number = 0; i < inductors.length; i++) {
           inductors[i].mouse_down();
         }
-        for (var i = 0; i < grounds.length; i++) {
+        for (var i: number = 0; i < grounds.length; i++) {
           grounds[i].mouse_down();
         }
-        for (var i = 0; i < dcsources.length; i++) {
+        for (var i: number = 0; i < dcsources.length; i++) {
           dcsources[i].mouse_down();
         }
-        for (var i = 0; i < dccurrents.length; i++) {
+        for (var i: number = 0; i < dccurrents.length; i++) {
           dccurrents[i].mouse_down();
         }
-        for (var i = 0; i < acsources.length; i++) {
+        for (var i: number = 0; i < acsources.length; i++) {
           acsources[i].mouse_down();
         }
-        for (var i = 0; i < accurrents.length; i++) {
+        for (var i: number = 0; i < accurrents.length; i++) {
           accurrents[i].mouse_down();
         }
-        for (var i = 0; i < squarewaves.length; i++) {
+        for (var i: number = 0; i < squarewaves.length; i++) {
           squarewaves[i].mouse_down();
         }
-        for (var i = 0; i < sawwaves.length; i++) {
+        for (var i: number = 0; i < sawwaves.length; i++) {
           sawwaves[i].mouse_down();
         }
-        for (var i = 0; i < trianglewaves.length; i++) {
+        for (var i: number = 0; i < trianglewaves.length; i++) {
           trianglewaves[i].mouse_down();
         }
-        for (var i = 0; i < constants.length; i++) {
+        for (var i: number = 0; i < constants.length; i++) {
           constants[i].mouse_down();
         }
-        for (var i = 0; i < nets.length; i++) {
+        for (var i: number = 0; i < nets.length; i++) {
           nets[i].mouse_down();
         }
-        for (var i = 0; i < notes.length; i++) {
+        for (var i: number = 0; i < notes.length; i++) {
           notes[i].mouse_down();
         }
-        for (var i = 0; i < rails.length; i++) {
+        for (var i: number = 0; i < rails.length; i++) {
           rails[i].mouse_down();
         }
-        for (var i = 0; i < voltmeters.length; i++) {
+        for (var i: number = 0; i < voltmeters.length; i++) {
           voltmeters[i].mouse_down();
         }
-        for (var i = 0; i < ohmmeters.length; i++) {
+        for (var i: number = 0; i < ohmmeters.length; i++) {
           ohmmeters[i].mouse_down();
         }
-        for (var i = 0; i < ammeters.length; i++) {
+        for (var i: number = 0; i < ammeters.length; i++) {
           ammeters[i].mouse_down();
         }
-        for (var i = 0; i < wattmeters.length; i++) {
+        for (var i: number = 0; i < wattmeters.length; i++) {
           wattmeters[i].mouse_down();
         }
-        for (var i = 0; i < fuses.length; i++) {
+        for (var i: number = 0; i < fuses.length; i++) {
           fuses[i].mouse_down();
         }
-        for (var i = 0; i < spsts.length; i++) {
+        for (var i: number = 0; i < spsts.length; i++) {
           spsts[i].mouse_down();
         }
-        for (var i = 0; i < spdts.length; i++) {
+        for (var i: number = 0; i < spdts.length; i++) {
           spdts[i].mouse_down();
         }
-        for (var i = 0; i < nots.length; i++) {
+        for (var i: number = 0; i < nots.length; i++) {
           nots[i].mouse_down();
         }
-        for (var i = 0; i < diodes.length; i++) {
+        for (var i: number = 0; i < diodes.length; i++) {
           diodes[i].mouse_down();
         }
-        for (var i = 0; i < leds.length; i++) {
+        for (var i: number = 0; i < leds.length; i++) {
           leds[i].mouse_down();
         }
-        for (var i = 0; i < zeners.length; i++) {
+        for (var i: number = 0; i < zeners.length; i++) {
           zeners[i].mouse_down();
         }
-        for (var i = 0; i < potentiometers.length; i++) {
+        for (var i: number = 0; i < potentiometers.length; i++) {
           potentiometers[i].mouse_down();
         }
-        for (var i = 0; i < ands.length; i++) {
+        for (var i: number = 0; i < ands.length; i++) {
           ands[i].mouse_down();
         }
-        for (var i = 0; i < ors.length; i++) {
+        for (var i: number = 0; i < ors.length; i++) {
           ors[i].mouse_down();
         }
-        for (var i = 0; i < nands.length; i++) {
+        for (var i: number = 0; i < nands.length; i++) {
           nands[i].mouse_down();
         }
-        for (var i = 0; i < nors.length; i++) {
+        for (var i: number = 0; i < nors.length; i++) {
           nors[i].mouse_down();
         }
-        for (var i = 0; i < xors.length; i++) {
+        for (var i: number = 0; i < xors.length; i++) {
           xors[i].mouse_down();
         }
-        for (var i = 0; i < xnors.length; i++) {
+        for (var i: number = 0; i < xnors.length; i++) {
           xnors[i].mouse_down();
         }
-        for (var i = 0; i < dffs.length; i++) {
+        for (var i: number = 0; i < dffs.length; i++) {
           dffs[i].mouse_down();
         }
-        for (var i = 0; i < vsats.length; i++) {
+        for (var i: number = 0; i < vsats.length; i++) {
           vsats[i].mouse_down();
         }
-        for (var i = 0; i < adders.length; i++) {
+        for (var i: number = 0; i < adders.length; i++) {
           adders[i].mouse_down();
         }
-        for (var i = 0; i < subtractors.length; i++) {
+        for (var i: number = 0; i < subtractors.length; i++) {
           subtractors[i].mouse_down();
         }
-        for (var i = 0; i < multipliers.length; i++) {
+        for (var i: number = 0; i < multipliers.length; i++) {
           multipliers[i].mouse_down();
         }
-        for (var i = 0; i < dividers.length; i++) {
+        for (var i: number = 0; i < dividers.length; i++) {
           dividers[i].mouse_down();
         }
-        for (var i = 0; i < gains.length; i++) {
+        for (var i: number = 0; i < gains.length; i++) {
           gains[i].mouse_down();
         }
-        for (var i = 0; i < absvals.length; i++) {
+        for (var i: number = 0; i < absvals.length; i++) {
           absvals[i].mouse_down();
         }
-        for (var i = 0; i < vcsws.length; i++) {
+        for (var i: number = 0; i < vcsws.length; i++) {
           vcsws[i].mouse_down();
         }
-        for (var i = 0; i < vcvss.length; i++) {
+        for (var i: number = 0; i < vcvss.length; i++) {
           vcvss[i].mouse_down();
         }
-        for (var i = 0; i < vccss.length; i++) {
+        for (var i: number = 0; i < vccss.length; i++) {
           vccss[i].mouse_down();
         }
-        for (var i = 0; i < cccss.length; i++) {
+        for (var i: number = 0; i < cccss.length; i++) {
           cccss[i].mouse_down();
         }
-        for (var i = 0; i < ccvss.length; i++) {
+        for (var i: number = 0; i < ccvss.length; i++) {
           ccvss[i].mouse_down();
         }
-        for (var i = 0; i < opamps.length; i++) {
+        for (var i: number = 0; i < opamps.length; i++) {
           opamps[i].mouse_down();
         }
-        for (var i = 0; i < nmosfets.length; i++) {
+        for (var i: number = 0; i < nmosfets.length; i++) {
           nmosfets[i].mouse_down();
         }
-        for (var i = 0; i < pmosfets.length; i++) {
+        for (var i: number = 0; i < pmosfets.length; i++) {
           pmosfets[i].mouse_down();
         }
-        for (var i = 0; i < npns.length; i++) {
+        for (var i: number = 0; i < npns.length; i++) {
           npns[i].mouse_down();
         }
-        for (var i = 0; i < pnps.length; i++) {
+        for (var i: number = 0; i < pnps.length; i++) {
           pnps[i].mouse_down();
         }
-        for (var i = 0; i < adcs.length; i++) {
+        for (var i: number = 0; i < adcs.length; i++) {
           adcs[i].mouse_down();
         }
-        for (var i = 0; i < dacs.length; i++) {
+        for (var i: number = 0; i < dacs.length; i++) {
           dacs[i].mouse_down();
         }
-        for (var i = 0; i < sandhs.length; i++) {
+        for (var i: number = 0; i < sandhs.length; i++) {
           sandhs[i].mouse_down();
         }
-        for (var i = 0; i < pwms.length; i++) {
+        for (var i: number = 0; i < pwms.length; i++) {
           pwms[i].mouse_down();
         }
-        for (var i = 0; i < integrators.length; i++) {
+        for (var i: number = 0; i < integrators.length; i++) {
           integrators[i].mouse_down();
         }
-        for (var i = 0; i < differentiators.length; i++) {
+        for (var i: number = 0; i < differentiators.length; i++) {
           differentiators[i].mouse_down();
         }
-        for (var i = 0; i < lowpasses.length; i++) {
+        for (var i: number = 0; i < lowpasses.length; i++) {
           lowpasses[i].mouse_down();
         }
-        for (var i = 0; i < highpasses.length; i++) {
+        for (var i: number = 0; i < highpasses.length; i++) {
           highpasses[i].mouse_down();
         }
-        for (var i = 0; i < relays.length; i++) {
+        for (var i: number = 0; i < relays.length; i++) {
           relays[i].mouse_down();
         }
-        for (var i = 0; i < pids.length; i++) {
+        for (var i: number = 0; i < pids.length; i++) {
           pids[i].mouse_down();
         }
-        for (var i = 0; i < luts.length; i++) {
+        for (var i: number = 0; i < luts.length; i++) {
           luts[i].mouse_down();
         }
-        for (var i = 0; i < vcrs.length; i++) {
+        for (var i: number = 0; i < vcrs.length; i++) {
           vcrs[i].mouse_down();
         }
-        for (var i = 0; i < grts.length; i++) {
+        for (var i: number = 0; i < grts.length; i++) {
           grts[i].mouse_down();
         }
-        for (var i = 0; i < tptzs.length; i++) {
+        for (var i: number = 0; i < tptzs.length; i++) {
           tptzs[i].mouse_down();
         }
-        for (var i = 0; i < transformers.length; i++) {
+        for (var i: number = 0; i < transformers.length; i++) {
           transformers[i].mouse_down();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         /* Handle mouse down events for the wires in the system. */
-        for (var i = wires.length - 1; i > -1; i--) {
+        for (var i: number = wires.length - 1; i > -1; i--) {
           wires[i].mouse_down();
         }
       }
@@ -1618,7 +1621,7 @@ function load_app() {
    * Handles mouse move events. All events are serialized in this application to make sure
    * they occur in a deterministic way.
    */
-  function handle_mouse_move() {
+  function handle_mouse_move(): void {
     global.last_mouse_x = global.mouse_x;
     global.last_mouse_y = global.mouse_y;
     if (global.MOBILE_MODE === false) {
@@ -1631,10 +1634,7 @@ function load_app() {
     }
     global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
     global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
-    if (
-      global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) &&
-      global.TRANSLATION_LOCK
-    ) {
+    if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) && global.TRANSLATION_LOCK) {
       global.TRANSLATION_LOCK = false;
       global.IS_DRAGGING = global.TEMP_IS_DRAGGING;
     }
@@ -1656,208 +1656,208 @@ function load_app() {
       if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
         /* #INSERT_GENERATE_MOUSE_MOVE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        for (var i = 0; i < resistors.length; i++) {
+        for (var i: number = 0; i < resistors.length; i++) {
           resistors[i].mouse_move();
         }
-        for (var i = 0; i < capacitors.length; i++) {
+        for (var i: number = 0; i < capacitors.length; i++) {
           capacitors[i].mouse_move();
         }
-        for (var i = 0; i < inductors.length; i++) {
+        for (var i: number = 0; i < inductors.length; i++) {
           inductors[i].mouse_move();
         }
-        for (var i = 0; i < grounds.length; i++) {
+        for (var i: number = 0; i < grounds.length; i++) {
           grounds[i].mouse_move();
         }
-        for (var i = 0; i < dcsources.length; i++) {
+        for (var i: number = 0; i < dcsources.length; i++) {
           dcsources[i].mouse_move();
         }
-        for (var i = 0; i < dccurrents.length; i++) {
+        for (var i: number = 0; i < dccurrents.length; i++) {
           dccurrents[i].mouse_move();
         }
-        for (var i = 0; i < acsources.length; i++) {
+        for (var i: number = 0; i < acsources.length; i++) {
           acsources[i].mouse_move();
         }
-        for (var i = 0; i < accurrents.length; i++) {
+        for (var i: number = 0; i < accurrents.length; i++) {
           accurrents[i].mouse_move();
         }
-        for (var i = 0; i < squarewaves.length; i++) {
+        for (var i: number = 0; i < squarewaves.length; i++) {
           squarewaves[i].mouse_move();
         }
-        for (var i = 0; i < sawwaves.length; i++) {
+        for (var i: number = 0; i < sawwaves.length; i++) {
           sawwaves[i].mouse_move();
         }
-        for (var i = 0; i < trianglewaves.length; i++) {
+        for (var i: number = 0; i < trianglewaves.length; i++) {
           trianglewaves[i].mouse_move();
         }
-        for (var i = 0; i < constants.length; i++) {
+        for (var i: number = 0; i < constants.length; i++) {
           constants[i].mouse_move();
         }
-        for (var i = 0; i < nets.length; i++) {
+        for (var i: number = 0; i < nets.length; i++) {
           nets[i].mouse_move();
         }
-        for (var i = 0; i < notes.length; i++) {
+        for (var i: number = 0; i < notes.length; i++) {
           notes[i].mouse_move();
         }
-        for (var i = 0; i < rails.length; i++) {
+        for (var i: number = 0; i < rails.length; i++) {
           rails[i].mouse_move();
         }
-        for (var i = 0; i < voltmeters.length; i++) {
+        for (var i: number = 0; i < voltmeters.length; i++) {
           voltmeters[i].mouse_move();
         }
-        for (var i = 0; i < ohmmeters.length; i++) {
+        for (var i: number = 0; i < ohmmeters.length; i++) {
           ohmmeters[i].mouse_move();
         }
-        for (var i = 0; i < ammeters.length; i++) {
+        for (var i: number = 0; i < ammeters.length; i++) {
           ammeters[i].mouse_move();
         }
-        for (var i = 0; i < wattmeters.length; i++) {
+        for (var i: number = 0; i < wattmeters.length; i++) {
           wattmeters[i].mouse_move();
         }
-        for (var i = 0; i < fuses.length; i++) {
+        for (var i: number = 0; i < fuses.length; i++) {
           fuses[i].mouse_move();
         }
-        for (var i = 0; i < spsts.length; i++) {
+        for (var i: number = 0; i < spsts.length; i++) {
           spsts[i].mouse_move();
         }
-        for (var i = 0; i < spdts.length; i++) {
+        for (var i: number = 0; i < spdts.length; i++) {
           spdts[i].mouse_move();
         }
-        for (var i = 0; i < nots.length; i++) {
+        for (var i: number = 0; i < nots.length; i++) {
           nots[i].mouse_move();
         }
-        for (var i = 0; i < diodes.length; i++) {
+        for (var i: number = 0; i < diodes.length; i++) {
           diodes[i].mouse_move();
         }
-        for (var i = 0; i < leds.length; i++) {
+        for (var i: number = 0; i < leds.length; i++) {
           leds[i].mouse_move();
         }
-        for (var i = 0; i < zeners.length; i++) {
+        for (var i: number = 0; i < zeners.length; i++) {
           zeners[i].mouse_move();
         }
-        for (var i = 0; i < potentiometers.length; i++) {
+        for (var i: number = 0; i < potentiometers.length; i++) {
           potentiometers[i].mouse_move();
         }
-        for (var i = 0; i < ands.length; i++) {
+        for (var i: number = 0; i < ands.length; i++) {
           ands[i].mouse_move();
         }
-        for (var i = 0; i < ors.length; i++) {
+        for (var i: number = 0; i < ors.length; i++) {
           ors[i].mouse_move();
         }
-        for (var i = 0; i < nands.length; i++) {
+        for (var i: number = 0; i < nands.length; i++) {
           nands[i].mouse_move();
         }
-        for (var i = 0; i < nors.length; i++) {
+        for (var i: number = 0; i < nors.length; i++) {
           nors[i].mouse_move();
         }
-        for (var i = 0; i < xors.length; i++) {
+        for (var i: number = 0; i < xors.length; i++) {
           xors[i].mouse_move();
         }
-        for (var i = 0; i < xnors.length; i++) {
+        for (var i: number = 0; i < xnors.length; i++) {
           xnors[i].mouse_move();
         }
-        for (var i = 0; i < dffs.length; i++) {
+        for (var i: number = 0; i < dffs.length; i++) {
           dffs[i].mouse_move();
         }
-        for (var i = 0; i < vsats.length; i++) {
+        for (var i: number = 0; i < vsats.length; i++) {
           vsats[i].mouse_move();
         }
-        for (var i = 0; i < adders.length; i++) {
+        for (var i: number = 0; i < adders.length; i++) {
           adders[i].mouse_move();
         }
-        for (var i = 0; i < subtractors.length; i++) {
+        for (var i: number = 0; i < subtractors.length; i++) {
           subtractors[i].mouse_move();
         }
-        for (var i = 0; i < multipliers.length; i++) {
+        for (var i: number = 0; i < multipliers.length; i++) {
           multipliers[i].mouse_move();
         }
-        for (var i = 0; i < dividers.length; i++) {
+        for (var i: number = 0; i < dividers.length; i++) {
           dividers[i].mouse_move();
         }
-        for (var i = 0; i < gains.length; i++) {
+        for (var i: number = 0; i < gains.length; i++) {
           gains[i].mouse_move();
         }
-        for (var i = 0; i < absvals.length; i++) {
+        for (var i: number = 0; i < absvals.length; i++) {
           absvals[i].mouse_move();
         }
-        for (var i = 0; i < vcsws.length; i++) {
+        for (var i: number = 0; i < vcsws.length; i++) {
           vcsws[i].mouse_move();
         }
-        for (var i = 0; i < vcvss.length; i++) {
+        for (var i: number = 0; i < vcvss.length; i++) {
           vcvss[i].mouse_move();
         }
-        for (var i = 0; i < vccss.length; i++) {
+        for (var i: number = 0; i < vccss.length; i++) {
           vccss[i].mouse_move();
         }
-        for (var i = 0; i < cccss.length; i++) {
+        for (var i: number = 0; i < cccss.length; i++) {
           cccss[i].mouse_move();
         }
-        for (var i = 0; i < ccvss.length; i++) {
+        for (var i: number = 0; i < ccvss.length; i++) {
           ccvss[i].mouse_move();
         }
-        for (var i = 0; i < opamps.length; i++) {
+        for (var i: number = 0; i < opamps.length; i++) {
           opamps[i].mouse_move();
         }
-        for (var i = 0; i < nmosfets.length; i++) {
+        for (var i: number = 0; i < nmosfets.length; i++) {
           nmosfets[i].mouse_move();
         }
-        for (var i = 0; i < pmosfets.length; i++) {
+        for (var i: number = 0; i < pmosfets.length; i++) {
           pmosfets[i].mouse_move();
         }
-        for (var i = 0; i < npns.length; i++) {
+        for (var i: number = 0; i < npns.length; i++) {
           npns[i].mouse_move();
         }
-        for (var i = 0; i < pnps.length; i++) {
+        for (var i: number = 0; i < pnps.length; i++) {
           pnps[i].mouse_move();
         }
-        for (var i = 0; i < adcs.length; i++) {
+        for (var i: number = 0; i < adcs.length; i++) {
           adcs[i].mouse_move();
         }
-        for (var i = 0; i < dacs.length; i++) {
+        for (var i: number = 0; i < dacs.length; i++) {
           dacs[i].mouse_move();
         }
-        for (var i = 0; i < sandhs.length; i++) {
+        for (var i: number = 0; i < sandhs.length; i++) {
           sandhs[i].mouse_move();
         }
-        for (var i = 0; i < pwms.length; i++) {
+        for (var i: number = 0; i < pwms.length; i++) {
           pwms[i].mouse_move();
         }
-        for (var i = 0; i < integrators.length; i++) {
+        for (var i: number = 0; i < integrators.length; i++) {
           integrators[i].mouse_move();
         }
-        for (var i = 0; i < differentiators.length; i++) {
+        for (var i: number = 0; i < differentiators.length; i++) {
           differentiators[i].mouse_move();
         }
-        for (var i = 0; i < lowpasses.length; i++) {
+        for (var i: number = 0; i < lowpasses.length; i++) {
           lowpasses[i].mouse_move();
         }
-        for (var i = 0; i < highpasses.length; i++) {
+        for (var i: number = 0; i < highpasses.length; i++) {
           highpasses[i].mouse_move();
         }
-        for (var i = 0; i < relays.length; i++) {
+        for (var i: number = 0; i < relays.length; i++) {
           relays[i].mouse_move();
         }
-        for (var i = 0; i < pids.length; i++) {
+        for (var i: number = 0; i < pids.length; i++) {
           pids[i].mouse_move();
         }
-        for (var i = 0; i < luts.length; i++) {
+        for (var i: number = 0; i < luts.length; i++) {
           luts[i].mouse_move();
         }
-        for (var i = 0; i < vcrs.length; i++) {
+        for (var i: number = 0; i < vcrs.length; i++) {
           vcrs[i].mouse_move();
         }
-        for (var i = 0; i < grts.length; i++) {
+        for (var i: number = 0; i < grts.length; i++) {
           grts[i].mouse_move();
         }
-        for (var i = 0; i < tptzs.length; i++) {
+        for (var i: number = 0; i < tptzs.length; i++) {
           tptzs[i].mouse_move();
         }
-        for (var i = 0; i < transformers.length; i++) {
+        for (var i: number = 0; i < transformers.length; i++) {
           transformers[i].mouse_move();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
       }
     }
-    for (var i = wires.length - 1; i > -1; i--) {
+    for (var i: number = wires.length - 1; i > -1; i--) {
       wires[i].mouse_move();
     }
     menu_bar.mouse_move();
@@ -1880,8 +1880,8 @@ function load_app() {
     }
   }
 
-  function handle_mouse_up() {
-    let temp_transition_lock = global.TRANSLATION_LOCK;
+  function handle_mouse_up(): void {
+    let temp_transition_lock: boolean = global.TRANSLATION_LOCK;
     global.TRANSLATION_LOCK = true;
     global.mouse_down_x = -1;
     global.mouse_down_y = -1;
@@ -1916,207 +1916,207 @@ function load_app() {
       }
       /* #INSERT_GENERATE_MOUSE_UP# */
       /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-      for (var i = 0; i < resistors.length; i++) {
+      for (var i: number = 0; i < resistors.length; i++) {
         resistors[i].mouse_up();
       }
-      for (var i = 0; i < capacitors.length; i++) {
+      for (var i: number = 0; i < capacitors.length; i++) {
         capacitors[i].mouse_up();
       }
-      for (var i = 0; i < inductors.length; i++) {
+      for (var i: number = 0; i < inductors.length; i++) {
         inductors[i].mouse_up();
       }
-      for (var i = 0; i < grounds.length; i++) {
+      for (var i: number = 0; i < grounds.length; i++) {
         grounds[i].mouse_up();
       }
-      for (var i = 0; i < dcsources.length; i++) {
+      for (var i: number = 0; i < dcsources.length; i++) {
         dcsources[i].mouse_up();
       }
-      for (var i = 0; i < dccurrents.length; i++) {
+      for (var i: number = 0; i < dccurrents.length; i++) {
         dccurrents[i].mouse_up();
       }
-      for (var i = 0; i < acsources.length; i++) {
+      for (var i: number = 0; i < acsources.length; i++) {
         acsources[i].mouse_up();
       }
-      for (var i = 0; i < accurrents.length; i++) {
+      for (var i: number = 0; i < accurrents.length; i++) {
         accurrents[i].mouse_up();
       }
-      for (var i = 0; i < squarewaves.length; i++) {
+      for (var i: number = 0; i < squarewaves.length; i++) {
         squarewaves[i].mouse_up();
       }
-      for (var i = 0; i < sawwaves.length; i++) {
+      for (var i: number = 0; i < sawwaves.length; i++) {
         sawwaves[i].mouse_up();
       }
-      for (var i = 0; i < trianglewaves.length; i++) {
+      for (var i: number = 0; i < trianglewaves.length; i++) {
         trianglewaves[i].mouse_up();
       }
-      for (var i = 0; i < constants.length; i++) {
+      for (var i: number = 0; i < constants.length; i++) {
         constants[i].mouse_up();
       }
-      for (var i = 0; i < nets.length; i++) {
+      for (var i: number = 0; i < nets.length; i++) {
         nets[i].mouse_up();
       }
-      for (var i = 0; i < notes.length; i++) {
+      for (var i: number = 0; i < notes.length; i++) {
         notes[i].mouse_up();
       }
-      for (var i = 0; i < rails.length; i++) {
+      for (var i: number = 0; i < rails.length; i++) {
         rails[i].mouse_up();
       }
-      for (var i = 0; i < voltmeters.length; i++) {
+      for (var i: number = 0; i < voltmeters.length; i++) {
         voltmeters[i].mouse_up();
       }
-      for (var i = 0; i < ohmmeters.length; i++) {
+      for (var i: number = 0; i < ohmmeters.length; i++) {
         ohmmeters[i].mouse_up();
       }
-      for (var i = 0; i < ammeters.length; i++) {
+      for (var i: number = 0; i < ammeters.length; i++) {
         ammeters[i].mouse_up();
       }
-      for (var i = 0; i < wattmeters.length; i++) {
+      for (var i: number = 0; i < wattmeters.length; i++) {
         wattmeters[i].mouse_up();
       }
-      for (var i = 0; i < fuses.length; i++) {
+      for (var i: number = 0; i < fuses.length; i++) {
         fuses[i].mouse_up();
       }
-      for (var i = 0; i < spsts.length; i++) {
+      for (var i: number = 0; i < spsts.length; i++) {
         spsts[i].mouse_up();
       }
-      for (var i = 0; i < spdts.length; i++) {
+      for (var i: number = 0; i < spdts.length; i++) {
         spdts[i].mouse_up();
       }
-      for (var i = 0; i < nots.length; i++) {
+      for (var i: number = 0; i < nots.length; i++) {
         nots[i].mouse_up();
       }
-      for (var i = 0; i < diodes.length; i++) {
+      for (var i: number = 0; i < diodes.length; i++) {
         diodes[i].mouse_up();
       }
-      for (var i = 0; i < leds.length; i++) {
+      for (var i: number = 0; i < leds.length; i++) {
         leds[i].mouse_up();
       }
-      for (var i = 0; i < zeners.length; i++) {
+      for (var i: number = 0; i < zeners.length; i++) {
         zeners[i].mouse_up();
       }
-      for (var i = 0; i < potentiometers.length; i++) {
+      for (var i: number = 0; i < potentiometers.length; i++) {
         potentiometers[i].mouse_up();
       }
-      for (var i = 0; i < ands.length; i++) {
+      for (var i: number = 0; i < ands.length; i++) {
         ands[i].mouse_up();
       }
-      for (var i = 0; i < ors.length; i++) {
+      for (var i: number = 0; i < ors.length; i++) {
         ors[i].mouse_up();
       }
-      for (var i = 0; i < nands.length; i++) {
+      for (var i: number = 0; i < nands.length; i++) {
         nands[i].mouse_up();
       }
-      for (var i = 0; i < nors.length; i++) {
+      for (var i: number = 0; i < nors.length; i++) {
         nors[i].mouse_up();
       }
-      for (var i = 0; i < xors.length; i++) {
+      for (var i: number = 0; i < xors.length; i++) {
         xors[i].mouse_up();
       }
-      for (var i = 0; i < xnors.length; i++) {
+      for (var i: number = 0; i < xnors.length; i++) {
         xnors[i].mouse_up();
       }
-      for (var i = 0; i < dffs.length; i++) {
+      for (var i: number = 0; i < dffs.length; i++) {
         dffs[i].mouse_up();
       }
-      for (var i = 0; i < vsats.length; i++) {
+      for (var i: number = 0; i < vsats.length; i++) {
         vsats[i].mouse_up();
       }
-      for (var i = 0; i < adders.length; i++) {
+      for (var i: number = 0; i < adders.length; i++) {
         adders[i].mouse_up();
       }
-      for (var i = 0; i < subtractors.length; i++) {
+      for (var i: number = 0; i < subtractors.length; i++) {
         subtractors[i].mouse_up();
       }
-      for (var i = 0; i < multipliers.length; i++) {
+      for (var i: number = 0; i < multipliers.length; i++) {
         multipliers[i].mouse_up();
       }
-      for (var i = 0; i < dividers.length; i++) {
+      for (var i: number = 0; i < dividers.length; i++) {
         dividers[i].mouse_up();
       }
-      for (var i = 0; i < gains.length; i++) {
+      for (var i: number = 0; i < gains.length; i++) {
         gains[i].mouse_up();
       }
-      for (var i = 0; i < absvals.length; i++) {
+      for (var i: number = 0; i < absvals.length; i++) {
         absvals[i].mouse_up();
       }
-      for (var i = 0; i < vcsws.length; i++) {
+      for (var i: number = 0; i < vcsws.length; i++) {
         vcsws[i].mouse_up();
       }
-      for (var i = 0; i < vcvss.length; i++) {
+      for (var i: number = 0; i < vcvss.length; i++) {
         vcvss[i].mouse_up();
       }
-      for (var i = 0; i < vccss.length; i++) {
+      for (var i: number = 0; i < vccss.length; i++) {
         vccss[i].mouse_up();
       }
-      for (var i = 0; i < cccss.length; i++) {
+      for (var i: number = 0; i < cccss.length; i++) {
         cccss[i].mouse_up();
       }
-      for (var i = 0; i < ccvss.length; i++) {
+      for (var i: number = 0; i < ccvss.length; i++) {
         ccvss[i].mouse_up();
       }
-      for (var i = 0; i < opamps.length; i++) {
+      for (var i: number = 0; i < opamps.length; i++) {
         opamps[i].mouse_up();
       }
-      for (var i = 0; i < nmosfets.length; i++) {
+      for (var i: number = 0; i < nmosfets.length; i++) {
         nmosfets[i].mouse_up();
       }
-      for (var i = 0; i < pmosfets.length; i++) {
+      for (var i: number = 0; i < pmosfets.length; i++) {
         pmosfets[i].mouse_up();
       }
-      for (var i = 0; i < npns.length; i++) {
+      for (var i: number = 0; i < npns.length; i++) {
         npns[i].mouse_up();
       }
-      for (var i = 0; i < pnps.length; i++) {
+      for (var i: number = 0; i < pnps.length; i++) {
         pnps[i].mouse_up();
       }
-      for (var i = 0; i < adcs.length; i++) {
+      for (var i: number = 0; i < adcs.length; i++) {
         adcs[i].mouse_up();
       }
-      for (var i = 0; i < dacs.length; i++) {
+      for (var i: number = 0; i < dacs.length; i++) {
         dacs[i].mouse_up();
       }
-      for (var i = 0; i < sandhs.length; i++) {
+      for (var i: number = 0; i < sandhs.length; i++) {
         sandhs[i].mouse_up();
       }
-      for (var i = 0; i < pwms.length; i++) {
+      for (var i: number = 0; i < pwms.length; i++) {
         pwms[i].mouse_up();
       }
-      for (var i = 0; i < integrators.length; i++) {
+      for (var i: number = 0; i < integrators.length; i++) {
         integrators[i].mouse_up();
       }
-      for (var i = 0; i < differentiators.length; i++) {
+      for (var i: number = 0; i < differentiators.length; i++) {
         differentiators[i].mouse_up();
       }
-      for (var i = 0; i < lowpasses.length; i++) {
+      for (var i: number = 0; i < lowpasses.length; i++) {
         lowpasses[i].mouse_up();
       }
-      for (var i = 0; i < highpasses.length; i++) {
+      for (var i: number = 0; i < highpasses.length; i++) {
         highpasses[i].mouse_up();
       }
-      for (var i = 0; i < relays.length; i++) {
+      for (var i: number = 0; i < relays.length; i++) {
         relays[i].mouse_up();
       }
-      for (var i = 0; i < pids.length; i++) {
+      for (var i: number = 0; i < pids.length; i++) {
         pids[i].mouse_up();
       }
-      for (var i = 0; i < luts.length; i++) {
+      for (var i: number = 0; i < luts.length; i++) {
         luts[i].mouse_up();
       }
-      for (var i = 0; i < vcrs.length; i++) {
+      for (var i: number = 0; i < vcrs.length; i++) {
         vcrs[i].mouse_up();
       }
-      for (var i = 0; i < grts.length; i++) {
+      for (var i: number = 0; i < grts.length; i++) {
         grts[i].mouse_up();
       }
-      for (var i = 0; i < tptzs.length; i++) {
+      for (var i: number = 0; i < tptzs.length; i++) {
         tptzs[i].mouse_up();
       }
-      for (var i = 0; i < transformers.length; i++) {
+      for (var i: number = 0; i < transformers.length; i++) {
         transformers[i].mouse_up();
       }
       /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    for (var i = wires.length - 1; i > -1; i--) {
+    for (var i: number = wires.length - 1; i > -1; i--) {
       wires[i].mouse_up();
     }
     if (global.SIGNAL_WIRE_CREATED) {
@@ -2124,7 +2124,7 @@ function load_app() {
       global.SIGNAL_WIRE_CREATED = false;
     }
     /* Handle menu_bar mouse up event. */
-    let component_touched = global.component_touched;
+    let component_touched: boolean = global.component_touched;
     if (!global.component_touched) {
       global.component_touched = true;
     }
@@ -2151,7 +2151,7 @@ function load_app() {
     global.SIGNAL_HISTORY_LOCK = false;
   }
 
-  function handle_mouse_wheel() {
+  function handle_mouse_wheel(): void {
     global.mouse_x = global.mouse_wheel_event.clientX;
     global.mouse_y = global.mouse_wheel_event.clientY;
     if (
@@ -2172,16 +2172,16 @@ function load_app() {
     menu_bar.mouse_wheel();
   }
 
-  function handle_double_click() {
+  function handle_double_click(): void {
     global.mouse_x = global.mouse_double_click_event.clientX;
     global.mouse_y = global.mouse_double_click_event.clientY;
-    time_step_window.double_click(global.mouse_double_click_event);
-    save_image_window.double_click(global.mouse_double_click_event);
-    save_circuit_window.double_click(global.mouse_double_click_event);
-    element_options_edit_window.double_click(global.mouse_double_click_event);
+    time_step_window.double_click();
+    save_image_window.double_click();
+    save_circuit_window.double_click();
+    element_options_edit_window.double_click();
   }
 
-  function handle_key_down() {
+  function handle_key_down(): void {
     time_step_window.key_down(global.key_down_event);
     save_circuit_window.key_down(global.key_down_event, canvas);
     save_image_window.key_down(global.key_down_event);
@@ -2199,16 +2199,16 @@ function load_app() {
     }
   }
 
-  function handle_key_up() {
+  function handle_key_up(): void {
     if (!global.MOBILE_MODE) {
       multi_select_manager.key_up(global.key_up_event);
     }
   }
 
-  function handle_workspace_drag() {
-    let sqrt = Math.round(global.settings.SQRT_MAXNODES * 0.75);
-    let x_space = sqrt * global.node_space_x;
-    let y_space = sqrt * global.node_space_y;
+  function handle_workspace_drag(): void {
+    let sqrt: number = Math.round(global.settings.SQRT_MAXNODES * 0.75);
+    let x_space: number = sqrt * global.node_space_x;
+    let y_space: number = sqrt * global.node_space_y;
     /* Limit the travel in the -x direction */
     if (workspace.bounds.left + global.dx < view_port.left - x_space) {
       global.dx = view_port.left - x_space - workspace.bounds.left;
@@ -2230,14 +2230,14 @@ function load_app() {
     global.delta_y += global.dy;
   }
   /* Register web analytics */
-  function register() {
+  function register(): void {
     if (!global.DEVELOPER_MODE) {
-      let post_data = 'pinged @ {' + global.get_time_stamp() + '}';
-      let url = 'analytics.php?msg="' + post_data + '"';
-      let method = 'POST';
-      let should_be_async = true;
-      let request = new XMLHttpRequest();
-      request.onload = function () {
+      let post_data: string = 'pinged @ {' + global.get_time_stamp() + '}';
+      let url: string = 'analytics.php?msg="' + post_data + '"';
+      let method: string = 'POST';
+      let should_be_async: boolean = true;
+      let request: XMLHttpRequest = new XMLHttpRequest();
+      request.onload = function (): void {
         let status = request.status;
         let data = request.responseText;
       };
@@ -2247,7 +2247,7 @@ function load_app() {
     }
   }
 
-  function browser_detection() {
+  function browser_detection(): void {
     if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) != -1) {
       global.BROWSER_OPERA = true;
     } else if (navigator.userAgent.indexOf('Chrome') != -1) {
@@ -2262,12 +2262,12 @@ function load_app() {
     }
   }
 
-  function main() {
+  function main(): void {
     throttle_loop();
     requestAnimationFrame(main);
   }
 
-  function throttle_loop() {
+  function throttle_loop(): void {
     switch (++FPS_COUNTER) {
       case FPS_COMPARE:
         FPS_INDEX ^= 1;

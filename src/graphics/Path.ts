@@ -29,7 +29,7 @@ class Path {
   }
   resize() {
     let temp: PATH_T;
-    for (var i = 0; i < this.path_2d.length; i++) {
+    for (var i: number = 0; i < this.path_2d.length; i++) {
       temp = this.path_2d[i];
       if (temp['command'] === 'MOVE') {
         temp['x1'] = global.remap_position(temp['x1'], true);

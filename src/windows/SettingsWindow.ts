@@ -20,83 +20,68 @@
  *
  ***********************************************************************/
 class SettingsWindow {
-  /**
-   * [TITLE_HEIGHT_RATIO This controls the height of the title bar relative to the height of the window]
-   * @type {Number}
+  /*
+   * TITLE_HEIGHT_RATIO This controls the height of the title bar relative to the height of the window
    */
-  public TITLE_HEIGHT_RATIO = 0.1;
+  public TITLE_HEIGHT_RATIO: number = 0.1;
   /**
-   * [BUTTON_WIDTH_RATIO This controls the width of the buttons relative to the width of the window]
-   * @type {Number}
+   * BUTTON_WIDTH_RATIO This controls the width of the buttons relative to the width of the window
    */
-  public BUTTON_WIDTH_RATIO = 0.3;
+  public BUTTON_WIDTH_RATIO: number = 0.3;
   /**
-   * [BUTTON_HEIGHT_RATIO This controls the height of the buttons relative to the height of the window]
-   * @type {Number}
+   * BUTTON_HEIGHT_RATIO This controls the height of the buttons relative to the height of the window
    */
-  public BUTTON_HEIGHT_RATIO = 0.1;
+  public BUTTON_HEIGHT_RATIO: number = 0.1;
   /* The amount of padding around elements, relative to the width and height of the window. */
-  public PADDING = 0.0175;
+  public PADDING: number = 0.0175;
   /* The amount of pre-loaded attributes. There should be no more than 5 for this application. */
-  public ATTRIBUTE_SIZE = 6;
-  public ATTRIBUTE_SHOW_SIZE = 4;
+  public readonly ATTRIBUTE_SIZE: number = 6;
+  public readonly ATTRIBUTE_SHOW_SIZE: number = 4;
   /* Used to quick select. */
-  public ATTRIBUTE_SELECT = ['1', '2', '3', '4', '5', '6'];
+  public ATTRIBUTE_SELECT: Array<string> = ['1', '2', '3', '4', '5', '6'];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint: Paint = new Paint();
   /* This paint is used for drawing background colors. */
-  public fill_paint = new Paint();
+  public fill_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint: Paint = new Paint();
 
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public hover_paint = new Paint();
+  public hover_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "text" that the component needs to display */
-  public shorcut_text_paint = new Paint();
+  public shorcut_text_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "text" that the component needs to display */
-  public value_paint = new Paint();
+  public value_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public bounds_paint = new Paint();
+  public bounds_paint: Paint = new Paint();
 
-  public width = view_port.view_width * 0.15;
-  public height = view_port.view_height * 0.3;
-  public bounds = new RectF(0, 0, 0, 0);
-  public title_bounds = new Button(0, 0, 0, 0);
-  public okay_button = new Button(0, 0, 0, 0);
-  public exit_button = new Button(0, 0, 0, 0);
+  public width: number = view_port.view_width * 0.15;
+  public height: number = view_port.view_height * 0.3;
+  public bounds: RectF = new RectF(0, 0, 0, 0);
+  public title_bounds: Button = new Button(0, 0, 0, 0);
+  public okay_button: Button = new Button(0, 0, 0, 0);
+  public exit_button: Button = new Button(0, 0, 0, 0);
   /* We shall pre-load 5 attributes and enable / disable what we don't need. */
-  public attributes = [];
-  public ATTRIBUTE_HEIGHT = 1;
+  public attributes: Array<RectF> = [];
+  public ATTRIBUTE_HEIGHT: number = 1;
   /* Controls for window dragging. */
-  public OFFSET_X = 0;
-  public OFFSET_Y = 0;
-  public WINDOW_ANCHORED = true;
-  public ANCHOR_X = 0;
-  public ANCHOR_Y = 0;
+  public OFFSET_X: number = 0;
+  public OFFSET_Y: number = 0;
+  public WINDOW_ANCHORED: boolean = true;
+  public ANCHOR_X: number = 0;
+  public ANCHOR_Y: number = 0;
   /* Enforcing the system from cascading events. */
-  public first_touch_x = 0;
-  public first_touch_y = 0;
-  public toggle_switch_button = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
+  public first_touch_x: number = 0;
+  public first_touch_y: number = 0;
+  public toggle_switch_button: ToggleSwitch = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
 
   constructor() {
-    /**
-     * [TITLE_HEIGHT_RATIO This controls the height of the title bar relative to the height of the window]
-     * @type {Number}
-     */
     this.TITLE_HEIGHT_RATIO = 0.1;
-    /**
-     * [BUTTON_WIDTH_RATIO This controls the width of the buttons relative to the width of the window]
-     * @type {Number}
-     */
     this.BUTTON_WIDTH_RATIO = 0.3;
-    /**
-     * [BUTTON_HEIGHT_RATIO This controls the height of the buttons relative to the height of the window]
-     * @type {Number}
-     */
     this.BUTTON_HEIGHT_RATIO = 0.1;
     /* The amount of padding around elements, relative to the width and height of the window. */
     this.PADDING = 0.0175;
@@ -211,9 +196,9 @@ class SettingsWindow {
     this.title_bounds.draw_stroke = false;
     this.title_bounds.draw_fill = true;
     this.title_bounds.draw_text = false;
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
     this.okay_button = new Button(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
     this.okay_button.text = '';
     this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
@@ -229,7 +214,7 @@ class SettingsWindow {
     this.attributes = [];
     this.ATTRIBUTE_HEIGHT = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
     /* Populating the attributes */
-    for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
+    for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
       this.attributes.push(
         new RectF(
           this.title_bounds.left + padding,
@@ -254,7 +239,7 @@ class SettingsWindow {
     this.toggle_switch_button.draw_text = true;
     this.toggle_switch_button.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
   }
-  mouse_down() {
+  mouse_down(): void {
     if (global.FLAG_SELECT_SETTINGS) {
       if (
         this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -269,7 +254,7 @@ class SettingsWindow {
       this.first_touch_y = global.mouse_y;
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (global.FLAG_SELECT_SETTINGS) {
       if (!this.WINDOW_ANCHORED) {
         this.OFFSET_X = global.mouse_x - this.ANCHOR_X;
@@ -289,7 +274,7 @@ class SettingsWindow {
       }
     }
   }
-  mouse_up() {
+  mouse_up(): void {
     if (global.FLAG_SELECT_SETTINGS) {
       if (!global.MOUSE_KEYBOARD_LOCK) {
         if (this.WINDOW_ANCHORED) {
@@ -349,10 +334,10 @@ class SettingsWindow {
       }
     }
   }
-  null_index_check(param, index) {
+  null_index_check(param: Array<RectF>, index: number): boolean {
     return global.not_null(param[index]);
   }
-  on_attribute_clicked(index) {
+  on_attribute_clicked(index: number): void {
     if (index < this.ATTRIBUTE_SHOW_SIZE) {
       if (index === global.SYSTEM_OPTION_LANGUAGE) {
         if (global.SYSTEM_OPTION_LANGUAGE < this.ATTRIBUTE_SHOW_SIZE) {
@@ -402,7 +387,7 @@ class SettingsWindow {
     }
     bottom_menu.resize_bottom_menu();
   }
-  key_down(key_event) {
+  key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_SELECT_SETTINGS) {
       if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
         menu_bar.handle_select_settings_flag(!global.FLAG_SELECT_SETTINGS);
@@ -410,7 +395,7 @@ class SettingsWindow {
         global.component_touched = true;
       }
       if (!global.MOUSE_KEYBOARD_LOCK) {
-        for (var i = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
+        for (var i: number = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
           if (global.decode_key(key_event) === this.ATTRIBUTE_SELECT[i]) {
             this.on_attribute_clicked(i);
             /* Block out the reset selection portion of the code! */
@@ -423,7 +408,7 @@ class SettingsWindow {
     }
   }
   /* A function to resize the entire component. */
-  resize_window() {
+  resize_window(): void {
     if (global.MOBILE_MODE) {
       this.width = view_port.view_width * 0.2;
       this.height = view_port.view_height * 0.4;
@@ -436,15 +421,15 @@ class SettingsWindow {
     this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
     this.title_bounds.resize_paint();
     /* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
     this.okay_button.set_bounds(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
     this.okay_button.resize_paint();
     this.exit_button.set_bounds(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
     this.exit_button.resize_paint();
     this.ATTRIBUTE_HEIGHT = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
-    for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
+    for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
       this.attributes[i].set_bounds(
         this.title_bounds.left + padding,
         this.title_bounds.bottom + padding * 1.5 + i * this.ATTRIBUTE_HEIGHT,
@@ -481,7 +466,7 @@ class SettingsWindow {
     }
   }
   /* A function to handle the drawing of the component. */
-  draw_window(canvas) {
+  draw_window(canvas: GraphicsEngine): void {
     if (global.FLAG_SELECT_SETTINGS) {
       this.title_bounds.text = language_manager.SYSTEM_SETTINGS[global.LANGUAGES[global.LANGUAGE_INDEX]];
       this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
@@ -497,11 +482,7 @@ class SettingsWindow {
       );
       /* This draws the title space */
       this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-      this.title_bounds.draw_button_text(
-        canvas,
-        this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X,
-        this.title_bounds.get_center_y() + this.OFFSET_Y
-      );
+      this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
       if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
         canvas.draw_round_rect(
           this.okay_button.left + this.OFFSET_X,
@@ -515,7 +496,7 @@ class SettingsWindow {
       /* Draws the okay button */
       this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
       /* Run through the attributes and print off their info. (from selected component) */
-      for (var i = 0; i < this.ATTRIBUTE_SHOW_SIZE; i++) {
+      for (var i: number = 0; i < this.ATTRIBUTE_SHOW_SIZE; i++) {
         if (global.not_null(global.SYSTEM_OPTIONS)) {
           if (i < global.SYSTEM_OPTIONS['options'].length && global.not_null(this.attributes[i])) {
             if (this.attributes[i].contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
@@ -577,7 +558,7 @@ class SettingsWindow {
               canvas.draw_text(i + 1 + '', this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.shorcut_text_paint);
             }
             if (global.SYSTEM_OPTIONS['values'][i] === global.ON || global.SYSTEM_OPTIONS['values'][i] === global.OFF) {
-              let padding = this.attributes[i].get_height() * 0.1;
+              let padding: number = this.attributes[i].get_height() * 0.1;
               this.toggle_switch_button.STATE = global.SYSTEM_OPTIONS['values'][i];
               this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
               this.toggle_switch_button.right = this.attributes[i].right - this.PADDING * this.bounds.get_width();
@@ -612,8 +593,8 @@ class SettingsWindow {
           this.hover_paint
         );
       }
-      let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
-      let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
+      let width_mul_0p3636: number = this.exit_button.get_width() * 0.3636;
+      let height_mul_0p3636: number = this.exit_button.get_height() * 0.3636;
       canvas.draw_line(
         this.exit_button.left + width_mul_0p3636 + this.OFFSET_X,
         this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y,

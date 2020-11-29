@@ -20,32 +20,32 @@
  ***********************************************************************/
 class ZoomWindow {
   /* The padding for the window */
-  public PADDING = 0.025;
+  public PADDING: number = 0.025;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public bounds_paint = new Paint();
+  public bounds_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public fill_paint = new Paint();
+  public fill_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public option_0_paint = new Paint();
+  public option_0_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public option_1_paint = new Paint();
+  public option_1_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public option_2_paint = new Paint();
+  public option_2_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public option_3_paint = new Paint();
+  public option_3_paint: Paint = new Paint();
 
-  public options = {
+  public options: OPTIONS_T = {
     c0: {
       string: '50%',
       number: 0.5
@@ -63,16 +63,16 @@ class ZoomWindow {
       number: -1
     }
   };
-  public width = view_port.view_width * 0.1;
-  public height = view_port.view_height * 0.075;
-  public bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-  public option_0 = new RectF(0, 0, 0, 0);
-  public option_1 = new RectF(0, 0, 0, 0);
-  public option_2 = new RectF(0, 0, 0, 0);
-  public option_3 = new RectF(0, 0, 0, 0);
+  public width: number = view_port.view_width * 0.1;
+  public height: number = view_port.view_height * 0.075;
+  public bounds: RectF = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+  public option_0: RectF = new RectF(0, 0, 0, 0);
+  public option_1: RectF = new RectF(0, 0, 0, 0);
+  public option_2: RectF = new RectF(0, 0, 0, 0);
+  public option_3: RectF = new RectF(0, 0, 0, 0);
   /* Enforcing the system from cascading events. */
-  public first_touch_x = 0;
-  public first_touch_y = 0;
+  public first_touch_x: number = 0;
+  public first_touch_y: number = 0;
 
   constructor() {
     /* The padding for the window */
@@ -215,9 +215,7 @@ class ZoomWindow {
       this.height = view_port.view_height * 0.075;
     }
     this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = (this.bounds.get_width() - 2 * padding) * 0.5;
-    let height = (this.bounds.get_height() - 2 * padding) * 0.5;
+    let padding: number = this.PADDING * this.bounds.get_width();
     this.option_0 = new RectF(this.bounds.left + padding, this.bounds.top + padding, this.bounds.get_center_x() - padding * 0.5, this.bounds.get_center_y() - padding * 0.5);
     this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
     this.option_2 = new RectF(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
@@ -226,20 +224,20 @@ class ZoomWindow {
     this.first_touch_x = 0;
     this.first_touch_y = 0;
   }
-  mouse_down() {
+  mouse_down(): void {
     if (global.FLAG_ZOOM) {
       this.first_touch_x = global.mouse_x;
       this.first_touch_y = global.mouse_y;
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (global.FLAG_ZOOM) {
       if (!global.MOBILE_MODE) {
         this.hover();
       }
     }
   }
-  mouse_up() {
+  mouse_up(): void {
     if (global.FLAG_ZOOM) {
       if (!global.MOUSE_KEYBOARD_LOCK) {
         if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
@@ -269,7 +267,7 @@ class ZoomWindow {
       }
     }
   }
-  key_down(key_event) {
+  key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_ZOOM) {
       if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
         menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
@@ -278,7 +276,7 @@ class ZoomWindow {
       }
     }
   }
-  hover() {
+  hover(): void {
     if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
       this.option_0_paint.set_color(global.GENERAL_CYAN_COLOR);
     } else {
@@ -301,7 +299,7 @@ class ZoomWindow {
     }
   }
   /* Zoom to the center of the screen! */
-  set_zoom(zoom) {
+  set_zoom(zoom: number): void {
     if (zoom >= global.ZOOM_MIN && zoom <= global.ZOOM_MAX) {
       global.SIGNAL_BUILD_ELEMENT = true;
       global.SIGNAL_BUILD_COUNTER = 0;
@@ -312,14 +310,14 @@ class ZoomWindow {
       global.delta_x = workspace.bounds.left;
       global.delta_y = workspace.bounds.top;
       workspace.workspace_zoom();
-      let dx = view_port.center_x - workspace.bounds.get_center_x();
-      let dy = view_port.center_y - workspace.bounds.get_center_y();
+      let dx: number = view_port.center_x - workspace.bounds.get_center_x();
+      let dy: number = view_port.center_y - workspace.bounds.get_center_y();
       workspace.workspace_translate_bounds(dx, dy);
       global.delta_x += dx;
       global.delta_y += dy;
     }
   }
-  resize_window() {
+  resize_window(): void {
     if (global.MOBILE_MODE) {
       this.width = view_port.view_width * 0.175;
       this.height = view_port.view_height * 0.13125;
@@ -328,7 +326,7 @@ class ZoomWindow {
       this.height = view_port.view_height * 0.075;
     }
     this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-    let padding = this.PADDING * this.bounds.get_width();
+    let padding: number = this.PADDING * this.bounds.get_width();
     this.option_0.set_bounds(this.bounds.left + padding, this.bounds.top + padding, this.bounds.get_center_x() - padding * 0.5, this.bounds.get_center_y() - padding * 0.5);
     this.option_1.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
     this.option_2.set_bounds(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
@@ -347,7 +345,7 @@ class ZoomWindow {
     this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
     this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
   }
-  draw_window(canvas) {
+  draw_window(canvas: GraphicsEngine): void {
     if (global.FLAG_ZOOM) {
       canvas.draw_round_rect2(this.bounds, this.bounds_paint.get_stroke_width(), this.bounds_paint);
       canvas.draw_round_rect2(this.option_0, this.fill_paint.get_stroke_width(), this.option_0_paint);

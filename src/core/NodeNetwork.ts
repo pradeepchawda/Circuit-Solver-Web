@@ -46,7 +46,7 @@ class NodeNetwork {
   }
   is_found(node: number): boolean {
     this.general_boolean = false;
-    for (var i = 0; i < this.references.length; i++) {
+    for (var i: number = 0; i < this.references.length; i++) {
       if (this.references[i] === node) {
         this.general_boolean = true;
         break;
@@ -58,7 +58,7 @@ class NodeNetwork {
     return this.references;
   }
   add_references(refs: Array<number>): void {
-    for (var i = 0; i < refs.length; i++) {
+    for (var i: number = 0; i < refs.length; i++) {
       if (!this.is_found(refs[i])) {
         this.references.push(refs[i]);
       }
@@ -66,7 +66,7 @@ class NodeNetwork {
   }
   is_connected(inp: Array<number>): boolean {
     let is_found: boolean = false;
-    for (var i = 0; i < inp.length; i++) {
+    for (var i: number = 0; i < inp.length; i++) {
       if (this.is_found(inp[i])) {
         is_found = true;
         break;
@@ -84,7 +84,7 @@ class NodeNetwork {
     } else {
       lowest = -1;
     }
-    for (var i = 1; i < this.references.length; i++) {
+    for (var i: number = 1; i < this.references.length; i++) {
       if (this.references[i] < lowest) {
         lowest = this.references[i];
       }

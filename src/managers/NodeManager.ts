@@ -57,7 +57,7 @@ public is just a list of their id's  */
   }
   /* Check if we can actually find the node id inside the list already */
   find_node(id: number): boolean {
-    for (var i = 0; i < this.active_nodes.length; i++) {
+    for (var i: number = 0; i < this.active_nodes.length; i++) {
       if (this.active_nodes[i] === id) {
         return true;
       }
@@ -66,7 +66,7 @@ public is just a list of their id's  */
   }
   /* Let's grab the indicies of the node id (if we can find it!) */
   find_node_index(id: number): number {
-    for (var i = 0; i < this.active_nodes.length; i++) {
+    for (var i: number = 0; i < this.active_nodes.length; i++) {
       if (this.active_nodes[i] === id) {
         return i;
       }
@@ -75,18 +75,18 @@ public is just a list of their id's  */
   }
   /* Assign the simulation ids of the active nodes! */
   assign_node_simulation_ids(): void {
-    for (var i = 0; i < this.active_nodes.length; i++) {
+    for (var i: number = 0; i < this.active_nodes.length; i++) {
       nodes[this.active_nodes[i]].simulation_id = i;
     }
   }
   generate_unique_nodes_list(): void {
     this.unique_nodes.splice(0, this.unique_nodes.length);
     /* All the references for ground node id's */
-    for (var i = 0; i < grounds.length; i++) {
+    for (var i: number = 0; i < grounds.length; i++) {
       this.unique_nodes.push(new NodeNetwork(grounds[i].elm.n1, grounds[i].elm.n1));
     }
-    for (var i = 0; i < this.unique_nodes.length; i++) {
-      for (var j = 0; j < this.unique_nodes.length; j++) {
+    for (var i: number = 0; i < this.unique_nodes.length; i++) {
+      for (var j: number = 0; j < this.unique_nodes.length; j++) {
         if (i != j) {
           this.unique_nodes[i].add_references(this.unique_nodes[j].get_references());
           this.unique_nodes[j].add_references(this.unique_nodes[i].get_references());
@@ -94,8 +94,8 @@ public is just a list of their id's  */
       }
     }
     let net_list: Array<Array<number>> = [];
-    for (var i = 0; i < nets.length; i++) {
-      for (var j = 0; j < nets.length; j++) {
+    for (var i: number = 0; i < nets.length; i++) {
+      for (var j: number = 0; j < nets.length; j++) {
         if (i != j) {
           if (nets[i].elm.properties['Name'] === nets[j].elm.properties['Name']) {
             if (!this.net_redundancy_check(nets[i].elm.n1, nets[j].elm.n1, net_list)) {
@@ -108,11 +108,11 @@ public is just a list of their id's  */
     }
     /* Wire's also bridge two like potential objects, this is assuming that the resistance of the wires are negligible. If not,
      * the user must use a resistor w/ a resistance value that matches the resistance of the wire. */
-    for (var i = 0; i < wires.length; i++) {
+    for (var i: number = 0; i < wires.length; i++) {
       this.unique_nodes.push(new NodeNetwork(wires[i].elm.n1, wires[i].elm.n2));
     }
-    for (var i = 0; i < this.unique_nodes.length; i++) {
-      for (var j = 0; j < this.unique_nodes.length; j++) {
+    for (var i: number = 0; i < this.unique_nodes.length; i++) {
+      for (var j: number = 0; j < this.unique_nodes.length; j++) {
         if (j != i) {
           if (this.unique_nodes[i].is_connected(this.unique_nodes[j].get_references())) {
             this.unique_nodes[i].add_references(this.unique_nodes[j].get_references());
@@ -121,8 +121,8 @@ public is just a list of their id's  */
         }
       }
     }
-    for (var i = 0; i < this.unique_nodes.length; i++) {
-      for (var j = this.active_nodes.length - 1; j > -1; j--) {
+    for (var i: number = 0; i < this.unique_nodes.length; i++) {
+      for (var j: number = this.active_nodes.length - 1; j > -1; j--) {
         if (this.unique_nodes[i].is_removed(this.active_nodes[j]) && this.active_nodes[j] < global.settings.MAXNODES) {
           this.active_nodes.splice(j, 1);
         }
@@ -131,7 +131,7 @@ public is just a list of their id's  */
   }
   net_redundancy_check(n1: number, n2: number, net_list: Array<Array<number>>) {
     let output: boolean = false;
-    for (var i = 0; i < net_list.length; i++) {
+    for (var i: number = 0; i < net_list.length; i++) {
       if ((n1 === net_list[i][0] && n2 === net_list[i][1]) || (n2 === net_list[i][0] && n1 === net_list[i][1])) {
         output = true;
         break;

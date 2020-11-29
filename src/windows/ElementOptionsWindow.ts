@@ -21,54 +21,54 @@
  ***********************************************************************/
 class ElementOptionsWindow {
   /* This controls the height of the title bar relative to the height of the window */
-  public TITLE_HEIGHT_RATIO = 0.1;
+  public TITLE_HEIGHT_RATIO: number = 0.1;
   /* This controls the width of the buttons relative to the width of the window */
-  public BUTTON_WIDTH_RATIO = 0.3;
+  public BUTTON_WIDTH_RATIO: number = 0.3;
   /* This controls the height of the buttons relative to the height of the window */
-  public BUTTON_HEIGHT_RATIO = 0.1;
+  public BUTTON_HEIGHT_RATIO: number = 0.1;
   /* The amount of padding around elements, relative to the width and height of the window. */
-  public PADDING = 0.0175;
+  public PADDING: number = 0.0175;
   /* The amount of pre-loaded attributes. There should be no more than 5 for this application. */
-  public ATTRIBUTE_SIZE = 6;
+  public ATTRIBUTE_SIZE: number = 6;
   /* Used to quick select. */
-  public ATTRIBUTE_SELECT = ['1', '2', '3', '4', '5', '6'];
+  public ATTRIBUTE_SELECT: Array<string> = ['1', '2', '3', '4', '5', '6'];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint: Paint = new Paint();
   /* This paint is used for drawing background colors. */
-  public fill_paint = new Paint();
+  public fill_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public hover_paint = new Paint();
+  public hover_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public shorcut_text_paint = new Paint();
+  public shorcut_text_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public value_paint = new Paint();
+  public value_paint: Paint = new Paint();
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public bounds_paint = new Paint();
-  public width = view_port.view_width * 0.15;
-  public height = view_port.view_height * 0.3;
-  public bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-  public title_bounds = new Button(0, 0, 0, 0);
+  public bounds_paint: Paint = new Paint();
+  public width: number = view_port.view_width * 0.15;
+  public height: number = view_port.view_height * 0.3;
+  public bounds: RectF = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+  public title_bounds: Button = new Button(0, 0, 0, 0);
 
-  public okay_button = new Button(0, 0, 0, 0);
+  public okay_button: Button = new Button(0, 0, 0, 0);
 
-  public exit_button = new Button(0, 0, 0, 0);
+  public exit_button: Button = new Button(0, 0, 0, 0);
 
   /* We shall pre-load 5 attributes and enable / disable what we don't need. */
-  public attributes = [];
-  public ATTRIBUTE_HEIGHT = 1;
+  public attributes: Array<RectF> = [];
+  public ATTRIBUTE_HEIGHT: number = 1;
 
   /* Controls for window dragging. */
-  public OFFSET_X = 0;
-  public OFFSET_Y = 0;
-  public WINDOW_ANCHORED = true;
-  public ANCHOR_X = 0;
-  public ANCHOR_Y = 0;
+  public OFFSET_X: number = 0;
+  public OFFSET_Y: number = 0;
+  public WINDOW_ANCHORED: boolean = true;
+  public ANCHOR_X: number = 0;
+  public ANCHOR_Y: number = 0;
   /* Enforcing the system from cascading events. */
-  public first_touch_x = 0;
-  public first_touch_y = 0;
-  public toggle_switch_button = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
+  public first_touch_x: number = 0;
+  public first_touch_y: number = 0;
+  public toggle_switch_button: ToggleSwitch = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
 
   constructor() {
     /* This controls the height of the title bar relative to the height of the window */
@@ -203,7 +203,7 @@ class ElementOptionsWindow {
     this.attributes = [];
     this.ATTRIBUTE_HEIGHT = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
     /* Populating the attributes */
-    for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
+    for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
       this.attributes.push(
         new RectF(
           this.title_bounds.left + padding,
@@ -228,7 +228,7 @@ class ElementOptionsWindow {
     this.toggle_switch_button.draw_text = true;
     this.toggle_switch_button.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
   }
-  mouse_down() {
+  mouse_down(): void {
     if (global.FLAG_ELEMENT_OPTIONS) {
       if (
         this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -242,7 +242,7 @@ class ElementOptionsWindow {
       this.first_touch_y = global.mouse_y;
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (global.FLAG_ELEMENT_OPTIONS) {
       if (!this.WINDOW_ANCHORED) {
         this.OFFSET_X = global.mouse_x - this.ANCHOR_X;
@@ -262,7 +262,7 @@ class ElementOptionsWindow {
       }
     }
   }
-  mouse_up() {
+  mouse_up(): void {
     if (global.FLAG_ELEMENT_OPTIONS) {
       if (!global.MOUSE_KEYBOARD_LOCK) {
         if (this.WINDOW_ANCHORED) {
@@ -291,7 +291,7 @@ class ElementOptionsWindow {
             global.component_touched = true;
             global.MOUSE_KEYBOARD_LOCK = true;
           } else {
-            for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
+            for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
               if (global.not_null(global.selected_properties)) {
                 if (i < global.selected_properties['options'].length) {
                   if (
@@ -313,7 +313,7 @@ class ElementOptionsWindow {
       }
     }
   }
-  on_attribute_clicked(index) {
+  on_attribute_clicked(index: number): void {
     if (index < global.selected_properties['options'].length) {
       if (this.special_property(global.selected_properties['options'][index])) {
         this.toggle_switch(global.selected_properties['options'][index], index, global.selected_properties[global.selected_properties['options'][index]]);
@@ -339,7 +339,7 @@ class ElementOptionsWindow {
       global.SIGNAL_BUILD_ELEMENT = true;
     }
   }
-  key_down(key_event) {
+  key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_ELEMENT_OPTIONS) {
       if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
@@ -348,7 +348,7 @@ class ElementOptionsWindow {
         global.MOUSE_KEYBOARD_LOCK = true;
       }
       if (!global.MOUSE_KEYBOARD_LOCK) {
-        for (var i = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
+        for (var i: number = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
           if (global.decode_key(key_event) === this.ATTRIBUTE_SELECT[i]) {
             this.on_attribute_clicked(i);
             /* Block out the reset selection portion of the code! */
@@ -361,19 +361,19 @@ class ElementOptionsWindow {
     }
   }
   /* Text based classes (i.e., net)*/
-  special_type(elm_type) {
+  special_type(elm_type: number): boolean {
     if (elm_type === global.TYPE_NET || elm_type === global.TYPE_NOTE) {
       return true;
     }
     return false;
   }
-  special_property(property) {
+  special_property(property: string): boolean {
     if (property === 'Switch State' || property === 'Show Name' || property === 'Interpolate' || property === 'Show Marker' || property === 'Text Style') {
       return true;
     }
     return false;
   }
-  toggle_switch(property, i, state) {
+  toggle_switch(property: string, i: number, state: string): void {
     if (property === 'Switch State' || property === 'Show Name' || property === 'Interpolate' || property === 'Show Marker' || property === 'Text Style') {
       let next_state = '';
       if (state === global.OFF) {
@@ -430,7 +430,7 @@ class ElementOptionsWindow {
     }
   }
   /* A function to resize the entire component. */
-  resize_window() {
+  resize_window(): void {
     if (global.MOBILE_MODE) {
       this.width = view_port.view_width * 0.2;
       this.height = view_port.view_height * 0.4;
@@ -451,7 +451,7 @@ class ElementOptionsWindow {
     this.exit_button.set_bounds(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
     this.exit_button.resize_paint();
     this.ATTRIBUTE_HEIGHT = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
-    for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
+    for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
       this.attributes[i].set_bounds(
         this.title_bounds.left + padding,
         this.title_bounds.bottom + padding * 1.5 + i * this.ATTRIBUTE_HEIGHT,
@@ -488,7 +488,7 @@ class ElementOptionsWindow {
     }
   }
   /* A function to handle the drawing of the component. */
-  draw_window(canvas) {
+  draw_window(canvas: GraphicsEngine): void {
     if (global.FLAG_ELEMENT_OPTIONS) {
       this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
 
@@ -503,11 +503,7 @@ class ElementOptionsWindow {
       );
       /* This draws the title space */
       this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-      this.title_bounds.draw_button_text(
-        canvas,
-        this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X,
-        this.title_bounds.get_center_y() + this.OFFSET_Y
-      );
+      this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
       if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
         canvas.draw_rect(
           this.okay_button.left + this.OFFSET_X,
@@ -521,7 +517,7 @@ class ElementOptionsWindow {
       this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
       /* Run through the attributes and print off their info. (from selected component) */
       if (global.not_null(global.selected_properties['options'])) {
-        for (var i = 0; i < this.attributes.length; i++) {
+        for (var i: number = 0; i < this.attributes.length; i++) {
           if (i < global.selected_properties['options'].length) {
             if (this.attributes[i].contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
               canvas.draw_round_rect(
@@ -560,10 +556,7 @@ class ElementOptionsWindow {
                   this.value_paint
                 );
               } else {
-                if (
-                  global.selected_properties[global.selected_properties['options'][i]] === global.ON ||
-                  global.selected_properties[global.selected_properties['options'][i]] === global.OFF
-                ) {
+                if (global.selected_properties[global.selected_properties['options'][i]] === global.ON || global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
                   let padding = this.attributes[i].get_height() * 0.1;
                   this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                   this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
@@ -588,10 +581,7 @@ class ElementOptionsWindow {
                 }
               }
             } else {
-              if (
-                global.selected_properties[global.selected_properties['options'][i]] === global.ON ||
-                global.selected_properties[global.selected_properties['options'][i]] === global.OFF
-              ) {
+              if (global.selected_properties[global.selected_properties['options'][i]] === global.ON || global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
                 let padding = this.attributes[i].get_height() * 0.1;
                 this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                 this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;

@@ -20,32 +20,32 @@
  ***********************************************************************/
 class YesNoWindow {
   /* The padding for the window */
-  public PADDING = 0.025;
+  public PADDING: number = 0.025;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public bounds_paint = new Paint();
+  public bounds_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public fill_paint = new Paint();
+  public fill_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public yes_paint = new Paint();
+  public yes_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public no_paint = new Paint();
+  public no_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
-  public width = view_port.view_width * 0.1;
-  public height = view_port.view_height * 0.075;
-  public bounds = new RectF(0, 0, 0, 0);
-  public option_0 = new RectF(0, 0, 0, 0);
-  public option_1 = new RectF(0, 0, 0, 0);
+  public text_paint: Paint = new Paint();
+  public width: number = view_port.view_width * 0.1;
+  public height: number = view_port.view_height * 0.075;
+  public bounds: RectF = new RectF(0, 0, 0, 0);
+  public option_0: RectF = new RectF(0, 0, 0, 0);
+  public option_1: RectF = new RectF(0, 0, 0, 0);
   /* Enforcing the system from cascading events. */
-  public first_touch_x = 0;
-  public first_touch_y = 0;
+  public first_touch_x: number = 0;
+  public first_touch_y: number = 0;
 
   constructor() {
     /* The padding for the window */
@@ -128,30 +128,30 @@ class YesNoWindow {
       this.height = view_port.view_height * 0.075;
     }
     this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = (this.bounds.get_width() - 2 * padding) * 0.5;
-    let height = (this.bounds.get_height() - 2 * padding) * 0.3571;
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = (this.bounds.get_width() - 2 * padding) * 0.5;
+    let height: number = (this.bounds.get_height() - 2 * padding) * 0.3571;
     this.option_0 = new RectF(this.bounds.left + padding, this.bounds.bottom - padding - height, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
     this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.bottom - padding - height, this.bounds.right - padding, this.bounds.bottom - padding);
     /* Enforcing the system from cascading events. */
     this.first_touch_x = 0;
     this.first_touch_y = 0;
   }
-  mouse_down() {
+  mouse_down(): void {
     if (global.FLAG_REMOVE_ALL) {
       /* Enforcing the system from cascading events. */
       this.first_touch_x = global.mouse_x;
       this.first_touch_y = global.mouse_y;
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (global.FLAG_REMOVE_ALL) {
       if (!global.MOBILE_MODE) {
         this.hover();
       }
     }
   }
-  mouse_up() {
+  mouse_up(): void {
     if (global.FLAG_REMOVE_ALL) {
       if (!global.MOUSE_KEYBOARD_LOCK) {
         if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
@@ -176,7 +176,7 @@ class YesNoWindow {
       }
     }
   }
-  key_down(key_event) {
+  key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_REMOVE_ALL) {
       if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
         menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
@@ -185,7 +185,7 @@ class YesNoWindow {
       }
     }
   }
-  hover() {
+  hover(): void {
     if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
       this.yes_paint.set_color(global.GENERAL_CYAN_COLOR);
     } else {
@@ -197,7 +197,7 @@ class YesNoWindow {
       this.no_paint.set_color(global.GENERAL_WHITE_COLOR);
     }
   }
-  resize_window() {
+  resize_window(): void {
     if (global.MOBILE_MODE) {
       this.width = view_port.view_width * 0.175;
       this.height = view_port.view_height * 0.13125;
@@ -206,9 +206,9 @@ class YesNoWindow {
       this.height = view_port.view_height * 0.075;
     }
     this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = (this.bounds.get_width() - 2 * padding) * 0.5;
-    let height = (this.bounds.get_height() - 2 * padding) * 0.3571;
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = (this.bounds.get_width() - 2 * padding) * 0.5;
+    let height: number = (this.bounds.get_height() - 2 * padding) * 0.3571;
     this.option_0.set_bounds(this.bounds.left + padding, this.bounds.bottom - padding - height, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
     this.option_1.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.bottom - padding - height, this.bounds.right - padding, this.bounds.bottom - padding);
     /* Resize the stroke widths and the text sizes. */
@@ -225,15 +225,10 @@ class YesNoWindow {
     this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
     this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
   }
-  draw_window(canvas) {
+  draw_window(canvas: GraphicsEngine): void {
     if (global.FLAG_REMOVE_ALL) {
       canvas.draw_round_rect2(this.bounds, this.bounds_paint.get_stroke_width(), this.bounds_paint);
-      canvas.draw_text(
-        language_manager.CONFIRM_REMOVE_ALL[global.LANGUAGES[global.LANGUAGE_INDEX]],
-        this.bounds.get_center_x(),
-        this.bounds.top + this.bounds.get_height() * 0.33,
-        this.text_paint
-      );
+      canvas.draw_text(language_manager.CONFIRM_REMOVE_ALL[global.LANGUAGES[global.LANGUAGE_INDEX]], this.bounds.get_center_x(), this.bounds.top + this.bounds.get_height() * 0.33, this.text_paint);
       canvas.draw_round_rect2(this.option_0, this.fill_paint.get_stroke_width(), this.yes_paint);
       canvas.draw_text(language_manager.CONFIRM_YES[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_0.get_center_x(), this.option_0.get_center_y(), this.text_paint);
       canvas.draw_round_rect2(this.option_1, this.fill_paint.get_stroke_width(), this.no_paint);

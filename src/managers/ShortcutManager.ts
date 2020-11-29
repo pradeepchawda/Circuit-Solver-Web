@@ -154,205 +154,205 @@ class ShortcutManager {
       global.multi_selected = true;
       /* #INSERT_GENERATE_MULTI_SELECT_ELEMENTS_SHORTCUT# */
       /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-      for (var i = 0; i < resistors.length; i++) {
+      for (var i: number = 0; i < resistors.length; i++) {
         resistors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < capacitors.length; i++) {
+      for (var i: number = 0; i < capacitors.length; i++) {
         capacitors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < inductors.length; i++) {
+      for (var i: number = 0; i < inductors.length; i++) {
         inductors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < grounds.length; i++) {
+      for (var i: number = 0; i < grounds.length; i++) {
         grounds[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < dcsources.length; i++) {
+      for (var i: number = 0; i < dcsources.length; i++) {
         dcsources[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < dccurrents.length; i++) {
+      for (var i: number = 0; i < dccurrents.length; i++) {
         dccurrents[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < acsources.length; i++) {
+      for (var i: number = 0; i < acsources.length; i++) {
         acsources[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < accurrents.length; i++) {
+      for (var i: number = 0; i < accurrents.length; i++) {
         accurrents[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < squarewaves.length; i++) {
+      for (var i: number = 0; i < squarewaves.length; i++) {
         squarewaves[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < sawwaves.length; i++) {
+      for (var i: number = 0; i < sawwaves.length; i++) {
         sawwaves[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < trianglewaves.length; i++) {
+      for (var i: number = 0; i < trianglewaves.length; i++) {
         trianglewaves[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < constants.length; i++) {
+      for (var i: number = 0; i < constants.length; i++) {
         constants[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < wires.length; i++) {
+      for (var i: number = 0; i < wires.length; i++) {
         wires[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < nets.length; i++) {
+      for (var i: number = 0; i < nets.length; i++) {
         nets[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < notes.length; i++) {
+      for (var i: number = 0; i < notes.length; i++) {
         notes[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < rails.length; i++) {
+      for (var i: number = 0; i < rails.length; i++) {
         rails[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < voltmeters.length; i++) {
+      for (var i: number = 0; i < voltmeters.length; i++) {
         voltmeters[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < ohmmeters.length; i++) {
+      for (var i: number = 0; i < ohmmeters.length; i++) {
         ohmmeters[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < ammeters.length; i++) {
+      for (var i: number = 0; i < ammeters.length; i++) {
         ammeters[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < wattmeters.length; i++) {
+      for (var i: number = 0; i < wattmeters.length; i++) {
         wattmeters[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < fuses.length; i++) {
+      for (var i: number = 0; i < fuses.length; i++) {
         fuses[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < spsts.length; i++) {
+      for (var i: number = 0; i < spsts.length; i++) {
         spsts[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < spdts.length; i++) {
+      for (var i: number = 0; i < spdts.length; i++) {
         spdts[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < nots.length; i++) {
+      for (var i: number = 0; i < nots.length; i++) {
         nots[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < diodes.length; i++) {
+      for (var i: number = 0; i < diodes.length; i++) {
         diodes[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < leds.length; i++) {
+      for (var i: number = 0; i < leds.length; i++) {
         leds[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < zeners.length; i++) {
+      for (var i: number = 0; i < zeners.length; i++) {
         zeners[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < potentiometers.length; i++) {
+      for (var i: number = 0; i < potentiometers.length; i++) {
         potentiometers[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < ands.length; i++) {
+      for (var i: number = 0; i < ands.length; i++) {
         ands[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < ors.length; i++) {
+      for (var i: number = 0; i < ors.length; i++) {
         ors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < nands.length; i++) {
+      for (var i: number = 0; i < nands.length; i++) {
         nands[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < nors.length; i++) {
+      for (var i: number = 0; i < nors.length; i++) {
         nors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < xors.length; i++) {
+      for (var i: number = 0; i < xors.length; i++) {
         xors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < xnors.length; i++) {
+      for (var i: number = 0; i < xnors.length; i++) {
         xnors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < dffs.length; i++) {
+      for (var i: number = 0; i < dffs.length; i++) {
         dffs[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < vsats.length; i++) {
+      for (var i: number = 0; i < vsats.length; i++) {
         vsats[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < adders.length; i++) {
+      for (var i: number = 0; i < adders.length; i++) {
         adders[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < subtractors.length; i++) {
+      for (var i: number = 0; i < subtractors.length; i++) {
         subtractors[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < multipliers.length; i++) {
+      for (var i: number = 0; i < multipliers.length; i++) {
         multipliers[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < dividers.length; i++) {
+      for (var i: number = 0; i < dividers.length; i++) {
         dividers[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < gains.length; i++) {
+      for (var i: number = 0; i < gains.length; i++) {
         gains[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < absvals.length; i++) {
+      for (var i: number = 0; i < absvals.length; i++) {
         absvals[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < vcsws.length; i++) {
+      for (var i: number = 0; i < vcsws.length; i++) {
         vcsws[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < vcvss.length; i++) {
+      for (var i: number = 0; i < vcvss.length; i++) {
         vcvss[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < vccss.length; i++) {
+      for (var i: number = 0; i < vccss.length; i++) {
         vccss[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < cccss.length; i++) {
+      for (var i: number = 0; i < cccss.length; i++) {
         cccss[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < ccvss.length; i++) {
+      for (var i: number = 0; i < ccvss.length; i++) {
         ccvss[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < opamps.length; i++) {
+      for (var i: number = 0; i < opamps.length; i++) {
         opamps[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < nmosfets.length; i++) {
+      for (var i: number = 0; i < nmosfets.length; i++) {
         nmosfets[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < pmosfets.length; i++) {
+      for (var i: number = 0; i < pmosfets.length; i++) {
         pmosfets[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < npns.length; i++) {
+      for (var i: number = 0; i < npns.length; i++) {
         npns[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < pnps.length; i++) {
+      for (var i: number = 0; i < pnps.length; i++) {
         pnps[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < adcs.length; i++) {
+      for (var i: number = 0; i < adcs.length; i++) {
         adcs[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < dacs.length; i++) {
+      for (var i: number = 0; i < dacs.length; i++) {
         dacs[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < sandhs.length; i++) {
+      for (var i: number = 0; i < sandhs.length; i++) {
         sandhs[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < pwms.length; i++) {
+      for (var i: number = 0; i < pwms.length; i++) {
         pwms[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < integrators.length; i++) {
+      for (var i: number = 0; i < integrators.length; i++) {
         integrators[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < differentiators.length; i++) {
+      for (var i: number = 0; i < differentiators.length; i++) {
         differentiators[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < lowpasses.length; i++) {
+      for (var i: number = 0; i < lowpasses.length; i++) {
         lowpasses[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < highpasses.length; i++) {
+      for (var i: number = 0; i < highpasses.length; i++) {
         highpasses[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < relays.length; i++) {
+      for (var i: number = 0; i < relays.length; i++) {
         relays[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < pids.length; i++) {
+      for (var i: number = 0; i < pids.length; i++) {
         pids[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < luts.length; i++) {
+      for (var i: number = 0; i < luts.length; i++) {
         luts[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < vcrs.length; i++) {
+      for (var i: number = 0; i < vcrs.length; i++) {
         vcrs[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < grts.length; i++) {
+      for (var i: number = 0; i < grts.length; i++) {
         grts[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < tptzs.length; i++) {
+      for (var i: number = 0; i < tptzs.length; i++) {
         tptzs[i].MULTI_SELECTED = true;
       }
-      for (var i = 0; i < transformers.length; i++) {
+      for (var i: number = 0; i < transformers.length; i++) {
         transformers[i].MULTI_SELECTED = true;
       }
       /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -1735,7 +1735,7 @@ class ShortcutManager {
       global.SIGNAL_BUILD_ELEMENT = true;
       this.MULTI_MOVED_ELEMENT = false;
       let elm_max: number = global.element_max();
-      for (var i = 0; i < elm_max; i++) {
+      for (var i: number = 0; i < elm_max; i++) {
         /* #INSERT_GENERATE_HANDLE_MULTI_SELECT_ELEMENTS_MOVE_CALL# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.handle_move_resistors(i, key_event);
@@ -2755,7 +2755,7 @@ class ShortcutManager {
       };
       let solution_vector: Array<MeterTemplate_T> = [];
       let met_max: number = global.meter_max();
-      for (var i = 0; i < met_max; i++) {
+      for (var i: number = 0; i < met_max; i++) {
         if (i < voltmeters.length) {
           MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + voltmeters[i].elm.id;
           MeterTemplate['Value'] = voltmeters[i].elm.properties['Voltage'];
@@ -2807,7 +2807,7 @@ class ShortcutManager {
       history_manager.redo();
     }
   }
-  handle_save_image_flag(key_event: KEY_EVENT_T) {
+  handle_save_image_flag(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -2816,7 +2816,7 @@ class ShortcutManager {
       menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
     }
   }
-  handle_save_circuit_flag(key_event: KEY_EVENT_T) {
+  handle_save_circuit_flag(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -2825,7 +2825,7 @@ class ShortcutManager {
       menu_bar.handle_save_circuit_flag(!global.FLAG_SAVE_CIRCUIT);
     }
   }
-  handle_flip_shortcut(key_event: KEY_EVENT_T) {
+  handle_flip_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3241,7 +3241,7 @@ class ShortcutManager {
       /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
   }
-  handle_edit_shortcut(key_event: KEY_EVENT_T) {
+  handle_edit_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3270,7 +3270,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_remove_all_shortcut(key_event: KEY_EVENT_T) {
+  handle_remove_all_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3281,7 +3281,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_simulate_shortcut(key_event: KEY_EVENT_T) {
+  handle_simulate_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3290,7 +3290,7 @@ class ShortcutManager {
       menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
     }
   }
-  handle_copy_shortcut(key_event: KEY_EVENT_T) {
+  handle_copy_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -3717,7 +3717,7 @@ class ShortcutManager {
       }
     }
   }
-  handle_paste_shortcut(key_event: KEY_EVENT_T) {
+  handle_paste_shortcut(key_event: KEY_EVENT_T): void {
     /* Extract the essentials. */
     this.shift = key_event['shift'];
     this.command = key_event['event'].code;
@@ -6615,7 +6615,7 @@ class ShortcutManager {
   handle_remove_multi_select_elements() {
     this.MULTI_DELETED_ELEMENT = false;
     let elm_max: number = global.element_max();
-    for (var i = elm_max - 1; i > -1; i--) {
+    for (var i: number = elm_max - 1; i > -1; i--) {
       /* #INSERT_GENERATE_HANDLE_REMOVE_MULTI_SELECT_ELEMENTS# */
       /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
       if (i > -1 && i < resistors.length) {

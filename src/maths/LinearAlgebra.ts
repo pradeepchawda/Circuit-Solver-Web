@@ -53,7 +53,7 @@ class LinearAlgebra {
     this.GENERAL_VECTOR;
     this.FIRST_LUP_SOLVE = true;
   }
-  lup_solve(a_matrix, b_matrix) {
+  lup_solve(a_matrix: Array<Array<number>>, b_matrix: Array<Array<number>>): Array<Array<number>> {
     if (a_matrix.length > 0 && a_matrix[0].length > 0) {
       this.SIZE = a_matrix[0].length;
       this._i = 0;
@@ -70,8 +70,8 @@ class LinearAlgebra {
         for (var i: number = 0; i < this.P.length; i++) {
           this.P[i] = i;
         }
-        for (var i = 0; i < this.x_matrix.length; i++) {
-          for (var j = 0; j < this.x_matrix[0].length; j++) {
+        for (var i: number = 0; i < this.x_matrix.length; i++) {
+          for (var j: number = 0; j < this.x_matrix[0].length; j++) {
             this.x_matrix[i][j] = 0;
           }
         }
@@ -128,16 +128,17 @@ class LinearAlgebra {
     return this.x_matrix;
   }
 
-  set_matrix_diagonal(matrix, value, n) {
-    for (var i = 0; i < n; i++) {
+  set_matrix_diagonal(matrix: Array<Array<number>>, value: number, n: number): Array<Array<number>> {
+    for (var i: number = 0; i < n; i++) {
       matrix[i][i] = value;
     }
+    return matrix;
   }
   matrix(rows: number, cols: number): Array<Array<number>> {
     this.GENERAL_MATRIX = [];
-    for (var i = 0; i < rows; i++) {
+    for (var i: number = 0; i < rows; i++) {
       this.GENERAL_MATRIX.push(new Array(cols));
-      for (var j = 0; j < cols; j++) {
+      for (var j: number = 0; j < cols; j++) {
         this.GENERAL_MATRIX[i][j] = 0;
       }
     }
@@ -145,14 +146,14 @@ class LinearAlgebra {
   }
   vector(size: number): Array<number> {
     this.GENERAL_VECTOR = new Array(size);
-    for (var i = 0; i < size; i++) {
+    for (var i: number = 0; i < size; i++) {
       this.GENERAL_VECTOR[i] = 0;
     }
     return this.GENERAL_VECTOR;
   }
   vector2(size: number): Array<number> {
     this.GENERAL_VECTOR = new Array(size);
-    for (var i = 0; i < size; i++) {
+    for (var i: number = 0; i < size; i++) {
       this.GENERAL_VECTOR[i] = i;
     }
     return this.GENERAL_VECTOR;

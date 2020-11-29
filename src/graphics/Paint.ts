@@ -227,7 +227,7 @@ class Paint {
   search_array(txt: string): boolean {
     this.temp_boolean = false;
     this.saved_metric = global.NULL;
-    for (var i = 0; i < this.metric_array.length; i++) {
+    for (var i: number = 0; i < this.metric_array.length; i++) {
       if (!this.temp_boolean) {
         if (this.metric_array[i]['text'] === txt && this.metric_array[i]['font'] === this.font && this.metric_array[i]['text size'] === this.text_size) {
           this.saved_metric = this.metric_array[i]['metric'];
@@ -255,7 +255,7 @@ class Paint {
     }
   }
   house_keeping(txt: string): void {
-    for (var i = this.metric_array.length - 1; i > -1; i--) {
+    for (var i: number = this.metric_array.length - 1; i > -1; i--) {
       if (this.metric_array[i]['text'] === txt && this.metric_array[i]['font'] === this.font && this.metric_array[i]['text size'] != this.text_size) {
         this.metric_array.splice(i, 1);
       }

@@ -30,14 +30,9 @@ class AbsoluteValueSymbol {
   public p1 = new PointF(0, 0);
   public p2 = new PointF(0, 0);
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 =
-    global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-    global.PI_DIV_2;
+  public theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
-  public theta = global.retrieve_angle_radian(
-    this.p2.x - this.p1.x,
-    this.p2.y - this.p1.y
-  );
+  public theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   public gain_0 = new PointF(0, 0);
   public gain_1 = new PointF(0, 0);
   public gain_2 = new PointF(0, 0);
@@ -88,16 +83,9 @@ class AbsoluteValueSymbol {
     this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
     this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
     /* Angle from p1 to p2 minus 90 degrees */
-    this.theta_m90 =
-      global.retrieve_angle_radian(
-        this.p2.x - this.p1.x,
-        this.p2.y - this.p1.y
-      ) - global.PI_DIV_2;
+    this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
     /* Angle from p1 to p2 */
-    this.theta = global.retrieve_angle_radian(
-      this.p2.x - this.p1.x,
-      this.p2.y - this.p1.y
-    );
+    this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
     this.gain_0 = new PointF(0, 0);
     this.gain_1 = new PointF(0, 0);
     this.gain_2 = new PointF(0, 0);
@@ -166,23 +154,15 @@ class AbsoluteValueSymbol {
     this.text_paint_alt.set_paint_align(this.text_paint_alt.align.CENTER);
     /* Text background paint */
     this.text_background_paint = new Paint();
-    this.text_background_paint.set_paint_style(
-      this.text_background_paint.style.FILL
-    );
-    this.text_background_paint.set_paint_cap(
-      this.text_background_paint.cap.ROUND
-    );
-    this.text_background_paint.set_paint_join(
-      this.text_background_paint.join.MITER
-    );
+    this.text_background_paint.set_paint_style(this.text_background_paint.style.FILL);
+    this.text_background_paint.set_paint_cap(this.text_background_paint.cap.ROUND);
+    this.text_background_paint.set_paint_join(this.text_background_paint.join.MITER);
     this.text_background_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.text_background_paint.set_color(global.GENERAL_CYAN_COLOR);
     this.text_background_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
     this.text_background_paint.set_font(global.DEFAULT_FONT);
     this.text_background_paint.set_alpha(192);
-    this.text_background_paint.set_paint_align(
-      this.text_background_paint.align.CENTER
-    );
+    this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
     this.build_element();
     this.FLAG_ADD_ELEMENT = false;
     this.TAG = language_manager.TAG_ABS;
@@ -195,12 +175,7 @@ class AbsoluteValueSymbol {
   update() {
     if (this.FLAG_ADD_ELEMENT) {
       if (
-        workspace.bounds.contains_xywh(
-          global.mouse_x,
-          global.mouse_y,
-          workspace.bounds.get_width() - 4.5 * global.node_space_x,
-          workspace.bounds.get_height() - 4.5 * global.node_space_y
-        ) &&
+        workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
         !this.bounds.contains_xy(global.mouse_x, global.mouse_y)
       ) {
         shortcut_manager.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
@@ -212,9 +187,7 @@ class AbsoluteValueSymbol {
   }
   mouse_down(page, width, height) {
     if (this.page === page) {
-      if (
-        this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)
-      ) {
+      if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
         if (!this.FLAG_ADD_ELEMENT) {
           this.FLAG_ADD_ELEMENT = true;
           global.SIGNAL_ADD_ELEMENT = true;
@@ -225,15 +198,7 @@ class AbsoluteValueSymbol {
     }
   }
   mouse_move(page, width, height) {
-    if (
-      this.bounds.contains_xywh(
-        global.mouse_x,
-        global.mouse_y,
-        width,
-        height
-      ) &&
-      !global.MOBILE_MODE
-    ) {
+    if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
       this.DRAW_TAG = true;
     } else {
       this.DRAW_TAG = false;
@@ -243,9 +208,7 @@ class AbsoluteValueSymbol {
   }
   mouse_up(page, width, height) {
     if (this.page === page) {
-      if (
-        this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)
-      ) {
+      if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
       }
       this.FLAG_ADD_ELEMENT = false;
       global.SIGNAL_ADD_ELEMENT = false;
@@ -253,22 +216,10 @@ class AbsoluteValueSymbol {
   }
   /* Generate the SVG for the component. */
   build_element() {
-    this.gain_0.x =
-      this.c_x -
-      this.x_space * global.cosine(this.theta) +
-      this.x_space * global.cosine(this.theta_m90);
-    this.gain_0.y =
-      this.c_y -
-      this.x_space * global.sine(this.theta) +
-      this.x_space * global.sine(this.theta_m90);
-    this.gain_1.x =
-      this.c_x -
-      this.x_space * global.cosine(this.theta) -
-      this.x_space * global.cosine(this.theta_m90);
-    this.gain_1.y =
-      this.c_y -
-      this.x_space * global.sine(this.theta) -
-      this.x_space * global.sine(this.theta_m90);
+    this.gain_0.x = this.c_x - this.x_space * global.cosine(this.theta) + this.x_space * global.cosine(this.theta_m90);
+    this.gain_0.y = this.c_y - this.x_space * global.sine(this.theta) + this.x_space * global.sine(this.theta_m90);
+    this.gain_1.x = this.c_x - this.x_space * global.cosine(this.theta) - this.x_space * global.cosine(this.theta_m90);
+    this.gain_1.y = this.c_y - this.x_space * global.sine(this.theta) - this.x_space * global.sine(this.theta_m90);
     this.gain_2.x = this.c_x + this.x_space * global.cosine(this.theta);
     this.gain_2.y = this.c_y + this.x_space * global.sine(this.theta);
     this.gain_3.x = this.c_x + this.x_space * 1.3 * global.cosine(this.theta);
@@ -294,16 +245,9 @@ class AbsoluteValueSymbol {
     this.p1.set_point(this.bounds.left, this.bounds.get_center_y());
     this.p2.set_point(this.bounds.right, this.bounds.get_center_y());
     /* Angle from p1 to p2 minus 90 degrees */
-    this.theta_m90 =
-      global.retrieve_angle_radian(
-        this.p2.x - this.p1.x,
-        this.p2.y - this.p1.y
-      ) - global.PI_DIV_2;
+    this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
     /* Angle from p1 to p2 */
-    this.theta = global.retrieve_angle_radian(
-      this.p2.x - this.p1.x,
-      this.p2.y - this.p1.y
-    );
+    this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
     this.build_element();
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -336,76 +280,24 @@ class AbsoluteValueSymbol {
       let indexer = 0;
       this.CIRCLE_BUFFER = [];
       this.LINE_BUFFER = [];
-      this.LINE_BUFFER[indexer++] = Array(
-        this.gain_0.x,
-        this.gain_0.y,
-        this.gain_1.x,
-        this.gain_1.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.gain_0.x,
-        this.gain_0.y,
-        this.gain_2.x,
-        this.gain_2.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.gain_1.x,
-        this.gain_1.y,
-        this.gain_2.x,
-        this.gain_2.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.p1.x,
-        this.p1.y,
-        this.connect1_x,
-        this.connect1_y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.connect2_x,
-        this.connect2_y,
-        this.p2.x,
-        this.p2.y
-      );
+      this.LINE_BUFFER[indexer++] = Array(this.gain_0.x, this.gain_0.y, this.gain_1.x, this.gain_1.y);
+      this.LINE_BUFFER[indexer++] = Array(this.gain_0.x, this.gain_0.y, this.gain_2.x, this.gain_2.y);
+      this.LINE_BUFFER[indexer++] = Array(this.gain_1.x, this.gain_1.y, this.gain_2.x, this.gain_2.y);
+      this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+      this.LINE_BUFFER[indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       indexer = 0;
       canvas.draw_text('|x|', this.gain_4.x, this.gain_4.y, this.text_paint);
-      this.CIRCLE_BUFFER[indexer++] = Array(
-        this.p1.x,
-        this.p1.y,
-        1.5 * global.CANVAS_STROKE_WIDTH_2
-      );
-      this.CIRCLE_BUFFER[indexer++] = Array(
-        this.p2.x,
-        this.p2.y,
-        1.5 * global.CANVAS_STROKE_WIDTH_2
-      );
+      this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
       canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
       if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-        this.text_bounds.left =
-          this.bounds.get_center_x() -
-          1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
-        this.text_bounds.top =
-          this.bounds.bottom +
-          this.bounds.get_height() -
-          this.HEIGHT_RATIO * this.bounds.get_height();
-        this.text_bounds.right =
-          this.bounds.get_center_x() +
-          1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
-        this.text_bounds.bottom =
-          this.bounds.bottom +
-          this.bounds.get_height() +
-          this.HEIGHT_RATIO * this.bounds.get_height();
-        canvas.draw_round_rect2(
-          this.text_bounds,
-          this.text_background_paint.get_stroke_width(),
-          this.text_background_paint
-        );
-        canvas.draw_text(
-          this.TAG,
-          this.bounds.get_center_x(),
-          this.text_bounds.get_center_y(),
-          this.text_paint_alt
-        );
+        this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
+        this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+        this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
+        this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
+        canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
+        canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint_alt);
       }
     }
   }

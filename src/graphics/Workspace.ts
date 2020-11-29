@@ -129,12 +129,7 @@ class Workspace {
     this.bounds.right = global.remap_position(this.bounds.right, true);
     this.bounds.bottom = global.remap_position(this.bounds.bottom, false);
     if (global.settings.WORKSPACE_PERFECT_SQUARE) {
-      this.bounds.set_center2(
-        this.bounds.get_center_x(),
-        this.bounds.get_center_y(),
-        global.natural_width * global.WORKSPACE_ZOOM_SCALE,
-        global.natural_height * global.WORKSPACE_ZOOM_SCALE
-      );
+      this.bounds.set_center2(this.bounds.get_center_x(), this.bounds.get_center_y(), global.natural_width * global.WORKSPACE_ZOOM_SCALE, global.natural_height * global.WORKSPACE_ZOOM_SCALE);
     }
     /* Once we change bounds, we must compute the new node spaces (x and y) */
     global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
@@ -163,16 +158,16 @@ class Workspace {
 
     /* #INSERT_METER_RESIZE_TRACE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < voltmeters.length; i++) {
+    for (var i: number = 0; i < voltmeters.length; i++) {
       voltmeters[i].RESIZE_METER_TRACE = true;
     }
-    for (var i = 0; i < ohmmeters.length; i++) {
+    for (var i: number = 0; i < ohmmeters.length; i++) {
       ohmmeters[i].RESIZE_METER_TRACE = true;
     }
-    for (var i = 0; i < ammeters.length; i++) {
+    for (var i: number = 0; i < ammeters.length; i++) {
       ammeters[i].RESIZE_METER_TRACE = true;
     }
-    for (var i = 0; i < wattmeters.length; i++) {
+    for (var i: number = 0; i < wattmeters.length; i++) {
       wattmeters[i].RESIZE_METER_TRACE = true;
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -212,7 +207,7 @@ class Workspace {
           let cached_location_index: PointF = global.NULL;
           let cached_location_alt: PointF = global.NULL;
           let temp_index: number = 0;
-          for (var i = 0; i < floored_sqrt; i++) {
+          for (var i: number = 0; i < floored_sqrt; i++) {
             node_index = (horizontal_index + floored_sqrt_m_1) >> global.ZERO;
             node_index_alt = (loop_temp + i) >> global.ZERO;
             if (i < floored_sqrt_m_1) {

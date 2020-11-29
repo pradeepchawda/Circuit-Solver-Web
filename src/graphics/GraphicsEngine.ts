@@ -180,7 +180,7 @@ class GraphicsEngine {
   /* Draw a line */
   draw_line_buffer(coords: Array<Array<number>>, paint: Paint): void {
     this.apply_paint(paint, false);
-    for (var i = coords.length - 1; i > -1; i--) {
+    for (var i: number = coords.length - 1; i > -1; i--) {
       this.cache = coords[i];
       this.ctx.moveTo((global.ZERO_PT_FIVE + this.cache[0]) >> global.ZERO, (global.ZERO_PT_FIVE + this.cache[1]) >> global.ZERO);
       this.ctx.lineTo((global.ZERO_PT_FIVE + this.cache[2]) >> global.ZERO, (global.ZERO_PT_FIVE + this.cache[3]) >> global.ZERO);
@@ -200,14 +200,7 @@ class GraphicsEngine {
       this.general_path.line_to(this.x + this.width - this.radius, this.y);
       this.general_path.curve_to(this.x + this.width - this.radius, this.y, this.x + this.width, this.y, this.x + this.width, this.y + this.radius);
       this.general_path.line_to(this.x + this.width, this.y + this.height - this.radius);
-      this.general_path.curve_to(
-        this.x + this.width,
-        this.y + this.height - this.radius,
-        this.x + this.width,
-        this.y + this.height,
-        this.x + this.width - this.radius,
-        this.y + this.height
-      );
+      this.general_path.curve_to(this.x + this.width, this.y + this.height - this.radius, this.x + this.width, this.y + this.height, this.x + this.width - this.radius, this.y + this.height);
       this.general_path.line_to(this.x + this.radius, this.y + this.height);
       this.general_path.curve_to(this.x + this.radius, this.y + this.height, this.x, this.y + this.height, this.x, this.y + this.height - this.radius);
       this.general_path.line_to(this.x, this.y + this.radius);
@@ -230,14 +223,7 @@ class GraphicsEngine {
       this.general_path.line_to(this.x + this.width - this.radius, this.y);
       this.general_path.curve_to(this.x + this.width - this.radius, this.y, this.x + this.width, this.y, this.x + this.width, this.y + this.radius);
       this.general_path.line_to(this.x + this.width, this.y + this.height - this.radius);
-      this.general_path.curve_to(
-        this.x + this.width,
-        this.y + this.height - this.radius,
-        this.x + this.width,
-        this.y + this.height,
-        this.x + this.width - this.radius,
-        this.y + this.height
-      );
+      this.general_path.curve_to(this.x + this.width, this.y + this.height - this.radius, this.x + this.width, this.y + this.height, this.x + this.width - this.radius, this.y + this.height);
       this.general_path.line_to(this.x + this.radius, this.y + this.height);
       this.general_path.curve_to(this.x + this.radius, this.y + this.height, this.x, this.y + this.height, this.x, this.y + this.height - this.radius);
       this.general_path.line_to(this.x, this.y + this.radius);
@@ -375,7 +361,7 @@ class GraphicsEngine {
   /* Draw a circle */
   draw_circle_buffer(buffer: Array<Array<number>>, paint: Paint): void {
     this.apply_paint(paint, false);
-    for (var i = buffer.length - 1; i > -1; i--) {
+    for (var i: number = buffer.length - 1; i > -1; i--) {
       this.cache = buffer[i];
       this.x = (global.ZERO_PT_FIVE + this.cache[0]) >> global.ZERO;
       this.y = (global.ZERO_PT_FIVE + this.cache[1]) >> global.ZERO;
@@ -410,12 +396,7 @@ class GraphicsEngine {
     this.fill_paint.set_color(color);
     this.fill_paint.set_alpha(alpha);
     this.apply_paint(this.fill_paint, false);
-    this.ctx.fillRect(
-      (global.ZERO_PT_FIVE + x) >> global.ZERO,
-      (global.ZERO_PT_FIVE + y) >> global.ZERO,
-      (global.ZERO_PT_FIVE + w) >> global.ZERO,
-      (global.ZERO_PT_FIVE + h) >> global.ZERO
-    );
+    this.ctx.fillRect((global.ZERO_PT_FIVE + x) >> global.ZERO, (global.ZERO_PT_FIVE + y) >> global.ZERO, (global.ZERO_PT_FIVE + w) >> global.ZERO, (global.ZERO_PT_FIVE + h) >> global.ZERO);
   }
   /* Draw text */
   draw_text(txt: string, x: number, y: number, paint: Paint): void {
@@ -496,7 +477,7 @@ class GraphicsEngine {
   /* Draw a path */
   draw_path(path: Path, paint: Paint): void {
     this.apply_paint(paint, false);
-    for (var i = 0; i < path.path_2d.length; i++) {
+    for (var i: number = 0; i < path.path_2d.length; i++) {
       this.dict = path.path_2d[i];
       this.command = this.dict['command'];
       if (this.command === 'MOVE') {
@@ -529,7 +510,7 @@ class GraphicsEngine {
   draw_path2(path: Path, x_offset: number, y_offset: number, paint: Paint): void {
     this.apply_paint(paint, false);
     this.ctx.translate(x_offset, y_offset);
-    for (var i = 0; i < path.path_2d.length; i++) {
+    for (var i: number = 0; i < path.path_2d.length; i++) {
       this.dict = path.path_2d[i];
       this.command = this.dict['command'];
       if (this.command === 'MOVE') {

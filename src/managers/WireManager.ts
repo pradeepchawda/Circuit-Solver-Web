@@ -45,7 +45,7 @@ class WireManager {
         ) {
           this.wire_id = engine_functions.get_wire_assignment();
           this.unique_wire = true;
-          for (var i = 0; i < wires.length; i++) {
+          for (var i: number = 0; i < wires.length; i++) {
             if (
               (wires[i].elm.n1 === global.WIRE_BUILDER['n1'] && wires[i].elm.n2 === global.WIRE_BUILDER['n2']) ||
               (wires[i].elm.n2 === global.WIRE_BUILDER['n1'] && wires[i].elm.n1 === global.WIRE_BUILDER['n2'])

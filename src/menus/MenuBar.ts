@@ -19,63 +19,63 @@
  *
  ***********************************************************************/
 class MenuBar {
-  public MAX_ICONS = 8;
-  public HEIGHT_RATIO = 0.1;
+  public MAX_ICONS: number = 8;
+  public HEIGHT_RATIO: number = 0.1;
   public bounds = new RectF(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.HEIGHT_RATIO);
-  public menu_icons = [];
-  public REMOVE_ALL_INDEX = 0;
-  public SAVE_INDEX = 1;
-  public SAVE_IMG_INDEX = 2;
-  public UNDO_INDEX = 3;
-  public REDO_INDEX = 4;
-  public GO_INDEX = 5;
-  public ADD_INDEX = 6;
-  public UP_DOWN_INDEX = 7;
-  public ESCAPE_INTERRUPT = false;
+  public menu_icons: Array<RectF> = [];
+  public readonly REMOVE_ALL_INDEX: number = 0;
+  public readonly SAVE_INDEX: number = 1;
+  public readonly SAVE_IMG_INDEX: number = 2;
+  public readonly UNDO_INDEX: number = 3;
+  public readonly REDO_INDEX: number = 4;
+  public readonly GO_INDEX: number = 5;
+  public readonly ADD_INDEX: number = 6;
+  public readonly UP_DOWN_INDEX: number = 7;
+  public ESCAPE_INTERRUPT: boolean = false;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint: Paint = new Paint();
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public fill_paint = new Paint();
+  public fill_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public line_paint_alt = new Paint();
+  public line_paint_alt: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public fill_paint_alt = new Paint();
+  public fill_paint_alt: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public up_down_paint = new Paint();
+  public up_down_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public add_paint = new Paint();
+  public add_paint: Paint = new Paint();
   /* This paint is used for drawing the go icon. This is on it's own because it gets recolored
 during simulation. */
-  public go_paint = new Paint();
+  public go_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public hover_paint = new Paint();
+  public hover_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public undo_paint = new Paint();
+  public undo_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public redo_paint = new Paint();
+  public redo_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public remove_all_paint = new Paint();
+  public remove_all_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public settings_paint = new Paint();
+  public settings_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public zoom_paint = new Paint();
+  public zoom_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public save_circuit_paint = new Paint();
+  public save_circuit_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public save_image_fill_paint = new Paint();
+  public save_image_fill_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
-  public save_ckt_path1 = new Path();
-  public save_ckt_path2 = new Path();
-  public go_path = new Path();
-  public undo_path = new Path();
-  public redo_path = new Path();
-  public save_img_path = new Path();
-  public settings_path = new Path();
-  public graph_button = new RectF(0, 0, 0, 0);
-  public settings_button = new RectF(0, 0, 0, 0);
-  public sine_wave = new SineWave(0, 0, 0, 0, 1);
-  public BASE_WIDTH = this.bounds.get_width() / this.MAX_ICONS;
+  public text_paint: Paint = new Paint();
+  public save_ckt_path1: Path = new Path();
+  public save_ckt_path2: Path = new Path();
+  public go_path: Path = new Path();
+  public undo_path: Path = new Path();
+  public redo_path: Path = new Path();
+  public save_img_path: Path = new Path();
+  public settings_path: Path = new Path();
+  public graph_button: RectF = new RectF(0, 0, 0, 0);
+  public settings_button: RectF = new RectF(0, 0, 0, 0);
+  public sine_wave: SineWave = new SineWave(0, 0, 0, 0, 1);
+  public BASE_WIDTH: number = this.bounds.get_width() / this.MAX_ICONS;
 
   public element_window = new ElementWindow(
     this.bounds.left,
@@ -84,13 +84,13 @@ during simulation. */
     this.bounds.bottom + this.bounds.get_height() - (global.CANVAS_STROKE_WIDTH_4 >> 1)
   );
   /* Enforcing the system from cascading events. */
-  public first_touch_x = 0;
-  public first_touch_y = 0;
-  public LINE_BUFFER = [];
-  public CIRCLE_BUFFER = [];
+  public first_touch_x: number = 0;
+  public first_touch_y: number = 0;
+  public LINE_BUFFER: Array<Array<number>> = [];
+  public CIRCLE_BUFFER: Array<Array<number>> = [];
 
   constructor() {
-    let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
+    let temp_stroke_width: number = 0.65 * global.CANVAS_STROKE_WIDTH_3;
     this.MAX_ICONS = 8;
     if (global.MOBILE_MODE) {
       this.HEIGHT_RATIO = 0.15;
@@ -312,11 +312,11 @@ during simulation. */
     this.LINE_BUFFER = [];
     this.CIRCLE_BUFFER = [];
   }
-  load_icons() {
-    let temp_bounds = new RectF(0, 0, 0, 0);
+  load_icons(): void {
+    let temp_bounds: RectF = new RectF(0, 0, 0, 0);
     this.menu_icons.splice(0, this.menu_icons.length);
-    let height = 0;
-    for (var i = 0; i < this.MAX_ICONS; i++) {
+    let height: number = 0;
+    for (var i: number = 0; i < this.MAX_ICONS; i++) {
       temp_bounds.left = this.bounds.left + i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
       temp_bounds.top = this.bounds.top + global.CANVAS_STROKE_WIDTH_4;
       temp_bounds.right = this.bounds.left + ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
@@ -346,31 +346,30 @@ during simulation. */
     this.sine_wave.amplitude = this.graph_button.get_height() * 0.2125;
     this.load_svg();
   }
-  load_svg() {
-    let holder_x = [];
-    let holder_y = [];
-    let save_x1 = '0.63,0.63,0.775,0.5,0.215,0.375,0.375';
-    let save_y1 = '0.1,0.4,0.4,0.7,0.4,0.4,0.1';
-    let save_x2 = '0.15,0.25,0.25,0.775,0.775,0.875,0.875,0.15';
-    let save_y2 = '0.7,0.7,0.8,0.8,0.7,0.7,0.9,0.9';
-    let go_x = '0.1,0.1,0.9';
-    let go_y = '0.1,0.9,0.5';
-    let undo_x = '0.9,0.7,0.1,0.7,0.9,0.325';
-    let undo_y = '0.1,0.1,0.5,0.9,0.9,0.5';
-    let redo_x = '0.1,0.325,0.9,0.325,0.1,0.7';
-    let redo_y = '0.1,0.1,0.5,0.9,0.9,0.5';
-    let save_image_x0 = '0.10,0.3,0.4,0.6,0.7,0.90,0.90,0.10';
-    let save_image_y0 = '0.2,0.2,0.1,0.1,0.2,0.2,0.9,0.9';
-    let settings_x0 =
+  load_svg(): void {
+    let holder_x: Array<string> = [];
+    let holder_y: Array<string> = [];
+    let save_x1: string = '0.63,0.63,0.775,0.5,0.215,0.375,0.375';
+    let save_y1: string = '0.1,0.4,0.4,0.7,0.4,0.4,0.1';
+    let save_x2: string = '0.15,0.25,0.25,0.775,0.775,0.875,0.875,0.15';
+    let save_y2: string = '0.7,0.7,0.8,0.8,0.7,0.7,0.9,0.9';
+    let go_x: string = '0.1,0.1,0.9';
+    let go_y: string = '0.1,0.9,0.5';
+    let undo_x: string = '0.9,0.7,0.1,0.7,0.9,0.325';
+    let undo_y: string = '0.1,0.1,0.5,0.9,0.9,0.5';
+    let redo_x: string = '0.1,0.325,0.9,0.325,0.1,0.7';
+    let redo_y: string = '0.1,0.1,0.5,0.9,0.9,0.5';
+    let save_image_x0: string = '0.10,0.3,0.4,0.6,0.7,0.90,0.90,0.10';
+    let save_image_y0: string = '0.2,0.2,0.1,0.1,0.2,0.2,0.9,0.9';
+    let settings_x0: string =
       '1.0, 1.0, 1.0, 1.0, 1.0, 0.9934920867284139, 0.9632813855876824, 0.9310958772401093, 0.898900308926026, 0.8667176144670256, 0.8517436108474309, 0.8382149592895681, 0.852235971018672, 0.8721059667877853, 0.8923988069412493, 0.9112128218015035, 0.9002679932164028, 0.8788748190563638, 0.8563378008839209, 0.8331869729639342, 0.8089273832932425, 0.7810980184003711, 0.7527282693557087, 0.727096592864541, 0.701456029523797, 0.6758199640474913, 0.6467022655609375, 0.6162105080438778, 0.6108267524881134, 0.6064186423318461, 0.6012345408380497, 0.5937985905911773, 0.5663190266840985, 0.5337711869505029, 0.5012173140854657, 0.46866813184624334, 0.4361164718241781, 0.40715407851773006, 0.40081444452698634, 0.3959175788479203, 0.3910203182499726, 0.386123283887476, 0.35585521440953016, 0.32642722098974747, 0.30049026290165176, 0.2745656373873618, 0.24863463744016676, 0.22082339397942027, 0.19361996404040838, 0.16975125656608725, 0.14631342107895762, 0.12354099329240853, 0.10205076998681761, 0.09197266896565755, 0.10988783514282356, 0.12993418603825072, 0.1499534062265108, 0.16103872576301606, 0.1475472861978536, 0.13495604110842882, 0.10275829363066198, 0.07055229887636234, 0.03835386749854782, 0.0074986897719403105, 0.0, 0.0, 0.0, 0.0, 0.0, 0.016952471807599068, 0.04913716988919248, 0.08131658617639914, 0.11350765017323283, 0.1408239520387724, 0.15269691601861268, 0.1599932238459587, 0.1406248129302791, 0.12060636364428014, 0.10013750711611162, 0.08903226256370544, 0.10783015106183787, 0.1297984685127934, 0.15260558414350575, 0.17608138039455903, 0.2011607689006875, 0.23105494181315103, 0.25708113824441625, 0.2828043325137859, 0.3085288387737819, 0.33529861717640114, 0.365136893466115, 0.386726199532859, 0.3908368767006323, 0.39549243450164795, 0.40117931509545696, 0.4144287146627903, 0.44644416899802764, 0.4789958411392945, 0.5115472525923224, 0.5440984076434461, 0.576630413842698, 0.596207310829944, 0.6011046421448706, 0.6060029944255803, 0.6108990910123092, 0.6256667744989196, 0.6558733033016323, 0.6837695463885515, 0.7097701312290715, 0.7357704596027806, 0.7617648447276224, 0.7915054404487213, 0.8159337330434937, 0.8394739046052564, 0.8625641933467705, 0.8848724365525413, 0.9054115638136864, 0.9019729116310676, 0.8822763332476219, 0.8621486475070318, 0.8423171602965643, 0.8444087134751802, 0.8568457301783686, 0.878334287847737, 0.9105133883688122, 0.9426849815110169, 0.9748611594650166, 0.9991691062847773';
-    let settings_y0 =
+    let settings_y0: string =
       '0.5709618897914576, 0.5384153122919836, 0.505859321172006, 0.47330752913903024, 0.44075241134820925, 0.4098098377386729, 0.4001963887646222, 0.39532506858228683, 0.39045222581042555, 0.3855813315139282, 0.3594257568086808, 0.32982840641246486, 0.30315260713299114, 0.27735758231331903, 0.2519112429048012, 0.22559292117754617, 0.19664088318434855, 0.17212102544726804, 0.14863401075126603, 0.1257516536473607, 0.10405931403511204, 0.08790412529682119, 0.10231456093901059, 0.12237413384514184, 0.1424406616770284, 0.16250366944109373, 0.15123617431769767, 0.1398463575169444, 0.10871785341684397, 0.07646272975640993, 0.0443234287473994, 0.012686355505138636, 0.0, 0.0, 0.0, 0.0, 0.0, 0.010665021293486157, 0.04241579310837551, 0.07459519614223827, 0.10677719435732295, 0.1389577058823003, 0.15039474008760104, 0.16261712573926465, 0.1429344696014899, 0.1232611722253975, 0.10358303751369628, 0.08792247762903571, 0.10369449544426364, 0.1258378947871582, 0.1484229591054221, 0.17168211953442855, 0.19612483001158884, 0.22552327315012613, 0.25249076838372275, 0.27814571852407727, 0.30380926993287477, 0.33054587709678646, 0.36015567707363516, 0.38847301579274546, 0.3932235031255307, 0.3979752072696077, 0.4027257955056787, 0.4111492237231384, 0.4416649484304423, 0.4742220070049446, 0.5067689640616578, 0.539315819585075, 0.5718693101628863, 0.596879451846083, 0.6017560322951473, 0.606600245499673, 0.6114462121228522, 0.6220048268636068, 0.6523036956787109, 0.680874248345693, 0.7070447500639906, 0.7327125683271637, 0.7580138354872664, 0.7867269814014435, 0.8131095828333249, 0.8371201998864611, 0.8603387709202556, 0.8829021371639101, 0.9036122691662362, 0.9090234376490116, 0.8895078538612134, 0.8695630583045283, 0.8496172454797488, 0.8405519075070819, 0.8535505086183548, 0.8716506260291984, 0.9039441804246354, 0.9361639817555746, 0.9682022082464149, 0.9968005046248436, 1.0, 1.0, 1.0, 1.0, 0.9996621928488215, 0.9771555288317965, 0.944973065905136, 0.9127838937747583, 0.8806095447762535, 0.8566725435278689, 0.8445742954111969, 0.845060760013439, 0.8646527499989013, 0.8842445467312032, 0.9038318650999221, 0.9092636940379938, 0.8878549191867933, 0.8653789299617832, 0.842431723799867, 0.8187305747608965, 0.7934918651978174, 0.7633038681621352, 0.7373872098202506, 0.71179752672712, 0.6859915849636309, 0.6578633202395091, 0.6277970628968129, 0.6101277854203827, 0.6052042071985788, 0.600281777646766, 0.5953586465936951, 0.5774648025011023';
     /* Loading the first path of save circuit */
     holder_x = save_x1.split(',');
     holder_y = save_y1.split(',');
-    let points = [];
-    points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    let points: Array<PointF> = [];
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           this.menu_icons[this.SAVE_INDEX].left + this.menu_icons[this.SAVE_INDEX].get_width() * parseFloat(holder_x[i]),
@@ -379,7 +378,7 @@ during simulation. */
       );
     }
     this.save_ckt_path1.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.save_ckt_path1.move_to(points[i].x, points[i].y);
       } else {
@@ -391,7 +390,7 @@ during simulation. */
     holder_x = save_x2.split(',');
     holder_y = save_y2.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           this.menu_icons[this.SAVE_INDEX].left + this.menu_icons[this.SAVE_INDEX].get_width() * parseFloat(holder_x[i]),
@@ -400,7 +399,7 @@ during simulation. */
       );
     }
     this.save_ckt_path2.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.save_ckt_path2.move_to(points[i].x, points[i].y);
       } else {
@@ -412,7 +411,7 @@ during simulation. */
     holder_x = go_x.split(',');
     holder_y = go_y.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           this.menu_icons[this.GO_INDEX].left + this.menu_icons[this.GO_INDEX].get_width() * parseFloat(holder_x[i]),
@@ -421,7 +420,7 @@ during simulation. */
       );
     }
     this.go_path.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.go_path.move_to(points[i].x, points[i].y);
       } else {
@@ -433,7 +432,7 @@ during simulation. */
     holder_x = undo_x.split(',');
     holder_y = undo_y.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           this.menu_icons[this.UNDO_INDEX].left + this.menu_icons[this.UNDO_INDEX].get_width() * parseFloat(holder_x[i]),
@@ -442,7 +441,7 @@ during simulation. */
       );
     }
     this.undo_path.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.undo_path.move_to(points[i].x, points[i].y);
       } else {
@@ -454,7 +453,7 @@ during simulation. */
     holder_x = redo_x.split(',');
     holder_y = redo_y.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           this.menu_icons[this.REDO_INDEX].left + this.menu_icons[this.REDO_INDEX].get_width() * parseFloat(holder_x[i]),
@@ -463,7 +462,7 @@ during simulation. */
       );
     }
     this.redo_path.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.redo_path.move_to(points[i].x, points[i].y);
       } else {
@@ -475,7 +474,7 @@ during simulation. */
     holder_x = save_image_x0.split(',');
     holder_y = save_image_y0.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           this.menu_icons[this.SAVE_IMG_INDEX].left + this.menu_icons[this.SAVE_IMG_INDEX].get_width() * parseFloat(holder_x[i]),
@@ -484,7 +483,7 @@ during simulation. */
       );
     }
     this.save_img_path.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.save_img_path.move_to(points[i].x, points[i].y);
       } else {
@@ -496,8 +495,8 @@ during simulation. */
     holder_x = settings_x0.split(',');
     holder_y = settings_y0.split(',');
     points = [];
-    let scale = 0.9;
-    for (var i = 0; i < holder_x.length; i++) {
+    let scale: number = 0.9;
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           this.settings_button.left + this.settings_button.get_width() * (1 - scale) + (1 - 2 * (1 - scale)) * this.settings_button.get_width() * parseFloat(holder_x[i]),
@@ -506,7 +505,7 @@ during simulation. */
       );
     }
     this.settings_path.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.settings_path.move_to(points[i].x, points[i].y);
       } else {
@@ -515,8 +514,8 @@ during simulation. */
     }
     this.settings_path.close();
   }
-  resize_menu_bar() {
-    let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
+  resize_menu_bar(): void {
+    let temp_stroke_width: number = 0.65 * global.CANVAS_STROKE_WIDTH_3;
     if (global.MOBILE_MODE) {
       temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
     }
@@ -565,17 +564,17 @@ during simulation. */
     this.sine_wave.resize(this.sine_wave.STYLE_1);
     this.sine_wave.sine_wave_paint.set_stroke_width(temp_stroke_width);
   }
-  update() {
+  update(): void {
     if (global.FLAG_MENU_OPEN_DOWN) {
       this.element_window.update();
     }
   }
-  mouse_wheel() {
+  mouse_wheel(): void {
     if (!global.focused) {
       this.element_window.mouse_wheel();
     }
   }
-  mouse_down() {
+  mouse_down(): void {
     if (!global.focused) {
       this.element_window.mouse_down();
       /* Block the click from propagating to the components if it's contained in the menu bar bounds */
@@ -595,15 +594,15 @@ during simulation. */
       this.first_touch_y = global.mouse_y;
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (!global.focused) {
       this.element_window.mouse_move();
     }
   }
-  mouse_up() {
+  mouse_up(): void {
     if (!global.IS_RIGHT_CLICK && !this.ESCAPE_INTERRUPT) {
       if (!global.MOUSE_KEYBOARD_LOCK && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
-        let cached_value = this.BASE_WIDTH;
+        let cached_value: number = this.BASE_WIDTH;
         if (
           this.contains(this.menu_icons[this.UP_DOWN_INDEX], true) &&
           this.menu_icons[this.UP_DOWN_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
@@ -632,8 +631,7 @@ during simulation. */
             }
           }
         } else if (
-          ((this.contains(this.menu_icons[this.ADD_INDEX], true) &&
-            this.menu_icons[this.ADD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) ||
+          ((this.contains(this.menu_icons[this.ADD_INDEX], true) && this.menu_icons[this.ADD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) ||
             (!this.contains(this.element_window.bounds, false) && global.FLAG_MENU_OPEN_DOWN)) &&
           !global.FLAG_GRAPH &&
           !global.SIGNAL_ADD_ELEMENT
@@ -754,10 +752,7 @@ during simulation. */
               global.component_touched = true;
             }
           }
-        } else if (
-          this.contains(this.settings_button, false) &&
-          this.settings_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())
-        ) {
+        } else if (this.contains(this.settings_button, false) && this.settings_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
           if (
             !global.FLAG_SIMULATING &&
             !global.FLAG_SAVE_IMAGE &&
@@ -929,7 +924,7 @@ during simulation. */
       this.ESCAPE_INTERRUPT = false;
     }
   }
-  handle_element_options_flag(ON) {
+  handle_element_options_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_ELEMENT_OPTIONS = ON;
     if (ON) {
@@ -939,7 +934,7 @@ during simulation. */
       console.log('ELEMENT OPTIONS');
     }
   }
-  handle_element_options_edit_flag(ON) {
+  handle_element_options_edit_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     if (ON) {
       element_options_edit_window.reset_cursor();
@@ -951,21 +946,21 @@ during simulation. */
       console.log('ELEMENT OPTIONS EDIT');
     }
   }
-  handle_undo_flag() {
+  handle_undo_flag(): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     history_manager.undo();
     if (global.DEVELOPER_MODE) {
       console.log('UNDO');
     }
   }
-  handle_redo_flag() {
+  handle_redo_flag(): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     history_manager.redo();
     if (global.DEVELOPER_MODE) {
       console.log('REDO');
     }
   }
-  handle_menu_open_flag(ON) {
+  handle_menu_open_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_MENU_OPEN = ON;
     if (!ON) {
@@ -975,14 +970,14 @@ during simulation. */
       console.log('MENU OPEN');
     }
   }
-  handle_menu_open_down_flag(ON) {
+  handle_menu_open_down_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_MENU_OPEN_DOWN = ON;
     if (global.DEVELOPER_MODE) {
       console.log('MENU OPEN DOWN');
     }
   }
-  handle_save_image_flag(ON) {
+  handle_save_image_flag(ON: boolean): void {
     if (ON) {
       save_image_window.input_button.text = global.USER_FILE.title;
       save_image_window.reset_cursor();
@@ -993,7 +988,7 @@ during simulation. */
       console.log('SAVE IMAGE');
     }
   }
-  handle_save_circuit_flag(ON) {
+  handle_save_circuit_flag(ON: boolean): void {
     if (ON) {
       save_circuit_window.input_button.text = global.USER_FILE.title;
       save_circuit_window.reset_cursor();
@@ -1005,14 +1000,14 @@ during simulation. */
       console.log('SAVE CIRCUIT');
     }
   }
-  handle_select_settings_flag(ON) {
+  handle_select_settings_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_SELECT_SETTINGS = ON;
     if (global.DEVELOPER_MODE) {
       console.log('SETTINGS');
     }
   }
-  handle_simulation_flag(ON) {
+  handle_simulation_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_SIMULATING = ON;
     if (ON) {
@@ -1024,28 +1019,28 @@ during simulation. */
       console.log('SIMULATION ' + (ON ? 'START' : 'END'));
     }
   }
-  handle_graph_flag(ON) {
+  handle_graph_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_GRAPH = ON;
     if (global.DEVELOPER_MODE) {
       console.log('GRAPH');
     }
   }
-  handle_remove_all_flag(ON) {
+  handle_remove_all_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_REMOVE_ALL = ON;
     if (global.DEVELOPER_MODE) {
       console.log('REMOVE ALL');
     }
   }
-  handle_zoom_flag(ON) {
+  handle_zoom_flag(ON: boolean): void {
     global.MOUSE_KEYBOARD_LOCK = true;
     global.FLAG_ZOOM = ON;
     if (global.DEVELOPER_MODE) {
       console.log('ZOOM');
     }
   }
-  key_down(key_event) {
+  key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_MENU_OPEN) {
       if (
         !global.FLAG_ZOOM &&
@@ -1072,14 +1067,14 @@ during simulation. */
       }
     }
   }
-  contains(rect, adjust) {
+  contains(rect: RectF, adjust: boolean): boolean {
     if (!adjust) {
       return rect.contains_xy(global.mouse_x, global.mouse_y);
     } else {
       return rect.contains_xywh(global.mouse_x, global.mouse_y, this.BASE_WIDTH, this.bounds.get_height());
     }
   }
-  recolor() {
+  recolor(): void {
     if (global.FLAG_SIMULATING) {
       this.go_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
     } else {
@@ -1161,9 +1156,9 @@ during simulation. */
       this.save_image_fill_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
     }
   }
-  draw_menu_bar(canvas) {
+  draw_menu_bar(canvas: GraphicsEngine): void {
     this.recolor();
-    let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
+    let temp_stroke_width: number = 0.65 * global.CANVAS_STROKE_WIDTH_3;
     if (global.MOBILE_MODE) {
       temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
     }
@@ -1181,22 +1176,15 @@ during simulation. */
         !multi_select_manager.CTRL_PRESSED_STARTED &&
         !global.MOBILE_MODE
       ) {
-        let cached_value = this.BASE_WIDTH;
-        for (var i = 0; i < this.menu_icons.length; i++) {
+        let cached_value: number = this.BASE_WIDTH;
+        for (var i: number = 0; i < this.menu_icons.length; i++) {
           if (this.menu_icons[i].contains_xywh(global.mouse_x, global.mouse_y, cached_value, this.bounds.get_height())) {
-            canvas.draw_round_rect3(
-              this.menu_icons[i].get_center_x(),
-              this.menu_icons[i].get_center_y(),
-              cached_value,
-              this.bounds.get_height(),
-              temp_stroke_width,
-              this.hover_paint
-            );
+            canvas.draw_round_rect3(this.menu_icons[i].get_center_x(), this.menu_icons[i].get_center_y(), cached_value, this.bounds.get_height(), temp_stroke_width, this.hover_paint);
           }
         }
       }
-      let width_mul_0p64 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.64;
-      let height_mul_0p64 = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.64;
+      let width_mul_0p64: number = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.64;
+      let height_mul_0p64: number = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.64;
       canvas.draw_arc3(
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x(),
         this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y(),
@@ -1205,7 +1193,7 @@ during simulation. */
         290,
         this.remove_all_paint
       );
-      let indexer = 0;
+      let indexer: number = 0;
       this.CIRCLE_BUFFER = [];
       this.LINE_BUFFER = [];
       this.LINE_BUFFER[indexer++] = Array(
@@ -1243,10 +1231,10 @@ during simulation. */
       if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
         canvas.draw_text('I', this.menu_icons[this.SAVE_IMG_INDEX].left, this.menu_icons[this.SAVE_IMG_INDEX].top, this.text_paint);
       }
-      let width_rshift_3 = this.menu_icons[this.ADD_INDEX].get_width() >> 3;
-      let height_rshift_3 = this.menu_icons[this.ADD_INDEX].get_height() >> 3;
-      let width_rshift_4 = this.menu_icons[this.ADD_INDEX].get_width() >> 4;
-      let height_rshift_4 = this.menu_icons[this.ADD_INDEX].get_height() >> 4;
+      let width_rshift_3: number = this.menu_icons[this.ADD_INDEX].get_width() >> 3;
+      let height_rshift_3: number = this.menu_icons[this.ADD_INDEX].get_height() >> 3;
+      let width_rshift_4: number = this.menu_icons[this.ADD_INDEX].get_width() >> 4;
+      let height_rshift_4: number = this.menu_icons[this.ADD_INDEX].get_height() >> 4;
       canvas.draw_round_rect(
         this.menu_icons[this.ADD_INDEX].left + width_rshift_4,
         this.menu_icons[this.ADD_INDEX].top + height_rshift_4,
@@ -1276,8 +1264,8 @@ during simulation. */
       if (!global.FLAG_SIMULATING) {
         canvas.draw_path(this.go_path, this.go_paint);
       } else {
-        let w_pad = this.menu_icons[this.GO_INDEX].get_width() * 0.333;
-        let h_pad = this.menu_icons[this.GO_INDEX].get_height() * 0.333;
+        let w_pad: number = this.menu_icons[this.GO_INDEX].get_width() * 0.333;
+        let h_pad: number = this.menu_icons[this.GO_INDEX].get_height() * 0.333;
         canvas.draw_rect(
           this.menu_icons[this.GO_INDEX].get_center_x() - w_pad,
           this.menu_icons[this.GO_INDEX].get_center_y() - h_pad,
@@ -1305,7 +1293,7 @@ during simulation. */
         this.up_down_paint
       );
     } else {
-      let indexer = 0;
+      let indexer: number = 0;
       this.LINE_BUFFER = [];
       /* Drawing the background for the magnifying glass */
       canvas.draw_round_rect3(
@@ -1382,10 +1370,10 @@ during simulation. */
         this.up_down_paint
       );
       /* Drawing the magnifying icon (Zoom) */
-      let pad_w = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.075;
-      let pad_h = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.075;
-      let width_rshift_3 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 3;
-      let width_rshift_2 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 2;
+      let pad_w: number = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.075;
+      let pad_h: number = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.075;
+      let width_rshift_3: number = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 3;
+      let width_rshift_2: number = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 2;
       this.LINE_BUFFER = [];
       indexer = 0;
       canvas.draw_circle(
@@ -1415,7 +1403,7 @@ during simulation. */
       canvas.draw_line_buffer(this.LINE_BUFFER, this.zoom_paint);
     }
     if (!global.FLAG_MENU_OPEN_DOWN) {
-      let indexer = 0;
+      let indexer: number = 0;
       this.LINE_BUFFER = [];
       canvas.draw_round_rect2(this.graph_button, temp_stroke_width, this.fill_paint);
       if (
@@ -1437,7 +1425,7 @@ during simulation. */
         canvas.draw_round_rect2(this.graph_button, temp_stroke_width, this.hover_paint);
       }
       this.sine_wave.draw_sine_wave(canvas, 1);
-      let pad = 0.2;
+      let pad: number = 0.2;
       this.LINE_BUFFER[indexer++] = Array(
         this.graph_button.left + this.graph_button.get_width() * pad,
         this.graph_button.top + this.graph_button.get_height() * 1.1 * pad,

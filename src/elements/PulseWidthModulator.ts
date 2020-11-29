@@ -245,16 +245,8 @@ or overlapped)*/
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
       if (this.elm.consistent()) {
         if (global.SIMULATION_TIME < global.TIME_STEP + global.TIME_STEP || this.elm.properties['Counter'] >= this.elm.properties['Postscaler']) {
-          this.elm.properties['Input Voltage1'] = global.limit(
-            engine_functions.get_voltage(this.elm.n1, -1),
-            this.elm.properties['Low Voltage'],
-            this.elm.properties['High Voltage']
-          );
-          this.elm.properties['Input Voltage2'] = global.limit(
-            engine_functions.get_voltage(this.elm.n2, -1),
-            this.elm.properties['Low Voltage'],
-            this.elm.properties['High Voltage']
-          );
+          this.elm.properties['Input Voltage1'] = global.limit(engine_functions.get_voltage(this.elm.n1, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
+          this.elm.properties['Input Voltage2'] = global.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
           if (this.elm.properties['Counter'] >= this.elm.properties['Postscaler']) {
             this.elm.properties['Counter'] = 0;
           }
@@ -369,7 +361,7 @@ or overlapped)*/
   release_wires() {
     if (this.wire_reference.length > 0) {
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
           wires[id].release_nodes();
@@ -585,7 +577,7 @@ or overlapped)*/
   wire_reference_maintenance() {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (!(id > -1 && id < wires.length)) {
           this.wire_reference.splice(i, 1);
@@ -597,7 +589,7 @@ or overlapped)*/
     if (this.wire_reference.length > 0) {
       let vertices = this.get_vertices();
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
           if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
@@ -638,7 +630,7 @@ or overlapped)*/
     if (this.wire_reference.length > 0) {
       let vertices = this.get_vertices();
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
           if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
@@ -883,19 +875,9 @@ or overlapped)*/
       this.LINE_BUFFER[this.indexer++] = Array(this.pwm_0.x, this.pwm_0.y, this.pwm_1.x, this.pwm_1.y);
       this.LINE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, this.pwm_3.x, this.pwm_3.y);
       this.LINE_BUFFER[this.indexer++] = Array(this.pwm_3.x, this.pwm_3.y, this.pwm_4.x, this.pwm_4.y);
-      this.LINE_BUFFER[this.indexer++] = Array(
-        this.c_x - (this.bounds.get_width() >> 3),
-        this.c_y + (this.bounds.get_height() >> 3),
-        this.c_x,
-        this.c_y + (this.bounds.get_height() >> 3)
-      );
+      this.LINE_BUFFER[this.indexer++] = Array(this.c_x - (this.bounds.get_width() >> 3), this.c_y + (this.bounds.get_height() >> 3), this.c_x, this.c_y + (this.bounds.get_height() >> 3));
       this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y + (this.bounds.get_height() >> 3), this.c_x, this.c_y - (this.bounds.get_height() >> 3));
-      this.LINE_BUFFER[this.indexer++] = Array(
-        this.c_x,
-        this.c_y - (this.bounds.get_height() >> 3),
-        this.c_x + (this.bounds.get_width() >> 3),
-        this.c_y - (this.bounds.get_height() >> 3)
-      );
+      this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y - (this.bounds.get_height() >> 3), this.c_x + (this.bounds.get_width() >> 3), this.c_y - (this.bounds.get_height() >> 3));
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       this.indexer = 0;
       canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), this.bounds.get_width() * 0.5128, this.bounds.get_height() * 0.5128, this.line_paint);
@@ -959,7 +941,7 @@ or overlapped)*/
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     let time_data = global.copy(global.TIME_DATA_TEMPLATE);
     let keys = Object.keys(this.elm.properties);
-    for (var i = keys.length - 1; i > -1; i--) {
+    for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
           time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);

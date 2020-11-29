@@ -337,23 +337,7 @@ class Global {
     p4: 3
   };
   /* Store the pre-divided SI units to save some computation time. */
-  public SI_UNIT_ARRAY: Array<number> = [
-    1 / 1e21,
-    1 / 1e18,
-    1 / 1e15,
-    1 / 1e12,
-    1 / 1e9,
-    1 / 1e6,
-    1 / 1e3,
-    1,
-    1 / 1e-3,
-    1 / 1e-6,
-    1 / 1e-9,
-    1 / 1e-12,
-    1 / 1e-15,
-    1 / 1e-18,
-    1 / 1e-21
-  ];
+  public SI_UNIT_ARRAY: Array<number> = [1 / 1e21, 1 / 1e18, 1 / 1e15, 1 / 1e12, 1 / 1e9, 1 / 1e6, 1 / 1e3, 1, 1 / 1e-3, 1 / 1e-6, 1 / 1e-9, 1 / 1e-12, 1 / 1e-15, 1 / 1e-18, 1 / 1e-21];
   /* Cache the thresholds.. */
   public SI_UNIT_THRESHOLD_ARRAY: Array<number> = [
     0.99 * 1e21,
@@ -3515,7 +3499,7 @@ class Global {
     this.TRIG_TABLE_INDEX_CONSTANT = (this.TRIG_TABLE_SIZE * 0.5) / Math.PI;
     this.TRIG_TABLE_MASK = this.TRIG_TABLE_SIZE - 1;
     this.TRIG_TABLE_ROUND = this.TRIG_TABLE_SIZE * 0.25;
-    for (var i = 0; i < this.TRIG_TABLE_SIZE; i++) {
+    for (var i: number = 0; i < this.TRIG_TABLE_SIZE; i++) {
       this.TRIG_SINE_TABLE.push(Math.sin(i * Math.PI * this.TRIG_TABLE_SCALE_CONSTANT));
     }
     this.TIME_DATA_TEMPLATE = {
@@ -3530,7 +3514,7 @@ class Global {
     this.inv_sqrt_f32 = new Float32Array(this.inv_sqrt_buf);
     this.inv_sqrt_u32 = new Uint32Array(this.inv_sqrt_buf);
     this.ALPHA_ARRAY = [];
-    for (var i = 0; i <= 256; i++) {
+    for (var i: number = 0; i <= 256; i++) {
       this.ALPHA_ARRAY.push(i / 256.0);
     }
     this.general_integer = 0;
@@ -3725,7 +3709,7 @@ class Global {
   search_angle_array(x, y) {
     this.TEMP_BOOLEAN = false;
     this.SAVED_ANGLE = -1;
-    for (var i = 0; i < this.ANGLE_ARRAY.length; i++) {
+    for (var i: number = 0; i < this.ANGLE_ARRAY.length; i++) {
       if (!this.TEMP_BOOLEAN) {
         this.ANGLE_SEARCH_OBJ = this.ANGLE_ARRAY[i];
         if (this.ANGLE_SEARCH_OBJ['x'] === x && this.ANGLE_SEARCH_OBJ['y'] === y) {
@@ -3741,7 +3725,7 @@ class Global {
   search_angle_radian_array(x, y) {
     this.TEMP_BOOLEAN = false;
     this.SAVED_ANGLE_RADIANS = -1;
-    for (var i = 0; i < this.ANGLE_RADIAN_ARRAY.length; i++) {
+    for (var i: number = 0; i < this.ANGLE_RADIAN_ARRAY.length; i++) {
       if (!this.TEMP_BOOLEAN) {
         this.ANGLE_RADIAN_SEARCH_OBJ = this.ANGLE_RADIAN_ARRAY[i];
         if (this.ANGLE_RADIAN_SEARCH_OBJ['x'] === x && this.ANGLE_RADIAN_SEARCH_OBJ['y'] === y) {
@@ -3898,7 +3882,7 @@ class Global {
     let val = 0;
     let abs_input = Math.abs(input);
     let found = false;
-    for (var i = 0; i < this.SI_UNIT_THRESHOLD_ARRAY.length; i++) {
+    for (var i: number = 0; i < this.SI_UNIT_THRESHOLD_ARRAY.length; i++) {
       if (abs_input >= this.SI_UNIT_THRESHOLD_ARRAY[i]) {
         val = input * this.SI_UNIT_ARRAY[i];
         str = this.round(val) + this.SI_UNIT_ABBREVIATION[i];
@@ -3993,7 +3977,7 @@ class Global {
     );
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     this.MAX_GENERAL_NUMBER = 0;
-    for (var i = 0; i < this.ELEMENT_MAX.length; i++) {
+    for (var i: number = 0; i < this.ELEMENT_MAX.length; i++) {
       if (this.ELEMENT_MAX[i] > this.MAX_GENERAL_NUMBER) {
         this.MAX_GENERAL_NUMBER = this.ELEMENT_MAX[i];
       }
@@ -4008,7 +3992,7 @@ class Global {
     this.METER_MAX = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     this.MAX_GENERAL_NUMBER = 0;
-    for (var i = 0; i < this.METER_MAX.length; i++) {
+    for (var i: number = 0; i < this.METER_MAX.length; i++) {
       if (this.METER_MAX[i] > this.MAX_GENERAL_NUMBER) {
         this.MAX_GENERAL_NUMBER = this.METER_MAX[i];
       }
@@ -4022,7 +4006,7 @@ class Global {
     this.NON_LINEAR_MAX = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     this.MAX_GENERAL_NUMBER = 0;
-    for (var i = 0; i < this.NON_LINEAR_MAX.length; i++) {
+    for (var i: number = 0; i < this.NON_LINEAR_MAX.length; i++) {
       if (this.NON_LINEAR_MAX[i] > this.MAX_GENERAL_NUMBER) {
         this.MAX_GENERAL_NUMBER = this.NON_LINEAR_MAX[i];
       }
@@ -4045,7 +4029,7 @@ class Global {
     let caps = key_event['caps'];
     let code = key_event['event'].code;
     let ret = '';
-    for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
+    for (var i: number = 0; i < this.KEY_EVENT_KEYS.length; i++) {
       if (code === this.KEY_EVENT_KEYS[i]) {
         if (shift) {
           ret = this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1];
@@ -4060,7 +4044,7 @@ class Global {
   }
   key_to_code(character) {
     let ret = '';
-    for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
+    for (var i: number = 0; i < this.KEY_EVENT_KEYS.length; i++) {
       if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] || character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
         ret = global.copy(this.KEY_EVENT_KEYS[i]);
         break;

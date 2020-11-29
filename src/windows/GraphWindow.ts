@@ -19,54 +19,54 @@
  *
  ***********************************************************************/
 class GraphWindow {
-  public bounds = new RectF(0, 0, 0, 0);
-  public inner_bounds = new RectF(0, 0, 0, 0);
-  public X_AXIS_LENGTH = 1200;
-  public Y_AXIS_LENGTH = 100;
-  public RATIO = 0.75;
-  public SCOPE_0_INDEX = 0;
-  public SCOPE_1_INDEX = 1;
-  public SCOPE_2_INDEX = 2;
+  public bounds: RectF = new RectF(0, 0, 0, 0);
+  public inner_bounds: RectF = new RectF(0, 0, 0, 0);
+  public X_AXIS_LENGTH: number = 1200;
+  public Y_AXIS_LENGTH: number = 100;
+  public RATIO: number = 0.75;
+  public readonly SCOPE_0_INDEX: number = 0;
+  public readonly SCOPE_1_INDEX: number = 1;
+  public readonly SCOPE_2_INDEX: number = 2;
   /* Padding for the graph window. */
-  public PADDING = global.CANVAS_STROKE_WIDTH_5;
+  public PADDING: number = global.CANVAS_STROKE_WIDTH_5;
   /* This controls the width of the buttons relative to the width of the window */
-  public BUTTON_WIDTH_RATIO = 0.085;
+  public BUTTON_WIDTH_RATIO: number = 0.085;
   /* This controls the height of the buttons relative to the height of the window */
-  public BUTTON_HEIGHT_RATIO = 0.05;
+  public BUTTON_HEIGHT_RATIO: number = 0.05;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint: Paint = new Paint();
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public bounds_paint = new Paint();
+  public bounds_paint: Paint = new Paint();
   /* This paint is used for drawing the "fill" that the component is comprised of. */
-  public fill_paint = new Paint();
+  public fill_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint: Paint = new Paint();
   /* This paint is used for drawing the icons that the component is comprised of. */
-  public hover_paint = new Paint();
+  public hover_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public graph_text_a_paint = new Paint();
+  public graph_text_a_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public graph_text_b_paint = new Paint();
+  public graph_text_b_paint: Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public graph_text_c_paint = new Paint();
-  public x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
-  public y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-  public graph_trace_a = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
-  public graph_trace_b = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
-  public graph_trace_c = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
-  public meter_hover_index = -1;
-  public time_axis_value = '';
-  public time_tag = '';
-  public download_button = new Button(0, 0, 0, 0);
+  public graph_text_c_paint: Paint = new Paint();
+  public x_axis: Array<PointF> = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
+  public y_axis: Array<PointF> = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
+  public graph_trace_a: Trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+  public graph_trace_b: Trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+  public graph_trace_c: Trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+  public meter_hover_index: number = -1;
+  public time_axis_value: string = '';
+  public time_tag: string = '';
+  public download_button: Button = new Button(0, 0, 0, 0);
 
   /* Enforcing the system from cascading events. */
-  public first_touch_x = 0;
-  public first_touch_y = 0;
+  public first_touch_x: number = 0;
+  public first_touch_y: number = 0;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER = [];
-  public trim = 0;
-  public width = 0;
-  public height = 0;
+  public LINE_BUFFER: Array<Array<number>> = [];
+  public trim: number = 0;
+  public width: number = 0;
+  public height: number = 0;
 
   constructor() {
     this.bounds = new RectF(0, 0, 0, 0);
@@ -198,18 +198,13 @@ class GraphWindow {
     this.time_axis_value = '';
     this.time_tag = '';
     this.load_axis();
-    let padding = 0.0125 * this.bounds.get_width();
+    let padding: number = 0.0125 * this.bounds.get_width();
     if (global.MOBILE_MODE) {
       padding = 0.00875 * this.bounds.get_width();
     }
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
-    this.download_button = new Button(
-      this.inner_bounds.right - width,
-      this.inner_bounds.top + padding,
-      this.inner_bounds.right - padding,
-      this.inner_bounds.top + padding + height
-    );
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    this.download_button = new Button(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
     this.download_button.text = 'CSV';
     this.download_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
     this.download_button.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
@@ -222,13 +217,13 @@ class GraphWindow {
     /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
     this.LINE_BUFFER = [];
   }
-  load_axis() {
+  load_axis(): void {
     this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
     this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-    let left = this.bounds.left + this.PADDING;
-    let top = this.bounds.top + 2 * this.PADDING;
-    let right = this.bounds.right - this.PADDING;
-    let bottom = this.bounds.bottom - this.PADDING;
+    let left: number = this.bounds.left + this.PADDING;
+    let top: number = this.bounds.top + 2 * this.PADDING;
+    let right: number = this.bounds.right - this.PADDING;
+    let bottom: number = this.bounds.bottom - this.PADDING;
     this.inner_bounds = new RectF(left, top, right, bottom);
     this.trim = (this.bounds.get_width() - this.inner_bounds.get_width()) * 0.5;
     this.width = this.inner_bounds.get_width();
@@ -236,7 +231,7 @@ class GraphWindow {
     this.graph_trace_a.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
     this.graph_trace_b.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
     this.graph_trace_c.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
-    for (var i = 0; i < this.X_AXIS_LENGTH >> 1; i++) {
+    for (var i: number = 0; i < this.X_AXIS_LENGTH >> 1; i++) {
       this.x_axis[i] = new PointF(left + (this.width / (this.x_axis.length >> 1)) * i, top);
       this.x_axis[i + (this.x_axis.length >> 1)] = new PointF(left + (this.width / (this.x_axis.length >> 1)) * i, bottom);
       if (i < this.y_axis.length * 0.5) {
@@ -245,7 +240,7 @@ class GraphWindow {
       }
     }
   }
-  resize_window() {
+  resize_window(): void {
     /* Padding for the graph window. */
     this.PADDING = global.CANVAS_STROKE_WIDTH_5;
     this.bounds.left = view_port.left;
@@ -279,16 +274,16 @@ class GraphWindow {
     this.graph_trace_b.resize_trace();
     this.graph_trace_c.resize_trace();
     /* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
-    let padding = 0.0125 * this.bounds.get_width();
+    let padding: number = 0.0125 * this.bounds.get_width();
     if (global.MOBILE_MODE) {
       padding = 0.00875 * this.bounds.get_width();
     }
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
     this.download_button.set_bounds(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
     this.download_button.resize_paint();
   }
-  reset_trace(index) {
+  reset_trace(index: number): void {
     if (index === 0) {
       this.graph_trace_a.reset();
     } else if (index === 1) {
@@ -298,26 +293,26 @@ class GraphWindow {
     }
   }
   /* reset the trace and remove all the points. */
-  reset() {
+  reset(): void {
     this.graph_trace_a.reset();
     this.graph_trace_b.reset();
     this.graph_trace_c.reset();
   }
   /* Add a new value to the trace (A) */
-  push_trace_a(value, t) {
+  push_trace_a(value: number, t: number): void {
     this.graph_trace_a.push(value, t);
   }
   /* Add a new value to the trace (B) */
-  push_trace_b(value, t) {
+  push_trace_b(value: number, t: number): void {
     this.graph_trace_b.push(value, t);
   }
   /* Add a new value to the trace (C) */
-  push_trace_c(value, t) {
+  push_trace_c(value: number, t: number): void {
     this.graph_trace_c.push(value, t);
   }
   /* Catch any mouse events within the graph view, this makes the main program look
   cleaner! */
-  mouse_down() {
+  mouse_down(): void {
     if (global.FLAG_GRAPH) {
       this.first_touch_x = global.mouse_x;
       this.first_touch_y = global.mouse_y;
@@ -326,14 +321,14 @@ class GraphWindow {
       }
     }
   }
-  generate_csv() {
-    let str = '';
-    let temp_str = '';
-    let time_stamp = '';
+  generate_csv(): void {
+    let str: string = '';
+    let temp_str: string = '';
+    let time_stamp: string = '';
     str += 'time, trace_a, trace_b, trace_c\n';
-    let max = Math.max(Math.max(this.graph_trace_a.trace.length, this.graph_trace_b.trace.length), this.graph_trace_c.trace.length);
-    let updated_time = false;
-    for (var i = 0; i < max; i++) {
+    let max: number = Math.max(Math.max(this.graph_trace_a.trace.length, this.graph_trace_b.trace.length), this.graph_trace_c.trace.length);
+    let updated_time: boolean = false;
+    for (var i: number = 0; i < max; i++) {
       time_stamp = '0, ';
       updated_time = false;
       temp_str = '';
@@ -374,22 +369,22 @@ class GraphWindow {
       window.JsInterface.javascript_native_hook('push-csv', global.USER_FILE.title + '_csv.txt', str);
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (global.FLAG_GRAPH) {
       this.mouse_hover();
     }
   }
-  mouse_up() {}
+  mouse_up(): void {}
   /* This function converts the users xy coordinates into an index so the graph's
   information can be displayed for easy visualization. */
-  mouse_hover() {
+  mouse_hover(): void {
     if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
       this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.X_AXIS_LENGTH)) * 0.5);
     } else {
       this.meter_hover_index = -1;
     }
   }
-  key_down(key_event) {
+  key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_GRAPH) {
       if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
         menu_bar.handle_graph_flag(!global.FLAG_GRAPH);
@@ -399,18 +394,18 @@ class GraphWindow {
     }
   }
   /* Draw the Graph Window */
-  draw_window(canvas) {
+  draw_window(canvas: GraphicsEngine): void {
     if (global.FLAG_GRAPH) {
       /* The graph view is comprised of two views, a main bounds and an inner bounds. */
       /* First we draw the main bounds and then the inner bounds. Note the types of paint
       being used to draw each one of these portions. */
       canvas.draw_rect2(this.bounds, this.fill_paint);
       canvas.draw_round_rect2(this.inner_bounds, this.PADDING >> 1, this.line_paint);
-      let cached_value = this.x_axis.length >> 1;
-      let cached_value_t_p_o1 = (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
-      let temp = 0;
-      let index = 0;
-      for (var i = 0; i < cached_value; i += cached_value_t_p_o1) {
+      let cached_value: number = this.x_axis.length >> 1;
+      let cached_value_t_p_o1: number = (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
+      let temp: number = 0;
+      let index: number = 0;
+      for (var i: number = 0; i < cached_value; i += cached_value_t_p_o1) {
         temp = i + cached_value;
         this.LINE_BUFFER[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
       }
@@ -538,9 +533,7 @@ class GraphWindow {
       if (scope_manager.ENTRY.length > 0) {
         if (
           this.meter_hover_index > -1 &&
-          (this.meter_hover_index < this.graph_trace_a.trace.length ||
-            this.meter_hover_index < this.graph_trace_b.trace.length ||
-            this.meter_hover_index < this.graph_trace_c.trace.length)
+          (this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)
         ) {
           canvas.draw_text(
             this.time_axis_value + 's',
@@ -557,7 +550,7 @@ class GraphWindow {
       do it though! */
       if (this.graph_trace_a.magnitude_list.length > 0) {
         /* Stepping at a fixed interval through the elements. */
-        for (var i = Math.round(this.X_AXIS_LENGTH * 0.1); i < Math.round(this.X_AXIS_LENGTH >> 1); i += Math.round(this.X_AXIS_LENGTH * 0.1)) {
+        for (var i: number = Math.round(this.X_AXIS_LENGTH * 0.1); i < Math.round(this.X_AXIS_LENGTH >> 1); i += Math.round(this.X_AXIS_LENGTH * 0.1)) {
           if (i < this.graph_trace_a.magnitude_list.length) {
             this.time_tag = global.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
             canvas.draw_text(
@@ -571,7 +564,7 @@ class GraphWindow {
           }
         }
       } else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length > 0) {
-        for (var i = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
+        for (var i: number = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
           if (i < this.graph_trace_b.magnitude_list.length) {
             this.time_tag = global.exponentiate_quickly(this.graph_trace_b.magnitude_list[i].x);
             canvas.draw_text(
@@ -585,7 +578,7 @@ class GraphWindow {
           }
         }
       } else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length === 0 && this.graph_trace_c.magnitude_list.length > 0) {
-        for (var i = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
+        for (var i: number = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
           if (i < this.graph_trace_c.magnitude_list.length) {
             this.time_tag = global.exponentiate_quickly(this.graph_trace_c.magnitude_list[i].x);
             canvas.draw_text(

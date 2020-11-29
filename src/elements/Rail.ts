@@ -71,12 +71,7 @@ or overlapped)*/
     this.elm.set_nodes(n1);
     if (this.elm.consistent()) {
       /* Re-locate the bounds of the component to the center of the two points. */
-      this.bounds.set_center2(
-        nodes[this.elm.n1].location.x,
-        nodes[this.elm.n1].location.y,
-        global.node_space_x * 2,
-        global.node_space_y * 2
-      );
+      this.bounds.set_center2(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y, global.node_space_x * 2, global.node_space_y * 2);
     }
     /* Set the rotation of this component to 0. */
     this.elm.set_rotation(global.ROTATION_180);
@@ -90,10 +85,7 @@ or overlapped)*/
     this.p1 = new PointF(0, 0);
     if (this.elm.consistent()) {
       /* Create some points to hold the node locations, this will be used for drawing components */
-      this.p1.set_point(
-        nodes[this.elm.n1].location.x,
-        nodes[this.elm.n1].location.y
-      );
+      this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
     }
     /* The spacing of the nodes in the x-direction, divided by 2 */
     this.x_space = global.node_space_x >> 1;
@@ -158,17 +150,9 @@ or overlapped)*/
     if (this.elm.consistent()) {
       this.p1 = new PointF(0, 0);
       /* Create some points to hold the node locations, this will be used for drawing components */
-      this.p1.set_point(
-        nodes[this.elm.n1].location.x,
-        nodes[this.elm.n1].location.y
-      );
+      this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
       /* Set the bounds of the element */
-      this.bounds.set_center2(
-        nodes[this.elm.n1].location.x,
-        nodes[this.elm.n1].location.y,
-        global.node_space_x * 2,
-        global.node_space_y * 2
-      );
+      this.bounds.set_center2(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y, global.node_space_x * 2, global.node_space_y * 2);
     }
   }
   push_reference(ref) {
@@ -176,27 +160,19 @@ or overlapped)*/
   }
   stamp() {
     if (this.elm.consistent()) {
-      engine_functions.stamp_voltage(
-        this.elm.n1,
-        -1,
-        this.elm.properties['Voltage'],
-        simulation_manager.ELEMENT_RAIL_OFFSET + this.simulation_id
-      );
+      engine_functions.stamp_voltage(this.elm.n1, -1, this.elm.properties['Voltage'], simulation_manager.ELEMENT_RAIL_OFFSET + this.simulation_id);
     }
   }
   /* Vertex handling (for rotation) */
   get_vertices() {
-    let p1 = this.elm.snap_to_grid(
-      this.bounds.get_center_x(),
-      this.bounds.get_center_y()
-    );
+    let p1 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y());
     let vertices = Array(p1[0], p1[1]);
     return vertices;
   }
   release_wires() {
     if (this.wire_reference.length > 0) {
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
           wires[id].release_nodes();
@@ -236,23 +212,12 @@ or overlapped)*/
       !global.FLAG_REMOVE_ALL &&
       !global.FLAG_MENU_OPEN_DOWN
     ) {
-      if (
-        !global.focused &&
-        !global.component_touched &&
-        !global.multi_selected
-      ) {
+      if (!global.focused && !global.component_touched && !global.multi_selected) {
         if (this.elm.consistent() && !global.component_touched) {
           if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
             global.component_touched = true;
-          } else if (
-            this.bounds.contains_xywh(
-              global.mouse_x,
-              global.mouse_y,
-              this.bounds.get_width() * 0.86956,
-              this.bounds.get_height() * 0.86956
-            )
-          ) {
+          } else if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 0.86956, this.bounds.get_height() * 0.86956)) {
             this.is_translating = false;
             global.focused_id = this.elm.id;
             global.focused_type = this.elm.type;
@@ -309,21 +274,11 @@ or overlapped)*/
     if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
       /* Move the bounds of the element. Re-locates the center of the bounds. */
       if (global.focused) {
-        if (
-          global.focused_id === this.elm.id &&
-          global.focused_type === this.elm.type
-        ) {
+        if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
           global.IS_DRAGGING = false;
           if (!this.is_translating) {
-            if (
-              !this.bounds.contains_xywh(
-                global.mouse_x,
-                global.mouse_y,
-                this.bounds.get_width() * 0.8,
-                this.bounds.get_height() * 0.8
-              )
-            ) {
+            if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 0.8, this.bounds.get_height() * 0.8)) {
               this.release_nodes();
               this.bounds.anchored = false;
               this.is_translating = true;
@@ -335,18 +290,12 @@ or overlapped)*/
             this.m_y = global.mouse_y;
             if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
               this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
-            } else if (
-              this.m_x >
-              workspace.bounds.right - 2.0 * global.node_space_x
-            ) {
+            } else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
               this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
             }
             if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
               this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
-            } else if (
-              this.m_y >
-              workspace.bounds.bottom - 2.0 * global.node_space_y
-            ) {
+            } else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
               this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
             }
             this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -362,11 +311,7 @@ or overlapped)*/
   /* Handling a mouse up event. */
   mouse_up() {
     if (global.FLAG_IDLE) {
-      if (
-        global.focused &&
-        global.focused_id === this.elm.id &&
-        global.focused_type === this.elm.type
-      ) {
+      if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
         if (this.is_translating) {
           this.is_translating = false;
           this.capture_nodes();
@@ -377,10 +322,7 @@ or overlapped)*/
           if (!global.selected) {
             this.select();
           } else {
-            if (
-              global.selected_id === this.elm.id &&
-              global.selected_type === this.elm.type
-            ) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
               global.selected_id = global.NULL;
               global.selected_type = global.NULL;
               global.selected_bounds = global.NULL;
@@ -397,10 +339,7 @@ or overlapped)*/
         global.focused_bounds = global.NULL;
         global.focused = false;
       }
-      if (
-        global.selected_id === this.elm.id &&
-        global.selected_type === this.elm.type
-      ) {
+      if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
         global.selected_bounds = global.copy(this.bounds);
       }
     }
@@ -417,11 +356,7 @@ or overlapped)*/
     global.selected = true;
   }
   remove_focus() {
-    if (
-      global.focused &&
-      global.focused_id === this.elm.id &&
-      global.focused_type === this.elm.type
-    ) {
+    if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
       global.focused_id = global.NULL;
       global.focused_type = global.NULL;
       global.focused_bounds = global.NULL;
@@ -429,10 +364,7 @@ or overlapped)*/
     }
   }
   remove_selection() {
-    if (
-      global.selected_id === this.elm.id &&
-      global.selected_type === this.elm.type
-    ) {
+    if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
       global.selected_id = global.NULL;
       global.selected_type = global.NULL;
       global.selected_bounds = global.NULL;
@@ -444,7 +376,7 @@ or overlapped)*/
   wire_reference_maintenance() {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (!(id > -1 && id < wires.length)) {
           this.wire_reference.splice(i, 1);
@@ -456,12 +388,10 @@ or overlapped)*/
     if (this.wire_reference.length > 0) {
       let vertices = this.get_vertices();
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
-          if (
-            this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']
-          ) {
+          if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
             wires[id].release_nodes();
             if (this.wire_reference[i]['linkage'] === 0) {
               wires[id].p1.x = vertices[0];
@@ -470,9 +400,7 @@ or overlapped)*/
               wires[id].p2.y = vertices[1];
               wires[id].p2.x = vertices[0];
             }
-          } else if (
-            this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']
-          ) {
+          } else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
             wires[id].release_nodes();
             if (this.wire_reference[i]['linkage'] === 0) {
               wires[id].p1.x = vertices[2];
@@ -492,12 +420,10 @@ or overlapped)*/
     if (this.wire_reference.length > 0) {
       let vertices = this.get_vertices();
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
-          if (
-            this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']
-          ) {
+          if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
             if (this.wire_reference[i]['linkage'] === 0) {
               wires[id].p1.x = vertices[0];
               wires[id].p1.y = vertices[1];
@@ -506,9 +432,7 @@ or overlapped)*/
               wires[id].p2.y = vertices[1];
             }
             wires[id].capture_nodes();
-          } else if (
-            this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']
-          ) {
+          } else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
             if (this.wire_reference[i]['linkage'] === 0) {
               wires[id].p1.x = vertices[2];
               wires[id].p1.y = vertices[3];
@@ -527,9 +451,7 @@ or overlapped)*/
   /* Push the changes of this object to the element observer */
   push_history() {
     if (this.INITIALIZED) {
-      global.HISTORY_MANAGER['packet'].push(
-        engine_functions.history_snapshot()
-      );
+      global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
     }
   }
   /* General function to help with resizing, i.e., canvas dimension change, zooming*/
@@ -538,12 +460,7 @@ or overlapped)*/
       if (this.bounds.anchored) {
         if (this.elm.consistent()) {
           /* Set the bounds of the element */
-          this.bounds.set_center2(
-            nodes[this.elm.n1].location.x,
-            nodes[this.elm.n1].location.y,
-            global.node_space_x * 2,
-            global.node_space_y * 2
-          );
+          this.bounds.set_center2(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y, global.node_space_x * 2, global.node_space_y * 2);
           this.refactor();
         }
         this.unanchor_wires();
@@ -596,10 +513,7 @@ or overlapped)*/
   increment_flip() {}
   recolor() {
     if (global.selected) {
-      if (
-        global.selected_id === this.elm.id &&
-        global.selected_type === this.elm.type
-      ) {
+      if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
         this.line_paint.set_color(global.SELECTED_COLOR);
         this.point_paint.set_color(global.SELECTED_COLOR);
         this.text_paint.set_color(global.SELECTED_COLOR);
@@ -621,10 +535,7 @@ or overlapped)*/
     }
   }
   is_selected_element() {
-    return (
-      global.selected_id === this.elm.id &&
-      global.selected_type === this.elm.type
-    );
+    return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
   }
   /* Draws the component */
   draw_component(canvas) {
@@ -648,34 +559,13 @@ or overlapped)*/
       this.LINE_BUFFER = [];
       if (this.elm.rotation === global.ROTATION_0) {
         /* To the bottom! */
-        canvas.draw_circle(
-          this.c_x,
-          this.c_y,
-          global.CANVAS_STROKE_WIDTH_2_ZOOM,
-          this.point_paint
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x,
-          this.c_y,
-          this.c_x,
-          this.c_y + 2 * this.y_space
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x - this.x_space,
-          this.c_y + 2 * this.y_space,
-          this.c_x + this.x_space,
-          this.c_y + 2 * this.y_space
-        );
-        if (
-          global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-          (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)
-        ) {
+        canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y + 2 * this.y_space);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x - this.x_space, this.c_y + 2 * this.y_space, this.c_x + this.x_space, this.c_y + 2 * this.y_space);
+        if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
           canvas.rotate(this.c_x, this.c_y, 180);
           canvas.draw_text(
-            global.ELEMENT_VAL_TEMPLATE.replace(
-              '{VAL}',
-              global.exponentiate_quickly(this.elm.properties['Voltage'])
-            ).replace('{UNIT}', this.elm.properties['units']),
+            global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
             this.c_x,
             this.bounds.top - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -684,34 +574,13 @@ or overlapped)*/
         }
       } else if (this.elm.rotation === global.ROTATION_90) {
         /* To the left! */
-        canvas.draw_circle(
-          this.c_x,
-          this.c_y,
-          global.CANVAS_STROKE_WIDTH_2_ZOOM,
-          this.point_paint
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x,
-          this.c_y,
-          this.c_x - 2 * this.x_space,
-          this.c_y
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x - 2 * this.x_space,
-          this.c_y - this.y_space,
-          this.c_x - 2 * this.x_space,
-          this.c_y + this.y_space
-        );
-        if (
-          global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-          (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)
-        ) {
+        canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x - 2 * this.x_space, this.c_y);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x - 2 * this.x_space, this.c_y - this.y_space, this.c_x - 2 * this.x_space, this.c_y + this.y_space);
+        if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
           canvas.rotate(this.c_x, this.c_y, -90);
           canvas.draw_text(
-            global.ELEMENT_VAL_TEMPLATE.replace(
-              '{VAL}',
-              global.exponentiate_quickly(this.elm.properties['Voltage'])
-            ).replace('{UNIT}', this.elm.properties['units']),
+            global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
             this.c_x,
             this.bounds.top - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -720,33 +589,12 @@ or overlapped)*/
         }
       } else if (this.elm.rotation === global.ROTATION_180) {
         /* To the top! */
-        canvas.draw_circle(
-          this.c_x,
-          this.c_y,
-          global.CANVAS_STROKE_WIDTH_2_ZOOM,
-          this.point_paint
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x,
-          this.c_y,
-          this.c_x,
-          this.c_y - 2 * this.y_space
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x - this.x_space,
-          this.c_y - 2 * this.y_space,
-          this.c_x + this.x_space,
-          this.c_y - 2 * this.y_space
-        );
-        if (
-          global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-          (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)
-        ) {
+        canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y - 2 * this.y_space);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x - this.x_space, this.c_y - 2 * this.y_space, this.c_x + this.x_space, this.c_y - 2 * this.y_space);
+        if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
           canvas.draw_text(
-            global.ELEMENT_VAL_TEMPLATE.replace(
-              '{VAL}',
-              global.exponentiate_quickly(this.elm.properties['Voltage'])
-            ).replace('{UNIT}', this.elm.properties['units']),
+            global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
             this.c_x,
             this.bounds.top - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -754,34 +602,13 @@ or overlapped)*/
         }
       } else if (this.elm.rotation === global.ROTATION_270) {
         /* To the right! */
-        canvas.draw_circle(
-          this.c_x,
-          this.c_y,
-          global.CANVAS_STROKE_WIDTH_2_ZOOM,
-          this.point_paint
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x,
-          this.c_y,
-          this.c_x + 2 * this.x_space,
-          this.c_y
-        );
-        this.LINE_BUFFER[this.indexer++] = Array(
-          this.c_x + 2 * this.x_space,
-          this.c_y - this.y_space,
-          this.c_x + 2 * this.x_space,
-          this.c_y + this.y_space
-        );
-        if (
-          global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-          (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)
-        ) {
+        canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x + 2 * this.x_space, this.c_y);
+        this.LINE_BUFFER[this.indexer++] = Array(this.c_x + 2 * this.x_space, this.c_y - this.y_space, this.c_x + 2 * this.x_space, this.c_y + this.y_space);
+        if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
           canvas.rotate(this.c_x, this.c_y, 90);
           canvas.draw_text(
-            global.ELEMENT_VAL_TEMPLATE.replace(
-              '{VAL}',
-              global.exponentiate_quickly(this.elm.properties['Voltage'])
-            ).replace('{UNIT}', this.elm.properties['units']),
+            global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
             this.c_x,
             this.bounds.top - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -792,21 +619,10 @@ or overlapped)*/
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(
-          this.wire_reference.length,
-          this.c_x,
-          this.c_y - 50,
-          this.text_paint
-        );
+        canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
       }
       if (this.is_translating) {
-        canvas.draw_rect3(
-          this.bounds.get_center_x(),
-          this.bounds.get_center_y(),
-          global.node_space_x << 2,
-          global.node_space_y << 2,
-          global.move_paint
-        );
+        canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
       }
     }
   }
@@ -834,14 +650,9 @@ or overlapped)*/
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     let time_data = global.copy(global.TIME_DATA_TEMPLATE);
     let keys = Object.keys(this.elm.properties);
-    for (var i = keys.length - 1; i > -1; i--) {
+    for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (
-          keys[i] === 'Frequency' ||
-          keys[i] === 'Resistance' ||
-          keys[i] === 'Capacitance' ||
-          keys[i] === 'Inductance'
-        ) {
+        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
           time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
         }
       }

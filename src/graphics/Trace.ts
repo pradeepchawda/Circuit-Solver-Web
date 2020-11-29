@@ -177,7 +177,7 @@ outer bounds)*/
       this.trace_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
       let constant: number = this.width / (this.X_AXIS_LENGTH >> 1);
       let constant2: number = (this.height * this.ratio) / this.temporary_norm;
-      for (var i = 0; i < this.trace.length; i++) {
+      for (var i: number = 0; i < this.trace.length; i++) {
         this.trace[i].x = i * constant + this.trim;
         if (this.temporary_norm > 0 && i < this.magnitude_list.length) {
           this.trace[i].y = this.magnitude_list[i].y * constant2;
@@ -229,7 +229,7 @@ outer bounds)*/
     this.norm = 0;
     this.plot_magnitude = 0;
     let abs_temp: number = 0;
-    for (var i = 0; i < this.magnitude_list.length; i++) {
+    for (var i: number = 0; i < this.magnitude_list.length; i++) {
       abs_temp = Math.abs(this.magnitude_list[i].y);
       if (abs_temp > this.norm) {
         this.norm = abs_temp;
@@ -240,7 +240,7 @@ outer bounds)*/
     if (this.last_norm != 0 && this.temporary_norm != 0) {
       let temp_div: number = this.last_norm / (this.height * this.ratio);
       let temp_const: number = (this.height * this.ratio) / this.temporary_norm;
-      for (var i = 0; i < this.trace.length; i++) {
+      for (var i: number = 0; i < this.trace.length; i++) {
         this.plot_magnitude = this.trace[i].y * temp_div;
         this.trace[i].y = this.plot_magnitude * temp_const;
       }
@@ -256,7 +256,7 @@ outer bounds)*/
       if (this.trace.length > this.X_AXIS_LENGTH >> 1) {
         this.trace.splice(0, 1);
         this.magnitude_list.splice(0, 1);
-        for (var i = 0; i < this.trace.length; i++) {
+        for (var i: number = 0; i < this.trace.length; i++) {
           this.trace[i].x = i * constant + this.trim;
         }
       }
@@ -265,7 +265,7 @@ outer bounds)*/
       if (this.trace.length > this.X_AXIS_LENGTH >> 1) {
         this.trace.splice(0, 1);
         this.magnitude_list.splice(0, 1);
-        for (var i = 0; i < this.trace.length; i++) {
+        for (var i: number = 0; i < this.trace.length; i++) {
           this.trace[i].x = i * constant + this.trim;
         }
       }
@@ -278,7 +278,7 @@ outer bounds)*/
       let temp_height: number = this.height >> 1;
       this.previous_point.set_point(this.trace[0].x, this.trace[0].y + this.bounds.top + temp_height);
       this.trace_path.reset();
-      for (var i = 1; i < this.trace.length; i++) {
+      for (var i: number = 1; i < this.trace.length; i++) {
         this.current_point.set_point(this.trace[i].x, this.trace[i].y + this.bounds.top + temp_height);
         if (i === 0) {
           this.trace_path.move_to(this.current_point.x, this.current_point.y);

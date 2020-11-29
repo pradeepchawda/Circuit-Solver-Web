@@ -255,7 +255,7 @@ class ElementOptions {
     holder_y = edit_y0.split(',');
     let points = [];
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
@@ -264,7 +264,7 @@ class ElementOptions {
       );
     }
     this.edit_path0.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.edit_path0.move_to(points[i].x, points[i].y);
       } else {
@@ -276,7 +276,7 @@ class ElementOptions {
     holder_x = edit_x1.split(',');
     holder_y = edit_y1.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(
         new PointF(
           rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
@@ -285,7 +285,7 @@ class ElementOptions {
       );
     }
     this.edit_path1.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.edit_path1.move_to(points[i].x, points[i].y);
       } else {
@@ -306,11 +306,11 @@ class ElementOptions {
     holder_y = trash_y0.split(',');
     let points = [];
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.trash_path0.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.trash_path0.move_to(points[i].x, points[i].y);
       } else {
@@ -322,11 +322,11 @@ class ElementOptions {
     holder_x = trash_x1.split(',');
     holder_y = trash_y1.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.trash_path1.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.trash_path1.move_to(points[i].x, points[i].y);
       } else {
@@ -347,11 +347,11 @@ class ElementOptions {
     holder_y = flip_y0.split(',');
     let points = [];
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.flip_path0.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.flip_path0.move_to(points[i].x, points[i].y);
       } else {
@@ -363,11 +363,11 @@ class ElementOptions {
     holder_x = flip_x1.split(',');
     holder_y = flip_y1.split(',');
     points = [];
-    for (var i = 0; i < holder_x.length; i++) {
+    for (var i: number = 0; i < holder_x.length; i++) {
       points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
     }
     this.flip_path1.reset();
-    for (var i = 0; i < points.length; i++) {
+    for (var i: number = 0; i < points.length; i++) {
       if (i === 0) {
         this.flip_path1.move_to(points[i].x, points[i].y);
       } else {

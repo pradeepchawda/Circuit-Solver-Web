@@ -314,205 +314,205 @@ used to determine the best time-step for the system. */
     this.TIME_DATA.splice(0, this.TIME_DATA.length);
     /* #INSERT_GENERATE_PUSH_TIME_DATA# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < resistors.length; i++) {
+    for (var i: number = 0; i < resistors.length; i++) {
       this.TIME_DATA.push(resistors[i].time_data());
     }
-    for (var i = 0; i < capacitors.length; i++) {
+    for (var i: number = 0; i < capacitors.length; i++) {
       this.TIME_DATA.push(capacitors[i].time_data());
     }
-    for (var i = 0; i < inductors.length; i++) {
+    for (var i: number = 0; i < inductors.length; i++) {
       this.TIME_DATA.push(inductors[i].time_data());
     }
-    for (var i = 0; i < grounds.length; i++) {
+    for (var i: number = 0; i < grounds.length; i++) {
       this.TIME_DATA.push(grounds[i].time_data());
     }
-    for (var i = 0; i < dcsources.length; i++) {
+    for (var i: number = 0; i < dcsources.length; i++) {
       this.TIME_DATA.push(dcsources[i].time_data());
     }
-    for (var i = 0; i < dccurrents.length; i++) {
+    for (var i: number = 0; i < dccurrents.length; i++) {
       this.TIME_DATA.push(dccurrents[i].time_data());
     }
-    for (var i = 0; i < acsources.length; i++) {
+    for (var i: number = 0; i < acsources.length; i++) {
       this.TIME_DATA.push(acsources[i].time_data());
     }
-    for (var i = 0; i < accurrents.length; i++) {
+    for (var i: number = 0; i < accurrents.length; i++) {
       this.TIME_DATA.push(accurrents[i].time_data());
     }
-    for (var i = 0; i < squarewaves.length; i++) {
+    for (var i: number = 0; i < squarewaves.length; i++) {
       this.TIME_DATA.push(squarewaves[i].time_data());
     }
-    for (var i = 0; i < sawwaves.length; i++) {
+    for (var i: number = 0; i < sawwaves.length; i++) {
       this.TIME_DATA.push(sawwaves[i].time_data());
     }
-    for (var i = 0; i < trianglewaves.length; i++) {
+    for (var i: number = 0; i < trianglewaves.length; i++) {
       this.TIME_DATA.push(trianglewaves[i].time_data());
     }
-    for (var i = 0; i < constants.length; i++) {
+    for (var i: number = 0; i < constants.length; i++) {
       this.TIME_DATA.push(constants[i].time_data());
     }
-    for (var i = 0; i < wires.length; i++) {
+    for (var i: number = 0; i < wires.length; i++) {
       this.TIME_DATA.push(wires[i].time_data());
     }
-    for (var i = 0; i < nets.length; i++) {
+    for (var i: number = 0; i < nets.length; i++) {
       this.TIME_DATA.push(nets[i].time_data());
     }
-    for (var i = 0; i < notes.length; i++) {
+    for (var i: number = 0; i < notes.length; i++) {
       this.TIME_DATA.push(notes[i].time_data());
     }
-    for (var i = 0; i < rails.length; i++) {
+    for (var i: number = 0; i < rails.length; i++) {
       this.TIME_DATA.push(rails[i].time_data());
     }
-    for (var i = 0; i < voltmeters.length; i++) {
+    for (var i: number = 0; i < voltmeters.length; i++) {
       this.TIME_DATA.push(voltmeters[i].time_data());
     }
-    for (var i = 0; i < ohmmeters.length; i++) {
+    for (var i: number = 0; i < ohmmeters.length; i++) {
       this.TIME_DATA.push(ohmmeters[i].time_data());
     }
-    for (var i = 0; i < ammeters.length; i++) {
+    for (var i: number = 0; i < ammeters.length; i++) {
       this.TIME_DATA.push(ammeters[i].time_data());
     }
-    for (var i = 0; i < wattmeters.length; i++) {
+    for (var i: number = 0; i < wattmeters.length; i++) {
       this.TIME_DATA.push(wattmeters[i].time_data());
     }
-    for (var i = 0; i < fuses.length; i++) {
+    for (var i: number = 0; i < fuses.length; i++) {
       this.TIME_DATA.push(fuses[i].time_data());
     }
-    for (var i = 0; i < spsts.length; i++) {
+    for (var i: number = 0; i < spsts.length; i++) {
       this.TIME_DATA.push(spsts[i].time_data());
     }
-    for (var i = 0; i < spdts.length; i++) {
+    for (var i: number = 0; i < spdts.length; i++) {
       this.TIME_DATA.push(spdts[i].time_data());
     }
-    for (var i = 0; i < nots.length; i++) {
+    for (var i: number = 0; i < nots.length; i++) {
       this.TIME_DATA.push(nots[i].time_data());
     }
-    for (var i = 0; i < diodes.length; i++) {
+    for (var i: number = 0; i < diodes.length; i++) {
       this.TIME_DATA.push(diodes[i].time_data());
     }
-    for (var i = 0; i < leds.length; i++) {
+    for (var i: number = 0; i < leds.length; i++) {
       this.TIME_DATA.push(leds[i].time_data());
     }
-    for (var i = 0; i < zeners.length; i++) {
+    for (var i: number = 0; i < zeners.length; i++) {
       this.TIME_DATA.push(zeners[i].time_data());
     }
-    for (var i = 0; i < potentiometers.length; i++) {
+    for (var i: number = 0; i < potentiometers.length; i++) {
       this.TIME_DATA.push(potentiometers[i].time_data());
     }
-    for (var i = 0; i < ands.length; i++) {
+    for (var i: number = 0; i < ands.length; i++) {
       this.TIME_DATA.push(ands[i].time_data());
     }
-    for (var i = 0; i < ors.length; i++) {
+    for (var i: number = 0; i < ors.length; i++) {
       this.TIME_DATA.push(ors[i].time_data());
     }
-    for (var i = 0; i < nands.length; i++) {
+    for (var i: number = 0; i < nands.length; i++) {
       this.TIME_DATA.push(nands[i].time_data());
     }
-    for (var i = 0; i < nors.length; i++) {
+    for (var i: number = 0; i < nors.length; i++) {
       this.TIME_DATA.push(nors[i].time_data());
     }
-    for (var i = 0; i < xors.length; i++) {
+    for (var i: number = 0; i < xors.length; i++) {
       this.TIME_DATA.push(xors[i].time_data());
     }
-    for (var i = 0; i < xnors.length; i++) {
+    for (var i: number = 0; i < xnors.length; i++) {
       this.TIME_DATA.push(xnors[i].time_data());
     }
-    for (var i = 0; i < dffs.length; i++) {
+    for (var i: number = 0; i < dffs.length; i++) {
       this.TIME_DATA.push(dffs[i].time_data());
     }
-    for (var i = 0; i < vsats.length; i++) {
+    for (var i: number = 0; i < vsats.length; i++) {
       this.TIME_DATA.push(vsats[i].time_data());
     }
-    for (var i = 0; i < adders.length; i++) {
+    for (var i: number = 0; i < adders.length; i++) {
       this.TIME_DATA.push(adders[i].time_data());
     }
-    for (var i = 0; i < subtractors.length; i++) {
+    for (var i: number = 0; i < subtractors.length; i++) {
       this.TIME_DATA.push(subtractors[i].time_data());
     }
-    for (var i = 0; i < multipliers.length; i++) {
+    for (var i: number = 0; i < multipliers.length; i++) {
       this.TIME_DATA.push(multipliers[i].time_data());
     }
-    for (var i = 0; i < dividers.length; i++) {
+    for (var i: number = 0; i < dividers.length; i++) {
       this.TIME_DATA.push(dividers[i].time_data());
     }
-    for (var i = 0; i < gains.length; i++) {
+    for (var i: number = 0; i < gains.length; i++) {
       this.TIME_DATA.push(gains[i].time_data());
     }
-    for (var i = 0; i < absvals.length; i++) {
+    for (var i: number = 0; i < absvals.length; i++) {
       this.TIME_DATA.push(absvals[i].time_data());
     }
-    for (var i = 0; i < vcsws.length; i++) {
+    for (var i: number = 0; i < vcsws.length; i++) {
       this.TIME_DATA.push(vcsws[i].time_data());
     }
-    for (var i = 0; i < vcvss.length; i++) {
+    for (var i: number = 0; i < vcvss.length; i++) {
       this.TIME_DATA.push(vcvss[i].time_data());
     }
-    for (var i = 0; i < vccss.length; i++) {
+    for (var i: number = 0; i < vccss.length; i++) {
       this.TIME_DATA.push(vccss[i].time_data());
     }
-    for (var i = 0; i < cccss.length; i++) {
+    for (var i: number = 0; i < cccss.length; i++) {
       this.TIME_DATA.push(cccss[i].time_data());
     }
-    for (var i = 0; i < ccvss.length; i++) {
+    for (var i: number = 0; i < ccvss.length; i++) {
       this.TIME_DATA.push(ccvss[i].time_data());
     }
-    for (var i = 0; i < opamps.length; i++) {
+    for (var i: number = 0; i < opamps.length; i++) {
       this.TIME_DATA.push(opamps[i].time_data());
     }
-    for (var i = 0; i < nmosfets.length; i++) {
+    for (var i: number = 0; i < nmosfets.length; i++) {
       this.TIME_DATA.push(nmosfets[i].time_data());
     }
-    for (var i = 0; i < pmosfets.length; i++) {
+    for (var i: number = 0; i < pmosfets.length; i++) {
       this.TIME_DATA.push(pmosfets[i].time_data());
     }
-    for (var i = 0; i < npns.length; i++) {
+    for (var i: number = 0; i < npns.length; i++) {
       this.TIME_DATA.push(npns[i].time_data());
     }
-    for (var i = 0; i < pnps.length; i++) {
+    for (var i: number = 0; i < pnps.length; i++) {
       this.TIME_DATA.push(pnps[i].time_data());
     }
-    for (var i = 0; i < adcs.length; i++) {
+    for (var i: number = 0; i < adcs.length; i++) {
       this.TIME_DATA.push(adcs[i].time_data());
     }
-    for (var i = 0; i < dacs.length; i++) {
+    for (var i: number = 0; i < dacs.length; i++) {
       this.TIME_DATA.push(dacs[i].time_data());
     }
-    for (var i = 0; i < sandhs.length; i++) {
+    for (var i: number = 0; i < sandhs.length; i++) {
       this.TIME_DATA.push(sandhs[i].time_data());
     }
-    for (var i = 0; i < pwms.length; i++) {
+    for (var i: number = 0; i < pwms.length; i++) {
       this.TIME_DATA.push(pwms[i].time_data());
     }
-    for (var i = 0; i < integrators.length; i++) {
+    for (var i: number = 0; i < integrators.length; i++) {
       this.TIME_DATA.push(integrators[i].time_data());
     }
-    for (var i = 0; i < differentiators.length; i++) {
+    for (var i: number = 0; i < differentiators.length; i++) {
       this.TIME_DATA.push(differentiators[i].time_data());
     }
-    for (var i = 0; i < lowpasses.length; i++) {
+    for (var i: number = 0; i < lowpasses.length; i++) {
       this.TIME_DATA.push(lowpasses[i].time_data());
     }
-    for (var i = 0; i < highpasses.length; i++) {
+    for (var i: number = 0; i < highpasses.length; i++) {
       this.TIME_DATA.push(highpasses[i].time_data());
     }
-    for (var i = 0; i < relays.length; i++) {
+    for (var i: number = 0; i < relays.length; i++) {
       this.TIME_DATA.push(relays[i].time_data());
     }
-    for (var i = 0; i < pids.length; i++) {
+    for (var i: number = 0; i < pids.length; i++) {
       this.TIME_DATA.push(pids[i].time_data());
     }
-    for (var i = 0; i < luts.length; i++) {
+    for (var i: number = 0; i < luts.length; i++) {
       this.TIME_DATA.push(luts[i].time_data());
     }
-    for (var i = 0; i < vcrs.length; i++) {
+    for (var i: number = 0; i < vcrs.length; i++) {
       this.TIME_DATA.push(vcrs[i].time_data());
     }
-    for (var i = 0; i < grts.length; i++) {
+    for (var i: number = 0; i < grts.length; i++) {
       this.TIME_DATA.push(grts[i].time_data());
     }
-    for (var i = 0; i < tptzs.length; i++) {
+    for (var i: number = 0; i < tptzs.length; i++) {
       this.TIME_DATA.push(tptzs[i].time_data());
     }
-    for (var i = 0; i < transformers.length; i++) {
+    for (var i: number = 0; i < transformers.length; i++) {
       this.TIME_DATA.push(transformers[i].time_data());
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -535,7 +535,7 @@ used to determine the best time-step for the system. */
     let max_cap_updated: boolean = false;
     let min_ind_updated: boolean = false;
     let max_ind_updated: boolean = false;
-    for (var i = 0; i < this.TIME_DATA.length; i++) {
+    for (var i: number = 0; i < this.TIME_DATA.length; i++) {
       if (this.TIME_DATA[i]['Resistance'] > 0) {
         parallel_resistance += global.copy(1.0 / this.TIME_DATA[i]['Resistance']);
         series_resistance += global.copy(this.TIME_DATA[i]['Resistance']);
@@ -668,205 +668,205 @@ used to determine the best time-step for the system. */
   reset_elements(): void {
     /* #INSERT_GENERATE_RESET_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < resistors.length; i++) {
+    for (var i: number = 0; i < resistors.length; i++) {
       resistors[i].reset();
     }
-    for (var i = 0; i < capacitors.length; i++) {
+    for (var i: number = 0; i < capacitors.length; i++) {
       capacitors[i].reset();
     }
-    for (var i = 0; i < inductors.length; i++) {
+    for (var i: number = 0; i < inductors.length; i++) {
       inductors[i].reset();
     }
-    for (var i = 0; i < grounds.length; i++) {
+    for (var i: number = 0; i < grounds.length; i++) {
       grounds[i].reset();
     }
-    for (var i = 0; i < dcsources.length; i++) {
+    for (var i: number = 0; i < dcsources.length; i++) {
       dcsources[i].reset();
     }
-    for (var i = 0; i < dccurrents.length; i++) {
+    for (var i: number = 0; i < dccurrents.length; i++) {
       dccurrents[i].reset();
     }
-    for (var i = 0; i < acsources.length; i++) {
+    for (var i: number = 0; i < acsources.length; i++) {
       acsources[i].reset();
     }
-    for (var i = 0; i < accurrents.length; i++) {
+    for (var i: number = 0; i < accurrents.length; i++) {
       accurrents[i].reset();
     }
-    for (var i = 0; i < squarewaves.length; i++) {
+    for (var i: number = 0; i < squarewaves.length; i++) {
       squarewaves[i].reset();
     }
-    for (var i = 0; i < sawwaves.length; i++) {
+    for (var i: number = 0; i < sawwaves.length; i++) {
       sawwaves[i].reset();
     }
-    for (var i = 0; i < trianglewaves.length; i++) {
+    for (var i: number = 0; i < trianglewaves.length; i++) {
       trianglewaves[i].reset();
     }
-    for (var i = 0; i < constants.length; i++) {
+    for (var i: number = 0; i < constants.length; i++) {
       constants[i].reset();
     }
-    for (var i = 0; i < wires.length; i++) {
+    for (var i: number = 0; i < wires.length; i++) {
       wires[i].reset();
     }
-    for (var i = 0; i < nets.length; i++) {
+    for (var i: number = 0; i < nets.length; i++) {
       nets[i].reset();
     }
-    for (var i = 0; i < notes.length; i++) {
+    for (var i: number = 0; i < notes.length; i++) {
       notes[i].reset();
     }
-    for (var i = 0; i < rails.length; i++) {
+    for (var i: number = 0; i < rails.length; i++) {
       rails[i].reset();
     }
-    for (var i = 0; i < voltmeters.length; i++) {
+    for (var i: number = 0; i < voltmeters.length; i++) {
       voltmeters[i].reset();
     }
-    for (var i = 0; i < ohmmeters.length; i++) {
+    for (var i: number = 0; i < ohmmeters.length; i++) {
       ohmmeters[i].reset();
     }
-    for (var i = 0; i < ammeters.length; i++) {
+    for (var i: number = 0; i < ammeters.length; i++) {
       ammeters[i].reset();
     }
-    for (var i = 0; i < wattmeters.length; i++) {
+    for (var i: number = 0; i < wattmeters.length; i++) {
       wattmeters[i].reset();
     }
-    for (var i = 0; i < fuses.length; i++) {
+    for (var i: number = 0; i < fuses.length; i++) {
       fuses[i].reset();
     }
-    for (var i = 0; i < spsts.length; i++) {
+    for (var i: number = 0; i < spsts.length; i++) {
       spsts[i].reset();
     }
-    for (var i = 0; i < spdts.length; i++) {
+    for (var i: number = 0; i < spdts.length; i++) {
       spdts[i].reset();
     }
-    for (var i = 0; i < nots.length; i++) {
+    for (var i: number = 0; i < nots.length; i++) {
       nots[i].reset();
     }
-    for (var i = 0; i < diodes.length; i++) {
+    for (var i: number = 0; i < diodes.length; i++) {
       diodes[i].reset();
     }
-    for (var i = 0; i < leds.length; i++) {
+    for (var i: number = 0; i < leds.length; i++) {
       leds[i].reset();
     }
-    for (var i = 0; i < zeners.length; i++) {
+    for (var i: number = 0; i < zeners.length; i++) {
       zeners[i].reset();
     }
-    for (var i = 0; i < potentiometers.length; i++) {
+    for (var i: number = 0; i < potentiometers.length; i++) {
       potentiometers[i].reset();
     }
-    for (var i = 0; i < ands.length; i++) {
+    for (var i: number = 0; i < ands.length; i++) {
       ands[i].reset();
     }
-    for (var i = 0; i < ors.length; i++) {
+    for (var i: number = 0; i < ors.length; i++) {
       ors[i].reset();
     }
-    for (var i = 0; i < nands.length; i++) {
+    for (var i: number = 0; i < nands.length; i++) {
       nands[i].reset();
     }
-    for (var i = 0; i < nors.length; i++) {
+    for (var i: number = 0; i < nors.length; i++) {
       nors[i].reset();
     }
-    for (var i = 0; i < xors.length; i++) {
+    for (var i: number = 0; i < xors.length; i++) {
       xors[i].reset();
     }
-    for (var i = 0; i < xnors.length; i++) {
+    for (var i: number = 0; i < xnors.length; i++) {
       xnors[i].reset();
     }
-    for (var i = 0; i < dffs.length; i++) {
+    for (var i: number = 0; i < dffs.length; i++) {
       dffs[i].reset();
     }
-    for (var i = 0; i < vsats.length; i++) {
+    for (var i: number = 0; i < vsats.length; i++) {
       vsats[i].reset();
     }
-    for (var i = 0; i < adders.length; i++) {
+    for (var i: number = 0; i < adders.length; i++) {
       adders[i].reset();
     }
-    for (var i = 0; i < subtractors.length; i++) {
+    for (var i: number = 0; i < subtractors.length; i++) {
       subtractors[i].reset();
     }
-    for (var i = 0; i < multipliers.length; i++) {
+    for (var i: number = 0; i < multipliers.length; i++) {
       multipliers[i].reset();
     }
-    for (var i = 0; i < dividers.length; i++) {
+    for (var i: number = 0; i < dividers.length; i++) {
       dividers[i].reset();
     }
-    for (var i = 0; i < gains.length; i++) {
+    for (var i: number = 0; i < gains.length; i++) {
       gains[i].reset();
     }
-    for (var i = 0; i < absvals.length; i++) {
+    for (var i: number = 0; i < absvals.length; i++) {
       absvals[i].reset();
     }
-    for (var i = 0; i < vcsws.length; i++) {
+    for (var i: number = 0; i < vcsws.length; i++) {
       vcsws[i].reset();
     }
-    for (var i = 0; i < vcvss.length; i++) {
+    for (var i: number = 0; i < vcvss.length; i++) {
       vcvss[i].reset();
     }
-    for (var i = 0; i < vccss.length; i++) {
+    for (var i: number = 0; i < vccss.length; i++) {
       vccss[i].reset();
     }
-    for (var i = 0; i < cccss.length; i++) {
+    for (var i: number = 0; i < cccss.length; i++) {
       cccss[i].reset();
     }
-    for (var i = 0; i < ccvss.length; i++) {
+    for (var i: number = 0; i < ccvss.length; i++) {
       ccvss[i].reset();
     }
-    for (var i = 0; i < opamps.length; i++) {
+    for (var i: number = 0; i < opamps.length; i++) {
       opamps[i].reset();
     }
-    for (var i = 0; i < nmosfets.length; i++) {
+    for (var i: number = 0; i < nmosfets.length; i++) {
       nmosfets[i].reset();
     }
-    for (var i = 0; i < pmosfets.length; i++) {
+    for (var i: number = 0; i < pmosfets.length; i++) {
       pmosfets[i].reset();
     }
-    for (var i = 0; i < npns.length; i++) {
+    for (var i: number = 0; i < npns.length; i++) {
       npns[i].reset();
     }
-    for (var i = 0; i < pnps.length; i++) {
+    for (var i: number = 0; i < pnps.length; i++) {
       pnps[i].reset();
     }
-    for (var i = 0; i < adcs.length; i++) {
+    for (var i: number = 0; i < adcs.length; i++) {
       adcs[i].reset();
     }
-    for (var i = 0; i < dacs.length; i++) {
+    for (var i: number = 0; i < dacs.length; i++) {
       dacs[i].reset();
     }
-    for (var i = 0; i < sandhs.length; i++) {
+    for (var i: number = 0; i < sandhs.length; i++) {
       sandhs[i].reset();
     }
-    for (var i = 0; i < pwms.length; i++) {
+    for (var i: number = 0; i < pwms.length; i++) {
       pwms[i].reset();
     }
-    for (var i = 0; i < integrators.length; i++) {
+    for (var i: number = 0; i < integrators.length; i++) {
       integrators[i].reset();
     }
-    for (var i = 0; i < differentiators.length; i++) {
+    for (var i: number = 0; i < differentiators.length; i++) {
       differentiators[i].reset();
     }
-    for (var i = 0; i < lowpasses.length; i++) {
+    for (var i: number = 0; i < lowpasses.length; i++) {
       lowpasses[i].reset();
     }
-    for (var i = 0; i < highpasses.length; i++) {
+    for (var i: number = 0; i < highpasses.length; i++) {
       highpasses[i].reset();
     }
-    for (var i = 0; i < relays.length; i++) {
+    for (var i: number = 0; i < relays.length; i++) {
       relays[i].reset();
     }
-    for (var i = 0; i < pids.length; i++) {
+    for (var i: number = 0; i < pids.length; i++) {
       pids[i].reset();
     }
-    for (var i = 0; i < luts.length; i++) {
+    for (var i: number = 0; i < luts.length; i++) {
       luts[i].reset();
     }
-    for (var i = 0; i < vcrs.length; i++) {
+    for (var i: number = 0; i < vcrs.length; i++) {
       vcrs[i].reset();
     }
-    for (var i = 0; i < grts.length; i++) {
+    for (var i: number = 0; i < grts.length; i++) {
       grts[i].reset();
     }
-    for (var i = 0; i < tptzs.length; i++) {
+    for (var i: number = 0; i < tptzs.length; i++) {
       tptzs[i].reset();
     }
-    for (var i = 0; i < transformers.length; i++) {
+    for (var i: number = 0; i < transformers.length; i++) {
       transformers[i].reset();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -874,25 +874,25 @@ used to determine the best time-step for the system. */
   reset_memory_devices(): void {
     /* #INSERT_GENERATE_RESET_MEMORY_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < fuses.length; i++) {
+    for (var i: number = 0; i < fuses.length; i++) {
       fuses[i].reset_fuse();
     }
-    for (var i = 0; i < dffs.length; i++) {
+    for (var i: number = 0; i < dffs.length; i++) {
       dffs[i].reset_dff();
     }
-    for (var i = 0; i < sandhs.length; i++) {
+    for (var i: number = 0; i < sandhs.length; i++) {
       sandhs[i].reset_samplers();
     }
-    for (var i = 0; i < lowpasses.length; i++) {
+    for (var i: number = 0; i < lowpasses.length; i++) {
       lowpasses[i].reset_lowpass();
     }
-    for (var i = 0; i < highpasses.length; i++) {
+    for (var i: number = 0; i < highpasses.length; i++) {
       highpasses[i].reset_highpass();
     }
-    for (var i = 0; i < pids.length; i++) {
+    for (var i: number = 0; i < pids.length; i++) {
       pids[i].reset_pid();
     }
-    for (var i = 0; i < tptzs.length; i++) {
+    for (var i: number = 0; i < tptzs.length; i++) {
       tptzs[i].reset_tptz();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -900,13 +900,13 @@ used to determine the best time-step for the system. */
   reset_reactive_elements(): void {
     /* #INSERT_GENERATE_RESET_REACTIVE_ELEMENTS_TEMPLATE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < capacitors.length; i++) {
+    for (var i: number = 0; i < capacitors.length; i++) {
       capacitors[i].reset_capacitor();
     }
-    for (var i = 0; i < inductors.length; i++) {
+    for (var i: number = 0; i < inductors.length; i++) {
       inductors[i].reset_inductor();
     }
-    for (var i = 0; i < relays.length; i++) {
+    for (var i: number = 0; i < relays.length; i++) {
       relays[i].reset_relay();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -914,25 +914,25 @@ used to determine the best time-step for the system. */
   reset_non_linear_elements(): void {
     /* #INSERT_GENERATE_RESET_NON_LINEAR_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < diodes.length; i++) {
+    for (var i: number = 0; i < diodes.length; i++) {
       diodes[i].reset_diode();
     }
-    for (var i = 0; i < leds.length; i++) {
+    for (var i: number = 0; i < leds.length; i++) {
       leds[i].reset_led();
     }
-    for (var i = 0; i < zeners.length; i++) {
+    for (var i: number = 0; i < zeners.length; i++) {
       zeners[i].reset_zener();
     }
-    for (var i = 0; i < nmosfets.length; i++) {
+    for (var i: number = 0; i < nmosfets.length; i++) {
       nmosfets[i].reset_nmosfet();
     }
-    for (var i = 0; i < pmosfets.length; i++) {
+    for (var i: number = 0; i < pmosfets.length; i++) {
       pmosfets[i].reset_pmosfet();
     }
-    for (var i = 0; i < npns.length; i++) {
+    for (var i: number = 0; i < npns.length; i++) {
       npns[i].reset_npn();
     }
-    for (var i = 0; i < pnps.length; i++) {
+    for (var i: number = 0; i < pnps.length; i++) {
       pnps[i].reset_pnp();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -941,16 +941,16 @@ used to determine the best time-step for the system. */
     graph_window.reset();
     /* #INSERT_GENERATE_RESET_METER_TRACE# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < voltmeters.length; i++) {
+    for (var i: number = 0; i < voltmeters.length; i++) {
       voltmeters[i].reset_trace();
     }
-    for (var i = 0; i < ohmmeters.length; i++) {
+    for (var i: number = 0; i < ohmmeters.length; i++) {
       ohmmeters[i].reset_trace();
     }
-    for (var i = 0; i < ammeters.length; i++) {
+    for (var i: number = 0; i < ammeters.length; i++) {
       ammeters[i].reset_trace();
     }
-    for (var i = 0; i < wattmeters.length; i++) {
+    for (var i: number = 0; i < wattmeters.length; i++) {
       wattmeters[i].reset_trace();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -959,16 +959,16 @@ used to determine the best time-step for the system. */
   clear_meter_values(): void {
     /* #INSERT_GENERATE_RESET_METER# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < voltmeters.length; i++) {
+    for (var i: number = 0; i < voltmeters.length; i++) {
       voltmeters[i].reset_meter();
     }
-    for (var i = 0; i < ohmmeters.length; i++) {
+    for (var i: number = 0; i < ohmmeters.length; i++) {
       ohmmeters[i].reset_meter();
     }
-    for (var i = 0; i < ammeters.length; i++) {
+    for (var i: number = 0; i < ammeters.length; i++) {
       ammeters[i].reset_meter();
     }
-    for (var i = 0; i < wattmeters.length; i++) {
+    for (var i: number = 0; i < wattmeters.length; i++) {
       wattmeters[i].reset_meter();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -982,7 +982,7 @@ used to determine the best time-step for the system. */
   }
   /* Check to see if the LED's should be on! */
   led_turn_on_check(): void {
-    for (var i = 0; i < leds.length; i++) {
+    for (var i: number = 0; i < leds.length; i++) {
       leds[i].turn_on_check();
     }
   }
@@ -995,8 +995,8 @@ used to determine the best time-step for the system. */
         global.I_MAX_ERR = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
         this.FIRST_ERROR_CHECK = false;
       } else {
-        for (var i = 0; i < global.V_MAX_ERR.length; i++) {
-          for (var j = 0; j < global.V_MAX_ERR[0].length; j++) {
+        for (var i: number = 0; i < global.V_MAX_ERR.length; i++) {
+          for (var j: number = 0; j < global.V_MAX_ERR[0].length; j++) {
             global.V_MAX_ERR[i][j] = 0;
             global.I_MAX_ERR[i][j] = 0;
           }
@@ -1006,14 +1006,14 @@ used to determine the best time-step for the system. */
       global.I_LOCKED = false;
       global.V_CONV = false;
       global.I_CONV = false;
-      for (var i = 0; i < matrix_x.length; i++) {
+      for (var i: number = 0; i < matrix_x.length; i++) {
         if (i < this.NODE_SIZE) {
           global.V_MAX_ERR[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
         } else {
           global.I_MAX_ERR[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
         }
       }
-      for (var i = 0; i < matrix_x.length; i++) {
+      for (var i: number = 0; i < matrix_x.length; i++) {
         if (i < this.NODE_SIZE) {
           if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.V_MAX_ERR[i][0] + global.settings.VNTOL) {
             if (!global.V_LOCKED) {
@@ -1047,49 +1047,49 @@ used to determine the best time-step for the system. */
     let convergence: boolean = true;
     /* #INSERT_GENERATE_NON_LINEAR_CHECK# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < diodes.length; i++) {
+    for (var i: number = 0; i < diodes.length; i++) {
       diodes[i].update();
 
       if (convergence) {
         convergence = diodes[i].is_converged();
       }
     }
-    for (var i = 0; i < leds.length; i++) {
+    for (var i: number = 0; i < leds.length; i++) {
       leds[i].update();
 
       if (convergence) {
         convergence = leds[i].is_converged();
       }
     }
-    for (var i = 0; i < zeners.length; i++) {
+    for (var i: number = 0; i < zeners.length; i++) {
       zeners[i].update();
 
       if (convergence) {
         convergence = zeners[i].is_converged();
       }
     }
-    for (var i = 0; i < nmosfets.length; i++) {
+    for (var i: number = 0; i < nmosfets.length; i++) {
       nmosfets[i].update();
 
       if (convergence) {
         convergence = nmosfets[i].is_converged();
       }
     }
-    for (var i = 0; i < pmosfets.length; i++) {
+    for (var i: number = 0; i < pmosfets.length; i++) {
       pmosfets[i].update();
 
       if (convergence) {
         convergence = pmosfets[i].is_converged();
       }
     }
-    for (var i = 0; i < npns.length; i++) {
+    for (var i: number = 0; i < npns.length; i++) {
       npns[i].update();
 
       if (convergence) {
         convergence = npns[i].is_converged();
       }
     }
-    for (var i = 0; i < pnps.length; i++) {
+    for (var i: number = 0; i < pnps.length; i++) {
       pnps[i].update();
 
       if (convergence) {
@@ -1106,13 +1106,13 @@ used to determine the best time-step for the system. */
   update_reactive_elements(): void {
     /* #INSERT_GENERATE_UPDATE_REACTIVE_ELEMENTS_TEMPLATE_II# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i = 0; i < capacitors.length; i++) {
+    for (var i: number = 0; i < capacitors.length; i++) {
       capacitors[i].update_capacitor();
     }
-    for (var i = 0; i < inductors.length; i++) {
+    for (var i: number = 0; i < inductors.length; i++) {
       inductors[i].update_inductor();
     }
-    for (var i = 0; i < relays.length; i++) {
+    for (var i: number = 0; i < relays.length; i++) {
       relays[i].update_relay();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -1162,17 +1162,17 @@ used to determine the best time-step for the system. */
         matrix_z = linear_algebra.matrix(this.NODE_SIZE + this.OFFSET, 1);
         this.FIRST_MATRIX_BUILD = false;
       } else {
-        for (var i = 0; i < matrix_z.length; i++) {
+        for (var i: number = 0; i < matrix_z.length; i++) {
           matrix_z[i][0] = 0;
         }
-        for (var i = 0; i < matrix_a.length; i++) {
-          for (var j = 0; j < matrix_a[0].length; j++) {
+        for (var i: number = 0; i < matrix_a.length; i++) {
+          for (var j: number = 0; j < matrix_a[0].length; j++) {
             matrix_a[i][j] = 0;
           }
         }
       }
       /* Sprinkle some resistance in the diagonal to avoid a singular matrix. */
-      linear_algebra.set_matrix_diagonal(matrix_a, global.settings.INV_R_MAX, this.NODE_SIZE);
+      matrix_a = linear_algebra.set_matrix_diagonal(matrix_a, global.settings.INV_R_MAX, this.NODE_SIZE);
       /* Stamp all the elements into the matrix! */
       engine_functions.stamp_elements();
       /* Copy the x-matrix! */
@@ -1184,14 +1184,14 @@ used to determine the best time-step for the system. */
           this.FIRST_X_MATRIX_COPY = false;
         }
       } else {
-        for (var i = 0; i < matrix_x.length; i++) {
+        for (var i: number = 0; i < matrix_x.length; i++) {
           matrix_x_copy[i][0] = matrix_x[i][0];
         }
       }
       /* Solve the matrix! */
       matrix_x = linear_algebra.lup_solve(matrix_a, matrix_z);
 
-      for (var i = 0; i < matrix_x.length; i++) {
+      for (var i: number = 0; i < matrix_x.length; i++) {
         if (isNaN(matrix_x[i][0])) {
           /* Terminate the simulation */
           this.CONTINUE_SOLVING = false;
@@ -1227,36 +1227,6 @@ used to determine the best time-step for the system. */
   }
   /* Handles furture proofing of system settings. */
   patch(): void {
-    if (global.settings.WIRE_RESISTANCE != 1e-3) {
-      global.settings.WIRE_RESISTANCE = 1e-3;
-    }
-    if (global.settings.ITL1 != 24) {
-      global.settings.ITL1 = 24;
-    }
-    if (global.settings.ITL4 != 96) {
-      global.settings.ITL4 = 96;
-    }
-    if (global.settings.RELTOL != 1e-1) {
-      /* The relative tolerance of the simulation error */
-      global.settings.RELTOL = 1e-1;
-    }
-    if (global.settings.ABSTOL != 1e-1) {
-      /* The absolute tolerance of the simulation error - Usually currents*/
-      global.settings.ABSTOL = 1e-1;
-    }
-    if (global.settings.VNTOL != 1e-1) {
-      /* The voltage tolerance of the simmulation error. */
-      global.settings.VNTOL = 1e-1;
-    }
-    if (global.settings.TOLERANCE != 1e-1) {
-      /* The tolerance during operating point analysis. */
-      global.settings.TOLERANCE = 1e-1;
-    }
-    if (global.settings.MIN_TIME_CONSTANT != 100e-9) {
-      global.settings.MIN_TIME_CONSTANT = 100e-9;
-    }
-    if (global.settings.MAX_TIME_CONSTANT != 10) {
-      global.settings.MAX_TIME_CONSTANT = 10;
-    }
+    global.settings.patch();
   }
 }

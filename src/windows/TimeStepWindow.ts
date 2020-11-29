@@ -20,71 +20,46 @@
  *
  ***********************************************************************/
 class TimeStepWindow {
-  public TITLE_HEIGHT_RATIO = 0.25;
-  public BUTTON_WIDTH_RATIO = 0.3;
-  public BUTTON_HEIGHT_RATIO = 0.25;
-  public PADDING = 0.025;
+  public TITLE_HEIGHT_RATIO: number = 0.25;
+  public BUTTON_WIDTH_RATIO: number = 0.3;
+  public BUTTON_HEIGHT_RATIO: number = 0.25;
+  public PADDING: number = 0.025;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
-  /* This paint is used for drawing the "nodes" that the component is connected to. */
-  /**
-   * [point_paint description]
-   * @type {Paint}
-   */
-  public point_paint = new Paint();
-  /* This paint is used for drawing the "text" that the component needs to display */
-  /**
-   * [text_paint description]
-   * @type {Paint}
-   */
-  public text_paint = new Paint();
-  /* This paint is used for drawing the icons that the component is comprised of. */
-  /**
-   * [hover_paint description]
-   * @type {Paint}
-   */
-  public hover_paint = new Paint();
-  /* This paint is used for drawing the "fill" that the component is comprised of. */
-  /**
-   * [bounds_paint description]
-   * @type {Paint}
-   */
-  public bounds_paint = new Paint();
-  /* This paint is used for drawing the selected portions of text. */
-  /**
-   * [select_paint description]
-   * @type {Paint}
-   */
-  public select_paint = new Paint();
-  public width = view_port.view_width * 0.15;
-  public height = view_port.view_height * 0.075;
-  public bounds = new RectF(0, 0, 0, 0);
-  public title_bounds = new Button(0, 0, 0, 0);
-  public okay_button = new Button(0, 0, 0, 0);
-  public cancel_button = new Button(0, 0, 0, 0);
-  public exit_button = new Button(0, 0, 0, 0);
-  public input_button = new Button(0, 0, 0, 0);
+  public line_paint: Paint = new Paint();
+  public point_paint: Paint = new Paint();
+  public text_paint: Paint = new Paint();
+  public hover_paint: Paint = new Paint();
+  public bounds_paint: Paint = new Paint();
+  public select_paint: Paint = new Paint();
+  public width: number = view_port.view_width * 0.15;
+  public height: number = view_port.view_height * 0.075;
+  public bounds: RectF = new RectF(0, 0, 0, 0);
+  public title_bounds: Button = new Button(0, 0, 0, 0);
+  public okay_button: Button = new Button(0, 0, 0, 0);
+  public cancel_button: Button = new Button(0, 0, 0, 0);
+  public exit_button: Button = new Button(0, 0, 0, 0);
+  public input_button: Button = new Button(0, 0, 0, 0);
   /* Controls where the insert of new characters occur. */
-  public CURSOR_POSITION = 0;
-  public SELECT_ALL = false;
+  public CURSOR_POSITION: number = 0;
+  public SELECT_ALL: boolean = false;
   /* Controls for window dragging. */
-  public OFFSET_X = 0;
-  public OFFSET_Y = 0;
-  public WINDOW_ANCHORED = true;
-  public ANCHOR_X = 0;
-  public ANCHOR_Y = 0;
+  public OFFSET_X: number = 0;
+  public OFFSET_Y: number = 0;
+  public WINDOW_ANCHORED: boolean = true;
+  public ANCHOR_X: number = 0;
+  public ANCHOR_Y: number = 0;
   /* Enforcing the system from cascading events. */
-  public first_touch_x = 0;
-  public first_touch_y = 0;
+  public first_touch_x: number = 0;
+  public first_touch_y: number = 0;
   /* Keeps track of the width of the text input. */
-  public measured_text = -1;
-  public INITIAL_CURSOR_DOWN = -1;
-  public SELECT_START = -1;
-  public SELECT_END = -1;
-  public SELECT_WIDTH = -1;
-  public SELECT_OFFSET_X = -1;
-  public MOUSE_DOWN = false;
-  public ASCENDING = false;
+  public measured_text: number = -1;
+  public INITIAL_CURSOR_DOWN: number = -1;
+  public SELECT_START: number = -1;
+  public SELECT_END: number = -1;
+  public SELECT_WIDTH: number = -1;
+  public SELECT_OFFSET_X: number = -1;
+  public MOUSE_DOWN: boolean = false;
+  public ASCENDING: boolean = false;
 
   constructor() {
     this.TITLE_HEIGHT_RATIO = 0.25;
@@ -103,10 +78,6 @@ class TimeStepWindow {
     this.line_paint.set_alpha(255);
     this.line_paint.set_paint_align(this.line_paint.align.CENTER);
     /* This paint is used for drawing the "nodes" that the component is connected to. */
-    /**
-     * [point_paint description]
-     * @type {Paint}
-     */
     this.point_paint = new Paint();
     this.point_paint.set_paint_style(this.point_paint.style.FILL);
     this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -118,10 +89,6 @@ class TimeStepWindow {
     this.point_paint.set_alpha(255);
     this.point_paint.set_paint_align(this.point_paint.align.CENTER);
     /* This paint is used for drawing the "text" that the component needs to display */
-    /**
-     * [text_paint description]
-     * @type {Paint}
-     */
     this.text_paint = new Paint();
     this.text_paint.set_paint_style(this.text_paint.style.FILL);
     this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -137,10 +104,6 @@ class TimeStepWindow {
     this.text_paint.set_alpha(255);
     this.text_paint.set_paint_align(this.text_paint.align.LEFT);
     /* This paint is used for drawing the icons that the component is comprised of. */
-    /**
-     * [hover_paint description]
-     * @type {Paint}
-     */
     this.hover_paint = new Paint();
     this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
     this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -152,10 +115,6 @@ class TimeStepWindow {
     this.hover_paint.set_alpha(192);
     this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
     /* This paint is used for drawing the "fill" that the component is comprised of. */
-    /**
-     * [bounds_paint description]
-     * @type {Paint}
-     */
     this.bounds_paint = new Paint();
     this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
     this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
@@ -167,10 +126,6 @@ class TimeStepWindow {
     this.bounds_paint.set_alpha(255);
     this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
     /* This paint is used for drawing the selected portions of text. */
-    /**
-     * [select_paint description]
-     * @type {Paint}
-     */
     this.select_paint = new Paint();
     this.select_paint.set_paint_style(this.select_paint.style.FILL);
     this.select_paint.set_paint_cap(this.select_paint.cap.ROUND);
@@ -198,15 +153,10 @@ class TimeStepWindow {
     this.title_bounds.draw_stroke = false;
     this.title_bounds.draw_fill = true;
     this.title_bounds.draw_text = false;
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
-    this.okay_button = new Button(
-      this.bounds.right - 2 * padding - 2 * width,
-      this.bounds.bottom - height - padding,
-      this.bounds.right - 2 * padding - width,
-      this.bounds.bottom - padding
-    );
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    this.okay_button = new Button(this.bounds.right - 2 * padding - 2 * width, this.bounds.bottom - height - padding, this.bounds.right - 2 * padding - width, this.bounds.bottom - padding);
     this.okay_button.text = '';
     this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
     this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
@@ -256,7 +206,7 @@ class TimeStepWindow {
     this.MOUSE_DOWN = false;
     this.ASCENDING = false;
   }
-  mouse_down() {
+  mouse_down(): void {
     if (global.FLAG_SELECT_TIMESTEP) {
       if (
         this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -272,7 +222,7 @@ class TimeStepWindow {
       this.MOUSE_DOWN = true;
     }
   }
-  mouse_move() {
+  mouse_move(): void {
     if (global.FLAG_SELECT_TIMESTEP) {
       if (!this.WINDOW_ANCHORED) {
         this.OFFSET_X = global.mouse_x - this.ANCHOR_X;
@@ -302,7 +252,7 @@ class TimeStepWindow {
       }
     }
   }
-  mouse_up() {
+  mouse_up(): void {
     if (global.FLAG_SELECT_TIMESTEP) {
       if (!global.MOUSE_KEYBOARD_LOCK) {
         if (this.WINDOW_ANCHORED) {
@@ -361,10 +311,10 @@ class TimeStepWindow {
       }
     }
   }
-  insert_cursor(is_mouse_up, is_mouse_move) {
+  insert_cursor(is_mouse_up: boolean, is_mouse_move: boolean): number {
     /* Figuring out where the cursor should go. */
-    let min = this.input_button.get_center_x() - this.measured_text * 0.5;
-    let max = this.input_button.get_center_x() + this.measured_text * 0.5;
+    let min: number = this.input_button.get_center_x() - this.measured_text * 0.5;
+    let max: number = this.input_button.get_center_x() + this.measured_text * 0.5;
     let remapped_x = global.mouse_x - this.OFFSET_X;
     let remapped_y = global.mouse_y - this.OFFSET_Y;
     if (remapped_x <= min) {
@@ -373,10 +323,10 @@ class TimeStepWindow {
     if (remapped_x >= max) {
       remapped_x = max;
     }
-    let width = max - min;
-    let char_length = (this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length)).length;
-    let percent = (remapped_x - min) / width;
-    let insert_at = Math.ceil(percent * char_length);
+    let width: number = max - min;
+    let char_length: number = (this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length)).length;
+    let percent: number = (remapped_x - min) / width;
+    let insert_at: number = Math.ceil(percent * char_length);
     if (is_mouse_up && this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
       /* Only update cursor position on mouse up. We will use mouse move to make it possible to update the highlight when the mouse is moving.*/
       if (!is_mouse_move) {
@@ -399,27 +349,25 @@ class TimeStepWindow {
     }
     return insert_at;
   }
-  key_down(key_event) {
+  key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_SELECT_TIMESTEP) {
       this.handle_keyboard(key_event);
     }
   }
-  key_up(key_event) {
+  key_up(): void {
     if (global.FLAG_SELECT_TIMESTEP) {
     }
   }
   /* Handle the user's input! */
-  handle_keyboard(key_event) {
-    if (global.is_valid_si_units(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
+  handle_keyboard(key_event: KEY_EVENT_T): void {
+    if (global.is_valid_si_units(key_event) && key_event['event'].code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
       if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
         if (!this.SELECT_ALL) {
           if (this.SELECT_START != -1 && this.SELECT_END != -1) {
             this.handle_partial_select();
           }
           this.input_button.text =
-            this.input_button.text.substring(0, this.CURSOR_POSITION) +
-            global.decode_key(key_event) +
-            this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+            this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
           if (this.CURSOR_POSITION < this.input_button.text.length) {
             this.CURSOR_POSITION++;
           }
@@ -428,9 +376,7 @@ class TimeStepWindow {
           this.CURSOR_POSITION = 0;
           this.SELECT_ALL = false;
           this.input_button.text =
-            this.input_button.text.substring(0, this.CURSOR_POSITION) +
-            global.decode_key(key_event) +
-            this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+            this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
           if (this.CURSOR_POSITION < this.input_button.text.length) {
             this.CURSOR_POSITION++;
           }
@@ -441,9 +387,7 @@ class TimeStepWindow {
           this.CURSOR_POSITION = 0;
           this.SELECT_ALL = false;
           this.input_button.text =
-            this.input_button.text.substring(0, this.CURSOR_POSITION) +
-            global.decode_key(key_event) +
-            this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+            this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
           if (this.CURSOR_POSITION < this.input_button.text.length) {
             this.CURSOR_POSITION++;
           }
@@ -459,8 +403,7 @@ class TimeStepWindow {
           if (this.SELECT_START != -1 && this.SELECT_END != -1) {
             this.handle_partial_select();
           } else {
-            this.input_button.text =
-              this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
             if (this.CURSOR_POSITION > 0) {
               this.CURSOR_POSITION--;
             }
@@ -482,8 +425,7 @@ class TimeStepWindow {
             this.handle_partial_select();
           } else {
             if (this.CURSOR_POSITION < this.input_button.text.length) {
-              this.input_button.text =
-                this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
+              this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
             }
           }
         } else {
@@ -498,8 +440,7 @@ class TimeStepWindow {
           if (this.SELECT_START != -1 && this.SELECT_END != -1) {
             this.handle_partial_select();
           }
-          this.input_button.text =
-            this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+          this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
           if (this.CURSOR_POSITION < this.input_button.text.length) {
             this.CURSOR_POSITION++;
           }
@@ -507,8 +448,7 @@ class TimeStepWindow {
           this.input_button.text = '';
           this.CURSOR_POSITION = 0;
           this.SELECT_ALL = false;
-          this.input_button.text =
-            this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+          this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
           if (this.CURSOR_POSITION < this.input_button.text.length) {
             this.CURSOR_POSITION++;
           }
@@ -520,8 +460,7 @@ class TimeStepWindow {
           if (this.SELECT_START != -1 && this.SELECT_END != -1) {
             this.handle_partial_select();
           }
-          this.input_button.text =
-            this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+          this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
           if (this.CURSOR_POSITION < this.input_button.text.length) {
             this.CURSOR_POSITION++;
           }
@@ -529,8 +468,7 @@ class TimeStepWindow {
           this.input_button.text = '';
           this.CURSOR_POSITION = 0;
           this.SELECT_ALL = false;
-          this.input_button.text =
-            this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+          this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
           if (this.CURSOR_POSITION < this.input_button.text.length) {
             this.CURSOR_POSITION++;
           }
@@ -676,10 +614,10 @@ class TimeStepWindow {
       this.CURSOR_POSITION = this.input_button.text.length;
     }
   }
-  handle_partial_select() {
+  handle_partial_select(): void {
     if (this.SELECT_START != this.SELECT_END) {
-      let min = Math.min(this.SELECT_START, this.SELECT_END);
-      let max = Math.max(this.SELECT_START, this.SELECT_END);
+      let min: number = Math.min(this.SELECT_START, this.SELECT_END);
+      let max: number = Math.max(this.SELECT_START, this.SELECT_END);
       this.input_button.text = this.input_button.text.substring(0, min) + this.input_button.text.substring(max, this.input_button.text.length);
       if (this.CURSOR_POSITION > 0) {
         this.CURSOR_POSITION = Math.min(min, max);
@@ -688,13 +626,13 @@ class TimeStepWindow {
     this.SELECT_START = -1;
     this.SELECT_END = -1;
   }
-  reset_cursor() {
+  reset_cursor(): void {
     this.CURSOR_POSITION = this.input_button.text.length;
     this.SELECT_ALL = false;
     this.SELECT_START = -1;
     this.SELECT_END = -1;
   }
-  double_click(mouse_event) {
+  double_click(): void {
     if (global.MOUSE_DOUBLE_CLICK_EVENT) {
       if (this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)) {
         this.SELECT_ALL = !this.SELECT_ALL;
@@ -707,7 +645,7 @@ class TimeStepWindow {
       }
     }
   }
-  resize_window() {
+  resize_window(): void {
     if (global.MOBILE_MODE) {
       this.width = view_port.view_width * 0.2625;
       this.height = view_port.view_height * 0.15;
@@ -718,15 +656,10 @@ class TimeStepWindow {
     this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
     this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
     this.title_bounds.resize_paint();
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
-    this.okay_button.set_bounds(
-      this.bounds.right - 2 * padding - 2 * width,
-      this.bounds.bottom - height - padding,
-      this.bounds.right - 2 * padding - width,
-      this.bounds.bottom - padding
-    );
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    this.okay_button.set_bounds(this.bounds.right - 2 * padding - 2 * width, this.bounds.bottom - height - padding, this.bounds.right - 2 * padding - width, this.bounds.bottom - padding);
     this.okay_button.resize_paint();
     this.cancel_button.set_bounds(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
     this.cancel_button.resize_paint();
@@ -758,7 +691,7 @@ class TimeStepWindow {
       }
     }
   }
-  draw_window(canvas) {
+  draw_window(canvas: GraphicsEngine): void {
     if (global.FLAG_SELECT_TIMESTEP) {
       /* Makes sure the window is always visisble. */
       if (global.MOBILE_MODE) {
@@ -781,11 +714,7 @@ class TimeStepWindow {
       );
       /* This draws the title space */
       this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-      this.title_bounds.draw_button_text(
-        canvas,
-        this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X,
-        this.title_bounds.get_center_y() + this.OFFSET_Y
-      );
+      this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
       if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
         canvas.draw_round_rect(
           this.okay_button.left + this.OFFSET_X,
@@ -809,10 +738,10 @@ class TimeStepWindow {
       }
       this.cancel_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
       this.input_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-      let text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+      let text: string = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
       canvas.draw_text(text, this.input_button.get_center_x() + this.OFFSET_X, this.input_button.get_center_y() + this.OFFSET_Y, this.input_button.text_paint);
       this.measured_text = this.input_button.text_paint.measure_text(text);
-      let adj_text = this.input_button.text;
+      let adj_text: string = this.input_button.text;
       if (this.SELECT_ALL && this.SELECT_START === -1 && this.SELECT_END === -1) {
         canvas.draw_rect3(
           this.input_button.get_center_x() + this.OFFSET_X,
@@ -822,7 +751,7 @@ class TimeStepWindow {
           this.select_paint
         );
       }
-      let cached_measured_text = this.measured_text * 0.5;
+      let cached_measured_text: number = this.measured_text * 0.5;
       if (this.SELECT_START != -1 && this.SELECT_END != -1) {
         let min = Math.min(this.SELECT_START, this.SELECT_END);
         let max = Math.max(this.SELECT_START, this.SELECT_END);
@@ -852,8 +781,8 @@ class TimeStepWindow {
           this.hover_paint
         );
       }
-      let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
-      let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
+      let width_mul_0p3636: number = this.exit_button.get_width() * 0.3636;
+      let height_mul_0p3636: number = this.exit_button.get_height() * 0.3636;
       canvas.draw_line(
         this.exit_button.left + width_mul_0p3636 + this.OFFSET_X,
         this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y,

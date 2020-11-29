@@ -70,7 +70,7 @@ class ScopeManager {
   }
   /* Check to see if a meter is in the list of entries. */
   find_entry(id: number, type: number): boolean {
-    for (var i = 0; i < this.ENTRY.length; i++) {
+    for (var i: number = 0; i < this.ENTRY.length; i++) {
       if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
         return true;
       }
@@ -79,7 +79,7 @@ class ScopeManager {
   }
   /* Grab the index of the meter is it is within the list of entries. */
   find_entry_index(id: number, type: number): number {
-    for (var i = 0; i < this.ENTRY.length; i++) {
+    for (var i: number = 0; i < this.ENTRY.length; i++) {
       if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
         return i;
       }
@@ -129,7 +129,7 @@ class ScopeManager {
     this.iteration_size = Math.max(this.met_max, this.ENTRY.length);
     this.v_side_1 = 0;
     this.v_side_2 = 0;
-    for (var i = 0; i < this.iteration_size; i++) {
+    for (var i: number = 0; i < this.iteration_size; i++) {
       if (i < this.ENTRY.length) {
         if (this.ENTRY[i]['element_type'] === global.TYPE_VOLTMETER) {
           this.index = engine_functions.get_voltmeter(this.ENTRY[i]['element_id']);

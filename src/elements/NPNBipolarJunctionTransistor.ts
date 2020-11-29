@@ -276,11 +276,7 @@ or overlapped)*/
     }
   }
   calculate_vcrit() {
-    return (
-      this.elm.properties['Emission Coefficient'] *
-      global.vt *
-      Math.log((this.elm.properties['Emission Coefficient'] * global.vt) / (1.41421 * this.elm.properties['Saturation Current']))
-    );
+    return this.elm.properties['Emission Coefficient'] * global.vt * Math.log((this.elm.properties['Emission Coefficient'] * global.vt) / (1.41421 * this.elm.properties['Saturation Current']));
   }
   is_converged() {
     if (this.get_npnbjt_error() < global.settings.TOLERANCE) {
@@ -348,10 +344,8 @@ or overlapped)*/
         this.elm.properties['i_c'] =
           forward_alpha * this.elm.properties['Saturation Current'] * (Math.exp(this.elm.properties['Vbe'] / global.vt) - 1) -
           this.elm.properties['Saturation Current'] * (Math.exp(this.elm.properties['Vbc'] / global.vt) - 1);
-        this.elm.properties['I_e'] =
-          this.elm.properties['i_e'] + this.elm.properties['g_ee'] * this.elm.properties['Vbe'] - this.elm.properties['g_ec'] * this.elm.properties['Vbc'];
-        this.elm.properties['I_c'] =
-          this.elm.properties['i_c'] - this.elm.properties['g_ce'] * this.elm.properties['Vbe'] + this.elm.properties['g_cc'] * this.elm.properties['Vbc'];
+        this.elm.properties['I_e'] = this.elm.properties['i_e'] + this.elm.properties['g_ee'] * this.elm.properties['Vbe'] - this.elm.properties['g_ec'] * this.elm.properties['Vbc'];
+        this.elm.properties['I_c'] = this.elm.properties['i_c'] - this.elm.properties['g_ce'] * this.elm.properties['Vbe'] + this.elm.properties['g_cc'] * this.elm.properties['Vbc'];
       }
     }
   }
@@ -449,7 +443,7 @@ or overlapped)*/
   release_wires() {
     if (this.wire_reference.length > 0) {
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
           wires[id].release_nodes();
@@ -665,7 +659,7 @@ or overlapped)*/
   wire_reference_maintenance() {
     if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (!(id > -1 && id < wires.length)) {
           this.wire_reference.splice(i, 1);
@@ -677,7 +671,7 @@ or overlapped)*/
     if (this.wire_reference.length > 0) {
       let vertices = this.get_vertices();
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
           if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
@@ -718,7 +712,7 @@ or overlapped)*/
     if (this.wire_reference.length > 0) {
       let vertices = this.get_vertices();
       let id = -1;
-      for (var i = this.wire_reference.length - 1; i > -1; i--) {
+      for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {
           if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
@@ -1070,7 +1064,7 @@ or overlapped)*/
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     let time_data = global.copy(global.TIME_DATA_TEMPLATE);
     let keys = Object.keys(this.elm.properties);
-    for (var i = keys.length - 1; i > -1; i--) {
+    for (var i: number = keys.length - 1; i > -1; i--) {
       if (typeof this.elm.properties[keys[i]] === 'number') {
         if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
           time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
