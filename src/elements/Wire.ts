@@ -39,11 +39,11 @@ class Wire {
   /* The spacing of the nodes in the y-direction, divided by 2 */
   public y_space : number = global.node_space_y >> 1;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint : Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint = new Paint();
+  public point_paint : Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint : Paint = new Paint();
   /* This is for handling the different styles of the wire (center point) */
   public wire_point = new PointF(0, 0);
   /* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
@@ -57,8 +57,8 @@ class Wire {
   public CIRCLE_BUFFER = [];
   public BUILD_ELEMENT = true;
   public ANGLE = 0;
-  public indexer = 0;
-  public is_translating = false;
+  public indexer : number = 0;
+  public is_translating : boolean = false;
 
   constructor(type, id, n1, n2) {
     this.INITIALIZED = false;

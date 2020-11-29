@@ -50,7 +50,7 @@ class ANDGate {
   public connect1_x : number = 0;
   public connect1_y : number = 0;
   public connect2_x : number = 0;
-  public connect2_y = 0;
+  public connect2_y : number = 0;
   /* Angle from p1 to p2 minus 90 degrees */
   public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
@@ -59,20 +59,20 @@ class ANDGate {
   public phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
   public grid_point = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint : Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint = new Paint();
+  public point_paint : Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint : Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
-  public is_translating = false;
+  public is_translating : boolean = false;
   public wire_reference = [];
   /* This is to keep track of the simulation id's */
-  public simulation_id = 0;
+  public simulation_id : number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
-  public indexer = 0;
-  public m_x = 0;
+  public indexer : number = 0;
+  public m_x : number = 0;
   public m_y = 0;
   public MULTI_SELECTED = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */

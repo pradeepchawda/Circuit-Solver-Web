@@ -37,20 +37,20 @@ class Ground {
   /* used for snapping the elements to the grid (and also for bounding them) */
   public grid_point = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint : Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint = new Paint();
+  public point_paint : Paint = new Paint();
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint : Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
-  public is_translating = false;
+  public is_translating : boolean = false;
   public wire_reference = [];
   /* This is to keep track of the simulation id's */
-  public simulation_id = 0;
+  public simulation_id : number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
-  public indexer = 0;
-  public m_x = 0;
+  public indexer : number = 0;
+  public m_x : number = 0;
   public m_y = 0;
   public c_x = 0;
   public c_y = 0;
