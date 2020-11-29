@@ -68,7 +68,7 @@ class Inductor {
   public connect2_x : number = 0;
   public connect2_y : number = 0;
   /* used for snapping the elements to the grid (and also for bounding them) */
-  public grid_point = [];
+  public grid_point : Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
   public line_paint : Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
@@ -77,7 +77,7 @@ class Inductor {
   public text_paint : Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
   public is_translating : boolean = false;
-  public wire_reference = [];
+  public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
@@ -92,7 +92,7 @@ or overlapped)*/
   public BUILD_ELEMENT : boolean = true;
   public ANGLE : number = 0;
 
-  constructor(type, id, n1, n2) {
+  constructor(type : number, id : number , n1 : number, n2 : number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
     this.bounds = new RectF(0, 0, 0, 0);

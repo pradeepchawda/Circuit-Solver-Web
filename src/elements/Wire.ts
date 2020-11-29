@@ -60,7 +60,7 @@ class Wire {
   public indexer : number = 0;
   public is_translating : boolean = false;
 
-  constructor(type, id, n1, n2) {
+  constructor(type : number, id : number , n1 : number, n2 : number) {
     this.INITIALIZED = false;
     /* Inititalize the element2 class that will hold the basic data about our component */
     this.elm = new Element2(id, type, global.copy(global.PROPERTY_WIRE));

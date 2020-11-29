@@ -35,7 +35,7 @@ class Ground {
   /* The spacing of the nodes in the y-direction, divided by 2 */
   public y_space : number = global.node_space_y >> 1;
   /* used for snapping the elements to the grid (and also for bounding them) */
-  public grid_point = [];
+  public grid_point : Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
   public line_paint : Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
@@ -44,7 +44,7 @@ class Ground {
   public text_paint : Paint = new Paint();
   /* Flag to denote when the component is actually moving. */
   public is_translating : boolean = false;
-  public wire_reference = [];
+  public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped

@@ -21,62 +21,62 @@
  *
  ***********************************************************************/
 class AbsoluteValue {
-  public INITIALIZED : boolean = false;
-  public bounds : RectF = new RectF(0, 0, 0, 0);
+  public INITIALIZED: boolean = false;
+  public bounds: RectF = new RectF(0, 0, 0, 0);
   public elm: Element2;
-  public p1 : PointF = new PointF(0, 0);
-  public p2 : PointF = new PointF(0, 0);
+  public p1: PointF = new PointF(0, 0);
+  public p2: PointF = new PointF(0, 0);
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
-  public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-  public gain_0 = new PointF(0, 0);
-  public gain_2 = new PointF(0, 0);
-  public gain_1 = new PointF(0, 0);
-  public gain_3 = new PointF(0, 0);
-  public gain_4 = new PointF(0, 0);
+  public theta: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+  public gain_0: PointF = new PointF(0, 0);
+  public gain_2: PointF = new PointF(0, 0);
+  public gain_1: PointF = new PointF(0, 0);
+  public gain_3: PointF = new PointF(0, 0);
+  public gain_4: PointF = new PointF(0, 0);
   /* The center (x-coord) of the bounds */
-  public c_x : number = this.bounds.get_center_x();
+  public c_x: number = this.bounds.get_center_x();
   /* The center (y-coord) of the bounds */
-  public c_y : number = this.bounds.get_center_y();
+  public c_y: number = this.bounds.get_center_y();
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space : number = global.node_space_x >> 1;
+  public x_space: number = global.node_space_x >> 1;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space : number = global.node_space_y >> 1;
+  public y_space: number = global.node_space_y >> 1;
   /* Some points we'll be extending the leads of the resistor to. */
-  public connect1_x : number = 0;
-  public connect1_y : number = 0;
-  public connect2_x : number = 0;
-  public connect2_y : number = 0;
+  public connect1_x: number = 0;
+  public connect1_y: number = 0;
+  public connect2_x: number = 0;
+  public connect2_y: number = 0;
   /* used for snapping the elements to the grid (and also for bounding them) */
-  public grid_point = [];
+  public grid_point: Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint : Paint = new Paint();
+  public line_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint : Paint = new Paint();
+  public point_paint: Paint = new Paint();
 
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint : Paint = new Paint();
+  public text_paint: Paint = new Paint();
 
   /* Flag to denote when the component is actually moving. */
-  public is_translating : boolean = false;
-  public wire_reference = [];
+  public is_translating: boolean = false;
+  public wire_reference: Array<number> = [];
   /* This is to keep track of the simulation id's */
-  public simulation_id : number = 0;
+  public simulation_id: number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
-  public indexer : number = 0;
-  public m_x : number = 0;
-  public m_y : number = 0;
-  public MULTI_SELECTED : boolean = false;
+  public indexer: number = 0;
+  public m_x: number = 0;
+  public m_y: number = 0;
+  public MULTI_SELECTED: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER : Array<Array<number>> = [];
+  public LINE_BUFFER: Array<Array<number>> = [];
   public CIRCLE_BUFFER: Array<Array<number>> = [];
-  public BUILD_ELEMENT : boolean = true;
-  public ANGLE : number = 0;
+  public BUILD_ELEMENT: boolean = true;
+  public ANGLE: number = 0;
 
-  constructor(type, id, n1, n2) {
+  constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;
     this.bounds = new RectF(0, 0, 0, 0);
     this.elm = new Element2(id, type, global.copy(global.PROPERTY_ABS));
@@ -184,7 +184,7 @@ or overlapped)*/
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
-  refresh_bounds() {
+  refresh_bounds(): void {
     if (this.elm.consistent()) {
       this.p1 = new PointF(0, 0);
       this.p2 = new PointF(0, 0);
@@ -200,11 +200,11 @@ or overlapped)*/
       );
     }
   }
-  push_reference(ref) {
+  push_reference(ref: number): void {
     this.wire_reference.push(ref);
   }
   /* General function to handle any processing required by the component */
-  update() {
+  update(): void {
     if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
       if (this.elm.consistent()) {
         this.elm.properties['Input Voltage'] = engine_functions.get_voltage(this.elm.n1, -1);
@@ -212,16 +212,16 @@ or overlapped)*/
       }
     }
   }
-  stamp() {
+  stamp(): void {
     if (this.elm.consistent()) {
       engine_functions.stamp_voltage(this.elm.n2, -1, this.elm.properties['Output Voltage'], simulation_manager.ELEMENT_ABS_OFFSET + this.simulation_id);
     }
   }
   /* Vertex handling (for rotation) */
-  get_vertices() {
-    let vertices = [];
-    let p1 = [];
-    let p2 = [];
+  get_vertices(): Array<number> {
+    let vertices: Array<number> = [];
+    let p1: Array<number> = [];
+    let p2: Array<number> = [];
     if (this.elm.rotation === global.ROTATION_0) {
       p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
       p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
@@ -245,9 +245,9 @@ or overlapped)*/
     }
     return vertices;
   }
-  release_wires() {
+  release_wires(): void {
     if (this.wire_reference.length > 0) {
-      let id = -1;
+      let id: number = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {

@@ -66,7 +66,7 @@ class WattMeter {
   public theta : number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Angle from center to p2 */
   public phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
-  public grid_point = [];
+  public grid_point : Array<number> = [];
   /* This paint is used for drawing the "lines" that the component is comprised of. */
   public line_paint : Paint = new Paint();
   /* This paint is used for drawing the "nodes" that the component is connected to. */
@@ -83,7 +83,7 @@ event is being called continuously for the elements but it's wasteful for the
 traces. */
   public RESIZE_METER_TRACE = false;
   public SCOPE_INDEX_CHECK = -1;
-  public wire_reference = [];
+  public wire_reference : Array<number> = [];
   /* This is to keep track of the simulation id's */
   public simulation_id : number = 0;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
