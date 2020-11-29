@@ -153,9 +153,9 @@ class Wire {
   }
   /* Stamp for MNA wire (should be empty.) */
   stamp() {}
-  release_wires() {}
+  release_wires() : void {}
   /* Handle capture and release from nodes themselves... (references) */
-  release_nodes() {
+  release_nodes() : void {
     if (this.elm.consistent()) {
       nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
       nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
@@ -178,7 +178,7 @@ class Wire {
     this.BUILD_ELEMENT = true;
   }
   /* Push the components references to the Nodes */
-  capture_nodes() {
+  capture_nodes() : void {
     this.elm.map_node2(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
     if (this.elm.consistent() && !this.is_translating) {
       nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);

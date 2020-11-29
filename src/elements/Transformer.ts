@@ -110,7 +110,7 @@ or overlapped)*/
     this.elm.set_flip(global.FLIP_0);
     /* Re-map those bad boys! */
     this.release_nodes();
-    let vertices = this.get_vertices();
+    let vertices : Array<number> = this.get_vertices();
     this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
     /* Add this components references to the nodes it's attached to currently. */
     this.capture_nodes();
@@ -279,7 +279,7 @@ or overlapped)*/
     }
     return vertices;
   }
-  release_wires() {
+  release_wires() : void {
     if (this.wire_reference.length > 0) {
       let id = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
@@ -293,7 +293,7 @@ or overlapped)*/
     }
   }
   /* Handle capture and release from nodes themselves... (references) */
-  release_nodes() {
+  release_nodes() : void {
     if (this.elm.consistent()) {
       nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
       nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
@@ -303,8 +303,8 @@ or overlapped)*/
     }
   }
   /* Push the components references to the Nodes */
-  capture_nodes() {
-    let vertices = this.get_vertices();
+  capture_nodes() : void {
+    let vertices : Array<number> = this.get_vertices();
     this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
     if (this.elm.consistent() && !this.is_translating) {
       nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
@@ -513,7 +513,7 @@ or overlapped)*/
   }
   unanchor_wires() {
     if (this.wire_reference.length > 0) {
-      let vertices = this.get_vertices();
+      let vertices : Array<number> = this.get_vertices();
       let id = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -563,7 +563,7 @@ or overlapped)*/
   }
   anchor_wires() {
     if (this.wire_reference.length > 0) {
-      let vertices = this.get_vertices();
+      let vertices : Array<number> = this.get_vertices();
       let id = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -719,7 +719,7 @@ or overlapped)*/
   refactor() {
     /* Movement of the bounds is handled in mouse move */
     /* Re-factor the vector graphics */
-    let vertices = this.get_vertices();
+    let vertices : Array<number> = this.get_vertices();
     this.p1.x = vertices[0];
     this.p1.y = vertices[1];
     this.p2.x = vertices[2];
