@@ -235,10 +235,10 @@ or overlapped)*/
     }
   }
   /* Vertex handling (for rotation) */
-  get_vertices() {
-    let vertices = [];
-    let p1 = [];
-    let p2 = [];
+  get_vertices() : Array<number> {
+    let vertices : Array<number> = [];
+    let p1 : Array<number> = [];
+    let p2 : Array<number> = [];
     if (this.elm.rotation === global.ROTATION_0) {
       p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
       p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());

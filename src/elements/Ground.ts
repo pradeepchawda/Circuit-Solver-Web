@@ -164,7 +164,7 @@ or overlapped)*/
     }
   }
   /* Vertex handling (for rotation) */
-  get_vertices() {
+  get_vertices() : Array<number> {
     let p1 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y());
     let vertices = Array(p1[0], p1[1]);
     return vertices;

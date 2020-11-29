@@ -218,7 +218,7 @@ or overlapped)*/
     }
   }
   /* Vertex handling (for rotation) */
-  get_vertices(): Array<number> {
+  get_vertices() : Array<number> {
     let vertices: Array<number> = [];
     let p1: Array<number> = [];
     let p2: Array<number> = [];
@@ -245,9 +245,9 @@ or overlapped)*/
     }
     return vertices;
   }
-  release_wires(): void {
+  release_wires() {
     if (this.wire_reference.length > 0) {
-      let id: number = -1;
+      let id = -1;
       for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
         id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
         if (id > -1 && id < wires.length) {

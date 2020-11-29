@@ -275,10 +275,10 @@ or overlapped)*/
     }
   }
   /* Vertex handling (for rotation) */
-  get_vertices() {
-    let vertices = [];
-    let p1 = [];
-    let p2 = [];
+  get_vertices() : Array<number> {
+    let vertices : Array<number> = [];
+    let p1 : Array<number> = [];
+    let p2 : Array<number> = [];
     let p3 = [];
     if (this.elm.rotation === global.ROTATION_0) {
       if (this.elm.flip === global.FLIP_0) {
