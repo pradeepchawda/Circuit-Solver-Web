@@ -439,8 +439,7 @@ class LanguageManager {
         this.TAG_TPTZ = 'Two-Pole-Two-Zero';
         this.TAG_TRAN = 'Ideal Transformer';
         /* Do not create any functions in this class. */
-        this.WATERMARK =
-            'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
+        this.WATERMARK = 'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
         /* Padding for the text bounds! */
         this.TEXT_PADDING = '    ';
         this.CONNECTION_NOT_ALLOWED = {

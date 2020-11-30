@@ -28,8 +28,7 @@ class Wire {
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.c_x = 0;
@@ -74,8 +73,7 @@ class Wire {
         /* Push the reference to the nodes */
         this.capture_nodes();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.c_x = 0;
@@ -199,9 +197,7 @@ class Wire {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
                 if (this.wire_collision() && !global.component_touched) {
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -217,15 +213,12 @@ class Wire {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (!global.selected) {
                     this.select();
                 }
                 else {
-                    if (global.selected_id === this.elm.id &&
-                        global.selected_type === this.elm.type) {
+                    if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                         global.selected_id = global.NULL;
                         global.selected_type = global.NULL;
                         global.selected_bounds = global.NULL;
@@ -242,8 +235,7 @@ class Wire {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.update_total_bounds();
                 global.selected_bounds = global.copy(this.total_bounds);
             }
@@ -376,8 +368,7 @@ class Wire {
     set_wire_style(style) {
         this.elm.set_wire_style(style);
         this.refactor();
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_wire_style = this.elm.wire_style;
         }
         this.push_history();
@@ -391,9 +382,7 @@ class Wire {
     }
     increment_flip() { }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -401,8 +390,7 @@ class Wire {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = global.NULL;
             global.selected_bounds = global.NULL;
@@ -413,8 +401,7 @@ class Wire {
     }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -453,8 +440,7 @@ class Wire {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -472,18 +458,13 @@ class Wire {
             this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
             canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
             /* Draw the wire's voltage */
-            if (global.FLAG_SIMULATING &&
-                simulation_manager.SOLUTIONS_READY &&
-                this.is_selected_element() &&
-                global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP) {
+            if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP) {
                 if (this.elm.consistent()) {
                     this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                    if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                        (this.ANGLE > -10 && this.ANGLE < 10)) {
+                    if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), this.c_x, this.c_y - this.y_space * 1.5, this.text_paint);
                     }
-                    else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                        (this.ANGLE > 80 && this.ANGLE < 100)) {
+                    else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                         canvas.rotate(this.c_x, this.c_y, -90);
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), this.c_x, this.c_y - this.y_space * 1.5, this.text_paint);
                         canvas.restore();
@@ -504,29 +485,17 @@ class Wire {
             this.LINE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
             canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
             /* Draw the wire's voltage */
-            if (global.FLAG_SIMULATING &&
-                simulation_manager.SOLUTIONS_READY &&
-                this.is_selected_element() &&
-                global.SIMULATION_TIME >=
-                    global.TIME_STEP + global.TIME_STEP + global.TIME_STEP) {
+            if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP + global.TIME_STEP) {
                 if (this.elm.consistent()) {
-                    if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                        (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
-                        if (global.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) >
-                            global.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) *
-                                1.05) {
+                    if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+                        if (global.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {
                             this.ANGLE = global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y);
-                            if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                                (this.ANGLE > -10 &&
-                                    global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) < 10)) {
-                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p1.x), global.get_average2(this.wire_point.y, this.p1.y) -
-                                    this.y_space * 1.5, this.text_paint);
+                            if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) < 10)) {
+                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p1.x), global.get_average2(this.wire_point.y, this.p1.y) - this.y_space * 1.5, this.text_paint);
                             }
-                            else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                                (this.ANGLE > 80 && this.ANGLE < 100)) {
+                            else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                                 canvas.rotate(global.get_average2(this.wire_point.x, this.p1.x), global.get_average2(this.wire_point.y, this.p1.y), -90);
-                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p1.x), global.get_average2(this.wire_point.y, this.p1.y) -
-                                    this.y_space * 1.5, this.text_paint);
+                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p1.x), global.get_average2(this.wire_point.y, this.p1.y) - this.y_space * 1.5, this.text_paint);
                                 canvas.restore();
                             }
                             else {
@@ -537,17 +506,12 @@ class Wire {
                         }
                         else {
                             this.ANGLE = global.retrieve_angle(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y);
-                            if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                                (this.ANGLE > -10 &&
-                                    global.retrieve_angle(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) < 10)) {
-                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p2.x), global.get_average2(this.wire_point.y, this.p2.y) -
-                                    this.y_space * 1.5, this.text_paint);
+                            if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && global.retrieve_angle(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) < 10)) {
+                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p2.x), global.get_average2(this.wire_point.y, this.p2.y) - this.y_space * 1.5, this.text_paint);
                             }
-                            else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                                (this.ANGLE > 80 && this.ANGLE < 100)) {
+                            else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                                 canvas.rotate(global.get_average2(this.wire_point.x, this.p2.x), global.get_average2(this.wire_point.y, this.p2.y), -90);
-                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p2.x), global.get_average2(this.wire_point.y, this.p2.y) -
-                                    this.y_space * 1.5, this.text_paint);
+                                canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'), global.get_average2(this.wire_point.x, this.p2.x), global.get_average2(this.wire_point.y, this.p2.y) - this.y_space * 1.5, this.text_paint);
                                 canvas.restore();
                             }
                             else {
@@ -561,7 +525,7 @@ class Wire {
             }
         }
         if (global.DEVELOPER_MODE) {
-            canvas.draw_text(this.elm.id, this.c_x, this.c_y, this.text_paint);
+            canvas.draw_text(String(this.elm.id), this.c_x, this.c_y, this.text_paint);
             canvas.draw_rect2(this.total_bounds, this.line_paint);
         }
     }
@@ -594,10 +558,7 @@ class Wire {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

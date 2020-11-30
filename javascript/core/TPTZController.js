@@ -58,14 +58,8 @@ class TPTZController {
     }
     /* The difference equation that realizes the compensator. */
     _2p2z(_x) {
-        this.center =
-            _x * this.buffer[this.b0] +
-                this.buffer[this.b1] * this.x[this.n_1] +
-                this.buffer[this.b2] * this.x[this.n_2];
-        this._y =
-            this.center -
-                this.buffer[this.a1] * this.y[this.n_1] -
-                this.buffer[this.a2] * this.y[this.n_2];
+        this.center = _x * this.buffer[this.b0] + this.buffer[this.b1] * this.x[this.n_1] + this.buffer[this.b2] * this.x[this.n_2];
+        this._y = this.center - this.buffer[this.a1] * this.y[this.n_1] - this.buffer[this.a2] * this.y[this.n_2];
         this.x[this.n_2] = this.x[this.n_1];
         this.x[this.n_1] = _x;
         this.y[this.n_2] = this.y[this.n_1];

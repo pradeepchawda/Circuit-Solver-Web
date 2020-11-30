@@ -641,8 +641,7 @@ class MultiSelectManager {
             !global.FLAG_MENU_OPEN_DOWN &&
             !global.SIGNAL_HISTORY_LOCK) {
             if (this.CTRL_PRESSED_STARTED) {
-                if (Math.abs(global.mouse_x - this.SELECT_X) > global.node_space_x ||
-                    Math.abs(global.mouse_y - this.SELECT_Y) > global.node_space_y) {
+                if (Math.abs(global.mouse_x - this.SELECT_X) > global.node_space_x || Math.abs(global.mouse_y - this.SELECT_Y) > global.node_space_y) {
                     this.CTRL_PRESSED = true;
                 }
                 if (global.component_translating) {
@@ -658,8 +657,7 @@ class MultiSelectManager {
                     this.DELTA_LAST_DY = this.DELTA_DY;
                     this.DELTA_DX = Math.floor((this.DELTA_END_X - this.DELTA_CENTER_X) / global.node_space_x);
                     this.DELTA_DY = Math.floor((this.DELTA_END_Y - this.DELTA_CENTER_Y) / global.node_space_y);
-                    if (this.DELTA_DX != this.DELTA_LAST_DX ||
-                        this.DELTA_DY != this.DELTA_LAST_DY) {
+                    if (this.DELTA_DX != this.DELTA_LAST_DX || this.DELTA_DY != this.DELTA_LAST_DY) {
                         this.handle_multi_move();
                     }
                 }
@@ -700,29 +698,25 @@ class MultiSelectManager {
         let dx = (this.DELTA_DX - this.DELTA_LAST_DX) * global.node_space_x;
         let dy = (this.DELTA_DY - this.DELTA_LAST_DY) * global.node_space_y;
         /* Block the selected components if the bounding rect is too close to the top. */
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top >
-            workspace.bounds.top + global.node_space_y)) {
+        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y)) {
             if (dy < 0) {
                 dy = 0;
             }
         }
         /* Block the selected components if the bounding rect is too close to the bottom. */
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom <
-            workspace.bounds.bottom - global.node_space_y)) {
+        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y)) {
             if (dy > 0) {
                 dy = 0;
             }
         }
         /* Block the selected components if the bounding rect is too close to the left. */
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left >
-            workspace.bounds.left + global.node_space_x)) {
+        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x)) {
             if (dx < 0) {
                 dx = 0;
             }
         }
         /* Block the selected components if the bounding rect is too close to the right. */
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right <
-            workspace.bounds.right - global.node_space_x)) {
+        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x)) {
             if (dx > 0) {
                 dx = 0;
             }

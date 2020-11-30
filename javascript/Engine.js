@@ -559,6 +559,7 @@ function load_app() {
                 global.mouse_y = mouse_event.clientY;
             }
             else {
+                //@ts-ignore
                 touch = mouse_event.touches[0];
                 global.mouse_x = touch.clientX;
                 global.mouse_y = touch.clientY;
@@ -704,6 +705,7 @@ function load_app() {
         if (!global.focused) {
             global.x_offset = (global.mouse_x - global.delta_x) / global.WORKSPACE_ZOOM_SCALE;
             global.y_offset = (global.mouse_y - global.delta_y) / global.WORKSPACE_ZOOM_SCALE;
+            //@ts-ignore
             if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
                 if (global.WORKSPACE_ZOOM_SCALE > global.ZOOM_MIN) {
                     global.WORKSPACE_ZOOM_SCALE /= global.ZOOM_FACTOR;
@@ -1612,8 +1614,7 @@ function load_app() {
         }
         global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
         global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
-        if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) &&
-            global.TRANSLATION_LOCK) {
+        if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) && global.TRANSLATION_LOCK) {
             global.TRANSLATION_LOCK = false;
             global.IS_DRAGGING = global.TEMP_IS_DRAGGING;
         }
@@ -2146,10 +2147,10 @@ function load_app() {
     function handle_double_click() {
         global.mouse_x = global.mouse_double_click_event.clientX;
         global.mouse_y = global.mouse_double_click_event.clientY;
-        time_step_window.double_click(global.mouse_double_click_event);
-        save_image_window.double_click(global.mouse_double_click_event);
-        save_circuit_window.double_click(global.mouse_double_click_event);
-        element_options_edit_window.double_click(global.mouse_double_click_event);
+        time_step_window.double_click();
+        save_image_window.double_click();
+        save_circuit_window.double_click();
+        element_options_edit_window.double_click();
     }
     function handle_key_down() {
         time_step_window.key_down(global.key_down_event);

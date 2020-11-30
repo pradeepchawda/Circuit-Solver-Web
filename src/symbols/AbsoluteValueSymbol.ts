@@ -67,9 +67,9 @@ class AbsoluteValueSymbol {
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
   public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER = [];
+  public CIRCLE_BUFFER: Array<Array<number>> = [];
 
-  constructor(rect, index, page) {
+  constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
     this.index = index;
     /* Page to be drawn on (Inside New Element Window) */
@@ -185,7 +185,7 @@ class AbsoluteValueSymbol {
       }
     }
   }
-  mouse_down(page, width, height) {
+  mouse_down(page: number, width: number, height: number) {
     if (this.page === page) {
       if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
         if (!this.FLAG_ADD_ELEMENT) {
@@ -197,7 +197,7 @@ class AbsoluteValueSymbol {
       }
     }
   }
-  mouse_move(page, width, height) {
+  mouse_move(page: number, width: number, height: number) {
     if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
       this.DRAW_TAG = true;
     } else {
@@ -206,7 +206,7 @@ class AbsoluteValueSymbol {
     if (this.page === page) {
     }
   }
-  mouse_up(page, width, height) {
+  mouse_up(page: number, width: number, height: number) {
     if (this.page === page) {
       if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
       }
@@ -231,7 +231,7 @@ class AbsoluteValueSymbol {
     this.connect2_x = this.c_x + this.x_space * global.cosine(this.theta);
     this.connect2_y = this.c_y + this.y_space * global.sine(this.theta);
   }
-  resize(rect) {
+  resize(rect: RectF) {
     /* Create a new rectangle for the bounds of this component */
     this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
     /* The center (x-coord) of the bounds */
@@ -274,7 +274,7 @@ class AbsoluteValueSymbol {
     }
   }
   /* Draws the Symbol */
-  draw_symbol(canvas, page) {
+  draw_symbol(canvas: GraphicsEngine, page: number) {
     this.recolor();
     if (this.page === page) {
       let indexer = 0;

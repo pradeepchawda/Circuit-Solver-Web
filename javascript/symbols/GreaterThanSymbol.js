@@ -44,8 +44,7 @@ class GreaterThanSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -101,8 +100,7 @@ class GreaterThanSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -198,8 +196,7 @@ class GreaterThanSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -219,33 +216,19 @@ class GreaterThanSymbol {
     /* Generate the SVG for the component. */
     build_element() {
         /* Top segment */
-        this.greater_0.x =
-            this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
-        this.greater_0.y =
-            this.p1.y + 2.0 * this.y_space * global.sine(this.theta_m90);
-        this.greater_1.x =
-            this.greater_0.x + this.x_space * global.cosine(this.theta);
-        this.greater_1.y =
-            this.greater_0.y + this.y_space * global.sine(this.theta);
-        this.greater_2.x =
-            this.greater_1.x +
-                0.75 * this.x_space * global.cosine(this.theta - Math.PI);
-        this.greater_2.y =
-            this.greater_1.y +
-                0.75 * this.y_space * global.sine(this.theta - Math.PI);
+        this.greater_0.x = this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
+        this.greater_0.y = this.p1.y + 2.0 * this.y_space * global.sine(this.theta_m90);
+        this.greater_1.x = this.greater_0.x + this.x_space * global.cosine(this.theta);
+        this.greater_1.y = this.greater_0.y + this.y_space * global.sine(this.theta);
+        this.greater_2.x = this.greater_1.x + 0.75 * this.x_space * global.cosine(this.theta - Math.PI);
+        this.greater_2.y = this.greater_1.y + 0.75 * this.y_space * global.sine(this.theta - Math.PI);
         /* Bottom segment */
-        this.greater_3.x =
-            this.p2.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
-        this.greater_3.y =
-            this.p2.y + 2.0 * this.y_space * global.sine(this.theta_m90);
-        this.greater_4.x =
-            this.greater_3.x - this.x_space * global.cosine(this.theta);
-        this.greater_4.y =
-            this.greater_3.y - this.y_space * global.sine(this.theta);
-        this.greater_5.x =
-            this.greater_4.x + 0.75 * this.x_space * global.cosine(this.theta);
-        this.greater_5.y =
-            this.greater_4.y + 0.75 * this.y_space * global.sine(this.theta);
+        this.greater_3.x = this.p2.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
+        this.greater_3.y = this.p2.y + 2.0 * this.y_space * global.sine(this.theta_m90);
+        this.greater_4.x = this.greater_3.x - this.x_space * global.cosine(this.theta);
+        this.greater_4.y = this.greater_3.y - this.y_space * global.sine(this.theta);
+        this.greater_5.x = this.greater_4.x + 0.75 * this.x_space * global.cosine(this.theta);
+        this.greater_5.y = this.greater_4.y + 0.75 * this.y_space * global.sine(this.theta);
         /* End Segment */
         this.greater_6.x = this.p3.x - this.x_space * global.cosine(this.theta_m90);
         this.greater_6.y = this.p3.y - this.y_space * global.sine(this.theta_m90);
@@ -254,8 +237,7 @@ class GreaterThanSymbol {
         let adj_y = this.c_y - 0.25 * this.y_space * global.sine(this.theta_m90);
         this.greater_7.x = adj_x + 0.4 * this.x_space * global.cosine(this.theta);
         this.greater_7.y = adj_y + 0.4 * this.y_space * global.sine(this.theta);
-        this.greater_8.x =
-            adj_x + 0.6 * this.x_space * global.cosine(this.theta_m90);
+        this.greater_8.x = adj_x + 0.6 * this.x_space * global.cosine(this.theta_m90);
         this.greater_8.y = adj_y + 0.6 * this.y_space * global.sine(this.theta_m90);
         this.greater_9.x = adj_x - 0.4 * this.x_space * global.cosine(this.theta);
         this.greater_9.y = adj_y - 0.4 * this.y_space * global.sine(this.theta);
@@ -275,8 +257,7 @@ class GreaterThanSymbol {
         this.p2.set_point(this.bounds.left, this.bounds.bottom);
         this.p3.set_point(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -322,20 +303,10 @@ class GreaterThanSymbol {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             canvas.draw_text('>', this.c_x, this.c_y, this.text_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }

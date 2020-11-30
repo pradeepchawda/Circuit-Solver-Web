@@ -50,16 +50,10 @@ class Workspace {
         /* A rectangle that outlines the html canvas */
         this.view = new RectF(left, top, right, bottom);
         /* The workspace that we will be using. Initial sizing */
-        this.bounds = new RectF(view_port.center_x -
-            view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y -
-            view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale, view_port.center_x +
-            view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y +
-            view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale);
+        this.bounds = new RectF(view_port.center_x - view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y - view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale, view_port.center_x + view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y + view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale);
         /* Compute the node space (x and y) based on how many nodes we are to generate. */
-        global.node_space_x =
-            this.bounds.get_width() / global.settings.SQRT_MAXNODES;
-        global.node_space_y =
-            this.bounds.get_height() / global.settings.SQRT_MAXNODES;
+        global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
+        global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
         /* The paint for the view's outline! */
         this.view_paint = new Paint();
         this.view_paint.set_paint_style(this.view_paint.style.STROKE);
@@ -132,10 +126,8 @@ class Workspace {
             this.bounds.set_center2(this.bounds.get_center_x(), this.bounds.get_center_y(), global.natural_width * global.WORKSPACE_ZOOM_SCALE, global.natural_height * global.WORKSPACE_ZOOM_SCALE);
         }
         /* Once we change bounds, we must compute the new node spaces (x and y) */
-        global.node_space_x =
-            this.bounds.get_width() / global.settings.SQRT_MAXNODES;
-        global.node_space_y =
-            this.bounds.get_height() / global.settings.SQRT_MAXNODES;
+        global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
+        global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
         /* Report that we have resized atleast once. */
         if (!this.FIRST_RESIZE_FLAG || global.FORCE_RESIZE_EVENT) {
             zoom_window.set_zoom(global.WORKSPACE_ZOOM_SCALE);
@@ -152,15 +144,11 @@ class Workspace {
         bounds around a point. delta_x/y and scale are calculated in Engine */
         this.bounds.left = global.delta_x;
         this.bounds.top = global.delta_y;
-        this.bounds.right =
-            this.bounds.left + global.natural_width * global.WORKSPACE_ZOOM_SCALE;
-        this.bounds.bottom =
-            this.bounds.top + global.natural_height * global.WORKSPACE_ZOOM_SCALE;
+        this.bounds.right = this.bounds.left + global.natural_width * global.WORKSPACE_ZOOM_SCALE;
+        this.bounds.bottom = this.bounds.top + global.natural_height * global.WORKSPACE_ZOOM_SCALE;
         /* We changed the bounds, we must re-compute the node spaces (x and y) */
-        global.node_space_x =
-            this.bounds.get_width() / global.settings.SQRT_MAXNODES;
-        global.node_space_y =
-            this.bounds.get_height() / global.settings.SQRT_MAXNODES;
+        global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
+        global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
         /* #INSERT_METER_RESIZE_TRACE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {

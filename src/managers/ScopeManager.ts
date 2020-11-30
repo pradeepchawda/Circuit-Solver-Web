@@ -170,13 +170,13 @@ class ScopeManager {
       if (i < ammeters.length) {
         /* Push to the element. */
         if (ammeters[i].get_simulation_index() < matrix_x.length) {
-          ammeters[i].push_current(matrix_x[ammeters[i].get_simulation_index()]);
+          ammeters[i].push_current(matrix_x[ammeters[i].get_simulation_index()][0]);
         }
       }
       if (i < ohmmeters.length) {
         /* Push to the element. */
         if (ohmmeters[i].get_simulation_index() < matrix_x.length) {
-          ohmmeters[i].push_voltage_current(engine_functions.get_voltage(ohmmeters[i].elm.n1, ohmmeters[i].elm.n2), matrix_x[ohmmeters[i].get_simulation_index()]);
+          ohmmeters[i].push_voltage_current(engine_functions.get_voltage(ohmmeters[i].elm.n1, ohmmeters[i].elm.n2), matrix_x[ohmmeters[i].get_simulation_index()][0]);
         }
       }
       if (i < wattmeters.length) {

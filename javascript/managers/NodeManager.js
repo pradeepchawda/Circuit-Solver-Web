@@ -122,8 +122,7 @@ class NodeManager {
         }
         for (var i = 0; i < this.unique_nodes.length; i++) {
             for (var j = this.active_nodes.length - 1; j > -1; j--) {
-                if (this.unique_nodes[i].is_removed(this.active_nodes[j]) &&
-                    this.active_nodes[j] < global.settings.MAXNODES) {
+                if (this.unique_nodes[i].is_removed(this.active_nodes[j]) && this.active_nodes[j] < global.settings.MAXNODES) {
                     this.active_nodes.splice(j, 1);
                 }
             }
@@ -132,8 +131,7 @@ class NodeManager {
     net_redundancy_check(n1, n2, net_list) {
         let output = false;
         for (var i = 0; i < net_list.length; i++) {
-            if ((n1 === net_list[i][0] && n2 === net_list[i][1]) ||
-                (n2 === net_list[i][0] && n1 === net_list[i][1])) {
+            if ((n1 === net_list[i][0] && n2 === net_list[i][1]) || (n2 === net_list[i][0] && n1 === net_list[i][1])) {
                 output = true;
                 break;
             }

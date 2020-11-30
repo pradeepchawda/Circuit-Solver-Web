@@ -62,8 +62,7 @@ class VoltageControlledVoltageSource {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -154,8 +153,7 @@ class VoltageControlledVoltageSource {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -329,11 +327,8 @@ class VoltageControlledVoltageSource {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -342,9 +337,7 @@ class VoltageControlledVoltageSource {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -414,8 +407,7 @@ class VoltageControlledVoltageSource {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -433,15 +425,13 @@ class VoltageControlledVoltageSource {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -457,9 +447,7 @@ class VoltageControlledVoltageSource {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -472,8 +460,7 @@ class VoltageControlledVoltageSource {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = -1;
                             global.selected_bounds = global.NULL;
@@ -491,8 +478,7 @@ class VoltageControlledVoltageSource {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
@@ -509,9 +495,7 @@ class VoltageControlledVoltageSource {
         global.selected = true;
     }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -519,8 +503,7 @@ class VoltageControlledVoltageSource {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = -1;
             global.selected_bounds = global.NULL;
@@ -719,68 +702,34 @@ class VoltageControlledVoltageSource {
             /* Diamond */
             this.vcvs_4.x = this.vcvs_2.x + cache_14 * global.cosine(this.theta);
             this.vcvs_4.y = this.vcvs_2.y + cache_15 * global.sine(this.theta);
-            this.vcvs_5.x =
-                this.vcvs_4.x + cache_2 * global.cosine(this.theta - global.PI_DIV_4);
-            this.vcvs_5.y =
-                this.vcvs_4.y + cache_3 * global.sine(this.theta - global.PI_DIV_4);
-            this.vcvs_6.x =
-                this.vcvs_4.x + cache_2 * global.cosine(this.theta + global.PI_DIV_4);
-            this.vcvs_6.y =
-                this.vcvs_4.y + cache_3 * global.sine(this.theta + global.PI_DIV_4);
+            this.vcvs_5.x = this.vcvs_4.x + cache_2 * global.cosine(this.theta - global.PI_DIV_4);
+            this.vcvs_5.y = this.vcvs_4.y + cache_3 * global.sine(this.theta - global.PI_DIV_4);
+            this.vcvs_6.x = this.vcvs_4.x + cache_2 * global.cosine(this.theta + global.PI_DIV_4);
+            this.vcvs_6.y = this.vcvs_4.y + cache_3 * global.sine(this.theta + global.PI_DIV_4);
             /* Bottom Half of Diamond */
             this.vcvs_7.x = this.vcvs_2.x + cache_0 * global.cosine(this.theta);
             this.vcvs_7.y = this.vcvs_2.y + cache_1 * global.sine(this.theta);
-            this.vcvs_8.x =
-                this.vcvs_7.x - cache_2 * global.cosine(this.theta - global.PI_DIV_4);
-            this.vcvs_8.y =
-                this.vcvs_7.y - cache_3 * global.sine(this.theta - global.PI_DIV_4);
-            this.vcvs_9.x =
-                this.vcvs_7.x - cache_2 * global.cosine(this.theta + global.PI_DIV_4);
-            this.vcvs_9.y =
-                this.vcvs_7.y - cache_3 * global.sine(this.theta + global.PI_DIV_4);
+            this.vcvs_8.x = this.vcvs_7.x - cache_2 * global.cosine(this.theta - global.PI_DIV_4);
+            this.vcvs_8.y = this.vcvs_7.y - cache_3 * global.sine(this.theta - global.PI_DIV_4);
+            this.vcvs_9.x = this.vcvs_7.x - cache_2 * global.cosine(this.theta + global.PI_DIV_4);
+            this.vcvs_9.y = this.vcvs_7.y - cache_3 * global.sine(this.theta + global.PI_DIV_4);
             /* Plus point */
             this.vcvs_10.x = this.vcvs_2.x + cache_4 * global.cosine(this.theta);
             this.vcvs_10.y = this.vcvs_2.y + cache_5 * global.sine(this.theta);
             this.vcvs_11.x = this.vcvs_2.x + cache_6 * global.cosine(this.theta);
             this.vcvs_11.y = this.vcvs_2.y + cache_7 * global.sine(this.theta);
-            this.vcvs_12.x =
-                this.vcvs_2.x +
-                    cache_8 * global.cosine(this.theta) +
-                    (cache_14 >> 2) * global.cosine(this.theta_m90);
-            this.vcvs_12.y =
-                this.vcvs_2.y +
-                    cache_9 * global.sine(this.theta) +
-                    (cache_15 >> 2) * global.sine(this.theta_m90);
-            this.vcvs_13.x =
-                this.vcvs_2.x +
-                    cache_8 * global.cosine(this.theta) -
-                    (cache_14 >> 2) * global.cosine(this.theta_m90);
-            this.vcvs_13.y =
-                this.vcvs_2.y +
-                    cache_9 * global.sine(this.theta) -
-                    (cache_15 >> 2) * global.sine(this.theta_m90);
+            this.vcvs_12.x = this.vcvs_2.x + cache_8 * global.cosine(this.theta) + (cache_14 >> 2) * global.cosine(this.theta_m90);
+            this.vcvs_12.y = this.vcvs_2.y + cache_9 * global.sine(this.theta) + (cache_15 >> 2) * global.sine(this.theta_m90);
+            this.vcvs_13.x = this.vcvs_2.x + cache_8 * global.cosine(this.theta) - (cache_14 >> 2) * global.cosine(this.theta_m90);
+            this.vcvs_13.y = this.vcvs_2.y + cache_9 * global.sine(this.theta) - (cache_15 >> 2) * global.sine(this.theta_m90);
             /* Negative point */
-            this.vcvs_14.x =
-                this.vcvs_2.x +
-                    cache_10 * global.cosine(this.theta) +
-                    (cache_14 >> 2) * global.cosine(this.theta_m90);
-            this.vcvs_14.y =
-                this.vcvs_2.y +
-                    cache_11 * global.sine(this.theta) +
-                    (cache_15 >> 2) * global.sine(this.theta_m90);
-            this.vcvs_15.x =
-                this.vcvs_2.x +
-                    cache_10 * global.cosine(this.theta) -
-                    (cache_14 >> 2) * global.cosine(this.theta_m90);
-            this.vcvs_15.y =
-                this.vcvs_2.y +
-                    cache_11 * global.sine(this.theta) -
-                    (cache_15 >> 2) * global.sine(this.theta_m90);
+            this.vcvs_14.x = this.vcvs_2.x + cache_10 * global.cosine(this.theta) + (cache_14 >> 2) * global.cosine(this.theta_m90);
+            this.vcvs_14.y = this.vcvs_2.y + cache_11 * global.sine(this.theta) + (cache_15 >> 2) * global.sine(this.theta_m90);
+            this.vcvs_15.x = this.vcvs_2.x + cache_10 * global.cosine(this.theta) - (cache_14 >> 2) * global.cosine(this.theta_m90);
+            this.vcvs_15.y = this.vcvs_2.y + cache_11 * global.sine(this.theta) - (cache_15 >> 2) * global.sine(this.theta_m90);
             /* Reference polarity point */
-            this.vcvs_16.x =
-                this.p1.x + cache_12 * global.cosine(this.theta_m90 + global.PI_DIV_4);
-            this.vcvs_16.y =
-                this.p1.y + cache_13 * global.sine(this.theta_m90 + global.PI_DIV_4);
+            this.vcvs_16.x = this.p1.x + cache_12 * global.cosine(this.theta_m90 + global.PI_DIV_4);
+            this.vcvs_16.y = this.p1.y + cache_13 * global.sine(this.theta_m90 + global.PI_DIV_4);
             this.BUILD_ELEMENT = false;
         }
     }
@@ -826,8 +775,7 @@ class VoltageControlledVoltageSource {
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -844,8 +792,7 @@ class VoltageControlledVoltageSource {
     increment_flip() { }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -870,8 +817,7 @@ class VoltageControlledVoltageSource {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -919,20 +865,17 @@ class VoltageControlledVoltageSource {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                    (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Gain'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.restore();
                 }
-                else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                    (this.ANGLE > 80 && this.ANGLE < 100)) {
+                else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Gain'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                 }
@@ -968,10 +911,7 @@ class VoltageControlledVoltageSource {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

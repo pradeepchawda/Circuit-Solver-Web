@@ -480,9 +480,7 @@ class GraphWindow {
             is bench-boarding of the meter index (hover) values. */
             if (scope_manager.ENTRY.length > 0) {
                 if (this.meter_hover_index > -1 &&
-                    (this.meter_hover_index < this.graph_trace_a.trace.length ||
-                        this.meter_hover_index < this.graph_trace_b.trace.length ||
-                        this.meter_hover_index < this.graph_trace_c.trace.length)) {
+                    (this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)) {
                     canvas.draw_text(this.time_axis_value + 's', this.inner_bounds.right -
                         this.text_paint.measure_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step   ') -
                         this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -

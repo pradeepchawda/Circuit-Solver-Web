@@ -179,11 +179,8 @@ class BottomMenu {
     mouse_move() { }
     /* Handling any mouse up events. */
     mouse_up() {
-        if (!global.IS_RIGHT_CLICK &&
-            this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
-            if (!global.MOUSE_KEYBOARD_LOCK &&
-                !multi_select_manager.CTRL_PRESSED &&
-                global.component_touched) {
+        if (!global.IS_RIGHT_CLICK && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
+            if (!global.MOUSE_KEYBOARD_LOCK && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
                 if (!global.FLAG_SIMULATING &&
                     !global.FLAG_SAVE_IMAGE &&
                     !global.FLAG_SAVE_CIRCUIT &&
@@ -242,9 +239,7 @@ class BottomMenu {
         global.FLAG_SELECT_TIMESTEP = ON;
     }
     recolor() {
-        if (!global.FLAG_SIMULATING &&
-            !global.FLAG_GRAPH &&
-            !global.FLAG_MENU_OPEN_DOWN) {
+        if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.FLAG_MENU_OPEN_DOWN) {
             if (this.file_button.contains_xy(global.mouse_x, global.mouse_y) &&
                 !global.FLAG_MENU_OPEN_DOWN &&
                 !global.FLAG_MENU_OPEN_DOWN &&
@@ -332,17 +327,12 @@ class BottomMenu {
     /* Draws the bottom menu. */
     draw_bottom_menu(canvas) {
         this.recolor();
-        this.file_button.text =
-            language_manager.FILE[global.LANGUAGES[global.LANGUAGE_INDEX]] +
-                global.USER_FILE.title;
+        this.file_button.text = language_manager.FILE[global.LANGUAGES[global.LANGUAGE_INDEX]] + global.USER_FILE.title;
         this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.TIME_STEP));
-        this.TIME_STEP_BUTTON_WIDTH =
-            1.25 *
-                this.time_step_button.text_paint.measure_text(this.time_step_button.text);
+        this.TIME_STEP_BUTTON_WIDTH = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
         let padding = 2 * global.CANVAS_STROKE_WIDTH_4;
         /* Keep updating that bottom path's width baby! */
-        this.file_button.set_bounds(view_port.left, menu_bar.settings_button.bottom + padding, view_port.left +
-            this.file_button.text_paint.measure_text(this.FILE_BUTTON_TEXT_TEMPLATE.replace('{TEXT}', this.file_button.text)), view_port.bottom);
+        this.file_button.set_bounds(view_port.left, menu_bar.settings_button.bottom + padding, view_port.left + this.file_button.text_paint.measure_text(this.FILE_BUTTON_TEXT_TEMPLATE.replace('{TEXT}', this.file_button.text)), view_port.bottom);
         this.time_step_button.set_bounds(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + padding, view_port.right, view_port.bottom);
         if (this.DRAW_BOTTOM_PATH) {
             if (this.file_button.draw_fill) {

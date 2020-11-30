@@ -39,8 +39,7 @@ class VoltageControlledSwitchSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p3 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p3 */
         this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
         /* Angle from center to p2 */
@@ -92,8 +91,7 @@ class VoltageControlledSwitchSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p3 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p3 */
         this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
         /* Angle from center to p2 */
@@ -184,8 +182,7 @@ class VoltageControlledSwitchSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -208,30 +205,15 @@ class VoltageControlledSwitchSymbol {
         this.connect1_y = this.c_y - this.y_space * global.sine(this.theta);
         this.connect2_x = this.c_x + this.x_space * global.cosine(this.theta);
         this.connect2_y = this.c_y + this.y_space * global.sine(this.theta);
-        this.vcsw_0.x =
-            this.connect1_x +
-                this.x_space * global.cosine(this.theta) +
-                0.5 * this.x_space * global.cosine(this.theta_m90);
-        this.vcsw_0.y =
-            this.connect1_y +
-                this.y_space * global.sine(this.theta) +
-                0.5 * this.y_space * global.sine(this.theta_m90);
+        this.vcsw_0.x = this.connect1_x + this.x_space * global.cosine(this.theta) + 0.5 * this.x_space * global.cosine(this.theta_m90);
+        this.vcsw_0.y = this.connect1_y + this.y_space * global.sine(this.theta) + 0.5 * this.y_space * global.sine(this.theta_m90);
         this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
-        this.vcsw_1.x =
-            this.p2.x + 4 * this.x_space * 0.2 * global.cosine(this.phi);
+        this.vcsw_1.x = this.p2.x + 4 * this.x_space * 0.2 * global.cosine(this.phi);
         this.vcsw_1.y = this.p2.y + 4 * this.y_space * 0.2 * global.sine(this.phi);
-        this.vcsw_2.x =
-            this.vcsw_1.x +
-                2 * this.x_space * 0.2 * global.cosine(this.theta - global.PI_DIV_6);
-        this.vcsw_2.y =
-            this.vcsw_1.y +
-                2 * this.y_space * 0.2 * global.sine(this.theta - global.PI_DIV_6);
-        this.vcsw_3.x =
-            this.vcsw_1.x +
-                2 * this.x_space * 0.2 * global.cosine(this.theta + global.PI_DIV_6);
-        this.vcsw_3.y =
-            this.vcsw_1.y +
-                2 * this.y_space * 0.2 * global.sine(this.theta + global.PI_DIV_6);
+        this.vcsw_2.x = this.vcsw_1.x + 2 * this.x_space * 0.2 * global.cosine(this.theta - global.PI_DIV_6);
+        this.vcsw_2.y = this.vcsw_1.y + 2 * this.y_space * 0.2 * global.sine(this.theta - global.PI_DIV_6);
+        this.vcsw_3.x = this.vcsw_1.x + 2 * this.x_space * 0.2 * global.cosine(this.theta + global.PI_DIV_6);
+        this.vcsw_3.y = this.vcsw_1.y + 2 * this.y_space * 0.2 * global.sine(this.theta + global.PI_DIV_6);
     }
     resize(rect) {
         /* Create a new rectangle for the bounds of this component */
@@ -248,8 +230,7 @@ class VoltageControlledSwitchSymbol {
         this.p2.set_point(this.bounds.get_center_x(), this.bounds.get_center_y() - (this.bounds.get_width() >> 1));
         this.p3.set_point(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p3 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p3 */
         this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
         /* Angle from center to p2 */
@@ -294,20 +275,10 @@ class VoltageControlledSwitchSymbol {
             this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }

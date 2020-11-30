@@ -206,7 +206,7 @@ class ElementOptions {
         let holder_y = [];
         let edit_x0 = '0.746,0.274,0.114,0.112,0.584';
         let edit_y0 = '0.406,0.874,0.876,0.734,0.264';
-        let edit_x1 = '0.902,0.784,0.626,0.75';
+        let edit_x1 = '0.902,0.784,0.63,0.75';
         let edit_y1 = '0.244,0.368,0.226,0.104';
         let padding = 0.1;
         /* Loading the first path of edit  */
@@ -215,11 +215,7 @@ class ElementOptions {
         let points = [];
         points = [];
         for (var i = 0; i < holder_x.length; i++) {
-            points.push(new PointF(rect.left +
-                padding * rect.get_width() +
-                rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]), rect.top +
-                padding * rect.get_height() +
-                rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])));
+            points.push(new PointF(rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]), rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])));
         }
         this.edit_path0.reset();
         for (var i = 0; i < points.length; i++) {
@@ -236,11 +232,7 @@ class ElementOptions {
         holder_y = edit_y1.split(',');
         points = [];
         for (var i = 0; i < holder_x.length; i++) {
-            points.push(new PointF(rect.left +
-                padding * rect.get_width() +
-                rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]), rect.top +
-                padding * rect.get_height() +
-                rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])));
+            points.push(new PointF(rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]), rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])));
         }
         this.edit_path1.reset();
         for (var i = 0; i < points.length; i++) {
@@ -369,6 +361,7 @@ class ElementOptions {
         this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
         this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.map_options();
     }
     update() {
         /* Based on the selected element it'll draw the options available! */
@@ -643,23 +636,19 @@ class ElementOptions {
                 !global.FLAG_MENU_OPEN_DOWN &&
                 !global.FLAG_GRAPH) {
                 if (global.selected) {
-                    if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
-                        this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                    if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c0');
                         global.SIGNAL_BUILD_ELEMENT = true;
                     }
-                    if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
-                        this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                    if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c1');
                         global.SIGNAL_BUILD_ELEMENT = true;
                     }
-                    if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) &&
-                        this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                    if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c2');
                         global.SIGNAL_BUILD_ELEMENT = true;
                     }
-                    if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) &&
-                        this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                    if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c3');
                         global.SIGNAL_BUILD_ELEMENT = true;
                     }

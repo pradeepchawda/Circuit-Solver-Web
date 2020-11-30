@@ -338,23 +338,7 @@ class Global {
             p4: 3
         };
         /* Store the pre-divided SI units to save some computation time. */
-        this.SI_UNIT_ARRAY = [
-            1 / 1e21,
-            1 / 1e18,
-            1 / 1e15,
-            1 / 1e12,
-            1 / 1e9,
-            1 / 1e6,
-            1 / 1e3,
-            1,
-            1 / 1e-3,
-            1 / 1e-6,
-            1 / 1e-9,
-            1 / 1e-12,
-            1 / 1e-15,
-            1 / 1e-18,
-            1 / 1e-21
-        ];
+        this.SI_UNIT_ARRAY = [1 / 1e21, 1 / 1e18, 1 / 1e15, 1 / 1e12, 1 / 1e9, 1 / 1e6, 1 / 1e3, 1, 1 / 1e-3, 1 / 1e-6, 1 / 1e-9, 1 / 1e-12, 1 / 1e-15, 1 / 1e-18, 1 / 1e-21];
         /* Cache the thresholds.. */
         this.SI_UNIT_THRESHOLD_ARRAY = [
             0.99 * 1e21,
@@ -630,6 +614,7 @@ class Global {
             'Transient Current': 0,
             'Equivalent Current': 0,
             'Initial Voltage': 0,
+            'Transient Voltage': 0,
             tag: 'C',
             units: 'F',
             options: ['Capacitance', 'Initial Voltage'],
@@ -646,6 +631,7 @@ class Global {
             'Transient Current': 0,
             'Equivalent Current': 0,
             'Initial Current': 0,
+            'Transient Voltage': 0,
             tag: 'I',
             units: 'H',
             options: ['Inductance', 'Initial Current'],
@@ -2392,6 +2378,7 @@ class Global {
             'Transient Current': 0,
             'Equivalent Current': 0,
             'Initial Voltage': 0,
+            'Transient Voltage': 0,
             tag: 'C',
             units: 'F',
             options: ['Capacitance', 'Initial Voltage'],
@@ -2408,6 +2395,7 @@ class Global {
             'Transient Current': 0,
             'Equivalent Current': 0,
             'Initial Current': 0,
+            'Transient Voltage': 0,
             tag: 'I',
             units: 'H',
             options: ['Inductance', 'Initial Current'],

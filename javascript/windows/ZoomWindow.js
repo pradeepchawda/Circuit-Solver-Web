@@ -210,8 +210,6 @@ class ZoomWindow {
         }
         this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
         let padding = this.PADDING * this.bounds.get_width();
-        let width = (this.bounds.get_width() - 2 * padding) * 0.5;
-        let height = (this.bounds.get_height() - 2 * padding) * 0.5;
         this.option_0 = new RectF(this.bounds.left + padding, this.bounds.top + padding, this.bounds.get_center_x() - padding * 0.5, this.bounds.get_center_y() - padding * 0.5);
         this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
         this.option_2 = new RectF(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);

@@ -19,7 +19,7 @@
  *
  ***********************************************************************/
 class Global {
-  public readonly NULL = null;
+  public readonly NULL: any = null;
   public readonly MOBILE_MODE: boolean = false;
   public SYSTEM_INITIALIZATION: SYSTEM_INITIALIZATION_T = {
     step: 0,
@@ -173,7 +173,7 @@ class Global {
   /* The bounds of the selected item */
   public selected_bounds: RectF = this.NULL;
   /* The properties of the selected item. Each element has properties associated with it */
-  public selected_properties = this.NULL;
+  public selected_properties: ELEMENT_PROPERTY_T = this.NULL;
   /* Selectios nearest neighbors */
   public SELECTION_NEAREST_NEIGHBORS = [];
   public NEAREST_NEIGHBOR_INDEX: number = 0;
@@ -250,16 +250,16 @@ class Global {
     and the simulation will end throwing an sinular matrix fault. */
   public IS_SINGULAR: boolean = false;
   /* Storing mouse events in this template so they can be serialized */
-  public mouse_down_event = this.NULL;
-  public mouse_move_event = this.NULL;
-  public mouse_up_event = this.NULL;
-  public mouse_wheel_event = this.NULL;
-  public mouse_double_click_event = this.NULL;
+  public mouse_down_event: MouseEvent = this.NULL;
+  public mouse_move_event: MouseEvent = this.NULL;
+  public mouse_up_event: MouseEvent = this.NULL;
+  public mouse_wheel_event: MouseEvent = this.NULL;
+  public mouse_double_click_event: MouseEvent = this.NULL;
   /* Storing key events into queue's to prevent keystrokes from being missed. */
-  public mouse_down_event_queue = [];
-  public mouse_up_event_queue = [];
-  public mouse_wheel_event_queue = [];
-  public mouse_double_click_event_queue = [];
+  public mouse_down_event_queue: Array<MouseEvent> = [];
+  public mouse_up_event_queue: Array<MouseEvent> = [];
+  public mouse_wheel_event_queue: Array<MouseEvent> = [];
+  public mouse_double_click_event_queue: Array<MouseEvent> = [];
   /* Determine the web-browser! */
   public BROWSER_IE: boolean = false;
   public BROWSER_CHROME: boolean = false;
@@ -3542,7 +3542,7 @@ class Global {
     this.NON_LINEAR_MAX = [];
     this.MAX_GENERAL_NUMBER = 0;
   }
-  ColorNameToHex(color) {
+  ColorNameToHex(color: string) {
     var colors = {
       aliceblue: '#f0f8ff',
       antiquewhite: '#faebd7',
@@ -3689,28 +3689,28 @@ class Global {
     if (typeof colors[color.toLowerCase()] != 'undefined') return colors[color.toLowerCase()];
     return color;
   }
-  sine(theta) {
+  sine(theta: number): number {
     return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT) & this.TRIG_TABLE_MASK];
   }
-  cosine(theta) {
+  cosine(theta: number): number {
     return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) & this.TRIG_TABLE_MASK];
   }
   /* Re-calculates the new position of an object based on the last screen width and the current screen width. */
-  remap_position(input, is_width) {
+  remap_position(input: number, is_width: boolean): number {
     if (is_width === true) {
       return view_port.right - (this.last_view_port_right - input) * this.RESIZE_W_FACTOR;
     } else {
       return view_port.bottom - (this.last_view_port_bottom - input) * this.RESIZE_H_FACTOR;
     }
   }
-  reset_angle_cache() {
+  reset_angle_cache(): void {
     this.ANGLE_ARRAY = [];
   }
-  reset_angle_radian_cache() {
+  reset_angle_radian_cache(): void {
     this.ANGLE_RADIAN_ARRAY = [];
   }
   /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-  search_angle_array(x, y) {
+  search_angle_array(x: number, y: number): boolean {
     this.TEMP_BOOLEAN = false;
     this.SAVED_ANGLE = -1;
     for (var i: number = 0; i < this.ANGLE_ARRAY.length; i++) {
@@ -3726,7 +3726,7 @@ class Global {
     return this.TEMP_BOOLEAN;
   }
   /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-  search_angle_radian_array(x, y) {
+  search_angle_radian_array(x: number, y: number): boolean {
     this.TEMP_BOOLEAN = false;
     this.SAVED_ANGLE_RADIANS = -1;
     for (var i: number = 0; i < this.ANGLE_RADIAN_ARRAY.length; i++) {
@@ -3741,12 +3741,12 @@ class Global {
     }
     return this.TEMP_BOOLEAN;
   }
-  retrieve_angle(x, y) {
+  retrieve_angle(x: number, y: number): number {
     if (this.search_angle_array(x, y)) {
       return this.SAVED_ANGLE;
     } else {
       if (this.ANGLE_ARRAY.length > this.GARBAGE_COLLECTOR_SIZE) {
-        this.house_keeping(x, y);
+        this.house_keeping();
       }
       this.ANGLE_ARRAY.push({
         x: x,
@@ -3756,12 +3756,12 @@ class Global {
       return this.ANGLE_ARRAY[this.ANGLE_ARRAY.length - 1]['angle'];
     }
   }
-  retrieve_angle_radian(x, y) {
+  retrieve_angle_radian(x: number, y: number): number {
     if (this.search_angle_radian_array(x, y)) {
       return this.SAVED_ANGLE_RADIANS;
     } else {
       if (this.ANGLE_RADIAN_ARRAY.length > this.GARBAGE_COLLECTOR_SIZE) {
-        this.house_keeping_radians(x, y);
+        this.house_keeping_radians();
       }
       this.ANGLE_RADIAN_ARRAY.push({
         x: x,
@@ -3771,14 +3771,14 @@ class Global {
       return this.ANGLE_RADIAN_ARRAY[this.ANGLE_RADIAN_ARRAY.length - 1]['angle'];
     }
   }
-  house_keeping(x, y) {
+  house_keeping() {
     this.ANGLE_ARRAY.splice(this.ANGLE_ARRAY.length - 1, 1);
   }
-  house_keeping_radians(x, y) {
+  house_keeping_radians() {
     this.ANGLE_RADIAN_ARRAY.splice(this.ANGLE_RADIAN_ARRAY.length - 1, 1);
   }
   /* Calculate the angle of a vector in degrees */
-  calc_degree(x, y) {
+  calc_degree(x: number, y: number): number {
     this.general_integer = this.atan2_approx2(y, x) * global._180_DIV_PI;
     if (this.general_integer < 0) {
       this.general_integer += 360;
@@ -3786,7 +3786,7 @@ class Global {
     return this.general_integer;
   }
   /* calculate the angle of a vector in radians */
-  calc_degree_radians(x, y) {
+  calc_degree_radians(x: number, y: number): number {
     this.general_integer = this.atan2_approx2(y, x);
     if (this.general_integer < 0) {
       this.general_integer += this.PI_MUL_2;
@@ -3794,17 +3794,17 @@ class Global {
     return this.general_integer;
   }
   /* Converts degrees to radians */
-  to_radians(degrees) {
+  to_radians(degrees: number): number {
     return degrees * this.PI_DIV_180;
   }
-  inv_sqrt(x) {
+  inv_sqrt(x: number): number {
     var x2 = 0.5 * (this.inv_sqrt_f32[0] = x);
     this.inv_sqrt_u32[0] = 0x5f3759df - (this.inv_sqrt_u32[0] >> 1);
     var y = this.inv_sqrt_f32[0];
     y = y * (1.5 - x2 * y * y);
     return y;
   }
-  atan2_approx2(y, x) {
+  atan2_approx2(y: number, x: number): number {
     if (x === 0.0) {
       if (y > 0.0) {
         return this.PI_DIV_2;
@@ -3833,24 +3833,24 @@ class Global {
     return this.general_integer2;
   }
   /* Calculates the norm of a vector */
-  norm(x, y) {
+  norm(x: number, y: number): number {
     return Math.sqrt(x * x + y * y);
   }
   /* Rounds a value to three decimal places */
-  round(value) {
+  round(value: number): number {
     return Math.round((value + Number.EPSILON) * 1000) / 1000;
   }
   /* A function to try and safely cast a float to an "int" */
-  cast_int(value) {
+  cast_int(value: number): number {
     return Math.trunc(Math.round(value));
   }
   /* Returns the average of two numbers: a and b */
-  get_average2(a, b) {
+  get_average2(a: number, b: number): number {
     return (a + b) * 0.5;
   }
   /* Calculate the incenter of a triangle. NOTE: Don't use this.general_integerx here..., it'll cause a value change.
   because of calc_degree_radians */
-  equilateral_triangle_center(p1_x, p2_x, p3_x, p1_y, p2_y, p3_y) {
+  equilateral_triangle_center(p1_x: number, p2_x: number, p3_x: number, p1_y: number, p2_y: number, p3_y: number): Array<number> {
     let temp = 0;
     temp = this.norm(p2_x - p1_x, p2_y - p1_y) * 0.5;
     let theta_p1_p2 = this.retrieve_angle_radian(p2_x - p1_x, p2_y - p1_y);
@@ -3862,7 +3862,7 @@ class Global {
     return Array(c_x, c_y);
   }
   /* Returns the average of four numbers: a, b, c, and d */
-  get_average4(a, b, c, d) {
+  get_average4(a: number, b: number, c: number, d: number): number {
     return (a + b + c + d) * 0.25;
   }
   /* Check to see if an element is null or undefined. */
@@ -3881,7 +3881,7 @@ class Global {
     }
   }
   /* A function to quickly format a number into SI units */
-  exponentiate_quickly(input) {
+  exponentiate_quickly(input: number): string {
     let str = '';
     let val = 0;
     let abs_input = Math.abs(input);

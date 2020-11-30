@@ -43,8 +43,7 @@ class NPNBipolarJunctionTransistorSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) +
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -99,8 +98,7 @@ class NPNBipolarJunctionTransistorSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -191,8 +189,7 @@ class NPNBipolarJunctionTransistorSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -214,52 +211,23 @@ class NPNBipolarJunctionTransistorSymbol {
         /* Top segment */
         this.npn_0.x = this.p1.x + this.x_space * global.cosine(this.theta);
         this.npn_0.y = this.p1.y + this.y_space * global.sine(this.theta);
-        this.npn_1.x =
-            this.npn_0.x +
-                2.0 * this.x_space * global.cosine(this.theta_m90 - global.PI_DIV_12);
-        this.npn_1.y =
-            this.npn_0.y +
-                2.0 * this.y_space * global.sine(this.theta_m90 - global.PI_DIV_12);
-        this.npn_2.x =
-            this.p1.x +
-                this.x_space * global.cosine(this.theta) +
-                2.0 * this.x_space * global.cosine(this.theta_m90);
-        this.npn_2.y =
-            this.p1.y +
-                this.y_space * global.sine(this.theta) +
-                2.0 * this.y_space * global.sine(this.theta_m90);
+        this.npn_1.x = this.npn_0.x + 2.0 * this.x_space * global.cosine(this.theta_m90 - global.PI_DIV_12);
+        this.npn_1.y = this.npn_0.y + 2.0 * this.y_space * global.sine(this.theta_m90 - global.PI_DIV_12);
+        this.npn_2.x = this.p1.x + this.x_space * global.cosine(this.theta) + 2.0 * this.x_space * global.cosine(this.theta_m90);
+        this.npn_2.y = this.p1.y + this.y_space * global.sine(this.theta) + 2.0 * this.y_space * global.sine(this.theta_m90);
         this.npn_3.x = this.p1.x + 3.0 * this.x_space * global.cosine(this.theta);
         this.npn_3.y = this.p1.y + 3.0 * this.y_space * global.sine(this.theta);
-        this.npn_4.x =
-            this.npn_3.x +
-                2.0 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_12);
-        this.npn_4.y =
-            this.npn_3.y +
-                2.0 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_12);
-        this.npn_5.x =
-            this.p1.x +
-                3.0 * this.x_space * global.cosine(this.theta) +
-                2.0 * this.x_space * global.cosine(this.theta_m90);
-        this.npn_5.y =
-            this.p1.y +
-                3.0 * this.y_space * global.sine(this.theta) +
-                2.0 * this.y_space * global.sine(this.theta_m90);
-        this.npn_6.x =
-            this.p3.x - 2.1 * this.x_space * global.cosine(this.theta_m90);
+        this.npn_4.x = this.npn_3.x + 2.0 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_12);
+        this.npn_4.y = this.npn_3.y + 2.0 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_12);
+        this.npn_5.x = this.p1.x + 3.0 * this.x_space * global.cosine(this.theta) + 2.0 * this.x_space * global.cosine(this.theta_m90);
+        this.npn_5.y = this.p1.y + 3.0 * this.y_space * global.sine(this.theta) + 2.0 * this.y_space * global.sine(this.theta_m90);
+        this.npn_6.x = this.p3.x - 2.1 * this.x_space * global.cosine(this.theta_m90);
         this.npn_6.y = this.p3.y - 2.1 * this.y_space * global.sine(this.theta_m90);
         /* Arrow */
-        this.npn_7.x =
-            this.npn_3.x +
-                0.707 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.npn_7.y =
-            this.npn_3.y +
-                0.707 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_4);
-        this.npn_8.x =
-            this.npn_3.x +
-                0.707 * this.x_space * global.cosine(this.theta_m90 - global.PI_DIV_12);
-        this.npn_8.y =
-            this.npn_3.y +
-                0.707 * this.y_space * global.sine(this.theta_m90 - global.PI_DIV_12);
+        this.npn_7.x = this.npn_3.x + 0.707 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_4);
+        this.npn_7.y = this.npn_3.y + 0.707 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_4);
+        this.npn_8.x = this.npn_3.x + 0.707 * this.x_space * global.cosine(this.theta_m90 - global.PI_DIV_12);
+        this.npn_8.y = this.npn_3.y + 0.707 * this.y_space * global.sine(this.theta_m90 - global.PI_DIV_12);
     }
     resize(rect) {
         /* Create a new rectangle for the bounds of this component */
@@ -276,8 +244,7 @@ class NPNBipolarJunctionTransistorSymbol {
         this.p2.set_point(this.bounds.right, this.bounds.bottom);
         this.p3.set_point(this.bounds.left, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -325,20 +292,10 @@ class NPNBipolarJunctionTransistorSymbol {
             this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }

@@ -40,19 +40,11 @@ class SubtractorSymbol {
   /* The center (y-coord) of the bounds */
   public c_y = this.bounds.get_center_y();
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 =
-    global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-    global.PI_DIV_2;
+  public theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
-  public theta = global.retrieve_angle_radian(
-    this.p2.x - this.p1.x,
-    this.p2.y - this.p1.y
-  );
+  public theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* Angle from center to p2 */
-  public phi = global.retrieve_angle_radian(
-    this.c_x - this.p2.x,
-    this.c_y - this.p2.y
-  );
+  public phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
   /* The spacing of the nodes in the x-direction, divided by 2 */
   public x_space = this.bounds.get_width() >> 2;
   /* The spacing of the nodes in the y-direction, divided by 2 */
@@ -75,10 +67,10 @@ class SubtractorSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER : Array<Array<number>> = [];
-  public CIRCLE_BUFFER = [];
+  public LINE_BUFFER: Array<Array<number>> = [];
+  public CIRCLE_BUFFER: Array<Array<number>> = [];
 
-  constructor(rect, index, page) {
+  constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
     this.index = index;
     /* Page to be drawn on (Inside New Element Window) */
@@ -103,21 +95,11 @@ class SubtractorSymbol {
     /* The center (y-coord) of the bounds */
     this.c_y = this.bounds.get_center_y();
     /* Angle from p1 to p2 minus 90 degrees */
-    this.theta_m90 =
-      global.retrieve_angle_radian(
-        this.p2.x - this.p1.x,
-        this.p2.y - this.p1.y
-      ) - global.PI_DIV_2;
+    this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
     /* Angle from p1 to p2 */
-    this.theta = global.retrieve_angle_radian(
-      this.p2.x - this.p1.x,
-      this.p2.y - this.p1.y
-    );
+    this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
     /* Angle from center to p2 */
-    this.phi = global.retrieve_angle_radian(
-      this.c_x - this.p2.x,
-      this.c_y - this.p2.y
-    );
+    this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
     /* The spacing of the nodes in the x-direction, divided by 2 */
     this.x_space = this.bounds.get_width() >> 2;
     /* The spacing of the nodes in the y-direction, divided by 2 */
@@ -162,23 +144,15 @@ class SubtractorSymbol {
     this.text_paint.set_paint_align(this.text_paint.align.CENTER);
     /* Text background paint */
     this.text_background_paint = new Paint();
-    this.text_background_paint.set_paint_style(
-      this.text_background_paint.style.FILL
-    );
-    this.text_background_paint.set_paint_cap(
-      this.text_background_paint.cap.ROUND
-    );
-    this.text_background_paint.set_paint_join(
-      this.text_background_paint.join.MITER
-    );
+    this.text_background_paint.set_paint_style(this.text_background_paint.style.FILL);
+    this.text_background_paint.set_paint_cap(this.text_background_paint.cap.ROUND);
+    this.text_background_paint.set_paint_join(this.text_background_paint.join.MITER);
     this.text_background_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.text_background_paint.set_color(global.GENERAL_CYAN_COLOR);
     this.text_background_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
     this.text_background_paint.set_font(global.DEFAULT_FONT);
     this.text_background_paint.set_alpha(192);
-    this.text_background_paint.set_paint_align(
-      this.text_background_paint.align.CENTER
-    );
+    this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
     this.build_element();
     this.FLAG_ADD_ELEMENT = false;
     this.TAG = language_manager.TAG_SUB;
@@ -191,12 +165,7 @@ class SubtractorSymbol {
   update() {
     if (this.FLAG_ADD_ELEMENT) {
       if (
-        workspace.bounds.contains_xywh(
-          global.mouse_x,
-          global.mouse_y,
-          workspace.bounds.get_width() - 4.5 * global.node_space_x,
-          workspace.bounds.get_height() - 4.5 * global.node_space_y
-        ) &&
+        workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
         !this.bounds.contains_xy(global.mouse_x, global.mouse_y)
       ) {
         shortcut_manager.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
@@ -206,11 +175,9 @@ class SubtractorSymbol {
       }
     }
   }
-  mouse_down(page, width, height) {
+  mouse_down(page: number, width: number, height: number) {
     if (this.page === page) {
-      if (
-        this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)
-      ) {
+      if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
         if (!this.FLAG_ADD_ELEMENT) {
           this.FLAG_ADD_ELEMENT = true;
           global.SIGNAL_ADD_ELEMENT = true;
@@ -220,16 +187,8 @@ class SubtractorSymbol {
       }
     }
   }
-  mouse_move(page, width, height) {
-    if (
-      this.bounds.contains_xywh(
-        global.mouse_x,
-        global.mouse_y,
-        width,
-        height
-      ) &&
-      !global.MOBILE_MODE
-    ) {
+  mouse_move(page: number, width: number, height: number) {
+    if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
       this.DRAW_TAG = true;
     } else {
       this.DRAW_TAG = false;
@@ -237,11 +196,9 @@ class SubtractorSymbol {
     if (this.page === page) {
     }
   }
-  mouse_up(page, width, height) {
+  mouse_up(page: number, width: number, height: number) {
     if (this.page === page) {
-      if (
-        this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)
-      ) {
+      if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
       }
       this.FLAG_ADD_ELEMENT = false;
       global.SIGNAL_ADD_ELEMENT = false;
@@ -250,40 +207,24 @@ class SubtractorSymbol {
   /* Generate the SVG for the component. */
   build_element() {
     /* Top segment */
-    this.subtractor_0.x =
-      this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
-    this.subtractor_0.y =
-      this.p1.y + 2.0 * this.y_space * global.sine(this.theta_m90);
-    this.subtractor_1.x =
-      this.subtractor_0.x + this.x_space * global.cosine(this.theta);
-    this.subtractor_1.y =
-      this.subtractor_0.y + this.y_space * global.sine(this.theta);
-    this.subtractor_2.x =
-      this.subtractor_1.x +
-      0.75 * this.x_space * global.cosine(this.theta - Math.PI);
-    this.subtractor_2.y =
-      this.subtractor_1.y +
-      0.75 * this.y_space * global.sine(this.theta - Math.PI);
+    this.subtractor_0.x = this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
+    this.subtractor_0.y = this.p1.y + 2.0 * this.y_space * global.sine(this.theta_m90);
+    this.subtractor_1.x = this.subtractor_0.x + this.x_space * global.cosine(this.theta);
+    this.subtractor_1.y = this.subtractor_0.y + this.y_space * global.sine(this.theta);
+    this.subtractor_2.x = this.subtractor_1.x + 0.75 * this.x_space * global.cosine(this.theta - Math.PI);
+    this.subtractor_2.y = this.subtractor_1.y + 0.75 * this.y_space * global.sine(this.theta - Math.PI);
     /* Bottom segment */
-    this.subtractor_3.x =
-      this.p2.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
-    this.subtractor_3.y =
-      this.p2.y + 2.0 * this.y_space * global.sine(this.theta_m90);
-    this.subtractor_4.x =
-      this.subtractor_3.x - this.x_space * global.cosine(this.theta);
-    this.subtractor_4.y =
-      this.subtractor_3.y - this.y_space * global.sine(this.theta);
-    this.subtractor_5.x =
-      this.subtractor_4.x + 0.75 * this.x_space * global.cosine(this.theta);
-    this.subtractor_5.y =
-      this.subtractor_4.y + 0.75 * this.y_space * global.sine(this.theta);
+    this.subtractor_3.x = this.p2.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
+    this.subtractor_3.y = this.p2.y + 2.0 * this.y_space * global.sine(this.theta_m90);
+    this.subtractor_4.x = this.subtractor_3.x - this.x_space * global.cosine(this.theta);
+    this.subtractor_4.y = this.subtractor_3.y - this.y_space * global.sine(this.theta);
+    this.subtractor_5.x = this.subtractor_4.x + 0.75 * this.x_space * global.cosine(this.theta);
+    this.subtractor_5.y = this.subtractor_4.y + 0.75 * this.y_space * global.sine(this.theta);
     /* End Segment */
-    this.subtractor_6.x =
-      this.p3.x - 0.75 * this.x_space * global.cosine(this.theta_m90);
-    this.subtractor_6.y =
-      this.p3.y - 0.75 * this.y_space * global.sine(this.theta_m90);
+    this.subtractor_6.x = this.p3.x - 0.75 * this.x_space * global.cosine(this.theta_m90);
+    this.subtractor_6.y = this.p3.y - 0.75 * this.y_space * global.sine(this.theta_m90);
   }
-  resize(rect) {
+  resize(rect: RectF) {
     /* Create a new rectangle for the bounds of this component */
     this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
     /* The center (x-coord) of the bounds */
@@ -298,21 +239,11 @@ class SubtractorSymbol {
     this.p2.set_point(this.bounds.left, this.bounds.bottom);
     this.p3.set_point(this.bounds.right, this.bounds.get_center_y());
     /* Angle from p1 to p2 minus 90 degrees */
-    this.theta_m90 =
-      global.retrieve_angle_radian(
-        this.p2.x - this.p1.x,
-        this.p2.y - this.p1.y
-      ) - global.PI_DIV_2;
+    this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
     /* Angle from p1 to p2 */
-    this.theta = global.retrieve_angle_radian(
-      this.p2.x - this.p1.x,
-      this.p2.y - this.p1.y
-    );
+    this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
     /* Angle from center to p2 */
-    this.phi = global.retrieve_angle_radian(
-      this.c_x - this.p2.x,
-      this.c_y - this.p2.y
-    );
+    this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
     this.build_element();
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -333,99 +264,32 @@ class SubtractorSymbol {
     }
   }
   /* Draws the Symbol */
-  draw_symbol(canvas, page) {
+  draw_symbol(canvas: GraphicsEngine, page: number) {
     this.recolor();
     if (this.page === page) {
       let indexer = 0;
       this.CIRCLE_BUFFER = [];
       this.LINE_BUFFER = [];
-      this.LINE_BUFFER[indexer++] = Array(
-        this.p1.x,
-        this.p1.y,
-        this.subtractor_0.x,
-        this.subtractor_0.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.subtractor_0.x,
-        this.subtractor_0.y,
-        this.subtractor_1.x,
-        this.subtractor_1.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.p2.x,
-        this.p2.y,
-        this.subtractor_3.x,
-        this.subtractor_3.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.subtractor_3.x,
-        this.subtractor_3.y,
-        this.subtractor_4.x,
-        this.subtractor_4.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.c_x - this.bounds.get_width() * 0.1,
-        this.c_y,
-        this.c_x + this.bounds.get_width() * 0.1,
-        this.c_y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.subtractor_6.x,
-        this.subtractor_6.y,
-        this.p3.x,
-        this.p3.y
-      );
+      this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.subtractor_0.x, this.subtractor_0.y);
+      this.LINE_BUFFER[indexer++] = Array(this.subtractor_0.x, this.subtractor_0.y, this.subtractor_1.x, this.subtractor_1.y);
+      this.LINE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, this.subtractor_3.x, this.subtractor_3.y);
+      this.LINE_BUFFER[indexer++] = Array(this.subtractor_3.x, this.subtractor_3.y, this.subtractor_4.x, this.subtractor_4.y);
+      this.LINE_BUFFER[indexer++] = Array(this.c_x - this.bounds.get_width() * 0.1, this.c_y, this.c_x + this.bounds.get_width() * 0.1, this.c_y);
+      this.LINE_BUFFER[indexer++] = Array(this.subtractor_6.x, this.subtractor_6.y, this.p3.x, this.p3.y);
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       indexer = 0;
-      canvas.draw_rect3(
-        this.bounds.get_center_x(),
-        this.bounds.get_center_y(),
-        this.bounds.get_width() * 0.5128,
-        this.bounds.get_height() * 0.5128,
-        this.line_paint
-      );
-      this.CIRCLE_BUFFER[indexer++] = Array(
-        this.p1.x,
-        this.p1.y,
-        1.5 * global.CANVAS_STROKE_WIDTH_2
-      );
-      this.CIRCLE_BUFFER[indexer++] = Array(
-        this.p2.x,
-        this.p2.y,
-        1.5 * global.CANVAS_STROKE_WIDTH_2
-      );
-      this.CIRCLE_BUFFER[indexer++] = Array(
-        this.p3.x,
-        this.p3.y,
-        1.5 * global.CANVAS_STROKE_WIDTH_2
-      );
+      canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), this.bounds.get_width() * 0.5128, this.bounds.get_height() * 0.5128, this.line_paint);
+      this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
       canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
       if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-        this.text_bounds.left =
-          this.bounds.get_center_x() -
-          1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-        this.text_bounds.top =
-          this.bounds.bottom +
-          this.bounds.get_height() -
-          this.HEIGHT_RATIO * this.bounds.get_height();
-        this.text_bounds.right =
-          this.bounds.get_center_x() +
-          1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-        this.text_bounds.bottom =
-          this.bounds.bottom +
-          this.bounds.get_height() +
-          this.HEIGHT_RATIO * this.bounds.get_height();
-        canvas.draw_round_rect2(
-          this.text_bounds,
-          this.text_background_paint.get_stroke_width(),
-          this.text_background_paint
-        );
-        canvas.draw_text(
-          this.TAG,
-          this.bounds.get_center_x(),
-          this.text_bounds.get_center_y(),
-          this.text_paint
-        );
+        this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+        this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+        this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+        this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
+        canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
+        canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
       }
     }
   }

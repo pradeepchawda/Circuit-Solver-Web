@@ -41,8 +41,7 @@ class SubtractorSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -95,8 +94,7 @@ class SubtractorSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -187,8 +185,7 @@ class SubtractorSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -208,38 +205,22 @@ class SubtractorSymbol {
     /* Generate the SVG for the component. */
     build_element() {
         /* Top segment */
-        this.subtractor_0.x =
-            this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
-        this.subtractor_0.y =
-            this.p1.y + 2.0 * this.y_space * global.sine(this.theta_m90);
-        this.subtractor_1.x =
-            this.subtractor_0.x + this.x_space * global.cosine(this.theta);
-        this.subtractor_1.y =
-            this.subtractor_0.y + this.y_space * global.sine(this.theta);
-        this.subtractor_2.x =
-            this.subtractor_1.x +
-                0.75 * this.x_space * global.cosine(this.theta - Math.PI);
-        this.subtractor_2.y =
-            this.subtractor_1.y +
-                0.75 * this.y_space * global.sine(this.theta - Math.PI);
+        this.subtractor_0.x = this.p1.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
+        this.subtractor_0.y = this.p1.y + 2.0 * this.y_space * global.sine(this.theta_m90);
+        this.subtractor_1.x = this.subtractor_0.x + this.x_space * global.cosine(this.theta);
+        this.subtractor_1.y = this.subtractor_0.y + this.y_space * global.sine(this.theta);
+        this.subtractor_2.x = this.subtractor_1.x + 0.75 * this.x_space * global.cosine(this.theta - Math.PI);
+        this.subtractor_2.y = this.subtractor_1.y + 0.75 * this.y_space * global.sine(this.theta - Math.PI);
         /* Bottom segment */
-        this.subtractor_3.x =
-            this.p2.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
-        this.subtractor_3.y =
-            this.p2.y + 2.0 * this.y_space * global.sine(this.theta_m90);
-        this.subtractor_4.x =
-            this.subtractor_3.x - this.x_space * global.cosine(this.theta);
-        this.subtractor_4.y =
-            this.subtractor_3.y - this.y_space * global.sine(this.theta);
-        this.subtractor_5.x =
-            this.subtractor_4.x + 0.75 * this.x_space * global.cosine(this.theta);
-        this.subtractor_5.y =
-            this.subtractor_4.y + 0.75 * this.y_space * global.sine(this.theta);
+        this.subtractor_3.x = this.p2.x + 2.0 * this.x_space * global.cosine(this.theta_m90);
+        this.subtractor_3.y = this.p2.y + 2.0 * this.y_space * global.sine(this.theta_m90);
+        this.subtractor_4.x = this.subtractor_3.x - this.x_space * global.cosine(this.theta);
+        this.subtractor_4.y = this.subtractor_3.y - this.y_space * global.sine(this.theta);
+        this.subtractor_5.x = this.subtractor_4.x + 0.75 * this.x_space * global.cosine(this.theta);
+        this.subtractor_5.y = this.subtractor_4.y + 0.75 * this.y_space * global.sine(this.theta);
         /* End Segment */
-        this.subtractor_6.x =
-            this.p3.x - 0.75 * this.x_space * global.cosine(this.theta_m90);
-        this.subtractor_6.y =
-            this.p3.y - 0.75 * this.y_space * global.sine(this.theta_m90);
+        this.subtractor_6.x = this.p3.x - 0.75 * this.x_space * global.cosine(this.theta_m90);
+        this.subtractor_6.y = this.p3.y - 0.75 * this.y_space * global.sine(this.theta_m90);
     }
     resize(rect) {
         /* Create a new rectangle for the bounds of this component */
@@ -256,8 +237,7 @@ class SubtractorSymbol {
         this.p2.set_point(this.bounds.left, this.bounds.bottom);
         this.p3.set_point(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -303,20 +283,10 @@ class SubtractorSymbol {
             this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }

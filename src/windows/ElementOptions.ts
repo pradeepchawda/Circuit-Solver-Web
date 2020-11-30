@@ -76,15 +76,15 @@ class ElementOptions {
   /* This paint is used for drawing the icons that the component is comprised of. */
   public icon_paint = new Paint();
   /* Constants for Options */
-  public ROTATE_ICON = 0;
-  public EDIT_ICON = 1;
-  public FLIP_ICON = 2;
-  public TRASH_ICON = 3;
-  public WIRE_ICON = 4;
-  public EYE_ICON = 5;
-  public NO_ICON = -1;
+  public ROTATE_ICON: number = 0;
+  public EDIT_ICON: number = 1;
+  public FLIP_ICON: number = 2;
+  public TRASH_ICON: number = 3;
+  public WIRE_ICON: number = 4;
+  public EYE_ICON: number = 5;
+  public NO_ICON: number = -1;
   /* Manager for the different configurations. */
-  public opts = {
+  public opts: ELEMENT_OPTIONS_T = {
     c0: this.NO_ICON,
     c1: this.NO_ICON,
     c2: this.NO_ICON,
@@ -236,13 +236,13 @@ class ElementOptions {
     this.first_touch_x = 0;
     this.first_touch_y = 0;
   }
-  set_show(show_0, show_1, show_2, show_3) {
+  set_show(show_0: boolean, show_1: boolean, show_2: boolean, show_3: boolean) {
     this.show_0 = show_0;
     this.show_1 = show_1;
     this.show_2 = show_2;
     this.show_3 = show_3;
   }
-  load_edit_svg(rect) {
+  load_edit_svg(rect: RectF) {
     let holder_x = [];
     let holder_y = [];
     let edit_x0 = '0.746,0.274,0.114,0.112,0.584';
@@ -294,7 +294,7 @@ class ElementOptions {
     }
     this.edit_path1.close();
   }
-  load_trash_svg(rect) {
+  load_trash_svg(rect: RectF) {
     let holder_x = [];
     let holder_y = [];
     let trash_x0 = '0.28,0.72,0.72,0.28';
@@ -335,7 +335,7 @@ class ElementOptions {
     }
     this.trash_path1.close();
   }
-  load_flip_svg(rect) {
+  load_flip_svg(rect: RectF) {
     let holder_x = [];
     let holder_y = [];
     let flip_x0 = '0.45,0.45,0.15';
@@ -725,7 +725,7 @@ class ElementOptions {
     }
   }
   /* Handy function for handling all the possibile options for every element! */
-  handle_options(key) {
+  handle_options(key: string) {
     if (this.opts[key] === this.EDIT_ICON) {
       menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
     } else if (this.opts[key] === this.EYE_ICON) {
@@ -2774,7 +2774,7 @@ class ElementOptions {
       this.line_paint_alt.set_color(global.MENU_ICON_INACTIVE_COLOR);
     }
   }
-  draw_options(canvas) {
+  draw_options(canvas: GraphicsEngine) {
     if (global.FLAG_IDLE && !global.FLAG_MENU_OPEN_DOWN && !global.FLAG_GRAPH) {
       if (global.selected) {
         if (this.show_0) {
@@ -3043,7 +3043,7 @@ class ElementOptions {
       }
     }
   }
-  draw_rotate(rect, canvas) {
+  draw_rotate(rect: RectF, canvas: GraphicsEngine) {
     let cached_width = rect.get_width() * 0.303;
     let cached_height = rect.get_height() * 0.303;
     let width_mul_0p125 = rect.get_width() * 0.125;
@@ -3054,7 +3054,7 @@ class ElementOptions {
     canvas.draw_line(rect.right - cached_width, rect.bottom - cached_height, rect.right - cached_width - width_mul_0p125, rect.bottom - cached_height - height_mul_0p125, this.line_paint_alt);
     canvas.draw_line(rect.right - cached_width, rect.bottom - cached_height, rect.right - cached_width + width_mul_0p125, rect.bottom - cached_height - height_mul_0p125, this.line_paint_alt);
   }
-  draw_wire_style(rect, canvas) {
+  draw_wire_style(rect: RectF, canvas: GraphicsEngine) {
     let cached_width = rect.get_width() * 0.303;
     let cached_height = rect.get_height() * 0.303;
     if (global.selected_wire_style === global.WIRE_STYLE_0) {

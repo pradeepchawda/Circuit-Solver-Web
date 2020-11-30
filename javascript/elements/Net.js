@@ -207,12 +207,8 @@ class Net {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.elm.consistent() &&
-                    !global.component_touched &&
-                    !global.FLAG_SIMULATING) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                     if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                         this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                         global.component_touched = true;
@@ -277,8 +273,7 @@ class Net {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -296,15 +291,13 @@ class Net {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -320,9 +313,7 @@ class Net {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -335,8 +326,7 @@ class Net {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = global.NULL;
                             global.selected_bounds = global.NULL;
@@ -354,8 +344,7 @@ class Net {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
@@ -372,9 +361,7 @@ class Net {
         global.selected = true;
     }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -382,8 +369,7 @@ class Net {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = global.NULL;
             global.selected_bounds = global.NULL;
@@ -541,8 +527,7 @@ class Net {
     increment_flip() { }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -567,8 +552,7 @@ class Net {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -633,8 +617,7 @@ class Net {
                 this.point_paint.set_color(this.temp_color);
                 canvas.draw_circle(this.c_x + 1.5 * this.x_space, this.c_y, this.bounds.get_width() >> 3, this.line_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 if (this.elm.properties['Show Name'] === global.ON) {
                     if (this.elm.rotation === global.ROTATION_90) {
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Name']).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.2, this.text_paint);
@@ -656,7 +639,7 @@ class Net {
             }
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
             if (this.is_translating) {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
@@ -692,10 +675,7 @@ class Net {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

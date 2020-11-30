@@ -29,8 +29,7 @@ class SquareWaveSymbol {
         this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
         this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.sq_0 = new PointF(0, 0);
@@ -79,8 +78,7 @@ class SquareWaveSymbol {
         this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
         this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.sq_0 = new PointF(0, 0);
@@ -179,8 +177,7 @@ class SquareWaveSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -203,22 +200,14 @@ class SquareWaveSymbol {
         this.sq_0.y = this.c_y - (this.x_space >> 2) * global.sine(this.theta);
         this.sq_1.x = this.c_x + (this.x_space >> 2) * global.cosine(this.theta);
         this.sq_1.y = this.c_y + (this.x_space >> 2) * global.sine(this.theta);
-        this.sq_2.x =
-            this.sq_0.x + (this.x_space >> 1) * global.cosine(this.theta_m90);
-        this.sq_2.y =
-            this.sq_0.y + (this.x_space >> 1) * global.sine(this.theta_m90);
-        this.sq_3.x =
-            this.sq_0.x - (this.x_space >> 1) * global.cosine(this.theta_m90);
-        this.sq_3.y =
-            this.sq_0.y - (this.x_space >> 1) * global.sine(this.theta_m90);
-        this.sq_4.x =
-            this.sq_1.x + (this.x_space >> 1) * global.cosine(this.theta_m90);
-        this.sq_4.y =
-            this.sq_1.y + (this.x_space >> 1) * global.sine(this.theta_m90);
-        this.sq_5.x =
-            this.sq_1.x - (this.x_space >> 1) * global.cosine(this.theta_m90);
-        this.sq_5.y =
-            this.sq_1.y - (this.x_space >> 1) * global.sine(this.theta_m90);
+        this.sq_2.x = this.sq_0.x + (this.x_space >> 1) * global.cosine(this.theta_m90);
+        this.sq_2.y = this.sq_0.y + (this.x_space >> 1) * global.sine(this.theta_m90);
+        this.sq_3.x = this.sq_0.x - (this.x_space >> 1) * global.cosine(this.theta_m90);
+        this.sq_3.y = this.sq_0.y - (this.x_space >> 1) * global.sine(this.theta_m90);
+        this.sq_4.x = this.sq_1.x + (this.x_space >> 1) * global.cosine(this.theta_m90);
+        this.sq_4.y = this.sq_1.y + (this.x_space >> 1) * global.sine(this.theta_m90);
+        this.sq_5.x = this.sq_1.x - (this.x_space >> 1) * global.cosine(this.theta_m90);
+        this.sq_5.y = this.sq_1.y - (this.x_space >> 1) * global.sine(this.theta_m90);
         this.connect1_x = this.c_x - this.x_space * global.cosine(this.theta);
         this.connect1_y = this.c_y - this.y_space * global.sine(this.theta);
         this.connect2_x = this.c_x + this.x_space * global.cosine(this.theta);
@@ -238,8 +227,7 @@ class SquareWaveSymbol {
         this.p1.set_point(this.bounds.left, this.bounds.get_center_y());
         this.p2.set_point(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
@@ -283,20 +271,10 @@ class SquareWaveSymbol {
             this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }

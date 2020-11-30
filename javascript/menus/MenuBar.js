@@ -341,7 +341,6 @@ class MenuBar {
         holder_x = save_x1.split(',');
         holder_y = save_y1.split(',');
         let points = [];
-        points = [];
         for (var i = 0; i < holder_x.length; i++) {
             points.push(new PointF(this.menu_icons[this.SAVE_INDEX].left + this.menu_icons[this.SAVE_INDEX].get_width() * parseFloat(holder_x[i]), this.menu_icons[this.SAVE_INDEX].top + this.menu_icons[this.SAVE_INDEX].get_height() * parseFloat(holder_y[i])));
         }
@@ -569,8 +568,7 @@ class MenuBar {
                         }
                     }
                 }
-                else if (((this.contains(this.menu_icons[this.ADD_INDEX], true) &&
-                    this.menu_icons[this.ADD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) ||
+                else if (((this.contains(this.menu_icons[this.ADD_INDEX], true) && this.menu_icons[this.ADD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) ||
                     (!this.contains(this.element_window.bounds, false) && global.FLAG_MENU_OPEN_DOWN)) &&
                     !global.FLAG_GRAPH &&
                     !global.SIGNAL_ADD_ELEMENT) {
@@ -682,8 +680,7 @@ class MenuBar {
                         }
                     }
                 }
-                else if (this.contains(this.settings_button, false) &&
-                    this.settings_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
+                else if (this.contains(this.settings_button, false) && this.settings_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
                     if (!global.FLAG_SIMULATING &&
                         !global.FLAG_SAVE_IMAGE &&
                         !global.FLAG_SAVE_CIRCUIT &&

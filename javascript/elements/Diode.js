@@ -30,8 +30,7 @@ class Diode {
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.dio_0 = new PointF(0, 0);
@@ -109,8 +108,7 @@ class Diode {
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.dio_0 = new PointF(0, 0);
@@ -211,10 +209,7 @@ class Diode {
         }
     }
     calculate_vcrit() {
-        return (this.elm.properties['Emission Coefficient'] *
-            global.vt *
-            Math.log((this.elm.properties['Emission Coefficient'] * global.vt) /
-                (1.41421 * this.elm.properties['Saturation Current'])));
+        return this.elm.properties['Emission Coefficient'] * global.vt * Math.log((this.elm.properties['Emission Coefficient'] * global.vt) / (1.41421 * this.elm.properties['Saturation Current']));
     }
     is_converged() {
         if (this.get_diode_error() < global.settings.TOLERANCE) {
@@ -262,24 +257,17 @@ class Diode {
                 /* Update the diode */
                 this.elm.properties['Resistance'] =
                     1.0 /
-                        ((this.elm.properties['Saturation Current'] /
-                            (this.elm.properties['Emission Coefficient'] * global.vt)) *
-                            Math.exp(this.elm.properties['Voltage'] /
-                                (this.elm.properties['Emission Coefficient'] * global.vt)));
-                this.elm.properties['Equivalent Current'] = -(this.elm.properties['Saturation Current'] *
-                    (Math.exp(this.elm.properties['Voltage'] /
-                        (this.elm.properties['Emission Coefficient'] * global.vt)) -
-                        1) -
+                        ((this.elm.properties['Saturation Current'] / (this.elm.properties['Emission Coefficient'] * global.vt)) *
+                            Math.exp(this.elm.properties['Voltage'] / (this.elm.properties['Emission Coefficient'] * global.vt)));
+                this.elm.properties['Equivalent Current'] = -(this.elm.properties['Saturation Current'] * (Math.exp(this.elm.properties['Voltage'] / (this.elm.properties['Emission Coefficient'] * global.vt)) - 1) -
                     this.elm.properties['Voltage'] / this.elm.properties['Resistance']);
             }
         }
     }
     gmin_step(step, error) {
         this.GMIN = global.GMIN_DEFAULT;
-        if (simulation_manager.ITERATOR > step &&
-            error > global.settings.TOLERANCE) {
-            this.GMIN = Math.exp(-24.723 *
-                (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
+        if (simulation_manager.ITERATOR > step && error > global.settings.TOLERANCE) {
+            this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
         }
     }
     /* Vertex handling (for rotation) */
@@ -357,11 +345,8 @@ class Diode {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -370,9 +355,7 @@ class Diode {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -434,8 +417,7 @@ class Diode {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -453,15 +435,13 @@ class Diode {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -477,9 +457,7 @@ class Diode {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -492,8 +470,7 @@ class Diode {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = -1;
                             global.selected_bounds = global.NULL;
@@ -510,8 +487,7 @@ class Diode {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
@@ -528,9 +504,7 @@ class Diode {
         global.selected = true;
     }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -538,8 +512,7 @@ class Diode {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = -1;
             global.selected_bounds = global.NULL;
@@ -665,38 +638,14 @@ class Diode {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             let cache_0 = this.x_space >> 1;
             let cache_1 = this.y_space >> 1;
-            this.dio_0.x =
-                this.c_x +
-                    cache_0 * global.cosine(this.theta) +
-                    cache_0 * global.cosine(this.theta_m90);
-            this.dio_0.y =
-                this.c_y +
-                    cache_1 * global.sine(this.theta) +
-                    cache_1 * global.sine(this.theta_m90);
-            this.dio_1.x =
-                this.c_x -
-                    cache_0 * global.cosine(this.theta) +
-                    cache_0 * global.cosine(this.theta_m90);
-            this.dio_1.y =
-                this.c_y -
-                    cache_1 * global.sine(this.theta) +
-                    cache_1 * global.sine(this.theta_m90);
-            this.dio_3.x =
-                this.c_x +
-                    cache_0 * global.cosine(this.theta) +
-                    cache_0 * global.cosine(Math.PI + this.theta_m90);
-            this.dio_3.y =
-                this.c_y +
-                    cache_1 * global.sine(this.theta) +
-                    cache_1 * global.sine(Math.PI + this.theta_m90);
-            this.dio_2.x =
-                this.c_x -
-                    cache_0 * global.cosine(this.theta) +
-                    cache_0 * global.cosine(Math.PI + this.theta_m90);
-            this.dio_2.y =
-                this.c_y -
-                    cache_1 * global.sine(this.theta) +
-                    cache_1 * global.sine(Math.PI + this.theta_m90);
+            this.dio_0.x = this.c_x + cache_0 * global.cosine(this.theta) + cache_0 * global.cosine(this.theta_m90);
+            this.dio_0.y = this.c_y + cache_1 * global.sine(this.theta) + cache_1 * global.sine(this.theta_m90);
+            this.dio_1.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_0 * global.cosine(this.theta_m90);
+            this.dio_1.y = this.c_y - cache_1 * global.sine(this.theta) + cache_1 * global.sine(this.theta_m90);
+            this.dio_3.x = this.c_x + cache_0 * global.cosine(this.theta) + cache_0 * global.cosine(Math.PI + this.theta_m90);
+            this.dio_3.y = this.c_y + cache_1 * global.sine(this.theta) + cache_1 * global.sine(Math.PI + this.theta_m90);
+            this.dio_2.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_0 * global.cosine(Math.PI + this.theta_m90);
+            this.dio_2.y = this.c_y - cache_1 * global.sine(this.theta) + cache_1 * global.sine(Math.PI + this.theta_m90);
             this.connect1_x = this.c_x - cache_0 * global.cosine(this.theta);
             this.connect1_y = this.c_y - cache_1 * global.sine(this.theta);
             this.connect2_x = this.c_x + cache_0 * global.cosine(this.theta);
@@ -741,8 +690,7 @@ class Diode {
         this.y_space = global.node_space_y >> 1;
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
     }
@@ -755,19 +703,16 @@ class Diode {
     }
     increment_flip() { }
     map_rotation() {
-        if (this.elm.rotation === global.ROTATION_0 ||
-            this.elm.rotation === global.ROTATION_180) {
+        if (this.elm.rotation === global.ROTATION_0 || this.elm.rotation === global.ROTATION_180) {
             return this.x_space;
         }
-        else if (this.elm.rotation === global.ROTATION_90 ||
-            this.elm.rotation === global.ROTATION_270) {
+        else if (this.elm.rotation === global.ROTATION_90 || this.elm.rotation === global.ROTATION_270) {
             return this.y_space;
         }
     }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -792,8 +737,7 @@ class Diode {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -826,17 +770,14 @@ class Diode {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                    (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                 }
-                else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                    (this.ANGLE > 80 && this.ANGLE < 100)) {
+                else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -891,10 +832,7 @@ class Diode {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

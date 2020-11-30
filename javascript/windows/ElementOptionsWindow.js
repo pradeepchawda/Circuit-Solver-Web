@@ -511,8 +511,7 @@ class ElementOptionsWindow {
                                 canvas.draw_text(global.exponentiate_quickly(global.selected_properties[global.selected_properties['options'][i]]) + global.selected_properties['options_units'][i], this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.OFFSET_X, this.attributes[i].get_center_y() + this.OFFSET_Y, this.value_paint);
                             }
                             else {
-                                if (global.selected_properties[global.selected_properties['options'][i]] === global.ON ||
-                                    global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
+                                if (global.selected_properties[global.selected_properties['options'][i]] === global.ON || global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
                                     let padding = this.attributes[i].get_height() * 0.1;
                                     this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                                     this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
@@ -535,8 +534,7 @@ class ElementOptionsWindow {
                             }
                         }
                         else {
-                            if (global.selected_properties[global.selected_properties['options'][i]] === global.ON ||
-                                global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
+                            if (global.selected_properties[global.selected_properties['options'][i]] === global.ON || global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
                                 let padding = this.attributes[i].get_height() * 0.1;
                                 this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                                 this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;

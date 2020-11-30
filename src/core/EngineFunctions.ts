@@ -1605,7 +1605,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_wattmeter(id) {
+  get_wattmeter(id: number): number {
     for (var i: number = 0; i < wattmeters.length; i++) {
       if (wattmeters[i].elm.id === id) {
         return i;
@@ -1615,7 +1615,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_fuse(id) {
+  get_fuse(id: number): number {
     for (var i: number = 0; i < fuses.length; i++) {
       if (fuses[i].elm.id === id) {
         return i;
@@ -1625,7 +1625,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_spst(id) {
+  get_spst(id: number): number {
     for (var i: number = 0; i < spsts.length; i++) {
       if (spsts[i].elm.id === id) {
         return i;
@@ -1635,7 +1635,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_spdt(id) {
+  get_spdt(id: number): number {
     for (var i: number = 0; i < spdts.length; i++) {
       if (spdts[i].elm.id === id) {
         return i;
@@ -1645,7 +1645,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_not(id) {
+  get_not(id: number): number {
     for (var i: number = 0; i < nots.length; i++) {
       if (nots[i].elm.id === id) {
         return i;
@@ -1655,7 +1655,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_diode(id) {
+  get_diode(id: number): number {
     for (var i: number = 0; i < diodes.length; i++) {
       if (diodes[i].elm.id === id) {
         return i;
@@ -1665,7 +1665,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_led(id) {
+  get_led(id: number): number {
     for (var i: number = 0; i < leds.length; i++) {
       if (leds[i].elm.id === id) {
         return i;
@@ -1675,7 +1675,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_zener(id) {
+  get_zener(id: number): number {
     for (var i: number = 0; i < zeners.length; i++) {
       if (zeners[i].elm.id === id) {
         return i;
@@ -1685,7 +1685,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_potentiometer(id) {
+  get_potentiometer(id: number): number {
     for (var i: number = 0; i < potentiometers.length; i++) {
       if (potentiometers[i].elm.id === id) {
         return i;
@@ -1695,7 +1695,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_and(id) {
+  get_and(id: number): number {
     for (var i: number = 0; i < ands.length; i++) {
       if (ands[i].elm.id === id) {
         return i;
@@ -1705,7 +1705,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_or(id) {
+  get_or(id: number): number {
     for (var i: number = 0; i < ors.length; i++) {
       if (ors[i].elm.id === id) {
         return i;
@@ -1715,7 +1715,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_nand(id) {
+  get_nand(id: number): number {
     for (var i: number = 0; i < nands.length; i++) {
       if (nands[i].elm.id === id) {
         return i;
@@ -1725,7 +1725,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_nor(id) {
+  get_nor(id: number): number {
     for (var i: number = 0; i < nors.length; i++) {
       if (nors[i].elm.id === id) {
         return i;
@@ -1735,7 +1735,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_xor(id) {
+  get_xor(id: number): number {
     for (var i: number = 0; i < xors.length; i++) {
       if (xors[i].elm.id === id) {
         return i;
@@ -1745,7 +1745,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_xnor(id) {
+  get_xnor(id: number): number {
     for (var i: number = 0; i < xnors.length; i++) {
       if (xnors[i].elm.id === id) {
         return i;
@@ -1755,7 +1755,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_dff(id) {
+  get_dff(id: number): number {
     for (var i: number = 0; i < dffs.length; i++) {
       if (dffs[i].elm.id === id) {
         return i;
@@ -1765,7 +1765,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_vsat(id) {
+  get_vsat(id: number): number {
     for (var i: number = 0; i < vsats.length; i++) {
       if (vsats[i].elm.id === id) {
         return i;
@@ -1775,7 +1775,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_adder(id) {
+  get_adder(id: number): number {
     for (var i: number = 0; i < adders.length; i++) {
       if (adders[i].elm.id === id) {
         return i;
@@ -1785,7 +1785,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_subtractor(id) {
+  get_subtractor(id: number): number {
     for (var i: number = 0; i < subtractors.length; i++) {
       if (subtractors[i].elm.id === id) {
         return i;
@@ -1795,7 +1795,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_multiplier(id) {
+  get_multiplier(id: number): number {
     for (var i: number = 0; i < multipliers.length; i++) {
       if (multipliers[i].elm.id === id) {
         return i;
@@ -1805,7 +1805,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_divider(id) {
+  get_divider(id: number): number {
     for (var i: number = 0; i < dividers.length; i++) {
       if (dividers[i].elm.id === id) {
         return i;
@@ -1815,7 +1815,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_gain(id) {
+  get_gain(id: number): number {
     for (var i: number = 0; i < gains.length; i++) {
       if (gains[i].elm.id === id) {
         return i;
@@ -1825,7 +1825,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_absval(id) {
+  get_absval(id: number): number {
     for (var i: number = 0; i < absvals.length; i++) {
       if (absvals[i].elm.id === id) {
         return i;
@@ -1835,7 +1835,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_vcsw(id) {
+  get_vcsw(id: number): number {
     for (var i: number = 0; i < vcsws.length; i++) {
       if (vcsws[i].elm.id === id) {
         return i;
@@ -1845,7 +1845,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_vcvs(id) {
+  get_vcvs(id: number): number {
     for (var i: number = 0; i < vcvss.length; i++) {
       if (vcvss[i].elm.id === id) {
         return i;
@@ -1855,7 +1855,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_vccs(id) {
+  get_vccs(id: number): number {
     for (var i: number = 0; i < vccss.length; i++) {
       if (vccss[i].elm.id === id) {
         return i;
@@ -1865,7 +1865,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_cccs(id) {
+  get_cccs(id: number): number {
     for (var i: number = 0; i < cccss.length; i++) {
       if (cccss[i].elm.id === id) {
         return i;
@@ -1875,7 +1875,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_ccvs(id) {
+  get_ccvs(id: number): number {
     for (var i: number = 0; i < ccvss.length; i++) {
       if (ccvss[i].elm.id === id) {
         return i;
@@ -1885,7 +1885,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_opamp(id) {
+  get_opamp(id: number): number {
     for (var i: number = 0; i < opamps.length; i++) {
       if (opamps[i].elm.id === id) {
         return i;
@@ -1895,7 +1895,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_nmosfet(id) {
+  get_nmosfet(id: number): number {
     for (var i: number = 0; i < nmosfets.length; i++) {
       if (nmosfets[i].elm.id === id) {
         return i;
@@ -1905,7 +1905,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_pmosfet(id) {
+  get_pmosfet(id: number): number {
     for (var i: number = 0; i < pmosfets.length; i++) {
       if (pmosfets[i].elm.id === id) {
         return i;
@@ -1915,7 +1915,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_npn(id) {
+  get_npn(id: number): number {
     for (var i: number = 0; i < npns.length; i++) {
       if (npns[i].elm.id === id) {
         return i;
@@ -1925,7 +1925,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_pnp(id) {
+  get_pnp(id: number): number {
     for (var i: number = 0; i < pnps.length; i++) {
       if (pnps[i].elm.id === id) {
         return i;
@@ -1935,7 +1935,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_adc(id) {
+  get_adc(id: number): number {
     for (var i: number = 0; i < adcs.length; i++) {
       if (adcs[i].elm.id === id) {
         return i;
@@ -1945,7 +1945,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_dac(id) {
+  get_dac(id: number): number {
     for (var i: number = 0; i < dacs.length; i++) {
       if (dacs[i].elm.id === id) {
         return i;
@@ -1955,7 +1955,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_samplers(id) {
+  get_samplers(id: number): number {
     for (var i: number = 0; i < sandhs.length; i++) {
       if (sandhs[i].elm.id === id) {
         return i;
@@ -1965,7 +1965,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_pwm(id) {
+  get_pwm(id: number): number {
     for (var i: number = 0; i < pwms.length; i++) {
       if (pwms[i].elm.id === id) {
         return i;
@@ -1975,7 +1975,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_integrator(id) {
+  get_integrator(id: number): number {
     for (var i: number = 0; i < integrators.length; i++) {
       if (integrators[i].elm.id === id) {
         return i;
@@ -1985,7 +1985,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_differentiator(id) {
+  get_differentiator(id: number): number {
     for (var i: number = 0; i < differentiators.length; i++) {
       if (differentiators[i].elm.id === id) {
         return i;
@@ -1995,7 +1995,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_lowpass(id) {
+  get_lowpass(id: number): number {
     for (var i: number = 0; i < lowpasses.length; i++) {
       if (lowpasses[i].elm.id === id) {
         return i;
@@ -2005,7 +2005,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_highpass(id) {
+  get_highpass(id: number): number {
     for (var i: number = 0; i < highpasses.length; i++) {
       if (highpasses[i].elm.id === id) {
         return i;
@@ -2015,7 +2015,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_relay(id) {
+  get_relay(id: number): number {
     for (var i: number = 0; i < relays.length; i++) {
       if (relays[i].elm.id === id) {
         return i;
@@ -2025,7 +2025,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_pid(id) {
+  get_pid(id: number): number {
     for (var i: number = 0; i < pids.length; i++) {
       if (pids[i].elm.id === id) {
         return i;
@@ -2035,7 +2035,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_lut(id) {
+  get_lut(id: number): number {
     for (var i: number = 0; i < luts.length; i++) {
       if (luts[i].elm.id === id) {
         return i;
@@ -2045,7 +2045,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_vcr(id) {
+  get_vcr(id: number): number {
     for (var i: number = 0; i < vcrs.length; i++) {
       if (vcrs[i].elm.id === id) {
         return i;
@@ -2055,7 +2055,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_grt(id) {
+  get_grt(id: number): number {
     for (var i: number = 0; i < grts.length; i++) {
       if (grts[i].elm.id === id) {
         return i;
@@ -2065,7 +2065,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_tptz(id) {
+  get_tptz(id: number): number {
     for (var i: number = 0; i < tptzs.length; i++) {
       if (tptzs[i].elm.id === id) {
         return i;
@@ -2075,7 +2075,7 @@ class EngineFunctions {
     return -1;
   }
 
-  get_transformer(id) {
+  get_transformer(id: number): number {
     for (var i: number = 0; i < transformers.length; i++) {
       if (transformers[i].elm.id === id) {
         return i;
@@ -5814,7 +5814,7 @@ class EngineFunctions {
     }
     return this.output;
   }
-  check_node(id) {
+  check_node(id: number): number {
     this.temp2 = -1;
     for (var i: number = 0; i < node_manager.active_nodes.length; i++) {
       if (node_manager.active_nodes[i] === id) {
@@ -5825,7 +5825,7 @@ class EngineFunctions {
     return this.temp2;
   }
   /* Resistor */
-  stamp_resistor(n1, n2, resistance) {
+  stamp_resistor(n1: number, n2: number, resistance: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     if (this.node_1 != -1) {
@@ -5840,14 +5840,14 @@ class EngineFunctions {
     }
   }
   /* Node */
-  stamp_node(n1, resistance) {
+  stamp_node(n1: number, resistance: number): void {
     this.node_1 = this.map_node(n1);
     if (this.node_1 != -1) {
       matrix_a[this.node_1][this.node_1] += 1.0 / resistance;
     }
   }
   /* Node */
-  stamp_across_nodes(n1, n2, resistance) {
+  stamp_across_nodes(n1: number, n2: number, resistance: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     if (this.node_1 != -1 && this.node_2 != -1) {
@@ -5855,7 +5855,7 @@ class EngineFunctions {
     }
   }
   /* Voltage Source */
-  stamp_voltage(n1, n2, voltage, id) {
+  stamp_voltage(n1: number, n2: number, voltage: number, id: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.offset = simulation_manager.NODE_SIZE;
@@ -5881,7 +5881,7 @@ class EngineFunctions {
     matrix_z[this.offset + id][0] += voltage;
   }
   /* Current Source */
-  stamp_current(n1, n2, current) {
+  stamp_current(n1: number, n2: number, current: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     if (this.node_1 != -1) {
@@ -5892,7 +5892,7 @@ class EngineFunctions {
     }
   }
   /* Capacitor */
-  stamp_capacitor(n1, n2, transient_resistance, transient_ieq) {
+  stamp_capacitor(n1: number, n2: number, transient_resistance: number, transient_ieq: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     if (this.node_1 != -1) {
@@ -5909,7 +5909,7 @@ class EngineFunctions {
     }
   }
   /* Inductor */
-  stamp_inductor(n1, n2, transient_resistance, transient_ieq) {
+  stamp_inductor(n1: number, n2: number, transient_resistance: number, transient_ieq: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     if (this.node_1 != -1) {
@@ -5926,7 +5926,7 @@ class EngineFunctions {
     }
   }
   /* Current Controlled Voltage Source */
-  stamp_ccvs(n1, n2, n3, n4, gain, id) {
+  stamp_ccvs(n1: number, n2: number, n3: number, n4: number, gain: number, id: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.node_3 = this.map_node(n3);
@@ -5951,7 +5951,7 @@ class EngineFunctions {
     matrix_a[this.offset + id + 1][this.offset + id] = -gain;
   }
   /* Voltage Controlled Current Source */
-  stamp_vccs(n1, n2, n3, n4, gain) {
+  stamp_vccs(n1: number, n2: number, n3: number, n4: number, gain: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.node_3 = this.map_node(n3);
@@ -5970,7 +5970,7 @@ class EngineFunctions {
     }
   }
   /* Current Controlled Current Source */
-  stamp_cccs(n1, n2, n3, n4, gain, id) {
+  stamp_cccs(n1: number, n2: number, n3: number, n4: number, gain: number, id: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.node_3 = this.map_node(n3);
@@ -5992,7 +5992,7 @@ class EngineFunctions {
     }
   }
   /* Voltage Controlled Voltage Source */
-  stamp_vcvs(n1, n2, n3, n4, gain, id) {
+  stamp_vcvs(n1: number, n2: number, n3: number, n4: number, gain: number, id: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.node_3 = this.map_node(n3);
@@ -6014,7 +6014,7 @@ class EngineFunctions {
     }
   }
   /* Operational Amplifier */
-  stamp_ideal_opamp(n1, n2, n3, id) {
+  stamp_ideal_opamp(n1: number, n2: number, n3: number, id: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.node_3 = this.map_node(n3);
@@ -6032,7 +6032,7 @@ class EngineFunctions {
     matrix_a[this.offset + id][this.offset + id] += 1e-18;
   }
   /* Transformer */
-  stamp_transformer(n1, n2, n3, n4, gain, id) {
+  stamp_transformer(n1: number, n2: number, n3: number, n4: number, gain: number, id: number): void {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.node_3 = this.map_node(n3);
@@ -6056,7 +6056,7 @@ class EngineFunctions {
     }
   }
   /* Generic voltage extraction */
-  get_voltage(n1, n2) {
+  get_voltage(n1: number, n2: number): number {
     this.node_1 = this.map_node(n1);
     this.node_2 = this.map_node(n2);
     this.v_node_1 = 0;
@@ -8845,7 +8845,7 @@ class EngineFunctions {
   }
   /* #INSERT_GENERATE_REMOVE_ELEMENTS# */
   /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  remove_resistor(index) {
+  remove_resistor(index: number): void {
     if (index < resistors.length) {
       resistors[index].release_wires();
       resistors[index].release_nodes();
@@ -8858,7 +8858,7 @@ class EngineFunctions {
     }
   }
 
-  remove_capacitor(index) {
+  remove_capacitor(index: number): void {
     if (index < capacitors.length) {
       capacitors[index].release_wires();
       capacitors[index].release_nodes();
@@ -8871,7 +8871,7 @@ class EngineFunctions {
     }
   }
 
-  remove_inductor(index) {
+  remove_inductor(index: number): void {
     if (index < inductors.length) {
       inductors[index].release_wires();
       inductors[index].release_nodes();
@@ -8884,7 +8884,7 @@ class EngineFunctions {
     }
   }
 
-  remove_ground(index) {
+  remove_ground(index: number): void {
     if (index < grounds.length) {
       grounds[index].release_wires();
       grounds[index].release_nodes();
@@ -8897,7 +8897,7 @@ class EngineFunctions {
     }
   }
 
-  remove_dcsource(index) {
+  remove_dcsource(index: number): void {
     if (index < dcsources.length) {
       dcsources[index].release_wires();
       dcsources[index].release_nodes();
@@ -8910,7 +8910,7 @@ class EngineFunctions {
     }
   }
 
-  remove_dccurrent(index) {
+  remove_dccurrent(index: number): void {
     if (index < dccurrents.length) {
       dccurrents[index].release_wires();
       dccurrents[index].release_nodes();
@@ -8923,7 +8923,7 @@ class EngineFunctions {
     }
   }
 
-  remove_acsource(index) {
+  remove_acsource(index: number): void {
     if (index < acsources.length) {
       acsources[index].release_wires();
       acsources[index].release_nodes();
@@ -8936,7 +8936,7 @@ class EngineFunctions {
     }
   }
 
-  remove_accurrent(index) {
+  remove_accurrent(index: number): void {
     if (index < accurrents.length) {
       accurrents[index].release_wires();
       accurrents[index].release_nodes();
@@ -8949,7 +8949,7 @@ class EngineFunctions {
     }
   }
 
-  remove_squarewave(index) {
+  remove_squarewave(index: number): void {
     if (index < squarewaves.length) {
       squarewaves[index].release_wires();
       squarewaves[index].release_nodes();
@@ -8962,7 +8962,7 @@ class EngineFunctions {
     }
   }
 
-  remove_sawwave(index) {
+  remove_sawwave(index: number): void {
     if (index < sawwaves.length) {
       sawwaves[index].release_wires();
       sawwaves[index].release_nodes();
@@ -8975,7 +8975,7 @@ class EngineFunctions {
     }
   }
 
-  remove_trianglewave(index) {
+  remove_trianglewave(index: number): void {
     if (index < trianglewaves.length) {
       trianglewaves[index].release_wires();
       trianglewaves[index].release_nodes();
@@ -8988,7 +8988,7 @@ class EngineFunctions {
     }
   }
 
-  remove_constant(index) {
+  remove_constant(index: number): void {
     if (index < constants.length) {
       constants[index].release_wires();
       constants[index].release_nodes();
@@ -9001,7 +9001,7 @@ class EngineFunctions {
     }
   }
 
-  remove_wire(index) {
+  remove_wire(index: number): void {
     if (index < wires.length) {
       wires[index].release_wires();
       wires[index].release_nodes();
@@ -9014,7 +9014,7 @@ class EngineFunctions {
     }
   }
 
-  remove_net(index) {
+  remove_net(index: number): void {
     if (index < nets.length) {
       nets[index].release_wires();
       nets[index].release_nodes();
@@ -9027,7 +9027,7 @@ class EngineFunctions {
     }
   }
 
-  remove_note(index) {
+  remove_note(index: number): void {
     if (index < notes.length) {
       notes[index].release_wires();
       notes[index].release_nodes();
@@ -9040,7 +9040,7 @@ class EngineFunctions {
     }
   }
 
-  remove_rail(index) {
+  remove_rail(index: number): void {
     if (index < rails.length) {
       rails[index].release_wires();
       rails[index].release_nodes();
@@ -9053,7 +9053,7 @@ class EngineFunctions {
     }
   }
 
-  remove_voltmeter(index) {
+  remove_voltmeter(index: number): void {
     if (index < voltmeters.length) {
       voltmeters[index].release_wires();
       voltmeters[index].release_nodes();
@@ -9068,7 +9068,7 @@ class EngineFunctions {
     }
   }
 
-  remove_ohmmeter(index) {
+  remove_ohmmeter(index: number): void {
     if (index < ohmmeters.length) {
       ohmmeters[index].release_wires();
       ohmmeters[index].release_nodes();
@@ -9083,7 +9083,7 @@ class EngineFunctions {
     }
   }
 
-  remove_ammeter(index) {
+  remove_ammeter(index: number): void {
     if (index < ammeters.length) {
       ammeters[index].release_wires();
       ammeters[index].release_nodes();
@@ -9098,7 +9098,7 @@ class EngineFunctions {
     }
   }
 
-  remove_wattmeter(index) {
+  remove_wattmeter(index: number): void {
     if (index < wattmeters.length) {
       wattmeters[index].release_wires();
       wattmeters[index].release_nodes();
@@ -9113,7 +9113,7 @@ class EngineFunctions {
     }
   }
 
-  remove_fuse(index) {
+  remove_fuse(index: number): void {
     if (index < fuses.length) {
       fuses[index].release_wires();
       fuses[index].release_nodes();
@@ -9126,7 +9126,7 @@ class EngineFunctions {
     }
   }
 
-  remove_spst(index) {
+  remove_spst(index: number): void {
     if (index < spsts.length) {
       spsts[index].release_wires();
       spsts[index].release_nodes();
@@ -9139,7 +9139,7 @@ class EngineFunctions {
     }
   }
 
-  remove_spdt(index) {
+  remove_spdt(index: number): void {
     if (index < spdts.length) {
       spdts[index].release_wires();
       spdts[index].release_nodes();
@@ -9152,7 +9152,7 @@ class EngineFunctions {
     }
   }
 
-  remove_not(index) {
+  remove_not(index: number): void {
     if (index < nots.length) {
       nots[index].release_wires();
       nots[index].release_nodes();
@@ -9165,7 +9165,7 @@ class EngineFunctions {
     }
   }
 
-  remove_diode(index) {
+  remove_diode(index: number): void {
     if (index < diodes.length) {
       diodes[index].release_wires();
       diodes[index].release_nodes();
@@ -9178,7 +9178,7 @@ class EngineFunctions {
     }
   }
 
-  remove_led(index) {
+  remove_led(index: number): void {
     if (index < leds.length) {
       leds[index].release_wires();
       leds[index].release_nodes();
@@ -9191,7 +9191,7 @@ class EngineFunctions {
     }
   }
 
-  remove_zener(index) {
+  remove_zener(index: number): void {
     if (index < zeners.length) {
       zeners[index].release_wires();
       zeners[index].release_nodes();
@@ -9204,7 +9204,7 @@ class EngineFunctions {
     }
   }
 
-  remove_potentiometer(index) {
+  remove_potentiometer(index: number): void {
     if (index < potentiometers.length) {
       potentiometers[index].release_wires();
       potentiometers[index].release_nodes();
@@ -9217,7 +9217,7 @@ class EngineFunctions {
     }
   }
 
-  remove_and(index) {
+  remove_and(index: number): void {
     if (index < ands.length) {
       ands[index].release_wires();
       ands[index].release_nodes();
@@ -9230,7 +9230,7 @@ class EngineFunctions {
     }
   }
 
-  remove_or(index) {
+  remove_or(index: number): void {
     if (index < ors.length) {
       ors[index].release_wires();
       ors[index].release_nodes();
@@ -9243,7 +9243,7 @@ class EngineFunctions {
     }
   }
 
-  remove_nand(index) {
+  remove_nand(index: number): void {
     if (index < nands.length) {
       nands[index].release_wires();
       nands[index].release_nodes();
@@ -9256,7 +9256,7 @@ class EngineFunctions {
     }
   }
 
-  remove_nor(index) {
+  remove_nor(index: number): void {
     if (index < nors.length) {
       nors[index].release_wires();
       nors[index].release_nodes();
@@ -9269,7 +9269,7 @@ class EngineFunctions {
     }
   }
 
-  remove_xor(index) {
+  remove_xor(index: number): void {
     if (index < xors.length) {
       xors[index].release_wires();
       xors[index].release_nodes();
@@ -9282,7 +9282,7 @@ class EngineFunctions {
     }
   }
 
-  remove_xnor(index) {
+  remove_xnor(index: number): void {
     if (index < xnors.length) {
       xnors[index].release_wires();
       xnors[index].release_nodes();
@@ -9295,7 +9295,7 @@ class EngineFunctions {
     }
   }
 
-  remove_dff(index) {
+  remove_dff(index: number): void {
     if (index < dffs.length) {
       dffs[index].release_wires();
       dffs[index].release_nodes();
@@ -9308,7 +9308,7 @@ class EngineFunctions {
     }
   }
 
-  remove_vsat(index) {
+  remove_vsat(index: number): void {
     if (index < vsats.length) {
       vsats[index].release_wires();
       vsats[index].release_nodes();
@@ -9321,7 +9321,7 @@ class EngineFunctions {
     }
   }
 
-  remove_adder(index) {
+  remove_adder(index: number): void {
     if (index < adders.length) {
       adders[index].release_wires();
       adders[index].release_nodes();
@@ -9334,7 +9334,7 @@ class EngineFunctions {
     }
   }
 
-  remove_subtractor(index) {
+  remove_subtractor(index: number): void {
     if (index < subtractors.length) {
       subtractors[index].release_wires();
       subtractors[index].release_nodes();
@@ -9347,7 +9347,7 @@ class EngineFunctions {
     }
   }
 
-  remove_multiplier(index) {
+  remove_multiplier(index: number): void {
     if (index < multipliers.length) {
       multipliers[index].release_wires();
       multipliers[index].release_nodes();
@@ -9360,7 +9360,7 @@ class EngineFunctions {
     }
   }
 
-  remove_divider(index) {
+  remove_divider(index: number): void {
     if (index < dividers.length) {
       dividers[index].release_wires();
       dividers[index].release_nodes();
@@ -9373,7 +9373,7 @@ class EngineFunctions {
     }
   }
 
-  remove_gain(index) {
+  remove_gain(index: number): void {
     if (index < gains.length) {
       gains[index].release_wires();
       gains[index].release_nodes();
@@ -9386,7 +9386,7 @@ class EngineFunctions {
     }
   }
 
-  remove_absval(index) {
+  remove_absval(index: number): void {
     if (index < absvals.length) {
       absvals[index].release_wires();
       absvals[index].release_nodes();
@@ -9399,7 +9399,7 @@ class EngineFunctions {
     }
   }
 
-  remove_vcsw(index) {
+  remove_vcsw(index: number): void {
     if (index < vcsws.length) {
       vcsws[index].release_wires();
       vcsws[index].release_nodes();
@@ -9412,7 +9412,7 @@ class EngineFunctions {
     }
   }
 
-  remove_vcvs(index) {
+  remove_vcvs(index: number): void {
     if (index < vcvss.length) {
       vcvss[index].release_wires();
       vcvss[index].release_nodes();
@@ -9425,7 +9425,7 @@ class EngineFunctions {
     }
   }
 
-  remove_vccs(index) {
+  remove_vccs(index: number): void {
     if (index < vccss.length) {
       vccss[index].release_wires();
       vccss[index].release_nodes();
@@ -9438,7 +9438,7 @@ class EngineFunctions {
     }
   }
 
-  remove_cccs(index) {
+  remove_cccs(index: number): void {
     if (index < cccss.length) {
       cccss[index].release_wires();
       cccss[index].release_nodes();
@@ -9451,7 +9451,7 @@ class EngineFunctions {
     }
   }
 
-  remove_ccvs(index) {
+  remove_ccvs(index: number): void {
     if (index < ccvss.length) {
       ccvss[index].release_wires();
       ccvss[index].release_nodes();
@@ -9464,7 +9464,7 @@ class EngineFunctions {
     }
   }
 
-  remove_opamp(index) {
+  remove_opamp(index: number): void {
     if (index < opamps.length) {
       opamps[index].release_wires();
       opamps[index].release_nodes();
@@ -9477,7 +9477,7 @@ class EngineFunctions {
     }
   }
 
-  remove_nmosfet(index) {
+  remove_nmosfet(index: number): void {
     if (index < nmosfets.length) {
       nmosfets[index].release_wires();
       nmosfets[index].release_nodes();
@@ -9490,7 +9490,7 @@ class EngineFunctions {
     }
   }
 
-  remove_pmosfet(index) {
+  remove_pmosfet(index: number): void {
     if (index < pmosfets.length) {
       pmosfets[index].release_wires();
       pmosfets[index].release_nodes();
@@ -9503,7 +9503,7 @@ class EngineFunctions {
     }
   }
 
-  remove_npn(index) {
+  remove_npn(index: number): void {
     if (index < npns.length) {
       npns[index].release_wires();
       npns[index].release_nodes();
@@ -9516,7 +9516,7 @@ class EngineFunctions {
     }
   }
 
-  remove_pnp(index) {
+  remove_pnp(index: number): void {
     if (index < pnps.length) {
       pnps[index].release_wires();
       pnps[index].release_nodes();
@@ -9529,7 +9529,7 @@ class EngineFunctions {
     }
   }
 
-  remove_adc(index) {
+  remove_adc(index: number): void {
     if (index < adcs.length) {
       adcs[index].release_wires();
       adcs[index].release_nodes();
@@ -9542,7 +9542,7 @@ class EngineFunctions {
     }
   }
 
-  remove_dac(index) {
+  remove_dac(index: number): void {
     if (index < dacs.length) {
       dacs[index].release_wires();
       dacs[index].release_nodes();
@@ -9555,7 +9555,7 @@ class EngineFunctions {
     }
   }
 
-  remove_samplers(index) {
+  remove_samplers(index: number): void {
     if (index < sandhs.length) {
       sandhs[index].release_wires();
       sandhs[index].release_nodes();
@@ -9568,7 +9568,7 @@ class EngineFunctions {
     }
   }
 
-  remove_pwm(index) {
+  remove_pwm(index: number): void {
     if (index < pwms.length) {
       pwms[index].release_wires();
       pwms[index].release_nodes();
@@ -9581,7 +9581,7 @@ class EngineFunctions {
     }
   }
 
-  remove_integrator(index) {
+  remove_integrator(index: number): void {
     if (index < integrators.length) {
       integrators[index].release_wires();
       integrators[index].release_nodes();
@@ -9594,7 +9594,7 @@ class EngineFunctions {
     }
   }
 
-  remove_differentiator(index) {
+  remove_differentiator(index: number): void {
     if (index < differentiators.length) {
       differentiators[index].release_wires();
       differentiators[index].release_nodes();
@@ -9607,7 +9607,7 @@ class EngineFunctions {
     }
   }
 
-  remove_lowpass(index) {
+  remove_lowpass(index: number): void {
     if (index < lowpasses.length) {
       lowpasses[index].release_wires();
       lowpasses[index].release_nodes();
@@ -9620,7 +9620,7 @@ class EngineFunctions {
     }
   }
 
-  remove_highpass(index) {
+  remove_highpass(index: number): void {
     if (index < highpasses.length) {
       highpasses[index].release_wires();
       highpasses[index].release_nodes();
@@ -9633,7 +9633,7 @@ class EngineFunctions {
     }
   }
 
-  remove_relay(index) {
+  remove_relay(index: number): void {
     if (index < relays.length) {
       relays[index].release_wires();
       relays[index].release_nodes();
@@ -9646,7 +9646,7 @@ class EngineFunctions {
     }
   }
 
-  remove_pid(index) {
+  remove_pid(index: number): void {
     if (index < pids.length) {
       pids[index].release_wires();
       pids[index].release_nodes();
@@ -9659,7 +9659,7 @@ class EngineFunctions {
     }
   }
 
-  remove_lut(index) {
+  remove_lut(index: number): void {
     if (index < luts.length) {
       luts[index].release_wires();
       luts[index].release_nodes();
@@ -9672,7 +9672,7 @@ class EngineFunctions {
     }
   }
 
-  remove_vcr(index) {
+  remove_vcr(index: number): void {
     if (index < vcrs.length) {
       vcrs[index].release_wires();
       vcrs[index].release_nodes();
@@ -9685,7 +9685,7 @@ class EngineFunctions {
     }
   }
 
-  remove_grt(index) {
+  remove_grt(index: number): void {
     if (index < grts.length) {
       grts[index].release_wires();
       grts[index].release_nodes();
@@ -9698,7 +9698,7 @@ class EngineFunctions {
     }
   }
 
-  remove_tptz(index) {
+  remove_tptz(index: number): void {
     if (index < tptzs.length) {
       tptzs[index].release_wires();
       tptzs[index].release_nodes();
@@ -9711,7 +9711,7 @@ class EngineFunctions {
     }
   }
 
-  remove_transformer(index) {
+  remove_transformer(index: number): void {
     if (index < transformers.length) {
       transformers[index].release_wires();
       transformers[index].release_nodes();
@@ -9725,7 +9725,7 @@ class EngineFunctions {
   }
 
   /* <!-- END AUTOMATICALLY GENERATED !--> */
-  reset_selection(urgent) {
+  reset_selection(urgent: boolean): void {
     if (
       !global.FLAG_SAVE_IMAGE &&
       !global.FLAG_SAVE_CIRCUIT &&
@@ -10235,7 +10235,7 @@ class EngineFunctions {
 
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  draw_selected_components(canvas) {
+  draw_selected_components(canvas: GraphicsEngine): void {
     /* Draw the selected component last! It'll always be on top. */
     /* #INSERT_GENERATE_DRAW_SELECTED# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -10780,7 +10780,7 @@ class EngineFunctions {
 
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  draw_meter_traces(canvas) {
+  draw_meter_traces(canvas: GraphicsEngine): void {
     /* #INSERT_GENERATE_ENGINE_FUNCTION_DRAW_TRACES */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i: number = 0; i < voltmeters.length; i++) {
@@ -10797,15 +10797,24 @@ class EngineFunctions {
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
-  draw_wires(canvas) {
+  draw_wires(canvas: GraphicsEngine): void {
     for (var i: number = 0; i < wires.length; i++) {
       wires[i].draw_component(canvas);
     }
   }
-  snapshot(surface, canvas) {
+  snapshot(surface: HTMLCanvasElement, canvas: GraphicsEngine): void {
     canvas.clear(surface);
-    for (var i: number = 0; i < nodes.length; i++) {
-      nodes[i].resize();
+    let NSX = 0.29375 * global.node_space_x;
+    let NSY = 0.29375 * global.node_space_y;
+    let MNSX = 1.25 * NSX;
+    let MNSY = 1.25 * NSY;
+    let NODE_LENGTH = nodes.length;
+    for (var i: number = 0; i < NODE_LENGTH; i++) {
+      nodes[i].resize(NSX, NSY, MNSX, MNSY);
+      if (NODE_LENGTH - 1 - i === i + 1) {
+        break;
+      }
+      nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
     }
     workspace.workspace_draw(canvas);
     engine_functions.draw_unselected_components(canvas);

@@ -2750,29 +2750,29 @@ class ShortcutManager {
       /* Get the text field */
       var text_input = document.getElementById('text_input');
       let MeterTemplate: MeterTemplate_T = {
-        Tag: -1,
+        Tag: '',
         Value: -1
       };
       let solution_vector: Array<MeterTemplate_T> = [];
       let met_max: number = global.meter_max();
       for (var i: number = 0; i < met_max; i++) {
         if (i < voltmeters.length) {
-          MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + voltmeters[i].elm.id;
+          MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + String(voltmeters[i].elm.id);
           MeterTemplate['Value'] = voltmeters[i].elm.properties['Voltage'];
           solution_vector.push(global.copy(MeterTemplate));
         }
         if (i < ohmmeters.length) {
-          MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + ohmmeters[i].elm.id;
+          MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + String(ohmmeters[i].elm.id);
           MeterTemplate['Value'] = ohmmeters[i].elm.properties['Sensed Resistance'];
           solution_vector.push(global.copy(MeterTemplate));
         }
         if (i < ammeters.length) {
-          MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + ammeters[i].elm.id;
+          MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + String(ammeters[i].elm.id);
           MeterTemplate['Value'] = ammeters[i].elm.properties['Current'];
           solution_vector.push(global.copy(MeterTemplate));
         }
         if (i < wattmeters.length) {
-          MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + wattmeters[i].elm.id;
+          MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + String(wattmeters[i].elm.id);
           MeterTemplate['Value'] = wattmeters[i].elm.properties['Wattage'];
           solution_vector.push(global.copy(MeterTemplate));
         }
@@ -4400,7 +4400,7 @@ class ShortcutManager {
   }
   /* #INSERT_GENERATE_HANDLE_MULTI_SELECT_ELEMENTS_MOVE# */
   /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  handle_move_resistors(i, key_event) {
+  handle_move_resistors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < resistors.length) {
       if (resistors[i].MULTI_SELECTED) {
         /* Up. */
@@ -4433,7 +4433,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_capacitors(i, key_event) {
+  handle_move_capacitors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < capacitors.length) {
       if (capacitors[i].MULTI_SELECTED) {
         /* Up. */
@@ -4466,7 +4466,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_inductors(i, key_event) {
+  handle_move_inductors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < inductors.length) {
       if (inductors[i].MULTI_SELECTED) {
         /* Up. */
@@ -4499,7 +4499,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_grounds(i, key_event) {
+  handle_move_grounds(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < grounds.length) {
       if (grounds[i].MULTI_SELECTED) {
         /* Up. */
@@ -4532,7 +4532,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_dcsources(i, key_event) {
+  handle_move_dcsources(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < dcsources.length) {
       if (dcsources[i].MULTI_SELECTED) {
         /* Up. */
@@ -4565,7 +4565,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_dccurrents(i, key_event) {
+  handle_move_dccurrents(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < dccurrents.length) {
       if (dccurrents[i].MULTI_SELECTED) {
         /* Up. */
@@ -4598,7 +4598,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_acsources(i, key_event) {
+  handle_move_acsources(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < acsources.length) {
       if (acsources[i].MULTI_SELECTED) {
         /* Up. */
@@ -4631,7 +4631,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_accurrents(i, key_event) {
+  handle_move_accurrents(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < accurrents.length) {
       if (accurrents[i].MULTI_SELECTED) {
         /* Up. */
@@ -4664,7 +4664,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_squarewaves(i, key_event) {
+  handle_move_squarewaves(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < squarewaves.length) {
       if (squarewaves[i].MULTI_SELECTED) {
         /* Up. */
@@ -4697,7 +4697,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_sawwaves(i, key_event) {
+  handle_move_sawwaves(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < sawwaves.length) {
       if (sawwaves[i].MULTI_SELECTED) {
         /* Up. */
@@ -4730,7 +4730,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_trianglewaves(i, key_event) {
+  handle_move_trianglewaves(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < trianglewaves.length) {
       if (trianglewaves[i].MULTI_SELECTED) {
         /* Up. */
@@ -4763,7 +4763,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_constants(i, key_event) {
+  handle_move_constants(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < constants.length) {
       if (constants[i].MULTI_SELECTED) {
         /* Up. */
@@ -4796,7 +4796,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_wires(i, key_event) {
+  handle_move_wires(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < wires.length) {
       if (wires[i].MULTI_SELECTED) {
         /* Up. */
@@ -4829,7 +4829,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_nets(i, key_event) {
+  handle_move_nets(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < nets.length) {
       if (nets[i].MULTI_SELECTED) {
         /* Up. */
@@ -4862,7 +4862,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_notes(i, key_event) {
+  handle_move_notes(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < notes.length) {
       if (notes[i].MULTI_SELECTED) {
         /* Up. */
@@ -4895,7 +4895,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_rails(i, key_event) {
+  handle_move_rails(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < rails.length) {
       if (rails[i].MULTI_SELECTED) {
         /* Up. */
@@ -4928,7 +4928,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_voltmeters(i, key_event) {
+  handle_move_voltmeters(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < voltmeters.length) {
       if (voltmeters[i].MULTI_SELECTED) {
         /* Up. */
@@ -4961,7 +4961,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_ohmmeters(i, key_event) {
+  handle_move_ohmmeters(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < ohmmeters.length) {
       if (ohmmeters[i].MULTI_SELECTED) {
         /* Up. */
@@ -4994,7 +4994,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_ammeters(i, key_event) {
+  handle_move_ammeters(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < ammeters.length) {
       if (ammeters[i].MULTI_SELECTED) {
         /* Up. */
@@ -5027,7 +5027,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_wattmeters(i, key_event) {
+  handle_move_wattmeters(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < wattmeters.length) {
       if (wattmeters[i].MULTI_SELECTED) {
         /* Up. */
@@ -5060,7 +5060,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_fuses(i, key_event) {
+  handle_move_fuses(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < fuses.length) {
       if (fuses[i].MULTI_SELECTED) {
         /* Up. */
@@ -5093,7 +5093,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_spsts(i, key_event) {
+  handle_move_spsts(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < spsts.length) {
       if (spsts[i].MULTI_SELECTED) {
         /* Up. */
@@ -5126,7 +5126,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_spdts(i, key_event) {
+  handle_move_spdts(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < spdts.length) {
       if (spdts[i].MULTI_SELECTED) {
         /* Up. */
@@ -5159,7 +5159,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_nots(i, key_event) {
+  handle_move_nots(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < nots.length) {
       if (nots[i].MULTI_SELECTED) {
         /* Up. */
@@ -5192,7 +5192,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_diodes(i, key_event) {
+  handle_move_diodes(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < diodes.length) {
       if (diodes[i].MULTI_SELECTED) {
         /* Up. */
@@ -5225,7 +5225,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_leds(i, key_event) {
+  handle_move_leds(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < leds.length) {
       if (leds[i].MULTI_SELECTED) {
         /* Up. */
@@ -5258,7 +5258,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_zeners(i, key_event) {
+  handle_move_zeners(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < zeners.length) {
       if (zeners[i].MULTI_SELECTED) {
         /* Up. */
@@ -5291,7 +5291,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_potentiometers(i, key_event) {
+  handle_move_potentiometers(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < potentiometers.length) {
       if (potentiometers[i].MULTI_SELECTED) {
         /* Up. */
@@ -5324,7 +5324,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_ands(i, key_event) {
+  handle_move_ands(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < ands.length) {
       if (ands[i].MULTI_SELECTED) {
         /* Up. */
@@ -5357,7 +5357,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_ors(i, key_event) {
+  handle_move_ors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < ors.length) {
       if (ors[i].MULTI_SELECTED) {
         /* Up. */
@@ -5390,7 +5390,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_nands(i, key_event) {
+  handle_move_nands(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < nands.length) {
       if (nands[i].MULTI_SELECTED) {
         /* Up. */
@@ -5423,7 +5423,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_nors(i, key_event) {
+  handle_move_nors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < nors.length) {
       if (nors[i].MULTI_SELECTED) {
         /* Up. */
@@ -5456,7 +5456,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_xors(i, key_event) {
+  handle_move_xors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < xors.length) {
       if (xors[i].MULTI_SELECTED) {
         /* Up. */
@@ -5489,7 +5489,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_xnors(i, key_event) {
+  handle_move_xnors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < xnors.length) {
       if (xnors[i].MULTI_SELECTED) {
         /* Up. */
@@ -5522,7 +5522,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_dffs(i, key_event) {
+  handle_move_dffs(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < dffs.length) {
       if (dffs[i].MULTI_SELECTED) {
         /* Up. */
@@ -5555,7 +5555,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_vsats(i, key_event) {
+  handle_move_vsats(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < vsats.length) {
       if (vsats[i].MULTI_SELECTED) {
         /* Up. */
@@ -5588,7 +5588,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_adders(i, key_event) {
+  handle_move_adders(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < adders.length) {
       if (adders[i].MULTI_SELECTED) {
         /* Up. */
@@ -5621,7 +5621,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_subtractors(i, key_event) {
+  handle_move_subtractors(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < subtractors.length) {
       if (subtractors[i].MULTI_SELECTED) {
         /* Up. */
@@ -5654,7 +5654,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_multipliers(i, key_event) {
+  handle_move_multipliers(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < multipliers.length) {
       if (multipliers[i].MULTI_SELECTED) {
         /* Up. */
@@ -5687,7 +5687,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_dividers(i, key_event) {
+  handle_move_dividers(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < dividers.length) {
       if (dividers[i].MULTI_SELECTED) {
         /* Up. */
@@ -5720,7 +5720,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_gains(i, key_event) {
+  handle_move_gains(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < gains.length) {
       if (gains[i].MULTI_SELECTED) {
         /* Up. */
@@ -5753,7 +5753,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_absvals(i, key_event) {
+  handle_move_absvals(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < absvals.length) {
       if (absvals[i].MULTI_SELECTED) {
         /* Up. */
@@ -5786,7 +5786,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_vcsws(i, key_event) {
+  handle_move_vcsws(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < vcsws.length) {
       if (vcsws[i].MULTI_SELECTED) {
         /* Up. */
@@ -5819,7 +5819,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_vcvss(i, key_event) {
+  handle_move_vcvss(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < vcvss.length) {
       if (vcvss[i].MULTI_SELECTED) {
         /* Up. */
@@ -5852,7 +5852,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_vccss(i, key_event) {
+  handle_move_vccss(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < vccss.length) {
       if (vccss[i].MULTI_SELECTED) {
         /* Up. */
@@ -5885,7 +5885,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_cccss(i, key_event) {
+  handle_move_cccss(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < cccss.length) {
       if (cccss[i].MULTI_SELECTED) {
         /* Up. */
@@ -5918,7 +5918,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_ccvss(i, key_event) {
+  handle_move_ccvss(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < ccvss.length) {
       if (ccvss[i].MULTI_SELECTED) {
         /* Up. */
@@ -5951,7 +5951,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_opamps(i, key_event) {
+  handle_move_opamps(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < opamps.length) {
       if (opamps[i].MULTI_SELECTED) {
         /* Up. */
@@ -5984,7 +5984,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_nmosfets(i, key_event) {
+  handle_move_nmosfets(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < nmosfets.length) {
       if (nmosfets[i].MULTI_SELECTED) {
         /* Up. */
@@ -6017,7 +6017,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_pmosfets(i, key_event) {
+  handle_move_pmosfets(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < pmosfets.length) {
       if (pmosfets[i].MULTI_SELECTED) {
         /* Up. */
@@ -6050,7 +6050,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_npns(i, key_event) {
+  handle_move_npns(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < npns.length) {
       if (npns[i].MULTI_SELECTED) {
         /* Up. */
@@ -6083,7 +6083,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_pnps(i, key_event) {
+  handle_move_pnps(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < pnps.length) {
       if (pnps[i].MULTI_SELECTED) {
         /* Up. */
@@ -6116,7 +6116,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_adcs(i, key_event) {
+  handle_move_adcs(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < adcs.length) {
       if (adcs[i].MULTI_SELECTED) {
         /* Up. */
@@ -6149,7 +6149,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_dacs(i, key_event) {
+  handle_move_dacs(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < dacs.length) {
       if (dacs[i].MULTI_SELECTED) {
         /* Up. */
@@ -6182,7 +6182,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_sandhs(i, key_event) {
+  handle_move_sandhs(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < sandhs.length) {
       if (sandhs[i].MULTI_SELECTED) {
         /* Up. */
@@ -6215,7 +6215,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_pwms(i, key_event) {
+  handle_move_pwms(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < pwms.length) {
       if (pwms[i].MULTI_SELECTED) {
         /* Up. */
@@ -6248,7 +6248,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_integrators(i, key_event) {
+  handle_move_integrators(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < integrators.length) {
       if (integrators[i].MULTI_SELECTED) {
         /* Up. */
@@ -6281,7 +6281,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_differentiators(i, key_event) {
+  handle_move_differentiators(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < differentiators.length) {
       if (differentiators[i].MULTI_SELECTED) {
         /* Up. */
@@ -6314,7 +6314,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_lowpasses(i, key_event) {
+  handle_move_lowpasses(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < lowpasses.length) {
       if (lowpasses[i].MULTI_SELECTED) {
         /* Up. */
@@ -6347,7 +6347,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_highpasses(i, key_event) {
+  handle_move_highpasses(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < highpasses.length) {
       if (highpasses[i].MULTI_SELECTED) {
         /* Up. */
@@ -6380,7 +6380,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_relays(i, key_event) {
+  handle_move_relays(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < relays.length) {
       if (relays[i].MULTI_SELECTED) {
         /* Up. */
@@ -6413,7 +6413,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_pids(i, key_event) {
+  handle_move_pids(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < pids.length) {
       if (pids[i].MULTI_SELECTED) {
         /* Up. */
@@ -6446,7 +6446,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_luts(i, key_event) {
+  handle_move_luts(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < luts.length) {
       if (luts[i].MULTI_SELECTED) {
         /* Up. */
@@ -6479,7 +6479,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_vcrs(i, key_event) {
+  handle_move_vcrs(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < vcrs.length) {
       if (vcrs[i].MULTI_SELECTED) {
         /* Up. */
@@ -6512,7 +6512,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_grts(i, key_event) {
+  handle_move_grts(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < grts.length) {
       if (grts[i].MULTI_SELECTED) {
         /* Up. */
@@ -6545,7 +6545,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_tptzs(i, key_event) {
+  handle_move_tptzs(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < tptzs.length) {
       if (tptzs[i].MULTI_SELECTED) {
         /* Up. */
@@ -6578,7 +6578,7 @@ class ShortcutManager {
     }
   }
 
-  handle_move_transformers(i, key_event) {
+  handle_move_transformers(i: number, key_event: KEY_EVENT_T): void {
     if (i > -1 && i < transformers.length) {
       if (transformers[i].MULTI_SELECTED) {
         /* Up. */

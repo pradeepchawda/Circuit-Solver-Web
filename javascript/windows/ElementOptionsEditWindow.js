@@ -388,16 +388,14 @@ class ElementOptionsEditWindow {
     /* Handle the user's input! */
     handle_keyboard(key_event) {
         if (!this.special_type(global.selected_type)) {
-            if (global.is_valid_si_units(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
+            if (global.is_valid_si_units(key_event) && key_event['event'].code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
                 if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
                     if (!this.SELECT_ALL) {
                         if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                             this.handle_partial_select();
                         }
                         this.input_button.text =
-                            this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                global.decode_key(key_event) +
-                                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                         if (this.CURSOR_POSITION < this.input_button.text.length) {
                             this.CURSOR_POSITION++;
                         }
@@ -407,9 +405,7 @@ class ElementOptionsEditWindow {
                         this.CURSOR_POSITION = 0;
                         this.SELECT_ALL = false;
                         this.input_button.text =
-                            this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                global.decode_key(key_event) +
-                                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                         if (this.CURSOR_POSITION < this.input_button.text.length) {
                             this.CURSOR_POSITION++;
                         }
@@ -421,9 +417,7 @@ class ElementOptionsEditWindow {
                         this.CURSOR_POSITION = 0;
                         this.SELECT_ALL = false;
                         this.input_button.text =
-                            this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                global.decode_key(key_event) +
-                                this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                         if (this.CURSOR_POSITION < this.input_button.text.length) {
                             this.CURSOR_POSITION++;
                         }
@@ -441,8 +435,7 @@ class ElementOptionsEditWindow {
                             this.handle_partial_select();
                         }
                         else {
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION > 0) {
                                 this.CURSOR_POSITION--;
                             }
@@ -467,8 +460,7 @@ class ElementOptionsEditWindow {
                         }
                         else {
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
-                                this.input_button.text =
-                                    this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
+                                this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
                             }
                         }
                     }
@@ -485,8 +477,7 @@ class ElementOptionsEditWindow {
                         if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                             this.handle_partial_select();
                         }
-                        this.input_button.text =
-                            this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                        this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                         if (this.CURSOR_POSITION < this.input_button.text.length) {
                             this.CURSOR_POSITION++;
                         }
@@ -495,8 +486,7 @@ class ElementOptionsEditWindow {
                         this.input_button.text = '';
                         this.CURSOR_POSITION = 0;
                         this.SELECT_ALL = false;
-                        this.input_button.text =
-                            this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                        this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                         if (this.CURSOR_POSITION < this.input_button.text.length) {
                             this.CURSOR_POSITION++;
                         }
@@ -509,8 +499,7 @@ class ElementOptionsEditWindow {
                         if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                             this.handle_partial_select();
                         }
-                        this.input_button.text =
-                            this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                        this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                         if (this.CURSOR_POSITION < this.input_button.text.length) {
                             this.CURSOR_POSITION++;
                         }
@@ -519,8 +508,7 @@ class ElementOptionsEditWindow {
                         this.input_button.text = '';
                         this.CURSOR_POSITION = 0;
                         this.SELECT_ALL = false;
-                        this.input_button.text =
-                            this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                        this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                         if (this.CURSOR_POSITION < this.input_button.text.length) {
                             this.CURSOR_POSITION++;
                         }
@@ -690,16 +678,14 @@ class ElementOptionsEditWindow {
         }
         else {
             if (global.selected_type === global.TYPE_NOTE) {
-                if (global.is_alpha_numeric_note(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
+                if (global.is_alpha_numeric_note(key_event) && key_event['event'].code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
                     if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
                         if (!this.SELECT_ALL) {
                             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                                 this.handle_partial_select();
                             }
                             this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                    global.decode_key(key_event) +
-                                    this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -709,9 +695,7 @@ class ElementOptionsEditWindow {
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
                             this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                    global.decode_key(key_event) +
-                                    this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -723,9 +707,7 @@ class ElementOptionsEditWindow {
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
                             this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                    global.decode_key(key_event) +
-                                    this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -743,8 +725,7 @@ class ElementOptionsEditWindow {
                                 this.handle_partial_select();
                             }
                             else {
-                                this.input_button.text =
-                                    this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                                 if (this.CURSOR_POSITION > 0) {
                                     this.CURSOR_POSITION--;
                                 }
@@ -769,8 +750,7 @@ class ElementOptionsEditWindow {
                             }
                             else {
                                 if (this.CURSOR_POSITION < this.input_button.text.length) {
-                                    this.input_button.text =
-                                        this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
+                                    this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
                                 }
                             }
                         }
@@ -787,8 +767,7 @@ class ElementOptionsEditWindow {
                             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                                 this.handle_partial_select();
                             }
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -797,8 +776,7 @@ class ElementOptionsEditWindow {
                             this.input_button.text = '';
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -811,8 +789,7 @@ class ElementOptionsEditWindow {
                             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                                 this.handle_partial_select();
                             }
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -821,8 +798,7 @@ class ElementOptionsEditWindow {
                             this.input_button.text = '';
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -991,16 +967,14 @@ class ElementOptionsEditWindow {
                 }
             }
             else if (global.selected_type === global.TYPE_NET) {
-                if (global.is_alpha_numeric(key_event) && key_event.code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
+                if (global.is_alpha_numeric(key_event) && key_event['event'].code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
                     if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
                         if (!this.SELECT_ALL) {
                             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                                 this.handle_partial_select();
                             }
                             this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                    global.decode_key(key_event) +
-                                    this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -1010,9 +984,7 @@ class ElementOptionsEditWindow {
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
                             this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                    global.decode_key(key_event) +
-                                    this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -1024,9 +996,7 @@ class ElementOptionsEditWindow {
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
                             this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) +
-                                    global.decode_key(key_event) +
-                                    this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text.substring(0, this.CURSOR_POSITION) + global.decode_key(key_event) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -1044,8 +1014,7 @@ class ElementOptionsEditWindow {
                                 this.handle_partial_select();
                             }
                             else {
-                                this.input_button.text =
-                                    this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                                this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                                 if (this.CURSOR_POSITION > 0) {
                                     this.CURSOR_POSITION--;
                                 }
@@ -1070,8 +1039,7 @@ class ElementOptionsEditWindow {
                             }
                             else {
                                 if (this.CURSOR_POSITION < this.input_button.text.length) {
-                                    this.input_button.text =
-                                        this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
+                                    this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + this.input_button.text.substring(this.CURSOR_POSITION + 1, this.input_button.text.length);
                                 }
                             }
                         }
@@ -1088,8 +1056,7 @@ class ElementOptionsEditWindow {
                             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                                 this.handle_partial_select();
                             }
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -1098,8 +1065,7 @@ class ElementOptionsEditWindow {
                             this.input_button.text = '';
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -1112,8 +1078,7 @@ class ElementOptionsEditWindow {
                             if (this.SELECT_START != -1 && this.SELECT_END != -1) {
                                 this.handle_partial_select();
                             }
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -1122,8 +1087,7 @@ class ElementOptionsEditWindow {
                             this.input_button.text = '';
                             this.CURSOR_POSITION = 0;
                             this.SELECT_ALL = false;
-                            this.input_button.text =
-                                this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
+                            this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
                             if (this.CURSOR_POSITION < this.input_button.text.length) {
                                 this.CURSOR_POSITION++;
                             }
@@ -2461,7 +2425,6 @@ class ElementOptionsEditWindow {
             var index = -1;
             index = engine_functions.get_adc(global.selected_id);
             if (index < adcs.length) {
-                let value = string_operator.parse(this.input_button.text);
                 if (Math.abs(value) === 0 ||
                     (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
                         Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))) {
@@ -2832,7 +2795,7 @@ class ElementOptionsEditWindow {
         this.SELECT_START = -1;
         this.SELECT_END = -1;
     }
-    double_click(mouse_event) {
+    double_click() {
         if (global.MOUSE_DOUBLE_CLICK_EVENT) {
             if (this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)) {
                 this.SELECT_ALL = !this.SELECT_ALL;

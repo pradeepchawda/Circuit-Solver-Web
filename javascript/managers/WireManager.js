@@ -29,9 +29,7 @@ class WireManager {
     watch() {
         if (global.WIRE_BUILDER['step'] > 0) {
             if (global.WIRE_BUILDER['step'] >= 2) {
-                if ((global.WIRE_BUILDER['n1'] != global.WIRE_BUILDER['n2'] &&
-                    !(global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] &&
-                        global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2'])) ||
+                if ((global.WIRE_BUILDER['n1'] != global.WIRE_BUILDER['n2'] && !(global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] && global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2'])) ||
                     this.exclude_nmosfet() ||
                     this.exclude_opamps() ||
                     this.exclude_vcvs() ||
@@ -45,10 +43,8 @@ class WireManager {
                     this.wire_id = engine_functions.get_wire_assignment();
                     this.unique_wire = true;
                     for (var i = 0; i < wires.length; i++) {
-                        if ((wires[i].elm.n1 === global.WIRE_BUILDER['n1'] &&
-                            wires[i].elm.n2 === global.WIRE_BUILDER['n2']) ||
-                            (wires[i].elm.n2 === global.WIRE_BUILDER['n1'] &&
-                                wires[i].elm.n1 === global.WIRE_BUILDER['n2'])) {
+                        if ((wires[i].elm.n1 === global.WIRE_BUILDER['n1'] && wires[i].elm.n2 === global.WIRE_BUILDER['n2']) ||
+                            (wires[i].elm.n2 === global.WIRE_BUILDER['n1'] && wires[i].elm.n1 === global.WIRE_BUILDER['n2'])) {
                             this.unique_wire = false;
                             break;
                         }
@@ -64,9 +60,7 @@ class WireManager {
                     }
                 }
                 else {
-                    if (global.WIRE_BUILDER['n1'] != global.WIRE_BUILDER['n2'] &&
-                        global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] &&
-                        global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2']) {
+                    if (global.WIRE_BUILDER['n1'] != global.WIRE_BUILDER['n2'] && global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] && global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2']) {
                         toast.set_text(language_manager.CONNECTION_NOT_ALLOWED[global.LANGUAGES[global.LANGUAGE_INDEX]] + '.');
                         toast.show();
                     }
@@ -76,44 +70,34 @@ class WireManager {
         }
     }
     exclude_nmosfet() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_NMOS &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_NMOS);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_NMOS && global.WIRE_BUILDER['type2'] === global.TYPE_NMOS;
     }
     exclude_pmosfet() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_PMOS &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_PMOS);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_PMOS && global.WIRE_BUILDER['type2'] === global.TYPE_PMOS;
     }
     exclude_npn() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_NPN &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_NPN);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_NPN && global.WIRE_BUILDER['type2'] === global.TYPE_NPN;
     }
     exclude_pnp() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_PNP &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_PNP);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_PNP && global.WIRE_BUILDER['type2'] === global.TYPE_PNP;
     }
     exclude_opamps() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_OPAMP &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_OPAMP);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_OPAMP && global.WIRE_BUILDER['type2'] === global.TYPE_OPAMP;
     }
     exclude_vcvs() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_VCVS &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_VCVS);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_VCVS && global.WIRE_BUILDER['type2'] === global.TYPE_VCVS;
     }
     exclude_vccs() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_VCCS &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_VCCS);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_VCCS && global.WIRE_BUILDER['type2'] === global.TYPE_VCCS;
     }
     exclude_ccvs() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_CCVS &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_CCVS);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_CCVS && global.WIRE_BUILDER['type2'] === global.TYPE_CCVS;
     }
     exclude_cccs() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_CCCS &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_CCCS);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_CCCS && global.WIRE_BUILDER['type2'] === global.TYPE_CCCS;
     }
     exclude_dffs() {
-        return (global.WIRE_BUILDER['type1'] === global.TYPE_DFF &&
-            global.WIRE_BUILDER['type2'] === global.TYPE_DFF);
+        return global.WIRE_BUILDER['type1'] === global.TYPE_DFF && global.WIRE_BUILDER['type2'] === global.TYPE_DFF;
     }
     reset_wire_builder() {
         if (global.WIRE_BUILDER['n1'] != -1 || global.WIRE_BUILDER['n2'] != -1) {

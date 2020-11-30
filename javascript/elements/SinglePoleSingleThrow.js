@@ -30,8 +30,7 @@ class SinglePoleSingleThrow {
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.spst_0 = new PointF(0, 0);
@@ -121,8 +120,7 @@ class SinglePoleSingleThrow {
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.spst_0 = new PointF(0, 0);
@@ -313,11 +311,8 @@ class SinglePoleSingleThrow {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -326,9 +321,7 @@ class SinglePoleSingleThrow {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -390,8 +383,7 @@ class SinglePoleSingleThrow {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -409,15 +401,13 @@ class SinglePoleSingleThrow {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -433,9 +423,7 @@ class SinglePoleSingleThrow {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -448,8 +436,7 @@ class SinglePoleSingleThrow {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = -1;
                             global.selected_bounds = global.NULL;
@@ -467,8 +454,7 @@ class SinglePoleSingleThrow {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
@@ -485,9 +471,7 @@ class SinglePoleSingleThrow {
         global.selected = true;
     }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -495,8 +479,7 @@ class SinglePoleSingleThrow {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = -1;
             global.selected_bounds = global.NULL;
@@ -624,76 +607,28 @@ class SinglePoleSingleThrow {
             this.connect1_y = this.c_y - this.y_space * global.sine(this.theta);
             this.connect2_x = this.c_x + this.x_space * global.cosine(this.theta);
             this.connect2_y = this.c_y + this.y_space * global.sine(this.theta);
-            this.spst_0.x =
-                this.connect1_x +
-                    this.x_space * global.cosine(this.theta) +
-                    this.x_space * global.cosine(this.theta_m90);
-            this.spst_0.y =
-                this.connect1_y +
-                    this.y_space * global.sine(this.theta) +
-                    this.y_space * global.sine(this.theta_m90);
-            this.spst_1.x =
-                this.connect1_x +
-                    this.x_space * 0 * global.cosine(this.theta) +
-                    this.x_space * global.cosine(this.theta_m90);
-            this.spst_1.y =
-                this.connect1_y +
-                    this.y_space * 0 * global.sine(this.theta) +
-                    this.y_space * global.sine(this.theta_m90);
-            this.spst_3.x =
-                this.connect1_x +
-                    this.x_space * 2 * global.cosine(this.theta) +
-                    this.x_space * global.cosine(this.theta_m90);
-            this.spst_3.y =
-                this.connect1_y +
-                    this.y_space * 2 * global.sine(this.theta) +
-                    this.y_space * global.sine(this.theta_m90);
-            this.spst_5.x =
-                this.connect1_x +
-                    this.x_space * 0 * global.cosine(this.theta) -
-                    this.x_space * global.cosine(this.theta_m90);
-            this.spst_5.y =
-                this.connect1_y +
-                    this.y_space * 0 * global.sine(this.theta) -
-                    this.y_space * global.sine(this.theta_m90);
-            this.spst_7.x =
-                this.connect1_x +
-                    this.x_space * 2 * global.cosine(this.theta) -
-                    this.x_space * global.cosine(this.theta_m90);
-            this.spst_7.y =
-                this.connect1_y +
-                    this.y_space * 2 * global.sine(this.theta) -
-                    this.y_space * global.sine(this.theta_m90);
-            this.spst_9.x =
-                this.c_x + this.x_space * 1.75 * global.cosine(this.theta_m90);
-            this.spst_9.y =
-                this.c_y + this.y_space * 1.75 * global.sine(this.theta_m90);
-            this.spst_11.x =
-                this.c_x + this.x_space * 2.5 * global.cosine(this.theta_m90);
-            this.spst_11.y =
-                this.c_y + this.y_space * 2.5 * global.sine(this.theta_m90);
+            this.spst_0.x = this.connect1_x + this.x_space * global.cosine(this.theta) + this.x_space * global.cosine(this.theta_m90);
+            this.spst_0.y = this.connect1_y + this.y_space * global.sine(this.theta) + this.y_space * global.sine(this.theta_m90);
+            this.spst_1.x = this.connect1_x + this.x_space * 0 * global.cosine(this.theta) + this.x_space * global.cosine(this.theta_m90);
+            this.spst_1.y = this.connect1_y + this.y_space * 0 * global.sine(this.theta) + this.y_space * global.sine(this.theta_m90);
+            this.spst_3.x = this.connect1_x + this.x_space * 2 * global.cosine(this.theta) + this.x_space * global.cosine(this.theta_m90);
+            this.spst_3.y = this.connect1_y + this.y_space * 2 * global.sine(this.theta) + this.y_space * global.sine(this.theta_m90);
+            this.spst_5.x = this.connect1_x + this.x_space * 0 * global.cosine(this.theta) - this.x_space * global.cosine(this.theta_m90);
+            this.spst_5.y = this.connect1_y + this.y_space * 0 * global.sine(this.theta) - this.y_space * global.sine(this.theta_m90);
+            this.spst_7.x = this.connect1_x + this.x_space * 2 * global.cosine(this.theta) - this.x_space * global.cosine(this.theta_m90);
+            this.spst_7.y = this.connect1_y + this.y_space * 2 * global.sine(this.theta) - this.y_space * global.sine(this.theta_m90);
+            this.spst_9.x = this.c_x + this.x_space * 1.75 * global.cosine(this.theta_m90);
+            this.spst_9.y = this.c_y + this.y_space * 1.75 * global.sine(this.theta_m90);
+            this.spst_11.x = this.c_x + this.x_space * 2.5 * global.cosine(this.theta_m90);
+            this.spst_11.y = this.c_y + this.y_space * 2.5 * global.sine(this.theta_m90);
             this.spst_13.x = this.c_x + this.x_space * global.cosine(this.theta_m90);
             this.spst_13.y = this.c_y + this.y_space * global.sine(this.theta_m90);
-            this.spst_15.x =
-                this.connect1_x +
-                    this.x_space * 0 * global.cosine(this.theta) -
-                    this.x_space * global.cosine(this.theta_m90);
-            this.spst_15.y =
-                this.connect1_y +
-                    this.y_space * 0 * global.sine(this.theta) -
-                    this.y_space * global.sine(this.theta_m90);
-            this.spst_17.x =
-                this.connect1_x +
-                    this.x_space * 2 * global.cosine(this.theta) -
-                    this.x_space * global.cosine(this.theta_m90);
-            this.spst_17.y =
-                this.connect1_y +
-                    this.y_space * 2 * global.sine(this.theta) -
-                    this.y_space * global.sine(this.theta_m90);
-            this.spst_19.x =
-                this.c_x + (this.x_space >> 1) * global.cosine(this.theta_m90);
-            this.spst_19.y =
-                this.c_y + this.y_space * 0.5 * global.sine(this.theta_m90);
+            this.spst_15.x = this.connect1_x + this.x_space * 0 * global.cosine(this.theta) - this.x_space * global.cosine(this.theta_m90);
+            this.spst_15.y = this.connect1_y + this.y_space * 0 * global.sine(this.theta) - this.y_space * global.sine(this.theta_m90);
+            this.spst_17.x = this.connect1_x + this.x_space * 2 * global.cosine(this.theta) - this.x_space * global.cosine(this.theta_m90);
+            this.spst_17.y = this.connect1_y + this.y_space * 2 * global.sine(this.theta) - this.y_space * global.sine(this.theta_m90);
+            this.spst_19.x = this.c_x + (this.x_space >> 1) * global.cosine(this.theta_m90);
+            this.spst_19.y = this.c_y + this.y_space * 0.5 * global.sine(this.theta_m90);
             this.spst_21.x = this.c_x - this.x_space * global.cosine(this.theta_m90);
             this.spst_21.y = this.c_y - this.y_space * global.sine(this.theta_m90);
             this.BUILD_ELEMENT = false;
@@ -736,8 +671,7 @@ class SinglePoleSingleThrow {
         this.y_space = global.node_space_y >> 1;
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
     }
@@ -753,8 +687,7 @@ class SinglePoleSingleThrow {
     increment_flip() { }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -779,8 +712,7 @@ class SinglePoleSingleThrow {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -818,15 +750,12 @@ class SinglePoleSingleThrow {
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                    (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                 }
-                else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                    (this.ANGLE > 80 && this.ANGLE < 100)) {
+                else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -863,10 +792,7 @@ class SinglePoleSingleThrow {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

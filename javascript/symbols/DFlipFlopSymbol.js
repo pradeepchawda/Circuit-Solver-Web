@@ -48,8 +48,7 @@ class DFlipFlopSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -111,8 +110,7 @@ class DFlipFlopSymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -219,8 +217,7 @@ class DFlipFlopSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -240,67 +237,44 @@ class DFlipFlopSymbol {
     /* Generate the SVG for the component. */
     build_element() {
         /* Top Left Node */
-        this.dff_0.x =
-            this.p1.x + 0.5 * this.x_space * global.cosine(this.theta_m90);
+        this.dff_0.x = this.p1.x + 0.5 * this.x_space * global.cosine(this.theta_m90);
         this.dff_0.y = this.p1.y + 0.5 * this.y_space * global.sine(this.theta_m90);
         /* Bottom Left Node */
-        this.dff_1.x =
-            this.p2.x + 0.5 * this.x_space * global.cosine(this.theta_m90);
+        this.dff_1.x = this.p2.x + 0.5 * this.x_space * global.cosine(this.theta_m90);
         this.dff_1.y = this.p2.y + 0.5 * this.y_space * global.sine(this.theta_m90);
         /* Top Right Node */
-        this.dff_2.x =
-            this.p3.x - 0.5 * this.x_space * global.cosine(this.theta_m90);
+        this.dff_2.x = this.p3.x - 0.5 * this.x_space * global.cosine(this.theta_m90);
         this.dff_2.y = this.p3.y - 0.5 * this.y_space * global.sine(this.theta_m90);
         /* Bottom Right Node */
-        this.dff_3.x =
-            this.p4.x - 0.5 * this.x_space * global.cosine(this.theta_m90);
+        this.dff_3.x = this.p4.x - 0.5 * this.x_space * global.cosine(this.theta_m90);
         this.dff_3.y = this.p4.y - 0.5 * this.y_space * global.sine(this.theta_m90);
         /* Top left */
-        this.dff_4.x =
-            this.dff_0.x - 0.5 * this.x_space * global.cosine(this.theta);
+        this.dff_4.x = this.dff_0.x - 0.5 * this.x_space * global.cosine(this.theta);
         this.dff_4.y = this.dff_0.y - 0.5 * this.y_space * global.sine(this.theta);
         /* Top Right */
-        this.dff_5.x =
-            this.dff_2.x - 0.5 * this.x_space * global.cosine(this.theta);
+        this.dff_5.x = this.dff_2.x - 0.5 * this.x_space * global.cosine(this.theta);
         this.dff_5.y = this.dff_2.y - 0.5 * this.y_space * global.sine(this.theta);
         /* Bottom Left */
-        this.dff_6.x =
-            this.dff_1.x + 0.5 * this.x_space * global.cosine(this.theta);
+        this.dff_6.x = this.dff_1.x + 0.5 * this.x_space * global.cosine(this.theta);
         this.dff_6.y = this.dff_1.y + 0.5 * this.y_space * global.sine(this.theta);
         /* Bottom Right */
-        this.dff_7.x =
-            this.dff_3.x + 0.5 * this.x_space * global.cosine(this.theta);
+        this.dff_7.x = this.dff_3.x + 0.5 * this.x_space * global.cosine(this.theta);
         this.dff_7.y = this.dff_3.y + 0.5 * this.y_space * global.sine(this.theta);
         /* Clock Symbol inner point */
-        this.dff_8.x =
-            this.dff_1.x + 0.5 * this.x_space * global.cosine(this.theta_m90);
-        this.dff_8.y =
-            this.dff_1.y + 0.5 * this.y_space * global.sine(this.theta_m90);
+        this.dff_8.x = this.dff_1.x + 0.5 * this.x_space * global.cosine(this.theta_m90);
+        this.dff_8.y = this.dff_1.y + 0.5 * this.y_space * global.sine(this.theta_m90);
         /* Clock Symbol top point */
-        this.dff_9.x =
-            this.dff_1.x - 0.5 * this.x_space * global.cosine(this.theta);
+        this.dff_9.x = this.dff_1.x - 0.5 * this.x_space * global.cosine(this.theta);
         this.dff_9.y = this.dff_1.y - 0.5 * this.y_space * global.sine(this.theta);
         /* D Tag Point */
-        this.dff_10.x =
-            this.dff_0.x +
-                0.75 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.dff_10.y =
-            this.dff_0.y +
-                0.75 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_4);
+        this.dff_10.x = this.dff_0.x + 0.75 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_4);
+        this.dff_10.y = this.dff_0.y + 0.75 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_4);
         /* Q Tag Point */
-        this.dff_11.x =
-            this.dff_2.x -
-                0.75 * this.x_space * global.cosine(this.theta_m90 - global.PI_DIV_4);
-        this.dff_11.y =
-            this.dff_2.y -
-                0.75 * this.y_space * global.sine(this.theta_m90 - global.PI_DIV_4);
+        this.dff_11.x = this.dff_2.x - 0.75 * this.x_space * global.cosine(this.theta_m90 - global.PI_DIV_4);
+        this.dff_11.y = this.dff_2.y - 0.75 * this.y_space * global.sine(this.theta_m90 - global.PI_DIV_4);
         /* !Q Tag Point */
-        this.dff_12.x =
-            this.dff_3.x -
-                0.75 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.dff_12.y =
-            this.dff_3.y -
-                0.75 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_4);
+        this.dff_12.x = this.dff_3.x - 0.75 * this.x_space * global.cosine(this.theta_m90 + global.PI_DIV_4);
+        this.dff_12.y = this.dff_3.y - 0.75 * this.y_space * global.sine(this.theta_m90 + global.PI_DIV_4);
     }
     resize(rect) {
         /* Create a new rectangle for the bounds of this component */
@@ -318,8 +292,7 @@ class DFlipFlopSymbol {
         this.p3.set_point(this.bounds.right, this.bounds.top);
         this.p4.set_point(this.bounds.right, this.bounds.bottom);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -379,20 +352,10 @@ class DFlipFlopSymbol {
             canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
             canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint_alt);
             }

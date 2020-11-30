@@ -897,7 +897,7 @@ class SampleAndHold {
             canvas.draw_text('C', this.sah_8.x, this.sah_8.y, this.text_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
             if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);

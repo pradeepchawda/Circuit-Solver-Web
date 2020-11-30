@@ -47,8 +47,7 @@ class RelaySymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -107,8 +106,7 @@ class RelaySymbol {
         /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -199,8 +197,7 @@ class RelaySymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -226,51 +223,31 @@ class RelaySymbol {
         this.relay_1.x = this.p2.x + this.x_space * global.cosine(this.theta_m90);
         this.relay_1.y = this.p2.y + this.y_space * global.sine(this.theta_m90);
         /* Top segment (right) */
-        this.relay_2.x =
-            this.p1.x + 3.0 * this.x_space * global.cosine(this.theta_m90);
-        this.relay_2.y =
-            this.p1.y + 3.0 * this.y_space * global.sine(this.theta_m90);
+        this.relay_2.x = this.p1.x + 3.0 * this.x_space * global.cosine(this.theta_m90);
+        this.relay_2.y = this.p1.y + 3.0 * this.y_space * global.sine(this.theta_m90);
         /* Bottom Segment (right)  */
-        this.relay_3.x =
-            this.p2.x + 3.0 * this.x_space * global.cosine(this.theta_m90);
-        this.relay_3.y =
-            this.p2.y + 3.0 * this.y_space * global.sine(this.theta_m90);
+        this.relay_3.x = this.p2.x + 3.0 * this.x_space * global.cosine(this.theta_m90);
+        this.relay_3.y = this.p2.y + 3.0 * this.y_space * global.sine(this.theta_m90);
         /* Left Arc */
         this.relay_4.x = this.relay_0.x + this.x_space * global.cosine(this.theta);
         this.relay_4.y = this.relay_0.y + this.y_space * global.sine(this.theta);
-        this.relay_5.x =
-            this.relay_0.x + 2.0 * this.x_space * global.cosine(this.theta);
-        this.relay_5.y =
-            this.relay_0.y + 2.0 * this.y_space * global.sine(this.theta);
-        this.relay_6.x =
-            this.relay_0.x + 3.0 * this.x_space * global.cosine(this.theta);
-        this.relay_6.y =
-            this.relay_0.y + 3.0 * this.y_space * global.sine(this.theta);
+        this.relay_5.x = this.relay_0.x + 2.0 * this.x_space * global.cosine(this.theta);
+        this.relay_5.y = this.relay_0.y + 2.0 * this.y_space * global.sine(this.theta);
+        this.relay_6.x = this.relay_0.x + 3.0 * this.x_space * global.cosine(this.theta);
+        this.relay_6.y = this.relay_0.y + 3.0 * this.y_space * global.sine(this.theta);
         /* right Arc */
         this.relay_7.x = this.relay_2.x + this.x_space * global.cosine(this.theta);
         this.relay_7.y = this.relay_2.y + this.y_space * global.sine(this.theta);
-        this.relay_8.x =
-            this.relay_2.x +
-                2.0 * this.x_space * global.cosine(this.theta) +
-                this.x_space * global.cosine(this.theta_m90);
-        this.relay_8.y =
-            this.relay_2.y +
-                2.0 * this.y_space * global.sine(this.theta) +
-                this.y_space * global.sine(this.theta_m90);
-        this.relay_9.x =
-            this.relay_2.x + 3.0 * this.x_space * global.cosine(this.theta);
-        this.relay_9.y =
-            this.relay_2.y + 3.0 * this.y_space * global.sine(this.theta);
+        this.relay_8.x = this.relay_2.x + 2.0 * this.x_space * global.cosine(this.theta) + this.x_space * global.cosine(this.theta_m90);
+        this.relay_8.y = this.relay_2.y + 2.0 * this.y_space * global.sine(this.theta) + this.y_space * global.sine(this.theta_m90);
+        this.relay_9.x = this.relay_2.x + 3.0 * this.x_space * global.cosine(this.theta);
+        this.relay_9.y = this.relay_2.y + 3.0 * this.y_space * global.sine(this.theta);
         /* Left current dot */
-        this.relay_10.x =
-            this.relay_4.x - 0.75 * this.x_space * global.cosine(this.theta_m90);
-        this.relay_10.y =
-            this.relay_4.y - 0.5 * this.y_space * global.sine(this.theta_m90);
+        this.relay_10.x = this.relay_4.x - 0.75 * this.x_space * global.cosine(this.theta_m90);
+        this.relay_10.y = this.relay_4.y - 0.5 * this.y_space * global.sine(this.theta_m90);
         /* Right current dot */
-        this.relay_11.y =
-            this.relay_7.y + 0.75 * this.y_space * global.sine(this.theta_m90);
-        this.relay_11.x =
-            this.relay_7.x + 0.75 * this.x_space * global.cosine(this.theta_m90);
+        this.relay_11.y = this.relay_7.y + 0.75 * this.y_space * global.sine(this.theta_m90);
+        this.relay_11.x = this.relay_7.x + 0.75 * this.x_space * global.cosine(this.theta_m90);
     }
     resize(rect) {
         /* Create a new rectangle for the bounds of this component */
@@ -288,8 +265,7 @@ class RelaySymbol {
         this.p3.set_point(this.bounds.right, this.bounds.top);
         this.p4.set_point(this.bounds.right, this.bounds.bottom);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Angle from center to p2 */
@@ -342,20 +318,10 @@ class RelaySymbol {
             this.CIRCLE_BUFFER[indexer++] = Array(this.p4.x, this.p4.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }

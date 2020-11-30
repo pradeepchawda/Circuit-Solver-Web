@@ -31,8 +31,7 @@ class DACModule {
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.dac_0 = new PointF(0, 0);
@@ -109,8 +108,7 @@ class DACModule {
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.dac_0 = new PointF(0, 0);
@@ -203,16 +201,11 @@ class DACModule {
     }
     /* General function to handle any processing required by the component */
     update() {
-        if (global.FLAG_SIMULATING &&
-            simulation_manager.SOLUTIONS_READY &&
-            simulation_manager.SIMULATION_STEP != 0) {
+        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage'] = engine_functions.get_voltage(this.elm.n1, -1);
-                this.elm.properties['Max Bits'] =
-                    Math.pow(2, this.elm.properties['Bit Resolution']) - 1;
-                this.elm.properties['LSB'] =
-                    this.elm.properties['Reference Voltage'] /
-                        this.elm.properties['Max Bits'];
+                this.elm.properties['Max Bits'] = Math.pow(2, this.elm.properties['Bit Resolution']) - 1;
+                this.elm.properties['LSB'] = this.elm.properties['Reference Voltage'] / this.elm.properties['Max Bits'];
                 this.elm.properties['Output Voltage'] = global.limit(this.elm.properties['Input Voltage'] * this.elm.properties['LSB'], 0, this.elm.properties['Reference Voltage'] - this.elm.properties['LSB']);
             }
         }
@@ -297,11 +290,8 @@ class DACModule {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -310,9 +300,7 @@ class DACModule {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -374,8 +362,7 @@ class DACModule {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -393,15 +380,13 @@ class DACModule {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -417,9 +402,7 @@ class DACModule {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -432,8 +415,7 @@ class DACModule {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = global.NULL;
                             global.selected_bounds = global.NULL;
@@ -450,8 +432,7 @@ class DACModule {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
@@ -468,9 +449,7 @@ class DACModule {
         global.selected = true;
     }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -478,8 +457,7 @@ class DACModule {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = global.NULL;
             global.selected_bounds = global.NULL;
@@ -609,46 +587,16 @@ class DACModule {
             let cache_3 = 1.414 * this.y_space;
             let cache_4 = this.x_space;
             let cache_5 = this.y_space;
-            this.plus_point.x =
-                this.c_x -
-                    cache_0 * global.cosine(this.theta) +
-                    cache_1 * global.cosine(this.theta_m90);
-            this.plus_point.y =
-                this.c_y -
-                    cache_2 * global.sine(this.theta) +
-                    cache_3 * global.sine(this.theta_m90);
-            this.dac_0.x =
-                this.c_x -
-                    cache_4 * global.cosine(this.theta) +
-                    cache_4 * global.cosine(this.theta_m90);
-            this.dac_0.y =
-                this.c_y -
-                    cache_5 * global.sine(this.theta) +
-                    cache_5 * global.sine(this.theta_m90);
-            this.dac_2.x =
-                this.c_x -
-                    cache_4 * global.cosine(this.theta) -
-                    cache_4 * global.cosine(this.theta_m90);
-            this.dac_2.y =
-                this.c_y -
-                    cache_5 * global.sine(this.theta) -
-                    cache_5 * global.sine(this.theta_m90);
-            this.dac_3.x =
-                this.c_x +
-                    cache_4 * global.cosine(this.theta) -
-                    cache_4 * global.cosine(this.theta_m90);
-            this.dac_3.y =
-                this.c_y +
-                    cache_5 * global.sine(this.theta) -
-                    cache_5 * global.sine(this.theta_m90);
-            this.dac_4.x =
-                this.c_x +
-                    cache_4 * global.cosine(this.theta) +
-                    cache_4 * global.cosine(this.theta_m90);
-            this.dac_4.y =
-                this.c_y +
-                    cache_5 * global.sine(this.theta) +
-                    cache_5 * global.sine(this.theta_m90);
+            this.plus_point.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(this.theta_m90);
+            this.plus_point.y = this.c_y - cache_2 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
+            this.dac_0.x = this.c_x - cache_4 * global.cosine(this.theta) + cache_4 * global.cosine(this.theta_m90);
+            this.dac_0.y = this.c_y - cache_5 * global.sine(this.theta) + cache_5 * global.sine(this.theta_m90);
+            this.dac_2.x = this.c_x - cache_4 * global.cosine(this.theta) - cache_4 * global.cosine(this.theta_m90);
+            this.dac_2.y = this.c_y - cache_5 * global.sine(this.theta) - cache_5 * global.sine(this.theta_m90);
+            this.dac_3.x = this.c_x + cache_4 * global.cosine(this.theta) - cache_4 * global.cosine(this.theta_m90);
+            this.dac_3.y = this.c_y + cache_5 * global.sine(this.theta) - cache_5 * global.sine(this.theta_m90);
+            this.dac_4.x = this.c_x + cache_4 * global.cosine(this.theta) + cache_4 * global.cosine(this.theta_m90);
+            this.dac_4.y = this.c_y + cache_5 * global.sine(this.theta) + cache_5 * global.sine(this.theta_m90);
             this.dac_5.x = this.c_x + cache_4 * global.cosine(this.theta);
             this.dac_5.y = this.c_y + cache_5 * global.sine(this.theta);
             this.connect1_x = this.c_x - cache_4 * global.cosine(this.theta);
@@ -695,8 +643,7 @@ class DACModule {
         this.y_space = global.node_space_y >> 1;
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
     }
@@ -709,19 +656,16 @@ class DACModule {
     }
     increment_flip() { }
     map_rotation() {
-        if (this.elm.rotation === global.ROTATION_0 ||
-            this.elm.rotation === global.ROTATION_180) {
+        if (this.elm.rotation === global.ROTATION_0 || this.elm.rotation === global.ROTATION_180) {
             return this.x_space;
         }
-        else if (this.elm.rotation === global.ROTATION_90 ||
-            this.elm.rotation === global.ROTATION_270) {
+        else if (this.elm.rotation === global.ROTATION_90 || this.elm.rotation === global.ROTATION_270) {
             return this.y_space;
         }
     }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -746,8 +690,7 @@ class DACModule {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -788,15 +731,12 @@ class DACModule {
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                    (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                 }
-                else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                    (this.ANGLE > 80 && this.ANGLE < 100)) {
+                else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -833,10 +773,7 @@ class DACModule {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

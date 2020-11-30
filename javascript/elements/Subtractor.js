@@ -871,7 +871,7 @@ class Subtractor {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
             this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
             if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {

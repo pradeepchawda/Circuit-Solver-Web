@@ -76,9 +76,7 @@ class NodeNetwork {
         return is_found;
     }
     is_removed(node) {
-        return ((this.is_found(node) && node != this.find_lowest_id()) ||
-            this.find_lowest_id() === -1 ||
-            node === -1);
+        return (this.is_found(node) && node != this.find_lowest_id()) || this.find_lowest_id() === -1 || node === -1;
     }
     find_lowest_id() {
         let lowest = -1;

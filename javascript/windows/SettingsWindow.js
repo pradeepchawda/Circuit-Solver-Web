@@ -21,19 +21,16 @@
  ***********************************************************************/
 class SettingsWindow {
     constructor() {
-        /**
-         * [TITLE_HEIGHT_RATIO This controls the height of the title bar relative to the height of the window]
-         * @type {Number}
+        /*
+         * TITLE_HEIGHT_RATIO This controls the height of the title bar relative to the height of the window
          */
         this.TITLE_HEIGHT_RATIO = 0.1;
         /**
-         * [BUTTON_WIDTH_RATIO This controls the width of the buttons relative to the width of the window]
-         * @type {Number}
+         * BUTTON_WIDTH_RATIO This controls the width of the buttons relative to the width of the window
          */
         this.BUTTON_WIDTH_RATIO = 0.3;
         /**
-         * [BUTTON_HEIGHT_RATIO This controls the height of the buttons relative to the height of the window]
-         * @type {Number}
+         * BUTTON_HEIGHT_RATIO This controls the height of the buttons relative to the height of the window
          */
         this.BUTTON_HEIGHT_RATIO = 0.1;
         /* The amount of padding around elements, relative to the width and height of the window. */
@@ -76,20 +73,8 @@ class SettingsWindow {
         this.first_touch_x = 0;
         this.first_touch_y = 0;
         this.toggle_switch_button = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
-        /**
-         * [TITLE_HEIGHT_RATIO This controls the height of the title bar relative to the height of the window]
-         * @type {Number}
-         */
         this.TITLE_HEIGHT_RATIO = 0.1;
-        /**
-         * [BUTTON_WIDTH_RATIO This controls the width of the buttons relative to the width of the window]
-         * @type {Number}
-         */
         this.BUTTON_WIDTH_RATIO = 0.3;
-        /**
-         * [BUTTON_HEIGHT_RATIO This controls the height of the buttons relative to the height of the window]
-         * @type {Number}
-         */
         this.BUTTON_HEIGHT_RATIO = 0.1;
         /* The amount of padding around elements, relative to the width and height of the window. */
         this.PADDING = 0.0175;

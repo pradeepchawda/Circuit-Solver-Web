@@ -41,8 +41,8 @@ class ShortcutManager {
         this.ENABLE_ARROW_KEYS = true;
         this.TEMP_HISTORY_SNAPSHOT = '';
         this.command = '';
-        this.shift = '';
-        this.caps = '';
+        this.shift = false;
+        this.caps = false;
         this.SHORTCUT_COPY = global.KEY_CODE_C;
         this.SHORTCUT_PASTE = global.KEY_CODE_V;
         this.SHORTCUT_UNDO = global.KEY_CODE_Z;
@@ -64,8 +64,8 @@ class ShortcutManager {
         this.ENABLE_ARROW_KEYS = true;
         this.TEMP_HISTORY_SNAPSHOT = '';
         this.command = '';
-        this.shift = '';
-        this.caps = '';
+        this.shift = false;
+        this.caps = false;
     }
     listen(key_event) {
         if (!global.FLAG_SAVE_IMAGE &&
@@ -2944,29 +2944,29 @@ class ShortcutManager {
             /* Get the text field */
             var text_input = document.getElementById('text_input');
             let MeterTemplate = {
-                Tag: -1,
+                Tag: '',
                 Value: -1
             };
             let solution_vector = [];
             let met_max = global.meter_max();
             for (var i = 0; i < met_max; i++) {
                 if (i < voltmeters.length) {
-                    MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + voltmeters[i].elm.id;
+                    MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + String(voltmeters[i].elm.id);
                     MeterTemplate['Value'] = voltmeters[i].elm.properties['Voltage'];
                     solution_vector.push(global.copy(MeterTemplate));
                 }
                 if (i < ohmmeters.length) {
-                    MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + ohmmeters[i].elm.id;
+                    MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + String(ohmmeters[i].elm.id);
                     MeterTemplate['Value'] = ohmmeters[i].elm.properties['Sensed Resistance'];
                     solution_vector.push(global.copy(MeterTemplate));
                 }
                 if (i < ammeters.length) {
-                    MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + ammeters[i].elm.id;
+                    MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + String(ammeters[i].elm.id);
                     MeterTemplate['Value'] = ammeters[i].elm.properties['Current'];
                     solution_vector.push(global.copy(MeterTemplate));
                 }
                 if (i < wattmeters.length) {
-                    MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + wattmeters[i].elm.id;
+                    MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + String(wattmeters[i].elm.id);
                     MeterTemplate['Value'] = wattmeters[i].elm.properties['Wattage'];
                     solution_vector.push(global.copy(MeterTemplate));
                 }

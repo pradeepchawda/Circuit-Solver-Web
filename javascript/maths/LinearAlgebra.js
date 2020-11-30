@@ -46,7 +46,8 @@ class LinearAlgebra {
         this.abs_a = 0;
         this.P = [];
         this.lup_det = 0;
-        this.GENERAL_ARRAY;
+        this.GENERAL_MATRIX;
+        this.GENERAL_VECTOR;
         this.FIRST_LUP_SOLVE = true;
     }
     lup_solve(a_matrix, b_matrix) {
@@ -94,8 +95,7 @@ class LinearAlgebra {
                 for (this._j = this._i + 1; this._j < this.SIZE; this._j++) {
                     a_matrix[this._j][this._i] /= a_matrix[this._i][this._i];
                     for (this._k = this._i + 1; this._k < this.SIZE; this._k++) {
-                        a_matrix[this._j][this._k] -=
-                            a_matrix[this._j][this._i] * a_matrix[this._i][this._k];
+                        a_matrix[this._j][this._k] -= a_matrix[this._j][this._i] * a_matrix[this._i][this._k];
                     }
                 }
             }
@@ -113,17 +113,14 @@ class LinearAlgebra {
             for (this._i = 0; this._i < this.SIZE; this._i++) {
                 this.x_matrix[this._i][0] = b_matrix[this.P[this._i]][0];
                 for (this._k = 0; this._k < this._i; this._k++) {
-                    this.x_matrix[this._i][0] -=
-                        a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
+                    this.x_matrix[this._i][0] -= a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
                 }
             }
             for (this._i = this.SIZE - 1; this._i >= 0; this._i--) {
                 for (this._k = this._i + 1; this._k < this.SIZE; this._k++) {
-                    this.x_matrix[this._i][0] -=
-                        a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
+                    this.x_matrix[this._i][0] -= a_matrix[this._i][this._k] * this.x_matrix[this._k][0];
                 }
-                this.x_matrix[this._i][0] =
-                    this.x_matrix[this._i][0] / a_matrix[this._i][this._i];
+                this.x_matrix[this._i][0] = this.x_matrix[this._i][0] / a_matrix[this._i][this._i];
             }
         }
         return this.x_matrix;
@@ -132,30 +129,30 @@ class LinearAlgebra {
         for (var i = 0; i < n; i++) {
             matrix[i][i] = value;
         }
+        return matrix;
     }
     matrix(rows, cols) {
-        this.GENERAL_ARRAY = [];
+        this.GENERAL_MATRIX = [];
         for (var i = 0; i < rows; i++) {
-            this.GENERAL_ARRAY.push(Array());
-            this.GENERAL_ARRAY[i].push(new Array(cols));
+            this.GENERAL_MATRIX.push(new Array(cols));
             for (var j = 0; j < cols; j++) {
-                this.GENERAL_ARRAY[i][j] = 0;
+                this.GENERAL_MATRIX[i][j] = 0;
             }
         }
-        return this.GENERAL_ARRAY;
+        return this.GENERAL_MATRIX;
     }
     vector(size) {
-        this.GENERAL_ARRAY = new Array(size);
+        this.GENERAL_VECTOR = new Array(size);
         for (var i = 0; i < size; i++) {
-            this.GENERAL_ARRAY[i] = 0;
+            this.GENERAL_VECTOR[i] = 0;
         }
-        return this.GENERAL_ARRAY;
+        return this.GENERAL_VECTOR;
     }
     vector2(size) {
-        this.GENERAL_ARRAY = new Array(size);
+        this.GENERAL_VECTOR = new Array(size);
         for (var i = 0; i < size; i++) {
-            this.GENERAL_ARRAY[i] = i;
+            this.GENERAL_VECTOR[i] = i;
         }
-        return this.GENERAL_ARRAY;
+        return this.GENERAL_VECTOR;
     }
 }

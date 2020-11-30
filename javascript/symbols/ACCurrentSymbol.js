@@ -29,8 +29,7 @@ class ACCurrentSymbol {
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Resistor point 0 */
@@ -84,8 +83,7 @@ class ACCurrentSymbol {
         this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
         this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         /* Resistor point 0 */
@@ -190,8 +188,7 @@ class ACCurrentSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) &&
-            !global.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
             this.DRAW_TAG = true;
         }
         else {
@@ -214,38 +211,14 @@ class ACCurrentSymbol {
         this.acc_0.y = this.c_y - this.y_space * 0.5 * global.sine(this.theta);
         this.acc_1.x = this.c_x + this.x_space * 0.5 * global.cosine(this.theta);
         this.acc_1.y = this.c_y + this.y_space * 0.5 * global.sine(this.theta);
-        this.acc_2.x =
-            this.c_x -
-                this.x_space * 0.125 * global.cosine(this.theta) +
-                (this.y_space >> 1) * global.cosine(this.theta_m90);
-        this.acc_2.y =
-            this.c_y -
-                this.y_space * 0.125 * global.sine(this.theta) +
-                (this.y_space >> 1) * global.sine(this.theta_m90);
-        this.acc_3.x =
-            this.c_x -
-                this.x_space * 0.125 * global.cosine(this.theta) +
-                (this.y_space >> 1) * global.cosine(Math.PI + this.theta_m90);
-        this.acc_3.y =
-            this.c_y -
-                this.y_space * 0.125 * global.sine(this.theta) +
-                (this.y_space >> 1) * global.sine(Math.PI + this.theta_m90);
-        this.sine_wave_p1.x =
-            this.c_x +
-                (this.x_space >> 2) * global.cosine(this.theta) -
-                (this.x_space >> 1) * global.cosine(Math.PI + this.theta_m90);
-        this.sine_wave_p1.y =
-            this.c_y +
-                (this.y_space >> 2) * global.sine(this.theta) -
-                (this.y_space >> 1) * global.sine(Math.PI + this.theta_m90);
-        this.sine_wave_p2.x =
-            this.c_x +
-                (this.x_space >> 2) * global.cosine(this.theta) +
-                (this.x_space >> 1) * global.cosine(Math.PI + this.theta_m90);
-        this.sine_wave_p2.y =
-            this.c_y +
-                (this.y_space >> 2) * global.sine(this.theta) +
-                (this.y_space >> 1) * global.sine(Math.PI + this.theta_m90);
+        this.acc_2.x = this.c_x - this.x_space * 0.125 * global.cosine(this.theta) + (this.y_space >> 1) * global.cosine(this.theta_m90);
+        this.acc_2.y = this.c_y - this.y_space * 0.125 * global.sine(this.theta) + (this.y_space >> 1) * global.sine(this.theta_m90);
+        this.acc_3.x = this.c_x - this.x_space * 0.125 * global.cosine(this.theta) + (this.y_space >> 1) * global.cosine(Math.PI + this.theta_m90);
+        this.acc_3.y = this.c_y - this.y_space * 0.125 * global.sine(this.theta) + (this.y_space >> 1) * global.sine(Math.PI + this.theta_m90);
+        this.sine_wave_p1.x = this.c_x + (this.x_space >> 2) * global.cosine(this.theta) - (this.x_space >> 1) * global.cosine(Math.PI + this.theta_m90);
+        this.sine_wave_p1.y = this.c_y + (this.y_space >> 2) * global.sine(this.theta) - (this.y_space >> 1) * global.sine(Math.PI + this.theta_m90);
+        this.sine_wave_p2.x = this.c_x + (this.x_space >> 2) * global.cosine(this.theta) + (this.x_space >> 1) * global.cosine(Math.PI + this.theta_m90);
+        this.sine_wave_p2.y = this.c_y + (this.y_space >> 2) * global.sine(this.theta) + (this.y_space >> 1) * global.sine(Math.PI + this.theta_m90);
         this.sine_wave.set_points(this.sine_wave_p1.x, this.sine_wave_p1.y, this.sine_wave_p2.x, this.sine_wave_p2.y);
         this.sine_wave.set_amplitude(this.x_space >> 1);
         this.connect1_x = this.c_x - this.x_space * global.cosine(this.theta);
@@ -267,8 +240,7 @@ class ACCurrentSymbol {
         this.p1.set_point(this.bounds.left, this.bounds.get_center_y());
         this.p2.set_point(this.bounds.right, this.bounds.get_center_y());
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.sine_wave.set_amplitude(this.bounds.get_width() * 0.25);
@@ -317,20 +289,10 @@ class ACCurrentSymbol {
             this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-                this.text_bounds.left =
-                    this.bounds.get_center_x() -
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top =
-                    this.bounds.bottom +
-                        this.bounds.get_height() -
-                        this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right =
-                    this.bounds.get_center_x() +
-                        1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom =
-                    this.bounds.bottom +
-                        this.bounds.get_height() +
-                        this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
                 canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
                 canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }

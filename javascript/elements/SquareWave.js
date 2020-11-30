@@ -31,8 +31,7 @@ class SquareWave {
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.sq_0 = new PointF(0, 0);
@@ -109,8 +108,7 @@ class SquareWave {
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
         /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.sq_0 = new PointF(0, 0);
@@ -205,12 +203,7 @@ class SquareWave {
         if (this.elm.consistent()) {
             engine_functions.stamp_voltage(this.elm.n1, this.elm.n2, this.elm.properties['Offset'] +
                 this.elm.properties['Voltage'] *
-                    (global.wrap(global.SIMULATION_TIME, 1.0 / this.elm.properties['Frequency']) <
-                        this.elm.properties['Duty'] *
-                            0.01 *
-                            (1.0 / this.elm.properties['Frequency'])
-                        ? 1
-                        : 0), simulation_manager.ELEMENT_SQUAREWAVE_OFFSET + this.simulation_id);
+                    (global.wrap(global.SIMULATION_TIME, 1.0 / this.elm.properties['Frequency']) < this.elm.properties['Duty'] * 0.01 * (1.0 / this.elm.properties['Frequency']) ? 1 : 0), simulation_manager.ELEMENT_SQUAREWAVE_OFFSET + this.simulation_id);
         }
     }
     /* Vertex handling (for rotation) */
@@ -288,11 +281,8 @@ class SquareWave {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -301,9 +291,7 @@ class SquareWave {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -365,8 +353,7 @@ class SquareWave {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -384,15 +371,13 @@ class SquareWave {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -408,9 +393,7 @@ class SquareWave {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -423,8 +406,7 @@ class SquareWave {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = global.NULL;
                             global.selected_bounds = global.NULL;
@@ -441,8 +423,7 @@ class SquareWave {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
@@ -459,9 +440,7 @@ class SquareWave {
         global.selected = true;
     }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -469,8 +448,7 @@ class SquareWave {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = global.NULL;
             global.selected_bounds = global.NULL;
@@ -598,29 +576,19 @@ class SquareWave {
             let cache_1 = 1.25 * this.y_space;
             let cache_2 = this.x_space;
             let cache_3 = this.y_space;
-            this.plus_point.x =
-                this.c_x -
-                    cache_0 * global.cosine(this.theta) -
-                    cache_0 * global.cosine(this.theta_m90);
-            this.plus_point.y =
-                this.c_y -
-                    cache_1 * global.sine(this.theta) -
-                    cache_1 * global.sine(this.theta_m90);
+            this.plus_point.x = this.c_x - cache_0 * global.cosine(this.theta) - cache_0 * global.cosine(this.theta_m90);
+            this.plus_point.y = this.c_y - cache_1 * global.sine(this.theta) - cache_1 * global.sine(this.theta_m90);
             this.sq_0.x = this.c_x - (cache_2 >> 2) * global.cosine(this.theta);
             this.sq_0.y = this.c_y - (cache_2 >> 2) * global.sine(this.theta);
             this.sq_1.x = this.c_x + (cache_2 >> 2) * global.cosine(this.theta);
             this.sq_1.y = this.c_y + (cache_2 >> 2) * global.sine(this.theta);
-            this.sq_2.x =
-                this.sq_0.x + (cache_2 >> 1) * global.cosine(this.theta_m90);
+            this.sq_2.x = this.sq_0.x + (cache_2 >> 1) * global.cosine(this.theta_m90);
             this.sq_2.y = this.sq_0.y + (cache_2 >> 1) * global.sine(this.theta_m90);
-            this.sq_3.x =
-                this.sq_0.x - (cache_2 >> 1) * global.cosine(this.theta_m90);
+            this.sq_3.x = this.sq_0.x - (cache_2 >> 1) * global.cosine(this.theta_m90);
             this.sq_3.y = this.sq_0.y - (cache_2 >> 1) * global.sine(this.theta_m90);
-            this.sq_4.x =
-                this.sq_1.x + (cache_2 >> 1) * global.cosine(this.theta_m90);
+            this.sq_4.x = this.sq_1.x + (cache_2 >> 1) * global.cosine(this.theta_m90);
             this.sq_4.y = this.sq_1.y + (cache_2 >> 1) * global.sine(this.theta_m90);
-            this.sq_5.x =
-                this.sq_1.x - (cache_2 >> 1) * global.cosine(this.theta_m90);
+            this.sq_5.x = this.sq_1.x - (cache_2 >> 1) * global.cosine(this.theta_m90);
             this.sq_5.y = this.sq_1.y - (cache_2 >> 1) * global.sine(this.theta_m90);
             this.connect1_x = this.c_x - cache_2 * global.cosine(this.theta);
             this.connect1_y = this.c_y - cache_3 * global.sine(this.theta);
@@ -666,8 +634,7 @@ class SquareWave {
         this.y_space = global.node_space_y >> 1;
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.build_element();
     }
@@ -682,19 +649,16 @@ class SquareWave {
     }
     increment_flip() { }
     map_rotation() {
-        if (this.elm.rotation === global.ROTATION_0 ||
-            this.elm.rotation === global.ROTATION_180) {
+        if (this.elm.rotation === global.ROTATION_0 || this.elm.rotation === global.ROTATION_180) {
             return this.x_space;
         }
-        else if (this.elm.rotation === global.ROTATION_90 ||
-            this.elm.rotation === global.ROTATION_270) {
+        else if (this.elm.rotation === global.ROTATION_90 || this.elm.rotation === global.ROTATION_270) {
             return this.y_space;
         }
     }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -719,8 +683,7 @@ class SquareWave {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -761,22 +724,17 @@ class SquareWave {
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-                if ((this.ANGLE > 170 && this.ANGLE < 190) ||
-                    (this.ANGLE > -10 && this.ANGLE < 10)) {
+                if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
-                    canvas.draw_text(global.exponentiate_quickly(this.elm.properties['Frequency']) +
-                        this.elm.properties['options_units'][1], this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.exponentiate_quickly(this.elm.properties['Frequency']) + this.elm.properties['options_units'][1], this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.1, this.text_paint);
                 }
-                else if ((this.ANGLE > 260 && this.ANGLE < 280) ||
-                    (this.ANGLE > 80 && this.ANGLE < 100)) {
+                else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
-                    canvas.draw_text(global.exponentiate_quickly(this.elm.properties['Frequency']) +
-                        this.elm.properties['options_units'][1], this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.exponentiate_quickly(this.elm.properties['Frequency']) + this.elm.properties['options_units'][1], this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
                 }
@@ -812,10 +770,7 @@ class SquareWave {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

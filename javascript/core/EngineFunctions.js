@@ -9797,8 +9797,12 @@ class EngineFunctions {
     }
     snapshot(surface, canvas) {
         canvas.clear(surface);
+        let NSX = 0.29375 * global.node_space_x;
+        let NSY = 0.29375 * global.node_space_y;
+        let MNSX = 1.25 * NSX;
+        let MNSY = 1.25 * NSY;
         for (var i = 0; i < nodes.length; i++) {
-            nodes[i].resize();
+            nodes[i].resize(NSX, NSY, MNSX, MNSY);
         }
         workspace.workspace_draw(canvas);
         engine_functions.draw_unselected_components(canvas);

@@ -216,8 +216,7 @@ class ANDGate {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) / this.elm.properties['High Voltage'] - 0.5));
                 this.elm.properties['Input Voltage2'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n2, -1) / this.elm.properties['High Voltage'] - 0.5));
-                this.elm.properties['Output Voltage'] =
-                    (this.elm.properties['High Voltage'] * 2.0) / (2 / (1 + this.elm.properties['Input Voltage1']) + 2.0 / (1 + this.elm.properties['Input Voltage2']));
+                this.elm.properties['Output Voltage'] = (this.elm.properties['High Voltage'] * 2.0) / (2 / (1 + this.elm.properties['Input Voltage1']) + 2.0 / (1 + this.elm.properties['Input Voltage2']));
             }
         }
     }
@@ -633,8 +632,6 @@ class ANDGate {
             let cache_3 = 0.75 * this.y_space;
             let cache_4 = 2.5 * this.x_space;
             let cache_5 = 2.5 * this.y_space;
-            let cache_6 = this.x_space;
-            let cache_7 = this.y_space;
             /* Top segment */
             this.and_0.x = this.p1.x + cache_0 * global.cosine(this.theta);
             this.and_0.y = this.p1.y + cache_1 * global.sine(this.theta);
@@ -774,7 +771,7 @@ class ANDGate {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
             if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);

@@ -260,9 +260,7 @@ class PNPBipolarJunctionTransistor {
         }
     }
     calculate_vcrit() {
-        return (this.elm.properties['Emission Coefficient'] *
-            global.vt *
-            Math.log((this.elm.properties['Emission Coefficient'] * global.vt) / (1.41421 * this.elm.properties['Saturation Current'])));
+        return this.elm.properties['Emission Coefficient'] * global.vt * Math.log((this.elm.properties['Emission Coefficient'] * global.vt) / (1.41421 * this.elm.properties['Saturation Current']));
     }
     is_converged() {
         if (this.get_pnpbjt_error() < global.settings.TOLERANCE) {
@@ -335,10 +333,8 @@ class PNPBipolarJunctionTransistor {
                 this.elm.properties['i_c'] =
                     this.elm.properties['Saturation Current'] * (Math.exp(this.elm.properties['Vcb'] / global.vt) - 1) -
                         forward_alpha * this.elm.properties['Saturation Current'] * (Math.exp(this.elm.properties['Veb'] / global.vt) - 1);
-                this.elm.properties['I_e'] =
-                    this.elm.properties['i_e'] - this.elm.properties['g_ee'] * this.elm.properties['Veb'] - this.elm.properties['g_ec'] * this.elm.properties['Vcb'];
-                this.elm.properties['I_c'] =
-                    this.elm.properties['i_c'] - this.elm.properties['g_ce'] * this.elm.properties['Veb'] - this.elm.properties['g_cc'] * this.elm.properties['Vcb'];
+                this.elm.properties['I_e'] = this.elm.properties['i_e'] - this.elm.properties['g_ee'] * this.elm.properties['Veb'] - this.elm.properties['g_ec'] * this.elm.properties['Vcb'];
+                this.elm.properties['I_c'] = this.elm.properties['i_c'] - this.elm.properties['g_ce'] * this.elm.properties['Veb'] - this.elm.properties['g_cc'] * this.elm.properties['Vcb'];
             }
         }
     }
@@ -1015,7 +1011,7 @@ class PNPBipolarJunctionTransistor {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
             if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);

@@ -144,13 +144,13 @@ class ScopeManager {
                 else if (this.ENTRY[i]['element_type'] === global.TYPE_AMMETER) {
                     this.index = engine_functions.get_ammeter(this.ENTRY[i]['element_id']);
                     if (this.index > -1 && this.index < ammeters.length) {
-                        this.push_to_graph(i, matrix_x[ammeters[this.index].get_simulation_index()], global.SIMULATION_TIME);
+                        this.push_to_graph(i, matrix_x[ammeters[this.index].get_simulation_index()][0], global.SIMULATION_TIME);
                     }
                 }
                 else if (this.ENTRY[i]['element_type'] === global.TYPE_OHMMETER) {
                     this.index = engine_functions.get_ohmmeter(this.ENTRY[i]['element_id']);
                     if (this.index > -1 && this.index < ohmmeters.length) {
-                        this.push_to_graph(i, Math.abs(engine_functions.get_voltage(ohmmeters[this.index].elm.n1, ohmmeters[this.index].elm.n2) / matrix_x[ohmmeters[this.index].get_simulation_index()]), global.SIMULATION_TIME);
+                        this.push_to_graph(i, Math.abs(engine_functions.get_voltage(ohmmeters[this.index].elm.n1, ohmmeters[this.index].elm.n2) / matrix_x[ohmmeters[this.index].get_simulation_index()][0]), global.SIMULATION_TIME);
                     }
                 }
                 else if (this.ENTRY[i]['element_type'] === global.TYPE_WATTMETER) {
@@ -173,13 +173,13 @@ class ScopeManager {
             if (i < ammeters.length) {
                 /* Push to the element. */
                 if (ammeters[i].get_simulation_index() < matrix_x.length) {
-                    ammeters[i].push_current(matrix_x[ammeters[i].get_simulation_index()]);
+                    ammeters[i].push_current(matrix_x[ammeters[i].get_simulation_index()][0]);
                 }
             }
             if (i < ohmmeters.length) {
                 /* Push to the element. */
                 if (ohmmeters[i].get_simulation_index() < matrix_x.length) {
-                    ohmmeters[i].push_voltage_current(engine_functions.get_voltage(ohmmeters[i].elm.n1, ohmmeters[i].elm.n2), matrix_x[ohmmeters[i].get_simulation_index()]);
+                    ohmmeters[i].push_voltage_current(engine_functions.get_voltage(ohmmeters[i].elm.n1, ohmmeters[i].elm.n2), matrix_x[ohmmeters[i].get_simulation_index()][0]);
                 }
             }
             if (i < wattmeters.length) {

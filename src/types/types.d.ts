@@ -1,5 +1,5 @@
 declare type MeterTemplate_T = {
-  Tag: number;
+  Tag: string;
   Value: number;
 };
 
@@ -121,17 +121,6 @@ declare type ANGLE_STRUCT_T = {
   angle: number;
 };
 
-declare type LANGUAGE_T = {
-  English: string;
-  Spanish: string;
-  French: string;
-  Italian: string;
-  Dutch: string;
-  Russian: string;
-  German: string;
-  Indonesian: string;
-};
-
 declare type SCOPE_ENTRY_T = {
   /* The id of the element (should be the same as elm.properties.id) */
   element_id: number;
@@ -148,7 +137,7 @@ declare type SYSTEM_INITIALIZATION_T = {
 };
 
 declare type TIME_DATA_TEMPLATE_T = {
-  Frequency: number;
+  [Frequency: string]: number;
   Resistance: number;
   Capacitance: number;
   Inductance: number;
@@ -164,7 +153,7 @@ declare type ANCHOR_POINT_T = {
 
 /* Structure for saving meta data details */
 declare type PROPERTY_META_DATA_T = {
-  company: string;
+  [company: string]: string;
   version: string;
   date: string;
 };
@@ -1189,6 +1178,26 @@ declare type PROPERTY_DFF_T = {
   options: Array<string>;
   options_units: Array<string>;
   option_limits: {};
+};
+
+declare type NET_COLOR_T = [string, number];
+
+declare type ELEMENT_OPTIONS_T = {
+  [c0: string]: number;
+  c1: number;
+  c2: number;
+  c3: number;
+};
+
+declare type LANGUAGE_T = {
+  [English: string]: string;
+  Spanish: string;
+  French: string;
+  Italian: string;
+  Dutch: string;
+  Russian: string;
+  German: string;
+  Indonesian: string;
 };
 
 declare type ELEMENT_PROPERTY_T = PROPERTY_META_DATA_T &

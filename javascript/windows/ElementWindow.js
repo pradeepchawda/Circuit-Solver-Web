@@ -330,13 +330,9 @@ class ElementWindow {
         this.positions.splice(0, this.positions.length);
         let height = 0;
         for (var i = 0; i < this.MAX_ICONS; i++) {
-            temp_bounds.left =
-                this.bounds.left +
-                    i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
+            temp_bounds.left = this.bounds.left + i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
             temp_bounds.top = this.bounds.top + global.CANVAS_STROKE_WIDTH_3;
-            temp_bounds.right =
-                this.bounds.left +
-                    ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
+            temp_bounds.right = this.bounds.left + ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
             temp_bounds.bottom = this.bounds.bottom - global.CANVAS_STROKE_WIDTH_3;
             height = temp_bounds.get_height();
             temp_bounds.set_center2(temp_bounds.get_center_x(), temp_bounds.get_center_y(), height, height);
@@ -426,8 +422,7 @@ class ElementWindow {
                 if (!global.MOUSE_KEYBOARD_LOCK) {
                     this.MOUSE_WHEEL_COUNTER++;
                     if (this.MOUSE_WHEEL_COUNTER >= this.MOUSE_WHEEL_COUNTER_MAX) {
-                        if (global.mouse_wheel_event.wheelDelta < 0 ||
-                            global.mouse_wheel_event.detail > 0) {
+                        if (global.mouse_wheel_event.wheelDelta < 0 || global.mouse_wheel_event.detail > 0) {
                             if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
                                 this.PAGE_NUMBER++;
                             }

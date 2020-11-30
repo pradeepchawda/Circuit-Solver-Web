@@ -119,21 +119,15 @@ class SimulationManager {
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.ELEMENT_DCSOURCE_OFFSET = 0;
-        this.ELEMENT_ACSOURCE_OFFSET =
-            this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-        this.ELEMENT_SQUAREWAVE_OFFSET =
-            this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-        this.ELEMENT_SAW_OFFSET =
-            this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
+        this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
+        this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
+        this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
         this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-        this.ELEMENT_CONSTANT_OFFSET =
-            this.ELEMENT_TRI_OFFSET + trianglewaves.length;
+        this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
         this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
         this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
-        this.ELEMENT_AMMETER_OFFSET =
-            this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-        this.ELEMENT_WATTMETER_OFFSET =
-            this.ELEMENT_AMMETER_OFFSET + ammeters.length;
+        this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
+        this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
         this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
         this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
         this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
@@ -158,10 +152,8 @@ class SimulationManager {
         this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
         this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
         this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
-        this.ELEMENT_DIFFERENTIATOR_OFFSET =
-            this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-        this.ELEMENT_LPF_OFFSET =
-            this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
+        this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
+        this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
         this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
         this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
         this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
@@ -268,21 +260,15 @@ class SimulationManager {
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.ELEMENT_DCSOURCE_OFFSET = 0;
-        this.ELEMENT_ACSOURCE_OFFSET =
-            this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-        this.ELEMENT_SQUAREWAVE_OFFSET =
-            this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-        this.ELEMENT_SAW_OFFSET =
-            this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
+        this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
+        this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
+        this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
         this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-        this.ELEMENT_CONSTANT_OFFSET =
-            this.ELEMENT_TRI_OFFSET + trianglewaves.length;
+        this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
         this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
         this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
-        this.ELEMENT_AMMETER_OFFSET =
-            this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-        this.ELEMENT_WATTMETER_OFFSET =
-            this.ELEMENT_AMMETER_OFFSET + ammeters.length;
+        this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
+        this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
         this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
         this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
         this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
@@ -307,10 +293,8 @@ class SimulationManager {
         this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
         this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
         this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
-        this.ELEMENT_DIFFERENTIATOR_OFFSET =
-            this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-        this.ELEMENT_LPF_OFFSET =
-            this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
+        this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
+        this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
         this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
         this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
         this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
@@ -559,57 +543,49 @@ class SimulationManager {
                     parallel_series_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Frequency'] < min_frequency &&
-                this.TIME_DATA[i]['Frequency'] > 0) {
+            if (this.TIME_DATA[i]['Frequency'] < min_frequency && this.TIME_DATA[i]['Frequency'] > 0) {
                 min_frequency = global.copy(this.TIME_DATA[i]['Frequency']);
                 if (!min_freq_updated) {
                     min_freq_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Frequency'] > max_frequency &&
-                this.TIME_DATA[i]['Frequency'] > 0) {
+            if (this.TIME_DATA[i]['Frequency'] > max_frequency && this.TIME_DATA[i]['Frequency'] > 0) {
                 max_frequency = global.copy(this.TIME_DATA[i]['Frequency']);
                 if (!max_freq_updated) {
                     max_freq_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Capacitance'] > max_capacitance &&
-                this.TIME_DATA[i]['Capacitance'] > 0) {
+            if (this.TIME_DATA[i]['Capacitance'] > max_capacitance && this.TIME_DATA[i]['Capacitance'] > 0) {
                 max_capacitance = global.copy(this.TIME_DATA[i]['Capacitance']);
                 if (!max_cap_updated) {
                     max_cap_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Resistance'] > max_resistance &&
-                this.TIME_DATA[i]['Resistance'] > 0) {
+            if (this.TIME_DATA[i]['Resistance'] > max_resistance && this.TIME_DATA[i]['Resistance'] > 0) {
                 max_resistance = global.copy(this.TIME_DATA[i]['Resistance']);
                 if (!max_res_updated) {
                     max_res_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Inductance'] > max_inductance &&
-                this.TIME_DATA[i]['Inductance'] > 0) {
+            if (this.TIME_DATA[i]['Inductance'] > max_inductance && this.TIME_DATA[i]['Inductance'] > 0) {
                 max_inductance = global.copy(this.TIME_DATA[i]['Inductance']);
                 if (!max_ind_updated) {
                     max_ind_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Capacitance'] < min_capacitance &&
-                this.TIME_DATA[i]['Capacitance'] > 0) {
+            if (this.TIME_DATA[i]['Capacitance'] < min_capacitance && this.TIME_DATA[i]['Capacitance'] > 0) {
                 min_capacitance = global.copy(this.TIME_DATA[i]['Capacitance']);
                 if (!min_cap_updated) {
                     min_cap_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Resistance'] < min_resistance &&
-                this.TIME_DATA[i]['Resistance'] > 0) {
+            if (this.TIME_DATA[i]['Resistance'] < min_resistance && this.TIME_DATA[i]['Resistance'] > 0) {
                 min_resistance = global.copy(this.TIME_DATA[i]['Resistance']);
                 if (!min_res_updated) {
                     min_res_updated = true;
                 }
             }
-            if (this.TIME_DATA[i]['Inductance'] < min_inductance &&
-                this.TIME_DATA[i]['Inductance'] > 0) {
+            if (this.TIME_DATA[i]['Inductance'] < min_inductance && this.TIME_DATA[i]['Inductance'] > 0) {
                 min_inductance = global.copy(this.TIME_DATA[i]['Inductance']);
                 if (!min_ind_updated) {
                     min_ind_updated = true;
@@ -660,12 +636,7 @@ class SimulationManager {
             let ts2 = global.min3(rc_series, rl_series, min_period);
             ts_final = global.min3(ts1, ts2, t_lc);
             ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            if (!max_freq_updated &&
-                !min_freq_updated &&
-                !min_cap_updated &&
-                !max_cap_updated &&
-                !min_ind_updated &&
-                !max_ind_updated) {
+            if (!max_freq_updated && !min_freq_updated && !min_cap_updated && !max_cap_updated && !min_ind_updated && !max_ind_updated) {
                 ts_final = 1;
             }
         }
@@ -675,12 +646,7 @@ class SimulationManager {
             let min_period = (1.0 / min_frequency) * multiplier;
             ts_final = global.min3(max_period, min_period, t_lc);
             ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
-            if (!max_freq_updated &&
-                !min_freq_updated &&
-                !min_cap_updated &&
-                !max_cap_updated &&
-                !min_ind_updated &&
-                !max_ind_updated) {
+            if (!max_freq_updated && !min_freq_updated && !min_cap_updated && !max_cap_updated && !min_ind_updated && !max_ind_updated) {
                 ts_final = 1;
             }
         }
@@ -1053,9 +1019,7 @@ class SimulationManager {
             }
             for (var i = 0; i < matrix_x.length; i++) {
                 if (i < this.NODE_SIZE) {
-                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) <
-                        global.settings.RELTOL * global.V_MAX_ERR[i][0] +
-                            global.settings.VNTOL) {
+                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.V_MAX_ERR[i][0] + global.settings.VNTOL) {
                         if (!global.V_LOCKED) {
                             global.V_CONV = true;
                         }
@@ -1066,9 +1030,7 @@ class SimulationManager {
                     }
                 }
                 else {
-                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) <
-                        global.settings.RELTOL * global.I_MAX_ERR[i][0] +
-                            global.settings.ABSTOL) {
+                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.I_MAX_ERR[i][0] + global.settings.ABSTOL) {
                         if (!global.I_LOCKED) {
                             global.I_CONV = true;
                         }
@@ -1168,10 +1130,7 @@ class SimulationManager {
             else {
                 /* Update capacitors and inductors */
                 this.update_reactive_elements();
-                if (!this.CONTINUE_SOLVING ||
-                    this.ITERATOR >= global.settings.ITL4 ||
-                    global.IS_SINGULAR ||
-                    global.SIMULATION_TIME >= this.SIMULATION_MAX_TIME) {
+                if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.IS_SINGULAR || global.SIMULATION_TIME >= this.SIMULATION_MAX_TIME) {
                     if (this.ITERATOR >= global.settings.ITL4) {
                         menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
                         toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.LANGUAGE_INDEX]]);
@@ -1218,7 +1177,7 @@ class SimulationManager {
                 }
             }
             /* Sprinkle some resistance in the diagonal to avoid a singular matrix. */
-            linear_algebra.set_matrix_diagonal(matrix_a, global.settings.INV_R_MAX, this.NODE_SIZE);
+            matrix_a = linear_algebra.set_matrix_diagonal(matrix_a, global.settings.INV_R_MAX, this.NODE_SIZE);
             /* Stamp all the elements into the matrix! */
             engine_functions.stamp_elements();
             /* Copy the x-matrix! */
@@ -1275,36 +1234,6 @@ class SimulationManager {
     }
     /* Handles furture proofing of system settings. */
     patch() {
-        if (global.settings.WIRE_RESISTANCE != 1e-3) {
-            global.settings.WIRE_RESISTANCE = 1e-3;
-        }
-        if (global.settings.ITL1 != 24) {
-            global.settings.ITL1 = 24;
-        }
-        if (global.settings.ITL4 != 96) {
-            global.settings.ITL4 = 96;
-        }
-        if (global.settings.RELTOL != 1e-1) {
-            /* The relative tolerance of the simulation error */
-            global.settings.RELTOL = 1e-1;
-        }
-        if (global.settings.ABSTOL != 1e-1) {
-            /* The absolute tolerance of the simulation error - Usually currents*/
-            global.settings.ABSTOL = 1e-1;
-        }
-        if (global.settings.VNTOL != 1e-1) {
-            /* The voltage tolerance of the simmulation error. */
-            global.settings.VNTOL = 1e-1;
-        }
-        if (global.settings.TOLERANCE != 1e-1) {
-            /* The tolerance during operating point analysis. */
-            global.settings.TOLERANCE = 1e-1;
-        }
-        if (global.settings.MIN_TIME_CONSTANT != 100e-9) {
-            global.settings.MIN_TIME_CONSTANT = 100e-9;
-        }
-        if (global.settings.MAX_TIME_CONSTANT != 10) {
-            global.settings.MAX_TIME_CONSTANT = 10;
-        }
+        global.settings.patch();
     }
 }

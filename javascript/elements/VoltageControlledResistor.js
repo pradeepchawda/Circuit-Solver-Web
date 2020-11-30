@@ -66,8 +66,7 @@ class VoltageControlledResistor {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p3 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) -
-            global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p3 */
         this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
         /* Angle from center to p2 */
@@ -162,8 +161,7 @@ class VoltageControlledResistor {
         this.connect2_x = 0;
         this.connect2_y = 0;
         /* Angle from p1 to p3 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p3 */
         this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
         /* Angle from center to p2 */
@@ -239,9 +237,7 @@ class VoltageControlledResistor {
     }
     /* General function to handle any processing required by the component */
     update() {
-        if (global.FLAG_SIMULATING &&
-            simulation_manager.SOLUTIONS_READY &&
-            simulation_manager.SIMULATION_STEP != 0) {
+        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage'] = global.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
                 if (this.elm.properties['Interpolate'] === global.ON) {
@@ -251,53 +247,26 @@ class VoltageControlledResistor {
                         this.elm.properties['High Voltage'] * 0.5,
                         this.elm.properties['High Voltage'] * 0.75,
                         this.elm.properties['High Voltage']
-                    ], [
-                        this.elm.properties['Elm0'],
-                        this.elm.properties['Elm1'],
-                        this.elm.properties['Elm2'],
-                        this.elm.properties['Elm3'],
-                        this.elm.properties['Elm4']
-                    ], this.elm.properties['Input Voltage']);
+                    ], [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']], this.elm.properties['Input Voltage']);
                 }
                 else if (this.elm.properties['Interpolate'] === global.OFF) {
                     let index = 0;
-                    if (this.elm.properties['Input Voltage'] >=
-                        this.elm.properties['High Voltage'] * 0 &&
-                        this.elm.properties['Input Voltage'] <=
-                            this.elm.properties['High Voltage'] * 0.2) {
+                    if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.2) {
                         index = 0;
                     }
-                    else if (this.elm.properties['Input Voltage'] >=
-                        this.elm.properties['High Voltage'] * 0.2 &&
-                        this.elm.properties['Input Voltage'] <=
-                            this.elm.properties['High Voltage'] * 0.4) {
+                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.2 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.4) {
                         index = 1;
                     }
-                    else if (this.elm.properties['Input Voltage'] >=
-                        this.elm.properties['High Voltage'] * 0.4 &&
-                        this.elm.properties['Input Voltage'] <=
-                            this.elm.properties['High Voltage'] * 0.6) {
+                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.4 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.6) {
                         index = 2;
                     }
-                    else if (this.elm.properties['Input Voltage'] >=
-                        this.elm.properties['High Voltage'] * 0.6 &&
-                        this.elm.properties['Input Voltage'] <=
-                            this.elm.properties['High Voltage'] * 0.8) {
+                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.6 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.8) {
                         index = 3;
                     }
-                    else if (this.elm.properties['Input Voltage'] >=
-                        this.elm.properties['High Voltage'] * 0.8 &&
-                        this.elm.properties['Input Voltage'] <=
-                            this.elm.properties['High Voltage'] * 1.0) {
+                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.8 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
                         index = 4;
                     }
-                    this.elm.properties['Output Resistance'] = [
-                        this.elm.properties['Elm0'],
-                        this.elm.properties['Elm1'],
-                        this.elm.properties['Elm2'],
-                        this.elm.properties['Elm3'],
-                        this.elm.properties['Elm4']
-                    ][index];
+                    this.elm.properties['Output Resistance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']][index];
                 }
             }
         }
@@ -391,11 +360,8 @@ class VoltageControlledResistor {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN) {
-            if (!global.focused &&
-                !global.component_touched &&
-                !global.multi_selected) {
-                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) &&
-                    !global.component_touched) {
+            if (!global.focused && !global.component_touched && !global.multi_selected) {
+                if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
                     global.focused_id = this.elm.id;
                     global.focused_type = this.elm.type;
@@ -404,9 +370,7 @@ class VoltageControlledResistor {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() &&
-                        !global.component_touched &&
-                        !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -472,8 +436,7 @@ class VoltageControlledResistor {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
             /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
-                if (global.focused_id === this.elm.id &&
-                    global.focused_type === this.elm.type) {
+                if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.IS_DRAGGING = false;
                     if (!this.is_translating) {
@@ -491,15 +454,13 @@ class VoltageControlledResistor {
                         if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
                             this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
                         }
-                        else if (this.m_x >
-                            workspace.bounds.right - 2.0 * global.node_space_x) {
+                        else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
                             this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
                         }
                         if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
                             this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
                         }
-                        else if (this.m_y >
-                            workspace.bounds.bottom - 2.0 * global.node_space_y) {
+                        else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
                             this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
                         }
                         this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
@@ -515,9 +476,7 @@ class VoltageControlledResistor {
     /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
-            if (global.focused &&
-                global.focused_id === this.elm.id &&
-                global.focused_type === this.elm.type) {
+            if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
                     this.capture_nodes();
@@ -530,8 +489,7 @@ class VoltageControlledResistor {
                         this.select();
                     }
                     else {
-                        if (global.selected_id === this.elm.id &&
-                            global.selected_type === this.elm.type) {
+                        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
                             global.selected_type = -1;
                             global.selected_bounds = global.NULL;
@@ -549,8 +507,7 @@ class VoltageControlledResistor {
                 global.focused_bounds = global.NULL;
                 global.focused = false;
             }
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 global.selected_bounds = global.copy(this.bounds);
             }
         }
@@ -567,9 +524,7 @@ class VoltageControlledResistor {
         global.selected = true;
     }
     remove_focus() {
-        if (global.focused &&
-            global.focused_id === this.elm.id &&
-            global.focused_type === this.elm.type) {
+        if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
             global.focused_id = global.NULL;
             global.focused_type = global.NULL;
             global.focused_bounds = global.NULL;
@@ -577,8 +532,7 @@ class VoltageControlledResistor {
         }
     }
     remove_selection() {
-        if (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type) {
+        if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
             global.selected_type = -1;
             global.selected_bounds = global.NULL;
@@ -738,95 +692,33 @@ class VoltageControlledResistor {
             this.connect1_y = this.c_y - cache_9 * global.sine(this.theta);
             this.connect2_x = this.c_x + cache_8 * global.cosine(this.theta);
             this.connect2_y = this.c_y + cache_9 * global.sine(this.theta);
-            this.vcr_4.x =
-                this.c_x -
-                    cache_0 * global.cosine(this.theta) +
-                    (cache_8 >> 1) * global.cosine(this.theta_m90);
-            this.vcr_4.y =
-                this.c_y -
-                    cache_1 * global.sine(this.theta) +
-                    (cache_9 >> 1) * global.sine(this.theta_m90);
+            this.vcr_4.x = this.c_x - cache_0 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(this.theta_m90);
+            this.vcr_4.y = this.c_y - cache_1 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(this.theta_m90);
             this.vcr_5.x = this.c_x + (cache_8 >> 1) * global.cosine(this.theta_m90);
             this.vcr_5.y = this.c_y + (cache_9 >> 1) * global.sine(this.theta_m90);
-            this.vcr_6.x =
-                this.c_x -
-                    cache_2 * global.cosine(this.theta) +
-                    (cache_8 >> 1) * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_6.y =
-                this.c_y -
-                    cache_3 * global.sine(this.theta) +
-                    (cache_9 >> 1) * global.sine(Math.PI + this.theta_m90);
-            this.vcr_7.x =
-                this.c_x +
-                    cache_2 * global.cosine(this.theta) +
-                    (cache_8 >> 1) * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_7.y =
-                this.c_y +
-                    cache_3 * global.sine(this.theta) +
-                    (cache_9 >> 1) * global.sine(Math.PI + this.theta_m90);
-            this.vcr_8.x =
-                this.c_x +
-                    cache_0 * global.cosine(this.theta) +
-                    (cache_8 >> 1) * global.cosine(this.theta_m90);
-            this.vcr_8.y =
-                this.c_y +
-                    cache_1 * global.sine(this.theta) +
-                    (cache_9 >> 1) * global.sine(this.theta_m90);
-            this.vcr_9.x =
-                this.c_x +
-                    cache_8 * global.cosine(this.theta) +
-                    cache_4 * global.cosine(this.theta_m90);
-            this.vcr_9.y =
-                this.c_y +
-                    cache_9 * global.sine(this.theta) +
-                    cache_5 * global.sine(this.theta_m90);
-            this.vcr_10.x =
-                this.c_x -
-                    cache_8 * global.cosine(this.theta) +
-                    cache_4 * global.cosine(this.theta_m90);
-            this.vcr_10.y =
-                this.c_y -
-                    cache_9 * global.sine(this.theta) +
-                    cache_5 * global.sine(this.theta_m90);
-            this.vcr_11.x =
-                this.c_x +
-                    cache_8 * global.cosine(this.theta) +
-                    cache_4 * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_11.y =
-                this.c_y +
-                    cache_9 * global.sine(this.theta) +
-                    cache_5 * global.sine(Math.PI + this.theta_m90);
-            this.vcr_12.x =
-                this.c_x -
-                    cache_8 * global.cosine(this.theta) +
-                    cache_4 * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_12.y =
-                this.c_y -
-                    cache_9 * global.sine(this.theta) +
-                    cache_5 * global.sine(Math.PI + this.theta_m90);
-            this.vcr_0.x =
-                this.connect1_x +
-                    cache_8 * global.cosine(this.theta) +
-                    cache_6 * global.cosine(this.theta_m90);
-            this.vcr_0.y =
-                this.connect1_y +
-                    cache_9 * global.sine(this.theta) +
-                    cache_7 * global.sine(this.theta_m90);
+            this.vcr_6.x = this.c_x - cache_2 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(Math.PI + this.theta_m90);
+            this.vcr_6.y = this.c_y - cache_3 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(Math.PI + this.theta_m90);
+            this.vcr_7.x = this.c_x + cache_2 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(Math.PI + this.theta_m90);
+            this.vcr_7.y = this.c_y + cache_3 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(Math.PI + this.theta_m90);
+            this.vcr_8.x = this.c_x + cache_0 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(this.theta_m90);
+            this.vcr_8.y = this.c_y + cache_1 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(this.theta_m90);
+            this.vcr_9.x = this.c_x + cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(this.theta_m90);
+            this.vcr_9.y = this.c_y + cache_9 * global.sine(this.theta) + cache_5 * global.sine(this.theta_m90);
+            this.vcr_10.x = this.c_x - cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(this.theta_m90);
+            this.vcr_10.y = this.c_y - cache_9 * global.sine(this.theta) + cache_5 * global.sine(this.theta_m90);
+            this.vcr_11.x = this.c_x + cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(Math.PI + this.theta_m90);
+            this.vcr_11.y = this.c_y + cache_9 * global.sine(this.theta) + cache_5 * global.sine(Math.PI + this.theta_m90);
+            this.vcr_12.x = this.c_x - cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(Math.PI + this.theta_m90);
+            this.vcr_12.y = this.c_y - cache_9 * global.sine(this.theta) + cache_5 * global.sine(Math.PI + this.theta_m90);
+            this.vcr_0.x = this.connect1_x + cache_8 * global.cosine(this.theta) + cache_6 * global.cosine(this.theta_m90);
+            this.vcr_0.y = this.connect1_y + cache_9 * global.sine(this.theta) + cache_7 * global.sine(this.theta_m90);
             this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
             this.vcr_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
             this.vcr_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
-            this.vcr_2.x =
-                this.vcr_1.x +
-                    0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
-            this.vcr_2.y =
-                this.vcr_1.y +
-                    0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
-            this.vcr_3.x =
-                this.vcr_1.x +
-                    0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
-            this.vcr_3.y =
-                this.vcr_1.y +
-                    0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
+            this.vcr_2.x = this.vcr_1.x + 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+            this.vcr_2.y = this.vcr_1.y + 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
+            this.vcr_3.x = this.vcr_1.x + 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+            this.vcr_3.y = this.vcr_1.y + 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
             /* Angle from p1 to p3 */
             this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
             this.BUILD_ELEMENT = false;
@@ -872,8 +764,7 @@ class VoltageControlledResistor {
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
         /* Angle from p1 to p3 minus 90 degrees */
-        this.theta_m90 =
-            global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
+        this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
         /* Angle from p1 to p3 */
         this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
         /* Angle from center to p2 */
@@ -890,8 +781,7 @@ class VoltageControlledResistor {
     increment_flip() { }
     recolor() {
         if (global.selected) {
-            if (global.selected_id === this.elm.id &&
-                global.selected_type === this.elm.type) {
+            if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                 this.line_paint.set_color(global.SELECTED_COLOR);
                 this.point_paint.set_color(global.SELECTED_COLOR);
                 this.text_paint.set_color(global.SELECTED_COLOR);
@@ -916,8 +806,7 @@ class VoltageControlledResistor {
         }
     }
     is_selected_element() {
-        return (global.selected_id === this.elm.id &&
-            global.selected_type === this.elm.type);
+        return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
     /* Draws the component */
     draw_component(canvas) {
@@ -956,10 +845,9 @@ class VoltageControlledResistor {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 ||
-                (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
                 if (this.ANGLE > 170 && this.ANGLE < 190) {
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
@@ -1009,10 +897,7 @@ class VoltageControlledResistor {
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {
-                if (keys[i] === 'Frequency' ||
-                    keys[i] === 'Resistance' ||
-                    keys[i] === 'Capacitance' ||
-                    keys[i] === 'Inductance') {
+                if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
                     time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
                 }
             }

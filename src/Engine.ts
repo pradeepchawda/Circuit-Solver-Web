@@ -407,6 +407,7 @@ function load_app(): void {
   let NSY: number = 0;
   let MNSX: number = 0;
   let MNSY: number = 0;
+  let NODE_LENGTH: number = 0;
   /* In case canvas is scaled inside an html element. If it is, then look at the commented code
   inside resize_canvas() to handle how these values should be re-calculated. */
   general_paint.set_paint_style(general_paint.style.FILL);
@@ -1222,13 +1223,23 @@ function load_app(): void {
           NSY = 0.29375 * global.node_space_y;
           MNSX = 1.25 * NSX;
           MNSY = 1.25 * NSY;
-          for (var i: number = 0; i < nodes.length; i++) {
+          NODE_LENGTH = nodes.length;
+          for (var i = 0; i < NODE_LENGTH; i++) {
             nodes[i].resize(NSX, NSY, MNSX, MNSY);
+            if (NODE_LENGTH - 1 - i === i + 1) {
+              break;
+            }
+            nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
           }
         }
         if (global.DEVELOPER_MODE) {
-          for (var i: number = 0; i < nodes.length; i++) {
+          NODE_LENGTH = nodes.length;
+          for (var i = 0; i < NODE_LENGTH; i++) {
             nodes[i].draw(canvas);
+            if (NODE_LENGTH - 1 - i === i + 1) {
+              break;
+            }
+            nodes[NODE_LENGTH - 1 - i].draw(canvas);
           }
         }
         workspace.workspace_draw(canvas);
@@ -1239,8 +1250,13 @@ function load_app(): void {
         if (global.WIRE_BUILDER['step'] > 0) {
           global.NODE_LINE_BUFFER = [];
           global.NODE_LINE_BUFFER_INDEX = 0;
-          for (var i: number = 0; i < nodes.length; i++) {
+          NODE_LENGTH = nodes.length;
+          for (var i = 0; i < NODE_LENGTH; i++) {
             nodes[i].draw(canvas);
+            if (NODE_LENGTH - 1 - i === i + 1) {
+              break;
+            }
+            nodes[NODE_LENGTH - 1 - i].draw(canvas);
           }
           if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
             canvas.draw_line_buffer(global.NODE_LINE_BUFFER, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
@@ -1280,13 +1296,23 @@ function load_app(): void {
               NSY = 0.29375 * global.node_space_y;
               MNSX = 1.25 * NSX;
               MNSY = 1.25 * NSY;
-              for (var i: number = 0; i < nodes.length; i++) {
+              NODE_LENGTH = nodes.length;
+              for (var i = 0; i < NODE_LENGTH; i++) {
                 nodes[i].resize(NSX, NSY, MNSX, MNSY);
+                if (NODE_LENGTH - 1 - i === i + 1) {
+                  break;
+                }
+                nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
               }
             }
             if (global.DEVELOPER_MODE) {
-              for (var i: number = 0; i < nodes.length; i++) {
+              NODE_LENGTH = nodes.length;
+              for (var i = 0; i < NODE_LENGTH; i++) {
                 nodes[i].draw(canvas);
+                if (NODE_LENGTH - 1 - i === i + 1) {
+                  break;
+                }
+                nodes[NODE_LENGTH - 1 - i].draw(canvas);
               }
             }
             engine_functions.draw_unselected_components(canvas);

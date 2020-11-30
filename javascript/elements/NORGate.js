@@ -224,8 +224,7 @@ class NORGate {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) / this.elm.properties['High Voltage'] - 0.5));
                 this.elm.properties['Input Voltage2'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n2, -1) / this.elm.properties['High Voltage'] - 0.5));
-                this.elm.properties['Output Voltage'] =
-                    (this.elm.properties['High Voltage'] * 2.0) / (2.0 / (1 - this.elm.properties['Input Voltage1']) + 2.0 / (1 - this.elm.properties['Input Voltage2']));
+                this.elm.properties['Output Voltage'] = (this.elm.properties['High Voltage'] * 2.0) / (2.0 / (1 - this.elm.properties['Input Voltage1']) + 2.0 / (1 - this.elm.properties['Input Voltage2']));
             }
         }
     }
@@ -801,7 +800,7 @@ class NORGate {
             canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
             }
             if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);

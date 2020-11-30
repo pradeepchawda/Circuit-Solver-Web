@@ -28,14 +28,9 @@ class DCSourceSymbol {
   public p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
   public p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 =
-    global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) -
-    global.PI_DIV_2;
+  public theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
   /* Angle from p1 to p2 */
-  public theta = global.retrieve_angle_radian(
-    this.p2.x - this.p1.x,
-    this.p2.y - this.p1.y
-  );
+  public theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
   /* DCSource point 0 */
   public dc_0 = new PointF(0, 0);
   /* DCSource point 1 */
@@ -74,10 +69,10 @@ class DCSourceSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER : Array<Array<number>> = [];
-  public CIRCLE_BUFFER = [];
+  public LINE_BUFFER: Array<Array<number>> = [];
+  public CIRCLE_BUFFER: Array<Array<number>> = [];
 
-  constructor(rect, index, page) {
+  constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
     this.index = index;
     /* Page to be drawn on (Inside New Element Window) */
@@ -90,16 +85,9 @@ class DCSourceSymbol {
     this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
     this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
     /* Angle from p1 to p2 minus 90 degrees */
-    this.theta_m90 =
-      global.retrieve_angle_radian(
-        this.p2.x - this.p1.x,
-        this.p2.y - this.p1.y
-      ) - global.PI_DIV_2;
+    this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
     /* Angle from p1 to p2 */
-    this.theta = global.retrieve_angle_radian(
-      this.p2.x - this.p1.x,
-      this.p2.y - this.p1.y
-    );
+    this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
     /* DCSource point 0 */
     this.dc_0 = new PointF(0, 0);
     /* DCSource point 1 */
@@ -160,23 +148,15 @@ class DCSourceSymbol {
     this.text_paint.set_paint_align(this.text_paint.align.CENTER);
     /* Text background paint */
     this.text_background_paint = new Paint();
-    this.text_background_paint.set_paint_style(
-      this.text_background_paint.style.FILL
-    );
-    this.text_background_paint.set_paint_cap(
-      this.text_background_paint.cap.ROUND
-    );
-    this.text_background_paint.set_paint_join(
-      this.text_background_paint.join.MITER
-    );
+    this.text_background_paint.set_paint_style(this.text_background_paint.style.FILL);
+    this.text_background_paint.set_paint_cap(this.text_background_paint.cap.ROUND);
+    this.text_background_paint.set_paint_join(this.text_background_paint.join.MITER);
     this.text_background_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.text_background_paint.set_color(global.GENERAL_CYAN_COLOR);
     this.text_background_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
     this.text_background_paint.set_font(global.DEFAULT_FONT);
     this.text_background_paint.set_alpha(192);
-    this.text_background_paint.set_paint_align(
-      this.text_background_paint.align.CENTER
-    );
+    this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
     this.build_element();
     this.FLAG_ADD_ELEMENT = false;
     this.TAG = language_manager.TAG_DCSOURCE;
@@ -189,12 +169,7 @@ class DCSourceSymbol {
   update() {
     if (this.FLAG_ADD_ELEMENT) {
       if (
-        workspace.bounds.contains_xywh(
-          global.mouse_x,
-          global.mouse_y,
-          workspace.bounds.get_width() - 4.5 * global.node_space_x,
-          workspace.bounds.get_height() - 4.5 * global.node_space_y
-        ) &&
+        workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
         !this.bounds.contains_xy(global.mouse_x, global.mouse_y)
       ) {
         shortcut_manager.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
@@ -204,11 +179,9 @@ class DCSourceSymbol {
       }
     }
   }
-  mouse_down(page, width, height) {
+  mouse_down(page: number, width: number, height: number) {
     if (this.page === page) {
-      if (
-        this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)
-      ) {
+      if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
         if (!this.FLAG_ADD_ELEMENT) {
           this.FLAG_ADD_ELEMENT = true;
           global.SIGNAL_ADD_ELEMENT = true;
@@ -218,16 +191,8 @@ class DCSourceSymbol {
       }
     }
   }
-  mouse_move(page, width, height) {
-    if (
-      this.bounds.contains_xywh(
-        global.mouse_x,
-        global.mouse_y,
-        width,
-        height
-      ) &&
-      !global.MOBILE_MODE
-    ) {
+  mouse_move(page: number, width: number, height: number) {
+    if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
       this.DRAW_TAG = true;
     } else {
       this.DRAW_TAG = false;
@@ -235,11 +200,9 @@ class DCSourceSymbol {
     if (this.page === page) {
     }
   }
-  mouse_up(page, width, height) {
+  mouse_up(page: number, width: number, height: number) {
     if (this.page === page) {
-      if (
-        this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)
-      ) {
+      if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
       }
       this.FLAG_ADD_ELEMENT = false;
       global.SIGNAL_ADD_ELEMENT = false;
@@ -247,40 +210,16 @@ class DCSourceSymbol {
   }
   /* Generate the SVG for the component. */
   build_element() {
-    this.dc_0.x =
-      this.c_x +
-      this.x_space * 0.5 * global.cosine(this.theta) +
-      (this.x_space >> 2) * global.cosine(this.theta_m90);
-    this.dc_0.y =
-      this.c_y +
-      this.y_space * 0.5 * global.sine(this.theta) +
-      (this.x_space >> 2) * global.sine(this.theta_m90);
-    this.dc_1.x =
-      this.c_x +
-      this.x_space * 0.5 * global.cosine(this.theta) +
-      (this.x_space >> 2) * global.cosine(Math.PI + this.theta_m90);
-    this.dc_1.y =
-      this.c_y +
-      this.y_space * 0.5 * global.sine(this.theta) +
-      (this.x_space >> 2) * global.sine(Math.PI + this.theta_m90);
+    this.dc_0.x = this.c_x + this.x_space * 0.5 * global.cosine(this.theta) + (this.x_space >> 2) * global.cosine(this.theta_m90);
+    this.dc_0.y = this.c_y + this.y_space * 0.5 * global.sine(this.theta) + (this.x_space >> 2) * global.sine(this.theta_m90);
+    this.dc_1.x = this.c_x + this.x_space * 0.5 * global.cosine(this.theta) + (this.x_space >> 2) * global.cosine(Math.PI + this.theta_m90);
+    this.dc_1.y = this.c_y + this.y_space * 0.5 * global.sine(this.theta) + (this.x_space >> 2) * global.sine(Math.PI + this.theta_m90);
     this.dc_2.x = this.c_x - this.x_space * 0.57142 * global.cosine(this.theta);
     this.dc_2.y = this.c_y - this.y_space * 0.57142 * global.sine(this.theta);
-    this.dc_3.x =
-      this.c_x -
-      this.x_space * 0.25 * global.cosine(this.theta) +
-      (this.x_space >> 2) * global.cosine(this.theta_m90);
-    this.dc_3.y =
-      this.c_y -
-      this.y_space * 0.25 * global.sine(this.theta) +
-      (this.x_space >> 2) * global.sine(this.theta_m90);
-    this.dc_4.x =
-      this.c_x -
-      this.x_space * 0.25 * global.cosine(this.theta) +
-      (this.x_space >> 2) * global.cosine(Math.PI + this.theta_m90);
-    this.dc_4.y =
-      this.c_y -
-      this.y_space * 0.25 * global.sine(this.theta) +
-      (this.x_space >> 2) * global.sine(Math.PI + this.theta_m90);
+    this.dc_3.x = this.c_x - this.x_space * 0.25 * global.cosine(this.theta) + (this.x_space >> 2) * global.cosine(this.theta_m90);
+    this.dc_3.y = this.c_y - this.y_space * 0.25 * global.sine(this.theta) + (this.x_space >> 2) * global.sine(this.theta_m90);
+    this.dc_4.x = this.c_x - this.x_space * 0.25 * global.cosine(this.theta) + (this.x_space >> 2) * global.cosine(Math.PI + this.theta_m90);
+    this.dc_4.y = this.c_y - this.y_space * 0.25 * global.sine(this.theta) + (this.x_space >> 2) * global.sine(Math.PI + this.theta_m90);
     this.dc_5.x = this.c_x + this.x_space * 0.0625 * global.cosine(this.theta);
     this.dc_5.y = this.c_y + this.y_space * 0.0625 * global.sine(this.theta);
     this.connect1_x = this.c_x - this.x_space * global.cosine(this.theta);
@@ -288,7 +227,7 @@ class DCSourceSymbol {
     this.connect2_x = this.c_x + this.x_space * global.cosine(this.theta);
     this.connect2_y = this.c_y + this.y_space * global.sine(this.theta);
   }
-  resize(rect) {
+  resize(rect: RectF) {
     /* Create a new rectangle for the bounds of this component */
     this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
     /* The center (x-coord) of the bounds */
@@ -302,16 +241,9 @@ class DCSourceSymbol {
     this.p1.set_point(this.bounds.left, this.bounds.get_center_y());
     this.p2.set_point(this.bounds.right, this.bounds.get_center_y());
     /* Angle from p1 to p2 minus 90 degrees */
-    this.theta_m90 =
-      global.retrieve_angle_radian(
-        this.p2.x - this.p1.x,
-        this.p2.y - this.p1.y
-      ) - global.PI_DIV_2;
+    this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
     /* Angle from p1 to p2 */
-    this.theta = global.retrieve_angle_radian(
-      this.p2.x - this.p1.x,
-      this.p2.y - this.p1.y
-    );
+    this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
     this.build_element();
     this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
     this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -332,87 +264,30 @@ class DCSourceSymbol {
     }
   }
   /* Draws the Symbol */
-  draw_symbol(canvas, page) {
+  draw_symbol(canvas: GraphicsEngine, page: number) {
     this.recolor();
     if (this.page === page) {
       let indexer = 0;
       this.CIRCLE_BUFFER = [];
       this.LINE_BUFFER = [];
-      this.LINE_BUFFER[indexer++] = Array(
-        this.dc_0.x,
-        this.dc_0.y,
-        this.dc_1.x,
-        this.dc_1.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.dc_2.x,
-        this.dc_2.y,
-        this.dc_5.x,
-        this.dc_5.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.dc_3.x,
-        this.dc_3.y,
-        this.dc_4.x,
-        this.dc_4.y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.p1.x,
-        this.p1.y,
-        this.connect1_x,
-        this.connect1_y
-      );
-      this.LINE_BUFFER[indexer++] = Array(
-        this.connect2_x,
-        this.connect2_y,
-        this.p2.x,
-        this.p2.y
-      );
+      this.LINE_BUFFER[indexer++] = Array(this.dc_0.x, this.dc_0.y, this.dc_1.x, this.dc_1.y);
+      this.LINE_BUFFER[indexer++] = Array(this.dc_2.x, this.dc_2.y, this.dc_5.x, this.dc_5.y);
+      this.LINE_BUFFER[indexer++] = Array(this.dc_3.x, this.dc_3.y, this.dc_4.x, this.dc_4.y);
+      this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+      this.LINE_BUFFER[indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
       canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
       indexer = 0;
-      canvas.draw_circle(
-        this.c_x,
-        this.c_y,
-        this.bounds.get_width() >> 2,
-        this.line_paint
-      );
-      this.CIRCLE_BUFFER[indexer++] = Array(
-        this.p1.x,
-        this.p1.y,
-        1.5 * global.CANVAS_STROKE_WIDTH_2
-      );
-      this.CIRCLE_BUFFER[indexer++] = Array(
-        this.p2.x,
-        this.p2.y,
-        1.5 * global.CANVAS_STROKE_WIDTH_2
-      );
+      canvas.draw_circle(this.c_x, this.c_y, this.bounds.get_width() >> 2, this.line_paint);
+      this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
       canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
       if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
-        this.text_bounds.left =
-          this.bounds.get_center_x() -
-          1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-        this.text_bounds.top =
-          this.bounds.bottom +
-          this.bounds.get_height() -
-          this.HEIGHT_RATIO * this.bounds.get_height();
-        this.text_bounds.right =
-          this.bounds.get_center_x() +
-          1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-        this.text_bounds.bottom =
-          this.bounds.bottom +
-          this.bounds.get_height() +
-          this.HEIGHT_RATIO * this.bounds.get_height();
-        canvas.draw_round_rect2(
-          this.text_bounds,
-          this.text_background_paint.get_stroke_width(),
-          this.text_background_paint
-        );
-        canvas.draw_text(
-          this.TAG,
-          this.bounds.get_center_x(),
-          this.text_bounds.get_center_y(),
-          this.text_paint
-        );
+        this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+        this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+        this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+        this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
+        canvas.draw_round_rect2(this.text_bounds, this.text_background_paint.get_stroke_width(), this.text_background_paint);
+        canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
       }
     }
   }

@@ -794,7 +794,7 @@ or overlapped)*/
       G: number,
       B: number,
       alpha: number,
-      color_space: number,
+      color_space: NET_COLOR_T,
       wl: number = wavelength,
       gamma: number = 1;
     if (wl >= 380 && wl < 440) {
