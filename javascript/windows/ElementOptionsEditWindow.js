@@ -267,7 +267,7 @@ class ElementOptionsEditWindow {
     }
     mouse_up() {
         if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 if (this.WINDOW_ANCHORED) {
                     this.insert_cursor(true, false);
                     this.INITIAL_CURSOR_DOWN = -1;
@@ -279,7 +279,7 @@ class ElementOptionsEditWindow {
                                 menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                                 /* Block out the reset selection portion of the code! */
                                 global.component_touched = true;
-                                global.MOUSE_KEYBOARD_LOCK = true;
+                                global.mouse_keyboard_lock = true;
                             }
                         }
                         else {
@@ -287,7 +287,7 @@ class ElementOptionsEditWindow {
                             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                             /* Block out the reset selection portion of the code! */
                             global.component_touched = true;
-                            global.MOUSE_KEYBOARD_LOCK = true;
+                            global.mouse_keyboard_lock = true;
                         }
                     }
                     else if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -298,7 +298,7 @@ class ElementOptionsEditWindow {
                         }
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
-                        global.MOUSE_KEYBOARD_LOCK = true;
+                        global.mouse_keyboard_lock = true;
                     }
                     else if (this.cancel_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         this.cancel_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
@@ -306,7 +306,7 @@ class ElementOptionsEditWindow {
                         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
-                        global.MOUSE_KEYBOARD_LOCK = true;
+                        global.mouse_keyboard_lock = true;
                     }
                     else if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
@@ -314,7 +314,7 @@ class ElementOptionsEditWindow {
                         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
-                        global.MOUSE_KEYBOARD_LOCK = true;
+                        global.mouse_keyboard_lock = true;
                     }
                     else if (this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
@@ -376,7 +376,7 @@ class ElementOptionsEditWindow {
     }
     key_down(key_event) {
         if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 this.handle_keyboard(key_event);
             }
         }
@@ -2425,6 +2425,7 @@ class ElementOptionsEditWindow {
             var index = -1;
             index = engine_functions.get_adc(global.selected_id);
             if (index < adcs.length) {
+                let value = string_operator.parse(this.input_button.text);
                 if (Math.abs(value) === 0 ||
                     (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
                         Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))) {

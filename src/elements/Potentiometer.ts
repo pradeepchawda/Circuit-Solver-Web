@@ -83,8 +83,8 @@ or overlapped)*/
   public m_y: number = 0;
   public MULTI_SELECTED: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
   public BUILD_ELEMENT: boolean = true;
   public ANGLE: number = 0;
 
@@ -205,8 +205,8 @@ or overlapped)*/
     this.INITIALIZED = true;
     this.MULTI_SELECTED = false;
     /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
@@ -243,7 +243,7 @@ or overlapped)*/
     let vertices: Array<number> = [];
     let p1: Array<number> = [];
     let p2: Array<number> = [];
-    let p3 = [];
+    let p3: Array<number> = [];
     if (this.elm.rotation === global.ROTATION_0) {
       p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
       p2 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.node_space_y);
@@ -391,7 +391,7 @@ or overlapped)*/
       if (global.focused) {
         if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
-          global.IS_DRAGGING = false;
+          global.is_dragging = false;
           if (!this.is_translating) {
             if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
               this.release_nodes();
@@ -768,32 +768,32 @@ or overlapped)*/
         this.c_y - global.node_space_y <= view_port.bottom)
     ) {
       this.indexer = 0;
-      this.CIRCLE_BUFFER = [];
-      this.LINE_BUFFER = [];
-      this.LINE_BUFFER[this.indexer++] = Array(this.connect1_x, this.connect1_y, this.pot_0.x, this.pot_0.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_0.x, this.pot_0.y, this.pot_2.x, this.pot_2.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_2.x, this.pot_2.y, this.pot_4.x, this.pot_4.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_4.x, this.pot_4.y, this.pot_6.x, this.pot_6.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_6.x, this.pot_6.y, this.pot_8.x, this.pot_8.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_8.x, this.pot_8.y, this.connect2_x, this.connect2_y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.p3.x, this.p3.y, this.connect2_x, this.connect2_y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, this.pot_1.x, this.pot_1.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_1.x, this.pot_1.y, this.pot_13.x, this.pot_13.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_12.x, this.pot_12.y, this.pot_13.x, this.pot_13.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_3.x, this.pot_3.y, this.pot_12.x, this.pot_12.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.pot_5.x, this.pot_5.y, this.pot_12.x, this.pot_12.y);
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      this.circle_buffer = [];
+      this.line_buffer = [];
+      this.line_buffer[this.indexer++] = Array(this.connect1_x, this.connect1_y, this.pot_0.x, this.pot_0.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_0.x, this.pot_0.y, this.pot_2.x, this.pot_2.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_2.x, this.pot_2.y, this.pot_4.x, this.pot_4.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_4.x, this.pot_4.y, this.pot_6.x, this.pot_6.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_6.x, this.pot_6.y, this.pot_8.x, this.pot_8.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_8.x, this.pot_8.y, this.connect2_x, this.connect2_y);
+      this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+      this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.connect2_x, this.connect2_y);
+      this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.pot_1.x, this.pot_1.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_1.x, this.pot_1.y, this.pot_13.x, this.pot_13.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_12.x, this.pot_12.y, this.pot_13.x, this.pot_13.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_3.x, this.pot_3.y, this.pot_12.x, this.pot_12.y);
+      this.line_buffer[this.indexer++] = Array(this.pot_5.x, this.pot_5.y, this.pot_12.x, this.pot_12.y);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       this.indexer = 0;
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+      this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
-      if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+      if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
         this.ANGLE = global.retrieve_angle(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
         if (this.ANGLE > 170 && this.ANGLE < 190) {
           canvas.draw_text(
@@ -803,7 +803,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.top + this.bounds.get_height() * 0.1,
             this.text_paint
@@ -816,7 +816,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.bottom + this.bounds.get_height() * 0.1,
             this.text_paint
@@ -830,7 +830,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.bottom + this.bounds.get_height() * 0.1,
             this.text_paint
@@ -845,7 +845,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.top + this.bounds.get_height() * 0.1,
             this.text_paint
@@ -860,12 +860,12 @@ or overlapped)*/
   }
   /* Handles future proofing of elements! */
   patch(): void {
-    if (!global.not_null(this.LINE_BUFFER)) {
+    if (!global.not_null(this.line_buffer)) {
       /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-      this.LINE_BUFFER = [];
+      this.line_buffer = [];
     }
-    if (!global.not_null(this.CIRCLE_BUFFER)) {
-      this.CIRCLE_BUFFER = [];
+    if (!global.not_null(this.circle_buffer)) {
+      this.circle_buffer = [];
     }
     if (!global.not_null(this.BUILD_ELEMENT)) {
       this.BUILD_ELEMENT = false;

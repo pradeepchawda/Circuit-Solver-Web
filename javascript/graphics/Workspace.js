@@ -41,7 +41,7 @@ class Workspace {
         this.sqrt_m_1 = -1;
         this.DRAW_GRID = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
+        this.line_buffer = [];
         this.GRID_MOVED = true;
         /* Flag to make sure that the bounds are resized before we draw it to the screen. */
         this.FIRST_RESIZE_FLAG = false;
@@ -102,7 +102,7 @@ class Workspace {
         this.sqrt_m_1 = -1;
         this.DRAW_GRID = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
+        this.line_buffer = [];
         this.GRID_MOVED = true;
     }
     /* Resize the workspace. This is called whenever the screen size changes. */
@@ -123,14 +123,14 @@ class Workspace {
         this.bounds.right = global.remap_position(this.bounds.right, true);
         this.bounds.bottom = global.remap_position(this.bounds.bottom, false);
         if (global.settings.WORKSPACE_PERFECT_SQUARE) {
-            this.bounds.set_center2(this.bounds.get_center_x(), this.bounds.get_center_y(), global.natural_width * global.WORKSPACE_ZOOM_SCALE, global.natural_height * global.WORKSPACE_ZOOM_SCALE);
+            this.bounds.set_center2(this.bounds.get_center_x(), this.bounds.get_center_y(), global.natural_width * global.workspace_zoom_scale, global.natural_height * global.workspace_zoom_scale);
         }
         /* Once we change bounds, we must compute the new node spaces (x and y) */
         global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
         global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
         /* Report that we have resized atleast once. */
         if (!this.FIRST_RESIZE_FLAG || global.FORCE_RESIZE_EVENT) {
-            zoom_window.set_zoom(global.WORKSPACE_ZOOM_SCALE);
+            zoom_window.set_zoom(global.workspace_zoom_scale);
             this.FIRST_RESIZE_FLAG = true;
         }
         this.grid_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -139,13 +139,13 @@ class Workspace {
     workspace_zoom() {
         this.GRID_MOVED = true;
         global.SIGNAL_BUILD_ELEMENT = true;
-        global.SIGNAL_BUILD_COUNTER = 0;
+        global.signal_build_counter = 0;
         /* Setting the left most and top most part of the bounds (pre-shifted), the idea is to move and grow the
-        bounds around a point. delta_x/y and scale are calculated in Engine */
+    bounds around a point. delta_x/y and scale are calculated in Engine */
         this.bounds.left = global.delta_x;
         this.bounds.top = global.delta_y;
-        this.bounds.right = this.bounds.left + global.natural_width * global.WORKSPACE_ZOOM_SCALE;
-        this.bounds.bottom = this.bounds.top + global.natural_height * global.WORKSPACE_ZOOM_SCALE;
+        this.bounds.right = this.bounds.left + global.natural_width * global.workspace_zoom_scale;
+        this.bounds.bottom = this.bounds.top + global.natural_height * global.workspace_zoom_scale;
         /* We changed the bounds, we must re-compute the node spaces (x and y) */
         global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
         global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
@@ -169,7 +169,7 @@ class Workspace {
     workspace_translate_bounds(dx, dy) {
         this.GRID_MOVED = true;
         global.SIGNAL_BUILD_ELEMENT = true;
-        global.SIGNAL_BUILD_COUNTER = 0;
+        global.signal_build_counter = 0;
         this.bounds.left += dx;
         this.bounds.right += dx;
         this.bounds.top += dy;
@@ -209,22 +209,22 @@ class Workspace {
                             cached_location_index = nodes[node_index].location;
                             cached_location_alt = nodes[node_index_alt].location;
                             if (i > 0) {
-                                this.LINE_BUFFER[index++] = Array(cached_location_i.x, cached_location_i.y, cached_location_alt.x, cached_location_alt.y);
-                                this.LINE_BUFFER[index++] = Array(cached_location_horizontal.x, cached_location_horizontal.y, cached_location_index.x, cached_location_index.y);
+                                this.line_buffer[index++] = Array(cached_location_i.x, cached_location_i.y, cached_location_alt.x, cached_location_alt.y);
+                                this.line_buffer[index++] = Array(cached_location_horizontal.x, cached_location_horizontal.y, cached_location_index.x, cached_location_index.y);
                             }
                             temp_index = (nodes.length - floored_sqrt + i) >> global.ZERO;
-                            this.LINE_BUFFER[index++] = Array(cached_location_i.x + x_space, cached_location_i.y, cached_location_alt.x + x_space, nodes[temp_index].location.y);
-                            this.LINE_BUFFER[index++] = Array(cached_location_horizontal.x, cached_location_horizontal.y + y_space, cached_location_index.x, cached_location_index.y + y_space);
+                            this.line_buffer[index++] = Array(cached_location_i.x + x_space, cached_location_i.y, cached_location_alt.x + x_space, nodes[temp_index].location.y);
+                            this.line_buffer[index++] = Array(cached_location_horizontal.x, cached_location_horizontal.y + y_space, cached_location_index.x, cached_location_index.y + y_space);
                         }
                         horizontal_index += floored_sqrt;
                     }
                     this.GRID_MOVED = false;
                 }
-                canvas.draw_line_buffer(this.LINE_BUFFER, this.grid_paint);
+                canvas.draw_line_buffer(this.line_buffer, this.grid_paint);
             }
         }
         /* Handle the flags here (draw should be the one to handle it, the next frame will be
-       drawn to the screen if it passes.) */
+   drawn to the screen if it passes.) */
         if (this.FIRST_RESIZE_FLAG) {
             if (!this.DRAW_TO_SCREEN) {
                 this.DRAW_TO_SCREEN = true;

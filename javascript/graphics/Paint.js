@@ -60,7 +60,6 @@ class Paint {
         this.general_index = 0;
         this.FONT_TEMPLATE = 'spx f';
         this.paint_surface = new VirtualCanvas(1, 1, -1);
-        this.last_size = -1;
         this.last_font = '';
         this.last_text_size = -1;
         this.metric = null;
@@ -103,7 +102,6 @@ class Paint {
         this.general_index = 0;
         this.FONT_TEMPLATE = 'spx f';
         this.paint_surface = new VirtualCanvas(1, 1, -1);
-        this.last_size = -1;
         this.last_font = '';
         this.last_text_size = -1;
         this.metric = null;
@@ -168,7 +166,7 @@ class Paint {
     }
     /* Set the text size of the paint element */
     set_text_size(setter) {
-        this.last_size = -1;
+        this.last_text_size = -1;
         this.text_size = setter;
     }
     /* Get the text size of the paint element */
@@ -245,10 +243,10 @@ class Paint {
                 this.house_keeping(txt);
             }
             this.metric_array.push({
-                text: txt,
-                font: this.font,
+                'text': txt,
+                'font': this.font,
                 'text size': this.text_size,
-                metric: this.measure(txt)
+                'metric': this.measure(txt)
             });
             return this.metric_array[this.metric_array.length - 1]['metric'];
         }

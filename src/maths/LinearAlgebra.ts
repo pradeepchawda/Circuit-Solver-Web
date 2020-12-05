@@ -109,7 +109,7 @@ class LinearAlgebra {
         this.lup_det = -this.lup_det;
       }
       if (Math.abs(this.lup_det) <= this.det_threshold) {
-        global.IS_SINGULAR = true;
+        global.is_singular = true;
         return this.x_matrix;
       }
       for (this._i = 0; this._i < this.SIZE; this._i++) {

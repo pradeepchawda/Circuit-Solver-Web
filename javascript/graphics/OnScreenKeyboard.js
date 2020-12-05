@@ -72,7 +72,7 @@ class OnScreenKeyboard {
         this.KEYBOARD_KEY_EVENT = {
             code: 'KeyA'
         };
-        this.LINE_BUFFER = [];
+        this.line_buffer = [];
         this.KEYBOARD_MAX_KEYS = 67;
         this.bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.5;
@@ -199,7 +199,7 @@ class OnScreenKeyboard {
         this.KEYBOARD_KEY_EVENT = {
             code: 'keyA'
         };
-        this.LINE_BUFFER = [];
+        this.line_buffer = [];
         this.load_keyboard();
     }
     /* Load the structure of the on screen keyboard. */
@@ -506,8 +506,8 @@ class OnScreenKeyboard {
             canvas.draw_rect2(this.bounds, this.bounds_paint);
             let indexer = 0;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
-                this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].bottom);
-                this.LINE_BUFFER[indexer++] = Array(this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].bottom);
+                this.line_buffer[indexer++] = Array(this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].bottom);
+                this.line_buffer[indexer++] = Array(this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].bottom);
                 if (this.ENGINEERING_KEYBOARD_MODE) {
                     if (this.ENGINEERING_KEYBOARD_FILTER_INDEX[i]) {
                         if (this.HOVER_INDEX === i) {
@@ -535,15 +535,15 @@ class OnScreenKeyboard {
                     }
                 }
             }
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[0].bottom, this.bounds.right, this.KEYBOARD_KEYS[0].bottom);
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[15].bottom, this.bounds.right, this.KEYBOARD_KEYS[15].bottom);
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[30].bottom, this.bounds.right, this.KEYBOARD_KEYS[30].bottom);
-            this.LINE_BUFFER[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[43].bottom, this.bounds.right, this.KEYBOARD_KEYS[43].bottom);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.line_buffer[indexer++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
+            this.line_buffer[indexer++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
+            this.line_buffer[indexer++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
+            this.line_buffer[indexer++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
+            this.line_buffer[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[0].bottom, this.bounds.right, this.KEYBOARD_KEYS[0].bottom);
+            this.line_buffer[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[15].bottom, this.bounds.right, this.KEYBOARD_KEYS[15].bottom);
+            this.line_buffer[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[30].bottom, this.bounds.right, this.KEYBOARD_KEYS[30].bottom);
+            this.line_buffer[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[43].bottom, this.bounds.right, this.KEYBOARD_KEYS[43].bottom);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
         }
         if (this.FLAG_KEY_UP) {
             this.FLAG_KEY_UP = false;

@@ -52,8 +52,8 @@ class GroundSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
 
   constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
@@ -128,8 +128,8 @@ class GroundSymbol {
     this.DRAW_TAG = false;
     this.text_bounds = new RectF(0, 0, 0, 0);
     this.HEIGHT_RATIO = 0.35;
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
   }
   update() {
     if (this.FLAG_ADD_ELEMENT) {
@@ -214,14 +214,14 @@ class GroundSymbol {
     if (this.page === page) {
       /* To the bottom! */
       canvas.draw_circle(this.c_x, this.c_y, 1.5 * global.CANVAS_STROKE_WIDTH_2, this.point_paint);
-      let indexer = 0;
-      this.CIRCLE_BUFFER = [];
-      this.LINE_BUFFER = [];
-      this.LINE_BUFFER[indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y + this.y_space);
-      this.LINE_BUFFER[indexer++] = Array(this.c_x - this.x_space, this.c_y + this.y_space, this.c_x + this.x_space, this.c_y + this.y_space);
-      this.LINE_BUFFER[indexer++] = Array(this.c_x - this.x_space * 0.6667, this.c_y + this.y_space * 1.5, this.c_x + this.x_space * 0.6667, this.c_y + 1.5 * this.y_space);
-      this.LINE_BUFFER[indexer++] = Array(this.c_x - this.x_space * 0.25, this.c_y + this.y_space * 2.0, this.c_x + this.x_space * 0.25, this.c_y + 2.0 * this.y_space);
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      let indexer: number = 0;
+      this.circle_buffer = [];
+      this.line_buffer = [];
+      this.line_buffer[indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y + this.y_space);
+      this.line_buffer[indexer++] = Array(this.c_x - this.x_space, this.c_y + this.y_space, this.c_x + this.x_space, this.c_y + this.y_space);
+      this.line_buffer[indexer++] = Array(this.c_x - this.x_space * 0.6667, this.c_y + this.y_space * 1.5, this.c_x + this.x_space * 0.6667, this.c_y + 1.5 * this.y_space);
+      this.line_buffer[indexer++] = Array(this.c_x - this.x_space * 0.25, this.c_y + this.y_space * 2.0, this.c_x + this.x_space * 0.25, this.c_y + 2.0 * this.y_space);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
         this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
         this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();

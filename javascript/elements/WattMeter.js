@@ -90,8 +90,8 @@ class WattMeter {
         this.m_y = 0;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.INITIALIZED = false;
@@ -230,8 +230,8 @@ class WattMeter {
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
@@ -493,7 +493,7 @@ class WattMeter {
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
-                    global.IS_DRAGGING = false;
+                    global.is_dragging = false;
                     if (!this.is_translating) {
                         if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
                             this.release_nodes();
@@ -855,12 +855,12 @@ class WattMeter {
         this.elm.properties['Wattage'] = 0;
     }
     push_voltage(v1, v2) {
-        if (global.FLAG_SIMULATING && global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP + global.TIME_STEP && simulation_manager.SOLUTIONS_READY) {
+        if (global.FLAG_SIMULATING && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.SOLUTIONS_READY) {
             let curr = (v1 - v2) / global.settings.WIRE_RESISTANCE;
             let voltage = Math.max(v1, v2);
             let power = curr * voltage;
             this.elm.properties['Wattage'] = power;
-            this.meter_trace.push(power, global.SIMULATION_TIME);
+            this.meter_trace.push(power, global.simulation_time);
         }
     }
     get_simulation_index() {
@@ -933,31 +933,31 @@ class WattMeter {
                 this.c_y >= view_port.top + -global.node_space_y &&
                 this.c_y - global.node_space_y <= view_port.bottom)) {
             this.indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.wattmeter_0.x, this.wattmeter_0.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.wattmeter_0.x, this.wattmeter_0.y, this.wattmeter_1.x, this.wattmeter_1.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, this.wattmeter_3.x, this.wattmeter_3.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.wattmeter_3.x, this.wattmeter_3.y, this.wattmeter_4.x, this.wattmeter_4.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.wattmeter_6.x, this.wattmeter_6.y, this.p3.x, this.p3.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wattmeter_0.x, this.wattmeter_0.y);
+            this.line_buffer[this.indexer++] = Array(this.wattmeter_0.x, this.wattmeter_0.y, this.wattmeter_1.x, this.wattmeter_1.y);
+            this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wattmeter_3.x, this.wattmeter_3.y);
+            this.line_buffer[this.indexer++] = Array(this.wattmeter_3.x, this.wattmeter_3.y, this.wattmeter_4.x, this.wattmeter_4.y);
+            this.line_buffer[this.indexer++] = Array(this.wattmeter_6.x, this.wattmeter_6.y, this.p3.x, this.p3.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             this.indexer = 0;
             canvas.draw_circle(this.bounds.get_center_x(), this.bounds.get_center_y(), this.bounds.get_width() * 0.2631, this.line_paint);
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+            this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
             if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                 canvas.rotate(this.c_x, this.c_y, -90);
                 this.meter_symbol.draw_symbol(canvas);
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
-                    if (global.FLAG_SIMULATING && global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP + global.TIME_STEP && simulation_manager.SOLUTIONS_READY) {
+                if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
+                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
+                    if (global.FLAG_SIMULATING && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.SOLUTIONS_READY) {
                         this.text_paint.set_color(global.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.4, this.text_paint);
                         this.text_paint.set_color(global.ELEMENT_COLOR);
@@ -967,9 +967,9 @@ class WattMeter {
             }
             else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                 this.meter_symbol.draw_symbol(canvas);
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
-                    if (global.FLAG_SIMULATING && global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP + global.TIME_STEP && simulation_manager.SOLUTIONS_READY) {
+                if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
+                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
+                    if (global.FLAG_SIMULATING && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.SOLUTIONS_READY) {
                         this.text_paint.set_color(global.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.4, this.text_paint);
                         this.recolor();
@@ -991,12 +991,12 @@ class WattMeter {
         if (this.elm.properties['Test Voltage'] != 1e-9) {
             this.elm.properties['Test Voltage'] = 1e-9;
         }
-        if (!global.not_null(this.LINE_BUFFER)) {
+        if (!global.not_null(this.line_buffer)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
         }
-        if (!global.not_null(this.CIRCLE_BUFFER)) {
-            this.CIRCLE_BUFFER = [];
+        if (!global.not_null(this.circle_buffer)) {
+            this.circle_buffer = [];
         }
         if (!global.not_null(this.BUILD_ELEMENT)) {
             this.BUILD_ELEMENT = false;

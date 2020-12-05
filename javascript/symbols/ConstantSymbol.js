@@ -53,8 +53,8 @@ class ConstantSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         /* Index of the bounds (Inside New Element Window) */
         this.index = index;
         /* Page to be drawn on (Inside New Element Window) */
@@ -127,8 +127,8 @@ class ConstantSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
     }
     update() {
         if (this.FLAG_ADD_ELEMENT) {

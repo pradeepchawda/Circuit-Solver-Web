@@ -46,7 +46,7 @@ class MenuBar {
         /* This paint is used for drawing the icons that the component is comprised of. */
         this.add_paint = new Paint();
         /* This paint is used for drawing the go icon. This is on it's own because it gets recolored
-      during simulation. */
+    during simulation. */
         this.go_paint = new Paint();
         /* This paint is used for drawing the icons that the component is comprised of. */
         this.hover_paint = new Paint();
@@ -81,8 +81,8 @@ class MenuBar {
         /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
         this.MAX_ICONS = 8;
         if (global.MOBILE_MODE) {
@@ -170,7 +170,7 @@ class MenuBar {
         this.add_paint.set_alpha(255);
         this.add_paint.set_paint_align(this.add_paint.align.CENTER);
         /* This paint is used for drawing the go icon. This is on it's own because it gets recolored
-        during simulation. */
+    during simulation. */
         this.go_paint = new Paint();
         this.go_paint.set_paint_style(this.go_paint.style.FILL);
         this.go_paint.set_paint_cap(this.go_paint.cap.BUTT);
@@ -298,8 +298,8 @@ class MenuBar {
         /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
     }
     load_icons() {
         let temp_bounds = new RectF(0, 0, 0, 0);
@@ -540,8 +540,8 @@ class MenuBar {
         }
     }
     mouse_up() {
-        if (!global.IS_RIGHT_CLICK && !this.ESCAPE_INTERRUPT) {
-            if (!global.MOUSE_KEYBOARD_LOCK && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
+        if (!global.is_right_click && !this.ESCAPE_INTERRUPT) {
+            if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
                 let cached_value = this.BASE_WIDTH;
                 if (this.contains(this.menu_icons[this.UP_DOWN_INDEX], true) &&
                     this.menu_icons[this.UP_DOWN_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
@@ -795,7 +795,7 @@ class MenuBar {
                 }
                 this.element_window.mouse_up();
             }
-            else if (!global.MOUSE_KEYBOARD_LOCK && !multi_select_manager.CTRL_PRESSED) {
+            else if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED) {
                 if ((this.contains(this.menu_icons[this.ADD_INDEX], true) || (!this.contains(this.element_window.bounds, false) && global.FLAG_MENU_OPEN_DOWN)) &&
                     !global.FLAG_GRAPH &&
                     !global.SIGNAL_ADD_ELEMENT) {
@@ -834,7 +834,7 @@ class MenuBar {
         }
     }
     handle_element_options_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_ELEMENT_OPTIONS = ON;
         if (ON) {
             element_options_window.title_bounds.text = global.selected_properties['tag'] + global.selected_id;
@@ -844,33 +844,33 @@ class MenuBar {
         }
     }
     handle_element_options_edit_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         if (ON) {
             element_options_edit_window.reset_cursor();
         }
         global.SIGNAL_BUILD_ELEMENT = true;
-        global.SIGNAL_BUILD_COUNTER = 0;
+        global.signal_build_counter = 0;
         global.FLAG_ELEMENT_OPTIONS_EDIT = ON;
         if (global.DEVELOPER_MODE) {
             console.log('ELEMENT OPTIONS EDIT');
         }
     }
     handle_undo_flag() {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         history_manager.undo();
         if (global.DEVELOPER_MODE) {
             console.log('UNDO');
         }
     }
     handle_redo_flag() {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         history_manager.redo();
         if (global.DEVELOPER_MODE) {
             console.log('REDO');
         }
     }
     handle_menu_open_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_MENU_OPEN = ON;
         if (!ON) {
             global.FLAG_MENU_OPEN_DOWN = ON;
@@ -880,7 +880,7 @@ class MenuBar {
         }
     }
     handle_menu_open_down_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_MENU_OPEN_DOWN = ON;
         if (global.DEVELOPER_MODE) {
             console.log('MENU OPEN DOWN');
@@ -888,10 +888,10 @@ class MenuBar {
     }
     handle_save_image_flag(ON) {
         if (ON) {
-            save_image_window.input_button.text = global.USER_FILE.title;
+            save_image_window.input_button.text = global.user_file.title;
             save_image_window.reset_cursor();
         }
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_SAVE_IMAGE = ON;
         if (global.DEVELOPER_MODE) {
             console.log('SAVE IMAGE');
@@ -899,25 +899,25 @@ class MenuBar {
     }
     handle_save_circuit_flag(ON) {
         if (ON) {
-            save_circuit_window.input_button.text = global.USER_FILE.title;
+            save_circuit_window.input_button.text = global.user_file.title;
             save_circuit_window.reset_cursor();
         }
         bottom_menu.resize_bottom_menu();
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_SAVE_CIRCUIT = ON;
         if (global.DEVELOPER_MODE) {
             console.log('SAVE CIRCUIT');
         }
     }
     handle_select_settings_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_SELECT_SETTINGS = ON;
         if (global.DEVELOPER_MODE) {
             console.log('SETTINGS');
         }
     }
     handle_simulation_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_SIMULATING = ON;
         if (ON) {
             simulation_manager.setup();
@@ -930,21 +930,21 @@ class MenuBar {
         }
     }
     handle_graph_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_GRAPH = ON;
         if (global.DEVELOPER_MODE) {
             console.log('GRAPH');
         }
     }
     handle_remove_all_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_REMOVE_ALL = ON;
         if (global.DEVELOPER_MODE) {
             console.log('REMOVE ALL');
         }
     }
     handle_zoom_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         global.FLAG_ZOOM = ON;
         if (global.DEVELOPER_MODE) {
             console.log('ZOOM');
@@ -1111,13 +1111,13 @@ class MenuBar {
             let height_mul_0p64 = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.64;
             canvas.draw_arc3(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x(), this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y(), this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 1, -25, 290, this.remove_all_paint);
             let indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].left + width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].top + height_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].right - width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].bottom - height_mul_0p64);
-            this.LINE_BUFFER[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].right - width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].top + height_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].left + width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].bottom - height_mul_0p64);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.remove_all_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].left + width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].top + height_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].right - width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].bottom - height_mul_0p64);
+            this.line_buffer[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].right - width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].top + height_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].left + width_mul_0p64, this.menu_icons[this.REMOVE_ALL_INDEX].bottom - height_mul_0p64);
+            canvas.draw_line_buffer(this.line_buffer, this.remove_all_paint);
             indexer = 0;
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
             if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                 canvas.draw_text('X', this.menu_icons[this.REMOVE_ALL_INDEX].left, this.menu_icons[this.REMOVE_ALL_INDEX].top, this.text_paint);
             }
@@ -1138,11 +1138,11 @@ class MenuBar {
             let width_rshift_4 = this.menu_icons[this.ADD_INDEX].get_width() >> 4;
             let height_rshift_4 = this.menu_icons[this.ADD_INDEX].get_height() >> 4;
             canvas.draw_round_rect(this.menu_icons[this.ADD_INDEX].left + width_rshift_4, this.menu_icons[this.ADD_INDEX].top + height_rshift_4, this.menu_icons[this.ADD_INDEX].right - width_rshift_4, this.menu_icons[this.ADD_INDEX].bottom - height_rshift_4, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.add_paint);
-            this.LINE_BUFFER[indexer++] = Array(this.menu_icons[this.ADD_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.ADD_INDEX].get_center_y(), this.menu_icons[this.ADD_INDEX].get_center_x() + width_rshift_3, this.menu_icons[this.ADD_INDEX].get_center_y());
-            this.LINE_BUFFER[indexer++] = Array(this.menu_icons[this.ADD_INDEX].get_center_x(), this.menu_icons[this.ADD_INDEX].get_center_y() - height_rshift_3, this.menu_icons[this.ADD_INDEX].get_center_x(), this.menu_icons[this.ADD_INDEX].get_center_y() + height_rshift_3);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.line_buffer[indexer++] = Array(this.menu_icons[this.ADD_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.ADD_INDEX].get_center_y(), this.menu_icons[this.ADD_INDEX].get_center_x() + width_rshift_3, this.menu_icons[this.ADD_INDEX].get_center_y());
+            this.line_buffer[indexer++] = Array(this.menu_icons[this.ADD_INDEX].get_center_x(), this.menu_icons[this.ADD_INDEX].get_center_y() - height_rshift_3, this.menu_icons[this.ADD_INDEX].get_center_x(), this.menu_icons[this.ADD_INDEX].get_center_y() + height_rshift_3);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             indexer = 0;
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
             if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                 canvas.draw_text('N', this.menu_icons[this.ADD_INDEX].left, this.menu_icons[this.ADD_INDEX].top, this.text_paint);
             }
@@ -1169,7 +1169,7 @@ class MenuBar {
         }
         else {
             let indexer = 0;
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
             /* Drawing the background for the magnifying glass */
             canvas.draw_round_rect3(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x(), this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y(), this.menu_icons[this.REMOVE_ALL_INDEX].get_width(), this.menu_icons[this.REMOVE_ALL_INDEX].get_height(), temp_stroke_width, this.fill_paint);
             if (this.menu_icons[this.REMOVE_ALL_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
@@ -1211,17 +1211,17 @@ class MenuBar {
             let pad_h = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.075;
             let width_rshift_3 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 3;
             let width_rshift_2 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 2;
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
             indexer = 0;
             canvas.draw_circle(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.2, this.zoom_paint);
-            this.LINE_BUFFER[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() + (this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 4), this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() + (this.menu_icons[this.REMOVE_ALL_INDEX].get_height() >> 4), this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() + width_rshift_2, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() + width_rshift_2);
-            this.LINE_BUFFER[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3 - pad_w, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3 + pad_w, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3);
-            this.LINE_BUFFER[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 - pad_h, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 + pad_h);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.zoom_paint);
+            this.line_buffer[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() + (this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 4), this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() + (this.menu_icons[this.REMOVE_ALL_INDEX].get_height() >> 4), this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() + width_rshift_2, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() + width_rshift_2);
+            this.line_buffer[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3 - pad_w, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3 + pad_w, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3);
+            this.line_buffer[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 - pad_h, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 + pad_h);
+            canvas.draw_line_buffer(this.line_buffer, this.zoom_paint);
         }
         if (!global.FLAG_MENU_OPEN_DOWN) {
             let indexer = 0;
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
             canvas.draw_round_rect2(this.graph_button, temp_stroke_width, this.fill_paint);
             if (this.graph_button.contains_xy(global.mouse_x, global.mouse_y) &&
                 !global.FLAG_MENU_OPEN_DOWN &&
@@ -1241,9 +1241,9 @@ class MenuBar {
             }
             this.sine_wave.draw_sine_wave(canvas, 1);
             let pad = 0.2;
-            this.LINE_BUFFER[indexer++] = Array(this.graph_button.left + this.graph_button.get_width() * pad, this.graph_button.top + this.graph_button.get_height() * 1.1 * pad, this.graph_button.left + this.graph_button.get_width() * pad, this.graph_button.bottom - this.graph_button.get_height() * pad);
-            this.LINE_BUFFER[indexer++] = Array(this.graph_button.left + this.graph_button.get_width() * pad, this.graph_button.bottom - this.graph_button.get_height() * pad, this.graph_button.right - this.graph_button.get_width() * 1.1 * pad, this.graph_button.bottom - this.graph_button.get_height() * pad);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.sine_wave.sine_wave_paint);
+            this.line_buffer[indexer++] = Array(this.graph_button.left + this.graph_button.get_width() * pad, this.graph_button.top + this.graph_button.get_height() * 1.1 * pad, this.graph_button.left + this.graph_button.get_width() * pad, this.graph_button.bottom - this.graph_button.get_height() * pad);
+            this.line_buffer[indexer++] = Array(this.graph_button.left + this.graph_button.get_width() * pad, this.graph_button.bottom - this.graph_button.get_height() * pad, this.graph_button.right - this.graph_button.get_width() * 1.1 * pad, this.graph_button.bottom - this.graph_button.get_height() * pad);
+            canvas.draw_line_buffer(this.line_buffer, this.sine_wave.sine_wave_paint);
         }
         canvas.draw_round_rect2(this.settings_button, temp_stroke_width, this.fill_paint);
         if (this.settings_button.contains_xy(global.mouse_x, global.mouse_y) &&

@@ -85,7 +85,7 @@ class Viewport {
         this.line_paint.set_stroke_width(1.5 * global.CANVAS_STROKE_WIDTH_2);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         global.SIGNAL_BUILD_ELEMENT = true;
-        global.SIGNAL_BUILD_COUNTER = 0;
+        global.signal_build_counter = 0;
     }
     /* Handles resizing the RectF Element */
     resize(aspect_ratio, screen_width, screen_height) {
@@ -114,7 +114,7 @@ class Viewport {
         this.line_paint.set_stroke_width(1.5 * global.CANVAS_STROKE_WIDTH_2);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         global.SIGNAL_BUILD_ELEMENT = true;
-        global.SIGNAL_BUILD_COUNTER = 0;
+        global.signal_build_counter = 0;
     }
     draw_viewport(canvas) {
         if (this.DRAW_BOUNDS) {

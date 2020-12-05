@@ -91,8 +91,8 @@ class ElectricalNode {
     /* Mapping the ID to a row and column. This is useful to know where the node must go upon resizing. */
     this.column = Math.floor(this.id / Math.round(global.settings.SQRT_MAXNODES));
     this.row = this.id % Math.round(global.settings.SQRT_MAXNODES);
-    let node_space_x = 1.175 * (global.node_space_x >> 2);
-    let node_space_y = 1.175 * (global.node_space_y >> 2);
+    let node_space_x: number = 1.175 * (global.node_space_x >> 2);
+    let node_space_y: number = 1.175 * (global.node_space_y >> 2);
     if (global.MOBILE_MODE) {
       node_space_x *= 1.25;
       node_space_y *= 1.25;
@@ -153,7 +153,7 @@ class ElectricalNode {
   }
   /* Add a reference to this node. */
   add_reference(id: number, type: number): void {
-    let is_found = false;
+    let is_found: boolean = false;
     for (var i: number = 0; i < this.references.length; i++) {
       if (this.references[i].id === id && this.references[i].type === type) {
         is_found = true;
@@ -183,7 +183,7 @@ class ElectricalNode {
   }
   /* Checks to see if the references contain an element type */
   contains_element_type(type: number): boolean {
-    let out = false;
+    let out: boolean = false;
     for (var i: number = 0; i < this.references.length; i++) {
       if (this.references[i].type === type) {
         out = true;
@@ -194,8 +194,8 @@ class ElectricalNode {
   }
   /* Checks to see if the references contain an element type */
   draw_node_builder_helper(): boolean {
-    let count = 0;
-    let index = -1;
+    let count: number = 0;
+    let index: number = -1;
     for (var i: number = 0; i < this.references.length; i++) {
       if (this.references[i].type === global.TYPE_NOTE) {
         index = engine_functions.get_note(this.references[i].id);
@@ -216,10 +216,10 @@ class ElectricalNode {
     }
   }
   debug_info(): string {
-    let str = '';
-    let DEBUG_TEMPLATE = '({ID},{TYPE}),';
+    let str: string = '';
+    let DEBUG_TEMPLATE: string = '({ID},{TYPE}),';
     for (var i: number = 0; i < this.references.length; i++) {
-      str += DEBUG_TEMPLATE.replace('{ID}', String(this.references[i].id)).replace('{TYPE}', String(this.references[i].type));
+      str += DEBUG_TEMPLATE.replace('{ID}', <string>(<unknown>this.references[i].id)).replace('{TYPE}', <string>(<unknown>this.references[i].type));
     }
     return str;
   }
@@ -233,10 +233,10 @@ class ElectricalNode {
         if (global.WIRE_BUILDER['step'] > 0) {
           if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
             if (global.WIRE_BUILDER['n1'] != this.id && this.draw_node_builder_helper()) {
-              global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
-              global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
-              global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
-              global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
+              global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
+              global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
+              global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
+              global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
             }
           }
         }

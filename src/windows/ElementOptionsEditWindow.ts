@@ -272,7 +272,7 @@ class ElementOptionsEditWindow {
   }
   mouse_up(): void {
     if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         if (this.WINDOW_ANCHORED) {
           this.insert_cursor(true, false);
           this.INITIAL_CURSOR_DOWN = -1;
@@ -286,14 +286,14 @@ class ElementOptionsEditWindow {
                 menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                 /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
-                global.MOUSE_KEYBOARD_LOCK = true;
+                global.mouse_keyboard_lock = true;
               }
             } else {
               menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
               menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
               /* Block out the reset selection portion of the code! */
               global.component_touched = true;
-              global.MOUSE_KEYBOARD_LOCK = true;
+              global.mouse_keyboard_lock = true;
             }
           } else if (
             this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -305,7 +305,7 @@ class ElementOptionsEditWindow {
             }
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
           } else if (
             this.cancel_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
             this.cancel_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
@@ -314,7 +314,7 @@ class ElementOptionsEditWindow {
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
           } else if (
             this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
             this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
@@ -323,7 +323,7 @@ class ElementOptionsEditWindow {
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
           } else if (
             this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
             this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
@@ -383,7 +383,7 @@ class ElementOptionsEditWindow {
   }
   key_down(key_event: KEY_EVENT_T): void {
     if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         this.handle_keyboard(key_event);
       }
     }
@@ -1190,9 +1190,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          resistors[index].elm.properties[resistors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          resistors[index].elm.properties[resistors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1216,9 +1215,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          capacitors[index].elm.properties[capacitors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          capacitors[index].elm.properties[capacitors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1231,7 +1229,6 @@ class ElementOptionsEditWindow {
           toast.show();
           ERROR_FLAG = true;
         }
-
         /* Conservation of energy */
         if (capacitors[index].elm.properties['options'][this.option_index] === 'Capacitance') {
           capacitors[index].conserve_energy();
@@ -1247,9 +1244,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          inductors[index].elm.properties[inductors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          inductors[index].elm.properties[inductors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1262,7 +1258,6 @@ class ElementOptionsEditWindow {
           toast.show();
           ERROR_FLAG = true;
         }
-
         /* Conservation of energy */
         if (inductors[index].elm.properties['options'][this.option_index] === 'Inductance') {
           inductors[index].conserve_energy();
@@ -1278,9 +1273,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          grounds[index].elm.properties[grounds[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          grounds[index].elm.properties[grounds[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1304,9 +1298,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          dcsources[index].elm.properties[dcsources[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          dcsources[index].elm.properties[dcsources[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1330,9 +1323,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          dccurrents[index].elm.properties[dccurrents[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          dccurrents[index].elm.properties[dccurrents[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1356,9 +1348,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          acsources[index].elm.properties[acsources[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          acsources[index].elm.properties[acsources[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1382,9 +1373,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          accurrents[index].elm.properties[accurrents[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          accurrents[index].elm.properties[accurrents[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1408,9 +1398,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          squarewaves[index].elm.properties[squarewaves[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          squarewaves[index].elm.properties[squarewaves[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1434,9 +1423,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          sawwaves[index].elm.properties[sawwaves[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          sawwaves[index].elm.properties[sawwaves[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1460,9 +1448,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          trianglewaves[index].elm.properties[trianglewaves[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          trianglewaves[index].elm.properties[trianglewaves[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1486,9 +1473,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          constants[index].elm.properties[constants[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          constants[index].elm.properties[constants[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1507,18 +1493,16 @@ class ElementOptionsEditWindow {
       index = engine_functions.get_net(global.selected_id);
       if (index < nets.length) {
         let value: number = global.copy(this.input_button.text);
-        global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-        //@ts-expect-error
-        nets[index].elm.properties[nets[index].elm.properties['options'][this.option_index]] = value;
+        global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+        nets[index].elm.properties[nets[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
       }
     } else if (global.selected_type === global.TYPE_NOTE) {
       var index: number = -1;
       index = engine_functions.get_note(global.selected_id);
       if (index < notes.length) {
         let value: number = global.copy(this.input_button.text);
-        global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-        //@ts-expect-error
-        notes[index].elm.properties[notes[index].elm.properties['options'][this.option_index]] = value;
+        global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+        notes[index].elm.properties[notes[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
       }
     } else if (global.selected_type === global.TYPE_RAIL) {
       var index: number = -1;
@@ -1530,9 +1514,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          rails[index].elm.properties[rails[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          rails[index].elm.properties[rails[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1556,9 +1539,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          voltmeters[index].elm.properties[voltmeters[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          voltmeters[index].elm.properties[voltmeters[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1582,9 +1564,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          ohmmeters[index].elm.properties[ohmmeters[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          ohmmeters[index].elm.properties[ohmmeters[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1608,9 +1589,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          ammeters[index].elm.properties[ammeters[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          ammeters[index].elm.properties[ammeters[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1634,9 +1614,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          wattmeters[index].elm.properties[wattmeters[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          wattmeters[index].elm.properties[wattmeters[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1660,9 +1639,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          fuses[index].elm.properties[fuses[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          fuses[index].elm.properties[fuses[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1686,9 +1664,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          spsts[index].elm.properties[spsts[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          spsts[index].elm.properties[spsts[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1712,9 +1689,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          spdts[index].elm.properties[spdts[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          spdts[index].elm.properties[spdts[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1738,9 +1714,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          nots[index].elm.properties[nots[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          nots[index].elm.properties[nots[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1764,9 +1739,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          diodes[index].elm.properties[diodes[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          diodes[index].elm.properties[diodes[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1790,9 +1764,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          leds[index].elm.properties[leds[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          leds[index].elm.properties[leds[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1816,9 +1789,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          zeners[index].elm.properties[zeners[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          zeners[index].elm.properties[zeners[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1842,9 +1814,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          potentiometers[index].elm.properties[potentiometers[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          potentiometers[index].elm.properties[potentiometers[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1868,9 +1839,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          ands[index].elm.properties[ands[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          ands[index].elm.properties[ands[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1894,9 +1864,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          ors[index].elm.properties[ors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          ors[index].elm.properties[ors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1920,9 +1889,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          nands[index].elm.properties[nands[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          nands[index].elm.properties[nands[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1946,9 +1914,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          nors[index].elm.properties[nors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          nors[index].elm.properties[nors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1972,9 +1939,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          xors[index].elm.properties[xors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          xors[index].elm.properties[xors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -1998,9 +1964,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          xnors[index].elm.properties[xnors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          xnors[index].elm.properties[xnors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2024,9 +1989,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          dffs[index].elm.properties[dffs[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          dffs[index].elm.properties[dffs[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2050,9 +2014,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          vsats[index].elm.properties[vsats[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          vsats[index].elm.properties[vsats[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2076,9 +2039,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          adders[index].elm.properties[adders[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          adders[index].elm.properties[adders[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2102,9 +2064,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          subtractors[index].elm.properties[subtractors[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          subtractors[index].elm.properties[subtractors[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2128,9 +2089,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          multipliers[index].elm.properties[multipliers[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          multipliers[index].elm.properties[multipliers[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2154,9 +2114,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          dividers[index].elm.properties[dividers[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          dividers[index].elm.properties[dividers[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2180,9 +2139,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          gains[index].elm.properties[gains[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          gains[index].elm.properties[gains[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2206,9 +2164,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          absvals[index].elm.properties[absvals[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          absvals[index].elm.properties[absvals[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2232,9 +2189,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          vcsws[index].elm.properties[vcsws[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          vcsws[index].elm.properties[vcsws[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2258,9 +2214,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          vcvss[index].elm.properties[vcvss[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          vcvss[index].elm.properties[vcvss[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2284,9 +2239,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          vccss[index].elm.properties[vccss[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          vccss[index].elm.properties[vccss[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2310,9 +2264,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          cccss[index].elm.properties[cccss[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          cccss[index].elm.properties[cccss[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2336,9 +2289,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          ccvss[index].elm.properties[ccvss[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          ccvss[index].elm.properties[ccvss[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2362,9 +2314,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          opamps[index].elm.properties[opamps[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          opamps[index].elm.properties[opamps[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2388,9 +2339,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          nmosfets[index].elm.properties[nmosfets[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          nmosfets[index].elm.properties[nmosfets[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2414,9 +2364,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          pmosfets[index].elm.properties[pmosfets[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          pmosfets[index].elm.properties[pmosfets[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2440,9 +2389,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          npns[index].elm.properties[npns[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          npns[index].elm.properties[npns[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2466,9 +2414,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          pnps[index].elm.properties[pnps[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          pnps[index].elm.properties[pnps[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2492,9 +2439,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          adcs[index].elm.properties[adcs[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          adcs[index].elm.properties[adcs[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2518,9 +2464,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          dacs[index].elm.properties[dacs[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          dacs[index].elm.properties[dacs[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2544,9 +2489,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          sandhs[index].elm.properties[sandhs[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          sandhs[index].elm.properties[sandhs[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2570,9 +2514,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          pwms[index].elm.properties[pwms[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          pwms[index].elm.properties[pwms[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2596,9 +2539,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          integrators[index].elm.properties[integrators[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          integrators[index].elm.properties[integrators[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2622,9 +2564,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          differentiators[index].elm.properties[differentiators[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          differentiators[index].elm.properties[differentiators[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2648,9 +2589,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          lowpasses[index].elm.properties[lowpasses[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          lowpasses[index].elm.properties[lowpasses[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2674,9 +2614,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          highpasses[index].elm.properties[highpasses[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          highpasses[index].elm.properties[highpasses[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2700,9 +2639,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          relays[index].elm.properties[relays[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          relays[index].elm.properties[relays[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2715,7 +2653,6 @@ class ElementOptionsEditWindow {
           toast.show();
           ERROR_FLAG = true;
         }
-
         /* Conservation of energy */
         if (relays[index].elm.properties['options'][this.option_index] === 'Inductance') {
           relays[index].conserve_energy();
@@ -2731,9 +2668,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          pids[index].elm.properties[pids[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          pids[index].elm.properties[pids[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2757,9 +2693,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          luts[index].elm.properties[luts[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          luts[index].elm.properties[luts[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2783,9 +2718,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          vcrs[index].elm.properties[vcrs[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          vcrs[index].elm.properties[vcrs[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2809,9 +2743,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          grts[index].elm.properties[grts[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          grts[index].elm.properties[grts[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2835,9 +2768,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          tptzs[index].elm.properties[tptzs[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          tptzs[index].elm.properties[tptzs[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +
@@ -2861,9 +2793,8 @@ class ElementOptionsEditWindow {
           (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
             Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
         ) {
-          global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
-          //@ts-expect-error
-          transformers[index].elm.properties[transformers[index].elm.properties['options'][this.option_index]] = value;
+          global.selected_properties[global.selected_properties['options'][this.option_index]] = <any>(<number>value);
+          transformers[index].elm.properties[transformers[index].elm.properties['options'][this.option_index]] = <any>(<number>value);
         } else {
           toast.set_text(
             'PARAM = [|' +

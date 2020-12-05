@@ -72,8 +72,8 @@ class XORGateSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         /* Index of the bounds (Inside New Element Window) */
         this.index = index;
         /* Page to be drawn on (Inside New Element Window) */
@@ -166,8 +166,8 @@ class XORGateSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
     }
     update() {
         if (this.FLAG_ADD_ELEMENT) {
@@ -285,23 +285,23 @@ class XORGateSymbol {
         this.recolor();
         if (this.page === page) {
             let indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.xor_0.x, this.xor_0.y);
-            this.LINE_BUFFER[indexer++] = Array(this.xor_0.x, this.xor_0.y, this.xor_1.x, this.xor_1.y);
-            this.LINE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, this.xor_3.x, this.xor_3.y);
-            this.LINE_BUFFER[indexer++] = Array(this.xor_3.x, this.xor_3.y, this.xor_4.x, this.xor_4.y);
-            this.LINE_BUFFER[indexer++] = Array(this.xor_6.x, this.xor_6.y, this.p3.x, this.p3.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[indexer++] = Array(this.p1.x, this.p1.y, this.xor_0.x, this.xor_0.y);
+            this.line_buffer[indexer++] = Array(this.xor_0.x, this.xor_0.y, this.xor_1.x, this.xor_1.y);
+            this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.xor_3.x, this.xor_3.y);
+            this.line_buffer[indexer++] = Array(this.xor_3.x, this.xor_3.y, this.xor_4.x, this.xor_4.y);
+            this.line_buffer[indexer++] = Array(this.xor_6.x, this.xor_6.y, this.p3.x, this.p3.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             indexer = 0;
             canvas.draw_arc2(this.xor_2.x, this.xor_2.y, this.xor_5.x, this.xor_5.y, this.x_space, this.line_paint);
             canvas.draw_arc2(this.xor_2.x, this.xor_2.y, this.xor_6.x, this.xor_6.y, this.x_space, this.line_paint);
             canvas.draw_arc2(this.xor_5.x, this.xor_5.y, this.xor_6.x, this.xor_6.y, -this.x_space, this.line_paint);
             canvas.draw_arc2(this.xor_9.x, this.xor_9.y, this.xor_10.x, this.xor_10.y, this.x_space, this.line_paint);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+            this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
                 this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
                 this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();

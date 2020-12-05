@@ -52,8 +52,8 @@ class NoteSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
 
   constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
@@ -128,8 +128,8 @@ class NoteSymbol {
     this.DRAW_TAG = false;
     this.text_bounds = new RectF(0, 0, 0, 0);
     this.HEIGHT_RATIO = 0.35;
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
   }
   update() {
     if (this.FLAG_ADD_ELEMENT) {

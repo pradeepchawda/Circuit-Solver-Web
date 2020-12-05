@@ -179,7 +179,7 @@ class SaveImageWindow {
         this.exit_button.draw_fill = false;
         this.exit_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-        this.input_button.text = global.exponentiate_quickly(global.TIME_STEP);
+        this.input_button.text = global.exponentiate_quickly(global.time_step);
         this.input_button.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
         this.input_button.line_paint.set_color(global.GENERAL_BLACK_COLOR);
         this.input_button.draw_stroke = true;
@@ -258,7 +258,7 @@ class SaveImageWindow {
     }
     mouse_up() {
         if (global.FLAG_SAVE_IMAGE) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 if (this.WINDOW_ANCHORED) {
                     this.insert_cursor(true, false);
                     this.INITIAL_CURSOR_DOWN = -1;

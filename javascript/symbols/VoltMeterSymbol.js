@@ -59,8 +59,8 @@ class VoltMeterSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         /* Index of the bounds (Inside New Element Window) */
         this.index = index;
         /* Page to be drawn on (Inside New Element Window) */
@@ -143,8 +143,8 @@ class VoltMeterSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
     }
     update() {
         if (this.FLAG_ADD_ELEMENT) {
@@ -241,15 +241,15 @@ class VoltMeterSymbol {
         if (this.page === page) {
             canvas.draw_circle(this.c_x, this.c_y, this.bounds.get_width() >> 2, this.line_paint);
             let indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
-            this.LINE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, this.connect2_x, this.connect2_y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+            this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.connect2_x, this.connect2_y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             indexer = 0;
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+            this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             this.meter_symbol.draw_symbol(canvas);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
                 this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);

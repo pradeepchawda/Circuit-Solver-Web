@@ -185,9 +185,9 @@ class ElementOptionsWindow {
     this.title_bounds.draw_stroke = false;
     this.title_bounds.draw_fill = true;
     this.title_bounds.draw_text = false;
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
     this.okay_button = new Button(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
     this.okay_button.text = '';
     this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
@@ -264,7 +264,7 @@ class ElementOptionsWindow {
   }
   mouse_up(): void {
     if (global.FLAG_ELEMENT_OPTIONS) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         if (this.WINDOW_ANCHORED) {
           if (
             !this.bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -273,7 +273,7 @@ class ElementOptionsWindow {
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
           } else if (
             this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
             this.okay_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
@@ -281,7 +281,7 @@ class ElementOptionsWindow {
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
           } else if (
             this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
             this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
@@ -289,7 +289,7 @@ class ElementOptionsWindow {
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
           } else {
             for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
               if (global.not_null(global.selected_properties)) {
@@ -325,7 +325,7 @@ class ElementOptionsWindow {
             (global.selected_properties['options_units'][index] === '' ? '' : ' [' + global.selected_properties['options_units'][index] + ']')
         );
         if (!this.special_type(global.selected_type)) {
-          element_options_edit_window.set_input_text(global.exponentiate_quickly(global.selected_properties[global.selected_properties['options'][index]]));
+          element_options_edit_window.set_input_text(global.exponentiate_quickly(<any>(<string>global.selected_properties[global.selected_properties['options'][index]])));
         } else {
           element_options_edit_window.set_input_text(global.selected_properties[global.selected_properties['options'][index]]);
         }
@@ -335,7 +335,7 @@ class ElementOptionsWindow {
       }
       /* Block out the reset selection portion of the code! */
       global.component_touched = true;
-      global.MOUSE_KEYBOARD_LOCK = true;
+      global.mouse_keyboard_lock = true;
       global.SIGNAL_BUILD_ELEMENT = true;
     }
   }
@@ -345,15 +345,15 @@ class ElementOptionsWindow {
         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
         /* Block out the reset selection portion of the code! */
         global.component_touched = true;
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
       }
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         for (var i: number = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
           if (global.decode_key(key_event) === this.ATTRIBUTE_SELECT[i]) {
             this.on_attribute_clicked(i);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
             break;
           }
         }
@@ -375,7 +375,7 @@ class ElementOptionsWindow {
   }
   toggle_switch(property: string, i: number, state: string): void {
     if (property === 'Switch State' || property === 'Show Name' || property === 'Interpolate' || property === 'Show Marker' || property === 'Text Style') {
-      let next_state = '';
+      let next_state: string = '';
       if (state === global.OFF) {
         next_state = global.ON;
       } else if (state === global.ON) {
@@ -391,37 +391,37 @@ class ElementOptionsWindow {
         }
       }
       if (global.selected_type === global.TYPE_SPST) {
-        let index = engine_functions.get_spst(global.selected_id);
+        let index: number = engine_functions.get_spst(global.selected_id);
         if (index > -1 && index < spsts.length) {
           global.selected_properties[global.selected_properties['options'][i]] = next_state;
           spsts[index].elm.properties[spsts[index].elm.properties['options'][i]] = next_state;
         }
       } else if (global.selected_type === global.TYPE_SPDT) {
-        let index = engine_functions.get_spdt(global.selected_id);
+        let index: number = engine_functions.get_spdt(global.selected_id);
         if (index > -1 && index < spdts.length) {
           global.selected_properties[global.selected_properties['options'][i]] = next_state;
           spdts[index].elm.properties[spdts[index].elm.properties['options'][i]] = next_state;
         }
       } else if (global.selected_type === global.TYPE_NET) {
-        let index = engine_functions.get_net(global.selected_id);
+        let index: number = engine_functions.get_net(global.selected_id);
         if (index > -1 && index < nets.length) {
           global.selected_properties[global.selected_properties['options'][i]] = next_state;
           nets[index].elm.properties[nets[index].elm.properties['options'][i]] = next_state;
         }
       } else if (global.selected_type === global.TYPE_LUT) {
-        let index = engine_functions.get_lut(global.selected_id);
+        let index: number = engine_functions.get_lut(global.selected_id);
         if (index > -1 && index < luts.length) {
           global.selected_properties[global.selected_properties['options'][i]] = next_state;
           luts[index].elm.properties[luts[index].elm.properties['options'][i]] = next_state;
         }
       } else if (global.selected_type === global.TYPE_VCR) {
-        let index = engine_functions.get_vcr(global.selected_id);
+        let index: number = engine_functions.get_vcr(global.selected_id);
         if (index > -1 && index < vcrs.length) {
           global.selected_properties[global.selected_properties['options'][i]] = next_state;
           vcrs[index].elm.properties[vcrs[index].elm.properties['options'][i]] = next_state;
         }
       } else if (global.selected_type === global.TYPE_NOTE) {
-        let index = engine_functions.get_note(global.selected_id);
+        let index: number = engine_functions.get_note(global.selected_id);
         if (index > -1 && index < notes.length) {
           global.selected_properties[global.selected_properties['options'][i]] = next_state;
           notes[index].elm.properties[notes[index].elm.properties['options'][i]] = next_state;
@@ -443,9 +443,9 @@ class ElementOptionsWindow {
     this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
     this.title_bounds.resize_paint();
     /* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
-    let padding = this.PADDING * this.bounds.get_width();
-    let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
-    let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
+    let padding: number = this.PADDING * this.bounds.get_width();
+    let width: number = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
+    let height: number = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
     this.okay_button.set_bounds(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
     this.okay_button.resize_paint();
     this.exit_button.set_bounds(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
@@ -550,14 +550,14 @@ class ElementOptionsWindow {
             if (!this.special_property(global.selected_properties['options'][i])) {
               if (!this.special_type(global.selected_type)) {
                 canvas.draw_text(
-                  global.exponentiate_quickly(global.selected_properties[global.selected_properties['options'][i]]) + global.selected_properties['options_units'][i],
+                  global.exponentiate_quickly(<any>(<string>global.selected_properties[global.selected_properties['options'][i]])) + global.selected_properties['options_units'][i],
                   this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.OFFSET_X,
                   this.attributes[i].get_center_y() + this.OFFSET_Y,
                   this.value_paint
                 );
               } else {
                 if (global.selected_properties[global.selected_properties['options'][i]] === global.ON || global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
-                  let padding = this.attributes[i].get_height() * 0.1;
+                  let padding: number = this.attributes[i].get_height() * 0.1;
                   this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                   this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
                   this.toggle_switch_button.right = this.attributes[i].right - this.PADDING * this.bounds.get_width();
@@ -582,7 +582,7 @@ class ElementOptionsWindow {
               }
             } else {
               if (global.selected_properties[global.selected_properties['options'][i]] === global.ON || global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
-                let padding = this.attributes[i].get_height() * 0.1;
+                let padding: number = this.attributes[i].get_height() * 0.1;
                 this.toggle_switch_button.STATE = global.selected_properties[global.selected_properties['options'][i]];
                 this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
                 this.toggle_switch_button.right = this.attributes[i].right - this.PADDING * this.bounds.get_width();
@@ -617,8 +617,8 @@ class ElementOptionsWindow {
           this.hover_paint
         );
       }
-      let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
-      let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
+      let width_mul_0p3636: number = this.exit_button.get_width() * 0.3636;
+      let height_mul_0p3636: number = this.exit_button.get_height() * 0.3636;
       canvas.draw_line(
         this.exit_button.left + width_mul_0p3636 + this.OFFSET_X,
         this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y,

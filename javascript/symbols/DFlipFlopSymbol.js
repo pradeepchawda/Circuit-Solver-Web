@@ -77,8 +77,8 @@ class DFlipFlopSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         /* Index of the bounds (Inside New Element Window) */
         this.index = index;
         /* Page to be drawn on (Inside New Element Window) */
@@ -190,8 +190,8 @@ class DFlipFlopSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
     }
     update() {
         if (this.FLAG_ADD_ELEMENT) {
@@ -329,25 +329,25 @@ class DFlipFlopSymbol {
         this.recolor();
         if (this.page === page) {
             let indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.dff_0.x, this.dff_0.y);
-            this.LINE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, this.dff_1.x, this.dff_1.y);
-            this.LINE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, this.dff_2.x, this.dff_2.y);
-            this.LINE_BUFFER[indexer++] = Array(this.p4.x, this.p4.y, this.dff_3.x, this.dff_3.y);
-            this.LINE_BUFFER[indexer++] = Array(this.dff_4.x, this.dff_4.y, this.dff_5.x, this.dff_5.y);
-            this.LINE_BUFFER[indexer++] = Array(this.dff_5.x, this.dff_5.y, this.dff_7.x, this.dff_7.y);
-            this.LINE_BUFFER[indexer++] = Array(this.dff_7.x, this.dff_7.y, this.dff_6.x, this.dff_6.y);
-            this.LINE_BUFFER[indexer++] = Array(this.dff_6.x, this.dff_6.y, this.dff_4.x, this.dff_4.y);
-            this.LINE_BUFFER[indexer++] = Array(this.dff_6.x, this.dff_6.y, this.dff_8.x, this.dff_8.y);
-            this.LINE_BUFFER[indexer++] = Array(this.dff_8.x, this.dff_8.y, this.dff_9.x, this.dff_9.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[indexer++] = Array(this.p1.x, this.p1.y, this.dff_0.x, this.dff_0.y);
+            this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.dff_1.x, this.dff_1.y);
+            this.line_buffer[indexer++] = Array(this.p3.x, this.p3.y, this.dff_2.x, this.dff_2.y);
+            this.line_buffer[indexer++] = Array(this.p4.x, this.p4.y, this.dff_3.x, this.dff_3.y);
+            this.line_buffer[indexer++] = Array(this.dff_4.x, this.dff_4.y, this.dff_5.x, this.dff_5.y);
+            this.line_buffer[indexer++] = Array(this.dff_5.x, this.dff_5.y, this.dff_7.x, this.dff_7.y);
+            this.line_buffer[indexer++] = Array(this.dff_7.x, this.dff_7.y, this.dff_6.x, this.dff_6.y);
+            this.line_buffer[indexer++] = Array(this.dff_6.x, this.dff_6.y, this.dff_4.x, this.dff_4.y);
+            this.line_buffer[indexer++] = Array(this.dff_6.x, this.dff_6.y, this.dff_8.x, this.dff_8.y);
+            this.line_buffer[indexer++] = Array(this.dff_8.x, this.dff_8.y, this.dff_9.x, this.dff_9.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             indexer = 0;
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p4.x, this.p4.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+            this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p4.x, this.p4.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             canvas.draw_text('D', this.dff_10.x, this.dff_10.y, this.text_paint);
             canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
             canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);

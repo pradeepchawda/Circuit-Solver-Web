@@ -87,8 +87,8 @@ or overlapped)*/
   public m_y: number = 0;
   public MULTI_SELECTED: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
   public BUILD_ELEMENT: boolean = true;
   public ANGLE: number = 0;
 
@@ -214,8 +214,8 @@ or overlapped)*/
     this.INITIALIZED = true;
     this.MULTI_SELECTED = false;
     /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
@@ -254,8 +254,8 @@ or overlapped)*/
     let vertices: Array<number> = [];
     let p1: Array<number> = [];
     let p2: Array<number> = [];
-    let p3 = [];
-    let p4 = [];
+    let p3: Array<number> = [];
+    let p4: Array<number> = [];
     if (this.elm.rotation === global.ROTATION_0) {
       p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
       p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
@@ -413,7 +413,7 @@ or overlapped)*/
       if (global.focused) {
         if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
-          global.IS_DRAGGING = false;
+          global.is_dragging = false;
           if (!this.is_translating) {
             if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
               this.release_nodes();
@@ -664,11 +664,11 @@ or overlapped)*/
       let cache_8: number = 2.25 * this.x_space;
       let cache_9: number = 2.25 * this.y_space;
       let cache_10: number = 1.5 * this.x_space;
-      let cache_11 : number = 1.5 * this.y_space;
-      let cache_12 : number = 0.75 * this.x_space;
-      let cache_13 : number = 0.75 * this.y_space;
-      let cache_14 : number = this.x_space;
-      let cache_15 : number = this.y_space;
+      let cache_11: number = 1.5 * this.y_space;
+      let cache_12: number = 0.75 * this.x_space;
+      let cache_13: number = 0.75 * this.y_space;
+      let cache_14: number = this.x_space;
+      let cache_15: number = this.y_space;
       /* Top segment (left) */
       this.cccs_0.x = this.p1.x + cache_14 * global.cosine(this.theta_m90);
       this.cccs_0.y = this.p1.y + cache_15 * global.sine(this.theta_m90);
@@ -820,40 +820,40 @@ or overlapped)*/
         this.c_y - global.node_space_y <= view_port.bottom)
     ) {
       this.indexer = 0;
-      this.CIRCLE_BUFFER = [];
-      this.LINE_BUFFER = [];
-      this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.cccs_0.x, this.cccs_0.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, this.cccs_1.x, this.cccs_1.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.p3.x, this.p3.y, this.cccs_2.x, this.cccs_2.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.p4.x, this.p4.y, this.cccs_3.x, this.cccs_3.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_0.x, this.cccs_0.y, this.cccs_1.x, this.cccs_1.y);
+      this.circle_buffer = [];
+      this.line_buffer = [];
+      this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.cccs_0.x, this.cccs_0.y);
+      this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.cccs_1.x, this.cccs_1.y);
+      this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.cccs_2.x, this.cccs_2.y);
+      this.line_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, this.cccs_3.x, this.cccs_3.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_0.x, this.cccs_0.y, this.cccs_1.x, this.cccs_1.y);
       /* Diagmond */
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_2.x, this.cccs_2.y, this.cccs_4.x, this.cccs_4.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_4.x, this.cccs_4.y, this.cccs_5.x, this.cccs_5.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_4.x, this.cccs_4.y, this.cccs_6.x, this.cccs_6.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_3.x, this.cccs_3.y, this.cccs_7.x, this.cccs_7.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_7.x, this.cccs_7.y, this.cccs_8.x, this.cccs_8.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_7.x, this.cccs_7.y, this.cccs_9.x, this.cccs_9.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_2.x, this.cccs_2.y, this.cccs_4.x, this.cccs_4.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_4.x, this.cccs_4.y, this.cccs_5.x, this.cccs_5.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_4.x, this.cccs_4.y, this.cccs_6.x, this.cccs_6.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_3.x, this.cccs_3.y, this.cccs_7.x, this.cccs_7.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_7.x, this.cccs_7.y, this.cccs_8.x, this.cccs_8.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_7.x, this.cccs_7.y, this.cccs_9.x, this.cccs_9.y);
       /* Arrow Point */
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_11.x, this.cccs_11.y, this.cccs_12.x, this.cccs_12.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_11.x, this.cccs_11.y, this.cccs_13.x, this.cccs_13.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_11.x, this.cccs_11.y, this.cccs_12.x, this.cccs_12.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_11.x, this.cccs_11.y, this.cccs_13.x, this.cccs_13.y);
       /* Arrow Line Point */
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_11.x, this.cccs_11.y, this.cccs_14.x, this.cccs_14.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_11.x, this.cccs_11.y, this.cccs_14.x, this.cccs_14.y);
       /* Reference polarity point */
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_16.x - this.bounds.get_width() * 0.05, this.cccs_16.y, this.cccs_16.x + this.bounds.get_width() * 0.05, this.cccs_16.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cccs_16.x, this.cccs_16.y + this.bounds.get_width() * 0.05, this.cccs_16.x, this.cccs_16.y - this.bounds.get_width() * 0.05);
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      this.line_buffer[this.indexer++] = Array(this.cccs_16.x - this.bounds.get_width() * 0.05, this.cccs_16.y, this.cccs_16.x + this.bounds.get_width() * 0.05, this.cccs_16.y);
+      this.line_buffer[this.indexer++] = Array(this.cccs_16.x, this.cccs_16.y + this.bounds.get_width() * 0.05, this.cccs_16.x, this.cccs_16.y - this.bounds.get_width() * 0.05);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       this.indexer = 0;
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p4.x, this.p4.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+      this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      this.circle_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
-      if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+      if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
         this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
           canvas.rotate(this.c_x, this.c_y, -90);
@@ -864,7 +864,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.bottom + this.bounds.get_height() * 0.15,
             this.text_paint
@@ -878,7 +878,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.bottom + this.bounds.get_height() * 0.15,
             this.text_paint
@@ -892,12 +892,12 @@ or overlapped)*/
   }
   /* Handles future proofing of elements! */
   patch(): void {
-    if (!global.not_null(this.LINE_BUFFER)) {
+    if (!global.not_null(this.line_buffer)) {
       /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-      this.LINE_BUFFER = [];
+      this.line_buffer = [];
     }
-    if (!global.not_null(this.CIRCLE_BUFFER)) {
-      this.CIRCLE_BUFFER = [];
+    if (!global.not_null(this.circle_buffer)) {
+      this.circle_buffer = [];
     }
     if (!global.not_null(this.BUILD_ELEMENT)) {
       this.BUILD_ELEMENT = false;

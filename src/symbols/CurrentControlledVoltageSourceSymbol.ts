@@ -78,8 +78,8 @@ class CurrentControlledVoltageSourceSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
 
   constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
@@ -181,8 +181,8 @@ class CurrentControlledVoltageSourceSymbol {
     this.DRAW_TAG = false;
     this.text_bounds = new RectF(0, 0, 0, 0);
     this.HEIGHT_RATIO = 0.35;
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
   }
   update() {
     if (this.FLAG_ADD_ELEMENT) {
@@ -316,33 +316,33 @@ class CurrentControlledVoltageSourceSymbol {
   draw_symbol(canvas: GraphicsEngine, page: number) {
     this.recolor();
     if (this.page === page) {
-      let indexer = 0;
-      this.CIRCLE_BUFFER = [];
-      this.LINE_BUFFER = [];
-      this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.vcvs_0.x, this.vcvs_0.y);
-      this.LINE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, this.vcvs_1.x, this.vcvs_1.y);
-      this.LINE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, this.vcvs_2.x, this.vcvs_2.y);
-      this.LINE_BUFFER[indexer++] = Array(this.p4.x, this.p4.y, this.vcvs_3.x, this.vcvs_3.y);
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_0.x, this.vcvs_0.y, this.vcvs_1.x, this.vcvs_1.y);
+      let indexer: number = 0;
+      this.circle_buffer = [];
+      this.line_buffer = [];
+      this.line_buffer[indexer++] = Array(this.p1.x, this.p1.y, this.vcvs_0.x, this.vcvs_0.y);
+      this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.vcvs_1.x, this.vcvs_1.y);
+      this.line_buffer[indexer++] = Array(this.p3.x, this.p3.y, this.vcvs_2.x, this.vcvs_2.y);
+      this.line_buffer[indexer++] = Array(this.p4.x, this.p4.y, this.vcvs_3.x, this.vcvs_3.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_0.x, this.vcvs_0.y, this.vcvs_1.x, this.vcvs_1.y);
       /* Diagmond */
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_2.x, this.vcvs_2.y, this.vcvs_4.x, this.vcvs_4.y);
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_4.x, this.vcvs_4.y, this.vcvs_5.x, this.vcvs_5.y);
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_4.x, this.vcvs_4.y, this.vcvs_6.x, this.vcvs_6.y);
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_3.x, this.vcvs_3.y, this.vcvs_7.x, this.vcvs_7.y);
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_7.x, this.vcvs_7.y, this.vcvs_8.x, this.vcvs_8.y);
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_7.x, this.vcvs_7.y, this.vcvs_9.x, this.vcvs_9.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_2.x, this.vcvs_2.y, this.vcvs_4.x, this.vcvs_4.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_4.x, this.vcvs_4.y, this.vcvs_5.x, this.vcvs_5.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_4.x, this.vcvs_4.y, this.vcvs_6.x, this.vcvs_6.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_3.x, this.vcvs_3.y, this.vcvs_7.x, this.vcvs_7.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_7.x, this.vcvs_7.y, this.vcvs_8.x, this.vcvs_8.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_7.x, this.vcvs_7.y, this.vcvs_9.x, this.vcvs_9.y);
       /* Plus Point */
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_10.x, this.vcvs_10.y, this.vcvs_11.x, this.vcvs_11.y);
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_12.x, this.vcvs_12.y, this.vcvs_13.x, this.vcvs_13.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_10.x, this.vcvs_10.y, this.vcvs_11.x, this.vcvs_11.y);
+      this.line_buffer[indexer++] = Array(this.vcvs_12.x, this.vcvs_12.y, this.vcvs_13.x, this.vcvs_13.y);
       /* Negative Point */
-      this.LINE_BUFFER[indexer++] = Array(this.vcvs_14.x, this.vcvs_14.y, this.vcvs_15.x, this.vcvs_15.y);
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      this.line_buffer[indexer++] = Array(this.vcvs_14.x, this.vcvs_14.y, this.vcvs_15.x, this.vcvs_15.y);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       indexer = 0;
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p4.x, this.p4.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+      this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.circle_buffer[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.circle_buffer[indexer++] = Array(this.p4.x, this.p4.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
       if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
         this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
         this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();

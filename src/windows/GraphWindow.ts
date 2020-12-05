@@ -63,7 +63,7 @@ class GraphWindow {
   public first_touch_x: number = 0;
   public first_touch_y: number = 0;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
   public trim: number = 0;
   public width: number = 0;
   public height: number = 0;
@@ -215,7 +215,7 @@ class GraphWindow {
     this.first_touch_x = 0;
     this.first_touch_y = 0;
     /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-    this.LINE_BUFFER = [];
+    this.line_buffer = [];
   }
   load_axis(): void {
     this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
@@ -364,9 +364,9 @@ class GraphWindow {
       str += time_stamp + temp_str;
     }
     if (!global.MOBILE_MODE) {
-      save_file(global.USER_FILE.title + '_csv.txt', str);
+      save_file(global.user_file.title + '_csv.txt', str);
     } else {
-      window.JsInterface.javascript_native_hook('push-csv', global.USER_FILE.title + '_csv.txt', str);
+      window.JsInterface.javascript_native_hook('push-csv', global.user_file.title + '_csv.txt', str);
     }
   }
   mouse_move(): void {
@@ -407,9 +407,9 @@ class GraphWindow {
       let index: number = 0;
       for (var i: number = 0; i < cached_value; i += cached_value_t_p_o1) {
         temp = i + cached_value;
-        this.LINE_BUFFER[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
+        this.line_buffer[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
       }
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       /* This handles all the bells and whistles for drawing scope trace number one! */
       if (scope_manager.ENTRY.length > 0) {
         /* Display the element that is attached to scope trace number one. */
@@ -538,7 +538,7 @@ class GraphWindow {
           canvas.draw_text(
             this.time_axis_value + 's',
             this.inner_bounds.right -
-              this.text_paint.measure_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step   ') -
+              this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   ') -
               this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
               view_port.view_width * 0.1,
             this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
@@ -594,8 +594,8 @@ class GraphWindow {
       }
       /* Draw the timestep of the graph at the top right. */
       canvas.draw_text(
-        global.exponentiate_quickly(global.TIME_STEP) + 's/step',
-        this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step   '),
+        global.exponentiate_quickly(global.time_step) + 's/step',
+        this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   '),
         this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
         this.text_paint
       );

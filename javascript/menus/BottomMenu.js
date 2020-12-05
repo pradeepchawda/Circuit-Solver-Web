@@ -104,7 +104,7 @@ class BottomMenu {
         When it is on, the system shall figure out a good starting point and change the timestep to this
         value. */
         this.time_step_button = new Button(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_4, view_port.right, view_port.bottom);
-        this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.TIME_STEP));
+        this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
         this.time_step_button.draw_stroke = false;
         this.time_step_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
         this.time_step_button.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
@@ -179,8 +179,8 @@ class BottomMenu {
     mouse_move() { }
     /* Handling any mouse up events. */
     mouse_up() {
-        if (!global.IS_RIGHT_CLICK && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
-            if (!global.MOUSE_KEYBOARD_LOCK && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
+        if (!global.is_right_click && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
+            if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
                 if (!global.FLAG_SIMULATING &&
                     !global.FLAG_SAVE_IMAGE &&
                     !global.FLAG_SAVE_CIRCUIT &&
@@ -193,7 +193,7 @@ class BottomMenu {
                     !global.FLAG_SELECT_SETTINGS &&
                     !global.FLAG_REMOVE_ALL) {
                     if (this.time_step_button.contains_xy(global.mouse_x, global.mouse_y)) {
-                        time_step_window.input_button.text = global.exponentiate_quickly(global.TIME_STEP);
+                        time_step_window.input_button.text = global.exponentiate_quickly(global.time_step);
                         this.handle_timestep_flag(!global.FLAG_SELECT_TIMESTEP);
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
@@ -204,10 +204,10 @@ class BottomMenu {
     }
     handle_file_explorer() {
         if (global.MOBILE_MODE) {
-            global.MOUSE_KEYBOARD_LOCK = false;
+            global.mouse_keyboard_lock = false;
             global.component_touched = false;
         }
-        if (!global.MOUSE_KEYBOARD_LOCK) {
+        if (!global.mouse_keyboard_lock) {
             if (!global.FLAG_SIMULATING &&
                 !global.FLAG_SAVE_IMAGE &&
                 !global.FLAG_SAVE_CIRCUIT &&
@@ -231,7 +231,7 @@ class BottomMenu {
         return false;
     }
     handle_timestep_flag(ON) {
-        global.MOUSE_KEYBOARD_LOCK = true;
+        global.mouse_keyboard_lock = true;
         if (ON) {
             time_step_window.reset_cursor();
         }
@@ -327,8 +327,8 @@ class BottomMenu {
     /* Draws the bottom menu. */
     draw_bottom_menu(canvas) {
         this.recolor();
-        this.file_button.text = language_manager.FILE[global.LANGUAGES[global.LANGUAGE_INDEX]] + global.USER_FILE.title;
-        this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.TIME_STEP));
+        this.file_button.text = language_manager.FILE[global.LANGUAGES[global.LANGUAGE_INDEX]] + global.user_file.title;
+        this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
         this.TIME_STEP_BUTTON_WIDTH = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
         let padding = 2 * global.CANVAS_STROKE_WIDTH_4;
         /* Keep updating that bottom path's width baby! */

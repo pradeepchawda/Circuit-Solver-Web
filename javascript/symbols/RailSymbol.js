@@ -53,8 +53,8 @@ class RailSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         /* Index of the bounds (Inside New Element Window) */
         this.index = index;
         /* Page to be drawn on (Inside New Element Window) */
@@ -127,8 +127,8 @@ class RailSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
     }
     update() {
         if (this.FLAG_ADD_ELEMENT) {
@@ -212,13 +212,13 @@ class RailSymbol {
         this.recolor();
         if (this.page === page) {
             let indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
+            this.circle_buffer = [];
+            this.line_buffer = [];
             /* To the bottom! */
             canvas.draw_circle(this.c_x, this.c_y + this.bounds.get_height() * 0.5, 1.5 * global.CANVAS_STROKE_WIDTH_2, this.point_paint);
-            this.LINE_BUFFER[indexer++] = Array(this.c_x, this.c_y + this.bounds.get_height() * 0.5, this.c_x, this.c_y + this.bounds.get_height() * 0.5 - 2 * this.y_space);
-            this.LINE_BUFFER[indexer++] = Array(this.c_x - this.x_space, this.c_y + this.bounds.get_height() * 0.5 - 2 * this.y_space, this.c_x + this.x_space, this.c_y + this.bounds.get_height() * 0.5 - 2 * this.y_space);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.line_buffer[indexer++] = Array(this.c_x, this.c_y + this.bounds.get_height() * 0.5, this.c_x, this.c_y + this.bounds.get_height() * 0.5 - 2 * this.y_space);
+            this.line_buffer[indexer++] = Array(this.c_x - this.x_space, this.c_y + this.bounds.get_height() * 0.5 - 2 * this.y_space, this.c_x + this.x_space, this.c_y + this.bounds.get_height() * 0.5 - 2 * this.y_space);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
                 this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
                 this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();

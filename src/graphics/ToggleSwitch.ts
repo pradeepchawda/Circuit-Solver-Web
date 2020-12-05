@@ -126,26 +126,12 @@ class ToggleSwitch extends RectF {
       canvas.draw_round_rect2(this, this.fill_paint.get_stroke_width(), this.fill_paint);
     }
     if (this.STATE === global.ON) {
-      canvas.draw_round_rect(
-        this.get_center_x() + padding,
-        this.top + padding,
-        this.right - padding,
-        this.bottom - padding,
-        this.toggle_paint.get_stroke_width(),
-        this.toggle_paint
-      );
+      canvas.draw_round_rect(this.get_center_x() + padding, this.top + padding, this.right - padding, this.bottom - padding, this.toggle_paint.get_stroke_width(), this.toggle_paint);
       if (this.draw_text) {
         canvas.draw_text(this.STATE, this.left + this.get_width() * 0.25, this.get_center_y(), this.text_paint);
       }
     } else if (this.STATE === global.OFF) {
-      canvas.draw_round_rect(
-        this.left + padding,
-        this.top + padding,
-        this.get_center_x() - padding,
-        this.bottom - padding,
-        this.toggle_paint.get_stroke_width(),
-        this.toggle_paint
-      );
+      canvas.draw_round_rect(this.left + padding, this.top + padding, this.get_center_x() - padding, this.bottom - padding, this.toggle_paint.get_stroke_width(), this.toggle_paint);
       if (this.draw_text) {
         canvas.draw_text(this.STATE, this.right - this.get_width() * 0.25, this.get_center_y(), this.text_paint);
       }
@@ -155,7 +141,7 @@ class ToggleSwitch extends RectF {
     }
   }
   /* Draws the button to screen. */
-  draw_toggle_switch_dxdy(canvas, offset_x, offset_y) {
+  draw_toggle_switch_dxdy(canvas: GraphicsEngine, offset_x: number, offset_y: number): void {
     let padding: number = this.get_height() * 0.175;
     if (this.draw_fill) {
       canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint.get_stroke_width(), this.fill_paint);

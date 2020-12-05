@@ -53,6 +53,7 @@ class GraphicsEngine {
         this.ENABLE_LINE_JOIN = false;
         this.FONT_TEMPLATE = 'spx f';
         this.FAST_PI_MUL_2 = 7;
+        this.dict = null;
         this.command = '';
         this.cache = [];
         this.c_xp = 0;
@@ -93,7 +94,7 @@ class GraphicsEngine {
         this.ENABLE_LINE_JOIN = false;
         this.FONT_TEMPLATE = 'spx f';
         this.FAST_PI_MUL_2 = 7;
-        this.dict = global.NULL;
+        this.dict = null;
         this.command = '';
         this.cache = [];
         this.c_xp = 0;
@@ -139,7 +140,7 @@ class GraphicsEngine {
                 this.last_text_align = paint.text_align;
             }
             if (this.last_text_size != paint.text_size || this.last_font != paint.font) {
-                this.ctx.font = this.FONT_TEMPLATE.replace('s', String(paint.text_size)).replace('f', paint.font);
+                this.ctx.font = this.FONT_TEMPLATE.replace('s', paint.text_size).replace('f', paint.font);
                 this.last_text_size = paint.text_size;
                 this.last_font = paint.font;
             }

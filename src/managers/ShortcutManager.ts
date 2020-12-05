@@ -466,7 +466,7 @@ class ShortcutManager {
         /* #INSERT_GENERATE_HANDLE_SELECT_ELEMENTS_MOVE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.selected_type === global.TYPE_RESISTOR) {
-          var index = engine_functions.get_resistor(global.selected_id);
+          var index: number = engine_functions.get_resistor(global.selected_id);
           if (index < resistors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -485,7 +485,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_CAPACITOR) {
-          var index = engine_functions.get_capacitor(global.selected_id);
+          var index: number = engine_functions.get_capacitor(global.selected_id);
           if (index < capacitors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -504,7 +504,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_INDUCTOR) {
-          var index = engine_functions.get_inductor(global.selected_id);
+          var index: number = engine_functions.get_inductor(global.selected_id);
           if (index < inductors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -523,7 +523,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_GROUND) {
-          var index = engine_functions.get_ground(global.selected_id);
+          var index: number = engine_functions.get_ground(global.selected_id);
           if (index < grounds.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -542,7 +542,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_DCSOURCE) {
-          var index = engine_functions.get_dcsource(global.selected_id);
+          var index: number = engine_functions.get_dcsource(global.selected_id);
           if (index < dcsources.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -561,7 +561,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_DCCURRENT) {
-          var index = engine_functions.get_dccurrent(global.selected_id);
+          var index: number = engine_functions.get_dccurrent(global.selected_id);
           if (index < dccurrents.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -580,7 +580,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_ACSOURCE) {
-          var index = engine_functions.get_acsource(global.selected_id);
+          var index: number = engine_functions.get_acsource(global.selected_id);
           if (index < acsources.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -599,7 +599,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_ACCURRENT) {
-          var index = engine_functions.get_accurrent(global.selected_id);
+          var index: number = engine_functions.get_accurrent(global.selected_id);
           if (index < accurrents.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -618,7 +618,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_SQUAREWAVE) {
-          var index = engine_functions.get_squarewave(global.selected_id);
+          var index: number = engine_functions.get_squarewave(global.selected_id);
           if (index < squarewaves.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -637,7 +637,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_SAW) {
-          var index = engine_functions.get_sawwave(global.selected_id);
+          var index: number = engine_functions.get_sawwave(global.selected_id);
           if (index < sawwaves.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -656,7 +656,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_TRI) {
-          var index = engine_functions.get_trianglewave(global.selected_id);
+          var index: number = engine_functions.get_trianglewave(global.selected_id);
           if (index < trianglewaves.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -675,7 +675,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_CONSTANT) {
-          var index = engine_functions.get_constant(global.selected_id);
+          var index: number = engine_functions.get_constant(global.selected_id);
           if (index < constants.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -694,7 +694,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_NET) {
-          var index = engine_functions.get_net(global.selected_id);
+          var index: number = engine_functions.get_net(global.selected_id);
           if (index < nets.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -713,7 +713,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_NOTE) {
-          var index = engine_functions.get_note(global.selected_id);
+          var index: number = engine_functions.get_note(global.selected_id);
           if (index < notes.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -732,7 +732,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_RAIL) {
-          var index = engine_functions.get_rail(global.selected_id);
+          var index: number = engine_functions.get_rail(global.selected_id);
           if (index < rails.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -751,7 +751,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_VOLTMETER) {
-          var index = engine_functions.get_voltmeter(global.selected_id);
+          var index: number = engine_functions.get_voltmeter(global.selected_id);
           if (index < voltmeters.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -770,7 +770,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_OHMMETER) {
-          var index = engine_functions.get_ohmmeter(global.selected_id);
+          var index: number = engine_functions.get_ohmmeter(global.selected_id);
           if (index < ohmmeters.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -789,7 +789,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_AMMETER) {
-          var index = engine_functions.get_ammeter(global.selected_id);
+          var index: number = engine_functions.get_ammeter(global.selected_id);
           if (index < ammeters.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -808,7 +808,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_WATTMETER) {
-          var index = engine_functions.get_wattmeter(global.selected_id);
+          var index: number = engine_functions.get_wattmeter(global.selected_id);
           if (index < wattmeters.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -827,7 +827,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_FUSE) {
-          var index = engine_functions.get_fuse(global.selected_id);
+          var index: number = engine_functions.get_fuse(global.selected_id);
           if (index < fuses.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -846,7 +846,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_SPST) {
-          var index = engine_functions.get_spst(global.selected_id);
+          var index: number = engine_functions.get_spst(global.selected_id);
           if (index < spsts.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -865,7 +865,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_SPDT) {
-          var index = engine_functions.get_spdt(global.selected_id);
+          var index: number = engine_functions.get_spdt(global.selected_id);
           if (index < spdts.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -884,7 +884,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_NOT) {
-          var index = engine_functions.get_not(global.selected_id);
+          var index: number = engine_functions.get_not(global.selected_id);
           if (index < nots.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -903,7 +903,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_DIODE) {
-          var index = engine_functions.get_diode(global.selected_id);
+          var index: number = engine_functions.get_diode(global.selected_id);
           if (index < diodes.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -922,7 +922,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_LED) {
-          var index = engine_functions.get_led(global.selected_id);
+          var index: number = engine_functions.get_led(global.selected_id);
           if (index < leds.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -941,7 +941,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_ZENER) {
-          var index = engine_functions.get_zener(global.selected_id);
+          var index: number = engine_functions.get_zener(global.selected_id);
           if (index < zeners.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -960,7 +960,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_POTENTIOMETER) {
-          var index = engine_functions.get_potentiometer(global.selected_id);
+          var index: number = engine_functions.get_potentiometer(global.selected_id);
           if (index < potentiometers.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -979,7 +979,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_AND) {
-          var index = engine_functions.get_and(global.selected_id);
+          var index: number = engine_functions.get_and(global.selected_id);
           if (index < ands.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -998,7 +998,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_OR) {
-          var index = engine_functions.get_or(global.selected_id);
+          var index: number = engine_functions.get_or(global.selected_id);
           if (index < ors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1017,7 +1017,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_NAND) {
-          var index = engine_functions.get_nand(global.selected_id);
+          var index: number = engine_functions.get_nand(global.selected_id);
           if (index < nands.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1036,7 +1036,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_NOR) {
-          var index = engine_functions.get_nor(global.selected_id);
+          var index: number = engine_functions.get_nor(global.selected_id);
           if (index < nors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1055,7 +1055,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_XOR) {
-          var index = engine_functions.get_xor(global.selected_id);
+          var index: number = engine_functions.get_xor(global.selected_id);
           if (index < xors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1074,7 +1074,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_XNOR) {
-          var index = engine_functions.get_xnor(global.selected_id);
+          var index: number = engine_functions.get_xnor(global.selected_id);
           if (index < xnors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1093,7 +1093,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_DFF) {
-          var index = engine_functions.get_dff(global.selected_id);
+          var index: number = engine_functions.get_dff(global.selected_id);
           if (index < dffs.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1112,7 +1112,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_VSAT) {
-          var index = engine_functions.get_vsat(global.selected_id);
+          var index: number = engine_functions.get_vsat(global.selected_id);
           if (index < vsats.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1131,7 +1131,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_ADD) {
-          var index = engine_functions.get_adder(global.selected_id);
+          var index: number = engine_functions.get_adder(global.selected_id);
           if (index < adders.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1150,7 +1150,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_SUB) {
-          var index = engine_functions.get_subtractor(global.selected_id);
+          var index: number = engine_functions.get_subtractor(global.selected_id);
           if (index < subtractors.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1169,7 +1169,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_MUL) {
-          var index = engine_functions.get_multiplier(global.selected_id);
+          var index: number = engine_functions.get_multiplier(global.selected_id);
           if (index < multipliers.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1188,7 +1188,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_DIV) {
-          var index = engine_functions.get_divider(global.selected_id);
+          var index: number = engine_functions.get_divider(global.selected_id);
           if (index < dividers.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1207,7 +1207,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_GAIN) {
-          var index = engine_functions.get_gain(global.selected_id);
+          var index: number = engine_functions.get_gain(global.selected_id);
           if (index < gains.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1226,7 +1226,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_ABS) {
-          var index = engine_functions.get_absval(global.selected_id);
+          var index: number = engine_functions.get_absval(global.selected_id);
           if (index < absvals.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1245,7 +1245,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_VCSW) {
-          var index = engine_functions.get_vcsw(global.selected_id);
+          var index: number = engine_functions.get_vcsw(global.selected_id);
           if (index < vcsws.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1264,7 +1264,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_VCVS) {
-          var index = engine_functions.get_vcvs(global.selected_id);
+          var index: number = engine_functions.get_vcvs(global.selected_id);
           if (index < vcvss.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1283,7 +1283,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_VCCS) {
-          var index = engine_functions.get_vccs(global.selected_id);
+          var index: number = engine_functions.get_vccs(global.selected_id);
           if (index < vccss.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1302,7 +1302,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_CCCS) {
-          var index = engine_functions.get_cccs(global.selected_id);
+          var index: number = engine_functions.get_cccs(global.selected_id);
           if (index < cccss.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1321,7 +1321,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_CCVS) {
-          var index = engine_functions.get_ccvs(global.selected_id);
+          var index: number = engine_functions.get_ccvs(global.selected_id);
           if (index < ccvss.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1340,7 +1340,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_OPAMP) {
-          var index = engine_functions.get_opamp(global.selected_id);
+          var index: number = engine_functions.get_opamp(global.selected_id);
           if (index < opamps.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1359,7 +1359,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_NMOS) {
-          var index = engine_functions.get_nmosfet(global.selected_id);
+          var index: number = engine_functions.get_nmosfet(global.selected_id);
           if (index < nmosfets.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1378,7 +1378,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_PMOS) {
-          var index = engine_functions.get_pmosfet(global.selected_id);
+          var index: number = engine_functions.get_pmosfet(global.selected_id);
           if (index < pmosfets.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1397,7 +1397,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_NPN) {
-          var index = engine_functions.get_npn(global.selected_id);
+          var index: number = engine_functions.get_npn(global.selected_id);
           if (index < npns.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1416,7 +1416,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_PNP) {
-          var index = engine_functions.get_pnp(global.selected_id);
+          var index: number = engine_functions.get_pnp(global.selected_id);
           if (index < pnps.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1435,7 +1435,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_ADC) {
-          var index = engine_functions.get_adc(global.selected_id);
+          var index: number = engine_functions.get_adc(global.selected_id);
           if (index < adcs.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1454,7 +1454,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_DAC) {
-          var index = engine_functions.get_dac(global.selected_id);
+          var index: number = engine_functions.get_dac(global.selected_id);
           if (index < dacs.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1473,7 +1473,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_SAH) {
-          var index = engine_functions.get_samplers(global.selected_id);
+          var index: number = engine_functions.get_samplers(global.selected_id);
           if (index < sandhs.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1492,7 +1492,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_PWM) {
-          var index = engine_functions.get_pwm(global.selected_id);
+          var index: number = engine_functions.get_pwm(global.selected_id);
           if (index < pwms.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1511,7 +1511,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_INTEGRATOR) {
-          var index = engine_functions.get_integrator(global.selected_id);
+          var index: number = engine_functions.get_integrator(global.selected_id);
           if (index < integrators.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1530,7 +1530,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_DIFFERENTIATOR) {
-          var index = engine_functions.get_differentiator(global.selected_id);
+          var index: number = engine_functions.get_differentiator(global.selected_id);
           if (index < differentiators.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1549,7 +1549,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_LPF) {
-          var index = engine_functions.get_lowpass(global.selected_id);
+          var index: number = engine_functions.get_lowpass(global.selected_id);
           if (index < lowpasses.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1568,7 +1568,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_HPF) {
-          var index = engine_functions.get_highpass(global.selected_id);
+          var index: number = engine_functions.get_highpass(global.selected_id);
           if (index < highpasses.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1587,7 +1587,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_REL) {
-          var index = engine_functions.get_relay(global.selected_id);
+          var index: number = engine_functions.get_relay(global.selected_id);
           if (index < relays.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1606,7 +1606,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_PID) {
-          var index = engine_functions.get_pid(global.selected_id);
+          var index: number = engine_functions.get_pid(global.selected_id);
           if (index < pids.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1625,7 +1625,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_LUT) {
-          var index = engine_functions.get_lut(global.selected_id);
+          var index: number = engine_functions.get_lut(global.selected_id);
           if (index < luts.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1644,7 +1644,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_VCR) {
-          var index = engine_functions.get_vcr(global.selected_id);
+          var index: number = engine_functions.get_vcr(global.selected_id);
           if (index < vcrs.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1663,7 +1663,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_GRT) {
-          var index = engine_functions.get_grt(global.selected_id);
+          var index: number = engine_functions.get_grt(global.selected_id);
           if (index < grts.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1682,7 +1682,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_TPTZ) {
-          var index = engine_functions.get_tptz(global.selected_id);
+          var index: number = engine_functions.get_tptz(global.selected_id);
           if (index < tptzs.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -1701,7 +1701,7 @@ class ShortcutManager {
             }
           }
         } else if (global.selected_type === global.TYPE_TRAN) {
-          var index = engine_functions.get_transformer(global.selected_id);
+          var index: number = engine_functions.get_transformer(global.selected_id);
           if (index < transformers.length) {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
@@ -2748,7 +2748,7 @@ class ShortcutManager {
     this.caps = key_event['caps'];
     if (this.command === this.SHORTCUT_QUERY) {
       /* Get the text field */
-      var text_input = document.getElementById('text_input');
+      var text_input: HTMLElement = document.getElementById('text_input');
       let MeterTemplate: MeterTemplate_T = {
         Tag: '',
         Value: -1
@@ -2757,22 +2757,22 @@ class ShortcutManager {
       let met_max: number = global.meter_max();
       for (var i: number = 0; i < met_max; i++) {
         if (i < voltmeters.length) {
-          MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + String(voltmeters[i].elm.id);
+          MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + voltmeters[i].elm.id;
           MeterTemplate['Value'] = voltmeters[i].elm.properties['Voltage'];
           solution_vector.push(global.copy(MeterTemplate));
         }
         if (i < ohmmeters.length) {
-          MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + String(ohmmeters[i].elm.id);
+          MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + ohmmeters[i].elm.id;
           MeterTemplate['Value'] = ohmmeters[i].elm.properties['Sensed Resistance'];
           solution_vector.push(global.copy(MeterTemplate));
         }
         if (i < ammeters.length) {
-          MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + String(ammeters[i].elm.id);
+          MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + ammeters[i].elm.id;
           MeterTemplate['Value'] = ammeters[i].elm.properties['Current'];
           solution_vector.push(global.copy(MeterTemplate));
         }
         if (i < wattmeters.length) {
-          MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + String(wattmeters[i].elm.id);
+          MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + wattmeters[i].elm.id;
           MeterTemplate['Value'] = wattmeters[i].elm.properties['Wattage'];
           solution_vector.push(global.copy(MeterTemplate));
         }
@@ -3299,411 +3299,411 @@ class ShortcutManager {
       if (!global.multi_selected) {
         if (global.not_null(global.selected_type) && global.not_null(global.selected_properties) && global.not_null(global.selected_id)) {
           if (global.selected_type != global.TYPE_WIRE) {
-            global.CLIPBOARD_TYPE = global.selected_type;
-            global.CLIPBOARD_ROTATION = -1;
-            global.CLIPBOARD_FLIP = -1;
+            global.clipboard_type = global.selected_type;
+            global.clipboard_rotation = -1;
+            global.clipboard_flip = -1;
             let index: number = -1;
             /* #INSERT_GENERATE_COPY_ELEMENT# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-            if (global.CLIPBOARD_TYPE === global.TYPE_RESISTOR) {
+            if (global.clipboard_type === global.TYPE_RESISTOR) {
               index = engine_functions.get_resistor(global.selected_id);
               if (index < resistors.length) {
-                global.CLIPBOARD_ROTATION = resistors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = resistors[index].elm.flip;
+                global.clipboard_rotation = resistors[index].elm.rotation;
+                global.clipboard_flip = resistors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_CAPACITOR) {
+            } else if (global.clipboard_type === global.TYPE_CAPACITOR) {
               index = engine_functions.get_capacitor(global.selected_id);
               if (index < capacitors.length) {
-                global.CLIPBOARD_ROTATION = capacitors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = capacitors[index].elm.flip;
+                global.clipboard_rotation = capacitors[index].elm.rotation;
+                global.clipboard_flip = capacitors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_INDUCTOR) {
+            } else if (global.clipboard_type === global.TYPE_INDUCTOR) {
               index = engine_functions.get_inductor(global.selected_id);
               if (index < inductors.length) {
-                global.CLIPBOARD_ROTATION = inductors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = inductors[index].elm.flip;
+                global.clipboard_rotation = inductors[index].elm.rotation;
+                global.clipboard_flip = inductors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_GROUND) {
+            } else if (global.clipboard_type === global.TYPE_GROUND) {
               index = engine_functions.get_ground(global.selected_id);
               if (index < grounds.length) {
-                global.CLIPBOARD_ROTATION = grounds[index].elm.rotation;
-                global.CLIPBOARD_FLIP = grounds[index].elm.flip;
+                global.clipboard_rotation = grounds[index].elm.rotation;
+                global.clipboard_flip = grounds[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_DCSOURCE) {
+            } else if (global.clipboard_type === global.TYPE_DCSOURCE) {
               index = engine_functions.get_dcsource(global.selected_id);
               if (index < dcsources.length) {
-                global.CLIPBOARD_ROTATION = dcsources[index].elm.rotation;
-                global.CLIPBOARD_FLIP = dcsources[index].elm.flip;
+                global.clipboard_rotation = dcsources[index].elm.rotation;
+                global.clipboard_flip = dcsources[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_DCCURRENT) {
+            } else if (global.clipboard_type === global.TYPE_DCCURRENT) {
               index = engine_functions.get_dccurrent(global.selected_id);
               if (index < dccurrents.length) {
-                global.CLIPBOARD_ROTATION = dccurrents[index].elm.rotation;
-                global.CLIPBOARD_FLIP = dccurrents[index].elm.flip;
+                global.clipboard_rotation = dccurrents[index].elm.rotation;
+                global.clipboard_flip = dccurrents[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_ACSOURCE) {
+            } else if (global.clipboard_type === global.TYPE_ACSOURCE) {
               index = engine_functions.get_acsource(global.selected_id);
               if (index < acsources.length) {
-                global.CLIPBOARD_ROTATION = acsources[index].elm.rotation;
-                global.CLIPBOARD_FLIP = acsources[index].elm.flip;
+                global.clipboard_rotation = acsources[index].elm.rotation;
+                global.clipboard_flip = acsources[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_ACCURRENT) {
+            } else if (global.clipboard_type === global.TYPE_ACCURRENT) {
               index = engine_functions.get_accurrent(global.selected_id);
               if (index < accurrents.length) {
-                global.CLIPBOARD_ROTATION = accurrents[index].elm.rotation;
-                global.CLIPBOARD_FLIP = accurrents[index].elm.flip;
+                global.clipboard_rotation = accurrents[index].elm.rotation;
+                global.clipboard_flip = accurrents[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_SQUAREWAVE) {
+            } else if (global.clipboard_type === global.TYPE_SQUAREWAVE) {
               index = engine_functions.get_squarewave(global.selected_id);
               if (index < squarewaves.length) {
-                global.CLIPBOARD_ROTATION = squarewaves[index].elm.rotation;
-                global.CLIPBOARD_FLIP = squarewaves[index].elm.flip;
+                global.clipboard_rotation = squarewaves[index].elm.rotation;
+                global.clipboard_flip = squarewaves[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_SAW) {
+            } else if (global.clipboard_type === global.TYPE_SAW) {
               index = engine_functions.get_sawwave(global.selected_id);
               if (index < sawwaves.length) {
-                global.CLIPBOARD_ROTATION = sawwaves[index].elm.rotation;
-                global.CLIPBOARD_FLIP = sawwaves[index].elm.flip;
+                global.clipboard_rotation = sawwaves[index].elm.rotation;
+                global.clipboard_flip = sawwaves[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_TRI) {
+            } else if (global.clipboard_type === global.TYPE_TRI) {
               index = engine_functions.get_trianglewave(global.selected_id);
               if (index < trianglewaves.length) {
-                global.CLIPBOARD_ROTATION = trianglewaves[index].elm.rotation;
-                global.CLIPBOARD_FLIP = trianglewaves[index].elm.flip;
+                global.clipboard_rotation = trianglewaves[index].elm.rotation;
+                global.clipboard_flip = trianglewaves[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_CONSTANT) {
+            } else if (global.clipboard_type === global.TYPE_CONSTANT) {
               index = engine_functions.get_constant(global.selected_id);
               if (index < constants.length) {
-                global.CLIPBOARD_ROTATION = constants[index].elm.rotation;
-                global.CLIPBOARD_FLIP = constants[index].elm.flip;
+                global.clipboard_rotation = constants[index].elm.rotation;
+                global.clipboard_flip = constants[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_NET) {
+            } else if (global.clipboard_type === global.TYPE_NET) {
               index = engine_functions.get_net(global.selected_id);
               if (index < nets.length) {
-                global.CLIPBOARD_ROTATION = nets[index].elm.rotation;
-                global.CLIPBOARD_FLIP = nets[index].elm.flip;
+                global.clipboard_rotation = nets[index].elm.rotation;
+                global.clipboard_flip = nets[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_NOTE) {
+            } else if (global.clipboard_type === global.TYPE_NOTE) {
               index = engine_functions.get_note(global.selected_id);
               if (index < notes.length) {
-                global.CLIPBOARD_ROTATION = notes[index].elm.rotation;
-                global.CLIPBOARD_FLIP = notes[index].elm.flip;
+                global.clipboard_rotation = notes[index].elm.rotation;
+                global.clipboard_flip = notes[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_RAIL) {
+            } else if (global.clipboard_type === global.TYPE_RAIL) {
               index = engine_functions.get_rail(global.selected_id);
               if (index < rails.length) {
-                global.CLIPBOARD_ROTATION = rails[index].elm.rotation;
-                global.CLIPBOARD_FLIP = rails[index].elm.flip;
+                global.clipboard_rotation = rails[index].elm.rotation;
+                global.clipboard_flip = rails[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_VOLTMETER) {
+            } else if (global.clipboard_type === global.TYPE_VOLTMETER) {
               index = engine_functions.get_voltmeter(global.selected_id);
               if (index < voltmeters.length) {
-                global.CLIPBOARD_ROTATION = voltmeters[index].elm.rotation;
-                global.CLIPBOARD_FLIP = voltmeters[index].elm.flip;
+                global.clipboard_rotation = voltmeters[index].elm.rotation;
+                global.clipboard_flip = voltmeters[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_OHMMETER) {
+            } else if (global.clipboard_type === global.TYPE_OHMMETER) {
               index = engine_functions.get_ohmmeter(global.selected_id);
               if (index < ohmmeters.length) {
-                global.CLIPBOARD_ROTATION = ohmmeters[index].elm.rotation;
-                global.CLIPBOARD_FLIP = ohmmeters[index].elm.flip;
+                global.clipboard_rotation = ohmmeters[index].elm.rotation;
+                global.clipboard_flip = ohmmeters[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_AMMETER) {
+            } else if (global.clipboard_type === global.TYPE_AMMETER) {
               index = engine_functions.get_ammeter(global.selected_id);
               if (index < ammeters.length) {
-                global.CLIPBOARD_ROTATION = ammeters[index].elm.rotation;
-                global.CLIPBOARD_FLIP = ammeters[index].elm.flip;
+                global.clipboard_rotation = ammeters[index].elm.rotation;
+                global.clipboard_flip = ammeters[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_WATTMETER) {
+            } else if (global.clipboard_type === global.TYPE_WATTMETER) {
               index = engine_functions.get_wattmeter(global.selected_id);
               if (index < wattmeters.length) {
-                global.CLIPBOARD_ROTATION = wattmeters[index].elm.rotation;
-                global.CLIPBOARD_FLIP = wattmeters[index].elm.flip;
+                global.clipboard_rotation = wattmeters[index].elm.rotation;
+                global.clipboard_flip = wattmeters[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_FUSE) {
+            } else if (global.clipboard_type === global.TYPE_FUSE) {
               index = engine_functions.get_fuse(global.selected_id);
               if (index < fuses.length) {
-                global.CLIPBOARD_ROTATION = fuses[index].elm.rotation;
-                global.CLIPBOARD_FLIP = fuses[index].elm.flip;
+                global.clipboard_rotation = fuses[index].elm.rotation;
+                global.clipboard_flip = fuses[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_SPST) {
+            } else if (global.clipboard_type === global.TYPE_SPST) {
               index = engine_functions.get_spst(global.selected_id);
               if (index < spsts.length) {
-                global.CLIPBOARD_ROTATION = spsts[index].elm.rotation;
-                global.CLIPBOARD_FLIP = spsts[index].elm.flip;
+                global.clipboard_rotation = spsts[index].elm.rotation;
+                global.clipboard_flip = spsts[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_SPDT) {
+            } else if (global.clipboard_type === global.TYPE_SPDT) {
               index = engine_functions.get_spdt(global.selected_id);
               if (index < spdts.length) {
-                global.CLIPBOARD_ROTATION = spdts[index].elm.rotation;
-                global.CLIPBOARD_FLIP = spdts[index].elm.flip;
+                global.clipboard_rotation = spdts[index].elm.rotation;
+                global.clipboard_flip = spdts[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_NOT) {
+            } else if (global.clipboard_type === global.TYPE_NOT) {
               index = engine_functions.get_not(global.selected_id);
               if (index < nots.length) {
-                global.CLIPBOARD_ROTATION = nots[index].elm.rotation;
-                global.CLIPBOARD_FLIP = nots[index].elm.flip;
+                global.clipboard_rotation = nots[index].elm.rotation;
+                global.clipboard_flip = nots[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_DIODE) {
+            } else if (global.clipboard_type === global.TYPE_DIODE) {
               index = engine_functions.get_diode(global.selected_id);
               if (index < diodes.length) {
-                global.CLIPBOARD_ROTATION = diodes[index].elm.rotation;
-                global.CLIPBOARD_FLIP = diodes[index].elm.flip;
+                global.clipboard_rotation = diodes[index].elm.rotation;
+                global.clipboard_flip = diodes[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_LED) {
+            } else if (global.clipboard_type === global.TYPE_LED) {
               index = engine_functions.get_led(global.selected_id);
               if (index < leds.length) {
-                global.CLIPBOARD_ROTATION = leds[index].elm.rotation;
-                global.CLIPBOARD_FLIP = leds[index].elm.flip;
+                global.clipboard_rotation = leds[index].elm.rotation;
+                global.clipboard_flip = leds[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_ZENER) {
+            } else if (global.clipboard_type === global.TYPE_ZENER) {
               index = engine_functions.get_zener(global.selected_id);
               if (index < zeners.length) {
-                global.CLIPBOARD_ROTATION = zeners[index].elm.rotation;
-                global.CLIPBOARD_FLIP = zeners[index].elm.flip;
+                global.clipboard_rotation = zeners[index].elm.rotation;
+                global.clipboard_flip = zeners[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_POTENTIOMETER) {
+            } else if (global.clipboard_type === global.TYPE_POTENTIOMETER) {
               index = engine_functions.get_potentiometer(global.selected_id);
               if (index < potentiometers.length) {
-                global.CLIPBOARD_ROTATION = potentiometers[index].elm.rotation;
-                global.CLIPBOARD_FLIP = potentiometers[index].elm.flip;
+                global.clipboard_rotation = potentiometers[index].elm.rotation;
+                global.clipboard_flip = potentiometers[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_AND) {
+            } else if (global.clipboard_type === global.TYPE_AND) {
               index = engine_functions.get_and(global.selected_id);
               if (index < ands.length) {
-                global.CLIPBOARD_ROTATION = ands[index].elm.rotation;
-                global.CLIPBOARD_FLIP = ands[index].elm.flip;
+                global.clipboard_rotation = ands[index].elm.rotation;
+                global.clipboard_flip = ands[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_OR) {
+            } else if (global.clipboard_type === global.TYPE_OR) {
               index = engine_functions.get_or(global.selected_id);
               if (index < ors.length) {
-                global.CLIPBOARD_ROTATION = ors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = ors[index].elm.flip;
+                global.clipboard_rotation = ors[index].elm.rotation;
+                global.clipboard_flip = ors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_NAND) {
+            } else if (global.clipboard_type === global.TYPE_NAND) {
               index = engine_functions.get_nand(global.selected_id);
               if (index < nands.length) {
-                global.CLIPBOARD_ROTATION = nands[index].elm.rotation;
-                global.CLIPBOARD_FLIP = nands[index].elm.flip;
+                global.clipboard_rotation = nands[index].elm.rotation;
+                global.clipboard_flip = nands[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_NOR) {
+            } else if (global.clipboard_type === global.TYPE_NOR) {
               index = engine_functions.get_nor(global.selected_id);
               if (index < nors.length) {
-                global.CLIPBOARD_ROTATION = nors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = nors[index].elm.flip;
+                global.clipboard_rotation = nors[index].elm.rotation;
+                global.clipboard_flip = nors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_XOR) {
+            } else if (global.clipboard_type === global.TYPE_XOR) {
               index = engine_functions.get_xor(global.selected_id);
               if (index < xors.length) {
-                global.CLIPBOARD_ROTATION = xors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = xors[index].elm.flip;
+                global.clipboard_rotation = xors[index].elm.rotation;
+                global.clipboard_flip = xors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_XNOR) {
+            } else if (global.clipboard_type === global.TYPE_XNOR) {
               index = engine_functions.get_xnor(global.selected_id);
               if (index < xnors.length) {
-                global.CLIPBOARD_ROTATION = xnors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = xnors[index].elm.flip;
+                global.clipboard_rotation = xnors[index].elm.rotation;
+                global.clipboard_flip = xnors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_DFF) {
+            } else if (global.clipboard_type === global.TYPE_DFF) {
               index = engine_functions.get_dff(global.selected_id);
               if (index < dffs.length) {
-                global.CLIPBOARD_ROTATION = dffs[index].elm.rotation;
-                global.CLIPBOARD_FLIP = dffs[index].elm.flip;
+                global.clipboard_rotation = dffs[index].elm.rotation;
+                global.clipboard_flip = dffs[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_VSAT) {
+            } else if (global.clipboard_type === global.TYPE_VSAT) {
               index = engine_functions.get_vsat(global.selected_id);
               if (index < vsats.length) {
-                global.CLIPBOARD_ROTATION = vsats[index].elm.rotation;
-                global.CLIPBOARD_FLIP = vsats[index].elm.flip;
+                global.clipboard_rotation = vsats[index].elm.rotation;
+                global.clipboard_flip = vsats[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_ADD) {
+            } else if (global.clipboard_type === global.TYPE_ADD) {
               index = engine_functions.get_adder(global.selected_id);
               if (index < adders.length) {
-                global.CLIPBOARD_ROTATION = adders[index].elm.rotation;
-                global.CLIPBOARD_FLIP = adders[index].elm.flip;
+                global.clipboard_rotation = adders[index].elm.rotation;
+                global.clipboard_flip = adders[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_SUB) {
+            } else if (global.clipboard_type === global.TYPE_SUB) {
               index = engine_functions.get_subtractor(global.selected_id);
               if (index < subtractors.length) {
-                global.CLIPBOARD_ROTATION = subtractors[index].elm.rotation;
-                global.CLIPBOARD_FLIP = subtractors[index].elm.flip;
+                global.clipboard_rotation = subtractors[index].elm.rotation;
+                global.clipboard_flip = subtractors[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_MUL) {
+            } else if (global.clipboard_type === global.TYPE_MUL) {
               index = engine_functions.get_multiplier(global.selected_id);
               if (index < multipliers.length) {
-                global.CLIPBOARD_ROTATION = multipliers[index].elm.rotation;
-                global.CLIPBOARD_FLIP = multipliers[index].elm.flip;
+                global.clipboard_rotation = multipliers[index].elm.rotation;
+                global.clipboard_flip = multipliers[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_DIV) {
+            } else if (global.clipboard_type === global.TYPE_DIV) {
               index = engine_functions.get_divider(global.selected_id);
               if (index < dividers.length) {
-                global.CLIPBOARD_ROTATION = dividers[index].elm.rotation;
-                global.CLIPBOARD_FLIP = dividers[index].elm.flip;
+                global.clipboard_rotation = dividers[index].elm.rotation;
+                global.clipboard_flip = dividers[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_GAIN) {
+            } else if (global.clipboard_type === global.TYPE_GAIN) {
               index = engine_functions.get_gain(global.selected_id);
               if (index < gains.length) {
-                global.CLIPBOARD_ROTATION = gains[index].elm.rotation;
-                global.CLIPBOARD_FLIP = gains[index].elm.flip;
+                global.clipboard_rotation = gains[index].elm.rotation;
+                global.clipboard_flip = gains[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_ABS) {
+            } else if (global.clipboard_type === global.TYPE_ABS) {
               index = engine_functions.get_absval(global.selected_id);
               if (index < absvals.length) {
-                global.CLIPBOARD_ROTATION = absvals[index].elm.rotation;
-                global.CLIPBOARD_FLIP = absvals[index].elm.flip;
+                global.clipboard_rotation = absvals[index].elm.rotation;
+                global.clipboard_flip = absvals[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_VCSW) {
+            } else if (global.clipboard_type === global.TYPE_VCSW) {
               index = engine_functions.get_vcsw(global.selected_id);
               if (index < vcsws.length) {
-                global.CLIPBOARD_ROTATION = vcsws[index].elm.rotation;
-                global.CLIPBOARD_FLIP = vcsws[index].elm.flip;
+                global.clipboard_rotation = vcsws[index].elm.rotation;
+                global.clipboard_flip = vcsws[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_VCVS) {
+            } else if (global.clipboard_type === global.TYPE_VCVS) {
               index = engine_functions.get_vcvs(global.selected_id);
               if (index < vcvss.length) {
-                global.CLIPBOARD_ROTATION = vcvss[index].elm.rotation;
-                global.CLIPBOARD_FLIP = vcvss[index].elm.flip;
+                global.clipboard_rotation = vcvss[index].elm.rotation;
+                global.clipboard_flip = vcvss[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_VCCS) {
+            } else if (global.clipboard_type === global.TYPE_VCCS) {
               index = engine_functions.get_vccs(global.selected_id);
               if (index < vccss.length) {
-                global.CLIPBOARD_ROTATION = vccss[index].elm.rotation;
-                global.CLIPBOARD_FLIP = vccss[index].elm.flip;
+                global.clipboard_rotation = vccss[index].elm.rotation;
+                global.clipboard_flip = vccss[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_CCCS) {
+            } else if (global.clipboard_type === global.TYPE_CCCS) {
               index = engine_functions.get_cccs(global.selected_id);
               if (index < cccss.length) {
-                global.CLIPBOARD_ROTATION = cccss[index].elm.rotation;
-                global.CLIPBOARD_FLIP = cccss[index].elm.flip;
+                global.clipboard_rotation = cccss[index].elm.rotation;
+                global.clipboard_flip = cccss[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_CCVS) {
+            } else if (global.clipboard_type === global.TYPE_CCVS) {
               index = engine_functions.get_ccvs(global.selected_id);
               if (index < ccvss.length) {
-                global.CLIPBOARD_ROTATION = ccvss[index].elm.rotation;
-                global.CLIPBOARD_FLIP = ccvss[index].elm.flip;
+                global.clipboard_rotation = ccvss[index].elm.rotation;
+                global.clipboard_flip = ccvss[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_OPAMP) {
+            } else if (global.clipboard_type === global.TYPE_OPAMP) {
               index = engine_functions.get_opamp(global.selected_id);
               if (index < opamps.length) {
-                global.CLIPBOARD_ROTATION = opamps[index].elm.rotation;
-                global.CLIPBOARD_FLIP = opamps[index].elm.flip;
+                global.clipboard_rotation = opamps[index].elm.rotation;
+                global.clipboard_flip = opamps[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_NMOS) {
+            } else if (global.clipboard_type === global.TYPE_NMOS) {
               index = engine_functions.get_nmosfet(global.selected_id);
               if (index < nmosfets.length) {
-                global.CLIPBOARD_ROTATION = nmosfets[index].elm.rotation;
-                global.CLIPBOARD_FLIP = nmosfets[index].elm.flip;
+                global.clipboard_rotation = nmosfets[index].elm.rotation;
+                global.clipboard_flip = nmosfets[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_PMOS) {
+            } else if (global.clipboard_type === global.TYPE_PMOS) {
               index = engine_functions.get_pmosfet(global.selected_id);
               if (index < pmosfets.length) {
-                global.CLIPBOARD_ROTATION = pmosfets[index].elm.rotation;
-                global.CLIPBOARD_FLIP = pmosfets[index].elm.flip;
+                global.clipboard_rotation = pmosfets[index].elm.rotation;
+                global.clipboard_flip = pmosfets[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_NPN) {
+            } else if (global.clipboard_type === global.TYPE_NPN) {
               index = engine_functions.get_npn(global.selected_id);
               if (index < npns.length) {
-                global.CLIPBOARD_ROTATION = npns[index].elm.rotation;
-                global.CLIPBOARD_FLIP = npns[index].elm.flip;
+                global.clipboard_rotation = npns[index].elm.rotation;
+                global.clipboard_flip = npns[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_PNP) {
+            } else if (global.clipboard_type === global.TYPE_PNP) {
               index = engine_functions.get_pnp(global.selected_id);
               if (index < pnps.length) {
-                global.CLIPBOARD_ROTATION = pnps[index].elm.rotation;
-                global.CLIPBOARD_FLIP = pnps[index].elm.flip;
+                global.clipboard_rotation = pnps[index].elm.rotation;
+                global.clipboard_flip = pnps[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_ADC) {
+            } else if (global.clipboard_type === global.TYPE_ADC) {
               index = engine_functions.get_adc(global.selected_id);
               if (index < adcs.length) {
-                global.CLIPBOARD_ROTATION = adcs[index].elm.rotation;
-                global.CLIPBOARD_FLIP = adcs[index].elm.flip;
+                global.clipboard_rotation = adcs[index].elm.rotation;
+                global.clipboard_flip = adcs[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_DAC) {
+            } else if (global.clipboard_type === global.TYPE_DAC) {
               index = engine_functions.get_dac(global.selected_id);
               if (index < dacs.length) {
-                global.CLIPBOARD_ROTATION = dacs[index].elm.rotation;
-                global.CLIPBOARD_FLIP = dacs[index].elm.flip;
+                global.clipboard_rotation = dacs[index].elm.rotation;
+                global.clipboard_flip = dacs[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_SAH) {
+            } else if (global.clipboard_type === global.TYPE_SAH) {
               index = engine_functions.get_samplers(global.selected_id);
               if (index < sandhs.length) {
-                global.CLIPBOARD_ROTATION = sandhs[index].elm.rotation;
-                global.CLIPBOARD_FLIP = sandhs[index].elm.flip;
+                global.clipboard_rotation = sandhs[index].elm.rotation;
+                global.clipboard_flip = sandhs[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_PWM) {
+            } else if (global.clipboard_type === global.TYPE_PWM) {
               index = engine_functions.get_pwm(global.selected_id);
               if (index < pwms.length) {
-                global.CLIPBOARD_ROTATION = pwms[index].elm.rotation;
-                global.CLIPBOARD_FLIP = pwms[index].elm.flip;
+                global.clipboard_rotation = pwms[index].elm.rotation;
+                global.clipboard_flip = pwms[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_INTEGRATOR) {
+            } else if (global.clipboard_type === global.TYPE_INTEGRATOR) {
               index = engine_functions.get_integrator(global.selected_id);
               if (index < integrators.length) {
-                global.CLIPBOARD_ROTATION = integrators[index].elm.rotation;
-                global.CLIPBOARD_FLIP = integrators[index].elm.flip;
+                global.clipboard_rotation = integrators[index].elm.rotation;
+                global.clipboard_flip = integrators[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_DIFFERENTIATOR) {
+            } else if (global.clipboard_type === global.TYPE_DIFFERENTIATOR) {
               index = engine_functions.get_differentiator(global.selected_id);
               if (index < differentiators.length) {
-                global.CLIPBOARD_ROTATION = differentiators[index].elm.rotation;
-                global.CLIPBOARD_FLIP = differentiators[index].elm.flip;
+                global.clipboard_rotation = differentiators[index].elm.rotation;
+                global.clipboard_flip = differentiators[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_LPF) {
+            } else if (global.clipboard_type === global.TYPE_LPF) {
               index = engine_functions.get_lowpass(global.selected_id);
               if (index < lowpasses.length) {
-                global.CLIPBOARD_ROTATION = lowpasses[index].elm.rotation;
-                global.CLIPBOARD_FLIP = lowpasses[index].elm.flip;
+                global.clipboard_rotation = lowpasses[index].elm.rotation;
+                global.clipboard_flip = lowpasses[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_HPF) {
+            } else if (global.clipboard_type === global.TYPE_HPF) {
               index = engine_functions.get_highpass(global.selected_id);
               if (index < highpasses.length) {
-                global.CLIPBOARD_ROTATION = highpasses[index].elm.rotation;
-                global.CLIPBOARD_FLIP = highpasses[index].elm.flip;
+                global.clipboard_rotation = highpasses[index].elm.rotation;
+                global.clipboard_flip = highpasses[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_REL) {
+            } else if (global.clipboard_type === global.TYPE_REL) {
               index = engine_functions.get_relay(global.selected_id);
               if (index < relays.length) {
-                global.CLIPBOARD_ROTATION = relays[index].elm.rotation;
-                global.CLIPBOARD_FLIP = relays[index].elm.flip;
+                global.clipboard_rotation = relays[index].elm.rotation;
+                global.clipboard_flip = relays[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_PID) {
+            } else if (global.clipboard_type === global.TYPE_PID) {
               index = engine_functions.get_pid(global.selected_id);
               if (index < pids.length) {
-                global.CLIPBOARD_ROTATION = pids[index].elm.rotation;
-                global.CLIPBOARD_FLIP = pids[index].elm.flip;
+                global.clipboard_rotation = pids[index].elm.rotation;
+                global.clipboard_flip = pids[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_LUT) {
+            } else if (global.clipboard_type === global.TYPE_LUT) {
               index = engine_functions.get_lut(global.selected_id);
               if (index < luts.length) {
-                global.CLIPBOARD_ROTATION = luts[index].elm.rotation;
-                global.CLIPBOARD_FLIP = luts[index].elm.flip;
+                global.clipboard_rotation = luts[index].elm.rotation;
+                global.clipboard_flip = luts[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_VCR) {
+            } else if (global.clipboard_type === global.TYPE_VCR) {
               index = engine_functions.get_vcr(global.selected_id);
               if (index < vcrs.length) {
-                global.CLIPBOARD_ROTATION = vcrs[index].elm.rotation;
-                global.CLIPBOARD_FLIP = vcrs[index].elm.flip;
+                global.clipboard_rotation = vcrs[index].elm.rotation;
+                global.clipboard_flip = vcrs[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_GRT) {
+            } else if (global.clipboard_type === global.TYPE_GRT) {
               index = engine_functions.get_grt(global.selected_id);
               if (index < grts.length) {
-                global.CLIPBOARD_ROTATION = grts[index].elm.rotation;
-                global.CLIPBOARD_FLIP = grts[index].elm.flip;
+                global.clipboard_rotation = grts[index].elm.rotation;
+                global.clipboard_flip = grts[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_TPTZ) {
+            } else if (global.clipboard_type === global.TYPE_TPTZ) {
               index = engine_functions.get_tptz(global.selected_id);
               if (index < tptzs.length) {
-                global.CLIPBOARD_ROTATION = tptzs[index].elm.rotation;
-                global.CLIPBOARD_FLIP = tptzs[index].elm.flip;
+                global.clipboard_rotation = tptzs[index].elm.rotation;
+                global.clipboard_flip = tptzs[index].elm.flip;
               }
-            } else if (global.CLIPBOARD_TYPE === global.TYPE_TRAN) {
+            } else if (global.clipboard_type === global.TYPE_TRAN) {
               index = engine_functions.get_transformer(global.selected_id);
               if (index < transformers.length) {
-                global.CLIPBOARD_ROTATION = transformers[index].elm.rotation;
-                global.CLIPBOARD_FLIP = transformers[index].elm.flip;
+                global.clipboard_rotation = transformers[index].elm.rotation;
+                global.clipboard_flip = transformers[index].elm.flip;
               }
             }
             /* <!-- END AUTOMATICALLY GENERATED !--> */
-            global.CLIPBOARD_PROPERTY = global.copy(global.selected_properties);
+            global.clipboard_property = global.copy(global.selected_properties);
             toast.set_text(language_manager.COPIED[global.LANGUAGES[global.LANGUAGE_INDEX]] + ' {' + global.selected_properties['tag'] + global.selected_id + '}');
             toast.show();
           } else {
@@ -3727,667 +3727,667 @@ class ShortcutManager {
       this.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
       let id: number = -1;
       let index: number = -1;
-      if (global.not_null(global.CLIPBOARD_TYPE) && global.not_null(global.CLIPBOARD_PROPERTY)) {
+      if (global.not_null(global.clipboard_type) && global.not_null(global.clipboard_property)) {
         /* #INSERT_GENERATE_PASTE_ELEMENT# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        if (global.CLIPBOARD_TYPE === global.TYPE_RESISTOR) {
+        if (global.clipboard_type === global.TYPE_RESISTOR) {
           id = engine_functions.get_resistor_assignment();
           engine_functions.add_resistor();
           index = engine_functions.get_resistor(id);
           if (index < resistors.length) {
-            resistors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            resistors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            resistors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            resistors[index].elm.set_properties(global.copy(global.clipboard_property));
+            resistors[index].elm.set_rotation(global.clipboard_rotation);
+            resistors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_CAPACITOR) {
+        } else if (global.clipboard_type === global.TYPE_CAPACITOR) {
           id = engine_functions.get_capacitor_assignment();
           engine_functions.add_capacitor();
           index = engine_functions.get_capacitor(id);
           if (index < capacitors.length) {
-            capacitors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            capacitors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            capacitors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            capacitors[index].elm.set_properties(global.copy(global.clipboard_property));
+            capacitors[index].elm.set_rotation(global.clipboard_rotation);
+            capacitors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_INDUCTOR) {
+        } else if (global.clipboard_type === global.TYPE_INDUCTOR) {
           id = engine_functions.get_inductor_assignment();
           engine_functions.add_inductor();
           index = engine_functions.get_inductor(id);
           if (index < inductors.length) {
-            inductors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            inductors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            inductors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            inductors[index].elm.set_properties(global.copy(global.clipboard_property));
+            inductors[index].elm.set_rotation(global.clipboard_rotation);
+            inductors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_GROUND) {
+        } else if (global.clipboard_type === global.TYPE_GROUND) {
           id = engine_functions.get_ground_assignment();
           engine_functions.add_ground();
           index = engine_functions.get_ground(id);
           if (index < grounds.length) {
-            grounds[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            grounds[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            grounds[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            grounds[index].elm.set_properties(global.copy(global.clipboard_property));
+            grounds[index].elm.set_rotation(global.clipboard_rotation);
+            grounds[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_DCSOURCE) {
+        } else if (global.clipboard_type === global.TYPE_DCSOURCE) {
           id = engine_functions.get_dcsource_assignment();
           engine_functions.add_dcsource();
           index = engine_functions.get_dcsource(id);
           if (index < dcsources.length) {
-            dcsources[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            dcsources[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            dcsources[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            dcsources[index].elm.set_properties(global.copy(global.clipboard_property));
+            dcsources[index].elm.set_rotation(global.clipboard_rotation);
+            dcsources[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_DCCURRENT) {
+        } else if (global.clipboard_type === global.TYPE_DCCURRENT) {
           id = engine_functions.get_dccurrent_assignment();
           engine_functions.add_dccurrent();
           index = engine_functions.get_dccurrent(id);
           if (index < dccurrents.length) {
-            dccurrents[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            dccurrents[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            dccurrents[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            dccurrents[index].elm.set_properties(global.copy(global.clipboard_property));
+            dccurrents[index].elm.set_rotation(global.clipboard_rotation);
+            dccurrents[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_ACSOURCE) {
+        } else if (global.clipboard_type === global.TYPE_ACSOURCE) {
           id = engine_functions.get_acsource_assignment();
           engine_functions.add_acsource();
           index = engine_functions.get_acsource(id);
           if (index < acsources.length) {
-            acsources[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            acsources[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            acsources[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            acsources[index].elm.set_properties(global.copy(global.clipboard_property));
+            acsources[index].elm.set_rotation(global.clipboard_rotation);
+            acsources[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_ACCURRENT) {
+        } else if (global.clipboard_type === global.TYPE_ACCURRENT) {
           id = engine_functions.get_accurrent_assignment();
           engine_functions.add_accurrent();
           index = engine_functions.get_accurrent(id);
           if (index < accurrents.length) {
-            accurrents[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            accurrents[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            accurrents[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            accurrents[index].elm.set_properties(global.copy(global.clipboard_property));
+            accurrents[index].elm.set_rotation(global.clipboard_rotation);
+            accurrents[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_SQUAREWAVE) {
+        } else if (global.clipboard_type === global.TYPE_SQUAREWAVE) {
           id = engine_functions.get_squarewave_assignment();
           engine_functions.add_squarewave();
           index = engine_functions.get_squarewave(id);
           if (index < squarewaves.length) {
-            squarewaves[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            squarewaves[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            squarewaves[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            squarewaves[index].elm.set_properties(global.copy(global.clipboard_property));
+            squarewaves[index].elm.set_rotation(global.clipboard_rotation);
+            squarewaves[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_SAW) {
+        } else if (global.clipboard_type === global.TYPE_SAW) {
           id = engine_functions.get_sawwave_assignment();
           engine_functions.add_sawwave();
           index = engine_functions.get_sawwave(id);
           if (index < sawwaves.length) {
-            sawwaves[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            sawwaves[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            sawwaves[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            sawwaves[index].elm.set_properties(global.copy(global.clipboard_property));
+            sawwaves[index].elm.set_rotation(global.clipboard_rotation);
+            sawwaves[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_TRI) {
+        } else if (global.clipboard_type === global.TYPE_TRI) {
           id = engine_functions.get_trianglewave_assignment();
           engine_functions.add_trianglewave();
           index = engine_functions.get_trianglewave(id);
           if (index < trianglewaves.length) {
-            trianglewaves[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            trianglewaves[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            trianglewaves[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            trianglewaves[index].elm.set_properties(global.copy(global.clipboard_property));
+            trianglewaves[index].elm.set_rotation(global.clipboard_rotation);
+            trianglewaves[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_CONSTANT) {
+        } else if (global.clipboard_type === global.TYPE_CONSTANT) {
           id = engine_functions.get_constant_assignment();
           engine_functions.add_constant();
           index = engine_functions.get_constant(id);
           if (index < constants.length) {
-            constants[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            constants[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            constants[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            constants[index].elm.set_properties(global.copy(global.clipboard_property));
+            constants[index].elm.set_rotation(global.clipboard_rotation);
+            constants[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_NET) {
+        } else if (global.clipboard_type === global.TYPE_NET) {
           id = engine_functions.get_net_assignment();
           engine_functions.add_net();
           index = engine_functions.get_net(id);
           if (index < nets.length) {
-            nets[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            nets[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            nets[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            nets[index].elm.set_properties(global.copy(global.clipboard_property));
+            nets[index].elm.set_rotation(global.clipboard_rotation);
+            nets[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_NOTE) {
+        } else if (global.clipboard_type === global.TYPE_NOTE) {
           id = engine_functions.get_note_assignment();
           engine_functions.add_note();
           index = engine_functions.get_note(id);
           if (index < notes.length) {
-            notes[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            notes[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            notes[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            notes[index].elm.set_properties(global.copy(global.clipboard_property));
+            notes[index].elm.set_rotation(global.clipboard_rotation);
+            notes[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_RAIL) {
+        } else if (global.clipboard_type === global.TYPE_RAIL) {
           id = engine_functions.get_rail_assignment();
           engine_functions.add_rail();
           index = engine_functions.get_rail(id);
           if (index < rails.length) {
-            rails[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            rails[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            rails[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            rails[index].elm.set_properties(global.copy(global.clipboard_property));
+            rails[index].elm.set_rotation(global.clipboard_rotation);
+            rails[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_VOLTMETER) {
+        } else if (global.clipboard_type === global.TYPE_VOLTMETER) {
           id = engine_functions.get_voltmeter_assignment();
           engine_functions.add_voltmeter();
           index = engine_functions.get_voltmeter(id);
           if (index < voltmeters.length) {
-            voltmeters[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            voltmeters[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            voltmeters[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            voltmeters[index].elm.set_properties(global.copy(global.clipboard_property));
+            voltmeters[index].elm.set_rotation(global.clipboard_rotation);
+            voltmeters[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_OHMMETER) {
+        } else if (global.clipboard_type === global.TYPE_OHMMETER) {
           id = engine_functions.get_ohmmeter_assignment();
           engine_functions.add_ohmmeter();
           index = engine_functions.get_ohmmeter(id);
           if (index < ohmmeters.length) {
-            ohmmeters[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            ohmmeters[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            ohmmeters[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            ohmmeters[index].elm.set_properties(global.copy(global.clipboard_property));
+            ohmmeters[index].elm.set_rotation(global.clipboard_rotation);
+            ohmmeters[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_AMMETER) {
+        } else if (global.clipboard_type === global.TYPE_AMMETER) {
           id = engine_functions.get_ammeter_assignment();
           engine_functions.add_ammeter();
           index = engine_functions.get_ammeter(id);
           if (index < ammeters.length) {
-            ammeters[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            ammeters[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            ammeters[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            ammeters[index].elm.set_properties(global.copy(global.clipboard_property));
+            ammeters[index].elm.set_rotation(global.clipboard_rotation);
+            ammeters[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_WATTMETER) {
+        } else if (global.clipboard_type === global.TYPE_WATTMETER) {
           id = engine_functions.get_wattmeter_assignment();
           engine_functions.add_wattmeter();
           index = engine_functions.get_wattmeter(id);
           if (index < wattmeters.length) {
-            wattmeters[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            wattmeters[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            wattmeters[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            wattmeters[index].elm.set_properties(global.copy(global.clipboard_property));
+            wattmeters[index].elm.set_rotation(global.clipboard_rotation);
+            wattmeters[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_FUSE) {
+        } else if (global.clipboard_type === global.TYPE_FUSE) {
           id = engine_functions.get_fuse_assignment();
           engine_functions.add_fuse();
           index = engine_functions.get_fuse(id);
           if (index < fuses.length) {
-            fuses[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            fuses[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            fuses[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            fuses[index].elm.set_properties(global.copy(global.clipboard_property));
+            fuses[index].elm.set_rotation(global.clipboard_rotation);
+            fuses[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_SPST) {
+        } else if (global.clipboard_type === global.TYPE_SPST) {
           id = engine_functions.get_spst_assignment();
           engine_functions.add_spst();
           index = engine_functions.get_spst(id);
           if (index < spsts.length) {
-            spsts[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            spsts[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            spsts[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            spsts[index].elm.set_properties(global.copy(global.clipboard_property));
+            spsts[index].elm.set_rotation(global.clipboard_rotation);
+            spsts[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_SPDT) {
+        } else if (global.clipboard_type === global.TYPE_SPDT) {
           id = engine_functions.get_spdt_assignment();
           engine_functions.add_spdt();
           index = engine_functions.get_spdt(id);
           if (index < spdts.length) {
-            spdts[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            spdts[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            spdts[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            spdts[index].elm.set_properties(global.copy(global.clipboard_property));
+            spdts[index].elm.set_rotation(global.clipboard_rotation);
+            spdts[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_NOT) {
+        } else if (global.clipboard_type === global.TYPE_NOT) {
           id = engine_functions.get_not_assignment();
           engine_functions.add_not();
           index = engine_functions.get_not(id);
           if (index < nots.length) {
-            nots[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            nots[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            nots[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            nots[index].elm.set_properties(global.copy(global.clipboard_property));
+            nots[index].elm.set_rotation(global.clipboard_rotation);
+            nots[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_DIODE) {
+        } else if (global.clipboard_type === global.TYPE_DIODE) {
           id = engine_functions.get_diode_assignment();
           engine_functions.add_diode();
           index = engine_functions.get_diode(id);
           if (index < diodes.length) {
-            diodes[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            diodes[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            diodes[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            diodes[index].elm.set_properties(global.copy(global.clipboard_property));
+            diodes[index].elm.set_rotation(global.clipboard_rotation);
+            diodes[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_LED) {
+        } else if (global.clipboard_type === global.TYPE_LED) {
           id = engine_functions.get_led_assignment();
           engine_functions.add_led();
           index = engine_functions.get_led(id);
           if (index < leds.length) {
-            leds[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            leds[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            leds[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            leds[index].elm.set_properties(global.copy(global.clipboard_property));
+            leds[index].elm.set_rotation(global.clipboard_rotation);
+            leds[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_ZENER) {
+        } else if (global.clipboard_type === global.TYPE_ZENER) {
           id = engine_functions.get_zener_assignment();
           engine_functions.add_zener();
           index = engine_functions.get_zener(id);
           if (index < zeners.length) {
-            zeners[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            zeners[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            zeners[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            zeners[index].elm.set_properties(global.copy(global.clipboard_property));
+            zeners[index].elm.set_rotation(global.clipboard_rotation);
+            zeners[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_POTENTIOMETER) {
+        } else if (global.clipboard_type === global.TYPE_POTENTIOMETER) {
           id = engine_functions.get_potentiometer_assignment();
           engine_functions.add_potentiometer();
           index = engine_functions.get_potentiometer(id);
           if (index < potentiometers.length) {
-            potentiometers[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            potentiometers[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            potentiometers[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            potentiometers[index].elm.set_properties(global.copy(global.clipboard_property));
+            potentiometers[index].elm.set_rotation(global.clipboard_rotation);
+            potentiometers[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_AND) {
+        } else if (global.clipboard_type === global.TYPE_AND) {
           id = engine_functions.get_and_assignment();
           engine_functions.add_and();
           index = engine_functions.get_and(id);
           if (index < ands.length) {
-            ands[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            ands[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            ands[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            ands[index].elm.set_properties(global.copy(global.clipboard_property));
+            ands[index].elm.set_rotation(global.clipboard_rotation);
+            ands[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_OR) {
+        } else if (global.clipboard_type === global.TYPE_OR) {
           id = engine_functions.get_or_assignment();
           engine_functions.add_or();
           index = engine_functions.get_or(id);
           if (index < ors.length) {
-            ors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            ors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            ors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            ors[index].elm.set_properties(global.copy(global.clipboard_property));
+            ors[index].elm.set_rotation(global.clipboard_rotation);
+            ors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_NAND) {
+        } else if (global.clipboard_type === global.TYPE_NAND) {
           id = engine_functions.get_nand_assignment();
           engine_functions.add_nand();
           index = engine_functions.get_nand(id);
           if (index < nands.length) {
-            nands[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            nands[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            nands[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            nands[index].elm.set_properties(global.copy(global.clipboard_property));
+            nands[index].elm.set_rotation(global.clipboard_rotation);
+            nands[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_NOR) {
+        } else if (global.clipboard_type === global.TYPE_NOR) {
           id = engine_functions.get_nor_assignment();
           engine_functions.add_nor();
           index = engine_functions.get_nor(id);
           if (index < nors.length) {
-            nors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            nors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            nors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            nors[index].elm.set_properties(global.copy(global.clipboard_property));
+            nors[index].elm.set_rotation(global.clipboard_rotation);
+            nors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_XOR) {
+        } else if (global.clipboard_type === global.TYPE_XOR) {
           id = engine_functions.get_xor_assignment();
           engine_functions.add_xor();
           index = engine_functions.get_xor(id);
           if (index < xors.length) {
-            xors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            xors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            xors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            xors[index].elm.set_properties(global.copy(global.clipboard_property));
+            xors[index].elm.set_rotation(global.clipboard_rotation);
+            xors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_XNOR) {
+        } else if (global.clipboard_type === global.TYPE_XNOR) {
           id = engine_functions.get_xnor_assignment();
           engine_functions.add_xnor();
           index = engine_functions.get_xnor(id);
           if (index < xnors.length) {
-            xnors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            xnors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            xnors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            xnors[index].elm.set_properties(global.copy(global.clipboard_property));
+            xnors[index].elm.set_rotation(global.clipboard_rotation);
+            xnors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_DFF) {
+        } else if (global.clipboard_type === global.TYPE_DFF) {
           id = engine_functions.get_dff_assignment();
           engine_functions.add_dff();
           index = engine_functions.get_dff(id);
           if (index < dffs.length) {
-            dffs[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            dffs[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            dffs[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            dffs[index].elm.set_properties(global.copy(global.clipboard_property));
+            dffs[index].elm.set_rotation(global.clipboard_rotation);
+            dffs[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_VSAT) {
+        } else if (global.clipboard_type === global.TYPE_VSAT) {
           id = engine_functions.get_vsat_assignment();
           engine_functions.add_vsat();
           index = engine_functions.get_vsat(id);
           if (index < vsats.length) {
-            vsats[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            vsats[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            vsats[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            vsats[index].elm.set_properties(global.copy(global.clipboard_property));
+            vsats[index].elm.set_rotation(global.clipboard_rotation);
+            vsats[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_ADD) {
+        } else if (global.clipboard_type === global.TYPE_ADD) {
           id = engine_functions.get_adder_assignment();
           engine_functions.add_adder();
           index = engine_functions.get_adder(id);
           if (index < adders.length) {
-            adders[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            adders[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            adders[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            adders[index].elm.set_properties(global.copy(global.clipboard_property));
+            adders[index].elm.set_rotation(global.clipboard_rotation);
+            adders[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_SUB) {
+        } else if (global.clipboard_type === global.TYPE_SUB) {
           id = engine_functions.get_subtractor_assignment();
           engine_functions.add_subtractor();
           index = engine_functions.get_subtractor(id);
           if (index < subtractors.length) {
-            subtractors[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            subtractors[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            subtractors[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            subtractors[index].elm.set_properties(global.copy(global.clipboard_property));
+            subtractors[index].elm.set_rotation(global.clipboard_rotation);
+            subtractors[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_MUL) {
+        } else if (global.clipboard_type === global.TYPE_MUL) {
           id = engine_functions.get_multiplier_assignment();
           engine_functions.add_multiplier();
           index = engine_functions.get_multiplier(id);
           if (index < multipliers.length) {
-            multipliers[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            multipliers[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            multipliers[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            multipliers[index].elm.set_properties(global.copy(global.clipboard_property));
+            multipliers[index].elm.set_rotation(global.clipboard_rotation);
+            multipliers[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_DIV) {
+        } else if (global.clipboard_type === global.TYPE_DIV) {
           id = engine_functions.get_divider_assignment();
           engine_functions.add_divider();
           index = engine_functions.get_divider(id);
           if (index < dividers.length) {
-            dividers[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            dividers[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            dividers[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            dividers[index].elm.set_properties(global.copy(global.clipboard_property));
+            dividers[index].elm.set_rotation(global.clipboard_rotation);
+            dividers[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_GAIN) {
+        } else if (global.clipboard_type === global.TYPE_GAIN) {
           id = engine_functions.get_gain_assignment();
           engine_functions.add_gain();
           index = engine_functions.get_gain(id);
           if (index < gains.length) {
-            gains[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            gains[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            gains[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            gains[index].elm.set_properties(global.copy(global.clipboard_property));
+            gains[index].elm.set_rotation(global.clipboard_rotation);
+            gains[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_ABS) {
+        } else if (global.clipboard_type === global.TYPE_ABS) {
           id = engine_functions.get_absval_assignment();
           engine_functions.add_absval();
           index = engine_functions.get_absval(id);
           if (index < absvals.length) {
-            absvals[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            absvals[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            absvals[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            absvals[index].elm.set_properties(global.copy(global.clipboard_property));
+            absvals[index].elm.set_rotation(global.clipboard_rotation);
+            absvals[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_VCSW) {
+        } else if (global.clipboard_type === global.TYPE_VCSW) {
           id = engine_functions.get_vcsw_assignment();
           engine_functions.add_vcsw();
           index = engine_functions.get_vcsw(id);
           if (index < vcsws.length) {
-            vcsws[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            vcsws[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            vcsws[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            vcsws[index].elm.set_properties(global.copy(global.clipboard_property));
+            vcsws[index].elm.set_rotation(global.clipboard_rotation);
+            vcsws[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_VCVS) {
+        } else if (global.clipboard_type === global.TYPE_VCVS) {
           id = engine_functions.get_vcvs_assignment();
           engine_functions.add_vcvs();
           index = engine_functions.get_vcvs(id);
           if (index < vcvss.length) {
-            vcvss[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            vcvss[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            vcvss[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            vcvss[index].elm.set_properties(global.copy(global.clipboard_property));
+            vcvss[index].elm.set_rotation(global.clipboard_rotation);
+            vcvss[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_VCCS) {
+        } else if (global.clipboard_type === global.TYPE_VCCS) {
           id = engine_functions.get_vccs_assignment();
           engine_functions.add_vccs();
           index = engine_functions.get_vccs(id);
           if (index < vccss.length) {
-            vccss[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            vccss[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            vccss[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            vccss[index].elm.set_properties(global.copy(global.clipboard_property));
+            vccss[index].elm.set_rotation(global.clipboard_rotation);
+            vccss[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_CCCS) {
+        } else if (global.clipboard_type === global.TYPE_CCCS) {
           id = engine_functions.get_cccs_assignment();
           engine_functions.add_cccs();
           index = engine_functions.get_cccs(id);
           if (index < cccss.length) {
-            cccss[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            cccss[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            cccss[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            cccss[index].elm.set_properties(global.copy(global.clipboard_property));
+            cccss[index].elm.set_rotation(global.clipboard_rotation);
+            cccss[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_CCVS) {
+        } else if (global.clipboard_type === global.TYPE_CCVS) {
           id = engine_functions.get_ccvs_assignment();
           engine_functions.add_ccvs();
           index = engine_functions.get_ccvs(id);
           if (index < ccvss.length) {
-            ccvss[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            ccvss[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            ccvss[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            ccvss[index].elm.set_properties(global.copy(global.clipboard_property));
+            ccvss[index].elm.set_rotation(global.clipboard_rotation);
+            ccvss[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_OPAMP) {
+        } else if (global.clipboard_type === global.TYPE_OPAMP) {
           id = engine_functions.get_opamp_assignment();
           engine_functions.add_opamp();
           index = engine_functions.get_opamp(id);
           if (index < opamps.length) {
-            opamps[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            opamps[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            opamps[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            opamps[index].elm.set_properties(global.copy(global.clipboard_property));
+            opamps[index].elm.set_rotation(global.clipboard_rotation);
+            opamps[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_NMOS) {
+        } else if (global.clipboard_type === global.TYPE_NMOS) {
           id = engine_functions.get_nmosfet_assignment();
           engine_functions.add_nmosfet();
           index = engine_functions.get_nmosfet(id);
           if (index < nmosfets.length) {
-            nmosfets[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            nmosfets[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            nmosfets[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            nmosfets[index].elm.set_properties(global.copy(global.clipboard_property));
+            nmosfets[index].elm.set_rotation(global.clipboard_rotation);
+            nmosfets[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_PMOS) {
+        } else if (global.clipboard_type === global.TYPE_PMOS) {
           id = engine_functions.get_pmosfet_assignment();
           engine_functions.add_pmosfet();
           index = engine_functions.get_pmosfet(id);
           if (index < pmosfets.length) {
-            pmosfets[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            pmosfets[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            pmosfets[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            pmosfets[index].elm.set_properties(global.copy(global.clipboard_property));
+            pmosfets[index].elm.set_rotation(global.clipboard_rotation);
+            pmosfets[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_NPN) {
+        } else if (global.clipboard_type === global.TYPE_NPN) {
           id = engine_functions.get_npn_assignment();
           engine_functions.add_npn();
           index = engine_functions.get_npn(id);
           if (index < npns.length) {
-            npns[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            npns[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            npns[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            npns[index].elm.set_properties(global.copy(global.clipboard_property));
+            npns[index].elm.set_rotation(global.clipboard_rotation);
+            npns[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_PNP) {
+        } else if (global.clipboard_type === global.TYPE_PNP) {
           id = engine_functions.get_pnp_assignment();
           engine_functions.add_pnp();
           index = engine_functions.get_pnp(id);
           if (index < pnps.length) {
-            pnps[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            pnps[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            pnps[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            pnps[index].elm.set_properties(global.copy(global.clipboard_property));
+            pnps[index].elm.set_rotation(global.clipboard_rotation);
+            pnps[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_ADC) {
+        } else if (global.clipboard_type === global.TYPE_ADC) {
           id = engine_functions.get_adc_assignment();
           engine_functions.add_adc();
           index = engine_functions.get_adc(id);
           if (index < adcs.length) {
-            adcs[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            adcs[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            adcs[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            adcs[index].elm.set_properties(global.copy(global.clipboard_property));
+            adcs[index].elm.set_rotation(global.clipboard_rotation);
+            adcs[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_DAC) {
+        } else if (global.clipboard_type === global.TYPE_DAC) {
           id = engine_functions.get_dac_assignment();
           engine_functions.add_dac();
           index = engine_functions.get_dac(id);
           if (index < dacs.length) {
-            dacs[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            dacs[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            dacs[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            dacs[index].elm.set_properties(global.copy(global.clipboard_property));
+            dacs[index].elm.set_rotation(global.clipboard_rotation);
+            dacs[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_SAH) {
+        } else if (global.clipboard_type === global.TYPE_SAH) {
           id = engine_functions.get_samplers_assignment();
           engine_functions.add_samplers();
           index = engine_functions.get_samplers(id);
           if (index < sandhs.length) {
-            sandhs[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            sandhs[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            sandhs[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            sandhs[index].elm.set_properties(global.copy(global.clipboard_property));
+            sandhs[index].elm.set_rotation(global.clipboard_rotation);
+            sandhs[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_PWM) {
+        } else if (global.clipboard_type === global.TYPE_PWM) {
           id = engine_functions.get_pwm_assignment();
           engine_functions.add_pwm();
           index = engine_functions.get_pwm(id);
           if (index < pwms.length) {
-            pwms[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            pwms[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            pwms[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            pwms[index].elm.set_properties(global.copy(global.clipboard_property));
+            pwms[index].elm.set_rotation(global.clipboard_rotation);
+            pwms[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_INTEGRATOR) {
+        } else if (global.clipboard_type === global.TYPE_INTEGRATOR) {
           id = engine_functions.get_integrator_assignment();
           engine_functions.add_integrator();
           index = engine_functions.get_integrator(id);
           if (index < integrators.length) {
-            integrators[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            integrators[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            integrators[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            integrators[index].elm.set_properties(global.copy(global.clipboard_property));
+            integrators[index].elm.set_rotation(global.clipboard_rotation);
+            integrators[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_DIFFERENTIATOR) {
+        } else if (global.clipboard_type === global.TYPE_DIFFERENTIATOR) {
           id = engine_functions.get_differentiator_assignment();
           engine_functions.add_differentiator();
           index = engine_functions.get_differentiator(id);
           if (index < differentiators.length) {
-            differentiators[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            differentiators[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            differentiators[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            differentiators[index].elm.set_properties(global.copy(global.clipboard_property));
+            differentiators[index].elm.set_rotation(global.clipboard_rotation);
+            differentiators[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_LPF) {
+        } else if (global.clipboard_type === global.TYPE_LPF) {
           id = engine_functions.get_lowpass_assignment();
           engine_functions.add_lowpass();
           index = engine_functions.get_lowpass(id);
           if (index < lowpasses.length) {
-            lowpasses[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            lowpasses[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            lowpasses[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            lowpasses[index].elm.set_properties(global.copy(global.clipboard_property));
+            lowpasses[index].elm.set_rotation(global.clipboard_rotation);
+            lowpasses[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_HPF) {
+        } else if (global.clipboard_type === global.TYPE_HPF) {
           id = engine_functions.get_highpass_assignment();
           engine_functions.add_highpass();
           index = engine_functions.get_highpass(id);
           if (index < highpasses.length) {
-            highpasses[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            highpasses[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            highpasses[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            highpasses[index].elm.set_properties(global.copy(global.clipboard_property));
+            highpasses[index].elm.set_rotation(global.clipboard_rotation);
+            highpasses[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_REL) {
+        } else if (global.clipboard_type === global.TYPE_REL) {
           id = engine_functions.get_relay_assignment();
           engine_functions.add_relay();
           index = engine_functions.get_relay(id);
           if (index < relays.length) {
-            relays[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            relays[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            relays[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            relays[index].elm.set_properties(global.copy(global.clipboard_property));
+            relays[index].elm.set_rotation(global.clipboard_rotation);
+            relays[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_PID) {
+        } else if (global.clipboard_type === global.TYPE_PID) {
           id = engine_functions.get_pid_assignment();
           engine_functions.add_pid();
           index = engine_functions.get_pid(id);
           if (index < pids.length) {
-            pids[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            pids[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            pids[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            pids[index].elm.set_properties(global.copy(global.clipboard_property));
+            pids[index].elm.set_rotation(global.clipboard_rotation);
+            pids[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_LUT) {
+        } else if (global.clipboard_type === global.TYPE_LUT) {
           id = engine_functions.get_lut_assignment();
           engine_functions.add_lut();
           index = engine_functions.get_lut(id);
           if (index < luts.length) {
-            luts[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            luts[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            luts[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            luts[index].elm.set_properties(global.copy(global.clipboard_property));
+            luts[index].elm.set_rotation(global.clipboard_rotation);
+            luts[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_VCR) {
+        } else if (global.clipboard_type === global.TYPE_VCR) {
           id = engine_functions.get_vcr_assignment();
           engine_functions.add_vcr();
           index = engine_functions.get_vcr(id);
           if (index < vcrs.length) {
-            vcrs[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            vcrs[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            vcrs[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            vcrs[index].elm.set_properties(global.copy(global.clipboard_property));
+            vcrs[index].elm.set_rotation(global.clipboard_rotation);
+            vcrs[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_GRT) {
+        } else if (global.clipboard_type === global.TYPE_GRT) {
           id = engine_functions.get_grt_assignment();
           engine_functions.add_grt();
           index = engine_functions.get_grt(id);
           if (index < grts.length) {
-            grts[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            grts[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            grts[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            grts[index].elm.set_properties(global.copy(global.clipboard_property));
+            grts[index].elm.set_rotation(global.clipboard_rotation);
+            grts[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_TPTZ) {
+        } else if (global.clipboard_type === global.TYPE_TPTZ) {
           id = engine_functions.get_tptz_assignment();
           engine_functions.add_tptz();
           index = engine_functions.get_tptz(id);
           if (index < tptzs.length) {
-            tptzs[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            tptzs[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            tptzs[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            tptzs[index].elm.set_properties(global.copy(global.clipboard_property));
+            tptzs[index].elm.set_rotation(global.clipboard_rotation);
+            tptzs[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
-        } else if (global.CLIPBOARD_TYPE === global.TYPE_TRAN) {
+        } else if (global.clipboard_type === global.TYPE_TRAN) {
           id = engine_functions.get_transformer_assignment();
           engine_functions.add_transformer();
           index = engine_functions.get_transformer(id);
           if (index < transformers.length) {
-            transformers[index].elm.set_properties(global.copy(global.CLIPBOARD_PROPERTY));
-            transformers[index].elm.set_rotation(global.CLIPBOARD_ROTATION);
-            transformers[index].elm.set_flip(global.CLIPBOARD_FLIP);
+            transformers[index].elm.set_properties(global.copy(global.clipboard_property));
+            transformers[index].elm.set_rotation(global.clipboard_rotation);
+            transformers[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
         }

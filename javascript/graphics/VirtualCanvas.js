@@ -21,7 +21,10 @@
 class VirtualCanvas {
     constructor(width, height, id) {
         this.ASSIGN_ID = false;
+        this.surface = null;
         this.id = -1;
+        /* Get the drawing context */
+        this.context = null;
         this.ASSIGN_ID = false;
         /* Create a virtual canvas element */
         this.surface = document.createElement('canvas');

@@ -22,134 +22,127 @@
 /* NOTE: ALL COMMENTS MUST BE ON THEIR OWN LINES!!!!! This is to be safe when obfuscating. */
 /* Prevent the backspace from navigating! Disable scrolling w/ backspace or arrow keys! */
 /* #START_GLOBAL_EXTRACT# */
-/* add the hashCode function for all strings. */
-
-//@ts-ignore
-String.prototype.hashCode = function () {
-  let hash: number = 0;
-  let i: number = 0;
-  let chr: string = '';
-  if (this.length === 0) {
-    return hash;
-  }
-  for (i = 0; i < this.length; i++) {
-    chr = this.charCodeAt(i);
-    hash = (hash << 5) - hash + Number(chr);
-    hash |= 0;
-  }
-  return hash;
-};
-/* Save a file for the user! */
-function save_file(title: string, content: string) {
-  let blob: Blob = new Blob([content], {
-    type: 'text/plain;charset=utf-8'
-  });
-  saveAs(blob, title);
-}
-/* Save an image for the user! */
-function save_image(title: string, canvas: HTMLCanvasElement) {
-  canvas.toBlob(function (blob) {
-    saveAs(blob, title);
-  });
-}
-/* Save an image for the user! */
-function save_image_mobile(title: string, canvas: HTMLCanvasElement) {
-  canvas.toBlob(function (blob) {
-    let reader: FileReader = new FileReader();
-    reader.readAsDataURL(blob);
-    reader.onloadend = function () {
-      window.JsInterface.javascript_native_hook('push-image', title, reader.result);
-    };
-  });
-}
 
 /* Global state variable */
 var global: Global = new Global();
+/* Add the hashCode function for all strings. */
+//@ts-ignore
+String.prototype.hashCode = function (): number {
+	let hash: number = 0;
+	let i: number = 0;
+	let chr: string = '';
+	if (this.length === 0) {
+		return hash;
+	}
+	for (i = 0; i < this.length; i++) {
+		chr = this.charCodeAt(i);
+		hash = (hash << 5) - hash + <number>(<unknown>chr);
+		hash |= 0;
+	}
+	return hash;
+};
+/* Save a file for the user! */
+function save_file(title: string, content: string): void {
+	let blob: Blob = new Blob([content], {
+		type: 'text/plain;charset=utf-8'
+	});
+	saveAs(blob, title);
+}
+/* Save an image for the user! */
+function save_image(title: string, canvas: HTMLCanvasElement): void {
+	canvas.toBlob(function (blob) {
+		saveAs(blob, title);
+	});
+}
+/* Save an image for the user! */
+function save_image_mobile(title: string, canvas: HTMLCanvasElement): void {
+	window.JsInterface.javascript_native_hook('push-image', title, canvas.toDataURL());
+}
+
 /* Create a global variable to access the "file_explorer" element in HTML. */
-var file_reader = global.NULL;
+var file_reader: HTMLElement = global.NULL;
 if (global.MOBILE_MODE) {
-  file_reader = document.getElementById('file_explorer_mobile');
+	file_reader = document.getElementById('file_explorer_mobile');
 } else {
-  file_reader = document.getElementById('file_explorer');
+	file_reader = document.getElementById('file_explorer');
 }
 /* Create a global variable to access the "file_saver" element in HTML. */
 var file_saver = document.getElementById('file_saver');
 /* Create a global variable to access the "file_saver" element in HTML. */
 var file_loader = document.getElementById('file_loader');
 /* Handles any file events that take place. */
-function file_event(input): void {
-  let file: File = input.files[0];
-  let reader: FileReader = new FileReader();
-  reader.onload = function (e) {
-    /* Grab the contents of the file. */
-    let text: string = String(reader.result);
-    /* Save the name of the file to global. */
-    /* Remove the extension :3 */
-    let title: string = input.files[0].name.split('.')[0];
-    if (title.length > global.MAX_TEXT_LENGTH) {
-      title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
-    }
-    global.USER_FILE.title = title;
-    bottom_menu.resize_bottom_menu();
-    /* Save the contents of the file to global. */
-    global.USER_FILE.content = text;
-    /* Enable a flag to dictate that a user selected a file. */
-    global.USER_FILE_SELECTED = true;
-    /* Restart the canvas drawing events. */
-    global.CANVAS_DRAW_EVENT = true;
-  };
-  /* In case we run into an error, let's report it. */
-  reader.onerror = function (err) {};
-  /* Start the reader and wait for the results. */
-  reader.readAsText(input.files[0]);
+function file_event(input: HTMLInputElement): void {
+	let reader: FileReader = new FileReader();
+	reader.onload = function (e): void {
+		/* Grab the contents of the file. */
+		let text: string = <string>(<unknown>reader.result);
+		/* Save the name of the file to global. */
+		/* Remove the extension :3 */
+		let title: string = input.files[0].name.split('.')[0];
+		if (title.length > global.MAX_TEXT_LENGTH) {
+			title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
+		}
+		global.user_file.title = title;
+		bottom_menu.resize_bottom_menu();
+		/* Save the contents of the file to global. */
+		global.user_file.content = text;
+		/* Enable a flag to dictate that a user selected a file. */
+		global.user_file_selected = true;
+		/* Restart the canvas drawing events. */
+		global.canvas_draw_event = true;
+	};
+	/* In case we run into an error, let's report it. */
+	reader.onerror = function (err: ProgressEvent<FileReader>) {};
+	/* Start the reader and wait for the results. */
+	reader.readAsText(input.files[0]);
 }
 /* Handles any file events that take place. */
-function file_event_mobile(title: string, data: string) {
-  if (title.length > global.MAX_TEXT_LENGTH) {
-    title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
-  }
-  global.USER_FILE.title = title;
-  bottom_menu.resize_bottom_menu();
-  /* Save the contents of the file to global. */
-  global.USER_FILE.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
+function file_event_mobile(title: string, data: string): void {
+	if (title.length > global.MAX_TEXT_LENGTH) {
+		title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
+	}
+	global.user_file.title = title;
+	bottom_menu.resize_bottom_menu();
+	/* Save the contents of the file to global. */
+	global.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
 }
 
-function restore_system_options(index: number, value: string) {
-  if (index === global.SYSTEM_OPTION_LANGUAGE) {
-    for (var i: number = 0; i < global.LANGUAGES.length; i++) {
-      if (value === global.LANGUAGES[i]) {
-        global.LANGUAGE_INDEX = i;
-      }
-    }
-  }
-  global.SYSTEM_OPTIONS['values'][index] = value;
+function restore_system_options(index: number, value: string): void {
+	if (index === global.SYSTEM_OPTION_LANGUAGE) {
+		for (var i: number = 0; i < global.LANGUAGES.length; i++) {
+			if (value === global.LANGUAGES[i]) {
+				global.LANGUAGE_INDEX = i;
+			}
+		}
+	}
+	global.SYSTEM_OPTIONS['values'][index] = value;
 }
 
 function restore_zoom_offset(zoom: number, delta_x: number, dx: number, x_offset: number, delta_y: number, dy: number, y_offset: number): void {
-  global.WORKSPACE_ZOOM_SCALE = Number(zoom);
-  global.dx = Number(dx);
-  global.dy = Number(dy);
-  global.x_offset = Number(x_offset);
-  global.y_offset = Number(y_offset);
-  global.delta_x = Number(delta_x);
-  global.delta_y = Number(delta_y);
-  workspace.workspace_zoom();
-  global.DRAW_BLOCK = true;
-  global.SIGNAL_BUILD_ELEMENT = true;
+	global.workspace_zoom_scale = Number(zoom);
+	global.dx = Number(dx);
+	global.dy = Number(dy);
+	global.x_offset = Number(x_offset);
+	global.y_offset = Number(y_offset);
+	global.delta_x = Number(delta_x);
+	global.delta_y = Number(delta_y);
+	workspace.workspace_zoom();
+	global.draw_block = true;
+	global.SIGNAL_BUILD_ELEMENT = true;
 }
 
 function handle_file_loading(): void {
-  /* Enable a flag to dictate that a user selected a file. */
-  global.USER_FILE_SELECTED = true;
-  /* Restart the canvas drawing events. */
-  global.CANVAS_DRAW_EVENT = true;
-  try {
-    engine_functions.parse_elements(global.USER_FILE.content);
-  } catch (error) {}
-  global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
-  global.DRAW_BLOCK = true;
-  global.USER_FILE_SELECTED = false;
-  MOUSE_EVENT_LATCH = false;
+	/* Enable a flag to dictate that a user selected a file. */
+	global.user_file_selected = true;
+	/* Restart the canvas drawing events. */
+	global.canvas_draw_event = true;
+	try {
+		engine_functions.parse_elements(global.user_file.content);
+	} catch (error) {}
+	global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+	global.draw_block = true;
+	global.user_file_selected = false;
+	MOUSE_EVENT_LATCH = false;
 }
 var solver_container: HTMLElement = document.getElementById('solver');
 /* The HTML canvas, changed to surface for my convenience. */
@@ -165,7 +158,7 @@ solver_container.appendChild(surface);
 /* Get the 2d context of the surface (used for drawing)*/
 var ctx: CanvasRenderingContext2D = surface.getContext('2d');
 /* A virtual surface */
-var virtual_surface: VirtualCanvas = new VirtualCanvas(1, 1, global.VIRTUAL_CANVAS_ID++);
+var virtual_surface: VirtualCanvas = new VirtualCanvas(1, 1, global.virtual_canvas_id++);
 /* Global Linear Algebra instance */
 var linear_algebra: LinearAlgebra = new LinearAlgebra();
 /* Storage for all the different languages supported by Circuit Solver. */
@@ -179,12 +172,12 @@ var multi_select_manager: MultiSelectManager = new MultiSelectManager();
 /* The aspect ratio for the view port */
 var CANVAS_ASPECT_RATIO: number = 1.333;
 if (global.MOBILE_MODE) {
-  CANVAS_ASPECT_RATIO = 1.618;
+	CANVAS_ASPECT_RATIO = 1.618;
 }
 /* The viewport we will be drawing within! */
 var view_port: Viewport = new Viewport(CANVAS_ASPECT_RATIO, 800, 800 / CANVAS_ASPECT_RATIO);
 /* Global workspace */
-var workspace: Workspace = new Workspace(0, 0, 0, 0, global.WORKSPACE_ZOOM_SCALE);
+var workspace: Workspace = new Workspace(0, 0, 0, 0, global.workspace_zoom_scale);
 /* A class to help handle simulations. It keeps track of all the things that are
 necessary to be done for simulation (node assignment, element assignment, matrix
 sizing, stamping, etc. ) */
@@ -389,1921 +382,1945 @@ var last_webpage_document_title: string = 'untitled';
 var MOUSE_EVENT_LATCH: boolean = false;
 /* #END_GLOBAL_EXTRACT# */
 function load_app(): void {
-  /* Found out which browser we are running on! */
-  browser_detection();
-  /* Initialize the system workspace */
-  workspace = new Workspace(view_port.left, view_port.top, view_port.view_width, view_port.view_height, global.WORKSPACE_ZOOM_SCALE);
-  /* Set the last surface width/height to 0, they'll get re-initialized on resizing anyways. */
-  global.last_surface_width = 0;
-  global.last_surface_height = 0;
-  /* Create the drawing engine */
-  let canvas: GraphicsEngine = new GraphicsEngine(virtual_surface.context);
-  let FIFO_INDEX: number = 0;
-  let touch = global.NULL;
-  let met_max: number = -1;
-  let TEMP_DRAW_SIGNAL: boolean = false;
-  /* Used to calculate node spacing. */
-  let NSX: number = 0;
-  let NSY: number = 0;
-  let MNSX: number = 0;
-  let MNSY: number = 0;
-  let NODE_LENGTH: number = 0;
-  /* In case canvas is scaled inside an html element. If it is, then look at the commented code
+	/* Found out which browser we are running on! */
+	browser_detection();
+	/* Initialize the system workspace */
+	workspace = new Workspace(view_port.left, view_port.top, view_port.view_width, view_port.view_height, global.workspace_zoom_scale);
+	/* Set the last surface width/height to 0, they'll get re-initialized on resizing anyways. */
+	global.last_surface_width = 0;
+	global.last_surface_height = 0;
+	/* Create the drawing engine */
+	let canvas: GraphicsEngine = new GraphicsEngine(virtual_surface.context);
+	let FIFO_INDEX: number = 0;
+	let touch = global.NULL;
+	let TEMP_DRAW_SIGNAL: boolean = false;
+	/* Used to calculate node spacing. */
+	let NSX: number = 0;
+	let NSY: number = 0;
+	let MNSX: number = 0;
+	let MNSY: number = 0;
+	let NODE_LENGTH: number = 0;
+	/* In case canvas is scaled inside an html element. If it is, then look at the commented code
   inside resize_canvas() to handle how these values should be re-calculated. */
-  general_paint.set_paint_style(general_paint.style.FILL);
-  general_paint.set_paint_cap(general_paint.cap.ROUND);
-  general_paint.set_paint_join(general_paint.join.MITER);
-  general_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-  if (global.MOBILE_MODE) {
-    general_paint.set_color(global.GENERAL_WHITE_COLOR);
-  } else {
-    general_paint.set_color(global.GENERAL_BLACK_COLOR);
-  }
-  general_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-  general_paint.set_font(global.DEFAULT_FONT);
-  general_paint.set_alpha(255);
-  general_paint.set_paint_align(general_paint.align.CENTER);
-  /* Inititalize the system. This is called at the end of this file.
+	general_paint.set_paint_style(general_paint.style.FILL);
+	general_paint.set_paint_cap(general_paint.cap.ROUND);
+	general_paint.set_paint_join(general_paint.join.MITER);
+	general_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+	if (global.MOBILE_MODE) {
+		general_paint.set_color(global.GENERAL_WHITE_COLOR);
+	} else {
+		general_paint.set_color(global.GENERAL_BLACK_COLOR);
+	}
+	general_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+	general_paint.set_font(global.DEFAULT_FONT);
+	general_paint.set_alpha(255);
+	general_paint.set_paint_align(general_paint.align.LEFT);
+	/* Inititalize the system. This is called at the end of this file.
   (After everything is initialized) */
-  function initialize(step: number): void {
-    if (step === 0) {
-      resize_canvas();
-      engine_functions.create_nodes(workspace.bounds);
-      global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
-    } else if (step === 1) {
-      menu_bar = new MenuBar();
-      bottom_menu = new BottomMenu();
-      element_options = new ElementOptions();
-      graph_window = new GraphWindow();
-    } else if (step === 2) {
-      time_step_window = new TimeStepWindow();
-      save_circuit_window = new SaveCircuitWindow();
-      save_image_window = new SaveImageWindow();
-      element_options_window = new ElementOptionsWindow();
-      element_options_edit_window = new ElementOptionsEditWindow();
-    } else if (step === 3) {
-      zoom_window = new ZoomWindow();
-      settings_window = new SettingsWindow();
-      yes_no_window = new YesNoWindow();
-      toast = new Toast();
-      simulation_manager = new SimulationManager();
-    } else if (step === 4) {
-      register_cross_platform_listeners();
-      if (!global.MOBILE_MODE) {
-        window.addEventListener('keydown', key_down, false);
-        window.addEventListener('keyup', key_up, false);
-      }
-      /* Handle window resizing. */
-      window.addEventListener('resize', resize_canvas, false);
-      if (!global.MOBILE_MODE) {
-        window.addEventListener('dblclick', double_click, false);
-        webpage_document_title = document.getElementById('title_text');
-      }
-    }
-  }
+	function initialize(step: number): void {
+		if (step === 0) {
+			resize_canvas();
+			engine_functions.create_nodes(workspace.bounds);
+			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+		} else if (step === 1) {
+			menu_bar = new MenuBar();
+			bottom_menu = new BottomMenu();
+			element_options = new ElementOptions();
+			graph_window = new GraphWindow();
+		} else if (step === 2) {
+			time_step_window = new TimeStepWindow();
+			save_circuit_window = new SaveCircuitWindow();
+			save_image_window = new SaveImageWindow();
+			element_options_window = new ElementOptionsWindow();
+			element_options_edit_window = new ElementOptionsEditWindow();
+		} else if (step === 3) {
+			zoom_window = new ZoomWindow();
+			settings_window = new SettingsWindow();
+			yes_no_window = new YesNoWindow();
+			toast = new Toast();
+			simulation_manager = new SimulationManager();
+		} else if (step === 4) {
+			register_cross_platform_listeners();
+			if (!global.MOBILE_MODE) {
+				window.addEventListener('keydown', key_down, false);
+				window.addEventListener('keyup', key_up, false);
+			}
+			/* Handle window resizing. */
+			window.addEventListener('resize', resize_canvas, false);
+			if (!global.MOBILE_MODE) {
+				window.addEventListener('dblclick', double_click, false);
+				webpage_document_title = document.getElementById('title_text');
+			}
+		}
+	}
 
-  function register_cross_platform_listeners(): void {
-    if (global.MOBILE_MODE === true) {
-      surface.addEventListener('touchstart', mouse_down, false);
-      surface.addEventListener('touchmove', mouse_move, false);
-      surface.addEventListener('touchend', mouse_up, false);
-    } else {
-      surface.addEventListener('mousedown', mouse_down, false);
-      surface.addEventListener('mousemove', mouse_move, false);
-      surface.addEventListener('mouseup', mouse_up, false);
-    }
-    if (!global.MOBILE_MODE) {
-      if (global.BROWSER_FIREFOX) {
-        /* For Firefox */
-        surface.addEventListener('DOMMouseScroll', mouse_wheel, false);
-      } else {
-        /* mousewheel duplicates dblclick function */
-        surface.addEventListener('mousewheel', mouse_wheel, false);
-      }
-    }
-  }
+	function register_cross_platform_listeners(): void {
+		if (global.MOBILE_MODE === true) {
+			surface.addEventListener('touchstart', mouse_down, false);
+			surface.addEventListener('touchmove', mouse_move, false);
+			surface.addEventListener('touchend', mouse_up, false);
+		} else {
+			surface.addEventListener('mousedown', mouse_down, false);
+			surface.addEventListener('mousemove', mouse_move, false);
+			surface.addEventListener('mouseup', mouse_up, false);
+		}
+		if (!global.MOBILE_MODE) {
+			if (global.BROWSER_FIREFOX) {
+				/* For Firefox */
+				surface.addEventListener('DOMMouseScroll', mouse_wheel, false);
+			} else {
+				/* mousewheel duplicates dblclick function */
+				surface.addEventListener('mousewheel', mouse_wheel, false);
+			}
+		}
+	}
 
-  function start_system(): void {
-    if (!global.MOBILE_MODE) {
-      register();
-    }
-    main();
-  }
+	function start_system(): void {
+		if (!global.MOBILE_MODE) {
+			register();
+		}
+		main();
+	}
 
-  function resize_canvas(): void {
-    /* Wait until the system proccesses the information then over-write the data. */
-    if (global.RESIZE_EVENT === false) {
-      global.last_view_port_right = view_port.right;
-      global.last_view_port_bottom = view_port.bottom;
-      global.last_view_port_width = view_port.view_width;
-      global.last_view_port_height = view_port.view_height;
-      global.last_surface_width = surface.width;
-      global.last_surface_height = surface.height;
-    }
-    solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', String(window.innerWidth));
-    solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', String(window.innerHeight));
-    solver_container.style.background = 'black';
-    view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth, window.innerHeight);
-    surface.width = view_port.right;
-    surface.height = view_port.bottom;
-    global.RESIZE_W_FACTOR = view_port.view_width / global.last_view_port_width;
-    global.RESIZE_H_FACTOR = view_port.view_height / global.last_view_port_height;
-    /* Resize all the text and stroke widths */
-    if (global.MOBILE_MODE) {
-      global.CANVAS_STROKE_WIDTH_BASE = 0.000775 * view_port.view_width;
-      global.CANVAS_TEXT_SIZE_BASE = 0.000775 * view_port.view_width;
-    } else {
-      global.CANVAS_STROKE_WIDTH_BASE = 0.000725 * view_port.view_width;
-      global.CANVAS_TEXT_SIZE_BASE = 0.000725 * view_port.view_width;
-    }
+	function resize_canvas(): void {
+		/* Wait until the system proccesses the information then over-write the data. */
+		if (global.RESIZE_EVENT === false) {
+			global.last_view_port_right = view_port.right;
+			global.last_view_port_bottom = view_port.bottom;
+			global.last_view_port_width = view_port.view_width;
+			global.last_view_port_height = view_port.view_height;
+			global.last_surface_width = surface.width;
+			global.last_surface_height = surface.height;
+		}
+		solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
+		solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
+		solver_container.style.background = 'black';
+		view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth, window.innerHeight);
+		surface.width = view_port.right;
+		surface.height = view_port.bottom;
+		global.resize_w_factor = view_port.view_width / global.last_view_port_width;
+		global.resize_h_factor = view_port.view_height / global.last_view_port_height;
+		/* Resize all the text and stroke widths */
+		if (global.MOBILE_MODE) {
+			global.CANVAS_STROKE_WIDTH_BASE = 0.000775 * view_port.view_width;
+			global.CANVAS_TEXT_SIZE_BASE = 0.000775 * view_port.view_width;
+		} else {
+			global.CANVAS_STROKE_WIDTH_BASE = 0.000725 * view_port.view_width;
+			global.CANVAS_TEXT_SIZE_BASE = 0.000725 * view_port.view_width;
+		}
 
-    try {
-      ctx.globalCompositeOperation = 'copy';
-      ctx.imageSmoothingEnabled = false;
-      //@ts-ignore
-      ctx.mozImageSmoothingEnabled = false;
-      //@ts-ignore
-      ctx.oImageSmoothingEnabled = false;
-      //@ts-ignore
-      ctx.webkitImageSmoothingEnabled = false;
-      //@ts-ignore
-      ctx.msImageSmoothingEnabled = false;
-    } catch (e) {}
-    global.CANVAS_STROKE_WIDTH_1 = global.CANVAS_STROKE_WIDTH_BASE * 2.25;
-    global.CANVAS_STROKE_WIDTH_2 = global.CANVAS_STROKE_WIDTH_BASE * 2.65;
-    global.CANVAS_STROKE_WIDTH_3 = global.CANVAS_STROKE_WIDTH_BASE * 9;
-    global.CANVAS_STROKE_WIDTH_4 = global.CANVAS_STROKE_WIDTH_BASE * 16;
-    global.CANVAS_STROKE_WIDTH_5 = global.CANVAS_STROKE_WIDTH_BASE * 21;
-    global.CANVAS_STROKE_WIDTH_6 = global.CANVAS_STROKE_WIDTH_BASE * 43;
-    global.CANVAS_TEXT_SIZE_1 = global.CANVAS_TEXT_SIZE_BASE * 2.25;
-    global.CANVAS_TEXT_SIZE_2 = global.CANVAS_TEXT_SIZE_BASE * 2.65;
-    global.CANVAS_TEXT_SIZE_3 = global.CANVAS_TEXT_SIZE_BASE * 9;
-    global.CANVAS_TEXT_SIZE_4 = global.CANVAS_TEXT_SIZE_BASE * 16;
-    global.CANVAS_TEXT_SIZE_5 = global.CANVAS_TEXT_SIZE_BASE * 21;
-    global.CANVAS_TEXT_SIZE_6 = global.CANVAS_TEXT_SIZE_BASE * 43;
-    global.SIGNAL_BUILD_ELEMENT = true;
-    global.SIGNAL_BUILD_COUNTER = 0;
-    virtual_surface.resize();
-    global.RESIZE_EVENT = true;
-    canvas.on_resize();
-    surface.style.backfaceVisibility = 'hidden';
-    if (surface.style.visibility === 'hidden') {
-      surface.style.visibility = 'visible';
-    }
-  }
+		try {
+			ctx.globalCompositeOperation = 'copy';
+			ctx.imageSmoothingEnabled = false;
+			//@ts-ignore
+			ctx.mozImageSmoothingEnabled = false;
+			//@ts-ignore
+			ctx.oImageSmoothingEnabled = false;
+			//@ts-ignore
+			ctx.webkitImageSmoothingEnabled = false;
+			//@ts-ignore
+			ctx.msImageSmoothingEnabled = false;
+		} catch (e) {}
+		global.CANVAS_STROKE_WIDTH_1 = global.CANVAS_STROKE_WIDTH_BASE * 2.25;
+		global.CANVAS_STROKE_WIDTH_2 = global.CANVAS_STROKE_WIDTH_BASE * 2.65;
+		global.CANVAS_STROKE_WIDTH_3 = global.CANVAS_STROKE_WIDTH_BASE * 9;
+		global.CANVAS_STROKE_WIDTH_4 = global.CANVAS_STROKE_WIDTH_BASE * 16;
+		global.CANVAS_STROKE_WIDTH_5 = global.CANVAS_STROKE_WIDTH_BASE * 21;
+		global.CANVAS_STROKE_WIDTH_6 = global.CANVAS_STROKE_WIDTH_BASE * 43;
+		global.CANVAS_TEXT_SIZE_1 = global.CANVAS_TEXT_SIZE_BASE * 2.25;
+		global.CANVAS_TEXT_SIZE_2 = global.CANVAS_TEXT_SIZE_BASE * 2.65;
+		global.CANVAS_TEXT_SIZE_3 = global.CANVAS_TEXT_SIZE_BASE * 9;
+		global.CANVAS_TEXT_SIZE_4 = global.CANVAS_TEXT_SIZE_BASE * 16;
+		global.CANVAS_TEXT_SIZE_5 = global.CANVAS_TEXT_SIZE_BASE * 21;
+		global.CANVAS_TEXT_SIZE_6 = global.CANVAS_TEXT_SIZE_BASE * 43;
+		global.SIGNAL_BUILD_ELEMENT = true;
+		global.signal_build_counter = 0;
+		virtual_surface.resize();
+		global.RESIZE_EVENT = true;
+		canvas.on_resize();
+		surface.style.backfaceVisibility = 'hidden';
+		if (surface.style.visibility === 'hidden') {
+			surface.style.visibility = 'visible';
+		}
+	}
 
-  function mouse_down(mouse_event: MouseEvent): void {
-    if (global.SYSTEM_INITIALIZATION['completed']) {
-      if (global.MOBILE_MODE === false) {
-        global.mouse_x = mouse_event.clientX;
-        global.mouse_y = mouse_event.clientY;
-      } else {
-        //@ts-ignore
-        touch = mouse_event.touches[0];
-        global.mouse_x = touch.clientX;
-        global.mouse_y = touch.clientY;
-      }
-      if (bottom_menu.handle_file_explorer()) {
-        if (!global.USER_FILE_SELECTED) {
-          file_reader.click();
-        } else {
-          toast.set_text(language_manager.TRY_AGAIN[global.LANGUAGES[global.LANGUAGE_INDEX]]);
-          toast.show();
-        }
-      } else {
-        if (!MOUSE_EVENT_LATCH) {
-          if (global.MOBILE_MODE) {
-            if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-              global.MOUSE_DOWN_EVENT = true;
-              global.mouse_down_event_queue.push(mouse_event);
-            }
-          } else {
-            global.MOUSE_DOWN_EVENT = true;
-            global.mouse_down_event_queue.push(mouse_event);
-          }
-        }
-      }
-    }
-    mouse_event.preventDefault();
-    mouse_event.stopPropagation();
-  }
+	function mouse_down(mouse_event: MouseEvent): void {
+		if (global.system_initialization['completed']) {
+			if (global.MOBILE_MODE === false) {
+				global.mouse_x = mouse_event.clientX;
+				global.mouse_y = mouse_event.clientY;
+			} else {
+				//@ts-ignore
+				touch = mouse_event.touches[0];
+				global.mouse_x = touch.clientX;
+				global.mouse_y = touch.clientY;
+			}
+			if (bottom_menu.handle_file_explorer()) {
+				if (!global.user_file_selected) {
+					file_reader.click();
+				} else {
+					toast.set_text(language_manager.TRY_AGAIN[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+					toast.show();
+				}
+			} else {
+				if (!MOUSE_EVENT_LATCH) {
+					if (global.MOBILE_MODE) {
+						if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
+							global.MOUSE_DOWN_EVENT = true;
+							global.mouse_down_event_queue.push(mouse_event);
+						}
+					} else {
+						global.MOUSE_DOWN_EVENT = true;
+						global.mouse_down_event_queue.push(mouse_event);
+					}
+				}
+			}
+		}
+		mouse_event.preventDefault();
+		mouse_event.stopPropagation();
+	}
 
-  function mouse_move(mouse_event: MouseEvent): void {
-    mouse_event.preventDefault();
-    mouse_event.stopPropagation();
-    if (!global.MOUSE_MOVE_EVENT) {
-      if (global.MOBILE_MODE) {
-        if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-          global.mouse_move_event = mouse_event;
-          global.MOUSE_MOVE_EVENT = true;
-        }
-      } else {
-        global.mouse_move_event = mouse_event;
-        global.MOUSE_MOVE_EVENT = true;
-      }
-    }
-  }
+	function mouse_move(mouse_event: MouseEvent): void {
+		if (!global.MOUSE_MOVE_EVENT) {
+			if (global.MOBILE_MODE) {
+				if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
+					global.mouse_move_event = mouse_event;
+					global.MOUSE_MOVE_EVENT = true;
+				}
+			} else {
+				global.mouse_move_event = mouse_event;
+				global.MOUSE_MOVE_EVENT = true;
+			}
+		}
+		mouse_event.preventDefault();
+		mouse_event.stopPropagation();
+	}
 
-  function mouse_up(mouse_event: MouseEvent): void {
-    mouse_event.preventDefault();
-    mouse_event.stopPropagation();
-    if (MOUSE_EVENT_LATCH) {
-      if (global.MOBILE_MODE) {
-        if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-          global.MOUSE_UP_EVENT = true;
-          global.mouse_up_event_queue.push(mouse_event);
-        }
-      } else {
-        global.MOUSE_UP_EVENT = true;
-        global.mouse_up_event_queue.push(mouse_event);
-      }
-    }
-  }
+	function mouse_up(mouse_event: MouseEvent): void {
+		if (MOUSE_EVENT_LATCH) {
+			if (global.MOBILE_MODE) {
+				if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
+					global.MOUSE_UP_EVENT = true;
+					global.mouse_up_event_queue.push(mouse_event);
+				}
+			} else {
+				global.MOUSE_UP_EVENT = true;
+				global.mouse_up_event_queue.push(mouse_event);
+			}
+		}
+		mouse_event.preventDefault();
+		mouse_event.stopPropagation();
+	}
 
-  function mouse_wheel(mouse_event: MouseEvent): void {
-    /* Intentionally blocking. */
-    if (!global.MOUSE_WHEEL_EVENT && !global.MOBILE_MODE) {
-      global.MOUSE_WHEEL_EVENT = true;
-      global.mouse_wheel_event_queue.push(mouse_event);
-    }
-  }
+	function mouse_wheel(mouse_event: MouseEvent): void {
+		/* Intentionally blocking. */
+		if (!global.MOUSE_WHEEL_EVENT && !global.MOBILE_MODE) {
+			global.MOUSE_WHEEL_EVENT = true;
+			global.mouse_wheel_event_queue.push(mouse_event);
+		}
+		mouse_event.preventDefault();
+		mouse_event.stopPropagation();
+	}
 
-  function double_click(mouse_event: MouseEvent): void {
-    mouse_event.preventDefault();
-    mouse_event.stopPropagation();
-    if (!global.MOBILE_MODE) {
-      global.MOUSE_DOUBLE_CLICK_EVENT = true;
-      global.mouse_double_click_event_queue.push(mouse_event);
-    }
-  }
+	function double_click(mouse_event: MouseEvent): void {
+		if (!global.MOBILE_MODE) {
+			global.MOUSE_DOUBLE_CLICK_EVENT = true;
+			global.mouse_double_click_event_queue.push(mouse_event);
+		}
+		mouse_event.preventDefault();
+		mouse_event.stopPropagation();
+	}
 
-  function key_down(key_event: KeyboardEvent): void {
-    key_event.preventDefault();
-    global.KEY_DOWN_EVENT = true;
-    global.key_down_event_queue.push({
-      event: key_event,
-      alt: key_event.getModifierState('Alt'),
-      shift: key_event.getModifierState('Shift'),
-      ctrl: key_event.getModifierState('Control'),
-      caps: key_event.getModifierState('CapsLock')
-    });
-  }
+	function key_down(key_event: KeyboardEvent): void {
+		global.KEY_DOWN_EVENT = true;
+		global.key_down_event_queue.push({
+			event: key_event,
+			alt: key_event.getModifierState('Alt'),
+			shift: key_event.getModifierState('Shift'),
+			ctrl: key_event.getModifierState('Control'),
+			caps: key_event.getModifierState('CapsLock')
+		});
+		key_event.preventDefault();
+		key_event.stopPropagation();
+	}
 
-  function key_up(key_event: KeyboardEvent): void {
-    key_event.preventDefault();
-    global.KEY_UP_EVENT = true;
-    global.key_up_event_queue.push({
-      event: key_event,
-      alt: key_event.getModifierState('Alt'),
-      shift: key_event.getModifierState('Shift'),
-      ctrl: key_event.getModifierState('Control'),
-      caps: key_event.getModifierState('CapsLock')
-    });
-  }
+	function key_up(key_event: KeyboardEvent): void {
+		global.KEY_UP_EVENT = true;
+		global.key_up_event_queue.push({
+			event: key_event,
+			alt: key_event.getModifierState('Alt'),
+			shift: key_event.getModifierState('Shift'),
+			ctrl: key_event.getModifierState('Control'),
+			caps: key_event.getModifierState('CapsLock')
+		});
+		key_event.preventDefault();
+		key_event.stopPropagation();
+	}
 
-  function resize_components(): void {
-    /* Always resize the workspace first! */
-    global.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
-    if (global.settings.WORKSPACE_PERFECT_SQUARE) {
-      global.natural_width = global.natural_height;
-    } else {
-      global.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
-    }
-    workspace.workspace_resize();
-    reset_zoom();
-    menu_bar.resize_menu_bar();
-    bottom_menu.resize_bottom_menu();
-    element_options.resize();
-    time_step_window.resize_window();
-    save_circuit_window.resize_window();
-    save_image_window.resize_window();
-    element_options_window.resize_window();
-    element_options_edit_window.resize_window();
-    zoom_window.resize_window();
-    settings_window.resize_window();
-    yes_no_window.resize_window();
-    graph_window.resize_window();
-    toast.resize_toast();
-    on_screen_keyboard.resize_keyboard();
-    /* #INSERT_METER_RESIZE_TRACE# */
-    /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    for (var i: number = 0; i < voltmeters.length; i++) {
-      voltmeters[i].RESIZE_METER_TRACE = true;
-    }
-    for (var i: number = 0; i < ohmmeters.length; i++) {
-      ohmmeters[i].RESIZE_METER_TRACE = true;
-    }
-    for (var i: number = 0; i < ammeters.length; i++) {
-      ammeters[i].RESIZE_METER_TRACE = true;
-    }
-    for (var i: number = 0; i < wattmeters.length; i++) {
-      wattmeters[i].RESIZE_METER_TRACE = true;
-    }
-    /* <!-- END AUTOMATICALLY GENERATED !--> */
-  }
+	function resize_components(): void {
+		/* Always resize the workspace first! */
+		global.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
+		if (global.settings.WORKSPACE_PERFECT_SQUARE) {
+			global.natural_width = global.natural_height;
+		} else {
+			global.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
+		}
+		workspace.workspace_resize();
+		reset_zoom();
+		menu_bar.resize_menu_bar();
+		bottom_menu.resize_bottom_menu();
+		element_options.resize();
+		time_step_window.resize_window();
+		save_circuit_window.resize_window();
+		save_image_window.resize_window();
+		element_options_window.resize_window();
+		element_options_edit_window.resize_window();
+		zoom_window.resize_window();
+		settings_window.resize_window();
+		yes_no_window.resize_window();
+		graph_window.resize_window();
+		toast.resize_toast();
+		on_screen_keyboard.resize_keyboard();
+		/* #INSERT_METER_RESIZE_TRACE# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		for (var i: number = 0; i < voltmeters.length; i++) {
+			voltmeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < ohmmeters.length; i++) {
+			ohmmeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < ammeters.length; i++) {
+			ammeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < wattmeters.length; i++) {
+			wattmeters[i].RESIZE_METER_TRACE = true;
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
+	}
 
-  function handle_zoom(mouse_event: MouseEvent): void {
-    if (!global.focused) {
-      global.x_offset = (global.mouse_x - global.delta_x) / global.WORKSPACE_ZOOM_SCALE;
-      global.y_offset = (global.mouse_y - global.delta_y) / global.WORKSPACE_ZOOM_SCALE;
-      //@ts-ignore
-      if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
-        if (global.WORKSPACE_ZOOM_SCALE > global.ZOOM_MIN) {
-          global.WORKSPACE_ZOOM_SCALE /= global.ZOOM_FACTOR;
-        }
-      } else {
-        if (global.WORKSPACE_ZOOM_SCALE < global.ZOOM_MAX) {
-          global.WORKSPACE_ZOOM_SCALE *= global.ZOOM_FACTOR;
-        }
-      }
-      global.delta_x = global.mouse_x - global.x_offset * global.WORKSPACE_ZOOM_SCALE;
-      global.delta_y = global.mouse_y - global.y_offset * global.WORKSPACE_ZOOM_SCALE;
-      workspace.workspace_zoom();
-    }
-  }
+	function handle_zoom(mouse_event: MouseEvent): void {
+		if (!global.focused) {
+			global.x_offset = (global.mouse_x - global.delta_x) / global.workspace_zoom_scale;
+			global.y_offset = (global.mouse_y - global.delta_y) / global.workspace_zoom_scale;
+			//@ts-ignore
+			if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
+				if (global.workspace_zoom_scale > global.ZOOM_MIN) {
+					global.workspace_zoom_scale /= global.ZOOM_FACTOR;
+				}
+			} else {
+				if (global.workspace_zoom_scale < global.ZOOM_MAX) {
+					global.workspace_zoom_scale *= global.ZOOM_FACTOR;
+				}
+			}
+			global.delta_x = global.mouse_x - global.x_offset * global.workspace_zoom_scale;
+			global.delta_y = global.mouse_y - global.y_offset * global.workspace_zoom_scale;
+			workspace.workspace_zoom();
+		}
+	}
 
-  function reset_zoom(): void {
-    global.x_offset = 0;
-    global.y_offset = 0;
-    global.delta_x = workspace.bounds.left;
-    global.delta_y = workspace.bounds.top;
-  }
+	function reset_zoom(): void {
+		global.x_offset = 0;
+		global.y_offset = 0;
+		global.delta_x = workspace.bounds.left;
+		global.delta_y = workspace.bounds.top;
+	}
 
-  function normal_draw_permissions(): boolean {
-    if (global.SYSTEM_INITIALIZATION['completed']) {
-      return (
-        global.RESIZE_EVENT ||
-        global.MOUSE_DOWN_EVENT ||
-        global.MOUSE_MOVE_EVENT ||
-        global.MOUSE_UP_EVENT ||
-        global.MOUSE_WHEEL_EVENT ||
-        global.KEY_UP_EVENT ||
-        global.KEY_DOWN_EVENT ||
-        global.PICTURE_REQUEST ||
-        global.FLAG_SIMULATING ||
-        !workspace.DRAW_TO_SCREEN ||
-        toast.draw_text ||
-        !global.SYSTEM_INITIALIZATION['completed']
-      );
-    } else {
-      return (
-        global.RESIZE_EVENT ||
-        global.MOUSE_DOWN_EVENT ||
-        global.MOUSE_MOVE_EVENT ||
-        global.MOUSE_UP_EVENT ||
-        global.MOUSE_WHEEL_EVENT ||
-        global.KEY_UP_EVENT ||
-        global.KEY_DOWN_EVENT ||
-        global.PICTURE_REQUEST ||
-        global.FLAG_SIMULATING ||
-        !global.SYSTEM_INITIALIZATION['completed']
-      );
-    }
-  }
+	function normal_draw_permissions(): boolean {
+		if (global.system_initialization['completed']) {
+			return (
+				global.RESIZE_EVENT ||
+				global.MOUSE_DOWN_EVENT ||
+				global.MOUSE_MOVE_EVENT ||
+				global.MOUSE_UP_EVENT ||
+				global.MOUSE_WHEEL_EVENT ||
+				global.KEY_UP_EVENT ||
+				global.KEY_DOWN_EVENT ||
+				global.PICTURE_REQUEST ||
+				global.FLAG_SIMULATING ||
+				!workspace.DRAW_TO_SCREEN ||
+				toast.draw_text ||
+				!global.system_initialization['completed']
+			);
+		} else {
+			return (
+				global.RESIZE_EVENT ||
+				global.MOUSE_DOWN_EVENT ||
+				global.MOUSE_MOVE_EVENT ||
+				global.MOUSE_UP_EVENT ||
+				global.MOUSE_WHEEL_EVENT ||
+				global.KEY_UP_EVENT ||
+				global.KEY_DOWN_EVENT ||
+				global.PICTURE_REQUEST ||
+				global.FLAG_SIMULATING ||
+				!global.system_initialization['completed']
+			);
+		}
+	}
 
-  function system_loop(): void {
-    try {
-      /* Optimizing the drawing frames for the canvas. */
-      if (normal_draw_permissions()) {
-        /* We make sure to draw only when we absolutely have to. There is also a blanket window
+	function system_loop(): void {
+		try {
+			/* Optimizing the drawing frames for the canvas. */
+			if (normal_draw_permissions()) {
+				/* We make sure to draw only when we absolutely have to. There is also a blanket window
         for when we de-latch the flag. */
-        global.CANVAS_REDRAW_COUNTER = 0;
-        global.CANVAS_DRAW_EVENT = true;
-      }
-      /* Handling the render / update portions of the code when the draw flag is set. */
-      if (global.CANVAS_DRAW_EVENT) {
-        TEMP_DRAW_SIGNAL =
-          !global.FLAG_SIMULATING ||
-          global.RESIZE_EVENT ||
-          global.MOUSE_DOWN_EVENT ||
-          global.MOUSE_MOVE_EVENT ||
-          global.MOUSE_UP_EVENT ||
-          global.MOUSE_WHEEL_EVENT ||
-          global.KEY_UP_EVENT ||
-          global.KEY_DOWN_EVENT ||
-          global.PICTURE_REQUEST ||
-          !workspace.DRAW_TO_SCREEN ||
-          toast.draw_text;
-        global.last_selected = global.selected;
-        update();
-        if (global.last_selected != global.selected) {
-          wire_manager.reset_wire_builder();
-        }
-        if (global.FORCE_RESIZE_EVENT) {
-          global.SIGNAL_BUILD_ELEMENT = true;
-          global.SIGNAL_BUILD_COUNTER = 0;
-          global.FORCE_RESIZE_EVENT = false;
-          global.DRAW_BLOCK = true;
-          resize_canvas();
-        }
-        FPS_DIV ^= 1;
-        if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.FLAG_SIMULATING) || !global.FLAG_SIMULATING) {
-          if (global.SYSTEM_INITIALIZATION['completed']) {
-            if ((global.FLAG_SIMULATING && global.CANVAS_DRAW_REQUEST) || TEMP_DRAW_SIGNAL) {
-              if (!global.ON_RESTORE_EVENT) {
-                canvas.release();
-                if (!global.DRAW_BLOCK) {
-                  ctx.drawImage(
-                    virtual_surface.get_surface(),
-                    view_port.left,
-                    view_port.top,
-                    view_port.view_width,
-                    view_port.view_height,
-                    view_port.left,
-                    view_port.top,
-                    view_port.view_width,
-                    view_port.view_height
-                  );
-                }
-                canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                draw();
-                if (global.DRAW_BLOCK) {
-                  global.DRAW_BLOCK = false;
-                }
-              }
-              if (global.CANVAS_DRAW_REQUEST) {
-                global.CANVAS_DRAW_REQUEST_COUNTER++;
-              }
-              if (global.CANVAS_DRAW_REQUEST_COUNTER >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-                global.CANVAS_DRAW_REQUEST_COUNTER = 0;
-                global.CANVAS_DRAW_REQUEST = false;
-              }
-            }
-          }
-        }
-        if (global.SIGNAL_BUILD_ELEMENT) {
-          global.SIGNAL_BUILD_COUNTER++;
-          if (global.SIGNAL_BUILD_COUNTER >= global.SIGNAL_BUILD_COUNTER_MAX) {
-            global.SIGNAL_BUILD_ELEMENT = false;
-            global.SIGNAL_BUILD_COUNTER = 0;
-          }
-        }
-        if (global.SIGNAL_WIRE_DELETED) {
-          global.SIGNAL_WIRE_DELETED_COUNTER++;
-          if (global.SIGNAL_WIRE_DELETED_COUNTER >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-            global.SIGNAL_WIRE_DELETED = false;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
-          }
-        }
-        /* Just incase this take more than one frame to complete. (Toast might be an example of this.) */
-        global.CANVAS_REDRAW_COUNTER++;
-        if (global.CANVAS_REDRAW_COUNTER > global.CANVAS_REDRAW_MAX) {
-          global.CANVAS_REDRAW_COUNTER = 0;
-          global.CANVAS_DRAW_EVENT = false;
-        }
-      }
-    } catch (e) {
-      if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
-        let post_data: string = e + '\r\n' + e.stack + '\r\n';
-        let url: string = 'solver_errors.php?msg="' + post_data + '"';
-        let method: string = 'POST';
-        let should_be_async: boolean = true;
-        let request: XMLHttpRequest = new XMLHttpRequest();
-        request.onload = function (): void {
-          let status = request.status;
-          let data = request.responseText;
-        };
-        request.open(method, url, should_be_async);
-        request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-        request.send(post_data);
-      }
-    }
-  }
+				global.canvas_redraw_counter = 0;
+				global.canvas_draw_event = true;
+			}
+			/* Handling the render / update portions of the code when the draw flag is set. */
+			if (global.canvas_draw_event) {
+				TEMP_DRAW_SIGNAL =
+					!global.FLAG_SIMULATING ||
+					global.RESIZE_EVENT ||
+					global.MOUSE_DOWN_EVENT ||
+					global.MOUSE_MOVE_EVENT ||
+					global.MOUSE_UP_EVENT ||
+					global.MOUSE_WHEEL_EVENT ||
+					global.KEY_UP_EVENT ||
+					global.KEY_DOWN_EVENT ||
+					global.PICTURE_REQUEST ||
+					!workspace.DRAW_TO_SCREEN ||
+					toast.draw_text;
+				global.last_selected = global.selected;
+				update();
+				if (global.last_selected != global.selected) {
+					wire_manager.reset_wire_builder();
+				}
+				if (global.FORCE_RESIZE_EVENT) {
+					global.SIGNAL_BUILD_ELEMENT = true;
+					global.signal_build_counter = 0;
+					global.FORCE_RESIZE_EVENT = false;
+					global.draw_block = true;
+					resize_canvas();
+				}
+				FPS_DIV ^= 1;
+				if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.FLAG_SIMULATING) || !global.FLAG_SIMULATING) {
+					if (global.system_initialization['completed']) {
+						if ((global.FLAG_SIMULATING && global.canvas_draw_request) || TEMP_DRAW_SIGNAL) {
+							if (!global.ON_RESTORE_EVENT) {
+								if (!global.draw_block) {
+									ctx.drawImage(
+										virtual_surface.get_surface(),
+										view_port.left,
+										view_port.top,
+										view_port.view_width,
+										view_port.view_height,
+										view_port.left,
+										view_port.top,
+										view_port.view_width,
+										view_port.view_height
+									);
+								}
+								canvas.release();
+								canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+								draw();
+								if (global.draw_block) {
+									global.draw_block = false;
+								}
+							}
+							if (global.canvas_draw_request) {
+								if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+									global.canvas_draw_request_counter = 0;
+									global.canvas_draw_request = false;
+								}
+							}
+						}
+					}
+				}
+				if (global.SIGNAL_BUILD_ELEMENT) {
+					if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
+						global.SIGNAL_BUILD_ELEMENT = false;
+						global.signal_build_counter = 0;
+					}
+				}
+				if (global.SIGNAL_WIRE_DELETED) {
+					if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+						global.SIGNAL_WIRE_DELETED = false;
+						global.signal_wire_deleted_counter = 0;
+					}
+				}
+				/* Just incase this take more than one frame to complete. (Toast might be an example of this.) */
+				if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
+					global.canvas_redraw_counter = 0;
+					global.canvas_draw_event = false;
+				}
+			}
+		} catch (e) {
+			if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
+				let post_data: string = e + '\r\n' + e.stack + '\r\n';
+				let url: string = 'solver_errors.php?msg="' + post_data + '"';
+				let method: string = 'POST';
+				let should_be_async: boolean = true;
+				let request: XMLHttpRequest = new XMLHttpRequest();
+				request.onload = function (): void {
+					let status = request.status;
+					let data = request.responseText;
+				};
+				request.open(method, url, should_be_async);
+				request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+				request.send(post_data);
+			}
+		}
+	}
 
-  function update(): void {
-    if (global.SYSTEM_INITIALIZATION['completed']) {
-      engine_functions.file_manager();
-      /* Reset the component translating flag. */
-      global.component_translating = false;
-      if (global.MOBILE_MODE) {
-        if (global.ON_RESTORE_EVENT) {
-          global.SIGNAL_BUILD_ELEMENT = true;
-          window.JsInterface.onRestore();
-          global.ON_RESTORE_EVENT = false;
-        }
-      }
-      /* Serializing the events so they're predictable in the order of which they are executed. */
-      if (global.mouse_down_event_queue.length > 0 && !MOUSE_EVENT_LATCH) {
-        FIFO_INDEX = global.mouse_down_event_queue.length - 1;
-        global.mouse_down_event = global.mouse_down_event_queue[FIFO_INDEX];
-        MOUSE_EVENT_LATCH = true;
-        handle_mouse_down();
-        global.mouse_down_event_queue.splice(FIFO_INDEX, 1);
-        if (global.mouse_down_event_queue.length === 0) {
-          global.MOUSE_DOWN_EVENT = false;
-        }
-      }
-      if (global.MOUSE_MOVE_EVENT) {
-        handle_mouse_move();
-        global.MOUSE_MOVE_EVENT = false;
-      }
-      if (global.mouse_up_event_queue.length > 0 && MOUSE_EVENT_LATCH) {
-        FIFO_INDEX = global.mouse_up_event_queue.length - 1;
-        global.mouse_up_event = global.mouse_up_event_queue[FIFO_INDEX];
-        MOUSE_EVENT_LATCH = false;
-        handle_mouse_up();
-        global.mouse_up_event_queue.splice(FIFO_INDEX, 1);
-        if (global.mouse_up_event_queue.length === 0) {
-          global.MOUSE_UP_EVENT = false;
-        }
-      }
-      if (global.mouse_double_click_event_queue.length > 0) {
-        FIFO_INDEX = global.mouse_double_click_event_queue.length - 1;
-        global.mouse_double_click_event = global.mouse_double_click_event_queue[FIFO_INDEX];
-        handle_double_click();
-        global.mouse_double_click_event_queue.splice(FIFO_INDEX, 1);
-        if (global.mouse_double_click_event_queue.length === 0) {
-          global.MOUSE_DOUBLE_CLICK_EVENT = false;
-        }
-      }
-      if (global.mouse_wheel_event_queue.length > 0) {
-        FIFO_INDEX = global.mouse_wheel_event_queue.length - 1;
-        global.mouse_wheel_event = global.mouse_wheel_event_queue[FIFO_INDEX];
-        handle_mouse_wheel();
-        global.mouse_wheel_event_queue.splice(FIFO_INDEX, 1);
-        if (global.mouse_wheel_event_queue.length === 0) {
-          global.MOUSE_WHEEL_EVENT = false;
-        }
-      }
-      if (global.RESIZE_EVENT) {
-        general_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        if (global.MOBILE_MODE) {
-          general_paint.set_color(global.GENERAL_WHITE_COLOR);
-        } else {
-          general_paint.set_color(global.GENERAL_BLACK_COLOR);
-        }
-        general_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-        global.mouse_x = 0;
-        global.mouse_y = 0;
-        reset_zoom();
-        resize_components();
-        global.RESIZE_EVENT = false;
-      }
-      if (global.key_down_event_queue.length > 0) {
-        FIFO_INDEX = global.key_down_event_queue.length - 1;
-        global.key_down_event = global.key_down_event_queue[FIFO_INDEX];
-        handle_key_down();
-        global.key_down_event_queue.splice(FIFO_INDEX, 1);
-        if (global.key_down_event_queue.length === 0) {
-          global.KEY_DOWN_EVENT = false;
-        }
-      }
-      if (global.key_up_event_queue.length > 0) {
-        FIFO_INDEX = global.key_up_event_queue.length - 1;
-        global.key_up_event = global.key_up_event_queue[FIFO_INDEX];
-        handle_key_up();
-        global.key_down_event_queue = [];
-        global.key_up_event_queue.splice(FIFO_INDEX, 1);
-        if (global.key_up_event_queue.length === 0) {
-          global.KEY_UP_EVENT = false;
-        }
-      }
-      if (global.MOUSE_KEYBOARD_LOCK) {
-        global.MOUSE_KEYBOARD_LOCK = false;
-      }
-      if (
-        global.FLAG_IDLE &&
-        !global.FLAG_SAVE_IMAGE &&
-        !global.FLAG_SAVE_CIRCUIT &&
-        !global.FLAG_ZOOM &&
-        !global.FLAG_ELEMENT_OPTIONS &&
-        !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-        !global.FLAG_SELECT_TIMESTEP &&
-        !global.FLAG_SELECT_SETTINGS &&
-        !global.FLAG_REMOVE_ALL
-      ) {
-        simulation_manager.simulate();
-        /* #INSERT_GENERATE_UPDATE# */
-        /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        for (var i: number = 0; i < resistors.length; i++) {
-          resistors[i].update();
-        }
-        for (var i: number = 0; i < capacitors.length; i++) {
-          capacitors[i].update();
-        }
-        for (var i: number = 0; i < inductors.length; i++) {
-          inductors[i].update();
-        }
-        for (var i: number = 0; i < grounds.length; i++) {
-          grounds[i].update();
-        }
-        for (var i: number = 0; i < dcsources.length; i++) {
-          dcsources[i].update();
-        }
-        for (var i: number = 0; i < dccurrents.length; i++) {
-          dccurrents[i].update();
-        }
-        for (var i: number = 0; i < acsources.length; i++) {
-          acsources[i].update();
-        }
-        for (var i: number = 0; i < accurrents.length; i++) {
-          accurrents[i].update();
-        }
-        for (var i: number = 0; i < squarewaves.length; i++) {
-          squarewaves[i].update();
-        }
-        for (var i: number = 0; i < sawwaves.length; i++) {
-          sawwaves[i].update();
-        }
-        for (var i: number = 0; i < trianglewaves.length; i++) {
-          trianglewaves[i].update();
-        }
-        for (var i: number = 0; i < constants.length; i++) {
-          constants[i].update();
-        }
-        for (var i: number = 0; i < wires.length; i++) {
-          wires[i].update();
-        }
-        for (var i: number = 0; i < nets.length; i++) {
-          nets[i].update();
-        }
-        for (var i: number = 0; i < notes.length; i++) {
-          notes[i].update();
-        }
-        for (var i: number = 0; i < rails.length; i++) {
-          rails[i].update();
-        }
-        for (var i: number = 0; i < voltmeters.length; i++) {
-          voltmeters[i].update();
-        }
-        for (var i: number = 0; i < ohmmeters.length; i++) {
-          ohmmeters[i].update();
-        }
-        for (var i: number = 0; i < ammeters.length; i++) {
-          ammeters[i].update();
-        }
-        for (var i: number = 0; i < wattmeters.length; i++) {
-          wattmeters[i].update();
-        }
-        for (var i: number = 0; i < fuses.length; i++) {
-          fuses[i].update();
-        }
-        for (var i: number = 0; i < spsts.length; i++) {
-          spsts[i].update();
-        }
-        for (var i: number = 0; i < spdts.length; i++) {
-          spdts[i].update();
-        }
-        for (var i: number = 0; i < nots.length; i++) {
-          nots[i].update();
-        }
-        for (var i: number = 0; i < potentiometers.length; i++) {
-          potentiometers[i].update();
-        }
-        for (var i: number = 0; i < ands.length; i++) {
-          ands[i].update();
-        }
-        for (var i: number = 0; i < ors.length; i++) {
-          ors[i].update();
-        }
-        for (var i: number = 0; i < nands.length; i++) {
-          nands[i].update();
-        }
-        for (var i: number = 0; i < nors.length; i++) {
-          nors[i].update();
-        }
-        for (var i: number = 0; i < xors.length; i++) {
-          xors[i].update();
-        }
-        for (var i: number = 0; i < xnors.length; i++) {
-          xnors[i].update();
-        }
-        for (var i: number = 0; i < dffs.length; i++) {
-          dffs[i].update();
-        }
-        for (var i: number = 0; i < vsats.length; i++) {
-          vsats[i].update();
-        }
-        for (var i: number = 0; i < adders.length; i++) {
-          adders[i].update();
-        }
-        for (var i: number = 0; i < subtractors.length; i++) {
-          subtractors[i].update();
-        }
-        for (var i: number = 0; i < multipliers.length; i++) {
-          multipliers[i].update();
-        }
-        for (var i: number = 0; i < dividers.length; i++) {
-          dividers[i].update();
-        }
-        for (var i: number = 0; i < gains.length; i++) {
-          gains[i].update();
-        }
-        for (var i: number = 0; i < absvals.length; i++) {
-          absvals[i].update();
-        }
-        for (var i: number = 0; i < vcsws.length; i++) {
-          vcsws[i].update();
-        }
-        for (var i: number = 0; i < vcvss.length; i++) {
-          vcvss[i].update();
-        }
-        for (var i: number = 0; i < vccss.length; i++) {
-          vccss[i].update();
-        }
-        for (var i: number = 0; i < cccss.length; i++) {
-          cccss[i].update();
-        }
-        for (var i: number = 0; i < ccvss.length; i++) {
-          ccvss[i].update();
-        }
-        for (var i: number = 0; i < opamps.length; i++) {
-          opamps[i].update();
-        }
-        for (var i: number = 0; i < adcs.length; i++) {
-          adcs[i].update();
-        }
-        for (var i: number = 0; i < dacs.length; i++) {
-          dacs[i].update();
-        }
-        for (var i: number = 0; i < sandhs.length; i++) {
-          sandhs[i].update();
-        }
-        for (var i: number = 0; i < pwms.length; i++) {
-          pwms[i].update();
-        }
-        for (var i: number = 0; i < integrators.length; i++) {
-          integrators[i].update();
-        }
-        for (var i: number = 0; i < differentiators.length; i++) {
-          differentiators[i].update();
-        }
-        for (var i: number = 0; i < lowpasses.length; i++) {
-          lowpasses[i].update();
-        }
-        for (var i: number = 0; i < highpasses.length; i++) {
-          highpasses[i].update();
-        }
-        for (var i: number = 0; i < relays.length; i++) {
-          relays[i].update();
-        }
-        for (var i: number = 0; i < pids.length; i++) {
-          pids[i].update();
-        }
-        for (var i: number = 0; i < luts.length; i++) {
-          luts[i].update();
-        }
-        for (var i: number = 0; i < vcrs.length; i++) {
-          vcrs[i].update();
-        }
-        for (var i: number = 0; i < grts.length; i++) {
-          grts[i].update();
-        }
-        for (var i: number = 0; i < tptzs.length; i++) {
-          tptzs[i].update();
-        }
-        for (var i: number = 0; i < transformers.length; i++) {
-          transformers[i].update();
-        }
-        /* <!-- END AUTOMATICALLY GENERATED !--> */
-        menu_bar.update();
-        bottom_menu.update();
-        element_options.update();
-        history_manager.watch();
-        wire_manager.watch();
-        if (!global.MOBILE_MODE) {
-          if (last_webpage_document_title != global.USER_FILE.title) {
-            webpage_document_title.innerHTML = global.USER_FILE.title;
-            last_webpage_document_title = global.USER_FILE.title;
-          }
-        }
-      }
-    } else {
-      initialize(global.SYSTEM_INITIALIZATION['step']);
-      global.SYSTEM_INITIALIZATION['step']++;
-      if (global.SYSTEM_INITIALIZATION['step'] >= global.SYSTEM_INITIALIZATION['max']) {
-        if (global.MOBILE_MODE) {
-          global.ON_RESTORE_EVENT = true;
-        }
-        global.SYSTEM_INITIALIZATION['step'] = 0;
-        global.SYSTEM_INITIALIZATION['completed'] = true;
-      }
-    }
-  }
+	function update(): void {
+		if (global.system_initialization['completed']) {
+			engine_functions.file_manager();
+			/* Reset the component translating flag. */
+			global.component_translating = false;
+			if (global.MOBILE_MODE) {
+				if (global.ON_RESTORE_EVENT) {
+					global.SIGNAL_BUILD_ELEMENT = true;
+					window.JsInterface.onRestore();
+					global.ON_RESTORE_EVENT = false;
+				}
+			}
+			/* Serializing the events so they're predictable in the order of which they are executed. */
+			if (global.mouse_down_event_queue.length > 0 && !MOUSE_EVENT_LATCH) {
+				FIFO_INDEX = global.mouse_down_event_queue.length - 1;
+				global.mouse_down_event = global.mouse_down_event_queue[FIFO_INDEX];
+				MOUSE_EVENT_LATCH = true;
+				handle_mouse_down();
+				global.mouse_down_event_queue.splice(FIFO_INDEX, 1);
+				if (global.mouse_down_event_queue.length === 0) {
+					global.MOUSE_DOWN_EVENT = false;
+				}
+				global.canvas_draw_request = true;
+				global.canvas_draw_request_counter = 0;
+			}
+			if (global.MOUSE_MOVE_EVENT) {
+				handle_mouse_move();
+				global.canvas_draw_request = true;
+				global.canvas_draw_request_counter = 0;
+				global.MOUSE_MOVE_EVENT = false;
+			}
+			if (global.mouse_up_event_queue.length > 0 && MOUSE_EVENT_LATCH) {
+				FIFO_INDEX = global.mouse_up_event_queue.length - 1;
+				global.mouse_up_event = global.mouse_up_event_queue[FIFO_INDEX];
+				MOUSE_EVENT_LATCH = false;
+				handle_mouse_up();
+				global.mouse_up_event_queue.splice(FIFO_INDEX, 1);
+				if (global.mouse_up_event_queue.length === 0) {
+					global.MOUSE_UP_EVENT = false;
+				}
+				global.canvas_draw_request = true;
+				global.canvas_draw_request_counter = 0;
+			}
+			if (global.mouse_double_click_event_queue.length > 0) {
+				FIFO_INDEX = global.mouse_double_click_event_queue.length - 1;
+				global.mouse_double_click_event = global.mouse_double_click_event_queue[FIFO_INDEX];
+				handle_double_click();
+				global.mouse_double_click_event_queue.splice(FIFO_INDEX, 1);
+				if (global.mouse_double_click_event_queue.length === 0) {
+					global.MOUSE_DOUBLE_CLICK_EVENT = false;
+				}
+				global.canvas_draw_request = true;
+				global.canvas_draw_request_counter = 0;
+			}
+			if (global.mouse_wheel_event_queue.length > 0) {
+				FIFO_INDEX = global.mouse_wheel_event_queue.length - 1;
+				global.mouse_wheel_event = global.mouse_wheel_event_queue[FIFO_INDEX];
+				handle_mouse_wheel();
+				global.mouse_wheel_event_queue.splice(FIFO_INDEX, 1);
+				if (global.mouse_wheel_event_queue.length === 0) {
+					global.MOUSE_WHEEL_EVENT = false;
+				}
+				global.canvas_draw_request = true;
+				global.canvas_draw_request_counter = 0;
+			}
+			if (global.RESIZE_EVENT) {
+				general_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+				if (global.MOBILE_MODE) {
+					general_paint.set_color(global.GENERAL_WHITE_COLOR);
+				} else {
+					general_paint.set_color(global.GENERAL_BLACK_COLOR);
+				}
+				general_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+				global.mouse_x = 0;
+				global.mouse_y = 0;
+				reset_zoom();
+				resize_components();
+				global.RESIZE_EVENT = false;
+			}
+			if (global.key_down_event_queue.length > 0) {
+				FIFO_INDEX = global.key_down_event_queue.length - 1;
+				global.key_down_event = global.key_down_event_queue[FIFO_INDEX];
+				handle_key_down();
+				global.key_down_event_queue.splice(FIFO_INDEX, 1);
+				if (global.key_down_event_queue.length === 0) {
+					global.KEY_DOWN_EVENT = false;
+				}
+				global.canvas_draw_request = true;
+				global.canvas_draw_request_counter = 0;
+			}
+			if (global.key_up_event_queue.length > 0) {
+				FIFO_INDEX = global.key_up_event_queue.length - 1;
+				global.key_up_event = global.key_up_event_queue[FIFO_INDEX];
+				handle_key_up();
+				global.key_down_event_queue = [];
+				global.key_up_event_queue.splice(FIFO_INDEX, 1);
+				if (global.key_up_event_queue.length === 0) {
+					global.KEY_UP_EVENT = false;
+				}
+				global.canvas_draw_request = true;
+				global.canvas_draw_request_counter = 0;
+			}
+			if (global.mouse_keyboard_lock) {
+				global.mouse_keyboard_lock = false;
+			}
+			if (
+				global.FLAG_IDLE &&
+				!global.FLAG_SAVE_IMAGE &&
+				!global.FLAG_SAVE_CIRCUIT &&
+				!global.FLAG_ZOOM &&
+				!global.FLAG_ELEMENT_OPTIONS &&
+				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
+				!global.FLAG_SELECT_TIMESTEP &&
+				!global.FLAG_SELECT_SETTINGS &&
+				!global.FLAG_REMOVE_ALL
+			) {
+				simulation_manager.simulate();
+				/* #INSERT_GENERATE_UPDATE# */
+				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+				for (var i: number = 0; i < resistors.length; i++) {
+					resistors[i].update();
+				}
+				for (var i: number = 0; i < capacitors.length; i++) {
+					capacitors[i].update();
+				}
+				for (var i: number = 0; i < inductors.length; i++) {
+					inductors[i].update();
+				}
+				for (var i: number = 0; i < grounds.length; i++) {
+					grounds[i].update();
+				}
+				for (var i: number = 0; i < dcsources.length; i++) {
+					dcsources[i].update();
+				}
+				for (var i: number = 0; i < dccurrents.length; i++) {
+					dccurrents[i].update();
+				}
+				for (var i: number = 0; i < acsources.length; i++) {
+					acsources[i].update();
+				}
+				for (var i: number = 0; i < accurrents.length; i++) {
+					accurrents[i].update();
+				}
+				for (var i: number = 0; i < squarewaves.length; i++) {
+					squarewaves[i].update();
+				}
+				for (var i: number = 0; i < sawwaves.length; i++) {
+					sawwaves[i].update();
+				}
+				for (var i: number = 0; i < trianglewaves.length; i++) {
+					trianglewaves[i].update();
+				}
+				for (var i: number = 0; i < constants.length; i++) {
+					constants[i].update();
+				}
+				for (var i: number = 0; i < wires.length; i++) {
+					wires[i].update();
+				}
+				for (var i: number = 0; i < nets.length; i++) {
+					nets[i].update();
+				}
+				for (var i: number = 0; i < notes.length; i++) {
+					notes[i].update();
+				}
+				for (var i: number = 0; i < rails.length; i++) {
+					rails[i].update();
+				}
+				for (var i: number = 0; i < voltmeters.length; i++) {
+					voltmeters[i].update();
+				}
+				for (var i: number = 0; i < ohmmeters.length; i++) {
+					ohmmeters[i].update();
+				}
+				for (var i: number = 0; i < ammeters.length; i++) {
+					ammeters[i].update();
+				}
+				for (var i: number = 0; i < wattmeters.length; i++) {
+					wattmeters[i].update();
+				}
+				for (var i: number = 0; i < fuses.length; i++) {
+					fuses[i].update();
+				}
+				for (var i: number = 0; i < spsts.length; i++) {
+					spsts[i].update();
+				}
+				for (var i: number = 0; i < spdts.length; i++) {
+					spdts[i].update();
+				}
+				for (var i: number = 0; i < nots.length; i++) {
+					nots[i].update();
+				}
+				for (var i: number = 0; i < potentiometers.length; i++) {
+					potentiometers[i].update();
+				}
+				for (var i: number = 0; i < ands.length; i++) {
+					ands[i].update();
+				}
+				for (var i: number = 0; i < ors.length; i++) {
+					ors[i].update();
+				}
+				for (var i: number = 0; i < nands.length; i++) {
+					nands[i].update();
+				}
+				for (var i: number = 0; i < nors.length; i++) {
+					nors[i].update();
+				}
+				for (var i: number = 0; i < xors.length; i++) {
+					xors[i].update();
+				}
+				for (var i: number = 0; i < xnors.length; i++) {
+					xnors[i].update();
+				}
+				for (var i: number = 0; i < dffs.length; i++) {
+					dffs[i].update();
+				}
+				for (var i: number = 0; i < vsats.length; i++) {
+					vsats[i].update();
+				}
+				for (var i: number = 0; i < adders.length; i++) {
+					adders[i].update();
+				}
+				for (var i: number = 0; i < subtractors.length; i++) {
+					subtractors[i].update();
+				}
+				for (var i: number = 0; i < multipliers.length; i++) {
+					multipliers[i].update();
+				}
+				for (var i: number = 0; i < dividers.length; i++) {
+					dividers[i].update();
+				}
+				for (var i: number = 0; i < gains.length; i++) {
+					gains[i].update();
+				}
+				for (var i: number = 0; i < absvals.length; i++) {
+					absvals[i].update();
+				}
+				for (var i: number = 0; i < vcsws.length; i++) {
+					vcsws[i].update();
+				}
+				for (var i: number = 0; i < vcvss.length; i++) {
+					vcvss[i].update();
+				}
+				for (var i: number = 0; i < vccss.length; i++) {
+					vccss[i].update();
+				}
+				for (var i: number = 0; i < cccss.length; i++) {
+					cccss[i].update();
+				}
+				for (var i: number = 0; i < ccvss.length; i++) {
+					ccvss[i].update();
+				}
+				for (var i: number = 0; i < opamps.length; i++) {
+					opamps[i].update();
+				}
+				for (var i: number = 0; i < adcs.length; i++) {
+					adcs[i].update();
+				}
+				for (var i: number = 0; i < dacs.length; i++) {
+					dacs[i].update();
+				}
+				for (var i: number = 0; i < sandhs.length; i++) {
+					sandhs[i].update();
+				}
+				for (var i: number = 0; i < pwms.length; i++) {
+					pwms[i].update();
+				}
+				for (var i: number = 0; i < integrators.length; i++) {
+					integrators[i].update();
+				}
+				for (var i: number = 0; i < differentiators.length; i++) {
+					differentiators[i].update();
+				}
+				for (var i: number = 0; i < lowpasses.length; i++) {
+					lowpasses[i].update();
+				}
+				for (var i: number = 0; i < highpasses.length; i++) {
+					highpasses[i].update();
+				}
+				for (var i: number = 0; i < relays.length; i++) {
+					relays[i].update();
+				}
+				for (var i: number = 0; i < pids.length; i++) {
+					pids[i].update();
+				}
+				for (var i: number = 0; i < luts.length; i++) {
+					luts[i].update();
+				}
+				for (var i: number = 0; i < vcrs.length; i++) {
+					vcrs[i].update();
+				}
+				for (var i: number = 0; i < grts.length; i++) {
+					grts[i].update();
+				}
+				for (var i: number = 0; i < tptzs.length; i++) {
+					tptzs[i].update();
+				}
+				for (var i: number = 0; i < transformers.length; i++) {
+					transformers[i].update();
+				}
+				/* <!-- END AUTOMATICALLY GENERATED !--> */
+				menu_bar.update();
+				bottom_menu.update();
+				element_options.update();
+				history_manager.watch();
+				wire_manager.watch();
+				if (!global.MOBILE_MODE) {
+					if (last_webpage_document_title != global.user_file.title) {
+						webpage_document_title.innerHTML = global.user_file.title;
+						last_webpage_document_title = global.user_file.title;
+					}
+				}
+			}
+		} else {
+			initialize(global.system_initialization['step']);
+			global.system_initialization['step']++;
+			if (global.system_initialization['step'] >= global.system_initialization['max']) {
+				if (global.MOBILE_MODE) {
+					global.ON_RESTORE_EVENT = true;
+				}
+				global.system_initialization['step'] = 0;
+				global.system_initialization['completed'] = true;
+			}
+		}
+	}
 
-  function refactor_sizes(): void {
-    global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_STROKE_WIDTH_4_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_STROKE_WIDTH_5_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_STROKE_WIDTH_6_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_TEXT_SIZE_1_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_TEXT_SIZE_2_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_TEXT_SIZE_3_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-    global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
-  }
+	function refactor_sizes(): void {
+		global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.workspace_zoom_scale;
+		global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.workspace_zoom_scale;
+		global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.workspace_zoom_scale;
+		global.CANVAS_STROKE_WIDTH_4_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 16 * global.workspace_zoom_scale;
+		global.CANVAS_STROKE_WIDTH_5_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 21 * global.workspace_zoom_scale;
+		global.CANVAS_STROKE_WIDTH_6_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 43 * global.workspace_zoom_scale;
+		global.CANVAS_TEXT_SIZE_1_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.workspace_zoom_scale;
+		global.CANVAS_TEXT_SIZE_2_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.workspace_zoom_scale;
+		global.CANVAS_TEXT_SIZE_3_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 9 * global.workspace_zoom_scale;
+		global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.workspace_zoom_scale;
+		global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.workspace_zoom_scale;
+		global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.workspace_zoom_scale;
+	}
 
-  function draw(): void {
-    refactor_sizes();
-    engine_functions.image_manager();
-    if (!global.PICTURE_REQUEST) {
-      if (!global.MOBILE_MODE) {
-        if (
-          global.FLAG_IDLE &&
-          !global.FLAG_SAVE_IMAGE &&
-          !global.FLAG_SAVE_CIRCUIT &&
-          !global.FLAG_ZOOM &&
-          !global.FLAG_ELEMENT_OPTIONS &&
-          !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-          !global.FLAG_SELECT_ELEMENT &&
-          !global.FLAG_SELECT_TIMESTEP &&
-          !global.FLAG_SELECT_SETTINGS &&
-          !global.FLAG_REMOVE_ALL &&
-          !global.FLAG_MENU_OPEN_DOWN &&
-          !global.FLAG_GRAPH
-        ) {
-          /* Reset the enveloping bounds (for multi select) */
-          multi_select_manager.reset_enveloping_bounds();
-        }
-        if (global.SIGNAL_BUILD_ELEMENT) {
-          NSX = 0.29375 * global.node_space_x;
-          NSY = 0.29375 * global.node_space_y;
-          MNSX = 1.25 * NSX;
-          MNSY = 1.25 * NSY;
-          NODE_LENGTH = nodes.length;
-          for (var i = 0; i < NODE_LENGTH; i++) {
-            nodes[i].resize(NSX, NSY, MNSX, MNSY);
-            if (NODE_LENGTH - 1 - i === i + 1) {
-              break;
-            }
-            nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
-          }
-        }
-        if (global.DEVELOPER_MODE) {
-          NODE_LENGTH = nodes.length;
-          for (var i = 0; i < NODE_LENGTH; i++) {
-            nodes[i].draw(canvas);
-            if (NODE_LENGTH - 1 - i === i + 1) {
-              break;
-            }
-            nodes[NODE_LENGTH - 1 - i].draw(canvas);
-          }
-        }
-        workspace.workspace_draw(canvas);
-        engine_functions.draw_unselected_components(canvas);
-        engine_functions.draw_wires(canvas);
-        engine_functions.draw_selected_components(canvas);
-        engine_functions.draw_meter_traces(canvas);
-        if (global.WIRE_BUILDER['step'] > 0) {
-          global.NODE_LINE_BUFFER = [];
-          global.NODE_LINE_BUFFER_INDEX = 0;
-          NODE_LENGTH = nodes.length;
-          for (var i = 0; i < NODE_LENGTH; i++) {
-            nodes[i].draw(canvas);
-            if (NODE_LENGTH - 1 - i === i + 1) {
-              break;
-            }
-            nodes[NODE_LENGTH - 1 - i].draw(canvas);
-          }
-          if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-            canvas.draw_line_buffer(global.NODE_LINE_BUFFER, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
-            canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
-          }
-        }
-        multi_select_manager.draw_bounds(canvas);
-        element_options.draw_options(canvas);
-        menu_bar.draw_menu_bar(canvas);
-        bottom_menu.draw_bottom_menu(canvas);
-        time_step_window.draw_window(canvas);
-        save_circuit_window.draw_window(canvas);
-        save_image_window.draw_window(canvas);
-        element_options_window.draw_window(canvas);
-        element_options_edit_window.draw_window(canvas);
-        zoom_window.draw_window(canvas);
-        settings_window.draw_window(canvas);
-        yes_no_window.draw_window(canvas);
-        graph_window.draw_window(canvas);
-        toast.draw_toast(canvas);
-      } else {
-        if (
-          global.FLAG_IDLE &&
-          !global.FLAG_SAVE_IMAGE &&
-          !global.FLAG_SAVE_CIRCUIT &&
-          !global.FLAG_ZOOM &&
-          !global.FLAG_ELEMENT_OPTIONS &&
-          !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-          !global.FLAG_SELECT_TIMESTEP &&
-          !global.FLAG_SELECT_SETTINGS &&
-          !global.FLAG_REMOVE_ALL
-        ) {
-          workspace.workspace_draw(canvas);
-          if (!global.FLAG_GRAPH) {
-            if (global.SIGNAL_BUILD_ELEMENT) {
-              NSX = 0.29375 * global.node_space_x;
-              NSY = 0.29375 * global.node_space_y;
-              MNSX = 1.25 * NSX;
-              MNSY = 1.25 * NSY;
-              NODE_LENGTH = nodes.length;
-              for (var i = 0; i < NODE_LENGTH; i++) {
-                nodes[i].resize(NSX, NSY, MNSX, MNSY);
-                if (NODE_LENGTH - 1 - i === i + 1) {
-                  break;
-                }
-                nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
-              }
-            }
-            if (global.DEVELOPER_MODE) {
-              NODE_LENGTH = nodes.length;
-              for (var i = 0; i < NODE_LENGTH; i++) {
-                nodes[i].draw(canvas);
-                if (NODE_LENGTH - 1 - i === i + 1) {
-                  break;
-                }
-                nodes[NODE_LENGTH - 1 - i].draw(canvas);
-              }
-            }
-            engine_functions.draw_unselected_components(canvas);
-            engine_functions.draw_wires(canvas);
-            engine_functions.draw_selected_components(canvas);
-            engine_functions.draw_meter_traces(canvas);
-            if (global.WIRE_BUILDER['step'] > 0) {
-              global.NODE_LINE_BUFFER = [];
-              global.NODE_LINE_BUFFER_INDEX = 0;
-              for (var i: number = 0; i < nodes.length; i++) {
-                nodes[i].draw(canvas);
-              }
-              if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-                canvas.draw_line_buffer(global.NODE_LINE_BUFFER, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
-                canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
-              }
-            }
-            element_options.draw_options(canvas);
-            bottom_menu.draw_bottom_menu(canvas);
-          }
-          menu_bar.draw_menu_bar(canvas);
-        }
-        time_step_window.draw_window(canvas);
-        save_circuit_window.draw_window(canvas);
-        save_image_window.draw_window(canvas);
-        element_options_window.draw_window(canvas);
-        element_options_edit_window.draw_window(canvas);
-        zoom_window.draw_window(canvas);
-        settings_window.draw_window(canvas);
-        yes_no_window.draw_window(canvas);
-        graph_window.draw_window(canvas);
-        on_screen_keyboard.draw_keyboard(canvas);
-        toast.draw_toast(canvas);
-      }
-    }
-    if (global.DEVELOPER_MODE) {
-      canvas.draw_circle(global.mouse_x, global.mouse_y, 20, general_paint);
-      canvas.draw_text(global.mouse_x + ', ' + global.mouse_y, global.mouse_x, global.mouse_y + 50, general_paint);
-    }
-    view_port.draw_viewport(canvas);
-  }
+	function draw(): void {
+		refactor_sizes();
+		engine_functions.image_manager();
+		if (!global.PICTURE_REQUEST) {
+			if (!global.MOBILE_MODE) {
+				if (
+					global.FLAG_IDLE &&
+					!global.FLAG_SAVE_IMAGE &&
+					!global.FLAG_SAVE_CIRCUIT &&
+					!global.FLAG_ZOOM &&
+					!global.FLAG_ELEMENT_OPTIONS &&
+					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
+					!global.FLAG_SELECT_ELEMENT &&
+					!global.FLAG_SELECT_TIMESTEP &&
+					!global.FLAG_SELECT_SETTINGS &&
+					!global.FLAG_REMOVE_ALL &&
+					!global.FLAG_MENU_OPEN_DOWN &&
+					!global.FLAG_GRAPH
+				) {
+					/* Reset the enveloping bounds (for multi select) */
+					multi_select_manager.reset_enveloping_bounds();
+				}
+				if (global.SIGNAL_BUILD_ELEMENT) {
+					NSX = 0.29375 * global.node_space_x;
+					NSY = 0.29375 * global.node_space_y;
+					MNSX = 1.25 * NSX;
+					MNSY = 1.25 * NSY;
+					NODE_LENGTH = nodes.length;
+					for (var i: number = 0; i < NODE_LENGTH; i++) {
+						nodes[i].resize(NSX, NSY, MNSX, MNSY);
+						if (NODE_LENGTH - 1 - i === i + 1) {
+							break;
+						}
+						nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
+					}
+				}
+				if (global.DEVELOPER_MODE) {
+					NODE_LENGTH = nodes.length;
+					for (var i: number = 0; i < NODE_LENGTH; i++) {
+						nodes[i].draw(canvas);
+						if (NODE_LENGTH - 1 - i === i + 1) {
+							break;
+						}
+						nodes[NODE_LENGTH - 1 - i].draw(canvas);
+					}
+				}
+				workspace.workspace_draw(canvas);
+				engine_functions.draw_unselected_components(canvas);
+				engine_functions.draw_wires(canvas);
+				engine_functions.draw_selected_components(canvas);
+				engine_functions.draw_meter_traces(canvas);
+				if (global.WIRE_BUILDER['step'] > 0) {
+					global.node_line_buffer = [];
+					global.node_line_buffer_index = 0;
+					NODE_LENGTH = nodes.length;
+					for (var i: number = 0; i < NODE_LENGTH; i++) {
+						nodes[i].draw(canvas);
+						if (NODE_LENGTH - 1 - i === i + 1) {
+							break;
+						}
+						nodes[NODE_LENGTH - 1 - i].draw(canvas);
+					}
+					if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+						canvas.draw_line_buffer(global.node_line_buffer, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
+						canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
+					}
+				}
+				multi_select_manager.draw_bounds(canvas);
+				element_options.draw_options(canvas);
+				menu_bar.draw_menu_bar(canvas);
+				bottom_menu.draw_bottom_menu(canvas);
+				time_step_window.draw_window(canvas);
+				save_circuit_window.draw_window(canvas);
+				save_image_window.draw_window(canvas);
+				element_options_window.draw_window(canvas);
+				element_options_edit_window.draw_window(canvas);
+				zoom_window.draw_window(canvas);
+				settings_window.draw_window(canvas);
+				yes_no_window.draw_window(canvas);
+				graph_window.draw_window(canvas);
+				toast.draw_toast(canvas);
+			} else {
+				if (
+					global.FLAG_IDLE &&
+					!global.FLAG_SAVE_IMAGE &&
+					!global.FLAG_SAVE_CIRCUIT &&
+					!global.FLAG_ZOOM &&
+					!global.FLAG_ELEMENT_OPTIONS &&
+					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
+					!global.FLAG_SELECT_TIMESTEP &&
+					!global.FLAG_SELECT_SETTINGS &&
+					!global.FLAG_REMOVE_ALL
+				) {
+					workspace.workspace_draw(canvas);
+					if (!global.FLAG_GRAPH) {
+						if (global.SIGNAL_BUILD_ELEMENT) {
+							NSX = 0.29375 * global.node_space_x;
+							NSY = 0.29375 * global.node_space_y;
+							MNSX = 1.25 * NSX;
+							MNSY = 1.25 * NSY;
+							NODE_LENGTH = nodes.length;
+							for (var i: number = 0; i < NODE_LENGTH; i++) {
+								nodes[i].resize(NSX, NSY, MNSX, MNSY);
+								if (NODE_LENGTH - 1 - i === i + 1) {
+									break;
+								}
+								nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
+							}
+						}
+						if (global.DEVELOPER_MODE) {
+							NODE_LENGTH = nodes.length;
+							for (var i: number = 0; i < NODE_LENGTH; i++) {
+								nodes[i].draw(canvas);
+								if (NODE_LENGTH - 1 - i === i + 1) {
+									break;
+								}
+								nodes[NODE_LENGTH - 1 - i].draw(canvas);
+							}
+						}
+						engine_functions.draw_unselected_components(canvas);
+						engine_functions.draw_wires(canvas);
+						engine_functions.draw_selected_components(canvas);
+						engine_functions.draw_meter_traces(canvas);
+						if (global.WIRE_BUILDER['step'] > 0) {
+							global.node_line_buffer = [];
+							global.node_line_buffer_index = 0;
+							NODE_LENGTH = nodes.length;
+							for (var i: number = 0; i < NODE_LENGTH; i++) {
+								nodes[i].draw(canvas);
+								if (NODE_LENGTH - 1 - i === i + 1) {
+									break;
+								}
+								nodes[NODE_LENGTH - 1 - i].draw(canvas);
+							}
+							if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+								canvas.draw_line_buffer(global.node_line_buffer, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
+								canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
+							}
+						}
+						element_options.draw_options(canvas);
+						bottom_menu.draw_bottom_menu(canvas);
+					}
+					menu_bar.draw_menu_bar(canvas);
+				}
+				time_step_window.draw_window(canvas);
+				save_circuit_window.draw_window(canvas);
+				save_image_window.draw_window(canvas);
+				element_options_window.draw_window(canvas);
+				element_options_edit_window.draw_window(canvas);
+				zoom_window.draw_window(canvas);
+				settings_window.draw_window(canvas);
+				yes_no_window.draw_window(canvas);
+				graph_window.draw_window(canvas);
+				on_screen_keyboard.draw_keyboard(canvas);
+				toast.draw_toast(canvas);
+			}
+		}
+		if (global.DEVELOPER_MODE) {
+			canvas.draw_circle(global.mouse_x, global.mouse_y, 20, general_paint);
+			canvas.draw_text(global.mouse_x + ', ' + global.mouse_y, global.mouse_x, global.mouse_y + 50, general_paint);
+		}
+		view_port.draw_viewport(canvas);
+	}
 
-  function handle_mouse_down(): void {
-    global.component_touched = false;
-    if (global.MOBILE_MODE === false) {
-      global.mouse_x = global.mouse_down_event.clientX;
-      global.mouse_y = global.mouse_down_event.clientY;
-    } else {
-      touch = global.mouse_down_event.touches[0];
-      global.mouse_x = touch.clientX;
-      global.mouse_y = touch.clientY;
-    }
-    global.last_mouse_x = global.mouse_x;
-    global.last_mouse_y = global.mouse_y;
-    global.is_touching = true;
-    global.mouse_down_event = global.mouse_down_event || window.event;
-    global.mouse_down_x = global.mouse_x;
-    global.mouse_down_y = global.mouse_y;
-    global.TRANSLATION_LOCK = true;
-    /* Gecko (Firefox), WebKit (Safari/Chrome) & Opera */
-    if ('which' in global.mouse_down_event) {
-      global.IS_RIGHT_CLICK = global.mouse_down_event.which === 3;
-    } else if ('button' in global.mouse_down_event) {
-      /* IE, Opera */
-      global.IS_RIGHT_CLICK = global.mouse_down_event.button === 2;
-    }
-    if (!global.IS_RIGHT_CLICK) {
-      /* Handle mouse down events for element options */
-      element_options.mouse_down();
-      /* Handle mouse down events for the bottom menu */
-      bottom_menu.mouse_down();
-      /* Handle mouse down events fro the time step window */
-      time_step_window.mouse_down();
-      /* Handle mouse down events for the save circuit window. */
-      save_circuit_window.mouse_down();
-      /* Handle mouse down events for the save image window */
-      save_image_window.mouse_down();
-      /* Handle mouse down events for the menu_bar */
-      menu_bar.mouse_down();
-      /* Handle mouse down events for the element options window. */
-      element_options_window.mouse_down();
-      /* Handle mouse down events for the element options edit window. */
-      element_options_edit_window.mouse_down();
-      graph_window.mouse_down();
-      /* Handle mouse down events for the zoom window */
-      zoom_window.mouse_down();
-      /* Handle mouse down events for the settings window */
-      settings_window.mouse_down();
-      /* Handle mouse down events for the yes / no window. (It's for confirming if the user really wants to clear the board.)*/
-      yes_no_window.mouse_down();
-      if (!global.MOBILE_MODE) {
-        multi_select_manager.mouse_down();
-      }
-      on_screen_keyboard.mouse_down();
-    }
-    if (
-      !global.FLAG_SAVE_IMAGE &&
-      !global.FLAG_SAVE_CIRCUIT &&
-      !global.FLAG_ZOOM &&
-      !global.FLAG_ELEMENT_OPTIONS &&
-      !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-      !global.FLAG_GRAPH &&
-      !global.FLAG_SELECT_ELEMENT &&
-      !global.FLAG_SELECT_TIMESTEP &&
-      !global.FLAG_SELECT_SETTINGS &&
-      !global.FLAG_REMOVE_ALL &&
-      !global.FLAG_MENU_OPEN_DOWN
-    ) {
-      if (global.MOBILE_MODE === false) {
-        if (global.IS_RIGHT_CLICK) {
-          global.IS_DRAGGING = true;
-          global.TEMP_IS_DRAGGING = global.IS_DRAGGING;
-        }
-      }
-      if (!global.IS_DRAGGING) {
-        /* #INSERT_GENERATE_MOUSE_DOWN# */
-        /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        for (var i: number = 0; i < resistors.length; i++) {
-          resistors[i].mouse_down();
-        }
-        for (var i: number = 0; i < capacitors.length; i++) {
-          capacitors[i].mouse_down();
-        }
-        for (var i: number = 0; i < inductors.length; i++) {
-          inductors[i].mouse_down();
-        }
-        for (var i: number = 0; i < grounds.length; i++) {
-          grounds[i].mouse_down();
-        }
-        for (var i: number = 0; i < dcsources.length; i++) {
-          dcsources[i].mouse_down();
-        }
-        for (var i: number = 0; i < dccurrents.length; i++) {
-          dccurrents[i].mouse_down();
-        }
-        for (var i: number = 0; i < acsources.length; i++) {
-          acsources[i].mouse_down();
-        }
-        for (var i: number = 0; i < accurrents.length; i++) {
-          accurrents[i].mouse_down();
-        }
-        for (var i: number = 0; i < squarewaves.length; i++) {
-          squarewaves[i].mouse_down();
-        }
-        for (var i: number = 0; i < sawwaves.length; i++) {
-          sawwaves[i].mouse_down();
-        }
-        for (var i: number = 0; i < trianglewaves.length; i++) {
-          trianglewaves[i].mouse_down();
-        }
-        for (var i: number = 0; i < constants.length; i++) {
-          constants[i].mouse_down();
-        }
-        for (var i: number = 0; i < nets.length; i++) {
-          nets[i].mouse_down();
-        }
-        for (var i: number = 0; i < notes.length; i++) {
-          notes[i].mouse_down();
-        }
-        for (var i: number = 0; i < rails.length; i++) {
-          rails[i].mouse_down();
-        }
-        for (var i: number = 0; i < voltmeters.length; i++) {
-          voltmeters[i].mouse_down();
-        }
-        for (var i: number = 0; i < ohmmeters.length; i++) {
-          ohmmeters[i].mouse_down();
-        }
-        for (var i: number = 0; i < ammeters.length; i++) {
-          ammeters[i].mouse_down();
-        }
-        for (var i: number = 0; i < wattmeters.length; i++) {
-          wattmeters[i].mouse_down();
-        }
-        for (var i: number = 0; i < fuses.length; i++) {
-          fuses[i].mouse_down();
-        }
-        for (var i: number = 0; i < spsts.length; i++) {
-          spsts[i].mouse_down();
-        }
-        for (var i: number = 0; i < spdts.length; i++) {
-          spdts[i].mouse_down();
-        }
-        for (var i: number = 0; i < nots.length; i++) {
-          nots[i].mouse_down();
-        }
-        for (var i: number = 0; i < diodes.length; i++) {
-          diodes[i].mouse_down();
-        }
-        for (var i: number = 0; i < leds.length; i++) {
-          leds[i].mouse_down();
-        }
-        for (var i: number = 0; i < zeners.length; i++) {
-          zeners[i].mouse_down();
-        }
-        for (var i: number = 0; i < potentiometers.length; i++) {
-          potentiometers[i].mouse_down();
-        }
-        for (var i: number = 0; i < ands.length; i++) {
-          ands[i].mouse_down();
-        }
-        for (var i: number = 0; i < ors.length; i++) {
-          ors[i].mouse_down();
-        }
-        for (var i: number = 0; i < nands.length; i++) {
-          nands[i].mouse_down();
-        }
-        for (var i: number = 0; i < nors.length; i++) {
-          nors[i].mouse_down();
-        }
-        for (var i: number = 0; i < xors.length; i++) {
-          xors[i].mouse_down();
-        }
-        for (var i: number = 0; i < xnors.length; i++) {
-          xnors[i].mouse_down();
-        }
-        for (var i: number = 0; i < dffs.length; i++) {
-          dffs[i].mouse_down();
-        }
-        for (var i: number = 0; i < vsats.length; i++) {
-          vsats[i].mouse_down();
-        }
-        for (var i: number = 0; i < adders.length; i++) {
-          adders[i].mouse_down();
-        }
-        for (var i: number = 0; i < subtractors.length; i++) {
-          subtractors[i].mouse_down();
-        }
-        for (var i: number = 0; i < multipliers.length; i++) {
-          multipliers[i].mouse_down();
-        }
-        for (var i: number = 0; i < dividers.length; i++) {
-          dividers[i].mouse_down();
-        }
-        for (var i: number = 0; i < gains.length; i++) {
-          gains[i].mouse_down();
-        }
-        for (var i: number = 0; i < absvals.length; i++) {
-          absvals[i].mouse_down();
-        }
-        for (var i: number = 0; i < vcsws.length; i++) {
-          vcsws[i].mouse_down();
-        }
-        for (var i: number = 0; i < vcvss.length; i++) {
-          vcvss[i].mouse_down();
-        }
-        for (var i: number = 0; i < vccss.length; i++) {
-          vccss[i].mouse_down();
-        }
-        for (var i: number = 0; i < cccss.length; i++) {
-          cccss[i].mouse_down();
-        }
-        for (var i: number = 0; i < ccvss.length; i++) {
-          ccvss[i].mouse_down();
-        }
-        for (var i: number = 0; i < opamps.length; i++) {
-          opamps[i].mouse_down();
-        }
-        for (var i: number = 0; i < nmosfets.length; i++) {
-          nmosfets[i].mouse_down();
-        }
-        for (var i: number = 0; i < pmosfets.length; i++) {
-          pmosfets[i].mouse_down();
-        }
-        for (var i: number = 0; i < npns.length; i++) {
-          npns[i].mouse_down();
-        }
-        for (var i: number = 0; i < pnps.length; i++) {
-          pnps[i].mouse_down();
-        }
-        for (var i: number = 0; i < adcs.length; i++) {
-          adcs[i].mouse_down();
-        }
-        for (var i: number = 0; i < dacs.length; i++) {
-          dacs[i].mouse_down();
-        }
-        for (var i: number = 0; i < sandhs.length; i++) {
-          sandhs[i].mouse_down();
-        }
-        for (var i: number = 0; i < pwms.length; i++) {
-          pwms[i].mouse_down();
-        }
-        for (var i: number = 0; i < integrators.length; i++) {
-          integrators[i].mouse_down();
-        }
-        for (var i: number = 0; i < differentiators.length; i++) {
-          differentiators[i].mouse_down();
-        }
-        for (var i: number = 0; i < lowpasses.length; i++) {
-          lowpasses[i].mouse_down();
-        }
-        for (var i: number = 0; i < highpasses.length; i++) {
-          highpasses[i].mouse_down();
-        }
-        for (var i: number = 0; i < relays.length; i++) {
-          relays[i].mouse_down();
-        }
-        for (var i: number = 0; i < pids.length; i++) {
-          pids[i].mouse_down();
-        }
-        for (var i: number = 0; i < luts.length; i++) {
-          luts[i].mouse_down();
-        }
-        for (var i: number = 0; i < vcrs.length; i++) {
-          vcrs[i].mouse_down();
-        }
-        for (var i: number = 0; i < grts.length; i++) {
-          grts[i].mouse_down();
-        }
-        for (var i: number = 0; i < tptzs.length; i++) {
-          tptzs[i].mouse_down();
-        }
-        for (var i: number = 0; i < transformers.length; i++) {
-          transformers[i].mouse_down();
-        }
-        /* <!-- END AUTOMATICALLY GENERATED !--> */
-        /* Handle mouse down events for the wires in the system. */
-        for (var i: number = wires.length - 1; i > -1; i--) {
-          wires[i].mouse_down();
-        }
-      }
-      if (global.MOBILE_MODE === true) {
-        if (global.component_touched === false) {
-          global.IS_DRAGGING = true;
-          global.TEMP_IS_DRAGGING = global.IS_DRAGGING;
-          global.IS_RIGHT_CLICK = true;
-        }
-      }
-    }
-  }
-  /**
-   * Handles mouse move events. All events are serialized in this application to make sure
-   * they occur in a deterministic way.
-   */
-  function handle_mouse_move(): void {
-    global.last_mouse_x = global.mouse_x;
-    global.last_mouse_y = global.mouse_y;
-    if (global.MOBILE_MODE === false) {
-      global.mouse_x = global.mouse_move_event.clientX;
-      global.mouse_y = global.mouse_move_event.clientY;
-    } else {
-      touch = global.mouse_move_event.touches[0];
-      global.mouse_x = touch.clientX;
-      global.mouse_y = touch.clientY;
-    }
-    global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
-    global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
-    if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) && global.TRANSLATION_LOCK) {
-      global.TRANSLATION_LOCK = false;
-      global.IS_DRAGGING = global.TEMP_IS_DRAGGING;
-    }
-    if (global.TRANSLATION_LOCK) {
-      global.IS_DRAGGING = false;
-    }
-    if (
-      !global.FLAG_SAVE_IMAGE &&
-      !global.FLAG_SAVE_CIRCUIT &&
-      !global.FLAG_ZOOM &&
-      !global.FLAG_ELEMENT_OPTIONS &&
-      !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-      !global.FLAG_GRAPH &&
-      !global.FLAG_SELECT_ELEMENT &&
-      !global.FLAG_SELECT_TIMESTEP &&
-      !global.FLAG_SELECT_SETTINGS &&
-      !global.FLAG_REMOVE_ALL
-    ) {
-      if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
-        /* #INSERT_GENERATE_MOUSE_MOVE# */
-        /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        for (var i: number = 0; i < resistors.length; i++) {
-          resistors[i].mouse_move();
-        }
-        for (var i: number = 0; i < capacitors.length; i++) {
-          capacitors[i].mouse_move();
-        }
-        for (var i: number = 0; i < inductors.length; i++) {
-          inductors[i].mouse_move();
-        }
-        for (var i: number = 0; i < grounds.length; i++) {
-          grounds[i].mouse_move();
-        }
-        for (var i: number = 0; i < dcsources.length; i++) {
-          dcsources[i].mouse_move();
-        }
-        for (var i: number = 0; i < dccurrents.length; i++) {
-          dccurrents[i].mouse_move();
-        }
-        for (var i: number = 0; i < acsources.length; i++) {
-          acsources[i].mouse_move();
-        }
-        for (var i: number = 0; i < accurrents.length; i++) {
-          accurrents[i].mouse_move();
-        }
-        for (var i: number = 0; i < squarewaves.length; i++) {
-          squarewaves[i].mouse_move();
-        }
-        for (var i: number = 0; i < sawwaves.length; i++) {
-          sawwaves[i].mouse_move();
-        }
-        for (var i: number = 0; i < trianglewaves.length; i++) {
-          trianglewaves[i].mouse_move();
-        }
-        for (var i: number = 0; i < constants.length; i++) {
-          constants[i].mouse_move();
-        }
-        for (var i: number = 0; i < nets.length; i++) {
-          nets[i].mouse_move();
-        }
-        for (var i: number = 0; i < notes.length; i++) {
-          notes[i].mouse_move();
-        }
-        for (var i: number = 0; i < rails.length; i++) {
-          rails[i].mouse_move();
-        }
-        for (var i: number = 0; i < voltmeters.length; i++) {
-          voltmeters[i].mouse_move();
-        }
-        for (var i: number = 0; i < ohmmeters.length; i++) {
-          ohmmeters[i].mouse_move();
-        }
-        for (var i: number = 0; i < ammeters.length; i++) {
-          ammeters[i].mouse_move();
-        }
-        for (var i: number = 0; i < wattmeters.length; i++) {
-          wattmeters[i].mouse_move();
-        }
-        for (var i: number = 0; i < fuses.length; i++) {
-          fuses[i].mouse_move();
-        }
-        for (var i: number = 0; i < spsts.length; i++) {
-          spsts[i].mouse_move();
-        }
-        for (var i: number = 0; i < spdts.length; i++) {
-          spdts[i].mouse_move();
-        }
-        for (var i: number = 0; i < nots.length; i++) {
-          nots[i].mouse_move();
-        }
-        for (var i: number = 0; i < diodes.length; i++) {
-          diodes[i].mouse_move();
-        }
-        for (var i: number = 0; i < leds.length; i++) {
-          leds[i].mouse_move();
-        }
-        for (var i: number = 0; i < zeners.length; i++) {
-          zeners[i].mouse_move();
-        }
-        for (var i: number = 0; i < potentiometers.length; i++) {
-          potentiometers[i].mouse_move();
-        }
-        for (var i: number = 0; i < ands.length; i++) {
-          ands[i].mouse_move();
-        }
-        for (var i: number = 0; i < ors.length; i++) {
-          ors[i].mouse_move();
-        }
-        for (var i: number = 0; i < nands.length; i++) {
-          nands[i].mouse_move();
-        }
-        for (var i: number = 0; i < nors.length; i++) {
-          nors[i].mouse_move();
-        }
-        for (var i: number = 0; i < xors.length; i++) {
-          xors[i].mouse_move();
-        }
-        for (var i: number = 0; i < xnors.length; i++) {
-          xnors[i].mouse_move();
-        }
-        for (var i: number = 0; i < dffs.length; i++) {
-          dffs[i].mouse_move();
-        }
-        for (var i: number = 0; i < vsats.length; i++) {
-          vsats[i].mouse_move();
-        }
-        for (var i: number = 0; i < adders.length; i++) {
-          adders[i].mouse_move();
-        }
-        for (var i: number = 0; i < subtractors.length; i++) {
-          subtractors[i].mouse_move();
-        }
-        for (var i: number = 0; i < multipliers.length; i++) {
-          multipliers[i].mouse_move();
-        }
-        for (var i: number = 0; i < dividers.length; i++) {
-          dividers[i].mouse_move();
-        }
-        for (var i: number = 0; i < gains.length; i++) {
-          gains[i].mouse_move();
-        }
-        for (var i: number = 0; i < absvals.length; i++) {
-          absvals[i].mouse_move();
-        }
-        for (var i: number = 0; i < vcsws.length; i++) {
-          vcsws[i].mouse_move();
-        }
-        for (var i: number = 0; i < vcvss.length; i++) {
-          vcvss[i].mouse_move();
-        }
-        for (var i: number = 0; i < vccss.length; i++) {
-          vccss[i].mouse_move();
-        }
-        for (var i: number = 0; i < cccss.length; i++) {
-          cccss[i].mouse_move();
-        }
-        for (var i: number = 0; i < ccvss.length; i++) {
-          ccvss[i].mouse_move();
-        }
-        for (var i: number = 0; i < opamps.length; i++) {
-          opamps[i].mouse_move();
-        }
-        for (var i: number = 0; i < nmosfets.length; i++) {
-          nmosfets[i].mouse_move();
-        }
-        for (var i: number = 0; i < pmosfets.length; i++) {
-          pmosfets[i].mouse_move();
-        }
-        for (var i: number = 0; i < npns.length; i++) {
-          npns[i].mouse_move();
-        }
-        for (var i: number = 0; i < pnps.length; i++) {
-          pnps[i].mouse_move();
-        }
-        for (var i: number = 0; i < adcs.length; i++) {
-          adcs[i].mouse_move();
-        }
-        for (var i: number = 0; i < dacs.length; i++) {
-          dacs[i].mouse_move();
-        }
-        for (var i: number = 0; i < sandhs.length; i++) {
-          sandhs[i].mouse_move();
-        }
-        for (var i: number = 0; i < pwms.length; i++) {
-          pwms[i].mouse_move();
-        }
-        for (var i: number = 0; i < integrators.length; i++) {
-          integrators[i].mouse_move();
-        }
-        for (var i: number = 0; i < differentiators.length; i++) {
-          differentiators[i].mouse_move();
-        }
-        for (var i: number = 0; i < lowpasses.length; i++) {
-          lowpasses[i].mouse_move();
-        }
-        for (var i: number = 0; i < highpasses.length; i++) {
-          highpasses[i].mouse_move();
-        }
-        for (var i: number = 0; i < relays.length; i++) {
-          relays[i].mouse_move();
-        }
-        for (var i: number = 0; i < pids.length; i++) {
-          pids[i].mouse_move();
-        }
-        for (var i: number = 0; i < luts.length; i++) {
-          luts[i].mouse_move();
-        }
-        for (var i: number = 0; i < vcrs.length; i++) {
-          vcrs[i].mouse_move();
-        }
-        for (var i: number = 0; i < grts.length; i++) {
-          grts[i].mouse_move();
-        }
-        for (var i: number = 0; i < tptzs.length; i++) {
-          tptzs[i].mouse_move();
-        }
-        for (var i: number = 0; i < transformers.length; i++) {
-          transformers[i].mouse_move();
-        }
-        /* <!-- END AUTOMATICALLY GENERATED !--> */
-      }
-    }
-    for (var i: number = wires.length - 1; i > -1; i--) {
-      wires[i].mouse_move();
-    }
-    menu_bar.mouse_move();
-    bottom_menu.mouse_move();
-    time_step_window.mouse_move();
-    save_circuit_window.mouse_move();
-    save_image_window.mouse_move();
-    element_options.mouse_move();
-    element_options_window.mouse_move();
-    element_options_edit_window.mouse_move();
-    zoom_window.mouse_move();
-    settings_window.mouse_move();
-    yes_no_window.mouse_move();
-    graph_window.mouse_move();
-    if (!global.MOBILE_MODE) {
-      multi_select_manager.mouse_move();
-    }
-    if (global.IS_DRAGGING) {
-      handle_workspace_drag();
-    }
-  }
+	function handle_mouse_down(): void {
+		global.component_touched = false;
+		if (global.MOBILE_MODE === false) {
+			global.mouse_x = global.mouse_down_event.clientX;
+			global.mouse_y = global.mouse_down_event.clientY;
+		} else {
+			//@ts-expect-error
+			touch = global.mouse_down_event.touches[0];
+			global.mouse_x = touch.clientX;
+			global.mouse_y = touch.clientY;
+		}
+		global.last_mouse_x = global.mouse_x;
+		global.last_mouse_y = global.mouse_y;
+		global.is_touching = true;
+		global.mouse_down_x = global.mouse_x;
+		global.mouse_down_y = global.mouse_y;
+		global.translation_lock = true;
+		if (!global.MOBILE_MODE) {
+			/* Gecko (Firefox), WebKit (Safari/Chrome) & Opera */
+			if ('which' in global.mouse_down_event) {
+				global.is_right_click = global.mouse_down_event.which === 3;
+			} else if ('button' in global.mouse_down_event) {
+				/* IE, Opera */
+				//@ts-expect-error
+				global.is_right_click = global.mouse_down_event.button === 2;
+			}
+		} else {
+			global.is_right_click = false;
+		}
+		if (!global.is_right_click) {
+			/* Handle mouse down events for element options */
+			element_options.mouse_down();
+			/* Handle mouse down events for the bottom menu */
+			bottom_menu.mouse_down();
+			/* Handle mouse down events fro the time step window */
+			time_step_window.mouse_down();
+			/* Handle mouse down events for the save circuit window. */
+			save_circuit_window.mouse_down();
+			/* Handle mouse down events for the save image window */
+			save_image_window.mouse_down();
+			/* Handle mouse down events for the menu_bar */
+			menu_bar.mouse_down();
+			/* Handle mouse down events for the element options window. */
+			element_options_window.mouse_down();
+			/* Handle mouse down events for the element options edit window. */
+			element_options_edit_window.mouse_down();
+			graph_window.mouse_down();
+			/* Handle mouse down events for the zoom window */
+			zoom_window.mouse_down();
+			/* Handle mouse down events for the settings window */
+			settings_window.mouse_down();
+			/* Handle mouse down events for the yes / no window. (It's for confirming if the user really wants to clear the board.)*/
+			yes_no_window.mouse_down();
+			if (!global.MOBILE_MODE) {
+				multi_select_manager.mouse_down();
+			}
+			on_screen_keyboard.mouse_down();
+		}
+		if (
+			!global.FLAG_SAVE_IMAGE &&
+			!global.FLAG_SAVE_CIRCUIT &&
+			!global.FLAG_ZOOM &&
+			!global.FLAG_ELEMENT_OPTIONS &&
+			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
+			!global.FLAG_GRAPH &&
+			!global.FLAG_SELECT_ELEMENT &&
+			!global.FLAG_SELECT_TIMESTEP &&
+			!global.FLAG_SELECT_SETTINGS &&
+			!global.FLAG_REMOVE_ALL &&
+			!global.FLAG_MENU_OPEN_DOWN
+		) {
+			if (global.MOBILE_MODE === false) {
+				if (global.is_right_click) {
+					global.is_dragging = true;
+					global.temp_is_dragging = global.is_dragging;
+				}
+			}
+			if (!global.is_dragging) {
+				/* #INSERT_GENERATE_MOUSE_DOWN# */
+				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+				for (var i: number = 0; i < resistors.length; i++) {
+					resistors[i].mouse_down();
+				}
+				for (var i: number = 0; i < capacitors.length; i++) {
+					capacitors[i].mouse_down();
+				}
+				for (var i: number = 0; i < inductors.length; i++) {
+					inductors[i].mouse_down();
+				}
+				for (var i: number = 0; i < grounds.length; i++) {
+					grounds[i].mouse_down();
+				}
+				for (var i: number = 0; i < dcsources.length; i++) {
+					dcsources[i].mouse_down();
+				}
+				for (var i: number = 0; i < dccurrents.length; i++) {
+					dccurrents[i].mouse_down();
+				}
+				for (var i: number = 0; i < acsources.length; i++) {
+					acsources[i].mouse_down();
+				}
+				for (var i: number = 0; i < accurrents.length; i++) {
+					accurrents[i].mouse_down();
+				}
+				for (var i: number = 0; i < squarewaves.length; i++) {
+					squarewaves[i].mouse_down();
+				}
+				for (var i: number = 0; i < sawwaves.length; i++) {
+					sawwaves[i].mouse_down();
+				}
+				for (var i: number = 0; i < trianglewaves.length; i++) {
+					trianglewaves[i].mouse_down();
+				}
+				for (var i: number = 0; i < constants.length; i++) {
+					constants[i].mouse_down();
+				}
+				for (var i: number = 0; i < nets.length; i++) {
+					nets[i].mouse_down();
+				}
+				for (var i: number = 0; i < notes.length; i++) {
+					notes[i].mouse_down();
+				}
+				for (var i: number = 0; i < rails.length; i++) {
+					rails[i].mouse_down();
+				}
+				for (var i: number = 0; i < voltmeters.length; i++) {
+					voltmeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < ohmmeters.length; i++) {
+					ohmmeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < ammeters.length; i++) {
+					ammeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < wattmeters.length; i++) {
+					wattmeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < fuses.length; i++) {
+					fuses[i].mouse_down();
+				}
+				for (var i: number = 0; i < spsts.length; i++) {
+					spsts[i].mouse_down();
+				}
+				for (var i: number = 0; i < spdts.length; i++) {
+					spdts[i].mouse_down();
+				}
+				for (var i: number = 0; i < nots.length; i++) {
+					nots[i].mouse_down();
+				}
+				for (var i: number = 0; i < diodes.length; i++) {
+					diodes[i].mouse_down();
+				}
+				for (var i: number = 0; i < leds.length; i++) {
+					leds[i].mouse_down();
+				}
+				for (var i: number = 0; i < zeners.length; i++) {
+					zeners[i].mouse_down();
+				}
+				for (var i: number = 0; i < potentiometers.length; i++) {
+					potentiometers[i].mouse_down();
+				}
+				for (var i: number = 0; i < ands.length; i++) {
+					ands[i].mouse_down();
+				}
+				for (var i: number = 0; i < ors.length; i++) {
+					ors[i].mouse_down();
+				}
+				for (var i: number = 0; i < nands.length; i++) {
+					nands[i].mouse_down();
+				}
+				for (var i: number = 0; i < nors.length; i++) {
+					nors[i].mouse_down();
+				}
+				for (var i: number = 0; i < xors.length; i++) {
+					xors[i].mouse_down();
+				}
+				for (var i: number = 0; i < xnors.length; i++) {
+					xnors[i].mouse_down();
+				}
+				for (var i: number = 0; i < dffs.length; i++) {
+					dffs[i].mouse_down();
+				}
+				for (var i: number = 0; i < vsats.length; i++) {
+					vsats[i].mouse_down();
+				}
+				for (var i: number = 0; i < adders.length; i++) {
+					adders[i].mouse_down();
+				}
+				for (var i: number = 0; i < subtractors.length; i++) {
+					subtractors[i].mouse_down();
+				}
+				for (var i: number = 0; i < multipliers.length; i++) {
+					multipliers[i].mouse_down();
+				}
+				for (var i: number = 0; i < dividers.length; i++) {
+					dividers[i].mouse_down();
+				}
+				for (var i: number = 0; i < gains.length; i++) {
+					gains[i].mouse_down();
+				}
+				for (var i: number = 0; i < absvals.length; i++) {
+					absvals[i].mouse_down();
+				}
+				for (var i: number = 0; i < vcsws.length; i++) {
+					vcsws[i].mouse_down();
+				}
+				for (var i: number = 0; i < vcvss.length; i++) {
+					vcvss[i].mouse_down();
+				}
+				for (var i: number = 0; i < vccss.length; i++) {
+					vccss[i].mouse_down();
+				}
+				for (var i: number = 0; i < cccss.length; i++) {
+					cccss[i].mouse_down();
+				}
+				for (var i: number = 0; i < ccvss.length; i++) {
+					ccvss[i].mouse_down();
+				}
+				for (var i: number = 0; i < opamps.length; i++) {
+					opamps[i].mouse_down();
+				}
+				for (var i: number = 0; i < nmosfets.length; i++) {
+					nmosfets[i].mouse_down();
+				}
+				for (var i: number = 0; i < pmosfets.length; i++) {
+					pmosfets[i].mouse_down();
+				}
+				for (var i: number = 0; i < npns.length; i++) {
+					npns[i].mouse_down();
+				}
+				for (var i: number = 0; i < pnps.length; i++) {
+					pnps[i].mouse_down();
+				}
+				for (var i: number = 0; i < adcs.length; i++) {
+					adcs[i].mouse_down();
+				}
+				for (var i: number = 0; i < dacs.length; i++) {
+					dacs[i].mouse_down();
+				}
+				for (var i: number = 0; i < sandhs.length; i++) {
+					sandhs[i].mouse_down();
+				}
+				for (var i: number = 0; i < pwms.length; i++) {
+					pwms[i].mouse_down();
+				}
+				for (var i: number = 0; i < integrators.length; i++) {
+					integrators[i].mouse_down();
+				}
+				for (var i: number = 0; i < differentiators.length; i++) {
+					differentiators[i].mouse_down();
+				}
+				for (var i: number = 0; i < lowpasses.length; i++) {
+					lowpasses[i].mouse_down();
+				}
+				for (var i: number = 0; i < highpasses.length; i++) {
+					highpasses[i].mouse_down();
+				}
+				for (var i: number = 0; i < relays.length; i++) {
+					relays[i].mouse_down();
+				}
+				for (var i: number = 0; i < pids.length; i++) {
+					pids[i].mouse_down();
+				}
+				for (var i: number = 0; i < luts.length; i++) {
+					luts[i].mouse_down();
+				}
+				for (var i: number = 0; i < vcrs.length; i++) {
+					vcrs[i].mouse_down();
+				}
+				for (var i: number = 0; i < grts.length; i++) {
+					grts[i].mouse_down();
+				}
+				for (var i: number = 0; i < tptzs.length; i++) {
+					tptzs[i].mouse_down();
+				}
+				for (var i: number = 0; i < transformers.length; i++) {
+					transformers[i].mouse_down();
+				}
+				/* <!-- END AUTOMATICALLY GENERATED !--> */
+				/* Handle mouse down events for the wires in the system. */
+				for (var i: number = wires.length - 1; i > -1; i--) {
+					wires[i].mouse_down();
+				}
+			}
+			if (global.MOBILE_MODE === true) {
+				if (global.component_touched === false) {
+					global.is_dragging = true;
+					global.temp_is_dragging = global.is_dragging;
+					global.is_right_click = true;
+				}
+			}
+		}
+	}
+	/**
+	 * Handles mouse move events. All events are serialized in this application to make sure
+	 * they occur in a deterministic way.
+	 */
+	function handle_mouse_move(): void {
+		global.last_mouse_x = global.mouse_x;
+		global.last_mouse_y = global.mouse_y;
+		if (global.MOBILE_MODE === false) {
+			global.mouse_x = global.mouse_move_event.clientX;
+			global.mouse_y = global.mouse_move_event.clientY;
+		} else {
+			//@ts-expect-error
+			touch = global.mouse_move_event.touches[0];
+			global.mouse_x = touch.clientX;
+			global.mouse_y = touch.clientY;
+		}
+		global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
+		global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
+		if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) && global.translation_lock) {
+			global.translation_lock = false;
+			global.is_dragging = global.temp_is_dragging;
+		}
+		if (global.translation_lock) {
+			global.is_dragging = false;
+		}
+		if (
+			!global.FLAG_SAVE_IMAGE &&
+			!global.FLAG_SAVE_CIRCUIT &&
+			!global.FLAG_ZOOM &&
+			!global.FLAG_ELEMENT_OPTIONS &&
+			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
+			!global.FLAG_GRAPH &&
+			!global.FLAG_SELECT_ELEMENT &&
+			!global.FLAG_SELECT_TIMESTEP &&
+			!global.FLAG_SELECT_SETTINGS &&
+			!global.FLAG_REMOVE_ALL
+		) {
+			if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
+				/* #INSERT_GENERATE_MOUSE_MOVE# */
+				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+				for (var i: number = 0; i < resistors.length; i++) {
+					resistors[i].mouse_move();
+				}
+				for (var i: number = 0; i < capacitors.length; i++) {
+					capacitors[i].mouse_move();
+				}
+				for (var i: number = 0; i < inductors.length; i++) {
+					inductors[i].mouse_move();
+				}
+				for (var i: number = 0; i < grounds.length; i++) {
+					grounds[i].mouse_move();
+				}
+				for (var i: number = 0; i < dcsources.length; i++) {
+					dcsources[i].mouse_move();
+				}
+				for (var i: number = 0; i < dccurrents.length; i++) {
+					dccurrents[i].mouse_move();
+				}
+				for (var i: number = 0; i < acsources.length; i++) {
+					acsources[i].mouse_move();
+				}
+				for (var i: number = 0; i < accurrents.length; i++) {
+					accurrents[i].mouse_move();
+				}
+				for (var i: number = 0; i < squarewaves.length; i++) {
+					squarewaves[i].mouse_move();
+				}
+				for (var i: number = 0; i < sawwaves.length; i++) {
+					sawwaves[i].mouse_move();
+				}
+				for (var i: number = 0; i < trianglewaves.length; i++) {
+					trianglewaves[i].mouse_move();
+				}
+				for (var i: number = 0; i < constants.length; i++) {
+					constants[i].mouse_move();
+				}
+				for (var i: number = 0; i < nets.length; i++) {
+					nets[i].mouse_move();
+				}
+				for (var i: number = 0; i < notes.length; i++) {
+					notes[i].mouse_move();
+				}
+				for (var i: number = 0; i < rails.length; i++) {
+					rails[i].mouse_move();
+				}
+				for (var i: number = 0; i < voltmeters.length; i++) {
+					voltmeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < ohmmeters.length; i++) {
+					ohmmeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < ammeters.length; i++) {
+					ammeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < wattmeters.length; i++) {
+					wattmeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < fuses.length; i++) {
+					fuses[i].mouse_move();
+				}
+				for (var i: number = 0; i < spsts.length; i++) {
+					spsts[i].mouse_move();
+				}
+				for (var i: number = 0; i < spdts.length; i++) {
+					spdts[i].mouse_move();
+				}
+				for (var i: number = 0; i < nots.length; i++) {
+					nots[i].mouse_move();
+				}
+				for (var i: number = 0; i < diodes.length; i++) {
+					diodes[i].mouse_move();
+				}
+				for (var i: number = 0; i < leds.length; i++) {
+					leds[i].mouse_move();
+				}
+				for (var i: number = 0; i < zeners.length; i++) {
+					zeners[i].mouse_move();
+				}
+				for (var i: number = 0; i < potentiometers.length; i++) {
+					potentiometers[i].mouse_move();
+				}
+				for (var i: number = 0; i < ands.length; i++) {
+					ands[i].mouse_move();
+				}
+				for (var i: number = 0; i < ors.length; i++) {
+					ors[i].mouse_move();
+				}
+				for (var i: number = 0; i < nands.length; i++) {
+					nands[i].mouse_move();
+				}
+				for (var i: number = 0; i < nors.length; i++) {
+					nors[i].mouse_move();
+				}
+				for (var i: number = 0; i < xors.length; i++) {
+					xors[i].mouse_move();
+				}
+				for (var i: number = 0; i < xnors.length; i++) {
+					xnors[i].mouse_move();
+				}
+				for (var i: number = 0; i < dffs.length; i++) {
+					dffs[i].mouse_move();
+				}
+				for (var i: number = 0; i < vsats.length; i++) {
+					vsats[i].mouse_move();
+				}
+				for (var i: number = 0; i < adders.length; i++) {
+					adders[i].mouse_move();
+				}
+				for (var i: number = 0; i < subtractors.length; i++) {
+					subtractors[i].mouse_move();
+				}
+				for (var i: number = 0; i < multipliers.length; i++) {
+					multipliers[i].mouse_move();
+				}
+				for (var i: number = 0; i < dividers.length; i++) {
+					dividers[i].mouse_move();
+				}
+				for (var i: number = 0; i < gains.length; i++) {
+					gains[i].mouse_move();
+				}
+				for (var i: number = 0; i < absvals.length; i++) {
+					absvals[i].mouse_move();
+				}
+				for (var i: number = 0; i < vcsws.length; i++) {
+					vcsws[i].mouse_move();
+				}
+				for (var i: number = 0; i < vcvss.length; i++) {
+					vcvss[i].mouse_move();
+				}
+				for (var i: number = 0; i < vccss.length; i++) {
+					vccss[i].mouse_move();
+				}
+				for (var i: number = 0; i < cccss.length; i++) {
+					cccss[i].mouse_move();
+				}
+				for (var i: number = 0; i < ccvss.length; i++) {
+					ccvss[i].mouse_move();
+				}
+				for (var i: number = 0; i < opamps.length; i++) {
+					opamps[i].mouse_move();
+				}
+				for (var i: number = 0; i < nmosfets.length; i++) {
+					nmosfets[i].mouse_move();
+				}
+				for (var i: number = 0; i < pmosfets.length; i++) {
+					pmosfets[i].mouse_move();
+				}
+				for (var i: number = 0; i < npns.length; i++) {
+					npns[i].mouse_move();
+				}
+				for (var i: number = 0; i < pnps.length; i++) {
+					pnps[i].mouse_move();
+				}
+				for (var i: number = 0; i < adcs.length; i++) {
+					adcs[i].mouse_move();
+				}
+				for (var i: number = 0; i < dacs.length; i++) {
+					dacs[i].mouse_move();
+				}
+				for (var i: number = 0; i < sandhs.length; i++) {
+					sandhs[i].mouse_move();
+				}
+				for (var i: number = 0; i < pwms.length; i++) {
+					pwms[i].mouse_move();
+				}
+				for (var i: number = 0; i < integrators.length; i++) {
+					integrators[i].mouse_move();
+				}
+				for (var i: number = 0; i < differentiators.length; i++) {
+					differentiators[i].mouse_move();
+				}
+				for (var i: number = 0; i < lowpasses.length; i++) {
+					lowpasses[i].mouse_move();
+				}
+				for (var i: number = 0; i < highpasses.length; i++) {
+					highpasses[i].mouse_move();
+				}
+				for (var i: number = 0; i < relays.length; i++) {
+					relays[i].mouse_move();
+				}
+				for (var i: number = 0; i < pids.length; i++) {
+					pids[i].mouse_move();
+				}
+				for (var i: number = 0; i < luts.length; i++) {
+					luts[i].mouse_move();
+				}
+				for (var i: number = 0; i < vcrs.length; i++) {
+					vcrs[i].mouse_move();
+				}
+				for (var i: number = 0; i < grts.length; i++) {
+					grts[i].mouse_move();
+				}
+				for (var i: number = 0; i < tptzs.length; i++) {
+					tptzs[i].mouse_move();
+				}
+				for (var i: number = 0; i < transformers.length; i++) {
+					transformers[i].mouse_move();
+				}
+				/* <!-- END AUTOMATICALLY GENERATED !--> */
+			}
+		}
+		for (var i: number = wires.length - 1; i > -1; i--) {
+			wires[i].mouse_move();
+		}
+		menu_bar.mouse_move();
+		bottom_menu.mouse_move();
+		time_step_window.mouse_move();
+		save_circuit_window.mouse_move();
+		save_image_window.mouse_move();
+		element_options.mouse_move();
+		element_options_window.mouse_move();
+		element_options_edit_window.mouse_move();
+		zoom_window.mouse_move();
+		settings_window.mouse_move();
+		yes_no_window.mouse_move();
+		graph_window.mouse_move();
+		if (!global.MOBILE_MODE) {
+			multi_select_manager.mouse_move();
+		}
+		if (global.is_dragging) {
+			handle_workspace_drag();
+		}
+	}
 
-  function handle_mouse_up(): void {
-    let temp_transition_lock: boolean = global.TRANSLATION_LOCK;
-    global.TRANSLATION_LOCK = true;
-    global.mouse_down_x = -1;
-    global.mouse_down_y = -1;
-    if (global.MOBILE_MODE === false) {
-      global.mouse_x = global.mouse_up_event.clientX;
-      global.mouse_y = global.mouse_up_event.clientY;
-    } else {
-      /* Mobile doesn't generate new touch points for mouse up. We shall utilize whatever mouse coordinates exist. I'm
+	function handle_mouse_up(): void {
+		let temp_translation_lock: boolean = global.translation_lock;
+		global.translation_lock = true;
+		global.mouse_down_x = -1;
+		global.mouse_down_y = -1;
+		if (global.MOBILE_MODE === false) {
+			global.mouse_x = global.mouse_up_event.clientX;
+			global.mouse_y = global.mouse_up_event.clientY;
+		} else {
+			/* Mobile doesn't generate new touch points for mouse up. We shall utilize whatever mouse coordinates exist. I'm
       assuming if we got this far then we have some touch events atlesat! */
-    }
-    global.last_mouse_x = global.mouse_x;
-    global.last_mouse_y = global.mouse_y;
-    global.is_touching = false;
-    global.IS_DRAGGING = false;
-    global.TEMP_IS_DRAGGING = global.IS_DRAGGING;
-    if (
-      !global.FLAG_SAVE_IMAGE &&
-      !global.FLAG_SAVE_CIRCUIT &&
-      !global.FLAG_ZOOM &&
-      !global.FLAG_ELEMENT_OPTIONS &&
-      !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-      !global.FLAG_GRAPH &&
-      !global.FLAG_SELECT_ELEMENT &&
-      !global.FLAG_SELECT_TIMESTEP &&
-      !global.FLAG_SELECT_SETTINGS &&
-      !global.FLAG_REMOVE_ALL
-    ) {
-      if (!global.component_touched && !global.IS_RIGHT_CLICK) {
-        if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-          wire_manager.reset_wire_builder();
-        }
-      }
-      /* #INSERT_GENERATE_MOUSE_UP# */
-      /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-      for (var i: number = 0; i < resistors.length; i++) {
-        resistors[i].mouse_up();
-      }
-      for (var i: number = 0; i < capacitors.length; i++) {
-        capacitors[i].mouse_up();
-      }
-      for (var i: number = 0; i < inductors.length; i++) {
-        inductors[i].mouse_up();
-      }
-      for (var i: number = 0; i < grounds.length; i++) {
-        grounds[i].mouse_up();
-      }
-      for (var i: number = 0; i < dcsources.length; i++) {
-        dcsources[i].mouse_up();
-      }
-      for (var i: number = 0; i < dccurrents.length; i++) {
-        dccurrents[i].mouse_up();
-      }
-      for (var i: number = 0; i < acsources.length; i++) {
-        acsources[i].mouse_up();
-      }
-      for (var i: number = 0; i < accurrents.length; i++) {
-        accurrents[i].mouse_up();
-      }
-      for (var i: number = 0; i < squarewaves.length; i++) {
-        squarewaves[i].mouse_up();
-      }
-      for (var i: number = 0; i < sawwaves.length; i++) {
-        sawwaves[i].mouse_up();
-      }
-      for (var i: number = 0; i < trianglewaves.length; i++) {
-        trianglewaves[i].mouse_up();
-      }
-      for (var i: number = 0; i < constants.length; i++) {
-        constants[i].mouse_up();
-      }
-      for (var i: number = 0; i < nets.length; i++) {
-        nets[i].mouse_up();
-      }
-      for (var i: number = 0; i < notes.length; i++) {
-        notes[i].mouse_up();
-      }
-      for (var i: number = 0; i < rails.length; i++) {
-        rails[i].mouse_up();
-      }
-      for (var i: number = 0; i < voltmeters.length; i++) {
-        voltmeters[i].mouse_up();
-      }
-      for (var i: number = 0; i < ohmmeters.length; i++) {
-        ohmmeters[i].mouse_up();
-      }
-      for (var i: number = 0; i < ammeters.length; i++) {
-        ammeters[i].mouse_up();
-      }
-      for (var i: number = 0; i < wattmeters.length; i++) {
-        wattmeters[i].mouse_up();
-      }
-      for (var i: number = 0; i < fuses.length; i++) {
-        fuses[i].mouse_up();
-      }
-      for (var i: number = 0; i < spsts.length; i++) {
-        spsts[i].mouse_up();
-      }
-      for (var i: number = 0; i < spdts.length; i++) {
-        spdts[i].mouse_up();
-      }
-      for (var i: number = 0; i < nots.length; i++) {
-        nots[i].mouse_up();
-      }
-      for (var i: number = 0; i < diodes.length; i++) {
-        diodes[i].mouse_up();
-      }
-      for (var i: number = 0; i < leds.length; i++) {
-        leds[i].mouse_up();
-      }
-      for (var i: number = 0; i < zeners.length; i++) {
-        zeners[i].mouse_up();
-      }
-      for (var i: number = 0; i < potentiometers.length; i++) {
-        potentiometers[i].mouse_up();
-      }
-      for (var i: number = 0; i < ands.length; i++) {
-        ands[i].mouse_up();
-      }
-      for (var i: number = 0; i < ors.length; i++) {
-        ors[i].mouse_up();
-      }
-      for (var i: number = 0; i < nands.length; i++) {
-        nands[i].mouse_up();
-      }
-      for (var i: number = 0; i < nors.length; i++) {
-        nors[i].mouse_up();
-      }
-      for (var i: number = 0; i < xors.length; i++) {
-        xors[i].mouse_up();
-      }
-      for (var i: number = 0; i < xnors.length; i++) {
-        xnors[i].mouse_up();
-      }
-      for (var i: number = 0; i < dffs.length; i++) {
-        dffs[i].mouse_up();
-      }
-      for (var i: number = 0; i < vsats.length; i++) {
-        vsats[i].mouse_up();
-      }
-      for (var i: number = 0; i < adders.length; i++) {
-        adders[i].mouse_up();
-      }
-      for (var i: number = 0; i < subtractors.length; i++) {
-        subtractors[i].mouse_up();
-      }
-      for (var i: number = 0; i < multipliers.length; i++) {
-        multipliers[i].mouse_up();
-      }
-      for (var i: number = 0; i < dividers.length; i++) {
-        dividers[i].mouse_up();
-      }
-      for (var i: number = 0; i < gains.length; i++) {
-        gains[i].mouse_up();
-      }
-      for (var i: number = 0; i < absvals.length; i++) {
-        absvals[i].mouse_up();
-      }
-      for (var i: number = 0; i < vcsws.length; i++) {
-        vcsws[i].mouse_up();
-      }
-      for (var i: number = 0; i < vcvss.length; i++) {
-        vcvss[i].mouse_up();
-      }
-      for (var i: number = 0; i < vccss.length; i++) {
-        vccss[i].mouse_up();
-      }
-      for (var i: number = 0; i < cccss.length; i++) {
-        cccss[i].mouse_up();
-      }
-      for (var i: number = 0; i < ccvss.length; i++) {
-        ccvss[i].mouse_up();
-      }
-      for (var i: number = 0; i < opamps.length; i++) {
-        opamps[i].mouse_up();
-      }
-      for (var i: number = 0; i < nmosfets.length; i++) {
-        nmosfets[i].mouse_up();
-      }
-      for (var i: number = 0; i < pmosfets.length; i++) {
-        pmosfets[i].mouse_up();
-      }
-      for (var i: number = 0; i < npns.length; i++) {
-        npns[i].mouse_up();
-      }
-      for (var i: number = 0; i < pnps.length; i++) {
-        pnps[i].mouse_up();
-      }
-      for (var i: number = 0; i < adcs.length; i++) {
-        adcs[i].mouse_up();
-      }
-      for (var i: number = 0; i < dacs.length; i++) {
-        dacs[i].mouse_up();
-      }
-      for (var i: number = 0; i < sandhs.length; i++) {
-        sandhs[i].mouse_up();
-      }
-      for (var i: number = 0; i < pwms.length; i++) {
-        pwms[i].mouse_up();
-      }
-      for (var i: number = 0; i < integrators.length; i++) {
-        integrators[i].mouse_up();
-      }
-      for (var i: number = 0; i < differentiators.length; i++) {
-        differentiators[i].mouse_up();
-      }
-      for (var i: number = 0; i < lowpasses.length; i++) {
-        lowpasses[i].mouse_up();
-      }
-      for (var i: number = 0; i < highpasses.length; i++) {
-        highpasses[i].mouse_up();
-      }
-      for (var i: number = 0; i < relays.length; i++) {
-        relays[i].mouse_up();
-      }
-      for (var i: number = 0; i < pids.length; i++) {
-        pids[i].mouse_up();
-      }
-      for (var i: number = 0; i < luts.length; i++) {
-        luts[i].mouse_up();
-      }
-      for (var i: number = 0; i < vcrs.length; i++) {
-        vcrs[i].mouse_up();
-      }
-      for (var i: number = 0; i < grts.length; i++) {
-        grts[i].mouse_up();
-      }
-      for (var i: number = 0; i < tptzs.length; i++) {
-        tptzs[i].mouse_up();
-      }
-      for (var i: number = 0; i < transformers.length; i++) {
-        transformers[i].mouse_up();
-      }
-      /* <!-- END AUTOMATICALLY GENERATED !--> */
-    }
-    for (var i: number = wires.length - 1; i > -1; i--) {
-      wires[i].mouse_up();
-    }
-    if (global.SIGNAL_WIRE_CREATED) {
-      global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
-      global.SIGNAL_WIRE_CREATED = false;
-    }
-    /* Handle menu_bar mouse up event. */
-    let component_touched: boolean = global.component_touched;
-    if (!global.component_touched) {
-      global.component_touched = true;
-    }
-    menu_bar.mouse_up();
-    /* Handle bottom_menu mouse up event. */
-    bottom_menu.mouse_up();
-    time_step_window.mouse_up();
-    save_circuit_window.mouse_up(canvas);
-    save_image_window.mouse_up();
-    element_options.mouse_up();
-    element_options_window.mouse_up();
-    element_options_edit_window.mouse_up();
-    graph_window.mouse_up();
-    zoom_window.mouse_up();
-    settings_window.mouse_up();
-    yes_no_window.mouse_up();
-    on_screen_keyboard.mouse_up();
-    if (!global.MOBILE_MODE) {
-      multi_select_manager.mouse_up();
-    }
-    global.component_touched = component_touched;
-    engine_functions.reset_selection(false);
-    engine_functions.handle_nearest_neighbors(temp_transition_lock);
-    global.SIGNAL_HISTORY_LOCK = false;
-  }
+		}
+		global.last_mouse_x = global.mouse_x;
+		global.last_mouse_y = global.mouse_y;
+		global.is_touching = false;
+		global.is_dragging = false;
+		global.temp_is_dragging = global.is_dragging;
+		if (
+			!global.FLAG_SAVE_IMAGE &&
+			!global.FLAG_SAVE_CIRCUIT &&
+			!global.FLAG_ZOOM &&
+			!global.FLAG_ELEMENT_OPTIONS &&
+			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
+			!global.FLAG_GRAPH &&
+			!global.FLAG_SELECT_ELEMENT &&
+			!global.FLAG_SELECT_TIMESTEP &&
+			!global.FLAG_SELECT_SETTINGS &&
+			!global.FLAG_REMOVE_ALL
+		) {
+			if (!global.component_touched && !global.is_right_click) {
+				if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+					wire_manager.reset_wire_builder();
+				}
+			}
+			/* #INSERT_GENERATE_MOUSE_UP# */
+			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i: number = 0; i < resistors.length; i++) {
+				resistors[i].mouse_up();
+			}
+			for (var i: number = 0; i < capacitors.length; i++) {
+				capacitors[i].mouse_up();
+			}
+			for (var i: number = 0; i < inductors.length; i++) {
+				inductors[i].mouse_up();
+			}
+			for (var i: number = 0; i < grounds.length; i++) {
+				grounds[i].mouse_up();
+			}
+			for (var i: number = 0; i < dcsources.length; i++) {
+				dcsources[i].mouse_up();
+			}
+			for (var i: number = 0; i < dccurrents.length; i++) {
+				dccurrents[i].mouse_up();
+			}
+			for (var i: number = 0; i < acsources.length; i++) {
+				acsources[i].mouse_up();
+			}
+			for (var i: number = 0; i < accurrents.length; i++) {
+				accurrents[i].mouse_up();
+			}
+			for (var i: number = 0; i < squarewaves.length; i++) {
+				squarewaves[i].mouse_up();
+			}
+			for (var i: number = 0; i < sawwaves.length; i++) {
+				sawwaves[i].mouse_up();
+			}
+			for (var i: number = 0; i < trianglewaves.length; i++) {
+				trianglewaves[i].mouse_up();
+			}
+			for (var i: number = 0; i < constants.length; i++) {
+				constants[i].mouse_up();
+			}
+			for (var i: number = 0; i < nets.length; i++) {
+				nets[i].mouse_up();
+			}
+			for (var i: number = 0; i < notes.length; i++) {
+				notes[i].mouse_up();
+			}
+			for (var i: number = 0; i < rails.length; i++) {
+				rails[i].mouse_up();
+			}
+			for (var i: number = 0; i < voltmeters.length; i++) {
+				voltmeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < ohmmeters.length; i++) {
+				ohmmeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < ammeters.length; i++) {
+				ammeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < wattmeters.length; i++) {
+				wattmeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < fuses.length; i++) {
+				fuses[i].mouse_up();
+			}
+			for (var i: number = 0; i < spsts.length; i++) {
+				spsts[i].mouse_up();
+			}
+			for (var i: number = 0; i < spdts.length; i++) {
+				spdts[i].mouse_up();
+			}
+			for (var i: number = 0; i < nots.length; i++) {
+				nots[i].mouse_up();
+			}
+			for (var i: number = 0; i < diodes.length; i++) {
+				diodes[i].mouse_up();
+			}
+			for (var i: number = 0; i < leds.length; i++) {
+				leds[i].mouse_up();
+			}
+			for (var i: number = 0; i < zeners.length; i++) {
+				zeners[i].mouse_up();
+			}
+			for (var i: number = 0; i < potentiometers.length; i++) {
+				potentiometers[i].mouse_up();
+			}
+			for (var i: number = 0; i < ands.length; i++) {
+				ands[i].mouse_up();
+			}
+			for (var i: number = 0; i < ors.length; i++) {
+				ors[i].mouse_up();
+			}
+			for (var i: number = 0; i < nands.length; i++) {
+				nands[i].mouse_up();
+			}
+			for (var i: number = 0; i < nors.length; i++) {
+				nors[i].mouse_up();
+			}
+			for (var i: number = 0; i < xors.length; i++) {
+				xors[i].mouse_up();
+			}
+			for (var i: number = 0; i < xnors.length; i++) {
+				xnors[i].mouse_up();
+			}
+			for (var i: number = 0; i < dffs.length; i++) {
+				dffs[i].mouse_up();
+			}
+			for (var i: number = 0; i < vsats.length; i++) {
+				vsats[i].mouse_up();
+			}
+			for (var i: number = 0; i < adders.length; i++) {
+				adders[i].mouse_up();
+			}
+			for (var i: number = 0; i < subtractors.length; i++) {
+				subtractors[i].mouse_up();
+			}
+			for (var i: number = 0; i < multipliers.length; i++) {
+				multipliers[i].mouse_up();
+			}
+			for (var i: number = 0; i < dividers.length; i++) {
+				dividers[i].mouse_up();
+			}
+			for (var i: number = 0; i < gains.length; i++) {
+				gains[i].mouse_up();
+			}
+			for (var i: number = 0; i < absvals.length; i++) {
+				absvals[i].mouse_up();
+			}
+			for (var i: number = 0; i < vcsws.length; i++) {
+				vcsws[i].mouse_up();
+			}
+			for (var i: number = 0; i < vcvss.length; i++) {
+				vcvss[i].mouse_up();
+			}
+			for (var i: number = 0; i < vccss.length; i++) {
+				vccss[i].mouse_up();
+			}
+			for (var i: number = 0; i < cccss.length; i++) {
+				cccss[i].mouse_up();
+			}
+			for (var i: number = 0; i < ccvss.length; i++) {
+				ccvss[i].mouse_up();
+			}
+			for (var i: number = 0; i < opamps.length; i++) {
+				opamps[i].mouse_up();
+			}
+			for (var i: number = 0; i < nmosfets.length; i++) {
+				nmosfets[i].mouse_up();
+			}
+			for (var i: number = 0; i < pmosfets.length; i++) {
+				pmosfets[i].mouse_up();
+			}
+			for (var i: number = 0; i < npns.length; i++) {
+				npns[i].mouse_up();
+			}
+			for (var i: number = 0; i < pnps.length; i++) {
+				pnps[i].mouse_up();
+			}
+			for (var i: number = 0; i < adcs.length; i++) {
+				adcs[i].mouse_up();
+			}
+			for (var i: number = 0; i < dacs.length; i++) {
+				dacs[i].mouse_up();
+			}
+			for (var i: number = 0; i < sandhs.length; i++) {
+				sandhs[i].mouse_up();
+			}
+			for (var i: number = 0; i < pwms.length; i++) {
+				pwms[i].mouse_up();
+			}
+			for (var i: number = 0; i < integrators.length; i++) {
+				integrators[i].mouse_up();
+			}
+			for (var i: number = 0; i < differentiators.length; i++) {
+				differentiators[i].mouse_up();
+			}
+			for (var i: number = 0; i < lowpasses.length; i++) {
+				lowpasses[i].mouse_up();
+			}
+			for (var i: number = 0; i < highpasses.length; i++) {
+				highpasses[i].mouse_up();
+			}
+			for (var i: number = 0; i < relays.length; i++) {
+				relays[i].mouse_up();
+			}
+			for (var i: number = 0; i < pids.length; i++) {
+				pids[i].mouse_up();
+			}
+			for (var i: number = 0; i < luts.length; i++) {
+				luts[i].mouse_up();
+			}
+			for (var i: number = 0; i < vcrs.length; i++) {
+				vcrs[i].mouse_up();
+			}
+			for (var i: number = 0; i < grts.length; i++) {
+				grts[i].mouse_up();
+			}
+			for (var i: number = 0; i < tptzs.length; i++) {
+				tptzs[i].mouse_up();
+			}
+			for (var i: number = 0; i < transformers.length; i++) {
+				transformers[i].mouse_up();
+			}
+			/* <!-- END AUTOMATICALLY GENERATED !--> */
+		}
+		for (var i: number = wires.length - 1; i > -1; i--) {
+			wires[i].mouse_up();
+		}
+		if (global.SIGNAL_WIRE_CREATED) {
+			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+			global.SIGNAL_WIRE_CREATED = false;
+		}
+		/* Handle menu_bar mouse up event. */
+		let component_touched: boolean = global.component_touched;
+		if (!global.component_touched) {
+			global.component_touched = true;
+		}
+		menu_bar.mouse_up();
+		/* Handle bottom_menu mouse up event. */
+		bottom_menu.mouse_up();
+		time_step_window.mouse_up();
+		save_circuit_window.mouse_up(canvas);
+		save_image_window.mouse_up();
+		element_options.mouse_up();
+		element_options_window.mouse_up();
+		element_options_edit_window.mouse_up();
+		graph_window.mouse_up();
+		zoom_window.mouse_up();
+		settings_window.mouse_up();
+		yes_no_window.mouse_up();
+		on_screen_keyboard.mouse_up();
+		if (!global.MOBILE_MODE) {
+			multi_select_manager.mouse_up();
+		}
+		global.component_touched = component_touched;
+		engine_functions.reset_selection(false);
+		engine_functions.handle_nearest_neighbors(temp_translation_lock);
+		global.SIGNAL_HISTORY_LOCK = false;
+	}
 
-  function handle_mouse_wheel(): void {
-    global.mouse_x = global.mouse_wheel_event.clientX;
-    global.mouse_y = global.mouse_wheel_event.clientY;
-    if (
-      !global.FLAG_SAVE_IMAGE &&
-      !global.FLAG_SAVE_CIRCUIT &&
-      !global.FLAG_ZOOM &&
-      !global.FLAG_ELEMENT_OPTIONS &&
-      !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-      !global.FLAG_GRAPH &&
-      !global.FLAG_SELECT_ELEMENT &&
-      !global.FLAG_SELECT_TIMESTEP &&
-      !global.FLAG_SELECT_SETTINGS &&
-      !global.FLAG_REMOVE_ALL &&
-      !global.FLAG_MENU_OPEN_DOWN
-    ) {
-      handle_zoom(global.mouse_wheel_event);
-    }
-    menu_bar.mouse_wheel();
-  }
+	function handle_mouse_wheel(): void {
+		global.mouse_x = global.mouse_wheel_event.clientX;
+		global.mouse_y = global.mouse_wheel_event.clientY;
+		if (
+			!global.FLAG_SAVE_IMAGE &&
+			!global.FLAG_SAVE_CIRCUIT &&
+			!global.FLAG_ZOOM &&
+			!global.FLAG_ELEMENT_OPTIONS &&
+			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
+			!global.FLAG_GRAPH &&
+			!global.FLAG_SELECT_ELEMENT &&
+			!global.FLAG_SELECT_TIMESTEP &&
+			!global.FLAG_SELECT_SETTINGS &&
+			!global.FLAG_REMOVE_ALL &&
+			!global.FLAG_MENU_OPEN_DOWN
+		) {
+			handle_zoom(global.mouse_wheel_event);
+		}
+		menu_bar.mouse_wheel();
+	}
 
-  function handle_double_click(): void {
-    global.mouse_x = global.mouse_double_click_event.clientX;
-    global.mouse_y = global.mouse_double_click_event.clientY;
-    time_step_window.double_click();
-    save_image_window.double_click();
-    save_circuit_window.double_click();
-    element_options_edit_window.double_click();
-  }
+	function handle_double_click(): void {
+		global.mouse_x = global.mouse_double_click_event.clientX;
+		global.mouse_y = global.mouse_double_click_event.clientY;
+		time_step_window.double_click();
+		save_image_window.double_click();
+		save_circuit_window.double_click();
+		element_options_edit_window.double_click();
+	}
 
-  function handle_key_down(): void {
-    time_step_window.key_down(global.key_down_event);
-    save_circuit_window.key_down(global.key_down_event, canvas);
-    save_image_window.key_down(global.key_down_event);
-    settings_window.key_down(global.key_down_event);
-    yes_no_window.key_down(global.key_down_event);
-    zoom_window.key_down(global.key_down_event);
-    menu_bar.key_down(global.key_down_event);
-    graph_window.key_down(global.key_down_event);
-    element_options_window.key_down(global.key_down_event);
-    element_options_edit_window.key_down(global.key_down_event);
-    if (!global.MOBILE_MODE) {
-      multi_select_manager.key_down(global.key_down_event);
-      /* MUST BE LAST - So key events don't carry through to other windows it might open. */
-      shortcut_manager.listen(global.key_down_event);
-    }
-  }
+	function handle_key_down(): void {
+		time_step_window.key_down(global.key_down_event);
+		save_circuit_window.key_down(global.key_down_event, canvas);
+		save_image_window.key_down(global.key_down_event);
+		settings_window.key_down(global.key_down_event);
+		yes_no_window.key_down(global.key_down_event);
+		zoom_window.key_down(global.key_down_event);
+		menu_bar.key_down(global.key_down_event);
+		graph_window.key_down(global.key_down_event);
+		element_options_window.key_down(global.key_down_event);
+		element_options_edit_window.key_down(global.key_down_event);
+		if (!global.MOBILE_MODE) {
+			multi_select_manager.key_down(global.key_down_event);
+			/* MUST BE LAST - So key events don't carry through to other windows it might open. */
+			shortcut_manager.listen(global.key_down_event);
+		}
+	}
 
-  function handle_key_up(): void {
-    if (!global.MOBILE_MODE) {
-      multi_select_manager.key_up(global.key_up_event);
-    }
-  }
+	function handle_key_up(): void {
+		if (!global.MOBILE_MODE) {
+			multi_select_manager.key_up(global.key_up_event);
+		}
+	}
 
-  function handle_workspace_drag(): void {
-    let sqrt: number = Math.round(global.settings.SQRT_MAXNODES * 0.75);
-    let x_space: number = sqrt * global.node_space_x;
-    let y_space: number = sqrt * global.node_space_y;
-    /* Limit the travel in the -x direction */
-    if (workspace.bounds.left + global.dx < view_port.left - x_space) {
-      global.dx = view_port.left - x_space - workspace.bounds.left;
-    }
-    /* Limit the travel in the +x direction */
-    if (workspace.bounds.right + global.dx > view_port.right + x_space) {
-      global.dx = view_port.right + x_space - workspace.bounds.right;
-    }
-    /* Limit the travel in the +y direction */
-    if (workspace.bounds.top + global.dy < view_port.top - y_space) {
-      global.dy = view_port.top - y_space - workspace.bounds.top;
-    }
-    /* Limit the travel in the -y direction */
-    if (workspace.bounds.bottom + global.dy > view_port.bottom + y_space) {
-      global.dy = view_port.bottom + y_space - workspace.bounds.bottom;
-    }
-    workspace.workspace_translate_bounds(global.dx, global.dy);
-    global.delta_x += global.dx;
-    global.delta_y += global.dy;
-  }
-  /* Register web analytics */
-  function register(): void {
-    if (!global.DEVELOPER_MODE) {
-      let post_data: string = 'pinged @ {' + global.get_time_stamp() + '}';
-      let url: string = 'analytics.php?msg="' + post_data + '"';
-      let method: string = 'POST';
-      let should_be_async: boolean = true;
-      let request: XMLHttpRequest = new XMLHttpRequest();
-      request.onload = function (): void {
-        let status = request.status;
-        let data = request.responseText;
-      };
-      request.open(method, url, should_be_async);
-      request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-      request.send(post_data);
-    }
-  }
+	function handle_workspace_drag(): void {
+		let sqrt: number = Math.round(global.settings.SQRT_MAXNODES * 0.75);
+		let x_space: number = sqrt * global.node_space_x;
+		let y_space: number = sqrt * global.node_space_y;
+		/* Limit the travel in the -x direction */
+		if (workspace.bounds.left + global.dx < view_port.left - x_space) {
+			global.dx = view_port.left - x_space - workspace.bounds.left;
+		}
+		/* Limit the travel in the +x direction */
+		if (workspace.bounds.right + global.dx > view_port.right + x_space) {
+			global.dx = view_port.right + x_space - workspace.bounds.right;
+		}
+		/* Limit the travel in the +y direction */
+		if (workspace.bounds.top + global.dy < view_port.top - y_space) {
+			global.dy = view_port.top - y_space - workspace.bounds.top;
+		}
+		/* Limit the travel in the -y direction */
+		if (workspace.bounds.bottom + global.dy > view_port.bottom + y_space) {
+			global.dy = view_port.bottom + y_space - workspace.bounds.bottom;
+		}
+		workspace.workspace_translate_bounds(global.dx, global.dy);
+		global.delta_x += global.dx;
+		global.delta_y += global.dy;
+	}
+	/* Register web analytics */
+	function register(): void {
+		if (!global.DEVELOPER_MODE) {
+			let post_data: string = 'pinged @ {' + global.get_time_stamp() + '}';
+			let url: string = 'analytics.php?msg="' + post_data + '"';
+			let method: string = 'POST';
+			let should_be_async: boolean = true;
+			let request: XMLHttpRequest = new XMLHttpRequest();
+			request.onload = function (): void {
+				let status: number = request.status;
+				let data: string = request.responseText;
+			};
+			request.open(method, url, should_be_async);
+			request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+			request.send(post_data);
+		}
+	}
 
-  function browser_detection(): void {
-    if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) != -1) {
-      global.BROWSER_OPERA = true;
-    } else if (navigator.userAgent.indexOf('Chrome') != -1) {
-      global.BROWSER_CHROME = true;
-    } else if (navigator.userAgent.indexOf('Safari') != -1) {
-      global.BROWSER_SAFARI = true;
-    } else if (navigator.userAgent.indexOf('Firefox') != -1) {
-      global.BROWSER_FIREFOX = true;
-      //@ts-ignore
-    } else if (navigator.userAgent.indexOf('MSIE') != -1 || !!document.documentMode === true) {
-      global.BROWSER_IE = true;
-    }
-  }
+	function browser_detection(): void {
+		if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) != -1) {
+			global.BROWSER_OPERA = true;
+		} else if (navigator.userAgent.indexOf('Chrome') != -1) {
+			global.BROWSER_CHROME = true;
+		} else if (navigator.userAgent.indexOf('Safari') != -1) {
+			global.BROWSER_SAFARI = true;
+		} else if (navigator.userAgent.indexOf('Firefox') != -1) {
+			global.BROWSER_FIREFOX = true;
+			//@ts-ignore
+		} else if (navigator.userAgent.indexOf('MSIE') != -1 || !!document.documentMode === true) {
+			global.BROWSER_IE = true;
+		}
+	}
 
-  function main(): void {
-    throttle_loop();
-    requestAnimationFrame(main);
-  }
+	function main(): void {
+		throttle_loop();
+		requestAnimationFrame(main);
+	}
 
-  function throttle_loop(): void {
-    switch (++FPS_COUNTER) {
-      case FPS_COMPARE:
-        FPS_INDEX ^= 1;
-        FPS_COMPARE = FPS_DIV_ARRAY[FPS_INDEX];
-        FPS_COUNTER = 0;
-        system_loop();
-        break;
-      default:
-        break;
-    }
-  }
-  start_system();
+	function throttle_loop(): void {
+		switch (++FPS_COUNTER) {
+			case FPS_COMPARE:
+				FPS_INDEX ^= 1;
+				FPS_COMPARE = FPS_DIV_ARRAY[FPS_INDEX];
+				FPS_COUNTER = 0;
+				system_loop();
+				break;
+			default:
+				break;
+		}
+	}
+	start_system();
 }

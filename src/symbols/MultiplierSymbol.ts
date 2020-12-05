@@ -67,8 +67,8 @@ class MultiplierSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
 
   constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
@@ -159,8 +159,8 @@ class MultiplierSymbol {
     this.DRAW_TAG = false;
     this.text_bounds = new RectF(0, 0, 0, 0);
     this.HEIGHT_RATIO = 0.35;
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
   }
   update() {
     if (this.FLAG_ADD_ELEMENT) {
@@ -267,33 +267,33 @@ class MultiplierSymbol {
   draw_symbol(canvas: GraphicsEngine, page: number) {
     this.recolor();
     if (this.page === page) {
-      let indexer = 0;
-      this.CIRCLE_BUFFER = [];
-      this.LINE_BUFFER = [];
-      this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.multiplier_0.x, this.multiplier_0.y);
-      this.LINE_BUFFER[indexer++] = Array(this.multiplier_0.x, this.multiplier_0.y, this.multiplier_1.x, this.multiplier_1.y);
-      this.LINE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, this.multiplier_3.x, this.multiplier_3.y);
-      this.LINE_BUFFER[indexer++] = Array(this.multiplier_3.x, this.multiplier_3.y, this.multiplier_4.x, this.multiplier_4.y);
-      this.LINE_BUFFER[indexer++] = Array(
+      let indexer: number = 0;
+      this.circle_buffer = [];
+      this.line_buffer = [];
+      this.line_buffer[indexer++] = Array(this.p1.x, this.p1.y, this.multiplier_0.x, this.multiplier_0.y);
+      this.line_buffer[indexer++] = Array(this.multiplier_0.x, this.multiplier_0.y, this.multiplier_1.x, this.multiplier_1.y);
+      this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.multiplier_3.x, this.multiplier_3.y);
+      this.line_buffer[indexer++] = Array(this.multiplier_3.x, this.multiplier_3.y, this.multiplier_4.x, this.multiplier_4.y);
+      this.line_buffer[indexer++] = Array(
         this.c_x - this.bounds.get_width() * 0.1,
         this.c_y - this.bounds.get_width() * 0.1,
         this.c_x + this.bounds.get_width() * 0.1,
         this.c_y + this.bounds.get_width() * 0.1
       );
-      this.LINE_BUFFER[indexer++] = Array(
+      this.line_buffer[indexer++] = Array(
         this.c_x + this.bounds.get_width() * 0.1,
         this.c_y - this.bounds.get_width() * 0.1,
         this.c_x - this.bounds.get_width() * 0.1,
         this.c_y + this.bounds.get_width() * 0.1
       );
-      this.LINE_BUFFER[indexer++] = Array(this.multiplier_6.x, this.multiplier_6.y, this.p3.x, this.p3.y);
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      this.line_buffer[indexer++] = Array(this.multiplier_6.x, this.multiplier_6.y, this.p3.x, this.p3.y);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       indexer = 0;
       canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), this.bounds.get_width() * 0.5128, this.bounds.get_height() * 0.5128, this.line_paint);
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+      this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.circle_buffer[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
       if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
         this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
         this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();

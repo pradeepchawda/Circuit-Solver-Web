@@ -180,7 +180,7 @@ class SaveCircuitWindow {
         this.exit_button.draw_fill = false;
         this.exit_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-        this.input_button.text = global.exponentiate_quickly(global.TIME_STEP);
+        this.input_button.text = global.exponentiate_quickly(global.time_step);
         this.input_button.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
         this.input_button.line_paint.set_color(global.GENERAL_BLACK_COLOR);
         this.input_button.draw_stroke = true;
@@ -259,7 +259,7 @@ class SaveCircuitWindow {
     }
     mouse_up(canvas) {
         if (global.FLAG_SAVE_CIRCUIT) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 if (this.WINDOW_ANCHORED) {
                     this.insert_cursor(true, false);
                     this.INITIAL_CURSOR_DOWN = -1;
@@ -652,7 +652,7 @@ class SaveCircuitWindow {
         }
     }
     zoom_save_restore(canvas) {
-        let previous_zoom = global.WORKSPACE_ZOOM_SCALE;
+        let previous_zoom = global.workspace_zoom_scale;
         let x_offset = global.x_offset;
         let y_offset = global.y_offset;
         let delta_x = global.delta_x;
@@ -660,8 +660,8 @@ class SaveCircuitWindow {
         let last_dx = global.dx;
         let last_dy = global.dy;
         global.SIGNAL_BUILD_ELEMENT = true;
-        global.SIGNAL_BUILD_COUNTER = 0;
-        global.WORKSPACE_ZOOM_SCALE = 1.0;
+        global.signal_build_counter = 0;
+        global.workspace_zoom_scale = 1.0;
         global.x_offset = 0;
         global.y_offset = 0;
         global.delta_x = workspace.bounds.left;
@@ -672,7 +672,7 @@ class SaveCircuitWindow {
         workspace.workspace_translate_bounds(dx, dy);
         global.delta_x += dx;
         global.delta_y += dy;
-        global.USER_FILE.title = this.input_button.text;
+        global.user_file.title = this.input_button.text;
         let node_space_x = 0.29375 * global.node_space_x;
         let node_space_y = 0.29375 * global.node_space_y;
         let mobile_node_space_x = 1.25 * node_space_x;
@@ -694,9 +694,9 @@ class SaveCircuitWindow {
             file_saver.click();
         }
         else {
-            save_file(global.USER_FILE.title + '.txt', engine_functions.history_snapshot());
+            save_file(global.user_file.title + '.txt', engine_functions.history_snapshot());
         }
-        global.WORKSPACE_ZOOM_SCALE = previous_zoom;
+        global.workspace_zoom_scale = previous_zoom;
         global.dx = last_dx;
         global.dy = last_dy;
         global.x_offset = x_offset;
@@ -704,7 +704,7 @@ class SaveCircuitWindow {
         global.delta_x = delta_x;
         global.delta_y = delta_y;
         workspace.workspace_zoom();
-        global.DRAW_BLOCK = true;
+        global.draw_block = true;
         global.SIGNAL_BUILD_ELEMENT = true;
     }
     handle_partial_select() {

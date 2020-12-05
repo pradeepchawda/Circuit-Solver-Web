@@ -88,8 +88,8 @@ class PChannelMOSFET {
         this.f_cutoff = 250;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.INITIALIZED = false;
@@ -220,13 +220,13 @@ class PChannelMOSFET {
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
     lpf(inp) {
-        this._alpha = (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff) / (2.0 * Math.PI * global.TIME_STEP * this.f_cutoff + 1.0);
+        this._alpha = (2.0 * Math.PI * global.time_step * this.f_cutoff) / (2.0 * Math.PI * global.time_step * this.f_cutoff + 1.0);
         this.y_hat = this._alpha * inp + (1 - this._alpha) * this.y_out;
         this.y_out = this.y_hat;
         return this.y_hat;
@@ -318,7 +318,7 @@ class PChannelMOSFET {
         }
     }
     gmin_step(step, error) {
-        this.GMIN = global.GMIN_DEFAULT;
+        this.GMIN = global.gmin_default;
         if (simulation_manager.ITERATOR > step && error > global.settings.TOLERANCE) {
             this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
         }
@@ -544,7 +544,7 @@ class PChannelMOSFET {
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
-                    global.IS_DRAGGING = false;
+                    global.is_dragging = false;
                     if (!this.is_translating) {
                         if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
                             this.release_nodes();
@@ -936,38 +936,38 @@ class PChannelMOSFET {
                 this.c_y >= view_port.top + -global.node_space_y &&
                 this.c_y - global.node_space_y <= view_port.bottom)) {
             this.indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.pmos_0.x, this.pmos_0.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.pmos_0.x, this.pmos_0.y, this.pmos_1.x, this.pmos_1.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, this.pmos_3.x, this.pmos_3.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.pmos_3.x, this.pmos_3.y, this.pmos_4.x, this.pmos_4.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.pmos_1.x, this.pmos_1.y, this.pmos_4.x, this.pmos_4.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.pmos_2.x, this.pmos_2.y, this.pmos_5.x, this.pmos_5.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.pmos_6.x, this.pmos_6.y, this.p3.x, this.p3.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.pmos_1.x, this.pmos_1.y, this.pmos_7.x, this.pmos_7.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.pmos_1.x, this.pmos_1.y, this.pmos_8.x, this.pmos_8.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.pmos_0.x, this.pmos_0.y);
+            this.line_buffer[this.indexer++] = Array(this.pmos_0.x, this.pmos_0.y, this.pmos_1.x, this.pmos_1.y);
+            this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.pmos_3.x, this.pmos_3.y);
+            this.line_buffer[this.indexer++] = Array(this.pmos_3.x, this.pmos_3.y, this.pmos_4.x, this.pmos_4.y);
+            this.line_buffer[this.indexer++] = Array(this.pmos_1.x, this.pmos_1.y, this.pmos_4.x, this.pmos_4.y);
+            this.line_buffer[this.indexer++] = Array(this.pmos_2.x, this.pmos_2.y, this.pmos_5.x, this.pmos_5.y);
+            this.line_buffer[this.indexer++] = Array(this.pmos_6.x, this.pmos_6.y, this.p3.x, this.p3.y);
+            this.line_buffer[this.indexer++] = Array(this.pmos_1.x, this.pmos_1.y, this.pmos_7.x, this.pmos_7.y);
+            this.line_buffer[this.indexer++] = Array(this.pmos_1.x, this.pmos_1.y, this.pmos_8.x, this.pmos_8.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             this.indexer = 0;
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+            this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
                 if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['W/L Ratio'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
+                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                     canvas.restore();
                 }
                 else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['W/L Ratio'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.15, this.text_paint);
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
+                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                 }
             }
             if (this.is_translating) {
@@ -995,12 +995,12 @@ class PChannelMOSFET {
         if (this.KAPPA != 0.414) {
             this.KAPPA = 0.414;
         }
-        if (!global.not_null(this.LINE_BUFFER)) {
+        if (!global.not_null(this.line_buffer)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
         }
-        if (!global.not_null(this.CIRCLE_BUFFER)) {
-            this.CIRCLE_BUFFER = [];
+        if (!global.not_null(this.circle_buffer)) {
+            this.circle_buffer = [];
         }
         if (!global.not_null(this.BUILD_ELEMENT)) {
             this.BUILD_ELEMENT = false;

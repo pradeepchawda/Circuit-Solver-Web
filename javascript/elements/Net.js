@@ -56,8 +56,8 @@ class Net {
         this.c_y = 0;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.INITIALIZED = false;
@@ -142,8 +142,8 @@ class Net {
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
@@ -275,7 +275,7 @@ class Net {
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
-                    global.IS_DRAGGING = false;
+                    global.is_dragging = false;
                     if (!this.is_translating) {
                         if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 0.8, this.bounds.get_height() * 0.8)) {
                             this.release_nodes();
@@ -617,7 +617,7 @@ class Net {
                 this.point_paint.set_color(this.temp_color);
                 canvas.draw_circle(this.c_x + 1.5 * this.x_space, this.c_y, this.bounds.get_width() >> 3, this.line_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                 if (this.elm.properties['Show Name'] === global.ON) {
                     if (this.elm.rotation === global.ROTATION_90) {
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Name']).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.2, this.text_paint);
@@ -639,7 +639,7 @@ class Net {
             }
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             if (this.is_translating) {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
@@ -651,12 +651,12 @@ class Net {
         if (!global.not_null(this.elm.properties['Show Name'])) {
             this.elm.properties['Show Name'] = global.ON;
         }
-        if (!global.not_null(this.LINE_BUFFER)) {
+        if (!global.not_null(this.line_buffer)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
         }
-        if (!global.not_null(this.CIRCLE_BUFFER)) {
-            this.CIRCLE_BUFFER = [];
+        if (!global.not_null(this.circle_buffer)) {
+            this.circle_buffer = [];
         }
         if (!global.not_null(this.BUILD_ELEMENT)) {
             this.BUILD_ELEMENT = false;

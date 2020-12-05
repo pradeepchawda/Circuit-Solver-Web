@@ -77,8 +77,8 @@ class InductorSymbol {
   public DRAW_TAG = false;
   public text_bounds = new RectF(0, 0, 0, 0);
   public HEIGHT_RATIO = 0.35;
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
 
   constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */
@@ -187,8 +187,8 @@ class InductorSymbol {
     this.DRAW_TAG = false;
     this.text_bounds = new RectF(0, 0, 0, 0);
     this.HEIGHT_RATIO = 0.35;
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
   }
   update() {
     if (this.FLAG_ADD_ELEMENT) {
@@ -319,16 +319,16 @@ class InductorSymbol {
       this.inductor_arc_1.draw_arc(canvas);
       this.inductor_arc_2.draw_arc(canvas);
       this.inductor_arc_3.draw_arc(canvas);
-      let indexer = 0;
-      this.CIRCLE_BUFFER = [];
-      this.LINE_BUFFER = [];
-      this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
-      this.LINE_BUFFER[indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      let indexer: number = 0;
+      this.circle_buffer = [];
+      this.line_buffer = [];
+      this.line_buffer[indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+      this.line_buffer[indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       indexer = 0;
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-      canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+      this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+      canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
       if (this.DRAW_TAG && !global.SIGNAL_ADD_ELEMENT) {
         this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
         this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();

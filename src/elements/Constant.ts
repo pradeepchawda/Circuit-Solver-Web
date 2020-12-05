@@ -54,8 +54,8 @@ or overlapped)*/
   public c_y: number = 0;
   public MULTI_SELECTED: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
   public BUILD_ELEMENT: boolean = true;
   public ANGLE: number = 0;
 
@@ -139,8 +139,8 @@ or overlapped)*/
     this.INITIALIZED = true;
     this.MULTI_SELECTED = false;
     /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
@@ -163,8 +163,8 @@ or overlapped)*/
   }
   /* Vertex handling (for rotation) */
   get_vertices(): Array<number> {
-    let p1 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y());
-    let vertices = Array(p1[0], p1[1]);
+    let p1: Array<number> = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y());
+    let vertices: Array<number> = Array(p1[0], p1[1]);
     return vertices;
   }
   release_wires(): void {
@@ -274,7 +274,7 @@ or overlapped)*/
       if (global.focused) {
         if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
-          global.IS_DRAGGING = false;
+          global.is_dragging = false;
           if (!this.is_translating) {
             if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 0.8, this.bounds.get_height() * 0.8)) {
               this.release_nodes();
@@ -573,7 +573,7 @@ or overlapped)*/
         canvas.draw_line(this.c_x, this.c_y, this.c_x + this.x_space, this.c_y, this.line_paint);
         canvas.draw_rect3(this.c_x + 1.5 * this.x_space, this.c_y, this.bounds.get_width() >> 2, this.bounds.get_width() >> 2, this.line_paint);
       }
-      if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+      if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
         if (this.elm.rotation === global.ROTATION_90) {
           canvas.draw_text(
             global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -610,7 +610,7 @@ or overlapped)*/
       }
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
-        canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+        canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
       if (this.is_translating) {
         canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
@@ -619,12 +619,12 @@ or overlapped)*/
   }
   /* Handles future proofing of elements! */
   patch(): void {
-    if (!global.not_null(this.LINE_BUFFER)) {
+    if (!global.not_null(this.line_buffer)) {
       /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-      this.LINE_BUFFER = [];
+      this.line_buffer = [];
     }
-    if (!global.not_null(this.CIRCLE_BUFFER)) {
-      this.CIRCLE_BUFFER = [];
+    if (!global.not_null(this.circle_buffer)) {
+      this.circle_buffer = [];
     }
     if (!global.not_null(this.BUILD_ELEMENT)) {
       this.BUILD_ELEMENT = false;

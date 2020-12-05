@@ -276,7 +276,7 @@ class SettingsWindow {
   }
   mouse_up(): void {
     if (global.FLAG_SELECT_SETTINGS) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         if (this.WINDOW_ANCHORED) {
           if (
             !this.bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -394,13 +394,13 @@ class SettingsWindow {
         /* Block out the reset selection portion of the code! */
         global.component_touched = true;
       }
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         for (var i: number = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
           if (global.decode_key(key_event) === this.ATTRIBUTE_SELECT[i]) {
             this.on_attribute_clicked(i);
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
             break;
           }
         }

@@ -21,22 +21,22 @@
 class Global {
   public readonly NULL: any = null;
   public readonly MOBILE_MODE: boolean = false;
-  public SYSTEM_INITIALIZATION: SYSTEM_INITIALIZATION_T = {
+  public system_initialization: SYSTEM_INITIALIZATION_T = {
     step: 0,
     max: 5,
     completed: false
   };
   public readonly VERSION_TAG: string = 'BETA-1.0.93';
   /* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
-  public WORKSPACE_ZOOM_SCALE: number = 2.5;
+  public workspace_zoom_scale: number = 2.5;
   /* The maximum amount of zoom the user may apply */
   public readonly ZOOM_MAX: number = 3.5;
   /* The minimum amount of zoom the user may apply */
   public readonly ZOOM_MIN: number = 1.0;
   public readonly ZERO_PT_FIVE: number = 0.5;
   public readonly ZERO: number = 0 >> 0;
-  public NODE_LINE_BUFFER: Array<Array<number>> = [];
-  public NODE_LINE_BUFFER_INDEX: number = 0;
+  public node_line_buffer: Array<Array<number>> = [];
+  public node_line_buffer_index: number = 0;
   /* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
   public ZOOM_FACTOR: number = 1.085;
   /* These are used a relative metric to know how much to change the view of the
@@ -58,7 +58,7 @@ class Global {
   public readonly ON: string = 'ON';
   public readonly OFF: string = 'OFF';
   /* Keeping track of the virtual canvas's we create. */
-  public VIRTUAL_CANVAS_ID: number = 0;
+  public virtual_canvas_id: number = 0;
   /* Constants for different elements in the application. */
   /* Meta data is reserved for storing user info when exporting / importing circuits */
   /* When we generate the output text file, it sits on the first portion of the file. */
@@ -175,15 +175,15 @@ class Global {
   /* The properties of the selected item. Each element has properties associated with it */
   public selected_properties: ELEMENT_PROPERTY_T = this.NULL;
   /* Selectios nearest neighbors */
-  public SELECTION_NEAREST_NEIGHBORS = [];
-  public NEAREST_NEIGHBOR_INDEX: number = 0;
+  public selection_nearest_neighbors = [];
+  public nearest_neighbor_index: number = 0;
   /* A general flag to determining if any of the elements are multi-selected. */
   public multi_selected: boolean = false;
   /* Used to copying / pasting elements. */
-  public CLIPBOARD_TYPE: number = this.NULL;
-  public CLIPBOARD_ROTATION: number = this.NULL;
-  public CLIPBOARD_FLIP: number = this.NULL;
-  public CLIPBOARD_PROPERTY = this.NULL;
+  public clipboard_type: number = this.NULL;
+  public clipboard_rotation: number = this.NULL;
+  public clipboard_flip: number = this.NULL;
+  public clipboard_property = this.NULL;
   /* A variable to help coordinate multi-selection. */
   public component_translating: boolean = false;
   /* System Flags */
@@ -234,21 +234,21 @@ class Global {
   public SIGNAL_HISTORY_LOCK: boolean = false;
   /* Global rendering flag */
   public SIGNAL_BUILD_ELEMENT: boolean = false;
-  public SIGNAL_BUILD_COUNTER: number = 0;
+  public signal_build_counter: number = 0;
   /* Intentionally 2x re-draw counter.*/
   public SIGNAL_BUILD_COUNTER_MAX: number = 3;
   /* Counts up to counter max and resets the signal wire deleted flag. */
-  public SIGNAL_WIRE_DELETED_COUNTER: number = 0;
+  public signal_wire_deleted_counter: number = 0;
   public SIGNAL_WIRE_DELETED_COUNTER_MAX: number = 3;
   /* Flag to help coordinate when an element is touched */
   public component_touched: boolean = false;
   /* Some elements require the mouse to be locked out until a mouse-up event occurs. This is
     so that we don't have events propagating to other portions of the code. */
-  public MOUSE_KEYBOARD_LOCK: boolean = false;
-  public TRANSLATION_LOCK: boolean = true;
+  public mouse_keyboard_lock: boolean = false;
+  public translation_lock: boolean = true;
   /* Used for solving the matrix, If the matrix is found to be singluar, this flag will be set
     and the simulation will end throwing an sinular matrix fault. */
-  public IS_SINGULAR: boolean = false;
+  public is_singular: boolean = false;
   /* Storing mouse events in this template so they can be serialized */
   public mouse_down_event: MouseEvent = this.NULL;
   public mouse_move_event: MouseEvent = this.NULL;
@@ -304,11 +304,11 @@ class Global {
   public mouse_y: number = 0;
   /* A flag to indicate when a mouse click event occurs. */
   public is_touching: boolean = false;
-  /* A flag to indicate when a dragging event occurs. This is only set if IS_RIGHT_CLICK is true. */
-  public IS_DRAGGING: boolean = false;
-  public TEMP_IS_DRAGGING: boolean = false;
+  /* A flag to indicate when a dragging event occurs. This is only set if is_right_click is true. */
+  public is_dragging: boolean = false;
+  public temp_is_dragging: boolean = false;
   /* A flag to indicate when the user performs a right click */
-  public IS_RIGHT_CLICK: boolean = false;
+  public is_right_click: boolean = false;
   /* Used to calculate the shift in when the zoom-to-point logic starts, this essenntially is the left and top of the workspace view */
   public delta_x: number = 0;
   public delta_y: number = 0;
@@ -406,11 +406,11 @@ class Global {
     'Open Resistance': this.settings.R_MAX * 0.5,
     'Closed Resistance': this.settings.WIRE_RESISTANCE,
     'Switch State': this.OFF,
-    tag: 'SPST',
-    units: 'Ω',
-    options: ['Closed Resistance', 'Switch State'],
-    options_units: ['Ω', ''],
-    option_limits: {
+    'tag': 'SPST',
+    'units': 'Ω',
+    'options': ['Closed Resistance', 'Switch State'],
+    'options_units': ['Ω', ''],
+    'option_limits': {
       'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
   };
@@ -419,11 +419,11 @@ class Global {
     'High Voltage': 5,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'NOT',
-    units: 'V',
-    options: ['High Voltage'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'NOT',
+    'units': 'V',
+    'options': ['High Voltage'],
+    'options_units': ['V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -432,15 +432,15 @@ class Global {
     'Emission Coefficient': 1,
     'Saturation Current': 1e-15,
     'Equivalent Current': 0,
-    Voltage: 0,
+    'Voltage': 0,
     'Last Voltage': 0,
     'Last Current': 0,
-    Resistance: 1.0 / this.settings.R_MAX,
-    tag: 'DIO',
-    units: '',
-    options: ['Emission Coefficient', 'Saturation Current'],
-    options_units: ['', 'A'],
-    option_limits: {
+    'Resistance': 1.0 / this.settings.R_MAX,
+    'tag': 'DIO',
+    'units': '',
+    'options': ['Emission Coefficient', 'Saturation Current'],
+    'options_units': ['', 'A'],
+    'option_limits': {
       'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
     }
@@ -449,21 +449,21 @@ class Global {
   public readonly PROPERTY_LED: PROPERTY_LED_T = {
     'Emission Coefficient': 3.73,
     'Saturation Current': 93.2e-12,
-    Wavelength: 425,
+    'Wavelength': 425,
     'Turn On Current': 20e-3,
     'Equivalent Current': 0,
-    Voltage: 0,
+    'Voltage': 0,
     'Last Voltage': 0,
     'Last Current': 0,
-    Resistance: 1.0 / this.settings.R_MAX,
-    tag: 'LED',
-    units: '',
-    options: ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
-    options_units: ['', 'A', 'nm'],
-    option_limits: {
+    'Resistance': 1.0 / this.settings.R_MAX,
+    'tag': 'LED',
+    'units': '',
+    'options': ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
+    'options_units': ['', 'A', 'nm'],
+    'option_limits': {
       'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-      Wavelength: [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
+      'Wavelength': [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
     }
   };
   /* Base structure for zener properties */
@@ -472,15 +472,15 @@ class Global {
     'Emission Coefficient': 1,
     'Saturation Current': 1e-15,
     'Equivalent Current': 0,
-    Voltage: 0,
+    'Voltage': 0,
     'Last Voltage': 0,
     'Last Current': 0,
-    Resistance: 1.0 / this.settings.R_MAX,
-    tag: 'ZEN',
-    units: '',
-    options: ['Zener Voltage', 'Emission Coefficient', 'Saturation Current'],
-    options_units: ['V', '', 'A'],
-    option_limits: {
+    'Resistance': 1.0 / this.settings.R_MAX,
+    'tag': 'ZEN',
+    'units': '',
+    'options': ['Zener Voltage', 'Emission Coefficient', 'Saturation Current'],
+    'options_units': ['V', '', 'A'],
+    'option_limits': {
       'Zener Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
@@ -497,33 +497,33 @@ class Global {
   };
   /* Base structure for voltmeter properties */
   public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T = {
-    Wattage: 0,
+    'Wattage': 0,
     'Test Voltage': 1e-9,
-    tag: 'WM',
-    units: 'W',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'WM',
+    'units': 'W',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for ammeter properties */
   public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T = {
-    Current: 0,
+    'Current': 0,
     'Test Voltage': 1e-9,
-    tag: 'AM',
-    units: 'A',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'AM',
+    'units': 'A',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for ohmmeter properties */
   public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T = {
     'Sensed Resistance': 0,
     'Test Voltage': 1e-9,
-    tag: 'OM',
-    units: 'Ω',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'OM',
+    'units': 'Ω',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for resistor properties */
   public readonly PROPERTY_WIRE: PROPERTY_WIRE_T = {
@@ -608,35 +608,35 @@ class Global {
   };
   /* Base structure for capacitor properties */
   public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T = {
-    Capacitance: 1.0e-6,
+    'Capacitance': 1.0e-6,
     'Transient Resistance': this.settings.R_MAX,
     'Transient Current': 0,
     'Equivalent Current': 0,
     'Initial Voltage': 0,
     'Transient Voltage': 0,
-    tag: 'C',
-    units: 'F',
-    options: ['Capacitance', 'Initial Voltage'],
-    options_units: ['F', 'V'],
-    option_limits: {
-      Capacitance: [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
+    'tag': 'C',
+    'units': 'F',
+    'options': ['Capacitance', 'Initial Voltage'],
+    'options_units': ['F', 'V'],
+    'option_limits': {
+      'Capacitance': [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
       'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
   /* Base structure for inductor properties */
   public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T = {
-    Inductance: 1.0e-3,
+    'Inductance': 1.0e-3,
     'Transient Resistance': this.settings.R_MAX,
     'Transient Current': 0,
     'Equivalent Current': 0,
     'Initial Current': 0,
     'Transient Voltage': 0,
-    tag: 'I',
-    units: 'H',
-    options: ['Inductance', 'Initial Current'],
-    options_units: ['H', 'A'],
-    option_limits: {
-      Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+    'tag': 'I',
+    'units': 'H',
+    'options': ['Inductance', 'Initial Current'],
+    'options_units': ['H', 'A'],
+    'option_limits': {
+      'Inductance': [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
       'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
     }
   };
@@ -647,14 +647,14 @@ class Global {
   };
   /* Base structure for net properties */
   public readonly PROPERTY_NET: PROPERTY_NET_T = {
-    Name: 'Net',
-    tag: 'N',
+    'Name': 'Net',
+    'tag': 'N',
     'Show Name': this.ON,
-    units: '',
-    options: ['Name', 'Show Name'],
-    options_units: ['', ''],
+    'units': '',
+    'options': ['Name', 'Show Name'],
+    'options_units': ['', ''],
     /* This element doesn't have one! */
-    option_limits: {
+    'option_limits': {
       Name: [-1, 1]
     }
   };
@@ -671,14 +671,14 @@ class Global {
   };
   /* Base structure for potentiometer properties */
   public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T = {
-    Resistance: 1e3,
+    'Resistance': 1e3,
     'Wiper Percentage': 50,
-    tag: 'P',
-    units: 'Ω',
-    options: ['Resistance', 'Wiper Percentage'],
-    options_units: ['Ω', '%'],
-    option_limits: {
-      Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
+    'tag': 'P',
+    'units': 'Ω',
+    'options': ['Resistance', 'Wiper Percentage'],
+    'options_units': ['Ω', '%'],
+    'option_limits': {
+      'Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
       'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
     }
   };
@@ -688,11 +688,11 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'AND',
-    units: 'V',
-    options: ['High Voltage'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'AND',
+    'units': 'V',
+    'options': ['High Voltage'],
+    'options_units': ['V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -702,11 +702,11 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'OR',
-    units: 'V',
-    options: ['High Voltage'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'OR',
+    'units': 'V',
+    'options': ['High Voltage'],
+    'options_units': ['V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -716,11 +716,11 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'NAND',
-    units: 'V',
-    options: ['High Voltage'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'NAND',
+    'units': 'V',
+    'options': ['High Voltage'],
+    'options_units': ['V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -730,11 +730,11 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'NOR',
-    units: 'V',
-    options: ['High Voltage'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'NOR',
+    'units': 'V',
+    'options': ['High Voltage'],
+    'options_units': ['V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -744,11 +744,11 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'XOR',
-    units: 'V',
-    options: ['High Voltage'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'XOR',
+    'units': 'V',
+    'options': ['High Voltage'],
+    'options_units': ['V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -758,11 +758,11 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'XNOR',
-    units: 'V',
-    options: ['High Voltage'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'XNOR',
+    'units': 'V',
+    'options': ['High Voltage'],
+    'options_units': ['V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
   };
@@ -772,11 +772,11 @@ class Global {
     'Closed Resistance': 1.0 / this.settings.R_MAX,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'VCSW',
-    units: 'V',
-    options: ['High Voltage', 'Closed Resistance'],
-    options_units: ['V', 'Ω'],
-    option_limits: {
+    'tag': 'VCSW',
+    'units': 'V',
+    'options': ['High Voltage', 'Closed Resistance'],
+    'options_units': ['V', 'Ω'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
@@ -785,19 +785,19 @@ class Global {
   public readonly PROPERTY_VCR: PROPERTY_VCR_T = {
     'Low Voltage': 0,
     'High Voltage': 1,
-    Elm0: 1e3,
-    Elm1: 1e3,
-    Elm2: 1e3,
-    Elm3: 1e3,
-    Elm4: 1e3,
-    Interpolate: this.ON,
+    'Elm0': 1e3,
+    'Elm1': 1e3,
+    'Elm2': 1e3,
+    'Elm3': 1e3,
+    'Elm4': 1e3,
+    'Interpolate': this.ON,
     'Input Voltage': 0,
     'Output Resistance': this.settings.WIRE_RESISTANCE,
-    tag: 'VCR',
-    units: 'V',
-    options: ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-    options_units: ['Ω', 'Ω', 'Ω', 'Ω', 'Ω', ''],
-    option_limits: {
+    'tag': 'VCR',
+    'units': 'V',
+    'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
+    'options_units': ['Ω', 'Ω', 'Ω', 'Ω', 'Ω', ''],
+    'option_limits': {
       Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
@@ -855,11 +855,11 @@ class Global {
     'Open Resistance': this.settings.R_MAX * 0.5,
     'Closed Resistance': 1.0 / this.settings.R_MAX,
     'Switch State': this.OFF,
-    tag: 'SPDT',
-    units: 'Ω',
-    options: ['Closed Resistance', 'Switch State'],
-    options_units: ['Ω', ''],
-    option_limits: {
+    'tag': 'SPDT',
+    'units': 'Ω',
+    'options': ['Closed Resistance', 'Switch State'],
+    'options_units': ['Ω', ''],
+    'option_limits': {
       'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
   };
@@ -877,11 +877,11 @@ class Global {
     'Low Voltage': -12,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'VSAT',
-    units: 'V',
-    options: ['High Voltage', 'Low Voltage'],
-    options_units: ['V', 'V'],
-    option_limits: {
+    'tag': 'VSAT',
+    'units': 'V',
+    'options': ['High Voltage', 'Low Voltage'],
+    'options_units': ['V', 'V'],
+    'option_limits': {
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
@@ -925,104 +925,104 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'VADD',
-    units: 'V',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'VADD',
+    'units': 'V',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for subtractor properties */
   public readonly PROPERTY_SUB: PROPERTY_SUB_T = {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'VSUB',
-    units: 'V',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'VSUB',
+    'units': 'V',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for multiplier properties */
   public readonly PROPERTY_MUL: PROPERTY_MUL_T = {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'VMUL',
-    units: 'V',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'VMUL',
+    'units': 'V',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for greater than properties */
   public readonly PROPERTY_GRT: PROPERTY_GRT_T = {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'VGRT',
-    units: 'V',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'VGRT',
+    'units': 'V',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for adder properties */
   public readonly PROPERTY_DIV: PROPERTY_DIV_T = {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'VDIV',
-    units: 'V',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'VDIV',
+    'units': 'V',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for nmosfet properties */
   public readonly PROPERTY_NMOS: PROPERTY_NMOS_T = {
     'W/L Ratio': 50,
     "K'n": 118e-6,
-    VTN: 650e-3,
-    Lambda: 1e-6,
-    Vgs: 0,
-    Vds: 0,
-    gds: 1.0 / this.settings.R_MAX,
-    gm: 1.0 / this.settings.R_MAX,
-    Io: 0,
+    'VTN': 650e-3,
+    'Lambda': 1e-6,
+    'Vgs': 0,
+    'Vds': 0,
+    'gds': 1.0 / this.settings.R_MAX,
+    'gm': 1.0 / this.settings.R_MAX,
+    'Io': 0,
     'Mosfet Mode': 0,
     'Last Vgs': 0,
     'Last Io': 0,
-    tag: 'NMOS',
-    units: 'W/L',
-    options: ['W/L Ratio', "K'n", 'VTN', 'Lambda'],
-    options_units: ['', 'A/V^2', 'V', 'V^-1'],
-    option_limits: {
+    'tag': 'NMOS',
+    'units': 'W/L',
+    'options': ['W/L Ratio', "K'n", 'VTN', 'Lambda'],
+    'options_units': ['', 'A/V^2', 'V', 'V^-1'],
+    'option_limits': {
       'W/L Ratio': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       "K'n": [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      VTN: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-      Lambda: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
+      'VTN': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+      'Lambda': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
     }
   };
   /* Base structure for pmosfet properties */
   public readonly PROPERTY_PMOS: PROPERTY_PMOS_T = {
     'W/L Ratio': 50,
     "K'p": -118e-6,
-    VTP: -650e-3,
-    Lambda: -1e-6,
-    Vsg: 0,
-    Vsd: 0,
-    gsd: 1.0 / this.settings.R_MAX,
-    gm: 1.0 / this.settings.R_MAX,
-    Io: 0,
+    'VTP': -650e-3,
+    'Lambda': -1e-6,
+    'Vsg': 0,
+    'Vsd': 0,
+    'gsd': 1.0 / this.settings.R_MAX,
+    'gm': 1.0 / this.settings.R_MAX,
+    'Io': 0,
     'Mosfet Mode': 0,
     'Last Vsg': 0,
     'Last Io': 0,
-    tag: 'PMOS',
-    units: 'W/L',
-    options: ['W/L Ratio', "K'p", 'VTP', 'Lambda'],
-    options_units: ['', 'A/V^2', 'V', 'V^-1'],
-    option_limits: {
+    'tag': 'PMOS',
+    'units': 'W/L',
+    'options': ['W/L Ratio', "K'p", 'VTP', 'Lambda'],
+    'options_units': ['', 'A/V^2', 'V', 'V^-1'],
+    'option_limits': {
       'W/L Ratio': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       "K'p": [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      VTP: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-      Lambda: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
+      'VTP': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+      'Lambda': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
     }
   };
   /* Base structure for npnbjt properties */
@@ -1031,23 +1031,23 @@ class Global {
     'Reverse Beta': 1,
     'Saturation Current': 1e-15,
     'Emission Coefficient': 1,
-    Vbe: 0,
-    Vbc: 0,
-    g_ee: 1.0 / this.settings.R_MAX,
-    g_ec: 1.0 / this.settings.R_MAX,
-    g_ce: 1.0 / this.settings.R_MAX,
-    g_cc: 1.0 / this.settings.R_MAX,
-    i_e: 0,
-    i_c: 0,
-    I_e: 0,
-    I_c: 0,
+    'Vbe': 0,
+    'Vbc': 0,
+    'g_ee': 1.0 / this.settings.R_MAX,
+    'g_ec': 1.0 / this.settings.R_MAX,
+    'g_ce': 1.0 / this.settings.R_MAX,
+    'g_cc': 1.0 / this.settings.R_MAX,
+    'i_e': 0,
+    'i_c': 0,
+    'I_e': 0,
+    'I_c': 0,
     'Last Vbe': 0,
     'Last Io': 0,
-    tag: 'NPN',
-    units: 'A/A',
-    options: ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
-    options_units: ['A/A', 'A/A', 'A'],
-    option_limits: {
+    'tag': 'NPN',
+    'units': 'A/A',
+    'options': ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
+    'options_units': ['A/A', 'A/A', 'A'],
+    'option_limits': {
       'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
@@ -1059,23 +1059,23 @@ class Global {
     'Reverse Beta': 1,
     'Saturation Current': 1e-15,
     'Emission Coefficient': 1,
-    Veb: 0,
-    Vcb: 0,
-    g_ee: 1.0 / this.settings.R_MAX,
-    g_ec: 1.0 / this.settings.R_MAX,
-    g_ce: 1.0 / this.settings.R_MAX,
-    g_cc: 1.0 / this.settings.R_MAX,
-    i_e: 0,
-    i_c: 0,
-    I_e: 0,
-    I_c: 0,
+    'Veb': 0,
+    'Vcb': 0,
+    'g_ee': 1.0 / this.settings.R_MAX,
+    'g_ec': 1.0 / this.settings.R_MAX,
+    'g_ce': 1.0 / this.settings.R_MAX,
+    'g_cc': 1.0 / this.settings.R_MAX,
+    'i_e': 0,
+    'i_c': 0,
+    'I_e': 0,
+    'I_c': 0,
     'Last Veb': 0,
     'Last Io': 0,
-    tag: 'PNP',
-    units: 'A/A',
-    options: ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
-    options_units: ['A/A', 'A/A', 'A'],
-    option_limits: {
+    'tag': 'PNP',
+    'units': 'A/A',
+    'options': ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
+    'options_units': ['A/A', 'A/A', 'A'],
+    'option_limits': {
       'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
@@ -1084,11 +1084,11 @@ class Global {
   /* Base structure for transformer properties */
   public readonly PROPERTY_TRAN: PROPERTY_TRAN_T = {
     'Turns Ratio': 1,
-    tag: 'TRAN',
-    units: 'NP/NS',
-    options: ['Turns Ratio'],
-    options_units: ['NP/NS'],
-    option_limits: {
+    'tag': 'TRAN',
+    'units': 'NP/NS',
+    'options': ['Turns Ratio'],
+    'options_units': ['NP/NS'],
+    'option_limits': {
       'NP/NS': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
     }
   };
@@ -1096,15 +1096,15 @@ class Global {
   public readonly PROPERTY_ADC: PROPERTY_ADC_T = {
     'Bit Resolution': 12,
     'Reference Voltage': 3.3,
-    LSB: 0,
+    'LSB': 0,
     'Max Bits': 0,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'ADC',
-    units: 'Bits',
-    options: ['Bit Resolution', 'Reference Voltage'],
-    options_units: ['Bits', 'V'],
-    option_limits: {
+    'tag': 'ADC',
+    'units': 'Bits',
+    'options': ['Bit Resolution', 'Reference Voltage'],
+    'options_units': ['Bits', 'V'],
+    'option_limits': {
       'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
       'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
@@ -1113,15 +1113,15 @@ class Global {
   public readonly PROPERTY_DAC: PROPERTY_DAC_T = {
     'Bit Resolution': 12,
     'Reference Voltage': 3.3,
-    LSB: 0,
+    'LSB': 0,
     'Max Bits': 0,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'DAC',
-    units: 'Bits',
-    options: ['Bit Resolution', 'Reference Voltage'],
-    options_units: ['Bits', 'V'],
-    option_limits: {
+    'tag': 'DAC',
+    'units': 'Bits',
+    'options': ['Bit Resolution', 'Reference Voltage'],
+    'options_units': ['Bits', 'V'],
+    'option_limits': {
       'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
       'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
@@ -1132,30 +1132,30 @@ class Global {
     'Min Frequency': 60,
     'Max Duty': this.settings.MAX_DUTY_CYCLE,
     'Min Duty': this.settings.MIN_DUTY_CYCLE,
-    Phase: 0,
-    Postscaler: 1,
-    Counter: 0,
-    Frequency: 0,
-    Duty: 0,
+    'Phase': 0,
+    'Postscaler': 1,
+    'Counter': 0,
+    'Frequency': 0,
+    'Duty': 0,
     'High Voltage': 1,
     'Low Voltage': 0,
     'Input Voltage1': 0,
     'Input Voltage2': 0,
-    A: 0,
+    'A': 0,
     'Saw Wave': 0,
     'Output Voltage': 0,
     'Last Output Voltage': 0,
-    tag: 'PWM',
-    units: 'V',
-    options: ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
-    options_units: ['Hz', 'Hz', '%', '%', ' º', ''],
-    option_limits: {
+    'tag': 'PWM',
+    'units': 'V',
+    'options': ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
+    'options_units': ['Hz', 'Hz', '%', '%', ' º', ''],
+    'option_limits': {
       'Max Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
       'Min Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
       'Max Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
       'Min Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
-      Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
-      Postscaler: [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
+      'Phase': [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
+      'Postscaler': [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
     }
   };
   /* Base structure for integrator properties */
@@ -1166,11 +1166,11 @@ class Global {
     'Last Value': 0,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'INT',
-    units: '',
-    options: ['Initial Value', 'High Voltage', 'Low Voltage'],
-    options_units: ['V', 'V', 'V'],
-    option_limits: {
+    'tag': 'INT',
+    'units': '',
+    'options': ['Initial Value', 'High Voltage', 'Low Voltage'],
+    'options_units': ['V', 'V', 'V'],
+    'option_limits': {
       'Initial Value': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
@@ -1184,11 +1184,11 @@ class Global {
     'Last Value': 0,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'DIFF',
-    units: '',
-    options: ['Initial Value', 'High Voltage', 'Low Voltage'],
-    options_units: ['V', 'V', 'V'],
-    option_limits: {
+    'tag': 'DIFF',
+    'units': '',
+    'options': ['Initial Value', 'High Voltage', 'Low Voltage'],
+    'options_units': ['V', 'V', 'V'],
+    'option_limits': {
       'Initial Value': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
@@ -1196,14 +1196,14 @@ class Global {
   };
   /* Base structure for gain properties */
   public readonly PROPERTY_GAIN: PROPERTY_GAIN_T = {
-    Gain: 1,
+    'Gain': 1,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'GAIN',
-    units: 'V',
-    options: ['Gain'],
-    options_units: ['V'],
-    option_limits: {
+    'tag': 'GAIN',
+    'units': 'V',
+    'options': ['Gain'],
+    'options_units': ['V'],
+    'option_limits': {
       Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
     }
   };
@@ -1211,25 +1211,25 @@ class Global {
   public readonly PROPERTY_ABS: PROPERTY_ABS_T = {
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'ABS',
-    units: '',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'ABS',
+    'units': '',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for lpf properties */
   public readonly PROPERTY_LPF: PROPERTY_LPF_T = {
     'Cutoff Frequency': 120,
     'Y Out': 0,
     'Y Hat': 0,
-    Alpha: 0,
+    'Alpha': 0,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'LPF',
-    units: 'V',
-    options: ['Cutoff Frequency'],
-    options_units: ['Hz'],
-    option_limits: {
+    'tag': 'LPF',
+    'units': 'V',
+    'options': ['Cutoff Frequency'],
+    'options_units': ['Hz'],
+    'option_limits': {
       'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
     }
   };
@@ -1239,14 +1239,14 @@ class Global {
     'Y Out': 0,
     'Y Hat': 0,
     'X Hat': 0,
-    Alpha: 0,
+    'Alpha': 0,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'HPF',
-    units: 'V',
-    options: ['Cutoff Frequency'],
-    options_units: ['Hz'],
-    option_limits: {
+    'tag': 'HPF',
+    'units': 'V',
+    'options': ['Cutoff Frequency'],
+    'options_units': ['Hz'],
+    'option_limits': {
       'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
     }
   };
@@ -1263,7 +1263,7 @@ class Global {
   };
   /* Base structure for relay properties */
   public readonly PROPERTY_REL: PROPERTY_REL_T = {
-    Inductance: 1.0e-3,
+    'Inductance': 1.0e-3,
     'Transient Resistance': this.settings.R_MAX,
     'Transient Current': 0,
     'Equivalent Current': 0,
@@ -1271,12 +1271,12 @@ class Global {
     'Turn on Current': 10e-3,
     'Closed Resistance': this.settings.WIRE_RESISTANCE,
     'Open Resistance': this.settings.R_MAX * 0.5,
-    tag: 'RELAY',
-    units: 'H',
-    options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
-    options_units: ['H', 'A', 'A', 'Ω'],
-    option_limits: {
-      Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+    'tag': 'RELAY',
+    'units': 'H',
+    'options': ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
+    'options_units': ['H', 'A', 'A', 'Ω'],
+    'option_limits': {
+      'Inductance': [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
       'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
       'Turn on Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
       'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
@@ -1284,10 +1284,10 @@ class Global {
   };
   /* Base structure for pid properties */
   public readonly PROPERTY_PID: PROPERTY_PID_T = {
-    Setpoint: 0,
-    Kp: 1,
-    Ki: 0,
-    Kd: 0,
+    'Setpoint': 0,
+    'Kp': 1,
+    'Ki': 0,
+    'Kd': 0,
     'Min Output': 0,
     'Max Output': 1,
     'High Voltage': 1,
@@ -1295,15 +1295,15 @@ class Global {
     'Input Voltage1': 0,
     'Input Voltage2': 0,
     'Output Voltage': 0,
-    tag: 'PID',
-    units: '',
-    options: ['Setpoint', 'Kp', 'Ki', 'Kd', 'Min Output', 'Max Output'],
-    options_units: ['V', '', '', '', 'V', 'V'],
-    option_limits: {
-      Setpoint: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-      Kp: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      Ki: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-      Kd: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+    'tag': 'PID',
+    'units': '',
+    'options': ['Setpoint', 'Kp', 'Ki', 'Kd', 'Min Output', 'Max Output'],
+    'options_units': ['V', '', '', '', 'V', 'V'],
+    'option_limits': {
+      'Setpoint': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+      'Kp': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+      'Ki': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+      'Kd': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       'Min Output': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       'Max Output': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
     }
@@ -1315,29 +1315,29 @@ class Global {
     'Output Voltage': 0,
     'High Voltage': 1,
     'Low Voltage': 0,
-    tag: 'SAH',
-    units: 'V',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'SAH',
+    'units': 'V',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Base structure for Look-Up-Table properties */
   public readonly PROPERTY_LUT: PROPERTY_LUT_T = {
-    Elm0: 12,
-    Elm1: 12,
-    Elm2: 12,
-    Elm3: 12,
-    Elm4: 12,
-    Interpolate: this.ON,
+    'Elm0': 12,
+    'Elm1': 12,
+    'Elm2': 12,
+    'Elm3': 12,
+    'Elm4': 12,
+    'Interpolate': this.ON,
     'High Voltage': 1,
     'Low Voltage': 0,
     'Input Voltage1': 0,
     'Output Voltage': 0,
-    tag: 'LUT',
-    units: '',
-    options: ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-    options_units: ['V', 'V', 'V', 'V', 'V', ''],
-    option_limits: {
+    'tag': 'LUT',
+    'units': '',
+    'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
+    'options_units': ['V', 'V', 'V', 'V', 'V', ''],
+    'option_limits': {
       Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
       Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
@@ -1348,18 +1348,18 @@ class Global {
   };
   /* Base structure for tptz properties */
   public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T = {
-    A1: 0,
-    A2: 0,
-    B0: 1,
-    B1: 0,
-    B2: 0,
+    'A1': 0,
+    'A2': 0,
+    'B0': 1,
+    'B1': 0,
+    'B2': 0,
     'Input Voltage': 0,
     'Output Voltage': 0,
-    tag: 'TPTZ',
-    units: '',
-    options: ['A1', 'A2', 'B0', 'B1', 'B2'],
-    options_units: ['', '', '', '', ''],
-    option_limits: {
+    'tag': 'TPTZ',
+    'units': '',
+    'options': ['A1', 'A2', 'B0', 'B1', 'B2'],
+    'options_units': ['', '', '', '', ''],
+    'option_limits': {
       A1: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       A2: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
       B0: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
@@ -1369,45 +1369,45 @@ class Global {
   };
   /* Base structure for note properties */
   public readonly PROPERTY_NOTE: PROPERTY_NOTE_T = {
-    Note: 'empty',
-    tag: 'NOTE',
+    'Note': 'empty',
+    'tag': 'NOTE',
     'Text Style': this.TEXT_STYLE_1,
     'Show Marker': this.ON,
-    units: '',
-    options: ['Note', 'Text Style', 'Show Marker'],
-    options_units: ['', '', ''],
+    'units': '',
+    'options': ['Note', 'Text Style', 'Show Marker'],
+    'options_units': ['', '', ''],
     /* This element doesn't have one! */
-    option_limits: {
+    'option_limits': {
       Note: [-1, 1]
     }
   };
   /* Base structure for fuse properties */
   public readonly PROPERTY_FUSE: PROPERTY_FUSE_T = {
     'Current Rating': 500e-3,
-    Resistance: this.settings.WIRE_RESISTANCE,
-    Voltage: 1e-9,
-    Broken: false,
-    tag: 'FUS',
-    units: 'A',
-    options: ['Current Rating', 'Resistance'],
-    options_units: ['A', 'Ω'],
-    option_limits: {
+    'Resistance': this.settings.WIRE_RESISTANCE,
+    'Voltage': 1e-9,
+    'Broken': false,
+    'tag': 'FUS',
+    'units': 'A',
+    'options': ['Current Rating', 'Resistance'],
+    'options_units': ['A', 'Ω'],
+    'option_limits': {
       'Current Rating': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-      Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
+      'Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
     }
   };
   /* Base structure for dff properties */
   public readonly PROPERTY_DFF: PROPERTY_DFF_T = {
     'Input Voltage1': 0,
     'Last Clock': 1,
-    Clock: 0,
-    Q: 0,
+    'Clock': 0,
+    'Q': 0,
     '!Q': 0,
-    tag: 'DFF',
-    units: 'V',
-    options: [''],
-    options_units: [''],
-    option_limits: {}
+    'tag': 'DFF',
+    'units': 'V',
+    'options': [''],
+    'options_units': [''],
+    'option_limits': {}
   };
   /* Keeps track of all the changes made to elements. There is a manager for
     the history generated inside the application. Its queued up so we don't miss
@@ -1435,8 +1435,8 @@ class Global {
   };
   /* Index's to access system options. Make sure they're in order. */
   public indexer: number = 0;
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
-  public LINE_BUFFER: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
   public SYSTEM_OPTION_LANGUAGE: number = this.indexer++;
   public SYSTEM_OPTION_AUTOMATIC_TIMESTEP: number = this.indexer++;
   public SYSTEM_OPTION_SHORTCUT_HINTS: number = this.indexer++;
@@ -1444,7 +1444,7 @@ class Global {
 
   /* 99.999% Of the colors are stored here for conveinence. This is to help when moving from canvas-2d to some other libraries
     in the future. Paint.js has one definition there... (The order of includes are hard to manage.)*/
-  public BACKGROUND_COLOR: string = this.ColorNameToHex('black');
+  public readonly BACKGROUND_COLOR: string = this.ColorNameToHex('black');
   public readonly ELEMENT_COLOR: string = this.ColorNameToHex('silver');
   public readonly SELECTED_COLOR: string = this.ColorNameToHex('cyan');
   public readonly MULTI_SELECTED_COLOR: string = this.ColorNameToHex('yellow');
@@ -1472,9 +1472,9 @@ class Global {
   /* The default font for all paints created in the system */
   public readonly DEFAULT_FONT: string = 'Arial';
   /* A flag to detail if the user has selected a file or not. */
-  public USER_FILE_SELECTED: boolean = false;
+  public user_file_selected: boolean = false;
   /* A descriptor for the users circuit */
-  public USER_FILE: Circuit = new Circuit();
+  public user_file: Circuit = new Circuit();
   /* Key Event Code Constants */
   public KEY_CODE_ESCAPE = 'Escape';
   public KEY_CODE_BACK_QUOTE = 'Backquote';
@@ -1641,11 +1641,9 @@ class Global {
   };
   public KEY_EVENT_KEYS = Object.keys(this.KEY_EVENT_CODES);
   /* Variables for Circuit Simulation */
-  public TIME_STEP: number = 1e-6;
-  /* The magnitude of the random variable for the entire simulation. */
-  public readonly RANDOM_VAR_MAGNITUDE: number = 1e-18;
+  public time_step: number = 1e-6;
   /* Keeps track of the simulation time. */
-  public SIMULATION_TIME: number = 0;
+  public simulation_time: number = 0;
   /* Serializing the inputs (so they occur in a predictable manner.) */
   public RESIZE_EVENT: boolean = false;
   /* Used for changing from window modes. */
@@ -1659,18 +1657,18 @@ class Global {
   public KEY_UP_EVENT: boolean = false;
   public KEY_DOWN_EVENT: boolean = false;
   /* A flag to disable the system from drawing to the real buffer. */
-  public DRAW_BLOCK: boolean = false;
+  public draw_block: boolean = false;
   /* Flag to dictate that the system is ready for a close up (Taking a snaps shot of  the workspace area.). */
   public PICTURE_REQUEST: boolean = false;
   public readonly PICTURE_ZOOM: number = this.ZOOM_MAX;
   public readonly PICTURE_EXPOSURE_TIME: number = 3;
   /* Canvas drawing optimization flag */
-  public CANVAS_DRAW_REQUEST: boolean = false;
-  public CANVAS_DRAW_REQUEST_COUNTER: number = 0;
+  public canvas_draw_request: boolean = false;
+  public canvas_draw_request_counter: number = 0;
   public CANVAS_DRAW_REQUEST_COUNTER_MAX: number = 3;
-  public CANVAS_DRAW_EVENT: boolean = false;
+  public canvas_draw_event: boolean = false;
   public CANVAS_REDRAW_MAX: number = 3;
-  public CANVAS_REDRAW_COUNTER: number = 0;
+  public canvas_redraw_counter: number = 0;
   /* Quantizing the stroke width's for the entire system. Ideally, the system will use one of these sizes. */
   public CANVAS_STROKE_WIDTH_BASE: number = 1;
   public CANVAS_STROKE_WIDTH_1: number = 2.25;
@@ -1699,9 +1697,6 @@ class Global {
   public CANVAS_TEXT_SIZE_4_ZOOM: number = 16;
   public CANVAS_TEXT_SIZE_5_ZOOM: number = 21;
   public CANVAS_TEXT_SIZE_6_ZOOM: number = 43;
-  /* Accessing some variables in javascript is expensive, so let's just cache them. */
-  public SURFACE_OFFSET_LEFT: number = 0;
-  public SURFACE_OFFSET_TOP: number = 0;
   /* This is how history event components are seperated. */
   public readonly PACKET_DIVIDER: string = '#DIVIDER#';
   /* Paint used to draw the grid highlights when a component is moved. */
@@ -1709,14 +1704,14 @@ class Global {
   /* Thermal voltage tor PN Junctions. */
   public vt: number = 25.6e-3;
   /* Default GMIN value! (Used for gmin stepping) */
-  public GMIN_DEFAULT: number = 1e-9;
+  public gmin_default: number = 1e-9;
   /* Non-linear simulation variables */
-  public V_MAX_ERR: Array<Array<number>> = [];
-  public I_MAX_ERR: Array<Array<number>> = [];
-  public V_LOCKED: boolean = false;
-  public I_LOCKED: boolean = false;
-  public V_CONV: boolean = false;
-  public I_CONV: boolean = false;
+  public v_max_err: Array<Array<number>> = [];
+  public i_max_err: Array<Array<number>> = [];
+  public v_locked: boolean = false;
+  public i_locked: boolean = false;
+  public v_conv: boolean = false;
+  public i_conv: boolean = false;
   public readonly PI_DIV_2: number = Math.PI * 0.5;
   public readonly PI_DIV_4: number = Math.PI * 0.25;
   public readonly PI_MUL_3_DIV_4: number = Math.PI * 0.75;
@@ -1752,26 +1747,26 @@ class Global {
   public general_integer3: number = 0;
   public general_integer4: number = 0;
   public general_integer5: number = 0;
-  public RESIZE_W_FACTOR: number = 0;
-  public RESIZE_H_FACTOR: number = 0;
-  public ANGLE_SEARCH_OBJ: ANGLE_STRUCT_T;
-  public ANGLE_RADIAN_SEARCH_OBJ: ANGLE_STRUCT_T;
-  public ANGLE_ARRAY: Array<ANGLE_STRUCT_T> = [];
-  public ANGLE_RADIAN_ARRAY: Array<ANGLE_STRUCT_T> = [];
-  public SAVED_ANGLE: number = -1;
-  public SAVED_ANGLE_RADIANS: number = -1;
+  public resize_w_factor: number = 0;
+  public resize_h_factor: number = 0;
+  public angle_search_obj: ANGLE_STRUCT_T;
+  public angle_radian_search_obj: ANGLE_STRUCT_T;
+  public angle_array: Array<ANGLE_STRUCT_T> = [];
+  public angle_radian_array: Array<ANGLE_STRUCT_T> = [];
+  public saved_angle: number = -1;
+  public saved_angle_radians: number = -1;
   public GARBAGE_COLLECTOR_SIZE: number = 16;
-  public TEMP_BOOLEAN: boolean = false;
+  public temp_boolean: boolean = false;
   public general_index: number = -1;
-  public ELEMENT_MAX: Array<number> = [];
-  public METER_MAX: Array<number> = [];
-  public NON_LINEAR_MAX: Array<number> = [];
-  public MAX_GENERAL_NUMBER: number = 0;
+  public element_max_array: Array<number> = [];
+  public meter_max_array: Array<number> = [];
+  public non_linear_max_array: Array<number> = [];
+  public max_general_number: number = 0;
 
   constructor() {
     this.NULL = null;
     this.MOBILE_MODE = false;
-    this.SYSTEM_INITIALIZATION = {
+    this.system_initialization = {
       step: 0,
       max: 5,
       completed: false
@@ -1779,14 +1774,14 @@ class Global {
     this.VERSION_TAG = 'BETA-1.0.93';
     if (this.MOBILE_MODE) {
       /* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
-      this.WORKSPACE_ZOOM_SCALE = 2.5;
+      this.workspace_zoom_scale = 2.5;
       /* The maximum amount of zoom the user may apply */
       this.ZOOM_MAX = 3.5;
       /* The minimum amount of zoom the user may apply */
       this.ZOOM_MIN = 1.0;
     } else {
       /* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
-      this.WORKSPACE_ZOOM_SCALE = 1.0;
+      this.workspace_zoom_scale = 1.0;
       /* The maximum amount of zoom the user may apply */
       this.ZOOM_MAX = 2.0;
       /* The minimum amount of zoom the user may apply */
@@ -1794,8 +1789,8 @@ class Global {
     }
     this.ZERO_PT_FIVE = 0.5;
     this.ZERO = 0 >> 0;
-    this.NODE_LINE_BUFFER = [];
-    this.NODE_LINE_BUFFER_INDEX = 0;
+    this.node_line_buffer = [];
+    this.node_line_buffer_index = 0;
     /* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
     this.ZOOM_FACTOR = 1.085;
     /* These are used a relative metric to know how much to change the view of the
@@ -1817,7 +1812,7 @@ class Global {
     this.ON = 'ON';
     this.OFF = 'OFF';
     /* Keeping track of the virtual canvas's we create. */
-    this.VIRTUAL_CANVAS_ID = 0;
+    this.virtual_canvas_id = 0;
     /* Constants for different elements in the application. */
     /* Meta data is reserved for storing user info when exporting / importing circuits */
     /* When we generate the output text file, it sits on the first portion of the file. */
@@ -1934,28 +1929,28 @@ class Global {
     /* The properties of the selected item. Each element has properties associated with it */
     this.selected_properties = this.NULL;
     /* Selectios nearest neighbors */
-    this.SELECTION_NEAREST_NEIGHBORS = [];
-    this.NEAREST_NEIGHBOR_INDEX = 0;
+    this.selection_nearest_neighbors = [];
+    this.nearest_neighbor_index = 0;
     /* A general flag to determining if any of the elements are multi-selected. */
     this.multi_selected = false;
     /* Used to copying / pasting elements. */
-    this.CLIPBOARD_TYPE = this.NULL;
-    this.CLIPBOARD_ROTATION = this.NULL;
-    this.CLIPBOARD_FLIP = this.NULL;
-    this.CLIPBOARD_PROPERTY = this.NULL;
+    this.clipboard_type = this.NULL;
+    this.clipboard_rotation = this.NULL;
+    this.clipboard_flip = this.NULL;
+    this.clipboard_property = this.NULL;
     /* A variable to help coordinate multi-selection. */
     this.component_translating = false;
     /* Thermal voltage tor PN Junctions. */
     this.vt = 25.6e-3;
     /* Default GMIN value! (Used for gmin stepping) */
-    this.GMIN_DEFAULT = 1e-9;
+    this.gmin_default = 1e-9;
     /* Non-linear simulation variables */
-    this.V_MAX_ERR = [];
-    this.I_MAX_ERR = [];
-    this.V_LOCKED = false;
-    this.I_LOCKED = false;
-    this.V_CONV = false;
-    this.I_CONV = false;
+    this.v_max_err = [];
+    this.i_max_err = [];
+    this.v_locked = false;
+    this.i_locked = false;
+    this.v_conv = false;
+    this.i_conv = false;
     /* System Flags */
     /* These flags are to represent what state the appplication is in. The idea is to make
     them indicative of what functions are avaiable on what page and what elements need to be
@@ -2004,21 +1999,21 @@ class Global {
     this.SIGNAL_HISTORY_LOCK = false;
     /* Global rendering flag */
     this.SIGNAL_BUILD_ELEMENT = false;
-    this.SIGNAL_BUILD_COUNTER = 0;
+    this.signal_build_counter = 0;
     /* Intentionally 2x re-draw counter.*/
     this.SIGNAL_BUILD_COUNTER_MAX = 3;
     /* Counts up to counter max and resets the signal wire deleted flag. */
-    this.SIGNAL_WIRE_DELETED_COUNTER = 0;
+    this.signal_wire_deleted_counter = 0;
     this.SIGNAL_WIRE_DELETED_COUNTER_MAX = 3;
     /* Flag to help coordinate when an element is touched */
     this.component_touched = false;
     /* Some elements require the mouse to be locked out until a mouse-up event occurs. This is
     so that we don't have events propagating to other portions of the code. */
-    this.MOUSE_KEYBOARD_LOCK = false;
-    this.TRANSLATION_LOCK = true;
+    this.mouse_keyboard_lock = false;
+    this.translation_lock = true;
     /* Used for solving the matrix, If the matrix is found to be singluar, this flag will be set
     and the simulation will end throwing an sinular matrix fault. */
-    this.IS_SINGULAR = false;
+    this.is_singular = false;
     /* Storing mouse events in this template so they can be serialized */
     this.mouse_down_event = this.NULL;
     this.mouse_move_event = this.NULL;
@@ -2073,11 +2068,11 @@ class Global {
     this.mouse_y = 0;
     /* A flag to indicate when a mouse click event occurs. */
     this.is_touching = false;
-    /* A flag to indicate when a dragging event occurs. This is only set if IS_RIGHT_CLICK is true. */
-    this.IS_DRAGGING = false;
-    this.TEMP_IS_DRAGGING = false;
+    /* A flag to indicate when a dragging event occurs. This is only set if is_right_click is true. */
+    this.is_dragging = false;
+    this.temp_is_dragging = false;
     /* A flag to indicate when the user performs a right click */
-    this.IS_RIGHT_CLICK = false;
+    this.is_right_click = false;
     /* Used to calculate the shift in when the zoom-to-point logic starts, this essenntially is the left and top of the workspace view */
     this.delta_x = 0;
     this.delta_y = 0;
@@ -2175,11 +2170,11 @@ class Global {
       'Open Resistance': this.settings.R_MAX * 0.5,
       'Closed Resistance': this.settings.WIRE_RESISTANCE,
       'Switch State': this.OFF,
-      tag: 'SPST',
-      units: 'Ω',
-      options: ['Closed Resistance', 'Switch State'],
-      options_units: ['Ω', ''],
-      option_limits: {
+      'tag': 'SPST',
+      'units': 'Ω',
+      'options': ['Closed Resistance', 'Switch State'],
+      'options_units': ['Ω', ''],
+      'option_limits': {
         'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
@@ -2188,11 +2183,11 @@ class Global {
       'High Voltage': 5,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'NOT',
-      units: 'V',
-      options: ['High Voltage'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'NOT',
+      'units': 'V',
+      'options': ['High Voltage'],
+      'options_units': ['V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
@@ -2201,15 +2196,15 @@ class Global {
       'Emission Coefficient': 1,
       'Saturation Current': 1e-15,
       'Equivalent Current': 0,
-      Voltage: 0,
+      'Voltage': 0,
       'Last Voltage': 0,
       'Last Current': 0,
-      Resistance: 1.0 / this.settings.R_MAX,
-      tag: 'DIO',
-      units: '',
-      options: ['Emission Coefficient', 'Saturation Current'],
-      options_units: ['', 'A'],
-      option_limits: {
+      'Resistance': 1.0 / this.settings.R_MAX,
+      'tag': 'DIO',
+      'units': '',
+      'options': ['Emission Coefficient', 'Saturation Current'],
+      'options_units': ['', 'A'],
+      'option_limits': {
         'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
       }
@@ -2218,21 +2213,21 @@ class Global {
     this.PROPERTY_LED = {
       'Emission Coefficient': 3.73,
       'Saturation Current': 93.2e-12,
-      Wavelength: 425,
+      'Wavelength': 425,
       'Turn On Current': 20e-3,
       'Equivalent Current': 0,
-      Voltage: 0,
+      'Voltage': 0,
       'Last Voltage': 0,
       'Last Current': 0,
-      Resistance: 1.0 / this.settings.R_MAX,
-      tag: 'LED',
-      units: '',
-      options: ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
-      options_units: ['', 'A', 'nm'],
-      option_limits: {
+      'Resistance': 1.0 / this.settings.R_MAX,
+      'tag': 'LED',
+      'units': '',
+      'options': ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
+      'options_units': ['', 'A', 'nm'],
+      'option_limits': {
         'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-        Wavelength: [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
+        'Wavelength': [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
       }
     };
     /* Base structure for zener properties */
@@ -2241,15 +2236,15 @@ class Global {
       'Emission Coefficient': 1,
       'Saturation Current': 1e-15,
       'Equivalent Current': 0,
-      Voltage: 0,
+      'Voltage': 0,
       'Last Voltage': 0,
       'Last Current': 0,
-      Resistance: 1.0 / this.settings.R_MAX,
-      tag: 'ZEN',
-      units: '',
-      options: ['Zener Voltage', 'Emission Coefficient', 'Saturation Current'],
-      options_units: ['V', '', 'A'],
-      option_limits: {
+      'Resistance': 1.0 / this.settings.R_MAX,
+      'tag': 'ZEN',
+      'units': '',
+      'options': ['Zener Voltage', 'Emission Coefficient', 'Saturation Current'],
+      'options_units': ['V', '', 'A'],
+      'option_limits': {
         'Zener Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
@@ -2266,33 +2261,33 @@ class Global {
     };
     /* Base structure for voltmeter properties */
     this.PROPERTY_WATTMETER = {
-      Wattage: 0,
+      'Wattage': 0,
       'Test Voltage': 1e-9,
-      tag: 'WM',
-      units: 'W',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'WM',
+      'units': 'W',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for ammeter properties */
     this.PROPERTY_AMMETER = {
-      Current: 0,
+      'Current': 0,
       'Test Voltage': 1e-9,
-      tag: 'AM',
-      units: 'A',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'AM',
+      'units': 'A',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for ohmmeter properties */
     this.PROPERTY_OHMMETER = {
       'Sensed Resistance': 0,
       'Test Voltage': 1e-9,
-      tag: 'OM',
-      units: 'Ω',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'OM',
+      'units': 'Ω',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for resistor properties */
     this.PROPERTY_WIRE = {
@@ -2377,35 +2372,35 @@ class Global {
     };
     /* Base structure for capacitor properties */
     this.PROPERTY_CAPACITOR = {
-      Capacitance: 1.0e-6,
+      'Capacitance': 1.0e-6,
       'Transient Resistance': this.settings.R_MAX,
       'Transient Current': 0,
       'Equivalent Current': 0,
       'Initial Voltage': 0,
       'Transient Voltage': 0,
-      tag: 'C',
-      units: 'F',
-      options: ['Capacitance', 'Initial Voltage'],
-      options_units: ['F', 'V'],
-      option_limits: {
-        Capacitance: [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
+      'tag': 'C',
+      'units': 'F',
+      'options': ['Capacitance', 'Initial Voltage'],
+      'options_units': ['F', 'V'],
+      'option_limits': {
+        'Capacitance': [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
         'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
     /* Base structure for inductor properties */
     this.PROPERTY_INDUCTOR = {
-      Inductance: 1.0e-3,
+      'Inductance': 1.0e-3,
       'Transient Resistance': this.settings.R_MAX,
       'Transient Current': 0,
       'Equivalent Current': 0,
       'Initial Current': 0,
       'Transient Voltage': 0,
-      tag: 'I',
-      units: 'H',
-      options: ['Inductance', 'Initial Current'],
-      options_units: ['H', 'A'],
-      option_limits: {
-        Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+      'tag': 'I',
+      'units': 'H',
+      'options': ['Inductance', 'Initial Current'],
+      'options_units': ['H', 'A'],
+      'option_limits': {
+        'Inductance': [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
         'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
       }
     };
@@ -2416,14 +2411,14 @@ class Global {
     };
     /* Base structure for net properties */
     this.PROPERTY_NET = {
-      Name: 'Net',
-      tag: 'N',
+      'Name': 'Net',
+      'tag': 'N',
       'Show Name': this.ON,
-      units: '',
-      options: ['Name', 'Show Name'],
-      options_units: ['', ''],
+      'units': '',
+      'options': ['Name', 'Show Name'],
+      'options_units': ['', ''],
       /* This element doesn't have one! */
-      option_limits: {
+      'option_limits': {
         Name: [-1, 1]
       }
     };
@@ -2440,14 +2435,14 @@ class Global {
     };
     /* Base structure for potentiometer properties */
     this.PROPERTY_POTENTIOMETER = {
-      Resistance: 1e3,
+      'Resistance': 1e3,
       'Wiper Percentage': 50,
-      tag: 'P',
-      units: 'Ω',
-      options: ['Resistance', 'Wiper Percentage'],
-      options_units: ['Ω', '%'],
-      option_limits: {
-        Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
+      'tag': 'P',
+      'units': 'Ω',
+      'options': ['Resistance', 'Wiper Percentage'],
+      'options_units': ['Ω', '%'],
+      'option_limits': {
+        'Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
         'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
       }
     };
@@ -2457,11 +2452,11 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'AND',
-      units: 'V',
-      options: ['High Voltage'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'AND',
+      'units': 'V',
+      'options': ['High Voltage'],
+      'options_units': ['V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
@@ -2471,11 +2466,11 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'OR',
-      units: 'V',
-      options: ['High Voltage'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'OR',
+      'units': 'V',
+      'options': ['High Voltage'],
+      'options_units': ['V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
@@ -2485,11 +2480,11 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'NAND',
-      units: 'V',
-      options: ['High Voltage'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'NAND',
+      'units': 'V',
+      'options': ['High Voltage'],
+      'options_units': ['V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
@@ -2499,11 +2494,11 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'NOR',
-      units: 'V',
-      options: ['High Voltage'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'NOR',
+      'units': 'V',
+      'options': ['High Voltage'],
+      'options_units': ['V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
@@ -2513,11 +2508,11 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'XOR',
-      units: 'V',
-      options: ['High Voltage'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'XOR',
+      'units': 'V',
+      'options': ['High Voltage'],
+      'options_units': ['V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
@@ -2527,11 +2522,11 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'XNOR',
-      units: 'V',
-      options: ['High Voltage'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'XNOR',
+      'units': 'V',
+      'options': ['High Voltage'],
+      'options_units': ['V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
     };
@@ -2541,11 +2536,11 @@ class Global {
       'Closed Resistance': 1.0 / this.settings.R_MAX,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'VCSW',
-      units: 'V',
-      options: ['High Voltage', 'Closed Resistance'],
-      options_units: ['V', 'Ω'],
-      option_limits: {
+      'tag': 'VCSW',
+      'units': 'V',
+      'options': ['High Voltage', 'Closed Resistance'],
+      'options_units': ['V', 'Ω'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
@@ -2554,19 +2549,19 @@ class Global {
     this.PROPERTY_VCR = {
       'Low Voltage': 0,
       'High Voltage': 1,
-      Elm0: 1e3,
-      Elm1: 1e3,
-      Elm2: 1e3,
-      Elm3: 1e3,
-      Elm4: 1e3,
-      Interpolate: this.ON,
+      'Elm0': 1e3,
+      'Elm1': 1e3,
+      'Elm2': 1e3,
+      'Elm3': 1e3,
+      'Elm4': 1e3,
+      'Interpolate': this.ON,
       'Input Voltage': 0,
       'Output Resistance': this.settings.WIRE_RESISTANCE,
-      tag: 'VCR',
-      units: 'V',
-      options: ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-      options_units: ['Ω', 'Ω', 'Ω', 'Ω', 'Ω', ''],
-      option_limits: {
+      'tag': 'VCR',
+      'units': 'V',
+      'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
+      'options_units': ['Ω', 'Ω', 'Ω', 'Ω', 'Ω', ''],
+      'option_limits': {
         Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
@@ -2624,11 +2619,11 @@ class Global {
       'Open Resistance': this.settings.R_MAX * 0.5,
       'Closed Resistance': 1.0 / this.settings.R_MAX,
       'Switch State': this.OFF,
-      tag: 'SPDT',
-      units: 'Ω',
-      options: ['Closed Resistance', 'Switch State'],
-      options_units: ['Ω', ''],
-      option_limits: {
+      'tag': 'SPDT',
+      'units': 'Ω',
+      'options': ['Closed Resistance', 'Switch State'],
+      'options_units': ['Ω', ''],
+      'option_limits': {
         'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
@@ -2646,11 +2641,11 @@ class Global {
       'Low Voltage': -12,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'VSAT',
-      units: 'V',
-      options: ['High Voltage', 'Low Voltage'],
-      options_units: ['V', 'V'],
-      option_limits: {
+      'tag': 'VSAT',
+      'units': 'V',
+      'options': ['High Voltage', 'Low Voltage'],
+      'options_units': ['V', 'V'],
+      'option_limits': {
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
@@ -2694,104 +2689,104 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'VADD',
-      units: 'V',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'VADD',
+      'units': 'V',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for subtractor properties */
     this.PROPERTY_SUB = {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'VSUB',
-      units: 'V',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'VSUB',
+      'units': 'V',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for multiplier properties */
     this.PROPERTY_MUL = {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'VMUL',
-      units: 'V',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'VMUL',
+      'units': 'V',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for greater than properties */
     this.PROPERTY_GRT = {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'VGRT',
-      units: 'V',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'VGRT',
+      'units': 'V',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for adder properties */
     this.PROPERTY_DIV = {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'VDIV',
-      units: 'V',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'VDIV',
+      'units': 'V',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for nmosfet properties */
     this.PROPERTY_NMOS = {
       'W/L Ratio': 50,
       "K'n": 118e-6,
-      VTN: 650e-3,
-      Lambda: 1e-6,
-      Vgs: 0,
-      Vds: 0,
-      gds: 1.0 / this.settings.R_MAX,
-      gm: 1.0 / this.settings.R_MAX,
-      Io: 0,
+      'VTN': 650e-3,
+      'Lambda': 1e-6,
+      'Vgs': 0,
+      'Vds': 0,
+      'gds': 1.0 / this.settings.R_MAX,
+      'gm': 1.0 / this.settings.R_MAX,
+      'Io': 0,
       'Mosfet Mode': 0,
       'Last Vgs': 0,
       'Last Io': 0,
-      tag: 'NMOS',
-      units: 'W/L',
-      options: ['W/L Ratio', "K'n", 'VTN', 'Lambda'],
-      options_units: ['', 'A/V^2', 'V', 'V^-1'],
-      option_limits: {
+      'tag': 'NMOS',
+      'units': 'W/L',
+      'options': ['W/L Ratio', "K'n", 'VTN', 'Lambda'],
+      'options_units': ['', 'A/V^2', 'V', 'V^-1'],
+      'option_limits': {
         'W/L Ratio': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         "K'n": [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-        VTN: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-        Lambda: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
+        'VTN': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+        'Lambda': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
       }
     };
     /* Base structure for pmosfet properties */
     this.PROPERTY_PMOS = {
       'W/L Ratio': 50,
       "K'p": -118e-6,
-      VTP: -650e-3,
-      Lambda: -1e-6,
-      Vsg: 0,
-      Vsd: 0,
-      gsd: 1.0 / this.settings.R_MAX,
-      gm: 1.0 / this.settings.R_MAX,
-      Io: 0,
+      'VTP': -650e-3,
+      'Lambda': -1e-6,
+      'Vsg': 0,
+      'Vsd': 0,
+      'gsd': 1.0 / this.settings.R_MAX,
+      'gm': 1.0 / this.settings.R_MAX,
+      'Io': 0,
       'Mosfet Mode': 0,
       'Last Vsg': 0,
       'Last Io': 0,
-      tag: 'PMOS',
-      units: 'W/L',
-      options: ['W/L Ratio', "K'p", 'VTP', 'Lambda'],
-      options_units: ['', 'A/V^2', 'V', 'V^-1'],
-      option_limits: {
+      'tag': 'PMOS',
+      'units': 'W/L',
+      'options': ['W/L Ratio', "K'p", 'VTP', 'Lambda'],
+      'options_units': ['', 'A/V^2', 'V', 'V^-1'],
+      'option_limits': {
         'W/L Ratio': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         "K'p": [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-        VTP: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-        Lambda: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
+        'VTP': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+        'Lambda': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
       }
     };
     /* Base structure for npnbjt properties */
@@ -2800,23 +2795,23 @@ class Global {
       'Reverse Beta': 1,
       'Saturation Current': 1e-15,
       'Emission Coefficient': 1,
-      Vbe: 0,
-      Vbc: 0,
-      g_ee: 1.0 / this.settings.R_MAX,
-      g_ec: 1.0 / this.settings.R_MAX,
-      g_ce: 1.0 / this.settings.R_MAX,
-      g_cc: 1.0 / this.settings.R_MAX,
-      i_e: 0,
-      i_c: 0,
-      I_e: 0,
-      I_c: 0,
+      'Vbe': 0,
+      'Vbc': 0,
+      'g_ee': 1.0 / this.settings.R_MAX,
+      'g_ec': 1.0 / this.settings.R_MAX,
+      'g_ce': 1.0 / this.settings.R_MAX,
+      'g_cc': 1.0 / this.settings.R_MAX,
+      'i_e': 0,
+      'i_c': 0,
+      'I_e': 0,
+      'I_c': 0,
       'Last Vbe': 0,
       'Last Io': 0,
-      tag: 'NPN',
-      units: 'A/A',
-      options: ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
-      options_units: ['A/A', 'A/A', 'A'],
-      option_limits: {
+      'tag': 'NPN',
+      'units': 'A/A',
+      'options': ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
+      'options_units': ['A/A', 'A/A', 'A'],
+      'option_limits': {
         'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
@@ -2828,23 +2823,23 @@ class Global {
       'Reverse Beta': 1,
       'Saturation Current': 1e-15,
       'Emission Coefficient': 1,
-      Veb: 0,
-      Vcb: 0,
-      g_ee: 1.0 / this.settings.R_MAX,
-      g_ec: 1.0 / this.settings.R_MAX,
-      g_ce: 1.0 / this.settings.R_MAX,
-      g_cc: 1.0 / this.settings.R_MAX,
-      i_e: 0,
-      i_c: 0,
-      I_e: 0,
-      I_c: 0,
+      'Veb': 0,
+      'Vcb': 0,
+      'g_ee': 1.0 / this.settings.R_MAX,
+      'g_ec': 1.0 / this.settings.R_MAX,
+      'g_ce': 1.0 / this.settings.R_MAX,
+      'g_cc': 1.0 / this.settings.R_MAX,
+      'i_e': 0,
+      'i_c': 0,
+      'I_e': 0,
+      'I_c': 0,
       'Last Veb': 0,
       'Last Io': 0,
-      tag: 'PNP',
-      units: 'A/A',
-      options: ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
-      options_units: ['A/A', 'A/A', 'A'],
-      option_limits: {
+      'tag': 'PNP',
+      'units': 'A/A',
+      'options': ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
+      'options_units': ['A/A', 'A/A', 'A'],
+      'option_limits': {
         'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
@@ -2853,11 +2848,11 @@ class Global {
     /* Base structure for transformer properties */
     this.PROPERTY_TRAN = {
       'Turns Ratio': 1,
-      tag: 'TRAN',
-      units: 'NP/NS',
-      options: ['Turns Ratio'],
-      options_units: ['NP/NS'],
-      option_limits: {
+      'tag': 'TRAN',
+      'units': 'NP/NS',
+      'options': ['Turns Ratio'],
+      'options_units': ['NP/NS'],
+      'option_limits': {
         'NP/NS': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
       }
     };
@@ -2865,15 +2860,15 @@ class Global {
     this.PROPERTY_ADC = {
       'Bit Resolution': 12,
       'Reference Voltage': 3.3,
-      LSB: 0,
+      'LSB': 0,
       'Max Bits': 0,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'ADC',
-      units: 'Bits',
-      options: ['Bit Resolution', 'Reference Voltage'],
-      options_units: ['Bits', 'V'],
-      option_limits: {
+      'tag': 'ADC',
+      'units': 'Bits',
+      'options': ['Bit Resolution', 'Reference Voltage'],
+      'options_units': ['Bits', 'V'],
+      'option_limits': {
         'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
         'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
@@ -2882,15 +2877,15 @@ class Global {
     this.PROPERTY_DAC = {
       'Bit Resolution': 12,
       'Reference Voltage': 3.3,
-      LSB: 0,
+      'LSB': 0,
       'Max Bits': 0,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'DAC',
-      units: 'Bits',
-      options: ['Bit Resolution', 'Reference Voltage'],
-      options_units: ['Bits', 'V'],
-      option_limits: {
+      'tag': 'DAC',
+      'units': 'Bits',
+      'options': ['Bit Resolution', 'Reference Voltage'],
+      'options_units': ['Bits', 'V'],
+      'option_limits': {
         'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
         'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
@@ -2901,30 +2896,30 @@ class Global {
       'Min Frequency': 60,
       'Max Duty': this.settings.MAX_DUTY_CYCLE,
       'Min Duty': this.settings.MIN_DUTY_CYCLE,
-      Phase: 0,
-      Postscaler: 1,
-      Counter: 0,
-      Frequency: 0,
-      Duty: 0,
+      'Phase': 0,
+      'Postscaler': 1,
+      'Counter': 0,
+      'Frequency': 0,
+      'Duty': 0,
       'High Voltage': 1,
       'Low Voltage': 0,
       'Input Voltage1': 0,
       'Input Voltage2': 0,
-      A: 0,
+      'A': 0,
       'Saw Wave': 0,
       'Output Voltage': 0,
       'Last Output Voltage': 0,
-      tag: 'PWM',
-      units: 'V',
-      options: ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
-      options_units: ['Hz', 'Hz', '%', '%', ' º', ''],
-      option_limits: {
+      'tag': 'PWM',
+      'units': 'V',
+      'options': ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
+      'options_units': ['Hz', 'Hz', '%', '%', ' º', ''],
+      'option_limits': {
         'Max Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
         'Min Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
         'Max Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
         'Min Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
-        Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
-        Postscaler: [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
+        'Phase': [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
+        'Postscaler': [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
       }
     };
     /* Base structure for integrator properties */
@@ -2935,11 +2930,11 @@ class Global {
       'Last Value': 0,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'INT',
-      units: '',
-      options: ['Initial Value', 'High Voltage', 'Low Voltage'],
-      options_units: ['V', 'V', 'V'],
-      option_limits: {
+      'tag': 'INT',
+      'units': '',
+      'options': ['Initial Value', 'High Voltage', 'Low Voltage'],
+      'options_units': ['V', 'V', 'V'],
+      'option_limits': {
         'Initial Value': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
@@ -2953,11 +2948,11 @@ class Global {
       'Last Value': 0,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'DIFF',
-      units: '',
-      options: ['Initial Value', 'High Voltage', 'Low Voltage'],
-      options_units: ['V', 'V', 'V'],
-      option_limits: {
+      'tag': 'DIFF',
+      'units': '',
+      'options': ['Initial Value', 'High Voltage', 'Low Voltage'],
+      'options_units': ['V', 'V', 'V'],
+      'option_limits': {
         'Initial Value': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
@@ -2965,14 +2960,14 @@ class Global {
     };
     /* Base structure for gain properties */
     this.PROPERTY_GAIN = {
-      Gain: 1,
+      'Gain': 1,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'GAIN',
-      units: 'V',
-      options: ['Gain'],
-      options_units: ['V'],
-      option_limits: {
+      'tag': 'GAIN',
+      'units': 'V',
+      'options': ['Gain'],
+      'options_units': ['V'],
+      'option_limits': {
         Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
       }
     };
@@ -2980,25 +2975,25 @@ class Global {
     this.PROPERTY_ABS = {
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'ABS',
-      units: '',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'ABS',
+      'units': '',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for lpf properties */
     this.PROPERTY_LPF = {
       'Cutoff Frequency': 120,
       'Y Out': 0,
       'Y Hat': 0,
-      Alpha: 0,
+      'Alpha': 0,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'LPF',
-      units: 'V',
-      options: ['Cutoff Frequency'],
-      options_units: ['Hz'],
-      option_limits: {
+      'tag': 'LPF',
+      'units': 'V',
+      'options': ['Cutoff Frequency'],
+      'options_units': ['Hz'],
+      'option_limits': {
         'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
       }
     };
@@ -3008,14 +3003,14 @@ class Global {
       'Y Out': 0,
       'Y Hat': 0,
       'X Hat': 0,
-      Alpha: 0,
+      'Alpha': 0,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'HPF',
-      units: 'V',
-      options: ['Cutoff Frequency'],
-      options_units: ['Hz'],
-      option_limits: {
+      'tag': 'HPF',
+      'units': 'V',
+      'options': ['Cutoff Frequency'],
+      'options_units': ['Hz'],
+      'option_limits': {
         'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
       }
     };
@@ -3032,7 +3027,7 @@ class Global {
     };
     /* Base structure for relay properties */
     this.PROPERTY_REL = {
-      Inductance: 1.0e-3,
+      'Inductance': 1.0e-3,
       'Transient Resistance': this.settings.R_MAX,
       'Transient Current': 0,
       'Equivalent Current': 0,
@@ -3040,12 +3035,12 @@ class Global {
       'Turn on Current': 10e-3,
       'Closed Resistance': this.settings.WIRE_RESISTANCE,
       'Open Resistance': this.settings.R_MAX * 0.5,
-      tag: 'RELAY',
-      units: 'H',
-      options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
-      options_units: ['H', 'A', 'A', 'Ω'],
-      option_limits: {
-        Inductance: [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
+      'tag': 'RELAY',
+      'units': 'H',
+      'options': ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
+      'options_units': ['H', 'A', 'A', 'Ω'],
+      'option_limits': {
+        'Inductance': [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
         'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
         'Turn on Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
         'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
@@ -3053,10 +3048,10 @@ class Global {
     };
     /* Base structure for pid properties */
     this.PROPERTY_PID = {
-      Setpoint: 0,
-      Kp: 1,
-      Ki: 0,
-      Kd: 0,
+      'Setpoint': 0,
+      'Kp': 1,
+      'Ki': 0,
+      'Kd': 0,
       'Min Output': 0,
       'Max Output': 1,
       'High Voltage': 1,
@@ -3064,15 +3059,15 @@ class Global {
       'Input Voltage1': 0,
       'Input Voltage2': 0,
       'Output Voltage': 0,
-      tag: 'PID',
-      units: '',
-      options: ['Setpoint', 'Kp', 'Ki', 'Kd', 'Min Output', 'Max Output'],
-      options_units: ['V', '', '', '', 'V', 'V'],
-      option_limits: {
-        Setpoint: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-        Kp: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-        Ki: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-        Kd: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+      'tag': 'PID',
+      'units': '',
+      'options': ['Setpoint', 'Kp', 'Ki', 'Kd', 'Min Output', 'Max Output'],
+      'options_units': ['V', '', '', '', 'V', 'V'],
+      'option_limits': {
+        'Setpoint': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+        'Kp': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+        'Ki': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
+        'Kd': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         'Min Output': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         'Max Output': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
       }
@@ -3084,29 +3079,29 @@ class Global {
       'Output Voltage': 0,
       'High Voltage': 1,
       'Low Voltage': 0,
-      tag: 'SAH',
-      units: 'V',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'SAH',
+      'units': 'V',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Base structure for Look-Up-Table properties */
     this.PROPERTY_LUT = {
-      Elm0: 12,
-      Elm1: 12,
-      Elm2: 12,
-      Elm3: 12,
-      Elm4: 12,
-      Interpolate: this.ON,
+      'Elm0': 12,
+      'Elm1': 12,
+      'Elm2': 12,
+      'Elm3': 12,
+      'Elm4': 12,
+      'Interpolate': this.ON,
       'High Voltage': 1,
       'Low Voltage': 0,
       'Input Voltage1': 0,
       'Output Voltage': 0,
-      tag: 'LUT',
-      units: '',
-      options: ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-      options_units: ['V', 'V', 'V', 'V', 'V', ''],
-      option_limits: {
+      'tag': 'LUT',
+      'units': '',
+      'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
+      'options_units': ['V', 'V', 'V', 'V', 'V', ''],
+      'option_limits': {
         Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
         Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
@@ -3117,18 +3112,18 @@ class Global {
     };
     /* Base structure for tptz properties */
     this.PROPERTY_TPTZ = {
-      A1: 0,
-      A2: 0,
-      B0: 1,
-      B1: 0,
-      B2: 0,
+      'A1': 0,
+      'A2': 0,
+      'B0': 1,
+      'B1': 0,
+      'B2': 0,
       'Input Voltage': 0,
       'Output Voltage': 0,
-      tag: 'TPTZ',
-      units: '',
-      options: ['A1', 'A2', 'B0', 'B1', 'B2'],
-      options_units: ['', '', '', '', ''],
-      option_limits: {
+      'tag': 'TPTZ',
+      'units': '',
+      'options': ['A1', 'A2', 'B0', 'B1', 'B2'],
+      'options_units': ['', '', '', '', ''],
+      'option_limits': {
         A1: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         A2: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
         B0: [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
@@ -3138,45 +3133,45 @@ class Global {
     };
     /* Base structure for note properties */
     this.PROPERTY_NOTE = {
-      Note: 'empty',
-      tag: 'NOTE',
+      'Note': 'empty',
+      'tag': 'NOTE',
       'Text Style': this.TEXT_STYLE_1,
       'Show Marker': this.ON,
-      units: '',
-      options: ['Note', 'Text Style', 'Show Marker'],
-      options_units: ['', '', ''],
+      'units': '',
+      'options': ['Note', 'Text Style', 'Show Marker'],
+      'options_units': ['', '', ''],
       /* This element doesn't have one! */
-      option_limits: {
+      'option_limits': {
         Note: [-1, 1]
       }
     };
     /* Base structure for fuse properties */
     this.PROPERTY_FUSE = {
       'Current Rating': 500e-3,
-      Resistance: this.settings.WIRE_RESISTANCE,
-      Voltage: 1e-9,
-      Broken: false,
-      tag: 'FUS',
-      units: 'A',
-      options: ['Current Rating', 'Resistance'],
-      options_units: ['A', 'Ω'],
-      option_limits: {
+      'Resistance': this.settings.WIRE_RESISTANCE,
+      'Voltage': 1e-9,
+      'Broken': false,
+      'tag': 'FUS',
+      'units': 'A',
+      'options': ['Current Rating', 'Resistance'],
+      'options_units': ['A', 'Ω'],
+      'option_limits': {
         'Current Rating': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-        Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
+        'Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
       }
     };
     /* Base structure for dff properties */
     this.PROPERTY_DFF = {
       'Input Voltage1': 0,
       'Last Clock': 1,
-      Clock: 0,
-      Q: 0,
+      'Clock': 0,
+      'Q': 0,
       '!Q': 0,
-      tag: 'DFF',
-      units: 'V',
-      options: [''],
-      options_units: [''],
-      option_limits: {}
+      'tag': 'DFF',
+      'units': 'V',
+      'options': [''],
+      'options_units': [''],
+      'option_limits': {}
     };
     /* Keeps track of all the changes made to elements. There is a manager for
     the history generated inside the application. Its queued up so we don't miss
@@ -3203,9 +3198,9 @@ class Global {
       values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.OFF, this.ON, this.OFF, this.OFF, this.OFF]
     };
     /* Index's to access system options. Make sure they're in order. */
-    let indexer = 0;
-    this.CIRCLE_BUFFER = [];
-    this.LINE_BUFFER = [];
+    let indexer: number = 0;
+    this.circle_buffer = [];
+    this.line_buffer = [];
     this.SYSTEM_OPTION_LANGUAGE = indexer++;
     this.SYSTEM_OPTION_AUTOMATIC_TIMESTEP = indexer++;
     this.SYSTEM_OPTION_SHORTCUT_HINTS = indexer++;
@@ -3243,9 +3238,9 @@ class Global {
     /* The default font for all paints created in the system */
     this.DEFAULT_FONT = 'Arial';
     /* A flag to detail if the user has selected a file or not. */
-    this.USER_FILE_SELECTED = false;
+    this.user_file_selected = false;
     /* A descriptor for the users circuit */
-    this.USER_FILE = new Circuit();
+    this.user_file = new Circuit();
     /* Key Event Code Constants */
     this.KEY_CODE_ESCAPE = 'Escape';
     this.KEY_CODE_BACK_QUOTE = 'Backquote';
@@ -3412,11 +3407,9 @@ class Global {
     };
     this.KEY_EVENT_KEYS = Object.keys(this.KEY_EVENT_CODES);
     /* Variables for Circuit Simulation */
-    this.TIME_STEP = 1e-6;
-    /* The magnitude of the random variable for the entire simulation. */
-    this.RANDOM_VAR_MAGNITUDE = 1e-18;
+    this.time_step = 1e-6;
     /* Keeps track of the simulation time. */
-    this.SIMULATION_TIME = 0;
+    this.simulation_time = 0;
     /* Serializing the inputs (so they occur in a predictable manner.) */
     this.RESIZE_EVENT = false;
     /* Used for changing from window modes. */
@@ -3430,18 +3423,18 @@ class Global {
     this.KEY_UP_EVENT = false;
     this.KEY_DOWN_EVENT = false;
     /* A flag to disable the system from drawing to the real buffer. */
-    this.DRAW_BLOCK = false;
+    this.draw_block = false;
     /* Flag to dictate that the system is ready for a close up (Taking a snaps shot of  the workspace area.). */
     this.PICTURE_REQUEST = false;
     this.PICTURE_ZOOM = this.ZOOM_MAX;
     this.PICTURE_EXPOSURE_TIME = 3;
     /* Canvas drawing optimization flag */
-    this.CANVAS_DRAW_REQUEST = false;
-    this.CANVAS_DRAW_REQUEST_COUNTER = 0;
+    this.canvas_draw_request = false;
+    this.canvas_draw_request_counter = 0;
     this.CANVAS_DRAW_REQUEST_COUNTER_MAX = 3;
-    this.CANVAS_DRAW_EVENT = false;
+    this.canvas_draw_event = false;
     this.CANVAS_REDRAW_MAX = 3;
-    this.CANVAS_REDRAW_COUNTER = 0;
+    this.canvas_redraw_counter = 0;
     /* Quantizing the stroke width's for the entire system. Ideally, the system will use one of these sizes. */
     this.CANVAS_STROKE_WIDTH_BASE = 1;
     this.CANVAS_STROKE_WIDTH_1 = 2.25;
@@ -3470,9 +3463,6 @@ class Global {
     this.CANVAS_TEXT_SIZE_4_ZOOM = 16;
     this.CANVAS_TEXT_SIZE_5_ZOOM = 21;
     this.CANVAS_TEXT_SIZE_6_ZOOM = 43;
-    /* Accessing some variables in javascript is expensive, so let's just cache them. */
-    this.SURFACE_OFFSET_LEFT = 0;
-    this.SURFACE_OFFSET_TOP = 0;
     /* This is how history event components are seperated. */
     this.PACKET_DIVIDER = '#DIVIDER#';
     /* Paint used to draw the grid highlights when a component is moved. */
@@ -3526,165 +3516,165 @@ class Global {
     this.general_integer3 = 0;
     this.general_integer4 = 0;
     this.general_integer5 = 0;
-    this.RESIZE_W_FACTOR = 0;
-    this.RESIZE_H_FACTOR = 0;
-    this.ANGLE_SEARCH_OBJ;
-    this.ANGLE_RADIAN_SEARCH_OBJ;
-    this.ANGLE_ARRAY = [];
-    this.ANGLE_RADIAN_ARRAY = [];
-    this.SAVED_ANGLE = -1;
-    this.SAVED_ANGLE_RADIANS = -1;
+    this.resize_w_factor = 0;
+    this.resize_h_factor = 0;
+    this.angle_search_obj;
+    this.angle_radian_search_obj;
+    this.angle_array = [];
+    this.angle_radian_array = [];
+    this.saved_angle = -1;
+    this.saved_angle_radians = -1;
     this.GARBAGE_COLLECTOR_SIZE = 16;
-    this.TEMP_BOOLEAN = false;
+    this.temp_boolean = false;
     this.general_index = -1;
-    this.ELEMENT_MAX = [];
-    this.METER_MAX = [];
-    this.NON_LINEAR_MAX = [];
-    this.MAX_GENERAL_NUMBER = 0;
+    this.element_max_array = [];
+    this.meter_max_array = [];
+    this.non_linear_max_array = [];
+    this.max_general_number = 0;
   }
   ColorNameToHex(color: string) {
     var colors = {
-      aliceblue: '#f0f8ff',
-      antiquewhite: '#faebd7',
-      aqua: '#00ffff',
-      aquamarine: '#7fffd4',
-      azure: '#f0ffff',
-      beige: '#f5f5dc',
-      bisque: '#ffe4c4',
-      black: '#000000',
-      blanchedalmond: '#ffebcd',
-      blue: '#0000ff',
-      blueviolet: '#8a2be2',
-      brown: '#a52a2a',
-      burlywood: '#deb887',
-      cadetblue: '#5f9ea0',
-      chartreuse: '#7fff00',
-      chocolate: '#d2691e',
-      coral: '#ff7f50',
-      cornflowerblue: '#6495ed',
-      cornsilk: '#fff8dc',
-      crimson: '#dc143c',
-      cyan: '#00ffff',
-      darkblue: '#00008b',
-      darkcyan: '#008b8b',
-      darkgoldenrod: '#b8860b',
-      darkgray: '#a9a9a9',
-      darkgreen: '#006400',
-      darkkhaki: '#bdb76b',
-      darkmagenta: '#8b008b',
-      darkolivegreen: '#556b2f',
-      darkorange: '#ff8c00',
-      darkorchid: '#9932cc',
-      darkred: '#8b0000',
-      darksalmon: '#e9967a',
-      darkseagreen: '#8fbc8f',
-      darkslateblue: '#483d8b',
-      darkslategray: '#2f4f4f',
-      darkturquoise: '#00ced1',
-      darkviolet: '#9400d3',
-      deeppink: '#ff1493',
-      deepskyblue: '#00bfff',
-      dimgray: '#696969',
-      dodgerblue: '#1e90ff',
-      firebrick: '#b22222',
-      floralwhite: '#fffaf0',
-      forestgreen: '#228b22',
-      fuchsia: '#ff00ff',
-      gainsboro: '#dcdcdc',
-      ghostwhite: '#f8f8ff',
-      gold: '#ffd700',
-      goldenrod: '#daa520',
-      gray: '#808080',
-      green: '#008000',
-      greenyellow: '#adff2f',
-      honeydew: '#f0fff0',
-      hotpink: '#ff69b4',
+      'aliceblue': '#f0f8ff',
+      'antiquewhite': '#faebd7',
+      'aqua': '#00ffff',
+      'aquamarine': '#7fffd4',
+      'azure': '#f0ffff',
+      'beige': '#f5f5dc',
+      'bisque': '#ffe4c4',
+      'black': '#000000',
+      'blanchedalmond': '#ffebcd',
+      'blue': '#0000ff',
+      'blueviolet': '#8a2be2',
+      'brown': '#a52a2a',
+      'burlywood': '#deb887',
+      'cadetblue': '#5f9ea0',
+      'chartreuse': '#7fff00',
+      'chocolate': '#d2691e',
+      'coral': '#ff7f50',
+      'cornflowerblue': '#6495ed',
+      'cornsilk': '#fff8dc',
+      'crimson': '#dc143c',
+      'cyan': '#00ffff',
+      'darkblue': '#00008b',
+      'darkcyan': '#008b8b',
+      'darkgoldenrod': '#b8860b',
+      'darkgray': '#a9a9a9',
+      'darkgreen': '#006400',
+      'darkkhaki': '#bdb76b',
+      'darkmagenta': '#8b008b',
+      'darkolivegreen': '#556b2f',
+      'darkorange': '#ff8c00',
+      'darkorchid': '#9932cc',
+      'darkred': '#8b0000',
+      'darksalmon': '#e9967a',
+      'darkseagreen': '#8fbc8f',
+      'darkslateblue': '#483d8b',
+      'darkslategray': '#2f4f4f',
+      'darkturquoise': '#00ced1',
+      'darkviolet': '#9400d3',
+      'deeppink': '#ff1493',
+      'deepskyblue': '#00bfff',
+      'dimgray': '#696969',
+      'dodgerblue': '#1e90ff',
+      'firebrick': '#b22222',
+      'floralwhite': '#fffaf0',
+      'forestgreen': '#228b22',
+      'fuchsia': '#ff00ff',
+      'gainsboro': '#dcdcdc',
+      'ghostwhite': '#f8f8ff',
+      'gold': '#ffd700',
+      'goldenrod': '#daa520',
+      'gray': '#808080',
+      'green': '#008000',
+      'greenyellow': '#adff2f',
+      'honeydew': '#f0fff0',
+      'hotpink': '#ff69b4',
       'indianred ': '#cd5c5c',
-      indigo: '#4b0082',
-      ivory: '#fffff0',
-      khaki: '#f0e68c',
-      lavender: '#e6e6fa',
-      lavenderblush: '#fff0f5',
-      lawngreen: '#7cfc00',
-      lemonchiffon: '#fffacd',
-      lightblue: '#add8e6',
-      lightcoral: '#f08080',
-      lightcyan: '#e0ffff',
-      lightgoldenrodyellow: '#fafad2',
-      lightgrey: '#d3d3d3',
-      lightgreen: '#90ee90',
-      lightpink: '#ffb6c1',
-      lightsalmon: '#ffa07a',
-      lightseagreen: '#20b2aa',
-      lightskyblue: '#87cefa',
-      lightslategray: '#778899',
-      lightsteelblue: '#b0c4de',
-      lightyellow: '#ffffe0',
-      lime: '#00ff00',
-      limegreen: '#32cd32',
-      linen: '#faf0e6',
-      magenta: '#ff00ff',
-      maroon: '#800000',
-      mediumaquamarine: '#66cdaa',
-      mediumblue: '#0000cd',
-      mediumorchid: '#ba55d3',
-      mediumpurple: '#9370d8',
-      mediumseagreen: '#3cb371',
-      mediumslateblue: '#7b68ee',
-      mediumspringgreen: '#00fa9a',
-      mediumturquoise: '#48d1cc',
-      mediumvioletred: '#c71585',
-      midnightblue: '#191970',
-      mintcream: '#f5fffa',
-      mistyrose: '#ffe4e1',
-      moccasin: '#ffe4b5',
-      navajowhite: '#ffdead',
-      navy: '#000080',
-      oldlace: '#fdf5e6',
-      olive: '#808000',
-      olivedrab: '#6b8e23',
-      orange: '#ffa500',
-      orangered: '#ff4500',
-      orchid: '#da70d6',
-      palegoldenrod: '#eee8aa',
-      palegreen: '#98fb98',
-      paleturquoise: '#afeeee',
-      palevioletred: '#d87093',
-      papayawhip: '#ffefd5',
-      peachpuff: '#ffdab9',
-      peru: '#cd853f',
-      pink: '#ffc0cb',
-      plum: '#dda0dd',
-      powderblue: '#b0e0e6',
-      purple: '#800080',
-      rebeccapurple: '#663399',
-      red: '#ff0000',
-      rosybrown: '#bc8f8f',
-      royalblue: '#4169e1',
-      saddlebrown: '#8b4513',
-      salmon: '#fa8072',
-      sandybrown: '#f4a460',
-      seagreen: '#2e8b57',
-      seashell: '#fff5ee',
-      sienna: '#a0522d',
-      silver: '#c0c0c0',
-      skyblue: '#87ceeb',
-      slateblue: '#6a5acd',
-      slategray: '#708090',
-      snow: '#fffafa',
-      springgreen: '#00ff7f',
-      steelblue: '#4682b4',
-      tan: '#d2b48c',
-      teal: '#008080',
-      thistle: '#d8bfd8',
-      tomato: '#ff6347',
-      turquoise: '#40e0d0',
-      violet: '#ee82ee',
-      wheat: '#f5deb3',
-      white: '#ffffff',
-      whitesmoke: '#f5f5f5',
-      yellow: '#ffff00',
-      yellowgreen: '#9acd32'
+      'indigo': '#4b0082',
+      'ivory': '#fffff0',
+      'khaki': '#f0e68c',
+      'lavender': '#e6e6fa',
+      'lavenderblush': '#fff0f5',
+      'lawngreen': '#7cfc00',
+      'lemonchiffon': '#fffacd',
+      'lightblue': '#add8e6',
+      'lightcoral': '#f08080',
+      'lightcyan': '#e0ffff',
+      'lightgoldenrodyellow': '#fafad2',
+      'lightgrey': '#d3d3d3',
+      'lightgreen': '#90ee90',
+      'lightpink': '#ffb6c1',
+      'lightsalmon': '#ffa07a',
+      'lightseagreen': '#20b2aa',
+      'lightskyblue': '#87cefa',
+      'lightslategray': '#778899',
+      'lightsteelblue': '#b0c4de',
+      'lightyellow': '#ffffe0',
+      'lime': '#00ff00',
+      'limegreen': '#32cd32',
+      'linen': '#faf0e6',
+      'magenta': '#ff00ff',
+      'maroon': '#800000',
+      'mediumaquamarine': '#66cdaa',
+      'mediumblue': '#0000cd',
+      'mediumorchid': '#ba55d3',
+      'mediumpurple': '#9370d8',
+      'mediumseagreen': '#3cb371',
+      'mediumslateblue': '#7b68ee',
+      'mediumspringgreen': '#00fa9a',
+      'mediumturquoise': '#48d1cc',
+      'mediumvioletred': '#c71585',
+      'midnightblue': '#191970',
+      'mintcream': '#f5fffa',
+      'mistyrose': '#ffe4e1',
+      'moccasin': '#ffe4b5',
+      'navajowhite': '#ffdead',
+      'navy': '#000080',
+      'oldlace': '#fdf5e6',
+      'olive': '#808000',
+      'olivedrab': '#6b8e23',
+      'orange': '#ffa500',
+      'orangered': '#ff4500',
+      'orchid': '#da70d6',
+      'palegoldenrod': '#eee8aa',
+      'palegreen': '#98fb98',
+      'paleturquoise': '#afeeee',
+      'palevioletred': '#d87093',
+      'papayawhip': '#ffefd5',
+      'peachpuff': '#ffdab9',
+      'peru': '#cd853f',
+      'pink': '#ffc0cb',
+      'plum': '#dda0dd',
+      'powderblue': '#b0e0e6',
+      'purple': '#800080',
+      'rebeccapurple': '#663399',
+      'red': '#ff0000',
+      'rosybrown': '#bc8f8f',
+      'royalblue': '#4169e1',
+      'saddlebrown': '#8b4513',
+      'salmon': '#fa8072',
+      'sandybrown': '#f4a460',
+      'seagreen': '#2e8b57',
+      'seashell': '#fff5ee',
+      'sienna': '#a0522d',
+      'silver': '#c0c0c0',
+      'skyblue': '#87ceeb',
+      'slateblue': '#6a5acd',
+      'slategray': '#708090',
+      'snow': '#fffafa',
+      'springgreen': '#00ff7f',
+      'steelblue': '#4682b4',
+      'tan': '#d2b48c',
+      'teal': '#008080',
+      'thistle': '#d8bfd8',
+      'tomato': '#ff6347',
+      'turquoise': '#40e0d0',
+      'violet': '#ee82ee',
+      'wheat': '#f5deb3',
+      'white': '#ffffff',
+      'whitesmoke': '#f5f5f5',
+      'yellow': '#ffff00',
+      'yellowgreen': '#9acd32'
     };
     if (typeof colors[color.toLowerCase()] != 'undefined') return colors[color.toLowerCase()];
     return color;
@@ -3698,84 +3688,84 @@ class Global {
   /* Re-calculates the new position of an object based on the last screen width and the current screen width. */
   remap_position(input: number, is_width: boolean): number {
     if (is_width === true) {
-      return view_port.right - (this.last_view_port_right - input) * this.RESIZE_W_FACTOR;
+      return view_port.right - (this.last_view_port_right - input) * this.resize_w_factor;
     } else {
-      return view_port.bottom - (this.last_view_port_bottom - input) * this.RESIZE_H_FACTOR;
+      return view_port.bottom - (this.last_view_port_bottom - input) * this.resize_h_factor;
     }
   }
   reset_angle_cache(): void {
-    this.ANGLE_ARRAY = [];
+    this.angle_array = [];
   }
   reset_angle_radian_cache(): void {
-    this.ANGLE_RADIAN_ARRAY = [];
+    this.angle_radian_array = [];
   }
   /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
   search_angle_array(x: number, y: number): boolean {
-    this.TEMP_BOOLEAN = false;
-    this.SAVED_ANGLE = -1;
-    for (var i: number = 0; i < this.ANGLE_ARRAY.length; i++) {
-      if (!this.TEMP_BOOLEAN) {
-        this.ANGLE_SEARCH_OBJ = this.ANGLE_ARRAY[i];
-        if (this.ANGLE_SEARCH_OBJ['x'] === x && this.ANGLE_SEARCH_OBJ['y'] === y) {
-          this.SAVED_ANGLE = this.ANGLE_SEARCH_OBJ['angle'];
-          this.TEMP_BOOLEAN = true;
+    this.temp_boolean = false;
+    this.saved_angle = -1;
+    for (var i: number = 0; i < this.angle_array.length; i++) {
+      if (!this.temp_boolean) {
+        this.angle_search_obj = this.angle_array[i];
+        if (this.angle_search_obj['x'] === x && this.angle_search_obj['y'] === y) {
+          this.saved_angle = this.angle_search_obj['angle'];
+          this.temp_boolean = true;
           break;
         }
       }
     }
-    return this.TEMP_BOOLEAN;
+    return this.temp_boolean;
   }
   /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
   search_angle_radian_array(x: number, y: number): boolean {
-    this.TEMP_BOOLEAN = false;
-    this.SAVED_ANGLE_RADIANS = -1;
-    for (var i: number = 0; i < this.ANGLE_RADIAN_ARRAY.length; i++) {
-      if (!this.TEMP_BOOLEAN) {
-        this.ANGLE_RADIAN_SEARCH_OBJ = this.ANGLE_RADIAN_ARRAY[i];
-        if (this.ANGLE_RADIAN_SEARCH_OBJ['x'] === x && this.ANGLE_RADIAN_SEARCH_OBJ['y'] === y) {
-          this.SAVED_ANGLE_RADIANS = this.ANGLE_RADIAN_SEARCH_OBJ['angle'];
-          this.TEMP_BOOLEAN = true;
+    this.temp_boolean = false;
+    this.saved_angle_radians = -1;
+    for (var i: number = 0; i < this.angle_radian_array.length; i++) {
+      if (!this.temp_boolean) {
+        this.angle_radian_search_obj = this.angle_radian_array[i];
+        if (this.angle_radian_search_obj['x'] === x && this.angle_radian_search_obj['y'] === y) {
+          this.saved_angle_radians = this.angle_radian_search_obj['angle'];
+          this.temp_boolean = true;
           break;
         }
       }
     }
-    return this.TEMP_BOOLEAN;
+    return this.temp_boolean;
   }
   retrieve_angle(x: number, y: number): number {
     if (this.search_angle_array(x, y)) {
-      return this.SAVED_ANGLE;
+      return this.saved_angle;
     } else {
-      if (this.ANGLE_ARRAY.length > this.GARBAGE_COLLECTOR_SIZE) {
+      if (this.angle_array.length > this.GARBAGE_COLLECTOR_SIZE) {
         this.house_keeping();
       }
-      this.ANGLE_ARRAY.push({
+      this.angle_array.push({
         x: x,
         y: y,
         angle: this.calc_degree(x, y)
       });
-      return this.ANGLE_ARRAY[this.ANGLE_ARRAY.length - 1]['angle'];
+      return this.angle_array[this.angle_array.length - 1]['angle'];
     }
   }
   retrieve_angle_radian(x: number, y: number): number {
     if (this.search_angle_radian_array(x, y)) {
-      return this.SAVED_ANGLE_RADIANS;
+      return this.saved_angle_radians;
     } else {
-      if (this.ANGLE_RADIAN_ARRAY.length > this.GARBAGE_COLLECTOR_SIZE) {
+      if (this.angle_radian_array.length > this.GARBAGE_COLLECTOR_SIZE) {
         this.house_keeping_radians();
       }
-      this.ANGLE_RADIAN_ARRAY.push({
+      this.angle_radian_array.push({
         x: x,
         y: y,
         angle: this.calc_degree_radians(x, y)
       });
-      return this.ANGLE_RADIAN_ARRAY[this.ANGLE_RADIAN_ARRAY.length - 1]['angle'];
+      return this.angle_radian_array[this.angle_radian_array.length - 1]['angle'];
     }
   }
   house_keeping() {
-    this.ANGLE_ARRAY.splice(this.ANGLE_ARRAY.length - 1, 1);
+    this.angle_array.splice(this.angle_array.length - 1, 1);
   }
   house_keeping_radians() {
-    this.ANGLE_RADIAN_ARRAY.splice(this.ANGLE_RADIAN_ARRAY.length - 1, 1);
+    this.angle_radian_array.splice(this.angle_radian_array.length - 1, 1);
   }
   /* Calculate the angle of a vector in degrees */
   calc_degree(x: number, y: number): number {
@@ -3798,9 +3788,9 @@ class Global {
     return degrees * this.PI_DIV_180;
   }
   inv_sqrt(x: number): number {
-    var x2 = 0.5 * (this.inv_sqrt_f32[0] = x);
+    let x2: number = 0.5 * (this.inv_sqrt_f32[0] = x);
     this.inv_sqrt_u32[0] = 0x5f3759df - (this.inv_sqrt_u32[0] >> 1);
-    var y = this.inv_sqrt_f32[0];
+    let y: number = this.inv_sqrt_f32[0];
     y = y * (1.5 - x2 * y * y);
     return y;
   }
@@ -3851,14 +3841,14 @@ class Global {
   /* Calculate the incenter of a triangle. NOTE: Don't use this.general_integerx here..., it'll cause a value change.
   because of calc_degree_radians */
   equilateral_triangle_center(p1_x: number, p2_x: number, p3_x: number, p1_y: number, p2_y: number, p3_y: number): Array<number> {
-    let temp = 0;
+    let temp: number = 0;
     temp = this.norm(p2_x - p1_x, p2_y - p1_y) * 0.5;
-    let theta_p1_p2 = this.retrieve_angle_radian(p2_x - p1_x, p2_y - p1_y);
-    let p_x = p1_x + temp * this.cosine(theta_p1_p2);
-    let p_y = p1_y + temp * this.sine(theta_p1_p2);
-    let theta_p_p3 = this.retrieve_angle_radian(p3_x - p_x, p3_y - p_y);
-    let c_x = p_x + temp * this.cosine(theta_p_p3);
-    let c_y = p_y + temp * this.sine(theta_p_p3);
+    let theta_p1_p2: number = this.retrieve_angle_radian(p2_x - p1_x, p2_y - p1_y);
+    let p_x: number = p1_x + temp * this.cosine(theta_p1_p2);
+    let p_y: number = p1_y + temp * this.sine(theta_p1_p2);
+    let theta_p_p3: number = this.retrieve_angle_radian(p3_x - p_x, p3_y - p_y);
+    let c_x: number = p_x + temp * this.cosine(theta_p_p3);
+    let c_y: number = p_y + temp * this.sine(theta_p_p3);
     return Array(c_x, c_y);
   }
   /* Returns the average of four numbers: a, b, c, and d */
@@ -3882,10 +3872,10 @@ class Global {
   }
   /* A function to quickly format a number into SI units */
   exponentiate_quickly(input: number): string {
-    let str = '';
-    let val = 0;
-    let abs_input = Math.abs(input);
-    let found = false;
+    let str: string = '';
+    let val: number = 0;
+    let abs_input: number = Math.abs(input);
+    let found: boolean = false;
     for (var i: number = 0; i < this.SI_UNIT_THRESHOLD_ARRAY.length; i++) {
       if (abs_input >= this.SI_UNIT_THRESHOLD_ARRAY[i]) {
         val = input * this.SI_UNIT_ARRAY[i];
@@ -3894,7 +3884,7 @@ class Global {
         break;
       } else if (abs_input === 0) {
         val = 0;
-        str = this.ELEMENT_VAL_TEMPLATE.replace('{VAL}', String(val)).replace('{UNIT}', '');
+        str = this.ELEMENT_VAL_TEMPLATE.replace('{VAL}', <string>(<unknown>val)).replace('{UNIT}', '');
         found = true;
         break;
       }
@@ -3907,10 +3897,10 @@ class Global {
   /* Find the max of the elements. This is so we don't waste time looping
   through each element.
   This is automatically generated, no touchy! */
-  element_max() {
+  element_max(): number {
     /* #INSERT_GENERATE_MAX_ELEMENT# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    this.ELEMENT_MAX = Array(
+    this.element_max_array = Array(
       resistors.length,
       capacitors.length,
       inductors.length,
@@ -3980,59 +3970,59 @@ class Global {
       transformers.length
     );
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    this.MAX_GENERAL_NUMBER = 0;
-    for (var i: number = 0; i < this.ELEMENT_MAX.length; i++) {
-      if (this.ELEMENT_MAX[i] > this.MAX_GENERAL_NUMBER) {
-        this.MAX_GENERAL_NUMBER = this.ELEMENT_MAX[i];
+    this.max_general_number = 0;
+    for (var i: number = 0; i < this.element_max_array.length; i++) {
+      if (this.element_max_array[i] > this.max_general_number) {
+        this.max_general_number = this.element_max_array[i];
       }
     }
-    return this.MAX_GENERAL_NUMBER;
+    return this.max_general_number;
   }
   /* Find the highest number of meter type elements.
   This is automatially generated! */
-  meter_max() {
+  meter_max(): number {
     /* #INSERT_GENERATE_MAX_METER# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    this.METER_MAX = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
+    this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    this.MAX_GENERAL_NUMBER = 0;
-    for (var i: number = 0; i < this.METER_MAX.length; i++) {
-      if (this.METER_MAX[i] > this.MAX_GENERAL_NUMBER) {
-        this.MAX_GENERAL_NUMBER = this.METER_MAX[i];
+    this.max_general_number = 0;
+    for (var i: number = 0; i < this.meter_max_array.length; i++) {
+      if (this.meter_max_array[i] > this.max_general_number) {
+        this.max_general_number = this.meter_max_array[i];
       }
     }
-    return this.MAX_GENERAL_NUMBER;
+    return this.max_general_number;
   }
   /* Find the maximum size of non-linear elements. */
-  non_linear_max() {
+  non_linear_max(): number {
     /* #INSERT_GENERATE_MAX_NON_LINEAR# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    this.NON_LINEAR_MAX = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
+    this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    this.MAX_GENERAL_NUMBER = 0;
-    for (var i: number = 0; i < this.NON_LINEAR_MAX.length; i++) {
-      if (this.NON_LINEAR_MAX[i] > this.MAX_GENERAL_NUMBER) {
-        this.MAX_GENERAL_NUMBER = this.NON_LINEAR_MAX[i];
+    this.max_general_number = 0;
+    for (var i: number = 0; i < this.non_linear_max_array.length; i++) {
+      if (this.non_linear_max_array[i] > this.max_general_number) {
+        this.max_general_number = this.non_linear_max_array[i];
       }
     }
-    return this.MAX_GENERAL_NUMBER;
+    return this.max_general_number;
   }
   /* Line collision baby! */
-  line_collision(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
-    let s1_x = p1_x - p0_x;
-    let s1_y = p1_y - p0_y;
-    let s2_x = p3_x - p2_x;
-    let s2_y = p3_y - p2_y;
-    let s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
-    let t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+  line_collision(p0_x: number, p0_y: number, p1_x: number, p1_y: number, p2_x: number, p2_y: number, p3_x: number, p3_y: number): boolean {
+    let s1_x: number = p1_x - p0_x;
+    let s1_y: number = p1_y - p0_y;
+    let s2_x: number = p3_x - p2_x;
+    let s2_y: number = p3_y - p2_y;
+    let s: number = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+    let t: number = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
     return s >= 0 && s <= 1 && t >= 0 && t <= 1;
   }
   /* Decodes a key code from a key event */
-  decode_key(key_event) {
-    let shift = key_event['shift'];
-    let caps = key_event['caps'];
-    let code = key_event['event'].code;
-    let ret = '';
+  decode_key(key_event: KEY_EVENT_T): string {
+    let shift: boolean = key_event['shift'];
+    let caps: boolean = key_event['caps'];
+    let code: string = key_event['event'].code;
+    let ret: string = '';
     for (var i: number = 0; i < this.KEY_EVENT_KEYS.length; i++) {
       if (code === this.KEY_EVENT_KEYS[i]) {
         if (shift) {
@@ -4046,8 +4036,8 @@ class Global {
     }
     return ret;
   }
-  key_to_code(character) {
-    let ret = '';
+  key_to_code(character: string): string {
+    let ret: string = '';
     for (var i: number = 0; i < this.KEY_EVENT_KEYS.length; i++) {
       if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] || character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
         ret = global.copy(this.KEY_EVENT_KEYS[i]);
@@ -4057,19 +4047,19 @@ class Global {
     return ret;
   }
   /* Detects if a key is alpha numeric or not. */
-  is_alpha_numeric(key_event) {
+  is_alpha_numeric(key_event: KEY_EVENT_T): boolean {
     return /[a-z A-Z0-9]/.test(this.decode_key(key_event));
   }
   /* Detects if a key is alpha numeric or not. */
-  is_alpha_numeric_note(key_event) {
+  is_alpha_numeric_note(key_event: KEY_EVENT_T): boolean {
     return /[!@#$%`~^&_{}()a-z A-Z0-9=:'",?<>;:*/+-|]/.test(this.decode_key(key_event));
   }
   /* Detects if a key is a valid si unit or a number. */
-  is_valid_si_units(key_event) {
+  is_valid_si_units(key_event: KEY_EVENT_T): boolean {
     return /[-.kmu0123456789MnGpf]/.test(this.decode_key(key_event));
   }
   /* General function to limit a number within a range. */
-  limit(inp, low, high) {
+  limit(inp: number, low: number, high: number): number {
     if (inp < low) {
       return low;
     } else if (inp > high) {
@@ -4079,22 +4069,22 @@ class Global {
     }
   }
   /* General function for creating getting the current date */
-  get_date_stamp() {
-    let date = new Date();
+  get_date_stamp(): string {
+    let date: Date = new Date();
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
   }
   /* Genetating a timestamp! */
-  get_time_stamp() {
-    let date = new Date();
-    let TIMESTAMP_TEMPLATE = '{DATE}->{TIME_ZONE}';
-    return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', String(date.getTimezoneOffset()));
+  get_time_stamp(): string {
+    let date: Date = new Date();
+    let TIMESTAMP_TEMPLATE: string = '{DATE}->{TIME_ZONE}';
+    return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', <string>(<unknown>date.getTimezoneOffset()));
   }
   /* Logarithmic Damping Algorithm. Base E. */
-  log_damping(next, now, gamma, kappa) {
+  log_damping(next: number, now: number, gamma: number, kappa: number): number {
     return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
   }
   /* Returns the sign of the number.*/
-  signum(inp) {
+  signum(inp: number): number {
     if (inp < 0) {
       return -1;
     } else {
@@ -4102,16 +4092,16 @@ class Global {
     }
   }
   /* Change of base formula. */
-  logbx(b, x) {
+  logbx(b: number, x: number): number {
     return Math.log(x) / Math.log(b);
   }
-  map_range(inp, lower_bound, upper_bound) {
+  map_range(inp: number, lower_bound: number, upper_bound: number): number {
     return lower_bound + inp * (upper_bound - lower_bound);
   }
-  perm32(inp) {
+  perm32(inp: number): number {
     this.general_integer = 12;
     /* 12 Rounds */
-    let x = ((inp >> 8) ^ inp) * 0x6b + this.general_integer--;
+    let x: number = ((inp >> 8) ^ inp) * 0x6b + this.general_integer--;
     x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
     x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
     x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
@@ -4125,22 +4115,23 @@ class Global {
     x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
     return x;
   }
-  unique_color(net_name) {
-    let rgb = this.perm32(net_name.hashCode());
-    let r,
-      g,
-      b = 0;
+  unique_color(net_name: string): string {
+    //@ts-ignore
+    let rgb: number = this.perm32(net_name.hashCode());
+    let r: number = 0,
+      g: number = 0,
+      b: number = 0;
     r = (rgb & 0x00ff0000) >> 16;
     g = (rgb & 0x0000ff00) >> 8;
     b = rgb & 0x000000ff;
     return 'rgb(' + r + ', ' + g + ', ' + b + ')';
   }
-  wrap(inp, max) {
+  wrap(inp: number, max: number): number {
     return inp - max * Math.floor(inp / max);
   }
-  linterp(x_arr, y_arr, inp) {
-    let k = this.linsearch(x_arr, inp, y_arr.length);
-    let x0 = x_arr[k],
+  linterp(x_arr: Array<number>, y_arr: Array<number>, inp: number): number {
+    let k: number = this.linsearch(x_arr, inp, y_arr.length);
+    let x0: number = x_arr[k],
       x1 = x_arr[k + 1],
       y0 = y_arr[k],
       y1 = y_arr[k + 1];
@@ -4151,9 +4142,9 @@ class Global {
     }
     return y0 + ((y1 - y0) / (x1 - x0)) * (inp - x0);
   }
-  linsearch(x_arr, inp, size) {
-    let i = 0;
-    let out = 0;
+  linsearch(x_arr: Array<number>, inp: number, size: number): number {
+    let i: number = 0;
+    let out: number = 0;
     for (i = 0; i < size - 1; i++) {
       if (inp >= x_arr[i] && inp <= x_arr[i + 1]) {
         out = i;
@@ -4162,7 +4153,7 @@ class Global {
     }
     return out;
   }
-  min3(a, b, c) {
+  min3(a: number, b: number, c: number): number {
     return Math.min(a, Math.min(b, c));
   }
 }

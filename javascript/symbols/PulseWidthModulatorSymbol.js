@@ -71,8 +71,8 @@ class PulseWidthModulatorSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         /* Index of the bounds (Inside New Element Window) */
         this.index = index;
         /* Page to be drawn on (Inside New Element Window) */
@@ -173,8 +173,8 @@ class PulseWidthModulatorSymbol {
         this.DRAW_TAG = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.35;
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
     }
     update() {
         if (this.FLAG_ADD_ELEMENT) {
@@ -286,23 +286,23 @@ class PulseWidthModulatorSymbol {
         this.recolor();
         if (this.page === page) {
             let indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, this.pwm_0.x, this.pwm_0.y);
-            this.LINE_BUFFER[indexer++] = Array(this.pwm_0.x, this.pwm_0.y, this.pwm_1.x, this.pwm_1.y);
-            this.LINE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, this.pwm_3.x, this.pwm_3.y);
-            this.LINE_BUFFER[indexer++] = Array(this.pwm_3.x, this.pwm_3.y, this.pwm_4.x, this.pwm_4.y);
-            this.LINE_BUFFER[indexer++] = Array(this.c_x - (this.bounds.get_width() >> 3), this.c_y + (this.bounds.get_height() >> 3), this.c_x, this.c_y + (this.bounds.get_height() >> 3));
-            this.LINE_BUFFER[indexer++] = Array(this.c_x, this.c_y + (this.bounds.get_height() >> 3), this.c_x, this.c_y - (this.bounds.get_height() >> 3));
-            this.LINE_BUFFER[indexer++] = Array(this.c_x, this.c_y - (this.bounds.get_height() >> 3), this.c_x + (this.bounds.get_width() >> 3), this.c_y - (this.bounds.get_height() >> 3));
-            this.LINE_BUFFER[indexer++] = Array(this.pwm_6.x, this.pwm_6.y, this.p3.x, this.p3.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[indexer++] = Array(this.p1.x, this.p1.y, this.pwm_0.x, this.pwm_0.y);
+            this.line_buffer[indexer++] = Array(this.pwm_0.x, this.pwm_0.y, this.pwm_1.x, this.pwm_1.y);
+            this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.pwm_3.x, this.pwm_3.y);
+            this.line_buffer[indexer++] = Array(this.pwm_3.x, this.pwm_3.y, this.pwm_4.x, this.pwm_4.y);
+            this.line_buffer[indexer++] = Array(this.c_x - (this.bounds.get_width() >> 3), this.c_y + (this.bounds.get_height() >> 3), this.c_x, this.c_y + (this.bounds.get_height() >> 3));
+            this.line_buffer[indexer++] = Array(this.c_x, this.c_y + (this.bounds.get_height() >> 3), this.c_x, this.c_y - (this.bounds.get_height() >> 3));
+            this.line_buffer[indexer++] = Array(this.c_x, this.c_y - (this.bounds.get_height() >> 3), this.c_x + (this.bounds.get_width() >> 3), this.c_y - (this.bounds.get_height() >> 3));
+            this.line_buffer[indexer++] = Array(this.pwm_6.x, this.pwm_6.y, this.p3.x, this.p3.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             indexer = 0;
             canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), this.bounds.get_width() * 0.5128, this.bounds.get_height() * 0.5128, this.line_paint);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            this.CIRCLE_BUFFER[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
-            canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+            this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            this.circle_buffer[indexer++] = Array(this.p3.x, this.p3.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);
+            canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             if (this.DRAW_TAG) {
                 this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
                 this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();

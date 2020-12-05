@@ -134,12 +134,12 @@ class ScopeManager {
         if (this.ENTRY[i]['element_type'] === global.TYPE_VOLTMETER) {
           this.index = engine_functions.get_voltmeter(this.ENTRY[i]['element_id']);
           if (this.index > -1 && this.index < voltmeters.length) {
-            this.push_to_graph(i, engine_functions.get_voltage(voltmeters[this.index].elm.n1, voltmeters[this.index].elm.n2), global.SIMULATION_TIME);
+            this.push_to_graph(i, engine_functions.get_voltage(voltmeters[this.index].elm.n1, voltmeters[this.index].elm.n2), global.simulation_time);
           }
         } else if (this.ENTRY[i]['element_type'] === global.TYPE_AMMETER) {
           this.index = engine_functions.get_ammeter(this.ENTRY[i]['element_id']);
           if (this.index > -1 && this.index < ammeters.length) {
-            this.push_to_graph(i, matrix_x[ammeters[this.index].get_simulation_index()][0], global.SIMULATION_TIME);
+            this.push_to_graph(i, matrix_x[ammeters[this.index].get_simulation_index()][0], global.simulation_time);
           }
         } else if (this.ENTRY[i]['element_type'] === global.TYPE_OHMMETER) {
           this.index = engine_functions.get_ohmmeter(this.ENTRY[i]['element_id']);
@@ -147,7 +147,7 @@ class ScopeManager {
             this.push_to_graph(
               i,
               Math.abs(engine_functions.get_voltage(ohmmeters[this.index].elm.n1, ohmmeters[this.index].elm.n2) / matrix_x[ohmmeters[this.index].get_simulation_index()][0]),
-              global.SIMULATION_TIME
+              global.simulation_time
             );
           }
         } else if (this.ENTRY[i]['element_type'] === global.TYPE_WATTMETER) {
@@ -158,7 +158,7 @@ class ScopeManager {
             this.curr = (this.v_side_1 - this.v_side_2) / global.settings.WIRE_RESISTANCE;
             this.voltage = Math.max(this.v_side_1, this.v_side_1);
             this.power = this.curr * this.voltage;
-            this.push_to_graph(i, this.power, global.SIMULATION_TIME);
+            this.push_to_graph(i, this.power, global.simulation_time);
           }
         }
       }

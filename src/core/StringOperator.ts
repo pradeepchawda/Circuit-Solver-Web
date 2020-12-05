@@ -323,7 +323,7 @@ class StringOperator {
     return output;
   }
   invert(input: Array<Digit>): Array<Digit> {
-    let output = [];
+    let output: Array<Digit> = [];
     for (var i: number = input.length - 1; i > -1; i--) {
       output.push(input[i]);
     }

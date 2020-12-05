@@ -168,7 +168,7 @@ used to determine the best time-step for the system. */
     /* Reset the initialized flag, we haven't setup the environment yet. */
     this.INITIALIZED = false;
     /* Start the simulation back at time 0 */
-    global.SIMULATION_TIME = 0;
+    global.simulation_time = 0;
     /* Reset the flag to true for first instance. (So we can compute when we get into that phase).
     Also set the iterator back to zero! */
     this.CONTINUE_SOLVING = true;
@@ -184,13 +184,13 @@ used to determine the best time-step for the system. */
   setup(): void {
     this.patch();
     /* Reset the singular matrix flag. */
-    global.IS_SINGULAR = false;
+    global.is_singular = false;
     this.FIRST_MATRIX_BUILD = true;
     /* Reset the system and get it ready for simulation! */
     this.reset_simulation();
     /* Determine the optimal time-step. */
     if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
-      global.TIME_STEP = this.determine_optimal_timestep();
+      global.time_step = this.determine_optimal_timestep();
       bottom_menu.resize_bottom_menu();
     } else {
       /* Remove all time data */
@@ -657,10 +657,10 @@ used to determine the best time-step for the system. */
     this.INITIALIZED = false;
     this.CONTINUE_SOLVING = true;
     this.ITERATOR = 0;
-    global.SIMULATION_TIME = 0;
+    global.simulation_time = 0;
     this.SIMULATION_STEP = 0;
     this.SOLUTIONS_READY = false;
-    global.IS_SINGULAR = false;
+    global.is_singular = false;
     /* Let's display that we are not simulating to the user! */
     toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
     toast.show();
@@ -974,7 +974,7 @@ used to determine the best time-step for the system. */
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }
   update_vir(): void {
-    if (global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP) {
+    if (global.simulation_time >= global.time_step + global.time_step) {
       scope_manager.update_scopes();
     } else {
       this.clear_meter_values();
@@ -991,54 +991,54 @@ used to determine the best time-step for the system. */
     /* Run the other convergence algorithm */
     if (this.NODE_SIZE > 0 && matrix_x.length === matrix_x_copy.length) {
       if (this.FIRST_ERROR_CHECK) {
-        global.V_MAX_ERR = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
-        global.I_MAX_ERR = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
+        global.v_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
+        global.i_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
         this.FIRST_ERROR_CHECK = false;
       } else {
-        for (var i: number = 0; i < global.V_MAX_ERR.length; i++) {
-          for (var j: number = 0; j < global.V_MAX_ERR[0].length; j++) {
-            global.V_MAX_ERR[i][j] = 0;
-            global.I_MAX_ERR[i][j] = 0;
+        for (var i: number = 0; i < global.v_max_err.length; i++) {
+          for (var j: number = 0; j < global.v_max_err[0].length; j++) {
+            global.v_max_err[i][j] = 0;
+            global.i_max_err[i][j] = 0;
           }
         }
       }
-      global.V_LOCKED = false;
-      global.I_LOCKED = false;
-      global.V_CONV = false;
-      global.I_CONV = false;
+      global.v_locked = false;
+      global.i_locked = false;
+      global.v_conv = false;
+      global.i_conv = false;
       for (var i: number = 0; i < matrix_x.length; i++) {
         if (i < this.NODE_SIZE) {
-          global.V_MAX_ERR[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
+          global.v_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
         } else {
-          global.I_MAX_ERR[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
+          global.i_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
         }
       }
       for (var i: number = 0; i < matrix_x.length; i++) {
         if (i < this.NODE_SIZE) {
-          if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.V_MAX_ERR[i][0] + global.settings.VNTOL) {
-            if (!global.V_LOCKED) {
-              global.V_CONV = true;
+          if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.v_max_err[i][0] + global.settings.VNTOL) {
+            if (!global.v_locked) {
+              global.v_conv = true;
             }
           } else {
-            global.V_LOCKED = true;
-            global.V_CONV = false;
+            global.v_locked = true;
+            global.v_conv = false;
           }
         } else {
-          if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.I_MAX_ERR[i][0] + global.settings.ABSTOL) {
-            if (!global.I_LOCKED) {
-              global.I_CONV = true;
+          if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.i_max_err[i][0] + global.settings.ABSTOL) {
+            if (!global.i_locked) {
+              global.i_conv = true;
             }
           } else {
-            global.I_LOCKED = true;
-            global.I_CONV = false;
+            global.i_locked = true;
+            global.i_conv = false;
           }
         }
       }
       /* In case there are no currents */
       if (matrix_x.length - this.NODE_SIZE <= 0) {
-        global.I_CONV = true;
+        global.i_conv = true;
       }
-      if (!global.V_CONV || !global.I_CONV) {
+      if (!global.v_conv || !global.i_conv) {
         this.CONTINUE_SOLVING = true;
       }
     }
@@ -1128,28 +1128,28 @@ used to determine the best time-step for the system. */
       } else {
         /* Update capacitors and inductors */
         this.update_reactive_elements();
-        if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.IS_SINGULAR || global.SIMULATION_TIME >= this.SIMULATION_MAX_TIME) {
+        if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
           if (this.ITERATOR >= global.settings.ITL4) {
             menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
             toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.LANGUAGE_INDEX]]);
             toast.show();
-          } else if (global.IS_SINGULAR) {
+          } else if (global.is_singular) {
             menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
             toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.LANGUAGE_INDEX]]);
             toast.show();
-          } else if (global.SIMULATION_TIME >= this.SIMULATION_MAX_TIME) {
+          } else if (global.simulation_time >= this.SIMULATION_MAX_TIME) {
             menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
             toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.LANGUAGE_INDEX]]);
             toast.show();
           }
         }
-        global.CANVAS_DRAW_REQUEST_COUNTER = 0;
-        global.CANVAS_DRAW_REQUEST = true;
+        global.canvas_draw_request_counter = 0;
+        global.canvas_draw_request = true;
         this.CONTINUE_SOLVING = true;
         this.ITERATOR = 0;
         this.update_vir();
         this.led_turn_on_check();
-        global.SIMULATION_TIME += global.TIME_STEP;
+        global.simulation_time += global.time_step;
         this.SIMULATION_STEP = 0;
       }
     }
@@ -1203,7 +1203,7 @@ used to determine the best time-step for the system. */
         this.FIST_X_MATRIX_SOLUTION = true;
       }
       /* Check for a singular matrix */
-      if (global.IS_SINGULAR) {
+      if (global.is_singular) {
         /* Make sure that the singular matrix is flag is the only one shown. */
         this.ITERATOR = 0;
         /* Terminate the simulation */

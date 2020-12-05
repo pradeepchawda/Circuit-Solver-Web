@@ -63,7 +63,7 @@ class GraphWindow {
         this.first_touch_x = 0;
         this.first_touch_y = 0;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
+        this.line_buffer = [];
         this.trim = 0;
         this.width = 0;
         this.height = 0;
@@ -215,7 +215,7 @@ class GraphWindow {
         this.first_touch_x = 0;
         this.first_touch_y = 0;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
+        this.line_buffer = [];
     }
     load_axis() {
         this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
@@ -370,10 +370,10 @@ class GraphWindow {
             str += time_stamp + temp_str;
         }
         if (!global.MOBILE_MODE) {
-            save_file(global.USER_FILE.title + '_csv.txt', str);
+            save_file(global.user_file.title + '_csv.txt', str);
         }
         else {
-            window.JsInterface.javascript_native_hook('push-csv', global.USER_FILE.title + '_csv.txt', str);
+            window.JsInterface.javascript_native_hook('push-csv', global.user_file.title + '_csv.txt', str);
         }
     }
     mouse_move() {
@@ -415,9 +415,9 @@ class GraphWindow {
             let index = 0;
             for (var i = 0; i < cached_value; i += cached_value_t_p_o1) {
                 temp = i + cached_value;
-                this.LINE_BUFFER[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
+                this.line_buffer[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
             }
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             /* This handles all the bells and whistles for drawing scope trace number one! */
             if (scope_manager.ENTRY.length > 0) {
                 /* Display the element that is attached to scope trace number one. */
@@ -482,7 +482,7 @@ class GraphWindow {
                 if (this.meter_hover_index > -1 &&
                     (this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)) {
                     canvas.draw_text(this.time_axis_value + 's', this.inner_bounds.right -
-                        this.text_paint.measure_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step   ') -
+                        this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   ') -
                         this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
                         view_port.view_width * 0.1, this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
                 }
@@ -524,7 +524,7 @@ class GraphWindow {
                 }
             }
             /* Draw the timestep of the graph at the top right. */
-            canvas.draw_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step', this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.TIME_STEP) + 's/step   '), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
+            canvas.draw_text(global.exponentiate_quickly(global.time_step) + 's/step', this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   '), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
             if (this.download_button.contains_xy(global.mouse_x, global.mouse_y) && !global.MOBILE_MODE) {
                 canvas.draw_round_rect2(this.download_button, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.hover_paint);
             }

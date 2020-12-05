@@ -28,9 +28,9 @@ class MeterSymbols {
   public STYLE_1 = 1;
   public meter_type = this.METER_VOLTAGE;
   public meter_paint = new Paint();
-  public points = [];
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public points: Array<PointF> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
 
   constructor() {
     this.bounds = new RectF(0, 0, 0, 0);
@@ -52,20 +52,20 @@ class MeterSymbols {
     this.meter_paint.set_alpha(255);
     this.meter_paint.set_paint_align(this.meter_paint.align.CENTER);
     this.points = [];
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
   }
-  set_bounds(left, top, right, bottom) {
+  set_bounds(left: number, top: number, right: number, bottom: number): void {
     this.bounds.left = left;
     this.bounds.top = top;
     this.bounds.right = right;
     this.bounds.bottom = bottom;
     this.edit(this.meter_type);
   }
-  set_stroke_width(setter) {
+  set_stroke_width(setter: number): void {
     this.meter_paint.set_stroke_width(setter);
   }
-  reset(setter, style) {
+  reset(setter: number, style: number): void {
     this.meter_type = setter;
     if (style === this.STYLE_0) {
       this.meter_paint.set_color(global.ELEMENT_COLOR);
@@ -81,12 +81,12 @@ class MeterSymbols {
     this.points.splice(0, this.points.length);
     this.populate();
   }
-  set_color(color) {
+  set_color(color: string): void {
     this.meter_paint.set_color(color);
   }
-  populate() {
-    let temp_width = this.bounds.get_width() >> 2;
-    let temp_height = this.bounds.get_height() >> 2;
+  populate(): void {
+    let temp_width: number = this.bounds.get_width() >> 2;
+    let temp_height: number = this.bounds.get_height() >> 2;
     if (this.meter_type === this.METER_CURRENT) {
       this.points.push(new PointF(this.bounds.get_center_x(), this.bounds.top));
       this.points.push(new PointF(this.bounds.get_center_x() - temp_width, this.bounds.get_center_y()));
@@ -118,9 +118,9 @@ class MeterSymbols {
       this.points.push(new PointF(this.bounds.right, this.bounds.top));
     }
   }
-  edit(type) {
-    let temp_width = this.bounds.get_width() >> 2;
-    let temp_height = this.bounds.get_height() >> 2;
+  edit(type: number): void {
+    let temp_width: number = this.bounds.get_width() >> 2;
+    let temp_height: number = this.bounds.get_height() >> 2;
     if (type === this.METER_CURRENT) {
       this.points[0].x = this.bounds.get_center_x();
       this.points[0].y = this.bounds.top;
@@ -177,7 +177,7 @@ class MeterSymbols {
       this.points[4].y = this.bounds.top;
     }
   }
-  resize_symbol(style) {
+  resize_symbol(style: number): void {
     if (style === this.STYLE_0) {
       this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
       this.meter_paint.set_text_size(global.CANVAS_TEXT_SIZE_1);
@@ -186,37 +186,37 @@ class MeterSymbols {
       this.meter_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
     }
   }
-  draw_symbol(canvas) {
-    let indexer = 0;
-    this.CIRCLE_BUFFER = [];
-    this.LINE_BUFFER = [];
+  draw_symbol(canvas: GraphicsEngine): void {
+    let indexer: number = 0;
+    this.circle_buffer = [];
+    this.line_buffer = [];
     if (this.meter_type === this.METER_CURRENT) {
-      this.LINE_BUFFER[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[3].x, this.points[3].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[3].x, this.points[3].y);
+      this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
+      this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
+      this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[3].x, this.points[3].y);
+      this.line_buffer[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
+      this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[3].x, this.points[3].y);
     } else if (this.meter_type === this.METER_VOLTAGE) {
-      this.LINE_BUFFER[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
+      this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
+      this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
     } else if (this.meter_type === this.METER_RESISTANCE) {
-      this.LINE_BUFFER[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[2].x, this.points[2].y, this.points[3].x, this.points[3].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[4].x, this.points[4].y, this.points[5].x, this.points[5].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[5].x, this.points[5].y, this.points[6].x, this.points[6].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[6].x, this.points[6].y, this.points[7].x, this.points[7].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[7].x, this.points[7].y, this.points[8].x, this.points[8].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[8].x, this.points[8].y, this.points[9].x, this.points[9].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[9].x, this.points[9].y, this.points[10].x, this.points[10].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[10].x, this.points[10].y, this.points[11].x, this.points[11].y);
+      this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
+      this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
+      this.line_buffer[indexer++] = Array(this.points[2].x, this.points[2].y, this.points[3].x, this.points[3].y);
+      this.line_buffer[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
+      this.line_buffer[indexer++] = Array(this.points[4].x, this.points[4].y, this.points[5].x, this.points[5].y);
+      this.line_buffer[indexer++] = Array(this.points[5].x, this.points[5].y, this.points[6].x, this.points[6].y);
+      this.line_buffer[indexer++] = Array(this.points[6].x, this.points[6].y, this.points[7].x, this.points[7].y);
+      this.line_buffer[indexer++] = Array(this.points[7].x, this.points[7].y, this.points[8].x, this.points[8].y);
+      this.line_buffer[indexer++] = Array(this.points[8].x, this.points[8].y, this.points[9].x, this.points[9].y);
+      this.line_buffer[indexer++] = Array(this.points[9].x, this.points[9].y, this.points[10].x, this.points[10].y);
+      this.line_buffer[indexer++] = Array(this.points[10].x, this.points[10].y, this.points[11].x, this.points[11].y);
     } else if (this.meter_type === this.METER_POWER) {
-      this.LINE_BUFFER[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[2].x, this.points[2].y, this.points[3].x, this.points[3].y);
-      this.LINE_BUFFER[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
+      this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
+      this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
+      this.line_buffer[indexer++] = Array(this.points[2].x, this.points[2].y, this.points[3].x, this.points[3].y);
+      this.line_buffer[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
     }
-    canvas.draw_line_buffer(this.LINE_BUFFER, this.meter_paint);
+    canvas.draw_line_buffer(this.line_buffer, this.meter_paint);
   }
 }

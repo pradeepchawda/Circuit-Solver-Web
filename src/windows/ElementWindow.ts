@@ -475,7 +475,7 @@ class ElementWindow {
   }
   update(): void {
     if (global.FLAG_MENU_OPEN_DOWN) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         {
           /* #INSERT_GENERATE_ELEMENT_WINDOW_ICON_UPDATE */
           /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -553,9 +553,10 @@ class ElementWindow {
   mouse_wheel(): void {
     if (this.ENABLE_MOUSE_WHEEL) {
       if (global.FLAG_MENU_OPEN_DOWN) {
-        if (!global.MOUSE_KEYBOARD_LOCK) {
+        if (!global.mouse_keyboard_lock) {
           this.MOUSE_WHEEL_COUNTER++;
           if (this.MOUSE_WHEEL_COUNTER >= this.MOUSE_WHEEL_COUNTER_MAX) {
+            //@ts-expect-error
             if (global.mouse_wheel_event.wheelDelta < 0 || global.mouse_wheel_event.detail > 0) {
               if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
                 this.PAGE_NUMBER++;
@@ -573,10 +574,10 @@ class ElementWindow {
   }
   mouse_down(): void {
     if (global.FLAG_MENU_OPEN_DOWN) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         this.first_touch_x = global.mouse_x;
         this.first_touch_y = global.mouse_y;
-        let cached_value = this.bounds.get_width() / this.MAX_ICONS;
+        let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
         /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_DOWN */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.resistor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -664,8 +665,8 @@ class ElementWindow {
   }
   mouse_move(): void {
     if (global.FLAG_MENU_OPEN_DOWN) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
-        let cached_value = this.bounds.get_width() / this.MAX_ICONS;
+      if (!global.mouse_keyboard_lock) {
+        let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
         /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.resistor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -740,7 +741,7 @@ class ElementWindow {
   }
   mouse_up(): void {
     if (global.FLAG_MENU_OPEN_DOWN) {
-      if (!global.MOUSE_KEYBOARD_LOCK) {
+      if (!global.mouse_keyboard_lock) {
         if (
           this.positions[this.NAVIGATE_BACK].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
           this.positions[this.NAVIGATE_BACK].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
@@ -760,7 +761,7 @@ class ElementWindow {
           /* Block out the reset selection portion of the code! */
           global.component_touched = true;
         }
-        let cached_value = this.bounds.get_width() / this.MAX_ICONS;
+        let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
         /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_UP */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.resistor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());

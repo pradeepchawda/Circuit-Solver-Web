@@ -21,59 +21,6 @@
  ***********************************************************************/
 class ElementOptions {
     constructor() {
-        this.MAX_ICONS = 8;
-        /* The menu bar icons center_x (last box) */
-        this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
-        /* The menu bar icons width */
-        this.mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
-        /* The menu bar icons height */
-        this.mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
-        this.option_0 = new RectF(this.mb_x - this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_1 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_2 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_3 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.show_0 = false;
-        this.show_1 = false;
-        this.show_2 = false;
-        this.show_3 = false;
-        this.edit_path0 = new Path();
-        this.edit_path1 = new Path();
-        this.trash_path0 = new Path();
-        this.trash_path1 = new Path();
-        this.flip_path0 = new Path();
-        this.flip_path1 = new Path();
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.line_paint_alt = new Paint();
-        /* This paint is used for drawing the "lines" that the component needs to display */
-        this.meter_line_paint = new Paint();
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.text_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.hover_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.icon_paint = new Paint();
-        /* Constants for Options */
-        this.ROTATE_ICON = 0;
-        this.EDIT_ICON = 1;
-        this.FLIP_ICON = 2;
-        this.TRASH_ICON = 3;
-        this.WIRE_ICON = 4;
-        this.EYE_ICON = 5;
-        this.NO_ICON = -1;
-        /* Manager for the different configurations. */
-        this.opts = {
-            c0: this.NO_ICON,
-            c1: this.NO_ICON,
-            c2: this.NO_ICON,
-            c3: this.NO_ICON
-        };
-        /* Enforcing the system from cascading events. */
-        this.first_touch_x = 0;
-        this.first_touch_y = 0;
         let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
         this.MAX_ICONS = 8;
         if (global.MOBILE_MODE) {
@@ -213,7 +160,6 @@ class ElementOptions {
         holder_x = edit_x0.split(',');
         holder_y = edit_y0.split(',');
         let points = [];
-        points = [];
         for (var i = 0; i < holder_x.length; i++) {
             points.push(new PointF(rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]), rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])));
         }
@@ -256,7 +202,6 @@ class ElementOptions {
         holder_x = trash_x0.split(',');
         holder_y = trash_y0.split(',');
         let points = [];
-        points = [];
         for (var i = 0; i < holder_x.length; i++) {
             points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
         }
@@ -299,7 +244,6 @@ class ElementOptions {
         holder_x = flip_x0.split(',');
         holder_y = flip_y0.split(',');
         let points = [];
-        points = [];
         for (var i = 0; i < holder_x.length; i++) {
             points.push(new PointF(rect.left + rect.get_width() * parseFloat(holder_x[i]), rect.top + rect.get_height() * parseFloat(holder_y[i])));
         }
@@ -623,7 +567,7 @@ class ElementOptions {
     }
     mouse_move() { }
     mouse_up() {
-        if (!global.MOUSE_KEYBOARD_LOCK) {
+        if (!global.mouse_keyboard_lock) {
             if (!global.FLAG_SAVE_IMAGE &&
                 !global.FLAG_SAVE_CIRCUIT &&
                 !global.FLAG_ZOOM &&

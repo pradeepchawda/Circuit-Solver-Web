@@ -273,7 +273,7 @@ outer bounds)*/
     this.create_path();
   }
   /* Create the path of the trace based on the trace points */
-  create_path() {
+  create_path(): void {
     if (this.trace.length > 0) {
       let temp_height: number = this.height >> 1;
       this.previous_point.set_point(this.trace[0].x, this.trace[0].y + this.bounds.top + temp_height);
@@ -296,7 +296,7 @@ outer bounds)*/
     }
   }
   /* Draw the trace itself! */
-  draw_trace(canvas, x_offset, y_offset) {
+  draw_trace(canvas: GraphicsEngine, x_offset: number, y_offset: number): void {
     if (this.trace.length > 0) {
       canvas.draw_path2(this.trace_path, x_offset, y_offset, this.trace_stroke_paint);
     }

@@ -74,8 +74,8 @@ class SquareWave {
         this.m_y = 0;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.INITIALIZED = false;
@@ -180,8 +180,8 @@ class SquareWave {
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
@@ -203,7 +203,7 @@ class SquareWave {
         if (this.elm.consistent()) {
             engine_functions.stamp_voltage(this.elm.n1, this.elm.n2, this.elm.properties['Offset'] +
                 this.elm.properties['Voltage'] *
-                    (global.wrap(global.SIMULATION_TIME, 1.0 / this.elm.properties['Frequency']) < this.elm.properties['Duty'] * 0.01 * (1.0 / this.elm.properties['Frequency']) ? 1 : 0), simulation_manager.ELEMENT_SQUAREWAVE_OFFSET + this.simulation_id);
+                    (global.wrap(global.simulation_time, 1.0 / this.elm.properties['Frequency']) < this.elm.properties['Duty'] * 0.01 * (1.0 / this.elm.properties['Frequency']) ? 1 : 0), simulation_manager.ELEMENT_SQUAREWAVE_OFFSET + this.simulation_id);
         }
     }
     /* Vertex handling (for rotation) */
@@ -355,7 +355,7 @@ class SquareWave {
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
-                    global.IS_DRAGGING = false;
+                    global.is_dragging = false;
                     if (!this.is_translating) {
                         if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
                             this.release_nodes();
@@ -703,39 +703,39 @@ class SquareWave {
             this.temp_color = this.line_paint.get_color();
             this.line_paint.set_color(global.GENERAL_RED_COLOR);
             this.indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[this.indexer++] = Array(this.plus_point.x - this.bounds.get_width() * 0.05, this.plus_point.y, this.plus_point.x + this.bounds.get_width() * 0.05, this.plus_point.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.plus_point.x, this.plus_point.y + this.bounds.get_width() * 0.05, this.plus_point.x, this.plus_point.y - this.bounds.get_width() * 0.05);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[this.indexer++] = Array(this.plus_point.x - this.bounds.get_width() * 0.05, this.plus_point.y, this.plus_point.x + this.bounds.get_width() * 0.05, this.plus_point.y);
+            this.line_buffer[this.indexer++] = Array(this.plus_point.x, this.plus_point.y + this.bounds.get_width() * 0.05, this.plus_point.x, this.plus_point.y - this.bounds.get_width() * 0.05);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             this.indexer = 0;
             this.line_paint.set_color(this.temp_color);
             canvas.draw_circle(this.c_x, this.c_y, this.map_rotation(), this.line_paint);
-            this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.sq_3.x, this.sq_3.y, this.sq_0.x, this.sq_0.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.sq_0.x, this.sq_0.y, this.sq_1.x, this.sq_1.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.sq_1.x, this.sq_1.y, this.sq_4.x, this.sq_4.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+            this.line_buffer[this.indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
+            this.line_buffer[this.indexer++] = Array(this.sq_3.x, this.sq_3.y, this.sq_0.x, this.sq_0.y);
+            this.line_buffer[this.indexer++] = Array(this.sq_0.x, this.sq_0.y, this.sq_1.x, this.sq_1.y);
+            this.line_buffer[this.indexer++] = Array(this.sq_1.x, this.sq_1.y, this.sq_4.x, this.sq_4.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             this.indexer = 0;
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.CIRCLE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+            this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
             }
-            if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+            if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                 this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
                 if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.draw_text(global.exponentiate_quickly(this.elm.properties['Frequency']) + this.elm.properties['options_units'][1], this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.1, this.text_paint);
                 }
                 else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.draw_text(global.exponentiate_quickly(this.elm.properties['Frequency']) + this.elm.properties['options_units'][1], this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
                 }
             }
@@ -746,12 +746,12 @@ class SquareWave {
     }
     /* Handles future proofing of elements! */
     patch() {
-        if (!global.not_null(this.LINE_BUFFER)) {
+        if (!global.not_null(this.line_buffer)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
         }
-        if (!global.not_null(this.CIRCLE_BUFFER)) {
-            this.CIRCLE_BUFFER = [];
+        if (!global.not_null(this.circle_buffer)) {
+            this.circle_buffer = [];
         }
         if (!global.not_null(this.BUILD_ELEMENT)) {
             this.BUILD_ELEMENT = false;

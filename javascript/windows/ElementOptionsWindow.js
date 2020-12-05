@@ -253,28 +253,28 @@ class ElementOptionsWindow {
     }
     mouse_up() {
         if (global.FLAG_ELEMENT_OPTIONS) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 if (this.WINDOW_ANCHORED) {
                     if (!this.bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         !this.bounds.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
-                        global.MOUSE_KEYBOARD_LOCK = true;
+                        global.mouse_keyboard_lock = true;
                     }
                     else if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         this.okay_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
-                        global.MOUSE_KEYBOARD_LOCK = true;
+                        global.mouse_keyboard_lock = true;
                     }
                     else if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
-                        global.MOUSE_KEYBOARD_LOCK = true;
+                        global.mouse_keyboard_lock = true;
                     }
                     else {
                         for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
@@ -320,7 +320,7 @@ class ElementOptionsWindow {
             }
             /* Block out the reset selection portion of the code! */
             global.component_touched = true;
-            global.MOUSE_KEYBOARD_LOCK = true;
+            global.mouse_keyboard_lock = true;
             global.SIGNAL_BUILD_ELEMENT = true;
         }
     }
@@ -330,15 +330,15 @@ class ElementOptionsWindow {
                 menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                 /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
-                global.MOUSE_KEYBOARD_LOCK = true;
+                global.mouse_keyboard_lock = true;
             }
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 for (var i = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
                     if (global.decode_key(key_event) === this.ATTRIBUTE_SELECT[i]) {
                         this.on_attribute_clicked(i);
                         /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
-                        global.MOUSE_KEYBOARD_LOCK = true;
+                        global.mouse_keyboard_lock = true;
                         break;
                     }
                 }

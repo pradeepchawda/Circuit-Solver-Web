@@ -79,7 +79,7 @@ class EngineFunctions {
         this.mapper4 = new Element4(-1, -1, global.NULL);
     }
     /* Create a series of nodes based on some arbitrary bounds. We will use this for the initial generation
-    of the nodes, after that they should resize them selves. */
+  of the nodes, after that they should resize them selves. */
     create_nodes(bounds) {
         /* A counter to keep track of where we are in the x-direciton */
         let counter_x = 0;
@@ -90,7 +90,7 @@ class EngineFunctions {
         /* The top of the bounds */
         let top = 0;
         /* A little bit of spacing to make sure that the nodes sit on the end corners
-        of the bounds */
+    of the bounds */
         let divider = Math.round(global.settings.SQRT_MAXNODES);
         /* A little nudge in the x direction */
         let shifter_x = global.node_space_x / divider;
@@ -111,750 +111,750 @@ class EngineFunctions {
             }
         }
     }
-    handle_nearest_neighbors(temp_transition_lock) {
+    handle_nearest_neighbors(temp_translation_lock) {
         /* History lock is only set when moving elements on new add or on paste. */
-        if (!global.IS_DRAGGING && !global.SIGNAL_HISTORY_LOCK) {
-            if (!global.IS_RIGHT_CLICK) {
+        if (!global.is_dragging && !global.SIGNAL_HISTORY_LOCK) {
+            if (!global.is_right_click) {
                 if (global.selected_type > -1) {
-                    global.SELECTION_NEAREST_NEIGHBORS = [];
-                    global.NEAREST_NEIGHBOR_INDEX = 0;
+                    global.selection_nearest_neighbors = [];
+                    global.nearest_neighbor_index = 0;
                     let width = 1.5125 * global.selected_bounds.get_width();
                     /* #INSERT_GENERATE_FIND_SELECTION_NEIGHBORS# */
                     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                     for (var i = 0; i < resistors.length; i++) {
                         if (resistors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: resistors[i].elm.type,
                                 Id: resistors[i].elm.id
                             });
                             if (resistors[i].elm.type === global.selected_type && resistors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < capacitors.length; i++) {
                         if (capacitors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: capacitors[i].elm.type,
                                 Id: capacitors[i].elm.id
                             });
                             if (capacitors[i].elm.type === global.selected_type && capacitors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < inductors.length; i++) {
                         if (inductors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: inductors[i].elm.type,
                                 Id: inductors[i].elm.id
                             });
                             if (inductors[i].elm.type === global.selected_type && inductors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < grounds.length; i++) {
                         if (grounds[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: grounds[i].elm.type,
                                 Id: grounds[i].elm.id
                             });
                             if (grounds[i].elm.type === global.selected_type && grounds[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dcsources.length; i++) {
                         if (dcsources[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: dcsources[i].elm.type,
                                 Id: dcsources[i].elm.id
                             });
                             if (dcsources[i].elm.type === global.selected_type && dcsources[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dccurrents.length; i++) {
                         if (dccurrents[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: dccurrents[i].elm.type,
                                 Id: dccurrents[i].elm.id
                             });
                             if (dccurrents[i].elm.type === global.selected_type && dccurrents[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < acsources.length; i++) {
                         if (acsources[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: acsources[i].elm.type,
                                 Id: acsources[i].elm.id
                             });
                             if (acsources[i].elm.type === global.selected_type && acsources[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < accurrents.length; i++) {
                         if (accurrents[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: accurrents[i].elm.type,
                                 Id: accurrents[i].elm.id
                             });
                             if (accurrents[i].elm.type === global.selected_type && accurrents[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < squarewaves.length; i++) {
                         if (squarewaves[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: squarewaves[i].elm.type,
                                 Id: squarewaves[i].elm.id
                             });
                             if (squarewaves[i].elm.type === global.selected_type && squarewaves[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < sawwaves.length; i++) {
                         if (sawwaves[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: sawwaves[i].elm.type,
                                 Id: sawwaves[i].elm.id
                             });
                             if (sawwaves[i].elm.type === global.selected_type && sawwaves[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < trianglewaves.length; i++) {
                         if (trianglewaves[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: trianglewaves[i].elm.type,
                                 Id: trianglewaves[i].elm.id
                             });
                             if (trianglewaves[i].elm.type === global.selected_type && trianglewaves[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < constants.length; i++) {
                         if (constants[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: constants[i].elm.type,
                                 Id: constants[i].elm.id
                             });
                             if (constants[i].elm.type === global.selected_type && constants[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < wires.length; i++) {
                         if (wires[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: wires[i].elm.type,
                                 Id: wires[i].elm.id
                             });
                             if (wires[i].elm.type === global.selected_type && wires[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nets.length; i++) {
                         if (nets[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: nets[i].elm.type,
                                 Id: nets[i].elm.id
                             });
                             if (nets[i].elm.type === global.selected_type && nets[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < notes.length; i++) {
                         if (notes[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: notes[i].elm.type,
                                 Id: notes[i].elm.id
                             });
                             if (notes[i].elm.type === global.selected_type && notes[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < rails.length; i++) {
                         if (rails[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: rails[i].elm.type,
                                 Id: rails[i].elm.id
                             });
                             if (rails[i].elm.type === global.selected_type && rails[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < voltmeters.length; i++) {
                         if (voltmeters[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: voltmeters[i].elm.type,
                                 Id: voltmeters[i].elm.id
                             });
                             if (voltmeters[i].elm.type === global.selected_type && voltmeters[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ohmmeters.length; i++) {
                         if (ohmmeters[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: ohmmeters[i].elm.type,
                                 Id: ohmmeters[i].elm.id
                             });
                             if (ohmmeters[i].elm.type === global.selected_type && ohmmeters[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ammeters.length; i++) {
                         if (ammeters[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: ammeters[i].elm.type,
                                 Id: ammeters[i].elm.id
                             });
                             if (ammeters[i].elm.type === global.selected_type && ammeters[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < wattmeters.length; i++) {
                         if (wattmeters[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: wattmeters[i].elm.type,
                                 Id: wattmeters[i].elm.id
                             });
                             if (wattmeters[i].elm.type === global.selected_type && wattmeters[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < fuses.length; i++) {
                         if (fuses[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: fuses[i].elm.type,
                                 Id: fuses[i].elm.id
                             });
                             if (fuses[i].elm.type === global.selected_type && fuses[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < spsts.length; i++) {
                         if (spsts[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: spsts[i].elm.type,
                                 Id: spsts[i].elm.id
                             });
                             if (spsts[i].elm.type === global.selected_type && spsts[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < spdts.length; i++) {
                         if (spdts[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: spdts[i].elm.type,
                                 Id: spdts[i].elm.id
                             });
                             if (spdts[i].elm.type === global.selected_type && spdts[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nots.length; i++) {
                         if (nots[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: nots[i].elm.type,
                                 Id: nots[i].elm.id
                             });
                             if (nots[i].elm.type === global.selected_type && nots[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < diodes.length; i++) {
                         if (diodes[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: diodes[i].elm.type,
                                 Id: diodes[i].elm.id
                             });
                             if (diodes[i].elm.type === global.selected_type && diodes[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < leds.length; i++) {
                         if (leds[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: leds[i].elm.type,
                                 Id: leds[i].elm.id
                             });
                             if (leds[i].elm.type === global.selected_type && leds[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < zeners.length; i++) {
                         if (zeners[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: zeners[i].elm.type,
                                 Id: zeners[i].elm.id
                             });
                             if (zeners[i].elm.type === global.selected_type && zeners[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < potentiometers.length; i++) {
                         if (potentiometers[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: potentiometers[i].elm.type,
                                 Id: potentiometers[i].elm.id
                             });
                             if (potentiometers[i].elm.type === global.selected_type && potentiometers[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ands.length; i++) {
                         if (ands[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: ands[i].elm.type,
                                 Id: ands[i].elm.id
                             });
                             if (ands[i].elm.type === global.selected_type && ands[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ors.length; i++) {
                         if (ors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: ors[i].elm.type,
                                 Id: ors[i].elm.id
                             });
                             if (ors[i].elm.type === global.selected_type && ors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nands.length; i++) {
                         if (nands[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: nands[i].elm.type,
                                 Id: nands[i].elm.id
                             });
                             if (nands[i].elm.type === global.selected_type && nands[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nors.length; i++) {
                         if (nors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: nors[i].elm.type,
                                 Id: nors[i].elm.id
                             });
                             if (nors[i].elm.type === global.selected_type && nors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < xors.length; i++) {
                         if (xors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: xors[i].elm.type,
                                 Id: xors[i].elm.id
                             });
                             if (xors[i].elm.type === global.selected_type && xors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < xnors.length; i++) {
                         if (xnors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: xnors[i].elm.type,
                                 Id: xnors[i].elm.id
                             });
                             if (xnors[i].elm.type === global.selected_type && xnors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dffs.length; i++) {
                         if (dffs[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: dffs[i].elm.type,
                                 Id: dffs[i].elm.id
                             });
                             if (dffs[i].elm.type === global.selected_type && dffs[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vsats.length; i++) {
                         if (vsats[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: vsats[i].elm.type,
                                 Id: vsats[i].elm.id
                             });
                             if (vsats[i].elm.type === global.selected_type && vsats[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < adders.length; i++) {
                         if (adders[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: adders[i].elm.type,
                                 Id: adders[i].elm.id
                             });
                             if (adders[i].elm.type === global.selected_type && adders[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < subtractors.length; i++) {
                         if (subtractors[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: subtractors[i].elm.type,
                                 Id: subtractors[i].elm.id
                             });
                             if (subtractors[i].elm.type === global.selected_type && subtractors[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < multipliers.length; i++) {
                         if (multipliers[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: multipliers[i].elm.type,
                                 Id: multipliers[i].elm.id
                             });
                             if (multipliers[i].elm.type === global.selected_type && multipliers[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dividers.length; i++) {
                         if (dividers[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: dividers[i].elm.type,
                                 Id: dividers[i].elm.id
                             });
                             if (dividers[i].elm.type === global.selected_type && dividers[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < gains.length; i++) {
                         if (gains[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: gains[i].elm.type,
                                 Id: gains[i].elm.id
                             });
                             if (gains[i].elm.type === global.selected_type && gains[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < absvals.length; i++) {
                         if (absvals[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: absvals[i].elm.type,
                                 Id: absvals[i].elm.id
                             });
                             if (absvals[i].elm.type === global.selected_type && absvals[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vcsws.length; i++) {
                         if (vcsws[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: vcsws[i].elm.type,
                                 Id: vcsws[i].elm.id
                             });
                             if (vcsws[i].elm.type === global.selected_type && vcsws[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vcvss.length; i++) {
                         if (vcvss[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: vcvss[i].elm.type,
                                 Id: vcvss[i].elm.id
                             });
                             if (vcvss[i].elm.type === global.selected_type && vcvss[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vccss.length; i++) {
                         if (vccss[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: vccss[i].elm.type,
                                 Id: vccss[i].elm.id
                             });
                             if (vccss[i].elm.type === global.selected_type && vccss[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < cccss.length; i++) {
                         if (cccss[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: cccss[i].elm.type,
                                 Id: cccss[i].elm.id
                             });
                             if (cccss[i].elm.type === global.selected_type && cccss[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ccvss.length; i++) {
                         if (ccvss[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: ccvss[i].elm.type,
                                 Id: ccvss[i].elm.id
                             });
                             if (ccvss[i].elm.type === global.selected_type && ccvss[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < opamps.length; i++) {
                         if (opamps[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: opamps[i].elm.type,
                                 Id: opamps[i].elm.id
                             });
                             if (opamps[i].elm.type === global.selected_type && opamps[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nmosfets.length; i++) {
                         if (nmosfets[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: nmosfets[i].elm.type,
                                 Id: nmosfets[i].elm.id
                             });
                             if (nmosfets[i].elm.type === global.selected_type && nmosfets[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pmosfets.length; i++) {
                         if (pmosfets[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: pmosfets[i].elm.type,
                                 Id: pmosfets[i].elm.id
                             });
                             if (pmosfets[i].elm.type === global.selected_type && pmosfets[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < npns.length; i++) {
                         if (npns[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: npns[i].elm.type,
                                 Id: npns[i].elm.id
                             });
                             if (npns[i].elm.type === global.selected_type && npns[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pnps.length; i++) {
                         if (pnps[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: pnps[i].elm.type,
                                 Id: pnps[i].elm.id
                             });
                             if (pnps[i].elm.type === global.selected_type && pnps[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < adcs.length; i++) {
                         if (adcs[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: adcs[i].elm.type,
                                 Id: adcs[i].elm.id
                             });
                             if (adcs[i].elm.type === global.selected_type && adcs[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dacs.length; i++) {
                         if (dacs[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: dacs[i].elm.type,
                                 Id: dacs[i].elm.id
                             });
                             if (dacs[i].elm.type === global.selected_type && dacs[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < sandhs.length; i++) {
                         if (sandhs[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: sandhs[i].elm.type,
                                 Id: sandhs[i].elm.id
                             });
                             if (sandhs[i].elm.type === global.selected_type && sandhs[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pwms.length; i++) {
                         if (pwms[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: pwms[i].elm.type,
                                 Id: pwms[i].elm.id
                             });
                             if (pwms[i].elm.type === global.selected_type && pwms[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < integrators.length; i++) {
                         if (integrators[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: integrators[i].elm.type,
                                 Id: integrators[i].elm.id
                             });
                             if (integrators[i].elm.type === global.selected_type && integrators[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < differentiators.length; i++) {
                         if (differentiators[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: differentiators[i].elm.type,
                                 Id: differentiators[i].elm.id
                             });
                             if (differentiators[i].elm.type === global.selected_type && differentiators[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < lowpasses.length; i++) {
                         if (lowpasses[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: lowpasses[i].elm.type,
                                 Id: lowpasses[i].elm.id
                             });
                             if (lowpasses[i].elm.type === global.selected_type && lowpasses[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < highpasses.length; i++) {
                         if (highpasses[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: highpasses[i].elm.type,
                                 Id: highpasses[i].elm.id
                             });
                             if (highpasses[i].elm.type === global.selected_type && highpasses[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < relays.length; i++) {
                         if (relays[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: relays[i].elm.type,
                                 Id: relays[i].elm.id
                             });
                             if (relays[i].elm.type === global.selected_type && relays[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pids.length; i++) {
                         if (pids[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: pids[i].elm.type,
                                 Id: pids[i].elm.id
                             });
                             if (pids[i].elm.type === global.selected_type && pids[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < luts.length; i++) {
                         if (luts[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: luts[i].elm.type,
                                 Id: luts[i].elm.id
                             });
                             if (luts[i].elm.type === global.selected_type && luts[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vcrs.length; i++) {
                         if (vcrs[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: vcrs[i].elm.type,
                                 Id: vcrs[i].elm.id
                             });
                             if (vcrs[i].elm.type === global.selected_type && vcrs[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < grts.length; i++) {
                         if (grts[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: grts[i].elm.type,
                                 Id: grts[i].elm.id
                             });
                             if (grts[i].elm.type === global.selected_type && grts[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < tptzs.length; i++) {
                         if (tptzs[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: tptzs[i].elm.type,
                                 Id: tptzs[i].elm.id
                             });
                             if (tptzs[i].elm.type === global.selected_type && tptzs[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < transformers.length; i++) {
                         if (transformers[i].bounds.is_near(global.selected_bounds, width)) {
-                            global.SELECTION_NEAREST_NEIGHBORS.push({
+                            global.selection_nearest_neighbors.push({
                                 Type: transformers[i].elm.type,
                                 Id: transformers[i].elm.id
                             });
                             if (transformers[i].elm.type === global.selected_type && transformers[i].elm.id === global.selected_id) {
-                                global.NEAREST_NEIGHBOR_INDEX = global.SELECTION_NEAREST_NEIGHBORS.length - 1;
+                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
@@ -862,546 +862,546 @@ class EngineFunctions {
                 }
             }
             else {
-                if (global.selected_type > -1 && temp_transition_lock) {
-                    if (global.SELECTION_NEAREST_NEIGHBORS.length > 1) {
-                        global.NEAREST_NEIGHBOR_INDEX++;
-                        if (global.NEAREST_NEIGHBOR_INDEX >= global.SELECTION_NEAREST_NEIGHBORS.length) {
-                            global.NEAREST_NEIGHBOR_INDEX = 0;
+                if (global.selected_type > -1 && temp_translation_lock) {
+                    if (global.selection_nearest_neighbors.length > 1) {
+                        global.nearest_neighbor_index++;
+                        if (global.nearest_neighbor_index >= global.selection_nearest_neighbors.length) {
+                            global.nearest_neighbor_index = 0;
                         }
                         let index = -1;
                         /* #INSERT_GENERATE_SWAP_SELECTION_NEIGHBORS# */
                         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_RESISTOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_RESISTOR) {
                             for (var i = 0; i < resistors.length; i++) {
-                                if (resistors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (resistors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     resistors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_CAPACITOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_CAPACITOR) {
                             for (var i = 0; i < capacitors.length; i++) {
-                                if (capacitors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (capacitors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     capacitors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_INDUCTOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_INDUCTOR) {
                             for (var i = 0; i < inductors.length; i++) {
-                                if (inductors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (inductors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     inductors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_GROUND) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_GROUND) {
                             for (var i = 0; i < grounds.length; i++) {
-                                if (grounds[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (grounds[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     grounds[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_DCSOURCE) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_DCSOURCE) {
                             for (var i = 0; i < dcsources.length; i++) {
-                                if (dcsources[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (dcsources[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     dcsources[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_DCCURRENT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_DCCURRENT) {
                             for (var i = 0; i < dccurrents.length; i++) {
-                                if (dccurrents[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (dccurrents[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     dccurrents[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_ACSOURCE) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_ACSOURCE) {
                             for (var i = 0; i < acsources.length; i++) {
-                                if (acsources[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (acsources[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     acsources[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_ACCURRENT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_ACCURRENT) {
                             for (var i = 0; i < accurrents.length; i++) {
-                                if (accurrents[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (accurrents[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     accurrents[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_SQUAREWAVE) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_SQUAREWAVE) {
                             for (var i = 0; i < squarewaves.length; i++) {
-                                if (squarewaves[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (squarewaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     squarewaves[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_SAW) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_SAW) {
                             for (var i = 0; i < sawwaves.length; i++) {
-                                if (sawwaves[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (sawwaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     sawwaves[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_TRI) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_TRI) {
                             for (var i = 0; i < trianglewaves.length; i++) {
-                                if (trianglewaves[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (trianglewaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     trianglewaves[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_CONSTANT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_CONSTANT) {
                             for (var i = 0; i < constants.length; i++) {
-                                if (constants[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (constants[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     constants[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_WIRE) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_WIRE) {
                             for (var i = 0; i < wires.length; i++) {
-                                if (wires[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (wires[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     wires[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_NET) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_NET) {
                             for (var i = 0; i < nets.length; i++) {
-                                if (nets[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (nets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     nets[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_NOTE) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_NOTE) {
                             for (var i = 0; i < notes.length; i++) {
-                                if (notes[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (notes[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     notes[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_RAIL) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_RAIL) {
                             for (var i = 0; i < rails.length; i++) {
-                                if (rails[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (rails[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     rails[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_VOLTMETER) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VOLTMETER) {
                             for (var i = 0; i < voltmeters.length; i++) {
-                                if (voltmeters[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (voltmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     voltmeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_OHMMETER) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_OHMMETER) {
                             for (var i = 0; i < ohmmeters.length; i++) {
-                                if (ohmmeters[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (ohmmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     ohmmeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_AMMETER) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_AMMETER) {
                             for (var i = 0; i < ammeters.length; i++) {
-                                if (ammeters[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (ammeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     ammeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_WATTMETER) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_WATTMETER) {
                             for (var i = 0; i < wattmeters.length; i++) {
-                                if (wattmeters[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (wattmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     wattmeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_FUSE) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_FUSE) {
                             for (var i = 0; i < fuses.length; i++) {
-                                if (fuses[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (fuses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     fuses[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_SPST) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_SPST) {
                             for (var i = 0; i < spsts.length; i++) {
-                                if (spsts[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (spsts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     spsts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_SPDT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_SPDT) {
                             for (var i = 0; i < spdts.length; i++) {
-                                if (spdts[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (spdts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     spdts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_NOT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_NOT) {
                             for (var i = 0; i < nots.length; i++) {
-                                if (nots[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (nots[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     nots[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_DIODE) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_DIODE) {
                             for (var i = 0; i < diodes.length; i++) {
-                                if (diodes[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (diodes[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     diodes[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_LED) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_LED) {
                             for (var i = 0; i < leds.length; i++) {
-                                if (leds[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (leds[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     leds[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_ZENER) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_ZENER) {
                             for (var i = 0; i < zeners.length; i++) {
-                                if (zeners[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (zeners[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     zeners[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_POTENTIOMETER) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_POTENTIOMETER) {
                             for (var i = 0; i < potentiometers.length; i++) {
-                                if (potentiometers[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (potentiometers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     potentiometers[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_AND) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_AND) {
                             for (var i = 0; i < ands.length; i++) {
-                                if (ands[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (ands[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     ands[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_OR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_OR) {
                             for (var i = 0; i < ors.length; i++) {
-                                if (ors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (ors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     ors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_NAND) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_NAND) {
                             for (var i = 0; i < nands.length; i++) {
-                                if (nands[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (nands[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     nands[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_NOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_NOR) {
                             for (var i = 0; i < nors.length; i++) {
-                                if (nors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (nors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     nors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_XOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_XOR) {
                             for (var i = 0; i < xors.length; i++) {
-                                if (xors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (xors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     xors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_XNOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_XNOR) {
                             for (var i = 0; i < xnors.length; i++) {
-                                if (xnors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (xnors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     xnors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_DFF) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_DFF) {
                             for (var i = 0; i < dffs.length; i++) {
-                                if (dffs[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (dffs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     dffs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_VSAT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VSAT) {
                             for (var i = 0; i < vsats.length; i++) {
-                                if (vsats[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (vsats[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     vsats[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_ADD) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_ADD) {
                             for (var i = 0; i < adders.length; i++) {
-                                if (adders[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (adders[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     adders[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_SUB) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_SUB) {
                             for (var i = 0; i < subtractors.length; i++) {
-                                if (subtractors[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (subtractors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     subtractors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_MUL) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_MUL) {
                             for (var i = 0; i < multipliers.length; i++) {
-                                if (multipliers[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (multipliers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     multipliers[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_DIV) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_DIV) {
                             for (var i = 0; i < dividers.length; i++) {
-                                if (dividers[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (dividers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     dividers[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_GAIN) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_GAIN) {
                             for (var i = 0; i < gains.length; i++) {
-                                if (gains[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (gains[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     gains[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_ABS) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_ABS) {
                             for (var i = 0; i < absvals.length; i++) {
-                                if (absvals[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (absvals[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     absvals[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_VCSW) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VCSW) {
                             for (var i = 0; i < vcsws.length; i++) {
-                                if (vcsws[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (vcsws[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     vcsws[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_VCVS) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VCVS) {
                             for (var i = 0; i < vcvss.length; i++) {
-                                if (vcvss[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (vcvss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     vcvss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_VCCS) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VCCS) {
                             for (var i = 0; i < vccss.length; i++) {
-                                if (vccss[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (vccss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     vccss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_CCCS) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_CCCS) {
                             for (var i = 0; i < cccss.length; i++) {
-                                if (cccss[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (cccss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     cccss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_CCVS) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_CCVS) {
                             for (var i = 0; i < ccvss.length; i++) {
-                                if (ccvss[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (ccvss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     ccvss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_OPAMP) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_OPAMP) {
                             for (var i = 0; i < opamps.length; i++) {
-                                if (opamps[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (opamps[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     opamps[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_NMOS) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_NMOS) {
                             for (var i = 0; i < nmosfets.length; i++) {
-                                if (nmosfets[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (nmosfets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     nmosfets[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_PMOS) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_PMOS) {
                             for (var i = 0; i < pmosfets.length; i++) {
-                                if (pmosfets[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (pmosfets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     pmosfets[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_NPN) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_NPN) {
                             for (var i = 0; i < npns.length; i++) {
-                                if (npns[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (npns[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     npns[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_PNP) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_PNP) {
                             for (var i = 0; i < pnps.length; i++) {
-                                if (pnps[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (pnps[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     pnps[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_ADC) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_ADC) {
                             for (var i = 0; i < adcs.length; i++) {
-                                if (adcs[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (adcs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     adcs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_DAC) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_DAC) {
                             for (var i = 0; i < dacs.length; i++) {
-                                if (dacs[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (dacs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     dacs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_SAH) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_SAH) {
                             for (var i = 0; i < sandhs.length; i++) {
-                                if (sandhs[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (sandhs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     sandhs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_PWM) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_PWM) {
                             for (var i = 0; i < pwms.length; i++) {
-                                if (pwms[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (pwms[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     pwms[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_INTEGRATOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_INTEGRATOR) {
                             for (var i = 0; i < integrators.length; i++) {
-                                if (integrators[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (integrators[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     integrators[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_DIFFERENTIATOR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_DIFFERENTIATOR) {
                             for (var i = 0; i < differentiators.length; i++) {
-                                if (differentiators[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (differentiators[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     differentiators[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_LPF) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_LPF) {
                             for (var i = 0; i < lowpasses.length; i++) {
-                                if (lowpasses[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (lowpasses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     lowpasses[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_HPF) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_HPF) {
                             for (var i = 0; i < highpasses.length; i++) {
-                                if (highpasses[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (highpasses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     highpasses[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_REL) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_REL) {
                             for (var i = 0; i < relays.length; i++) {
-                                if (relays[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (relays[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     relays[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_PID) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_PID) {
                             for (var i = 0; i < pids.length; i++) {
-                                if (pids[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (pids[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     pids[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_LUT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_LUT) {
                             for (var i = 0; i < luts.length; i++) {
-                                if (luts[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (luts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     luts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_VCR) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VCR) {
                             for (var i = 0; i < vcrs.length; i++) {
-                                if (vcrs[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (vcrs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     vcrs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_GRT) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_GRT) {
                             for (var i = 0; i < grts.length; i++) {
-                                if (grts[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (grts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     grts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_TPTZ) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_TPTZ) {
                             for (var i = 0; i < tptzs.length; i++) {
-                                if (tptzs[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (tptzs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     tptzs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Type'] === global.TYPE_TRAN) {
+                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_TRAN) {
                             for (var i = 0; i < transformers.length; i++) {
-                                if (transformers[i].elm.id === global.SELECTION_NEAREST_NEIGHBORS[global.NEAREST_NEIGHBOR_INDEX]['Id']) {
+                                if (transformers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
                                     transformers[i].select();
                                     break;
                                 }
@@ -5338,13 +5338,13 @@ class EngineFunctions {
         return this.v_node_1 - this.v_node_2;
     }
     file_manager() {
-        if (global.USER_FILE_SELECTED) {
+        if (global.user_file_selected) {
             try {
-                this.parse_elements(global.USER_FILE.content);
+                this.parse_elements(global.user_file.content);
             }
             catch (error) { }
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
-            global.USER_FILE_SELECTED = false;
+            global.user_file_selected = false;
             MOUSE_EVENT_LATCH = false;
         }
     }
@@ -5389,11 +5389,11 @@ class EngineFunctions {
                 scope_manager.ENTRY = global.copy(obj.user_scope_settings);
             }
             if (global.not_null(obj.user_timestep)) {
-                global.TIME_STEP = obj.user_timestep;
+                global.time_step = obj.user_timestep;
                 bottom_menu.resize_bottom_menu();
             }
             if (global.not_null(obj.file_name)) {
-                global.USER_FILE.title = obj.file_name;
+                global.user_file.title = obj.file_name;
             }
         }
         /* Support previous versions of saved files. */
@@ -5806,7 +5806,7 @@ class EngineFunctions {
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         global.SIGNAL_BUILD_ELEMENT = true;
-        global.SIGNAL_BUILD_COUNTER = 0;
+        global.signal_build_counter = 0;
     }
     /* #INSERT_GENERATE_REBUILD_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -7765,8 +7765,8 @@ class EngineFunctions {
         this.meta_data.elm.properties['date'] = global.get_date_stamp();
         this.meta_data.user_scope_settings = global.copy(scope_manager.ENTRY);
         this.meta_data.user_settings = global.copy(global.settings);
-        this.meta_data.user_timestep = global.TIME_STEP;
-        this.meta_data.file_name = global.USER_FILE.title;
+        this.meta_data.user_timestep = global.time_step;
+        this.meta_data.file_name = global.user_file.title;
         /* Add all element offsets for x and y so we can always know where everything is. */
         this.meta_data.calibration_string = workspace.bounds.left + ', ' + workspace.bounds.top + ', ' + workspace.bounds.right + ', ' + workspace.bounds.bottom;
         packet[indexer++] = JSON.stringify(this.meta_data);
@@ -7986,7 +7986,7 @@ class EngineFunctions {
             resistors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             resistors.splice(index, 1);
         }
     }
@@ -7998,7 +7998,7 @@ class EngineFunctions {
             capacitors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             capacitors.splice(index, 1);
         }
     }
@@ -8010,7 +8010,7 @@ class EngineFunctions {
             inductors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             inductors.splice(index, 1);
         }
     }
@@ -8022,7 +8022,7 @@ class EngineFunctions {
             grounds[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             grounds.splice(index, 1);
         }
     }
@@ -8034,7 +8034,7 @@ class EngineFunctions {
             dcsources[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             dcsources.splice(index, 1);
         }
     }
@@ -8046,7 +8046,7 @@ class EngineFunctions {
             dccurrents[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             dccurrents.splice(index, 1);
         }
     }
@@ -8058,7 +8058,7 @@ class EngineFunctions {
             acsources[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             acsources.splice(index, 1);
         }
     }
@@ -8070,7 +8070,7 @@ class EngineFunctions {
             accurrents[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             accurrents.splice(index, 1);
         }
     }
@@ -8082,7 +8082,7 @@ class EngineFunctions {
             squarewaves[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             squarewaves.splice(index, 1);
         }
     }
@@ -8094,7 +8094,7 @@ class EngineFunctions {
             sawwaves[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             sawwaves.splice(index, 1);
         }
     }
@@ -8106,7 +8106,7 @@ class EngineFunctions {
             trianglewaves[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             trianglewaves.splice(index, 1);
         }
     }
@@ -8118,7 +8118,7 @@ class EngineFunctions {
             constants[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             constants.splice(index, 1);
         }
     }
@@ -8130,7 +8130,7 @@ class EngineFunctions {
             wires[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             wires.splice(index, 1);
         }
     }
@@ -8142,7 +8142,7 @@ class EngineFunctions {
             nets[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             nets.splice(index, 1);
         }
     }
@@ -8154,7 +8154,7 @@ class EngineFunctions {
             notes[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             notes.splice(index, 1);
         }
     }
@@ -8166,7 +8166,7 @@ class EngineFunctions {
             rails[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             rails.splice(index, 1);
         }
     }
@@ -8179,7 +8179,7 @@ class EngineFunctions {
             wire_manager.reset_wire_builder();
             scope_manager.remove(voltmeters[index].elm.id, voltmeters[index].elm.type);
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             voltmeters.splice(index, 1);
         }
     }
@@ -8192,7 +8192,7 @@ class EngineFunctions {
             wire_manager.reset_wire_builder();
             scope_manager.remove(ohmmeters[index].elm.id, ohmmeters[index].elm.type);
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             ohmmeters.splice(index, 1);
         }
     }
@@ -8205,7 +8205,7 @@ class EngineFunctions {
             wire_manager.reset_wire_builder();
             scope_manager.remove(ammeters[index].elm.id, ammeters[index].elm.type);
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             ammeters.splice(index, 1);
         }
     }
@@ -8218,7 +8218,7 @@ class EngineFunctions {
             wire_manager.reset_wire_builder();
             scope_manager.remove(wattmeters[index].elm.id, wattmeters[index].elm.type);
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             wattmeters.splice(index, 1);
         }
     }
@@ -8230,7 +8230,7 @@ class EngineFunctions {
             fuses[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             fuses.splice(index, 1);
         }
     }
@@ -8242,7 +8242,7 @@ class EngineFunctions {
             spsts[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             spsts.splice(index, 1);
         }
     }
@@ -8254,7 +8254,7 @@ class EngineFunctions {
             spdts[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             spdts.splice(index, 1);
         }
     }
@@ -8266,7 +8266,7 @@ class EngineFunctions {
             nots[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             nots.splice(index, 1);
         }
     }
@@ -8278,7 +8278,7 @@ class EngineFunctions {
             diodes[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             diodes.splice(index, 1);
         }
     }
@@ -8290,7 +8290,7 @@ class EngineFunctions {
             leds[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             leds.splice(index, 1);
         }
     }
@@ -8302,7 +8302,7 @@ class EngineFunctions {
             zeners[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             zeners.splice(index, 1);
         }
     }
@@ -8314,7 +8314,7 @@ class EngineFunctions {
             potentiometers[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             potentiometers.splice(index, 1);
         }
     }
@@ -8326,7 +8326,7 @@ class EngineFunctions {
             ands[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             ands.splice(index, 1);
         }
     }
@@ -8338,7 +8338,7 @@ class EngineFunctions {
             ors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             ors.splice(index, 1);
         }
     }
@@ -8350,7 +8350,7 @@ class EngineFunctions {
             nands[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             nands.splice(index, 1);
         }
     }
@@ -8362,7 +8362,7 @@ class EngineFunctions {
             nors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             nors.splice(index, 1);
         }
     }
@@ -8374,7 +8374,7 @@ class EngineFunctions {
             xors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             xors.splice(index, 1);
         }
     }
@@ -8386,7 +8386,7 @@ class EngineFunctions {
             xnors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             xnors.splice(index, 1);
         }
     }
@@ -8398,7 +8398,7 @@ class EngineFunctions {
             dffs[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             dffs.splice(index, 1);
         }
     }
@@ -8410,7 +8410,7 @@ class EngineFunctions {
             vsats[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             vsats.splice(index, 1);
         }
     }
@@ -8422,7 +8422,7 @@ class EngineFunctions {
             adders[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             adders.splice(index, 1);
         }
     }
@@ -8434,7 +8434,7 @@ class EngineFunctions {
             subtractors[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             subtractors.splice(index, 1);
         }
     }
@@ -8446,7 +8446,7 @@ class EngineFunctions {
             multipliers[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             multipliers.splice(index, 1);
         }
     }
@@ -8458,7 +8458,7 @@ class EngineFunctions {
             dividers[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             dividers.splice(index, 1);
         }
     }
@@ -8470,7 +8470,7 @@ class EngineFunctions {
             gains[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             gains.splice(index, 1);
         }
     }
@@ -8482,7 +8482,7 @@ class EngineFunctions {
             absvals[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             absvals.splice(index, 1);
         }
     }
@@ -8494,7 +8494,7 @@ class EngineFunctions {
             vcsws[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             vcsws.splice(index, 1);
         }
     }
@@ -8506,7 +8506,7 @@ class EngineFunctions {
             vcvss[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             vcvss.splice(index, 1);
         }
     }
@@ -8518,7 +8518,7 @@ class EngineFunctions {
             vccss[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             vccss.splice(index, 1);
         }
     }
@@ -8530,7 +8530,7 @@ class EngineFunctions {
             cccss[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             cccss.splice(index, 1);
         }
     }
@@ -8542,7 +8542,7 @@ class EngineFunctions {
             ccvss[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             ccvss.splice(index, 1);
         }
     }
@@ -8554,7 +8554,7 @@ class EngineFunctions {
             opamps[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             opamps.splice(index, 1);
         }
     }
@@ -8566,7 +8566,7 @@ class EngineFunctions {
             nmosfets[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             nmosfets.splice(index, 1);
         }
     }
@@ -8578,7 +8578,7 @@ class EngineFunctions {
             pmosfets[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             pmosfets.splice(index, 1);
         }
     }
@@ -8590,7 +8590,7 @@ class EngineFunctions {
             npns[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             npns.splice(index, 1);
         }
     }
@@ -8602,7 +8602,7 @@ class EngineFunctions {
             pnps[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             pnps.splice(index, 1);
         }
     }
@@ -8614,7 +8614,7 @@ class EngineFunctions {
             adcs[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             adcs.splice(index, 1);
         }
     }
@@ -8626,7 +8626,7 @@ class EngineFunctions {
             dacs[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             dacs.splice(index, 1);
         }
     }
@@ -8638,7 +8638,7 @@ class EngineFunctions {
             sandhs[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             sandhs.splice(index, 1);
         }
     }
@@ -8650,7 +8650,7 @@ class EngineFunctions {
             pwms[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             pwms.splice(index, 1);
         }
     }
@@ -8662,7 +8662,7 @@ class EngineFunctions {
             integrators[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             integrators.splice(index, 1);
         }
     }
@@ -8674,7 +8674,7 @@ class EngineFunctions {
             differentiators[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             differentiators.splice(index, 1);
         }
     }
@@ -8686,7 +8686,7 @@ class EngineFunctions {
             lowpasses[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             lowpasses.splice(index, 1);
         }
     }
@@ -8698,7 +8698,7 @@ class EngineFunctions {
             highpasses[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             highpasses.splice(index, 1);
         }
     }
@@ -8710,7 +8710,7 @@ class EngineFunctions {
             relays[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             relays.splice(index, 1);
         }
     }
@@ -8722,7 +8722,7 @@ class EngineFunctions {
             pids[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             pids.splice(index, 1);
         }
     }
@@ -8734,7 +8734,7 @@ class EngineFunctions {
             luts[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             luts.splice(index, 1);
         }
     }
@@ -8746,7 +8746,7 @@ class EngineFunctions {
             vcrs[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             vcrs.splice(index, 1);
         }
     }
@@ -8758,7 +8758,7 @@ class EngineFunctions {
             grts[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             grts.splice(index, 1);
         }
     }
@@ -8770,7 +8770,7 @@ class EngineFunctions {
             tptzs[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             tptzs.splice(index, 1);
         }
     }
@@ -8782,7 +8782,7 @@ class EngineFunctions {
             transformers[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
-            global.SIGNAL_WIRE_DELETED_COUNTER = 0;
+            global.signal_wire_deleted_counter = 0;
             transformers.splice(index, 1);
         }
     }
@@ -8798,8 +8798,8 @@ class EngineFunctions {
             !global.FLAG_SELECT_TIMESTEP &&
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
-            !global.MOUSE_KEYBOARD_LOCK) {
-            if (!global.IS_RIGHT_CLICK) {
+            !global.mouse_keyboard_lock) {
+            if (!global.is_right_click) {
                 if (workspace.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
                     if (global.selected) {
                         if (!global.component_touched || urgent) {
@@ -9020,7 +9020,7 @@ class EngineFunctions {
             }
             global.component_touched = false;
         }
-        if (!global.IS_RIGHT_CLICK) {
+        if (!global.is_right_click) {
             if (!global.selected) {
                 multi_select_manager.refresh_multi_select();
             }
@@ -9801,8 +9801,13 @@ class EngineFunctions {
         let NSY = 0.29375 * global.node_space_y;
         let MNSX = 1.25 * NSX;
         let MNSY = 1.25 * NSY;
-        for (var i = 0; i < nodes.length; i++) {
+        let NODE_LENGTH = nodes.length;
+        for (var i = 0; i < NODE_LENGTH; i++) {
             nodes[i].resize(NSX, NSY, MNSX, MNSY);
+            if (NODE_LENGTH - 1 - i === i + 1) {
+                break;
+            }
+            nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
         }
         workspace.workspace_draw(canvas);
         engine_functions.draw_unselected_components(canvas);
@@ -9817,8 +9822,8 @@ class EngineFunctions {
         }
     }
     capture_image() {
-        let temp_zoom = global.WORKSPACE_ZOOM_SCALE;
-        global.WORKSPACE_ZOOM_SCALE = global.PICTURE_ZOOM;
+        let temp_zoom = global.workspace_zoom_scale;
+        global.workspace_zoom_scale = global.PICTURE_ZOOM;
         /* Zoom w/ respect to the center of the workspace bounds. */
         global.mouse_x = workspace.bounds.get_center_x();
         global.mouse_y = workspace.bounds.get_center_y();
@@ -9862,22 +9867,22 @@ class EngineFunctions {
         let temp_ctx = temp_surface.getContext('2d');
         /* Create a temporary drawing engine */
         let temp_canvas = new GraphicsEngine(temp_ctx);
-        global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_4_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_5_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_6_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_1_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_2_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_3_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_4_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 16 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_5_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 21 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_6_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 43 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_1_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_2_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_3_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 9 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.workspace_zoom_scale;
         /* Capture several frames to make sure everythings there! */
         for (var i = 0; i < global.PICTURE_EXPOSURE_TIME; i++) {
             global.SIGNAL_BUILD_ELEMENT = true;
-            global.SIGNAL_BUILD_COUNTER = 0;
+            global.signal_build_counter = 0;
             this.snapshot(temp_surface, temp_canvas);
         }
         /* Save the image w/ the name of the global file. */
@@ -9890,23 +9895,23 @@ class EngineFunctions {
         /* Translate the bounds back to where we need it to be. */
         workspace.workspace_translate_bounds(temp_left, temp_top);
         /* Restore the zoom! */
-        global.WORKSPACE_ZOOM_SCALE = temp_zoom;
+        global.workspace_zoom_scale = temp_zoom;
         /* Zoom w/ respect to the center of the workspace bounds. */
         global.mouse_x = workspace.bounds.get_center_x();
         global.mouse_y = workspace.bounds.get_center_y();
         workspace.workspace_zoom();
-        global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_4_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_5_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_STROKE_WIDTH_6_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_1_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_2_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_3_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 9 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.WORKSPACE_ZOOM_SCALE;
-        global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.WORKSPACE_ZOOM_SCALE;
+        global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_3_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 9 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_4_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 16 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_5_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 21 * global.workspace_zoom_scale;
+        global.CANVAS_STROKE_WIDTH_6_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 43 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_1_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.25 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_2_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 2.65 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_3_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 9 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.workspace_zoom_scale;
+        global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.workspace_zoom_scale;
         /* Move the traces to position */
         /* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */

@@ -56,8 +56,8 @@ class Note {
         this.c_y = 0;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.INITIALIZED = false;
@@ -142,8 +142,8 @@ class Note {
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
@@ -277,7 +277,7 @@ class Note {
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
-                    global.IS_DRAGGING = false;
+                    global.is_dragging = false;
                     if (!this.is_translating) {
                         if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 0.8, this.bounds.get_height() * 0.8)) {
                             this.release_nodes();
@@ -484,15 +484,15 @@ class Note {
             else {
                 this.refactor();
             }
-            let temp_size = global.CANVAS_TEXT_SIZE_1 * global.WORKSPACE_ZOOM_SCALE;
+            let temp_size = global.CANVAS_TEXT_SIZE_1 * global.workspace_zoom_scale;
             if (this.elm.properties['Text Style'] === global.TEXT_STYLE_1) {
-                temp_size = global.CANVAS_TEXT_SIZE_3 * global.WORKSPACE_ZOOM_SCALE;
+                temp_size = global.CANVAS_TEXT_SIZE_3 * global.workspace_zoom_scale;
             }
             else if (this.elm.properties['Text Style'] === global.TEXT_STYLE_2) {
-                temp_size = 0.85 * global.CANVAS_TEXT_SIZE_4 * global.WORKSPACE_ZOOM_SCALE;
+                temp_size = 0.85 * global.CANVAS_TEXT_SIZE_4 * global.workspace_zoom_scale;
             }
             else if (this.elm.properties['Text Style'] === global.TEXT_STYLE_3) {
-                temp_size = 0.85 * global.CANVAS_TEXT_SIZE_5 * global.WORKSPACE_ZOOM_SCALE;
+                temp_size = 0.85 * global.CANVAS_TEXT_SIZE_5 * global.workspace_zoom_scale;
             }
             /* Resize the stroke widths and the text sizes. */
             this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
@@ -617,7 +617,7 @@ class Note {
             }
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             if (this.is_translating) {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
@@ -636,12 +636,12 @@ class Note {
             this.elm.properties['options'].push('Show Marker');
             this.elm.properties['options_units'].push('');
         }
-        if (!global.not_null(this.LINE_BUFFER)) {
+        if (!global.not_null(this.line_buffer)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
         }
-        if (!global.not_null(this.CIRCLE_BUFFER)) {
-            this.CIRCLE_BUFFER = [];
+        if (!global.not_null(this.circle_buffer)) {
+            this.circle_buffer = [];
         }
         if (!global.not_null(this.BUILD_ELEMENT)) {
             this.BUILD_ELEMENT = false;

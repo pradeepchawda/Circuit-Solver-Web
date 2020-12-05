@@ -149,7 +149,7 @@ class YesNoWindow {
     }
     mouse_up() {
         if (global.FLAG_REMOVE_ALL) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
                     /* Block out the reset selection portion of the code! */
@@ -161,7 +161,7 @@ class YesNoWindow {
                     graph_window.reset();
                     global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
                     menu_bar.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
-                    global.USER_FILE.title = 'untitled';
+                    global.user_file.title = 'untitled';
                     /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                     bottom_menu.resize_bottom_menu();

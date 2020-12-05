@@ -52,8 +52,8 @@ class Wire {
         this.wire_voltage = 0;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.indexer = 0;
@@ -132,8 +132,8 @@ class Wire {
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.indexer = 0;
@@ -454,11 +454,11 @@ class Wire {
         }
         if (this.elm.wire_style === global.WIRE_STYLE_0) {
             this.indexer = 0;
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.line_buffer = [];
+            this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             /* Draw the wire's voltage */
-            if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP) {
+            if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step) {
                 if (this.elm.consistent()) {
                     this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
                     if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
@@ -479,15 +479,15 @@ class Wire {
         }
         else {
             this.indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
-            this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
-            this.LINE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            this.circle_buffer = [];
+            this.line_buffer = [];
+            this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
+            this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             /* Draw the wire's voltage */
-            if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.SIMULATION_TIME >= global.TIME_STEP + global.TIME_STEP + global.TIME_STEP) {
+            if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step + global.time_step) {
                 if (this.elm.consistent()) {
-                    if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+                    if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                         if (global.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {
                             this.ANGLE = global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y);
                             if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) < 10)) {
@@ -525,7 +525,7 @@ class Wire {
             }
         }
         if (global.DEVELOPER_MODE) {
-            canvas.draw_text(String(this.elm.id), this.c_x, this.c_y, this.text_paint);
+            canvas.draw_text(this.elm.id, this.c_x, this.c_y, this.text_paint);
             canvas.draw_rect2(this.total_bounds, this.line_paint);
         }
     }
@@ -534,12 +534,12 @@ class Wire {
         if (!global.not_null(this.total_bounds)) {
             this.total_bounds = new RectF(0, 0, 0, 0);
         }
-        if (!global.not_null(this.LINE_BUFFER)) {
+        if (!global.not_null(this.line_buffer)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
         }
-        if (!global.not_null(this.CIRCLE_BUFFER)) {
-            this.CIRCLE_BUFFER = [];
+        if (!global.not_null(this.circle_buffer)) {
+            this.circle_buffer = [];
         }
         if (!global.not_null(this.BUILD_ELEMENT)) {
             this.BUILD_ELEMENT = false;

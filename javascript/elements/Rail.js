@@ -55,8 +55,8 @@ class Rail {
         this.c_y = 0;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
         this.INITIALIZED = false;
@@ -138,8 +138,8 @@ class Rail {
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
         /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.LINE_BUFFER = [];
-        this.CIRCLE_BUFFER = [];
+        this.line_buffer = [];
+        this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
         this.ANGLE = 0;
     }
@@ -275,7 +275,7 @@ class Rail {
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     /* Prevent the screen from moving, we are only handling one wire point at a time. */
-                    global.IS_DRAGGING = false;
+                    global.is_dragging = false;
                     if (!this.is_translating) {
                         if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 0.8, this.bounds.get_height() * 0.8)) {
                             this.release_nodes();
@@ -570,14 +570,14 @@ class Rail {
                 this.c_y >= view_port.top + -global.node_space_y &&
                 this.c_y - global.node_space_y <= view_port.bottom)) {
             this.indexer = 0;
-            this.CIRCLE_BUFFER = [];
-            this.LINE_BUFFER = [];
+            this.circle_buffer = [];
+            this.line_buffer = [];
             if (this.elm.rotation === global.ROTATION_0) {
                 /* To the bottom! */
                 canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y + 2 * this.y_space);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x - this.x_space, this.c_y + 2 * this.y_space, this.c_x + this.x_space, this.c_y + 2 * this.y_space);
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+                this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y + 2 * this.y_space);
+                this.line_buffer[this.indexer++] = Array(this.c_x - this.x_space, this.c_y + 2 * this.y_space, this.c_x + this.x_space, this.c_y + 2 * this.y_space);
+                if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                     canvas.rotate(this.c_x, this.c_y, 180);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -586,9 +586,9 @@ class Rail {
             else if (this.elm.rotation === global.ROTATION_90) {
                 /* To the left! */
                 canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x - 2 * this.x_space, this.c_y);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x - 2 * this.x_space, this.c_y - this.y_space, this.c_x - 2 * this.x_space, this.c_y + this.y_space);
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+                this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x - 2 * this.x_space, this.c_y);
+                this.line_buffer[this.indexer++] = Array(this.c_x - 2 * this.x_space, this.c_y - this.y_space, this.c_x - 2 * this.x_space, this.c_y + this.y_space);
+                if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -597,27 +597,27 @@ class Rail {
             else if (this.elm.rotation === global.ROTATION_180) {
                 /* To the top! */
                 canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y - 2 * this.y_space);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x - this.x_space, this.c_y - 2 * this.y_space, this.c_x + this.x_space, this.c_y - 2 * this.y_space);
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+                this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y - 2 * this.y_space);
+                this.line_buffer[this.indexer++] = Array(this.c_x - this.x_space, this.c_y - 2 * this.y_space, this.c_x + this.x_space, this.c_y - 2 * this.y_space);
+                if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                 }
             }
             else if (this.elm.rotation === global.ROTATION_270) {
                 /* To the right! */
                 canvas.draw_circle(this.c_x, this.c_y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x, this.c_y, this.c_x + 2 * this.x_space, this.c_y);
-                this.LINE_BUFFER[this.indexer++] = Array(this.c_x + 2 * this.x_space, this.c_y - this.y_space, this.c_x + 2 * this.x_space, this.c_y + this.y_space);
-                if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+                this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x + 2 * this.x_space, this.c_y);
+                this.line_buffer[this.indexer++] = Array(this.c_x + 2 * this.x_space, this.c_y - this.y_space, this.c_x + 2 * this.x_space, this.c_y + this.y_space);
+                if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
                     canvas.rotate(this.c_x, this.c_y, 90);
                     canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
                 }
             }
-            canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+            canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
-                canvas.draw_text(String(this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
+                canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             if (this.is_translating) {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
@@ -626,12 +626,12 @@ class Rail {
     }
     /* Handles future proofing of elements! */
     patch() {
-        if (!global.not_null(this.LINE_BUFFER)) {
+        if (!global.not_null(this.line_buffer)) {
             /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-            this.LINE_BUFFER = [];
+            this.line_buffer = [];
         }
-        if (!global.not_null(this.CIRCLE_BUFFER)) {
-            this.CIRCLE_BUFFER = [];
+        if (!global.not_null(this.circle_buffer)) {
+            this.circle_buffer = [];
         }
         if (!global.not_null(this.BUILD_ELEMENT)) {
             this.BUILD_ELEMENT = false;

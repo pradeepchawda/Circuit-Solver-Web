@@ -176,7 +176,7 @@ class TimeStepWindow {
         this.exit_button.draw_fill = false;
         this.exit_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-        this.input_button.text = global.exponentiate_quickly(global.TIME_STEP);
+        this.input_button.text = global.exponentiate_quickly(global.time_step);
         this.input_button.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
         this.input_button.line_paint.set_color(global.GENERAL_BLACK_COLOR);
         this.input_button.draw_stroke = true;
@@ -255,7 +255,7 @@ class TimeStepWindow {
     }
     mouse_up() {
         if (global.FLAG_SELECT_TIMESTEP) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 if (this.WINDOW_ANCHORED) {
                     this.insert_cursor(true, false);
                     this.INITIAL_CURSOR_DOWN = -1;
@@ -487,7 +487,7 @@ class TimeStepWindow {
             }
         }
         else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
-            global.TIME_STEP = string_operator.parse(this.input_button.text);
+            global.time_step = string_operator.parse(this.input_button.text);
             bottom_menu.handle_timestep_flag(!global.FLAG_SELECT_TIMESTEP);
         }
         else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {

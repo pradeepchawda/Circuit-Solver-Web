@@ -233,7 +233,7 @@ class ZoomWindow {
     }
     mouse_up() {
         if (global.FLAG_ZOOM) {
-            if (!global.MOUSE_KEYBOARD_LOCK) {
+            if (!global.mouse_keyboard_lock) {
                 if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
                     /* Block out the reset selection portion of the code! */
@@ -304,8 +304,8 @@ class ZoomWindow {
     set_zoom(zoom) {
         if (zoom >= global.ZOOM_MIN && zoom <= global.ZOOM_MAX) {
             global.SIGNAL_BUILD_ELEMENT = true;
-            global.SIGNAL_BUILD_COUNTER = 0;
-            global.WORKSPACE_ZOOM_SCALE = zoom;
+            global.signal_build_counter = 0;
+            global.workspace_zoom_scale = zoom;
             /* Reset the zoom */
             global.x_offset = 0;
             global.y_offset = 0;

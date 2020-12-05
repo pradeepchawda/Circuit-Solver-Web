@@ -218,7 +218,7 @@ class ElectricalNode {
         let str = '';
         let DEBUG_TEMPLATE = '({ID},{TYPE}),';
         for (var i = 0; i < this.references.length; i++) {
-            str += DEBUG_TEMPLATE.replace('{ID}', String(this.references[i].id)).replace('{TYPE}', String(this.references[i].type));
+            str += DEBUG_TEMPLATE.replace('{ID}', this.references[i].id).replace('{TYPE}', this.references[i].type);
         }
         return str;
     }
@@ -233,10 +233,10 @@ class ElectricalNode {
                 if (global.WIRE_BUILDER['step'] > 0) {
                     if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
                         if (global.WIRE_BUILDER['n1'] != this.id && this.draw_node_builder_helper()) {
-                            global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
-                            global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
-                            global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
-                            global.NODE_LINE_BUFFER[global.NODE_LINE_BUFFER_INDEX++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
+                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
+                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
+                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
+                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
                         }
                     }
                 }

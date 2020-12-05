@@ -25,7 +25,7 @@ class Capacitor {
   /* Create a new rectangle for the bounds of this component */
   public bounds: RectF = new RectF(0, 0, 0, 0);
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm : Element2 = new Element2(-1, -1, global.NULL);
+  public elm: Element2 = new Element2(-1, -1, global.NULL);
   /* These points will be used to capture the vertices of the component */
   public p1: PointF = new PointF(0, 0);
   public p2: PointF = new PointF(0, 0);
@@ -75,8 +75,8 @@ or overlapped)*/
   public m_y: number = 0;
   public MULTI_SELECTED: boolean = false;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public LINE_BUFFER: Array<Array<number>> = [];
-  public CIRCLE_BUFFER: Array<Array<number>> = [];
+  public line_buffer: Array<Array<number>> = [];
+  public circle_buffer: Array<Array<number>> = [];
   public BUILD_ELEMENT: boolean = true;
   public ANGLE: number = 0;
 
@@ -189,8 +189,8 @@ or overlapped)*/
     this.INITIALIZED = true;
     this.MULTI_SELECTED = false;
     /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-    this.LINE_BUFFER = [];
-    this.CIRCLE_BUFFER = [];
+    this.line_buffer = [];
+    this.circle_buffer = [];
     this.BUILD_ELEMENT = true;
     this.ANGLE = 0;
   }
@@ -363,7 +363,7 @@ or overlapped)*/
       if (global.focused) {
         if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
           /* Prevent the screen from moving, we are only handling one wire point at a time. */
-          global.IS_DRAGGING = false;
+          global.is_dragging = false;
           if (!this.is_translating) {
             if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
               this.release_nodes();
@@ -645,14 +645,14 @@ or overlapped)*/
   }
   /* Reset the capacitor to its initial conditions (usually done at time = 0) */
   reset_capacitor(): void {
-    this.elm.properties['Transient Resistance'] = global.TIME_STEP / (2 * this.elm.properties['Capacitance']);
+    this.elm.properties['Transient Resistance'] = global.time_step / (2 * this.elm.properties['Capacitance']);
     this.elm.properties['Transient Voltage'] = global.copy(this.elm.properties['Initial Voltage']);
     this.elm.properties['Transient Current'] = 0;
     this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
   }
   /* This is for energy conservation */
   conserve_energy(): void {
-    this.elm.properties['Transient Resistance'] = global.TIME_STEP / (2 * this.elm.properties['Capacitance']);
+    this.elm.properties['Transient Resistance'] = global.time_step / (2 * this.elm.properties['Capacitance']);
     this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
   }
   /* General function to handle any processing required by the component */
@@ -711,21 +711,21 @@ or overlapped)*/
         this.c_y - global.node_space_y <= view_port.bottom)
     ) {
       this.indexer = 0;
-      this.CIRCLE_BUFFER = [];
-      this.LINE_BUFFER = [];
-      this.LINE_BUFFER[this.indexer++] = Array(this.cap_1.x, this.cap_1.y, this.cap_3.x, this.cap_3.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.cap_2.x, this.cap_2.y, this.cap_0.x, this.cap_0.y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
-      this.LINE_BUFFER[this.indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
-      canvas.draw_line_buffer(this.LINE_BUFFER, this.line_paint);
+      this.circle_buffer = [];
+      this.line_buffer = [];
+      this.line_buffer[this.indexer++] = Array(this.cap_1.x, this.cap_1.y, this.cap_3.x, this.cap_3.y);
+      this.line_buffer[this.indexer++] = Array(this.cap_2.x, this.cap_2.y, this.cap_0.x, this.cap_0.y);
+      this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+      this.line_buffer[this.indexer++] = Array(this.connect2_x, this.connect2_y, this.p2.x, this.p2.y);
+      canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       this.indexer = 0;
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      this.CIRCLE_BUFFER[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-      canvas.draw_circle_buffer(this.CIRCLE_BUFFER, this.point_paint);
+      this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+      canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
       if (global.DEVELOPER_MODE) {
         canvas.draw_rect2(this.bounds, this.line_paint);
       }
-      if (global.WORKSPACE_ZOOM_SCALE > 1.085 || (!global.MOBILE_MODE && global.WORKSPACE_ZOOM_SCALE >= 0.99)) {
+      if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
         this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
           canvas.draw_text(
@@ -735,7 +735,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.bottom - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -749,7 +749,7 @@ or overlapped)*/
             this.text_paint
           );
           canvas.draw_text(
-            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', String(this.elm.id)),
+            global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
             this.bounds.bottom - this.bounds.get_height() * 0.1,
             this.text_paint
@@ -764,12 +764,12 @@ or overlapped)*/
   }
   /* Handles future proofing of elements! */
   patch(): void {
-    if (!global.not_null(this.LINE_BUFFER)) {
+    if (!global.not_null(this.line_buffer)) {
       /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-      this.LINE_BUFFER = [];
+      this.line_buffer = [];
     }
-    if (!global.not_null(this.CIRCLE_BUFFER)) {
-      this.CIRCLE_BUFFER = [];
+    if (!global.not_null(this.circle_buffer)) {
+      this.circle_buffer = [];
     }
     if (!global.not_null(this.BUILD_ELEMENT)) {
       this.BUILD_ELEMENT = false;
