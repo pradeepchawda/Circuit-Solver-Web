@@ -20,8 +20,12 @@
  *
  ***********************************************************************/
 class PaintCap {
-  public readonly ROUND: CanvasLineCap = 'round';
-  public readonly SQUARE: CanvasLineCap = 'square';
-  public readonly BUTT: CanvasLineCap = 'butt';
-  constructor() {}
+	public readonly ROUND: CanvasLineCap;
+	public readonly SQUARE: CanvasLineCap;
+	public readonly BUTT: CanvasLineCap;
+	constructor() {
+		this.ROUND = 'round';
+		this.SQUARE = 'square';
+		this.BUTT = 'butt';
+	}
 }

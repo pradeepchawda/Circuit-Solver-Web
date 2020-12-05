@@ -22,10 +22,6 @@
 class NodeReference {
     constructor(id, type) {
         /* id of the node */
-        this.id = -1;
-        /* The type of component attached to this node */
-        this.type = -1;
-        /* id of the node */
         this.id = id;
         /* The type of component attached to this node */
         this.type = type;

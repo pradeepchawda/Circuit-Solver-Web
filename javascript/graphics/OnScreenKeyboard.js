@@ -23,59 +23,6 @@ class OnScreenKeyboard {
         this.KEYBOARD_MAX_KEYS = 67;
         this.bounds = new RectF(0, 0, 0, 0);
         this.HEIGHT_RATIO = 0.5;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.bounds_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint_alt = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* Flags to help us determine what keys are being pressed. */
-        this.FLAG_CAPS_LOCK = false;
-        this.FLAG_SHIFT = false;
-        this.FLAG_ENTER = false;
-        this.CAP_REF = 0;
-        this.LETTER_ROW_1 = 'qwertyuiop';
-        this.LETTER_ROW_2 = 'asdfghjkl';
-        this.LETTER_ROW_3 = 'zxcvbnm';
-        this.ALT_1_REF = 0;
-        this.ALT_2_REF = 0;
-        this.EXIT_REF = 0;
-        this.TAB_REF = 0;
-        this.BACKSPACE_REF = 0;
-        this.SHIFT_1_REF = 0;
-        this.ENTER_REF = 0;
-        this.CTRL_1_REF = 0;
-        this.CTRL_2_REF = 0;
-        this.SHIFT_2_REF = 0;
-        this.KEYBOARD_LETTER_REF = [];
-        this.KEYBOARD_SPECIAL_REF = [];
-        this.KEYBOARD_MAPPING = [];
-        this.KEYBOARD_INCREMENT_AT = [];
-        this.KEYBOARD_BLOCK_EXPAND = [];
-        this.KEYBOARD_EXPAND_TEMPLATE = {
-            Id: null,
-            Factor: null
-        };
-        this.KEYBOARD_KEYS = [];
-        this.FLAG_KEY_DOWN = false;
-        this.FLAG_KEY_UP = false;
-        this.ENGINEERING_KEYBOARD_MODE = false;
-        this.ENGINEERING_KEYBOARD_FILTER = /[-.kmu0123456789MnGpf]/;
-        this.FILE_NAME_KEYBOARD_FILTER = /[-abcdefghijklmn opqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()]/;
-        this.ENGINEERING_KEYBOARD_FILTER_INDEX = [];
-        this.FILE_NAME_KEYBOARD_FILTER_INDEX = [];
-        this.HOVER_INDEX = -1;
-        this.KEYBOARD_KEY_EVENT = {
-            code: 'KeyA'
-        };
-        this.line_buffer = [];
-        this.KEYBOARD_MAX_KEYS = 67;
-        this.bounds = new RectF(0, 0, 0, 0);
-        this.HEIGHT_RATIO = 0.5;
         this.bounds.left = view_port.left;
         this.bounds.right = view_port.right;
         this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;

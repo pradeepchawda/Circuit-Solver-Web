@@ -19,12 +19,11 @@
  *
  ***********************************************************************/
 class VirtualCanvas {
-	private readonly ASSIGN_ID: boolean = false;
-	private surface: HTMLCanvasElement = null;
-
-	private id: number = -1;
+	private readonly ASSIGN_ID: boolean;
+	private surface: HTMLCanvasElement;
+	private id: number;
 	/* Get the drawing context */
-	public context: CanvasRenderingContext2D = null;
+	public context: CanvasRenderingContext2D;
 
 	constructor(width: number, height: number, id: number) {
 		this.ASSIGN_ID = false;

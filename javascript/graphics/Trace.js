@@ -35,8 +35,8 @@ class Trace {
         /* The bounds of the trace. */
         this.bounds = new RectF(0, 0, 0, 0);
         /* The purpose of these variables is to genetate a bezier or quadratic curve from
-      two points calculating their mid-point. This is to ensure that the graph have curvature
-      but it passes through all the points generated from the solutions of the system. */
+    two points calculating their mid-point. This is to ensure that the graph have curvature
+    but it passes through all the points generated from the solutions of the system. */
         /* A point used to calculate the path of the trace. */
         this.previous_point = new PointF(0, 0);
         /* Another point used to calculate the path of the trace. */
@@ -44,49 +44,7 @@ class Trace {
         /* Yet another point to calculate the path of the trace. */
         this.mid_point = new PointF(0, 0);
         /* Trim on the left and right hand side of the trace (this is for the idea of inner and
-      outer bounds)*/
-        this.trim = 0;
-        /* The width of the trace space */
-        this.width = 0;
-        /* The height of the trace space */
-        this.height = 0;
-        /* A helper variable used to store the magnitudes of the traces if they need to be re-scaled */
-        this.plot_magnitude = 0;
-        /* A ratio of the spacing (in the y direction) of the traces. */
-        this.ratio = -1;
-        /* The X-AXIS length of the trace */
-        this.X_AXIS_LENGTH = -1;
-        /* The Y-AXIS length of the trace */
-        this.Y_AXIS_LENGTH = -1;
-        /*  Trace Stroke Paint  */
-        this.trace_stroke_paint = new Paint();
-        /* Trace Fill Paint  */
-        this.trace_fill_paint = new Paint();
-        /* The trace path of the trace itself. */
-        this.trace_path = new Path();
-        /* The list of all the trace points magnitudes */
-        this.magnitude_list = [];
-        /* The trace points that we will generate the path from. */
-        this.trace = [];
-        /* The norm of the trace points (Maximum value) */
-        this.norm = 1;
-        /* The last norm. This is used to track if the graph should be re-scaled. */
-        this.last_norm = 1;
-        /* A temporary value we will be using for calculation. */
-        this.temporary_norm = 1;
-        /* The bounds of the trace. */
-        this.bounds = new RectF(0, 0, 0, 0);
-        /* The purpose of these variables is to genetate a bezier or quadratic curve from
-        two points calculating their mid-point. This is to ensure that the graph have curvature
-        but it passes through all the points generated from the solutions of the system. */
-        /* A point used to calculate the path of the trace. */
-        this.previous_point = new PointF(0, 0);
-        /* Another point used to calculate the path of the trace. */
-        this.current_point = new PointF(0, 0);
-        /* Yet another point to calculate the path of the trace. */
-        this.mid_point = new PointF(0, 0);
-        /* Trim on the left and right hand side of the trace (this is for the idea of inner and
-      outer bounds)*/
+  outer bounds)*/
         this.trim = 0;
         /* The width of the trace space */
         this.width = 0;

@@ -20,12 +20,12 @@
  *
  ***********************************************************************/
 class Digit {
-  public num: number = 0;
+	public num: number;
 
-  constructor(setter: number) {
-    this.num = setter;
-  }
-  get_digit() {
-    return this.num;
-  }
+	constructor(setter: number) {
+		this.num = setter;
+	}
+	get_digit() {
+		return this.num;
+	}
 }

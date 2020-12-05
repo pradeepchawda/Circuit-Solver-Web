@@ -30,16 +30,6 @@ class ScopeManager {
         this.curr = -1;
         this.voltage = -1;
         this.power = -1;
-        this.MAX_ENTRIES = 3;
-        this.ENTRY = [];
-        this.index = -1;
-        this.met_max = -1;
-        this.iteration_size = -1;
-        this.v_side_1 = 0;
-        this.v_side_2 = 0;
-        this.curr = -1;
-        this.voltage = -1;
-        this.power = -1;
     }
     /* Clear all entries. */
     clear_entries() {
@@ -125,8 +115,8 @@ class ScopeManager {
         }
     }
     /* Automatically update the scopes when the system is simulating. It will add the new
-    solutions values into the scope trace. If a meter is connected to the graph trace it will
-    update that as well. */
+  solutions values into the scope trace. If a meter is connected to the graph trace it will
+  update that as well. */
     update_scopes() {
         this.index = -1;
         this.met_max = global.meter_max();

@@ -26,35 +26,6 @@ class MultiSelectManager {
         this.MULTI_SELECT = false;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        this.SELECT_X = 0;
-        this.SELECT_Y = 0;
-        this.DELTA_CENTER_X = 0;
-        this.DELTA_CENTER_Y = 0;
-        this.DELTA_END_X = 0;
-        this.DELTA_END_Y = 0;
-        this.DELTA_DX = 0;
-        this.DELTA_DY = 0;
-        this.DELTA_LAST_DX = 0;
-        this.DELTA_LAST_DY = 0;
-        this.DELTA_LATCH = false;
-        this.ELEMENTS_MOVED = false;
-        this.CTRL_PRESSED_STARTED = false;
-        this.CTRL_PRESSED = false;
-        this.MULTI_SELECTED_ELEMENT = false;
-        this.MOUSE_DOWN = false;
-        /* The initalization values are important! */
-        this.SELECTED_COMPONENTS_BOUNDS = new RectF(-this.OFFSCREEN_X, -this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
-        /* A flag to map the multi-select to a shortcut or to enable it always. */
-        this.ENABLE_KEYS = true;
-        this.DRAW_BOUNDS = new RectF(0, 0, 0, 0);
-        this.OFFSCREEN_X = -500e3;
-        this.OFFSCREEN_Y = -500e3;
-        this.MULTI_SELECT_BOUNDS = new RectF(this.OFFSCREEN_X, this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
-        this.MULTI_SELECT = false;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);

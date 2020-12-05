@@ -21,27 +21,27 @@
  ***********************************************************************/
 class Workspace {
 	/* Flag to make sure that the bounds are resized before we draw it to the screen. */
-	public FIRST_RESIZE_FLAG: boolean = false;
+	public FIRST_RESIZE_FLAG: boolean;
 	/* Flag to control when we draw things to the screen. */
-	public DRAW_TO_SCREEN: boolean = false;
+	public DRAW_TO_SCREEN: boolean;
 	/* A rectangle that outlines the html canvas */
-	public view: RectF = new RectF(0, 0, 0, 0);
+	public view: RectF;
 	/* The workspace that we will be using. Initial sizing */
-	public bounds: RectF = new RectF(0, 0, 0, 0);
+	public bounds: RectF;
 	/* The paint for the view's outline! */
-	public view_paint: Paint = new Paint();
+	public view_paint: Paint;
 	/* The paint for the bounds line! */
-	public bounds_paint: Paint = new Paint();
+	public bounds_paint: Paint;
 	/* Paint for the grid of the workspace. */
-	public grid_paint: Paint = new Paint();
+	public grid_paint: Paint;
 	/* Paint for the workarea of the workspace. */
-	public work_area_paint: Paint = new Paint();
-	public sqrt: number = -1;
-	public sqrt_m_1: number = -1;
-	public DRAW_GRID: boolean = false;
+	public work_area_paint: Paint;
+	public sqrt: number;
+	public sqrt_m_1: number;
+	public DRAW_GRID: boolean;
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-	public line_buffer: Array<Array<number>> = [];
-	public GRID_MOVED: boolean = true;
+	public line_buffer: Array<Array<number>>;
+	public GRID_MOVED: boolean;
 
 	constructor(left: number, top: number, right: number, bottom: number, scale: number) {
 		/* Flag to make sure that the bounds are resized before we draw it to the screen. */

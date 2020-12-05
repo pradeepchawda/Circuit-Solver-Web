@@ -25,25 +25,6 @@ class ElectricalNode {
     constructor(x, y, id) {
         /* The radius of the node when it is drawn. */
         /* The location of the node */
-        this.location = new PointF(0, 0);
-        /* This is the paint that will be used to draw anything for debugging */
-        this.node_line_paint = new Paint();
-        /* This is the paint that will be used to draw anything for debugging */
-        this.node_fill_paint = new Paint();
-        /* This is the paint that will be used to draw anything for debugging */
-        this.node_fill_paint_alt = new Paint();
-        /* This is used to keep a unique tag of the node in question. */
-        this.id = -1;
-        /* This is used to re-map the nodes when doing simulation. */
-        this.simulation_id = -1;
-        /* The references attached to this node, essentially whatever is residing the the same location of this node. */
-        this.references = [];
-        /* Mapping the ID to a row and column. This is useful to know where the node must go upon resizing. */
-        this.column = -1;
-        this.row = -1;
-        this.bounds = new RectF(0, 0, 0, 0);
-        /* The radius of the node when it is drawn. */
-        /* The location of the node */
         this.location = new PointF(x, y);
         /* This is the paint that will be used to draw anything for debugging */
         this.node_line_paint = new Paint();
@@ -96,7 +77,7 @@ class ElectricalNode {
         this.bounds = new RectF(this.location.x - node_space_x, this.location.y - node_space_y, this.location.x + node_space_x, this.location.y + node_space_y);
     }
     /* A resizing handler, it will compute the new locations of the nodes as well as handle any zooming
-    the user does. */
+  the user does. */
     resize(n_x, n_y, m_n_x, m_n_y) {
         if (global.SIGNAL_BUILD_ELEMENT) {
             this.location.x = workspace.bounds.left + this.row * (workspace.bounds.get_width() * global.settings.INV_SQRT_M_1);

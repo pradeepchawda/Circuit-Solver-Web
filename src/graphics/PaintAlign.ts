@@ -20,9 +20,13 @@
  *
  ***********************************************************************/
 class PaintAlign {
-  public readonly LEFT: CanvasTextAlign = 'left';
-  public readonly CENTER: CanvasTextAlign = 'center';
-  public readonly RIGHT: CanvasTextAlign = 'right';
+	public readonly LEFT: CanvasTextAlign;
+	public readonly CENTER: CanvasTextAlign;
+	public readonly RIGHT: CanvasTextAlign;
 
-  constructor() {}
+	constructor() {
+		this.LEFT = 'left';
+		this.CENTER = 'center';
+		this.RIGHT = 'right';
+	}
 }

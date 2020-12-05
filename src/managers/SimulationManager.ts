@@ -22,73 +22,73 @@
 class SimulationManager {
   /* The amount of unique nodes in the system. Each one will have a voltage associated with it
 after we solve the modified nodal analysis matrix. */
-  public NODE_SIZE: number = 0;
+  public NODE_SIZE: number;
   /* Essentially keeps track of the independent / dependent sources in the system. */
-  public OFFSET: number = 0;
+  public OFFSET: number;
   /* A flag to force initialization before simulation begins. */
-  public INITIALIZED: boolean = false;
+  public INITIALIZED: boolean;
   /* A parameter to detail the maximum time we can achieve in the simulation. */
   /* This is kept here because it should be a constant (not a setting!) */
-  public SIMULATION_MAX_TIME: number = 1e18;
+  public SIMULATION_MAX_TIME: number;
   /* Helper flags for solving a non-linear system of equations. */
   /* Checks to see if each element is satisfied w/ the simulation results. */
-  public CONTINUE_SOLVING: boolean = true;
+  public CONTINUE_SOLVING: boolean;
   /* Counts how many times we solve the circuit for a single time-step */
-  public ITERATOR: number = 0;
+  public ITERATOR: number;
   /* Make sure we have a solution before the rest of the components grab data from matrix_x */
-  public SOLUTIONS_READY: boolean = false;
-  public SIMULATION_STEP: number = 0;
-  public FIRST_MATRIX_BUILD: boolean = true;
-  public FIRST_ERROR_CHECK: boolean = true;
-  public FIRST_X_MATRIX_COPY: boolean = true;
-  public FIST_X_MATRIX_SOLUTION: boolean = false;
+  public SOLUTIONS_READY: boolean;
+  public SIMULATION_STEP: number;
+  public FIRST_MATRIX_BUILD: boolean;
+  public FIRST_ERROR_CHECK: boolean;
+  public FIRST_X_MATRIX_COPY: boolean;
+  public FIST_X_MATRIX_SOLUTION: boolean;
   /* Array Containing all time varying sources and their key parameters. This array will be
 used to determine the best time-step for the system. */
-  public TIME_DATA: Array<TIME_DATA_TEMPLATE_T> = [];
+  public TIME_DATA: Array<TIME_DATA_TEMPLATE_T>;
   /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
   /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  public ELEMENT_DCSOURCE_OFFSET: number = 0;
-  public ELEMENT_ACSOURCE_OFFSET: number = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-  public ELEMENT_SQUAREWAVE_OFFSET: number = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-  public ELEMENT_SAW_OFFSET: number = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
-  public ELEMENT_TRI_OFFSET: number = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-  public ELEMENT_CONSTANT_OFFSET: number = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
-  public ELEMENT_RAIL_OFFSET: number = this.ELEMENT_CONSTANT_OFFSET + constants.length;
-  public ELEMENT_OHMMETER_OFFSET: number = this.ELEMENT_RAIL_OFFSET + rails.length;
-  public ELEMENT_AMMETER_OFFSET: number = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-  public ELEMENT_WATTMETER_OFFSET: number = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
-  public ELEMENT_NOT_OFFSET: number = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
-  public ELEMENT_AND_OFFSET: number = this.ELEMENT_NOT_OFFSET + nots.length;
-  public ELEMENT_OR_OFFSET: number = this.ELEMENT_AND_OFFSET + ands.length;
-  public ELEMENT_NAND_OFFSET: number = this.ELEMENT_OR_OFFSET + ors.length;
-  public ELEMENT_NOR_OFFSET: number = this.ELEMENT_NAND_OFFSET + nands.length;
-  public ELEMENT_XOR_OFFSET: number = this.ELEMENT_NOR_OFFSET + nors.length;
-  public ELEMENT_XNOR_OFFSET: number = this.ELEMENT_XOR_OFFSET + xors.length;
-  public ELEMENT_DFF_OFFSET: number = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
-  public ELEMENT_VSAT_OFFSET: number = this.ELEMENT_DFF_OFFSET + dffs.length;
-  public ELEMENT_ADD_OFFSET: number = this.ELEMENT_VSAT_OFFSET + vsats.length;
-  public ELEMENT_SUB_OFFSET: number = this.ELEMENT_ADD_OFFSET + adders.length;
-  public ELEMENT_MUL_OFFSET: number = this.ELEMENT_SUB_OFFSET + subtractors.length;
-  public ELEMENT_DIV_OFFSET: number = this.ELEMENT_MUL_OFFSET + multipliers.length;
-  public ELEMENT_GAIN_OFFSET: number = this.ELEMENT_DIV_OFFSET + dividers.length;
-  public ELEMENT_ABS_OFFSET: number = this.ELEMENT_GAIN_OFFSET + gains.length;
-  public ELEMENT_VCVS_OFFSET: number = this.ELEMENT_ABS_OFFSET + absvals.length;
-  public ELEMENT_CCCS_OFFSET: number = this.ELEMENT_VCVS_OFFSET + vcvss.length;
-  public ELEMENT_CCVS_OFFSET: number = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
-  public ELEMENT_OPAMP_OFFSET: number = this.ELEMENT_CCVS_OFFSET + ccvss.length;
-  public ELEMENT_ADC_OFFSET: number = this.ELEMENT_OPAMP_OFFSET + opamps.length;
-  public ELEMENT_DAC_OFFSET: number = this.ELEMENT_ADC_OFFSET + adcs.length;
-  public ELEMENT_SAH_OFFSET: number = this.ELEMENT_DAC_OFFSET + dacs.length;
-  public ELEMENT_PWM_OFFSET: number = this.ELEMENT_SAH_OFFSET + sandhs.length;
-  public ELEMENT_INTEGRATOR_OFFSET: number = this.ELEMENT_PWM_OFFSET + pwms.length;
-  public ELEMENT_DIFFERENTIATOR_OFFSET: number = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-  public ELEMENT_LPF_OFFSET: number = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
-  public ELEMENT_HPF_OFFSET: number = this.ELEMENT_LPF_OFFSET + lowpasses.length;
-  public ELEMENT_PID_OFFSET: number = this.ELEMENT_HPF_OFFSET + highpasses.length;
-  public ELEMENT_LUT_OFFSET: number = this.ELEMENT_PID_OFFSET + pids.length;
-  public ELEMENT_GRT_OFFSET: number = this.ELEMENT_LUT_OFFSET + luts.length;
-  public ELEMENT_TPTZ_OFFSET: number = this.ELEMENT_GRT_OFFSET + grts.length;
-  public ELEMENT_TRAN_OFFSET: number = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
+  public ELEMENT_DCSOURCE_OFFSET: number;
+  public ELEMENT_ACSOURCE_OFFSET: number;
+  public ELEMENT_SQUAREWAVE_OFFSET: number;
+  public ELEMENT_SAW_OFFSET: number;
+  public ELEMENT_TRI_OFFSET: number;
+  public ELEMENT_CONSTANT_OFFSET: number;
+  public ELEMENT_RAIL_OFFSET: number;
+  public ELEMENT_OHMMETER_OFFSET: number;
+  public ELEMENT_AMMETER_OFFSET: number;
+  public ELEMENT_WATTMETER_OFFSET: number;
+  public ELEMENT_NOT_OFFSET: number;
+  public ELEMENT_AND_OFFSET: number;
+  public ELEMENT_OR_OFFSET: number;
+  public ELEMENT_NAND_OFFSET: number;
+  public ELEMENT_NOR_OFFSET: number;
+  public ELEMENT_XOR_OFFSET: number;
+  public ELEMENT_XNOR_OFFSET: number;
+  public ELEMENT_DFF_OFFSET: number;
+  public ELEMENT_VSAT_OFFSET: number;
+  public ELEMENT_ADD_OFFSET: number;
+  public ELEMENT_SUB_OFFSET: number;
+  public ELEMENT_MUL_OFFSET: number;
+  public ELEMENT_DIV_OFFSET: number;
+  public ELEMENT_GAIN_OFFSET: number;
+  public ELEMENT_ABS_OFFSET: number;
+  public ELEMENT_VCVS_OFFSET: number;
+  public ELEMENT_CCCS_OFFSET: number;
+  public ELEMENT_CCVS_OFFSET: number;
+  public ELEMENT_OPAMP_OFFSET: number;
+  public ELEMENT_ADC_OFFSET: number;
+  public ELEMENT_DAC_OFFSET: number;
+  public ELEMENT_SAH_OFFSET: number;
+  public ELEMENT_PWM_OFFSET: number;
+  public ELEMENT_INTEGRATOR_OFFSET: number;
+  public ELEMENT_DIFFERENTIATOR_OFFSET: number;
+  public ELEMENT_LPF_OFFSET: number;
+  public ELEMENT_HPF_OFFSET: number;
+  public ELEMENT_PID_OFFSET: number;
+  public ELEMENT_LUT_OFFSET: number;
+  public ELEMENT_GRT_OFFSET: number;
+  public ELEMENT_TPTZ_OFFSET: number;
+  public ELEMENT_TRAN_OFFSET: number;
   /* <!-- END AUTOMATICALLY GENERATED !--> */
 
   constructor() {

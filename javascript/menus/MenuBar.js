@@ -20,69 +20,6 @@
  ***********************************************************************/
 class MenuBar {
     constructor() {
-        this.MAX_ICONS = 8;
-        this.HEIGHT_RATIO = 0.1;
-        this.bounds = new RectF(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.HEIGHT_RATIO);
-        this.menu_icons = [];
-        this.REMOVE_ALL_INDEX = 0;
-        this.SAVE_INDEX = 1;
-        this.SAVE_IMG_INDEX = 2;
-        this.UNDO_INDEX = 3;
-        this.REDO_INDEX = 4;
-        this.GO_INDEX = 5;
-        this.ADD_INDEX = 6;
-        this.UP_DOWN_INDEX = 7;
-        this.ESCAPE_INTERRUPT = false;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.line_paint_alt = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.fill_paint_alt = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.up_down_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.add_paint = new Paint();
-        /* This paint is used for drawing the go icon. This is on it's own because it gets recolored
-    during simulation. */
-        this.go_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.hover_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.undo_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.redo_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.remove_all_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.settings_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.zoom_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.save_circuit_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.save_image_fill_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        this.save_ckt_path1 = new Path();
-        this.save_ckt_path2 = new Path();
-        this.go_path = new Path();
-        this.undo_path = new Path();
-        this.redo_path = new Path();
-        this.save_img_path = new Path();
-        this.settings_path = new Path();
-        this.graph_button = new RectF(0, 0, 0, 0);
-        this.settings_button = new RectF(0, 0, 0, 0);
-        this.sine_wave = new SineWave(0, 0, 0, 0, 1);
-        this.BASE_WIDTH = this.bounds.get_width() / this.MAX_ICONS;
-        this.element_window = new ElementWindow(this.bounds.left, this.bounds.bottom + (global.CANVAS_STROKE_WIDTH_4 >> 1), this.bounds.right, this.bounds.bottom + this.bounds.get_height() - (global.CANVAS_STROKE_WIDTH_4 >> 1));
-        /* Enforcing the system from cascading events. */
-        this.first_touch_x = 0;
-        this.first_touch_y = 0;
-        this.line_buffer = [];
-        this.circle_buffer = [];
         let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
         this.MAX_ICONS = 8;
         if (global.MOBILE_MODE) {

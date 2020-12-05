@@ -20,10 +20,16 @@
  *
  ***********************************************************************/
 class PaintBaseline {
-  public readonly TOP: CanvasTextBaseline = 'top';
-  public readonly MIDDLE: CanvasTextBaseline = 'middle';
-  public readonly BOTTOM: CanvasTextBaseline = 'bottom';
-  public readonly ALPHABETIC: CanvasTextBaseline = 'alphabetic';
-  public readonly HANGING: CanvasTextBaseline = 'hanging';
-  constructor() {}
+	public readonly TOP: CanvasTextBaseline;
+	public readonly MIDDLE: CanvasTextBaseline;
+	public readonly BOTTOM: CanvasTextBaseline;
+	public readonly ALPHABETIC: CanvasTextBaseline;
+	public readonly HANGING: CanvasTextBaseline;
+	constructor() {
+		this.TOP = 'top';
+		this.MIDDLE = 'middle';
+		this.BOTTOM = 'bottom';
+		this.ALPHABETIC = 'alphabetic';
+		this.HANGING = 'hanging';
+	}
 }

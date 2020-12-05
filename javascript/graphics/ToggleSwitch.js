@@ -30,22 +30,6 @@ class ToggleSwitch extends RectF {
         this.draw_text = true;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.toggle_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* Keeps track of the toggle state. */
-        this.STATE = '';
-        /* A flag to indicate whether or not to draw the fill of the button. */
-        this.draw_fill = false;
-        /* A flag to indicate whether or not to draw the trim of the button. */
-        this.draw_stroke = true;
-        /* A flag to indicate whether or not to draw the text of the button. */
-        this.draw_text = true;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);

@@ -19,75 +19,70 @@
  *
  ***********************************************************************/
 class MenuBar {
-	public MAX_ICONS: number = 8;
-	public HEIGHT_RATIO: number = 0.1;
-	public bounds = new RectF(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.HEIGHT_RATIO);
-	public menu_icons: Array<RectF> = [];
-	public readonly REMOVE_ALL_INDEX: number = 0;
-	public readonly SAVE_INDEX: number = 1;
-	public readonly SAVE_IMG_INDEX: number = 2;
-	public readonly UNDO_INDEX: number = 3;
-	public readonly REDO_INDEX: number = 4;
-	public readonly GO_INDEX: number = 5;
-	public readonly ADD_INDEX: number = 6;
-	public readonly UP_DOWN_INDEX: number = 7;
-	public ESCAPE_INTERRUPT: boolean = false;
+	public MAX_ICONS: number;
+	public HEIGHT_RATIO: number;
+	public bounds: RectF;
+	public menu_icons: Array<RectF>;
+	public readonly REMOVE_ALL_INDEX: number;
+	public readonly SAVE_INDEX: number;
+	public readonly SAVE_IMG_INDEX: number;
+	public readonly UNDO_INDEX: number;
+	public readonly REDO_INDEX: number;
+	public readonly GO_INDEX: number;
+	public readonly ADD_INDEX: number;
+	public readonly UP_DOWN_INDEX: number;
+	public ESCAPE_INTERRUPT: boolean;
 	/* This paint is used for drawing the "lines" that the component is comprised of. */
-	public line_paint: Paint = new Paint();
+	public line_paint: Paint;
 	/* This paint is used for drawing the "fill" that the component is comprised of. */
-	public fill_paint: Paint = new Paint();
+	public fill_paint: Paint;
 	/* This paint is used for drawing the "text" that the component needs to display */
-	public line_paint_alt: Paint = new Paint();
+	public line_paint_alt: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public fill_paint_alt: Paint = new Paint();
+	public fill_paint_alt: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public up_down_paint: Paint = new Paint();
+	public up_down_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public add_paint: Paint = new Paint();
+	public add_paint: Paint;
 	/* This paint is used for drawing the go icon. This is on it's own because it gets recolored
 during simulation. */
-	public go_paint: Paint = new Paint();
+	public go_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public hover_paint: Paint = new Paint();
+	public hover_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public undo_paint: Paint = new Paint();
+	public undo_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public redo_paint: Paint = new Paint();
+	public redo_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public remove_all_paint: Paint = new Paint();
+	public remove_all_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public settings_paint: Paint = new Paint();
+	public settings_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public zoom_paint: Paint = new Paint();
+	public zoom_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public save_circuit_paint: Paint = new Paint();
+	public save_circuit_paint: Paint;
 	/* This paint is used for drawing the icons that the component is comprised of. */
-	public save_image_fill_paint: Paint = new Paint();
+	public save_image_fill_paint: Paint;
 	/* This paint is used for drawing the "text" that the component needs to display */
-	public text_paint: Paint = new Paint();
-	public save_ckt_path1: Path = new Path();
-	public save_ckt_path2: Path = new Path();
-	public go_path: Path = new Path();
-	public undo_path: Path = new Path();
-	public redo_path: Path = new Path();
-	public save_img_path: Path = new Path();
-	public settings_path: Path = new Path();
-	public graph_button: RectF = new RectF(0, 0, 0, 0);
-	public settings_button: RectF = new RectF(0, 0, 0, 0);
-	public sine_wave: SineWave = new SineWave(0, 0, 0, 0, 1);
-	public BASE_WIDTH: number = this.bounds.get_width() / this.MAX_ICONS;
+	public text_paint: Paint;
+	public save_ckt_path1: Path;
+	public save_ckt_path2: Path;
+	public go_path: Path;
+	public undo_path: Path;
+	public redo_path: Path;
+	public save_img_path: Path;
+	public settings_path: Path;
+	public graph_button: RectF;
+	public settings_button: RectF;
+	public sine_wave: SineWave;
+	public BASE_WIDTH: number;
 
-	public element_window = new ElementWindow(
-		this.bounds.left,
-		this.bounds.bottom + (global.CANVAS_STROKE_WIDTH_4 >> 1),
-		this.bounds.right,
-		this.bounds.bottom + this.bounds.get_height() - (global.CANVAS_STROKE_WIDTH_4 >> 1)
-	);
+	public element_window: ElementWindow;
 	/* Enforcing the system from cascading events. */
-	public first_touch_x: number = 0;
-	public first_touch_y: number = 0;
-	public line_buffer: Array<Array<number>> = [];
-	public circle_buffer: Array<Array<number>> = [];
+	public first_touch_x: number;
+	public first_touch_y: number;
+	public line_buffer: Array<Array<number>>;
+	public circle_buffer: Array<Array<number>>;
 
 	constructor() {
 		let temp_stroke_width: number = 0.65 * global.CANVAS_STROKE_WIDTH_3;

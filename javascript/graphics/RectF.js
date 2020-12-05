@@ -22,28 +22,6 @@
 class RectF {
     constructor(left, top, right, bottom) {
         /* left, top, right, and bottom of the rectangle */
-        this.left = -1;
-        this.top = -1;
-        this.right = -1;
-        this.bottom = -1;
-        /* A flag to show if the rectangle is anchored or not */
-        this.anchored = true;
-        /* Temporary variable to handle settings the center of the rectangle */
-        this.temp_width = 0;
-        this.temp_height = 0;
-        this.last_left = -1;
-        this.last_right = -1;
-        this.last_top = -1;
-        this.last_bottom = -1;
-        this.last_center_x = -1;
-        this.last_center_y = -1;
-        this.last_width = -1;
-        this.last_height = -1;
-        this.w_last_left = -1;
-        this.w_last_right = -1;
-        this.w_last_top = -1;
-        this.w_last_bottom = -1;
-        /* left, top, right, and bottom of the rectangle */
         this.left = left;
         this.top = top;
         this.right = right;

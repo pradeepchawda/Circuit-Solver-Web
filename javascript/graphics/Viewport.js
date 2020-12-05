@@ -23,27 +23,6 @@ class Viewport {
     constructor(aspect_ratio, screen_width, screen_height) {
         /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
-        this.DRAW_BOUNDS = false;
-        this.APPLY_SPREAD_FACTOR = false;
-        this.screen_width = 1;
-        this.screen_height = 1;
-        this.center_x = this.screen_width >> 1;
-        this.center_y = this.screen_height >> 1;
-        this.aspect_ratio = 1;
-        this.view_width = Math.min(this.screen_width, this.screen_height);
-        this.view_height = this.view_width / this.aspect_ratio;
-        /* Determine how much more we can spread this view port over the screen in the x and y direction. */
-        this.width_spread_factor = this.screen_width / this.view_width;
-        this.height_spread_factor = this.screen_height / this.view_height;
-        /* Take the smallest spread factor to make sure we aren't going to get clipped off the screen.  */
-        this.spread_factor = Math.min(this.width_spread_factor, this.height_spread_factor);
-        /* left, top, right, and bottom of the rectangle */
-        this.left = this.center_x - (this.view_width >> 1);
-        this.top = this.center_y - (this.view_height >> 1);
-        this.right = this.center_x + (this.view_width >> 1);
-        this.bottom = this.center_y + (this.view_height >> 1);
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);

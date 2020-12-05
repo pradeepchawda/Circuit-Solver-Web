@@ -32,14 +32,6 @@ class StringOperator {
         this.valid_characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
         this.NEGATIVE_SIGN = Math.round(50);
         this.DECIMAL_POINT = Math.round(100);
-        this.bases = [-18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18];
-        this.prefix = ['a', 'f', 'p', 'n', 'u', 'm', '', 'k', 'M', 'G', 'T', 'P'];
-        this.shift_variable = 0;
-        this.index = 0;
-        this.prefix_index = -1;
-        this.valid_characters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-        this.NEGATIVE_SIGN = Math.round(50);
-        this.DECIMAL_POINT = Math.round(100);
     }
     exponentiate_string(input) {
         return this.correction(this.process(this.correction(input)) + this.prefix[this.index]);

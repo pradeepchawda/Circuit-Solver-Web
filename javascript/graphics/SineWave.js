@@ -21,20 +21,6 @@
  ***********************************************************************/
 class SineWave {
     constructor(x1, y1, x2, y2, amplitude) {
-        this.STYLE_0 = 0;
-        this.STYLE_1 = 1;
-        this.amplitude = 0.1;
-        this.sine_wave_paint = new Paint();
-        this.x1 = 0;
-        this.x2 = 0;
-        this.y1 = 0;
-        this.y2 = 0;
-        this.c_x = 0;
-        this.c_y = 0;
-        this.last_x1 = -1;
-        this.last_x2 = -1;
-        this.last_y1 = -1;
-        this.last_y2 = -1;
         this.amplitude = amplitude;
         this.sine_wave_paint = new Paint();
         this.sine_wave_paint.set_paint_style(this.sine_wave_paint.style.STROKE);

@@ -19,29 +19,29 @@
  *
  ***********************************************************************/
 class ShortcutManager {
-  public SHORTCUT_COPY: string = global.KEY_CODE_C;
-  public SHORTCUT_PASTE: string = global.KEY_CODE_V;
-  public SHORTCUT_UNDO: string = global.KEY_CODE_Z;
-  public SHORTCUT_ADD_ELEMENT: string = global.KEY_CODE_N;
-  public SHORTCUT_REDO: string = global.KEY_CODE_Y;
-  public SHORTCUT_SAVE_IMAGE: string = global.KEY_CODE_I;
-  public SHORTCUT_SAVE_CIRCUIT: string = global.KEY_CODE_S;
-  public SHORTCUT_ROTATE: string = global.KEY_CODE_R;
-  public SHORTCUT_DELETE: string = global.KEY_CODE_DELETE;
-  public SHORTCUT_FLIP: string = global.KEY_CODE_F;
-  public SHORTCUT_EDIT: string = global.KEY_CODE_E;
-  public SHORTCUT_REMOVE_ALL: string = global.KEY_CODE_X;
-  public SHORTCUT_SIMULATE: string = global.KEY_CODE_A;
-  public SHORTCUT_QUERY: string = global.KEY_CODE_Q;
-  public SHORTCUT_RESET_WINDOW: string = global.KEY_CODE_M;
-  public SHORTCUT_TOGGLE_SWITCH: string = global.KEY_CODE_SPACE;
-  public MULTI_MOVED_ELEMENT: boolean = false;
-  public MULTI_DELETED_ELEMENT: boolean = false;
-  public ENABLE_ARROW_KEYS: boolean = true;
-  public TEMP_HISTORY_SNAPSHOT: string = '';
-  public command: string = '';
-  public shift: boolean = false;
-  public caps: boolean = false;
+  public SHORTCUT_COPY: string;
+  public SHORTCUT_PASTE: string;
+  public SHORTCUT_UNDO: string;
+  public SHORTCUT_ADD_ELEMENT: string;
+  public SHORTCUT_REDO: string;
+  public SHORTCUT_SAVE_IMAGE: string;
+  public SHORTCUT_SAVE_CIRCUIT: string;
+  public SHORTCUT_ROTATE: string;
+  public SHORTCUT_DELETE: string;
+  public SHORTCUT_FLIP: string;
+  public SHORTCUT_EDIT: string;
+  public SHORTCUT_REMOVE_ALL: string;
+  public SHORTCUT_SIMULATE: string;
+  public SHORTCUT_QUERY: string;
+  public SHORTCUT_RESET_WINDOW: string;
+  public SHORTCUT_TOGGLE_SWITCH: string;
+  public MULTI_MOVED_ELEMENT: boolean;
+  public MULTI_DELETED_ELEMENT: boolean;
+  public ENABLE_ARROW_KEYS: boolean;
+  public TEMP_HISTORY_SNAPSHOT: string;
+  public command: string;
+  public shift: boolean;
+  public caps: boolean;
 
   constructor() {
     this.SHORTCUT_COPY = global.KEY_CODE_C;

@@ -49,34 +49,6 @@ class EngineFunctions {
         this.mapper3 = new Element3(-1, -1, global.NULL);
         /* Solely for mapping nodes (quadruple nodes) baby! */
         this.mapper4 = new Element4(-1, -1, global.NULL);
-        this.node_1 = -1;
-        this.node_2 = -1;
-        this.node_3 = -1;
-        this.node_4 = -1;
-        this.offset = -1;
-        this.temp = -1;
-        this.temp2 = -1;
-        this.output = -1;
-        this.v_node_1 = 0;
-        this.v_node_2 = 0;
-        this.meta_data = new Metadata();
-        /* Temporary position holders for the generation of new elements. */
-        this.x1 = -1;
-        this.y1 = -1;
-        this.x2 = -1;
-        this.y2 = -1;
-        this.x3 = -1;
-        this.y3 = -1;
-        this.x4 = -1;
-        this.y4 = -1;
-        /* Solely for mapping nodes (single nodes) baby! */
-        this.mapper1 = new Element1(-1, -1, global.NULL);
-        /* Solely for mapping nodes (double nodes) baby! */
-        this.mapper2 = new Element2(-1, -1, global.NULL);
-        /* Solely for mapping nodes (triple nodes) baby! */
-        this.mapper3 = new Element3(-1, -1, global.NULL);
-        /* Solely for mapping nodes (quadruple nodes) baby! */
-        this.mapper4 = new Element4(-1, -1, global.NULL);
     }
     /* Create a series of nodes based on some arbitrary bounds. We will use this for the initial generation
   of the nodes, after that they should resize them selves. */

@@ -20,15 +20,6 @@
  ***********************************************************************/
 class Arc {
     constructor(x1, y1, x2, y2, amplitude) {
-        /* The amplitude of the arc. */
-        this.amplitude = 1;
-        this.arc_paint = new Paint();
-        /* This sets the x and y locations of the arc (start and stop point) */
-        this.x1 = 0;
-        this.x2 = 0;
-        this.y1 = 0;
-        this.y2 = 0;
-        this.IS_TRANSFORM_SCALED = true;
         /* A paint object to paint the arc with. */
         this.arc_paint.set_paint_style(this.arc_paint.style.STROKE);
         this.arc_paint.set_paint_cap(this.arc_paint.cap.ROUND);

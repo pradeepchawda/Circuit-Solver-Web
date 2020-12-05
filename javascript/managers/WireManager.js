@@ -23,8 +23,6 @@ class WireManager {
     constructor() {
         this.wire_id = -1;
         this.unique_wire = true;
-        this.wire_id = -1;
-        this.unique_wire = true;
     }
     watch() {
         if (global.WIRE_BUILDER['step'] > 0) {

@@ -20,8 +20,8 @@
  *
  ***********************************************************************/
 class WireManager {
-  public wire_id: number = -1;
-  public unique_wire: boolean = true;
+  public wire_id: number;
+  public unique_wire: boolean;
 
   constructor() {
     this.wire_id = -1;

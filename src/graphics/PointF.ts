@@ -20,32 +20,32 @@
  *
  ***********************************************************************/
 class PointF {
-  public x: number = 0;
-  public y: number = 0;
+	public x: number;
+	public y: number;
 
-  constructor(x: number, y: number) {
-    this.x = x;
-    this.y = y;
-  }
-  /* Get the x location */
-  get_x(): number {
-    return this.x;
-  }
-  /* Set the x location */
-  set_x(x: number): void {
-    this.x = x;
-  }
-  /* Get the y location */
-  get_y(): number {
-    return this.y;
-  }
-  /* Set the y location */
-  set_y(y: number): void {
-    this.y = y;
-  }
-  /* Set both the x and y location */
-  set_point(x: number, y: number): void {
-    this.x = x;
-    this.y = y;
-  }
+	constructor(x: number, y: number) {
+		this.x = x;
+		this.y = y;
+	}
+	/* Get the x location */
+	get_x(): number {
+		return this.x;
+	}
+	/* Set the x location */
+	set_x(x: number): void {
+		this.x = x;
+	}
+	/* Get the y location */
+	get_y(): number {
+		return this.y;
+	}
+	/* Set the y location */
+	set_y(y: number): void {
+		this.y = y;
+	}
+	/* Set both the x and y location */
+	set_point(x: number, y: number): void {
+		this.x = x;
+		this.y = y;
+	}
 }

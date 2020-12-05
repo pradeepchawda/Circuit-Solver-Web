@@ -10,19 +10,6 @@ class PIDController {
         /* User set-point */
         this.set_point = 0;
         /* PID Coefficients */
-        this.k_p = 0;
-        this.k_i = 0;
-        this.k_d = 0;
-        /* Limit the bounds of the output */
-        this.min_limit = -global.settings.MAX_VOLTAGE;
-        this.max_limit = global.settings.MAX_VOLTAGE;
-        /* Dynamic Variables */
-        this.previous_time = 0;
-        this.last_error = 0;
-        this.integral_error = 0;
-        /* User set-point */
-        this.set_point = 0;
-        /* PID Coefficients */
         this.k_p = k_d;
         this.k_i = k_i;
         this.k_d = k_d;

@@ -26,28 +26,6 @@ class Workspace {
         /* Flag to control when we draw things to the screen. */
         this.DRAW_TO_SCREEN = false;
         /* A rectangle that outlines the html canvas */
-        this.view = new RectF(0, 0, 0, 0);
-        /* The workspace that we will be using. Initial sizing */
-        this.bounds = new RectF(0, 0, 0, 0);
-        /* The paint for the view's outline! */
-        this.view_paint = new Paint();
-        /* The paint for the bounds line! */
-        this.bounds_paint = new Paint();
-        /* Paint for the grid of the workspace. */
-        this.grid_paint = new Paint();
-        /* Paint for the workarea of the workspace. */
-        this.work_area_paint = new Paint();
-        this.sqrt = -1;
-        this.sqrt_m_1 = -1;
-        this.DRAW_GRID = false;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.line_buffer = [];
-        this.GRID_MOVED = true;
-        /* Flag to make sure that the bounds are resized before we draw it to the screen. */
-        this.FIRST_RESIZE_FLAG = false;
-        /* Flag to control when we draw things to the screen. */
-        this.DRAW_TO_SCREEN = false;
-        /* A rectangle that outlines the html canvas */
         this.view = new RectF(left, top, right, bottom);
         /* The workspace that we will be using. Initial sizing */
         this.bounds = new RectF(view_port.center_x - view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y - view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale, view_port.center_x + view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y + view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale);

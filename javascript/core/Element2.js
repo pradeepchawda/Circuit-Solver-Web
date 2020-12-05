@@ -25,27 +25,6 @@ class Element2 {
         /* Node 2 id */
         this.n2 = -1;
         /* The type of component */
-        this.type = -1;
-        /* The unique identifier of the component */
-        this.id = -1;
-        /* The number of inputs or outputs of the device */
-        this.port_size = 2;
-        /* The rotation of the component  */
-        this.rotation = 0;
-        /* The flip of the component */
-        this.flip = 0;
-        /* The instrinsic properties of the component */
-        this.properties = null;
-        /* The wire style of the component */
-        this.wire_style = 0;
-        /* A factor used to make sure the node mapping algorithm doesn't succomb to javascripts
-      inprecise nature. */
-        this.FUDGE_FACTOR = 0.98;
-        /* Node 1 id */
-        this.n1 = -1;
-        /* Node 2 id */
-        this.n2 = -1;
-        /* The type of component */
         this.type = type;
         /* The unique identifier of the component */
         this.id = id;
@@ -60,7 +39,7 @@ class Element2 {
         /* The wire style of the component */
         this.wire_style = 0;
         /* A factor used to make sure the node mapping algorithm doesn't succomb to javascripts
-        inprecise nature. */
+    inprecise nature. */
         this.FUDGE_FACTOR = 0.98;
     }
     /* Set the properties of the component */
@@ -125,7 +104,7 @@ class Element2 {
         return Array(this.n1, this.n2);
     }
     /* A quick check to see if the element is consistent, elements will have
-    -1 as their reference when they are not anchored. */
+  -1 as their reference when they are not anchored. */
     consistent() {
         return this.n1 > -1 && this.n2 > -1;
     }

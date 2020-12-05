@@ -29,29 +29,6 @@ class Element4 {
         /* Node 4 id */
         this.n4 = -1;
         /* The type of component */
-        this.type = -1;
-        /* The unique identifier of the component */
-        this.id = -1;
-        /* The number of inputs or outputs of the device */
-        this.port_size = 4;
-        /* The rotation of the component  */
-        this.rotation = 0;
-        /* The flip of the component */
-        this.flip = 0;
-        /* The instrinsic properties of the component */
-        this.properties = null;
-        /* A factor used to make sure the node mapping algorithm doesn't succomb to javascripts
-      inprecise nature. */
-        this.FUDGE_FACTOR = 0.98;
-        /* Node 1 id */
-        this.n1 = -1;
-        /* Node 2 id */
-        this.n2 = -1;
-        /* Node 3 id */
-        this.n3 = -1;
-        /* Node 4 id */
-        this.n4 = -1;
-        /* The type of component */
         this.type = type;
         /* The unique identifier of the component */
         this.id = id;
@@ -64,7 +41,7 @@ class Element4 {
         /* The instrinsic properties of the component */
         this.properties = properties;
         /* A factor used to make sure the node mapping algorithm doesn't succomb to javascripts
-        inprecise nature. */
+    inprecise nature. */
         this.FUDGE_FACTOR = 0.98;
     }
     /* Set the properties of the component */
@@ -139,7 +116,7 @@ class Element4 {
         return Array(this.n1, this.n2, this.n3, this.n4);
     }
     /* A quick check to see if the element is consistent, elements will have
-    -1 as their reference when they are not anchored. */
+  -1 as their reference when they are not anchored. */
     consistent() {
         return this.n1 > -1 && this.n2 > -1 && this.n3 > -1 && this.n4 > -1;
     }
@@ -160,14 +137,7 @@ class Element4 {
         let n2 = this.to_index(sqrt, x_2, y_2);
         let n3 = this.to_index(sqrt, x_3, y_3);
         let n4 = this.to_index(sqrt, x_4, y_4);
-        if (n1 >= 0 &&
-            n1 < global.settings.MAXNODES &&
-            n2 >= 0 &&
-            n2 < global.settings.MAXNODES &&
-            n3 >= 0 &&
-            n3 < global.settings.MAXNODES &&
-            n4 >= 0 &&
-            n4 < global.settings.MAXNODES) {
+        if (n1 >= 0 && n1 < global.settings.MAXNODES && n2 >= 0 && n2 < global.settings.MAXNODES && n3 >= 0 && n3 < global.settings.MAXNODES && n4 >= 0 && n4 < global.settings.MAXNODES) {
             this.n1 = n1;
             this.n2 = n2;
             this.n3 = n3;

@@ -21,46 +21,6 @@
  ***********************************************************************/
 class GraphicsEngine {
     constructor(ctx) {
-        this.ctx = null;
-        this.fill_paint = new Paint();
-        this.width = 0;
-        this.height = 0;
-        this.x = 0;
-        this.y = 0;
-        this.temp_x = 0;
-        this.temp_y = 0;
-        this.radius = 0;
-        this.general_path = new Path();
-        this.degree = 0;
-        this.r_theta = 0;
-        this.r_x = 0;
-        this.r_y = 0;
-        this.DISABLE_ROUND_RECT = true;
-        this.general_integer = 0;
-        this.padding = 6;
-        this.transform_var_1 = 0;
-        this.transform_var_2 = 0;
-        this.last_alpha = -1;
-        this.last_fill_color = '';
-        this.last_stroke_color = '';
-        this.last_width = -1;
-        this.last_join = '';
-        this.last_font = '';
-        this.last_text_size = -1;
-        this.last_text_baseline = '';
-        this.last_text_align = '';
-        this.last_line_cap = '';
-        this.ENABLE_LINE_JOIN = false;
-        this.FONT_TEMPLATE = 'spx f';
-        this.FAST_PI_MUL_2 = 7;
-        this.dict = null;
-        this.command = '';
-        this.cache = [];
-        this.c_xp = 0;
-        this.c_yp = 0;
-        this.radiusp = 0;
-        this.end_degree_radians = 0;
-        this.start_degree_radians = 0;
         this.ctx = ctx;
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);

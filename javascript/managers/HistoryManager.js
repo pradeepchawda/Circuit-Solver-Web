@@ -25,10 +25,6 @@ class HistoryManager {
         this.history = [];
         /* History index */
         this.history_index = -1;
-        /* A variable to keep track of the changes of the system */
-        this.history = [];
-        /* History index */
-        this.history_index = -1;
     }
     /* Master function to handle the main logic for adding new history events */
     watch() {

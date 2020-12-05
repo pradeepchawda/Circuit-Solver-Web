@@ -23,8 +23,6 @@ class Path {
     constructor() {
         this.path_2d = [];
         this.indexer = 0;
-        this.path_2d = [];
-        this.indexer = 0;
     }
     resize() {
         let temp;
@@ -63,7 +61,7 @@ class Path {
         };
     }
     /* creates a curve from the current location of the path element to the
-    destination point */
+  destination point */
     curve_to(x1, y1, x2, y2, x3, y3) {
         this.path_2d[this.indexer++] = {
             command: 'CURVE',
@@ -76,7 +74,7 @@ class Path {
         };
     }
     /* creates a quadratic bezier spline from the current location of the path element to the
-    destination point */
+  destination point */
     quad_to(x1, y1, x2, y2) {
         this.path_2d[this.indexer++] = {
             command: 'QUAD',

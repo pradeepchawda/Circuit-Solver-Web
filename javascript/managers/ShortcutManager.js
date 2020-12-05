@@ -43,29 +43,6 @@ class ShortcutManager {
         this.command = '';
         this.shift = false;
         this.caps = false;
-        this.SHORTCUT_COPY = global.KEY_CODE_C;
-        this.SHORTCUT_PASTE = global.KEY_CODE_V;
-        this.SHORTCUT_UNDO = global.KEY_CODE_Z;
-        this.SHORTCUT_ADD_ELEMENT = global.KEY_CODE_N;
-        this.SHORTCUT_REDO = global.KEY_CODE_Y;
-        this.SHORTCUT_SAVE_IMAGE = global.KEY_CODE_I;
-        this.SHORTCUT_SAVE_CIRCUIT = global.KEY_CODE_S;
-        this.SHORTCUT_ROTATE = global.KEY_CODE_R;
-        this.SHORTCUT_DELETE = global.KEY_CODE_DELETE;
-        this.SHORTCUT_FLIP = global.KEY_CODE_F;
-        this.SHORTCUT_EDIT = global.KEY_CODE_E;
-        this.SHORTCUT_REMOVE_ALL = global.KEY_CODE_X;
-        this.SHORTCUT_SIMULATE = global.KEY_CODE_A;
-        this.SHORTCUT_QUERY = global.KEY_CODE_Q;
-        this.SHORTCUT_RESET_WINDOW = global.KEY_CODE_M;
-        this.SHORTCUT_TOGGLE_SWITCH = global.KEY_CODE_SPACE;
-        this.MULTI_MOVED_ELEMENT = false;
-        this.MULTI_DELETED_ELEMENT = false;
-        this.ENABLE_ARROW_KEYS = true;
-        this.TEMP_HISTORY_SNAPSHOT = '';
-        this.command = '';
-        this.shift = false;
-        this.caps = false;
     }
     listen(key_event) {
         if (!global.FLAG_SAVE_IMAGE &&

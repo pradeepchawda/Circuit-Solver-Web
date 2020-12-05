@@ -28,53 +28,6 @@ class GraphWindow {
         this.SCOPE_0_INDEX = 0;
         this.SCOPE_1_INDEX = 1;
         this.SCOPE_2_INDEX = 2;
-        /* Padding for the graph window. */
-        this.PADDING = global.CANVAS_STROKE_WIDTH_5;
-        /* This controls the width of the buttons relative to the width of the window */
-        this.BUTTON_WIDTH_RATIO = 0.085;
-        /* This controls the height of the buttons relative to the height of the window */
-        this.BUTTON_HEIGHT_RATIO = 0.05;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.bounds_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* This paint is used for drawing the icons that the component is comprised of. */
-        this.hover_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.graph_text_a_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.graph_text_b_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.graph_text_c_paint = new Paint();
-        this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
-        this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-        this.graph_trace_a = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
-        this.graph_trace_b = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
-        this.graph_trace_c = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
-        this.meter_hover_index = -1;
-        this.time_axis_value = '';
-        this.time_tag = '';
-        this.download_button = new Button(0, 0, 0, 0);
-        /* Enforcing the system from cascading events. */
-        this.first_touch_x = 0;
-        this.first_touch_y = 0;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.line_buffer = [];
-        this.trim = 0;
-        this.width = 0;
-        this.height = 0;
-        this.bounds = new RectF(0, 0, 0, 0);
-        this.inner_bounds = new RectF(0, 0, 0, 0);
-        this.X_AXIS_LENGTH = 1200;
-        this.Y_AXIS_LENGTH = 100;
-        this.RATIO = 0.75;
-        this.SCOPE_0_INDEX = 0;
-        this.SCOPE_1_INDEX = 1;
-        this.SCOPE_2_INDEX = 2;
         this.bounds.left = view_port.left;
         this.bounds.right = view_port.right;
         this.bounds.top = menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
@@ -314,7 +267,7 @@ class GraphWindow {
         this.graph_trace_c.push(value, t);
     }
     /* Catch any mouse events within the graph view, this makes the main program look
-    cleaner! */
+  cleaner! */
     mouse_down() {
         if (global.FLAG_GRAPH) {
             this.first_touch_x = global.mouse_x;
@@ -383,7 +336,7 @@ class GraphWindow {
     }
     mouse_up() { }
     /* This function converts the users xy coordinates into an index so the graph's
-    information can be displayed for easy visualization. */
+  information can be displayed for easy visualization. */
     mouse_hover() {
         if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
             this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.X_AXIS_LENGTH)) * 0.5);
@@ -406,7 +359,7 @@ class GraphWindow {
         if (global.FLAG_GRAPH) {
             /* The graph view is comprised of two views, a main bounds and an inner bounds. */
             /* First we draw the main bounds and then the inner bounds. Note the types of paint
-            being used to draw each one of these portions. */
+      being used to draw each one of these portions. */
             canvas.draw_rect2(this.bounds, this.fill_paint);
             canvas.draw_round_rect2(this.inner_bounds, this.PADDING >> 1, this.line_paint);
             let cached_value = this.x_axis.length >> 1;
@@ -432,8 +385,8 @@ class GraphWindow {
                         canvas.draw_text('0' + scope_manager.get_units(this.SCOPE_0_INDEX), this.inner_bounds.left, this.inner_bounds.top - (this.inner_bounds.top - this.bounds.top) * 0.5, this.graph_text_a_paint);
                     }
                     /* Pick up the time index from the trace, we shall do this 3x, this is out of
-                    laziness in figuring out if theres atleast one scope trace to grab this value
-                    from (they should all be the same! (after the graphs line up) )*/
+          laziness in figuring out if theres atleast one scope trace to grab this value
+          from (they should all be the same! (after the graphs line up) )*/
                     this.time_axis_value = this.graph_trace_a.get_value(this.meter_hover_index)[0];
                     if (global.MOBILE_MODE) {
                         canvas.draw_line(this.bounds.left + this.graph_trace_a.trace[this.meter_hover_index].x, this.inner_bounds.top, this.bounds.left + this.graph_trace_a.trace[this.meter_hover_index].x, this.inner_bounds.bottom, this.line_paint);
@@ -477,7 +430,7 @@ class GraphWindow {
                 }
             }
             /* Draw the time axis value so the user can see if it they scroll over the graph! This
-            is bench-boarding of the meter index (hover) values. */
+      is bench-boarding of the meter index (hover) values. */
             if (scope_manager.ENTRY.length > 0) {
                 if (this.meter_hover_index > -1 &&
                     (this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)) {
@@ -488,7 +441,7 @@ class GraphWindow {
                 }
             }
             /* Let's draw the time stamps for the tick marks! Only one of the scopes has to
-            do it though! */
+      do it though! */
             if (this.graph_trace_a.magnitude_list.length > 0) {
                 /* Stepping at a fixed interval through the elements. */
                 for (var i = Math.round(this.X_AXIS_LENGTH * 0.1); i < Math.round(this.X_AXIS_LENGTH >> 1); i += Math.round(this.X_AXIS_LENGTH * 0.1)) {

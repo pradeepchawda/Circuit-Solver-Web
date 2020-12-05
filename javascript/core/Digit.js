@@ -21,7 +21,6 @@
  ***********************************************************************/
 class Digit {
     constructor(setter) {
-        this.num = 0;
         this.num = setter;
     }
     get_digit() {

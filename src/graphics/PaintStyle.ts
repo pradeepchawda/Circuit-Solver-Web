@@ -20,9 +20,13 @@
  *
  ***********************************************************************/
 class PaintStyle {
-  public readonly STROKE: number = 0;
-  public readonly FILL: number = 1;
-  public readonly FILL_AND_STROKE: number = 2;
+	public readonly STROKE: number;
+	public readonly FILL: number;
+	public readonly FILL_AND_STROKE: number;
 
-  constructor() {}
+	constructor() {
+		this.STROKE = 0;
+		this.FILL = 1;
+		this.FILL_AND_STROKE = 2;
+	}
 }

@@ -20,15 +20,15 @@
  *
  ***********************************************************************/
 class NodeReference {
-  /* id of the node */
-  public id: number = -1;
-  /* The type of component attached to this node */
-  public type: number = -1;
+	/* id of the node */
+	public id: number;
+	/* The type of component attached to this node */
+	public type: number;
 
-  constructor(id: number, type: number) {
-    /* id of the node */
-    this.id = id;
-    /* The type of component attached to this node */
-    this.type = type;
-  }
+	constructor(id: number, type: number) {
+		/* id of the node */
+		this.id = id;
+		/* The type of component attached to this node */
+		this.type = type;
+	}
 }

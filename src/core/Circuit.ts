@@ -20,11 +20,11 @@
  *
  ***********************************************************************/
 class Circuit {
-  public title: string = 'untitled';
-  public content: string = '';
+	public title: string;
+	public content: string;
 
-  constructor() {
-    this.title = 'untitled';
-    this.content = '';
-  }
+	constructor() {
+		this.title = 'untitled';
+		this.content = '';
+	}
 }

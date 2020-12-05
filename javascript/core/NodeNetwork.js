@@ -24,9 +24,6 @@ class NodeNetwork {
     constructor(node_a, node_b) {
         this.references = [];
         this.lowest = -1;
-        this.general_boolean = false;
-        this.references = [];
-        this.lowest = -1;
         if (node_a != node_b) {
             this.references.push(node_a);
             this.references.push(node_b);

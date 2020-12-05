@@ -29,32 +29,6 @@ class BottomMenu {
         this.FILE_BUTTON_TEXT_TEMPLATE = '  {TEXT}  ';
         /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* The trim along the bottom side of the screen. We use a path to draw the arbitrary shape. */
-        this.bottom_path = new Path();
-        /* A button to access the users files. This will eventually be a call to a database once i get
-      that setup. */
-        this.file_button = new Button(view_port.left, menu_bar.settings_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_4, view_port.left + 1, view_port.bottom);
-        /* This is so that the user may pick the timestep when the "automatic_timestep" settings is off.
-      When it is on, the system shall figure out a good starting point and change the timestep to this
-      value. */
-        this.time_step_button = new Button(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_4, view_port.right, view_port.bottom);
-        this.first_touch_x = 0;
-        this.first_touch_y = 0;
-        this.INITIAL_RESIZE_COUNTER = 0;
-        this.INITIAL_RESIZE_COUNTER_MAX = global.CANVAS_REDRAW_MAX;
-        this.RELOAD_BOTTOM_PATH = true;
-        /* A flag to dictate if we draw the bottom path or not. */
-        this.DRAW_BOTTOM_PATH = true;
-        this.TIME_STEP_BUTTON_WIDTH = 1;
-        this.VERSION_TAG_TEMPLATE = 'v{VERSION_TAG}   ';
-        this.TIMESTEP_TEMPLATE = 'Δt:={TIMESTEP}s';
-        this.FILE_BUTTON_TEXT_TEMPLATE = '  {TEXT}  ';
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
@@ -93,7 +67,7 @@ class BottomMenu {
         /* The trim along the bottom side of the screen. We use a path to draw the arbitrary shape. */
         this.bottom_path = new Path();
         /* A button to access the users files. This will eventually be a call to a database once i get
-        that setup. */
+    that setup. */
         this.file_button = new Button(view_port.left, menu_bar.settings_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_4, view_port.left + 1, view_port.bottom);
         this.file_button.text = '';
         this.file_button.draw_stroke = false;
@@ -101,8 +75,8 @@ class BottomMenu {
         this.file_button.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
         this.file_button.resize_paint();
         /* This is so that the user may pick the timestep when the "automatic_timestep" settings is off.
-        When it is on, the system shall figure out a good starting point and change the timestep to this
-        value. */
+    When it is on, the system shall figure out a good starting point and change the timestep to this
+    value. */
         this.time_step_button = new Button(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_4, view_port.right, view_port.bottom);
         this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
         this.time_step_button.draw_stroke = false;

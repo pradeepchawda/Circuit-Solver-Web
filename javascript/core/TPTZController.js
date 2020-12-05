@@ -22,18 +22,6 @@
  ***********************************************************************/
 class TPTZController {
     constructor(tptz_buffer) {
-        this.buffer = [];
-        this.x = [0, 0];
-        this.y = [0, 0];
-        this.a1 = 0;
-        this.a2 = 1;
-        this.b0 = 2;
-        this.b1 = 3;
-        this.b2 = 4;
-        this.n_1 = 0;
-        this.n_2 = 1;
-        this.center = 0;
-        this._y = 0;
         this.buffer = global.copy(tptz_buffer);
         this.x = [0, 0];
         this.y = [0, 0];

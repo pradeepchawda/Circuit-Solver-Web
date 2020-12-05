@@ -33,49 +33,7 @@ class Paint {
         this.baseline = new PaintBaseline();
         /* A color object to hold the color of the paint using TinyColor */
         /* Don't use global, not sure what the order of the calls are but it errors out...
-          thanks javascript. */
-        this.color = '#000000';
-        /* The stroke width of the paint element */
-        this.stroke_width = 1;
-        /* The paint style of the paint element */
-        this.paint_style = this.style.STROKE;
-        /* The paint cap of the paint element */
-        this.paint_cap = this.cap.ROUND;
-        this.paint_join = this.join.MITER;
-        /* The alignment of the text when drawing drawing text. */
-        this.text_align = this.align.CENTER;
-        /* The paint cap of the paint element */
-        this.text_baseline = this.baseline.MIDDLE;
-        /* The text size of the paint element */
-        this.text_size = 1;
-        /* The font of the paint element */
-        this.font = 'Arial';
-        /* The alpha (transparency) of the paint element */
-        this.alpha = 1;
-        /* A maintained array of computed text sizes.*/
-        this.metric_array = [];
-        this.saved_metric = null;
-        this.GARBAGE_COLLECTOR_SIZE = 16;
-        this.temp_boolean = false;
-        this.general_index = 0;
-        this.FONT_TEMPLATE = 'spx f';
-        this.paint_surface = new VirtualCanvas(1, 1, -1);
-        this.last_font = '';
-        this.last_text_size = -1;
-        this.metric = null;
-        /* A paint style to standardize the different styles available in the html canvas */
-        this.style = new PaintStyle();
-        /* A paint align to standardize the different alignments available in the html canvas */
-        this.align = new PaintAlign();
-        /* A paint cap to standardize the different alignments available in the html canvas */
-        this.cap = new PaintCap();
-        /* A paint join to standardize the different alignments available in the html canvas */
-        this.join = new PaintJoin();
-        /* A paint text baseline to standardize the different alignments available in the html canvas */
-        this.baseline = new PaintBaseline();
-        /* A color object to hold the color of the paint using TinyColor */
-        /* Don't use global, not sure what the order of the calls are but it errors out...
-        thanks javascript. */
+    thanks javascript. */
         this.color = '#000000';
         /* The stroke width of the paint element */
         this.stroke_width = 1;

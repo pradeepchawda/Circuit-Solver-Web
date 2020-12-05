@@ -22,13 +22,7 @@
 class NodeManager {
     constructor() {
         /* The list of active nodes, it makes it easier when building the circuit.
-      public is just a list of their id's  */
-        this.active_nodes = [];
-        /* All the active nodes (filtered w/ ground and wire connections.) */
-        /* This is done to gurantee we are solving the smallest possible circuit. */
-        this.unique_nodes = [];
-        /* The list of active nodes, it makes it easier when building the circuit.
-        This is just a list of their id's  */
+    This is just a list of their id's  */
         this.active_nodes = [];
         /* All the active nodes (filtered w/ ground and wire connections.) */
         /* This is done to gurantee we are solving the smallest possible circuit. */

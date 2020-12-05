@@ -20,34 +20,34 @@
  *
  ***********************************************************************/
 class EngineFunctions {
-	public node_1: number = -1;
-	public node_2: number = -1;
-	public node_3: number = -1;
-	public node_4: number = -1;
-	public offset: number = -1;
-	public temp: number = -1;
-	public temp2: number = -1;
-	public output: number = -1;
-	public v_node_1: number = 0;
-	public v_node_2: number = 0;
-	public meta_data: Metadata = new Metadata();
+	public node_1: number;
+	public node_2: number;
+	public node_3: number;
+	public node_4: number;
+	public offset: number;
+	public temp: number;
+	public temp2: number;
+	public output: number;
+	public v_node_1: number;
+	public v_node_2: number;
+	public meta_data: Metadata;
 	/* Temporary position holders for the generation of new elements. */
-	public x1: number = -1;
-	public y1: number = -1;
-	public x2: number = -1;
-	public y2: number = -1;
-	public x3: number = -1;
-	public y3: number = -1;
-	public x4: number = -1;
-	public y4: number = -1;
+	public x1: number;
+	public y1: number;
+	public x2: number;
+	public y2: number;
+	public x3: number;
+	public y3: number;
+	public x4: number;
+	public y4: number;
 	/* Solely for mapping nodes (single nodes) baby! */
-	public mapper1: Element1 = new Element1(-1, -1, global.NULL);
+	public mapper1: Element1;
 	/* Solely for mapping nodes (double nodes) baby! */
-	public mapper2: Element2 = new Element2(-1, -1, global.NULL);
+	public mapper2: Element2;
 	/* Solely for mapping nodes (triple nodes) baby! */
-	public mapper3: Element3 = new Element3(-1, -1, global.NULL);
+	public mapper3: Element3;
 	/* Solely for mapping nodes (quadruple nodes) baby! */
-	public mapper4: Element4 = new Element4(-1, -1, global.NULL);
+	public mapper4: Element4;
 
 	constructor() {
 		this.node_1 = -1;
