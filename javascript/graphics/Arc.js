@@ -21,6 +21,7 @@
 class Arc {
     constructor(x1, y1, x2, y2, amplitude) {
         /* A paint object to paint the arc with. */
+        this.arc_paint = new Paint();
         this.arc_paint.set_paint_style(this.arc_paint.style.STROKE);
         this.arc_paint.set_paint_cap(this.arc_paint.cap.ROUND);
         this.arc_paint.set_paint_join(this.arc_paint.join.MITER);

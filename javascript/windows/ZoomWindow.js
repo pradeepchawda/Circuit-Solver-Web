@@ -24,52 +24,6 @@ class ZoomWindow {
         this.PADDING = 0.025;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.bounds_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.option_0_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.option_1_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.option_2_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.option_3_paint = new Paint();
-        this.options = {
-            c0: {
-                string: '50%',
-                number: 0.5
-            },
-            c1: {
-                string: '100%',
-                number: 1.0
-            },
-            c2: {
-                string: '200%',
-                number: 2.0
-            },
-            c3: {
-                string: 'N/A',
-                number: -1
-            }
-        };
-        this.width = view_port.view_width * 0.1;
-        this.height = view_port.view_height * 0.075;
-        this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
-        this.option_0 = new RectF(0, 0, 0, 0);
-        this.option_1 = new RectF(0, 0, 0, 0);
-        this.option_2 = new RectF(0, 0, 0, 0);
-        this.option_3 = new RectF(0, 0, 0, 0);
-        /* Enforcing the system from cascading events. */
-        this.first_touch_x = 0;
-        this.first_touch_y = 0;
-        /* The padding for the window */
-        this.PADDING = 0.025;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);

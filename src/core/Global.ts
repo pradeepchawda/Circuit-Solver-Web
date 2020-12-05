@@ -19,88 +19,84 @@
  *
  ***********************************************************************/
 class Global {
-	public readonly NULL: any = null;
-	public readonly MOBILE_MODE: boolean = false;
-	public system_initialization: SYSTEM_INITIALIZATION_T = {
-		step: 0,
-		max: 5,
-		completed: false
-	};
-	public readonly VERSION_TAG: string = 'BETA-1.0.93';
+	public readonly NULL: any;
+	public readonly MOBILE_MODE: boolean;
+	public system_initialization: SYSTEM_INITIALIZATION_T;
+	public readonly VERSION_TAG: string;
 	/* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
-	public workspace_zoom_scale: number = 2.5;
+	public workspace_zoom_scale: number;
 	/* The maximum amount of zoom the user may apply */
-	public readonly ZOOM_MAX: number = 3.5;
+	public readonly ZOOM_MAX: number;
 	/* The minimum amount of zoom the user may apply */
-	public readonly ZOOM_MIN: number = 1.0;
-	public readonly ZERO_PT_FIVE: number = 0.5;
-	public readonly ZERO: number = 0 >> 0;
-	public node_line_buffer: Array<Array<number>> = [];
-	public node_line_buffer_index: number = 0;
+	public readonly ZOOM_MIN: number;
+	public readonly ZERO_PT_FIVE: number;
+	public readonly ZERO: number;
+	public node_line_buffer: Array<Array<number>>;
+	public node_line_buffer_index: number;
 	/* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
-	public ZOOM_FACTOR: number = 1.085;
+	public ZOOM_FACTOR: number;
 	/* These are used a relative metric to know how much to change the view of the
     workspace when a zooming event takes place */
-	public natural_width: number = 0;
-	public natural_height: number = 0;
+	public natural_width: number;
+	public natural_height: number;
 	/* User settings, very handy to make them global. */
-	public settings: Settings = new Settings();
+	public settings: Settings;
 	/* Don't change the name of these guys...the obfuscator is referenced to their names.*/
-	public DEVELOPER_MODE: boolean = false;
-	public PRODUCTION_MODE: boolean = false;
+	public DEVELOPER_MODE: boolean;
+	public PRODUCTION_MODE: boolean;
 	/* Generic Templates to avoid string concatenation. */
-	public readonly ELEMENT_TAG_TEMPLATE: string = '{TAG}{ID}';
-	public readonly ELEMENT_VAL_TEMPLATE: string = '{VAL}{UNIT}';
-	public readonly DIVISION_TEXT_TEMPLATE: string = '{A} / {B}';
-	public readonly PIXEL_TEMPLATE: string = '{VALUE}px';
-	public readonly PNG_TEMPLATE: string = '{NAME}.png';
+	public readonly ELEMENT_TAG_TEMPLATE: string;
+	public readonly ELEMENT_VAL_TEMPLATE: string;
+	public readonly DIVISION_TEXT_TEMPLATE: string;
+	public readonly PIXEL_TEMPLATE: string;
+	public readonly PNG_TEMPLATE: string;
 	/* To help with system settings. */
-	public readonly ON: string = 'ON';
-	public readonly OFF: string = 'OFF';
+	public readonly ON: string;
+	public readonly OFF: string;
 	/* Keeping track of the virtual canvas's we create. */
-	public virtual_canvas_id: number = 0;
+	public virtual_canvas_id: number;
 	/* Constants for different elements in the application. */
 	/* Meta data is reserved for storing user info when exporting / importing circuits */
 	/* When we generate the output text file, it sits on the first portion of the file. */
-	public readonly TYPE_META_DATA: number = -2;
+	public readonly TYPE_META_DATA: number;
 	/* Using a counter to keep track of the size of elements. */
-	public TYPE_COUNTER: number = 0;
+	public TYPE_COUNTER: number;
 	/* #INSERT_GENERATE_ELEMENT_TYPE# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-	public TYPE_RESISTOR: number = this.TYPE_COUNTER++;
-	public TYPE_CAPACITOR: number = this.TYPE_COUNTER++;
-	public TYPE_INDUCTOR: number = this.TYPE_COUNTER++;
-	public TYPE_GROUND: number = this.TYPE_COUNTER++;
-	public TYPE_DCSOURCE: number = this.TYPE_COUNTER++;
-	public TYPE_DCCURRENT: number = this.TYPE_COUNTER++;
-	public TYPE_ACSOURCE: number = this.TYPE_COUNTER++;
-	public TYPE_ACCURRENT: number = this.TYPE_COUNTER++;
-	public TYPE_SQUAREWAVE: number = this.TYPE_COUNTER++;
-	public TYPE_SAW: number = this.TYPE_COUNTER++;
-	public TYPE_TRI: number = this.TYPE_COUNTER++;
-	public TYPE_CONSTANT: number = this.TYPE_COUNTER++;
-	public TYPE_WIRE: number = this.TYPE_COUNTER++;
-	public TYPE_NET: number = this.TYPE_COUNTER++;
-	public TYPE_NOTE: number = this.TYPE_COUNTER++;
-	public TYPE_RAIL: number = this.TYPE_COUNTER++;
-	public TYPE_VOLTMETER: number = this.TYPE_COUNTER++;
-	public TYPE_OHMMETER: number = this.TYPE_COUNTER++;
-	public TYPE_AMMETER: number = this.TYPE_COUNTER++;
-	public TYPE_WATTMETER: number = this.TYPE_COUNTER++;
-	public TYPE_FUSE: number = this.TYPE_COUNTER++;
-	public TYPE_SPST: number = this.TYPE_COUNTER++;
-	public TYPE_SPDT: number = this.TYPE_COUNTER++;
-	public TYPE_NOT: number = this.TYPE_COUNTER++;
-	public TYPE_DIODE: number = this.TYPE_COUNTER++;
-	public TYPE_LED: number = this.TYPE_COUNTER++;
-	public TYPE_ZENER: number = this.TYPE_COUNTER++;
-	public TYPE_POTENTIOMETER: number = this.TYPE_COUNTER++;
-	public TYPE_AND: number = this.TYPE_COUNTER++;
-	public TYPE_OR: number = this.TYPE_COUNTER++;
-	public TYPE_NAND: number = this.TYPE_COUNTER++;
-	public TYPE_NOR: number = this.TYPE_COUNTER++;
-	public TYPE_XOR: number = this.TYPE_COUNTER++;
-	public TYPE_XNOR: number = this.TYPE_COUNTER++;
+	public TYPE_RESISTOR: number;
+	public TYPE_CAPACITOR: number;
+	public TYPE_INDUCTOR: number;
+	public TYPE_GROUND: number;
+	public TYPE_DCSOURCE: number;
+	public TYPE_DCCURRENT: number;
+	public TYPE_ACSOURCE: number;
+	public TYPE_ACCURRENT: number;
+	public TYPE_SQUAREWAVE: number;
+	public TYPE_SAW: number;
+	public TYPE_TRI: number;
+	public TYPE_CONSTANT: number;
+	public TYPE_WIRE: number;
+	public TYPE_NET: number;
+	public TYPE_NOTE: number;
+	public TYPE_RAIL: number;
+	public TYPE_VOLTMETER: number;
+	public TYPE_OHMMETER: number;
+	public TYPE_AMMETER: number;
+	public TYPE_WATTMETER: number;
+	public TYPE_FUSE: number;
+	public TYPE_SPST: number;
+	public TYPE_SPDT: number;
+	public TYPE_NOT: number;
+	public TYPE_DIODE: number;
+	public TYPE_LED: number;
+	public TYPE_ZENER: number;
+	public TYPE_POTENTIOMETER: number;
+	public TYPE_AND: number;
+	public TYPE_OR: number;
+	public TYPE_NAND: number;
+	public TYPE_NOR: number;
+	public TYPE_XOR: number;
+	public TYPE_XNOR: number;
 	public TYPE_DFF: number;
 	public TYPE_VSAT: number;
 	public TYPE_ADD: number;
@@ -140,6 +136,8 @@ class Global {
 	public readonly ROTATION_90: number;
 	public readonly ROTATION_180: number;
 	public readonly ROTATION_270: number;
+	public readonly FLIP_0: number;
+	public readonly FLIP_180: number;
 	/* Constants for the different styles the wire can display */
 	/* Each wire has a property for changing it's appearance. These are the different
     styles that can be applied to the wire.  */
@@ -148,9 +146,7 @@ class Global {
 	public readonly WIRE_STYLE_2: number;
 	public readonly WIRE_STYLE_3: number;
 	public readonly WIRE_STYLE_4: number;
-	/* Constants for the different flips, 0 = normal, 180 = flipped over y-axis */
-	/* Some components like the OPAMPs and Transistors have the ability to be flipped. */
-	public readonly FLIP_0: number;
+	/* Constants for the different flips, 0;
 	public readonly FLIP_180: number;
 	/* A setting to help facillitate controlling one object at a time */
 	/* Each object has access to this global variable. */
@@ -273,20 +269,8 @@ class Global {
 	public readonly TEXT_STYLE_4: string;
 	public readonly TEXT_STYLE_5: string;
 	/* Storing key events in this template so they can be serialized */
-	public key_down_event: KEY_EVENT_T = {
-		event: null,
-		alt: false,
-		shift: false,
-		ctrl: false,
-		caps: false
-	};
-	public key_up_event: KEY_EVENT_T = {
-		event: null,
-		alt: false,
-		shift: false,
-		ctrl: false,
-		caps: false
-	};
+	public key_down_event: KEY_EVENT_T;
+	public key_up_event: KEY_EVENT_T;
 	/* Storing key events into queue's to prevent keystrokes from being missed. */
 	public key_down_event_queue: Array<KEY_EVENT_T>;
 	public key_up_event_queue: Array<KEY_EVENT_T>;
@@ -330,1022 +314,147 @@ class Global {
 	public last_view_port_right: number;
 	public last_view_port_bottom: number;
 	/* Used to determine which wire point is associated to an elements nodes. */
-	public ANCHOR_POINT: ANCHOR_POINT_T = {
-		p1: 0,
-		p2: 1,
-		p3: 2,
-		p4: 3
-	};
+	public ANCHOR_POINT: ANCHOR_POINT_T;
 	/* Store the pre-divided SI units to save some computation time. */
 	public SI_UNIT_ARRAY: Array<number>;
 	/* Cache the thresholds.. */
-	public SI_UNIT_THRESHOLD_ARRAY: Array<number> = [
-		0.99 * 1e21,
-		0.99 * 1e18,
-		0.99 * 1e15,
-		0.99 * 1e12,
-		0.99 * 1e9,
-		0.99 * 1e6,
-		0.99 * 1e3,
-		0.99 * 1,
-		0.99 * 1e-3,
-		0.99 * 1e-6,
-		0.99 * 1e-9,
-		0.99 * 1e-12,
-		0.99 * 1e-15,
-		0.99 * 1e-18,
-		0.99 * 1e-21
-	];
+	public SI_UNIT_THRESHOLD_ARRAY: Array<number>;
 	public SI_UNIT_ABBREVIATION: Array<string>;
 	/* To facilitate the generation of new wires. */
-	public WIRE_BUILDER: WIRE_BUILDER_T = {
-		n1: -1,
-		id1: -1,
-		type1: -1,
-		anchor_point1: -1,
-		linkage1: {
-			wire: -1
-		},
-		n2: -1,
-		id2: -1,
-		type2: -1,
-		anchor_point2: -1,
-		linkage2: {
-			wire: -1
-		},
-		step: 0
-	};
+	public WIRE_BUILDER: WIRE_BUILDER_T;
 	/* Accessing the limits of each variable in the element properties structures below.*/
 	public readonly PROPERTY_LIMIT_MIN: number;
 	public readonly PROPERTY_LIMIT_MAX: number;
 	/* A builder to help create new wires. */
-	public readonly WIRE_REFERENCE: WIRE_REFERENCE_T = {
-		wire_id: -1,
-		anchor_point: -1,
-		linkage: -1
-	};
+	public readonly WIRE_REFERENCE: WIRE_REFERENCE_T;
 	/* Structure for saving meta data details */
-	public readonly PROPERTY_META_DATA: PROPERTY_META_DATA_T = {
-		company: 'phasorsystems',
-		version: this.VERSION_TAG,
-		date: ''
-	};
+	public readonly PROPERTY_META_DATA: PROPERTY_META_DATA_T;
 	/* Base structure for resistor properties */
-	public readonly PROPERTY_RESISTOR: PROPERTY_RESISTOR_T = {
-		Resistance: 1.0e3,
-		tag: 'R',
-		units: 'Ω',
-		options: ['Resistance'],
-		options_units: ['Ω'],
-		option_limits: {
-			Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
-		}
-	};
+	public readonly PROPERTY_RESISTOR: PROPERTY_RESISTOR_T;
 	/* Base structure for SPST properties */
-	public readonly PROPERTY_SPST: PROPERTY_SPST_T = {
-		'Open Resistance': this.settings.R_MAX * 0.5,
-		'Closed Resistance': this.settings.WIRE_RESISTANCE,
-		'Switch State': this.OFF,
-		'tag': 'SPST',
-		'units': 'Ω',
-		'options': ['Closed Resistance', 'Switch State'],
-		'options_units': ['Ω', ''],
-		'option_limits': {
-			'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
-		}
-	};
+	public readonly PROPERTY_SPST: PROPERTY_SPST_T;
 	/* Base structure for NOT properties */
-	public readonly PROPERTY_NOT: PROPERTY_NOT_T = {
-		'High Voltage': 5,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'NOT',
-		'units': 'V',
-		'options': ['High Voltage'],
-		'options_units': ['V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_NOT: PROPERTY_NOT_T;
 	/* Base structure for diode properties */
-	public readonly PROPERTY_DIODE: PROPERTY_DIODE_T = {
-		'Emission Coefficient': 1,
-		'Saturation Current': 1e-15,
-		'Equivalent Current': 0,
-		'Voltage': 0,
-		'Last Voltage': 0,
-		'Last Current': 0,
-		'Resistance': 1.0 / this.settings.R_MAX,
-		'tag': 'DIO',
-		'units': '',
-		'options': ['Emission Coefficient', 'Saturation Current'],
-		'options_units': ['', 'A'],
-		'option_limits': {
-			'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
-		}
-	};
+	public readonly PROPERTY_DIODE: PROPERTY_DIODE_T;
 	/* Base structure for led properties */
-	public readonly PROPERTY_LED: PROPERTY_LED_T = {
-		'Emission Coefficient': 3.73,
-		'Saturation Current': 93.2e-12,
-		'Wavelength': 425,
-		'Turn On Current': 20e-3,
-		'Equivalent Current': 0,
-		'Voltage': 0,
-		'Last Voltage': 0,
-		'Last Current': 0,
-		'Resistance': 1.0 / this.settings.R_MAX,
-		'tag': 'LED',
-		'units': '',
-		'options': ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
-		'options_units': ['', 'A', 'nm'],
-		'option_limits': {
-			'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-			'Wavelength': [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
-		}
-	};
+	public readonly PROPERTY_LED: PROPERTY_LED_T;
 	/* Base structure for zener properties */
-	public readonly PROPERTY_ZENER: PROPERTY_ZENER_T = {
-		'Zener Voltage': 5.6,
-		'Emission Coefficient': 1,
-		'Saturation Current': 1e-15,
-		'Equivalent Current': 0,
-		'Voltage': 0,
-		'Last Voltage': 0,
-		'Last Current': 0,
-		'Resistance': 1.0 / this.settings.R_MAX,
-		'tag': 'ZEN',
-		'units': '',
-		'options': ['Zener Voltage', 'Emission Coefficient', 'Saturation Current'],
-		'options_units': ['V', '', 'A'],
-		'option_limits': {
-			'Zener Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Emission Coefficient': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
-		}
-	};
+	public readonly PROPERTY_ZENER: PROPERTY_ZENER_T;
 	/* Base structure for voltmeter properties */
-	public readonly PROPERTY_VOLTMETER: PROPERTY_VOLTMETER_T = {
-		Voltage: 0,
-		tag: 'VM',
-		units: 'V',
-		options: [''],
-		options_units: [''],
-		option_limits: {}
-	};
+	public readonly PROPERTY_VOLTMETER: PROPERTY_VOLTMETER_T;
 	/* Base structure for voltmeter properties */
-	public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T = {
-		'Wattage': 0,
-		'Test Voltage': 1e-9,
-		'tag': 'WM',
-		'units': 'W',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T;
 	/* Base structure for ammeter properties */
-	public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T = {
-		'Current': 0,
-		'Test Voltage': 1e-9,
-		'tag': 'AM',
-		'units': 'A',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T;
 	/* Base structure for ohmmeter properties */
-	public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T = {
-		'Sensed Resistance': 0,
-		'Test Voltage': 1e-9,
-		'tag': 'OM',
-		'units': 'Ω',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T;
 	/* Base structure for resistor properties */
-	public readonly PROPERTY_WIRE: PROPERTY_WIRE_T = {
-		tag: 'W',
-		units: 'Ω',
-		options: [''],
-		options_units: [''],
-		option_limits: {}
-	};
+	public readonly PROPERTY_WIRE: PROPERTY_WIRE_T;
 	/* Base structure for dc source properties */
-	public readonly PROPERTY_DCSOURCE: PROPERTY_DCSOURCE_T = {
-		Voltage: 12,
-		tag: 'DC',
-		units: 'V',
-		options: ['Voltage'],
-		options_units: ['V'],
-		option_limits: {
-			Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_DCSOURCE: PROPERTY_DCSOURCE_T;
 	/* Base structure for ac source properties */
-	public readonly PROPERTY_ACSOURCE: PROPERTY_ACSOURCE_T = {
-		Voltage: 12,
-		Frequency: 60,
-		Phase: 0,
-		Offset: 0,
-		tag: 'AC',
-		units: 'V',
-		options: ['Voltage', 'Frequency', 'Phase', 'Offset'],
-		options_units: ['V', 'Hz', ' º', 'V'],
-		option_limits: {
-			Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Frequency: [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
-			Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
-			Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_ACSOURCE: PROPERTY_ACSOURCE_T;
 	/* Base structure for square wave source properties */
-	public readonly PROPERTY_SQUAREWAVE: PROPERTY_SQUAREWAVE_T = {
-		Voltage: 12,
-		Frequency: 60,
-		Duty: 50,
-		Offset: 0,
-		tag: 'SQ',
-		units: 'V',
-		options: ['Voltage', 'Frequency', 'Duty', 'Offset'],
-		options_units: ['V', 'Hz', '%', 'V'],
-		option_limits: {
-			Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Frequency: [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
-			Duty: [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
-			Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_SQUAREWAVE: PROPERTY_SQUAREWAVE_T;
 	/* Base structure for ac source properties */
-	public readonly PROPERTY_ACCURRENT: PROPERTY_ACCURRENT_T = {
-		Current: 12,
-		Frequency: 60,
-		Phase: 0,
-		Offset: 0,
-		tag: 'ACC',
-		units: 'A',
-		options: ['Current', 'Frequency', 'Phase', 'Offset'],
-		options_units: ['A', 'Hz', ' º', 'A'],
-		option_limits: {
-			Current: [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-			Frequency: [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
-			Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
-			Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_CURRENT]
-		}
-	};
+	public readonly PROPERTY_ACCURRENT: PROPERTY_ACCURRENT_T;
 	/* Base structure for dc current properties */
-	public readonly PROPERTY_DCCURRENT: PROPERTY_DCCURRENT_T = {
-		Current: 12,
-		tag: 'DCC',
-		units: 'A',
-		options: ['Current'],
-		options_units: ['A'],
-		option_limits: {
-			Current: [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
-		}
-	};
+	public readonly PROPERTY_DCCURRENT: PROPERTY_DCCURRENT_T;
 	/* Base structure for capacitor properties */
-	public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T = {
-		'Capacitance': 1.0e-6,
-		'Transient Resistance': this.settings.R_MAX,
-		'Transient Current': 0,
-		'Equivalent Current': 0,
-		'Initial Voltage': 0,
-		'Transient Voltage': 0,
-		'tag': 'C',
-		'units': 'F',
-		'options': ['Capacitance', 'Initial Voltage'],
-		'options_units': ['F', 'V'],
-		'option_limits': {
-			'Capacitance': [this.settings.MIN_CAPACITANCE, this.settings.MAX_CAPACITANCE],
-			'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T;
 	/* Base structure for inductor properties */
-	public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T = {
-		'Inductance': 1.0e-3,
-		'Transient Resistance': this.settings.R_MAX,
-		'Transient Current': 0,
-		'Equivalent Current': 0,
-		'Initial Current': 0,
-		'Transient Voltage': 0,
-		'tag': 'I',
-		'units': 'H',
-		'options': ['Inductance', 'Initial Current'],
-		'options_units': ['H', 'A'],
-		'option_limits': {
-			'Inductance': [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
-			'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
-		}
-	};
+	public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T;
 	/* Base structure for ground properties */
-	public readonly PROPERTY_GROUND: PROPERTY_GROUND_T = {
-		tag: 'G',
-		units: ''
-	};
+	public readonly PROPERTY_GROUND: PROPERTY_GROUND_T;
 	/* Base structure for net properties */
-	public readonly PROPERTY_NET: PROPERTY_NET_T = {
-		'Name': 'Net',
-		'tag': 'N',
-		'Show Name': this.ON,
-		'units': '',
-		'options': ['Name', 'Show Name'],
-		'options_units': ['', ''],
-		/* This element doesn't have one! */
-		'option_limits': {
-			Name: [-1, 1]
-		}
-	};
+	public readonly PROPERTY_NET: PROPERTY_NET_T;
 	/* Base structure for constant properties */
-	public readonly PROPERTY_CONSTANT: PROPERTY_CONSTANT_T = {
-		Voltage: 12,
-		tag: 'CV',
-		units: 'V',
-		options: ['Voltage'],
-		options_units: ['V'],
-		option_limits: {
-			Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_CONSTANT: PROPERTY_CONSTANT_T;
 	/* Base structure for potentiometer properties */
-	public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T = {
-		'Resistance': 1e3,
-		'Wiper Percentage': 50,
-		'tag': 'P',
-		'units': 'Ω',
-		'options': ['Resistance', 'Wiper Percentage'],
-		'options_units': ['Ω', '%'],
-		'option_limits': {
-			'Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5],
-			'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
-		}
-	};
+	public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T;
 	/* Base structure for and properties */
-	public readonly PROPERTY_AND: PROPERTY_AND_T = {
-		'High Voltage': 5,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'AND',
-		'units': 'V',
-		'options': ['High Voltage'],
-		'options_units': ['V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_AND: PROPERTY_AND_T;
 	/* Base structure for or properties */
-	public readonly PROPERTY_OR: PROPERTY_OR_T = {
-		'High Voltage': 5,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'OR',
-		'units': 'V',
-		'options': ['High Voltage'],
-		'options_units': ['V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_OR: PROPERTY_OR_T;
 	/* Base structure for nand properties */
-	public readonly PROPERTY_NAND: PROPERTY_NAND_T = {
-		'High Voltage': 5,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'NAND',
-		'units': 'V',
-		'options': ['High Voltage'],
-		'options_units': ['V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_NAND: PROPERTY_NAND_T;
 	/* Base structure for nor properties */
-	public readonly PROPERTY_NOR: PROPERTY_NOR_T = {
-		'High Voltage': 5,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'NOR',
-		'units': 'V',
-		'options': ['High Voltage'],
-		'options_units': ['V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_NOR: PROPERTY_NOR_T;
 	/* Base structure for xor properties */
-	public readonly PROPERTY_XOR: PROPERTY_XOR_T = {
-		'High Voltage': 5,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'XOR',
-		'units': 'V',
-		'options': ['High Voltage'],
-		'options_units': ['V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_XOR: PROPERTY_XOR_T;
 	/* Base structure for xnor properties */
-	public readonly PROPERTY_XNOR: PROPERTY_XNOR_T = {
-		'High Voltage': 5,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'XNOR',
-		'units': 'V',
-		'options': ['High Voltage'],
-		'options_units': ['V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_XNOR: PROPERTY_XNOR_T;
 	/* Base structure for vcsw properties */
-	public readonly PROPERTY_VCSW: PROPERTY_VCSW_T = {
-		'High Voltage': 5,
-		'Closed Resistance': 1.0 / this.settings.R_MAX,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'VCSW',
-		'units': 'V',
-		'options': ['High Voltage', 'Closed Resistance'],
-		'options_units': ['V', 'Ω'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
-		}
-	};
+	public readonly PROPERTY_VCSW: PROPERTY_VCSW_T;
 	/* Base structure for vcr properties */
-	public readonly PROPERTY_VCR: PROPERTY_VCR_T = {
-		'Low Voltage': 0,
-		'High Voltage': 1,
-		'Elm0': 1e3,
-		'Elm1': 1e3,
-		'Elm2': 1e3,
-		'Elm3': 1e3,
-		'Elm4': 1e3,
-		'Interpolate': this.ON,
-		'Input Voltage': 0,
-		'Output Resistance': this.settings.WIRE_RESISTANCE,
-		'tag': 'VCR',
-		'units': 'V',
-		'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-		'options_units': ['Ω', 'Ω', 'Ω', 'Ω', 'Ω', ''],
-		'option_limits': {
-			Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm3: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm4: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Interpolate: ['', '']
-		}
-	};
+	public readonly PROPERTY_VCR: PROPERTY_VCR_T;
 	/* Base structure for vcvs properties */
-	public readonly PROPERTY_VCVS: PROPERTY_VCVS_T = {
-		Gain: 1,
-		tag: 'VCVS',
-		units: 'V/V',
-		options: ['Gain'],
-		options_units: ['V/V'],
-		option_limits: {
-			Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_VCVS: PROPERTY_VCVS_T;
 	/* Base structure for vccs properties */
-	public readonly PROPERTY_VCCS: PROPERTY_VCCS_T = {
-		Gain: 1,
-		tag: 'VCCS',
-		units: 'Mho',
-		options: ['Gain'],
-		options_units: ['Mho'],
-		option_limits: {
-			Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_VCCS: PROPERTY_VCCS_T;
 	/* Base structure for cccs properties */
-	public readonly PROPERTY_CCCS: PROPERTY_CCCS_T = {
-		Gain: 1,
-		tag: 'CCCS',
-		units: 'A/A',
-		options: ['Gain'],
-		options_units: ['A/A'],
-		option_limits: {
-			Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_CCCS: PROPERTY_CCCS_T;
 	/* Base structure for ccvs properties */
-	public readonly PROPERTY_CCVS: PROPERTY_CCVS_T = {
-		Gain: 1,
-		tag: 'CCVS',
-		units: 'Ohm',
-		options: ['Gain'],
-		options_units: ['Ohm'],
-		option_limits: {
-			Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_CCVS: PROPERTY_CCVS_T;
 	/* Base structure for SPST properties */
-	public readonly PROPERTY_SPDT: PROPERTY_SPDT_T = {
-		'Open Resistance': this.settings.R_MAX * 0.5,
-		'Closed Resistance': 1.0 / this.settings.R_MAX,
-		'Switch State': this.OFF,
-		'tag': 'SPDT',
-		'units': 'Ω',
-		'options': ['Closed Resistance', 'Switch State'],
-		'options_units': ['Ω', ''],
-		'option_limits': {
-			'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
-		}
-	};
+	public readonly PROPERTY_SPDT: PROPERTY_SPDT_T;
 	/* Base structure for opamp properties */
-	public readonly PROPERTY_OPAMP: PROPERTY_OPAMP_T = {
-		tag: 'OP',
-		units: '',
-		options: [''],
-		options_units: [''],
-		option_limits: {}
-	};
+	public readonly PROPERTY_OPAMP: PROPERTY_OPAMP_T;
 	/* Base structure for vsat properties */
-	public readonly PROPERTY_VSAT: PROPERTY_VSAT_T = {
-		'High Voltage': 12,
-		'Low Voltage': -12,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'VSAT',
-		'units': 'V',
-		'options': ['High Voltage', 'Low Voltage'],
-		'options_units': ['V', 'V'],
-		'option_limits': {
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_VSAT: PROPERTY_VSAT_T;
 	/* Base structure for saw wave source properties */
-	public readonly PROPERTY_SAW: PROPERTY_SAW_T = {
-		Voltage: 12,
-		Frequency: 60,
-		Phase: 0,
-		Offset: 0,
-		tag: 'SAW',
-		units: 'V',
-		options: ['Voltage', 'Frequency', 'Phase', 'Offset'],
-		options_units: ['V', 'Hz', ' º', 'V'],
-		option_limits: {
-			Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Frequency: [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
-			Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
-			Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_SAW: PROPERTY_SAW_T;
 	/* Base structure for triangle wave source properties */
-	public readonly PROPERTY_TRI: PROPERTY_TRI_T = {
-		Voltage: 12,
-		Frequency: 60,
-		Phase: 0,
-		Offset: 0,
-		tag: 'TRI',
-		units: 'V',
-		options: ['Voltage', 'Frequency', 'Phase', 'Offset'],
-		options_units: ['V', 'Hz', ' º', 'V'],
-		option_limits: {
-			Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Frequency: [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
-			Phase: [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
-			Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_TRI: PROPERTY_TRI_T;
 	/* Base structure for adder properties */
-	public readonly PROPERTY_ADD: PROPERTY_ADD_T = {
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'VADD',
-		'units': 'V',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_ADD: PROPERTY_ADD_T;
 	/* Base structure for subtractor properties */
-	public readonly PROPERTY_SUB: PROPERTY_SUB_T = {
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'VSUB',
-		'units': 'V',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_SUB: PROPERTY_SUB_T;
 	/* Base structure for multiplier properties */
-	public readonly PROPERTY_MUL: PROPERTY_MUL_T = {
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'VMUL',
-		'units': 'V',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_MUL: PROPERTY_MUL_T;
 	/* Base structure for greater than properties */
-	public readonly PROPERTY_GRT: PROPERTY_GRT_T = {
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'VGRT',
-		'units': 'V',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_GRT: PROPERTY_GRT_T;
 	/* Base structure for adder properties */
-	public readonly PROPERTY_DIV: PROPERTY_DIV_T = {
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'VDIV',
-		'units': 'V',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_DIV: PROPERTY_DIV_T;
 	/* Base structure for nmosfet properties */
-	public readonly PROPERTY_NMOS: PROPERTY_NMOS_T = {
-		'W/L Ratio': 50,
-		"K'n": 118e-6,
-		'VTN': 650e-3,
-		'Lambda': 1e-6,
-		'Vgs': 0,
-		'Vds': 0,
-		'gds': 1.0 / this.settings.R_MAX,
-		'gm': 1.0 / this.settings.R_MAX,
-		'Io': 0,
-		'Mosfet Mode': 0,
-		'Last Vgs': 0,
-		'Last Io': 0,
-		'tag': 'NMOS',
-		'units': 'W/L',
-		'options': ['W/L Ratio', "K'n", 'VTN', 'Lambda'],
-		'options_units': ['', 'A/V^2', 'V', 'V^-1'],
-		'option_limits': {
-			'W/L Ratio': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			"K'n": [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'VTN': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Lambda': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_NMOS: PROPERTY_NMOS_T;
 	/* Base structure for pmosfet properties */
-	public readonly PROPERTY_PMOS: PROPERTY_PMOS_T = {
-		'W/L Ratio': 50,
-		"K'p": -118e-6,
-		'VTP': -650e-3,
-		'Lambda': -1e-6,
-		'Vsg': 0,
-		'Vsd': 0,
-		'gsd': 1.0 / this.settings.R_MAX,
-		'gm': 1.0 / this.settings.R_MAX,
-		'Io': 0,
-		'Mosfet Mode': 0,
-		'Last Vsg': 0,
-		'Last Io': 0,
-		'tag': 'PMOS',
-		'units': 'W/L',
-		'options': ['W/L Ratio', "K'p", 'VTP', 'Lambda'],
-		'options_units': ['', 'A/V^2', 'V', 'V^-1'],
-		'option_limits': {
-			'W/L Ratio': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			"K'p": [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'VTP': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Lambda': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_PMOS: PROPERTY_PMOS_T;
 	/* Base structure for npnbjt properties */
-	public readonly PROPERTY_NPN: PROPERTY_NPN_T = {
-		'Forward Beta': 100,
-		'Reverse Beta': 1,
-		'Saturation Current': 1e-15,
-		'Emission Coefficient': 1,
-		'Vbe': 0,
-		'Vbc': 0,
-		'g_ee': 1.0 / this.settings.R_MAX,
-		'g_ec': 1.0 / this.settings.R_MAX,
-		'g_ce': 1.0 / this.settings.R_MAX,
-		'g_cc': 1.0 / this.settings.R_MAX,
-		'i_e': 0,
-		'i_c': 0,
-		'I_e': 0,
-		'I_c': 0,
-		'Last Vbe': 0,
-		'Last Io': 0,
-		'tag': 'NPN',
-		'units': 'A/A',
-		'options': ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
-		'options_units': ['A/A', 'A/A', 'A'],
-		'option_limits': {
-			'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
-		}
-	};
+	public readonly PROPERTY_NPN: PROPERTY_NPN_T;
 	/* Base structure for pnpbjt properties */
-	public readonly PROPERTY_PNP: PROPERTY_PNP_T = {
-		'Forward Beta': 100,
-		'Reverse Beta': 1,
-		'Saturation Current': 1e-15,
-		'Emission Coefficient': 1,
-		'Veb': 0,
-		'Vcb': 0,
-		'g_ee': 1.0 / this.settings.R_MAX,
-		'g_ec': 1.0 / this.settings.R_MAX,
-		'g_ce': 1.0 / this.settings.R_MAX,
-		'g_cc': 1.0 / this.settings.R_MAX,
-		'i_e': 0,
-		'i_c': 0,
-		'I_e': 0,
-		'I_c': 0,
-		'Last Veb': 0,
-		'Last Io': 0,
-		'tag': 'PNP',
-		'units': 'A/A',
-		'options': ['Forward Beta', 'Reverse Beta', 'Saturation Current'],
-		'options_units': ['A/A', 'A/A', 'A'],
-		'option_limits': {
-			'Forward Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Reverse Beta': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
-		}
-	};
+	public readonly PROPERTY_PNP: PROPERTY_PNP_T;
 	/* Base structure for transformer properties */
-	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T = {
-		'Turns Ratio': 1,
-		'tag': 'TRAN',
-		'units': 'NP/NS',
-		'options': ['Turns Ratio'],
-		'options_units': ['NP/NS'],
-		'option_limits': {
-			'NP/NS': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
 	/* Base structure for adc properties */
-	public readonly PROPERTY_ADC: PROPERTY_ADC_T = {
-		'Bit Resolution': 12,
-		'Reference Voltage': 3.3,
-		'LSB': 0,
-		'Max Bits': 0,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'ADC',
-		'units': 'Bits',
-		'options': ['Bit Resolution', 'Reference Voltage'],
-		'options_units': ['Bits', 'V'],
-		'option_limits': {
-			'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
-			'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_ADC: PROPERTY_ADC_T;
 	/* Base structure for dac properties */
-	public readonly PROPERTY_DAC: PROPERTY_DAC_T = {
-		'Bit Resolution': 12,
-		'Reference Voltage': 3.3,
-		'LSB': 0,
-		'Max Bits': 0,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'DAC',
-		'units': 'Bits',
-		'options': ['Bit Resolution', 'Reference Voltage'],
-		'options_units': ['Bits', 'V'],
-		'option_limits': {
-			'Bit Resolution': [this.settings.MIN_BIT_RESOLUTION, this.settings.MAX_BIT_RESOLUTION],
-			'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_DAC: PROPERTY_DAC_T;
 	/* Base structure for pwm properties */
-	public readonly PROPERTY_PWM: PROPERTY_PWM_T = {
-		'Max Frequency': 120,
-		'Min Frequency': 60,
-		'Max Duty': this.settings.MAX_DUTY_CYCLE,
-		'Min Duty': this.settings.MIN_DUTY_CYCLE,
-		'Phase': 0,
-		'Postscaler': 1,
-		'Counter': 0,
-		'Frequency': 0,
-		'Duty': 0,
-		'High Voltage': 1,
-		'Low Voltage': 0,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'A': 0,
-		'Saw Wave': 0,
-		'Output Voltage': 0,
-		'Last Output Voltage': 0,
-		'tag': 'PWM',
-		'units': 'V',
-		'options': ['Max Frequency', 'Min Frequency', 'Max Duty', 'Min Duty', 'Phase', 'Postscaler'],
-		'options_units': ['Hz', 'Hz', '%', '%', ' º', ''],
-		'option_limits': {
-			'Max Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
-			'Min Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY],
-			'Max Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
-			'Min Duty': [this.settings.MIN_DUTY_CYCLE, this.settings.MAX_DUTY_CYCLE],
-			'Phase': [this.settings.MIN_PHASE, this.settings.MAX_PHASE],
-			'Postscaler': [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
-		}
-	};
+	public readonly PROPERTY_PWM: PROPERTY_PWM_T;
 	/* Base structure for integrator properties */
-	public readonly PROPERTY_INTEGRATOR: PROPERTY_INTEGRATOR_T = {
-		'Initial Value': 0,
-		'High Voltage': 5,
-		'Low Voltage': -5,
-		'Last Value': 0,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'INT',
-		'units': '',
-		'options': ['Initial Value', 'High Voltage', 'Low Voltage'],
-		'options_units': ['V', 'V', 'V'],
-		'option_limits': {
-			'Initial Value': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_INTEGRATOR: PROPERTY_INTEGRATOR_T;
 	/* Base structure for differentiator properties */
-	public readonly PROPERTY_DIFFERENTIATOR: PROPERTY_DIFFERENTIATOR_T = {
-		'Initial Value': 0,
-		'High Voltage': 5,
-		'Low Voltage': -5,
-		'Last Value': 0,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'DIFF',
-		'units': '',
-		'options': ['Initial Value', 'High Voltage', 'Low Voltage'],
-		'options_units': ['V', 'V', 'V'],
-		'option_limits': {
-			'Initial Value': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_DIFFERENTIATOR: PROPERTY_DIFFERENTIATOR_T;
 	/* Base structure for gain properties */
-	public readonly PROPERTY_GAIN: PROPERTY_GAIN_T = {
-		'Gain': 1,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'GAIN',
-		'units': 'V',
-		'options': ['Gain'],
-		'options_units': ['V'],
-		'option_limits': {
-			Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
-		}
-	};
+	public readonly PROPERTY_GAIN: PROPERTY_GAIN_T;
 	/* Base structure for abs properties */
-	public readonly PROPERTY_ABS: PROPERTY_ABS_T = {
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'ABS',
-		'units': '',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_ABS: PROPERTY_ABS_T;
 	/* Base structure for lpf properties */
-	public readonly PROPERTY_LPF: PROPERTY_LPF_T = {
-		'Cutoff Frequency': 120,
-		'Y Out': 0,
-		'Y Hat': 0,
-		'Alpha': 0,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'LPF',
-		'units': 'V',
-		'options': ['Cutoff Frequency'],
-		'options_units': ['Hz'],
-		'option_limits': {
-			'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
-		}
-	};
+	public readonly PROPERTY_LPF: PROPERTY_LPF_T;
 	/* Base structure for hpf properties */
-	public readonly PROPERTY_HPF: PROPERTY_HPF_T = {
-		'Cutoff Frequency': 120,
-		'Y Out': 0,
-		'Y Hat': 0,
-		'X Hat': 0,
-		'Alpha': 0,
-		'Input Voltage': 0,
-		'Output Voltage': 0,
-		'tag': 'HPF',
-		'units': 'V',
-		'options': ['Cutoff Frequency'],
-		'options_units': ['Hz'],
-		'option_limits': {
-			'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
-		}
-	};
+	public readonly PROPERTY_HPF: PROPERTY_HPF_T;
 	/* Base structure for rail properties */
-	public readonly PROPERTY_RAIL: PROPERTY_RAIL_T = {
-		Voltage: 12,
-		tag: 'PR',
-		units: 'V',
-		options: ['Voltage'],
-		options_units: ['V'],
-		option_limits: {
-			Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_RAIL: PROPERTY_RAIL_T;
 	/* Base structure for relay properties */
-	public readonly PROPERTY_REL: PROPERTY_REL_T = {
-		'Inductance': 1.0e-3,
-		'Transient Resistance': this.settings.R_MAX,
-		'Transient Current': 0,
-		'Equivalent Current': 0,
-		'Initial Current': 0,
-		'Turn on Current': 10e-3,
-		'Closed Resistance': this.settings.WIRE_RESISTANCE,
-		'Open Resistance': this.settings.R_MAX * 0.5,
-		'tag': 'RELAY',
-		'units': 'H',
-		'options': ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
-		'options_units': ['H', 'A', 'A', 'Ω'],
-		'option_limits': {
-			'Inductance': [this.settings.MIN_INDUCTANCE, this.settings.MAX_INDUCTANCE],
-			'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-			'Turn on Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
-			'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
-		}
-	};
+	public readonly PROPERTY_REL: PROPERTY_REL_T;
 	/* Base structure for pid properties */
-	public readonly PROPERTY_PID: PROPERTY_PID_T = {
-		'Setpoint': 0,
-		'Kp': 1,
-		'Ki': 0,
-		'Kd': 0,
-		'Min Output': 0,
-		'Max Output': 1,
-		'High Voltage': 1,
-		'Low Voltage': 0,
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'tag': 'PID',
-		'units': '',
-		'options': ['Setpoint', 'Kp', 'Ki', 'Kd', 'Min Output', 'Max Output'],
-		'options_units': ['V', '', '', '', 'V', 'V'],
-		'option_limits': {
-			'Setpoint': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Kp': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Ki': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Kd': [this.settings.MIN_GAIN, this.settings.MAX_GAIN],
-			'Min Output': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			'Max Output': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
-		}
-	};
+	public readonly PROPERTY_PID: PROPERTY_PID_T;
 	/* Base structure for samplers properties */
-	public readonly PROPERTY_SAH: PROPERTY_SAH_T = {
-		'Input Voltage1': 0,
-		'Input Voltage2': 0,
-		'Output Voltage': 0,
-		'High Voltage': 1,
-		'Low Voltage': 0,
-		'tag': 'SAH',
-		'units': 'V',
-		'options': [''],
-		'options_units': [''],
-		'option_limits': {}
-	};
+	public readonly PROPERTY_SAH: PROPERTY_SAH_T;
 	/* Base structure for Look-Up-Table properties */
-	public readonly PROPERTY_LUT: PROPERTY_LUT_T = {
-		'Elm0': 12,
-		'Elm1': 12,
-		'Elm2': 12,
-		'Elm3': 12,
-		'Elm4': 12,
-		'Interpolate': this.ON,
-		'High Voltage': 1,
-		'Low Voltage': 0,
-		'Input Voltage1': 0,
-		'Output Voltage': 0,
-		'tag': 'LUT',
-		'units': '',
-		'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-		'options_units': ['V', 'V', 'V', 'V', 'V', ''],
-		'option_limits': {
-			Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm3: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Elm4: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-			Interpolate: ['', '']
-		}
-	};
+	public readonly PROPERTY_LUT: PROPERTY_LUT_T;
 	/* Base structure for tptz properties */
 	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
 	/* Base structure for note properties */

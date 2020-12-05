@@ -24,28 +24,6 @@ class YesNoWindow {
         this.PADDING = 0.025;
         /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.bounds_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.fill_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.yes_paint = new Paint();
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
-        this.no_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        this.width = view_port.view_width * 0.1;
-        this.height = view_port.view_height * 0.075;
-        this.bounds = new RectF(0, 0, 0, 0);
-        this.option_0 = new RectF(0, 0, 0, 0);
-        this.option_1 = new RectF(0, 0, 0, 0);
-        /* Enforcing the system from cascading events. */
-        this.first_touch_x = 0;
-        this.first_touch_y = 0;
-        /* The padding for the window */
-        this.PADDING = 0.025;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
