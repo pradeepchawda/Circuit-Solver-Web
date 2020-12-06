@@ -251,7 +251,7 @@ class ElementWindow {
         if (global.FLAG_MENU_OPEN_DOWN) {
             if (!global.mouse_keyboard_lock) {
                 {
-                    /* #INSERT_GENERATE_ELEMENT_WINDOW_ICON_UPDATE */
+                    /* #INSERT_GENERATE_ELEMENT_WINDOW_ICON_UPDATE# */
                     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                     this.resistor_symbol.update();
                     this.capacitor_symbol.update();
@@ -353,7 +353,7 @@ class ElementWindow {
                 this.first_touch_x = global.mouse_x;
                 this.first_touch_y = global.mouse_y;
                 let cached_value = this.bounds.get_width() / this.MAX_ICONS;
-                /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_DOWN */
+                /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_DOWN# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 this.resistor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
                 this.capacitor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -439,7 +439,7 @@ class ElementWindow {
         if (global.FLAG_MENU_OPEN_DOWN) {
             if (!global.mouse_keyboard_lock) {
                 let cached_value = this.bounds.get_width() / this.MAX_ICONS;
-                /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE */
+                /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 this.resistor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
                 this.capacitor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -531,7 +531,7 @@ class ElementWindow {
                     global.component_touched = true;
                 }
                 let cached_value = this.bounds.get_width() / this.MAX_ICONS;
-                /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_UP */
+                /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_UP# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 this.resistor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
                 this.capacitor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
@@ -606,7 +606,7 @@ class ElementWindow {
     resize_window(left, top, right, bottom) {
         this.bounds.set_bounds(left, top, right, bottom);
         this.load_positions();
-        /* #INSERT_GENERATE_ELEMENT_WINDOW_RESIZE_WINDOW */
+        /* #INSERT_GENERATE_ELEMENT_WINDOW_RESIZE_WINDOW# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.resistor_symbol.resize(this.positions[this.resistor_symbol.index]);
         this.capacitor_symbol.resize(this.positions[this.capacitor_symbol.index]);
@@ -743,7 +743,7 @@ class ElementWindow {
             if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
                 canvas.draw_text(this.NAVIGATE_TEXT, this.positions[this.NAVIGATE_FORWARD].get_center_x(), this.positions[this.NAVIGATE_FORWARD].get_center_y(), this.text_paint);
             }
-            /* #INSERT_GENERATE_ELEMENT_WINDOW_DRAW */
+            /* #INSERT_GENERATE_ELEMENT_WINDOW_DRAW# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
             this.resistor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
             this.capacitor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);

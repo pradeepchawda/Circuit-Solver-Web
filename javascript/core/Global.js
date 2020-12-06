@@ -1790,7 +1790,7 @@ class Global {
         this.non_linear_max_array = [];
         this.max_general_number = 0;
     }
-    ColorNameToHex(color) {
+    'ColorNameToHex'(color) {
         var colors = {
             'aliceblue': '#f0f8ff',
             'antiquewhite': '#faebd7',
@@ -1939,14 +1939,14 @@ class Global {
         }
         return color;
     }
-    sine(theta) {
+    'sine'(theta) {
         return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT) & this.TRIG_TABLE_MASK];
     }
-    cosine(theta) {
+    'cosine'(theta) {
         return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) & this.TRIG_TABLE_MASK];
     }
     /* Re-calculates the new position of an object based on the last screen width and the current screen width. */
-    remap_position(input, is_width) {
+    'remap_position'(input, is_width) {
         if (is_width === true) {
             return view_port.right - (this.last_view_port_right - input) * this.resize_w_factor;
         }
@@ -1954,14 +1954,14 @@ class Global {
             return view_port.bottom - (this.last_view_port_bottom - input) * this.resize_h_factor;
         }
     }
-    reset_angle_cache() {
+    'reset_angle_cache'() {
         this.angle_array = [];
     }
-    reset_angle_radian_cache() {
+    'reset_angle_radian_cache'() {
         this.angle_radian_array = [];
     }
     /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-    search_angle_array(x, y) {
+    'search_angle_array'(x, y) {
         this.temp_boolean = false;
         this.saved_angle = -1;
         for (var i = 0; i < this.angle_array.length; i++) {
@@ -1977,7 +1977,7 @@ class Global {
         return this.temp_boolean;
     }
     /* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-    search_angle_radian_array(x, y) {
+    'search_angle_radian_array'(x, y) {
         this.temp_boolean = false;
         this.saved_angle_radians = -1;
         for (var i = 0; i < this.angle_radian_array.length; i++) {
@@ -1992,7 +1992,7 @@ class Global {
         }
         return this.temp_boolean;
     }
-    retrieve_angle(x, y) {
+    'retrieve_angle'(x, y) {
         if (this.search_angle_array(x, y)) {
             return this.saved_angle;
         }
@@ -2008,7 +2008,7 @@ class Global {
             return this.angle_array[this.angle_array.length - 1]['angle'];
         }
     }
-    retrieve_angle_radian(x, y) {
+    'retrieve_angle_radian'(x, y) {
         if (this.search_angle_radian_array(x, y)) {
             return this.saved_angle_radians;
         }
@@ -2024,14 +2024,14 @@ class Global {
             return this.angle_radian_array[this.angle_radian_array.length - 1]['angle'];
         }
     }
-    house_keeping() {
+    'house_keeping'() {
         this.angle_array.splice(this.angle_array.length - 1, 1);
     }
-    house_keeping_radians() {
+    'house_keeping_radians'() {
         this.angle_radian_array.splice(this.angle_radian_array.length - 1, 1);
     }
     /* Calculate the angle of a vector in degrees */
-    calc_degree(x, y) {
+    'calc_degree'(x, y) {
         this.general_integer = this.atan2_approx2(y, x) * global._180_DIV_PI;
         if (this.general_integer < 0) {
             this.general_integer += 360;
@@ -2039,7 +2039,7 @@ class Global {
         return this.general_integer;
     }
     /* calculate the angle of a vector in radians */
-    calc_degree_radians(x, y) {
+    'calc_degree_radians'(x, y) {
         this.general_integer = this.atan2_approx2(y, x);
         if (this.general_integer < 0) {
             this.general_integer += this.PI_MUL_2;
@@ -2047,17 +2047,17 @@ class Global {
         return this.general_integer;
     }
     /* Converts degrees to radians */
-    to_radians(degrees) {
+    'to_radians'(degrees) {
         return degrees * this.PI_DIV_180;
     }
-    inv_sqrt(x) {
+    'inv_sqrt'(x) {
         let x2 = 0.5 * (this.inv_sqrt_f32[0] = x);
         this.inv_sqrt_u32[0] = 0x5f3759df - (this.inv_sqrt_u32[0] >> 1);
         let y = this.inv_sqrt_f32[0];
         y = y * (1.5 - x2 * y * y);
         return y;
     }
-    atan2_approx2(y, x) {
+    'atan2_approx2'(y, x) {
         if (x === 0.0) {
             if (y > 0.0) {
                 return this.PI_DIV_2;
@@ -2087,24 +2087,24 @@ class Global {
         return this.general_integer2;
     }
     /* Calculates the norm of a vector */
-    norm(x, y) {
+    'norm'(x, y) {
         return Math.sqrt(x * x + y * y);
     }
     /* Rounds a value to three decimal places */
-    round(value) {
+    'round'(value) {
         return Math.round((value + Number.EPSILON) * 1000) / 1000;
     }
     /* A function to try and safely cast a float to an "int" */
-    cast_int(value) {
+    'cast_int'(value) {
         return Math.trunc(Math.round(value));
     }
     /* Returns the average of two numbers: a and b */
-    get_average2(a, b) {
+    'get_average2'(a, b) {
         return (a + b) * 0.5;
     }
     /* Calculate the incenter of a triangle. NOTE: Don't use this.general_integerx here..., it'll cause a value change.
   because of calc_degree_radians */
-    equilateral_triangle_center(p1_x, p2_x, p3_x, p1_y, p2_y, p3_y) {
+    'equilateral_triangle_center'(p1_x, p2_x, p3_x, p1_y, p2_y, p3_y) {
         let temp = 0;
         temp = this.norm(p2_x - p1_x, p2_y - p1_y) * 0.5;
         let theta_p1_p2 = this.retrieve_angle_radian(p2_x - p1_x, p2_y - p1_y);
@@ -2116,26 +2116,26 @@ class Global {
         return Array(c_x, c_y);
     }
     /* Returns the average of four numbers: a, b, c, and d */
-    get_average4(a, b, c, d) {
+    'get_average4'(a, b, c, d) {
         return (a + b + c + d) * 0.25;
     }
     /* Check to see if an element is null or undefined. */
-    not_null(obj) {
+    'not_null'(obj) {
         return !(obj == this.NULL);
     }
     /* Using lodash to deep clone an object. */
-    copy(obj) {
+    'copy'(obj) {
         return _.cloneDeep(obj);
     }
     /* A safe function to print stuff out when debugging. Developer mode is automatically set to false
   when the production script is run. */
-    print(...obj) {
+    'print'(...obj) {
         if (this.DEVELOPER_MODE) {
             console.log(obj);
         }
     }
     /* A function to quickly format a number into SI units */
-    exponentiate_quickly(input) {
+    'exponentiate_quickly'(input) {
         let str = '';
         let val = 0;
         let abs_input = Math.abs(input);
@@ -2162,7 +2162,7 @@ class Global {
     /* Find the max of the elements. This is so we don't waste time looping
   through each element.
   This is automatically generated, no touchy! */
-    element_max() {
+    'element_max'() {
         /* #INSERT_GENERATE_MAX_ELEMENT# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.element_max_array = Array(resistors.length, capacitors.length, inductors.length, grounds.length, dcsources.length, dccurrents.length, acsources.length, accurrents.length, squarewaves.length, sawwaves.length, trianglewaves.length, constants.length, wires.length, nets.length, notes.length, rails.length, voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length, fuses.length, spsts.length, spdts.length, nots.length, diodes.length, leds.length, zeners.length, potentiometers.length, ands.length, ors.length, nands.length, nors.length, xors.length, xnors.length, dffs.length, vsats.length, adders.length, subtractors.length, multipliers.length, dividers.length, gains.length, absvals.length, vcsws.length, vcvss.length, vccss.length, cccss.length, ccvss.length, opamps.length, nmosfets.length, pmosfets.length, npns.length, pnps.length, adcs.length, dacs.length, sandhs.length, pwms.length, integrators.length, differentiators.length, lowpasses.length, highpasses.length, relays.length, pids.length, luts.length, vcrs.length, grts.length, tptzs.length, transformers.length);
@@ -2177,7 +2177,7 @@ class Global {
     }
     /* Find the highest number of meter type elements.
   This is automatially generated! */
-    meter_max() {
+    'meter_max'() {
         /* #INSERT_GENERATE_MAX_METER# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
@@ -2191,7 +2191,7 @@ class Global {
         return this.max_general_number;
     }
     /* Find the maximum size of non-linear elements. */
-    non_linear_max() {
+    'non_linear_max'() {
         /* #INSERT_GENERATE_MAX_NON_LINEAR# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
@@ -2205,7 +2205,7 @@ class Global {
         return this.max_general_number;
     }
     /* Line collision baby! */
-    line_collision(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
+    'line_collision'(p0_x, p0_y, p1_x, p1_y, p2_x, p2_y, p3_x, p3_y) {
         let s1_x = p1_x - p0_x;
         let s1_y = p1_y - p0_y;
         let s2_x = p3_x - p2_x;
@@ -2215,7 +2215,7 @@ class Global {
         return s >= 0 && s <= 1 && t >= 0 && t <= 1;
     }
     /* Decodes a key code from a key event */
-    decode_key(key_event) {
+    'decode_key'(key_event) {
         let shift = key_event['shift'];
         let caps = key_event['caps'];
         let code = key_event['event'].code;
@@ -2235,7 +2235,7 @@ class Global {
         }
         return ret;
     }
-    key_to_code(character) {
+    'key_to_code'(character) {
         let ret = '';
         for (var i = 0; i < this.KEY_EVENT_KEYS.length; i++) {
             if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] || character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
@@ -2246,19 +2246,19 @@ class Global {
         return ret;
     }
     /* Detects if a key is alpha numeric or not. */
-    is_alpha_numeric(key_event) {
+    'is_alpha_numeric'(key_event) {
         return /[a-z A-Z0-9]/.test(this.decode_key(key_event));
     }
     /* Detects if a key is alpha numeric or not. */
-    is_alpha_numeric_note(key_event) {
+    'is_alpha_numeric_note'(key_event) {
         return /[!@#$%`~^&_{}()a-z A-Z0-9=:'",?<>;:*/+-|]/.test(this.decode_key(key_event));
     }
     /* Detects if a key is a valid si unit or a number. */
-    is_valid_si_units(key_event) {
+    'is_valid_si_units'(key_event) {
         return /[-.kmu0123456789MnGpf]/.test(this.decode_key(key_event));
     }
     /* General function to limit a number within a range. */
-    limit(inp, low, high) {
+    'limit'(inp, low, high) {
         if (inp < low) {
             return low;
         }
@@ -2270,22 +2270,22 @@ class Global {
         }
     }
     /* General function for creating getting the current date */
-    get_date_stamp() {
+    'get_date_stamp'() {
         let date = new Date();
         return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
     }
     /* Genetating a timestamp! */
-    get_time_stamp() {
+    'get_time_stamp'() {
         let date = new Date();
         let TIMESTAMP_TEMPLATE = '{DATE}->{TIME_ZONE}';
         return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', date.getTimezoneOffset());
     }
     /* Logarithmic Damping Algorithm. Base E. */
-    log_damping(next, now, gamma, kappa) {
+    'log_damping'(next, now, gamma, kappa) {
         return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
     }
     /* Returns the sign of the number.*/
-    signum(inp) {
+    'signum'(inp) {
         if (inp < 0) {
             return -1;
         }
@@ -2294,13 +2294,13 @@ class Global {
         }
     }
     /* Change of base formula. */
-    logbx(b, x) {
+    'logbx'(b, x) {
         return Math.log(x) / Math.log(b);
     }
-    map_range(inp, lower_bound, upper_bound) {
+    'map_range'(inp, lower_bound, upper_bound) {
         return lower_bound + inp * (upper_bound - lower_bound);
     }
-    perm32(inp) {
+    'perm32'(inp) {
         this.general_integer = 12;
         /* 12 Rounds */
         let x = ((inp >> 8) ^ inp) * 0x6b + this.general_integer--;
@@ -2317,7 +2317,7 @@ class Global {
         x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
         return x;
     }
-    unique_color(net_name) {
+    'unique_color'(net_name) {
         //@ts-ignore
         let rgb = this.perm32(net_name.hashCode());
         let r = 0, g = 0, b = 0;
@@ -2326,10 +2326,10 @@ class Global {
         b = rgb & 0x000000ff;
         return 'rgb(' + r + ', ' + g + ', ' + b + ')';
     }
-    wrap(inp, max) {
+    'wrap'(inp, max) {
         return inp - max * Math.floor(inp / max);
     }
-    linterp(x_arr, y_arr, inp) {
+    'linterp'(x_arr, y_arr, inp) {
         let k = this.linsearch(x_arr, inp, y_arr.length);
         let x0 = x_arr[k], x1 = x_arr[k + 1], y0 = y_arr[k], y1 = y_arr[k + 1];
         if (inp > x_arr[x_arr.length - 1]) {
@@ -2340,7 +2340,7 @@ class Global {
         }
         return y0 + ((y1 - y0) / (x1 - x0)) * (inp - x0);
     }
-    linsearch(x_arr, inp, size) {
+    'linsearch'(x_arr, inp, size) {
         let i = 0;
         let out = 0;
         for (i = 0; i < size - 1; i++) {
@@ -2351,7 +2351,7 @@ class Global {
         }
         return out;
     }
-    min3(a, b, c) {
+    'min3'(a, b, c) {
         return Math.min(a, Math.min(b, c));
     }
 }

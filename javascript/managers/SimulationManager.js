@@ -144,49 +144,7 @@ class SimulationManager {
         this.NODE_SIZE = node_manager.active_nodes.length;
         /* #INSERT_GENERATE_SIMULATION_MATRIX_SIZE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        this.OFFSET =
-            dcsources.length +
-                acsources.length +
-                squarewaves.length +
-                sawwaves.length +
-                trianglewaves.length +
-                constants.length +
-                rails.length +
-                ohmmeters.length +
-                ammeters.length +
-                wattmeters.length +
-                nots.length +
-                ands.length +
-                ors.length +
-                nands.length +
-                nors.length +
-                xors.length +
-                xnors.length +
-                2 * dffs.length +
-                vsats.length +
-                adders.length +
-                subtractors.length +
-                multipliers.length +
-                dividers.length +
-                gains.length +
-                absvals.length +
-                vcvss.length +
-                cccss.length +
-                2 * ccvss.length +
-                opamps.length +
-                adcs.length +
-                dacs.length +
-                sandhs.length +
-                pwms.length +
-                integrators.length +
-                differentiators.length +
-                lowpasses.length +
-                highpasses.length +
-                pids.length +
-                luts.length +
-                grts.length +
-                tptzs.length +
-                transformers.length;
+        this.OFFSET = dcsources.length + acsources.length + squarewaves.length + sawwaves.length + trianglewaves.length + constants.length + rails.length + ohmmeters.length + ammeters.length + wattmeters.length + nots.length + ands.length + ors.length + nands.length + nors.length + xors.length + xnors.length + 2 * dffs.length + vsats.length + adders.length + subtractors.length + multipliers.length + dividers.length + gains.length + absvals.length + vcvss.length + cccss.length + 2 * ccvss.length + opamps.length + adcs.length + dacs.length + sandhs.length + pwms.length + integrators.length + differentiators.length + lowpasses.length + highpasses.length + pids.length + luts.length + grts.length + tptzs.length + transformers.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */

@@ -19,169 +19,169 @@
  *
  ***********************************************************************/
 class Global {
-	public readonly NULL: any;
-	public readonly MOBILE_MODE: boolean;
-	public system_initialization: SYSTEM_INITIALIZATION_T;
-	public readonly VERSION_TAG: string;
+	public readonly 'NULL': any;
+	public readonly 'MOBILE_MODE': boolean;
+	public 'system_initialization': SYSTEM_INITIALIZATION_T;
+	public readonly 'VERSION_TAG': string;
 	/* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
-	public workspace_zoom_scale: number;
+	public 'workspace_zoom_scale': number;
 	/* The maximum amount of zoom the user may apply */
-	public readonly ZOOM_MAX: number;
+	public readonly 'ZOOM_MAX': number;
 	/* The minimum amount of zoom the user may apply */
-	public readonly ZOOM_MIN: number;
-	public readonly ZERO_PT_FIVE: number;
-	public readonly ZERO: number;
-	public node_line_buffer: Array<Array<number>>;
-	public node_line_buffer_index: number;
+	public readonly 'ZOOM_MIN': number;
+	public readonly 'ZERO_PT_FIVE': number;
+	public readonly 'ZERO': number;
+	public 'node_line_buffer': Array<Array<number>>;
+	public 'node_line_buffer_index': number;
 	/* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
-	public ZOOM_FACTOR: number;
+	public 'ZOOM_FACTOR': number;
 	/* These are used a relative metric to know how much to change the view of the
     workspace when a zooming event takes place */
-	public natural_width: number;
-	public natural_height: number;
+	public 'natural_width': number;
+	public 'natural_height': number;
 	/* User settings, very handy to make them global. */
-	public settings: Settings;
+	public 'settings': Settings;
 	/* Don't change the name of these guys...the obfuscator is referenced to their names.*/
-	public DEVELOPER_MODE: boolean;
-	public PRODUCTION_MODE: boolean;
+	public 'DEVELOPER_MODE': boolean;
+	public 'PRODUCTION_MODE': boolean;
 	/* Generic Templates to avoid string concatenation. */
-	public readonly ELEMENT_TAG_TEMPLATE: string;
-	public readonly ELEMENT_VAL_TEMPLATE: string;
-	public readonly DIVISION_TEXT_TEMPLATE: string;
-	public readonly PIXEL_TEMPLATE: string;
-	public readonly PNG_TEMPLATE: string;
+	public readonly 'ELEMENT_TAG_TEMPLATE': string;
+	public readonly 'ELEMENT_VAL_TEMPLATE': string;
+	public readonly 'DIVISION_TEXT_TEMPLATE': string;
+	public readonly 'PIXEL_TEMPLATE': string;
+	public readonly 'PNG_TEMPLATE': string;
 	/* To help with system settings. */
-	public readonly ON: string;
-	public readonly OFF: string;
+	public readonly 'ON': string;
+	public readonly 'OFF': string;
 	/* Keeping track of the virtual canvas's we create. */
-	public virtual_canvas_id: number;
+	public 'virtual_canvas_id': number;
 	/* Constants for different elements in the application. */
 	/* Meta data is reserved for storing user info when exporting / importing circuits */
 	/* When we generate the output text file, it sits on the first portion of the file. */
-	public readonly TYPE_META_DATA: number;
+	public readonly 'TYPE_META_DATA': number;
 	/* Using a counter to keep track of the size of elements. */
-	public TYPE_COUNTER: number;
-	/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
-	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-	public TYPE_RESISTOR: number;
-	public TYPE_CAPACITOR: number;
-	public TYPE_INDUCTOR: number;
-	public TYPE_GROUND: number;
-	public TYPE_DCSOURCE: number;
-	public TYPE_DCCURRENT: number;
-	public TYPE_ACSOURCE: number;
-	public TYPE_ACCURRENT: number;
-	public TYPE_SQUAREWAVE: number;
-	public TYPE_SAW: number;
-	public TYPE_TRI: number;
-	public TYPE_CONSTANT: number;
-	public TYPE_WIRE: number;
-	public TYPE_NET: number;
-	public TYPE_NOTE: number;
-	public TYPE_RAIL: number;
-	public TYPE_VOLTMETER: number;
-	public TYPE_OHMMETER: number;
-	public TYPE_AMMETER: number;
-	public TYPE_WATTMETER: number;
-	public TYPE_FUSE: number;
-	public TYPE_SPST: number;
-	public TYPE_SPDT: number;
-	public TYPE_NOT: number;
-	public TYPE_DIODE: number;
-	public TYPE_LED: number;
-	public TYPE_ZENER: number;
-	public TYPE_POTENTIOMETER: number;
-	public TYPE_AND: number;
-	public TYPE_OR: number;
-	public TYPE_NAND: number;
-	public TYPE_NOR: number;
-	public TYPE_XOR: number;
-	public TYPE_XNOR: number;
-	public TYPE_DFF: number;
-	public TYPE_VSAT: number;
-	public TYPE_ADD: number;
-	public TYPE_SUB: number;
-	public TYPE_MUL: number;
-	public TYPE_DIV: number;
-	public TYPE_GAIN: number;
-	public TYPE_ABS: number;
-	public TYPE_VCSW: number;
-	public TYPE_VCVS: number;
-	public TYPE_VCCS: number;
-	public TYPE_CCCS: number;
-	public TYPE_CCVS: number;
-	public TYPE_OPAMP: number;
-	public TYPE_NMOS: number;
-	public TYPE_PMOS: number;
-	public TYPE_NPN: number;
-	public TYPE_PNP: number;
-	public TYPE_ADC: number;
-	public TYPE_DAC: number;
-	public TYPE_SAH: number;
-	public TYPE_PWM: number;
-	public TYPE_INTEGRATOR: number;
-	public TYPE_DIFFERENTIATOR: number;
-	public TYPE_LPF: number;
-	public TYPE_HPF: number;
-	public TYPE_REL: number;
-	public TYPE_PID: number;
-	public TYPE_LUT: number;
-	public TYPE_VCR: number;
-	public TYPE_GRT: number;
-	public TYPE_TPTZ: number;
-	public TYPE_TRAN: number;
-	/* <!-- END AUTOMATICALLY GENERATED !--> */
+	public 'TYPE_COUNTER': number;
+/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+    public TYPE_RESISTOR : number;
+    public TYPE_CAPACITOR : number;
+    public TYPE_INDUCTOR : number;
+    public TYPE_GROUND : number;
+    public TYPE_DCSOURCE : number;
+    public TYPE_DCCURRENT : number;
+    public TYPE_ACSOURCE : number;
+    public TYPE_ACCURRENT : number;
+    public TYPE_SQUAREWAVE : number;
+    public TYPE_SAW : number;
+    public TYPE_TRI : number;
+    public TYPE_CONSTANT : number;
+    public TYPE_WIRE : number;
+    public TYPE_NET : number;
+    public TYPE_NOTE : number;
+    public TYPE_RAIL : number;
+    public TYPE_VOLTMETER : number;
+    public TYPE_OHMMETER : number;
+    public TYPE_AMMETER : number;
+    public TYPE_WATTMETER : number;
+    public TYPE_FUSE : number;
+    public TYPE_SPST : number;
+    public TYPE_SPDT : number;
+    public TYPE_NOT : number;
+    public TYPE_DIODE : number;
+    public TYPE_LED : number;
+    public TYPE_ZENER : number;
+    public TYPE_POTENTIOMETER : number;
+    public TYPE_AND : number;
+    public TYPE_OR : number;
+    public TYPE_NAND : number;
+    public TYPE_NOR : number;
+    public TYPE_XOR : number;
+    public TYPE_XNOR : number;
+    public TYPE_DFF : number;
+    public TYPE_VSAT : number;
+    public TYPE_ADD : number;
+    public TYPE_SUB : number;
+    public TYPE_MUL : number;
+    public TYPE_DIV : number;
+    public TYPE_GAIN : number;
+    public TYPE_ABS : number;
+    public TYPE_VCSW : number;
+    public TYPE_VCVS : number;
+    public TYPE_VCCS : number;
+    public TYPE_CCCS : number;
+    public TYPE_CCVS : number;
+    public TYPE_OPAMP : number;
+    public TYPE_NMOS : number;
+    public TYPE_PMOS : number;
+    public TYPE_NPN : number;
+    public TYPE_PNP : number;
+    public TYPE_ADC : number;
+    public TYPE_DAC : number;
+    public TYPE_SAH : number;
+    public TYPE_PWM : number;
+    public TYPE_INTEGRATOR : number;
+    public TYPE_DIFFERENTIATOR : number;
+    public TYPE_LPF : number;
+    public TYPE_HPF : number;
+    public TYPE_REL : number;
+    public TYPE_PID : number;
+    public TYPE_LUT : number;
+    public TYPE_VCR : number;
+    public TYPE_GRT : number;
+    public TYPE_TPTZ : number;
+    public TYPE_TRAN : number;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	/* Constants for the different amounts of pre-determined rotation */
-	public readonly ROTATION_0: number;
-	public readonly ROTATION_90: number;
-	public readonly ROTATION_180: number;
-	public readonly ROTATION_270: number;
-	public readonly FLIP_0: number;
-	public readonly FLIP_180: number;
+	public readonly 'ROTATION_0': number;
+	public readonly 'ROTATION_90': number;
+	public readonly 'ROTATION_180': number;
+	public readonly 'ROTATION_270': number;
+	public readonly 'FLIP_0': number;
+	public readonly 'FLIP_180': number;
 	/* Constants for the different styles the wire can display */
 	/* Each wire has a property for changing it's appearance. These are the different
     styles that can be applied to the wire.  */
-	public readonly WIRE_STYLE_0: number;
-	public readonly WIRE_STYLE_1: number;
-	public readonly WIRE_STYLE_2: number;
-	public readonly WIRE_STYLE_3: number;
-	public readonly WIRE_STYLE_4: number;
+	public readonly 'WIRE_STYLE_0': number;
+	public readonly 'WIRE_STYLE_1': number;
+	public readonly 'WIRE_STYLE_2': number;
+	public readonly 'WIRE_STYLE_3': number;
+	public readonly 'WIRE_STYLE_4': number;
 	/* Constants for the different flips, 0;
 	public readonly FLIP_180: number;
 	/* A setting to help facillitate controlling one object at a time */
 	/* Each object has access to this global variable. */
-	public focused: boolean;
-	public focused_id: number;
-	public focused_type: number;
-	public focused_bounds: RectF;
-	public last_selected: boolean;
+	public 'focused': boolean;
+	public 'focused_id': number;
+	public 'focused_type': number;
+	public 'focused_bounds': RectF;
+	public 'last_selected': boolean;
 	/* A setting to help facillitate which component is selected */
 	/* Each object can override the selected item if it becomes selected itself. This is
     so that there's only one item selected at a time. This will need to be tweaked for
     multi-select. */
-	public selected: boolean;
+	public 'selected': boolean;
 	/* The identity of the selected element */
-	public selected_id: number;
+	public 'selected_id': number;
 	/* The type of the selected element */
-	public selected_type: number;
+	public 'selected_type': number;
 	/* If the type of element is a wire, this field will not be null. */
-	public selected_wire_style: number;
+	public 'selected_wire_style': number;
 	/* The bounds of the selected item */
-	public selected_bounds: RectF;
+	public 'selected_bounds': RectF;
 	/* The properties of the selected item. Each element has properties associated with it */
-	public selected_properties: ELEMENT_PROPERTY_T;
+	public 'selected_properties': ELEMENT_PROPERTY_T;
 	/* Selectios nearest neighbors */
-	public selection_nearest_neighbors;
-	public nearest_neighbor_index: number;
+	public 'selection_nearest_neighbors';
+	public 'nearest_neighbor_index': number;
 	/* A general flag to determining if any of the elements are multi-selected. */
-	public multi_selected: boolean;
+	public 'multi_selected': boolean;
 	/* Used to copying / pasting elements. */
-	public clipboard_type: number;
-	public clipboard_rotation: number;
-	public clipboard_flip: number;
-	public clipboard_property;
+	public 'clipboard_type': number;
+	public 'clipboard_rotation': number;
+	public 'clipboard_flip': number;
+	public 'clipboard_property';
 	/* A variable to help coordinate multi-selection. */
-	public component_translating: boolean;
+	public 'component_translating': boolean;
 	/* System Flags */
 	/* These flags are to represent what state the appplication is in. The idea is to make
     them indicative of what functions are avaiable on what page and what elements need to be
@@ -189,542 +189,613 @@ class Global {
 	/* We are observing the main application (No windows are up) */
 	/* Do no chnage these variables directly, there is a function inside menu_bar that handles the
     changes (it does so while cleaning up the change in states.) */
-	public FLAG_IDLE: boolean;
+	public 'FLAG_IDLE': boolean;
 	/* The simulation button was hit and we are currently simulating. */
-	public FLAG_SIMULATING: boolean;
+	public 'FLAG_SIMULATING': boolean;
 	/* The user is trying to enter a name for the image they're trying to save, either that
     or they are cancelling the prompt. */
-	public FLAG_SAVE_IMAGE: boolean;
+	public 'FLAG_SAVE_IMAGE': boolean;
 	/* The user is trying to enter a name for the circuit they're trying to save, either that
     or they are cancelling the prompt. */
-	public FLAG_SAVE_CIRCUIT: boolean;
+	public 'FLAG_SAVE_CIRCUIT': boolean;
 	/* The zoom window should be up. */
-	public FLAG_ZOOM: boolean;
+	public 'FLAG_ZOOM': boolean;
 	/* The element options "mini-menu" should be open on the right hand side of the application. */
-	public FLAG_ELEMENT_OPTIONS: boolean;
+	public 'FLAG_ELEMENT_OPTIONS': boolean;
 	/* The component has to be options in order to have any of it's properties show up here.
     If the property element of the application is generated correctly, this should all be
     automatic */
-	public FLAG_ELEMENT_OPTIONS_EDIT: boolean;
+	public 'FLAG_ELEMENT_OPTIONS_EDIT': boolean;
 	/* The graph menu should be opened and displayed when this variable is true. */
-	public FLAG_GRAPH: boolean;
+	public 'FLAG_GRAPH': boolean;
 	/* The user has the menu-bar dropped down and has the second drop down for selecting a new component. */
-	public FLAG_SELECT_ELEMENT: boolean;
+	public 'FLAG_SELECT_ELEMENT': boolean;
 	/* The user is trying to select a new time-step */
-	public FLAG_SELECT_TIMESTEP: boolean;
+	public 'FLAG_SELECT_TIMESTEP': boolean;
 	/* The user is changing settings */
-	public FLAG_SELECT_SETTINGS: boolean;
+	public 'FLAG_SELECT_SETTINGS': boolean;
 	/* The user would like to remove all the elements in the workspace at once. */
-	public FLAG_REMOVE_ALL: boolean;
+	public 'FLAG_REMOVE_ALL': boolean;
 	/* The menu-bar first drop down should be down when this is changed to true. */
-	public FLAG_MENU_OPEN: boolean;
+	public 'FLAG_MENU_OPEN': boolean;
 	/* The menu-bar second drop down should be down when this is changed to true. */
-	public FLAG_MENU_OPEN_DOWN: boolean;
+	public 'FLAG_MENU_OPEN_DOWN': boolean;
 	/* Special signal for adding elements :> */
-	public SIGNAL_ADD_ELEMENT: boolean;
+	public 'SIGNAL_ADD_ELEMENT': boolean;
 	/* Special signal for when a wire is deleted */
-	public SIGNAL_WIRE_DELETED: boolean;
+	public 'SIGNAL_WIRE_DELETED': boolean;
 	/* Special signal for when a wire is created */
-	public SIGNAL_WIRE_CREATED: boolean;
+	public 'SIGNAL_WIRE_CREATED': boolean;
 	/* Special signal for history-locks elements :> */
-	public SIGNAL_HISTORY_LOCK: boolean;
+	public 'SIGNAL_HISTORY_LOCK': boolean;
 	/* Global rendering flag */
-	public SIGNAL_BUILD_ELEMENT: boolean;
-	public signal_build_counter: number;
+	public 'SIGNAL_BUILD_ELEMENT': boolean;
+	public 'signal_build_counter': number;
 	/* Intentionally 2x re-draw counter.*/
-	public SIGNAL_BUILD_COUNTER_MAX: number;
+	public 'SIGNAL_BUILD_COUNTER_MAX': number;
 	/* Counts up to counter max and resets the signal wire deleted flag. */
-	public signal_wire_deleted_counter: number;
-	public SIGNAL_WIRE_DELETED_COUNTER_MAX: number;
+	public 'signal_wire_deleted_counter': number;
+	public 'SIGNAL_WIRE_DELETED_COUNTER_MAX': number;
 	/* Flag to help coordinate when an element is touched */
-	public component_touched: boolean;
+	public 'component_touched': boolean;
 	/* Some elements require the mouse to be locked out until a mouse-up event occurs. This is
     so that we don't have events propagating to other portions of the code. */
-	public mouse_keyboard_lock: boolean;
-	public translation_lock: boolean;
+	public 'mouse_keyboard_lock': boolean;
+	public 'translation_lock': boolean;
 	/* Used for solving the matrix, If the matrix is found to be singluar, this flag will be set
     and the simulation will end throwing an sinular matrix fault. */
-	public is_singular: boolean;
+	public 'is_singular': boolean;
 	/* Storing mouse events in this template so they can be serialized */
-	public mouse_down_event: MouseEvent;
-	public mouse_move_event: MouseEvent;
-	public mouse_up_event: MouseEvent;
-	public mouse_wheel_event: MouseEvent;
-	public mouse_double_click_event: MouseEvent;
+	public 'mouse_down_event': MouseEvent;
+	public 'mouse_move_event': MouseEvent;
+	public 'mouse_up_event': MouseEvent;
+	public 'mouse_wheel_event': MouseEvent;
+	public 'mouse_double_click_event': MouseEvent;
 	/* Storing key events into queue's to prevent keystrokes from being missed. */
-	public mouse_down_event_queue: Array<MouseEvent>;
-	public mouse_up_event_queue: Array<MouseEvent>;
-	public mouse_wheel_event_queue: Array<MouseEvent>;
-	public mouse_double_click_event_queue: Array<MouseEvent>;
+	public 'mouse_down_event_queue': Array<MouseEvent>;
+	public 'mouse_up_event_queue': Array<MouseEvent>;
+	public 'mouse_wheel_event_queue': Array<MouseEvent>;
+	public 'mouse_double_click_event_queue': Array<MouseEvent>;
 	/* Determine the web-browser! */
-	public BROWSER_IE: boolean;
-	public BROWSER_CHROME: boolean;
-	public BROWSER_OPERA: boolean;
-	public BROWSER_FIREFOX: boolean;
-	public BROWSER_SAFARI: boolean;
+	public 'BROWSER_IE': boolean;
+	public 'BROWSER_CHROME': boolean;
+	public 'BROWSER_OPERA': boolean;
+	public 'BROWSER_FIREFOX': boolean;
+	public 'BROWSER_SAFARI': boolean;
 	/* Text styles for the note element. */
-	public readonly TEXT_STYLE_1: string;
-	public readonly TEXT_STYLE_2: string;
-	public readonly TEXT_STYLE_3: string;
-	public readonly TEXT_STYLE_4: string;
-	public readonly TEXT_STYLE_5: string;
+	public readonly 'TEXT_STYLE_1': string;
+	public readonly 'TEXT_STYLE_2': string;
+	public readonly 'TEXT_STYLE_3': string;
+	public readonly 'TEXT_STYLE_4': string;
+	public readonly 'TEXT_STYLE_5': string;
 	/* Storing key events in this template so they can be serialized */
-	public key_down_event: KEY_EVENT_T;
-	public key_up_event: KEY_EVENT_T;
+	public 'key_down_event': KEY_EVENT_T;
+	public 'key_up_event': KEY_EVENT_T;
 	/* Storing key events into queue's to prevent keystrokes from being missed. */
-	public key_down_event_queue: Array<KEY_EVENT_T>;
-	public key_up_event_queue: Array<KEY_EVENT_T>;
-	public mouse_down_x: number;
-	public mouse_down_y: number;
+	public 'key_down_event_queue': Array<KEY_EVENT_T>;
+	public 'key_up_event_queue': Array<KEY_EVENT_T>;
+	public 'mouse_down_x': number;
+	public 'mouse_down_y': number;
 	/* Stores the last mouse event when a new one comes in, its used to calculate dx and dy for
     the mouse movements.  */
-	public last_mouse_x: number;
-	public last_mouse_y: number;
+	public 'last_mouse_x': number;
+	public 'last_mouse_y': number;
 	/* The difference between the current mouse coordinates and the last coordinates recorded. */
-	public dx: number;
-	public dy: number;
+	public 'dx': number;
+	public 'dy': number;
 	/* Stores the location of mouse events this is used in mouse_move, mouse_down, mouse_up, handle_zoom, etc. */
-	public mouse_x: number;
-	public mouse_y: number;
+	public 'mouse_x': number;
+	public 'mouse_y': number;
 	/* A flag to indicate when a mouse click event occurs. */
-	public is_touching: boolean;
+	public 'is_touching': boolean;
 	/* A flag to indicate when a dragging event occurs. This is only set if is_right_click is true. */
-	public is_dragging: boolean;
-	public temp_is_dragging: boolean;
+	public 'is_dragging': boolean;
+	public 'temp_is_dragging': boolean;
 	/* A flag to indicate when the user performs a right click */
-	public is_right_click: boolean;
+	public 'is_right_click': boolean;
 	/* Used to calculate the shift in when the zoom-to-point logic starts, this essenntially is the left and top of the workspace view */
-	public delta_x: number;
-	public delta_y: number;
+	public 'delta_x': number;
+	public 'delta_y': number;
 	/* Used for zoom to point, its a relative */
-	public x_offset: number;
-	public y_offset: number;
+	public 'x_offset': number;
+	public 'y_offset': number;
 	/* The node-spacing in the x-direction */
-	public node_space_x: number;
+	public 'node_space_x': number;
 	/* The node-spacing in the y-direction */
-	public node_space_y: number;
+	public 'node_space_y': number;
 	/* The last surface width, this is used for 1:1 resizing */
-	public last_surface_width: number;
+	public 'last_surface_width': number;
 	/* The last surface height, this is used for 1:1 resizing */
-	public last_surface_height: number;
+	public 'last_surface_height': number;
 	/* The last view port width, this is used for 1:1 resizing */
-	public last_view_port_width: number;
+	public 'last_view_port_width': number;
 	/* The last view port height, this is used for 1:1 resizing */
-	public last_view_port_height: number;
-	public last_view_port_right: number;
-	public last_view_port_bottom: number;
+	public 'last_view_port_height': number;
+	public 'last_view_port_right': number;
+	public 'last_view_port_bottom': number;
 	/* Used to determine which wire point is associated to an elements nodes. */
-	public ANCHOR_POINT: ANCHOR_POINT_T;
+	public 'ANCHOR_POINT': ANCHOR_POINT_T;
 	/* Store the pre-divided SI units to save some computation time. */
-	public SI_UNIT_ARRAY: Array<number>;
+	public 'SI_UNIT_ARRAY': Array<number>;
 	/* Cache the thresholds.. */
-	public SI_UNIT_THRESHOLD_ARRAY: Array<number>;
-	public SI_UNIT_ABBREVIATION: Array<string>;
+	public 'SI_UNIT_THRESHOLD_ARRAY': Array<number>;
+	public 'SI_UNIT_ABBREVIATION': Array<string>;
 	/* To facilitate the generation of new wires. */
-	public WIRE_BUILDER: WIRE_BUILDER_T;
+	public 'WIRE_BUILDER': WIRE_BUILDER_T;
 	/* Accessing the limits of each variable in the element properties structures below.*/
-	public readonly PROPERTY_LIMIT_MIN: number;
-	public readonly PROPERTY_LIMIT_MAX: number;
+	public readonly 'PROPERTY_LIMIT_MIN': number;
+	public readonly 'PROPERTY_LIMIT_MAX': number;
 	/* A builder to help create new wires. */
-	public readonly WIRE_REFERENCE: WIRE_REFERENCE_T;
+	public readonly 'WIRE_REFERENCE': WIRE_REFERENCE_T;
 	/* Structure for saving meta data details */
-	public readonly PROPERTY_META_DATA: PROPERTY_META_DATA_T;
-	/* Base structure for resistor properties */
+	public readonly 'PROPERTY_META_DATA': PROPERTY_META_DATA_T;
+/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+/* Base structure for Resistor properties */
 	public readonly PROPERTY_RESISTOR: PROPERTY_RESISTOR_T;
-	/* Base structure for SPST properties */
-	public readonly PROPERTY_SPST: PROPERTY_SPST_T;
-	/* Base structure for NOT properties */
-	public readonly PROPERTY_NOT: PROPERTY_NOT_T;
-	/* Base structure for diode properties */
-	public readonly PROPERTY_DIODE: PROPERTY_DIODE_T;
-	/* Base structure for led properties */
-	public readonly PROPERTY_LED: PROPERTY_LED_T;
-	/* Base structure for zener properties */
-	public readonly PROPERTY_ZENER: PROPERTY_ZENER_T;
-	/* Base structure for voltmeter properties */
-	public readonly PROPERTY_VOLTMETER: PROPERTY_VOLTMETER_T;
-	/* Base structure for voltmeter properties */
-	public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T;
-	/* Base structure for ammeter properties */
-	public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T;
-	/* Base structure for ohmmeter properties */
-	public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T;
-	/* Base structure for resistor properties */
-	public readonly PROPERTY_WIRE: PROPERTY_WIRE_T;
-	/* Base structure for dc source properties */
-	public readonly PROPERTY_DCSOURCE: PROPERTY_DCSOURCE_T;
-	/* Base structure for ac source properties */
-	public readonly PROPERTY_ACSOURCE: PROPERTY_ACSOURCE_T;
-	/* Base structure for square wave source properties */
-	public readonly PROPERTY_SQUAREWAVE: PROPERTY_SQUAREWAVE_T;
-	/* Base structure for ac source properties */
-	public readonly PROPERTY_ACCURRENT: PROPERTY_ACCURRENT_T;
-	/* Base structure for dc current properties */
-	public readonly PROPERTY_DCCURRENT: PROPERTY_DCCURRENT_T;
-	/* Base structure for capacitor properties */
+
+/* Base structure for Capacitor properties */
 	public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T;
-	/* Base structure for inductor properties */
+
+/* Base structure for Inductor properties */
 	public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T;
-	/* Base structure for ground properties */
+
+/* Base structure for Ground properties */
 	public readonly PROPERTY_GROUND: PROPERTY_GROUND_T;
-	/* Base structure for net properties */
-	public readonly PROPERTY_NET: PROPERTY_NET_T;
-	/* Base structure for constant properties */
-	public readonly PROPERTY_CONSTANT: PROPERTY_CONSTANT_T;
-	/* Base structure for potentiometer properties */
-	public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T;
-	/* Base structure for and properties */
-	public readonly PROPERTY_AND: PROPERTY_AND_T;
-	/* Base structure for or properties */
-	public readonly PROPERTY_OR: PROPERTY_OR_T;
-	/* Base structure for nand properties */
-	public readonly PROPERTY_NAND: PROPERTY_NAND_T;
-	/* Base structure for nor properties */
-	public readonly PROPERTY_NOR: PROPERTY_NOR_T;
-	/* Base structure for xor properties */
-	public readonly PROPERTY_XOR: PROPERTY_XOR_T;
-	/* Base structure for xnor properties */
-	public readonly PROPERTY_XNOR: PROPERTY_XNOR_T;
-	/* Base structure for vcsw properties */
-	public readonly PROPERTY_VCSW: PROPERTY_VCSW_T;
-	/* Base structure for vcr properties */
-	public readonly PROPERTY_VCR: PROPERTY_VCR_T;
-	/* Base structure for vcvs properties */
-	public readonly PROPERTY_VCVS: PROPERTY_VCVS_T;
-	/* Base structure for vccs properties */
-	public readonly PROPERTY_VCCS: PROPERTY_VCCS_T;
-	/* Base structure for cccs properties */
-	public readonly PROPERTY_CCCS: PROPERTY_CCCS_T;
-	/* Base structure for ccvs properties */
-	public readonly PROPERTY_CCVS: PROPERTY_CCVS_T;
-	/* Base structure for SPST properties */
-	public readonly PROPERTY_SPDT: PROPERTY_SPDT_T;
-	/* Base structure for opamp properties */
-	public readonly PROPERTY_OPAMP: PROPERTY_OPAMP_T;
-	/* Base structure for vsat properties */
-	public readonly PROPERTY_VSAT: PROPERTY_VSAT_T;
-	/* Base structure for saw wave source properties */
+
+/* Base structure for DCSource properties */
+	public readonly PROPERTY_DCSOURCE: PROPERTY_DCSOURCE_T;
+
+/* Base structure for DCCurrent properties */
+	public readonly PROPERTY_DCCURRENT: PROPERTY_DCCURRENT_T;
+
+/* Base structure for ACSource properties */
+	public readonly PROPERTY_ACSOURCE: PROPERTY_ACSOURCE_T;
+
+/* Base structure for ACCurrent properties */
+	public readonly PROPERTY_ACCURRENT: PROPERTY_ACCURRENT_T;
+
+/* Base structure for SquareWave properties */
+	public readonly PROPERTY_SQUAREWAVE: PROPERTY_SQUAREWAVE_T;
+
+/* Base structure for SawWave properties */
 	public readonly PROPERTY_SAW: PROPERTY_SAW_T;
-	/* Base structure for triangle wave source properties */
+
+/* Base structure for TriangleWave properties */
 	public readonly PROPERTY_TRI: PROPERTY_TRI_T;
-	/* Base structure for adder properties */
-	public readonly PROPERTY_ADD: PROPERTY_ADD_T;
-	/* Base structure for subtractor properties */
-	public readonly PROPERTY_SUB: PROPERTY_SUB_T;
-	/* Base structure for multiplier properties */
-	public readonly PROPERTY_MUL: PROPERTY_MUL_T;
-	/* Base structure for greater than properties */
-	public readonly PROPERTY_GRT: PROPERTY_GRT_T;
-	/* Base structure for adder properties */
-	public readonly PROPERTY_DIV: PROPERTY_DIV_T;
-	/* Base structure for nmosfet properties */
-	public readonly PROPERTY_NMOS: PROPERTY_NMOS_T;
-	/* Base structure for pmosfet properties */
-	public readonly PROPERTY_PMOS: PROPERTY_PMOS_T;
-	/* Base structure for npnbjt properties */
-	public readonly PROPERTY_NPN: PROPERTY_NPN_T;
-	/* Base structure for pnpbjt properties */
-	public readonly PROPERTY_PNP: PROPERTY_PNP_T;
-	/* Base structure for transformer properties */
-	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
-	/* Base structure for adc properties */
-	public readonly PROPERTY_ADC: PROPERTY_ADC_T;
-	/* Base structure for dac properties */
-	public readonly PROPERTY_DAC: PROPERTY_DAC_T;
-	/* Base structure for pwm properties */
-	public readonly PROPERTY_PWM: PROPERTY_PWM_T;
-	/* Base structure for integrator properties */
-	public readonly PROPERTY_INTEGRATOR: PROPERTY_INTEGRATOR_T;
-	/* Base structure for differentiator properties */
-	public readonly PROPERTY_DIFFERENTIATOR: PROPERTY_DIFFERENTIATOR_T;
-	/* Base structure for gain properties */
-	public readonly PROPERTY_GAIN: PROPERTY_GAIN_T;
-	/* Base structure for abs properties */
-	public readonly PROPERTY_ABS: PROPERTY_ABS_T;
-	/* Base structure for lpf properties */
-	public readonly PROPERTY_LPF: PROPERTY_LPF_T;
-	/* Base structure for hpf properties */
-	public readonly PROPERTY_HPF: PROPERTY_HPF_T;
-	/* Base structure for rail properties */
-	public readonly PROPERTY_RAIL: PROPERTY_RAIL_T;
-	/* Base structure for relay properties */
-	public readonly PROPERTY_REL: PROPERTY_REL_T;
-	/* Base structure for pid properties */
-	public readonly PROPERTY_PID: PROPERTY_PID_T;
-	/* Base structure for samplers properties */
-	public readonly PROPERTY_SAH: PROPERTY_SAH_T;
-	/* Base structure for Look-Up-Table properties */
-	public readonly PROPERTY_LUT: PROPERTY_LUT_T;
-	/* Base structure for tptz properties */
-	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
-	/* Base structure for note properties */
+
+/* Base structure for Constant properties */
+	public readonly PROPERTY_CONSTANT: PROPERTY_CONSTANT_T;
+
+/* Base structure for Wire properties */
+	public readonly PROPERTY_WIRE: PROPERTY_WIRE_T;
+
+/* Base structure for Net properties */
+	public readonly PROPERTY_NET: PROPERTY_NET_T;
+
+/* Base structure for Note properties */
 	public readonly PROPERTY_NOTE: PROPERTY_NOTE_T;
-	/* Base structure for fuse properties */
+
+/* Base structure for Rail properties */
+	public readonly PROPERTY_RAIL: PROPERTY_RAIL_T;
+
+/* Base structure for VoltMeter properties */
+	public readonly PROPERTY_VOLTMETER: PROPERTY_VOLTMETER_T;
+
+/* Base structure for OhmMeter properties */
+	public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T;
+
+/* Base structure for AmMeter properties */
+	public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T;
+
+/* Base structure for WattMeter properties */
+	public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T;
+
+/* Base structure for Fuse properties */
 	public readonly PROPERTY_FUSE: PROPERTY_FUSE_T;
-	/* Base structure for dff properties */
+
+/* Base structure for SinglePoleSingleThrow properties */
+	public readonly PROPERTY_SPST: PROPERTY_SPST_T;
+
+/* Base structure for SinglePoleDoubleThrow properties */
+	public readonly PROPERTY_SPDT: PROPERTY_SPDT_T;
+
+/* Base structure for NOTGate properties */
+	public readonly PROPERTY_NOT: PROPERTY_NOT_T;
+
+/* Base structure for Diode properties */
+	public readonly PROPERTY_DIODE: PROPERTY_DIODE_T;
+
+/* Base structure for LightEmittingDiode properties */
+	public readonly PROPERTY_LED: PROPERTY_LED_T;
+
+/* Base structure for ZenerDiode properties */
+	public readonly PROPERTY_ZENER: PROPERTY_ZENER_T;
+
+/* Base structure for Potentiometer properties */
+	public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T;
+
+/* Base structure for ANDGate properties */
+	public readonly PROPERTY_AND: PROPERTY_AND_T;
+
+/* Base structure for ORGate properties */
+	public readonly PROPERTY_OR: PROPERTY_OR_T;
+
+/* Base structure for NANDGate properties */
+	public readonly PROPERTY_NAND: PROPERTY_NAND_T;
+
+/* Base structure for NORGate properties */
+	public readonly PROPERTY_NOR: PROPERTY_NOR_T;
+
+/* Base structure for XORGate properties */
+	public readonly PROPERTY_XOR: PROPERTY_XOR_T;
+
+/* Base structure for XNORGate properties */
+	public readonly PROPERTY_XNOR: PROPERTY_XNOR_T;
+
+/* Base structure for DFlipFlop properties */
 	public readonly PROPERTY_DFF: PROPERTY_DFF_T;
+
+/* Base structure for VoltageSaturation properties */
+	public readonly PROPERTY_VSAT: PROPERTY_VSAT_T;
+
+/* Base structure for Adder properties */
+	public readonly PROPERTY_ADD: PROPERTY_ADD_T;
+
+/* Base structure for Subtractor properties */
+	public readonly PROPERTY_SUB: PROPERTY_SUB_T;
+
+/* Base structure for Multiplier properties */
+	public readonly PROPERTY_MUL: PROPERTY_MUL_T;
+
+/* Base structure for Divider properties */
+	public readonly PROPERTY_DIV: PROPERTY_DIV_T;
+
+/* Base structure for GainBlock properties */
+	public readonly PROPERTY_GAIN: PROPERTY_GAIN_T;
+
+/* Base structure for AbsoluteValue properties */
+	public readonly PROPERTY_ABS: PROPERTY_ABS_T;
+
+/* Base structure for VoltageControlledSwitch properties */
+	public readonly PROPERTY_VCSW: PROPERTY_VCSW_T;
+
+/* Base structure for VoltageControlledVoltageSource properties */
+	public readonly PROPERTY_VCVS: PROPERTY_VCVS_T;
+
+/* Base structure for VoltageControlledCurrentSource properties */
+	public readonly PROPERTY_VCCS: PROPERTY_VCCS_T;
+
+/* Base structure for CurrentControlledCurrentSource properties */
+	public readonly PROPERTY_CCCS: PROPERTY_CCCS_T;
+
+/* Base structure for CurrentControlledVoltageSource properties */
+	public readonly PROPERTY_CCVS: PROPERTY_CCVS_T;
+
+/* Base structure for OperationalAmplifier properties */
+	public readonly PROPERTY_OPAMP: PROPERTY_OPAMP_T;
+
+/* Base structure for NChannelMOSFET properties */
+	public readonly PROPERTY_NMOS: PROPERTY_NMOS_T;
+
+/* Base structure for PChannelMOSFET properties */
+	public readonly PROPERTY_PMOS: PROPERTY_PMOS_T;
+
+/* Base structure for NPNBipolarJunctionTransistor properties */
+	public readonly PROPERTY_NPN: PROPERTY_NPN_T;
+
+/* Base structure for PNPBipolarJunctionTransistor properties */
+	public readonly PROPERTY_PNP: PROPERTY_PNP_T;
+
+/* Base structure for ADCModule properties */
+	public readonly PROPERTY_ADC: PROPERTY_ADC_T;
+
+/* Base structure for DACModule properties */
+	public readonly PROPERTY_DAC: PROPERTY_DAC_T;
+
+/* Base structure for SampleAndHold properties */
+	public readonly PROPERTY_SAH: PROPERTY_SAH_T;
+
+/* Base structure for PulseWidthModulator properties */
+	public readonly PROPERTY_PWM: PROPERTY_PWM_T;
+
+/* Base structure for IntegratorModule properties */
+	public readonly PROPERTY_INTEGRATOR: PROPERTY_INTEGRATOR_T;
+
+/* Base structure for DifferentiatorModule properties */
+	public readonly PROPERTY_DIFFERENTIATOR: PROPERTY_DIFFERENTIATOR_T;
+
+/* Base structure for LowPassFilter properties */
+	public readonly PROPERTY_LPF: PROPERTY_LPF_T;
+
+/* Base structure for HighPassFilter properties */
+	public readonly PROPERTY_HPF: PROPERTY_HPF_T;
+
+/* Base structure for Relay properties */
+	public readonly PROPERTY_REL: PROPERTY_REL_T;
+
+/* Base structure for PIDModule properties */
+	public readonly PROPERTY_PID: PROPERTY_PID_T;
+
+/* Base structure for LookUpTable properties */
+	public readonly PROPERTY_LUT: PROPERTY_LUT_T;
+
+/* Base structure for VoltageControlledResistor properties */
+	public readonly PROPERTY_VCR: PROPERTY_VCR_T;
+
+/* Base structure for GreaterThan properties */
+	public readonly PROPERTY_GRT: PROPERTY_GRT_T;
+
+/* Base structure for TPTZModule properties */
+	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
+
+/* Base structure for Transformer properties */
+	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
+
+/* <!-- END AUTOMATICALLY GENERATED !--> */
+
 	/* Keeps track of all the changes made to elements. There is a manager for
     the history generated inside the application. Its queued up so we don't miss
     anything! */
-	public readonly HISTORY_MANAGER: HISTORY_MANAGER_T;
+	public readonly 'HISTORY_MANAGER': HISTORY_MANAGER_T;
 	/* The various landuages available to pick from. */
-	public readonly LANGUAGES: Array<string>;
-	public LANGUGE_INDEX_COUNTER: number;
-	public readonly LANGUAGE_INDEX_ENGLISH: number;
-	public readonly LANGUAGE_INDEX_SPANISH: number;
-	public readonly LANGUAGE_INDEX_FRENCH: number;
-	public readonly LANGUAGE_INDEX_ITALIAN: number;
-	public readonly LANGUAGE_INDEX_DUTCH: number;
-	public readonly LANGUAGE_INDEX_RUSSIAN: number;
-	public readonly LANGUAGE_INDEX_GERMAN: number;
-	public readonly LANGUAGE_INDEX_INDONESIAN: number;
+	public readonly 'LANGUAGES': Array<string>;
+	public 'LANGUGE_INDEX_COUNTER': number;
+	public readonly 'LANGUAGE_INDEX_ENGLISH': number;
+	public readonly 'LANGUAGE_INDEX_SPANISH': number;
+	public readonly 'LANGUAGE_INDEX_FRENCH': number;
+	public readonly 'LANGUAGE_INDEX_ITALIAN': number;
+	public readonly 'LANGUAGE_INDEX_DUTCH': number;
+	public readonly 'LANGUAGE_INDEX_RUSSIAN': number;
+	public readonly 'LANGUAGE_INDEX_GERMAN': number;
+	public readonly 'LANGUAGE_INDEX_INDONESIAN': number;
 	/* The current language index. */
-	public LANGUAGE_INDEX: number;
+	public 'LANGUAGE_INDEX': number;
 	/* Base structure for system properties */
-	public SYSTEM_OPTIONS: SYSTEM_OPTIONS_T;
+	public 'SYSTEM_OPTIONS': SYSTEM_OPTIONS_T;
 	/* Index's to access system options. Make sure they're in order. */
-	public indexer: number;
-	public circle_buffer: Array<Array<number>>;
-	public line_buffer: Array<Array<number>>;
-	public SYSTEM_OPTION_LANGUAGE: number;
-	public SYSTEM_OPTION_AUTOMATIC_TIMESTEP: number;
-	public SYSTEM_OPTION_SHORTCUT_HINTS: number;
-	public SYSTEM_OPTION_STRETCH_WINDOW: number;
+	public 'indexer': number;
+	public 'circle_buffer': Array<Array<number>>;
+	public 'line_buffer': Array<Array<number>>;
+	public 'SYSTEM_OPTION_LANGUAGE': number;
+	public 'SYSTEM_OPTION_AUTOMATIC_TIMESTEP': number;
+	public 'SYSTEM_OPTION_SHORTCUT_HINTS': number;
+	public 'SYSTEM_OPTION_STRETCH_WINDOW': number;
 	/* 99.999% Of the colors are stored here for conveinence. This is to help when moving from canvas-2d to some other libraries
     in the future. Paint.js has one definition there... (The order of includes are hard to manage.)*/
-	public readonly BACKGROUND_COLOR: string;
-	public readonly ELEMENT_COLOR: string;
-	public readonly SELECTED_COLOR: string;
-	public readonly MULTI_SELECTED_COLOR: string;
-	public readonly WORKSPACE_WORK_AREA_COLOR: string;
-	public readonly GRAPH_AREA_COLOR: string;
-	public readonly ZOOM_AREA_COLOR: string;
-	public readonly TRACE_I_COLOR: string;
-	public readonly TRACE_II_COLOR: string;
-	public readonly TRACE_III_COLOR: string;
-	public readonly TRACE_DEFAULT_COLOR: string;
-	public readonly MENU_ICON_ACTIVE_COLOR: string;
-	public readonly MENU_ICON_INACTIVE_COLOR: string;
-	public readonly MENU_ICON_DEFAULT_COLOR: string;
-	public readonly MENU_HIGHLIGHT_COLOR: string;
-	public readonly MENU_FILL_COLOR: string;
-	public readonly GENERAL_WHITE_COLOR: string;
-	public readonly GENERAL_BLACK_COLOR: string;
-	public readonly GENERAL_GRAY_COLOR: string;
-	public readonly GENERAL_GREEN_COLOR: string;
-	public readonly GENERAL_RED_COLOR: string;
-	public readonly GENERAL_BLUE_COLOR: string;
-	public readonly GENERAL_BOUNDS_COLOR: string;
-	public readonly GENERAL_CYAN_COLOR: string;
-	public readonly GENERAL_YELLOW_COLOR: string;
+	public readonly 'BACKGROUND_COLOR': string;
+	public readonly 'ELEMENT_COLOR': string;
+	public readonly 'SELECTED_COLOR': string;
+	public readonly 'MULTI_SELECTED_COLOR': string;
+	public readonly 'WORKSPACE_WORK_AREA_COLOR': string;
+	public readonly 'GRAPH_AREA_COLOR': string;
+	public readonly 'ZOOM_AREA_COLOR': string;
+	public readonly 'TRACE_I_COLOR': string;
+	public readonly 'TRACE_II_COLOR': string;
+	public readonly 'TRACE_III_COLOR': string;
+	public readonly 'TRACE_DEFAULT_COLOR': string;
+	public readonly 'MENU_ICON_ACTIVE_COLOR': string;
+	public readonly 'MENU_ICON_INACTIVE_COLOR': string;
+	public readonly 'MENU_ICON_DEFAULT_COLOR': string;
+	public readonly 'MENU_HIGHLIGHT_COLOR': string;
+	public readonly 'MENU_FILL_COLOR': string;
+	public readonly 'GENERAL_WHITE_COLOR': string;
+	public readonly 'GENERAL_BLACK_COLOR': string;
+	public readonly 'GENERAL_GRAY_COLOR': string;
+	public readonly 'GENERAL_GREEN_COLOR': string;
+	public readonly 'GENERAL_RED_COLOR': string;
+	public readonly 'GENERAL_BLUE_COLOR': string;
+	public readonly 'GENERAL_BOUNDS_COLOR': string;
+	public readonly 'GENERAL_CYAN_COLOR': string;
+	public readonly 'GENERAL_YELLOW_COLOR': string;
 	/* The default font for all paints created in the system */
-	public readonly DEFAULT_FONT: string;
+	public readonly 'DEFAULT_FONT': string;
 	/* A flag to detail if the user has selected a file or not. */
-	public user_file_selected: boolean;
+	public 'user_file_selected': boolean;
 	/* A descriptor for the users circuit */
-	public user_file: Circuit;
+	public 'user_file': Circuit;
 	/* Key Event Code Constants */
-	public KEY_CODE_ESCAPE: string;
-	public KEY_CODE_BACK_QUOTE: string;
-	public KEY_CODE_0: string;
-	public KEY_CODE_1: string;
-	public KEY_CODE_2: string;
-	public KEY_CODE_3: string;
-	public KEY_CODE_4: string;
-	public KEY_CODE_5: string;
-	public KEY_CODE_6: string;
-	public KEY_CODE_7: string;
-	public KEY_CODE_8: string;
-	public KEY_CODE_9: string;
-	public KEY_CODE_MINUS: string;
-	public KEY_CODE_EQUAL: string;
-	public KEY_CODE_BACKSPACE: string;
-	public KEY_CODE_Q: string;
-	public KEY_CODE_W: string;
-	public KEY_CODE_E: string;
-	public KEY_CODE_R: string;
-	public KEY_CODE_T: string;
-	public KEY_CODE_Y: string;
-	public KEY_CODE_U: string;
-	public KEY_CODE_I: string;
-	public KEY_CODE_O: string;
-	public KEY_CODE_P: string;
-	public KEY_CODE_LEFT_BRACKET: string;
-	public KEY_CODE_RIGHT_BRACKET: string;
-	public KEY_CODE_BACKSLASH: string;
-	public KEY_CODE_A: string;
-	public KEY_CODE_S: string;
-	public KEY_CODE_D: string;
-	public KEY_CODE_F: string;
-	public KEY_CODE_G: string;
-	public KEY_CODE_H: string;
-	public KEY_CODE_J: string;
-	public KEY_CODE_K: string;
-	public KEY_CODE_L: string;
-	public KEY_CODE_SEMI_COLON: string;
-	public KEY_CODE_QUOTE: string;
-	public KEY_CODE_ENTER: string;
-	public KEY_CODE_LEFT_SHIFT: string;
-	public KEY_CODE_Z: string;
-	public KEY_CODE_X: string;
-	public KEY_CODE_C: string;
-	public KEY_CODE_V: string;
-	public KEY_CODE_B: string;
-	public KEY_CODE_N: string;
-	public KEY_CODE_M: string;
-	public KEY_CODE_COMMA: string;
-	public KEY_CODE_PERIOD: string;
-	public KEY_CODE_FORWARD_SLASH: string;
-	public KEY_CODE_RIGHT_SHIFT: string;
-	public KEY_CODE_LEFT_CONTROL: string;
-	public KEY_CODE_LEFT_ALT: string;
-	public KEY_CODE_SPACE: string;
-	public KEY_CODE_RIGHT_ALT: string;
-	public KEY_CODE_RIGHT_CONTROL: string;
-	public KEY_CODE_DELETE: string;
-	public KEY_CODE_HOME: string;
-	public KEY_CODE_END: string;
-	public KEY_CODE_NUMPAD_MINUS: string;
-	public KEY_CODE_NUMPAD_DIVIDE: string;
-	public KEY_CODE_NUMPAD_MULTIPLY: string;
-	public KEY_CODE_NUMPAD_SUBTRACT: string;
-	public KEY_CODE_NUMPAD_ENTER: string;
-	public KEY_CODE_NUMPAD_DECIMAL: string;
-	public KEY_CODE_ARROW_LEFT: string;
-	public KEY_CODE_ARROW_UP: string;
-	public KEY_CODE_ARROW_DOWN: string;
-	public KEY_CODE_ARROW_RIGHT: string;
-	public KEY_CODE_NUMPAD0: string;
-	public KEY_CODE_NUMPAD1: string;
-	public KEY_CODE_NUMPAD2: string;
-	public KEY_CODE_NUMPAD3: string;
-	public KEY_CODE_NUMPAD4: string;
-	public KEY_CODE_NUMPAD5: string;
-	public KEY_CODE_NUMPAD6: string;
-	public KEY_CODE_NUMPAD7: string;
-	public KEY_CODE_NUMPAD8: string;
-	public KEY_CODE_NUMPAD9: string;
+	public 'KEY_CODE_ESCAPE': string;
+	public 'KEY_CODE_BACK_QUOTE': string;
+	public 'KEY_CODE_0': string;
+	public 'KEY_CODE_1': string;
+	public 'KEY_CODE_2': string;
+	public 'KEY_CODE_3': string;
+	public 'KEY_CODE_4': string;
+	public 'KEY_CODE_5': string;
+	public 'KEY_CODE_6': string;
+	public 'KEY_CODE_7': string;
+	public 'KEY_CODE_8': string;
+	public 'KEY_CODE_9': string;
+	public 'KEY_CODE_MINUS': string;
+	public 'KEY_CODE_EQUAL': string;
+	public 'KEY_CODE_BACKSPACE': string;
+	public 'KEY_CODE_Q': string;
+	public 'KEY_CODE_W': string;
+	public 'KEY_CODE_E': string;
+	public 'KEY_CODE_R': string;
+	public 'KEY_CODE_T': string;
+	public 'KEY_CODE_Y': string;
+	public 'KEY_CODE_U': string;
+	public 'KEY_CODE_I': string;
+	public 'KEY_CODE_O': string;
+	public 'KEY_CODE_P': string;
+	public 'KEY_CODE_LEFT_BRACKET': string;
+	public 'KEY_CODE_RIGHT_BRACKET': string;
+	public 'KEY_CODE_BACKSLASH': string;
+	public 'KEY_CODE_A': string;
+	public 'KEY_CODE_S': string;
+	public 'KEY_CODE_D': string;
+	public 'KEY_CODE_F': string;
+	public 'KEY_CODE_G': string;
+	public 'KEY_CODE_H': string;
+	public 'KEY_CODE_J': string;
+	public 'KEY_CODE_K': string;
+	public 'KEY_CODE_L': string;
+	public 'KEY_CODE_SEMI_COLON': string;
+	public 'KEY_CODE_QUOTE': string;
+	public 'KEY_CODE_ENTER': string;
+	public 'KEY_CODE_LEFT_SHIFT': string;
+	public 'KEY_CODE_Z': string;
+	public 'KEY_CODE_X': string;
+	public 'KEY_CODE_C': string;
+	public 'KEY_CODE_V': string;
+	public 'KEY_CODE_B': string;
+	public 'KEY_CODE_N': string;
+	public 'KEY_CODE_M': string;
+	public 'KEY_CODE_COMMA': string;
+	public 'KEY_CODE_PERIOD': string;
+	public 'KEY_CODE_FORWARD_SLASH': string;
+	public 'KEY_CODE_RIGHT_SHIFT': string;
+	public 'KEY_CODE_LEFT_CONTROL': string;
+	public 'KEY_CODE_LEFT_ALT': string;
+	public 'KEY_CODE_SPACE': string;
+	public 'KEY_CODE_RIGHT_ALT': string;
+	public 'KEY_CODE_RIGHT_CONTROL': string;
+	public 'KEY_CODE_DELETE': string;
+	public 'KEY_CODE_HOME': string;
+	public 'KEY_CODE_END': string;
+	public 'KEY_CODE_NUMPAD_MINUS': string;
+	public 'KEY_CODE_NUMPAD_DIVIDE': string;
+	public 'KEY_CODE_NUMPAD_MULTIPLY': string;
+	public 'KEY_CODE_NUMPAD_SUBTRACT': string;
+	public 'KEY_CODE_NUMPAD_ENTER': string;
+	public 'KEY_CODE_NUMPAD_DECIMAL': string;
+	public 'KEY_CODE_ARROW_LEFT': string;
+	public 'KEY_CODE_ARROW_UP': string;
+	public 'KEY_CODE_ARROW_DOWN': string;
+	public 'KEY_CODE_ARROW_RIGHT': string;
+	public 'KEY_CODE_NUMPAD0': string;
+	public 'KEY_CODE_NUMPAD1': string;
+	public 'KEY_CODE_NUMPAD2': string;
+	public 'KEY_CODE_NUMPAD3': string;
+	public 'KEY_CODE_NUMPAD4': string;
+	public 'KEY_CODE_NUMPAD5': string;
+	public 'KEY_CODE_NUMPAD6': string;
+	public 'KEY_CODE_NUMPAD7': string;
+	public 'KEY_CODE_NUMPAD8': string;
+	public 'KEY_CODE_NUMPAD9': string;
 	/* No modifier, Shift, Capslock */
-	public KEY_EVENT_CODES;
-	public KEY_EVENT_KEYS;
+	public 'KEY_EVENT_CODES';
+	public 'KEY_EVENT_KEYS';
 	/* Variables for Circuit Simulation */
-	public time_step: number;
+	public 'time_step': number;
 	/* Keeps track of the simulation time. */
-	public simulation_time: number;
+	public 'simulation_time': number;
 	/* Serializing the inputs (so they occur in a predictable manner.) */
-	public RESIZE_EVENT: boolean;
+	public 'RESIZE_EVENT': boolean;
 	/* Used for changing from window modes. */
-	public FORCE_RESIZE_EVENT: boolean;
-	public ON_RESTORE_EVENT: boolean;
-	public MOUSE_DOWN_EVENT: boolean;
-	public MOUSE_MOVE_EVENT: boolean;
-	public MOUSE_UP_EVENT: boolean;
-	public MOUSE_DOUBLE_CLICK_EVENT: boolean;
-	public MOUSE_WHEEL_EVENT: boolean;
-	public KEY_UP_EVENT: boolean;
-	public KEY_DOWN_EVENT: boolean;
+	public 'FORCE_RESIZE_EVENT': boolean;
+	public 'ON_RESTORE_EVENT': boolean;
+	public 'MOUSE_DOWN_EVENT': boolean;
+	public 'MOUSE_MOVE_EVENT': boolean;
+	public 'MOUSE_UP_EVENT': boolean;
+	public 'MOUSE_DOUBLE_CLICK_EVENT': boolean;
+	public 'MOUSE_WHEEL_EVENT': boolean;
+	public 'KEY_UP_EVENT': boolean;
+	public 'KEY_DOWN_EVENT': boolean;
 	/* A flag to disable the system from drawing to the real buffer. */
-	public draw_block: boolean;
+	public 'draw_block': boolean;
 	/* Flag to dictate that the system is ready for a close up (Taking a snaps shot of  the workspace area.). */
-	public PICTURE_REQUEST: boolean;
-	public readonly PICTURE_ZOOM: number;
-	public readonly PICTURE_EXPOSURE_TIME: number;
+	public 'PICTURE_REQUEST': boolean;
+	public readonly 'PICTURE_ZOOM': number;
+	public readonly 'PICTURE_EXPOSURE_TIME': number;
 	/* Canvas drawing optimization flag */
-	public canvas_draw_request: boolean;
-	public canvas_draw_request_counter: number;
-	public CANVAS_DRAW_REQUEST_COUNTER_MAX: number;
-	public canvas_draw_event: boolean;
-	public CANVAS_REDRAW_MAX: number;
-	public canvas_redraw_counter: number;
+	public 'canvas_draw_request': boolean;
+	public 'canvas_draw_request_counter': number;
+	public 'CANVAS_DRAW_REQUEST_COUNTER_MAX': number;
+	public 'canvas_draw_event': boolean;
+	public 'CANVAS_REDRAW_MAX': number;
+	public 'canvas_redraw_counter': number;
 	/* Quantizing the stroke width's for the entire system. Ideally, the system will use one of these sizes. */
-	public CANVAS_STROKE_WIDTH_BASE: number;
-	public CANVAS_STROKE_WIDTH_1: number;
-	public CANVAS_STROKE_WIDTH_2: number;
-	public CANVAS_STROKE_WIDTH_3: number;
-	public CANVAS_STROKE_WIDTH_4: number;
-	public CANVAS_STROKE_WIDTH_5: number;
-	public CANVAS_STROKE_WIDTH_6: number;
-	public CANVAS_STROKE_WIDTH_1_ZOOM: number;
-	public CANVAS_STROKE_WIDTH_2_ZOOM: number;
-	public CANVAS_STROKE_WIDTH_3_ZOOM: number;
-	public CANVAS_STROKE_WIDTH_4_ZOOM: number;
-	public CANVAS_STROKE_WIDTH_5_ZOOM: number;
-	public CANVAS_STROKE_WIDTH_6_ZOOM: number;
+	public 'CANVAS_STROKE_WIDTH_BASE': number;
+	public 'CANVAS_STROKE_WIDTH_1': number;
+	public 'CANVAS_STROKE_WIDTH_2': number;
+	public 'CANVAS_STROKE_WIDTH_3': number;
+	public 'CANVAS_STROKE_WIDTH_4': number;
+	public 'CANVAS_STROKE_WIDTH_5': number;
+	public 'CANVAS_STROKE_WIDTH_6': number;
+	public 'CANVAS_STROKE_WIDTH_1_ZOOM': number;
+	public 'CANVAS_STROKE_WIDTH_2_ZOOM': number;
+	public 'CANVAS_STROKE_WIDTH_3_ZOOM': number;
+	public 'CANVAS_STROKE_WIDTH_4_ZOOM': number;
+	public 'CANVAS_STROKE_WIDTH_5_ZOOM': number;
+	public 'CANVAS_STROKE_WIDTH_6_ZOOM': number;
 	/* Quantizing the text size's for the entire system. Ideally, the system will use one of these sizes. */
-	public CANVAS_TEXT_SIZE_BASE: number;
-	public CANVAS_TEXT_SIZE_1: number;
-	public CANVAS_TEXT_SIZE_2: number;
-	public CANVAS_TEXT_SIZE_3: number;
-	public CANVAS_TEXT_SIZE_4: number;
-	public CANVAS_TEXT_SIZE_5: number;
-	public CANVAS_TEXT_SIZE_6: number;
-	public CANVAS_TEXT_SIZE_1_ZOOM: number;
-	public CANVAS_TEXT_SIZE_2_ZOOM: number;
-	public CANVAS_TEXT_SIZE_3_ZOOM: number;
-	public CANVAS_TEXT_SIZE_4_ZOOM: number;
-	public CANVAS_TEXT_SIZE_5_ZOOM: number;
-	public CANVAS_TEXT_SIZE_6_ZOOM: number;
+	public 'CANVAS_TEXT_SIZE_BASE': number;
+	public 'CANVAS_TEXT_SIZE_1': number;
+	public 'CANVAS_TEXT_SIZE_2': number;
+	public 'CANVAS_TEXT_SIZE_3': number;
+	public 'CANVAS_TEXT_SIZE_4': number;
+	public 'CANVAS_TEXT_SIZE_5': number;
+	public 'CANVAS_TEXT_SIZE_6': number;
+	public 'CANVAS_TEXT_SIZE_1_ZOOM': number;
+	public 'CANVAS_TEXT_SIZE_2_ZOOM': number;
+	public 'CANVAS_TEXT_SIZE_3_ZOOM': number;
+	public 'CANVAS_TEXT_SIZE_4_ZOOM': number;
+	public 'CANVAS_TEXT_SIZE_5_ZOOM': number;
+	public 'CANVAS_TEXT_SIZE_6_ZOOM': number;
 	/* This is how history event components are seperated. */
-	public readonly PACKET_DIVIDER: string;
+	public readonly 'PACKET_DIVIDER': string;
 	/* Paint used to draw the grid highlights when a component is moved. */
-	public move_paint: Paint;
+	public 'move_paint': Paint;
 	/* Thermal voltage tor PN Junctions. */
-	public vt: number;
+	public 'vt': number;
 	/* Default GMIN value! (Used for gmin stepping) */
-	public gmin_default: number;
+	public 'gmin_default': number;
 	/* Non-linear simulation variables */
-	public v_max_err: Array<Array<number>>;
-	public i_max_err: Array<Array<number>>;
-	public v_locked: boolean;
-	public i_locked: boolean;
-	public v_conv: boolean;
-	public i_conv: boolean;
-	public readonly PI_DIV_2: number;
-	public readonly PI_DIV_4: number;
-	public readonly PI_MUL_3_DIV_4: number;
-	public readonly PI_DIV_6: number;
-	public readonly PI_DIV_12: number;
-	public readonly PI_DIV_180: number;
-	public readonly NEG_PI_DIV_180: number;
-	public readonly _180_DIV_PI: number;
-	public readonly PI_MUL_2: number;
+	public 'v_max_err': Array<Array<number>>;
+	public 'i_max_err': Array<Array<number>>;
+	public 'v_locked': boolean;
+	public 'i_locked': boolean;
+	public 'v_conv': boolean;
+	public 'i_conv': boolean;
+	public readonly 'PI_DIV_2': number;
+	public readonly 'PI_DIV_4': number;
+	public readonly 'PI_MUL_3_DIV_4': number;
+	public readonly 'PI_DIV_6': number;
+	public readonly 'PI_DIV_12': number;
+	public readonly 'PI_DIV_180': number;
+	public readonly 'NEG_PI_DIV_180': number;
+	public readonly '_180_DIV_PI': number;
+	public readonly 'PI_MUL_2': number;
 	/* Dividing PI into a 16-bit number (Qx) */
-	public TRIG_TABLE_Q_NUMBER: number;
-	public TRIG_SINE_TABLE: Array<number>;
-	public TRIG_TABLE_SIZE: number;
-	public TRIG_TABLE_SCALE_CONSTANT: number;
-	public TRIG_TABLE_INDEX_CONSTANT: number;
-	public TRIG_TABLE_MASK: number;
-	public TRIG_TABLE_ROUND: number;
-	public TIME_DATA_TEMPLATE: TIME_DATA_TEMPLATE_T;
+	public 'TRIG_TABLE_Q_NUMBER': number;
+	public 'TRIG_SINE_TABLE': Array<number>;
+	public 'TRIG_TABLE_SIZE': number;
+	public 'TRIG_TABLE_SCALE_CONSTANT': number;
+	public 'TRIG_TABLE_INDEX_CONSTANT': number;
+	public 'TRIG_TABLE_MASK': number;
+	public 'TRIG_TABLE_ROUND': number;
+	public 'TIME_DATA_TEMPLATE': TIME_DATA_TEMPLATE_T;
 	/* This is the maximum text length of any text field. */
-	public MAX_TEXT_LENGTH: number;
-	public inv_sqrt_buf: ArrayBuffer;
-	public inv_sqrt_f32: Float32Array;
-	public inv_sqrt_u32: Uint32Array;
-	public ALPHA_ARRAY: Array<number>;
-	public general_integer: number;
-	public general_integer2: number;
-	public general_integer3: number;
-	public general_integer4: number;
-	public general_integer5: number;
-	public resize_w_factor: number;
-	public resize_h_factor: number;
-	public angle_search_obj: ANGLE_STRUCT_T;
-	public angle_radian_search_obj: ANGLE_STRUCT_T;
-	public angle_array: Array<ANGLE_STRUCT_T>;
-	public angle_radian_array: Array<ANGLE_STRUCT_T>;
-	public saved_angle: number;
-	public saved_angle_radians: number;
-	public GARBAGE_COLLECTOR_SIZE: number;
-	public temp_boolean: boolean;
-	public general_index: number;
-	public element_max_array: Array<number>;
-	public meter_max_array: Array<number>;
-	public non_linear_max_array: Array<number>;
-	public max_general_number: number;
+	public 'MAX_TEXT_LENGTH': number;
+	public 'inv_sqrt_buf': ArrayBuffer;
+	public 'inv_sqrt_f32': Float32Array;
+	public 'inv_sqrt_u32': Uint32Array;
+	public 'ALPHA_ARRAY': Array<number>;
+	public 'general_integer': number;
+	public 'general_integer2': number;
+	public 'general_integer3': number;
+	public 'general_integer4': number;
+	public 'general_integer5': number;
+	public 'resize_w_factor': number;
+	public 'resize_h_factor': number;
+	public 'angle_search_obj': ANGLE_STRUCT_T;
+	public 'angle_radian_search_obj': ANGLE_STRUCT_T;
+	public 'angle_array': Array<ANGLE_STRUCT_T>;
+	public 'angle_radian_array': Array<ANGLE_STRUCT_T>;
+	public 'saved_angle': number;
+	public 'saved_angle_radians': number;
+	public 'GARBAGE_COLLECTOR_SIZE': number;
+	public 'temp_boolean': boolean;
+	public 'general_index': number;
+	public 'element_max_array': Array<number>;
+	public 'meter_max_array': Array<number>;
+	public 'non_linear_max_array': Array<number>;
+	public 'max_general_number': number;
 
-	constructor() {
+	'constructor'() {
 		this.NULL = null;
 		this.MOBILE_MODE = false;
 		this.system_initialization = {
@@ -778,76 +849,76 @@ class Global {
 		this.TYPE_META_DATA = -2;
 		/* Using a counter to keep track of the size of elements. */
 		this.TYPE_COUNTER = 0;
-		/* #INSERT_GENERATE_ELEMENT_TYPE# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.TYPE_RESISTOR = this.TYPE_COUNTER++;
-		this.TYPE_CAPACITOR = this.TYPE_COUNTER++;
-		this.TYPE_INDUCTOR = this.TYPE_COUNTER++;
-		this.TYPE_GROUND = this.TYPE_COUNTER++;
-		this.TYPE_DCSOURCE = this.TYPE_COUNTER++;
-		this.TYPE_DCCURRENT = this.TYPE_COUNTER++;
-		this.TYPE_ACSOURCE = this.TYPE_COUNTER++;
-		this.TYPE_ACCURRENT = this.TYPE_COUNTER++;
-		this.TYPE_SQUAREWAVE = this.TYPE_COUNTER++;
-		this.TYPE_SAW = this.TYPE_COUNTER++;
-		this.TYPE_TRI = this.TYPE_COUNTER++;
-		this.TYPE_CONSTANT = this.TYPE_COUNTER++;
-		this.TYPE_WIRE = this.TYPE_COUNTER++;
-		this.TYPE_NET = this.TYPE_COUNTER++;
-		this.TYPE_NOTE = this.TYPE_COUNTER++;
-		this.TYPE_RAIL = this.TYPE_COUNTER++;
-		this.TYPE_VOLTMETER = this.TYPE_COUNTER++;
-		this.TYPE_OHMMETER = this.TYPE_COUNTER++;
-		this.TYPE_AMMETER = this.TYPE_COUNTER++;
-		this.TYPE_WATTMETER = this.TYPE_COUNTER++;
-		this.TYPE_FUSE = this.TYPE_COUNTER++;
-		this.TYPE_SPST = this.TYPE_COUNTER++;
-		this.TYPE_SPDT = this.TYPE_COUNTER++;
-		this.TYPE_NOT = this.TYPE_COUNTER++;
-		this.TYPE_DIODE = this.TYPE_COUNTER++;
-		this.TYPE_LED = this.TYPE_COUNTER++;
-		this.TYPE_ZENER = this.TYPE_COUNTER++;
-		this.TYPE_POTENTIOMETER = this.TYPE_COUNTER++;
-		this.TYPE_AND = this.TYPE_COUNTER++;
-		this.TYPE_OR = this.TYPE_COUNTER++;
-		this.TYPE_NAND = this.TYPE_COUNTER++;
-		this.TYPE_NOR = this.TYPE_COUNTER++;
-		this.TYPE_XOR = this.TYPE_COUNTER++;
-		this.TYPE_XNOR = this.TYPE_COUNTER++;
-		this.TYPE_DFF = this.TYPE_COUNTER++;
-		this.TYPE_VSAT = this.TYPE_COUNTER++;
-		this.TYPE_ADD = this.TYPE_COUNTER++;
-		this.TYPE_SUB = this.TYPE_COUNTER++;
-		this.TYPE_MUL = this.TYPE_COUNTER++;
-		this.TYPE_DIV = this.TYPE_COUNTER++;
-		this.TYPE_GAIN = this.TYPE_COUNTER++;
-		this.TYPE_ABS = this.TYPE_COUNTER++;
-		this.TYPE_VCSW = this.TYPE_COUNTER++;
-		this.TYPE_VCVS = this.TYPE_COUNTER++;
-		this.TYPE_VCCS = this.TYPE_COUNTER++;
-		this.TYPE_CCCS = this.TYPE_COUNTER++;
-		this.TYPE_CCVS = this.TYPE_COUNTER++;
-		this.TYPE_OPAMP = this.TYPE_COUNTER++;
-		this.TYPE_NMOS = this.TYPE_COUNTER++;
-		this.TYPE_PMOS = this.TYPE_COUNTER++;
-		this.TYPE_NPN = this.TYPE_COUNTER++;
-		this.TYPE_PNP = this.TYPE_COUNTER++;
-		this.TYPE_ADC = this.TYPE_COUNTER++;
-		this.TYPE_DAC = this.TYPE_COUNTER++;
-		this.TYPE_SAH = this.TYPE_COUNTER++;
-		this.TYPE_PWM = this.TYPE_COUNTER++;
-		this.TYPE_INTEGRATOR = this.TYPE_COUNTER++;
-		this.TYPE_DIFFERENTIATOR = this.TYPE_COUNTER++;
-		this.TYPE_LPF = this.TYPE_COUNTER++;
-		this.TYPE_HPF = this.TYPE_COUNTER++;
-		this.TYPE_REL = this.TYPE_COUNTER++;
-		this.TYPE_PID = this.TYPE_COUNTER++;
-		this.TYPE_LUT = this.TYPE_COUNTER++;
-		this.TYPE_VCR = this.TYPE_COUNTER++;
-		this.TYPE_GRT = this.TYPE_COUNTER++;
-		this.TYPE_TPTZ = this.TYPE_COUNTER++;
-		this.TYPE_TRAN = this.TYPE_COUNTER++;
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_ELEMENT_TYPE# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+    this.TYPE_RESISTOR = this.TYPE_COUNTER++;
+    this.TYPE_CAPACITOR = this.TYPE_COUNTER++;
+    this.TYPE_INDUCTOR = this.TYPE_COUNTER++;
+    this.TYPE_GROUND = this.TYPE_COUNTER++;
+    this.TYPE_DCSOURCE = this.TYPE_COUNTER++;
+    this.TYPE_DCCURRENT = this.TYPE_COUNTER++;
+    this.TYPE_ACSOURCE = this.TYPE_COUNTER++;
+    this.TYPE_ACCURRENT = this.TYPE_COUNTER++;
+    this.TYPE_SQUAREWAVE = this.TYPE_COUNTER++;
+    this.TYPE_SAW = this.TYPE_COUNTER++;
+    this.TYPE_TRI = this.TYPE_COUNTER++;
+    this.TYPE_CONSTANT = this.TYPE_COUNTER++;
+    this.TYPE_WIRE = this.TYPE_COUNTER++;
+    this.TYPE_NET = this.TYPE_COUNTER++;
+    this.TYPE_NOTE = this.TYPE_COUNTER++;
+    this.TYPE_RAIL = this.TYPE_COUNTER++;
+    this.TYPE_VOLTMETER = this.TYPE_COUNTER++;
+    this.TYPE_OHMMETER = this.TYPE_COUNTER++;
+    this.TYPE_AMMETER = this.TYPE_COUNTER++;
+    this.TYPE_WATTMETER = this.TYPE_COUNTER++;
+    this.TYPE_FUSE = this.TYPE_COUNTER++;
+    this.TYPE_SPST = this.TYPE_COUNTER++;
+    this.TYPE_SPDT = this.TYPE_COUNTER++;
+    this.TYPE_NOT = this.TYPE_COUNTER++;
+    this.TYPE_DIODE = this.TYPE_COUNTER++;
+    this.TYPE_LED = this.TYPE_COUNTER++;
+    this.TYPE_ZENER = this.TYPE_COUNTER++;
+    this.TYPE_POTENTIOMETER = this.TYPE_COUNTER++;
+    this.TYPE_AND = this.TYPE_COUNTER++;
+    this.TYPE_OR = this.TYPE_COUNTER++;
+    this.TYPE_NAND = this.TYPE_COUNTER++;
+    this.TYPE_NOR = this.TYPE_COUNTER++;
+    this.TYPE_XOR = this.TYPE_COUNTER++;
+    this.TYPE_XNOR = this.TYPE_COUNTER++;
+    this.TYPE_DFF = this.TYPE_COUNTER++;
+    this.TYPE_VSAT = this.TYPE_COUNTER++;
+    this.TYPE_ADD = this.TYPE_COUNTER++;
+    this.TYPE_SUB = this.TYPE_COUNTER++;
+    this.TYPE_MUL = this.TYPE_COUNTER++;
+    this.TYPE_DIV = this.TYPE_COUNTER++;
+    this.TYPE_GAIN = this.TYPE_COUNTER++;
+    this.TYPE_ABS = this.TYPE_COUNTER++;
+    this.TYPE_VCSW = this.TYPE_COUNTER++;
+    this.TYPE_VCVS = this.TYPE_COUNTER++;
+    this.TYPE_VCCS = this.TYPE_COUNTER++;
+    this.TYPE_CCCS = this.TYPE_COUNTER++;
+    this.TYPE_CCVS = this.TYPE_COUNTER++;
+    this.TYPE_OPAMP = this.TYPE_COUNTER++;
+    this.TYPE_NMOS = this.TYPE_COUNTER++;
+    this.TYPE_PMOS = this.TYPE_COUNTER++;
+    this.TYPE_NPN = this.TYPE_COUNTER++;
+    this.TYPE_PNP = this.TYPE_COUNTER++;
+    this.TYPE_ADC = this.TYPE_COUNTER++;
+    this.TYPE_DAC = this.TYPE_COUNTER++;
+    this.TYPE_SAH = this.TYPE_COUNTER++;
+    this.TYPE_PWM = this.TYPE_COUNTER++;
+    this.TYPE_INTEGRATOR = this.TYPE_COUNTER++;
+    this.TYPE_DIFFERENTIATOR = this.TYPE_COUNTER++;
+    this.TYPE_LPF = this.TYPE_COUNTER++;
+    this.TYPE_HPF = this.TYPE_COUNTER++;
+    this.TYPE_REL = this.TYPE_COUNTER++;
+    this.TYPE_PID = this.TYPE_COUNTER++;
+    this.TYPE_LUT = this.TYPE_COUNTER++;
+    this.TYPE_VCR = this.TYPE_COUNTER++;
+    this.TYPE_GRT = this.TYPE_COUNTER++;
+    this.TYPE_TPTZ = this.TYPE_COUNTER++;
+    this.TYPE_TRAN = this.TYPE_COUNTER++;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 		/* Constants for the different amounts of pre-determined rotation */
 		this.ROTATION_0 = 0;
 		this.ROTATION_90 = 1;
@@ -2494,7 +2565,7 @@ class Global {
 		this.non_linear_max_array = [];
 		this.max_general_number = 0;
 	}
-	ColorNameToHex(color: string) {
+	'ColorNameToHex'(color: string) {
 		var colors: COLOR_ARRAY_T = {
 			'aliceblue': '#f0f8ff',
 			'antiquewhite': '#faebd7',
@@ -2643,28 +2714,28 @@ class Global {
 		}
 		return color;
 	}
-	sine(theta: number): number {
+	'sine'(theta: number): number {
 		return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT) & this.TRIG_TABLE_MASK];
 	}
-	cosine(theta: number): number {
+	'cosine'(theta: number): number {
 		return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) & this.TRIG_TABLE_MASK];
 	}
 	/* Re-calculates the new position of an object based on the last screen width and the current screen width. */
-	remap_position(input: number, is_width: boolean): number {
+	'remap_position'(input: number, is_width: boolean): number {
 		if (is_width === true) {
 			return view_port.right - (this.last_view_port_right - input) * this.resize_w_factor;
 		} else {
 			return view_port.bottom - (this.last_view_port_bottom - input) * this.resize_h_factor;
 		}
 	}
-	reset_angle_cache(): void {
+	'reset_angle_cache'(): void {
 		this.angle_array = [];
 	}
-	reset_angle_radian_cache(): void {
+	'reset_angle_radian_cache'(): void {
 		this.angle_radian_array = [];
 	}
 	/* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-	search_angle_array(x: number, y: number): boolean {
+	'search_angle_array'(x: number, y: number): boolean {
 		this.temp_boolean = false;
 		this.saved_angle = -1;
 		for (var i: number = 0; i < this.angle_array.length; i++) {
@@ -2680,7 +2751,7 @@ class Global {
 		return this.temp_boolean;
 	}
 	/* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
-	search_angle_radian_array(x: number, y: number): boolean {
+	'search_angle_radian_array'(x: number, y: number): boolean {
 		this.temp_boolean = false;
 		this.saved_angle_radians = -1;
 		for (var i: number = 0; i < this.angle_radian_array.length; i++) {
@@ -2695,7 +2766,7 @@ class Global {
 		}
 		return this.temp_boolean;
 	}
-	retrieve_angle(x: number, y: number): number {
+	'retrieve_angle'(x: number, y: number): number {
 		if (this.search_angle_array(x, y)) {
 			return this.saved_angle;
 		} else {
@@ -2710,7 +2781,7 @@ class Global {
 			return this.angle_array[this.angle_array.length - 1]['angle'];
 		}
 	}
-	retrieve_angle_radian(x: number, y: number): number {
+	'retrieve_angle_radian'(x: number, y: number): number {
 		if (this.search_angle_radian_array(x, y)) {
 			return this.saved_angle_radians;
 		} else {
@@ -2725,14 +2796,14 @@ class Global {
 			return this.angle_radian_array[this.angle_radian_array.length - 1]['angle'];
 		}
 	}
-	house_keeping() {
+	'house_keeping'() {
 		this.angle_array.splice(this.angle_array.length - 1, 1);
 	}
-	house_keeping_radians() {
+	'house_keeping_radians'() {
 		this.angle_radian_array.splice(this.angle_radian_array.length - 1, 1);
 	}
 	/* Calculate the angle of a vector in degrees */
-	calc_degree(x: number, y: number): number {
+	'calc_degree'(x: number, y: number): number {
 		this.general_integer = this.atan2_approx2(y, x) * global._180_DIV_PI;
 		if (this.general_integer < 0) {
 			this.general_integer += 360;
@@ -2740,7 +2811,7 @@ class Global {
 		return this.general_integer;
 	}
 	/* calculate the angle of a vector in radians */
-	calc_degree_radians(x: number, y: number): number {
+	'calc_degree_radians'(x: number, y: number): number {
 		this.general_integer = this.atan2_approx2(y, x);
 		if (this.general_integer < 0) {
 			this.general_integer += this.PI_MUL_2;
@@ -2748,17 +2819,17 @@ class Global {
 		return this.general_integer;
 	}
 	/* Converts degrees to radians */
-	to_radians(degrees: number): number {
+	'to_radians'(degrees: number): number {
 		return degrees * this.PI_DIV_180;
 	}
-	inv_sqrt(x: number): number {
+	'inv_sqrt'(x: number): number {
 		let x2: number = 0.5 * (this.inv_sqrt_f32[0] = x);
 		this.inv_sqrt_u32[0] = 0x5f3759df - (this.inv_sqrt_u32[0] >> 1);
 		let y: number = this.inv_sqrt_f32[0];
 		y = y * (1.5 - x2 * y * y);
 		return y;
 	}
-	atan2_approx2(y: number, x: number): number {
+	'atan2_approx2'(y: number, x: number): number {
 		if (x === 0.0) {
 			if (y > 0.0) {
 				return this.PI_DIV_2;
@@ -2787,24 +2858,24 @@ class Global {
 		return this.general_integer2;
 	}
 	/* Calculates the norm of a vector */
-	norm(x: number, y: number): number {
+	'norm'(x: number, y: number): number {
 		return Math.sqrt(x * x + y * y);
 	}
 	/* Rounds a value to three decimal places */
-	round(value: number): number {
+	'round'(value: number): number {
 		return Math.round((value + Number.EPSILON) * 1000) / 1000;
 	}
 	/* A function to try and safely cast a float to an "int" */
-	cast_int(value: number): number {
+	'cast_int'(value: number): number {
 		return Math.trunc(Math.round(value));
 	}
 	/* Returns the average of two numbers: a and b */
-	get_average2(a: number, b: number): number {
+	'get_average2'(a: number, b: number): number {
 		return (a + b) * 0.5;
 	}
 	/* Calculate the incenter of a triangle. NOTE: Don't use this.general_integerx here..., it'll cause a value change.
   because of calc_degree_radians */
-	equilateral_triangle_center(p1_x: number, p2_x: number, p3_x: number, p1_y: number, p2_y: number, p3_y: number): Array<number> {
+	'equilateral_triangle_center'(p1_x: number, p2_x: number, p3_x: number, p1_y: number, p2_y: number, p3_y: number): Array<number> {
 		let temp: number = 0;
 		temp = this.norm(p2_x - p1_x, p2_y - p1_y) * 0.5;
 		let theta_p1_p2: number = this.retrieve_angle_radian(p2_x - p1_x, p2_y - p1_y);
@@ -2816,26 +2887,26 @@ class Global {
 		return Array(c_x, c_y);
 	}
 	/* Returns the average of four numbers: a, b, c, and d */
-	get_average4(a: number, b: number, c: number, d: number): number {
+	'get_average4'(a: number, b: number, c: number, d: number): number {
 		return (a + b + c + d) * 0.25;
 	}
 	/* Check to see if an element is null or undefined. */
-	not_null(obj) {
+	'not_null'(obj) {
 		return !(obj == this.NULL);
 	}
 	/* Using lodash to deep clone an object. */
-	copy(obj) {
+	'copy'(obj) {
 		return _.cloneDeep(obj);
 	}
 	/* A safe function to print stuff out when debugging. Developer mode is automatically set to false
   when the production script is run. */
-	print(...obj) {
+	'print'(...obj) {
 		if (this.DEVELOPER_MODE) {
 			console.log(obj);
 		}
 	}
 	/* A function to quickly format a number into SI units */
-	exponentiate_quickly(input: number): string {
+	'exponentiate_quickly'(input: number): string {
 		let str: string = '';
 		let val: number = 0;
 		let abs_input: number = Math.abs(input);
@@ -2861,79 +2932,11 @@ class Global {
 	/* Find the max of the elements. This is so we don't waste time looping
   through each element.
   This is automatically generated, no touchy! */
-	element_max(): number {
-		/* #INSERT_GENERATE_MAX_ELEMENT# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.element_max_array = Array(
-			resistors.length,
-			capacitors.length,
-			inductors.length,
-			grounds.length,
-			dcsources.length,
-			dccurrents.length,
-			acsources.length,
-			accurrents.length,
-			squarewaves.length,
-			sawwaves.length,
-			trianglewaves.length,
-			constants.length,
-			wires.length,
-			nets.length,
-			notes.length,
-			rails.length,
-			voltmeters.length,
-			ohmmeters.length,
-			ammeters.length,
-			wattmeters.length,
-			fuses.length,
-			spsts.length,
-			spdts.length,
-			nots.length,
-			diodes.length,
-			leds.length,
-			zeners.length,
-			potentiometers.length,
-			ands.length,
-			ors.length,
-			nands.length,
-			nors.length,
-			xors.length,
-			xnors.length,
-			dffs.length,
-			vsats.length,
-			adders.length,
-			subtractors.length,
-			multipliers.length,
-			dividers.length,
-			gains.length,
-			absvals.length,
-			vcsws.length,
-			vcvss.length,
-			vccss.length,
-			cccss.length,
-			ccvss.length,
-			opamps.length,
-			nmosfets.length,
-			pmosfets.length,
-			npns.length,
-			pnps.length,
-			adcs.length,
-			dacs.length,
-			sandhs.length,
-			pwms.length,
-			integrators.length,
-			differentiators.length,
-			lowpasses.length,
-			highpasses.length,
-			relays.length,
-			pids.length,
-			luts.length,
-			vcrs.length,
-			grts.length,
-			tptzs.length,
-			transformers.length
-		);
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+	'element_max'(): number {
+/* #INSERT_GENERATE_MAX_ELEMENT# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+this.element_max_array = Array(resistors.length, capacitors.length, inductors.length, grounds.length, dcsources.length, dccurrents.length, acsources.length, accurrents.length, squarewaves.length, sawwaves.length, trianglewaves.length, constants.length, wires.length, nets.length, notes.length, rails.length, voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length, fuses.length, spsts.length, spdts.length, nots.length, diodes.length, leds.length, zeners.length, potentiometers.length, ands.length, ors.length, nands.length, nors.length, xors.length, xnors.length, dffs.length, vsats.length, adders.length, subtractors.length, multipliers.length, dividers.length, gains.length, absvals.length, vcsws.length, vcvss.length, vccss.length, cccss.length, ccvss.length, opamps.length, nmosfets.length, pmosfets.length, npns.length, pnps.length, adcs.length, dacs.length, sandhs.length, pwms.length, integrators.length, differentiators.length, lowpasses.length, highpasses.length, relays.length, pids.length, luts.length, vcrs.length, grts.length, tptzs.length, transformers.length);
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.element_max_array.length; i++) {
 			if (this.element_max_array[i] > this.max_general_number) {
@@ -2944,11 +2947,11 @@ class Global {
 	}
 	/* Find the highest number of meter type elements.
   This is automatially generated! */
-	meter_max(): number {
-		/* #INSERT_GENERATE_MAX_METER# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+	'meter_max'(): number {
+/* #INSERT_GENERATE_MAX_METER# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.meter_max_array.length; i++) {
 			if (this.meter_max_array[i] > this.max_general_number) {
@@ -2958,11 +2961,11 @@ class Global {
 		return this.max_general_number;
 	}
 	/* Find the maximum size of non-linear elements. */
-	non_linear_max(): number {
-		/* #INSERT_GENERATE_MAX_NON_LINEAR# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+	'non_linear_max'(): number {
+/* #INSERT_GENERATE_MAX_NON_LINEAR# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.non_linear_max_array.length; i++) {
 			if (this.non_linear_max_array[i] > this.max_general_number) {
@@ -2972,7 +2975,7 @@ class Global {
 		return this.max_general_number;
 	}
 	/* Line collision baby! */
-	line_collision(p0_x: number, p0_y: number, p1_x: number, p1_y: number, p2_x: number, p2_y: number, p3_x: number, p3_y: number): boolean {
+	'line_collision'(p0_x: number, p0_y: number, p1_x: number, p1_y: number, p2_x: number, p2_y: number, p3_x: number, p3_y: number): boolean {
 		let s1_x: number = p1_x - p0_x;
 		let s1_y: number = p1_y - p0_y;
 		let s2_x: number = p3_x - p2_x;
@@ -2982,7 +2985,7 @@ class Global {
 		return s >= 0 && s <= 1 && t >= 0 && t <= 1;
 	}
 	/* Decodes a key code from a key event */
-	decode_key(key_event: KEY_EVENT_T): string {
+	'decode_key'(key_event: KEY_EVENT_T): string {
 		let shift: boolean = key_event['shift'];
 		let caps: boolean = key_event['caps'];
 		let code: string = key_event['event'].code;
@@ -3000,7 +3003,7 @@ class Global {
 		}
 		return ret;
 	}
-	key_to_code(character: string): string {
+	'key_to_code'(character: string): string {
 		let ret: string = '';
 		for (var i: number = 0; i < this.KEY_EVENT_KEYS.length; i++) {
 			if (character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][0] || character === this.KEY_EVENT_CODES[this.KEY_EVENT_KEYS[i]][1]) {
@@ -3011,19 +3014,19 @@ class Global {
 		return ret;
 	}
 	/* Detects if a key is alpha numeric or not. */
-	is_alpha_numeric(key_event: KEY_EVENT_T): boolean {
+	'is_alpha_numeric'(key_event: KEY_EVENT_T): boolean {
 		return /[a-z A-Z0-9]/.test(this.decode_key(key_event));
 	}
 	/* Detects if a key is alpha numeric or not. */
-	is_alpha_numeric_note(key_event: KEY_EVENT_T): boolean {
+	'is_alpha_numeric_note'(key_event: KEY_EVENT_T): boolean {
 		return /[!@#$%`~^&_{}()a-z A-Z0-9=:'",?<>;:*/+-|]/.test(this.decode_key(key_event));
 	}
 	/* Detects if a key is a valid si unit or a number. */
-	is_valid_si_units(key_event: KEY_EVENT_T): boolean {
+	'is_valid_si_units'(key_event: KEY_EVENT_T): boolean {
 		return /[-.kmu0123456789MnGpf]/.test(this.decode_key(key_event));
 	}
 	/* General function to limit a number within a range. */
-	limit(inp: number, low: number, high: number): number {
+	'limit'(inp: number, low: number, high: number): number {
 		if (inp < low) {
 			return low;
 		} else if (inp > high) {
@@ -3033,22 +3036,22 @@ class Global {
 		}
 	}
 	/* General function for creating getting the current date */
-	get_date_stamp(): string {
+	'get_date_stamp'(): string {
 		let date: Date = new Date();
 		return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
 	}
 	/* Genetating a timestamp! */
-	get_time_stamp(): string {
+	'get_time_stamp'(): string {
 		let date: Date = new Date();
 		let TIMESTAMP_TEMPLATE: string = '{DATE}->{TIME_ZONE}';
 		return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', <string>(<unknown>date.getTimezoneOffset()));
 	}
 	/* Logarithmic Damping Algorithm. Base E. */
-	log_damping(next: number, now: number, gamma: number, kappa: number): number {
+	'log_damping'(next: number, now: number, gamma: number, kappa: number): number {
 		return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
 	}
 	/* Returns the sign of the number.*/
-	signum(inp: number): number {
+	'signum'(inp: number): number {
 		if (inp < 0) {
 			return -1;
 		} else {
@@ -3056,13 +3059,13 @@ class Global {
 		}
 	}
 	/* Change of base formula. */
-	logbx(b: number, x: number): number {
+	'logbx'(b: number, x: number): number {
 		return Math.log(x) / Math.log(b);
 	}
-	map_range(inp: number, lower_bound: number, upper_bound: number): number {
+	'map_range'(inp: number, lower_bound: number, upper_bound: number): number {
 		return lower_bound + inp * (upper_bound - lower_bound);
 	}
-	perm32(inp: number): number {
+	'perm32'(inp: number): number {
 		this.general_integer = 12;
 		/* 12 Rounds */
 		let x: number = ((inp >> 8) ^ inp) * 0x6b + this.general_integer--;
@@ -3079,7 +3082,7 @@ class Global {
 		x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
 		return x;
 	}
-	unique_color(net_name: string): string {
+	'unique_color'(net_name: string): string {
 		//@ts-ignore
 		let rgb: number = this.perm32(net_name.hashCode());
 		let r: number = 0,
@@ -3090,10 +3093,10 @@ class Global {
 		b = rgb & 0x000000ff;
 		return 'rgb(' + r + ', ' + g + ', ' + b + ')';
 	}
-	wrap(inp: number, max: number): number {
+	'wrap'(inp: number, max: number): number {
 		return inp - max * Math.floor(inp / max);
 	}
-	linterp(x_arr: Array<number>, y_arr: Array<number>, inp: number): number {
+	'linterp'(x_arr: Array<number>, y_arr: Array<number>, inp: number): number {
 		let k: number = this.linsearch(x_arr, inp, y_arr.length);
 		let x0: number = x_arr[k],
 			x1 = x_arr[k + 1],
@@ -3106,7 +3109,7 @@ class Global {
 		}
 		return y0 + ((y1 - y0) / (x1 - x0)) * (inp - x0);
 	}
-	linsearch(x_arr: Array<number>, inp: number, size: number): number {
+	'linsearch'(x_arr: Array<number>, inp: number, size: number): number {
 		let i: number = 0;
 		let out: number = 0;
 		for (i = 0; i < size - 1; i++) {
@@ -3117,7 +3120,7 @@ class Global {
 		}
 		return out;
 	}
-	min3(a: number, b: number, c: number): number {
+	'min3'(a: number, b: number, c: number): number {
 		return Math.min(a, Math.min(b, c));
 	}
 }
