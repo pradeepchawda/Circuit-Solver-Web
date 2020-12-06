@@ -26,10 +26,8 @@ class Net {
   public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm: Element1;
-
   /* Create some points to hold the node locations, this will be used for drawing components */
   public p1: PointF;
-
   /* The spacing of the nodes in the x-direction, divided by 2 */
   public x_space: number;
   /* The spacing of the nodes in the y-direction, divided by 2 */
@@ -61,7 +59,6 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-
   constructor(type: number, id: number, n1: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -679,7 +676,6 @@ or overlapped)*/
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

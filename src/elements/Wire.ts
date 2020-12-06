@@ -26,14 +26,12 @@ class Wire {
   public elm: Element2;
   public p1: PointF;
   public p2: PointF;
-
   /* Angle from p1 to p2 minus 90 degrees */
   public theta_m90: number;
   /* Angle from p1 to p2 */
   public theta: number;
   public c_x: number;
   public c_y: number;
-
   /* The spacing of the nodes in the x-direction, divided by 2 */
   public x_space: number;
   /* The spacing of the nodes in the y-direction, divided by 2 */
@@ -59,7 +57,6 @@ class Wire {
   public ANGLE: number;
   public indexer: number;
   public is_translating: boolean;
-
   constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;
     /* Inititalize the element2 class that will hold the basic data about our component */
@@ -314,7 +311,6 @@ class Wire {
       this.point_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
       this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
       this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-
       if (this.elm.n1 != -1) {
         this.p1.x = nodes[this.elm.n1].location.x;
         this.p1.y = nodes[this.elm.n1].location.y;
@@ -330,7 +326,6 @@ class Wire {
         this.bounds.bottom = this.c_y + this.y_space;
         this.update_total_bounds();
       }
-
       this.BUILD_ELEMENT = false;
     }
   }
@@ -651,7 +646,6 @@ class Wire {
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

@@ -90,7 +90,6 @@ used to determine the best time-step for the system. */
   public ELEMENT_TPTZ_OFFSET: number;
   public ELEMENT_TRAN_OFFSET: number;
   /* <!-- END AUTOMATICALLY GENERATED !--> */
-
   constructor() {
     /* The amount of unique nodes in the system. Each one will have a voltage associated with it
     after we solve the modified nodal analysis matrix. */
@@ -1049,49 +1048,42 @@ used to determine the best time-step for the system. */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
     for (var i: number = 0; i < diodes.length; i++) {
       diodes[i].update();
-
       if (convergence) {
         convergence = diodes[i].is_converged();
       }
     }
     for (var i: number = 0; i < leds.length; i++) {
       leds[i].update();
-
       if (convergence) {
         convergence = leds[i].is_converged();
       }
     }
     for (var i: number = 0; i < zeners.length; i++) {
       zeners[i].update();
-
       if (convergence) {
         convergence = zeners[i].is_converged();
       }
     }
     for (var i: number = 0; i < nmosfets.length; i++) {
       nmosfets[i].update();
-
       if (convergence) {
         convergence = nmosfets[i].is_converged();
       }
     }
     for (var i: number = 0; i < pmosfets.length; i++) {
       pmosfets[i].update();
-
       if (convergence) {
         convergence = pmosfets[i].is_converged();
       }
     }
     for (var i: number = 0; i < npns.length; i++) {
       npns[i].update();
-
       if (convergence) {
         convergence = npns[i].is_converged();
       }
     }
     for (var i: number = 0; i < pnps.length; i++) {
       pnps[i].update();
-
       if (convergence) {
         convergence = pnps[i].is_converged();
       }
@@ -1190,7 +1182,6 @@ used to determine the best time-step for the system. */
       }
       /* Solve the matrix! */
       matrix_x = linear_algebra.lup_solve(matrix_a, matrix_z);
-
       for (var i: number = 0; i < matrix_x.length; i++) {
         if (isNaN(matrix_x[i][0])) {
           /* Terminate the simulation */

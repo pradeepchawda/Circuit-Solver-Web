@@ -28,7 +28,6 @@ class Arc {
 	private y1: number;
 	private y2: number;
 	public IS_TRANSFORM_SCALED: boolean;
-
 	constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
 		/* A paint object to paint the arc with. */
 		this.arc_paint = new Paint();

@@ -26,12 +26,10 @@ class Relay {
   public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm: Element4;
-
   public p1: PointF;
   public p2: PointF;
   public p3: PointF;
   public p4: PointF;
-
   public relay_0: PointF;
   public relay_1: PointF;
   public relay_2: PointF;
@@ -86,7 +84,6 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-
   constructor(type: number, id: number, n1: number, n2: number, n3: number, n4: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -829,7 +826,6 @@ or overlapped)*/
       canvas.draw_arc2(this.relay_4.x, this.relay_4.y, this.relay_5.x, this.relay_5.y, this.bounds.get_width() * 0.1667, this.line_paint);
       canvas.draw_arc2(this.relay_5.x, this.relay_5.y, this.relay_6.x, this.relay_6.y, this.bounds.get_width() * 0.1667, this.line_paint);
       canvas.draw_arc2(this.relay_6.x, this.relay_6.y, this.relay_1.x, this.relay_1.y, this.bounds.get_width() * 0.1667, this.line_paint);
-
       this.indexer = 0;
       this.circle_buffer = [];
       this.line_buffer = [];
@@ -837,7 +833,6 @@ or overlapped)*/
       this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.relay_1.x, this.relay_1.y);
       this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.relay_2.x, this.relay_2.y);
       this.line_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, this.relay_3.x, this.relay_3.y);
-
       this.line_buffer[this.indexer++] = Array(this.relay_2.x, this.relay_2.y, this.relay_7.x, this.relay_7.y);
       if (this.elm.properties['Transient Current'] >= this.elm.properties['Turn on Current']) {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && global.simulation_time > global.time_step + global.time_step) {
@@ -849,10 +844,8 @@ or overlapped)*/
         this.line_buffer[this.indexer++] = Array(this.relay_7.x, this.relay_7.y, this.relay_8.x, this.relay_8.y);
       }
       this.line_buffer[this.indexer++] = Array(this.relay_9.x, this.relay_9.y, this.relay_3.x, this.relay_3.y);
-
       canvas.draw_line_buffer(this.line_buffer, this.line_paint);
       this.indexer = 0;
-
       this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
       this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
       this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
@@ -930,7 +923,6 @@ or overlapped)*/
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

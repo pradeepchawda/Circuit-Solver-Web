@@ -31,11 +31,9 @@ class VoltMeter {
   public meter_trace: Trace;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm: Element2;
-
   public plus_point: PointF;
   public p1: PointF;
   public p2: PointF;
-
   /* Angle from p1 to p2 minus 90 degrees */
   public theta_m90: number;
   /* Angle from p1 to p2 */
@@ -83,7 +81,6 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-
   constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;
     this.X_AXIS_LENGTH = 600;
@@ -769,7 +766,6 @@ or overlapped)*/
         canvas.draw_rect2(this.bounds, this.line_paint);
         canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
       }
-
       this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
       if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
         if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
@@ -855,7 +851,6 @@ or overlapped)*/
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

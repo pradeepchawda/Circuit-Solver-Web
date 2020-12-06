@@ -26,12 +26,10 @@ class Divider {
   public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm;
-
   public plus_point: PointF;
   public p1: PointF;
   public p2: PointF;
   public p3: PointF;
-
   public divider_0: PointF;
   public divider_1: PointF;
   public divider_2: PointF;
@@ -83,7 +81,6 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-
   constructor(type: number, id: number, n1: number, n2: number, n3: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -916,7 +913,6 @@ or overlapped)*/
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

@@ -52,13 +52,10 @@ class AbsoluteValue {
 	public grid_point: Array<number>;
 	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-
 	/* This paint is used for drawing the "nodes" that the component is connected to. */
 	public point_paint: Paint;
-
 	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-
 	/* Flag to denote when the component is actually moving. */
 	public is_translating: boolean;
 	public wire_reference: Array<WIRE_REFERENCE_T>;
@@ -75,7 +72,6 @@ or overlapped)*/
 	public circle_buffer: Array<Array<number>>;
 	public BUILD_ELEMENT: boolean;
 	public ANGLE: number;
-
 	constructor(type: number, id: number, n1: number, n2: number) {
 		this.INITIALIZED = false;
 		this.bounds = new RectF(0, 0, 0, 0);
@@ -761,7 +757,6 @@ or overlapped)*/
 				}
 			}
 		}
-
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

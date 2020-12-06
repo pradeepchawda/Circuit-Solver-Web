@@ -49,132 +49,69 @@ class ElementWindow {
 	public capacitor_symbol: CapacitorSymbol;
 	public inductor_symbol: InductorSymbol;
 	public ground_symbol: GroundSymbol;
-
 	public dcsource_symbol: DCSourceSymbol;
-
 	public dccurrent_symbol: DCCurrentSymbol;
-
 	public acsource_symbol: ACSourceSymbol;
-
 	public accurrent_symbol: ACCurrentSymbol;
-
 	public squarewave_symbol: SquareWaveSymbol;
-
 	public sawwave_symbol: SawWaveSymbol;
-
 	public trianglewave_symbol: TriangleWaveSymbol;
-
 	public constant_symbol: ConstantSymbol;
-
 	public net_symbol: NetSymbol;
-
 	public note_symbol: NoteSymbol;
-
 	public rail_symbol: RailSymbol;
-
 	public voltmeter_symbol: VoltMeterSymbol;
-
 	public ohmmeter_symbol: OhmMeterSymbol;
-
 	public ammeter_symbol: AmMeterSymbol;
-
 	public wattmeter_symbol: WattMeterSymbol;
-
 	public fuse_symbol: FuseSymbol;
-
 	public spst_symbol: SinglePoleSingleThrowSymbol;
-
 	public spdt_symbol: SinglePoleDoubleThrowSymbol;
-
 	public not_symbol: NOTGateSymbol;
-
 	public diode_symbol: DiodeSymbol;
-
 	public led_symbol: LightEmittingDiodeSymbol;
-
 	public zener_symbol: ZenerDiodeSymbol;
-
 	public potentiometer_symbol: PotentiometerSymbol;
-
 	public and_symbol: ANDGateSymbol;
-
 	public or_symbol: ORGateSymbol;
-
 	public nand_symbol: NANDGateSymbol;
-
 	public nor_symbol: NORGateSymbol;
-
 	public xor_symbol: XORGateSymbol;
-
 	public xnor_symbol: XNORGateSymbol;
-
 	public dff_symbol: DFlipFlopSymbol;
-
 	public vsat_symbol: VoltageSaturationSymbol;
-
 	public adder_symbol: AdderSymbol;
-
 	public subtractor_symbol: SubtractorSymbol;
-
 	public multiplier_symbol: MultiplierSymbol;
-
 	public divider_symbol: DividerSymbol;
-
 	public gain_symbol: GainBlockSymbol;
-
 	public absval_symbol: AbsoluteValueSymbol;
-
 	public vcsw_symbol: VoltageControlledSwitchSymbol;
-
 	public vcvs_symbol: VoltageControlledVoltageSourceSymbol;
-
 	public vccs_symbol: VoltageControlledCurrentSourceSymbol;
-
 	public cccs_symbol: CurrentControlledCurrentSourceSymbol;
-
 	public ccvs_symbol: CurrentControlledVoltageSourceSymbol;
-
 	public opamp_symbol: OperationalAmplifierSymbol;
-
 	public nmosfet_symbol: NChannelMOSFETSymbol;
-
 	public pmosfet_symbol: PChannelMOSFETSymbol;
-
 	public npn_symbol: NPNBipolarJunctionTransistorSymbol;
-
 	public pnp_symbol: PNPBipolarJunctionTransistorSymbol;
-
 	public adc_symbol: ADCModuleSymbol;
-
 	public dac_symbol: DACModuleSymbol;
-
 	public samplers_symbol: SampleAndHoldSymbol;
-
 	public pwm_symbol: PulseWidthModulatorSymbol;
-
 	public integrator_symbol: IntegratorModuleSymbol;
-
 	public differentiator_symbol: DifferentiatorModuleSymbol;
-
 	public lowpass_symbol: LowPassFilterSymbol;
-
 	public highpass_symbol: HighPassFilterSymbol;
-
 	public relay_symbol: RelaySymbol;
-
 	public pid_symbol: PIDModuleSymbol;
-
 	public lut_symbol: LookUpTableSymbol;
-
 	public vcr_symbol: VoltageControlledResistorSymbol;
-
 	public grt_symbol: GreaterThanSymbol;
-
 	public tptz_symbol: TPTZModuleSymbol;
-
 	public transformer_symbol: TransformerSymbol;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
-
 	constructor(left: number, top: number, right: number, bottom: number) {
 		this.ENABLE_MOUSE_WHEEL = true;
 		this.positions = [];
@@ -246,211 +183,145 @@ class ElementWindow {
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 		this.resistor_symbol = new ResistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.capacitor_symbol = new CapacitorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.inductor_symbol = new InductorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ground_symbol = new GroundSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dcsource_symbol = new DCSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dccurrent_symbol = new DCCurrentSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.acsource_symbol = new ACSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.accurrent_symbol = new ACCurrentSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.squarewave_symbol = new SquareWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.sawwave_symbol = new SawWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.trianglewave_symbol = new TriangleWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.constant_symbol = new ConstantSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.net_symbol = new NetSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.note_symbol = new NoteSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.rail_symbol = new RailSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.voltmeter_symbol = new VoltMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ohmmeter_symbol = new OhmMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ammeter_symbol = new AmMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.wattmeter_symbol = new WattMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.fuse_symbol = new FuseSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.spst_symbol = new SinglePoleSingleThrowSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.spdt_symbol = new SinglePoleDoubleThrowSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.not_symbol = new NOTGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.diode_symbol = new DiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.led_symbol = new LightEmittingDiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.zener_symbol = new ZenerDiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.potentiometer_symbol = new PotentiometerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.and_symbol = new ANDGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.or_symbol = new ORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.nand_symbol = new NANDGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.nor_symbol = new NORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.xor_symbol = new XORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.xnor_symbol = new XNORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dff_symbol = new DFlipFlopSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vsat_symbol = new VoltageSaturationSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.adder_symbol = new AdderSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.subtractor_symbol = new SubtractorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.multiplier_symbol = new MultiplierSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.divider_symbol = new DividerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.gain_symbol = new GainBlockSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.absval_symbol = new AbsoluteValueSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vcsw_symbol = new VoltageControlledSwitchSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.vcvs_symbol = new VoltageControlledVoltageSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vccs_symbol = new VoltageControlledCurrentSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.cccs_symbol = new CurrentControlledCurrentSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ccvs_symbol = new CurrentControlledVoltageSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.opamp_symbol = new OperationalAmplifierSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.nmosfet_symbol = new NChannelMOSFETSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.pmosfet_symbol = new PChannelMOSFETSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.npn_symbol = new NPNBipolarJunctionTransistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.pnp_symbol = new PNPBipolarJunctionTransistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.adc_symbol = new ADCModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dac_symbol = new DACModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.samplers_symbol = new SampleAndHoldSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.pwm_symbol = new PulseWidthModulatorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.integrator_symbol = new IntegratorModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.differentiator_symbol = new DifferentiatorModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.lowpass_symbol = new LowPassFilterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.highpass_symbol = new HighPassFilterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.relay_symbol = new RelaySymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.pid_symbol = new PIDModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.lut_symbol = new LookUpTableSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vcr_symbol = new VoltageControlledResistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.grt_symbol = new GreaterThanSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.tptz_symbol = new TPTZModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.transformer_symbol = new TransformerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	load_positions(): void {

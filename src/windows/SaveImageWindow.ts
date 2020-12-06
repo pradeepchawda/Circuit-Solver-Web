@@ -63,7 +63,6 @@ class SaveImageWindow {
 	public SELECT_OFFSET_X: number;
 	public MOUSE_DOWN: boolean;
 	public ASCENDING: boolean;
-
 	constructor() {
 		this.TITLE_HEIGHT_RATIO = 0.25;
 		this.BUTTON_WIDTH_RATIO = 0.3;
@@ -712,7 +711,6 @@ class SaveImageWindow {
 			this.title_bounds.text = language_manager.SAVE_IMAGE[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.cancel_button.text = language_manager.CANCEL[global.LANGUAGES[global.LANGUAGE_INDEX]];
-
 			/* This draws the bounds of the interface. */
 			canvas.draw_round_rect(
 				this.bounds.left + this.OFFSET_X,

@@ -66,7 +66,6 @@ class SettingsWindow {
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public toggle_switch_button: ToggleSwitch;
-
 	constructor() {
 		this.TITLE_HEIGHT_RATIO = 0.1;
 		this.BUTTON_WIDTH_RATIO = 0.3;
@@ -458,7 +457,6 @@ class SettingsWindow {
 		if (global.FLAG_SELECT_SETTINGS) {
 			this.title_bounds.text = language_manager.SYSTEM_SETTINGS[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
-
 			/* This draws the bounds of the interface. */
 			canvas.draw_round_rect(
 				this.bounds.left + this.OFFSET_X,

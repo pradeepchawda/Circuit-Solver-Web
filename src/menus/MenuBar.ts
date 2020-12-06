@@ -76,14 +76,12 @@ during simulation. */
 	public settings_button: RectF;
 	public sine_wave: SineWave;
 	public BASE_WIDTH: number;
-
 	public element_window: ElementWindow;
 	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
-
 	constructor() {
 		let temp_stroke_width: number = 0.65 * global.CANVAS_STROKE_WIDTH_3;
 		this.MAX_ICONS = 8;

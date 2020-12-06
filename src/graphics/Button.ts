@@ -37,7 +37,6 @@ class Button extends RectF {
 	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
 	private TEXT_UNDERSCORE_TEMPLATE: string;
-
 	constructor(left: number, top: number, right: number, bottom: number) {
 		super(left, top, right, bottom);
 		/* The text that will be drawn by the button. */

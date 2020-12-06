@@ -26,11 +26,9 @@ class Potentiometer {
   public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm;
-
   public p1: PointF;
   public p2: PointF;
   public p3: PointF;
-
   public pot_0: PointF;
   public pot_1: PointF;
   public pot_2: PointF;
@@ -87,7 +85,6 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-
   constructor(type: number, id: number, n1: number, n2: number, n3: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -231,7 +228,6 @@ or overlapped)*/
   push_reference(ref: WIRE_REFERENCE_T): void {
     this.wire_reference.push(ref);
   }
-
   stamp(): void {
     if (this.elm.consistent()) {
       engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, global.limit(this.elm.properties['Wiper Percentage'], 0.01, 99.99) * 0.01 * this.elm.properties['Resistance']);
@@ -889,7 +885,6 @@ or overlapped)*/
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

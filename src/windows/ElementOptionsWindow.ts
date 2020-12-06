@@ -52,11 +52,9 @@ class ElementOptionsWindow {
 	public title_bounds: Button;
 	public okay_button: Button;
 	public exit_button: Button;
-
 	/* We shall pre-load 5 attributes and enable / disable what we don't need. */
 	public attributes: Array<RectF>;
 	public ATTRIBUTE_HEIGHT: number;
-
 	/* Controls for window dragging. */
 	public OFFSET_X: number;
 	public OFFSET_Y: number;
@@ -67,7 +65,6 @@ class ElementOptionsWindow {
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public toggle_switch_button: ToggleSwitch;
-
 	constructor() {
 		/* This controls the height of the title bar relative to the height of the window */
 		this.TITLE_HEIGHT_RATIO = 0.1;
@@ -489,7 +486,6 @@ class ElementOptionsWindow {
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.FLAG_ELEMENT_OPTIONS) {
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
-
 			/* This draws the bounds of the interface. */
 			canvas.draw_round_rect(
 				this.bounds.left + this.OFFSET_X,

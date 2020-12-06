@@ -22,7 +22,6 @@
 /* NOTE: ALL COMMENTS MUST BE ON THEIR OWN LINES!!!!! This is to be safe when obfuscating. */
 /* Prevent the backspace from navigating! Disable scrolling w/ backspace or arrow keys! */
 /* #START_GLOBAL_EXTRACT# */
-
 /* Global state variable */
 var global: Global = new Global();
 /* Add the hashCode function for all strings. */
@@ -58,7 +57,6 @@ function save_image(title: string, canvas: HTMLCanvasElement): void {
 function save_image_mobile(title: string, canvas: HTMLCanvasElement): void {
 	window.JsInterface.javascript_native_hook('push-image', title, canvas.toDataURL());
 }
-
 /* Create a global variable to access the "file_explorer" element in HTML. */
 var file_reader: HTMLElement = global.NULL;
 if (global.MOBILE_MODE) {
@@ -106,7 +104,6 @@ function file_event_mobile(title: string, data: string): void {
 	/* Save the contents of the file to global. */
 	global.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
 }
-
 function restore_system_options(index: number, value: string): void {
 	if (index === global.SYSTEM_OPTION_LANGUAGE) {
 		for (var i: number = 0; i < global.LANGUAGES.length; i++) {
@@ -117,7 +114,6 @@ function restore_system_options(index: number, value: string): void {
 	}
 	global.SYSTEM_OPTIONS['values'][index] = value;
 }
-
 function restore_zoom_offset(zoom: number, delta_x: number, dx: number, x_offset: number, delta_y: number, dy: number, y_offset: number): void {
 	global.workspace_zoom_scale = Number(zoom);
 	global.dx = Number(dx);
@@ -130,7 +126,6 @@ function restore_zoom_offset(zoom: number, delta_x: number, dx: number, x_offset
 	global.draw_block = true;
 	global.SIGNAL_BUILD_ELEMENT = true;
 }
-
 function handle_file_loading(): void {
 	/* Enable a flag to dictate that a user selected a file. */
 	global.user_file_selected = true;
@@ -453,7 +448,6 @@ function load_app(): void {
 			}
 		}
 	}
-
 	function register_cross_platform_listeners(): void {
 		if (global.MOBILE_MODE === true) {
 			surface.addEventListener('touchstart', mouse_down, false);
@@ -474,14 +468,12 @@ function load_app(): void {
 			}
 		}
 	}
-
 	function start_system(): void {
 		if (!global.MOBILE_MODE) {
 			register();
 		}
 		main();
 	}
-
 	function resize_canvas(): void {
 		/* Wait until the system proccesses the information then over-write the data. */
 		if (global.RESIZE_EVENT === false) {
@@ -508,7 +500,6 @@ function load_app(): void {
 			global.CANVAS_STROKE_WIDTH_BASE = 0.000725 * view_port.view_width;
 			global.CANVAS_TEXT_SIZE_BASE = 0.000725 * view_port.view_width;
 		}
-
 		try {
 			ctx.globalCompositeOperation = 'copy';
 			ctx.imageSmoothingEnabled = false;
@@ -543,7 +534,6 @@ function load_app(): void {
 			surface.style.visibility = 'visible';
 		}
 	}
-
 	function mouse_down(mouse_event: MouseEvent): void {
 		if (global.system_initialization['completed']) {
 			if (global.MOBILE_MODE === false) {
@@ -579,7 +569,6 @@ function load_app(): void {
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
-
 	function mouse_move(mouse_event: MouseEvent): void {
 		if (!global.MOUSE_MOVE_EVENT) {
 			if (global.MOBILE_MODE) {
@@ -595,7 +584,6 @@ function load_app(): void {
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
-
 	function mouse_up(mouse_event: MouseEvent): void {
 		if (MOUSE_EVENT_LATCH) {
 			if (global.MOBILE_MODE) {
@@ -611,7 +599,6 @@ function load_app(): void {
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
-
 	function mouse_wheel(mouse_event: MouseEvent): void {
 		/* Intentionally blocking. */
 		if (!global.MOUSE_WHEEL_EVENT && !global.MOBILE_MODE) {
@@ -621,7 +608,6 @@ function load_app(): void {
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
-
 	function double_click(mouse_event: MouseEvent): void {
 		if (!global.MOBILE_MODE) {
 			global.MOUSE_DOUBLE_CLICK_EVENT = true;
@@ -630,7 +616,6 @@ function load_app(): void {
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
-
 	function key_down(key_event: KeyboardEvent): void {
 		global.KEY_DOWN_EVENT = true;
 		global.key_down_event_queue.push({
@@ -643,7 +628,6 @@ function load_app(): void {
 		key_event.preventDefault();
 		key_event.stopPropagation();
 	}
-
 	function key_up(key_event: KeyboardEvent): void {
 		global.KEY_UP_EVENT = true;
 		global.key_up_event_queue.push({
@@ -656,7 +640,6 @@ function load_app(): void {
 		key_event.preventDefault();
 		key_event.stopPropagation();
 	}
-
 	function resize_components(): void {
 		/* Always resize the workspace first! */
 		global.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
@@ -697,7 +680,6 @@ function load_app(): void {
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-
 	function handle_zoom(mouse_event: MouseEvent): void {
 		if (!global.focused) {
 			global.x_offset = (global.mouse_x - global.delta_x) / global.workspace_zoom_scale;
@@ -717,14 +699,12 @@ function load_app(): void {
 			workspace.workspace_zoom();
 		}
 	}
-
 	function reset_zoom(): void {
 		global.x_offset = 0;
 		global.y_offset = 0;
 		global.delta_x = workspace.bounds.left;
 		global.delta_y = workspace.bounds.top;
 	}
-
 	function normal_draw_permissions(): boolean {
 		if (global.system_initialization['completed']) {
 			return (
@@ -756,7 +736,6 @@ function load_app(): void {
 			);
 		}
 	}
-
 	function system_loop(): void {
 		// try {
 		/* Optimizing the drawing frames for the canvas. */
@@ -861,7 +840,6 @@ function load_app(): void {
 		// 	}
 		// }
 	}
-
 	function update(): void {
 		if (global.system_initialization['completed']) {
 			engine_functions.file_manager();
@@ -1186,7 +1164,6 @@ function load_app(): void {
 			}
 		}
 	}
-
 	function refactor_sizes(): void {
 		global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.workspace_zoom_scale;
 		global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.workspace_zoom_scale;
@@ -1201,7 +1178,6 @@ function load_app(): void {
 		global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.workspace_zoom_scale;
 		global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.workspace_zoom_scale;
 	}
-
 	function draw(): void {
 		refactor_sizes();
 		engine_functions.image_manager();
@@ -1365,7 +1341,6 @@ function load_app(): void {
 		}
 		view_port.draw_viewport(canvas);
 	}
-
 	function handle_mouse_down(): void {
 		global.component_touched = false;
 		if (global.MOBILE_MODE === false) {
@@ -1922,7 +1897,6 @@ function load_app(): void {
 			handle_workspace_drag();
 		}
 	}
-
 	function handle_mouse_up(): void {
 		let temp_translation_lock: boolean = global.translation_lock;
 		global.translation_lock = true;
@@ -2193,7 +2167,6 @@ function load_app(): void {
 		engine_functions.handle_nearest_neighbors(temp_translation_lock);
 		global.SIGNAL_HISTORY_LOCK = false;
 	}
-
 	function handle_mouse_wheel(): void {
 		global.mouse_x = global.mouse_wheel_event.clientX;
 		global.mouse_y = global.mouse_wheel_event.clientY;
@@ -2214,7 +2187,6 @@ function load_app(): void {
 		}
 		menu_bar.mouse_wheel();
 	}
-
 	function handle_double_click(): void {
 		global.mouse_x = global.mouse_double_click_event.clientX;
 		global.mouse_y = global.mouse_double_click_event.clientY;
@@ -2223,7 +2195,6 @@ function load_app(): void {
 		save_circuit_window.double_click();
 		element_options_edit_window.double_click();
 	}
-
 	function handle_key_down(): void {
 		time_step_window.key_down(global.key_down_event);
 		save_circuit_window.key_down(global.key_down_event, canvas);
@@ -2241,13 +2212,11 @@ function load_app(): void {
 			shortcut_manager.listen(global.key_down_event);
 		}
 	}
-
 	function handle_key_up(): void {
 		if (!global.MOBILE_MODE) {
 			multi_select_manager.key_up(global.key_up_event);
 		}
 	}
-
 	function handle_workspace_drag(): void {
 		let sqrt: number = Math.round(global.settings.SQRT_MAXNODES * 0.75);
 		let x_space: number = sqrt * global.node_space_x;
@@ -2289,7 +2258,6 @@ function load_app(): void {
 			request.send(post_data);
 		}
 	}
-
 	function browser_detection(): void {
 		if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) != -1) {
 			global.BROWSER_OPERA = true;
@@ -2304,12 +2272,10 @@ function load_app(): void {
 			global.BROWSER_IE = true;
 		}
 	}
-
 	function main(): void {
 		throttle_loop();
 		requestAnimationFrame(main);
 	}
-
 	function throttle_loop(): void {
 		switch (++FPS_COUNTER) {
 			case FPS_COMPARE:

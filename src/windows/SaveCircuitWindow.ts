@@ -64,7 +64,6 @@ class SaveCircuitWindow {
 	public SELECT_OFFSET_X: number;
 	public MOUSE_DOWN: boolean;
 	public ASCENDING: boolean;
-
 	constructor() {
 		this.TITLE_HEIGHT_RATIO = 0.25;
 		this.BUTTON_WIDTH_RATIO = 0.3;
@@ -665,7 +664,6 @@ class SaveCircuitWindow {
 		} else {
 			save_file(global.user_file.title + '.txt', engine_functions.history_snapshot());
 		}
-
 		global.workspace_zoom_scale = previous_zoom;
 		global.dx = last_dx;
 		global.dy = last_dy;
@@ -765,7 +763,6 @@ class SaveCircuitWindow {
 			this.title_bounds.text = language_manager.SAVE_CIRCUIT[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.cancel_button.text = language_manager.CANCEL[global.LANGUAGES[global.LANGUAGE_INDEX]];
-
 			/* This draws the bounds of the interface. */
 			canvas.draw_round_rect(
 				this.bounds.left + this.OFFSET_X,

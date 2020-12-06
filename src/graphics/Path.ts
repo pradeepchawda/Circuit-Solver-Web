@@ -22,7 +22,6 @@
 class Path {
 	public path_2d: Array<PATH_T>;
 	private indexer: number;
-
 	constructor() {
 		this.path_2d = [];
 		this.indexer = 0;

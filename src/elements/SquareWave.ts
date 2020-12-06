@@ -26,11 +26,9 @@ class SquareWave {
   public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm: Element2;
-
   public plus_point: PointF;
   public p1: PointF;
   public p2: PointF;
-
   /* Angle from p1 to p2 minus 90 degrees */
   public theta_m90: number;
   /* Angle from p1 to p2 */
@@ -79,7 +77,6 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-
   constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -803,7 +800,6 @@ or overlapped)*/
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

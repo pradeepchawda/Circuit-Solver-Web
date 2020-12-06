@@ -107,7 +107,6 @@ operating point analysis */
 	public MIN_TIME_CONSTANT: number;
 	/* The minimum time_constant   */
 	public MAX_TIME_CONSTANT: number;
-
 	constructor() {
 		/* A flag to make the camra view a perfect square. */
 		this.WORKSPACE_PERFECT_SQUARE = true;
@@ -202,7 +201,6 @@ operating point analysis */
 		/* The minimum time_constant   */
 		this.MAX_TIME_CONSTANT = 10;
 	}
-
 	patch(): void {
 		/* A flag to make the camra view a perfect square. */
 		this.WORKSPACE_PERFECT_SQUARE = true;

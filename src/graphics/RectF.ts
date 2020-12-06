@@ -30,22 +30,18 @@ class RectF {
 	/* Temporary variable to handle settings the center of the rectangle */
 	private temp_width: number;
 	private temp_height: number;
-
 	private last_left: number;
 	private last_right: number;
 	private last_top: number;
 	private last_bottom: number;
-
 	private last_center_x: number;
 	private last_center_y: number;
 	private last_width: number;
 	private last_height: number;
-
 	private w_last_left: number;
 	private w_last_right: number;
 	private w_last_top: number;
 	private w_last_bottom: number;
-
 	constructor(left: number, top: number, right: number, bottom: number) {
 		/* left, top, right, and bottom of the rectangle */
 		this.left = left;
@@ -57,17 +53,14 @@ class RectF {
 		/* Temporary variable to handle settings the center of the rectangle */
 		this.temp_width = 0;
 		this.temp_height = 0;
-
 		this.last_left = -1;
 		this.last_right = -1;
 		this.last_top = -1;
 		this.last_bottom = -1;
-
 		this.last_center_x = -1;
 		this.last_center_y = -1;
 		this.last_width = -1;
 		this.last_height = -1;
-
 		this.w_last_left = -1;
 		this.w_last_right = -1;
 		this.w_last_top = -1;

@@ -24,7 +24,6 @@ class VirtualCanvas {
 	private id: number;
 	/* Get the drawing context */
 	public context: CanvasRenderingContext2D;
-
 	constructor(width: number, height: number, id: number) {
 		this.ASSIGN_ID = false;
 		/* Create a virtual canvas element */
@@ -63,7 +62,6 @@ class VirtualCanvas {
 			this.context.msImageSmoothingEnabled = false;
 		} catch (e) {}
 	}
-
 	get_surface(): HTMLCanvasElement {
 		return this.surface;
 	}

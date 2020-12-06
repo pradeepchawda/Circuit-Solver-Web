@@ -33,7 +33,6 @@ class TPTZController {
 	public n_2: number;
 	public center: number;
 	public _y: number;
-
 	constructor(tptz_buffer: Array<number>) {
 		this.buffer = global.copy(tptz_buffer);
 		this.x = [0, 0];
@@ -61,7 +60,6 @@ class TPTZController {
 	_2p2z(_x: number): number {
 		this.center = _x * this.buffer[this.b0] + this.buffer[this.b1] * this.x[this.n_1] + this.buffer[this.b2] * this.x[this.n_2];
 		this._y = this.center - this.buffer[this.a1] * this.y[this.n_1] - this.buffer[this.a2] * this.y[this.n_2];
-
 		this.x[this.n_2] = this.x[this.n_1];
 		this.x[this.n_1] = _x;
 		this.y[this.n_2] = this.y[this.n_1];

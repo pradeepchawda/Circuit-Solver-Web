@@ -48,7 +48,6 @@ class EngineFunctions {
 	public mapper3: Element3;
 	/* Solely for mapping nodes (quadruple nodes) baby! */
 	public mapper4: Element4;
-
 	constructor() {
 		this.node_1 = -1;
 		this.node_2 = -1;
@@ -1421,683 +1420,546 @@ class EngineFunctions {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_capacitor(id: number): number {
 		for (var i: number = 0; i < capacitors.length; i++) {
 			if (capacitors[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_inductor(id: number): number {
 		for (var i: number = 0; i < inductors.length; i++) {
 			if (inductors[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_ground(id: number): number {
 		for (var i: number = 0; i < grounds.length; i++) {
 			if (grounds[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_dcsource(id: number): number {
 		for (var i: number = 0; i < dcsources.length; i++) {
 			if (dcsources[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_dccurrent(id: number): number {
 		for (var i: number = 0; i < dccurrents.length; i++) {
 			if (dccurrents[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_acsource(id: number): number {
 		for (var i: number = 0; i < acsources.length; i++) {
 			if (acsources[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_accurrent(id: number): number {
 		for (var i: number = 0; i < accurrents.length; i++) {
 			if (accurrents[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_squarewave(id: number): number {
 		for (var i: number = 0; i < squarewaves.length; i++) {
 			if (squarewaves[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_sawwave(id: number): number {
 		for (var i: number = 0; i < sawwaves.length; i++) {
 			if (sawwaves[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_trianglewave(id: number): number {
 		for (var i: number = 0; i < trianglewaves.length; i++) {
 			if (trianglewaves[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_constant(id: number): number {
 		for (var i: number = 0; i < constants.length; i++) {
 			if (constants[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_wire(id: number): number {
 		for (var i: number = 0; i < wires.length; i++) {
 			if (wires[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_net(id: number): number {
 		for (var i: number = 0; i < nets.length; i++) {
 			if (nets[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_note(id: number): number {
 		for (var i: number = 0; i < notes.length; i++) {
 			if (notes[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_rail(id: number): number {
 		for (var i: number = 0; i < rails.length; i++) {
 			if (rails[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_voltmeter(id: number): number {
 		for (var i: number = 0; i < voltmeters.length; i++) {
 			if (voltmeters[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_ohmmeter(id: number): number {
 		for (var i: number = 0; i < ohmmeters.length; i++) {
 			if (ohmmeters[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_ammeter(id: number): number {
 		for (var i: number = 0; i < ammeters.length; i++) {
 			if (ammeters[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_wattmeter(id: number): number {
 		for (var i: number = 0; i < wattmeters.length; i++) {
 			if (wattmeters[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_fuse(id: number): number {
 		for (var i: number = 0; i < fuses.length; i++) {
 			if (fuses[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_spst(id: number): number {
 		for (var i: number = 0; i < spsts.length; i++) {
 			if (spsts[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_spdt(id: number): number {
 		for (var i: number = 0; i < spdts.length; i++) {
 			if (spdts[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_not(id: number): number {
 		for (var i: number = 0; i < nots.length; i++) {
 			if (nots[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_diode(id: number): number {
 		for (var i: number = 0; i < diodes.length; i++) {
 			if (diodes[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_led(id: number): number {
 		for (var i: number = 0; i < leds.length; i++) {
 			if (leds[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_zener(id: number): number {
 		for (var i: number = 0; i < zeners.length; i++) {
 			if (zeners[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_potentiometer(id: number): number {
 		for (var i: number = 0; i < potentiometers.length; i++) {
 			if (potentiometers[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_and(id: number): number {
 		for (var i: number = 0; i < ands.length; i++) {
 			if (ands[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_or(id: number): number {
 		for (var i: number = 0; i < ors.length; i++) {
 			if (ors[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_nand(id: number): number {
 		for (var i: number = 0; i < nands.length; i++) {
 			if (nands[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_nor(id: number): number {
 		for (var i: number = 0; i < nors.length; i++) {
 			if (nors[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_xor(id: number): number {
 		for (var i: number = 0; i < xors.length; i++) {
 			if (xors[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_xnor(id: number): number {
 		for (var i: number = 0; i < xnors.length; i++) {
 			if (xnors[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_dff(id: number): number {
 		for (var i: number = 0; i < dffs.length; i++) {
 			if (dffs[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_vsat(id: number): number {
 		for (var i: number = 0; i < vsats.length; i++) {
 			if (vsats[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_adder(id: number): number {
 		for (var i: number = 0; i < adders.length; i++) {
 			if (adders[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_subtractor(id: number): number {
 		for (var i: number = 0; i < subtractors.length; i++) {
 			if (subtractors[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_multiplier(id: number): number {
 		for (var i: number = 0; i < multipliers.length; i++) {
 			if (multipliers[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_divider(id: number): number {
 		for (var i: number = 0; i < dividers.length; i++) {
 			if (dividers[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_gain(id: number): number {
 		for (var i: number = 0; i < gains.length; i++) {
 			if (gains[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_absval(id: number): number {
 		for (var i: number = 0; i < absvals.length; i++) {
 			if (absvals[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_vcsw(id: number): number {
 		for (var i: number = 0; i < vcsws.length; i++) {
 			if (vcsws[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_vcvs(id: number): number {
 		for (var i: number = 0; i < vcvss.length; i++) {
 			if (vcvss[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_vccs(id: number): number {
 		for (var i: number = 0; i < vccss.length; i++) {
 			if (vccss[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_cccs(id: number): number {
 		for (var i: number = 0; i < cccss.length; i++) {
 			if (cccss[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_ccvs(id: number): number {
 		for (var i: number = 0; i < ccvss.length; i++) {
 			if (ccvss[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_opamp(id: number): number {
 		for (var i: number = 0; i < opamps.length; i++) {
 			if (opamps[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_nmosfet(id: number): number {
 		for (var i: number = 0; i < nmosfets.length; i++) {
 			if (nmosfets[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_pmosfet(id: number): number {
 		for (var i: number = 0; i < pmosfets.length; i++) {
 			if (pmosfets[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_npn(id: number): number {
 		for (var i: number = 0; i < npns.length; i++) {
 			if (npns[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_pnp(id: number): number {
 		for (var i: number = 0; i < pnps.length; i++) {
 			if (pnps[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_adc(id: number): number {
 		for (var i: number = 0; i < adcs.length; i++) {
 			if (adcs[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_dac(id: number): number {
 		for (var i: number = 0; i < dacs.length; i++) {
 			if (dacs[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_samplers(id: number): number {
 		for (var i: number = 0; i < sandhs.length; i++) {
 			if (sandhs[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_pwm(id: number): number {
 		for (var i: number = 0; i < pwms.length; i++) {
 			if (pwms[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_integrator(id: number): number {
 		for (var i: number = 0; i < integrators.length; i++) {
 			if (integrators[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_differentiator(id: number): number {
 		for (var i: number = 0; i < differentiators.length; i++) {
 			if (differentiators[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_lowpass(id: number): number {
 		for (var i: number = 0; i < lowpasses.length; i++) {
 			if (lowpasses[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_highpass(id: number): number {
 		for (var i: number = 0; i < highpasses.length; i++) {
 			if (highpasses[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_relay(id: number): number {
 		for (var i: number = 0; i < relays.length; i++) {
 			if (relays[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_pid(id: number): number {
 		for (var i: number = 0; i < pids.length; i++) {
 			if (pids[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_lut(id: number): number {
 		for (var i: number = 0; i < luts.length; i++) {
 			if (luts[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_vcr(id: number): number {
 		for (var i: number = 0; i < vcrs.length; i++) {
 			if (vcrs[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_grt(id: number): number {
 		for (var i: number = 0; i < grts.length; i++) {
 			if (grts[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_tptz(id: number): number {
 		for (var i: number = 0; i < tptzs.length; i++) {
 			if (tptzs[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	get_transformer(id: number): number {
 		for (var i: number = 0; i < transformers.length; i++) {
 			if (transformers[i].elm.id === id) {
 				return i;
 			}
 		}
-
 		return -1;
 	}
-
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	/* #INSERT_GENERATE_ASSIGNMENT_INDEX# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	get_resistor_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < resistors.length; i++) {
 			ids.push(resistors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2105,20 +1967,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_capacitor_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < capacitors.length; i++) {
 			ids.push(capacitors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2126,20 +1983,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_inductor_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < inductors.length; i++) {
 			ids.push(inductors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2147,20 +1999,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_ground_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < grounds.length; i++) {
 			ids.push(grounds[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2168,20 +2015,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_dcsource_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < dcsources.length; i++) {
 			ids.push(dcsources[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2189,20 +2031,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_dccurrent_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < dccurrents.length; i++) {
 			ids.push(dccurrents[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2210,20 +2047,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_acsource_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < acsources.length; i++) {
 			ids.push(acsources[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2231,20 +2063,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_accurrent_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < accurrents.length; i++) {
 			ids.push(accurrents[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2252,20 +2079,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_squarewave_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < squarewaves.length; i++) {
 			ids.push(squarewaves[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2273,20 +2095,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_sawwave_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < sawwaves.length; i++) {
 			ids.push(sawwaves[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2294,20 +2111,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_trianglewave_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < trianglewaves.length; i++) {
 			ids.push(trianglewaves[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2315,20 +2127,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_constant_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < constants.length; i++) {
 			ids.push(constants[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2336,20 +2143,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_wire_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < wires.length; i++) {
 			ids.push(wires[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2357,20 +2159,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_net_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < nets.length; i++) {
 			ids.push(nets[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2378,20 +2175,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_note_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < notes.length; i++) {
 			ids.push(notes[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2399,20 +2191,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_rail_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < rails.length; i++) {
 			ids.push(rails[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2420,20 +2207,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_voltmeter_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < voltmeters.length; i++) {
 			ids.push(voltmeters[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2441,20 +2223,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_ohmmeter_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < ohmmeters.length; i++) {
 			ids.push(ohmmeters[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2462,20 +2239,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_ammeter_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < ammeters.length; i++) {
 			ids.push(ammeters[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2483,20 +2255,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_wattmeter_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < wattmeters.length; i++) {
 			ids.push(wattmeters[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2504,20 +2271,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_fuse_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < fuses.length; i++) {
 			ids.push(fuses[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2525,20 +2287,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_spst_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < spsts.length; i++) {
 			ids.push(spsts[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2546,20 +2303,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_spdt_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < spdts.length; i++) {
 			ids.push(spdts[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2567,20 +2319,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_not_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < nots.length; i++) {
 			ids.push(nots[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2588,20 +2335,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_diode_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < diodes.length; i++) {
 			ids.push(diodes[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2609,20 +2351,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_led_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < leds.length; i++) {
 			ids.push(leds[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2630,20 +2367,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_zener_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < zeners.length; i++) {
 			ids.push(zeners[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2651,20 +2383,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_potentiometer_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < potentiometers.length; i++) {
 			ids.push(potentiometers[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2672,20 +2399,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_and_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < ands.length; i++) {
 			ids.push(ands[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2693,20 +2415,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_or_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < ors.length; i++) {
 			ids.push(ors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2714,20 +2431,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_nand_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < nands.length; i++) {
 			ids.push(nands[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2735,20 +2447,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_nor_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < nors.length; i++) {
 			ids.push(nors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2756,20 +2463,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_xor_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < xors.length; i++) {
 			ids.push(xors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2777,20 +2479,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_xnor_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < xnors.length; i++) {
 			ids.push(xnors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2798,20 +2495,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_dff_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < dffs.length; i++) {
 			ids.push(dffs[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2819,20 +2511,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_vsat_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < vsats.length; i++) {
 			ids.push(vsats[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2840,20 +2527,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_adder_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < adders.length; i++) {
 			ids.push(adders[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2861,20 +2543,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_subtractor_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < subtractors.length; i++) {
 			ids.push(subtractors[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2882,20 +2559,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_multiplier_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < multipliers.length; i++) {
 			ids.push(multipliers[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2903,20 +2575,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_divider_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < dividers.length; i++) {
 			ids.push(dividers[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2924,20 +2591,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_gain_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < gains.length; i++) {
 			ids.push(gains[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2945,20 +2607,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_absval_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < absvals.length; i++) {
 			ids.push(absvals[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2966,20 +2623,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_vcsw_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < vcsws.length; i++) {
 			ids.push(vcsws[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -2987,20 +2639,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_vcvs_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < vcvss.length; i++) {
 			ids.push(vcvss[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3008,20 +2655,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_vccs_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < vccss.length; i++) {
 			ids.push(vccss[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3029,20 +2671,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_cccs_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < cccss.length; i++) {
 			ids.push(cccss[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3050,20 +2687,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_ccvs_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < ccvss.length; i++) {
 			ids.push(ccvss[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3071,20 +2703,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_opamp_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < opamps.length; i++) {
 			ids.push(opamps[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3092,20 +2719,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_nmosfet_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < nmosfets.length; i++) {
 			ids.push(nmosfets[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3113,20 +2735,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_pmosfet_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < pmosfets.length; i++) {
 			ids.push(pmosfets[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3134,20 +2751,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_npn_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < npns.length; i++) {
 			ids.push(npns[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3155,20 +2767,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_pnp_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < pnps.length; i++) {
 			ids.push(pnps[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3176,20 +2783,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_adc_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < adcs.length; i++) {
 			ids.push(adcs[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3197,20 +2799,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_dac_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < dacs.length; i++) {
 			ids.push(dacs[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3218,20 +2815,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_samplers_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < sandhs.length; i++) {
 			ids.push(sandhs[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3239,20 +2831,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_pwm_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < pwms.length; i++) {
 			ids.push(pwms[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3260,20 +2847,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_integrator_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < integrators.length; i++) {
 			ids.push(integrators[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3281,20 +2863,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_differentiator_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < differentiators.length; i++) {
 			ids.push(differentiators[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3302,20 +2879,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_lowpass_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < lowpasses.length; i++) {
 			ids.push(lowpasses[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3323,20 +2895,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_highpass_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < highpasses.length; i++) {
 			ids.push(highpasses[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3344,20 +2911,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_relay_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < relays.length; i++) {
 			ids.push(relays[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3365,20 +2927,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_pid_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < pids.length; i++) {
 			ids.push(pids[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3386,20 +2943,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_lut_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < luts.length; i++) {
 			ids.push(luts[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3407,20 +2959,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_vcr_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < vcrs.length; i++) {
 			ids.push(vcrs[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3428,20 +2975,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_grt_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < grts.length; i++) {
 			ids.push(grts[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3449,20 +2991,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_tptz_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < tptzs.length; i++) {
 			ids.push(tptzs[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3470,20 +3007,15 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	get_transformer_assignment() {
 		let assignment: number = 0;
 		var ids: Array<number> = [];
-
 		for (var i: number = 0; i < transformers.length; i++) {
 			ids.push(transformers[i].elm.id);
 		}
-
 		ids = ids.sort((a, b) => a - b);
-
 		for (var i: number = 0; i < ids.length; i++) {
 			if (ids[i] === assignment) {
 				assignment++;
@@ -3491,10 +3023,8 @@ class EngineFunctions {
 				break;
 			}
 		}
-
 		return assignment;
 	}
-
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	/* #INSERT_GENERATE_ADD_ELEMENT# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -3504,11 +3034,9 @@ class EngineFunctions {
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		resistors.push(new Resistor(global.TYPE_RESISTOR, engine_functions.get_resistor_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = resistors.length - 1;
 		if (index < resistors.length) {
@@ -3522,18 +3050,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_capacitor() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		capacitors.push(new Capacitor(global.TYPE_CAPACITOR, engine_functions.get_capacitor_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = capacitors.length - 1;
 		if (index < capacitors.length) {
@@ -3547,18 +3072,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_inductor() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		inductors.push(new Inductor(global.TYPE_INDUCTOR, engine_functions.get_inductor_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = inductors.length - 1;
 		if (index < inductors.length) {
@@ -3572,15 +3094,12 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_ground() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x;
 		this.y1 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
-
 		grounds.push(new Ground(global.TYPE_GROUND, engine_functions.get_ground_assignment(), this.mapper1.n1));
 		var index: number = grounds.length - 1;
 		if (index < grounds.length) {
@@ -3594,18 +3113,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_dcsource() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		dcsources.push(new DCSource(global.TYPE_DCSOURCE, engine_functions.get_dcsource_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = dcsources.length - 1;
 		if (index < dcsources.length) {
@@ -3619,18 +3135,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_dccurrent() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		dccurrents.push(new DCCurrent(global.TYPE_DCCURRENT, engine_functions.get_dccurrent_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = dccurrents.length - 1;
 		if (index < dccurrents.length) {
@@ -3644,18 +3157,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_acsource() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		acsources.push(new ACSource(global.TYPE_ACSOURCE, engine_functions.get_acsource_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = acsources.length - 1;
 		if (index < acsources.length) {
@@ -3669,18 +3179,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_accurrent() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		accurrents.push(new ACCurrent(global.TYPE_ACCURRENT, engine_functions.get_accurrent_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = accurrents.length - 1;
 		if (index < accurrents.length) {
@@ -3694,18 +3201,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_squarewave() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		squarewaves.push(new SquareWave(global.TYPE_SQUAREWAVE, engine_functions.get_squarewave_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = squarewaves.length - 1;
 		if (index < squarewaves.length) {
@@ -3719,18 +3223,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_sawwave() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		sawwaves.push(new SawWave(global.TYPE_SAW, engine_functions.get_sawwave_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = sawwaves.length - 1;
 		if (index < sawwaves.length) {
@@ -3744,18 +3245,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_trianglewave() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		trianglewaves.push(new TriangleWave(global.TYPE_TRI, engine_functions.get_trianglewave_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = trianglewaves.length - 1;
 		if (index < trianglewaves.length) {
@@ -3769,15 +3267,12 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_constant() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x;
 		this.y1 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
-
 		constants.push(new Constant(global.TYPE_CONSTANT, engine_functions.get_constant_assignment(), this.mapper1.n1));
 		var index: number = constants.length - 1;
 		if (index < constants.length) {
@@ -3791,15 +3286,12 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_net() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x;
 		this.y1 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
-
 		nets.push(new Net(global.TYPE_NET, engine_functions.get_net_assignment(), this.mapper1.n1));
 		var index: number = nets.length - 1;
 		if (index < nets.length) {
@@ -3813,15 +3305,12 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_note() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x;
 		this.y1 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
-
 		notes.push(new Note(global.TYPE_NOTE, engine_functions.get_note_assignment(), this.mapper1.n1));
 		var index: number = notes.length - 1;
 		if (index < notes.length) {
@@ -3835,15 +3324,12 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_rail() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x;
 		this.y1 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
-
 		rails.push(new Rail(global.TYPE_RAIL, engine_functions.get_rail_assignment(), this.mapper1.n1));
 		var index: number = rails.length - 1;
 		if (index < rails.length) {
@@ -3857,18 +3343,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_voltmeter() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		voltmeters.push(new VoltMeter(global.TYPE_VOLTMETER, engine_functions.get_voltmeter_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = voltmeters.length - 1;
 		if (index < voltmeters.length) {
@@ -3882,18 +3365,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_ohmmeter() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		ohmmeters.push(new OhmMeter(global.TYPE_OHMMETER, engine_functions.get_ohmmeter_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = ohmmeters.length - 1;
 		if (index < ohmmeters.length) {
@@ -3907,18 +3387,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_ammeter() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		ammeters.push(new AmMeter(global.TYPE_AMMETER, engine_functions.get_ammeter_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = ammeters.length - 1;
 		if (index < ammeters.length) {
@@ -3932,7 +3409,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_wattmeter() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -3941,12 +3417,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y - 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		wattmeters.push(new WattMeter(global.TYPE_WATTMETER, engine_functions.get_wattmeter_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = wattmeters.length - 1;
 		if (index < wattmeters.length) {
@@ -3960,18 +3434,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_fuse() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		fuses.push(new Fuse(global.TYPE_FUSE, engine_functions.get_fuse_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = fuses.length - 1;
 		if (index < fuses.length) {
@@ -3985,18 +3456,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_spst() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		spsts.push(new SinglePoleSingleThrow(global.TYPE_SPST, engine_functions.get_spst_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = spsts.length - 1;
 		if (index < spsts.length) {
@@ -4010,7 +3478,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_spdt() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4019,12 +3486,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		spdts.push(new SinglePoleDoubleThrow(global.TYPE_SPDT, engine_functions.get_spdt_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = spdts.length - 1;
 		if (index < spdts.length) {
@@ -4038,18 +3503,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_not() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		nots.push(new NOTGate(global.TYPE_NOT, engine_functions.get_not_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = nots.length - 1;
 		if (index < nots.length) {
@@ -4063,18 +3525,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_diode() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		diodes.push(new Diode(global.TYPE_DIODE, engine_functions.get_diode_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = diodes.length - 1;
 		if (index < diodes.length) {
@@ -4088,18 +3547,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_led() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		leds.push(new LightEmittingDiode(global.TYPE_LED, engine_functions.get_led_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = leds.length - 1;
 		if (index < leds.length) {
@@ -4113,18 +3569,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_zener() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		zeners.push(new ZenerDiode(global.TYPE_ZENER, engine_functions.get_zener_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = zeners.length - 1;
 		if (index < zeners.length) {
@@ -4138,7 +3591,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_potentiometer() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4147,12 +3599,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y - 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		potentiometers.push(new Potentiometer(global.TYPE_POTENTIOMETER, engine_functions.get_potentiometer_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = potentiometers.length - 1;
 		if (index < potentiometers.length) {
@@ -4166,7 +3616,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_and() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4175,12 +3624,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		ands.push(new ANDGate(global.TYPE_AND, engine_functions.get_and_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = ands.length - 1;
 		if (index < ands.length) {
@@ -4194,7 +3641,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_or() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4203,12 +3649,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		ors.push(new ORGate(global.TYPE_OR, engine_functions.get_or_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = ors.length - 1;
 		if (index < ors.length) {
@@ -4222,7 +3666,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_nand() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4231,12 +3674,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		nands.push(new NANDGate(global.TYPE_NAND, engine_functions.get_nand_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = nands.length - 1;
 		if (index < nands.length) {
@@ -4250,7 +3691,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_nor() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4259,12 +3699,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		nors.push(new NORGate(global.TYPE_NOR, engine_functions.get_nor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = nors.length - 1;
 		if (index < nors.length) {
@@ -4278,7 +3716,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_xor() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4287,12 +3724,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		xors.push(new XORGate(global.TYPE_XOR, engine_functions.get_xor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = xors.length - 1;
 		if (index < xors.length) {
@@ -4306,7 +3741,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_xnor() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4315,12 +3749,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		xnors.push(new XNORGate(global.TYPE_XNOR, engine_functions.get_xnor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = xnors.length - 1;
 		if (index < xnors.length) {
@@ -4334,7 +3766,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_dff() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4345,13 +3776,11 @@ class EngineFunctions {
 		this.y3 = global.mouse_y - 2 * global.node_space_y;
 		this.x4 = global.mouse_x + 2 * global.node_space_x;
 		this.y4 = global.mouse_y + 2 * global.node_space_y;
-
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper4.snap_to_grid(this.x3, this.y3);
 		let p4: Array<number> = this.mapper4.snap_to_grid(this.x4, this.y4);
 		this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-
 		dffs.push(new DFlipFlop(global.TYPE_DFF, engine_functions.get_dff_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
 		var index: number = dffs.length - 1;
 		if (index < dffs.length) {
@@ -4365,18 +3794,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_vsat() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		vsats.push(new VoltageSaturation(global.TYPE_VSAT, engine_functions.get_vsat_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = vsats.length - 1;
 		if (index < vsats.length) {
@@ -4390,7 +3816,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_adder() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4399,12 +3824,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		adders.push(new Adder(global.TYPE_ADD, engine_functions.get_adder_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = adders.length - 1;
 		if (index < adders.length) {
@@ -4418,7 +3841,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_subtractor() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4427,12 +3849,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		subtractors.push(new Subtractor(global.TYPE_SUB, engine_functions.get_subtractor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = subtractors.length - 1;
 		if (index < subtractors.length) {
@@ -4446,7 +3866,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_multiplier() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4455,12 +3874,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		multipliers.push(new Multiplier(global.TYPE_MUL, engine_functions.get_multiplier_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = multipliers.length - 1;
 		if (index < multipliers.length) {
@@ -4474,7 +3891,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_divider() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4483,12 +3899,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		dividers.push(new Divider(global.TYPE_DIV, engine_functions.get_divider_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = dividers.length - 1;
 		if (index < dividers.length) {
@@ -4502,18 +3916,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_gain() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		gains.push(new GainBlock(global.TYPE_GAIN, engine_functions.get_gain_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = gains.length - 1;
 		if (index < gains.length) {
@@ -4527,18 +3938,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_absval() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		absvals.push(new AbsoluteValue(global.TYPE_ABS, engine_functions.get_absval_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = absvals.length - 1;
 		if (index < absvals.length) {
@@ -4552,7 +3960,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_vcsw() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4561,12 +3968,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y - 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		vcsws.push(new VoltageControlledSwitch(global.TYPE_VCSW, engine_functions.get_vcsw_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = vcsws.length - 1;
 		if (index < vcsws.length) {
@@ -4580,7 +3985,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_vcvs() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4591,13 +3995,11 @@ class EngineFunctions {
 		this.y3 = global.mouse_y - 2 * global.node_space_y;
 		this.x4 = global.mouse_x + 2 * global.node_space_x;
 		this.y4 = global.mouse_y + 2 * global.node_space_y;
-
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper4.snap_to_grid(this.x3, this.y3);
 		let p4: Array<number> = this.mapper4.snap_to_grid(this.x4, this.y4);
 		this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-
 		vcvss.push(new VoltageControlledVoltageSource(global.TYPE_VCVS, engine_functions.get_vcvs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
 		var index: number = vcvss.length - 1;
 		if (index < vcvss.length) {
@@ -4611,7 +4013,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_vccs() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4622,13 +4023,11 @@ class EngineFunctions {
 		this.y3 = global.mouse_y - 2 * global.node_space_y;
 		this.x4 = global.mouse_x + 2 * global.node_space_x;
 		this.y4 = global.mouse_y + 2 * global.node_space_y;
-
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper4.snap_to_grid(this.x3, this.y3);
 		let p4: Array<number> = this.mapper4.snap_to_grid(this.x4, this.y4);
 		this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-
 		vccss.push(new VoltageControlledCurrentSource(global.TYPE_VCCS, engine_functions.get_vccs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
 		var index: number = vccss.length - 1;
 		if (index < vccss.length) {
@@ -4642,7 +4041,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_cccs() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4653,13 +4051,11 @@ class EngineFunctions {
 		this.y3 = global.mouse_y - 2 * global.node_space_y;
 		this.x4 = global.mouse_x + 2 * global.node_space_x;
 		this.y4 = global.mouse_y + 2 * global.node_space_y;
-
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper4.snap_to_grid(this.x3, this.y3);
 		let p4: Array<number> = this.mapper4.snap_to_grid(this.x4, this.y4);
 		this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-
 		cccss.push(new CurrentControlledCurrentSource(global.TYPE_CCCS, engine_functions.get_cccs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
 		var index: number = cccss.length - 1;
 		if (index < cccss.length) {
@@ -4673,7 +4069,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_ccvs() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4684,13 +4079,11 @@ class EngineFunctions {
 		this.y3 = global.mouse_y - 2 * global.node_space_y;
 		this.x4 = global.mouse_x + 2 * global.node_space_x;
 		this.y4 = global.mouse_y + 2 * global.node_space_y;
-
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper4.snap_to_grid(this.x3, this.y3);
 		let p4: Array<number> = this.mapper4.snap_to_grid(this.x4, this.y4);
 		this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-
 		ccvss.push(new CurrentControlledVoltageSource(global.TYPE_CCVS, engine_functions.get_ccvs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
 		var index: number = ccvss.length - 1;
 		if (index < ccvss.length) {
@@ -4704,7 +4097,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_opamp() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4713,12 +4105,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		opamps.push(new OperationalAmplifier(global.TYPE_OPAMP, engine_functions.get_opamp_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = opamps.length - 1;
 		if (index < opamps.length) {
@@ -4732,7 +4122,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_nmosfet() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x + 2 * global.node_space_x;
@@ -4741,12 +4130,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x - 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		nmosfets.push(new NChannelMOSFET(global.TYPE_NMOS, engine_functions.get_nmosfet_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = nmosfets.length - 1;
 		if (index < nmosfets.length) {
@@ -4760,7 +4147,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_pmosfet() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x + 2 * global.node_space_x;
@@ -4769,12 +4155,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x - 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		pmosfets.push(new PChannelMOSFET(global.TYPE_PMOS, engine_functions.get_pmosfet_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = pmosfets.length - 1;
 		if (index < pmosfets.length) {
@@ -4788,7 +4172,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_npn() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x + 2 * global.node_space_x;
@@ -4797,12 +4180,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x - 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		npns.push(new NPNBipolarJunctionTransistor(global.TYPE_NPN, engine_functions.get_npn_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = npns.length - 1;
 		if (index < npns.length) {
@@ -4816,7 +4197,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_pnp() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x + 2 * global.node_space_x;
@@ -4825,12 +4205,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x - 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		pnps.push(new PNPBipolarJunctionTransistor(global.TYPE_PNP, engine_functions.get_pnp_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = pnps.length - 1;
 		if (index < pnps.length) {
@@ -4844,18 +4222,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_adc() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		adcs.push(new ADCModule(global.TYPE_ADC, engine_functions.get_adc_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = adcs.length - 1;
 		if (index < adcs.length) {
@@ -4869,18 +4244,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_dac() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		dacs.push(new DACModule(global.TYPE_DAC, engine_functions.get_dac_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = dacs.length - 1;
 		if (index < dacs.length) {
@@ -4894,7 +4266,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_samplers() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4903,12 +4274,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y - 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		sandhs.push(new SampleAndHold(global.TYPE_SAH, engine_functions.get_samplers_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = sandhs.length - 1;
 		if (index < sandhs.length) {
@@ -4922,7 +4291,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_pwm() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -4931,12 +4299,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y + 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		pwms.push(new PulseWidthModulator(global.TYPE_PWM, engine_functions.get_pwm_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = pwms.length - 1;
 		if (index < pwms.length) {
@@ -4950,18 +4316,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_integrator() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		integrators.push(new IntegratorModule(global.TYPE_INTEGRATOR, engine_functions.get_integrator_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = integrators.length - 1;
 		if (index < integrators.length) {
@@ -4975,18 +4338,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_differentiator() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		differentiators.push(new DifferentiatorModule(global.TYPE_DIFFERENTIATOR, engine_functions.get_differentiator_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = differentiators.length - 1;
 		if (index < differentiators.length) {
@@ -5000,18 +4360,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_lowpass() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		lowpasses.push(new LowPassFilter(global.TYPE_LPF, engine_functions.get_lowpass_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = lowpasses.length - 1;
 		if (index < lowpasses.length) {
@@ -5025,18 +4382,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_highpass() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		highpasses.push(new HighPassFilter(global.TYPE_HPF, engine_functions.get_highpass_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = highpasses.length - 1;
 		if (index < highpasses.length) {
@@ -5050,7 +4404,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_relay() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -5061,13 +4414,11 @@ class EngineFunctions {
 		this.y3 = global.mouse_y - 2 * global.node_space_y;
 		this.x4 = global.mouse_x + 2 * global.node_space_x;
 		this.y4 = global.mouse_y + 2 * global.node_space_y;
-
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper4.snap_to_grid(this.x3, this.y3);
 		let p4: Array<number> = this.mapper4.snap_to_grid(this.x4, this.y4);
 		this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-
 		relays.push(new Relay(global.TYPE_REL, engine_functions.get_relay_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
 		var index: number = relays.length - 1;
 		if (index < relays.length) {
@@ -5081,7 +4432,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_pid() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -5090,12 +4440,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y - 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		pids.push(new PIDModule(global.TYPE_PID, engine_functions.get_pid_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = pids.length - 1;
 		if (index < pids.length) {
@@ -5109,18 +4457,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_lut() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		luts.push(new LookUpTable(global.TYPE_LUT, engine_functions.get_lut_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = luts.length - 1;
 		if (index < luts.length) {
@@ -5134,7 +4479,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_vcr() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -5143,12 +4487,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y - 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		vcrs.push(new VoltageControlledResistor(global.TYPE_VCR, engine_functions.get_vcr_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = vcrs.length - 1;
 		if (index < vcrs.length) {
@@ -5162,7 +4504,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_grt() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -5171,12 +4512,10 @@ class EngineFunctions {
 		this.y2 = global.mouse_y - 2 * global.node_space_y;
 		this.x3 = global.mouse_x + 2 * global.node_space_x;
 		this.y3 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper3.snap_to_grid(this.x3, this.y3);
 		this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-
 		grts.push(new GreaterThan(global.TYPE_GRT, engine_functions.get_grt_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
 		var index: number = grts.length - 1;
 		if (index < grts.length) {
@@ -5190,18 +4529,15 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_tptz() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
 		this.y1 = global.mouse_y;
 		this.x2 = global.mouse_x + 2 * global.node_space_x;
 		this.y2 = global.mouse_y;
-
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
 		this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-
 		tptzs.push(new TPTZModule(global.TYPE_TPTZ, engine_functions.get_tptz_assignment(), this.mapper2.n1, this.mapper2.n2));
 		var index: number = tptzs.length - 1;
 		if (index < tptzs.length) {
@@ -5215,7 +4551,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	add_transformer() {
 		this.reset_selection(true);
 		this.x1 = global.mouse_x - 2 * global.node_space_x;
@@ -5226,13 +4561,11 @@ class EngineFunctions {
 		this.y3 = global.mouse_y - 2 * global.node_space_y;
 		this.x4 = global.mouse_x + 2 * global.node_space_x;
 		this.y4 = global.mouse_y + 2 * global.node_space_y;
-
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
 		let p3: Array<number> = this.mapper4.snap_to_grid(this.x3, this.y3);
 		let p4: Array<number> = this.mapper4.snap_to_grid(this.x4, this.y4);
 		this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-
 		transformers.push(new Transformer(global.TYPE_TRAN, engine_functions.get_transformer_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
 		var index: number = transformers.length - 1;
 		if (index < transformers.length) {
@@ -5246,7 +4579,6 @@ class EngineFunctions {
 			global.component_touched = true;
 		}
 	}
-
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	assign_element_simulation_ids() {
 		/* #INSERT_GENERATE_ELEMENT_SIMULATION_IDS# */
@@ -5256,268 +4588,202 @@ class EngineFunctions {
 			if (i > -1 && i < resistors.length) {
 				resistors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < capacitors.length) {
 				capacitors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < inductors.length) {
 				inductors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < grounds.length) {
 				grounds[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < dcsources.length) {
 				dcsources[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < dccurrents.length) {
 				dccurrents[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < acsources.length) {
 				acsources[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < accurrents.length) {
 				accurrents[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < squarewaves.length) {
 				squarewaves[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < sawwaves.length) {
 				sawwaves[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < trianglewaves.length) {
 				trianglewaves[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < constants.length) {
 				constants[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < nets.length) {
 				nets[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < notes.length) {
 				notes[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < rails.length) {
 				rails[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < voltmeters.length) {
 				voltmeters[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < ohmmeters.length) {
 				ohmmeters[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < ammeters.length) {
 				ammeters[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < wattmeters.length) {
 				wattmeters[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < fuses.length) {
 				fuses[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < spsts.length) {
 				spsts[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < spdts.length) {
 				spdts[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < nots.length) {
 				nots[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < diodes.length) {
 				diodes[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < leds.length) {
 				leds[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < zeners.length) {
 				zeners[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < potentiometers.length) {
 				potentiometers[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < ands.length) {
 				ands[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < ors.length) {
 				ors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < nands.length) {
 				nands[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < nors.length) {
 				nors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < xors.length) {
 				xors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < xnors.length) {
 				xnors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < dffs.length) {
 				dffs[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < vsats.length) {
 				vsats[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < adders.length) {
 				adders[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < subtractors.length) {
 				subtractors[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < multipliers.length) {
 				multipliers[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < dividers.length) {
 				dividers[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < gains.length) {
 				gains[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < absvals.length) {
 				absvals[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < vcsws.length) {
 				vcsws[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < vcvss.length) {
 				vcvss[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < vccss.length) {
 				vccss[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < cccss.length) {
 				cccss[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < ccvss.length) {
 				ccvss[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < opamps.length) {
 				opamps[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < nmosfets.length) {
 				nmosfets[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < pmosfets.length) {
 				pmosfets[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < npns.length) {
 				npns[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < pnps.length) {
 				pnps[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < adcs.length) {
 				adcs[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < dacs.length) {
 				dacs[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < sandhs.length) {
 				sandhs[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < pwms.length) {
 				pwms[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < integrators.length) {
 				integrators[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < differentiators.length) {
 				differentiators[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < lowpasses.length) {
 				lowpasses[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < highpasses.length) {
 				highpasses[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < relays.length) {
 				relays[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < pids.length) {
 				pids[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < luts.length) {
 				luts[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < vcrs.length) {
 				vcrs[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < grts.length) {
 				grts[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < tptzs.length) {
 				tptzs[i].simulation_id = i;
 			}
-
 			if (i > -1 && i < transformers.length) {
 				transformers[i].simulation_id = i;
 			}
 		}
-
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	stamp_elements() {
@@ -5526,267 +4792,201 @@ class EngineFunctions {
 		for (var i: number = 0; i < resistors.length; i++) {
 			resistors[i].stamp();
 		}
-
 		for (var i: number = 0; i < capacitors.length; i++) {
 			capacitors[i].stamp();
 		}
-
 		for (var i: number = 0; i < inductors.length; i++) {
 			inductors[i].stamp();
 		}
-
 		for (var i: number = 0; i < grounds.length; i++) {
 			grounds[i].stamp();
 		}
-
 		for (var i: number = 0; i < dcsources.length; i++) {
 			dcsources[i].stamp();
 		}
-
 		for (var i: number = 0; i < dccurrents.length; i++) {
 			dccurrents[i].stamp();
 		}
-
 		for (var i: number = 0; i < acsources.length; i++) {
 			acsources[i].stamp();
 		}
-
 		for (var i: number = 0; i < accurrents.length; i++) {
 			accurrents[i].stamp();
 		}
-
 		for (var i: number = 0; i < squarewaves.length; i++) {
 			squarewaves[i].stamp();
 		}
-
 		for (var i: number = 0; i < sawwaves.length; i++) {
 			sawwaves[i].stamp();
 		}
-
 		for (var i: number = 0; i < trianglewaves.length; i++) {
 			trianglewaves[i].stamp();
 		}
-
 		for (var i: number = 0; i < constants.length; i++) {
 			constants[i].stamp();
 		}
-
 		for (var i: number = 0; i < nets.length; i++) {
 			nets[i].stamp();
 		}
-
 		for (var i: number = 0; i < notes.length; i++) {
 			notes[i].stamp();
 		}
-
 		for (var i: number = 0; i < rails.length; i++) {
 			rails[i].stamp();
 		}
-
 		for (var i: number = 0; i < voltmeters.length; i++) {
 			voltmeters[i].stamp();
 		}
-
 		for (var i: number = 0; i < ohmmeters.length; i++) {
 			ohmmeters[i].stamp();
 		}
-
 		for (var i: number = 0; i < ammeters.length; i++) {
 			ammeters[i].stamp();
 		}
-
 		for (var i: number = 0; i < wattmeters.length; i++) {
 			wattmeters[i].stamp();
 		}
-
 		for (var i: number = 0; i < fuses.length; i++) {
 			fuses[i].stamp();
 		}
-
 		for (var i: number = 0; i < spsts.length; i++) {
 			spsts[i].stamp();
 		}
-
 		for (var i: number = 0; i < spdts.length; i++) {
 			spdts[i].stamp();
 		}
-
 		for (var i: number = 0; i < nots.length; i++) {
 			nots[i].stamp();
 		}
-
 		for (var i: number = 0; i < diodes.length; i++) {
 			diodes[i].stamp();
 		}
-
 		for (var i: number = 0; i < leds.length; i++) {
 			leds[i].stamp();
 		}
-
 		for (var i: number = 0; i < zeners.length; i++) {
 			zeners[i].stamp();
 		}
-
 		for (var i: number = 0; i < potentiometers.length; i++) {
 			potentiometers[i].stamp();
 		}
-
 		for (var i: number = 0; i < ands.length; i++) {
 			ands[i].stamp();
 		}
-
 		for (var i: number = 0; i < ors.length; i++) {
 			ors[i].stamp();
 		}
-
 		for (var i: number = 0; i < nands.length; i++) {
 			nands[i].stamp();
 		}
-
 		for (var i: number = 0; i < nors.length; i++) {
 			nors[i].stamp();
 		}
-
 		for (var i: number = 0; i < xors.length; i++) {
 			xors[i].stamp();
 		}
-
 		for (var i: number = 0; i < xnors.length; i++) {
 			xnors[i].stamp();
 		}
-
 		for (var i: number = 0; i < dffs.length; i++) {
 			dffs[i].stamp();
 		}
-
 		for (var i: number = 0; i < vsats.length; i++) {
 			vsats[i].stamp();
 		}
-
 		for (var i: number = 0; i < adders.length; i++) {
 			adders[i].stamp();
 		}
-
 		for (var i: number = 0; i < subtractors.length; i++) {
 			subtractors[i].stamp();
 		}
-
 		for (var i: number = 0; i < multipliers.length; i++) {
 			multipliers[i].stamp();
 		}
-
 		for (var i: number = 0; i < dividers.length; i++) {
 			dividers[i].stamp();
 		}
-
 		for (var i: number = 0; i < gains.length; i++) {
 			gains[i].stamp();
 		}
-
 		for (var i: number = 0; i < absvals.length; i++) {
 			absvals[i].stamp();
 		}
-
 		for (var i: number = 0; i < vcsws.length; i++) {
 			vcsws[i].stamp();
 		}
-
 		for (var i: number = 0; i < vcvss.length; i++) {
 			vcvss[i].stamp();
 		}
-
 		for (var i: number = 0; i < vccss.length; i++) {
 			vccss[i].stamp();
 		}
-
 		for (var i: number = 0; i < cccss.length; i++) {
 			cccss[i].stamp();
 		}
-
 		for (var i: number = 0; i < ccvss.length; i++) {
 			ccvss[i].stamp();
 		}
-
 		for (var i: number = 0; i < opamps.length; i++) {
 			opamps[i].stamp();
 		}
-
 		for (var i: number = 0; i < nmosfets.length; i++) {
 			nmosfets[i].stamp();
 		}
-
 		for (var i: number = 0; i < pmosfets.length; i++) {
 			pmosfets[i].stamp();
 		}
-
 		for (var i: number = 0; i < npns.length; i++) {
 			npns[i].stamp();
 		}
-
 		for (var i: number = 0; i < pnps.length; i++) {
 			pnps[i].stamp();
 		}
-
 		for (var i: number = 0; i < adcs.length; i++) {
 			adcs[i].stamp();
 		}
-
 		for (var i: number = 0; i < dacs.length; i++) {
 			dacs[i].stamp();
 		}
-
 		for (var i: number = 0; i < sandhs.length; i++) {
 			sandhs[i].stamp();
 		}
-
 		for (var i: number = 0; i < pwms.length; i++) {
 			pwms[i].stamp();
 		}
-
 		for (var i: number = 0; i < integrators.length; i++) {
 			integrators[i].stamp();
 		}
-
 		for (var i: number = 0; i < differentiators.length; i++) {
 			differentiators[i].stamp();
 		}
-
 		for (var i: number = 0; i < lowpasses.length; i++) {
 			lowpasses[i].stamp();
 		}
-
 		for (var i: number = 0; i < highpasses.length; i++) {
 			highpasses[i].stamp();
 		}
-
 		for (var i: number = 0; i < relays.length; i++) {
 			relays[i].stamp();
 		}
-
 		for (var i: number = 0; i < pids.length; i++) {
 			pids[i].stamp();
 		}
-
 		for (var i: number = 0; i < luts.length; i++) {
 			luts[i].stamp();
 		}
-
 		for (var i: number = 0; i < vcrs.length; i++) {
 			vcrs[i].stamp();
 		}
-
 		for (var i: number = 0; i < grts.length; i++) {
 			grts[i].stamp();
 		}
-
 		for (var i: number = 0; i < tptzs.length; i++) {
 			tptzs[i].stamp();
 		}
-
 		for (var i: number = 0; i < transformers.length; i++) {
 			transformers[i].stamp();
 		}
-
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	map_node(node_id) {
@@ -5871,7 +5071,6 @@ class EngineFunctions {
 			/* Adding finite resistance. */
 			matrix_a[this.node_2][this.node_2] += 1.0 / global.settings.R_MAX;
 		}
-
 		/* Adding finite resistance. */
 		if (this.node_1 != -1 && this.node_2 != -1) {
 			matrix_a[this.node_1][this.node_2] += -1.0 / global.settings.R_MAX;
@@ -6422,11 +5621,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_RESISTOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_RESISTOR[key];
@@ -6439,7 +5636,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_capacitor(obj) {
 		Object.setPrototypeOf(obj, Capacitor.prototype);
 		obj.patch();
@@ -6452,11 +5648,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_CAPACITOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CAPACITOR[key];
@@ -6469,7 +5663,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_inductor(obj) {
 		Object.setPrototypeOf(obj, Inductor.prototype);
 		obj.patch();
@@ -6490,11 +5683,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.inductor_arc_1.arc_paint, Paint.prototype);
 		Object.setPrototypeOf(obj.inductor_arc_2.arc_paint, Paint.prototype);
 		Object.setPrototypeOf(obj.inductor_arc_3.arc_paint, Paint.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_INDUCTOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_INDUCTOR[key];
@@ -6507,7 +5698,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_ground(obj) {
 		Object.setPrototypeOf(obj, Ground.prototype);
 		obj.patch();
@@ -6520,11 +5710,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_GROUND).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_GROUND[key];
@@ -6537,7 +5725,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_dcsource(obj) {
 		Object.setPrototypeOf(obj, DCSource.prototype);
 		obj.patch();
@@ -6550,11 +5737,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_DCSOURCE).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DCSOURCE[key];
@@ -6567,7 +5752,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_dccurrent(obj) {
 		Object.setPrototypeOf(obj, DCCurrent.prototype);
 		obj.patch();
@@ -6580,11 +5764,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_DCCURRENT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DCCURRENT[key];
@@ -6597,7 +5779,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_acsource(obj) {
 		Object.setPrototypeOf(obj, ACSource.prototype);
 		obj.patch();
@@ -6612,11 +5793,9 @@ class EngineFunctions {
 		obj.MULTI_SELECTED = false;
 		Object.setPrototypeOf(obj.sine_wave, SineWave.prototype);
 		Object.setPrototypeOf(obj.sine_wave.sine_wave_paint, Paint.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_ACSOURCE).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ACSOURCE[key];
@@ -6629,7 +5808,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_accurrent(obj) {
 		Object.setPrototypeOf(obj, ACCurrent.prototype);
 		obj.patch();
@@ -6644,11 +5822,9 @@ class EngineFunctions {
 		obj.MULTI_SELECTED = false;
 		Object.setPrototypeOf(obj.sine_wave, SineWave.prototype);
 		Object.setPrototypeOf(obj.sine_wave.sine_wave_paint, Paint.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_ACCURRENT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ACCURRENT[key];
@@ -6661,7 +5837,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_squarewave(obj) {
 		Object.setPrototypeOf(obj, SquareWave.prototype);
 		obj.patch();
@@ -6674,11 +5849,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_SQUAREWAVE).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SQUAREWAVE[key];
@@ -6691,7 +5864,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_sawwave(obj) {
 		Object.setPrototypeOf(obj, SawWave.prototype);
 		obj.patch();
@@ -6704,11 +5876,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_SAW).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SAW[key];
@@ -6721,7 +5891,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_trianglewave(obj) {
 		Object.setPrototypeOf(obj, TriangleWave.prototype);
 		obj.patch();
@@ -6734,11 +5903,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_TRI).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_TRI[key];
@@ -6751,7 +5918,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_constant(obj) {
 		Object.setPrototypeOf(obj, Constant.prototype);
 		obj.patch();
@@ -6764,11 +5930,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_CONSTANT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CONSTANT[key];
@@ -6781,7 +5945,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_wire(obj) {
 		Object.setPrototypeOf(obj, Wire.prototype);
 		obj.patch();
@@ -6795,11 +5958,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_WIRE).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_WIRE[key];
@@ -6812,7 +5973,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_net(obj) {
 		Object.setPrototypeOf(obj, Net.prototype);
 		obj.patch();
@@ -6825,11 +5985,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_NET).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NET[key];
@@ -6842,7 +6000,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_note(obj) {
 		Object.setPrototypeOf(obj, Note.prototype);
 		obj.patch();
@@ -6855,11 +6012,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_NOTE).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NOTE[key];
@@ -6872,7 +6027,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_rail(obj) {
 		Object.setPrototypeOf(obj, Rail.prototype);
 		obj.patch();
@@ -6885,11 +6039,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_RAIL).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_RAIL[key];
@@ -6902,7 +6054,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_voltmeter(obj) {
 		Object.setPrototypeOf(obj, VoltMeter.prototype);
 		obj.patch();
@@ -6926,11 +6077,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.meter_trace.trace_path, Path.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.bounds, RectF.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.meter_paint, Paint.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_VOLTMETER).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VOLTMETER[key];
@@ -6943,7 +6092,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_ohmmeter(obj) {
 		Object.setPrototypeOf(obj, OhmMeter.prototype);
 		obj.patch();
@@ -6967,11 +6115,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.meter_trace.trace_path, Path.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.bounds, RectF.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.meter_paint, Paint.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_OHMMETER).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_OHMMETER[key];
@@ -6984,7 +6130,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_ammeter(obj) {
 		Object.setPrototypeOf(obj, AmMeter.prototype);
 		obj.patch();
@@ -7008,11 +6153,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.meter_trace.trace_path, Path.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.bounds, RectF.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.meter_paint, Paint.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_AMMETER).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_AMMETER[key];
@@ -7025,7 +6168,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_wattmeter(obj) {
 		Object.setPrototypeOf(obj, WattMeter.prototype);
 		obj.patch();
@@ -7049,11 +6191,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.meter_trace.trace_path, Path.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.bounds, RectF.prototype);
 		Object.setPrototypeOf(obj.meter_symbol.meter_paint, Paint.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_WATTMETER).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_WATTMETER[key];
@@ -7066,7 +6206,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_fuse(obj) {
 		Object.setPrototypeOf(obj, Fuse.prototype);
 		obj.patch();
@@ -7079,11 +6218,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_FUSE).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_FUSE[key];
@@ -7096,7 +6233,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_spst(obj) {
 		Object.setPrototypeOf(obj, SinglePoleSingleThrow.prototype);
 		obj.patch();
@@ -7109,11 +6245,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_SPST).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SPST[key];
@@ -7126,7 +6260,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_spdt(obj) {
 		Object.setPrototypeOf(obj, SinglePoleDoubleThrow.prototype);
 		obj.patch();
@@ -7139,11 +6272,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_SPDT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SPDT[key];
@@ -7156,7 +6287,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_not(obj) {
 		Object.setPrototypeOf(obj, NOTGate.prototype);
 		obj.patch();
@@ -7169,11 +6299,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_NOT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NOT[key];
@@ -7186,7 +6314,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_diode(obj) {
 		Object.setPrototypeOf(obj, Diode.prototype);
 		obj.patch();
@@ -7199,11 +6326,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_DIODE).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DIODE[key];
@@ -7216,7 +6341,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_led(obj) {
 		Object.setPrototypeOf(obj, LightEmittingDiode.prototype);
 		obj.patch();
@@ -7229,11 +6353,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_LED).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_LED[key];
@@ -7246,7 +6368,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_zener(obj) {
 		Object.setPrototypeOf(obj, ZenerDiode.prototype);
 		obj.patch();
@@ -7259,11 +6380,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_ZENER).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ZENER[key];
@@ -7276,7 +6395,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_potentiometer(obj) {
 		Object.setPrototypeOf(obj, Potentiometer.prototype);
 		obj.patch();
@@ -7289,11 +6407,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_POTENTIOMETER).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_POTENTIOMETER[key];
@@ -7306,7 +6422,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_and(obj) {
 		Object.setPrototypeOf(obj, ANDGate.prototype);
 		obj.patch();
@@ -7319,11 +6434,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_AND).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_AND[key];
@@ -7336,7 +6449,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_or(obj) {
 		Object.setPrototypeOf(obj, ORGate.prototype);
 		obj.patch();
@@ -7349,11 +6461,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_OR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_OR[key];
@@ -7366,7 +6476,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_nand(obj) {
 		Object.setPrototypeOf(obj, NANDGate.prototype);
 		obj.patch();
@@ -7379,11 +6488,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_NAND).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NAND[key];
@@ -7396,7 +6503,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_nor(obj) {
 		Object.setPrototypeOf(obj, NORGate.prototype);
 		obj.patch();
@@ -7409,11 +6515,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_NOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NOR[key];
@@ -7426,7 +6530,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_xor(obj) {
 		Object.setPrototypeOf(obj, XORGate.prototype);
 		obj.patch();
@@ -7439,11 +6542,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_XOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_XOR[key];
@@ -7456,7 +6557,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_xnor(obj) {
 		Object.setPrototypeOf(obj, XNORGate.prototype);
 		obj.patch();
@@ -7469,11 +6569,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_XNOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_XNOR[key];
@@ -7486,7 +6584,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_dff(obj) {
 		Object.setPrototypeOf(obj, DFlipFlop.prototype);
 		obj.patch();
@@ -7499,11 +6596,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_DFF).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DFF[key];
@@ -7516,7 +6611,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_vsat(obj) {
 		Object.setPrototypeOf(obj, VoltageSaturation.prototype);
 		obj.patch();
@@ -7529,11 +6623,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_VSAT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VSAT[key];
@@ -7546,7 +6638,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_adder(obj) {
 		Object.setPrototypeOf(obj, Adder.prototype);
 		obj.patch();
@@ -7559,11 +6650,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_ADD).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ADD[key];
@@ -7576,7 +6665,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_subtractor(obj) {
 		Object.setPrototypeOf(obj, Subtractor.prototype);
 		obj.patch();
@@ -7589,11 +6677,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_SUB).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SUB[key];
@@ -7606,7 +6692,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_multiplier(obj) {
 		Object.setPrototypeOf(obj, Multiplier.prototype);
 		obj.patch();
@@ -7619,11 +6704,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_MUL).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_MUL[key];
@@ -7636,7 +6719,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_divider(obj) {
 		Object.setPrototypeOf(obj, Divider.prototype);
 		obj.patch();
@@ -7649,11 +6731,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_DIV).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DIV[key];
@@ -7666,7 +6746,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_gain(obj) {
 		Object.setPrototypeOf(obj, GainBlock.prototype);
 		obj.patch();
@@ -7679,11 +6758,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_GAIN).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_GAIN[key];
@@ -7696,7 +6773,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_absval(obj) {
 		Object.setPrototypeOf(obj, AbsoluteValue.prototype);
 		obj.patch();
@@ -7709,11 +6785,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_ABS).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ABS[key];
@@ -7726,7 +6800,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_vcsw(obj) {
 		Object.setPrototypeOf(obj, VoltageControlledSwitch.prototype);
 		obj.patch();
@@ -7739,11 +6812,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_VCSW).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCSW[key];
@@ -7756,7 +6827,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_vcvs(obj) {
 		Object.setPrototypeOf(obj, VoltageControlledVoltageSource.prototype);
 		obj.patch();
@@ -7769,11 +6839,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_VCVS).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCVS[key];
@@ -7786,7 +6854,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_vccs(obj) {
 		Object.setPrototypeOf(obj, VoltageControlledCurrentSource.prototype);
 		obj.patch();
@@ -7799,11 +6866,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_VCCS).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCCS[key];
@@ -7816,7 +6881,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_cccs(obj) {
 		Object.setPrototypeOf(obj, CurrentControlledCurrentSource.prototype);
 		obj.patch();
@@ -7829,11 +6893,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_CCCS).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CCCS[key];
@@ -7846,7 +6908,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_ccvs(obj) {
 		Object.setPrototypeOf(obj, CurrentControlledVoltageSource.prototype);
 		obj.patch();
@@ -7859,11 +6920,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_CCVS).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CCVS[key];
@@ -7876,7 +6935,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_opamp(obj) {
 		Object.setPrototypeOf(obj, OperationalAmplifier.prototype);
 		obj.patch();
@@ -7889,11 +6947,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_OPAMP).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_OPAMP[key];
@@ -7906,7 +6962,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_nmosfet(obj) {
 		Object.setPrototypeOf(obj, NChannelMOSFET.prototype);
 		obj.patch();
@@ -7919,11 +6974,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_NMOS).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NMOS[key];
@@ -7936,7 +6989,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_pmosfet(obj) {
 		Object.setPrototypeOf(obj, PChannelMOSFET.prototype);
 		obj.patch();
@@ -7949,11 +7001,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_PMOS).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PMOS[key];
@@ -7966,7 +7016,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_npn(obj) {
 		Object.setPrototypeOf(obj, NPNBipolarJunctionTransistor.prototype);
 		obj.patch();
@@ -7979,11 +7028,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_NPN).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NPN[key];
@@ -7996,7 +7043,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_pnp(obj) {
 		Object.setPrototypeOf(obj, PNPBipolarJunctionTransistor.prototype);
 		obj.patch();
@@ -8009,11 +7055,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_PNP).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PNP[key];
@@ -8026,7 +7070,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_adc(obj) {
 		Object.setPrototypeOf(obj, ADCModule.prototype);
 		obj.patch();
@@ -8039,11 +7082,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_ADC).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ADC[key];
@@ -8056,7 +7097,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_dac(obj) {
 		Object.setPrototypeOf(obj, DACModule.prototype);
 		obj.patch();
@@ -8069,11 +7109,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_DAC).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DAC[key];
@@ -8086,7 +7124,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_samplers(obj) {
 		Object.setPrototypeOf(obj, SampleAndHold.prototype);
 		obj.patch();
@@ -8099,11 +7136,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_SAH).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SAH[key];
@@ -8116,7 +7151,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_pwm(obj) {
 		Object.setPrototypeOf(obj, PulseWidthModulator.prototype);
 		obj.patch();
@@ -8129,11 +7163,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_PWM).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PWM[key];
@@ -8146,7 +7178,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_integrator(obj) {
 		Object.setPrototypeOf(obj, IntegratorModule.prototype);
 		obj.patch();
@@ -8159,11 +7190,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_INTEGRATOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_INTEGRATOR[key];
@@ -8176,7 +7205,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_differentiator(obj) {
 		Object.setPrototypeOf(obj, DifferentiatorModule.prototype);
 		obj.patch();
@@ -8189,11 +7217,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_DIFFERENTIATOR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DIFFERENTIATOR[key];
@@ -8206,7 +7232,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_lowpass(obj) {
 		Object.setPrototypeOf(obj, LowPassFilter.prototype);
 		obj.patch();
@@ -8219,11 +7244,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_LPF).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_LPF[key];
@@ -8236,7 +7259,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_highpass(obj) {
 		Object.setPrototypeOf(obj, HighPassFilter.prototype);
 		obj.patch();
@@ -8249,11 +7271,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_HPF).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_HPF[key];
@@ -8266,7 +7286,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_relay(obj) {
 		Object.setPrototypeOf(obj, Relay.prototype);
 		obj.patch();
@@ -8279,11 +7298,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_REL).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_REL[key];
@@ -8296,7 +7313,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_pid(obj) {
 		Object.setPrototypeOf(obj, PIDModule.prototype);
 		obj.patch();
@@ -8310,11 +7326,9 @@ class EngineFunctions {
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
 		Object.setPrototypeOf(obj.pid_controller, PIDController.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_PID).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PID[key];
@@ -8327,7 +7341,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_lut(obj) {
 		Object.setPrototypeOf(obj, LookUpTable.prototype);
 		obj.patch();
@@ -8340,11 +7353,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_LUT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_LUT[key];
@@ -8357,7 +7368,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_vcr(obj) {
 		Object.setPrototypeOf(obj, VoltageControlledResistor.prototype);
 		obj.patch();
@@ -8370,11 +7380,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_VCR).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCR[key];
@@ -8387,7 +7395,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_grt(obj) {
 		Object.setPrototypeOf(obj, GreaterThan.prototype);
 		obj.patch();
@@ -8400,11 +7407,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_GRT).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_GRT[key];
@@ -8417,7 +7422,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_tptz(obj) {
 		Object.setPrototypeOf(obj, TPTZModule.prototype);
 		obj.patch();
@@ -8431,11 +7435,9 @@ class EngineFunctions {
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
 		Object.setPrototypeOf(obj.tptz_controller, TPTZController.prototype);
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_TPTZ).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_TPTZ[key];
@@ -8448,7 +7450,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	rebuild_transformer(obj) {
 		Object.setPrototypeOf(obj, Transformer.prototype);
 		obj.patch();
@@ -8461,11 +7462,9 @@ class EngineFunctions {
 		Object.setPrototypeOf(obj.text_paint, Paint.prototype);
 		obj.text_paint.patch();
 		obj.MULTI_SELECTED = false;
-
 		obj.refresh_bounds();
 		obj.capture_nodes();
 		obj.bounds.anchored = true;
-
 		Object.keys(global.PROPERTY_TRAN).forEach(function (key) {
 			if (!global.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_TRAN[key];
@@ -8478,7 +7477,6 @@ class EngineFunctions {
 		});
 		return obj;
 	}
-
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	clear_all_elements() {
 		for (var i: number = nodes.length - 1; i > -1; i--) {
@@ -8492,137 +7490,71 @@ class EngineFunctions {
 			/* #INSERT_GENERATE_CLEAR_ELEMENTS# */
 			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 			this.remove_resistor(i);
-
 			this.remove_capacitor(i);
-
 			this.remove_inductor(i);
-
 			this.remove_ground(i);
-
 			this.remove_dcsource(i);
-
 			this.remove_dccurrent(i);
-
 			this.remove_acsource(i);
-
 			this.remove_accurrent(i);
-
 			this.remove_squarewave(i);
-
 			this.remove_sawwave(i);
-
 			this.remove_trianglewave(i);
-
 			this.remove_constant(i);
-
 			this.remove_net(i);
-
 			this.remove_note(i);
-
 			this.remove_rail(i);
-
 			this.remove_voltmeter(i);
-
 			this.remove_ohmmeter(i);
-
 			this.remove_ammeter(i);
-
 			this.remove_wattmeter(i);
-
 			this.remove_fuse(i);
-
 			this.remove_spst(i);
-
 			this.remove_spdt(i);
-
 			this.remove_not(i);
-
 			this.remove_diode(i);
-
 			this.remove_led(i);
-
 			this.remove_zener(i);
-
 			this.remove_potentiometer(i);
-
 			this.remove_and(i);
-
 			this.remove_or(i);
-
 			this.remove_nand(i);
-
 			this.remove_nor(i);
-
 			this.remove_xor(i);
-
 			this.remove_xnor(i);
-
 			this.remove_dff(i);
-
 			this.remove_vsat(i);
-
 			this.remove_adder(i);
-
 			this.remove_subtractor(i);
-
 			this.remove_multiplier(i);
-
 			this.remove_divider(i);
-
 			this.remove_gain(i);
-
 			this.remove_absval(i);
-
 			this.remove_vcsw(i);
-
 			this.remove_vcvs(i);
-
 			this.remove_vccs(i);
-
 			this.remove_cccs(i);
-
 			this.remove_ccvs(i);
-
 			this.remove_opamp(i);
-
 			this.remove_nmosfet(i);
-
 			this.remove_pmosfet(i);
-
 			this.remove_npn(i);
-
 			this.remove_pnp(i);
-
 			this.remove_adc(i);
-
 			this.remove_dac(i);
-
 			this.remove_samplers(i);
-
 			this.remove_pwm(i);
-
 			this.remove_integrator(i);
-
 			this.remove_differentiator(i);
-
 			this.remove_lowpass(i);
-
 			this.remove_highpass(i);
-
 			this.remove_relay(i);
-
 			this.remove_pid(i);
-
 			this.remove_lut(i);
-
 			this.remove_vcr(i);
-
 			this.remove_grt(i);
-
 			this.remove_tptz(i);
-
 			this.remove_transformer(i);
-
 			/* <!-- END AUTOMATICALLY GENERATED !--> */
 		}
 	}
@@ -8857,7 +7789,6 @@ class EngineFunctions {
 			resistors.splice(index, 1);
 		}
 	}
-
 	remove_capacitor(index: number): void {
 		if (index < capacitors.length) {
 			capacitors[index].release_wires();
@@ -8870,7 +7801,6 @@ class EngineFunctions {
 			capacitors.splice(index, 1);
 		}
 	}
-
 	remove_inductor(index: number): void {
 		if (index < inductors.length) {
 			inductors[index].release_wires();
@@ -8883,7 +7813,6 @@ class EngineFunctions {
 			inductors.splice(index, 1);
 		}
 	}
-
 	remove_ground(index: number): void {
 		if (index < grounds.length) {
 			grounds[index].release_wires();
@@ -8896,7 +7825,6 @@ class EngineFunctions {
 			grounds.splice(index, 1);
 		}
 	}
-
 	remove_dcsource(index: number): void {
 		if (index < dcsources.length) {
 			dcsources[index].release_wires();
@@ -8909,7 +7837,6 @@ class EngineFunctions {
 			dcsources.splice(index, 1);
 		}
 	}
-
 	remove_dccurrent(index: number): void {
 		if (index < dccurrents.length) {
 			dccurrents[index].release_wires();
@@ -8922,7 +7849,6 @@ class EngineFunctions {
 			dccurrents.splice(index, 1);
 		}
 	}
-
 	remove_acsource(index: number): void {
 		if (index < acsources.length) {
 			acsources[index].release_wires();
@@ -8935,7 +7861,6 @@ class EngineFunctions {
 			acsources.splice(index, 1);
 		}
 	}
-
 	remove_accurrent(index: number): void {
 		if (index < accurrents.length) {
 			accurrents[index].release_wires();
@@ -8948,7 +7873,6 @@ class EngineFunctions {
 			accurrents.splice(index, 1);
 		}
 	}
-
 	remove_squarewave(index: number): void {
 		if (index < squarewaves.length) {
 			squarewaves[index].release_wires();
@@ -8961,7 +7885,6 @@ class EngineFunctions {
 			squarewaves.splice(index, 1);
 		}
 	}
-
 	remove_sawwave(index: number): void {
 		if (index < sawwaves.length) {
 			sawwaves[index].release_wires();
@@ -8974,7 +7897,6 @@ class EngineFunctions {
 			sawwaves.splice(index, 1);
 		}
 	}
-
 	remove_trianglewave(index: number): void {
 		if (index < trianglewaves.length) {
 			trianglewaves[index].release_wires();
@@ -8987,7 +7909,6 @@ class EngineFunctions {
 			trianglewaves.splice(index, 1);
 		}
 	}
-
 	remove_constant(index: number): void {
 		if (index < constants.length) {
 			constants[index].release_wires();
@@ -9000,7 +7921,6 @@ class EngineFunctions {
 			constants.splice(index, 1);
 		}
 	}
-
 	remove_wire(index: number): void {
 		if (index < wires.length) {
 			wires[index].release_wires();
@@ -9013,7 +7933,6 @@ class EngineFunctions {
 			wires.splice(index, 1);
 		}
 	}
-
 	remove_net(index: number): void {
 		if (index < nets.length) {
 			nets[index].release_wires();
@@ -9026,7 +7945,6 @@ class EngineFunctions {
 			nets.splice(index, 1);
 		}
 	}
-
 	remove_note(index: number): void {
 		if (index < notes.length) {
 			notes[index].release_wires();
@@ -9039,7 +7957,6 @@ class EngineFunctions {
 			notes.splice(index, 1);
 		}
 	}
-
 	remove_rail(index: number): void {
 		if (index < rails.length) {
 			rails[index].release_wires();
@@ -9052,7 +7969,6 @@ class EngineFunctions {
 			rails.splice(index, 1);
 		}
 	}
-
 	remove_voltmeter(index: number): void {
 		if (index < voltmeters.length) {
 			voltmeters[index].release_wires();
@@ -9061,13 +7977,11 @@ class EngineFunctions {
 			voltmeters[index].remove_selection();
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(voltmeters[index].elm.id, voltmeters[index].elm.type);
-
 			global.SIGNAL_WIRE_DELETED = true;
 			global.signal_wire_deleted_counter = 0;
 			voltmeters.splice(index, 1);
 		}
 	}
-
 	remove_ohmmeter(index: number): void {
 		if (index < ohmmeters.length) {
 			ohmmeters[index].release_wires();
@@ -9076,13 +7990,11 @@ class EngineFunctions {
 			ohmmeters[index].remove_selection();
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(ohmmeters[index].elm.id, ohmmeters[index].elm.type);
-
 			global.SIGNAL_WIRE_DELETED = true;
 			global.signal_wire_deleted_counter = 0;
 			ohmmeters.splice(index, 1);
 		}
 	}
-
 	remove_ammeter(index: number): void {
 		if (index < ammeters.length) {
 			ammeters[index].release_wires();
@@ -9091,13 +8003,11 @@ class EngineFunctions {
 			ammeters[index].remove_selection();
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(ammeters[index].elm.id, ammeters[index].elm.type);
-
 			global.SIGNAL_WIRE_DELETED = true;
 			global.signal_wire_deleted_counter = 0;
 			ammeters.splice(index, 1);
 		}
 	}
-
 	remove_wattmeter(index: number): void {
 		if (index < wattmeters.length) {
 			wattmeters[index].release_wires();
@@ -9106,13 +8016,11 @@ class EngineFunctions {
 			wattmeters[index].remove_selection();
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(wattmeters[index].elm.id, wattmeters[index].elm.type);
-
 			global.SIGNAL_WIRE_DELETED = true;
 			global.signal_wire_deleted_counter = 0;
 			wattmeters.splice(index, 1);
 		}
 	}
-
 	remove_fuse(index: number): void {
 		if (index < fuses.length) {
 			fuses[index].release_wires();
@@ -9125,7 +8033,6 @@ class EngineFunctions {
 			fuses.splice(index, 1);
 		}
 	}
-
 	remove_spst(index: number): void {
 		if (index < spsts.length) {
 			spsts[index].release_wires();
@@ -9138,7 +8045,6 @@ class EngineFunctions {
 			spsts.splice(index, 1);
 		}
 	}
-
 	remove_spdt(index: number): void {
 		if (index < spdts.length) {
 			spdts[index].release_wires();
@@ -9151,7 +8057,6 @@ class EngineFunctions {
 			spdts.splice(index, 1);
 		}
 	}
-
 	remove_not(index: number): void {
 		if (index < nots.length) {
 			nots[index].release_wires();
@@ -9164,7 +8069,6 @@ class EngineFunctions {
 			nots.splice(index, 1);
 		}
 	}
-
 	remove_diode(index: number): void {
 		if (index < diodes.length) {
 			diodes[index].release_wires();
@@ -9177,7 +8081,6 @@ class EngineFunctions {
 			diodes.splice(index, 1);
 		}
 	}
-
 	remove_led(index: number): void {
 		if (index < leds.length) {
 			leds[index].release_wires();
@@ -9190,7 +8093,6 @@ class EngineFunctions {
 			leds.splice(index, 1);
 		}
 	}
-
 	remove_zener(index: number): void {
 		if (index < zeners.length) {
 			zeners[index].release_wires();
@@ -9203,7 +8105,6 @@ class EngineFunctions {
 			zeners.splice(index, 1);
 		}
 	}
-
 	remove_potentiometer(index: number): void {
 		if (index < potentiometers.length) {
 			potentiometers[index].release_wires();
@@ -9216,7 +8117,6 @@ class EngineFunctions {
 			potentiometers.splice(index, 1);
 		}
 	}
-
 	remove_and(index: number): void {
 		if (index < ands.length) {
 			ands[index].release_wires();
@@ -9229,7 +8129,6 @@ class EngineFunctions {
 			ands.splice(index, 1);
 		}
 	}
-
 	remove_or(index: number): void {
 		if (index < ors.length) {
 			ors[index].release_wires();
@@ -9242,7 +8141,6 @@ class EngineFunctions {
 			ors.splice(index, 1);
 		}
 	}
-
 	remove_nand(index: number): void {
 		if (index < nands.length) {
 			nands[index].release_wires();
@@ -9255,7 +8153,6 @@ class EngineFunctions {
 			nands.splice(index, 1);
 		}
 	}
-
 	remove_nor(index: number): void {
 		if (index < nors.length) {
 			nors[index].release_wires();
@@ -9268,7 +8165,6 @@ class EngineFunctions {
 			nors.splice(index, 1);
 		}
 	}
-
 	remove_xor(index: number): void {
 		if (index < xors.length) {
 			xors[index].release_wires();
@@ -9281,7 +8177,6 @@ class EngineFunctions {
 			xors.splice(index, 1);
 		}
 	}
-
 	remove_xnor(index: number): void {
 		if (index < xnors.length) {
 			xnors[index].release_wires();
@@ -9294,7 +8189,6 @@ class EngineFunctions {
 			xnors.splice(index, 1);
 		}
 	}
-
 	remove_dff(index: number): void {
 		if (index < dffs.length) {
 			dffs[index].release_wires();
@@ -9307,7 +8201,6 @@ class EngineFunctions {
 			dffs.splice(index, 1);
 		}
 	}
-
 	remove_vsat(index: number): void {
 		if (index < vsats.length) {
 			vsats[index].release_wires();
@@ -9320,7 +8213,6 @@ class EngineFunctions {
 			vsats.splice(index, 1);
 		}
 	}
-
 	remove_adder(index: number): void {
 		if (index < adders.length) {
 			adders[index].release_wires();
@@ -9333,7 +8225,6 @@ class EngineFunctions {
 			adders.splice(index, 1);
 		}
 	}
-
 	remove_subtractor(index: number): void {
 		if (index < subtractors.length) {
 			subtractors[index].release_wires();
@@ -9346,7 +8237,6 @@ class EngineFunctions {
 			subtractors.splice(index, 1);
 		}
 	}
-
 	remove_multiplier(index: number): void {
 		if (index < multipliers.length) {
 			multipliers[index].release_wires();
@@ -9359,7 +8249,6 @@ class EngineFunctions {
 			multipliers.splice(index, 1);
 		}
 	}
-
 	remove_divider(index: number): void {
 		if (index < dividers.length) {
 			dividers[index].release_wires();
@@ -9372,7 +8261,6 @@ class EngineFunctions {
 			dividers.splice(index, 1);
 		}
 	}
-
 	remove_gain(index: number): void {
 		if (index < gains.length) {
 			gains[index].release_wires();
@@ -9385,7 +8273,6 @@ class EngineFunctions {
 			gains.splice(index, 1);
 		}
 	}
-
 	remove_absval(index: number): void {
 		if (index < absvals.length) {
 			absvals[index].release_wires();
@@ -9398,7 +8285,6 @@ class EngineFunctions {
 			absvals.splice(index, 1);
 		}
 	}
-
 	remove_vcsw(index: number): void {
 		if (index < vcsws.length) {
 			vcsws[index].release_wires();
@@ -9411,7 +8297,6 @@ class EngineFunctions {
 			vcsws.splice(index, 1);
 		}
 	}
-
 	remove_vcvs(index: number): void {
 		if (index < vcvss.length) {
 			vcvss[index].release_wires();
@@ -9424,7 +8309,6 @@ class EngineFunctions {
 			vcvss.splice(index, 1);
 		}
 	}
-
 	remove_vccs(index: number): void {
 		if (index < vccss.length) {
 			vccss[index].release_wires();
@@ -9437,7 +8321,6 @@ class EngineFunctions {
 			vccss.splice(index, 1);
 		}
 	}
-
 	remove_cccs(index: number): void {
 		if (index < cccss.length) {
 			cccss[index].release_wires();
@@ -9450,7 +8333,6 @@ class EngineFunctions {
 			cccss.splice(index, 1);
 		}
 	}
-
 	remove_ccvs(index: number): void {
 		if (index < ccvss.length) {
 			ccvss[index].release_wires();
@@ -9463,7 +8345,6 @@ class EngineFunctions {
 			ccvss.splice(index, 1);
 		}
 	}
-
 	remove_opamp(index: number): void {
 		if (index < opamps.length) {
 			opamps[index].release_wires();
@@ -9476,7 +8357,6 @@ class EngineFunctions {
 			opamps.splice(index, 1);
 		}
 	}
-
 	remove_nmosfet(index: number): void {
 		if (index < nmosfets.length) {
 			nmosfets[index].release_wires();
@@ -9489,7 +8369,6 @@ class EngineFunctions {
 			nmosfets.splice(index, 1);
 		}
 	}
-
 	remove_pmosfet(index: number): void {
 		if (index < pmosfets.length) {
 			pmosfets[index].release_wires();
@@ -9502,7 +8381,6 @@ class EngineFunctions {
 			pmosfets.splice(index, 1);
 		}
 	}
-
 	remove_npn(index: number): void {
 		if (index < npns.length) {
 			npns[index].release_wires();
@@ -9515,7 +8393,6 @@ class EngineFunctions {
 			npns.splice(index, 1);
 		}
 	}
-
 	remove_pnp(index: number): void {
 		if (index < pnps.length) {
 			pnps[index].release_wires();
@@ -9528,7 +8405,6 @@ class EngineFunctions {
 			pnps.splice(index, 1);
 		}
 	}
-
 	remove_adc(index: number): void {
 		if (index < adcs.length) {
 			adcs[index].release_wires();
@@ -9541,7 +8417,6 @@ class EngineFunctions {
 			adcs.splice(index, 1);
 		}
 	}
-
 	remove_dac(index: number): void {
 		if (index < dacs.length) {
 			dacs[index].release_wires();
@@ -9554,7 +8429,6 @@ class EngineFunctions {
 			dacs.splice(index, 1);
 		}
 	}
-
 	remove_samplers(index: number): void {
 		if (index < sandhs.length) {
 			sandhs[index].release_wires();
@@ -9567,7 +8441,6 @@ class EngineFunctions {
 			sandhs.splice(index, 1);
 		}
 	}
-
 	remove_pwm(index: number): void {
 		if (index < pwms.length) {
 			pwms[index].release_wires();
@@ -9580,7 +8453,6 @@ class EngineFunctions {
 			pwms.splice(index, 1);
 		}
 	}
-
 	remove_integrator(index: number): void {
 		if (index < integrators.length) {
 			integrators[index].release_wires();
@@ -9593,7 +8465,6 @@ class EngineFunctions {
 			integrators.splice(index, 1);
 		}
 	}
-
 	remove_differentiator(index: number): void {
 		if (index < differentiators.length) {
 			differentiators[index].release_wires();
@@ -9606,7 +8477,6 @@ class EngineFunctions {
 			differentiators.splice(index, 1);
 		}
 	}
-
 	remove_lowpass(index: number): void {
 		if (index < lowpasses.length) {
 			lowpasses[index].release_wires();
@@ -9619,7 +8489,6 @@ class EngineFunctions {
 			lowpasses.splice(index, 1);
 		}
 	}
-
 	remove_highpass(index: number): void {
 		if (index < highpasses.length) {
 			highpasses[index].release_wires();
@@ -9632,7 +8501,6 @@ class EngineFunctions {
 			highpasses.splice(index, 1);
 		}
 	}
-
 	remove_relay(index: number): void {
 		if (index < relays.length) {
 			relays[index].release_wires();
@@ -9645,7 +8513,6 @@ class EngineFunctions {
 			relays.splice(index, 1);
 		}
 	}
-
 	remove_pid(index: number): void {
 		if (index < pids.length) {
 			pids[index].release_wires();
@@ -9658,7 +8525,6 @@ class EngineFunctions {
 			pids.splice(index, 1);
 		}
 	}
-
 	remove_lut(index: number): void {
 		if (index < luts.length) {
 			luts[index].release_wires();
@@ -9671,7 +8537,6 @@ class EngineFunctions {
 			luts.splice(index, 1);
 		}
 	}
-
 	remove_vcr(index: number): void {
 		if (index < vcrs.length) {
 			vcrs[index].release_wires();
@@ -9684,7 +8549,6 @@ class EngineFunctions {
 			vcrs.splice(index, 1);
 		}
 	}
-
 	remove_grt(index: number): void {
 		if (index < grts.length) {
 			grts[index].release_wires();
@@ -9697,7 +8561,6 @@ class EngineFunctions {
 			grts.splice(index, 1);
 		}
 	}
-
 	remove_tptz(index: number): void {
 		if (index < tptzs.length) {
 			tptzs[index].release_wires();
@@ -9710,7 +8573,6 @@ class EngineFunctions {
 			tptzs.splice(index, 1);
 		}
 	}
-
 	remove_transformer(index: number): void {
 		if (index < transformers.length) {
 			transformers[index].release_wires();
@@ -9723,7 +8585,6 @@ class EngineFunctions {
 			transformers.splice(index, 1);
 		}
 	}
-
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	reset_selection(urgent: boolean): void {
 		if (
@@ -9972,267 +8833,201 @@ class EngineFunctions {
 		for (var i: number = 0; i < resistors.length; i++) {
 			resistors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < capacitors.length; i++) {
 			capacitors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < inductors.length; i++) {
 			inductors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < grounds.length; i++) {
 			grounds[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < dcsources.length; i++) {
 			dcsources[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < dccurrents.length; i++) {
 			dccurrents[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < acsources.length; i++) {
 			acsources[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < accurrents.length; i++) {
 			accurrents[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < squarewaves.length; i++) {
 			squarewaves[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < sawwaves.length; i++) {
 			sawwaves[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < trianglewaves.length; i++) {
 			trianglewaves[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < constants.length; i++) {
 			constants[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < nets.length; i++) {
 			nets[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < notes.length; i++) {
 			notes[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < rails.length; i++) {
 			rails[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < voltmeters.length; i++) {
 			voltmeters[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < ohmmeters.length; i++) {
 			ohmmeters[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < ammeters.length; i++) {
 			ammeters[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < wattmeters.length; i++) {
 			wattmeters[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < fuses.length; i++) {
 			fuses[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < spsts.length; i++) {
 			spsts[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < spdts.length; i++) {
 			spdts[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < nots.length; i++) {
 			nots[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < diodes.length; i++) {
 			diodes[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < leds.length; i++) {
 			leds[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < zeners.length; i++) {
 			zeners[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < potentiometers.length; i++) {
 			potentiometers[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < ands.length; i++) {
 			ands[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < ors.length; i++) {
 			ors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < nands.length; i++) {
 			nands[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < nors.length; i++) {
 			nors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < xors.length; i++) {
 			xors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < xnors.length; i++) {
 			xnors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < dffs.length; i++) {
 			dffs[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < vsats.length; i++) {
 			vsats[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < adders.length; i++) {
 			adders[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < subtractors.length; i++) {
 			subtractors[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < multipliers.length; i++) {
 			multipliers[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < dividers.length; i++) {
 			dividers[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < gains.length; i++) {
 			gains[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < absvals.length; i++) {
 			absvals[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < vcsws.length; i++) {
 			vcsws[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < vcvss.length; i++) {
 			vcvss[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < vccss.length; i++) {
 			vccss[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < cccss.length; i++) {
 			cccss[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < ccvss.length; i++) {
 			ccvss[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < opamps.length; i++) {
 			opamps[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < nmosfets.length; i++) {
 			nmosfets[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < pmosfets.length; i++) {
 			pmosfets[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < npns.length; i++) {
 			npns[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < pnps.length; i++) {
 			pnps[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < adcs.length; i++) {
 			adcs[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < dacs.length; i++) {
 			dacs[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < sandhs.length; i++) {
 			sandhs[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < pwms.length; i++) {
 			pwms[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < integrators.length; i++) {
 			integrators[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < differentiators.length; i++) {
 			differentiators[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < lowpasses.length; i++) {
 			lowpasses[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < highpasses.length; i++) {
 			highpasses[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < relays.length; i++) {
 			relays[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < pids.length; i++) {
 			pids[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < luts.length; i++) {
 			luts[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < vcrs.length; i++) {
 			vcrs[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < grts.length; i++) {
 			grts[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < tptzs.length; i++) {
 			tptzs[i].draw_component(canvas);
 		}
-
 		for (var i: number = 0; i < transformers.length; i++) {
 			transformers[i].draw_component(canvas);
 		}
-
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	draw_selected_components(canvas: GraphicsEngine): void {
@@ -10777,7 +9572,6 @@ class EngineFunctions {
 				}
 			}
 		}
-
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	draw_meter_traces(canvas: GraphicsEngine): void {

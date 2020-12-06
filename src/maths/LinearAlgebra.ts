@@ -35,7 +35,6 @@ class LinearAlgebra {
 	public GENERAL_VECTOR: Array<number>;
 	public GENERAL_MATRIX: Array<Array<number>>;
 	public FIRST_LUP_SOLVE: boolean;
-
 	constructor() {
 		this.x_matrix = [[], []];
 		this.det_threshold = 0;
@@ -127,7 +126,6 @@ class LinearAlgebra {
 		}
 		return this.x_matrix;
 	}
-
 	set_matrix_diagonal(matrix: Array<Array<number>>, value: number, n: number): Array<Array<number>> {
 		for (var i: number = 0; i < n; i++) {
 			matrix[i][i] = value;

@@ -26,11 +26,9 @@ class VoltageSaturation {
   public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
   public elm: Element2;
-
   public plus_point: PointF;
   public p1: PointF;
   public p2: PointF;
-
   /* Angle from p1 to p2 minus 90 degrees */
   public theta_m90: number;
   /* Angle from p1 to p2 */
@@ -83,7 +81,6 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-
   constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
@@ -759,7 +756,6 @@ or overlapped)*/
             this.bounds.top + this.bounds.get_height() * 0.1,
             this.text_paint
           );
-
           canvas.draw_text(
             global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
@@ -777,7 +773,6 @@ or overlapped)*/
             this.bounds.top + this.bounds.get_height() * 0.1,
             this.text_paint
           );
-
           canvas.draw_text(
             global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
             this.c_x,
@@ -823,7 +818,6 @@ or overlapped)*/
         }
       }
     }
-
     return time_data;
     /* <!-- END AUTOMATICALLY GENERATED !--> */
   }

@@ -490,7 +490,6 @@ class Global {
 	public SYSTEM_OPTION_AUTOMATIC_TIMESTEP: number;
 	public SYSTEM_OPTION_SHORTCUT_HINTS: number;
 	public SYSTEM_OPTION_STRETCH_WINDOW: number;
-
 	/* 99.999% Of the colors are stored here for conveinence. This is to help when moving from canvas-2d to some other libraries
     in the future. Paint.js has one definition there... (The order of includes are hard to manage.)*/
 	public readonly BACKGROUND_COLOR: string;
@@ -697,7 +696,6 @@ class Global {
 	public TRIG_TABLE_INDEX_CONSTANT: number;
 	public TRIG_TABLE_MASK: number;
 	public TRIG_TABLE_ROUND: number;
-
 	public TIME_DATA_TEMPLATE: TIME_DATA_TEMPLATE_T;
 	/* This is the maximum text length of any text field. */
 	public MAX_TEXT_LENGTH: number;
@@ -725,7 +723,6 @@ class Global {
 	public meter_max_array: Array<number>;
 	public non_linear_max_array: Array<number>;
 	public max_general_number: number;
-
 	constructor() {
 		this.NULL = null;
 		this.MOBILE_MODE = false;

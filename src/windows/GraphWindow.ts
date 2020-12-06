@@ -58,7 +58,6 @@ class GraphWindow {
 	public time_axis_value: string;
 	public time_tag: string;
 	public download_button: Button;
-
 	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
@@ -67,7 +66,6 @@ class GraphWindow {
 	public trim: number;
 	public width: number;
 	public height: number;
-
 	constructor() {
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.inner_bounds = new RectF(0, 0, 0, 0);

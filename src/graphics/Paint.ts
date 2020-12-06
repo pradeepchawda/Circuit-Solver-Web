@@ -62,7 +62,6 @@ class Paint {
 	private last_font: string;
 	private last_text_size: number;
 	private metric: TextMetrics;
-
 	constructor() {
 		/* A paint style to standardize the different styles available in the html canvas */
 		this.style = new PaintStyle();
@@ -216,7 +215,6 @@ class Paint {
 	measure_descent(txt: string): number {
 		return this.retrieve_metrics(txt)['descent'];
 	}
-
 	/* Clear the contents of the metrics array. */
 	reset_array(): void {
 		this.metric_array = [];
