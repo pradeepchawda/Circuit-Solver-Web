@@ -126,7 +126,7 @@ class OnScreenKeyboard {
 		this.text_paint.set_paint_join(this.text_paint.join.MITER);
 		this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
 		this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-		this.text_paint.set_text_size(1.5 * global.CANVAS_TEXT_SIZE_3);
+		this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
@@ -367,7 +367,7 @@ class OnScreenKeyboard {
 			this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
 			this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 			this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-			this.text_paint.set_text_size(1.5 * global.CANVAS_TEXT_SIZE_3);
+			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 			this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
 			this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 			this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
