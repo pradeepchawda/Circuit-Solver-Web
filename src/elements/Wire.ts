@@ -21,44 +21,44 @@
  *
  ***********************************************************************/
 class Wire {
-  public INITIALIZED: boolean = false;
+  public INITIALIZED: boolean;
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm: Element2 = new Element2(-1, -1, global.NULL);
-  public p1: PointF = new PointF(0, 0);
-  public p2: PointF = new PointF(0, 0);
+  public elm: Element2;
+  public p1: PointF;
+  public p2: PointF;
 
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90: number;
   /* Angle from p1 to p2 */
-  public theta: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-  public c_x: number = 0;
-  public c_y: number = 0;
+  public theta: number;
+  public c_x: number;
+  public c_y: number;
 
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space: number = global.node_space_x >> 1;
+  public x_space: number;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space: number = global.node_space_y >> 1;
+  public y_space: number;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint: Paint = new Paint();
+  public line_paint: Paint;
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint: Paint = new Paint();
+  public point_paint: Paint;
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint: Paint = new Paint();
+  public text_paint: Paint;
   /* This is for handling the different styles of the wire (center point) */
-  public wire_point = new PointF(0, 0);
+  public wire_point;
   /* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
-  public bounds: RectF = new RectF(0, 0, 0, 0);
-  public total_bounds = new RectF(0, 0, 0, 0);
+  public bounds: RectF;
+  public total_bounds;
   /* The voltage of the wire. */
-  public wire_voltage = 0;
-  public MULTI_SELECTED: boolean = false;
+  public wire_voltage;
+  public MULTI_SELECTED: boolean;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public line_buffer: Array<Array<number>> = [];
-  public circle_buffer: Array<Array<number>> = [];
-  public BUILD_ELEMENT: boolean = true;
-  public ANGLE: number = 0;
-  public indexer: number = 0;
-  public is_translating: boolean = false;
+  public line_buffer: Array<Array<number>>;
+  public circle_buffer: Array<Array<number>>;
+  public BUILD_ELEMENT: boolean;
+  public ANGLE: number;
+  public indexer: number;
+  public is_translating: boolean;
 
   constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;

@@ -21,53 +21,53 @@
  ***********************************************************************/
 class AbsoluteValueSymbol {
   /* Index of the bounds (Inside New Element Window) */
-  public index = -1;
+  public index;
   /* Page to be drawn on (Inside New Element Window) */
-  public page = -1;
+  public page;
   /* The size of the text that the component will be drawing (Tag) */
-  public bounds = new RectF(0, 0, 0, 0);
+  public bounds;
 
-  public p1 = new PointF(0, 0);
-  public p2 = new PointF(0, 0);
+  public p1;
+  public p2;
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90;
   /* Angle from p1 to p2 */
-  public theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-  public gain_0 = new PointF(0, 0);
-  public gain_1 = new PointF(0, 0);
-  public gain_2 = new PointF(0, 0);
-  public gain_3 = new PointF(0, 0);
-  public gain_4 = new PointF(0, 0);
+  public theta;
+  public gain_0;
+  public gain_1;
+  public gain_2;
+  public gain_3;
+  public gain_4;
   /* The center (x-coord) of the bounds */
-  public c_x = this.bounds.get_center_x();
+  public c_x;
   /* The center (y-coord) of the bounds */
-  public c_y = this.bounds.get_center_y();
+  public c_y;
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space = this.bounds.get_width() >> 2;
+  public x_space;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space = this.bounds.get_height() >> 2;
+  public y_space;
   /* Some points we'll be extending the leads of the resistor to. */
-  public connect1_x = 0;
-  public connect1_y = 0;
-  public connect2_x = 0;
-  public connect2_y = 0;
+  public connect1_x;
+  public connect1_y;
+  public connect2_x;
+  public connect2_y;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint = new Paint();
+  public line_paint;
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint = new Paint();
+  public point_paint;
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint = new Paint();
+  public text_paint;
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint_alt = new Paint();
+  public text_paint_alt;
   /* Text background paint */
-  public text_background_paint = new Paint();
-  public FLAG_ADD_ELEMENT = false;
-  public TAG = language_manager.TAG_ABS;
-  public DRAW_TAG = false;
-  public text_bounds = new RectF(0, 0, 0, 0);
-  public HEIGHT_RATIO = 0.35;
-  public line_buffer: Array<Array<number>> = [];
-  public circle_buffer: Array<Array<number>> = [];
+  public text_background_paint;
+  public FLAG_ADD_ELEMENT;
+  public TAG;
+  public DRAW_TAG;
+  public text_bounds;
+  public HEIGHT_RATIO;
+  public line_buffer: Array<Array<number>>;
+  public circle_buffer: Array<Array<number>>;
 
   constructor(rect: RectF, index: number, page: number) {
     /* Index of the bounds (Inside New Element Window) */

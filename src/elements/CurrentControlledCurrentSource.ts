@@ -21,76 +21,76 @@
  *
  ***********************************************************************/
 class CurrentControlledCurrentSource {
-  public INITIALIZED: boolean = false;
+  public INITIALIZED: boolean;
   /* Create a new rectangle for the bounds of this component */
-  public bounds: RectF = new RectF(0, 0, 0, 0);
+  public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm: Element4 = new Element4(-1, -1, global.NULL);
+  public elm: Element4;
 
-  public p1: PointF = new PointF(0, 0);
-  public p2: PointF = new PointF(0, 0);
-  public p3: PointF = new PointF(0, 0);
-  public p4: PointF = new PointF(0, 0);
+  public p1: PointF;
+  public p2: PointF;
+  public p3: PointF;
+  public p4: PointF;
 
-  public cccs_0: PointF = new PointF(0, 0);
-  public cccs_1: PointF = new PointF(0, 0);
-  public cccs_2: PointF = new PointF(0, 0);
-  public cccs_3: PointF = new PointF(0, 0);
-  public cccs_4: PointF = new PointF(0, 0);
-  public cccs_5: PointF = new PointF(0, 0);
-  public cccs_6: PointF = new PointF(0, 0);
-  public cccs_7: PointF = new PointF(0, 0);
-  public cccs_8: PointF = new PointF(0, 0);
-  public cccs_9: PointF = new PointF(0, 0);
-  public cccs_10: PointF = new PointF(0, 0);
-  public cccs_11: PointF = new PointF(0, 0);
-  public cccs_12: PointF = new PointF(0, 0);
-  public cccs_13: PointF = new PointF(0, 0);
-  public cccs_14: PointF = new PointF(0, 0);
-  public cccs_15: PointF = new PointF(0, 0);
-  public cccs_16: PointF = new PointF(0, 0);
+  public cccs_0: PointF;
+  public cccs_1: PointF;
+  public cccs_2: PointF;
+  public cccs_3: PointF;
+  public cccs_4: PointF;
+  public cccs_5: PointF;
+  public cccs_6: PointF;
+  public cccs_7: PointF;
+  public cccs_8: PointF;
+  public cccs_9: PointF;
+  public cccs_10: PointF;
+  public cccs_11: PointF;
+  public cccs_12: PointF;
+  public cccs_13: PointF;
+  public cccs_14: PointF;
+  public cccs_15: PointF;
+  public cccs_16: PointF;
   /* The center (x-coord) of the bounds */
-  public c_x: number = this.bounds.get_center_x();
+  public c_x: number;
   /* The center (y-coord) of the bounds */
-  public c_y: number = this.bounds.get_center_y();
+  public c_y: number;
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space: number = global.node_space_x >> 1;
+  public x_space: number;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space: number = global.node_space_y >> 1;
+  public y_space: number;
   /* Some points we'll be extending the leads of the resistor to. */
-  public connect1_x: number = 0;
-  public connect1_y: number = 0;
-  public connect2_x: number = 0;
-  public connect2_y: number = 0;
+  public connect1_x: number;
+  public connect1_y: number;
+  public connect2_x: number;
+  public connect2_y: number;
   /* Angle from p1 to p2 minus 90 degrees */
-  public theta_m90: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+  public theta_m90: number;
   /* Angle from p1 to p2 */
-  public theta: number = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+  public theta: number;
   /* Angle from center to p2 */
-  public phi: number = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
-  public grid_point: Array<number> = [];
+  public phi: number;
+  public grid_point: Array<number>;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint: Paint = new Paint();
+  public line_paint: Paint;
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint: Paint = new Paint();
+  public point_paint: Paint;
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint: Paint = new Paint();
+  public text_paint: Paint;
   /* Flag to denote when the component is actually moving. */
-  public is_translating: boolean = false;
-  public wire_reference: Array<WIRE_REFERENCE_T> = [];
+  public is_translating: boolean;
+  public wire_reference: Array<WIRE_REFERENCE_T>;
   /* This is to keep track of the simulation id's */
-  public simulation_id: number = 0;
+  public simulation_id: number;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
-  public indexer: number = 0;
-  public m_x: number = 0;
-  public m_y: number = 0;
-  public MULTI_SELECTED: boolean = false;
+  public indexer: number;
+  public m_x: number;
+  public m_y: number;
+  public MULTI_SELECTED: boolean;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public line_buffer: Array<Array<number>> = [];
-  public circle_buffer: Array<Array<number>> = [];
-  public BUILD_ELEMENT: boolean = true;
-  public ANGLE: number = 0;
+  public line_buffer: Array<Array<number>>;
+  public circle_buffer: Array<Array<number>>;
+  public BUILD_ELEMENT: boolean;
+  public ANGLE: number;
 
   constructor(type: number, id: number, n1: number, n2: number, n3: number, n4: number) {
     this.INITIALIZED = false;

@@ -22,67 +22,6 @@
 class SinglePoleSingleThrowSymbol {
     constructor(rect, index, page) {
         /* Index of the bounds (Inside New Element Window) */
-        this.index = -1;
-        /* Page to be drawn on (Inside New Element Window) */
-        this.page = -1;
-        this.bounds = new RectF(0, 0, 0, 0);
-        this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
-        this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
-        /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-        /* Angle from p1 to p2 */
-        this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-        this.spst_0 = new PointF(0, 0);
-        this.spst_1 = new PointF(0, 0);
-        this.spst_2 = new PointF(0, 0);
-        this.spst_3 = new PointF(0, 0);
-        this.spst_4 = new PointF(0, 0);
-        this.spst_5 = new PointF(0, 0);
-        this.spst_6 = new PointF(0, 0);
-        this.spst_7 = new PointF(0, 0);
-        this.spst_8 = new PointF(0, 0);
-        this.spst_9 = new PointF(0, 0);
-        this.spst_10 = new PointF(0, 0);
-        this.spst_11 = new PointF(0, 0);
-        this.spst_12 = new PointF(0, 0);
-        this.spst_13 = new PointF(0, 0);
-        this.spst_14 = new PointF(0, 0);
-        this.spst_15 = new PointF(0, 0);
-        this.spst_16 = new PointF(0, 0);
-        this.spst_17 = new PointF(0, 0);
-        this.spst_18 = new PointF(0, 0);
-        this.spst_19 = new PointF(0, 0);
-        this.spst_20 = new PointF(0, 0);
-        this.spst_21 = new PointF(0, 0);
-        /* The center (x-coord) of the bounds */
-        this.c_x = this.bounds.get_center_x();
-        /* The center (y-coord) of the bounds */
-        this.c_y = this.bounds.get_center_y();
-        /* The spacing of the nodes in the x-direction, divided by 2 */
-        this.x_space = this.bounds.get_width() >> 2;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
-        this.y_space = this.bounds.get_height() >> 2;
-        /* Some points we'll be extending the leads of the resistor to. */
-        this.connect1_x = 0;
-        this.connect1_y = 0;
-        this.connect2_x = 0;
-        this.connect2_y = 0;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
-        this.point_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* Text background paint */
-        this.text_background_paint = new Paint();
-        this.FLAG_ADD_ELEMENT = false;
-        this.TAG = language_manager.TAG_SPST;
-        this.DRAW_TAG = false;
-        this.text_bounds = new RectF(0, 0, 0, 0);
-        this.HEIGHT_RATIO = 0.35;
-        this.line_buffer = [];
-        this.circle_buffer = [];
-        /* Index of the bounds (Inside New Element Window) */
         this.index = index;
         /* Page to be drawn on (Inside New Element Window) */
         this.page = page;

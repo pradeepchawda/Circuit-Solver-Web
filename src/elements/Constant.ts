@@ -21,43 +21,43 @@
  *
  ***********************************************************************/
 class Constant {
-  public INITIALIZED: boolean = false;
+  public INITIALIZED: boolean;
   /* Create a new rectangle for the bounds of this component */
-  public bounds: RectF = new RectF(0, 0, 0, 0);
+  public bounds: RectF;
   /* Inititalize the element2 class that will hold the basic data about our component */
-  public elm: Element1 = new Element1(-1, -1, global.NULL);
+  public elm: Element1;
   /* Create some points to hold the node locations, this will be used for drawing components */
-  public p1: PointF = new PointF(0, 0);
+  public p1: PointF;
   /* The spacing of the nodes in the x-direction, divided by 2 */
-  public x_space: number = global.node_space_x >> 1;
+  public x_space: number;
   /* The spacing of the nodes in the y-direction, divided by 2 */
-  public y_space: number = global.node_space_y >> 1;
+  public y_space: number;
   /* used for snapping the elements to the grid (and also for bounding them) */
-  public grid_point: Array<number> = [];
+  public grid_point: Array<number>;
   /* This paint is used for drawing the "lines" that the component is comprised of. */
-  public line_paint: Paint = new Paint();
+  public line_paint: Paint;
   /* This paint is used for drawing the "nodes" that the component is connected to. */
-  public point_paint: Paint = new Paint();
+  public point_paint: Paint;
   /* This paint is used for drawing the "text" that the component needs to display */
-  public text_paint: Paint = new Paint();
+  public text_paint: Paint;
   /* Flag to denote when the component is actually moving. */
-  public is_translating: boolean = false;
-  public wire_reference: Array<WIRE_REFERENCE_T> = [];
+  public is_translating: boolean;
+  public wire_reference: Array<WIRE_REFERENCE_T>;
   /* This is to keep track of the simulation id's */
-  public simulation_id: number = 0;
+  public simulation_id: number;
   /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
-  public indexer: number = 0;
-  public m_x: number = 0;
-  public m_y: number = 0;
-  public c_x: number = 0;
-  public c_y: number = 0;
-  public MULTI_SELECTED: boolean = false;
+  public indexer: number;
+  public m_x: number;
+  public m_y: number;
+  public c_x: number;
+  public c_y: number;
+  public MULTI_SELECTED: boolean;
   /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-  public line_buffer: Array<Array<number>> = [];
-  public circle_buffer: Array<Array<number>> = [];
-  public BUILD_ELEMENT: boolean = true;
-  public ANGLE: number = 0;
+  public line_buffer: Array<Array<number>>;
+  public circle_buffer: Array<Array<number>>;
+  public BUILD_ELEMENT: boolean;
+  public ANGLE: number;
 
   constructor(type: number, id: number, n1: number) {
     this.INITIALIZED = false;

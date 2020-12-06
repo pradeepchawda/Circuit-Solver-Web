@@ -26,43 +26,6 @@ class Ground {
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element1(-1, -1, global.NULL);
-        /* Create some points to hold the node locations, this will be used for drawing components */
-        this.p1 = new PointF(0, 0);
-        /* The spacing of the nodes in the x-direction, divided by 2 */
-        this.x_space = global.node_space_x >> 1;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
-        this.y_space = global.node_space_y >> 1;
-        /* used for snapping the elements to the grid (and also for bounding them) */
-        this.grid_point = [];
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
-        this.point_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* Flag to denote when the component is actually moving. */
-        this.is_translating = false;
-        this.wire_reference = [];
-        /* This is to keep track of the simulation id's */
-        this.simulation_id = 0;
-        /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
-        this.indexer = 0;
-        this.m_x = 0;
-        this.m_y = 0;
-        this.c_x = 0;
-        this.c_y = 0;
-        this.MULTI_SELECTED = false;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.line_buffer = [];
-        this.circle_buffer = [];
-        this.BUILD_ELEMENT = true;
-        this.ANGLE = 0;
-        this.INITIALIZED = false;
-        /* Create a new rectangle for the bounds of this component */
-        this.bounds = new RectF(0, 0, 0, 0);
-        /* Inititalize the element2 class that will hold the basic data about our component */
         this.elm = new Element1(id, type, global.copy(global.PROPERTY_GROUND));
         /* Initialize the initial nodes that the component will be occupying */
         this.elm.set_nodes(n1);

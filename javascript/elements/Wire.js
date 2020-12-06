@@ -24,42 +24,6 @@ class Wire {
     constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element2(-1, -1, global.NULL);
-        this.p1 = new PointF(0, 0);
-        this.p2 = new PointF(0, 0);
-        /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-        /* Angle from p1 to p2 */
-        this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-        this.c_x = 0;
-        this.c_y = 0;
-        /* The spacing of the nodes in the x-direction, divided by 2 */
-        this.x_space = global.node_space_x >> 1;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
-        this.y_space = global.node_space_y >> 1;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
-        this.point_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* This is for handling the different styles of the wire (center point) */
-        this.wire_point = new PointF(0, 0);
-        /* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
-        this.bounds = new RectF(0, 0, 0, 0);
-        this.total_bounds = new RectF(0, 0, 0, 0);
-        /* The voltage of the wire. */
-        this.wire_voltage = 0;
-        this.MULTI_SELECTED = false;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.line_buffer = [];
-        this.circle_buffer = [];
-        this.BUILD_ELEMENT = true;
-        this.ANGLE = 0;
-        this.indexer = 0;
-        this.is_translating = false;
-        this.INITIALIZED = false;
-        /* Inititalize the element2 class that will hold the basic data about our component */
         this.elm = new Element2(id, type, global.copy(global.PROPERTY_WIRE));
         /* Initialize the initial nodes that the component will be occupying */
         this.elm.set_nodes(n1, n2);

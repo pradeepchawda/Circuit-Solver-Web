@@ -26,65 +26,6 @@ class HighPassFilter {
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element2(-1, -1, global.NULL);
-        this.plus_point = new PointF(0, 0);
-        this.p1 = new PointF(0, 0);
-        this.p2 = new PointF(0, 0);
-        /* Angle from p1 to p2 minus 90 degrees */
-        this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-        /* Angle from p1 to p2 */
-        this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-        this.hpf_0 = new PointF(0, 0);
-        this.hpf_1 = new PointF(0, 0);
-        this.hpf_2 = new PointF(0, 0);
-        this.hpf_3 = new PointF(0, 0);
-        this.hpf_4 = new PointF(0, 0);
-        this.hpf_5 = new PointF(0, 0);
-        this.hpf_6 = new PointF(0, 0);
-        this.hpf_7 = new PointF(0, 0);
-        this.hpf_8 = new PointF(0, 0);
-        /* The center (x-coord) of the bounds */
-        this.c_x = this.bounds.get_center_x();
-        /* The center (y-coord) of the bounds */
-        this.c_y = this.bounds.get_center_y();
-        /* The spacing of the nodes in the x-direction, divided by 2 */
-        this.x_space = global.node_space_x >> 1;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
-        this.y_space = global.node_space_y >> 1;
-        /* Some points we'll be extending the leads of the resistor to. */
-        this.connect1_x = 0;
-        this.connect1_y = 0;
-        this.connect2_x = 0;
-        this.connect2_y = 0;
-        /* used for snapping the elements to the grid (and also for bounding them) */
-        this.grid_point = [];
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
-        this.line_paint = new Paint();
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
-        this.point_paint = new Paint();
-        /* This paint is used for drawing the "text" that the component needs to display */
-        this.text_paint = new Paint();
-        /* Flag to denote when the component is actually moving. */
-        this.is_translating = false;
-        this.temp_color = global.GENERAL_RED_COLOR;
-        this.wire_reference = [];
-        /* This is to keep track of the simulation id's */
-        this.simulation_id = 0;
-        /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
-        this.indexer = 0;
-        this.m_x = 0;
-        this.m_y = 0;
-        this.MULTI_SELECTED = false;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
-        this.line_buffer = [];
-        this.circle_buffer = [];
-        this.BUILD_ELEMENT = true;
-        this.ANGLE = 0;
-        this.INITIALIZED = false;
-        /* Create a new rectangle for the bounds of this component */
-        this.bounds = new RectF(0, 0, 0, 0);
-        /* Inititalize the element2 class that will hold the basic data about our component */
         this.elm = new Element2(id, type, global.copy(global.PROPERTY_HPF));
         /* Initialize the initial nodes that the component will be occupying */
         this.elm.set_nodes(n1, n2);

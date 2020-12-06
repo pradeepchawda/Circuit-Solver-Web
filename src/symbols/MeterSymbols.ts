@@ -19,18 +19,18 @@
  *
  ***********************************************************************/
 class MeterSymbols {
-  public bounds = new RectF(0, 0, 0, 0);
-  public METER_VOLTAGE = 0;
-  public METER_CURRENT = 1;
-  public METER_RESISTANCE = 2;
-  public METER_POWER = 3;
-  public STYLE_0 = 0;
-  public STYLE_1 = 1;
-  public meter_type = this.METER_VOLTAGE;
-  public meter_paint = new Paint();
-  public points: Array<PointF> = [];
-  public line_buffer: Array<Array<number>> = [];
-  public circle_buffer: Array<Array<number>> = [];
+  public bounds;
+  public METER_VOLTAGE;
+  public METER_CURRENT;
+  public METER_RESISTANCE;
+  public METER_POWER;
+  public STYLE_0;
+  public STYLE_1;
+  public meter_type;
+  public meter_paint;
+  public points: Array<PointF>;
+  public line_buffer: Array<Array<number>>;
+  public circle_buffer: Array<Array<number>>;
 
   constructor() {
     this.bounds = new RectF(0, 0, 0, 0);

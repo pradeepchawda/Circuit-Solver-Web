@@ -27,13 +27,10 @@ class ElectricalNode {
 	public location: PointF;
 	/* This is the paint that will be used to draw anything for debugging */
 	public node_line_paint: Paint;
-
 	/* This is the paint that will be used to draw anything for debugging */
 	public node_fill_paint: Paint;
-
 	/* This is the paint that will be used to draw anything for debugging */
 	public node_fill_paint_alt: Paint;
-
 	/* This is used to keep a unique tag of the node in question. */
 	public id: number;
 	/* This is used to re-map the nodes when doing simulation. */

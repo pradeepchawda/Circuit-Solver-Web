@@ -33,16 +33,12 @@ class ElementWindow {
 	public first_touch_y: number;
 	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-
 	/* This paint is used for drawing background colors. */
 	public fill_paint: Paint;
-
 	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-
 	/* This paint is used for drawing the icons that the component is comprised of. */
 	public hover_paint: Paint;
-
 	public bounds: RectF;
 	public PAGE_NUMBER: number;
 	public ELEMENT_INDEX: number;
@@ -50,11 +46,8 @@ class ElementWindow {
 	/* #INSERT_GENERATE_CREATE_ELEMENT_WINDOW_ICON */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public resistor_symbol: ResistorSymbol;
-
 	public capacitor_symbol: CapacitorSymbol;
-
 	public inductor_symbol: InductorSymbol;
-
 	public ground_symbol: GroundSymbol;
 
 	public dcsource_symbol: DCSourceSymbol;

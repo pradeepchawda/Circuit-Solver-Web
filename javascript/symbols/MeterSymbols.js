@@ -29,18 +29,6 @@ class MeterSymbols {
         this.STYLE_1 = 1;
         this.meter_type = this.METER_VOLTAGE;
         this.meter_paint = new Paint();
-        this.points = [];
-        this.line_buffer = [];
-        this.circle_buffer = [];
-        this.bounds = new RectF(0, 0, 0, 0);
-        this.METER_VOLTAGE = 0;
-        this.METER_CURRENT = 1;
-        this.METER_RESISTANCE = 2;
-        this.METER_POWER = 3;
-        this.STYLE_0 = 0;
-        this.STYLE_1 = 1;
-        this.meter_type = this.METER_VOLTAGE;
-        this.meter_paint = new Paint();
         this.meter_paint.set_paint_style(this.meter_paint.style.STROKE);
         this.meter_paint.set_paint_cap(this.meter_paint.cap.ROUND);
         this.meter_paint.set_paint_join(this.meter_paint.join.MITER);
