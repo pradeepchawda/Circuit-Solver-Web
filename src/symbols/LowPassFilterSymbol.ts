@@ -23,15 +23,15 @@ class LowPassFilterSymbol {
 	/* Index of the bounds (Inside New Element Window) */
 	public index: number;
 	/* Page to be drawn on (Inside New Element Window) */
-	public page;
+	public page: number;
 	/* The size of the text that the component will be drawing (Tag) */
-	public bounds;
-	public p1;
-	public p2;
+	public bounds: RectF;
+	public p1: PointF;
+	public p2: PointF;
 	/* Angle from p1 to p2 minus 90 degrees */
-	public theta_m90;
+	public theta_m90: number;
 	/* Angle from p1 to p2 */
-	public theta;
+	public theta: number;
 	public lpf_0;
 	public lpf_1;
 	public lpf_2;
@@ -42,29 +42,29 @@ class LowPassFilterSymbol {
 	public lpf_7;
 	public lpf_8;
 	/* The center (x-coord) of the bounds */
-	public c_x;
+	public c_x: number;
 	/* The center (y-coord) of the bounds */
-	public c_y;
+	public c_y: number;
 	/* The spacing of the nodes in the x-direction, divided by 2 */
-	public x_space;
+	public x_space: number;
 	/* The spacing of the nodes in the y-direction, divided by 2 */
-	public y_space;
+	public y_space: number;
 	/* Some points we'll be extending the leads of the resistor to. */
-	public connect1_x;
-	public connect1_y;
-	public connect2_x;
-	public connect2_y;
+	public connect1_x: number;
+	public connect1_y: number;
+	public connect2_x: number;
+	public connect2_y: number;
 	/* This paint is used for drawing the "lines" that the component is comprised of. */
-	public line_paint;
+	public line_paint: Paint;
 	/* This paint is used for drawing the "nodes" that the component is connected to. */
-	public point_paint;
+	public point_paint: Paint;
 	/* This paint is used for drawing the "text" that the component needs to display */
-	public text_paint;
+	public text_paint: Paint;
 	/* This paint is used for drawing the "text" that the component needs to display */
-	public text_paint_alt;
+	public text_paint_alt: Paint;
 	/* Text background paint */
-	public text_background_paint;
-	public FLAG_ADD_ELEMENT;
+	public text_background_paint: Paint;
+	public FLAG_ADD_ELEMENT: boolean;
 	public TAG;
 	public DRAW_TAG;
 	public text_bounds;
