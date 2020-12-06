@@ -43,7 +43,7 @@ class ElementWindow {
 	public PAGE_NUMBER: number;
 	public ELEMENT_INDEX: number;
 	public MAX_PAGE_NUMBER: number;
-	/* #INSERT_GENERATE_CREATE_ELEMENT_WINDOW_ICON */
+	/* #INSERT_GENERATE_CREATE_ELEMENT_WINDOW_ICON_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public resistor_symbol: ResistorSymbol;
 	public capacitor_symbol: CapacitorSymbol;
@@ -112,7 +112,7 @@ class ElementWindow {
 	public tptz_symbol: TPTZModuleSymbol;
 	public transformer_symbol: TransformerSymbol;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
-	
+
 	constructor(left: number, top: number, right: number, bottom: number) {
 		this.ENABLE_MOUSE_WHEEL = true;
 		this.positions = [];

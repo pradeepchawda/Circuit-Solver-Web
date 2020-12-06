@@ -45,7 +45,7 @@ after we solve the modified nodal analysis matrix. */
 	/* Array Containing all time varying sources and their key parameters. This array will be
 used to determine the best time-step for the system. */
 	public TIME_DATA: Array<TIME_DATA_TEMPLATE_T>;
-	/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
+	/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public ELEMENT_DCSOURCE_OFFSET: number;
 	public ELEMENT_ACSOURCE_OFFSET: number;

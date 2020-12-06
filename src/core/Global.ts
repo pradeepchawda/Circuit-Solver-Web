@@ -61,7 +61,7 @@ class Global {
 	public readonly TYPE_META_DATA: number;
 	/* Using a counter to keep track of the size of elements. */
 	public TYPE_COUNTER: number;
-	/* #INSERT_GENERATE_ELEMENT_TYPE# */
+	/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public TYPE_RESISTOR: number;
 	public TYPE_CAPACITOR: number;
