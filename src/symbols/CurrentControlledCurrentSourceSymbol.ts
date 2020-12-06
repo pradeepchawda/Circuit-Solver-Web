@@ -27,25 +27,25 @@ class CurrentControlledCurrentSourceSymbol {
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	public p3;
-	public p4;
-	public vccs_0;
-	public vccs_1;
-	public vccs_2;
-	public vccs_3;
-	public vccs_4;
-	public vccs_5;
-	public vccs_6;
-	public vccs_7;
-	public vccs_8;
-	public vccs_9;
-	public vccs_10;
-	public vccs_11;
-	public vccs_12;
-	public vccs_13;
-	public vccs_14;
-	public vccs_15;
-	public vccs_16;
+	public p3: PointF;
+	public p4: PointF;
+	public vccs_0: PointF;
+	public vccs_1: PointF;
+	public vccs_2: PointF;
+	public vccs_3: PointF;
+	public vccs_4: PointF;
+	public vccs_5: PointF;
+	public vccs_6: PointF;
+	public vccs_7: PointF;
+	public vccs_8: PointF;
+	public vccs_9: PointF;
+	public vccs_10: PointF;
+	public vccs_11: PointF;
+	public vccs_12: PointF;
+	public vccs_13: PointF;
+	public vccs_14: PointF;
+	public vccs_15: PointF;
+	public vccs_16: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -55,7 +55,7 @@ class CurrentControlledCurrentSourceSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* Angle from center to p2 */
-	public phi;
+	public phi: number;
 	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
 	/* The spacing of the nodes in the y-direction, divided by 2 */
@@ -74,10 +74,10 @@ class CurrentControlledCurrentSourceSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

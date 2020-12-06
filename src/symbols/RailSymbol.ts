@@ -48,10 +48,10 @@ class RailSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

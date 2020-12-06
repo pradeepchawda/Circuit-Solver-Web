@@ -31,26 +31,26 @@ class InductorSymbol {
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
-	public inductor_arc_0;
-	public inductor_arc_1;
-	public inductor_arc_2;
-	public inductor_arc_3;
+	public inductor_arc_0: Arc;
+	public inductor_arc_1: Arc;
+	public inductor_arc_2: Arc;
+	public inductor_arc_3: Arc;
 	/* Resistor point 0 */
-	public ind_0;
+	public ind_0: PointF;
 	/* Resistor point 1 */
-	public ind_1;
+	public ind_1: PointF;
 	/* Resistor point 2 */
-	public ind_2;
+	public ind_2: PointF;
 	/* Resistor point 3 */
-	public ind_3;
+	public ind_3: PointF;
 	/* Resistor point 0 */
-	public ind_4;
+	public ind_4: PointF;
 	/* Resistor point 1 */
-	public ind_5;
+	public ind_5: PointF;
 	/* Resistor point 2 */
-	public ind_6;
+	public ind_6: PointF;
 	/* Resistor point 3 */
-	public ind_7;
+	public ind_7: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -73,10 +73,10 @@ class InductorSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

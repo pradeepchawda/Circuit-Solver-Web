@@ -32,13 +32,13 @@ class CapacitorSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* Capacitor point 0 */
-	public cap_0;
+	public cap_0: PointF;
 	/* Capacitor point 1 */
-	public cap_1;
+	public cap_1: PointF;
 	/* Capacitor point 2 */
-	public cap_2;
+	public cap_2: PointF;
 	/* Capacitor point 3 */
-	public cap_3;
+	public cap_3: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -61,10 +61,10 @@ class CapacitorSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

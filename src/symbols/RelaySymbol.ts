@@ -27,20 +27,20 @@ class RelaySymbol {
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	public p3;
-	public p4;
-	public relay_0;
-	public relay_1;
-	public relay_2;
-	public relay_3;
-	public relay_4;
-	public relay_5;
-	public relay_6;
-	public relay_7;
-	public relay_8;
-	public relay_9;
-	public relay_10;
-	public relay_11;
+	public p3: PointF;
+	public p4: PointF;
+	public relay_0: PointF;
+	public relay_1: PointF;
+	public relay_2: PointF;
+	public relay_3: PointF;
+	public relay_4: PointF;
+	public relay_5: PointF;
+	public relay_6: PointF;
+	public relay_7: PointF;
+	public relay_8: PointF;
+	public relay_9: PointF;
+	public relay_10: PointF;
+	public relay_11: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -50,7 +50,7 @@ class RelaySymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* Angle from center to p2 */
-	public phi;
+	public phi: number;
 	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
 	/* The spacing of the nodes in the y-direction, divided by 2 */
@@ -69,10 +69,10 @@ class RelaySymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

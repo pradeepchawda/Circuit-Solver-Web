@@ -31,28 +31,28 @@ class SinglePoleSingleThrowSymbol {
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
-	public spst_0;
-	public spst_1;
-	public spst_2;
-	public spst_3;
-	public spst_4;
-	public spst_5;
-	public spst_6;
-	public spst_7;
-	public spst_8;
-	public spst_9;
-	public spst_10;
-	public spst_11;
-	public spst_12;
-	public spst_13;
-	public spst_14;
-	public spst_15;
-	public spst_16;
-	public spst_17;
-	public spst_18;
-	public spst_19;
-	public spst_20;
-	public spst_21;
+	public spst_0: PointF;
+	public spst_1: PointF;
+	public spst_2: PointF;
+	public spst_3: PointF;
+	public spst_4: PointF;
+	public spst_5: PointF;
+	public spst_6: PointF;
+	public spst_7: PointF;
+	public spst_8: PointF;
+	public spst_9: PointF;
+	public spst_10: PointF;
+	public spst_11: PointF;
+	public spst_12: PointF;
+	public spst_13: PointF;
+	public spst_14: PointF;
+	public spst_15: PointF;
+	public spst_16: PointF;
+	public spst_17: PointF;
+	public spst_18: PointF;
+	public spst_19: PointF;
+	public spst_20: PointF;
+	public spst_21: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -75,10 +75,10 @@ class SinglePoleSingleThrowSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

@@ -32,12 +32,12 @@ class DifferentiatorModuleSymbol {
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
-	public diff_0;
-	public diff_1;
-	public diff_2;
-	public diff_3;
-	public diff_4;
-	public diff_5;
+	public diff_0: PointF;
+	public diff_1: PointF;
+	public diff_2: PointF;
+	public diff_3: PointF;
+	public diff_4: PointF;
+	public diff_5: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -62,10 +62,10 @@ class DifferentiatorModuleSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

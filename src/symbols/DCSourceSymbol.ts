@@ -32,17 +32,17 @@ class DCSourceSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* DCSource point 0 */
-	public dc_0;
+	public dc_0: PointF;
 	/* DCSource point 1 */
-	public dc_1;
+	public dc_1: PointF;
 	/* DCSource point 2 */
-	public dc_2;
+	public dc_2: PointF;
 	/* DCSource point 3 */
-	public dc_3;
+	public dc_3: PointF;
 	/* DCSource point 4 */
-	public dc_4;
+	public dc_4: PointF;
 	/* DCSource point 5 */
-	public dc_5;
+	public dc_5: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -65,10 +65,10 @@ class DCSourceSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

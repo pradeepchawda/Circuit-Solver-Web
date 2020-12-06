@@ -34,7 +34,7 @@ class ZoomWindow {
 	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public option_1_paint: Paint;
 	/* This paint is used for drawing the "fill" that the component is comprised of. */
-	public option_2_paint: Paint;
+	public option_2_paint: Paint; 
 	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public option_3_paint: Paint;
 	public options: OPTIONS_T;

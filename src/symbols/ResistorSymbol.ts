@@ -32,23 +32,23 @@ class ResistorSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* Resistor point 0 */
-	public res_0;
+	public res_0: PointF;
 	/* Resistor point 1 */
-	public res_1;
+	public res_1: PointF;
 	/* Resistor point 2 */
-	public res_2;
+	public res_2: PointF;
 	/* Resistor point 3 */
-	public res_3;
+	public res_3: PointF;
 	/* Resistor point 4 */
-	public res_4;
+	public res_4: PointF;
 	/* Resistor point 5 */
-	public res_5;
+	public res_5: PointF;
 	/* Resistor point 6 */
-	public res_6;
+	public res_6: PointF;
 	/* Resistor point 7 */
-	public res_7;
+	public res_7: PointF;
 	/* Resistor point 8 */
-	public res_8;
+	public res_8: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -71,10 +71,10 @@ class ResistorSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

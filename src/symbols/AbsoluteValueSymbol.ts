@@ -32,11 +32,11 @@ class AbsoluteValueSymbol {
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
-	public gain_0;
-	public gain_1;
-	public gain_2;
-	public gain_3;
-	public gain_4;
+	public gain_0: PointF;
+	public gain_1: PointF;
+	public gain_2: PointF;
+	public gain_3: PointF;
+	public gain_4: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -59,12 +59,12 @@ class AbsoluteValueSymbol {
 	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint_alt: Paint;
 	/* Text background paint */
-	public text_background_paint : Paint;
-	public FLAG_ADD_ELEMENT : boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public text_background_paint: Paint;
+	public FLAG_ADD_ELEMENT: boolean;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

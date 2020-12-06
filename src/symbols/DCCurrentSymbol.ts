@@ -32,13 +32,13 @@ class DCCurrentSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* DCCurrent point 0 */
-	public dcc_0;
+	public dcc_0: PointF;
 	/* DCCurrent point 1 */
-	public dcc_1;
+	public dcc_1: PointF;
 	/* DCCurrent point 2 */
-	public dcc_2;
+	public dcc_2: PointF;
 	/* DCCurrent point 3 */
-	public dcc_3;
+	public dcc_3: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -61,10 +61,10 @@ class DCCurrentSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

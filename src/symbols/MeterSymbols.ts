@@ -20,14 +20,14 @@
  ***********************************************************************/
 class MeterSymbols {
 	public bounds: RectF;
-	public METER_VOLTAGE;
-	public METER_CURRENT;
-	public METER_RESISTANCE;
-	public METER_POWER;
-	public STYLE_0;
-	public STYLE_1;
-	public meter_type;
-	public meter_paint;
+	public METER_VOLTAGE: number;
+	public METER_CURRENT: number;
+	public METER_RESISTANCE: number;
+	public METER_POWER: number;
+	public STYLE_0: number;
+	public STYLE_1: number;
+	public meter_type: number;
+	public meter_paint: Paint;
 	public points: Array<PointF>;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;

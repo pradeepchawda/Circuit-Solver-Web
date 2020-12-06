@@ -27,10 +27,10 @@ class SinglePoleDoubleThrowSymbol {
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	public p3;
-	public spdt_0;
-	public spdt_1;
-	public spdt_2;
+	public p3: PointF;
+	public spdt_0: PointF;
+	public spdt_1: PointF;
+	public spdt_2: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -40,7 +40,7 @@ class SinglePoleDoubleThrowSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* Angle from center to p2 */
-	public phi;
+	public phi: number;
 	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
 	/* The spacing of the nodes in the y-direction, divided by 2 */
@@ -59,10 +59,10 @@ class SinglePoleDoubleThrowSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

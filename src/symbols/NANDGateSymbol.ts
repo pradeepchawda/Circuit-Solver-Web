@@ -27,16 +27,16 @@ class NANDGateSymbol {
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	public p3;
-	public nand_0;
-	public nand_1;
-	public nand_2;
-	public nand_3;
-	public nand_4;
-	public nand_5;
-	public nand_6;
-	public nand_7;
-	public nand_8;
+	public p3: PointF;
+	public nand_0: PointF;
+	public nand_1: PointF;
+	public nand_2: PointF;
+	public nand_3: PointF;
+	public nand_4: PointF;
+	public nand_5: PointF;
+	public nand_6: PointF;
+	public nand_7: PointF;
+	public nand_8: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -46,7 +46,7 @@ class NANDGateSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* Angle from center to p2 */
-	public phi;
+	public phi: number;
 	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
 	/* The spacing of the nodes in the y-direction, divided by 2 */
@@ -65,10 +65,10 @@ class NANDGateSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

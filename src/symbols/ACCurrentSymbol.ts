@@ -32,13 +32,13 @@ class ACCurrentSymbol {
 	/* Angle from p1 to p2 */
 	public theta: number;
 	/* Resistor point 0 */
-	public acc_0;
+	public acc_0: PointF;
 	/* Resistor point 1 */
-	public acc_1;
+	public acc_1: PointF;
 	/* Resistor point 2 */
-	public acc_2;
+	public acc_2: PointF;
 	/* Resistor point 3 */
-	public acc_3;
+	public acc_3: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -60,14 +60,14 @@ class ACCurrentSymbol {
 	public text_paint: Paint;
 	/* Text background paint */
 	public text_background_paint: Paint;
-	public sine_wave_p1;
-	public sine_wave_p2;
-	public sine_wave;
+	public sine_wave_p1: PointF;
+	public sine_wave_p2: PointF;
+	public sine_wave: SineWave;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

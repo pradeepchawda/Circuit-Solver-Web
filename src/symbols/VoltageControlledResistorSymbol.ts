@@ -27,32 +27,28 @@ class VoltageControlledResistorSymbol {
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	public p3;
-	public vcr_0;
-	public vcr_1;
-	public vcr_2;
-	public vcr_3;
-	/**
-	 * [vcr_4 description]
-	 * @type {PointF}
-	 */
-	public vcr_4;
+	public p3: PointF;
+	public vcr_0: PointF;
+	public vcr_1: PointF;
+	public vcr_2: PointF;
+	public vcr_3: PointF;
+	public vcr_4: PointF;
 	/* Resistor point 1 */
-	public vcr_6;
+	public vcr_6: PointF;
 	/* Resistor point 2 */
-	public vcr_5;
+	public vcr_5: PointF;
 	/* Resistor point 3 */
-	public vcr_7;
+	public vcr_7: PointF;
 	/* Resistor point 4 */
-	public vcr_8;
+	public vcr_8: PointF;
 	/* Resistor point 5 */
-	public vcr_9;
+	public vcr_9: PointF;
 	/* Resistor point 6 */
-	public vcr_10;
+	public vcr_10: PointF;
 	/* Resistor point 7 */
-	public vcr_11;
+	public vcr_11: PointF;
 	/* Resistor point 8 */
-	public vcr_12;
+	public vcr_12: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -62,7 +58,7 @@ class VoltageControlledResistorSymbol {
 	/* Angle from p1 to p3 */
 	public theta: number;
 	/* Angle from center to p2 */
-	public phi;
+	public phi: number;
 	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
 	/* The spacing of the nodes in the y-direction, divided by 2 */
@@ -81,10 +77,10 @@ class VoltageControlledResistorSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

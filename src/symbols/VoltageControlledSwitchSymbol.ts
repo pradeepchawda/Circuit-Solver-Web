@@ -27,12 +27,12 @@ class VoltageControlledSwitchSymbol {
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	public p3;
-	public vcsw_0;
-	public vcsw_1;
-	public vcsw_2;
-	public vcsw_4;
-	public vcsw_3;
+	public p3: PointF;
+	public vcsw_0: PointF;
+	public vcsw_1: PointF;
+	public vcsw_2: PointF;
+	public vcsw_3: PointF;
+	public vcsw_4: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -42,7 +42,7 @@ class VoltageControlledSwitchSymbol {
 	/* Angle from p1 to p3 */
 	public theta: number;
 	/* Angle from center to p2 */
-	public phi;
+	public phi: number;
 	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
 	/* The spacing of the nodes in the y-direction, divided by 2 */
@@ -61,10 +61,10 @@ class VoltageControlledSwitchSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

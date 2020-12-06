@@ -31,18 +31,18 @@ class LightEmittingDiodeSymbol {
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
-	public led_0;
-	public led_1;
-	public led_2;
-	public led_3;
-	public led_4;
-	public led_5;
-	public led_6;
-	public led_7;
-	public led_8;
-	public led_9;
-	public led_10;
-	public led_11;
+	public led_0: PointF;
+	public led_1: PointF;
+	public led_2: PointF;
+	public led_3: PointF;
+	public led_4: PointF;
+	public led_5: PointF;
+	public led_6: PointF;
+	public led_7: PointF;
+	public led_8: PointF;
+	public led_9: PointF;
+	public led_10: PointF;
+	public led_11: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -65,10 +65,10 @@ class LightEmittingDiodeSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

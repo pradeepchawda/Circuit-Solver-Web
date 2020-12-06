@@ -31,12 +31,12 @@ class ZenerDiodeSymbol {
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
-	public zen_0;
-	public zen_1;
-	public zen_2;
-	public zen_3;
-	public zen_4;
-	public zen_5;
+	public zen_0: PointF;
+	public zen_1: PointF;
+	public zen_2: PointF;
+	public zen_3: PointF;
+	public zen_4: PointF;
+	public zen_5: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -59,10 +59,10 @@ class ZenerDiodeSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {

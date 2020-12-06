@@ -32,15 +32,15 @@ class LowPassFilterSymbol {
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
-	public lpf_0;
-	public lpf_1;
-	public lpf_2;
-	public lpf_3;
-	public lpf_4;
-	public lpf_5;
-	public lpf_6;
-	public lpf_7;
-	public lpf_8;
+	public lpf_0: PointF;
+	public lpf_1: PointF;
+	public lpf_2: PointF;
+	public lpf_3: PointF;
+	public lpf_4: PointF;
+	public lpf_5: PointF;
+	public lpf_6: PointF;
+	public lpf_7: PointF;
+	public lpf_8: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -65,10 +65,10 @@ class LowPassFilterSymbol {
 	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
-	public TAG;
-	public DRAW_TAG;
-	public text_bounds;
-	public HEIGHT_RATIO;
+	public TAG: string;
+	public DRAW_TAG: boolean;
+	public text_bounds: RectF;
+	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {
