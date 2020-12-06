@@ -36,7 +36,6 @@ class VoltageControlledSwitchSymbol {
         this.vcsw_0 = new PointF(0, 0);
         this.vcsw_1 = new PointF(0, 0);
         this.vcsw_2 = new PointF(0, 0);
-        this.vcsw_2 = new PointF(0, 0);
         this.vcsw_4 = new PointF(0, 0);
         this.vcsw_3 = new PointF(0, 0);
         /* The center (x-coord) of the bounds */

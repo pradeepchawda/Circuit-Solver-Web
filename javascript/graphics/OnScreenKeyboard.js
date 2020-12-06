@@ -34,7 +34,7 @@ class OnScreenKeyboard {
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.line_paint.set_color(global.GENERAL_BLACK_COLOR);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -45,7 +45,7 @@ class OnScreenKeyboard {
         this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
         this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
-        this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.bounds_paint.set_font(global.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
         this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
@@ -56,7 +56,7 @@ class OnScreenKeyboard {
         this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
         this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.fill_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -67,7 +67,7 @@ class OnScreenKeyboard {
         this.fill_paint_alt.set_paint_join(this.fill_paint_alt.join.MITER);
         this.fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.fill_paint_alt.set_color(global.GENERAL_GRAY_COLOR);
-        this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.fill_paint_alt.set_font(global.DEFAULT_FONT);
         this.fill_paint_alt.set_alpha(255);
         this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
@@ -308,15 +308,15 @@ class OnScreenKeyboard {
             this.load_keyboard();
             /* Resize the stroke widths and the text sizes. */
             this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-            this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
             this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
             this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
             this.fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
         }
     }
     mouse_down() {

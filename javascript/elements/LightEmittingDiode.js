@@ -126,7 +126,7 @@ class LightEmittingDiode {
         this.GMIN_START = 12;
         this.DAMPING_SAFETY_FACTOR = 0.97;
         /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
+  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;
@@ -782,7 +782,6 @@ class LightEmittingDiode {
         else {
             alpha = 1;
         }
-        //TODO: Needs new type...
         color_space = ['rgb(' + R * 100 + ',' + G * 100 + ',' + B * 100 + ')', alpha];
         return color_space;
     }

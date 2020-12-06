@@ -75,13 +75,15 @@ class ElectricalNode {
             node_space_y *= 1.25;
         }
         this.bounds = new RectF(this.location.x - node_space_x, this.location.y - node_space_y, this.location.x + node_space_x, this.location.y + node_space_y);
+        this.loc_x_precalc = this.row * global.settings.INV_SQRT_M_1;
+        this.loc_y_precalc = this.column * global.settings.INV_SQRT_M_1;
     }
     /* A resizing handler, it will compute the new locations of the nodes as well as handle any zooming
   the user does. */
     resize(n_x, n_y, m_n_x, m_n_y) {
         if (global.SIGNAL_BUILD_ELEMENT) {
-            this.location.x = workspace.bounds.left + this.row * (workspace.bounds.get_width() * global.settings.INV_SQRT_M_1);
-            this.location.y = workspace.bounds.top + this.column * (workspace.bounds.get_height() * global.settings.INV_SQRT_M_1);
+            this.location.x = workspace.bounds.left + this.loc_x_precalc * workspace.bounds.get_width();
+            this.location.y = workspace.bounds.top + this.loc_y_precalc * workspace.bounds.get_height();
             if (!global.MOBILE_MODE) {
                 this.bounds.set_bounds(this.location.x - n_x, this.location.y - n_y, this.location.x + n_x, this.location.y + n_y);
             }

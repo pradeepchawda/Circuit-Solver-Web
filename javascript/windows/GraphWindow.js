@@ -32,6 +32,9 @@ class GraphWindow {
         this.bounds.right = view_port.right;
         this.bounds.top = menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
         this.bounds.bottom = view_port.bottom;
+        this.width = 1;
+        this.height = 1;
+        this.trim = 1;
         /* Padding for the graph window. */
         this.PADDING = global.CANVAS_STROKE_WIDTH_5;
         if (global.MOBILE_MODE) {

@@ -83,7 +83,7 @@ class VoltageControlledResistorSymbol {
 	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
-	
+
 	constructor(rect: RectF, index: number, page: number) {
 		/* Index of the bounds (Inside New Element Window) */
 		this.index = index;
@@ -101,10 +101,6 @@ class VoltageControlledResistorSymbol {
 		this.vcr_1 = new PointF(0, 0);
 		this.vcr_2 = new PointF(0, 0);
 		this.vcr_3 = new PointF(0, 0);
-		/**
-		 * [vcr_4 description]
-		 * @type {PointF}
-		 */
 		this.vcr_4 = new PointF(0, 0);
 		/* Resistor point 1 */
 		this.vcr_6 = new PointF(0, 0);

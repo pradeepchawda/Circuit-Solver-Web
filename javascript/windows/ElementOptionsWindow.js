@@ -27,8 +27,12 @@ class ElementOptionsWindow {
         this.BUTTON_WIDTH_RATIO = 0.3;
         /* This controls the height of the buttons relative to the height of the window */
         this.BUTTON_HEIGHT_RATIO = 0.1;
-        /* The amount of padding around elements, relative to the width and height of the window. */
-        this.PADDING = 0.0175;
+        if (global.MOBILE_MODE === false) {
+            this.PADDING = 0.0175;
+        }
+        else {
+            this.PADDING = 0.0125;
+        }
         /* The amount of pre-loaded attributes. There should be no more than 5 for this application. */
         this.ATTRIBUTE_SIZE = 6;
         /* Used to quick select. */

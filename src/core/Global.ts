@@ -750,8 +750,6 @@ class Global {
 		}
 		this.ZERO_PT_FIVE = 0.5;
 		this.ZERO = 0 >> 0;
-		this.node_line_buffer = [];
-		this.node_line_buffer_index = 0;
 		/* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
 		this.ZOOM_FACTOR = 1.085;
 		/* These are used a relative metric to know how much to change the view of the
@@ -980,6 +978,7 @@ class Global {
 		this.mouse_move_event = this.NULL;
 		this.mouse_up_event = this.NULL;
 		this.mouse_wheel_event = this.NULL;
+		this.mouse_double_click_event = this.NULL;
 		/* Storing key events into queue's to prevent keystrokes from being missed. */
 		this.mouse_down_event_queue = [];
 		this.mouse_up_event_queue = [];
@@ -2162,6 +2161,8 @@ class Global {
 		let indexer: number = 0;
 		this.circle_buffer = [];
 		this.line_buffer = [];
+		this.node_line_buffer = [];
+		this.node_line_buffer_index = 0;
 		this.SYSTEM_OPTION_LANGUAGE = indexer++;
 		this.SYSTEM_OPTION_AUTOMATIC_TIMESTEP = indexer++;
 		this.SYSTEM_OPTION_SHORTCUT_HINTS = indexer++;
@@ -2494,7 +2495,7 @@ class Global {
 		this.max_general_number = 0;
 	}
 	ColorNameToHex(color: string) {
-		var colors = {
+		var colors: COLOR_ARRAY_T = {
 			'aliceblue': '#f0f8ff',
 			'antiquewhite': '#faebd7',
 			'aqua': '#00ffff',
@@ -2637,7 +2638,9 @@ class Global {
 			'yellow': '#ffff00',
 			'yellowgreen': '#9acd32'
 		};
-		if (typeof colors[color.toLowerCase()] != 'undefined') return colors[color.toLowerCase()];
+		if (typeof colors[color.toLowerCase()] != 'undefined') {
+			return colors[color.toLowerCase()];
+		}
 		return color;
 	}
 	sine(theta: number): number {

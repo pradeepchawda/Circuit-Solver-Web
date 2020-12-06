@@ -67,7 +67,7 @@ class VoltageControlledSwitchSymbol {
 	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
-	
+
 	constructor(rect: RectF, index: number, page: number) {
 		/* Index of the bounds (Inside New Element Window) */
 		this.index = index;
@@ -83,7 +83,6 @@ class VoltageControlledSwitchSymbol {
 		this.p3 = new PointF(this.bounds.right, this.bounds.get_center_y());
 		this.vcsw_0 = new PointF(0, 0);
 		this.vcsw_1 = new PointF(0, 0);
-		this.vcsw_2 = new PointF(0, 0);
 		this.vcsw_2 = new PointF(0, 0);
 		this.vcsw_4 = new PointF(0, 0);
 		this.vcsw_3 = new PointF(0, 0);

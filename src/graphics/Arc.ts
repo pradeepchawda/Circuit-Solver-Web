@@ -30,6 +30,7 @@ class Arc {
 	public IS_TRANSFORM_SCALED: boolean;
 
 	constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
+		this.amplitude = amplitude;
 		/* A paint object to paint the arc with. */
 		this.arc_paint = new Paint();
 		this.arc_paint.set_paint_style(this.arc_paint.style.STROKE);

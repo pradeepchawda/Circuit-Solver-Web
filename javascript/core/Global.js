@@ -27,7 +27,7 @@ class Global {
             max: 5,
             completed: false
         };
-        this.VERSION_TAG = 'BETA-1.0.93';
+        this.VERSION_TAG = 'BETA-1.0.95';
         if (this.MOBILE_MODE) {
             /* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
             this.workspace_zoom_scale = 2.5;
@@ -46,8 +46,6 @@ class Global {
         }
         this.ZERO_PT_FIVE = 0.5;
         this.ZERO = 0 >> 0;
-        this.node_line_buffer = [];
-        this.node_line_buffer_index = 0;
         /* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
         this.ZOOM_FACTOR = 1.085;
         /* These are used a relative metric to know how much to change the view of the
@@ -276,6 +274,7 @@ class Global {
         this.mouse_move_event = this.NULL;
         this.mouse_up_event = this.NULL;
         this.mouse_wheel_event = this.NULL;
+        this.mouse_double_click_event = this.NULL;
         /* Storing key events into queue's to prevent keystrokes from being missed. */
         this.mouse_down_event_queue = [];
         this.mouse_up_event_queue = [];
@@ -1458,6 +1457,8 @@ class Global {
         let indexer = 0;
         this.circle_buffer = [];
         this.line_buffer = [];
+        this.node_line_buffer = [];
+        this.node_line_buffer_index = 0;
         this.SYSTEM_OPTION_LANGUAGE = indexer++;
         this.SYSTEM_OPTION_AUTOMATIC_TIMESTEP = indexer++;
         this.SYSTEM_OPTION_SHORTCUT_HINTS = indexer++;
@@ -1933,8 +1934,9 @@ class Global {
             'yellow': '#ffff00',
             'yellowgreen': '#9acd32'
         };
-        if (typeof colors[color.toLowerCase()] != 'undefined')
+        if (typeof colors[color.toLowerCase()] != 'undefined') {
             return colors[color.toLowerCase()];
+        }
         return color;
     }
     sine(theta) {

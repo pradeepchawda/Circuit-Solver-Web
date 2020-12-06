@@ -23,7 +23,7 @@ class SimulationManager {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     constructor() {
         /* The amount of unique nodes in the system. Each one will have a voltage associated with it
-        after we solve the modified nodal analysis matrix. */
+    after we solve the modified nodal analysis matrix. */
         this.NODE_SIZE = 0;
         /* Essentially keeps track of the independent / dependent sources in the system. */
         this.OFFSET = 0;
@@ -45,7 +45,7 @@ class SimulationManager {
         this.FIRST_X_MATRIX_COPY = true;
         this.FIST_X_MATRIX_SOLUTION = false;
         /* Array Containing all time varying sources and their key parameters. This array will be
-        used to determine the best time-step for the system. */
+    used to determine the best time-step for the system. */
         this.TIME_DATA = [];
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -100,7 +100,7 @@ class SimulationManager {
         /* Start the simulation back at time 0 */
         global.simulation_time = 0;
         /* Reset the flag to true for first instance. (So we can compute when we get into that phase).
-        Also set the iterator back to zero! */
+    Also set the iterator back to zero! */
         this.CONTINUE_SOLVING = true;
         this.SOLUTIONS_READY = false;
         this.ITERATOR = 0;
@@ -914,13 +914,13 @@ class SimulationManager {
         }
     }
     /* Check to see if the LED's should be on! */
-    led_turn_on_check() {
+    led_check() {
         for (var i = 0; i < leds.length; i++) {
             leds[i].turn_on_check();
         }
     }
     /* Alternate convergence algorithm */
-    alternative_convergence() {
+    convergence_check() {
         /* Run the other convergence algorithm */
         if (this.NODE_SIZE > 0 && matrix_x.length === matrix_x_copy.length) {
             if (this.FIRST_ERROR_CHECK) {
@@ -981,59 +981,31 @@ class SimulationManager {
             }
         }
     }
-    non_linear_check() {
-        let convergence = true;
+    non_linear_update() {
         /* #INSERT_GENERATE_NON_LINEAR_CHECK# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < diodes.length; i++) {
             diodes[i].update();
-            if (convergence) {
-                convergence = diodes[i].is_converged();
-            }
         }
         for (var i = 0; i < leds.length; i++) {
             leds[i].update();
-            if (convergence) {
-                convergence = leds[i].is_converged();
-            }
         }
         for (var i = 0; i < zeners.length; i++) {
             zeners[i].update();
-            if (convergence) {
-                convergence = zeners[i].is_converged();
-            }
         }
         for (var i = 0; i < nmosfets.length; i++) {
             nmosfets[i].update();
-            if (convergence) {
-                convergence = nmosfets[i].is_converged();
-            }
         }
         for (var i = 0; i < pmosfets.length; i++) {
             pmosfets[i].update();
-            if (convergence) {
-                convergence = pmosfets[i].is_converged();
-            }
         }
         for (var i = 0; i < npns.length; i++) {
             npns[i].update();
-            if (convergence) {
-                convergence = npns[i].is_converged();
-            }
         }
         for (var i = 0; i < pnps.length; i++) {
             pnps[i].update();
-            if (convergence) {
-                convergence = pnps[i].is_converged();
-            }
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        if (!convergence) {
-            this.CONTINUE_SOLVING = true;
-        }
-        else {
-            this.CONTINUE_SOLVING = false;
-        }
     }
     update_reactive_elements() {
         /* #INSERT_GENERATE_UPDATE_REACTIVE_ELEMENTS_TEMPLATE_II# */
@@ -1083,7 +1055,7 @@ class SimulationManager {
                 this.CONTINUE_SOLVING = true;
                 this.ITERATOR = 0;
                 this.update_vir();
-                this.led_turn_on_check();
+                this.led_check();
                 global.simulation_time += global.time_step;
                 this.SIMULATION_STEP = 0;
             }
@@ -1150,11 +1122,11 @@ class SimulationManager {
             }
             this.SOLUTIONS_READY = true;
             /* Check non-linear elements */
-            this.non_linear_check();
+            this.non_linear_update();
+            /* Run the alternative convergence algorithm */
+            this.convergence_check();
             /* Increment the iterator */
             this.ITERATOR++;
-            /* Run the alternative convergence algorithm */
-            this.alternative_convergence();
             if (!this.CONTINUE_SOLVING) {
                 this.SIMULATION_STEP++;
             }

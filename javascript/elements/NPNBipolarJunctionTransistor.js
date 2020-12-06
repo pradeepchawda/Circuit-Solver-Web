@@ -139,7 +139,7 @@ class NPNBipolarJunctionTransistor {
         this.GMIN_START = 12;
         this.DAMPING_SAFETY_FACTOR = 0.97;
         /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
+  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;
@@ -553,7 +553,7 @@ class NPNBipolarJunctionTransistor {
                     else {
                         if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
-                            global.selected_type = global.NULL;
+                            global.selected_type = -1;
                             global.selected_bounds = global.NULL;
                             global.selected_properties = global.NULL;
                             global.selected_wire_style = global.NULL;
@@ -596,7 +596,7 @@ class NPNBipolarJunctionTransistor {
     remove_selection() {
         if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
-            global.selected_type = global.NULL;
+            global.selected_type = -1;
             global.selected_bounds = global.NULL;
             global.selected_properties = global.NULL;
             global.selected_wire_style = global.NULL;

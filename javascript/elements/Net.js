@@ -95,7 +95,7 @@ class Net {
         /* This is to keep track of the simulation id's */
         this.simulation_id = 0;
         /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
+  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;
@@ -290,7 +290,7 @@ class Net {
                     else {
                         if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
                             global.selected_id = global.NULL;
-                            global.selected_type = global.NULL;
+                            global.selected_type = -1;
                             global.selected_bounds = global.NULL;
                             global.selected_properties = global.NULL;
                             global.selected_wire_style = global.NULL;
@@ -333,7 +333,7 @@ class Net {
     remove_selection() {
         if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
             global.selected_id = global.NULL;
-            global.selected_type = global.NULL;
+            global.selected_type = -1;
             global.selected_bounds = global.NULL;
             global.selected_properties = global.NULL;
             global.selected_wire_style = global.NULL;

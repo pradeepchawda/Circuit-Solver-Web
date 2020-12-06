@@ -66,13 +66,16 @@ class SettingsWindow {
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public toggle_switch_button: ToggleSwitch;
-	
+
 	constructor() {
 		this.TITLE_HEIGHT_RATIO = 0.1;
 		this.BUTTON_WIDTH_RATIO = 0.3;
 		this.BUTTON_HEIGHT_RATIO = 0.1;
-		/* The amount of padding around elements, relative to the width and height of the window. */
-		this.PADDING = 0.0175;
+		if (global.MOBILE_MODE === false) {
+			this.PADDING = 0.0175;
+		} else {
+			this.PADDING = 0.0125;
+		}
 		/* The amount of pre-loaded attributes. There should be no more than 5 for this application. */
 		this.ATTRIBUTE_SIZE = 6;
 		if (global.MOBILE_MODE === false) {

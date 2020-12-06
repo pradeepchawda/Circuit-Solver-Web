@@ -55,7 +55,6 @@ class VoltageControlledSwitch {
         this.vcsw_0 = new PointF(0, 0);
         this.vcsw_1 = new PointF(0, 0);
         this.vcsw_2 = new PointF(0, 0);
-        this.vcsw_2 = new PointF(0, 0);
         this.vcsw_4 = new PointF(0, 0);
         this.vcsw_3 = new PointF(0, 0);
         /* The center (x-coord) of the bounds */
@@ -118,7 +117,7 @@ class VoltageControlledSwitch {
         /* This is to keep track of the simulation id's */
         this.simulation_id = 0;
         /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
+  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;
