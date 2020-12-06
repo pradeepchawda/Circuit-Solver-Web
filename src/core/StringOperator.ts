@@ -31,7 +31,7 @@ class StringOperator {
 	public valid_characters: Array<string>;
 	public NEGATIVE_SIGN: number;
 	public DECIMAL_POINT: number;
-	
+
 	constructor() {
 		this.bases = [-18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18];
 		this.prefix = ['a', 'f', 'p', 'n', 'u', 'm', '', 'k', 'M', 'G', 'T', 'P'];

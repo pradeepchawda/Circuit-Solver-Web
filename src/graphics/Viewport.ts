@@ -41,7 +41,7 @@ class Viewport {
 	public top: number;
 	public right: number;
 	public bottom: number;
-	
+
 	constructor(aspect_ratio: number, screen_width: number, screen_height: number) {
 		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();

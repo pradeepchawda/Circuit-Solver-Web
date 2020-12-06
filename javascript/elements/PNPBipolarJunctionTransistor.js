@@ -139,7 +139,7 @@ class PNPBipolarJunctionTransistor {
         this.GMIN_START = 12;
         this.DAMPING_SAFETY_FACTOR = 0.97;
         /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
+  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;

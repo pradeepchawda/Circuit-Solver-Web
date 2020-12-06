@@ -126,7 +126,7 @@ class ZenerDiode {
         /* This is used to limit the difference between the zener set point and the negative "knee" */
         this.ZENER_MARGIN_SAFETY_FACTOR = 0.85;
         /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
+  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;

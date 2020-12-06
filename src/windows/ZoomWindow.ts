@@ -34,7 +34,7 @@ class ZoomWindow {
 	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public option_1_paint: Paint;
 	/* This paint is used for drawing the "fill" that the component is comprised of. */
-	public option_2_paint: Paint; 
+	public option_2_paint: Paint;
 	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public option_3_paint: Paint;
 	public options: OPTIONS_T;
@@ -48,7 +48,7 @@ class ZoomWindow {
 	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
-	
+
 	constructor() {
 		/* The padding for the window */
 		this.PADDING = 0.025;

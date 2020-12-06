@@ -40,7 +40,7 @@ class Element3 {
 	/* A factor used to make sure the node mapping algorithm doesn't succomb to javascripts
 inprecise nature. */
 	public FUDGE_FACTOR: number;
-	
+
 	constructor(id: number, type: number, properties: ELEMENT_PROPERTY_T) {
 		/* Node 1 id */
 		this.n1 = -1;

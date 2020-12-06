@@ -46,7 +46,7 @@ value. */
 	public INITIAL_RESIZE_COUNTER: number;
 	public INITIAL_RESIZE_COUNTER_MAX: number;
 	public RELOAD_BOTTOM_PATH: boolean;
-	
+
 	constructor() {
 		/* A flag to dictate if we draw the bottom path or not. */
 		this.DRAW_BOTTOM_PATH = true;

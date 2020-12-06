@@ -48,8 +48,7 @@ class Global {
         this.ZERO = 0 >> 0;
         /* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
         this.ZOOM_FACTOR = 1.085;
-        /* These are used a relative metric to know how much to change the view of the
-    workspace when a zooming event takes place */
+        /* These are used a relative metric to know how much to change the view of the workspace when a zooming event takes place */
         this.natural_width = 0;
         this.natural_height = 0;
         /* User settings, very handy to make them global. */

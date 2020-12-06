@@ -31,7 +31,7 @@ class MeterSymbols {
 	public points: Array<PointF>;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
-	
+
 	constructor() {
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.METER_VOLTAGE = 0;

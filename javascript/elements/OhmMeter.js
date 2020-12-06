@@ -119,15 +119,15 @@ class OhmMeter {
         this.temp_color = global.GENERAL_RED_COLOR;
         this.build_element();
         /* A flag to detail when a meter trace will be resized. This is because the resize
-        event is being called continuously for the elements but it's wasteful for the
-        traces. */
+    event is being called continuously for the elements but it's wasteful for the
+    traces. */
         this.RESIZE_METER_TRACE = false;
         this.SCOPE_INDEX_CHECK = -1;
         this.wire_reference = [];
         /* This is to keep track of the simulation id's */
         this.simulation_id = 0;
         /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-      or overlapped)*/
+  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;

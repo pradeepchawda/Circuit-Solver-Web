@@ -1,3 +1,3 @@
 interface Window {
-  JsInterface: any;
+	JsInterface: any;
 }

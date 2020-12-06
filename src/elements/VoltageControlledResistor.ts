@@ -25,7 +25,7 @@ class VoltageControlledResistor {
 	/* Create a new rectangle for the bounds of this component */
 	public bounds: RectF;
 	/* Inititalize the element2 class that will hold the basic data about our component */
-	public elm;
+	public elm: Element3;
 	public p1: PointF;
 	public p2: PointF;
 	public p3: PointF;
@@ -65,9 +65,9 @@ class VoltageControlledResistor {
 	public connect2_x: number;
 	public connect2_y: number;
 	/* Angle from p1 to p3 minus 90 degrees */
-	public theta_m90;
+	public theta_m90: number;
 	/* Angle from p1 to p3 */
-	public theta;
+	public theta: number;
 	/* Angle from center to p2 */
 	public phi: number;
 	public grid_point: Array<number>;
@@ -896,20 +896,20 @@ or overlapped)*/
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['Output Resistance'] = global.settings.R_MAX;

@@ -42,7 +42,7 @@ class Workspace {
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;
 	public GRID_MOVED: boolean;
-	
+
 	constructor(left: number, top: number, right: number, bottom: number, scale: number) {
 		/* Flag to make sure that the bounds are resized before we draw it to the screen. */
 		this.FIRST_RESIZE_FLAG = false;
@@ -155,21 +155,21 @@ class Workspace {
 		/* We changed the bounds, we must re-compute the node spaces (x and y) */
 		global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
 		global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-/* #INSERT_METER_RESIZE_TRACE# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-for (var i : number = 0; i < voltmeters.length; i++) {
-      voltmeters[i].RESIZE_METER_TRACE = true;
-    }
-for (var i : number = 0; i < ohmmeters.length; i++) {
-      ohmmeters[i].RESIZE_METER_TRACE = true;
-    }
-for (var i : number = 0; i < ammeters.length; i++) {
-      ammeters[i].RESIZE_METER_TRACE = true;
-    }
-for (var i : number = 0; i < wattmeters.length; i++) {
-      wattmeters[i].RESIZE_METER_TRACE = true;
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_METER_RESIZE_TRACE# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		for (var i: number = 0; i < voltmeters.length; i++) {
+			voltmeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < ohmmeters.length; i++) {
+			ohmmeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < ammeters.length; i++) {
+			ammeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < wattmeters.length; i++) {
+			wattmeters[i].RESIZE_METER_TRACE = true;
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	/* This is for a translation event, it will just shift the bounds by dx and dy*/
 	workspace_translate_bounds(dx: number, dy: number): void {

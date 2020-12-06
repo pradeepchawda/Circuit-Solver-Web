@@ -21,7 +21,7 @@
  ***********************************************************************/
 class Digit {
 	public num: number;
-	
+
 	constructor(setter: number) {
 		this.num = setter;
 	}

@@ -61,7 +61,7 @@ outer bounds)*/
 	public trace_stroke_paint: Paint;
 	/* Trace Fill Paint  */
 	public trace_fill_paint: Paint;
-	
+
 	constructor(x_len: number, y_len: number, ratio: number) {
 		/* The trace path of the trace itself. */
 		this.trace_path = new Path();
