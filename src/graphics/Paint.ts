@@ -62,6 +62,7 @@ class Paint {
 	private last_font: string;
 	private last_text_size: number;
 	private metric: TextMetrics;
+	
 	constructor() {
 		/* A paint style to standardize the different styles available in the html canvas */
 		this.style = new PaintStyle();

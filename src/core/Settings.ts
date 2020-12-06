@@ -107,6 +107,7 @@ operating point analysis */
 	public MIN_TIME_CONSTANT: number;
 	/* The minimum time_constant   */
 	public MAX_TIME_CONSTANT: number;
+	
 	constructor() {
 		/* A flag to make the camra view a perfect square. */
 		this.WORKSPACE_PERFECT_SQUARE = true;

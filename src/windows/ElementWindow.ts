@@ -112,6 +112,7 @@ class ElementWindow {
 	public tptz_symbol: TPTZModuleSymbol;
 	public transformer_symbol: TransformerSymbol;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
+	
 	constructor(left: number, top: number, right: number, bottom: number) {
 		this.ENABLE_MOUSE_WHEEL = true;
 		this.positions = [];

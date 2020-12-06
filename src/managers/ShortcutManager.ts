@@ -42,7 +42,8 @@ class ShortcutManager {
   public command: string;
   public shift: boolean;
   public caps: boolean;
-  constructor() {
+  
+	constructor() {
     this.SHORTCUT_COPY = global.KEY_CODE_C;
     this.SHORTCUT_PASTE = global.KEY_CODE_V;
     this.SHORTCUT_UNDO = global.KEY_CODE_Z;

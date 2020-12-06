@@ -24,6 +24,7 @@ class NodeNetwork {
 	public references: Array<number>;
 	public lowest: number;
 	public general_boolean: boolean;
+	
 	constructor(node_a: number, node_b: number) {
 		this.references = [];
 		this.lowest = -1;

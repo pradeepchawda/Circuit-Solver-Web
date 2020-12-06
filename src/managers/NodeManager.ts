@@ -26,6 +26,7 @@ public is just a list of their id's  */
 	/* All the active nodes (filtered w/ ground and wire connections.) */
 	/* This is done to gurantee we are solving the smallest possible circuit. */
 	public unique_nodes: Array<NodeNetwork>;
+	
 	constructor() {
 		/* The list of active nodes, it makes it easier when building the circuit.
     This is just a list of their id's  */

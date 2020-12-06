@@ -82,7 +82,8 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-  constructor(type: number, id: number, n1: number, n2: number, n3: number) {
+  
+	constructor(type: number, id: number, n1: number, n2: number, n3: number) {
     this.INITIALIZED = false;
     /* Create a new rectangle for the bounds of this component */
     this.bounds = new RectF(0, 0, 0, 0);

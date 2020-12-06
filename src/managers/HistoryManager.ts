@@ -24,6 +24,7 @@ class HistoryManager {
 	public history: Array<string>;
 	/* History index */
 	public history_index: number;
+	
 	constructor() {
 		/* A variable to keep track of the changes of the system */
 		this.history = [];

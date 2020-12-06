@@ -67,6 +67,7 @@ class OnScreenKeyboard {
 	public HOVER_INDEX: number;
 	public KEYBOARD_KEY_EVENT: ON_SCREEN_KEYBOARD_KEY_EVENT_T;
 	public line_buffer: Array<Array<number>>;
+	
 	constructor() {
 		this.KEYBOARD_MAX_KEYS = 67;
 		this.bounds = new RectF(0, 0, 0, 0);

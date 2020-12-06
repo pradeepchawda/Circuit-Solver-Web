@@ -90,7 +90,8 @@ used to determine the best time-step for the system. */
   public ELEMENT_TPTZ_OFFSET: number;
   public ELEMENT_TRAN_OFFSET: number;
   /* <!-- END AUTOMATICALLY GENERATED !--> */
-  constructor() {
+  
+	constructor() {
     /* The amount of unique nodes in the system. Each one will have a voltage associated with it
     after we solve the modified nodal analysis matrix. */
     this.NODE_SIZE = 0;

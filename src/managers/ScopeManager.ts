@@ -29,6 +29,7 @@ class ScopeManager {
 	public curr: number;
 	public voltage: number;
 	public power: number;
+	
 	constructor() {
 		this.MAX_ENTRIES = 3;
 		this.ENTRY = [];

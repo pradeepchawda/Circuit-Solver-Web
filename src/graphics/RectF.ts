@@ -42,6 +42,7 @@ class RectF {
 	private w_last_right: number;
 	private w_last_top: number;
 	private w_last_bottom: number;
+	
 	constructor(left: number, top: number, right: number, bottom: number) {
 		/* left, top, right, and bottom of the rectangle */
 		this.left = left;

@@ -81,7 +81,8 @@ or overlapped)*/
   public circle_buffer: Array<Array<number>>;
   public BUILD_ELEMENT: boolean;
   public ANGLE: number;
-  constructor(type: number, id: number, n1: number, n2: number) {
+  
+	constructor(type: number, id: number, n1: number, n2: number) {
     this.INITIALIZED = false;
     this.X_AXIS_LENGTH = 600;
     this.Y_AXIS_LENGTH = 100;

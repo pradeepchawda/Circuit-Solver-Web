@@ -34,6 +34,7 @@ class SineWave {
 	public last_x2: number;
 	public last_y1: number;
 	public last_y2: number;
+	
 	constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
 		this.amplitude = amplitude;
 		this.sine_wave_paint = new Paint();

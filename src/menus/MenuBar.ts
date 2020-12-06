@@ -82,6 +82,7 @@ during simulation. */
 	public first_touch_y: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
+	
 	constructor() {
 		let temp_stroke_width: number = 0.65 * global.CANVAS_STROKE_WIDTH_3;
 		this.MAX_ICONS = 8;

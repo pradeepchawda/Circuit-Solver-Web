@@ -41,6 +41,7 @@ class ElectricalNode {
 	public column: number;
 	public row: number;
 	public bounds: RectF;
+	
 	constructor(x: number, y: number, id: number) {
 		/* The radius of the node when it is drawn. */
 		/* The location of the node */

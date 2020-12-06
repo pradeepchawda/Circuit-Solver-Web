@@ -131,6 +131,7 @@ class LanguageManager {
 	public TAG_TPTZ: string;
 	public TAG_TRAN: string;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
+	
 	constructor() {
 		/* Do not create any functions in this class. */
 		this.WATERMARK = 'Created by Circuit Solver (www.androidcircuitsolver.app/html)';

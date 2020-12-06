@@ -76,6 +76,7 @@ class PotentiometerSymbol {
 	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
+	
 	constructor(rect: RectF, index: number, page: number) {
 		/* Index of the bounds (Inside New Element Window) */
 		this.index = index;

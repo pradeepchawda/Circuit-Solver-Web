@@ -66,6 +66,7 @@ class GraphWindow {
 	public trim: number;
 	public width: number;
 	public height: number;
+	
 	constructor() {
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.inner_bounds = new RectF(0, 0, 0, 0);

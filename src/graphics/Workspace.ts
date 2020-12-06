@@ -42,6 +42,7 @@ class Workspace {
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;
 	public GRID_MOVED: boolean;
+	
 	constructor(left: number, top: number, right: number, bottom: number, scale: number) {
 		/* Flag to make sure that the bounds are resized before we draw it to the screen. */
 		this.FIRST_RESIZE_FLAG = false;

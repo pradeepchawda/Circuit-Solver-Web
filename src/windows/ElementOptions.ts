@@ -68,6 +68,7 @@ class ElementOptions {
 	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
+	
 	constructor() {
 		let temp_stroke_width: number = 0.65 * global.CANVAS_STROKE_WIDTH_3;
 		this.MAX_ICONS = 8;

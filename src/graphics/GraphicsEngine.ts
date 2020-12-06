@@ -60,6 +60,7 @@ class GraphicsEngine {
 	public radiusp: number;
 	public end_degree_radians: number;
 	public start_degree_radians: number;
+	
 	constructor(ctx: CanvasRenderingContext2D) {
 		this.ctx = ctx;
 		this.fill_paint = new Paint();
