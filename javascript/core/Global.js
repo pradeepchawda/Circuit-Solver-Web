@@ -27,7 +27,7 @@ class Global {
             max: 5,
             completed: false
         };
-        this.VERSION_TAG = 'BETA-1.0.95';
+        this.VERSION_TAG = '1.0.95';
         if (this.MOBILE_MODE) {
             /* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
             this.workspace_zoom_scale = 2.5;
