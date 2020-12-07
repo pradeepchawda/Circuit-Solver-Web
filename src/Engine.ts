@@ -569,15 +569,6 @@ function load_app(): void {
 		}
 		try {
 			ctx.globalCompositeOperation = 'copy';
-			ctx.imageSmoothingEnabled = false;
-			//@ts-ignore
-			ctx.mozImageSmoothingEnabled = false;
-			//@ts-ignore
-			ctx.oImageSmoothingEnabled = false;
-			//@ts-ignore
-			ctx.webkitImageSmoothingEnabled = false;
-			//@ts-ignore
-			ctx.msImageSmoothingEnabled = false;
 		} catch (e) {}
 		global.CANVAS_STROKE_WIDTH_1 = global.CANVAS_STROKE_WIDTH_BASE * 2.25;
 		global.CANVAS_STROKE_WIDTH_2 = global.CANVAS_STROKE_WIDTH_BASE * 2.65;

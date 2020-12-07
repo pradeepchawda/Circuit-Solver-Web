@@ -46,15 +46,6 @@ class VirtualCanvas {
             this.surface.style.zIndex = '0';
             this.context.globalCompositeOperation = 'source-over';
             this.surface.style.backfaceVisibility = 'hidden';
-            this.context.imageSmoothingEnabled = false;
-            //@ts-ignore
-            this.context.mozImageSmoothingEnabled = false;
-            //@ts-ignore
-            this.context.oImageSmoothingEnabled = false;
-            //@ts-ignore
-            this.context.webkitImageSmoothingEnabled = false;
-            //@ts-ignore
-            this.context.msImageSmoothingEnabled = false;
         }
         catch (e) { }
     }
