@@ -744,98 +744,99 @@ function load_app() {
         }
     }
     function system_loop() {
-        // try {
-        /* Optimizing the drawing frames for the canvas. */
-        if (normal_draw_permissions()) {
-            /* We make sure to draw only when we absolutely have to. There is also a blanket window
+        try {
+            /* Optimizing the drawing frames for the canvas. */
+            if (normal_draw_permissions()) {
+                /* We make sure to draw only when we absolutely have to. There is also a blanket window
         for when we de-latch the flag. */
-            global.canvas_redraw_counter = 0;
-            global.canvas_draw_event = true;
-        }
-        /* Handling the render / update portions of the code when the draw flag is set. */
-        if (global.canvas_draw_event) {
-            TEMP_DRAW_SIGNAL =
-                !global.FLAG_SIMULATING ||
-                    global.RESIZE_EVENT ||
-                    global.MOUSE_DOWN_EVENT ||
-                    global.MOUSE_MOVE_EVENT ||
-                    global.MOUSE_UP_EVENT ||
-                    global.MOUSE_WHEEL_EVENT ||
-                    global.KEY_UP_EVENT ||
-                    global.KEY_DOWN_EVENT ||
-                    global.PICTURE_REQUEST ||
-                    !workspace.DRAW_TO_SCREEN ||
-                    toast.draw_text;
-            global.last_selected = global.selected;
-            update();
-            if (global.last_selected != global.selected) {
-                wire_manager.reset_wire_builder();
+                global.canvas_redraw_counter = 0;
+                global.canvas_draw_event = true;
             }
-            if (global.FORCE_RESIZE_EVENT) {
-                global.SIGNAL_BUILD_ELEMENT = true;
-                global.signal_build_counter = 0;
-                global.FORCE_RESIZE_EVENT = false;
-                global.draw_block = true;
-                resize_canvas();
-            }
-            FPS_DIV ^= 1;
-            if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.FLAG_SIMULATING) || !global.FLAG_SIMULATING) {
-                if (global.system_initialization['completed']) {
-                    if ((global.FLAG_SIMULATING && global.canvas_draw_request) || TEMP_DRAW_SIGNAL) {
-                        if (!global.ON_RESTORE_EVENT) {
-                            if (!global.draw_block) {
-                                ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+            /* Handling the render / update portions of the code when the draw flag is set. */
+            if (global.canvas_draw_event) {
+                TEMP_DRAW_SIGNAL =
+                    !global.FLAG_SIMULATING ||
+                        global.RESIZE_EVENT ||
+                        global.MOUSE_DOWN_EVENT ||
+                        global.MOUSE_MOVE_EVENT ||
+                        global.MOUSE_UP_EVENT ||
+                        global.MOUSE_WHEEL_EVENT ||
+                        global.KEY_UP_EVENT ||
+                        global.KEY_DOWN_EVENT ||
+                        global.PICTURE_REQUEST ||
+                        !workspace.DRAW_TO_SCREEN ||
+                        toast.draw_text;
+                global.last_selected = global.selected;
+                update();
+                if (global.last_selected != global.selected) {
+                    wire_manager.reset_wire_builder();
+                }
+                if (global.FORCE_RESIZE_EVENT) {
+                    global.SIGNAL_BUILD_ELEMENT = true;
+                    global.signal_build_counter = 0;
+                    global.FORCE_RESIZE_EVENT = false;
+                    global.draw_block = true;
+                    resize_canvas();
+                }
+                FPS_DIV ^= 1;
+                if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.FLAG_SIMULATING) || !global.FLAG_SIMULATING) {
+                    if (global.system_initialization['completed']) {
+                        if ((global.FLAG_SIMULATING && global.canvas_draw_request) || TEMP_DRAW_SIGNAL) {
+                            if (!global.ON_RESTORE_EVENT) {
+                                if (!global.draw_block) {
+                                    ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                                }
+                                canvas.release();
+                                canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                                draw();
+                                if (global.draw_block) {
+                                    global.draw_block = false;
+                                }
                             }
-                            canvas.release();
-                            canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                            draw();
-                            if (global.draw_block) {
-                                global.draw_block = false;
-                            }
-                        }
-                        if (global.canvas_draw_request) {
-                            if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-                                global.canvas_draw_request_counter = 0;
-                                global.canvas_draw_request = false;
+                            if (global.canvas_draw_request) {
+                                if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+                                    global.canvas_draw_request_counter = 0;
+                                    global.canvas_draw_request = false;
+                                }
                             }
                         }
                     }
                 }
-            }
-            if (global.SIGNAL_BUILD_ELEMENT) {
-                if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
-                    global.SIGNAL_BUILD_ELEMENT = false;
-                    global.signal_build_counter = 0;
+                if (global.SIGNAL_BUILD_ELEMENT) {
+                    if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
+                        global.SIGNAL_BUILD_ELEMENT = false;
+                        global.signal_build_counter = 0;
+                    }
                 }
-            }
-            if (global.SIGNAL_WIRE_DELETED) {
-                if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-                    global.SIGNAL_WIRE_DELETED = false;
-                    global.signal_wire_deleted_counter = 0;
+                if (global.SIGNAL_WIRE_DELETED) {
+                    if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+                        global.SIGNAL_WIRE_DELETED = false;
+                        global.signal_wire_deleted_counter = 0;
+                    }
                 }
-            }
-            /* Just incase this take more than one frame to complete. (Toast might be an example of this.) */
-            if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
-                global.canvas_redraw_counter = 0;
-                global.canvas_draw_event = false;
+                /* Just incase this take more than one frame to complete. (Toast might be an example of this.) */
+                if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
+                    global.canvas_redraw_counter = 0;
+                    global.canvas_draw_event = false;
+                }
             }
         }
-        // } catch (e) {
-        // 	if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
-        // 		let post_data: string = e + '\r\n' + e.stack + '\r\n';
-        // 		let url: string = 'solver_errors.php?msg="' + post_data + '"';
-        // 		let method: string = 'POST';
-        // 		let should_be_async: boolean = true;
-        // 		let request: XMLHttpRequest = new XMLHttpRequest();
-        // 		request.onload = function (): void {
-        // 			let status = request.status;
-        // 			let data = request.responseText;
-        // 		};
-        // 		request.open(method, url, should_be_async);
-        // 		request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-        // 		request.send(post_data);
-        // 	}
-        // }
+        catch (e) {
+            if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
+                let post_data = e + '\r\n' + e.stack + '\r\n';
+                let url = 'solver_errors.php?msg="' + post_data + '"';
+                let method = 'POST';
+                let should_be_async = true;
+                let request = new XMLHttpRequest();
+                request.onload = function () {
+                    let status = request.status;
+                    let data = request.responseText;
+                };
+                request.open(method, url, should_be_async);
+                request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+                request.send(post_data);
+            }
+        }
     }
     function update() {
         if (global.system_initialization['completed']) {
@@ -1391,9 +1392,7 @@ function load_app() {
             settings_window.mouse_down();
             /* Handle mouse down events for the yes / no window. (It's for confirming if the user really wants to clear the board.)*/
             yes_no_window.mouse_down();
-            if (!global.MOBILE_MODE) {
-                multi_select_manager.mouse_down();
-            }
+            multi_select_manager.mouse_down();
             on_screen_keyboard.mouse_down();
         }
         if (!global.FLAG_SAVE_IMAGE &&
@@ -1884,9 +1883,7 @@ function load_app() {
         settings_window.mouse_move();
         yes_no_window.mouse_move();
         graph_window.mouse_move();
-        if (!global.MOBILE_MODE) {
-            multi_select_manager.mouse_move();
-        }
+        multi_select_manager.mouse_move();
         if (global.is_dragging) {
             handle_workspace_drag();
         }
@@ -2152,9 +2149,7 @@ function load_app() {
         settings_window.mouse_up();
         yes_no_window.mouse_up();
         on_screen_keyboard.mouse_up();
-        if (!global.MOBILE_MODE) {
-            multi_select_manager.mouse_up();
-        }
+        multi_select_manager.mouse_up();
         global.component_touched = component_touched;
         engine_functions.reset_selection(false);
         engine_functions.handle_nearest_neighbors(temp_translation_lock);
@@ -2197,16 +2192,12 @@ function load_app() {
         graph_window.key_down(global.key_down_event);
         element_options_window.key_down(global.key_down_event);
         element_options_edit_window.key_down(global.key_down_event);
-        if (!global.MOBILE_MODE) {
-            multi_select_manager.key_down(global.key_down_event);
-            /* MUST BE LAST - So key events don't carry through to other windows it might open. */
-            shortcut_manager.listen(global.key_down_event);
-        }
+        multi_select_manager.key_down(global.key_down_event);
+        /* MUST BE LAST - So key events don't carry through to other windows it might open. */
+        shortcut_manager.listen(global.key_down_event);
     }
     function handle_key_up() {
-        if (!global.MOBILE_MODE) {
-            multi_select_manager.key_up(global.key_up_event);
-        }
+        multi_select_manager.key_up(global.key_up_event);
     }
     function handle_workspace_drag() {
         let sqrt = Math.round(global.settings.SQRT_MAXNODES * 0.75);

@@ -45,73 +45,75 @@ class ShortcutManager {
         this.caps = false;
     }
     listen(key_event) {
-        if (!global.FLAG_SAVE_IMAGE &&
-            !global.FLAG_SAVE_CIRCUIT &&
-            !global.FLAG_ZOOM &&
-            !global.FLAG_ELEMENT_OPTIONS &&
-            !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-            !global.FLAG_SELECT_ELEMENT &&
-            !global.FLAG_SELECT_TIMESTEP &&
-            !global.FLAG_SELECT_SETTINGS &&
-            !global.FLAG_REMOVE_ALL) {
-            if (!global.FLAG_GRAPH) {
-                if (!global.FLAG_SIMULATING && !global.FLAG_MENU_OPEN_DOWN) {
-                    this.handle_rotate_shortcut(key_event);
-                    this.handle_delete_shortcut(key_event);
-                    this.handle_undo_shortcut(key_event);
-                    this.handle_redo_shortcut(key_event);
-                    this.handle_flip_shortcut(key_event);
-                    this.handle_edit_shortcut(key_event);
-                    this.handle_remove_all_shortcut(key_event);
-                    this.handle_copy_shortcut(key_event);
-                    this.handle_paste_shortcut(key_event);
-                    this.handle_add_element_flag(key_event);
-                    this.handle_escape_shortcut(key_event);
-                    this.handle_select_all(key_event);
-                    if (this.ENABLE_ARROW_KEYS) {
-                        this.handle_arrow_keys_multi_select(key_event);
-                        this.handle_arrow_keys_select(key_event);
-                    }
-                }
-                else if (!global.FLAG_SIMULATING) {
-                    if (!global.SIGNAL_ADD_ELEMENT) {
-                        this.handle_add_element_flag(key_event);
-                    }
-                    else {
-                        this.handle_escape_shortcut(key_event);
-                        this.handle_flip_shortcut(key_event);
+        if (!global.MOBILE_MODE) {
+            if (!global.FLAG_SAVE_IMAGE &&
+                !global.FLAG_SAVE_CIRCUIT &&
+                !global.FLAG_ZOOM &&
+                !global.FLAG_ELEMENT_OPTIONS &&
+                !global.FLAG_ELEMENT_OPTIONS_EDIT &&
+                !global.FLAG_SELECT_ELEMENT &&
+                !global.FLAG_SELECT_TIMESTEP &&
+                !global.FLAG_SELECT_SETTINGS &&
+                !global.FLAG_REMOVE_ALL) {
+                if (!global.FLAG_GRAPH) {
+                    if (!global.FLAG_SIMULATING && !global.FLAG_MENU_OPEN_DOWN) {
                         this.handle_rotate_shortcut(key_event);
+                        this.handle_delete_shortcut(key_event);
+                        this.handle_undo_shortcut(key_event);
+                        this.handle_redo_shortcut(key_event);
+                        this.handle_flip_shortcut(key_event);
+                        this.handle_edit_shortcut(key_event);
+                        this.handle_remove_all_shortcut(key_event);
+                        this.handle_copy_shortcut(key_event);
+                        this.handle_paste_shortcut(key_event);
+                        this.handle_add_element_flag(key_event);
+                        this.handle_escape_shortcut(key_event);
+                        this.handle_select_all(key_event);
+                        if (this.ENABLE_ARROW_KEYS) {
+                            this.handle_arrow_keys_multi_select(key_event);
+                            this.handle_arrow_keys_select(key_event);
+                        }
+                    }
+                    else if (!global.FLAG_SIMULATING) {
+                        if (!global.SIGNAL_ADD_ELEMENT) {
+                            this.handle_add_element_flag(key_event);
+                        }
+                        else {
+                            this.handle_escape_shortcut(key_event);
+                            this.handle_flip_shortcut(key_event);
+                            this.handle_rotate_shortcut(key_event);
+                        }
+                    }
+                    else if (global.FLAG_SIMULATING && !global.FLAG_MENU_OPEN_DOWN) {
+                        this.handle_edit_shortcut(key_event);
+                        this.handle_toggle_switches(key_event);
+                        this.handle_query_shortcut(key_event);
+                    }
+                    if (this.ENABLE_ARROW_KEYS) {
+                        this.handle_arrow_keys_menu_open_down(key_event);
                     }
                 }
-                else if (global.FLAG_SIMULATING && !global.FLAG_MENU_OPEN_DOWN) {
-                    this.handle_edit_shortcut(key_event);
-                    this.handle_toggle_switches(key_event);
-                    this.handle_query_shortcut(key_event);
-                }
-                if (this.ENABLE_ARROW_KEYS) {
-                    this.handle_arrow_keys_menu_open_down(key_event);
+                if (!global.FLAG_MENU_OPEN_DOWN) {
+                    this.handle_simulate_shortcut(key_event);
                 }
             }
-            if (!global.FLAG_MENU_OPEN_DOWN) {
-                this.handle_simulate_shortcut(key_event);
+            if (!global.FLAG_SAVE_IMAGE && !global.FLAG_SAVE_CIRCUIT && !global.FLAG_ELEMENT_OPTIONS_EDIT && !global.FLAG_SELECT_TIMESTEP) {
+                this.handle_reset_window_shortcut(key_event);
             }
-        }
-        if (!global.FLAG_SAVE_IMAGE && !global.FLAG_SAVE_CIRCUIT && !global.FLAG_ELEMENT_OPTIONS_EDIT && !global.FLAG_SELECT_TIMESTEP) {
-            this.handle_reset_window_shortcut(key_event);
-        }
-        if (!global.FLAG_SAVE_IMAGE &&
-            !global.FLAG_SAVE_CIRCUIT &&
-            !global.FLAG_ZOOM &&
-            !global.FLAG_ELEMENT_OPTIONS &&
-            !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-            !global.FLAG_GRAPH &&
-            !global.FLAG_SELECT_ELEMENT &&
-            !global.FLAG_SELECT_TIMESTEP &&
-            !global.FLAG_SELECT_SETTINGS &&
-            !global.FLAG_REMOVE_ALL &&
-            !global.FLAG_MENU_OPEN_DOWN) {
-            this.handle_save_image_flag(key_event);
-            this.handle_save_circuit_flag(key_event);
+            if (!global.FLAG_SAVE_IMAGE &&
+                !global.FLAG_SAVE_CIRCUIT &&
+                !global.FLAG_ZOOM &&
+                !global.FLAG_ELEMENT_OPTIONS &&
+                !global.FLAG_ELEMENT_OPTIONS_EDIT &&
+                !global.FLAG_GRAPH &&
+                !global.FLAG_SELECT_ELEMENT &&
+                !global.FLAG_SELECT_TIMESTEP &&
+                !global.FLAG_SELECT_SETTINGS &&
+                !global.FLAG_REMOVE_ALL &&
+                !global.FLAG_MENU_OPEN_DOWN) {
+                this.handle_save_image_flag(key_event);
+                this.handle_save_circuit_flag(key_event);
+            }
         }
     }
     handle_select_all(key_event) {

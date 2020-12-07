@@ -504,7 +504,7 @@ class MultiSelectManager {
         this.MULTI_SELECT = false;
     }
     key_down(key_event) {
-        if (this.ENABLE_KEYS) {
+        if (this.ENABLE_KEYS && !global.MOBILE_MODE) {
             if (!global.FLAG_SIMULATING &&
                 !global.FLAG_SAVE_IMAGE &&
                 !global.FLAG_SAVE_CIRCUIT &&
@@ -525,7 +525,7 @@ class MultiSelectManager {
         }
     }
     key_up(key_event) {
-        if (this.ENABLE_KEYS && !global.SIGNAL_HISTORY_LOCK) {
+        if (this.ENABLE_KEYS && !global.SIGNAL_HISTORY_LOCK && !global.MOBILE_MODE) {
             if (!this.MOUSE_DOWN) {
                 this.CTRL_PRESSED_STARTED = false;
                 this.CTRL_PRESSED = false;
@@ -546,7 +546,8 @@ class MultiSelectManager {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN &&
-            !global.SIGNAL_HISTORY_LOCK) {
+            !global.SIGNAL_HISTORY_LOCK &&
+            !global.MOBILE_MODE) {
             if (this.ENABLE_KEYS && !global.SIGNAL_HISTORY_LOCK) {
                 this.MOUSE_DOWN = true;
                 if (this.CTRL_PRESSED_STARTED) {
@@ -610,7 +611,8 @@ class MultiSelectManager {
             !global.FLAG_SELECT_SETTINGS &&
             !global.FLAG_REMOVE_ALL &&
             !global.FLAG_MENU_OPEN_DOWN &&
-            !global.SIGNAL_HISTORY_LOCK) {
+            !global.SIGNAL_HISTORY_LOCK &&
+            !global.MOBILE_MODE) {
             if (this.CTRL_PRESSED_STARTED) {
                 if (Math.abs(global.mouse_x - this.SELECT_X) > global.node_space_x || Math.abs(global.mouse_y - this.SELECT_Y) > global.node_space_y) {
                     this.CTRL_PRESSED = true;
@@ -654,13 +656,15 @@ class MultiSelectManager {
         }
     }
     mouse_up() {
-        this.MOUSE_DOWN = false;
-        this.CTRL_PRESSED_STARTED = false;
-        this.CTRL_PRESSED = false;
-        this.DELTA_LATCH = false;
-        if (this.ELEMENTS_MOVED) {
-            global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
-            this.ELEMENTS_MOVED = false;
+        if (!global.MOBILE_MODE) {
+            this.MOUSE_DOWN = false;
+            this.CTRL_PRESSED_STARTED = false;
+            this.CTRL_PRESSED = false;
+            this.DELTA_LATCH = false;
+            if (this.ELEMENTS_MOVED) {
+                global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+                this.ELEMENTS_MOVED = false;
+            }
         }
     }
     handle_multi_move() {

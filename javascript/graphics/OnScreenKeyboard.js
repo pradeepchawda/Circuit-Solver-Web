@@ -320,7 +320,7 @@ class OnScreenKeyboard {
         }
     }
     mouse_down() {
-        if (global.MOBILE_MODE) {
+        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
             this.FLAG_KEY_UP = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
                 if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
@@ -332,11 +332,11 @@ class OnScreenKeyboard {
         }
     }
     mouse_move() {
-        if (global.MOBILE_MODE) {
+        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT) && this.FLAG_KEY_DOWN) {
         }
     }
     mouse_up() {
-        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
+        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT) && this.FLAG_KEY_DOWN) {
             this.HOVER_INDEX = -1;
             let FOUND = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
@@ -393,6 +393,8 @@ class OnScreenKeyboard {
                                 caps: this.FLAG_CAPS_LOCK
                             });
                             break;
+                        }
+                        else {
                         }
                     }
                 }
@@ -461,7 +463,13 @@ class OnScreenKeyboard {
                             canvas.draw_round_rect2(this.KEYBOARD_KEYS[i], this.fill_paint.get_stroke_width() << 1, this.fill_paint);
                         }
                         if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
-                            canvas.draw_text(this.KEYBOARD_MAPPING[i].toUpperCase(), this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
+                            if (this.KEYBOARD_MAPPING[i].toUpperCase() != 'F' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'U' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'N' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'K' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'P') {
+                                canvas.draw_text(this.KEYBOARD_MAPPING[i].toUpperCase(), this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
+                            }
                         }
                         else {
                             canvas.draw_text(this.KEYBOARD_MAPPING[i], this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);

@@ -367,6 +367,16 @@ class LanguageManager {
             German: 'Bitte installieren Sie einen Dateimanager.',
             Indonesian: 'Silakan Instal Manajer File.'
         };
+        this.INVALID_CHARACTER = {
+            English: 'Invalid character.',
+            Spanish: 'Carácter invalido.',
+            French: 'Caractère non valide.',
+            Italian: 'Carattere non valido.',
+            Dutch: 'Ongeldig teken.',
+            Russian: 'Неправильный символ.',
+            German: 'Ungültiges Zeichen.',
+            Indonesian: 'Karakter salah.'
+        };
         this.SPACE = ' ';
         this.QUOTE_ESCAPE = /#QUOTE#/g;
         /* #INSERT_GENERATE_ELEMENT_TAG# */

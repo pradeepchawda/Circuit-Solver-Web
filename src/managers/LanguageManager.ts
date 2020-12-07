@@ -59,6 +59,7 @@ class LanguageManager {
 	public SAVE_FILE_SUCCESS: LANGUAGE_T;
 	public ACTION_NOT_COMPLETED: LANGUAGE_T;
 	public FILE_MANAGER_ERROR: LANGUAGE_T;
+	public INVALID_CHARACTER: LANGUAGE_T;
 	public SPACE: string;
 	public QUOTE_ESCAPE: RegExp;
 	/* #INSERT_GENERATE_ELEMENT_TAG_DECLARATION# */
@@ -476,6 +477,16 @@ class LanguageManager {
 			Russian: 'Пожалуйста, установите файловый менеджер.',
 			German: 'Bitte installieren Sie einen Dateimanager.',
 			Indonesian: 'Silakan Instal Manajer File.'
+		};
+		this.INVALID_CHARACTER = {
+			English: 'Invalid character.',
+			Spanish: 'Carácter invalido.',
+			French: 'Caractère non valide.',
+			Italian: 'Carattere non valido.',
+			Dutch: 'Ongeldig teken.',
+			Russian: 'Неправильный символ.',
+			German: 'Ungültiges Zeichen.',
+			Indonesian: 'Karakter salah.'
 		};
 		this.SPACE = ' ';
 		this.QUOTE_ESCAPE = /#QUOTE#/g;
