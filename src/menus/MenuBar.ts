@@ -123,7 +123,7 @@ during simulation. */
 		this.fill_paint.set_color(global.MENU_FILL_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
-		this.fill_paint.set_alpha(192);
+		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.line_paint_alt = new Paint();
@@ -190,7 +190,7 @@ during simulation. */
 		this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(192);
+		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.undo_paint = new Paint();
@@ -1227,16 +1227,7 @@ during simulation. */
 			}
 			let width_rshift_3: number = this.menu_icons[this.ADD_INDEX].get_width() >> 3;
 			let height_rshift_3: number = this.menu_icons[this.ADD_INDEX].get_height() >> 3;
-			let width_rshift_4: number = this.menu_icons[this.ADD_INDEX].get_width() >> 4;
-			let height_rshift_4: number = this.menu_icons[this.ADD_INDEX].get_height() >> 4;
-			canvas.draw_round_rect(
-				this.menu_icons[this.ADD_INDEX].left + width_rshift_4,
-				this.menu_icons[this.ADD_INDEX].top + height_rshift_4,
-				this.menu_icons[this.ADD_INDEX].right - width_rshift_4,
-				this.menu_icons[this.ADD_INDEX].bottom - height_rshift_4,
-				0.6 * global.CANVAS_STROKE_WIDTH_3,
-				this.add_paint
-			);
+			canvas.draw_rect2(this.menu_icons[this.ADD_INDEX], this.add_paint);
 			this.line_buffer[indexer++] = Array(
 				this.menu_icons[this.ADD_INDEX].get_center_x() - width_rshift_3,
 				this.menu_icons[this.ADD_INDEX].get_center_y(),
@@ -1290,14 +1281,7 @@ during simulation. */
 			let indexer: number = 0;
 			this.line_buffer = [];
 			/* Drawing the background for the magnifying glass */
-			canvas.draw_round_rect3(
-				this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x(),
-				this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y(),
-				this.menu_icons[this.REMOVE_ALL_INDEX].get_width(),
-				this.menu_icons[this.REMOVE_ALL_INDEX].get_height(),
-				temp_stroke_width,
-				this.fill_paint
-			);
+			canvas.draw_rect2(this.menu_icons[this.REMOVE_ALL_INDEX], this.fill_paint);
 			if (
 				this.menu_icons[this.REMOVE_ALL_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.FLAG_MENU_OPEN_DOWN &&
@@ -1315,24 +1299,10 @@ during simulation. */
 				!multi_select_manager.CTRL_PRESSED_STARTED &&
 				!global.MOBILE_MODE
 			) {
-				canvas.draw_round_rect3(
-					this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x(),
-					this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y(),
-					this.menu_icons[this.REMOVE_ALL_INDEX].get_width(),
-					this.menu_icons[this.REMOVE_ALL_INDEX].get_height(),
-					temp_stroke_width,
-					this.hover_paint
-				);
+				canvas.draw_rect2(this.menu_icons[this.REMOVE_ALL_INDEX], this.hover_paint);
 			}
 			/* Drawing the background for the up down icon */
-			canvas.draw_round_rect3(
-				this.menu_icons[this.UP_DOWN_INDEX].get_center_x(),
-				this.menu_icons[this.UP_DOWN_INDEX].get_center_y(),
-				this.menu_icons[this.UP_DOWN_INDEX].get_width(),
-				this.menu_icons[this.UP_DOWN_INDEX].get_height(),
-				temp_stroke_width,
-				this.fill_paint
-			);
+			canvas.draw_rect2(this.menu_icons[this.UP_DOWN_INDEX], this.fill_paint);
 			if (
 				this.menu_icons[this.UP_DOWN_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.FLAG_ZOOM &&
@@ -1346,14 +1316,7 @@ during simulation. */
 				!multi_select_manager.CTRL_PRESSED_STARTED &&
 				!global.MOBILE_MODE
 			) {
-				canvas.draw_round_rect3(
-					this.menu_icons[this.UP_DOWN_INDEX].get_center_x(),
-					this.menu_icons[this.UP_DOWN_INDEX].get_center_y(),
-					this.menu_icons[this.UP_DOWN_INDEX].get_width(),
-					this.menu_icons[this.UP_DOWN_INDEX].get_height(),
-					temp_stroke_width,
-					this.hover_paint
-				);
+				canvas.draw_rect2(this.menu_icons[this.UP_DOWN_INDEX], this.hover_paint);
 			}
 			/* Drawing the up down icon */
 			canvas.draw_arrow(
@@ -1399,7 +1362,7 @@ during simulation. */
 		if (!global.FLAG_MENU_OPEN_DOWN) {
 			let indexer: number = 0;
 			this.line_buffer = [];
-			canvas.draw_round_rect2(this.graph_button, temp_stroke_width, this.fill_paint);
+			canvas.draw_rect2(this.graph_button, this.fill_paint);
 			if (
 				this.graph_button.contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.FLAG_MENU_OPEN_DOWN &&
@@ -1416,7 +1379,7 @@ during simulation. */
 				!multi_select_manager.CTRL_PRESSED_STARTED &&
 				!global.MOBILE_MODE
 			) {
-				canvas.draw_round_rect2(this.graph_button, temp_stroke_width, this.hover_paint);
+				canvas.draw_rect2(this.graph_button, this.hover_paint);
 			}
 			this.sine_wave.draw_sine_wave(canvas, 1);
 			let pad: number = 0.2;
@@ -1434,7 +1397,7 @@ during simulation. */
 			);
 			canvas.draw_line_buffer(this.line_buffer, this.sine_wave.sine_wave_paint);
 		}
-		canvas.draw_round_rect2(this.settings_button, temp_stroke_width, this.fill_paint);
+		canvas.draw_rect2(this.settings_button, this.fill_paint);
 		if (
 			this.settings_button.contains_xy(global.mouse_x, global.mouse_y) &&
 			!global.FLAG_MENU_OPEN_DOWN &&
@@ -1451,7 +1414,7 @@ during simulation. */
 			!multi_select_manager.CTRL_PRESSED_STARTED &&
 			!global.MOBILE_MODE
 		) {
-			canvas.draw_round_rect2(this.settings_button, temp_stroke_width, this.hover_paint);
+			canvas.draw_rect2(this.settings_button, this.hover_paint);
 		}
 		canvas.draw_path(this.settings_path, this.settings_paint);
 		if (

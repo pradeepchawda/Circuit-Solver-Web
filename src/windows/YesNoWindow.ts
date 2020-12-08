@@ -65,7 +65,7 @@ class YesNoWindow {
 		this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
 		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
-		this.bounds_paint.set_alpha(192);
+		this.bounds_paint.set_alpha(255);
 		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.fill_paint = new Paint();
@@ -76,7 +76,7 @@ class YesNoWindow {
 		this.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
-		this.fill_paint.set_alpha(90);
+		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.yes_paint = new Paint();
@@ -87,7 +87,7 @@ class YesNoWindow {
 		this.yes_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.yes_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.yes_paint.set_font(global.DEFAULT_FONT);
-		this.yes_paint.set_alpha(90);
+		this.yes_paint.set_alpha(255);
 		this.yes_paint.set_paint_align(this.yes_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.no_paint = new Paint();
@@ -98,7 +98,7 @@ class YesNoWindow {
 		this.no_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.no_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.no_paint.set_font(global.DEFAULT_FONT);
-		this.no_paint.set_alpha(90);
+		this.no_paint.set_alpha(255);
 		this.no_paint.set_paint_align(this.no_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();

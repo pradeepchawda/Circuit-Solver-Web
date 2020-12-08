@@ -323,6 +323,29 @@ class GraphicsEngine {
         }
     }
     /* Draw a circle */
+    draw_circle2(rect, paint) {
+        this.width = (global.ZERO_PT_FIVE + (rect.get_width() >> 1)) >> global.ZERO;
+        this.x = (global.ZERO_PT_FIVE + rect.get_center_x()) >> global.ZERO;
+        this.y = (global.ZERO_PT_FIVE + rect.get_center_y()) >> global.ZERO;
+        this.apply_paint(paint, false);
+        this.ctx.arc(this.x, this.y, this.width, 0, this.FAST_PI_MUL_2);
+        switch (paint.paint_style) {
+            case paint.style.FILL:
+                this.ctx.fill();
+                break;
+            case paint.style.STROKE:
+                this.ctx.stroke();
+                break;
+            case paint.style.FILL_AND_STROKE:
+                this.ctx.fill();
+                this.ctx.stroke();
+                break;
+            default:
+                this.ctx.fill();
+                break;
+        }
+    }
+    /* Draw a circle */
     draw_circle_buffer(buffer, paint) {
         this.apply_paint(paint, false);
         for (var i = buffer.length - 1; i > -1; i--) {

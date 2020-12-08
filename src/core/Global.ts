@@ -179,7 +179,7 @@ class Global {
 	public 'clipboard_type': number;
 	public 'clipboard_rotation': number;
 	public 'clipboard_flip': number;
-	public 'clipboard_property';
+	public 'clipboard_property': any;
 	/* A variable to help coordinate multi-selection. */
 	public 'component_translating': boolean;
 	/* System Flags */
