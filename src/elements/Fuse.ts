@@ -410,7 +410,7 @@ or overlapped)*/
 		}
 	}
 	select(): void {
-		if (global.WIRE_BUILDER['step'] != 0) {
+		if (global.WIRE_BUILDER['step'] !== 0) {
 			wire_manager.reset_wire_builder();
 		}
 		global.selected_id = this.elm.id;
@@ -602,7 +602,7 @@ or overlapped)*/
 	}
 	/* General function to handle any processing required by the component */
 	update(): void {
-		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
+		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
 			if (this.elm.consistent()) {
 				this.elm.properties['Voltage'] = Math.abs(engine_functions.get_voltage(this.elm.n1, this.elm.n2));
 				if (this.elm.properties['Voltage'] / this.elm.properties['Resistance'] >= this.elm.properties['Current Rating']) {

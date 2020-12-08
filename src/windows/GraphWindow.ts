@@ -423,7 +423,7 @@ class GraphWindow {
 				);
 				/* Draw the meter value that corresponds to the location of the mouse. */
 				if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_a.trace.length) {
-					if (this.graph_trace_a.get_value(this.meter_hover_index)[1] != '') {
+					if (this.graph_trace_a.get_value(this.meter_hover_index)[1] !== '') {
 						canvas.draw_text(
 							this.graph_trace_a.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_0_INDEX),
 							this.inner_bounds.left,
@@ -464,7 +464,7 @@ class GraphWindow {
 				);
 				/* Draw the meter value that corresponds to the location of the mouse. */
 				if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_b.trace.length) {
-					if (this.graph_trace_b.get_value(this.meter_hover_index)[1] != '') {
+					if (this.graph_trace_b.get_value(this.meter_hover_index)[1] !== '') {
 						canvas.draw_text(
 							this.graph_trace_b.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_1_INDEX),
 							this.inner_bounds.left + view_port.view_width * 0.1,
@@ -502,7 +502,7 @@ class GraphWindow {
 				);
 				/* Draw the meter value that corresponds to the location of the mouse. */
 				if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_c.trace.length) {
-					if (this.graph_trace_c.get_value(this.meter_hover_index)[1] != '') {
+					if (this.graph_trace_c.get_value(this.meter_hover_index)[1] !== '') {
 						canvas.draw_text(
 							this.graph_trace_c.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_2_INDEX),
 							this.inner_bounds.left + view_port.view_width * 0.2,

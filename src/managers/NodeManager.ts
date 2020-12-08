@@ -87,7 +87,7 @@ public is just a list of their id's  */
 		}
 		for (var i: number = 0; i < this.unique_nodes.length; i++) {
 			for (var j: number = 0; j < this.unique_nodes.length; j++) {
-				if (i != j) {
+				if (i !== j) {
 					this.unique_nodes[i].add_references(this.unique_nodes[j].get_references());
 					this.unique_nodes[j].add_references(this.unique_nodes[i].get_references());
 				}
@@ -96,7 +96,7 @@ public is just a list of their id's  */
 		let net_list: Array<Array<number>> = [];
 		for (var i: number = 0; i < nets.length; i++) {
 			for (var j: number = 0; j < nets.length; j++) {
-				if (i != j) {
+				if (i !== j) {
 					if (nets[i].elm.properties['Name'] === nets[j].elm.properties['Name']) {
 						if (!this.net_redundancy_check(nets[i].elm.n1, nets[j].elm.n1, net_list)) {
 							net_list.push(Array(nets[i].elm.n1, nets[j].elm.n1));
@@ -113,7 +113,7 @@ public is just a list of their id's  */
 		}
 		for (var i: number = 0; i < this.unique_nodes.length; i++) {
 			for (var j: number = 0; j < this.unique_nodes.length; j++) {
-				if (j != i) {
+				if (j !== i) {
 					if (this.unique_nodes[i].is_connected(this.unique_nodes[j].get_references())) {
 						this.unique_nodes[i].add_references(this.unique_nodes[j].get_references());
 						this.unique_nodes[j].add_references(this.unique_nodes[i].get_references());

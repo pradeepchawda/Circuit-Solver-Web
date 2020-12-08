@@ -250,7 +250,7 @@ class SaveCircuitWindow {
 					}
 				}
 			} else {
-				if (this.MOUSE_DOWN && this.INITIAL_CURSOR_DOWN != -1) {
+				if (this.MOUSE_DOWN && this.INITIAL_CURSOR_DOWN !== -1) {
 					this.insert_cursor(true, true);
 				}
 			}
@@ -341,7 +341,7 @@ class SaveCircuitWindow {
 				this.CURSOR_POSITION = insert_at;
 			}
 			/* Make sure initial cursor down is calculated. */
-			if (this.INITIAL_CURSOR_DOWN != -1 && insert_at != this.INITIAL_CURSOR_DOWN) {
+			if (this.INITIAL_CURSOR_DOWN !== -1 && insert_at !== this.INITIAL_CURSOR_DOWN) {
 				if (this.INITIAL_CURSOR_DOWN < insert_at) {
 					this.ASCENDING = true;
 				} else {
@@ -367,10 +367,10 @@ class SaveCircuitWindow {
 	}
 	/* Handle the user's input! */
 	handle_keyboard(key_event: KEY_EVENT_T, canvas: GraphicsEngine): void {
-		if (global.is_alpha_numeric(key_event) && key_event['event'].code != global.KEY_CODE_DELETE && !key_event['ctrl']) {
+		if (global.is_alpha_numeric(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
 			if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
 				if (!this.SELECT_ALL) {
-					if (this.SELECT_START != -1 && this.SELECT_END != -1) {
+					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
 						this.handle_partial_select();
 					}
 					this.input_button.text =
@@ -407,7 +407,7 @@ class SaveCircuitWindow {
 						this.SELECT_START = -1;
 						this.SELECT_END = -1;
 					}
-					if (this.SELECT_START != -1 && this.SELECT_END != -1) {
+					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
 						this.handle_partial_select();
 					} else {
 						this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION - 1) + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
@@ -428,7 +428,7 @@ class SaveCircuitWindow {
 						this.SELECT_START = -1;
 						this.SELECT_END = -1;
 					}
-					if (this.SELECT_START != -1 && this.SELECT_END != -1) {
+					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
 						this.handle_partial_select();
 					} else {
 						if (this.CURSOR_POSITION < this.input_button.text.length) {
@@ -444,7 +444,7 @@ class SaveCircuitWindow {
 		} else if ((key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) && !key_event['shift']) {
 			if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
 				if (!this.SELECT_ALL) {
-					if (this.SELECT_START != -1 && this.SELECT_END != -1) {
+					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
 						this.handle_partial_select();
 					}
 					this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '-' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
@@ -464,7 +464,7 @@ class SaveCircuitWindow {
 		} else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
 			if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
 				if (!this.SELECT_ALL) {
-					if (this.SELECT_START != -1 && this.SELECT_END != -1) {
+					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
 						this.handle_partial_select();
 					}
 					this.input_button.text = this.input_button.text.substring(0, this.CURSOR_POSITION) + '.' + this.input_button.text.substring(this.CURSOR_POSITION, this.input_button.text.length);
@@ -677,7 +677,7 @@ class SaveCircuitWindow {
 		global.SIGNAL_BUILD_ELEMENT = true;
 	}
 	handle_partial_select(): void {
-		if (this.SELECT_START != this.SELECT_END) {
+		if (this.SELECT_START !== this.SELECT_END) {
 			let min: number = Math.min(this.SELECT_START, this.SELECT_END);
 			let max: number = Math.max(this.SELECT_START, this.SELECT_END);
 			this.input_button.text = this.input_button.text.substring(0, min) + this.input_button.text.substring(max, this.input_button.text.length);
@@ -813,7 +813,7 @@ class SaveCircuitWindow {
 				);
 			}
 			let cached_measured_text: number = this.measured_text * 0.5;
-			if (this.SELECT_START != -1 && this.SELECT_END != -1) {
+			if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
 				let min: number = Math.min(this.SELECT_START, this.SELECT_END);
 				let max: number = Math.max(this.SELECT_START, this.SELECT_END);
 				this.SELECT_WIDTH = this.text_paint.measure_text(adj_text.substring(min, max));

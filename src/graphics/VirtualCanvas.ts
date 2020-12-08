@@ -43,8 +43,8 @@ class VirtualCanvas {
 		});
 	}
 	resize(): void {
-		this.surface.width = view_port.right;
-		this.surface.height = view_port.bottom;
+		this.surface.width = window.innerWidth;
+		this.surface.height = window.innerHeight;
 		try {
 			this.surface.style.position = 'absolute';
 			this.surface.style.visibility = 'hidden';

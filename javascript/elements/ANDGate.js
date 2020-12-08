@@ -402,7 +402,7 @@ class ANDGate {
         }
     }
     select() {
-        if (global.WIRE_BUILDER['step'] != 0) {
+        if (global.WIRE_BUILDER['step'] !== 0) {
             wire_manager.reset_wire_builder();
         }
         global.selected_id = this.elm.id;

@@ -125,14 +125,14 @@ class Wire {
         this.BUILD_ELEMENT = true;
     }
     release_node_1() {
-        if (this.elm.n1 != -1) {
+        if (this.elm.n1 !== -1) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_node_1(-1);
         }
         this.BUILD_ELEMENT = true;
     }
     release_node_2() {
-        if (this.elm.n2 != -1) {
+        if (this.elm.n2 !== -1) {
             nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
             this.elm.set_node_2(-1);
         }
@@ -206,7 +206,7 @@ class Wire {
         }
     }
     select() {
-        if (global.WIRE_BUILDER['step'] != 0) {
+        if (global.WIRE_BUILDER['step'] !== 0) {
             wire_manager.reset_wire_builder();
         }
         global.selected_id = this.elm.id;
@@ -279,11 +279,11 @@ class Wire {
             this.point_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
             this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-            if (this.elm.n1 != -1) {
+            if (this.elm.n1 !== -1) {
                 this.p1.x = nodes[this.elm.n1].location.x;
                 this.p1.y = nodes[this.elm.n1].location.y;
             }
-            if (this.elm.n2 != -1) {
+            if (this.elm.n2 !== -1) {
                 this.p2.x = nodes[this.elm.n2].location.x;
                 this.p2.y = nodes[this.elm.n2].location.y;
             }

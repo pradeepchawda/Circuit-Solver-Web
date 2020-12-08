@@ -44,7 +44,7 @@ class HistoryManager {
 			/* Logic to prevent multiples of the same events from being registered. */
 			if (this.history.length > 0) {
 				let last_history_index = this.history.length - 1;
-				if (this.history[last_history_index] != packet) {
+				if (this.history[last_history_index] !== packet) {
 					/* If we're back in time, remove all the future events that might have taken place */
 					if (this.history_index > -1) {
 						this.history.splice(this.history_index + 1, this.history.length - this.history_index);

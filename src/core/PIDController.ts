@@ -40,7 +40,7 @@ class PIDController {
 		let error: number = this.set_point - current_value;
 		let dt: number = current_time - this.previous_time;
 		/* Compute integral & derative error */
-		let derivative_error: number = dt != 0 ? (error - this.last_error) / dt : 0;
+		let derivative_error: number = dt !== 0 ? (error - this.last_error) / dt : 0;
 		this.integral_error += error * dt;
 		/* Save history */
 		this.previous_time = current_time;

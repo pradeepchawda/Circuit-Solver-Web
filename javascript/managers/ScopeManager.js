@@ -109,7 +109,7 @@ class ScopeManager {
     /* Remove a meter from the list of entries based on its id and type (unique combination) */
     remove(id, type) {
         let index = this.find_entry_index(id, type);
-        if (index != -1) {
+        if (index !== -1) {
             graph_window.reset_trace(index);
             this.ENTRY.splice(index, 1);
         }

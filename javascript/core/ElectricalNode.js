@@ -215,7 +215,7 @@ class ElectricalNode {
             else {
                 if (global.WIRE_BUILDER['step'] > 0) {
                     if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-                        if (global.WIRE_BUILDER['n1'] != this.id && this.draw_node_builder_helper()) {
+                        if (global.WIRE_BUILDER['n1'] !== this.id && this.draw_node_builder_helper()) {
                             global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
                             global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
                             global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);

@@ -178,7 +178,7 @@ class OnScreenKeyboard {
                     }
                 }
                 if (!IS_SPECIAL_KEY) {
-                    if (i != SKIP_INDEX + 1 || i === 1) {
+                    if (i !== SKIP_INDEX + 1 || i === 1) {
                         this.KEYBOARD_KEYS.push(new RectF(this.KEYBOARD_KEYS[i - 1].right, this.bounds.top + Y_COUNTER * DEFAULT_HEIGHT, this.KEYBOARD_KEYS[i - 1].right + DEFAULT_WIDTH, this.bounds.top + (Y_COUNTER + 1) * DEFAULT_HEIGHT));
                     }
                     else {
@@ -186,7 +186,7 @@ class OnScreenKeyboard {
                     }
                 }
                 else {
-                    if (i != SKIP_INDEX + 1 || i === 1) {
+                    if (i !== SKIP_INDEX + 1 || i === 1) {
                         this.KEYBOARD_KEYS.push(new RectF(this.KEYBOARD_KEYS[i - 1].right, this.bounds.top + Y_COUNTER * DEFAULT_HEIGHT, this.KEYBOARD_KEYS[i - 1].right + DEFAULT_WIDTH * MULTIPLIER, this.bounds.top + (Y_COUNTER + 1) * DEFAULT_HEIGHT));
                     }
                     else {
@@ -209,7 +209,7 @@ class OnScreenKeyboard {
         this.KEYBOARD_MAPPING.push('ESC');
         this.KEYBOARD_MAPPING.push("'");
         for (var i = 1; i < 11; i++) {
-            if (i != 11 - 1) {
+            if (i !== 11 - 1) {
                 this.KEYBOARD_MAPPING.push(i + '');
             }
             else {
@@ -437,7 +437,7 @@ class OnScreenKeyboard {
     draw_keyboard(canvas) {
         if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
             if (global.FLAG_ELEMENT_OPTIONS_EDIT === true || global.FLAG_SELECT_TIMESTEP === true) {
-                if (global.selected_type != global.TYPE_NOTE && global.selected_type != global.TYPE_NET) {
+                if (global.selected_type !== global.TYPE_NOTE && global.selected_type !== global.TYPE_NET) {
                     this.ENGINEERING_KEYBOARD_MODE = true;
                 }
                 else {
@@ -463,11 +463,11 @@ class OnScreenKeyboard {
                             canvas.draw_round_rect2(this.KEYBOARD_KEYS[i], this.fill_paint.get_stroke_width() << 1, this.fill_paint);
                         }
                         if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
-                            if (this.KEYBOARD_MAPPING[i].toUpperCase() != 'F' &&
-                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'U' &&
-                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'N' &&
-                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'K' &&
-                                this.KEYBOARD_MAPPING[i].toUpperCase() != 'P') {
+                            if (this.KEYBOARD_MAPPING[i].toUpperCase() !== 'F' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() !== 'U' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() !== 'N' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() !== 'K' &&
+                                this.KEYBOARD_MAPPING[i].toUpperCase() !== 'P') {
                                 canvas.draw_text(this.KEYBOARD_MAPPING[i].toUpperCase(), this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
                             }
                         }

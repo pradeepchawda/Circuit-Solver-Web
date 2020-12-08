@@ -77,12 +77,12 @@ class SineWave {
         this.last_y2 = -1;
     }
     draw_sine_wave(canvas, style) {
-        if (this.last_x1 != this.x1 || this.last_x2 != this.x2) {
+        if (this.last_x1 !== this.x1 || this.last_x2 !== this.x2) {
             this.last_x1 = this.x1;
             this.last_x2 = this.x2;
             this.c_x = (this.x2 + this.x1) * 0.5;
         }
-        if (this.last_y1 != this.y1 || this.last_y2 != this.y2) {
+        if (this.last_y1 !== this.y1 || this.last_y2 !== this.y2) {
             this.last_y1 = this.y1;
             this.last_y2 = this.y2;
             this.c_y = (this.y2 + this.y1) * 0.5;

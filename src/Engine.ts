@@ -555,8 +555,8 @@ function load_app(): void {
 		solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		solver_container.style.background = 'black';
 		view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth, window.innerHeight);
-		surface.width = view_port.right;
-		surface.height = view_port.bottom;
+		surface.width = window.innerWidth;
+		surface.height = window.innerHeight;
 		global.resize_w_factor = view_port.view_width / global.last_view_port_width;
 		global.resize_h_factor = view_port.view_height / global.last_view_port_height;
 		/* Resize all the text and stroke widths */
@@ -819,7 +819,7 @@ function load_app(): void {
 					toast.draw_text;
 				global.last_selected = global.selected;
 				update();
-				if (global.last_selected != global.selected) {
+				if (global.last_selected !== global.selected) {
 					wire_manager.reset_wire_builder();
 				}
 				if (global.FORCE_RESIZE_EVENT) {
@@ -1264,7 +1264,7 @@ function load_app(): void {
 				history_manager.watch();
 				wire_manager.watch();
 				if (!global.MOBILE_MODE) {
-					if (last_webpage_document_title != global.user_file.title) {
+					if (last_webpage_document_title !== global.user_file.title) {
 						webpage_document_title.innerHTML = global.user_file.title;
 						last_webpage_document_title = global.user_file.title;
 					}
@@ -2367,16 +2367,16 @@ function load_app(): void {
 		}
 	}
 	function browser_detection(): void {
-		if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) != -1) {
+		if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) !== -1) {
 			global.BROWSER_OPERA = true;
-		} else if (navigator.userAgent.indexOf('Chrome') != -1) {
+		} else if (navigator.userAgent.indexOf('Chrome') !== -1) {
 			global.BROWSER_CHROME = true;
-		} else if (navigator.userAgent.indexOf('Safari') != -1) {
+		} else if (navigator.userAgent.indexOf('Safari') !== -1) {
 			global.BROWSER_SAFARI = true;
-		} else if (navigator.userAgent.indexOf('Firefox') != -1) {
+		} else if (navigator.userAgent.indexOf('Firefox') !== -1) {
 			global.BROWSER_FIREFOX = true;
 			//@ts-ignore
-		} else if (navigator.userAgent.indexOf('MSIE') != -1 || !!document.documentMode === true) {
+		} else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true) {
 			global.BROWSER_IE = true;
 		}
 	}

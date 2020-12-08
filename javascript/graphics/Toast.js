@@ -125,7 +125,7 @@ class Toast {
     }
     draw_toast(canvas) {
         if (this.draw_text) {
-            if (this.last_text != this.text) {
+            if (this.last_text !== this.text) {
                 this.last_text = this.text;
                 this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;
             }

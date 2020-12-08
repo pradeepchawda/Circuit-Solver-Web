@@ -180,7 +180,7 @@ class NChannelMOSFET {
     }
     stamp() {
         if (this.elm.consistent()) {
-            if (this.elm.properties['Mosfet Mode'] != 0) {
+            if (this.elm.properties['Mosfet Mode'] !== 0) {
                 engine_functions.stamp_vccs(this.elm.n3, this.elm.n2, this.elm.n1, this.elm.n2, -this.elm.properties['gm']);
             }
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.GMIN);
@@ -549,7 +549,7 @@ class NChannelMOSFET {
         }
     }
     select() {
-        if (global.WIRE_BUILDER['step'] != 0) {
+        if (global.WIRE_BUILDER['step'] !== 0) {
             wire_manager.reset_wire_builder();
         }
         global.selected_id = this.elm.id;
@@ -913,16 +913,16 @@ class NChannelMOSFET {
         if (!global.not_null(this.GMIN_START)) {
             this.GMIN_START = 12;
         }
-        if (this.GMIN != 1e-9) {
+        if (this.GMIN !== 1e-9) {
             this.GMIN = 1e-9;
         }
-        if (this.GMIN_START != 12) {
+        if (this.GMIN_START !== 12) {
             this.GMIN_START = 12;
         }
-        if (this.GAMMA != 0.12) {
+        if (this.GAMMA !== 0.12) {
             this.GAMMA = 0.12;
         }
-        if (this.KAPPA != 0.414) {
+        if (this.KAPPA !== 0.414) {
             this.KAPPA = 0.414;
         }
         if (!global.not_null(this.line_buffer)) {

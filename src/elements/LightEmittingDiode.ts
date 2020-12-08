@@ -299,7 +299,7 @@ or overlapped)*/
 		if (
 			Math.abs(this.elm.properties['Equivalent Current']) > this.elm.properties['Turn On Current'] &&
 			this.elm.properties['Last Current'] > this.elm.properties['Turn On Current'] &&
-			simulation_manager.SIMULATION_STEP != 0
+			simulation_manager.SIMULATION_STEP !== 0
 		) {
 			this.LED_STATUS = global.ON;
 		} else {
@@ -522,7 +522,7 @@ or overlapped)*/
 		}
 	}
 	select(): void {
-		if (global.WIRE_BUILDER['step'] != 0) {
+		if (global.WIRE_BUILDER['step'] !== 0) {
 			wire_manager.reset_wire_builder();
 		}
 		global.selected_id = this.elm.id;
@@ -936,16 +936,16 @@ or overlapped)*/
 		if (!global.not_null(this.GMIN_START)) {
 			this.GMIN_START = 12;
 		}
-		if (this.GMIN != 1e-9) {
+		if (this.GMIN !== 1e-9) {
 			this.GMIN = 1e-9;
 		}
-		if (this.GMIN_START != 12) {
+		if (this.GMIN_START !== 12) {
 			this.GMIN_START = 12;
 		}
-		if (this.GAMMA != 0.12) {
+		if (this.GAMMA !== 0.12) {
 			this.GAMMA = 0.12;
 		}
-		if (this.KAPPA != 0.414) {
+		if (this.KAPPA !== 0.414) {
 			this.KAPPA = 0.414;
 		}
 		if (!global.not_null(this.line_buffer)) {

@@ -537,25 +537,25 @@ class ElementOptions {
             !global.FLAG_GRAPH) {
             if (global.selected) {
                 /* Block around c0 (so components don't register mouse down)*/
-                if (this.opts['c0'] != this.NO_ICON) {
+                if (this.opts['c0'] !== this.NO_ICON) {
                     if (this.option_0.contains_xywh(global.mouse_x, global.mouse_y, this.option_0.get_width() * 1.25, this.option_0.get_height() * 1.25)) {
                         global.component_touched = true;
                     }
                 }
                 /* Block around c1 (so components don't register mouse down)*/
-                if (this.opts['c1'] != this.NO_ICON) {
+                if (this.opts['c1'] !== this.NO_ICON) {
                     if (this.option_1.contains_xywh(global.mouse_x, global.mouse_y, this.option_1.get_width() * 1.25, this.option_1.get_height() * 1.25)) {
                         global.component_touched = true;
                     }
                 }
                 /* Block around c2 (so components don't register mouse down)*/
-                if (this.opts['c2'] != this.NO_ICON) {
+                if (this.opts['c2'] !== this.NO_ICON) {
                     if (this.option_2.contains_xywh(global.mouse_x, global.mouse_y, this.option_2.get_width() * 1.25, this.option_2.get_height() * 1.25)) {
                         global.component_touched = true;
                     }
                 }
                 /* Block around c3 (so components don't register mouse down)*/
-                if (this.opts['c3'] != this.NO_ICON) {
+                if (this.opts['c3'] !== this.NO_ICON) {
                     if (this.option_3.contains_xywh(global.mouse_x, global.mouse_y, this.option_3.get_width() * 1.25, this.option_3.get_height() * 1.25)) {
                         global.component_touched = true;
                     }

@@ -130,7 +130,7 @@ class RectF {
 	}
 	/* Get the center x */
 	get_center_x(): number {
-		if (this.last_left != this.left || this.last_right != this.right) {
+		if (this.last_left !== this.left || this.last_right !== this.right) {
 			this.last_left = this.left;
 			this.last_right = this.right;
 			this.last_center_x = (this.right + this.left) * 0.5;
@@ -139,7 +139,7 @@ class RectF {
 	}
 	/* Get the center y */
 	get_center_y(): number {
-		if (this.last_top != this.top || this.last_bottom != this.bottom) {
+		if (this.last_top !== this.top || this.last_bottom !== this.bottom) {
 			this.last_top = this.top;
 			this.last_bottom = this.bottom;
 			this.last_center_y = (this.top + this.bottom) * 0.5;
@@ -148,7 +148,7 @@ class RectF {
 	}
 	/* Get the width of the rectangle */
 	get_width(): number {
-		if (this.w_last_left != this.left || this.w_last_right != this.right) {
+		if (this.w_last_left !== this.left || this.w_last_right !== this.right) {
 			this.w_last_left = this.left;
 			this.w_last_right = this.right;
 			this.last_width = Math.abs(this.right - this.left);
@@ -157,7 +157,7 @@ class RectF {
 	}
 	/* Get the height of the rectangle */
 	get_height(): number {
-		if (this.w_last_top != this.top || this.w_last_bottom != this.bottom) {
+		if (this.w_last_top !== this.top || this.w_last_bottom !== this.bottom) {
 			this.w_last_top = this.top;
 			this.w_last_bottom = this.bottom;
 			this.last_height = Math.abs(this.bottom - this.top);

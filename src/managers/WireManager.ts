@@ -31,7 +31,7 @@ class WireManager {
 		if (global.WIRE_BUILDER['step'] > 0) {
 			if (global.WIRE_BUILDER['step'] >= 2) {
 				if (
-					(global.WIRE_BUILDER['n1'] != global.WIRE_BUILDER['n2'] && !(global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] && global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2'])) ||
+					(global.WIRE_BUILDER['n1'] !== global.WIRE_BUILDER['n2'] && !(global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] && global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2'])) ||
 					this.exclude_nmosfet() ||
 					this.exclude_opamps() ||
 					this.exclude_vcvs() ||
@@ -64,7 +64,7 @@ class WireManager {
 						global.SIGNAL_WIRE_CREATED = true;
 					}
 				} else {
-					if (global.WIRE_BUILDER['n1'] != global.WIRE_BUILDER['n2'] && global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] && global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2']) {
+					if (global.WIRE_BUILDER['n1'] !== global.WIRE_BUILDER['n2'] && global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] && global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2']) {
 						toast.set_text(language_manager.CONNECTION_NOT_ALLOWED[global.LANGUAGES[global.LANGUAGE_INDEX]] + '.');
 						toast.show();
 					}
@@ -104,7 +104,7 @@ class WireManager {
 		return global.WIRE_BUILDER['type1'] === global.TYPE_DFF && global.WIRE_BUILDER['type2'] === global.TYPE_DFF;
 	}
 	reset_wire_builder(): void {
-		if (global.WIRE_BUILDER['n1'] != -1 || global.WIRE_BUILDER['n2'] != -1) {
+		if (global.WIRE_BUILDER['n1'] !== -1 || global.WIRE_BUILDER['n2'] !== -1) {
 			global.WIRE_BUILDER['n1'] = -1;
 			global.WIRE_BUILDER['id1'] = -1;
 			global.WIRE_BUILDER['type1'] = -1;

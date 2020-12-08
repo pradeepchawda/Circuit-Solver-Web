@@ -44,7 +44,7 @@ class StringOperator {
         let is_found = false;
         if (input.length === 1) {
             for (var i = 0; i < this.prefix.length; i++) {
-                if (i != 6 && input.charAt(0) === this.prefix[i].charAt(0)) {
+                if (i !== 6 && input.charAt(0) === this.prefix[i].charAt(0)) {
                     output = '1' + input;
                     is_found = true;
                     break;
@@ -59,7 +59,7 @@ class StringOperator {
     truncate(input, decimal_place) {
         let decimal_location = -1;
         decimal_location = this.get_decimal_index(input);
-        if (decimal_location != -1) {
+        if (decimal_location !== -1) {
             for (var i = input.length - 1; i > decimal_location + decimal_place; i--) {
                 input.splice(i, 1);
             }
@@ -143,11 +143,11 @@ class StringOperator {
     }
     shift(input, shift) {
         let decimal_location = this.get_decimal_index(input);
-        if (shift != 0) {
+        if (shift !== 0) {
             let place_at = decimal_location + (shift + 1);
             input.splice(place_at, 0, new Digit(this.DECIMAL_POINT));
             for (var i = 0; i < input.length; i++) {
-                if (input[i].get_digit() === this.DECIMAL_POINT && i != place_at) {
+                if (input[i].get_digit() === this.DECIMAL_POINT && i !== place_at) {
                     input.splice(i, 1);
                     break;
                 }
@@ -170,7 +170,7 @@ class StringOperator {
             }
         }
         this.shift_variable = closest;
-        if (location != -1) {
+        if (location !== -1) {
             this.index = location;
             return this.bases[location];
         }
@@ -275,7 +275,7 @@ class StringOperator {
                 for (var i = 0; i < input.length; i++) {
                     if (begin && input[i].get_digit() > 0) {
                         input.splice(i + 1, 0, new Digit(this.DECIMAL_POINT));
-                        if (decimal != -1) {
+                        if (decimal !== -1) {
                             input.splice(decimal, 1);
                         }
                         break;
@@ -296,7 +296,7 @@ class StringOperator {
                 output = output + Math.round(input[i].get_digit());
             }
             else if (input[i].get_digit() === this.DECIMAL_POINT) {
-                if (i != input.length - 1) {
+                if (i !== input.length - 1) {
                     output = output + '.';
                 }
             }
@@ -344,7 +344,7 @@ class StringOperator {
                     input.splice(i, 1);
                 }
                 else {
-                    if (input[i].get_digit() != this.NEGATIVE_SIGN) {
+                    if (input[i].get_digit() !== this.NEGATIVE_SIGN) {
                         break;
                     }
                 }
@@ -355,7 +355,7 @@ class StringOperator {
                     input.splice(i, 1);
                 }
                 else {
-                    if (input[i].get_digit() != this.NEGATIVE_SIGN) {
+                    if (input[i].get_digit() !== this.NEGATIVE_SIGN) {
                         break;
                     }
                 }
@@ -383,7 +383,7 @@ class StringOperator {
             second_bit = input[1].get_digit();
             if ((first_bit < this.NEGATIVE_SIGN && first_bit > 0) || (first_bit === this.NEGATIVE_SIGN && second_bit < this.NEGATIVE_SIGN && second_bit > 0)) {
                 for (var i = 0; i < input.length; i++) {
-                    if (input[i].get_digit() < this.DECIMAL_POINT && input[i].get_digit() != this.NEGATIVE_SIGN) {
+                    if (input[i].get_digit() < this.DECIMAL_POINT && input[i].get_digit() !== this.NEGATIVE_SIGN) {
                         count++;
                     }
                     else if (input[i].get_digit() === this.DECIMAL_POINT) {
@@ -425,7 +425,7 @@ class StringOperator {
         let negate = false;
         let count = 0;
         for (var i = decimal; i < inp.length; i++) {
-            if (Math.round(inp[i].get_digit()) != this.DECIMAL_POINT && Math.round(inp[i].get_digit()) != this.NEGATIVE_SIGN) {
+            if (Math.round(inp[i].get_digit()) !== this.DECIMAL_POINT && Math.round(inp[i].get_digit()) !== this.NEGATIVE_SIGN) {
                 output += Math.round(inp[i].get_digit()) * Math.pow(10, count);
             }
             count--;
@@ -435,7 +435,7 @@ class StringOperator {
         }
         count = 0;
         for (var i = decimal - 1; i > -1; i--) {
-            if (Math.round(inp[i].get_digit()) != this.DECIMAL_POINT && Math.round(inp[i].get_digit()) != this.NEGATIVE_SIGN) {
+            if (Math.round(inp[i].get_digit()) !== this.DECIMAL_POINT && Math.round(inp[i].get_digit()) !== this.NEGATIVE_SIGN) {
                 output += Math.round(inp[i].get_digit()) * Math.pow(10, count);
             }
             count++;

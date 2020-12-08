@@ -1933,7 +1933,7 @@ class Global {
             'yellow': '#ffff00',
             'yellowgreen': '#9acd32'
         };
-        if (typeof colors[color.toLowerCase()] != 'undefined') {
+        if (typeof colors[color.toLowerCase()] !== 'undefined') {
             return colors[color.toLowerCase()];
         }
         return color;

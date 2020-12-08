@@ -694,7 +694,7 @@ class ElementWindow {
         /* Handle the hover here! */
         for (var i = 0; i < this.positions.length; i++) {
             if (this.positions[i].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
-                if (i != this.NAVIGATE_BACK && i != this.NAVIGATE_FORWARD) {
+                if (i !== this.NAVIGATE_BACK && i !== this.NAVIGATE_FORWARD) {
                     if (this.hover_limits(this.PAGE_NUMBER, i, this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER)) {
                         canvas.draw_round_rect3(this.positions[i].get_center_x(), this.positions[i].get_center_y(), this.positions[i].get_width() * 1.25, this.positions[i].get_height() * 1.25, global.CANVAS_STROKE_WIDTH_1, this.hover_paint);
                     }

@@ -70,7 +70,7 @@ class LinearAlgebra {
                         this._i_max = this._k;
                     }
                 }
-                if (this._i_max != this._i) {
+                if (this._i_max !== this._i) {
                     this._j = this.P[this._i];
                     this.P[this._i] = this.P[this._i_max];
                     this.P[this._i_max] = this._j;

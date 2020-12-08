@@ -369,7 +369,7 @@ class ShortcutManager {
     }
     handle_escape_shortcut(key_event) {
         if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
-            if (global.SIGNAL_HISTORY_LOCK && this.TEMP_HISTORY_SNAPSHOT != '') {
+            if (global.SIGNAL_HISTORY_LOCK && this.TEMP_HISTORY_SNAPSHOT !== '') {
                 engine_functions.parse_elements(this.TEMP_HISTORY_SNAPSHOT);
                 this.TEMP_HISTORY_SNAPSHOT = '';
                 global.SIGNAL_HISTORY_LOCK = false;
@@ -3400,7 +3400,7 @@ class ShortcutManager {
         if (this.command === this.SHORTCUT_COPY) {
             if (!global.multi_selected) {
                 if (global.not_null(global.selected_type) && global.not_null(global.selected_properties) && global.not_null(global.selected_id)) {
-                    if (global.selected_type != global.TYPE_WIRE) {
+                    if (global.selected_type !== global.TYPE_WIRE) {
                         global.clipboard_type = global.selected_type;
                         global.clipboard_rotation = -1;
                         global.clipboard_flip = -1;

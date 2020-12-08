@@ -163,7 +163,7 @@ class Multiplier {
     }
     /* General function to handle any processing required by the component */
     update() {
-        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
+        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage1'] = engine_functions.get_voltage(this.elm.n1, -1);
                 this.elm.properties['Input Voltage2'] = engine_functions.get_voltage(this.elm.n2, -1);
@@ -472,7 +472,7 @@ class Multiplier {
         }
     }
     select() {
-        if (global.WIRE_BUILDER['step'] != 0) {
+        if (global.WIRE_BUILDER['step'] !== 0) {
             wire_manager.reset_wire_builder();
         }
         global.selected_id = this.elm.id;

@@ -195,7 +195,7 @@ class Trace {
         }
         this.norm = 2 * this.norm;
         this.temporary_norm = this.norm;
-        if (this.last_norm != 0 && this.temporary_norm != 0) {
+        if (this.last_norm !== 0 && this.temporary_norm !== 0) {
             let temp_div = this.last_norm / (this.height * this.ratio);
             let temp_const = (this.height * this.ratio) / this.temporary_norm;
             for (var i = 0; i < this.trace.length; i++) {

@@ -664,7 +664,7 @@ class MultiSelectManager {
 					this.DELTA_LAST_DY = this.DELTA_DY;
 					this.DELTA_DX = Math.floor((this.DELTA_END_X - this.DELTA_CENTER_X) / global.node_space_x);
 					this.DELTA_DY = Math.floor((this.DELTA_END_Y - this.DELTA_CENTER_Y) / global.node_space_y);
-					if (this.DELTA_DX != this.DELTA_LAST_DX || this.DELTA_DY != this.DELTA_LAST_DY) {
+					if (this.DELTA_DX !== this.DELTA_LAST_DX || this.DELTA_DY !== this.DELTA_LAST_DY) {
 						this.handle_multi_move();
 					}
 				}
@@ -728,7 +728,7 @@ class MultiSelectManager {
 				dx = 0;
 			}
 		}
-		if (dx != 0 || dy != 0) {
+		if (dx !== 0 || dy !== 0) {
 			global.SIGNAL_BUILD_ELEMENT = true;
 			global.signal_build_counter = 0;
 			this.ELEMENTS_MOVED = true;

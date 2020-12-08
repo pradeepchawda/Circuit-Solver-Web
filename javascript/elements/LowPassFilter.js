@@ -153,7 +153,7 @@ class LowPassFilter {
     }
     /* General function to handle any processing required by the component */
     update() {
-        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
+        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage'] = engine_functions.get_voltage(this.elm.n1, -1);
                 this.elm.properties['Output Voltage'] = this.lowpass_filter(this.elm.properties['Input Voltage']);
@@ -401,7 +401,7 @@ class LowPassFilter {
         }
     }
     select() {
-        if (global.WIRE_BUILDER['step'] != 0) {
+        if (global.WIRE_BUILDER['step'] !== 0) {
             wire_manager.reset_wire_builder();
         }
         global.selected_id = this.elm.id;

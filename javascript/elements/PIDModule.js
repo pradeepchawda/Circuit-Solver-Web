@@ -170,7 +170,7 @@ class PIDModule {
     }
     /* General function to handle any processing required by the component */
     update() {
-        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP != 0) {
+        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
             if (this.elm.consistent()) {
                 this.pid_controller.set_setpoint(this.elm.properties['Setpoint']);
                 this.pid_controller.set_kp(this.elm.properties['Kp']);
@@ -490,7 +490,7 @@ class PIDModule {
         }
     }
     select() {
-        if (global.WIRE_BUILDER['step'] != 0) {
+        if (global.WIRE_BUILDER['step'] !== 0) {
             wire_manager.reset_wire_builder();
         }
         global.selected_id = this.elm.id;

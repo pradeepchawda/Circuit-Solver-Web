@@ -192,7 +192,7 @@ class Paint {
 	}
 	/* Get the font metrics */
 	measure(txt: string): PAINT_METRICS_T {
-		if (this.last_font != this.font || this.last_text_size != this.text_size) {
+		if (this.last_font !== this.font || this.last_text_size !== this.text_size) {
 			this.paint_surface.context.font = this.FONT_TEMPLATE.replace('s', this.text_size + '').replace('f', this.font);
 			this.last_font = this.font;
 			this.last_text_size = this.text_size;
@@ -253,7 +253,7 @@ class Paint {
 	}
 	house_keeping(txt: string): void {
 		for (var i: number = this.metric_array.length - 1; i > -1; i--) {
-			if (this.metric_array[i]['text'] === txt && this.metric_array[i]['font'] === this.font && this.metric_array[i]['text size'] != this.text_size) {
+			if (this.metric_array[i]['text'] === txt && this.metric_array[i]['font'] === this.font && this.metric_array[i]['text size'] !== this.text_size) {
 				this.metric_array.splice(i, 1);
 			}
 		}

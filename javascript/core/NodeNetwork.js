@@ -24,7 +24,7 @@ class NodeNetwork {
     constructor(node_a, node_b) {
         this.references = [];
         this.lowest = -1;
-        if (node_a != node_b) {
+        if (node_a !== node_b) {
             this.references.push(node_a);
             this.references.push(node_b);
         }
@@ -35,7 +35,7 @@ class NodeNetwork {
     }
     get_lowest_id(node) {
         this.lowest = this.find_lowest_id();
-        if (this.is_found(node) && this.lowest != -1) {
+        if (this.is_found(node) && this.lowest !== -1) {
             return this.lowest;
         }
         else {
@@ -73,7 +73,7 @@ class NodeNetwork {
         return is_found;
     }
     is_removed(node) {
-        return (this.is_found(node) && node != this.find_lowest_id()) || this.find_lowest_id() === -1 || node === -1;
+        return (this.is_found(node) && node !== this.find_lowest_id()) || this.find_lowest_id() === -1 || node === -1;
     }
     find_lowest_id() {
         let lowest = -1;

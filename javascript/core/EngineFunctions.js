@@ -5041,11 +5041,11 @@ class EngineFunctions {
                 }
             }
         }
-        if (node_manager.active_nodes.length > 0 && node_id != -1) {
+        if (node_manager.active_nodes.length > 0 && node_id !== -1) {
             for (var i = 0; i < node_manager.unique_nodes.length; i++) {
                 if (node_manager.unique_nodes[i].is_found(node_id)) {
                     this.temp = this.check_node(node_manager.unique_nodes[i].get_lowest_id(node_id));
-                    if (this.temp != -1) {
+                    if (this.temp !== -1) {
                         this.output = this.temp;
                         break;
                     }
@@ -5068,13 +5068,13 @@ class EngineFunctions {
     stamp_resistor(n1, n2, resistance) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.node_1] += 1.0 / resistance;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.node_2][this.node_2] += 1.0 / resistance;
         }
-        if (this.node_1 != -1 && this.node_2 != -1) {
+        if (this.node_1 !== -1 && this.node_2 !== -1) {
             matrix_a[this.node_1][this.node_2] += -1.0 / resistance;
             matrix_a[this.node_2][this.node_1] += -1.0 / resistance;
         }
@@ -5082,7 +5082,7 @@ class EngineFunctions {
     /* Node */
     stamp_node(n1, resistance) {
         this.node_1 = this.map_node(n1);
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.node_1] += 1.0 / resistance;
         }
     }
@@ -5090,7 +5090,7 @@ class EngineFunctions {
     stamp_across_nodes(n1, n2, resistance) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
-        if (this.node_1 != -1 && this.node_2 != -1) {
+        if (this.node_1 !== -1 && this.node_2 !== -1) {
             matrix_a[this.node_1][this.node_2] += 1.0 / resistance;
         }
     }
@@ -5099,20 +5099,20 @@ class EngineFunctions {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
         this.offset = simulation_manager.NODE_SIZE;
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.offset + id] = 1;
             matrix_a[this.offset + id][this.node_1] = 1;
             /* Adding finite resistance. */
             matrix_a[this.node_1][this.node_1] += 1.0 / global.settings.R_MAX;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.node_2][this.offset + id] = -1;
             matrix_a[this.offset + id][this.node_2] = -1;
             /* Adding finite resistance. */
             matrix_a[this.node_2][this.node_2] += 1.0 / global.settings.R_MAX;
         }
         /* Adding finite resistance. */
-        if (this.node_1 != -1 && this.node_2 != -1) {
+        if (this.node_1 !== -1 && this.node_2 !== -1) {
             matrix_a[this.node_1][this.node_2] += -1.0 / global.settings.R_MAX;
             matrix_a[this.node_2][this.node_1] += -1.0 / global.settings.R_MAX;
         }
@@ -5123,10 +5123,10 @@ class EngineFunctions {
     stamp_current(n1, n2, current) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_z[this.node_1][0] += current;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_z[this.node_2][0] += -current;
         }
     }
@@ -5134,15 +5134,15 @@ class EngineFunctions {
     stamp_capacitor(n1, n2, transient_resistance, transient_ieq) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.node_1] += 1.0 / transient_resistance;
             matrix_z[this.node_1][0] += -transient_ieq;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.node_2][this.node_2] += 1.0 / transient_resistance;
             matrix_z[this.node_2][0] += transient_ieq;
         }
-        if (this.node_1 != -1 && this.node_2 != -1) {
+        if (this.node_1 !== -1 && this.node_2 !== -1) {
             matrix_a[this.node_1][this.node_2] += -1.0 / transient_resistance;
             matrix_a[this.node_2][this.node_1] += -1.0 / transient_resistance;
         }
@@ -5151,15 +5151,15 @@ class EngineFunctions {
     stamp_inductor(n1, n2, transient_resistance, transient_ieq) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.node_1] += 1.0 / transient_resistance;
             matrix_z[this.node_1][0] += -transient_ieq;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.node_2][this.node_2] += 1.0 / transient_resistance;
             matrix_z[this.node_2][0] += transient_ieq;
         }
-        if (this.node_1 != -1 && this.node_2 != -1) {
+        if (this.node_1 !== -1 && this.node_2 !== -1) {
             matrix_a[this.node_1][this.node_2] += -1.0 / transient_resistance;
             matrix_a[this.node_2][this.node_1] += -1.0 / transient_resistance;
         }
@@ -5171,19 +5171,19 @@ class EngineFunctions {
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
         this.offset = simulation_manager.NODE_SIZE;
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = 1;
             matrix_a[this.node_1][this.offset + id] = 1;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.offset + id + 1][this.node_2] = 1;
             matrix_a[this.node_2][this.offset + id + 1] = 1;
         }
-        if (this.node_3 != -1) {
+        if (this.node_3 !== -1) {
             matrix_a[this.offset + id + 1][this.node_3] = -1;
             matrix_a[this.node_3][this.offset + id + 1] = -1;
         }
-        if (this.node_4 != -1) {
+        if (this.node_4 !== -1) {
             matrix_a[this.offset + id][this.node_4] = -1;
             matrix_a[this.node_4][this.offset + id] = -1;
         }
@@ -5195,16 +5195,16 @@ class EngineFunctions {
         this.node_2 = this.map_node(n2);
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
-        if (this.node_1 != -1 && this.node_2 != -1) {
+        if (this.node_1 !== -1 && this.node_2 !== -1) {
             matrix_a[this.node_2][this.node_1] += gain;
         }
-        if (this.node_2 != -1 && this.node_4 != -1) {
+        if (this.node_2 !== -1 && this.node_4 !== -1) {
             matrix_a[this.node_2][this.node_4] += -gain;
         }
-        if (this.node_1 != -1 && this.node_3 != -1) {
+        if (this.node_1 !== -1 && this.node_3 !== -1) {
             matrix_a[this.node_3][this.node_1] += -gain;
         }
-        if (this.node_3 != -1 && this.node_4 != -1) {
+        if (this.node_3 !== -1 && this.node_4 !== -1) {
             matrix_a[this.node_3][this.node_4] += gain;
         }
     }
@@ -5215,17 +5215,17 @@ class EngineFunctions {
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
         this.offset = simulation_manager.NODE_SIZE;
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = 1;
             matrix_a[this.node_1][this.offset + id] = 1;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.node_2][this.offset + id] = gain;
         }
-        if (this.node_3 != -1) {
+        if (this.node_3 !== -1) {
             matrix_a[this.node_3][this.offset + id] = -gain;
         }
-        if (this.node_4 != -1) {
+        if (this.node_4 !== -1) {
             matrix_a[this.offset + id][this.node_4] = -1;
             matrix_a[this.node_4][this.offset + id] = -1;
         }
@@ -5237,18 +5237,18 @@ class EngineFunctions {
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
         this.offset = simulation_manager.NODE_SIZE;
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = -gain;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.offset + id][this.node_2] = 1;
             matrix_a[this.node_2][this.offset + id] = 1;
         }
-        if (this.node_3 != -1) {
+        if (this.node_3 !== -1) {
             matrix_a[this.offset + id][this.node_3] = -1;
             matrix_a[this.node_3][this.offset + id] = -1;
         }
-        if (this.node_4 != -1) {
+        if (this.node_4 !== -1) {
             matrix_a[this.offset + id][this.node_4] = gain;
         }
     }
@@ -5258,13 +5258,13 @@ class EngineFunctions {
         this.node_2 = this.map_node(n2);
         this.node_3 = this.map_node(n3);
         this.offset = simulation_manager.NODE_SIZE;
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = 1;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.offset + id][this.node_2] = -1;
         }
-        if (this.node_3 != -1) {
+        if (this.node_3 !== -1) {
             matrix_a[this.node_3][this.offset + id] = 1;
         }
         /* Giving the op-amp finite gain. */
@@ -5277,19 +5277,19 @@ class EngineFunctions {
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
         this.offset = simulation_manager.NODE_SIZE;
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = -1;
             matrix_a[this.node_1][this.offset + id] = 1;
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             matrix_a[this.offset + id][this.node_2] = 1;
             matrix_a[this.node_2][this.offset + id] = -1;
         }
-        if (this.node_3 != -1) {
+        if (this.node_3 !== -1) {
             matrix_a[this.offset + id][this.node_3] = gain;
             matrix_a[this.node_3][this.offset + id] = -gain;
         }
-        if (this.node_4 != -1) {
+        if (this.node_4 !== -1) {
             matrix_a[this.offset + id][this.node_4] = -gain;
             matrix_a[this.node_4][this.offset + id] = gain;
         }
@@ -5300,10 +5300,10 @@ class EngineFunctions {
         this.node_2 = this.map_node(n2);
         this.v_node_1 = 0;
         this.v_node_2 = 0;
-        if (this.node_1 != -1) {
+        if (this.node_1 !== -1) {
             this.v_node_1 = matrix_x[this.node_1][0];
         }
-        if (this.node_2 != -1) {
+        if (this.node_2 !== -1) {
             this.v_node_2 = matrix_x[this.node_2][0];
         }
         /* Mever let NaN get into the elements. */
@@ -5343,7 +5343,7 @@ class EngineFunctions {
         graph_window.reset();
         let elements = packet.split(global.PACKET_DIVIDER);
         for (var i = 0; i < elements.length; i++) {
-            if (elements[i] != '') {
+            if (elements[i] !== '') {
                 this.rebuild_elements(JSON.parse(elements[i]));
             }
         }
