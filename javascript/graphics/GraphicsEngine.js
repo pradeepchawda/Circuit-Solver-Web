@@ -86,44 +86,44 @@ class GraphicsEngine {
     /* Applies the paint's properties to the context */
     apply_paint(paint, is_text) {
         this.ctx.beginPath();
-        if (this.last_fill_color != paint.color && paint.style.FILL === paint.paint_style) {
+        if (this.last_fill_color !== paint.color && paint.style.FILL === paint.paint_style) {
             this.ctx.fillStyle = paint.color;
             this.last_fill_color = paint.color;
         }
-        if (this.last_alpha != paint.alpha) {
+        if (this.last_alpha !== paint.alpha) {
             this.ctx.globalAlpha = paint.alpha;
             this.last_alpha = paint.alpha;
         }
         if (is_text) {
-            if (this.last_text_align != paint.text_align) {
+            if (this.last_text_align !== paint.text_align) {
                 this.ctx.textAlign = paint.text_align;
                 this.last_text_align = paint.text_align;
             }
-            if (this.last_text_size != paint.text_size || this.last_font != paint.font) {
+            if (this.last_text_size !== paint.text_size || this.last_font !== paint.font) {
                 this.ctx.font = this.FONT_TEMPLATE.replace('s', paint.text_size).replace('f', paint.font);
                 this.last_text_size = paint.text_size;
                 this.last_font = paint.font;
             }
-            if (this.last_text_baseline != paint.text_baseline) {
+            if (this.last_text_baseline !== paint.text_baseline) {
                 this.ctx.textBaseline = paint.text_baseline;
                 this.last_text_baseline = paint.text_baseline;
             }
         }
         else {
             if (paint.style.STROKE === paint.paint_style || paint.style.FILL_AND_STROKE === paint.paint_style) {
-                if (this.last_stroke_color != paint.color) {
+                if (this.last_stroke_color !== paint.color) {
                     this.ctx.strokeStyle = paint.color;
                     this.last_stroke_color = paint.color;
                 }
-                if (this.ENABLE_LINE_JOIN && this.last_join != paint.paint_join) {
+                if (this.ENABLE_LINE_JOIN && this.last_join !== paint.paint_join) {
                     this.ctx.lineJoin = paint.paint_join;
                     this.last_join = paint.paint_join;
                 }
-                if (this.last_line_cap != paint.paint_cap) {
+                if (this.last_line_cap !== paint.paint_cap) {
                     this.ctx.lineCap = paint.paint_cap;
                     this.last_line_cap = paint.paint_cap;
                 }
-                if (this.last_width != paint.stroke_width) {
+                if (this.last_width !== paint.stroke_width) {
                     this.ctx.lineWidth = paint.stroke_width;
                     this.last_width = paint.stroke_width;
                 }
