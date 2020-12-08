@@ -102,7 +102,7 @@ class ElementOptionsWindow {
 		this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
-		this.fill_paint.set_alpha(255);
+		this.fill_paint.set_alpha(130);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
@@ -128,7 +128,7 @@ class ElementOptionsWindow {
 		this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(255);
+		this.hover_paint.set_alpha(192);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.shorcut_text_paint = new Paint();
@@ -180,7 +180,7 @@ class ElementOptionsWindow {
 		this.title_bounds.text_paint.set_paint_align(this.title_bounds.text_paint.align.LEFT);
 		this.title_bounds.text_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.title_bounds.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
-		this.title_bounds.fill_paint.set_alpha(255);
+		this.title_bounds.fill_paint.set_alpha(130);
 		this.title_bounds.draw_stroke = false;
 		this.title_bounds.draw_fill = true;
 		this.title_bounds.draw_text = false;
@@ -191,7 +191,7 @@ class ElementOptionsWindow {
 		this.okay_button.text = '';
 		this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
-		this.okay_button.fill_paint.set_alpha(255);
+		this.okay_button.fill_paint.set_alpha(130);
 		this.okay_button.draw_stroke = false;
 		this.okay_button.draw_fill = true;
 		this.exit_button = new Button(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);

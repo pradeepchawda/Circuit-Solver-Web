@@ -152,7 +152,7 @@ class WattMeterSymbol {
 		this.text_background_paint.set_color(global.GENERAL_CYAN_COLOR);
 		this.text_background_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.text_background_paint.set_font(global.DEFAULT_FONT);
-		this.text_background_paint.set_alpha(255);
+		this.text_background_paint.set_alpha(192);
 		this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
 		this.meter_symbol = new MeterSymbols();
 		this.meter_symbol.reset(this.meter_symbol.METER_POWER, this.meter_symbol.STYLE_0);

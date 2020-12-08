@@ -123,7 +123,7 @@ during simulation. */
 		this.fill_paint.set_color(global.MENU_FILL_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
-		this.fill_paint.set_alpha(255);
+		this.fill_paint.set_alpha(192);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.line_paint_alt = new Paint();
@@ -190,7 +190,7 @@ during simulation. */
 		this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(255);
+		this.hover_paint.set_alpha(192);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.undo_paint = new Paint();
