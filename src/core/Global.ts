@@ -2890,16 +2890,16 @@ class Global {
 		return (a + b + c + d) * 0.25;
 	}
 	/* Check to see if an element is null or undefined. */
-	'not_null'(obj) {
+	'not_null'(obj: any) {
 		return !(obj == this.NULL);
 	}
 	/* Using lodash to deep clone an object. */
-	'copy'(obj) {
+	'copy'(obj: any) {
 		return _.cloneDeep(obj);
 	}
 	/* A safe function to print stuff out when debugging. Developer mode is automatically set to false
   when the production script is run. */
-	'print'(...obj) {
+	'print'(...obj: any) {
 		if (this.DEVELOPER_MODE) {
 			console.log(obj);
 		}

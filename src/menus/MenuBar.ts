@@ -1367,7 +1367,6 @@ during simulation. */
 				this.graph_button.contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.FLAG_MENU_OPEN_DOWN &&
 				!global.FLAG_MENU_OPEN_DOWN &&
-				!global.FLAG_SIMULATING &&
 				!global.FLAG_ZOOM &&
 				!global.FLAG_SELECT_SETTINGS &&
 				!global.FLAG_SAVE_IMAGE &&

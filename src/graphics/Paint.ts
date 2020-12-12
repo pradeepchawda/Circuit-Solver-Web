@@ -274,6 +274,9 @@ class Paint {
 		if (!global.not_null(this.GARBAGE_COLLECTOR_SIZE)) {
 			this.GARBAGE_COLLECTOR_SIZE = 16;
 		}
+		if (this.GARBAGE_COLLECTOR_SIZE != 16) {
+			this.GARBAGE_COLLECTOR_SIZE = 16;
+		}
 		/* The paint style of the paint element */
 		if (!global.not_null(this.paint_style)) {
 			this.paint_style = this.style.STROKE;
