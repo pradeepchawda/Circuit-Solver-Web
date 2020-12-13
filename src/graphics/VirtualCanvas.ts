@@ -45,6 +45,8 @@ class VirtualCanvas {
 	resize(): void {
 		this.surface.width = window.innerWidth;
 		this.surface.height = window.innerHeight;
+		this.surface.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
+		this.surface.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		try {
 			this.surface.style.position = 'absolute';
 			this.surface.style.visibility = 'hidden';

@@ -499,6 +499,8 @@ function load_app() {
         view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth, window.innerHeight);
         surface.width = window.innerWidth;
         surface.height = window.innerHeight;
+        surface.style.width = solver_container.style.width;
+        surface.style.height = solver_container.style.height;
         global.resize_w_factor = view_port.view_width / global.last_view_port_width;
         global.resize_h_factor = view_port.view_height / global.last_view_port_height;
         /* Resize all the text and stroke widths */
