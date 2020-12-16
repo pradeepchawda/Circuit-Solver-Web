@@ -445,6 +445,8 @@ class LanguageManager {
         this.TAG_PID = 'PID Controller';
         this.TAG_LUT = 'Look-up Table';
         this.TAG_VCR = 'Voltage Controlled Resistor';
+        this.TAG_VCCA = 'Voltage Controlled Capacitor';
+        this.TAG_VCL = 'Voltage Controlled Inductor';
         this.TAG_GRT = 'Voltage Greater Than';
         this.TAG_TPTZ = 'Two-Pole-Two-Zero';
         this.TAG_TRAN = 'Ideal Transformer';

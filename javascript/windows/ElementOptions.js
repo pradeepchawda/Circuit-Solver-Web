@@ -505,6 +505,12 @@ class ElementOptions {
                 case global.TYPE_VCR:
                     this.handle_vcr();
                     break;
+                case global.TYPE_VCCA:
+                    this.handle_vcca();
+                    break;
+                case global.TYPE_VCL:
+                    this.handle_vcl();
+                    break;
                 case global.TYPE_GRT:
                     this.handle_grt();
                     break;
@@ -1020,6 +1026,18 @@ class ElementOptions {
                 vcrs[index].increment_flip();
             }
         }
+        else if (global.selected_type === global.TYPE_VCCA) {
+            index = engine_functions.get_vcca(global.selected_id);
+            if (index < vccas.length) {
+                vccas[index].increment_flip();
+            }
+        }
+        else if (global.selected_type === global.TYPE_VCL) {
+            index = engine_functions.get_vcl(global.selected_id);
+            if (index < vclis.length) {
+                vclis[index].increment_flip();
+            }
+        }
         else if (global.selected_type === global.TYPE_GRT) {
             index = engine_functions.get_grt(global.selected_id);
             if (index < grts.length) {
@@ -1047,7 +1065,8 @@ class ElementOptions {
         if (global.selected_type === global.TYPE_VOLTMETER) {
             index = engine_functions.get_voltmeter(global.selected_id);
             if (index < voltmeters.length) {
-                if (!scope_manager.find_entry(voltmeters[index].elm.id, voltmeters[index].elm.type)) {
+                if (!scope_manager.find_entry(voltmeters[index].elm.id, voltmeters[index].elm
+                    .type)) {
                     scope_manager.push(voltmeters[index].elm.id, voltmeters[index].elm.type, voltmeters[index].elm.properties['tag']);
                     global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
                 }
@@ -1060,7 +1079,8 @@ class ElementOptions {
         else if (global.selected_type === global.TYPE_OHMMETER) {
             index = engine_functions.get_ohmmeter(global.selected_id);
             if (index < ohmmeters.length) {
-                if (!scope_manager.find_entry(ohmmeters[index].elm.id, ohmmeters[index].elm.type)) {
+                if (!scope_manager.find_entry(ohmmeters[index].elm.id, ohmmeters[index].elm
+                    .type)) {
                     scope_manager.push(ohmmeters[index].elm.id, ohmmeters[index].elm.type, ohmmeters[index].elm.properties['tag']);
                     global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
                 }
@@ -1073,7 +1093,8 @@ class ElementOptions {
         else if (global.selected_type === global.TYPE_AMMETER) {
             index = engine_functions.get_ammeter(global.selected_id);
             if (index < ammeters.length) {
-                if (!scope_manager.find_entry(ammeters[index].elm.id, ammeters[index].elm.type)) {
+                if (!scope_manager.find_entry(ammeters[index].elm.id, ammeters[index].elm
+                    .type)) {
                     scope_manager.push(ammeters[index].elm.id, ammeters[index].elm.type, ammeters[index].elm.properties['tag']);
                     global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
                 }
@@ -1086,7 +1107,8 @@ class ElementOptions {
         else if (global.selected_type === global.TYPE_WATTMETER) {
             index = engine_functions.get_wattmeter(global.selected_id);
             if (index < wattmeters.length) {
-                if (!scope_manager.find_entry(wattmeters[index].elm.id, wattmeters[index].elm.type)) {
+                if (!scope_manager.find_entry(wattmeters[index].elm.id, wattmeters[index].elm
+                    .type)) {
                     scope_manager.push(wattmeters[index].elm.id, wattmeters[index].elm.type, wattmeters[index].elm.properties['tag']);
                     global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
                 }
@@ -1478,6 +1500,18 @@ class ElementOptions {
             index = engine_functions.get_vcr(global.selected_id);
             if (index < vcrs.length) {
                 vcrs[index].increment_rotation();
+            }
+        }
+        else if (global.selected_type === global.TYPE_VCCA) {
+            index = engine_functions.get_vcca(global.selected_id);
+            if (index < vccas.length) {
+                vccas[index].increment_rotation();
+            }
+        }
+        else if (global.selected_type === global.TYPE_VCL) {
+            index = engine_functions.get_vcl(global.selected_id);
+            if (index < vclis.length) {
+                vclis[index].increment_rotation();
             }
         }
         else if (global.selected_type === global.TYPE_GRT) {
@@ -1949,6 +1983,20 @@ class ElementOptions {
             index = engine_functions.get_vcr(global.selected_id);
             if (index < vcrs.length) {
                 engine_functions.remove_vcr(index);
+                global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+            }
+        }
+        else if (global.selected_type === global.TYPE_VCCA) {
+            index = engine_functions.get_vcca(global.selected_id);
+            if (index < vccas.length) {
+                engine_functions.remove_vcca(index);
+                global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+            }
+        }
+        else if (global.selected_type === global.TYPE_VCL) {
+            index = engine_functions.get_vcl(global.selected_id);
+            if (index < vclis.length) {
+                engine_functions.remove_vcl(index);
                 global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
             }
         }
@@ -2489,6 +2537,22 @@ class ElementOptions {
         this.map_options();
     }
     handle_vcr() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_vcca() {
+        this.set_show(true, true, true, false);
+        this.opts['c0'] = this.ROTATE_ICON;
+        this.opts['c1'] = this.EDIT_ICON;
+        this.opts['c2'] = this.TRASH_ICON;
+        this.opts['c3'] = this.NO_ICON;
+        this.map_options();
+    }
+    handle_vcl() {
         this.set_show(true, true, true, false);
         this.opts['c0'] = this.ROTATE_ICON;
         this.opts['c1'] = this.EDIT_ICON;

@@ -636,7 +636,7 @@ or overlapped)*/
 	/* Update the transients as the simulation progresses. */
 	update_capacitor(): void {
 		if (this.elm.consistent() && simulation_manager.SOLUTIONS_READY) {
-			let voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+			let voltage: number = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
 			this.elm.properties['Transient Voltage'] = voltage;
 			this.elm.properties['Transient Current'] = voltage / this.elm.properties['Transient Resistance'] + this.elm.properties['Equivalent Current'];
 			this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
@@ -781,20 +781,20 @@ or overlapped)*/
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-		/* #INSERT_GENERATE_TIME_DATA# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
-		let keys: Array<string> = Object.keys(this.elm.properties);
-		for (var i: number = keys.length - 1; i > -1; i--) {
-			if (typeof this.elm.properties[keys[i]] === 'number') {
-				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-					time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
-				}
-			}
-		}
+/* #INSERT_GENERATE_TIME_DATA# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+  let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
+    for (var i : number = keys.length - 1; i > -1; i--) {
+      if (typeof this.elm.properties[keys[i]] === 'number') {
+        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+          time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
+        }
+      }
+    }
 
-		return time_data;
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+    return time_data;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {}
 }

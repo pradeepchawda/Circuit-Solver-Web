@@ -1324,6 +1324,68 @@ declare type PROPERTY_DFF_T = {
 	'option_limits': {};
 };
 
+/* Base structure for vcca properties */
+declare type PROPERTY_VCCA_T = {
+	'Low Voltage': number;
+	'High Voltage': number;
+	'Elm0': number;
+	'Elm1': number;
+	'Elm2': number;
+	'Elm3': number;
+	'Elm4': number;
+	'Interpolate': string;
+	'Input Voltage': number;
+	'Output Capacitance': number;
+	'Initial Voltage': number;
+	'Transient Resistance': number;
+	'Transient Current': number;
+	'Equivalent Current': number;
+	'Transient Voltage': number;
+	'tag': string;
+	'units': string;
+	'options': Array<string>;
+	'options_units': Array<string>;
+	'option_limits': {
+		Elm0: Array<number>;
+		Elm1: Array<number>;
+		Elm2: Array<number>;
+		Elm3: Array<number>;
+		Elm4: Array<number>;
+		Interpolate: Array<string>;
+	};
+};
+
+/* Base structure for vcl properties */
+declare type PROPERTY_VCL_T = {
+	'Low Voltage': number;
+	'High Voltage': number;
+	'Elm0': number;
+	'Elm1': number;
+	'Elm2': number;
+	'Elm3': number;
+	'Elm4': number;
+	'Interpolate': string;
+	'Input Voltage': number;
+	'Output Inductance': number;
+	'Initial Voltage': number;
+	'Transient Resistance': number;
+	'Transient Current': number;
+	'Equivalent Current': number;
+	'Transient Voltage': number;
+	'tag': string;
+	'units': string;
+	'options': Array<string>;
+	'options_units': Array<string>;
+	'option_limits': {
+		Elm0: Array<number>;
+		Elm1: Array<number>;
+		Elm2: Array<number>;
+		Elm3: Array<number>;
+		Elm4: Array<number>;
+		Interpolate: Array<string>;
+	};
+};
+
 declare type NET_COLOR_T = [string, number];
 
 declare type ELEMENT_OPTIONS_T = {
@@ -1411,4 +1473,6 @@ declare type ELEMENT_PROPERTY_T = PROPERTY_META_DATA_T &
 	PROPERTY_TPTZ_T &
 	PROPERTY_NOTE_T &
 	PROPERTY_FUSE_T &
-	PROPERTY_DFF_T;
+	PROPERTY_DFF_T &
+	PROPERTY_VCCA_T &
+	PROPERTY_VCL_T;

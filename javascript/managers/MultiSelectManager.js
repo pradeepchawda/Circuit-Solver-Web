@@ -474,6 +474,18 @@ class MultiSelectManager {
                     vcrs[i].MULTI_SELECTED = true;
                 }
             }
+            for (var i = 0; i < vccas.length; i++) {
+                if (this.MULTI_SELECT_BOUNDS.contains_xy(vccas[i].bounds.get_center_x(), vccas[i].bounds.get_center_y())) {
+                    this.MULTI_SELECTED_ELEMENT = true;
+                    vccas[i].MULTI_SELECTED = true;
+                }
+            }
+            for (var i = 0; i < vclis.length; i++) {
+                if (this.MULTI_SELECT_BOUNDS.contains_xy(vclis[i].bounds.get_center_x(), vclis[i].bounds.get_center_y())) {
+                    this.MULTI_SELECTED_ELEMENT = true;
+                    vclis[i].MULTI_SELECTED = true;
+                }
+            }
             for (var i = 0; i < grts.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(grts[i].bounds.get_center_x(), grts[i].bounds.get_center_y())) {
                     this.MULTI_SELECTED_ELEMENT = true;
@@ -1147,6 +1159,20 @@ class MultiSelectManager {
                 if (vcrs[i].MULTI_SELECTED) {
                     {
                         vcrs[i].move_element(dx, dy);
+                    }
+                }
+            }
+            for (var i = 0; i < vccas.length; i++) {
+                if (vccas[i].MULTI_SELECTED) {
+                    {
+                        vccas[i].move_element(dx, dy);
+                    }
+                }
+            }
+            for (var i = 0; i < vclis.length; i++) {
+                if (vclis[i].MULTI_SELECTED) {
+                    {
+                        vclis[i].move_element(dx, dy);
                     }
                 }
             }

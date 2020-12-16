@@ -809,6 +809,28 @@ class WireManager {
                 vcrs[index].anchor_wires();
             }
         }
+        else if (global.WIRE_BUILDER['type1'] === global.TYPE_VCCA) {
+            var index = engine_functions.get_vcca(global.WIRE_BUILDER['id1']);
+            if (index < vccas.length) {
+                global.WIRE_REFERENCE['wire_id'] = wire_id;
+                global.WIRE_REFERENCE['linkage'] = global.copy(global.WIRE_BUILDER['linkage1']['wire']);
+                global.WIRE_REFERENCE['anchor_point'] = global.copy(global.WIRE_BUILDER['anchor_point1']);
+                vccas[index].push_reference(global.copy(global.WIRE_REFERENCE));
+                vccas[index].unanchor_wires();
+                vccas[index].anchor_wires();
+            }
+        }
+        else if (global.WIRE_BUILDER['type1'] === global.TYPE_VCL) {
+            var index = engine_functions.get_vcl(global.WIRE_BUILDER['id1']);
+            if (index < vclis.length) {
+                global.WIRE_REFERENCE['wire_id'] = wire_id;
+                global.WIRE_REFERENCE['linkage'] = global.copy(global.WIRE_BUILDER['linkage1']['wire']);
+                global.WIRE_REFERENCE['anchor_point'] = global.copy(global.WIRE_BUILDER['anchor_point1']);
+                vclis[index].push_reference(global.copy(global.WIRE_REFERENCE));
+                vclis[index].unanchor_wires();
+                vclis[index].anchor_wires();
+            }
+        }
         else if (global.WIRE_BUILDER['type1'] === global.TYPE_GRT) {
             var index = engine_functions.get_grt(global.WIRE_BUILDER['id1']);
             if (index < grts.length) {
@@ -1533,6 +1555,28 @@ class WireManager {
                 vcrs[index].push_reference(global.copy(global.WIRE_REFERENCE));
                 vcrs[index].unanchor_wires();
                 vcrs[index].anchor_wires();
+            }
+        }
+        else if (global.WIRE_BUILDER['type2'] === global.TYPE_VCCA) {
+            var index = engine_functions.get_vcca(global.WIRE_BUILDER['id2']);
+            if (index < vccas.length) {
+                global.WIRE_REFERENCE['wire_id'] = wire_id;
+                global.WIRE_REFERENCE['linkage'] = global.copy(global.WIRE_BUILDER['linkage2']['wire']);
+                global.WIRE_REFERENCE['anchor_point'] = global.copy(global.WIRE_BUILDER['anchor_point2']);
+                vccas[index].push_reference(global.copy(global.WIRE_REFERENCE));
+                vccas[index].unanchor_wires();
+                vccas[index].anchor_wires();
+            }
+        }
+        else if (global.WIRE_BUILDER['type2'] === global.TYPE_VCL) {
+            var index = engine_functions.get_vcl(global.WIRE_BUILDER['id2']);
+            if (index < vclis.length) {
+                global.WIRE_REFERENCE['wire_id'] = wire_id;
+                global.WIRE_REFERENCE['linkage'] = global.copy(global.WIRE_BUILDER['linkage2']['wire']);
+                global.WIRE_REFERENCE['anchor_point'] = global.copy(global.WIRE_BUILDER['anchor_point2']);
+                vclis[index].push_reference(global.copy(global.WIRE_REFERENCE));
+                vclis[index].unanchor_wires();
+                vclis[index].anchor_wires();
             }
         }
         else if (global.WIRE_BUILDER['type2'] === global.TYPE_GRT) {

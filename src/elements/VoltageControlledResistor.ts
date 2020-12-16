@@ -263,7 +263,7 @@ or overlapped)*/
 						this.elm.properties['Input Voltage']
 					);
 				} else if (this.elm.properties['Interpolate'] === global.OFF) {
-					let index = 0;
+					let index: number = 0;
 					if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.2) {
 						index = 0;
 					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.2 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.4) {
@@ -911,7 +911,5 @@ or overlapped)*/
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {
-		this.elm.properties['Output Resistance'] = global.settings.R_MAX;
-	}
+	reset(): void {}
 }

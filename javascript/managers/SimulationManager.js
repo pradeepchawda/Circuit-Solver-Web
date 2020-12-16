@@ -437,6 +437,12 @@ class SimulationManager {
         for (var i = 0; i < vcrs.length; i++) {
             this.TIME_DATA.push(vcrs[i].time_data());
         }
+        for (var i = 0; i < vccas.length; i++) {
+            this.TIME_DATA.push(vccas[i].time_data());
+        }
+        for (var i = 0; i < vclis.length; i++) {
+            this.TIME_DATA.push(vclis[i].time_data());
+        }
         for (var i = 0; i < grts.length; i++) {
             this.TIME_DATA.push(grts[i].time_data());
         }
@@ -792,6 +798,12 @@ class SimulationManager {
         for (var i = 0; i < vcrs.length; i++) {
             vcrs[i].reset();
         }
+        for (var i = 0; i < vccas.length; i++) {
+            vccas[i].reset();
+        }
+        for (var i = 0; i < vclis.length; i++) {
+            vclis[i].reset();
+        }
         for (var i = 0; i < grts.length; i++) {
             grts[i].reset();
         }
@@ -840,6 +852,12 @@ class SimulationManager {
         }
         for (var i = 0; i < relays.length; i++) {
             relays[i].reset_relay();
+        }
+        for (var i = 0; i < vccas.length; i++) {
+            vccas[i].reset_vcca();
+        }
+        for (var i = 0; i < vclis.length; i++) {
+            vclis[i].reset_vcl();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
@@ -1018,6 +1036,12 @@ class SimulationManager {
         }
         for (var i = 0; i < relays.length; i++) {
             relays[i].update_relay();
+        }
+        for (var i = 0; i < vccas.length; i++) {
+            vccas[i].update_vcca();
+        }
+        for (var i = 0; i < vclis.length; i++) {
+            vclis[i].update_vcl();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }

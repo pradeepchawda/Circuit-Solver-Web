@@ -20,13 +20,13 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-class VoltageControlledResistor {
+class VoltageControlledCapacitor {
     constructor(type, id, n1, n2, n3) {
         this.INITIALIZED = false;
         /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
         /* Inititalize the element2 class that will hold the basic data about our component */
-        this.elm = new Element3(id, type, global.copy(global.PROPERTY_VCR));
+        this.elm = new Element3(id, type, global.copy(global.PROPERTY_VCCA));
         /* Initialize the initial nodes that the component will be occupying */
         this.elm.set_nodes(n1, n2, n3);
         if (this.elm.consistent()) {
@@ -52,28 +52,18 @@ class VoltageControlledResistor {
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
             this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
         }
-        this.vcr_0 = new PointF(0, 0);
-        this.vcr_1 = new PointF(0, 0);
-        this.vcr_2 = new PointF(0, 0);
-        this.vcr_3 = new PointF(0, 0);
+        this.vcca_0 = new PointF(0, 0);
+        this.vcca_1 = new PointF(0, 0);
+        this.vcca_2 = new PointF(0, 0);
+        this.vcca_3 = new PointF(0, 0);
         /* Resistor point 0 */
-        this.vcr_4 = new PointF(0, 0);
+        this.vcca_4 = new PointF(0, 0);
         /* Resistor point 1 */
-        this.vcr_6 = new PointF(0, 0);
+        this.vcca_6 = new PointF(0, 0);
         /* Resistor point 2 */
-        this.vcr_5 = new PointF(0, 0);
+        this.vcca_5 = new PointF(0, 0);
         /* Resistor point 3 */
-        this.vcr_7 = new PointF(0, 0);
-        /* Resistor point 4 */
-        this.vcr_8 = new PointF(0, 0);
-        /* Resistor point 5 */
-        this.vcr_9 = new PointF(0, 0);
-        /* Resistor point 6 */
-        this.vcr_10 = new PointF(0, 0);
-        /* Resistor point 7 */
-        this.vcr_11 = new PointF(0, 0);
-        /* Resistor point 8 */
-        this.vcr_12 = new PointF(0, 0);
+        this.vcca_7 = new PointF(0, 0);
         /* The center (x-coord) of the bounds */
         this.c_x = this.bounds.get_center_x();
         /* The center (y-coord) of the bounds */
@@ -162,13 +152,35 @@ class VoltageControlledResistor {
     push_reference(ref) {
         this.wire_reference.push(ref);
     }
+    /* Update the transients as the simulation progresses. */
+    update_vcca() {
+        if (this.elm.consistent() && simulation_manager.SOLUTIONS_READY) {
+            this.conserve_energy();
+            let voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n3);
+            this.elm.properties['Transient Voltage'] = voltage;
+            this.elm.properties['Transient Current'] = voltage / this.elm.properties['Transient Resistance'] + this.elm.properties['Equivalent Current'];
+            this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
+        }
+    }
+    /* Reset the capacitor to its initial conditions (usually done at time = 0) */
+    reset_vcca() {
+        this.elm.properties['Transient Resistance'] = global.time_step / (2 * this.elm.properties['Output Capacitance']);
+        this.elm.properties['Transient Voltage'] = global.copy(this.elm.properties['Initial Voltage']);
+        this.elm.properties['Transient Current'] = 0;
+        this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
+    }
+    /* This is for energy conservation */
+    conserve_energy() {
+        this.elm.properties['Transient Resistance'] = global.time_step / (2 * this.elm.properties['Output Capacitance']);
+        this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
+    }
     /* General function to handle any processing required by the component */
     update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage'] = global.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
                 if (this.elm.properties['Interpolate'] === global.ON) {
-                    this.elm.properties['Output Resistance'] = global.linterp([
+                    this.elm.properties['Output Capacitance'] = global.linterp([
                         this.elm.properties['High Voltage'] * 0,
                         this.elm.properties['High Voltage'] * 0.25,
                         this.elm.properties['High Voltage'] * 0.5,
@@ -193,14 +205,14 @@ class VoltageControlledResistor {
                     else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.8 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
                         index = 4;
                     }
-                    this.elm.properties['Output Resistance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']][index];
+                    this.elm.properties['Output Capacitance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']][index];
                 }
             }
         }
     }
     stamp() {
         if (this.elm.consistent()) {
-            engine_functions.stamp_resistor(this.elm.n1, this.elm.n3, global.limit(this.elm.properties['Output Resistance'], global.settings.WIRE_RESISTANCE, global.settings.R_MAX));
+            engine_functions.stamp_capacitor(this.elm.n1, this.elm.n3, this.elm.properties['Transient Resistance'], this.elm.properties['Equivalent Current']);
             engine_functions.stamp_node(this.elm.n2, global.settings.R_MAX);
         }
     }
@@ -605,49 +617,31 @@ class VoltageControlledResistor {
     /* Generate the SVG for the component. */
     build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            let cache_0 = 0.66 * this.x_space;
-            let cache_1 = 0.66 * this.y_space;
-            let cache_2 = 0.33 * this.x_space;
-            let cache_3 = 0.33 * this.y_space;
-            let cache_4 = 0.667 * this.x_space;
-            let cache_5 = 0.667 * this.y_space;
-            let cache_6 = 0.5 * this.x_space;
-            let cache_7 = 0.5 * this.y_space;
+            let cache_0 = 0.75 * this.x_space;
+            let cache_1 = 0.667 * this.x_space;
+            let cache_2 = 0.75 * this.y_space;
+            let cache_3 = 0.667 * this.y_space;
             let cache_8 = this.x_space;
             let cache_9 = this.y_space;
-            this.connect1_x = this.c_x - cache_8 * global.cosine(this.theta);
-            this.connect1_y = this.c_y - cache_9 * global.sine(this.theta);
-            this.connect2_x = this.c_x + cache_8 * global.cosine(this.theta);
-            this.connect2_y = this.c_y + cache_9 * global.sine(this.theta);
-            this.vcr_4.x = this.c_x - cache_0 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(this.theta_m90);
-            this.vcr_4.y = this.c_y - cache_1 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(this.theta_m90);
-            this.vcr_5.x = this.c_x + (cache_8 >> 1) * global.cosine(this.theta_m90);
-            this.vcr_5.y = this.c_y + (cache_9 >> 1) * global.sine(this.theta_m90);
-            this.vcr_6.x = this.c_x - cache_2 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_6.y = this.c_y - cache_3 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(Math.PI + this.theta_m90);
-            this.vcr_7.x = this.c_x + cache_2 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_7.y = this.c_y + cache_3 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(Math.PI + this.theta_m90);
-            this.vcr_8.x = this.c_x + cache_0 * global.cosine(this.theta) + (cache_8 >> 1) * global.cosine(this.theta_m90);
-            this.vcr_8.y = this.c_y + cache_1 * global.sine(this.theta) + (cache_9 >> 1) * global.sine(this.theta_m90);
-            this.vcr_9.x = this.c_x + cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(this.theta_m90);
-            this.vcr_9.y = this.c_y + cache_9 * global.sine(this.theta) + cache_5 * global.sine(this.theta_m90);
-            this.vcr_10.x = this.c_x - cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(this.theta_m90);
-            this.vcr_10.y = this.c_y - cache_9 * global.sine(this.theta) + cache_5 * global.sine(this.theta_m90);
-            this.vcr_11.x = this.c_x + cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_11.y = this.c_y + cache_9 * global.sine(this.theta) + cache_5 * global.sine(Math.PI + this.theta_m90);
-            this.vcr_12.x = this.c_x - cache_8 * global.cosine(this.theta) + cache_4 * global.cosine(Math.PI + this.theta_m90);
-            this.vcr_12.y = this.c_y - cache_9 * global.sine(this.theta) + cache_5 * global.sine(Math.PI + this.theta_m90);
-            this.vcr_0.x = this.connect1_x + cache_8 * global.cosine(this.theta) + cache_6 * global.cosine(this.theta_m90);
-            this.vcr_0.y = this.connect1_y + cache_9 * global.sine(this.theta) + cache_7 * global.sine(this.theta_m90);
+            this.connect1_x = this.c_x - cache_0 * global.cosine(this.theta);
+            this.connect1_y = this.c_y - cache_2 * global.sine(this.theta);
+            this.connect2_x = this.c_x + cache_0 * global.cosine(this.theta);
+            this.connect2_y = this.c_y + cache_2 * global.sine(this.theta);
+            this.vcca_4.x = this.c_x + cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(this.theta_m90);
+            this.vcca_4.y = this.c_y + cache_2 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
+            this.vcca_5.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(this.theta_m90);
+            this.vcca_5.y = this.c_y - cache_2 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
+            this.vcca_6.x = this.c_x + cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(Math.PI + this.theta_m90);
+            this.vcca_6.y = this.c_y + cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
+            this.vcca_7.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(Math.PI + this.theta_m90);
+            this.vcca_7.y = this.c_y - cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
             this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
-            this.vcr_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
-            this.vcr_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
-            this.vcr_2.x = this.vcr_1.x + 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
-            this.vcr_2.y = this.vcr_1.y + 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
-            this.vcr_3.x = this.vcr_1.x + 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
-            this.vcr_3.y = this.vcr_1.y + 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
-            /* Angle from p1 to p3 */
-            this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
+            this.vcca_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
+            this.vcca_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
+            this.vcca_2.x = this.vcca_1.x + 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+            this.vcca_2.y = this.vcca_1.y + 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
+            this.vcca_3.x = this.vcca_1.x + 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+            this.vcca_3.y = this.vcca_1.y + 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
             this.BUILD_ELEMENT = false;
         }
     }
@@ -753,17 +747,13 @@ class VoltageControlledResistor {
             this.indexer = 0;
             this.circle_buffer = [];
             this.line_buffer = [];
-            this.line_buffer[this.indexer++] = Array(this.connect1_x, this.connect1_y, this.vcr_4.x, this.vcr_4.y);
-            this.line_buffer[this.indexer++] = Array(this.vcr_4.x, this.vcr_4.y, this.vcr_6.x, this.vcr_6.y);
-            this.line_buffer[this.indexer++] = Array(this.vcr_6.x, this.vcr_6.y, this.vcr_5.x, this.vcr_5.y);
-            this.line_buffer[this.indexer++] = Array(this.vcr_5.x, this.vcr_5.y, this.vcr_7.x, this.vcr_7.y);
-            this.line_buffer[this.indexer++] = Array(this.vcr_7.x, this.vcr_7.y, this.vcr_8.x, this.vcr_8.y);
-            this.line_buffer[this.indexer++] = Array(this.vcr_8.x, this.vcr_8.y, this.connect2_x, this.connect2_y);
+            this.line_buffer[this.indexer++] = Array(this.vcca_5.x, this.vcca_5.y, this.vcca_7.x, this.vcca_7.y);
+            this.line_buffer[this.indexer++] = Array(this.vcca_6.x, this.vcca_6.y, this.vcca_4.x, this.vcca_4.y);
             this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
-            this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.connect2_x, this.connect2_y);
-            this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.vcr_1.x, this.vcr_1.y);
-            this.line_buffer[this.indexer++] = Array(this.vcr_2.x, this.vcr_2.y, this.vcr_1.x, this.vcr_1.y);
-            this.line_buffer[this.indexer++] = Array(this.vcr_3.x, this.vcr_3.y, this.vcr_1.x, this.vcr_1.y);
+            this.line_buffer[this.indexer++] = Array(this.connect2_x, this.connect2_y, this.p3.x, this.p3.y);
+            this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.vcca_1.x, this.vcca_1.y);
+            this.line_buffer[this.indexer++] = Array(this.vcca_2.x, this.vcca_2.y, this.vcca_1.x, this.vcca_1.y);
+            this.line_buffer[this.indexer++] = Array(this.vcca_3.x, this.vcca_3.y, this.vcca_1.x, this.vcca_1.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             this.indexer = 0;
             this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);

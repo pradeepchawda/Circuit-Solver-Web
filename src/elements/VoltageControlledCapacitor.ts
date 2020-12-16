@@ -1,10 +1,10 @@
 /**********************************************************************
  * Project           : Circuit Solver
- * File		        : DFlipFlop.js
+ * File		        : VoltageControlledResistor.js
  * Author            : nboatengc
  * Date created      : 20190928
  *
- * Purpose           : A class to handle the D Flip Flop element. It will automatically generate
+ * Purpose           : A class to handle the Voltage Controlled Switch element. It will automatically generate
  *                   the stamps necessary to simulate and it will also draw the component and
  *                   handle its movement / node dependencies.
  *
@@ -20,29 +20,27 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-class DFlipFlop {
+class VoltageControlledCapacitor {
 	public INITIALIZED: boolean;
 	/* Create a new rectangle for the bounds of this component */
 	public bounds: RectF;
 	/* Inititalize the element2 class that will hold the basic data about our component */
-	public elm: Element4;
+	public elm: Element3;
 	public p1: PointF;
 	public p2: PointF;
 	public p3: PointF;
-	public p4: PointF;
-	public dff_0: PointF;
-	public dff_1: PointF;
-	public dff_2: PointF;
-	public dff_3: PointF;
-	public dff_4: PointF;
-	public dff_5: PointF;
-	public dff_6: PointF;
-	public dff_7: PointF;
-	public dff_8: PointF;
-	public dff_9: PointF;
-	public dff_10: PointF;
-	public dff_11: PointF;
-	public dff_12: PointF;
+	public vcca_0: PointF;
+	public vcca_1: PointF;
+	public vcca_2: PointF;
+	public vcca_3: PointF;
+	/* Resistor point 0 */
+	public vcca_4: PointF;
+	/* Resistor point 1 */
+	public vcca_6: PointF;
+	/* Resistor point 2 */
+	public vcca_5: PointF;
+	/* Resistor point 3 */
+	public vcca_7: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -56,9 +54,9 @@ class DFlipFlop {
 	public connect1_y: number;
 	public connect2_x: number;
 	public connect2_y: number;
-	/* Angle from p1 to p2 minus 90 degrees */
+	/* Angle from p1 to p3 minus 90 degrees */
 	public theta_m90: number;
-	/* Angle from p1 to p2 */
+	/* Angle from p1 to p3 */
 	public theta: number;
 	/* Angle from center to p2 */
 	public phi: number;
@@ -86,19 +84,19 @@ or overlapped)*/
 	public BUILD_ELEMENT: boolean;
 	public ANGLE: number;
 
-	constructor(type: number, id: number, n1: number, n2: number, n3: number, n4: number) {
+	constructor(type: number, id: number, n1: number, n2: number, n3: number) {
 		this.INITIALIZED = false;
 		/* Create a new rectangle for the bounds of this component */
 		this.bounds = new RectF(0, 0, 0, 0);
 		/* Inititalize the element2 class that will hold the basic data about our component */
-		this.elm = new Element4(id, type, global.copy(global.PROPERTY_DFF));
+		this.elm = new Element3(id, type, global.copy(global.PROPERTY_VCCA));
 		/* Initialize the initial nodes that the component will be occupying */
-		this.elm.set_nodes(n1, n2, n3, n4);
+		this.elm.set_nodes(n1, n2, n3);
 		if (this.elm.consistent()) {
 			/* Re-locate the bounds of the component to the center of the two points. */
 			this.bounds.set_center2(
-				global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x),
-				global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y),
+				global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x),
+				global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y),
 				global.node_space_x * 2,
 				global.node_space_y * 2
 			);
@@ -110,33 +108,30 @@ or overlapped)*/
 		/* Re-map those bad boys! */
 		this.release_nodes();
 		let vertices: Array<number> = this.get_vertices();
-		this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
+		this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
 		/* Add this components references to the nodes it's attached to currently. */
 		this.capture_nodes();
 		this.p1 = new PointF(0, 0);
 		this.p2 = new PointF(0, 0);
 		this.p3 = new PointF(0, 0);
-		this.p4 = new PointF(0, 0);
 		if (this.elm.consistent()) {
 			/* Create some points to hold the node locations, this will be used for drawing components */
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 			this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
-			this.p4.set_point(nodes[this.elm.n4].location.x, nodes[this.elm.n4].location.y);
 		}
-		this.dff_0 = new PointF(0, 0);
-		this.dff_1 = new PointF(0, 0);
-		this.dff_2 = new PointF(0, 0);
-		this.dff_3 = new PointF(0, 0);
-		this.dff_4 = new PointF(0, 0);
-		this.dff_5 = new PointF(0, 0);
-		this.dff_6 = new PointF(0, 0);
-		this.dff_7 = new PointF(0, 0);
-		this.dff_8 = new PointF(0, 0);
-		this.dff_9 = new PointF(0, 0);
-		this.dff_10 = new PointF(0, 0);
-		this.dff_11 = new PointF(0, 0);
-		this.dff_12 = new PointF(0, 0);
+		this.vcca_0 = new PointF(0, 0);
+		this.vcca_1 = new PointF(0, 0);
+		this.vcca_2 = new PointF(0, 0);
+		this.vcca_3 = new PointF(0, 0);
+		/* Resistor point 0 */
+		this.vcca_4 = new PointF(0, 0);
+		/* Resistor point 1 */
+		this.vcca_6 = new PointF(0, 0);
+		/* Resistor point 2 */
+		this.vcca_5 = new PointF(0, 0);
+		/* Resistor point 3 */
+		this.vcca_7 = new PointF(0, 0);
 		/* The center (x-coord) of the bounds */
 		this.c_x = this.bounds.get_center_x();
 		/* The center (y-coord) of the bounds */
@@ -150,10 +145,10 @@ or overlapped)*/
 		this.connect1_y = 0;
 		this.connect2_x = 0;
 		this.connect2_y = 0;
-		/* Angle from p1 to p2 minus 90 degrees */
-		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-		/* Angle from p1 to p2 */
-		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+		/* Angle from p1 to p3 minus 90 degrees */
+		this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
+		/* Angle from p1 to p3 */
+		this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
 		/* Angle from center to p2 */
 		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.grid_point = [];
@@ -214,16 +209,14 @@ or overlapped)*/
 			this.p1 = new PointF(0, 0);
 			this.p2 = new PointF(0, 0);
 			this.p3 = new PointF(0, 0);
-			this.p4 = new PointF(0, 0);
 			/* Create some points to hold the node locations, this will be used for drawing components */
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 			this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
-			this.p4.set_point(nodes[this.elm.n4].location.x, nodes[this.elm.n4].location.y);
 			/* Re-locate the bounds of the component to the center of the two points. */
 			this.bounds.set_center2(
-				global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x),
-				global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y),
+				global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x),
+				global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y),
 				global.node_space_x * 2,
 				global.node_space_y * 2
 			);
@@ -232,41 +225,69 @@ or overlapped)*/
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-	reset_dff(): void {
-		this.elm.properties['Clock'] = 0;
-		this.elm.properties['Last Clock'] = 1;
-		this.elm.properties['Q'] = 0;
-		this.elm.properties['!Q'] = 1;
+	/* Update the transients as the simulation progresses. */
+	update_vcca(): void {
+		if (this.elm.consistent() && simulation_manager.SOLUTIONS_READY) {
+			this.conserve_energy();
+			let voltage: number = engine_functions.get_voltage(this.elm.n1, this.elm.n3);
+			this.elm.properties['Transient Voltage'] = voltage;
+			this.elm.properties['Transient Current'] = voltage / this.elm.properties['Transient Resistance'] + this.elm.properties['Equivalent Current'];
+			this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
+		}
+	}
+	/* Reset the capacitor to its initial conditions (usually done at time = 0) */
+	reset_vcca(): void {
+		this.elm.properties['Transient Resistance'] = global.time_step / (2 * this.elm.properties['Output Capacitance']);
+		this.elm.properties['Transient Voltage'] = global.copy(this.elm.properties['Initial Voltage']);
+		this.elm.properties['Transient Current'] = 0;
+		this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
+	}
+	/* This is for energy conservation */
+	conserve_energy(): void {
+		this.elm.properties['Transient Resistance'] = global.time_step / (2 * this.elm.properties['Output Capacitance']);
+		this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
 	}
 	/* General function to handle any processing required by the component */
 	update(): void {
-		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
+		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
 			if (this.elm.consistent()) {
-				this.elm.properties['Last Clock'] = global.copy(this.elm.properties['Clock']);
-				this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) - 0.5));
-				this.elm.properties['Clock'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n2, -1) - 0.5));
-				if (Math.abs(this.elm.properties['Last Clock'] - this.elm.properties['Clock']) > 0.5 && this.elm.properties['Clock'] > 0.5) {
-					let q_next = 0;
-					if (this.elm.properties['Clock'] >= 0.5 && this.elm.properties['Input Voltage1'] <= 0.5) {
-						q_next = 0;
-					} else if (this.elm.properties['Clock'] >= 0.5 && this.elm.properties['Input Voltage1'] >= 0.5) {
-						q_next = 1;
+				this.elm.properties['Input Voltage'] = global.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
+				if (this.elm.properties['Interpolate'] === global.ON) {
+					this.elm.properties['Output Capacitance'] = global.linterp(
+						[
+							this.elm.properties['High Voltage'] * 0,
+							this.elm.properties['High Voltage'] * 0.25,
+							this.elm.properties['High Voltage'] * 0.5,
+							this.elm.properties['High Voltage'] * 0.75,
+							this.elm.properties['High Voltage']
+						],
+						[this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']],
+						this.elm.properties['Input Voltage']
+					);
+				} else if (this.elm.properties['Interpolate'] === global.OFF) {
+					let index: number = 0;
+					if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.2) {
+						index = 0;
+					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.2 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.4) {
+						index = 1;
+					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.4 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.6) {
+						index = 2;
+					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.6 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.8) {
+						index = 3;
+					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.8 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
+						index = 4;
 					}
-					this.elm.properties['Q'] = q_next;
-					this.elm.properties['!Q'] = 1 - q_next;
+					this.elm.properties['Output Capacitance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']][
+						index
+					];
 				}
 			}
-		} else {
-			this.elm.properties['Clock'] = 0;
-			this.elm.properties['Last Clock'] = 1;
-			this.elm.properties['Q'] = 0;
-			this.elm.properties['!Q'] = 1;
 		}
 	}
 	stamp(): void {
 		if (this.elm.consistent()) {
-			engine_functions.stamp_voltage(this.elm.n3, -1, this.elm.properties['Q'], simulation_manager.ELEMENT_DFF_OFFSET + (this.simulation_id << 1));
-			engine_functions.stamp_voltage(this.elm.n4, -1, this.elm.properties['!Q'], simulation_manager.ELEMENT_DFF_OFFSET + (this.simulation_id << 1) + 1);
+			engine_functions.stamp_capacitor(this.elm.n1, this.elm.n3, this.elm.properties['Transient Resistance'], this.elm.properties['Equivalent Current']);
+			engine_functions.stamp_node(this.elm.n2, global.settings.R_MAX);
 		}
 	}
 	/* Vertex handling (for rotation) */
@@ -275,37 +296,31 @@ or overlapped)*/
 		let p1: Array<number> = [];
 		let p2: Array<number> = [];
 		let p3: Array<number> = [];
-		let p4: Array<number> = [];
 		if (this.elm.rotation === global.ROTATION_0) {
-			p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
-			p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
-			p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
-			p4 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
-			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
+			p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
+			p2 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.node_space_y);
+			p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
+			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
 		} else if (this.elm.rotation === global.ROTATION_90) {
-			p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
-			p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
-			p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
-			p4 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
-			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
+			p1 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.node_space_y);
+			p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
+			p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() + global.node_space_y);
+			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
 		} else if (this.elm.rotation === global.ROTATION_180) {
-			p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
-			p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
-			p3 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
-			p4 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
-			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
+			p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
+			p2 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() + global.node_space_y);
+			p3 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
+			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
 		} else if (this.elm.rotation === global.ROTATION_270) {
-			p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
-			p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
-			p3 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
-			p4 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
-			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
+			p1 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() + global.node_space_y);
+			p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
+			p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.node_space_y);
+			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
 		} else {
-			p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
-			p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
-			p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
-			p4 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
-			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
+			p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
+			p2 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.node_space_y);
+			p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
+			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
 		}
 		return vertices;
 	}
@@ -328,19 +343,17 @@ or overlapped)*/
 			nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
 			nodes[this.elm.n2].remove_reference(this.elm.id, this.elm.type);
 			nodes[this.elm.n3].remove_reference(this.elm.id, this.elm.type);
-			nodes[this.elm.n4].remove_reference(this.elm.id, this.elm.type);
-			this.elm.set_nodes(-1, -1, -1, -1);
+			this.elm.set_nodes(-1, -1, -1);
 		}
 	}
 	/* Push the components references to the Nodes */
 	capture_nodes(): void {
 		let vertices: Array<number> = this.get_vertices();
-		this.elm.map_node4(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5], vertices[6], vertices[7]);
+		this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
 		if (this.elm.consistent() && !this.is_translating) {
 			nodes[this.elm.n1].add_reference(this.elm.id, this.elm.type);
 			nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
 			nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
-			nodes[this.elm.n4].add_reference(this.elm.id, this.elm.type);
 		}
 	}
 	/* Handling a mouse down event. */
@@ -376,9 +389,6 @@ or overlapped)*/
 							global.component_touched = true;
 						} else if (nodes[this.elm.n3].contains_xy(global.mouse_x, global.mouse_y)) {
 							this.handle_wire_builder(this.elm.n3, global.ANCHOR_POINT['p3']);
-							global.component_touched = true;
-						} else if (nodes[this.elm.n4].contains_xy(global.mouse_x, global.mouse_y)) {
-							this.handle_wire_builder(this.elm.n4, global.ANCHOR_POINT['p4']);
 							global.component_touched = true;
 						}
 					}
@@ -575,15 +585,6 @@ or overlapped)*/
 							wires[id].p2.x = vertices[4];
 							wires[id].p2.y = vertices[5];
 						}
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p4']) {
-						wires[id].release_nodes();
-						if (this.wire_reference[i]['linkage'] === 0) {
-							wires[id].p1.x = vertices[6];
-							wires[id].p1.y = vertices[7];
-						} else if (this.wire_reference[i]['linkage'] === 1) {
-							wires[id].p2.x = vertices[6];
-							wires[id].p2.y = vertices[7];
-						}
 					}
 				} else {
 					this.wire_reference.splice(i, 1);
@@ -625,15 +626,6 @@ or overlapped)*/
 							wires[id].p2.y = vertices[5];
 						}
 						wires[id].capture_nodes();
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p4']) {
-						if (this.wire_reference[i]['linkage'] === 0) {
-							wires[id].p1.x = vertices[6];
-							wires[id].p1.y = vertices[7];
-						} else if (this.wire_reference[i]['linkage'] === 1) {
-							wires[id].p2.x = vertices[6];
-							wires[id].p2.y = vertices[7];
-						}
-						wires[id].capture_nodes();
 					}
 				} else {
 					this.wire_reference.splice(i, 1);
@@ -673,51 +665,31 @@ or overlapped)*/
 	/* Generate the SVG for the component. */
 	build_element(): void {
 		if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-			let cache_0: number = 0.5 * this.x_space;
-			let cache_1: number = 0.5 * this.y_space;
-			let cache_2: number = 0.75 * this.x_space;
-			let cache_3: number = 0.75 * this.y_space;
-			let cache_4: number = this.x_space;
-			let cache_5: number = this.y_space;
-			/* Top Left Node */
-			this.dff_0.x = this.p1.x + cache_0 * global.cosine(this.theta_m90);
-			this.dff_0.y = this.p1.y + cache_1 * global.sine(this.theta_m90);
-			/* Bottom Left Node */
-			this.dff_1.x = this.p2.x + cache_0 * global.cosine(this.theta_m90);
-			this.dff_1.y = this.p2.y + cache_1 * global.sine(this.theta_m90);
-			/* Top Right Node */
-			this.dff_2.x = this.p3.x - cache_0 * global.cosine(this.theta_m90);
-			this.dff_2.y = this.p3.y - cache_1 * global.sine(this.theta_m90);
-			/* Bottom Right Node */
-			this.dff_3.x = this.p4.x - cache_0 * global.cosine(this.theta_m90);
-			this.dff_3.y = this.p4.y - cache_1 * global.sine(this.theta_m90);
-			/* Top left */
-			this.dff_4.x = this.dff_0.x - cache_0 * global.cosine(this.theta);
-			this.dff_4.y = this.dff_0.y - cache_1 * global.sine(this.theta);
-			/* Top Right */
-			this.dff_5.x = this.dff_2.x - cache_0 * global.cosine(this.theta);
-			this.dff_5.y = this.dff_2.y - cache_1 * global.sine(this.theta);
-			/* Bottom Left */
-			this.dff_6.x = this.dff_1.x + cache_0 * global.cosine(this.theta);
-			this.dff_6.y = this.dff_1.y + cache_1 * global.sine(this.theta);
-			/* Bottom Right */
-			this.dff_7.x = this.dff_3.x + cache_0 * global.cosine(this.theta);
-			this.dff_7.y = this.dff_3.y + cache_1 * global.sine(this.theta);
-			/* Clock Symbol inner point */
-			this.dff_8.x = this.dff_1.x + cache_0 * global.cosine(this.theta_m90);
-			this.dff_8.y = this.dff_1.y + cache_1 * global.sine(this.theta_m90);
-			/* Clock Symbol top point */
-			this.dff_9.x = this.dff_1.x - cache_0 * global.cosine(this.theta);
-			this.dff_9.y = this.dff_1.y - cache_1 * global.sine(this.theta);
-			/* D Tag Point */
-			this.dff_10.x = this.dff_0.x + cache_2 * global.cosine(this.theta_m90 + global.PI_DIV_4);
-			this.dff_10.y = this.dff_0.y + cache_3 * global.sine(this.theta_m90 + global.PI_DIV_4);
-			/* Q Tag Point */
-			this.dff_11.x = this.dff_2.x - cache_2 * global.cosine(this.theta_m90 - global.PI_DIV_4);
-			this.dff_11.y = this.dff_2.y - cache_3 * global.sine(this.theta_m90 - global.PI_DIV_4);
-			/* !Q Tag Point */
-			this.dff_12.x = this.dff_3.x - cache_2 * global.cosine(this.theta_m90 + global.PI_DIV_4);
-			this.dff_12.y = this.dff_3.y - cache_3 * global.sine(this.theta_m90 + global.PI_DIV_4);
+			let cache_0: number = 0.75 * this.x_space;
+			let cache_1: number = 0.667 * this.x_space;
+			let cache_2: number = 0.75 * this.y_space;
+			let cache_3: number = 0.667 * this.y_space;
+			let cache_8: number = this.x_space;
+			let cache_9: number = this.y_space;
+			this.connect1_x = this.c_x - cache_0 * global.cosine(this.theta);
+			this.connect1_y = this.c_y - cache_2 * global.sine(this.theta);
+			this.connect2_x = this.c_x + cache_0 * global.cosine(this.theta);
+			this.connect2_y = this.c_y + cache_2 * global.sine(this.theta);
+			this.vcca_4.x = this.c_x + cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(this.theta_m90);
+			this.vcca_4.y = this.c_y + cache_2 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
+			this.vcca_5.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(this.theta_m90);
+			this.vcca_5.y = this.c_y - cache_2 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
+			this.vcca_6.x = this.c_x + cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(Math.PI + this.theta_m90);
+			this.vcca_6.y = this.c_y + cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
+			this.vcca_7.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(Math.PI + this.theta_m90);
+			this.vcca_7.y = this.c_y - cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
+			this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
+			this.vcca_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
+			this.vcca_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
+			this.vcca_2.x = this.vcca_1.x + 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+			this.vcca_2.y = this.vcca_1.y + 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
+			this.vcca_3.x = this.vcca_1.x + 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+			this.vcca_3.y = this.vcca_1.y + 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
 			this.BUILD_ELEMENT = false;
 		}
 	}
@@ -728,8 +700,8 @@ or overlapped)*/
 				if (this.elm.consistent()) {
 					/* Set the bounds of the element */
 					this.bounds.set_center2(
-						global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x),
-						global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y),
+						global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x),
+						global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y),
 						global.node_space_x * 2,
 						global.node_space_y * 2
 					);
@@ -760,16 +732,14 @@ or overlapped)*/
 		this.p2.y = vertices[3];
 		this.p3.x = vertices[4];
 		this.p3.y = vertices[5];
-		this.p4.x = vertices[6];
-		this.p4.y = vertices[7];
 		this.x_space = global.node_space_x >> 1;
 		this.y_space = global.node_space_y >> 1;
 		this.c_x = this.bounds.get_center_x();
 		this.c_y = this.bounds.get_center_y();
-		/* Angle from p1 to p2 minus 90 degrees */
-		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-		/* Angle from p1 to p2 */
-		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+		/* Angle from p1 to p3 minus 90 degrees */
+		this.theta_m90 = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y) - global.PI_DIV_2;
+		/* Angle from p1 to p3 */
+		this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
 		/* Angle from center to p2 */
 		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.build_element();
@@ -828,54 +798,58 @@ or overlapped)*/
 			this.indexer = 0;
 			this.circle_buffer = [];
 			this.line_buffer = [];
-			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.dff_0.x, this.dff_0.y);
-			this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.dff_1.x, this.dff_1.y);
-			this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.dff_2.x, this.dff_2.y);
-			this.line_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, this.dff_3.x, this.dff_3.y);
-			this.line_buffer[this.indexer++] = Array(this.dff_4.x, this.dff_4.y, this.dff_5.x, this.dff_5.y);
-			this.line_buffer[this.indexer++] = Array(this.dff_5.x, this.dff_5.y, this.dff_7.x, this.dff_7.y);
-			this.line_buffer[this.indexer++] = Array(this.dff_7.x, this.dff_7.y, this.dff_6.x, this.dff_6.y);
-			this.line_buffer[this.indexer++] = Array(this.dff_6.x, this.dff_6.y, this.dff_4.x, this.dff_4.y);
-			this.line_buffer[this.indexer++] = Array(this.dff_6.x, this.dff_6.y, this.dff_8.x, this.dff_8.y);
-			this.line_buffer[this.indexer++] = Array(this.dff_8.x, this.dff_8.y, this.dff_9.x, this.dff_9.y);
+			this.line_buffer[this.indexer++] = Array(this.vcca_5.x, this.vcca_5.y, this.vcca_7.x, this.vcca_7.y);
+			this.line_buffer[this.indexer++] = Array(this.vcca_6.x, this.vcca_6.y, this.vcca_4.x, this.vcca_4.y);
+			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
+			this.line_buffer[this.indexer++] = Array(this.connect2_x, this.connect2_y, this.p3.x, this.p3.y);
+			this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.vcca_1.x, this.vcca_1.y);
+			this.line_buffer[this.indexer++] = Array(this.vcca_2.x, this.vcca_2.y, this.vcca_1.x, this.vcca_1.y);
+			this.line_buffer[this.indexer++] = Array(this.vcca_3.x, this.vcca_3.y, this.vcca_1.x, this.vcca_1.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			this.indexer = 0;
 			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
 			this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
 			this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-			this.circle_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
 			if (global.DEVELOPER_MODE) {
 				canvas.draw_rect2(this.bounds, this.line_paint);
 				canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
 			}
-			this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-			if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
-				if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
+			if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
+				this.ANGLE = global.retrieve_angle(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
+				if (this.ANGLE > 170 && this.ANGLE < 190) {
+					canvas.draw_text(
+						global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
+						this.c_x,
+						this.bounds.top + this.bounds.get_height() * 0.1,
+						this.text_paint
+					);
+				} else if (this.ANGLE > -10 && this.ANGLE < 10) {
+					canvas.draw_text(
+						global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
+						this.c_x,
+						this.bounds.bottom - this.bounds.get_height() * 0.1,
+						this.text_paint
+					);
+				} else if (this.ANGLE > 260 && this.ANGLE < 280) {
 					canvas.rotate(this.c_x, this.c_y, -90);
 					canvas.draw_text(
 						global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
 						this.c_x,
-						this.bounds.bottom + this.bounds.get_height() * 0.35,
+						this.bounds.bottom - this.bounds.get_height() * 0.1,
+						this.text_paint
+					);
+					canvas.restore();
+				} else if (this.ANGLE > 80 && this.ANGLE < 100) {
+					canvas.rotate(this.c_x, this.c_y, -90);
+					canvas.draw_text(
+						global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
+						this.c_x,
+						this.bounds.top + this.bounds.get_height() * 0.1,
 						this.text_paint
 					);
 					canvas.restore();
 				}
-				canvas.draw_text('D', this.dff_10.x, this.dff_10.y, this.text_paint);
-				canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
-				canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);
-			} else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
-				if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
-					canvas.draw_text(
-						global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
-						this.c_x,
-						this.bounds.bottom + this.bounds.get_height() * 0.35,
-						this.text_paint
-					);
-				}
-				canvas.draw_text('D', this.dff_10.x, this.dff_10.y, this.text_paint);
-				canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
-				canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);
 			}
 			if (this.is_translating) {
 				canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
@@ -902,25 +876,20 @@ or overlapped)*/
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {
-		this.elm.properties['Clock'] = 0;
-		this.elm.properties['Last Clock'] = 1;
-		this.elm.properties['Q'] = 0;
-		this.elm.properties['!Q'] = 1;
-	}
+	reset(): void {}
 }
