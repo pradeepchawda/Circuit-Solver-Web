@@ -63,7 +63,6 @@ class SaveImageWindow {
 	public SELECT_OFFSET_X: number;
 	public MOUSE_DOWN: boolean;
 	public ASCENDING: boolean;
-
 	constructor() {
 		this.TITLE_HEIGHT_RATIO = 0.25;
 		this.BUTTON_WIDTH_RATIO = 0.3;

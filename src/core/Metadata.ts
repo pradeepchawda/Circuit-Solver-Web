@@ -10,7 +10,6 @@ class Metadata {
 	public file_name: string;
 	/* Calibration String */
 	public calibration_string: string;
-
 	constructor() {
 		this.elm = new Element1(-1, global.TYPE_META_DATA, global.copy(global.PROPERTY_META_DATA));
 		/* A snapshot of the scope settings */

@@ -79,7 +79,6 @@ class VoltageControlledResistorSymbol {
 	public HEIGHT_RATIO: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
-
 	constructor(rect: RectF, index: number, page: number) {
 		/* Index of the bounds (Inside New Element Window) */
 		this.index = index;
@@ -260,7 +259,6 @@ class VoltageControlledResistorSymbol {
 		this.vcr_12.y = this.c_y - cache_9 * global.sine(this.theta) + cache_5 * global.sine(Math.PI + this.theta_m90);
 		this.vcr_0.x = this.connect1_x + cache_8 * global.cosine(this.theta) + cache_6 * global.cosine(this.theta_m90);
 		this.vcr_0.y = this.connect1_y + cache_9 * global.sine(this.theta) + cache_7 * global.sine(this.theta_m90);
-
 		this.vcr_13.x = this.p1.x + 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
 		this.vcr_13.y = this.p1.y + 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
 		this.vcr_14.x = this.p3.x - 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
@@ -270,7 +268,6 @@ class VoltageControlledResistorSymbol {
 		this.vcr_15.y = this.vcr_14.y - 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
 		this.vcr_16.x = this.vcr_14.x - 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
 		this.vcr_16.y = this.vcr_14.y - 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
-
 		this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
 		this.vcr_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
 		this.vcr_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);

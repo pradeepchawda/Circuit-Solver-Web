@@ -36,7 +36,6 @@ class ToggleSwitch extends RectF {
 	public text_paint: Paint;
 	/* Keeps track of the toggle state. */
 	public STATE: string;
-
 	constructor(left: number, top: number, right: number, bottom: number) {
 		super(left, top, right, bottom);
 		/* A flag to indicate whether or not to draw the fill of the button. */

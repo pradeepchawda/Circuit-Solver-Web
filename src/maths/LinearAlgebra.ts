@@ -35,7 +35,6 @@ class LinearAlgebra {
 	public GENERAL_VECTOR: Array<number>;
 	public GENERAL_MATRIX: Array<Array<number>>;
 	public FIRST_LUP_SOLVE: boolean;
-
 	constructor() {
 		this.x_matrix = [[], []];
 		this.det_threshold = 0;

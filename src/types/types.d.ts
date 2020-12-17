@@ -2,13 +2,11 @@ declare type MeterTemplate_T = {
 	Tag: string;
 	Value: number;
 };
-
 declare type WIRE_REFERENCE_T = {
 	wire_id: number;
 	anchor_point: number;
 	linkage: number;
 };
-
 /* To facilitate the generation of new wires. */
 declare type WIRE_BUILDER_T = {
 	n1: number;
@@ -27,7 +25,6 @@ declare type WIRE_BUILDER_T = {
 	};
 	step: number;
 };
-
 declare type KEY_EVENT_T = {
 	event: KeyboardEvent;
 	alt: boolean;
@@ -35,23 +32,19 @@ declare type KEY_EVENT_T = {
 	ctrl: boolean;
 	caps: boolean;
 };
-
 declare type HISTORY_MANAGER_T = {
 	packet: Array<string>;
 };
-
 /* Base structure for system properties */
 declare type SYSTEM_OPTIONS_T = {
 	options: Array<string>;
 	values: Array<string>;
 };
-
 declare type PATH_1P_T = {
 	command: string;
 	x1: number;
 	y1: number;
 };
-
 declare type PATH_2P_T = {
 	command: string;
 	x1: number;
@@ -59,7 +52,6 @@ declare type PATH_2P_T = {
 	x2: number;
 	y2: number;
 };
-
 declare type PATH_3P_T = {
 	command: string;
 	x1: number;
@@ -71,24 +63,19 @@ declare type PATH_3P_T = {
 	x4: number;
 	y4: number;
 };
-
 declare type PATH_T = PATH_1P_T | PATH_2P_T | PATH_3P_T;
-
 declare type KEYBOARD_EXPAND_T = {
 	Id: number;
 	Factor: number;
 };
-
 declare type ON_SCREEN_KEYBOARD_KEY_EVENT_T = {
 	code: string;
 };
-
 declare type PAINT_METRICS_T = {
 	width: number;
 	ascent: number;
 	descent: number;
 };
-
 declare type OPTIONS_T = {
 	c0: {
 		string: string;
@@ -107,20 +94,17 @@ declare type OPTIONS_T = {
 		number: number;
 	};
 };
-
 declare type PAINT_METRICS_ARRAY_T = {
 	'text': string;
 	'font': string;
 	'text size': number;
 	'metric': PAINT_METRICS_T;
 };
-
 declare type ANGLE_STRUCT_T = {
 	x: number;
 	y: number;
 	angle: number;
 };
-
 declare type SCOPE_ENTRY_T = {
 	/* The id of the element (should be the same as elm.properties.id) */
 	element_id: number;
@@ -129,20 +113,17 @@ declare type SCOPE_ENTRY_T = {
 	/* The tag of the element (should be the same as property.tag) */
 	element_tag: string;
 };
-
 declare type SYSTEM_INITIALIZATION_T = {
 	step: number;
 	max: number;
 	completed: boolean;
 };
-
 declare type TIME_DATA_TEMPLATE_T = {
 	[Frequency: string]: number;
 	Resistance: number;
 	Capacitance: number;
 	Inductance: number;
 };
-
 /* Used to determine which wire point is associated to an elements nodes. */
 declare type ANCHOR_POINT_T = {
 	p1: number;
@@ -150,7 +131,6 @@ declare type ANCHOR_POINT_T = {
 	p3: number;
 	p4: number;
 };
-
 declare type COLOR_ARRAY_T = {
 	'aliceblue': string;
 	'antiquewhite': string;
@@ -294,14 +274,12 @@ declare type COLOR_ARRAY_T = {
 	'yellow': string;
 	'yellowgreen': string;
 };
-
 /* Structure for saving meta data details */
 declare type PROPERTY_META_DATA_T = {
 	[company: string]: string;
 	version: string;
 	date: string;
 };
-
 /* Base structure for resistor properties */
 declare type PROPERTY_RESISTOR_T = {
 	Resistance: number;
@@ -313,7 +291,6 @@ declare type PROPERTY_RESISTOR_T = {
 		Resistance: Array<number>;
 	};
 };
-
 /* Base structure for SPST properties */
 declare type PROPERTY_SPST_T = {
 	'Open Resistance': number;
@@ -327,7 +304,6 @@ declare type PROPERTY_SPST_T = {
 		'Closed Resistance': Array<number>;
 	};
 };
-
 /* Base structure for NOT properties */
 declare type PROPERTY_NOT_T = {
 	'High Voltage': number;
@@ -1323,7 +1299,6 @@ declare type PROPERTY_DFF_T = {
 	'options_units': Array<string>;
 	'option_limits': {};
 };
-
 /* Base structure for vcca properties */
 declare type PROPERTY_VCCA_T = {
 	'Low Voltage': number;
@@ -1353,7 +1328,6 @@ declare type PROPERTY_VCCA_T = {
 		'Interpolate': Array<string>;
 	};
 };
-
 /* Base structure for vcl properties */
 declare type PROPERTY_VCL_T = {
 	'Low Voltage': number;
@@ -1383,16 +1357,13 @@ declare type PROPERTY_VCL_T = {
 		'Interpolate': Array<string>;
 	};
 };
-
 declare type NET_COLOR_T = [string, number];
-
 declare type ELEMENT_OPTIONS_T = {
 	[c0: string]: number;
 	c1: number;
 	c2: number;
 	c3: number;
 };
-
 declare type LANGUAGE_T = {
 	[English: string]: string;
 	Spanish: string;
@@ -1403,7 +1374,6 @@ declare type LANGUAGE_T = {
 	German: string;
 	Indonesian: string;
 };
-
 declare type ELEMENT_PROPERTY_T = PROPERTY_META_DATA_T &
 	PROPERTY_RESISTOR_T &
 	PROPERTY_SPST_T &

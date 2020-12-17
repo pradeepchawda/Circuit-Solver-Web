@@ -25,7 +25,6 @@ class PaintBaseline {
 	public readonly BOTTOM: CanvasTextBaseline;
 	public readonly ALPHABETIC: CanvasTextBaseline;
 	public readonly HANGING: CanvasTextBaseline;
-
 	constructor() {
 		this.TOP = 'top';
 		this.MIDDLE = 'middle';

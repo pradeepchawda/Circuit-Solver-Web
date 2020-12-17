@@ -86,7 +86,6 @@ or overlapped)*/
 	public circle_buffer: Array<Array<number>>;
 	public BUILD_ELEMENT: boolean;
 	public ANGLE: number;
-
 	constructor(type: number, id: number, n1: number, n2: number, n3: number) {
 		this.INITIALIZED = false;
 		/* Create a new rectangle for the bounds of this component */
@@ -874,20 +873,20 @@ or overlapped)*/
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-		/* #INSERT_GENERATE_TIME_DATA# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
-		let keys: Array<string> = Object.keys(this.elm.properties);
-		for (var i: number = keys.length - 1; i > -1; i--) {
-			if (typeof this.elm.properties[keys[i]] === 'number') {
-				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-					time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
-				}
-			}
-		}
+/* #INSERT_GENERATE_TIME_DATA# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+  let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
+    for (var i : number = keys.length - 1; i > -1; i--) {
+      if (typeof this.elm.properties[keys[i]] === 'number') {
+        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+          time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
+        }
+      }
+    }
 
-		return time_data;
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+    return time_data;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['Output Voltage'] = 0;

@@ -65,7 +65,6 @@ class ElementOptionsWindow {
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public toggle_switch_button: ToggleSwitch;
-
 	constructor() {
 		/* This controls the height of the title bar relative to the height of the window */
 		this.TITLE_HEIGHT_RATIO = 0.1;

@@ -44,7 +44,6 @@ class Toast {
 	private TOAST_REQUEST_DRAW: boolean;
 	private last_text: string;
 	private text_measure_div2: number;
-
 	constructor() {
 		/* This is used to place the height at which the toast will display its bounds. */
 		if (global.MOBILE_MODE) {

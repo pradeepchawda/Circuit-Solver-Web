@@ -66,7 +66,6 @@ class SettingsWindow {
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public toggle_switch_button: ToggleSwitch;
-
 	constructor() {
 		this.TITLE_HEIGHT_RATIO = 0.1;
 		this.BUTTON_WIDTH_RATIO = 0.3;

@@ -22,7 +22,6 @@
 class WireManager {
 	public wire_id: number;
 	public unique_wire: boolean;
-
 	constructor() {
 		this.wire_id = -1;
 		this.unique_wire = true;

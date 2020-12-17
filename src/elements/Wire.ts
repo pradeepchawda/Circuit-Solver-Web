@@ -57,7 +57,6 @@ class Wire {
 	public ANGLE: number;
 	public indexer: number;
 	public is_translating: boolean;
-
 	constructor(type: number, id: number, n1: number, n2: number) {
 		this.INITIALIZED = false;
 		/* Inititalize the element2 class that will hold the basic data about our component */

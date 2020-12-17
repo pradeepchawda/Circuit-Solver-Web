@@ -19,7 +19,6 @@ class PIDController {
 	public previous_time: number;
 	public last_error: number;
 	public integral_error: number;
-
 	constructor(set_point: number, k_p: number, k_i: number, k_d: number) {
 		/* User set-point */
 		this.set_point = 0;

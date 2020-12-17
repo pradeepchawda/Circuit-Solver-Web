@@ -88,7 +88,6 @@ or overlapped)*/
 	public circle_buffer: Array<Array<number>>;
 	public BUILD_ELEMENT: boolean;
 	public ANGLE: number;
-
 	constructor(type: number, id: number, n1: number, n2: number, n3: number) {
 		this.INITIALIZED = false;
 		/* Create a new rectangle for the bounds of this component */
@@ -687,7 +686,6 @@ or overlapped)*/
 			this.vcr_12.y = this.c_y - cache_9 * global.sine(this.theta) + cache_5 * global.sine(Math.PI + this.theta_m90);
 			this.vcr_0.x = this.connect1_x + cache_8 * global.cosine(this.theta) + cache_6 * global.cosine(this.theta_m90);
 			this.vcr_0.y = this.connect1_y + cache_9 * global.sine(this.theta) + cache_7 * global.sine(this.theta_m90);
-
 			this.vcr_13.x = this.p1.x + 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
 			this.vcr_13.y = this.p1.y + 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
 			this.vcr_14.x = this.p3.x - 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
@@ -697,7 +695,6 @@ or overlapped)*/
 			this.vcr_15.y = this.vcr_14.y - 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
 			this.vcr_16.x = this.vcr_14.x - 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
 			this.vcr_16.y = this.vcr_14.y - 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
-
 			this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
 			this.vcr_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
 			this.vcr_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
@@ -829,13 +826,11 @@ or overlapped)*/
 			this.line_buffer[this.indexer++] = Array(this.vcr_14.x, this.vcr_14.y, this.vcr_13.x, this.vcr_13.y);
 			this.line_buffer[this.indexer++] = Array(this.vcr_14.x, this.vcr_14.y, this.vcr_15.x, this.vcr_15.y);
 			this.line_buffer[this.indexer++] = Array(this.vcr_14.x, this.vcr_14.y, this.vcr_16.x, this.vcr_16.y);
-
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			this.indexer = 0;
 			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
 			this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
 			this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
 			if (global.DEVELOPER_MODE) {
 				canvas.draw_rect2(this.bounds, this.line_paint);
@@ -924,20 +919,20 @@ or overlapped)*/
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-		/* #INSERT_GENERATE_TIME_DATA# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
-		let keys: Array<string> = Object.keys(this.elm.properties);
-		for (var i: number = keys.length - 1; i > -1; i--) {
-			if (typeof this.elm.properties[keys[i]] === 'number') {
-				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-					time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
-				}
-			}
-		}
+/* #INSERT_GENERATE_TIME_DATA# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+  let time_data : TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+    let keys : Array<string> = Object.keys(this.elm.properties);
+    for (var i : number = keys.length - 1; i > -1; i--) {
+      if (typeof this.elm.properties[keys[i]] === 'number') {
+        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+          time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
+        }
+      }
+    }
 
-		return time_data;
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+    return time_data;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {}
 }

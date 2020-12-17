@@ -48,7 +48,6 @@ class MultiSelectManager {
 	/* A flag to map the multi-select to a shortcut or to enable it always. */
 	public ENABLE_KEYS: boolean;
 	public DRAW_BOUNDS: RectF;
-
 	constructor() {
 		this.OFFSCREEN_X = -500e3;
 		this.OFFSCREEN_Y = -500e3;

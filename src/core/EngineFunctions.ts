@@ -48,7 +48,6 @@ class EngineFunctions {
 	public mapper3: Element3;
 	/* Solely for mapping nodes (quadruple nodes) baby! */
 	public mapper4: Element4;
-
 	constructor() {
 		this.node_1 = -1;
 		this.node_2 = -1;

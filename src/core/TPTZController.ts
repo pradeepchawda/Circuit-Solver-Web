@@ -33,7 +33,6 @@ class TPTZController {
 	public n_2: number;
 	public center: number;
 	public _y: number;
-
 	constructor(tptz_buffer: Array<number>) {
 		this.buffer = global.copy(tptz_buffer);
 		this.x = [0, 0];

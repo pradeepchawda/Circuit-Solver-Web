@@ -43,7 +43,6 @@ class ElectricalNode {
 	public bounds: RectF;
 	public loc_x_precalc: number;
 	public loc_y_precalc: number;
-
 	constructor(x: number, y: number, id: number) {
 		/* The radius of the node when it is drawn. */
 		/* The location of the node */
