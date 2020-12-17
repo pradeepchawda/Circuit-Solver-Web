@@ -808,13 +808,13 @@ class EngineFunctions {
                             }
                         }
                     }
-                    for (var i = 0; i < vclis.length; i++) {
-                        if (vclis[i].bounds.is_near(global.selected_bounds, width)) {
+                    for (var i = 0; i < vcls.length; i++) {
+                        if (vcls[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vclis[i].elm.type,
-                                'Id': vclis[i].elm.id,
+                                'Type': vcls[i].elm.type,
+                                'Id': vcls[i].elm.id,
                             });
-                            if (vclis[i].elm.type === global.selected_type && vclis[i].elm.id === global.selected_id) {
+                            if (vcls[i].elm.type === global.selected_type && vcls[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
                             }
                         }
@@ -1386,9 +1386,9 @@ class EngineFunctions {
                             }
                         }
                         if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VCL) {
-                            for (var i = 0; i < vclis.length; i++) {
-                                if (vclis[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
-                                    vclis[i].select();
+                            for (var i = 0; i < vcls.length; i++) {
+                                if (vcls[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                    vcls[i].select();
                                     break;
                                 }
                             }
@@ -1946,8 +1946,8 @@ class EngineFunctions {
         return -1;
     }
     get_vcl(id) {
-        for (var i = 0; i < vclis.length; i++) {
-            if (vclis[i].elm.id === id) {
+        for (var i = 0; i < vcls.length; i++) {
+            if (vcls[i].elm.id === id) {
                 return i;
             }
         }
@@ -3088,8 +3088,8 @@ class EngineFunctions {
     get_vcl_assignment() {
         let assignment = 0;
         var ids = [];
-        for (var i = 0; i < vclis.length; i++) {
-            ids.push(vclis[i].elm.id);
+        for (var i = 0; i < vcls.length; i++) {
+            ids.push(vcls[i].elm.id);
         }
         ids = ids.sort((a, b) => a - b);
         for (var i = 0; i < ids.length; i++) {
@@ -4733,17 +4733,17 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        vclis.push(new VoltageControlledInductor(global.TYPE_VCL, engine_functions
+        vcls.push(new VoltageControlledInductor(global.TYPE_VCL, engine_functions
             .get_vcl_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
-        var index = vclis.length - 1;
-        if (index < vclis.length) {
-            vclis[index].is_translating = false;
+        var index = vcls.length - 1;
+        if (index < vcls.length) {
+            vcls[index].is_translating = false;
             global.SIGNAL_BUILD_ELEMENT = true;
-            global.focused_id = vclis[index].elm.id;
-            global.focused_type = vclis[index].elm.type;
-            global.focused_bounds = global.copy(vclis[index].bounds);
+            global.focused_id = vcls[index].elm.id;
+            global.focused_type = vcls[index].elm.type;
+            global.focused_bounds = global.copy(vcls[index].bounds);
             global.focused = true;
-            vclis[index].select();
+            vcls[index].select();
             global.component_touched = true;
         }
     }
@@ -5023,8 +5023,8 @@ class EngineFunctions {
             if (i > -1 && i < vccas.length) {
                 vccas[i].simulation_id = i;
             }
-            if (i > -1 && i < vclis.length) {
-                vclis[i].simulation_id = i;
+            if (i > -1 && i < vcls.length) {
+                vcls[i].simulation_id = i;
             }
             if (i > -1 && i < grts.length) {
                 grts[i].simulation_id = i;
@@ -5233,8 +5233,8 @@ class EngineFunctions {
         for (var i = 0; i < vccas.length; i++) {
             vccas[i].stamp();
         }
-        for (var i = 0; i < vclis.length; i++) {
-            vclis[i].stamp();
+        for (var i = 0; i < vcls.length; i++) {
+            vcls[i].stamp();
         }
         for (var i = 0; i < grts.length; i++) {
             grts[i].stamp();
@@ -5995,7 +5995,7 @@ class EngineFunctions {
             vccas.push(this.rebuild_vcca(obj));
         }
         else if (obj.elm.type === global.TYPE_VCL) {
-            vclis.push(this.rebuild_vcl(obj));
+            vcls.push(this.rebuild_vcl(obj));
         }
         else if (obj.elm.type === global.TYPE_GRT) {
             grts.push(this.rebuild_grt(obj));
@@ -7837,6 +7837,14 @@ class EngineFunctions {
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
         obj.MULTI_SELECTED = false;
+        Object.setPrototypeOf(obj.vcl_arc_0, Arc.prototype);
+        Object.setPrototypeOf(obj.vcl_arc_1, Arc.prototype);
+        Object.setPrototypeOf(obj.vcl_arc_2, Arc.prototype);
+        Object.setPrototypeOf(obj.vcl_arc_3, Arc.prototype);
+        Object.setPrototypeOf(obj.vcl_arc_0.arc_paint, Paint.prototype);
+        Object.setPrototypeOf(obj.vcl_arc_1.arc_paint, Paint.prototype);
+        Object.setPrototypeOf(obj.vcl_arc_2.arc_paint, Paint.prototype);
+        Object.setPrototypeOf(obj.vcl_arc_3.arc_paint, Paint.prototype);
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -8225,8 +8233,8 @@ class EngineFunctions {
         for (var i = 0; i < vccas.length; i++) {
             packet[indexer++] = JSON.stringify(vccas[i]);
         }
-        for (var i = 0; i < vclis.length; i++) {
-            packet[indexer++] = JSON.stringify(vclis[i]);
+        for (var i = 0; i < vcls.length; i++) {
+            packet[indexer++] = JSON.stringify(vcls[i]);
         }
         for (var i = 0; i < grts.length; i++) {
             packet[indexer++] = JSON.stringify(grts[i]);
@@ -9027,15 +9035,15 @@ class EngineFunctions {
         }
     }
     remove_vcl(index) {
-        if (index < vclis.length) {
-            vclis[index].release_wires();
-            vclis[index].release_nodes();
-            vclis[index].remove_focus();
-            vclis[index].remove_selection();
+        if (index < vcls.length) {
+            vcls[index].release_wires();
+            vcls[index].release_nodes();
+            vcls[index].remove_focus();
+            vcls[index].remove_selection();
             wire_manager.reset_wire_builder();
             global.SIGNAL_WIRE_DELETED = true;
             global.signal_wire_deleted_counter = 0;
-            vclis.splice(index, 1);
+            vcls.splice(index, 1);
         }
     }
     remove_grt(index) {
@@ -9296,8 +9304,8 @@ class EngineFunctions {
                         for (var i = 0; i < vccas.length; i++) {
                             vccas[i].MULTI_SELECTED = false;
                         }
-                        for (var i = 0; i < vclis.length; i++) {
-                            vclis[i].MULTI_SELECTED = false;
+                        for (var i = 0; i < vcls.length; i++) {
+                            vcls[i].MULTI_SELECTED = false;
                         }
                         for (var i = 0; i < grts.length; i++) {
                             grts[i].MULTI_SELECTED = false;
@@ -9515,8 +9523,8 @@ class EngineFunctions {
         for (var i = 0; i < vccas.length; i++) {
             vccas[i].draw_component(canvas);
         }
-        for (var i = 0; i < vclis.length; i++) {
-            vclis[i].draw_component(canvas);
+        for (var i = 0; i < vcls.length; i++) {
+            vcls[i].draw_component(canvas);
         }
         for (var i = 0; i < grts.length; i++) {
             grts[i].draw_component(canvas);
@@ -10055,9 +10063,9 @@ class EngineFunctions {
                 }
             }
             if (global.selected_type === global.TYPE_VCL) {
-                for (var i = 0; i < vclis.length; i++) {
-                    if (global.selected_id === vclis[i].elm.id) {
-                        vclis[i].draw_component(canvas);
+                for (var i = 0; i < vcls.length; i++) {
+                    if (global.selected_id === vcls[i].elm.id) {
+                        vcls[i].draw_component(canvas);
                         break;
                     }
                 }

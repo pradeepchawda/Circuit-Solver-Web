@@ -480,10 +480,10 @@ class MultiSelectManager {
                     vccas[i].MULTI_SELECTED = true;
                 }
             }
-            for (var i = 0; i < vclis.length; i++) {
-                if (this.MULTI_SELECT_BOUNDS.contains_xy(vclis[i].bounds.get_center_x(), vclis[i].bounds.get_center_y())) {
+            for (var i = 0; i < vcls.length; i++) {
+                if (this.MULTI_SELECT_BOUNDS.contains_xy(vcls[i].bounds.get_center_x(), vcls[i].bounds.get_center_y())) {
                     this.MULTI_SELECTED_ELEMENT = true;
-                    vclis[i].MULTI_SELECTED = true;
+                    vcls[i].MULTI_SELECTED = true;
                 }
             }
             for (var i = 0; i < grts.length; i++) {
@@ -1169,10 +1169,10 @@ class MultiSelectManager {
                     }
                 }
             }
-            for (var i = 0; i < vclis.length; i++) {
-                if (vclis[i].MULTI_SELECTED) {
+            for (var i = 0; i < vcls.length; i++) {
+                if (vcls[i].MULTI_SELECTED) {
                     {
-                        vclis[i].move_element(dx, dy);
+                        vcls[i].move_element(dx, dy);
                     }
                 }
             }

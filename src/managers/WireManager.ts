@@ -893,14 +893,14 @@ class WireManager {
           } else if (global.WIRE_BUILDER['type1'] === global.TYPE_VCL) {
             var index : number = engine_functions.get_vcl(global.WIRE_BUILDER['id1']);
 
-            if (index < vclis.length) {
+            if (index < vcls.length) {
               global.WIRE_REFERENCE['wire_id'] = wire_id;
               global.WIRE_REFERENCE['linkage'] = global.copy(global.WIRE_BUILDER['linkage1']['wire']);
               global.WIRE_REFERENCE['anchor_point'] = global.copy(global.WIRE_BUILDER['anchor_point1']);
 
-              vclis[index].push_reference(global.copy(global.WIRE_REFERENCE));
-              vclis[index].unanchor_wires();
-              vclis[index].anchor_wires();
+              vcls[index].push_reference(global.copy(global.WIRE_REFERENCE));
+              vcls[index].unanchor_wires();
+              vcls[index].anchor_wires();
             }
           } else if (global.WIRE_BUILDER['type1'] === global.TYPE_GRT) {
             var index : number = engine_functions.get_grt(global.WIRE_BUILDER['id1']);
@@ -1710,14 +1710,14 @@ class WireManager {
           } else if (global.WIRE_BUILDER['type2'] === global.TYPE_VCL) {
             var index : number= engine_functions.get_vcl(global.WIRE_BUILDER['id2']);
 
-            if (index < vclis.length) {
+            if (index < vcls.length) {
               global.WIRE_REFERENCE['wire_id'] = wire_id;
               global.WIRE_REFERENCE['linkage'] = global.copy(global.WIRE_BUILDER['linkage2']['wire']);
               global.WIRE_REFERENCE['anchor_point'] = global.copy(global.WIRE_BUILDER['anchor_point2']);
 
-              vclis[index].push_reference(global.copy(global.WIRE_REFERENCE));
-              vclis[index].unanchor_wires();
-              vclis[index].anchor_wires();
+              vcls[index].push_reference(global.copy(global.WIRE_REFERENCE));
+              vcls[index].unanchor_wires();
+              vcls[index].anchor_wires();
             }
           } else if (global.WIRE_BUILDER['type2'] === global.TYPE_GRT) {
             var index : number= engine_functions.get_grt(global.WIRE_BUILDER['id2']);

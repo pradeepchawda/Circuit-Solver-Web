@@ -536,8 +536,8 @@ used to determine the best time-step for the system. */
 		for (var i: number = 0; i < vccas.length; i++) {
 			this.TIME_DATA.push(vccas[i].time_data());
 		}
-		for (var i: number = 0; i < vclis.length; i++) {
-			this.TIME_DATA.push(vclis[i].time_data());
+		for (var i: number = 0; i < vcls.length; i++) {
+			this.TIME_DATA.push(vcls[i].time_data());
 		}
 		for (var i: number = 0; i < grts.length; i++) {
 			this.TIME_DATA.push(grts[i].time_data());
@@ -896,8 +896,8 @@ used to determine the best time-step for the system. */
 		for (var i: number = 0; i < vccas.length; i++) {
 			vccas[i].reset();
 		}
-		for (var i: number = 0; i < vclis.length; i++) {
-			vclis[i].reset();
+		for (var i: number = 0; i < vcls.length; i++) {
+			vcls[i].reset();
 		}
 		for (var i: number = 0; i < grts.length; i++) {
 			grts[i].reset();
@@ -951,8 +951,8 @@ used to determine the best time-step for the system. */
 		for (var i: number = 0; i < vccas.length; i++) {
 			vccas[i].reset_vcca();
 		}
-		for (var i: number = 0; i < vclis.length; i++) {
-			vclis[i].reset_vcl();
+		for (var i: number = 0; i < vcls.length; i++) {
+			vcls[i].reset_vcl();
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
@@ -1129,8 +1129,8 @@ used to determine the best time-step for the system. */
 		for (var i: number = 0; i < vccas.length; i++) {
 			vccas[i].update_vcca();
 		}
-		for (var i: number = 0; i < vclis.length; i++) {
-			vclis[i].update_vcl();
+		for (var i: number = 0; i < vcls.length; i++) {
+			vcls[i].update_vcl();
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

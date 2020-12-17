@@ -33,24 +33,19 @@ class VoltageControlledResistor {
 	public vcr_1: PointF;
 	public vcr_2: PointF;
 	public vcr_3: PointF;
-	/* Resistor point 0 */
 	public vcr_4: PointF;
-	/* Resistor point 1 */
 	public vcr_6: PointF;
-	/* Resistor point 2 */
 	public vcr_5: PointF;
-	/* Resistor point 3 */
 	public vcr_7: PointF;
-	/* Resistor point 4 */
 	public vcr_8: PointF;
-	/* Resistor point 5 */
 	public vcr_9: PointF;
-	/* Resistor point 6 */
 	public vcr_10: PointF;
-	/* Resistor point 7 */
 	public vcr_11: PointF;
-	/* Resistor point 8 */
 	public vcr_12: PointF;
+	public vcr_13: PointF;
+	public vcr_14: PointF;
+	public vcr_15: PointF;
+	public vcr_16: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -134,24 +129,19 @@ or overlapped)*/
 		this.vcr_1 = new PointF(0, 0);
 		this.vcr_2 = new PointF(0, 0);
 		this.vcr_3 = new PointF(0, 0);
-		/* Resistor point 0 */
 		this.vcr_4 = new PointF(0, 0);
-		/* Resistor point 1 */
 		this.vcr_6 = new PointF(0, 0);
-		/* Resistor point 2 */
 		this.vcr_5 = new PointF(0, 0);
-		/* Resistor point 3 */
 		this.vcr_7 = new PointF(0, 0);
-		/* Resistor point 4 */
 		this.vcr_8 = new PointF(0, 0);
-		/* Resistor point 5 */
 		this.vcr_9 = new PointF(0, 0);
-		/* Resistor point 6 */
 		this.vcr_10 = new PointF(0, 0);
-		/* Resistor point 7 */
 		this.vcr_11 = new PointF(0, 0);
-		/* Resistor point 8 */
 		this.vcr_12 = new PointF(0, 0);
+		this.vcr_13 = new PointF(0, 0);
+		this.vcr_14 = new PointF(0, 0);
+		this.vcr_15 = new PointF(0, 0);
+		this.vcr_16 = new PointF(0, 0);
 		/* The center (x-coord) of the bounds */
 		this.c_x = this.bounds.get_center_x();
 		/* The center (y-coord) of the bounds */
@@ -697,6 +687,17 @@ or overlapped)*/
 			this.vcr_12.y = this.c_y - cache_9 * global.sine(this.theta) + cache_5 * global.sine(Math.PI + this.theta_m90);
 			this.vcr_0.x = this.connect1_x + cache_8 * global.cosine(this.theta) + cache_6 * global.cosine(this.theta_m90);
 			this.vcr_0.y = this.connect1_y + cache_9 * global.sine(this.theta) + cache_7 * global.sine(this.theta_m90);
+
+			this.vcr_13.x = this.p1.x + 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+			this.vcr_13.y = this.p1.y + 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+			this.vcr_14.x = this.p3.x - 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+			this.vcr_14.y = this.p3.y - 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+			this.theta = global.retrieve_angle_radian(this.vcr_14.x - this.vcr_13.x, this.vcr_14.y - this.vcr_13.y);
+			this.vcr_15.x = this.vcr_14.x - 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+			this.vcr_15.y = this.vcr_14.y - 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
+			this.vcr_16.x = this.vcr_14.x - 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+			this.vcr_16.y = this.vcr_14.y - 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
+
 			this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
 			this.vcr_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
 			this.vcr_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
@@ -825,11 +826,16 @@ or overlapped)*/
 			this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.vcr_1.x, this.vcr_1.y);
 			this.line_buffer[this.indexer++] = Array(this.vcr_2.x, this.vcr_2.y, this.vcr_1.x, this.vcr_1.y);
 			this.line_buffer[this.indexer++] = Array(this.vcr_3.x, this.vcr_3.y, this.vcr_1.x, this.vcr_1.y);
+			this.line_buffer[this.indexer++] = Array(this.vcr_14.x, this.vcr_14.y, this.vcr_13.x, this.vcr_13.y);
+			this.line_buffer[this.indexer++] = Array(this.vcr_14.x, this.vcr_14.y, this.vcr_15.x, this.vcr_15.y);
+			this.line_buffer[this.indexer++] = Array(this.vcr_14.x, this.vcr_14.y, this.vcr_16.x, this.vcr_16.y);
+
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			this.indexer = 0;
 			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
 			this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
 			this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
 			if (global.DEVELOPER_MODE) {
 				canvas.draw_rect2(this.bounds, this.line_paint);
@@ -893,6 +899,18 @@ or overlapped)*/
 		}
 		if (!global.not_null(this.indexer)) {
 			this.indexer = 0;
+		}
+		if (!global.not_null(this.vcr_13)) {
+			this.vcr_13 = new PointF(0, 0);
+		}
+		if (!global.not_null(this.vcr_14)) {
+			this.vcr_14 = new PointF(0, 0);
+		}
+		if (!global.not_null(this.vcr_15)) {
+			this.vcr_15 = new PointF(0, 0);
+		}
+		if (!global.not_null(this.vcr_16)) {
+			this.vcr_16 = new PointF(0, 0);
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {

@@ -2393,12 +2393,12 @@ let value : number = string_operator.parse(this.input_button.text);
     else if (global.selected_type === global.TYPE_VCL) {
       var index : number= -1;
       index = engine_functions.get_vcl(global.selected_id);
-      if (index < vclis.length) {
+      if (index < vcls.length) {
 let value : number = string_operator.parse(this.input_button.text);
         if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
           Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))) {
           global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vclis[index].elm.properties[vclis[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+          vcls[index].elm.properties[vcls[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
         } else {
           toast.set_text('PARAM = [|' + global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this
             .option_index]][global.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.exponentiate_quickly(global.selected_properties['option_limits'][global

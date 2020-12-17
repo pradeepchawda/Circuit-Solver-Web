@@ -56,14 +56,6 @@ class InductorSymbol {
         this.ind_2 = new PointF(0, 0);
         /* Resistor point 3 */
         this.ind_3 = new PointF(0, 0);
-        /* Resistor point 0 */
-        this.ind_4 = new PointF(0, 0);
-        /* Resistor point 1 */
-        this.ind_5 = new PointF(0, 0);
-        /* Resistor point 2 */
-        this.ind_6 = new PointF(0, 0);
-        /* Resistor point 3 */
-        this.ind_7 = new PointF(0, 0);
         /* The center (x-coord) of the bounds */
         this.c_x = this.bounds.get_center_x();
         /* The center (y-coord) of the bounds */
@@ -185,14 +177,6 @@ class InductorSymbol {
         this.ind_2.y = this.c_y + (this.y_space >> 1) * global.sine(this.theta - global.to_radians(180));
         this.ind_3.x = this.c_x + this.x_space * global.cosine(this.theta - global.to_radians(180));
         this.ind_3.y = this.c_y + this.y_space * global.sine(this.theta - global.to_radians(180));
-        this.ind_4.x = (this.ind_0.x + this.ind_1.x) * global.ZERO_PT_FIVE + 1.5 * this.x_space * global.cosine(this.theta - global.to_radians(90));
-        this.ind_4.y = (this.ind_0.y + this.ind_1.y) * global.ZERO_PT_FIVE + 1.5 * this.y_space * global.sine(this.theta - global.to_radians(90));
-        this.ind_5.x = (this.c_x + this.ind_1.x) * global.ZERO_PT_FIVE + 1.5 * this.x_space * global.cosine(this.theta - global.to_radians(90));
-        this.ind_5.y = (this.c_y + this.ind_1.y) * global.ZERO_PT_FIVE + 1.5 * this.y_space * global.sine(this.theta - global.to_radians(90));
-        this.ind_6.x = (this.c_x + this.ind_2.x) * global.ZERO_PT_FIVE + 1.5 * this.x_space * global.cosine(this.theta - global.to_radians(90));
-        this.ind_6.y = (this.c_y + this.ind_2.y) * global.ZERO_PT_FIVE + 1.5 * this.y_space * global.sine(this.theta - global.to_radians(90));
-        this.ind_7.x = (this.ind_3.x + this.ind_2.x) * global.ZERO_PT_FIVE + 1.5 * this.x_space * global.cosine(this.theta - global.to_radians(90));
-        this.ind_7.y = (this.ind_3.y + this.ind_2.y) * global.ZERO_PT_FIVE + 1.5 * this.y_space * global.sine(this.theta - global.to_radians(90));
         this.inductor_arc_0.set_points(this.ind_0.x, this.ind_0.y, this.ind_1.x, this.ind_1.y);
         this.inductor_arc_0.amplitude = global.CANVAS_STROKE_WIDTH_5;
         this.inductor_arc_1.set_points(this.ind_1.x, this.ind_1.y, this.c_x, this.c_y);

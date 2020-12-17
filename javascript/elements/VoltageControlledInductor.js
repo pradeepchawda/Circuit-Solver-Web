@@ -56,21 +56,13 @@ class VoltageControlledInductor {
         this.vcl_1 = new PointF(0, 0);
         this.vcl_2 = new PointF(0, 0);
         this.vcl_3 = new PointF(0, 0);
-        /* Resistor point 0 */
         this.vcl_4 = new PointF(0, 0);
-        /* Resistor point 1 */
-        this.vcl_6 = new PointF(0, 0);
-        /* Resistor point 2 */
         this.vcl_5 = new PointF(0, 0);
-        /* Resistor point 3 */
+        this.vcl_6 = new PointF(0, 0);
         this.vcl_7 = new PointF(0, 0);
-        /* Resistor point 4 */
         this.vcl_8 = new PointF(0, 0);
-        /* Resistor point 1 */
         this.vcl_9 = new PointF(0, 0);
-        /* Resistor point 2 */
         this.vcl_10 = new PointF(0, 0);
-        /* Resistor point 3 */
         this.vcl_11 = new PointF(0, 0);
         /* The center (x-coord) of the bounds */
         this.c_x = this.bounds.get_center_x();
@@ -168,7 +160,7 @@ class VoltageControlledInductor {
     update_vcl() {
         if (this.elm.consistent() && simulation_manager.SOLUTIONS_READY) {
             this.conserve_energy();
-            let voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+            let voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n3);
             this.elm.properties['Transient Voltage'] = voltage;
             this.elm.properties['Transient Current'] = voltage / this.elm.properties['Transient Resistance'] + this.elm.properties['Equivalent Current'];
             this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
@@ -192,32 +184,23 @@ class VoltageControlledInductor {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage'] = global.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
                 if (this.elm.properties['Interpolate'] === global.ON) {
-                    this.elm.properties['Output Inductance'] = global.linterp([
-                        this.elm.properties['High Voltage'] * 0,
-                        this.elm.properties['High Voltage'] * 0.25,
-                        this.elm.properties['High Voltage'] * 0.5,
-                        this.elm.properties['High Voltage'] * 0.75,
-                        this.elm.properties['High Voltage']
-                    ], [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']], this.elm.properties['Input Voltage']);
+                    this.elm.properties['Output Inductance'] = global.linterp([this.elm.properties['High Voltage'] * 0, this.elm.properties['High Voltage'] * 0.33, this.elm.properties['High Voltage'] * 0.66, this.elm.properties['High Voltage'] * 1.0], [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3']], this.elm.properties['Input Voltage']);
                 }
                 else if (this.elm.properties['Interpolate'] === global.OFF) {
                     let index = 0;
-                    if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.2) {
+                    if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.25) {
                         index = 0;
                     }
-                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.2 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.4) {
+                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.25 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.5) {
                         index = 1;
                     }
-                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.4 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.6) {
+                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.5 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.75) {
                         index = 2;
                     }
-                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.6 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.8) {
+                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.75 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
                         index = 3;
                     }
-                    else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.8 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
-                        index = 4;
-                    }
-                    this.elm.properties['Output Inductance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']][index];
+                    this.elm.properties['Output Inductance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3']][index];
                 }
             }
         }
@@ -629,8 +612,6 @@ class VoltageControlledInductor {
     /* Generate the SVG for the component. */
     build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
-            let cache_0 = 1.5 * this.x_space;
-            let cache_1 = 1.5 * this.y_space;
             let cache_2 = this.x_space;
             let cache_3 = this.y_space;
             let cache_8 = this.x_space;
@@ -647,14 +628,15 @@ class VoltageControlledInductor {
             this.vcl_2.y = this.c_y + (cache_3 >> 1) * global.sine(this.theta - global.to_radians(180));
             this.vcl_3.x = this.c_x + cache_2 * global.cosine(this.theta - global.to_radians(180));
             this.vcl_3.y = this.c_y + cache_3 * global.sine(this.theta - global.to_radians(180));
-            this.vcl_4.x = (this.vcl_0.x + this.vcl_1.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-            this.vcl_4.y = (this.vcl_0.y + this.vcl_1.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-            this.vcl_5.x = (this.c_x + this.vcl_1.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-            this.vcl_5.y = (this.c_y + this.vcl_1.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-            this.vcl_6.x = (this.c_x + this.vcl_2.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-            this.vcl_6.y = (this.c_y + this.vcl_2.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-            this.vcl_7.x = (this.vcl_3.x + this.vcl_2.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-            this.vcl_7.y = (this.vcl_3.y + this.vcl_2.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
+            this.vcl_4.x = this.p1.x + 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+            this.vcl_4.y = this.p1.y + 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+            this.vcl_5.x = this.p3.x - 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+            this.vcl_5.y = this.p3.y - 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+            this.theta = global.retrieve_angle_radian(this.vcl_5.x - this.vcl_4.x, this.vcl_5.y - this.vcl_4.y);
+            this.vcl_6.x = this.vcl_5.x - 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+            this.vcl_6.y = this.vcl_5.y - 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
+            this.vcl_7.x = this.vcl_5.x - 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+            this.vcl_7.y = this.vcl_5.y - 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
             this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
             this.vcl_9.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
             this.vcl_9.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
@@ -804,6 +786,9 @@ class VoltageControlledInductor {
             this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.vcl_9.x, this.vcl_9.y);
             this.line_buffer[this.indexer++] = Array(this.vcl_10.x, this.vcl_10.y, this.vcl_9.x, this.vcl_9.y);
             this.line_buffer[this.indexer++] = Array(this.vcl_11.x, this.vcl_11.y, this.vcl_9.x, this.vcl_9.y);
+            this.line_buffer[this.indexer++] = Array(this.vcl_5.x, this.vcl_5.y, this.vcl_4.x, this.vcl_4.y);
+            this.line_buffer[this.indexer++] = Array(this.vcl_5.x, this.vcl_5.y, this.vcl_6.x, this.vcl_6.y);
+            this.line_buffer[this.indexer++] = Array(this.vcl_5.x, this.vcl_5.y, this.vcl_7.x, this.vcl_7.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             this.indexer = 0;
             this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
@@ -855,6 +840,18 @@ class VoltageControlledInductor {
         }
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
+        }
+        if (!global.not_null(this.vcl_4)) {
+            this.vcl_4 = new PointF(0, 0);
+        }
+        if (!global.not_null(this.vcl_5)) {
+            this.vcl_5 = new PointF(0, 0);
+        }
+        if (!global.not_null(this.vcl_6)) {
+            this.vcl_6 = new PointF(0, 0);
+        }
+        if (!global.not_null(this.vcl_7)) {
+            this.vcl_7 = new PointF(0, 0);
         }
     }
     time_data() {

@@ -38,12 +38,13 @@ class VoltageControlledCapacitorSymbol {
         this.vcca_2 = new PointF(0, 0);
         this.vcca_3 = new PointF(0, 0);
         this.vcca_4 = new PointF(0, 0);
-        /* Resistor point 1 */
         this.vcca_6 = new PointF(0, 0);
-        /* Resistor point 2 */
         this.vcca_5 = new PointF(0, 0);
-        /* Resistor point 3 */
         this.vcca_7 = new PointF(0, 0);
+        this.vcca_8 = new PointF(0, 0);
+        this.vcca_9 = new PointF(0, 0);
+        this.vcca_10 = new PointF(0, 0);
+        this.vcca_11 = new PointF(0, 0);
         /* The center (x-coord) of the bounds */
         this.c_x = this.bounds.get_center_x();
         /* The center (y-coord) of the bounds */
@@ -177,6 +178,15 @@ class VoltageControlledCapacitorSymbol {
         this.vcca_6.y = this.c_y + cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
         this.vcca_7.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(Math.PI + this.theta_m90);
         this.vcca_7.y = this.c_y - cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
+        this.vcca_8.x = this.p1.x + 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+        this.vcca_8.y = this.p1.y + 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+        this.vcca_9.x = this.p3.x - 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+        this.vcca_9.y = this.p3.y - 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+        this.theta = global.retrieve_angle_radian(this.vcca_9.x - this.vcca_8.x, this.vcca_9.y - this.vcca_8.y);
+        this.vcca_10.x = this.vcca_9.x - 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+        this.vcca_10.y = this.vcca_9.y - 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
+        this.vcca_11.x = this.vcca_9.x - 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+        this.vcca_11.y = this.vcca_9.y - 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
         this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
         this.vcca_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
         this.vcca_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
@@ -184,8 +194,6 @@ class VoltageControlledCapacitorSymbol {
         this.vcca_2.y = this.vcca_1.y + 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
         this.vcca_3.x = this.vcca_1.x + 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
         this.vcca_3.y = this.vcca_1.y + 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
-        /* Angle from p1 to p3 */
-        this.theta = global.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
     }
     resize(rect) {
         /* Create a new rectangle for the bounds of this component */
@@ -241,6 +249,9 @@ class VoltageControlledCapacitorSymbol {
             this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.vcca_1.x, this.vcca_1.y);
             this.line_buffer[indexer++] = Array(this.vcca_2.x, this.vcca_2.y, this.vcca_1.x, this.vcca_1.y);
             this.line_buffer[indexer++] = Array(this.vcca_3.x, this.vcca_3.y, this.vcca_1.x, this.vcca_1.y);
+            this.line_buffer[indexer++] = Array(this.vcca_9.x, this.vcca_9.y, this.vcca_8.x, this.vcca_8.y);
+            this.line_buffer[indexer++] = Array(this.vcca_9.x, this.vcca_9.y, this.vcca_10.x, this.vcca_10.y);
+            this.line_buffer[indexer++] = Array(this.vcca_9.x, this.vcca_9.y, this.vcca_11.x, this.vcca_11.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             indexer = 0;
             this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);

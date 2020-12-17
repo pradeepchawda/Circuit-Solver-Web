@@ -27,7 +27,7 @@ class Global {
             max: 5,
             completed: false
         };
-        this.VERSION_TAG = '1.0.95';
+        this.VERSION_TAG = '1.0.96';
         if (this.MOBILE_MODE) {
             /* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
             this.workspace_zoom_scale = 2.5;
@@ -1438,7 +1438,6 @@ class Global {
             'Elm1': 1e-6,
             'Elm2': 1e-6,
             'Elm3': 1e-6,
-            'Elm4': 1e-6,
             'Interpolate': this.ON,
             'Input Voltage': 0,
             'Output Capacitance': 1e-6,
@@ -1449,15 +1448,15 @@ class Global {
             'Transient Voltage': 0,
             'tag': 'VCCA',
             'units': 'V',
-            'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-            'options_units': ['F', 'F', 'F', 'F', 'F', ''],
+            'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Initial Voltage', 'Interpolate'],
+            'options_units': ['F', 'F', 'F', 'F', 'V', ''],
             'option_limits': {
-                Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm3: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm4: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Interpolate: ['', '']
+                'Elm0': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Elm1': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Elm2': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Elm3': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Interpolate': ['', '']
             }
         };
         /* Base structure for vcl properties */
@@ -1468,26 +1467,25 @@ class Global {
             'Elm1': 1e-3,
             'Elm2': 1e-3,
             'Elm3': 1e-3,
-            'Elm4': 1e-3,
             'Interpolate': this.ON,
             'Input Voltage': 0,
             'Output Inductance': 1e-3,
-            'Initial Voltage': 0,
+            'Initial Current': 0,
             'Transient Resistance': this.settings.R_MAX,
             'Transient Current': 0,
             'Equivalent Current': 0,
             'Transient Voltage': 0,
             'tag': 'VCL',
             'units': 'V',
-            'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Elm4', 'Interpolate'],
-            'options_units': ['H', 'H', 'H', 'H', 'H', ''],
+            'options': ['Elm0', 'Elm1', 'Elm2', 'Elm3', 'Initial Current', 'Interpolate'],
+            'options_units': ['H', 'H', 'H', 'H', 'A', ''],
             'option_limits': {
-                Elm0: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm1: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm2: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm3: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Elm4: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
-                Interpolate: ['', '']
+                'Elm0': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Elm1': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Elm2': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Elm3': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE],
+                'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT],
+                'Interpolate': ['', '']
             }
         };
         /* Keeps track of all the changes made to elements. There is a manager for
@@ -2226,7 +2224,7 @@ class Global {
     'element_max'() {
         /* #INSERT_GENERATE_MAX_ELEMENT# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        this.element_max_array = Array(resistors.length, capacitors.length, inductors.length, grounds.length, dcsources.length, dccurrents.length, acsources.length, accurrents.length, squarewaves.length, sawwaves.length, trianglewaves.length, constants.length, wires.length, nets.length, notes.length, rails.length, voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length, fuses.length, spsts.length, spdts.length, nots.length, diodes.length, leds.length, zeners.length, potentiometers.length, ands.length, ors.length, nands.length, nors.length, xors.length, xnors.length, dffs.length, vsats.length, adders.length, subtractors.length, multipliers.length, dividers.length, gains.length, absvals.length, vcsws.length, vcvss.length, vccss.length, cccss.length, ccvss.length, opamps.length, nmosfets.length, pmosfets.length, npns.length, pnps.length, adcs.length, dacs.length, sandhs.length, pwms.length, integrators.length, differentiators.length, lowpasses.length, highpasses.length, relays.length, pids.length, luts.length, vcrs.length, vccas.length, vclis.length, grts.length, tptzs.length, transformers.length);
+        this.element_max_array = Array(resistors.length, capacitors.length, inductors.length, grounds.length, dcsources.length, dccurrents.length, acsources.length, accurrents.length, squarewaves.length, sawwaves.length, trianglewaves.length, constants.length, wires.length, nets.length, notes.length, rails.length, voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length, fuses.length, spsts.length, spdts.length, nots.length, diodes.length, leds.length, zeners.length, potentiometers.length, ands.length, ors.length, nands.length, nors.length, xors.length, xnors.length, dffs.length, vsats.length, adders.length, subtractors.length, multipliers.length, dividers.length, gains.length, absvals.length, vcsws.length, vcvss.length, vccss.length, cccss.length, ccvss.length, opamps.length, nmosfets.length, pmosfets.length, npns.length, pnps.length, adcs.length, dacs.length, sandhs.length, pwms.length, integrators.length, differentiators.length, lowpasses.length, highpasses.length, relays.length, pids.length, luts.length, vcrs.length, vccas.length, vcls.length, grts.length, tptzs.length, transformers.length);
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         this.max_general_number = 0;
         for (var i = 0; i < this.element_max_array.length; i++) {

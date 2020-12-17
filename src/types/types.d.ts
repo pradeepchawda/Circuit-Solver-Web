@@ -1332,7 +1332,6 @@ declare type PROPERTY_VCCA_T = {
 	'Elm1': number;
 	'Elm2': number;
 	'Elm3': number;
-	'Elm4': number;
 	'Interpolate': string;
 	'Input Voltage': number;
 	'Output Capacitance': number;
@@ -1346,12 +1345,12 @@ declare type PROPERTY_VCCA_T = {
 	'options': Array<string>;
 	'options_units': Array<string>;
 	'option_limits': {
-		Elm0: Array<number>;
-		Elm1: Array<number>;
-		Elm2: Array<number>;
-		Elm3: Array<number>;
-		Elm4: Array<number>;
-		Interpolate: Array<string>;
+		'Elm0': Array<number>;
+		'Elm1': Array<number>;
+		'Elm2': Array<number>;
+		'Elm3': Array<number>;
+		'Initial Voltage': Array<number>;
+		'Interpolate': Array<string>;
 	};
 };
 
@@ -1363,11 +1362,10 @@ declare type PROPERTY_VCL_T = {
 	'Elm1': number;
 	'Elm2': number;
 	'Elm3': number;
-	'Elm4': number;
 	'Interpolate': string;
 	'Input Voltage': number;
 	'Output Inductance': number;
-	'Initial Voltage': number;
+	'Initial Current': number;
 	'Transient Resistance': number;
 	'Transient Current': number;
 	'Equivalent Current': number;
@@ -1377,12 +1375,12 @@ declare type PROPERTY_VCL_T = {
 	'options': Array<string>;
 	'options_units': Array<string>;
 	'option_limits': {
-		Elm0: Array<number>;
-		Elm1: Array<number>;
-		Elm2: Array<number>;
-		Elm3: Array<number>;
-		Elm4: Array<number>;
-		Interpolate: Array<string>;
+		'Elm0': Array<number>;
+		'Elm1': Array<number>;
+		'Elm2': Array<number>;
+		'Elm3': Array<number>;
+		'Initial Current': Array<number>;
+		'Interpolate': Array<string>;
 	};
 };
 

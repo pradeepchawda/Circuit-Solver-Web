@@ -379,6 +379,20 @@ class ElementOptionsWindow {
                     notes[index].elm.properties[notes[index].elm.properties['options'][i]] = next_state;
                 }
             }
+            else if (global.selected_type === global.TYPE_VCCA) {
+                let index = engine_functions.get_vcca(global.selected_id);
+                if (index > -1 && index < vccas.length) {
+                    global.selected_properties[global.selected_properties['options'][i]] = next_state;
+                    vccas[index].elm.properties[vccas[index].elm.properties['options'][i]] = next_state;
+                }
+            }
+            else if (global.selected_type === global.TYPE_VCL) {
+                let index = engine_functions.get_vcl(global.selected_id);
+                if (index > -1 && index < vcls.length) {
+                    global.selected_properties[global.selected_properties['options'][i]] = next_state;
+                    vcls[index].elm.properties[vcls[index].elm.properties['options'][i]] = next_state;
+                }
+            }
         }
     }
     /* A function to resize the entire component. */

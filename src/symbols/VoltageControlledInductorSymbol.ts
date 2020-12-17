@@ -32,21 +32,13 @@ class VoltageControlledInductorSymbol {
 	public vcl_1: PointF;
 	public vcl_2: PointF;
 	public vcl_3: PointF;
-	/* Resistor point 0 */
 	public vcl_4: PointF;
-	/* Resistor point 1 */
-	public vcl_6: PointF;
-	/* Resistor point 2 */
 	public vcl_5: PointF;
-	/* Resistor point 3 */
+	public vcl_6: PointF;
 	public vcl_7: PointF;
-	/* Resistor point 4 */
 	public vcl_8: PointF;
-	/* Resistor point 1 */
 	public vcl_9: PointF;
-	/* Resistor point 2 */
 	public vcl_10: PointF;
-	/* Resistor point 3 */
 	public vcl_11: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
@@ -104,21 +96,13 @@ class VoltageControlledInductorSymbol {
 		this.vcl_1 = new PointF(0, 0);
 		this.vcl_2 = new PointF(0, 0);
 		this.vcl_3 = new PointF(0, 0);
-		/* Resistor point 0 */
 		this.vcl_4 = new PointF(0, 0);
-		/* Resistor point 1 */
-		this.vcl_6 = new PointF(0, 0);
-		/* Resistor point 2 */
 		this.vcl_5 = new PointF(0, 0);
-		/* Resistor point 3 */
+		this.vcl_6 = new PointF(0, 0);
 		this.vcl_7 = new PointF(0, 0);
-		/* Resistor point 4 */
 		this.vcl_8 = new PointF(0, 0);
-		/* Resistor point 1 */
 		this.vcl_9 = new PointF(0, 0);
-		/* Resistor point 2 */
 		this.vcl_10 = new PointF(0, 0);
-		/* Resistor point 3 */
 		this.vcl_11 = new PointF(0, 0);
 		/* The center (x-coord) of the bounds */
 		this.c_x = this.bounds.get_center_x();
@@ -248,8 +232,6 @@ class VoltageControlledInductorSymbol {
 	}
 	/* Generate the SVG for the component. */
 	build_element() {
-		let cache_0: number = 1.5 * this.x_space;
-		let cache_1: number = 1.5 * this.y_space;
 		let cache_2: number = this.x_space;
 		let cache_3: number = this.y_space;
 		let cache_8: number = this.x_space;
@@ -266,14 +248,15 @@ class VoltageControlledInductorSymbol {
 		this.vcl_2.y = this.c_y + (cache_3 >> 1) * global.sine(this.theta - global.to_radians(180));
 		this.vcl_3.x = this.c_x + cache_2 * global.cosine(this.theta - global.to_radians(180));
 		this.vcl_3.y = this.c_y + cache_3 * global.sine(this.theta - global.to_radians(180));
-		this.vcl_4.x = (this.vcl_0.x + this.vcl_1.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-		this.vcl_4.y = (this.vcl_0.y + this.vcl_1.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-		this.vcl_5.x = (this.c_x + this.vcl_1.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-		this.vcl_5.y = (this.c_y + this.vcl_1.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-		this.vcl_6.x = (this.c_x + this.vcl_2.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-		this.vcl_6.y = (this.c_y + this.vcl_2.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-		this.vcl_7.x = (this.vcl_3.x + this.vcl_2.x) * global.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-		this.vcl_7.y = (this.vcl_3.y + this.vcl_2.y) * global.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
+		this.vcl_4.x = this.p1.x + 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+		this.vcl_4.y = this.p1.y + 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+		this.vcl_5.x = this.p3.x - 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+		this.vcl_5.y = this.p3.y - 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+		this.theta = global.retrieve_angle_radian(this.vcl_5.x - this.vcl_4.x, this.vcl_5.y - this.vcl_4.y);
+		this.vcl_6.x = this.vcl_5.x - 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+		this.vcl_6.y = this.vcl_5.y - 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
+		this.vcl_7.x = this.vcl_5.x - 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+		this.vcl_7.y = this.vcl_5.y - 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
 		this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
 		this.vcl_9.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
 		this.vcl_9.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
@@ -282,13 +265,13 @@ class VoltageControlledInductorSymbol {
 		this.vcl_11.x = this.vcl_9.x + 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
 		this.vcl_11.y = this.vcl_9.y + 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
 		this.vcl_arc_0.set_points(this.vcl_0.x, this.vcl_0.y, this.vcl_1.x, this.vcl_1.y);
-		this.vcl_arc_0.amplitude = global.CANVAS_STROKE_WIDTH_5_ZOOM;
+		this.vcl_arc_0.amplitude = global.CANVAS_STROKE_WIDTH_5;
 		this.vcl_arc_1.set_points(this.vcl_1.x, this.vcl_1.y, this.c_x, this.c_y);
-		this.vcl_arc_1.amplitude = global.CANVAS_STROKE_WIDTH_5_ZOOM;
+		this.vcl_arc_1.amplitude = global.CANVAS_STROKE_WIDTH_5;
 		this.vcl_arc_2.set_points(this.c_x, this.c_y, this.vcl_2.x, this.vcl_2.y);
-		this.vcl_arc_2.amplitude = global.CANVAS_STROKE_WIDTH_5_ZOOM;
+		this.vcl_arc_2.amplitude = global.CANVAS_STROKE_WIDTH_5;
 		this.vcl_arc_3.set_points(this.vcl_2.x, this.vcl_2.y, this.vcl_3.x, this.vcl_3.y);
-		this.vcl_arc_3.amplitude = global.CANVAS_STROKE_WIDTH_5_ZOOM;
+		this.vcl_arc_3.amplitude = global.CANVAS_STROKE_WIDTH_5;
 	}
 	resize(rect: RectF) {
 		/* Create a new rectangle for the bounds of this component */
@@ -359,6 +342,9 @@ class VoltageControlledInductorSymbol {
 			this.line_buffer[indexer++] = Array(this.p2.x, this.p2.y, this.vcl_9.x, this.vcl_9.y);
 			this.line_buffer[indexer++] = Array(this.vcl_10.x, this.vcl_10.y, this.vcl_9.x, this.vcl_9.y);
 			this.line_buffer[indexer++] = Array(this.vcl_11.x, this.vcl_11.y, this.vcl_9.x, this.vcl_9.y);
+			this.line_buffer[indexer++] = Array(this.vcl_5.x, this.vcl_5.y, this.vcl_4.x, this.vcl_4.y);
+			this.line_buffer[indexer++] = Array(this.vcl_5.x, this.vcl_5.y, this.vcl_6.x, this.vcl_6.y);
+			this.line_buffer[indexer++] = Array(this.vcl_5.x, this.vcl_5.y, this.vcl_7.x, this.vcl_7.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			indexer = 0;
 			this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.CANVAS_STROKE_WIDTH_2);

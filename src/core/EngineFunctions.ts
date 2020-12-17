@@ -837,13 +837,13 @@ for (var i : number = 0; i < vccas.length; i++) {
 			   }
             }
           }
-for (var i : number = 0; i < vclis.length; i++) {
-            if (vclis[i].bounds.is_near(global.selected_bounds, width)) {
+for (var i : number = 0; i < vcls.length; i++) {
+            if (vcls[i].bounds.is_near(global.selected_bounds, width)) {
               global.selection_nearest_neighbors.push({
-      'Type': vclis[i].elm.type,
-      'Id': vclis[i].elm.id,
+      'Type': vcls[i].elm.type,
+      'Id': vcls[i].elm.id,
     });
-			   if (vclis[i].elm.type === global.selected_type && vclis[i].elm.id === global.selected_id) {
+			   if (vcls[i].elm.type === global.selected_type && vcls[i].elm.id === global.selected_id) {
 			   		        global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
 			   }
             }
@@ -1479,10 +1479,10 @@ for (var i : number = 0; i < transformers.length; i++) {
             }
 		}
 		if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.TYPE_VCL) {
-			for (var i : number = 0; i < vclis.length; i++) {
-				if (vclis[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id'])
+			for (var i : number = 0; i < vcls.length; i++) {
+				if (vcls[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id'])
 				{
-					vclis[i].select();
+					vcls[i].select();
 					break;
 				}
             }
@@ -2173,8 +2173,8 @@ get_vcca(id : number) : number {
 }
 
 get_vcl(id : number) : number {
-			for (var i : number = 0; i < vclis.length; i++) {
-      if (vclis[i].elm.id === id) {
+			for (var i : number = 0; i < vcls.length; i++) {
+      if (vcls[i].elm.id === id) {
         return i;
       }
     }
@@ -3584,8 +3584,8 @@ get_transformer(id : number) : number {
     let assignment : number = 0;
     var ids : Array<number>= [];
 
-			for (var i : number = 0; i < vclis.length; i++) {
-      ids.push(vclis[i].elm.id);
+			for (var i : number = 0; i < vcls.length; i++) {
+      ids.push(vcls[i].elm.id);
     }
 
     ids = ids.sort((a, b) => a - b);
@@ -5438,17 +5438,17 @@ get_transformer(id : number) : number {
     let p3 : Array<number>= this.mapper3.snap_to_grid(this.x3, this.y3);
     this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
 
-    vclis.push(new VoltageControlledInductor(global.TYPE_VCL, engine_functions
+    vcls.push(new VoltageControlledInductor(global.TYPE_VCL, engine_functions
       .get_vcl_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
-    var index : number= vclis.length - 1;
-    if (index < vclis.length) {
-      vclis[index].is_translating = false;
+    var index : number= vcls.length - 1;
+    if (index < vcls.length) {
+      vcls[index].is_translating = false;
       global.SIGNAL_BUILD_ELEMENT = true;
-      global.focused_id = vclis[index].elm.id;
-      global.focused_type = vclis[index].elm.type;
-      global.focused_bounds = global.copy(vclis[index].bounds);
+      global.focused_id = vcls[index].elm.id;
+      global.focused_type = vcls[index].elm.type;
+      global.focused_bounds = global.copy(vcls[index].bounds);
       global.focused = true;
-      vclis[index].select();
+      vcls[index].select();
       global.component_touched = true;
     }
   }
@@ -5802,8 +5802,8 @@ for (var i : number = 0; i < elm_max; i++) {
           vccas[i].simulation_id = i;
     }
 
-        if (i > -1 && i < vclis.length) {
-          vclis[i].simulation_id = i;
+        if (i > -1 && i < vcls.length) {
+          vcls[i].simulation_id = i;
     }
 
         if (i > -1 && i < grts.length) {
@@ -6081,8 +6081,8 @@ for (var i : number = 0; i < elm_max; i++) {
           vccas[i].stamp();
     }
 
-			for (var i : number = 0; i < vclis.length; i++) {
-          vclis[i].stamp();
+			for (var i : number = 0; i < vcls.length; i++) {
+          vcls[i].stamp();
     }
 
 			for (var i : number = 0; i < grts.length; i++) {
@@ -6915,7 +6915,7 @@ else if (obj.elm.type === global.TYPE_VCCA) {
       vccas.push(this.rebuild_vcca(obj));
     } 
 else if (obj.elm.type === global.TYPE_VCL) {
-      vclis.push(this.rebuild_vcl(obj));
+      vcls.push(this.rebuild_vcl(obj));
     } 
 else if (obj.elm.type === global.TYPE_GRT) {
       grts.push(this.rebuild_grt(obj));
@@ -8952,7 +8952,15 @@ else if (obj.elm.type === global.TYPE_TRAN) {
     Object.setPrototypeOf(obj.text_paint, Paint.prototype);
     obj.text_paint.patch();
     obj.MULTI_SELECTED = false;
-    
+    Object.setPrototypeOf(obj.vcl_arc_0, Arc.prototype);
+    Object.setPrototypeOf(obj.vcl_arc_1, Arc.prototype);
+    Object.setPrototypeOf(obj.vcl_arc_2, Arc.prototype);
+    Object.setPrototypeOf(obj.vcl_arc_3, Arc.prototype);
+    Object.setPrototypeOf(obj.vcl_arc_0.arc_paint, Paint.prototype);
+    Object.setPrototypeOf(obj.vcl_arc_1.arc_paint, Paint.prototype);
+    Object.setPrototypeOf(obj.vcl_arc_2.arc_paint, Paint.prototype);
+    Object.setPrototypeOf(obj.vcl_arc_3.arc_paint, Paint.prototype);
+
     obj.refresh_bounds();
     obj.capture_nodes();
     obj.bounds.anchored = true;
@@ -9420,8 +9428,8 @@ else if (obj.elm.type === global.TYPE_TRAN) {
 			for (var i : number = 0; i < vccas.length; i++) {
           packet[indexer++] = JSON.stringify(vccas[i]);
     }
-			for (var i : number = 0; i < vclis.length; i++) {
-          packet[indexer++] = JSON.stringify(vclis[i]);
+			for (var i : number = 0; i < vcls.length; i++) {
+          packet[indexer++] = JSON.stringify(vcls[i]);
     }
 			for (var i : number = 0; i < grts.length; i++) {
           packet[indexer++] = JSON.stringify(grts[i]);
@@ -10291,15 +10299,15 @@ global.signal_wire_deleted_counter = 0;
   }
 
   remove_vcl(index:number) : void {
-    if (index < vclis.length) {
-        vclis[index].release_wires();
-        vclis[index].release_nodes();
-        vclis[index].remove_focus();
-        vclis[index].remove_selection();
+    if (index < vcls.length) {
+        vcls[index].release_wires();
+        vcls[index].release_nodes();
+        vcls[index].remove_focus();
+        vcls[index].remove_selection();
         wire_manager.reset_wire_builder();
       global.SIGNAL_WIRE_DELETED = true;
 global.signal_wire_deleted_counter = 0;
-      vclis.splice(index, 1);
+      vcls.splice(index, 1);
     }
   }
 
@@ -10566,8 +10574,8 @@ global.signal_wire_deleted_counter = 0;
 			for (var i : number = 0; i < vccas.length; i++) {
               vccas[i].MULTI_SELECTED = false;
         }
-			for (var i : number = 0; i < vclis.length; i++) {
-              vclis[i].MULTI_SELECTED = false;
+			for (var i : number = 0; i < vcls.length; i++) {
+              vcls[i].MULTI_SELECTED = false;
         }
 			for (var i : number = 0; i < grts.length; i++) {
               grts[i].MULTI_SELECTED = false;
@@ -10849,8 +10857,8 @@ global.signal_wire_deleted_counter = 0;
 				vccas[i].draw_component(canvas);
 	}
 
-			for (var i : number = 0; i < vclis.length; i++) {
-				vclis[i].draw_component(canvas);
+			for (var i : number = 0; i < vcls.length; i++) {
+				vcls[i].draw_component(canvas);
 	}
 
 			for (var i : number = 0; i < grts.length; i++) {
@@ -11459,10 +11467,10 @@ if (global.selected) {
 				}
 			}			if (global.selected_type === global.TYPE_VCL)
 			{
-				for (var i : number = 0; i < vclis.length; i++) {
-					if (global.selected_id === vclis[i].elm.id)
+				for (var i : number = 0; i < vcls.length; i++) {
+					if (global.selected_id === vcls[i].elm.id)
 					{
-						vclis[i].draw_component(canvas);
+						vcls[i].draw_component(canvas);
 						break;
 					}
 				}

@@ -351,8 +351,8 @@ class ShortcutManager {
 			for (var i : number = 0; i < vccas.length; i++) {
               vccas[i].MULTI_SELECTED = true;
         }
-			for (var i : number = 0; i < vclis.length; i++) {
-              vclis[i].MULTI_SELECTED = true;
+			for (var i : number = 0; i < vcls.length; i++) {
+              vcls[i].MULTI_SELECTED = true;
         }
 			for (var i : number = 0; i < grts.length; i++) {
               grts[i].MULTI_SELECTED = true;
@@ -1948,23 +1948,23 @@ else if (global.selected_type === global.TYPE_VCCA)
 else if (global.selected_type === global.TYPE_VCL)
         {
           var index : number = engine_functions.get_vcl(global.selected_id);
-          if (index < vclis.length)
+          if (index < vcls.length)
           {
             /* Up. */
             if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
-                vclis[index].move_element(0, -global.node_space_y);
+                vcls[index].move_element(0, -global.node_space_y);
             }
             /* Down. */
             else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-                vclis[index].move_element(0, global.node_space_y);
+                vcls[index].move_element(0, global.node_space_y);
             }
             /* Left. */
             else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-                vclis[index].move_element(-global.node_space_x, 0);
+                vcls[index].move_element(-global.node_space_x, 0);
             }
             /* Right. */
             else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-                vclis[index].move_element(global.node_space_x, 0);
+                vcls[index].move_element(global.node_space_x, 0);
             }
           }
         }
@@ -2120,7 +2120,7 @@ else if (global.selected_type === global.TYPE_TRAN)
         this.handle_move_luts(i, key_event);
         this.handle_move_vcrs(i, key_event);
         this.handle_move_vccas(i, key_event);
-        this.handle_move_vclis(i, key_event);
+        this.handle_move_vcls(i, key_event);
         this.handle_move_grts(i, key_event);
         this.handle_move_tptzs(i, key_event);
         this.handle_move_transformers(i, key_event);
@@ -2600,7 +2600,7 @@ if (global.selected_type === global.TYPE_RESISTOR) {
       } else if (global.selected_type === global.TYPE_VCL) {
         index = engine_functions.get_vcl(global.selected_id);
 
-        if (index < vclis.length) {
+        if (index < vcls.length) {
           engine_functions.remove_vcl(index);
           global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
@@ -3100,8 +3100,8 @@ if (global.selected_type === global.TYPE_RESISTOR) {
  else if (global.selected_type === global.TYPE_VCL) {
         index = engine_functions.get_vcl(global.selected_id);
 
-        if (index < vclis.length) {
-          vclis[index].increment_rotation();
+        if (index < vcls.length) {
+          vcls[index].increment_rotation();
         }
       } 
  else if (global.selected_type === global.TYPE_GRT) {
@@ -3706,8 +3706,8 @@ if (global.selected_type === global.TYPE_RESISTOR) {
  else if (global.selected_type === global.TYPE_VCL) {
         index = engine_functions.get_vcl(global.selected_id);
 
-        if (index < vclis.length) {
-          vclis[index].increment_flip();
+        if (index < vcls.length) {
+          vcls[index].increment_flip();
         }
       } 
  else if (global.selected_type === global.TYPE_GRT) {
@@ -4248,9 +4248,9 @@ if (global.selected_type === global.TYPE_RESISTOR) {
             }
             else if (global.clipboard_type === global.TYPE_VCL) {
               index = engine_functions.get_vcl(global.selected_id);
-              if (index < vclis.length) {
-                global.clipboard_rotation = vclis[index].elm.rotation;
-                global.clipboard_flip = vclis[index].elm.flip;
+              if (index < vcls.length) {
+                global.clipboard_rotation = vcls[index].elm.rotation;
+                global.clipboard_flip = vcls[index].elm.flip;
               }
             }
             else if (global.clipboard_type === global.TYPE_GRT) {
@@ -5010,10 +5010,10 @@ if (global.selected_type === global.TYPE_RESISTOR) {
           id = engine_functions.get_vcl_assignment();
           engine_functions.add_vcl();
           index = engine_functions.get_vcl(id);
-          if (index < vclis.length) {
-            vclis[index].elm.set_properties(global.copy(global.clipboard_property));
-            vclis[index].elm.set_rotation(global.clipboard_rotation);
-            vclis[index].elm.set_flip(global.clipboard_flip);
+          if (index < vcls.length) {
+            vcls[index].elm.set_properties(global.copy(global.clipboard_property));
+            vcls[index].elm.set_rotation(global.clipboard_rotation);
+            vcls[index].elm.set_flip(global.clipboard_flip);
             global.SIGNAL_HISTORY_LOCK = true;
           }
         }
@@ -7399,36 +7399,36 @@ handle_move_vccas(i : number, key_event: KEY_EVENT_T): void  {
     }
   }
 
-handle_move_vclis(i : number, key_event: KEY_EVENT_T): void  {
-      if (i > -1 && i < vclis.length) {
-        if (vclis[i].MULTI_SELECTED) {
+handle_move_vcls(i : number, key_event: KEY_EVENT_T): void  {
+      if (i > -1 && i < vcls.length) {
+        if (vcls[i].MULTI_SELECTED) {
           /* Up. */
           if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
             if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > (workspace.bounds.top + global.node_space_y)) {
               this.MULTI_MOVED_ELEMENT = true;
               global.SIGNAL_BUILD_ELEMENT = true;
-              vclis[i].move_element(0, -global.node_space_y);
+              vcls[i].move_element(0, -global.node_space_y);
             }
           }
           /* Down. */
           else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
             if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < (workspace.bounds.bottom - global.node_space_y)) {
               this.MULTI_MOVED_ELEMENT = true;
-              vclis[i].move_element(0, global.node_space_y);
+              vcls[i].move_element(0, global.node_space_y);
             }
           }
           /* Left. */
           else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
             if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > (workspace.bounds.left + global.node_space_x)) {
               this.MULTI_MOVED_ELEMENT = true;
-              vclis[i].move_element(-global.node_space_x, 0);
+              vcls[i].move_element(-global.node_space_x, 0);
             }
           }
           /* Right. */
           else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
             if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < (workspace.bounds.right - global.node_space_x)) {
               this.MULTI_MOVED_ELEMENT = true;
-              vclis[i].move_element(global.node_space_x, 0);
+              vcls[i].move_element(global.node_space_x, 0);
             }
           }
         }
@@ -7940,8 +7940,8 @@ handle_move_transformers(i : number, key_event: KEY_EVENT_T): void  {
         		engine_functions.remove_vcca(i);
 			}
     }
-		 if (i > -1 && i < vclis.length) {
-		 	if (vclis[i].MULTI_SELECTED) {
+		 if (i > -1 && i < vcls.length) {
+		 	if (vcls[i].MULTI_SELECTED) {
 				this.MULTI_DELETED_ELEMENT = true;
         		engine_functions.remove_vcl(i);
 			}

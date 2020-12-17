@@ -33,14 +33,14 @@ class VoltageControlledCapacitor {
 	public vcca_1: PointF;
 	public vcca_2: PointF;
 	public vcca_3: PointF;
-	/* Resistor point 0 */
 	public vcca_4: PointF;
-	/* Resistor point 1 */
 	public vcca_6: PointF;
-	/* Resistor point 2 */
 	public vcca_5: PointF;
-	/* Resistor point 3 */
 	public vcca_7: PointF;
+	public vcca_8: PointF;
+	public vcca_9: PointF;
+	public vcca_10: PointF;
+	public vcca_11: PointF;
 	/* The center (x-coord) of the bounds */
 	public c_x: number;
 	/* The center (y-coord) of the bounds */
@@ -124,14 +124,14 @@ or overlapped)*/
 		this.vcca_1 = new PointF(0, 0);
 		this.vcca_2 = new PointF(0, 0);
 		this.vcca_3 = new PointF(0, 0);
-		/* Resistor point 0 */
 		this.vcca_4 = new PointF(0, 0);
-		/* Resistor point 1 */
 		this.vcca_6 = new PointF(0, 0);
-		/* Resistor point 2 */
 		this.vcca_5 = new PointF(0, 0);
-		/* Resistor point 3 */
 		this.vcca_7 = new PointF(0, 0);
+		this.vcca_8 = new PointF(0, 0);
+		this.vcca_9 = new PointF(0, 0);
+		this.vcca_10 = new PointF(0, 0);
+		this.vcca_11 = new PointF(0, 0);
 		/* The center (x-coord) of the bounds */
 		this.c_x = this.bounds.get_center_x();
 		/* The center (y-coord) of the bounds */
@@ -254,32 +254,22 @@ or overlapped)*/
 				this.elm.properties['Input Voltage'] = global.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
 				if (this.elm.properties['Interpolate'] === global.ON) {
 					this.elm.properties['Output Capacitance'] = global.linterp(
-						[
-							this.elm.properties['High Voltage'] * 0,
-							this.elm.properties['High Voltage'] * 0.25,
-							this.elm.properties['High Voltage'] * 0.5,
-							this.elm.properties['High Voltage'] * 0.75,
-							this.elm.properties['High Voltage']
-						],
-						[this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']],
+						[this.elm.properties['High Voltage'] * 0, this.elm.properties['High Voltage'] * 0.33, this.elm.properties['High Voltage'] * 0.66, this.elm.properties['High Voltage'] * 1.0],
+						[this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3']],
 						this.elm.properties['Input Voltage']
 					);
 				} else if (this.elm.properties['Interpolate'] === global.OFF) {
 					let index: number = 0;
-					if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.2) {
+					if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.25) {
 						index = 0;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.2 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.4) {
+					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.25 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.5) {
 						index = 1;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.4 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.6) {
+					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.5 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.75) {
 						index = 2;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.6 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.8) {
+					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.75 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
 						index = 3;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.8 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
-						index = 4;
 					}
-					this.elm.properties['Output Capacitance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']][
-						index
-					];
+					this.elm.properties['Output Capacitance'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3']][index];
 				}
 			}
 		}
@@ -683,6 +673,15 @@ or overlapped)*/
 			this.vcca_6.y = this.c_y + cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
 			this.vcca_7.x = this.c_x - cache_0 * global.cosine(this.theta) + cache_1 * global.cosine(Math.PI + this.theta_m90);
 			this.vcca_7.y = this.c_y - cache_2 * global.sine(this.theta) + cache_3 * global.sine(Math.PI + this.theta_m90);
+			this.vcca_8.x = this.p1.x + 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+			this.vcca_8.y = this.p1.y + 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+			this.vcca_9.x = this.p3.x - 1.5 * cache_8 * global.cosine(this.theta - global.PI_DIV_4);
+			this.vcca_9.y = this.p3.y - 1.5 * cache_9 * global.sine(this.theta - global.PI_DIV_4);
+			this.theta = global.retrieve_angle_radian(this.vcca_9.x - this.vcca_8.x, this.vcca_9.y - this.vcca_8.y);
+			this.vcca_10.x = this.vcca_9.x - 0.4 * cache_8 * global.cosine(this.theta + global.PI_DIV_6);
+			this.vcca_10.y = this.vcca_9.y - 0.4 * cache_9 * global.sine(this.theta + global.PI_DIV_6);
+			this.vcca_11.x = this.vcca_9.x - 0.4 * cache_8 * global.cosine(this.theta - global.PI_DIV_6);
+			this.vcca_11.y = this.vcca_9.y - 0.4 * cache_9 * global.sine(this.theta - global.PI_DIV_6);
 			this.theta = global.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
 			this.vcca_1.x = this.p2.x + 0.8 * cache_8 * global.cosine(this.phi);
 			this.vcca_1.y = this.p2.y + 0.8 * cache_9 * global.sine(this.phi);
@@ -805,6 +804,9 @@ or overlapped)*/
 			this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.vcca_1.x, this.vcca_1.y);
 			this.line_buffer[this.indexer++] = Array(this.vcca_2.x, this.vcca_2.y, this.vcca_1.x, this.vcca_1.y);
 			this.line_buffer[this.indexer++] = Array(this.vcca_3.x, this.vcca_3.y, this.vcca_1.x, this.vcca_1.y);
+			this.line_buffer[this.indexer++] = Array(this.vcca_9.x, this.vcca_9.y, this.vcca_8.x, this.vcca_8.y);
+			this.line_buffer[this.indexer++] = Array(this.vcca_9.x, this.vcca_9.y, this.vcca_10.x, this.vcca_10.y);
+			this.line_buffer[this.indexer++] = Array(this.vcca_9.x, this.vcca_9.y, this.vcca_11.x, this.vcca_11.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			this.indexer = 0;
 			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
@@ -873,6 +875,18 @@ or overlapped)*/
 		}
 		if (!global.not_null(this.indexer)) {
 			this.indexer = 0;
+		}
+		if (!global.not_null(this.vcca_8)) {
+			this.vcca_8 = new PointF(0, 0);
+		}
+		if (!global.not_null(this.vcca_9)) {
+			this.vcca_9 = new PointF(0, 0);
+		}
+		if (!global.not_null(this.vcca_10)) {
+			this.vcca_10 = new PointF(0, 0);
+		}
+		if (!global.not_null(this.vcca_11)) {
+			this.vcca_11 = new PointF(0, 0);
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {

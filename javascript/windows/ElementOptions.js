@@ -1034,8 +1034,8 @@ class ElementOptions {
         }
         else if (global.selected_type === global.TYPE_VCL) {
             index = engine_functions.get_vcl(global.selected_id);
-            if (index < vclis.length) {
-                vclis[index].increment_flip();
+            if (index < vcls.length) {
+                vcls[index].increment_flip();
             }
         }
         else if (global.selected_type === global.TYPE_GRT) {
@@ -1510,8 +1510,8 @@ class ElementOptions {
         }
         else if (global.selected_type === global.TYPE_VCL) {
             index = engine_functions.get_vcl(global.selected_id);
-            if (index < vclis.length) {
-                vclis[index].increment_rotation();
+            if (index < vcls.length) {
+                vcls[index].increment_rotation();
             }
         }
         else if (global.selected_type === global.TYPE_GRT) {
@@ -1995,7 +1995,7 @@ class ElementOptions {
         }
         else if (global.selected_type === global.TYPE_VCL) {
             index = engine_functions.get_vcl(global.selected_id);
-            if (index < vclis.length) {
+            if (index < vcls.length) {
                 engine_functions.remove_vcl(index);
                 global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
             }
