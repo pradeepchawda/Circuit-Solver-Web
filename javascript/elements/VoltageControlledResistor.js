@@ -800,6 +800,16 @@ class VoltageControlledResistor {
                     canvas.restore();
                 }
             }
+            if (!global.MOBILE_MODE) {
+                if (global.WIRE_BUILDER['step'] === 0 && this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
+                    if (this.elm.consistent()) {
+                        let node_id_array = this.elm.get_nodes();
+                        for (var i = 0; i < node_id_array.length; i++) {
+                            canvas.draw_rect2(nodes[node_id_array[i]].get_bounds(), this.line_paint);
+                        }
+                    }
+                }
+            }
             if (this.is_translating) {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }

@@ -826,6 +826,16 @@ class Relay {
                     canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.15, this.text_paint);
                 }
             }
+            if (!global.MOBILE_MODE) {
+                if (global.WIRE_BUILDER['step'] === 0 && this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
+                    if (this.elm.consistent()) {
+                        let node_id_array = this.elm.get_nodes();
+                        for (var i = 0; i < node_id_array.length; i++) {
+                            canvas.draw_rect2(nodes[node_id_array[i]].get_bounds(), this.line_paint);
+                        }
+                    }
+                }
+            }
             if (this.is_translating) {
                 canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
             }

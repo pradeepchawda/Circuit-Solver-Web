@@ -807,7 +807,7 @@ function load_app(): void {
 			/* Optimizing the drawing frames for the canvas. */
 			if (normal_draw_permissions()) {
 				/* We make sure to draw only when we absolutely have to. There is also a blanket window
-        for when we de-latch the flag. */
+        		for when we de-latch the flag. */
 				global.canvas_redraw_counter = 0;
 				global.canvas_draw_event = true;
 			}

@@ -80,7 +80,7 @@ class Element1 {
     }
     /* Get multiple nodes */
     get_nodes() {
-        return Array(this.n1);
+        return [this.n1];
     }
     /* A quick check to see if the element is consistent, elements will have
   -1 as their reference when they are not anchored. */
