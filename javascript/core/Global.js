@@ -27,7 +27,7 @@ class Global {
             max: 5,
             completed: false
         };
-        this.VERSION_TAG = '1.0.96';
+        this.VERSION_TAG = '1.0.97';
         if (this.MOBILE_MODE) {
             /* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
             this.workspace_zoom_scale = 2.5;
@@ -1510,7 +1510,7 @@ class Global {
         /* Base structure for resistor properties */
         this.SYSTEM_OPTIONS = {
             options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
-            values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.OFF, this.ON, this.OFF, this.OFF, this.OFF]
+            values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.ON, this.ON, this.OFF, this.OFF, this.OFF]
         };
         /* Index's to access system options. Make sure they're in order. */
         let indexer = 0;
@@ -1724,7 +1724,7 @@ class Global {
         };
         this.KEY_EVENT_KEYS = Object.keys(this.KEY_EVENT_CODES);
         /* Variables for Circuit Simulation */
-        this.time_step = 1e-6;
+        this.time_step = 5e-6;
         /* Keeps track of the simulation time. */
         this.simulation_time = 0;
         /* Serializing the inputs (so they occur in a predictable manner.) */

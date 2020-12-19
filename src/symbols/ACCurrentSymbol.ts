@@ -20,14 +20,11 @@
  *
  ***********************************************************************/
 class ACCurrentSymbol {
-	/* Index of the bounds (Inside New Element Window) */
 	public index: number;
-	/* Page to be drawn on (Inside New Element Window) */
 	public page: number;
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	/* Angle from p1 to p2 minus 90 degrees */
 	public theta_m90: number;
 	/* Angle from p1 to p2 */
 	public theta: number;
