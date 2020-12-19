@@ -762,7 +762,19 @@ class XNORGate {
                 }
             }
             if (!global.MOBILE_MODE) {
-                if (global.WIRE_BUILDER['step'] === 0 && this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
+                if (global.WIRE_BUILDER['step'] === 0 &&
+                    !global.FLAG_MENU_OPEN_DOWN &&
+                    this.bounds.contains_xy(global.mouse_x, global.mouse_y) &&
+                    !global.FLAG_SELECT_TIMESTEP &&
+                    !global.FLAG_ELEMENT_OPTIONS &&
+                    !global.FLAG_ELEMENT_OPTIONS_EDIT &&
+                    !global.FLAG_ZOOM &&
+                    !global.FLAG_GRAPH &&
+                    !global.FLAG_SIMULATING &&
+                    !global.FLAG_SELECT_SETTINGS &&
+                    !global.FLAG_SELECT_ELEMENT &&
+                    !global.FLAG_REMOVE_ALL &&
+                    !global.SIGNAL_ADD_ELEMENT) {
                     if (this.elm.consistent()) {
                         let node_id_array = this.elm.get_nodes();
                         for (var i = 0; i < node_id_array.length; i++) {
