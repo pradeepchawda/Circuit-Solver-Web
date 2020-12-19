@@ -215,7 +215,7 @@ class ElementWindow {
 		this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
-		this.fill_paint.set_alpha(130);
+		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
@@ -239,10 +239,10 @@ class ElementWindow {
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
 		this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
 		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-		this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
+		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(192);
+		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		this.bounds = new RectF(left, top, right, bottom);
 		this.load_positions();

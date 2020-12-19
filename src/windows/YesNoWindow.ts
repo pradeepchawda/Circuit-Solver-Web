@@ -64,7 +64,7 @@ class YesNoWindow {
 		this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
 		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
-		this.bounds_paint.set_alpha(192);
+		this.bounds_paint.set_alpha(255);
 		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.fill_paint = new Paint();
@@ -75,7 +75,7 @@ class YesNoWindow {
 		this.fill_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
-		this.fill_paint.set_alpha(90);
+		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.yes_paint = new Paint();
@@ -83,10 +83,10 @@ class YesNoWindow {
 		this.yes_paint.set_paint_cap(this.yes_paint.cap.ROUND);
 		this.yes_paint.set_paint_join(this.yes_paint.join.MITER);
 		this.yes_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.yes_paint.set_color(global.GENERAL_WHITE_COLOR);
+		this.yes_paint.set_color(global.ZOOM_AREA_COLOR);
 		this.yes_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.yes_paint.set_font(global.DEFAULT_FONT);
-		this.yes_paint.set_alpha(90);
+		this.yes_paint.set_alpha(255);
 		this.yes_paint.set_paint_align(this.yes_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.no_paint = new Paint();
@@ -94,10 +94,10 @@ class YesNoWindow {
 		this.no_paint.set_paint_cap(this.no_paint.cap.ROUND);
 		this.no_paint.set_paint_join(this.no_paint.join.MITER);
 		this.no_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.no_paint.set_color(global.GENERAL_WHITE_COLOR);
+		this.no_paint.set_color(global.ZOOM_AREA_COLOR);
 		this.no_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.no_paint.set_font(global.DEFAULT_FONT);
-		this.no_paint.set_alpha(90);
+		this.no_paint.set_alpha(255);
 		this.no_paint.set_paint_align(this.no_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
@@ -181,14 +181,14 @@ class YesNoWindow {
 	}
 	hover(): void {
 		if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
-			this.yes_paint.set_color(global.GENERAL_CYAN_COLOR);
+			this.yes_paint.set_color(global.GENERAL_HOVER_COLOR);
 		} else {
-			this.yes_paint.set_color(global.GENERAL_WHITE_COLOR);
+			this.yes_paint.set_color(global.ZOOM_AREA_COLOR);
 		}
 		if (this.option_1.contains_xy(global.mouse_x, global.mouse_y)) {
-			this.no_paint.set_color(global.GENERAL_CYAN_COLOR);
+			this.no_paint.set_color(global.GENERAL_HOVER_COLOR);
 		} else {
-			this.no_paint.set_color(global.GENERAL_WHITE_COLOR);
+			this.no_paint.set_color(global.ZOOM_AREA_COLOR);
 		}
 	}
 	resize_window(): void {

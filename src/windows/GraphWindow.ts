@@ -149,10 +149,10 @@ class GraphWindow {
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
 		this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
 		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-		this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
+		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(191);
+		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.graph_text_a_paint = new Paint();
@@ -209,7 +209,7 @@ class GraphWindow {
 		this.download_button.text = 'CSV';
 		this.download_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.download_button.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
-		this.download_button.fill_paint.set_alpha(130);
+		this.download_button.fill_paint.set_alpha(255);
 		this.download_button.draw_stroke = false;
 		this.download_button.draw_fill = true;
 		/* Enforcing the system from cascading events. */

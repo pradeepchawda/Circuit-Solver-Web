@@ -1551,6 +1551,7 @@ class Global {
         this.GENERAL_BLUE_COLOR = this.ColorNameToHex('blue');
         this.GENERAL_BOUNDS_COLOR = this.ColorNameToHex('#404040');
         this.GENERAL_CYAN_COLOR = this.ColorNameToHex('cyan');
+        this.GENERAL_HOVER_COLOR = '#18d8d8';
         this.GENERAL_YELLOW_COLOR = this.ColorNameToHex('yellow');
         /* The default font for all paints created in the system */
         this.DEFAULT_FONT = 'Arial';

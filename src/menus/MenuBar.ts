@@ -77,7 +77,6 @@ during simulation. */
 	public sine_wave: SineWave;
 	public BASE_WIDTH: number;
 	public element_window: ElementWindow;
-	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public line_buffer: Array<Array<number>>;
@@ -102,7 +101,6 @@ during simulation. */
 		this.ADD_INDEX = 6;
 		this.UP_DOWN_INDEX = 7;
 		this.ESCAPE_INTERRUPT = false;
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -113,7 +111,6 @@ during simulation. */
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -122,9 +119,8 @@ during simulation. */
 		this.fill_paint.set_color(global.MENU_FILL_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
-		this.fill_paint.set_alpha(192);
+		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.line_paint_alt = new Paint();
 		this.line_paint_alt.set_paint_style(this.line_paint_alt.style.STROKE);
 		this.line_paint_alt.set_paint_cap(this.line_paint_alt.cap.ROUND);
@@ -135,7 +131,6 @@ during simulation. */
 		this.line_paint_alt.set_font(global.DEFAULT_FONT);
 		this.line_paint_alt.set_alpha(255);
 		this.line_paint_alt.set_paint_align(this.line_paint_alt.align.CENTER);
-		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.fill_paint_alt = new Paint();
 		this.fill_paint_alt.set_paint_style(this.fill_paint_alt.style.FILL);
 		this.fill_paint_alt.set_paint_cap(this.fill_paint_alt.cap.ROUND);
@@ -146,7 +141,6 @@ during simulation. */
 		this.fill_paint_alt.set_font(global.DEFAULT_FONT);
 		this.fill_paint_alt.set_alpha(255);
 		this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
-		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.up_down_paint = new Paint();
 		this.up_down_paint.set_paint_style(this.up_down_paint.style.FILL);
 		this.up_down_paint.set_paint_cap(this.up_down_paint.cap.ROUND);
@@ -157,7 +151,6 @@ during simulation. */
 		this.up_down_paint.set_font(global.DEFAULT_FONT);
 		this.up_down_paint.set_alpha(255);
 		this.up_down_paint.set_paint_align(this.up_down_paint.align.CENTER);
-		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.add_paint = new Paint();
 		this.add_paint.set_paint_style(this.add_paint.style.FILL);
 		this.add_paint.set_paint_cap(this.add_paint.cap.ROUND);
@@ -168,8 +161,6 @@ during simulation. */
 		this.add_paint.set_font(global.DEFAULT_FONT);
 		this.add_paint.set_alpha(255);
 		this.add_paint.set_paint_align(this.add_paint.align.CENTER);
-		/* This paint is used for drawing the go icon. This is on it's own because it gets recolored
-    during simulation. */
 		this.go_paint = new Paint();
 		this.go_paint.set_paint_style(this.go_paint.style.FILL);
 		this.go_paint.set_paint_cap(this.go_paint.cap.BUTT);
@@ -186,10 +177,10 @@ during simulation. */
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
 		this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
 		this.hover_paint.set_stroke_width(temp_stroke_width);
-		this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
+		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(192);
+		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.undo_paint = new Paint();

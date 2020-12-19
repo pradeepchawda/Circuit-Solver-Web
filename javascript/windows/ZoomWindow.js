@@ -42,7 +42,7 @@ class ZoomWindow {
         this.bounds_paint.set_color(global.ZOOM_AREA_COLOR);
         this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.bounds_paint.set_font(global.DEFAULT_FONT);
-        this.bounds_paint.set_alpha(192);
+        this.bounds_paint.set_alpha(255);
         this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
         /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.fill_paint = new Paint();
@@ -53,7 +53,7 @@ class ZoomWindow {
         this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
         this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.fill_paint.set_font(global.DEFAULT_FONT);
-        this.fill_paint.set_alpha(90);
+        this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
         /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
@@ -79,7 +79,7 @@ class ZoomWindow {
         this.option_0_paint.set_color(global.GENERAL_GRAY_COLOR);
         this.option_0_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_0_paint.set_font(global.DEFAULT_FONT);
-        this.option_0_paint.set_alpha(90);
+        this.option_0_paint.set_alpha(255);
         this.option_0_paint.set_paint_align(this.option_0_paint.align.CENTER);
         /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.option_1_paint = new Paint();
@@ -90,7 +90,7 @@ class ZoomWindow {
         this.option_1_paint.set_color(global.GENERAL_GRAY_COLOR);
         this.option_1_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_1_paint.set_font(global.DEFAULT_FONT);
-        this.option_1_paint.set_alpha(90);
+        this.option_1_paint.set_alpha(255);
         this.option_1_paint.set_paint_align(this.option_1_paint.align.CENTER);
         /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.option_2_paint = new Paint();
@@ -101,7 +101,7 @@ class ZoomWindow {
         this.option_2_paint.set_color(global.GENERAL_GRAY_COLOR);
         this.option_2_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_2_paint.set_font(global.DEFAULT_FONT);
-        this.option_2_paint.set_alpha(90);
+        this.option_2_paint.set_alpha(255);
         this.option_2_paint.set_paint_align(this.option_2_paint.align.CENTER);
         /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.option_3_paint = new Paint();
@@ -112,7 +112,7 @@ class ZoomWindow {
         this.option_3_paint.set_color(global.GENERAL_GRAY_COLOR);
         this.option_3_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_3_paint.set_font(global.DEFAULT_FONT);
-        this.option_3_paint.set_alpha(90);
+        this.option_3_paint.set_alpha(255);
         this.option_3_paint.set_paint_align(this.option_3_paint.align.CENTER);
         if (global.MOBILE_MODE === true) {
             this.options = {
@@ -230,25 +230,25 @@ class ZoomWindow {
     }
     hover() {
         if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
-            this.option_0_paint.set_color(global.GENERAL_CYAN_COLOR);
+            this.option_0_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
             this.option_0_paint.set_color(global.GENERAL_GRAY_COLOR);
         }
         if (this.option_1.contains_xy(global.mouse_x, global.mouse_y)) {
-            this.option_1_paint.set_color(global.GENERAL_CYAN_COLOR);
+            this.option_1_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
             this.option_1_paint.set_color(global.GENERAL_GRAY_COLOR);
         }
         if (this.option_2.contains_xy(global.mouse_x, global.mouse_y)) {
-            this.option_2_paint.set_color(global.GENERAL_CYAN_COLOR);
+            this.option_2_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
             this.option_2_paint.set_color(global.GENERAL_GRAY_COLOR);
         }
         if (this.option_3.contains_xy(global.mouse_x, global.mouse_y)) {
-            this.option_3_paint.set_color(global.GENERAL_CYAN_COLOR);
+            this.option_3_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
             this.option_3_paint.set_color(global.GENERAL_GRAY_COLOR);
