@@ -151,10 +151,10 @@ class PNPBipolarJunctionTransistorSymbol {
 		this.text_background_paint.set_paint_cap(this.text_background_paint.cap.ROUND);
 		this.text_background_paint.set_paint_join(this.text_background_paint.join.MITER);
 		this.text_background_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-		this.text_background_paint.set_color(global.GENERAL_CYAN_COLOR);
+		this.text_background_paint.set_color(global.GENERAL_HOVER_COLOR);
 		this.text_background_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.text_background_paint.set_font(global.DEFAULT_FONT);
-		this.text_background_paint.set_alpha(192);
+		this.text_background_paint.set_alpha(255);
 		this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
 		this.build_element();
 		this.FLAG_ADD_ELEMENT = false;
