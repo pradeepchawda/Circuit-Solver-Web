@@ -1177,6 +1177,7 @@ function load_app() {
                 }
                 global.system_initialization['step'] = 0;
                 global.system_initialization['completed'] = true;
+                global.SIGNAL_BUILD_ELEMENT = true;
             }
         }
     }
