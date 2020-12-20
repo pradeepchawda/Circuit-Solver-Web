@@ -39,7 +39,7 @@ class ZoomWindow {
         this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
         this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
         this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.bounds_paint.set_color(global.ZOOM_AREA_COLOR);
+        this.bounds_paint.set_color(global.GENERAL_FILL_COLOR);
         this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.bounds_paint.set_font(global.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
@@ -76,7 +76,7 @@ class ZoomWindow {
         this.option_0_paint.set_paint_cap(this.option_0_paint.cap.ROUND);
         this.option_0_paint.set_paint_join(this.option_0_paint.join.MITER);
         this.option_0_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.option_0_paint.set_color(global.GENERAL_GRAY_COLOR);
+        this.option_0_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         this.option_0_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_0_paint.set_font(global.DEFAULT_FONT);
         this.option_0_paint.set_alpha(255);
@@ -87,7 +87,7 @@ class ZoomWindow {
         this.option_1_paint.set_paint_cap(this.option_1_paint.cap.ROUND);
         this.option_1_paint.set_paint_join(this.option_1_paint.join.MITER);
         this.option_1_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.option_1_paint.set_color(global.GENERAL_GRAY_COLOR);
+        this.option_1_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         this.option_1_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_1_paint.set_font(global.DEFAULT_FONT);
         this.option_1_paint.set_alpha(255);
@@ -98,7 +98,7 @@ class ZoomWindow {
         this.option_2_paint.set_paint_cap(this.option_2_paint.cap.ROUND);
         this.option_2_paint.set_paint_join(this.option_2_paint.join.MITER);
         this.option_2_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.option_2_paint.set_color(global.GENERAL_GRAY_COLOR);
+        this.option_2_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         this.option_2_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_2_paint.set_font(global.DEFAULT_FONT);
         this.option_2_paint.set_alpha(255);
@@ -109,7 +109,7 @@ class ZoomWindow {
         this.option_3_paint.set_paint_cap(this.option_3_paint.cap.ROUND);
         this.option_3_paint.set_paint_join(this.option_3_paint.join.MITER);
         this.option_3_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.option_3_paint.set_color(global.GENERAL_GRAY_COLOR);
+        this.option_3_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         this.option_3_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.option_3_paint.set_font(global.DEFAULT_FONT);
         this.option_3_paint.set_alpha(255);
@@ -233,25 +233,25 @@ class ZoomWindow {
             this.option_0_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
-            this.option_0_paint.set_color(global.GENERAL_GRAY_COLOR);
+            this.option_0_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         }
         if (this.option_1.contains_xy(global.mouse_x, global.mouse_y)) {
             this.option_1_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
-            this.option_1_paint.set_color(global.GENERAL_GRAY_COLOR);
+            this.option_1_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         }
         if (this.option_2.contains_xy(global.mouse_x, global.mouse_y)) {
             this.option_2_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
-            this.option_2_paint.set_color(global.GENERAL_GRAY_COLOR);
+            this.option_2_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         }
         if (this.option_3.contains_xy(global.mouse_x, global.mouse_y)) {
             this.option_3_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
-            this.option_3_paint.set_color(global.GENERAL_GRAY_COLOR);
+            this.option_3_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         }
     }
     /* Zoom to the center of the screen! */

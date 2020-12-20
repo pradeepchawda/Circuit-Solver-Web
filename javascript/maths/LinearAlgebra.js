@@ -21,7 +21,7 @@
  ***********************************************************************/
 class LinearAlgebra {
     constructor() {
-        this.x_matrix = [[], []];
+        this.x_matrix = [[0], [0]];
         this.det_threshold = 0;
         this.row = [];
         this._i = 0;

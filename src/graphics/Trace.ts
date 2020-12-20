@@ -169,23 +169,21 @@ outer bounds)*/
 	}
 	/* Resize the trace (dynamically) */
 	resize_trace(): void {
-		if (this.trace.length > 0) {
-			this.trace_stroke_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-			this.trace_stroke_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-			this.trace_fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-			this.trace_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-			let constant: number = this.width / (this.X_AXIS_LENGTH >> 1);
-			let constant2: number = (this.height * this.ratio) / this.temporary_norm;
-			for (var i: number = 0; i < this.trace.length; i++) {
-				this.trace[i].x = i * constant + this.trim;
-				if (this.temporary_norm > 0 && i < this.magnitude_list.length) {
-					this.trace[i].y = this.magnitude_list[i].y * constant2;
-				} else {
-					this.trace[i].y = 0;
-				}
+		this.trace_stroke_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+		this.trace_stroke_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.trace_fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+		this.trace_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		let constant: number = this.width / (this.X_AXIS_LENGTH >> 1);
+		let constant2: number = (this.height * this.ratio) / this.temporary_norm;
+		for (var i: number = 0; i < this.trace.length; i++) {
+			this.trace[i].x = i * constant + this.trim;
+			if (this.temporary_norm > 0 && i < this.magnitude_list.length) {
+				this.trace[i].y = this.magnitude_list[i].y * constant2;
+			} else {
+				this.trace[i].y = 0;
 			}
-			this.create_path();
 		}
+		this.create_path();
 	}
 	/* Reset the trace. (Remove data and remove the trace path) */
 	reset(): void {

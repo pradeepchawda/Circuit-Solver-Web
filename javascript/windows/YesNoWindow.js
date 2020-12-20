@@ -39,7 +39,7 @@ class YesNoWindow {
         this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
         this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
         this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
+        this.bounds_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.bounds_paint.set_font(global.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
@@ -61,7 +61,7 @@ class YesNoWindow {
         this.yes_paint.set_paint_cap(this.yes_paint.cap.ROUND);
         this.yes_paint.set_paint_join(this.yes_paint.join.MITER);
         this.yes_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.yes_paint.set_color(global.ZOOM_AREA_COLOR);
+        this.yes_paint.set_color(global.GENERAL_FILL_COLOR);
         this.yes_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.yes_paint.set_font(global.DEFAULT_FONT);
         this.yes_paint.set_alpha(255);
@@ -72,7 +72,7 @@ class YesNoWindow {
         this.no_paint.set_paint_cap(this.no_paint.cap.ROUND);
         this.no_paint.set_paint_join(this.no_paint.join.MITER);
         this.no_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.no_paint.set_color(global.ZOOM_AREA_COLOR);
+        this.no_paint.set_color(global.GENERAL_FILL_COLOR);
         this.no_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.no_paint.set_font(global.DEFAULT_FONT);
         this.no_paint.set_alpha(255);
@@ -103,7 +103,6 @@ class YesNoWindow {
         }
         this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
         let padding = this.PADDING * this.bounds.get_width();
-        let width = (this.bounds.get_width() - 2 * padding) * 0.5;
         let height = (this.bounds.get_height() - 2 * padding) * 0.3571;
         this.option_0 = new RectF(this.bounds.left + padding, this.bounds.bottom - padding - height, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
         this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.bottom - padding - height, this.bounds.right - padding, this.bounds.bottom - padding);
@@ -166,13 +165,13 @@ class YesNoWindow {
             this.yes_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
-            this.yes_paint.set_color(global.ZOOM_AREA_COLOR);
+            this.yes_paint.set_color(global.GENERAL_FILL_COLOR);
         }
         if (this.option_1.contains_xy(global.mouse_x, global.mouse_y)) {
             this.no_paint.set_color(global.GENERAL_HOVER_COLOR);
         }
         else {
-            this.no_paint.set_color(global.ZOOM_AREA_COLOR);
+            this.no_paint.set_color(global.GENERAL_FILL_COLOR);
         }
     }
     resize_window() {
@@ -186,7 +185,6 @@ class YesNoWindow {
         }
         this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
         let padding = this.PADDING * this.bounds.get_width();
-        let width = (this.bounds.get_width() - 2 * padding) * 0.5;
         let height = (this.bounds.get_height() - 2 * padding) * 0.3571;
         this.option_0.set_bounds(this.bounds.left + padding, this.bounds.bottom - padding - height, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
         this.option_1.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.bottom - padding - height, this.bounds.right - padding, this.bounds.bottom - padding);

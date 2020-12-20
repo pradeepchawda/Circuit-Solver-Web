@@ -208,7 +208,7 @@ class GraphWindow {
 		this.download_button = new Button(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
 		this.download_button.text = 'CSV';
 		this.download_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-		this.download_button.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
+		this.download_button.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 		this.download_button.fill_paint.set_alpha(255);
 		this.download_button.draw_stroke = false;
 		this.download_button.draw_fill = true;
@@ -601,9 +601,12 @@ class GraphWindow {
 				this.text_paint
 			);
 			if (this.download_button.contains_xy(global.mouse_x, global.mouse_y) && !global.MOBILE_MODE) {
-				canvas.draw_round_rect2(this.download_button, 0.6 * global.CANVAS_STROKE_WIDTH_3, this.hover_paint);
+				this.download_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+				this.download_button.draw_button(canvas);
+				this.download_button.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
+			} else {
+				this.download_button.draw_button(canvas);
 			}
-			this.download_button.draw_button(canvas);
 			/* Last but not least, draw trace a, b, and c */
 			this.graph_trace_a.draw_trace(canvas, view_port.left, 0);
 			this.graph_trace_b.draw_trace(canvas, view_port.left, 0);

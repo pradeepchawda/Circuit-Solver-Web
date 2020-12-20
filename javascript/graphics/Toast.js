@@ -47,10 +47,10 @@ class Toast {
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
         this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
         this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
+        this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
         this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         this.fill_paint.set_font(global.DEFAULT_FONT);
-        this.fill_paint.set_alpha(130);
+        this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
         /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();

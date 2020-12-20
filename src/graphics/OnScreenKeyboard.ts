@@ -92,7 +92,7 @@ class OnScreenKeyboard {
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
 		this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
 		this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
+		this.bounds_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);

@@ -68,10 +68,10 @@ class SaveCircuitWindow {
         this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
         this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
         this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-        this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
+        this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
         this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.hover_paint.set_font(global.DEFAULT_FONT);
-        this.hover_paint.set_alpha(192);
+        this.hover_paint.set_alpha(255);
         this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
         /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.bounds_paint = new Paint();
@@ -108,7 +108,7 @@ class SaveCircuitWindow {
         this.title_bounds.text = '';
         this.title_bounds.text_paint.set_paint_align(this.title_bounds.text_paint.align.LEFT);
         this.title_bounds.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.title_bounds.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+        this.title_bounds.fill_paint.set_color(global.GENERAL_FILL_COLOR);
         this.title_bounds.fill_paint.set_alpha(130);
         this.title_bounds.draw_stroke = false;
         this.title_bounds.draw_fill = true;
@@ -119,14 +119,14 @@ class SaveCircuitWindow {
         this.okay_button = new Button(this.bounds.right - 2 * padding - 2 * width, this.bounds.bottom - height - padding, this.bounds.right - 2 * padding - width, this.bounds.bottom - padding);
         this.okay_button.text = '';
         this.okay_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+        this.okay_button.fill_paint.set_color(global.GENERAL_FILL_COLOR);
         this.okay_button.fill_paint.set_alpha(130);
         this.okay_button.draw_stroke = false;
         this.okay_button.draw_fill = true;
         this.cancel_button = new Button(this.bounds.right - padding - width, this.bounds.bottom - height - padding, this.bounds.right - padding, this.bounds.bottom - padding);
         this.cancel_button.text = '';
         this.cancel_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.cancel_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+        this.cancel_button.fill_paint.set_color(global.GENERAL_FILL_COLOR);
         this.cancel_button.fill_paint.set_alpha(130);
         this.cancel_button.draw_stroke = false;
         this.cancel_button.draw_fill = true;

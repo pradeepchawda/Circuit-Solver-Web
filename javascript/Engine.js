@@ -55,7 +55,13 @@ function save_image(title, canvas) {
 }
 /* Save an image for the user! */
 function save_image_mobile(title, canvas) {
-    window.JsInterface.javascript_native_hook('push-image', title, canvas.toDataURL());
+    canvas.toBlob(function (blob) {
+        let reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function () {
+            window.JsInterface.javascript_native_hook('push-image', title, reader.result);
+        };
+    });
 }
 /* Create a global variable to access the "file_explorer" element in HTML. */
 var file_reader = global.NULL;

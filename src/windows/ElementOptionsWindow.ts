@@ -98,7 +98,7 @@ class ElementOptionsWindow {
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
 		this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
 		this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
+		this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
 		this.fill_paint.set_alpha(130);
@@ -124,10 +124,10 @@ class ElementOptionsWindow {
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
 		this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
 		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-		this.hover_paint.set_color(global.GENERAL_CYAN_COLOR);
+		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(192);
+		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the "text" that the component needs to display */
 		this.shorcut_text_paint = new Paint();
@@ -161,7 +161,7 @@ class ElementOptionsWindow {
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
 		this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
 		this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.bounds_paint.set_color(global.GENERAL_BOUNDS_COLOR);
+		this.bounds_paint.set_color(global.GENERAL_FILL_COLOR);
 		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
@@ -575,7 +575,7 @@ class ElementOptionsWindow {
 									if (global.selected_properties[global.selected_properties['options'][i]] === global.ON) {
 										this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_CYAN_COLOR);
 									} else if (global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
-										this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_GRAY_COLOR);
+										this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 									}
 									if (global.not_null(this.toggle_switch_button)) {
 										this.toggle_switch_button.draw_toggle_switch_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
@@ -600,7 +600,7 @@ class ElementOptionsWindow {
 								if (global.selected_properties[global.selected_properties['options'][i]] === global.ON) {
 									this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_CYAN_COLOR);
 								} else if (global.selected_properties[global.selected_properties['options'][i]] === global.OFF) {
-									this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_GRAY_COLOR);
+									this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 								}
 								if (global.not_null(this.toggle_switch_button)) {
 									this.toggle_switch_button.draw_toggle_switch_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);

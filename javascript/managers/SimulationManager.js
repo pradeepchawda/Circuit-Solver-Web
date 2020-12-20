@@ -195,6 +195,7 @@ class SimulationManager {
         toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
         toast.show();
         this.SOLUTIONS_READY = false;
+        global.SIGNAL_BUILD_ELEMENT = true;
         /* Set the flag to indicate that we have prepared the system. */
         this.INITIALIZED = true;
     }
