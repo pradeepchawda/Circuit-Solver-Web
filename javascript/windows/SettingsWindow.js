@@ -177,7 +177,7 @@ class SettingsWindow {
         this.first_touch_y = 0;
         this.toggle_switch_button = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
         this.toggle_switch_button.draw_fill = false;
-        this.toggle_switch_button.draw_stroke = true;
+        this.toggle_switch_button.draw_stroke = false;
         this.toggle_switch_button.draw_text = true;
         this.toggle_switch_button.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
     }

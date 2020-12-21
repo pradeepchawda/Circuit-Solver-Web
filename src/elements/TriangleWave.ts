@@ -764,6 +764,8 @@ or overlapped)*/
 				if (
 					global.WIRE_BUILDER['step'] === 0 &&
 					this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
+					!global.FLAG_SAVE_CIRCUIT &&
+					!global.FLAG_SAVE_IMAGE &&
 					!global.FLAG_MENU_OPEN_DOWN &&
 					!global.FLAG_SELECT_TIMESTEP &&
 					!global.FLAG_ELEMENT_OPTIONS &&
