@@ -114,7 +114,7 @@ class SaveImageWindow {
 		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(192);
+		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.bounds_paint = new Paint();
@@ -712,37 +712,24 @@ class SaveImageWindow {
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.cancel_button.text = language_manager.CANCEL[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			/* This draws the bounds of the interface. */
-			canvas.draw_round_rect(
-				this.bounds.left + this.OFFSET_X,
-				this.bounds.top + this.OFFSET_Y,
-				this.bounds.right + this.OFFSET_X,
-				this.bounds.bottom + this.OFFSET_Y,
-				this.bounds_paint.get_stroke_width(),
-				this.bounds_paint
-			);
+			canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);
 			/* This draws the title space */
 			this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
 			if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-				canvas.draw_round_rect(
-					this.okay_button.left + this.OFFSET_X,
-					this.okay_button.top + this.OFFSET_Y,
-					this.okay_button.right + this.OFFSET_X,
-					this.okay_button.bottom + this.OFFSET_Y,
-					this.okay_button.line_paint.get_stroke_width(),
-					this.hover_paint
-				);
+				this.okay_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+				this.okay_button.fill_paint.set_alpha(255);
+			} else {
+				this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+				this.okay_button.fill_paint.set_alpha(130);
 			}
 			this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
 			if (this.cancel_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-				canvas.draw_round_rect(
-					this.cancel_button.left + this.OFFSET_X,
-					this.cancel_button.top + this.OFFSET_Y,
-					this.cancel_button.right + this.OFFSET_X,
-					this.cancel_button.bottom + this.OFFSET_Y,
-					this.cancel_button.line_paint.get_stroke_width(),
-					this.hover_paint
-				);
+				this.cancel_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+				this.cancel_button.fill_paint.set_alpha(255);
+			} else {
+				this.cancel_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+				this.cancel_button.fill_paint.set_alpha(130);
 			}
 			this.cancel_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
 			this.input_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
@@ -780,12 +767,11 @@ class SaveImageWindow {
 				this.input_button.text_paint
 			);
 			if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-				canvas.draw_round_rect(
+				canvas.draw_rect(
 					this.exit_button.left + this.OFFSET_X,
 					this.exit_button.top + this.OFFSET_Y,
 					this.exit_button.right + this.OFFSET_X,
 					this.exit_button.bottom + this.OFFSET_Y,
-					this.exit_button.line_paint.get_stroke_width(),
 					this.hover_paint
 				);
 			}

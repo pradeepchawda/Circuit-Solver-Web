@@ -364,7 +364,7 @@ class GraphWindow {
             /* First we draw the main bounds and then the inner bounds. Note the types of paint
       being used to draw each one of these portions. */
             canvas.draw_rect2(this.bounds, this.fill_paint);
-            canvas.draw_round_rect2(this.inner_bounds, this.PADDING >> 1, this.line_paint);
+            canvas.draw_rect2(this.inner_bounds, this.line_paint);
             let cached_value = this.x_axis.length >> 1;
             let cached_value_t_p_o1 = (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
             let temp = 0;

@@ -61,7 +61,7 @@ class YesNoWindow {
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
 		this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
 		this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.bounds_paint.set_color(global.GENERAL_BOUNDS_COLOR);
+		this.bounds_paint.set_color(global.GENERAL_FILL_COLOR);
 		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
@@ -83,7 +83,7 @@ class YesNoWindow {
 		this.yes_paint.set_paint_cap(this.yes_paint.cap.ROUND);
 		this.yes_paint.set_paint_join(this.yes_paint.join.MITER);
 		this.yes_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.yes_paint.set_color(global.GENERAL_FILL_COLOR);
+		this.yes_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 		this.yes_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.yes_paint.set_font(global.DEFAULT_FONT);
 		this.yes_paint.set_alpha(255);
@@ -94,7 +94,7 @@ class YesNoWindow {
 		this.no_paint.set_paint_cap(this.no_paint.cap.ROUND);
 		this.no_paint.set_paint_join(this.no_paint.join.MITER);
 		this.no_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.no_paint.set_color(global.GENERAL_FILL_COLOR);
+		this.no_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 		this.no_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.no_paint.set_font(global.DEFAULT_FONT);
 		this.no_paint.set_alpha(255);
@@ -182,12 +182,12 @@ class YesNoWindow {
 		if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
 			this.yes_paint.set_color(global.GENERAL_HOVER_COLOR);
 		} else {
-			this.yes_paint.set_color(global.GENERAL_FILL_COLOR);
+			this.yes_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 		}
 		if (this.option_1.contains_xy(global.mouse_x, global.mouse_y)) {
 			this.no_paint.set_color(global.GENERAL_HOVER_COLOR);
 		} else {
-			this.no_paint.set_color(global.GENERAL_FILL_COLOR);
+			this.no_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 		}
 	}
 	resize_window(): void {
@@ -219,11 +219,11 @@ class YesNoWindow {
 	}
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.FLAG_REMOVE_ALL) {
-			canvas.draw_round_rect2(this.bounds, this.bounds_paint.get_stroke_width(), this.bounds_paint);
+			canvas.draw_rect2(this.bounds, this.bounds_paint);
 			canvas.draw_text(language_manager.CONFIRM_REMOVE_ALL[global.LANGUAGES[global.LANGUAGE_INDEX]], this.bounds.get_center_x(), this.bounds.top + this.bounds.get_height() * 0.33, this.text_paint);
-			canvas.draw_round_rect2(this.option_0, this.fill_paint.get_stroke_width(), this.yes_paint);
+			canvas.draw_rect2(this.option_0, this.yes_paint);
 			canvas.draw_text(language_manager.CONFIRM_YES[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_0.get_center_x(), this.option_0.get_center_y(), this.text_paint);
-			canvas.draw_round_rect2(this.option_1, this.fill_paint.get_stroke_width(), this.no_paint);
+			canvas.draw_rect2(this.option_1, this.no_paint);
 			canvas.draw_text(language_manager.CONFIRM_NO[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_1.get_center_x(), this.option_1.get_center_y(), this.text_paint);
 		}
 	}

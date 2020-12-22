@@ -456,12 +456,17 @@ class ElementOptionsWindow {
         if (global.FLAG_ELEMENT_OPTIONS) {
             this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
             /* This draws the bounds of the interface. */
-            canvas.draw_round_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint.get_stroke_width(), this.bounds_paint);
+            canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);
             /* This draws the title space */
             this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
             this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
             if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-                canvas.draw_rect(this.okay_button.left + this.OFFSET_X, this.okay_button.top + this.OFFSET_Y, this.okay_button.right + this.OFFSET_X, this.okay_button.bottom + this.OFFSET_Y, this.hover_paint);
+                this.okay_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+                this.okay_button.fill_paint.set_alpha(255);
+            }
+            else {
+                this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+                this.okay_button.fill_paint.set_alpha(130);
             }
             /* Draws the okay button */
             this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
@@ -470,10 +475,10 @@ class ElementOptionsWindow {
                 for (var i = 0; i < this.attributes.length; i++) {
                     if (i < global.selected_properties['options'].length) {
                         if (this.attributes[i].contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-                            canvas.draw_round_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.fill_paint.get_stroke_width(), this.hover_paint);
+                            canvas.draw_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.hover_paint);
                         }
                         else {
-                            canvas.draw_round_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.fill_paint.get_stroke_width(), this.fill_paint);
+                            canvas.draw_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.fill_paint);
                         }
                         canvas.draw_text(global.selected_properties['options'][i] + ':=', this.attributes[i].left + this.PADDING * this.bounds.get_width() + this.OFFSET_X, this.attributes[i].get_center_y() + this.OFFSET_Y, this.text_paint);
                         if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {

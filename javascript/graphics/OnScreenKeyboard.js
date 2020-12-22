@@ -460,7 +460,7 @@ class OnScreenKeyboard {
                 if (this.ENGINEERING_KEYBOARD_MODE) {
                     if (this.ENGINEERING_KEYBOARD_FILTER_INDEX[i]) {
                         if (this.HOVER_INDEX === i) {
-                            canvas.draw_round_rect2(this.KEYBOARD_KEYS[i], this.fill_paint.get_stroke_width() << 1, this.fill_paint);
+                            canvas.draw_rect2(this.KEYBOARD_KEYS[i], this.fill_paint);
                         }
                         if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
                             if (this.KEYBOARD_MAPPING[i].toUpperCase() !== 'F' &&
@@ -479,7 +479,7 @@ class OnScreenKeyboard {
                 else {
                     if (this.FILE_NAME_KEYBOARD_FILTER_INDEX[i]) {
                         if (this.HOVER_INDEX === i) {
-                            canvas.draw_round_rect2(this.KEYBOARD_KEYS[i], this.fill_paint.get_stroke_width() << 1, this.fill_paint);
+                            canvas.draw_rect2(this.KEYBOARD_KEYS[i], this.fill_paint);
                         }
                         if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
                             canvas.draw_text(this.KEYBOARD_MAPPING[i].toUpperCase(), this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);

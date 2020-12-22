@@ -408,12 +408,17 @@ class SettingsWindow {
             this.title_bounds.text = language_manager.SYSTEM_SETTINGS[global.LANGUAGES[global.LANGUAGE_INDEX]];
             this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
             /* This draws the bounds of the interface. */
-            canvas.draw_round_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint.get_stroke_width(), this.bounds_paint);
+            canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);
             /* This draws the title space */
             this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
             this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
             if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-                canvas.draw_round_rect(this.okay_button.left + this.OFFSET_X, this.okay_button.top + this.OFFSET_Y, this.okay_button.right + this.OFFSET_X, this.okay_button.bottom + this.OFFSET_Y, this.okay_button.line_paint.get_stroke_width(), this.hover_paint);
+                this.okay_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+                this.okay_button.fill_paint.set_alpha(255);
+            }
+            else {
+                this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+                this.okay_button.fill_paint.set_alpha(130);
             }
             /* Draws the okay button */
             this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
@@ -422,10 +427,10 @@ class SettingsWindow {
                 if (global.not_null(global.SYSTEM_OPTIONS)) {
                     if (i < global.SYSTEM_OPTIONS['options'].length && global.not_null(this.attributes[i])) {
                         if (this.attributes[i].contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-                            canvas.draw_round_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.fill_paint.get_stroke_width(), this.hover_paint);
+                            canvas.draw_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.hover_paint);
                         }
                         else {
-                            canvas.draw_round_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.fill_paint.get_stroke_width(), this.fill_paint);
+                            canvas.draw_rect(this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.attributes[i].right + this.OFFSET_X, this.attributes[i].bottom + this.OFFSET_Y, this.fill_paint);
                         }
                         if (i === global.SYSTEM_OPTION_LANGUAGE) {
                             canvas.draw_text(language_manager.LANGUAGE[global.LANGUAGES[global.LANGUAGE_INDEX]] + ':=', this.attributes[i].left + this.PADDING * this.bounds.get_width() + this.OFFSET_X, this.attributes[i].get_center_y() + this.OFFSET_Y, this.text_paint);
@@ -469,7 +474,7 @@ class SettingsWindow {
                 }
             }
             if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-                canvas.draw_round_rect(this.exit_button.left + this.OFFSET_X, this.exit_button.top + this.OFFSET_Y, this.exit_button.right + this.OFFSET_X, this.exit_button.bottom + this.OFFSET_Y, this.exit_button.line_paint.get_stroke_width(), this.hover_paint);
+                canvas.draw_rect(this.exit_button.left + this.OFFSET_X, this.exit_button.top + this.OFFSET_Y, this.exit_button.right + this.OFFSET_X, this.exit_button.bottom + this.OFFSET_Y, this.hover_paint);
             }
             let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;
             let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;

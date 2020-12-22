@@ -102,10 +102,10 @@ class Button extends RectF {
     /* Draws the button to screen. */
     draw_button(canvas) {
         if (this.draw_fill) {
-            canvas.draw_round_rect2(this, this.fill_paint.get_stroke_width(), this.fill_paint);
+            canvas.draw_rect2(this, this.fill_paint);
         }
         if (this.draw_stroke) {
-            canvas.draw_round_rect2(this, this.line_paint.get_stroke_width(), this.line_paint);
+            canvas.draw_rect2(this, this.line_paint);
         }
         if (this.draw_text) {
             this.draw_button_text(canvas, this.get_center_x(), this.get_center_y());

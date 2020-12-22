@@ -1032,7 +1032,7 @@ class MenuBar {
                 let cached_value = this.BASE_WIDTH;
                 for (var i = 0; i < this.menu_icons.length; i++) {
                     if (this.menu_icons[i].contains_xywh(global.mouse_x, global.mouse_y, cached_value, this.bounds.get_height())) {
-                        canvas.draw_round_rect3(this.menu_icons[i].get_center_x(), this.menu_icons[i].get_center_y(), cached_value, this.bounds.get_height(), temp_stroke_width, this.hover_paint);
+                        canvas.draw_rect3(this.menu_icons[i].get_center_x(), this.menu_icons[i].get_center_y(), cached_value, this.bounds.get_height(), this.hover_paint);
                     }
                 }
             }

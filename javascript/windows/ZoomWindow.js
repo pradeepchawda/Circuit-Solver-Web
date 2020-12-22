@@ -305,14 +305,14 @@ class ZoomWindow {
     }
     draw_window(canvas) {
         if (global.FLAG_ZOOM) {
-            canvas.draw_round_rect2(this.bounds, this.bounds_paint.get_stroke_width(), this.bounds_paint);
-            canvas.draw_round_rect2(this.option_0, this.fill_paint.get_stroke_width(), this.option_0_paint);
+            canvas.draw_rect2(this.bounds, this.bounds_paint);
+            canvas.draw_rect2(this.option_0, this.option_0_paint);
             canvas.draw_text(this.options['c0']['string'], this.option_0.get_center_x(), this.option_0.get_center_y(), this.text_paint);
-            canvas.draw_round_rect2(this.option_1, this.fill_paint.get_stroke_width(), this.option_1_paint);
+            canvas.draw_rect2(this.option_1, this.option_1_paint);
             canvas.draw_text(this.options['c1']['string'], this.option_1.get_center_x(), this.option_1.get_center_y(), this.text_paint);
-            canvas.draw_round_rect2(this.option_2, this.fill_paint.get_stroke_width(), this.option_2_paint);
+            canvas.draw_rect2(this.option_2, this.option_2_paint);
             canvas.draw_text(this.options['c2']['string'], this.option_2.get_center_x(), this.option_2.get_center_y(), this.text_paint);
-            canvas.draw_round_rect2(this.option_3, this.fill_paint.get_stroke_width(), this.option_3_paint);
+            canvas.draw_rect2(this.option_3, this.option_3_paint);
             canvas.draw_text(language_manager.EXIT[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_3.get_center_x(), this.option_3.get_center_y(), this.text_paint);
         }
     }
