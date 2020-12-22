@@ -111,7 +111,7 @@ class TimeStepWindow {
 		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
-		this.hover_paint.set_alpha(192);
+		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.bounds_paint = new Paint();
@@ -130,7 +130,7 @@ class TimeStepWindow {
 		this.select_paint.set_paint_cap(this.select_paint.cap.ROUND);
 		this.select_paint.set_paint_join(this.select_paint.join.MITER);
 		this.select_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-		this.select_paint.set_color(global.GENERAL_HOVER_COLOR);
+		this.select_paint.set_color(global.GENERAL_CYAN_COLOR);
 		this.select_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		this.select_paint.set_font(global.DEFAULT_FONT);
 		this.select_paint.set_alpha(64);
@@ -707,23 +707,19 @@ class TimeStepWindow {
 			this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
 			if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-				canvas.draw_rect(
-					this.okay_button.left + this.OFFSET_X,
-					this.okay_button.top + this.OFFSET_Y,
-					this.okay_button.right + this.OFFSET_X,
-					this.okay_button.bottom + this.OFFSET_Y,
-					this.hover_paint
-				);
+				this.okay_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+				this.okay_button.fill_paint.set_alpha(255);
+			} else {
+				this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+				this.okay_button.fill_paint.set_alpha(130);
 			}
 			this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
 			if (this.cancel_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
-				canvas.draw_rect(
-					this.cancel_button.left + this.OFFSET_X,
-					this.cancel_button.top + this.OFFSET_Y,
-					this.cancel_button.right + this.OFFSET_X,
-					this.cancel_button.bottom + this.OFFSET_Y,
-					this.hover_paint
-				);
+				this.cancel_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+				this.cancel_button.fill_paint.set_alpha(255);
+			} else {
+				this.cancel_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
+				this.cancel_button.fill_paint.set_alpha(130);
 			}
 			this.cancel_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
 			this.input_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
