@@ -305,6 +305,9 @@ class ZoomWindow {
     }
     draw_window(canvas) {
         if (global.FLAG_ZOOM) {
+            if (!global.MOBILE_MODE) {
+                canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+            }
             canvas.draw_rect2(this.bounds, this.bounds_paint);
             canvas.draw_rect2(this.option_0, this.option_0_paint);
             canvas.draw_text(this.options['c0']['string'], this.option_0.get_center_x(), this.option_0.get_center_y(), this.text_paint);

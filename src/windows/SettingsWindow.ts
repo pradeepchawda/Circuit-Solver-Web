@@ -458,6 +458,9 @@ class SettingsWindow {
 	/* A function to handle the drawing of the component. */
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.FLAG_SELECT_SETTINGS) {
+			if (!global.MOBILE_MODE) {
+				canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+			}
 			this.title_bounds.text = language_manager.SYSTEM_SETTINGS[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			/* This draws the bounds of the interface. */

@@ -2860,6 +2860,9 @@ class ElementOptionsEditWindow {
     /* Fix up escapes... also make sure notes are okay! */
     draw_window(canvas) {
         if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
+            if (!global.MOBILE_MODE) {
+                canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+            }
             /* Makes sure the window is always visisble. */
             if (global.MOBILE_MODE) {
                 if (this.bounds.bottom + this.OFFSET_Y >= on_screen_keyboard.bounds.top) {

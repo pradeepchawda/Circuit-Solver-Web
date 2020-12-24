@@ -219,6 +219,9 @@ class YesNoWindow {
 	}
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.FLAG_REMOVE_ALL) {
+			if (!global.MOBILE_MODE) {
+				canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+			}
 			canvas.draw_rect2(this.bounds, this.bounds_paint);
 			canvas.draw_text(language_manager.CONFIRM_REMOVE_ALL[global.LANGUAGES[global.LANGUAGE_INDEX]], this.bounds.get_center_x(), this.bounds.top + this.bounds.get_height() * 0.33, this.text_paint);
 			canvas.draw_rect2(this.option_0, this.yes_paint);

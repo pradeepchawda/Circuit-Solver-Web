@@ -454,6 +454,9 @@ class ElementOptionsWindow {
     /* A function to handle the drawing of the component. */
     draw_window(canvas) {
         if (global.FLAG_ELEMENT_OPTIONS) {
+            if (!global.MOBILE_MODE) {
+                canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+            }
             this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
             /* This draws the bounds of the interface. */
             canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);

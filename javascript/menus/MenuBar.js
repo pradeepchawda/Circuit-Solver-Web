@@ -1018,6 +1018,11 @@ class MenuBar {
             temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
         }
         if (global.FLAG_MENU_OPEN) {
+            if (global.FLAG_MENU_OPEN_DOWN) {
+                if (!global.MOBILE_MODE) {
+                    canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                }
+            }
             canvas.draw_rect2(this.bounds, this.fill_paint);
             if (!global.FLAG_SAVE_IMAGE &&
                 !global.FLAG_SAVE_CIRCUIT &&

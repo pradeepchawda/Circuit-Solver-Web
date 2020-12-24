@@ -692,6 +692,9 @@ class TimeStepWindow {
 	}
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.FLAG_SELECT_TIMESTEP) {
+			if (!global.MOBILE_MODE) {
+				canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+			}
 			/* Makes sure the window is always visisble. */
 			if (global.MOBILE_MODE) {
 				if (this.bounds.bottom + this.OFFSET_Y >= on_screen_keyboard.bounds.top) {
