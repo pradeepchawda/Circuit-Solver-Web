@@ -1,9 +1,9 @@
 body {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 html {
-  touch-action: manipulation;
-  transform: translateZ(0);
-  transform: translate3d(0,0,0);
+	touch-action: manipulation;
+	transform: translateZ(0);
+	transform: translate3d(0, 0, 0);
 }

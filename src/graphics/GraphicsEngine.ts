@@ -34,7 +34,6 @@ class GraphicsEngine {
 	public r_theta: number;
 	public r_x: number;
 	public r_y: number;
-	public DISABLE_ROUND_RECT: boolean;
 	public general_integer: number;
 	public padding: number;
 	public transform_var_1: number;
@@ -76,7 +75,6 @@ class GraphicsEngine {
 		this.r_theta = 0;
 		this.r_x = 0;
 		this.r_y = 0;
-		this.DISABLE_ROUND_RECT = true;
 		this.general_integer = 0;
 		this.padding = 6;
 		this.transform_var_1 = 0;
@@ -185,65 +183,6 @@ class GraphicsEngine {
 			this.ctx.lineTo((global.ZERO_PT_FIVE + this.cache[2]) >> global.ZERO, (global.ZERO_PT_FIVE + this.cache[3]) >> global.ZERO);
 		}
 		this.ctx.stroke();
-	}
-	/* Draws a rounded Rect */
-	draw_round_rect(left: number, top: number, right: number, bottom: number, radius: number, paint: Paint): void {
-		this.width = (global.ZERO_PT_FIVE + (right - left)) >> global.ZERO;
-		this.height = (global.ZERO_PT_FIVE + (bottom - top)) >> global.ZERO;
-		this.x = (global.ZERO_PT_FIVE + left) >> global.ZERO;
-		this.y = (global.ZERO_PT_FIVE + top) >> global.ZERO;
-		this.radius = (global.ZERO_PT_FIVE + radius) >> global.ZERO;
-		if (!this.DISABLE_ROUND_RECT) {
-			this.general_path.reset();
-			this.general_path.move_to(this.x + this.radius, this.y);
-			this.general_path.line_to(this.x + this.width - this.radius, this.y);
-			this.general_path.curve_to(this.x + this.width - this.radius, this.y, this.x + this.width, this.y, this.x + this.width, this.y + this.radius);
-			this.general_path.line_to(this.x + this.width, this.y + this.height - this.radius);
-			this.general_path.curve_to(this.x + this.width, this.y + this.height - this.radius, this.x + this.width, this.y + this.height, this.x + this.width - this.radius, this.y + this.height);
-			this.general_path.line_to(this.x + this.radius, this.y + this.height);
-			this.general_path.curve_to(this.x + this.radius, this.y + this.height, this.x, this.y + this.height, this.x, this.y + this.height - this.radius);
-			this.general_path.line_to(this.x, this.y + this.radius);
-			this.general_path.curve_to(this.x, this.y + this.radius, this.x, this.y, this.x + this.radius, this.y);
-			this.draw_path(this.general_path, paint);
-		} else {
-			this.draw_rect(left, top, right, bottom, paint);
-		}
-	}
-	/* Draws a rounded Rect */
-	draw_round_rect2(rect: RectF, radius: number, paint: Paint): void {
-		this.width = (global.ZERO_PT_FIVE + rect.get_width()) >> global.ZERO;
-		this.height = (global.ZERO_PT_FIVE + rect.get_height()) >> global.ZERO;
-		this.x = (global.ZERO_PT_FIVE + rect.left) >> global.ZERO;
-		this.y = (global.ZERO_PT_FIVE + rect.top) >> global.ZERO;
-		this.radius = (global.ZERO_PT_FIVE + radius) >> global.ZERO;
-		if (!this.DISABLE_ROUND_RECT) {
-			this.general_path.reset();
-			this.general_path.move_to(this.x + this.radius, this.y);
-			this.general_path.line_to(this.x + this.width - this.radius, this.y);
-			this.general_path.curve_to(this.x + this.width - this.radius, this.y, this.x + this.width, this.y, this.x + this.width, this.y + this.radius);
-			this.general_path.line_to(this.x + this.width, this.y + this.height - this.radius);
-			this.general_path.curve_to(this.x + this.width, this.y + this.height - this.radius, this.x + this.width, this.y + this.height, this.x + this.width - this.radius, this.y + this.height);
-			this.general_path.line_to(this.x + this.radius, this.y + this.height);
-			this.general_path.curve_to(this.x + this.radius, this.y + this.height, this.x, this.y + this.height, this.x, this.y + this.height - this.radius);
-			this.general_path.line_to(this.x, this.y + this.radius);
-			this.general_path.curve_to(this.x, this.y + this.radius, this.x, this.y, this.x + this.radius, this.y);
-			this.draw_path(this.general_path, paint);
-		} else {
-			this.draw_rect2(rect, paint);
-		}
-	}
-	/* Draws a rounded Rect */
-	draw_round_rect3(x: number, y: number, w: number, h: number, radius: number, paint: Paint): void {
-		this.width = (global.ZERO_PT_FIVE + w) >> global.ZERO;
-		this.height = (global.ZERO_PT_FIVE + h) >> global.ZERO;
-		this.x = (global.ZERO_PT_FIVE + (x - (w >> 1))) >> global.ZERO;
-		this.y = (global.ZERO_PT_FIVE + (y - (h >> 1))) >> global.ZERO;
-		this.radius = (global.ZERO_PT_FIVE + radius) >> global.ZERO;
-		if (!this.DISABLE_ROUND_RECT) {
-			this.draw_round_rect(this.x, this.y, this.x + this.width, this.y + this.height, this.radius, paint);
-		} else {
-			this.draw_rect3(x, y, w, h, paint);
-		}
 	}
 	/* Draw a Rect */
 	draw_rect(left: number, top: number, right: number, bottom: number, paint: Paint): void {

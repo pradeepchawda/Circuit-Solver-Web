@@ -128,10 +128,10 @@ class Button extends RectF {
 	/* Draws the button to screen. */
 	draw_button_dxdy(canvas: GraphicsEngine, offset_x: number, offset_y: number) {
 		if (this.draw_fill) {
-			canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint.get_stroke_width(), this.fill_paint);
+			canvas.draw_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint);
 		}
 		if (this.draw_stroke) {
-			canvas.draw_round_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.line_paint.get_stroke_width(), this.line_paint);
+			canvas.draw_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.line_paint);
 		}
 		if (this.draw_text) {
 			this.draw_button_text(canvas, this.get_center_x() + offset_x, this.get_center_y() + offset_y);

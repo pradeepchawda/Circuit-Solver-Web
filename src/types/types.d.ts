@@ -40,20 +40,22 @@ declare type SYSTEM_OPTIONS_T = {
 	options: Array<string>;
 	values: Array<string>;
 };
+declare type PAINT_COMMAND_T = 'MOVE' | 'LINE' | 'QUAD' | 'CURVE' | 'CLOSE';
+
 declare type PATH_1P_T = {
-	command: string;
+	command: PAINT_COMMAND_T;
 	x1: number;
 	y1: number;
 };
 declare type PATH_2P_T = {
-	command: string;
+	command: PAINT_COMMAND_T;
 	x1: number;
 	y1: number;
 	x2: number;
 	y2: number;
 };
 declare type PATH_3P_T = {
-	command: string;
+	command: PAINT_COMMAND_T;
 	x1: number;
 	y1: number;
 	x2: number;
