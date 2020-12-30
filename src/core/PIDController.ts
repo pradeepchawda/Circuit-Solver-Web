@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
   ported from SimplyPID.java
  * A simple PID closed control loop.
