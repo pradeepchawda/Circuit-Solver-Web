@@ -18,6 +18,7 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
+
 class Global {
 	public readonly 'NULL': any;
 	public readonly 'MOBILE_MODE': boolean;
@@ -2971,7 +2972,7 @@ class Global {
 	}
 	/* A safe function to print stuff out when debugging. Developer mode is automatically set to false
   when the production script is run. */
-	'print'(...obj: any) {
+	'print'(obj: any) {
 		if (this.DEVELOPER_MODE) {
 			console.log(obj);
 		}

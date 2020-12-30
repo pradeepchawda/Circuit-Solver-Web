@@ -18,6 +18,7 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
+'use strict';
 class Global {
     constructor() {
         this.NULL = null;
