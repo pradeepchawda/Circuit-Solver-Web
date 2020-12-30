@@ -1,3 +1,4 @@
+"use strict";
 /**********************************************************************
  * Project           : Circuit Solver
  * File		        : Global.js
@@ -18,7 +19,6 @@
  * 20190928    nboatengc     1      Initial Commit.
  *
  ***********************************************************************/
-'use strict';
 class Global {
     constructor() {
         this.NULL = null;
@@ -2192,7 +2192,7 @@ class Global {
     }
     /* A safe function to print stuff out when debugging. Developer mode is automatically set to false
   when the production script is run. */
-    'print'(...obj) {
+    'print'(obj) {
         if (this.DEVELOPER_MODE) {
             console.log(obj);
         }

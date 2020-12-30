@@ -1,3 +1,4 @@
+'use strict';
 /**********************************************************************
  * Project           : Circuit Solver
  * File		        : Element1.js
@@ -100,8 +101,8 @@ class Element1 {
         }
     }
     /* Generates a unique id from a "row" and "col" */
-    to_index(sqrt, ...i) {
-        return i[1] * sqrt + i[0];
+    to_index(sqrt, x, y) {
+        return y * sqrt + x;
     }
     /* Helper function to keep the elements within the grid and on the intersections of it. */
     snap_to_grid(x1, y1) {

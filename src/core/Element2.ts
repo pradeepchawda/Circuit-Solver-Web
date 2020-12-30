@@ -1,3 +1,4 @@
+'use strict';
 /**********************************************************************
  * Project           : Circuit Solver
  * File		        : Element2.js
@@ -146,8 +147,8 @@ inprecise nature. */
 		}
 	}
 	/* Generates a unique id from a "row" and "col" */
-	to_index(sqrt: number, ...i: Array<number>): number {
-		return i[1] * sqrt + i[0];
+	to_index(sqrt: number, x: number, y: number): number {
+		return y * sqrt + x;
 	}
 	/* Helper function to keep the elements within the grid and on the intersections of it. */
 	snap_to_grid(x1: number, y1: number): Array<number> {

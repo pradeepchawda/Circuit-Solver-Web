@@ -1,3 +1,4 @@
+"use strict";
 /**********************************************************************
 * Project           : Circuit Solver
 * File		        : BottomMenu.js

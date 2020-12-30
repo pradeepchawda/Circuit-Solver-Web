@@ -1,3 +1,4 @@
+'use strict';
 /**********************************************************************
 * Project           : Circuit Solver
 * File		        : Engine.js
@@ -409,6 +410,7 @@ function load_app() {
     let NODE_LENGTH = 0;
     /* In case canvas is scaled inside an html element. If it is, then look at the commented code
   inside resize_canvas() to handle how these values should be re-calculated. */
+    general_paint = new Paint();
     general_paint.set_paint_style(general_paint.style.FILL);
     general_paint.set_paint_cap(general_paint.cap.ROUND);
     general_paint.set_paint_join(general_paint.join.MITER);

@@ -1,3 +1,4 @@
+'use strict';
 /**********************************************************************
  * Project           : Circuit Solver
  * File		        : Element4.js
@@ -167,8 +168,9 @@ inprecise nature. */
 			this.n4 = n4;
 		}
 	}
-	to_index(sqrt: number, ...i: Array<number>): number {
-		return i[1] * sqrt + i[0];
+	/* Generates a unique id from a "row" and "col" */
+	to_index(sqrt: number, x: number, y: number): number {
+		return y * sqrt + x;
 	}
 	snap_to_grid(x1: number, y1: number): Array<number> {
 		x1 = this.limit(x1, workspace.bounds.left + global.node_space_x * 1.5, workspace.bounds.right - global.node_space_x * 1.25);
