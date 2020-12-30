@@ -82,10 +82,10 @@ or overlapped)*/
 	public m_x: number;
 	public m_y: number;
 	/* Ideal low poss filter to extract the dc value...*/
-	public y_hat;
-	public y_out;
-	public _alpha;
-	public f_cutoff;
+	public y_hat: number;
+	public y_out: number;
+	public _alpha: number;
+	public f_cutoff: number;
 	public MULTI_SELECTED: boolean;
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;

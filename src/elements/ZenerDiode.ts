@@ -75,7 +75,7 @@ class ZenerDiode {
 	/* A damping factor to determine when log damping will be utilized. */
 	public DAMPING_SAFETY_FACTOR: number;
 	/* This is used to limit the difference between the zener set point and the negative "knee" */
-	public ZENER_MARGIN_SAFETY_FACTOR;
+	public ZENER_MARGIN_SAFETY_FACTOR: number;
 	/* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
 or overlapped)*/
 	public indexer: number;

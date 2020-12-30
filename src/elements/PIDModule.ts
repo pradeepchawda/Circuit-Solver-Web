@@ -77,7 +77,7 @@ or overlapped)*/
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
-	public pid_controller;
+	public pid_controller: PIDController;
 	public MULTI_SELECTED: boolean;
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;

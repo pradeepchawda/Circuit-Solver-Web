@@ -70,7 +70,7 @@ or overlapped)*/
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
-	public tptz_controller;
+	public tptz_controller: TPTZController;
 	public MULTI_SELECTED: boolean;
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;

@@ -44,12 +44,12 @@ class Wire {
 	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
 	/* This is for handling the different styles of the wire (center point) */
-	public wire_point;
+	public wire_point: PointF;
 	/* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
 	public bounds: RectF;
-	public total_bounds;
+	public total_bounds: RectF;
 	/* The voltage of the wire. */
-	public wire_voltage;
+	public wire_voltage: number;
 	public MULTI_SELECTED: boolean;
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;

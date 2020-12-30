@@ -81,7 +81,7 @@ or overlapped)*/
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
-	public LED_STATUS;
+	public LED_STATUS: string;
 	public MULTI_SELECTED: boolean;
 	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;
