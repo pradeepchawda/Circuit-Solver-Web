@@ -1005,8 +1005,8 @@ class PNPBipolarJunctionTransistor {
         if (this.GMIN_START !== 12) {
             this.GMIN_START = 12;
         }
-        if (this.GAMMA !== 0.12) {
-            this.GAMMA = 0.12;
+        if (this.GAMMA !== 0.8) {
+            this.GAMMA = 0.8;
         }
         if (this.KAPPA !== 0.414) {
             this.KAPPA = 0.414;
