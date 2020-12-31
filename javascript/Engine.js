@@ -465,6 +465,10 @@ function load_app() {
                 window.addEventListener('dblclick', double_click, false);
                 webpage_document_title = document.getElementById('title_text');
             }
+            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] === global.ON) {
+                view_port.APPLY_SPREAD_FACTOR = true;
+                global.FORCE_RESIZE_EVENT = true;
+            }
         }
     }
     function register_cross_platform_listeners() {

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**********************************************************************
  * Project           : Circuit Solver
  * File		        : ViewPort.js
@@ -34,11 +34,11 @@ class Viewport {
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
         this.DRAW_BOUNDS = false;
-        if (global.MOBILE_MODE === false) {
-            this.APPLY_SPREAD_FACTOR = false;
+        if (global.MOBILE_MODE === true || global.DESKTOP_MODE === true) {
+            this.APPLY_SPREAD_FACTOR = true;
         }
         else {
-            this.APPLY_SPREAD_FACTOR = true;
+            this.APPLY_SPREAD_FACTOR = false;
         }
         this.screen_width = screen_width;
         this.screen_height = screen_height;

@@ -467,7 +467,7 @@ function load_app(): void {
 	/* Create the drawing engine */
 	let canvas: GraphicsEngine = new GraphicsEngine(virtual_surface.context);
 	let FIFO_INDEX: number = 0;
-	let touch = global.NULL;
+	let touch: any = global.NULL;
 	let TEMP_DRAW_SIGNAL: boolean = false;
 	/* Used to calculate node spacing. */
 	let NSX: number = 0;
@@ -526,6 +526,10 @@ function load_app(): void {
 			if (!global.MOBILE_MODE) {
 				window.addEventListener('dblclick', double_click, false);
 				webpage_document_title = document.getElementById('title_text');
+			}
+			if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] === global.ON) {
+				view_port.APPLY_SPREAD_FACTOR = true;
+				global.FORCE_RESIZE_EVENT = true;
 			}
 		}
 	}

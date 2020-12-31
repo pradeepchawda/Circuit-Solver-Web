@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**********************************************************************
  * Project           : Circuit Solver
  * File		        : Global.js
@@ -23,6 +23,7 @@ class Global {
     constructor() {
         this.NULL = null;
         this.MOBILE_MODE = false;
+        this.DESKTOP_MODE = false;
         this.system_initialization = {
             step: 0,
             max: 5,
@@ -1525,6 +1526,9 @@ class Global {
         this.SYSTEM_OPTION_STRETCH_WINDOW = indexer++;
         if (this.MOBILE_MODE) {
             this.SYSTEM_OPTIONS['values'][this.SYSTEM_OPTION_SHORTCUT_HINTS] = this.OFF;
+        }
+        if (this.DESKTOP_MODE || this.DESKTOP_MODE) {
+            this.SYSTEM_OPTIONS['values'][this.SYSTEM_OPTION_STRETCH_WINDOW] = this.ON;
         }
         /* 99.999% Of the colors are stored here for conveinence. This is to help when moving from canvas-2d to some other libraries
     in the future. Paint.js has one definition there... (The order of includes are hard to manage.)*/
