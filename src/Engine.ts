@@ -878,6 +878,23 @@ function load_app(): void {
 								if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
 									global.canvas_draw_request_counter = 0;
 									global.canvas_draw_request = false;
+
+									/* Reset all Events. */
+									global.mouse_down_event_queue.splice(0, global.mouse_down_event_queue.length);
+									global.mouse_up_event_queue.splice(0, global.mouse_up_event_queue.length);
+									global.mouse_double_click_event_queue.splice(0, global.mouse_double_click_event_queue.length);
+									global.mouse_wheel_event_queue.splice(0, global.mouse_wheel_event_queue.length);
+									global.key_down_event_queue.splice(0, global.key_down_event_queue.length);
+									global.key_up_event_queue.splice(0, global.key_up_event_queue.length);
+									MOUSE_EVENT_LATCH = false;
+									global.MOUSE_DOWN_EVENT = false;
+									global.MOUSE_MOVE_EVENT = false;
+									global.MOUSE_UP_EVENT = false;
+									global.MOUSE_DOUBLE_CLICK_EVENT = false;
+									global.MOUSE_WHEEL_EVENT = false;
+									global.RESIZE_EVENT = false;
+									global.KEY_DOWN_EVENT = false;
+									global.KEY_UP_EVENT = false;
 								}
 							}
 						}
@@ -957,6 +974,7 @@ function load_app(): void {
 				global.mouse_up_event_queue.splice(FIFO_INDEX, 1);
 				if (global.mouse_up_event_queue.length === 0) {
 					global.MOUSE_UP_EVENT = false;
+					global.MOUSE_MOVE_EVENT = false;
 				}
 				global.canvas_draw_request = true;
 				global.canvas_draw_request_counter = 0;
