@@ -673,6 +673,7 @@ class DCCurrent {
             if (!global.MOBILE_MODE) {
                 if (global.WIRE_BUILDER['step'] === 0 &&
                     this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
+                    !global.PICTURE_REQUEST &&
                     !multi_select_manager.MULTI_SELECT &&
                     !this.MULTI_SELECTED &&
                     !global.FLAG_SAVE_CIRCUIT &&

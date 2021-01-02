@@ -101,8 +101,8 @@ class BottomMenu {
         this.bottom_path.line_to(this.time_step_button.left - global.CANVAS_STROKE_WIDTH_6, view_port.bottom - global.CANVAS_STROKE_WIDTH_3);
         this.bottom_path.line_to(this.time_step_button.left - global.CANVAS_STROKE_WIDTH_3, this.time_step_button.top);
         this.bottom_path.line_to(view_port.right, this.time_step_button.top);
-        this.bottom_path.line_to(view_port.right, view_port.bottom);
-        this.bottom_path.line_to(view_port.left, view_port.bottom);
+        this.bottom_path.line_to(view_port.right, view_port.bottom + 5);
+        this.bottom_path.line_to(view_port.left, view_port.bottom + 5);
         this.bottom_path.close();
     }
     /* Incase there is any proccessing required for this element. */

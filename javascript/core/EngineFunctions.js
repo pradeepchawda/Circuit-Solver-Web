@@ -10126,8 +10126,8 @@ class EngineFunctions {
         workspace.workspace_translate_bounds(-temp_left, -temp_top);
         /* Create a temporary canvas element */
         let temp_surface = document.createElement('canvas');
-        temp_surface.width = workspace.bounds.get_width();
-        temp_surface.height = workspace.bounds.get_height();
+        temp_surface.width = workspace.bounds.get_width() + 1;
+        temp_surface.height = workspace.bounds.get_height() + 1;
         /* Assign the temporary surface an id */
         temp_surface.id = 'temp_canvas';
         /* Access the styling for the canvas. */
