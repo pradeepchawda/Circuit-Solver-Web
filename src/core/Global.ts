@@ -24,6 +24,7 @@ class Global {
 	public readonly 'NULL': any;
 	public readonly 'MOBILE_MODE': boolean;
 	public readonly 'DESKTOP_MODE': boolean;
+	public readonly 'NODE_HINTS': boolean;
 	public 'system_initialization': SYSTEM_INITIALIZATION_T;
 	public readonly 'VERSION_TAG': string;
 	/* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
@@ -811,6 +812,7 @@ class Global {
 		this.NULL = null;
 		this.MOBILE_MODE = false;
 		this.DESKTOP_MODE = false;
+		this.NODE_HINTS = true;
 		this.system_initialization = {
 			step: 0,
 			max: 5,
