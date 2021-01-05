@@ -24,6 +24,7 @@ class Global {
         this.NULL = null;
         this.MOBILE_MODE = false;
         this.DESKTOP_MODE = false;
+        this.NODE_HINTS = true;
         this.system_initialization = {
             step: 0,
             max: 5,
