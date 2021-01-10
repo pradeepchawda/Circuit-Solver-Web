@@ -33,9 +33,7 @@ class VirtualCanvas {
             this.surface.id = 'virutal_canvas_' + this.id;
         }
         /* Get the drawing context */
-        this.context = this.surface.getContext('2d', {
-            alpha: false
-        });
+        this.context = this.surface.getContext('2d');
     }
     resize() {
         this.surface.width = window.innerWidth;
@@ -47,6 +45,7 @@ class VirtualCanvas {
             this.surface.style.visibility = 'hidden';
             this.surface.style.display = 'none';
             this.surface.style.zIndex = '0';
+            this.context.imageSmoothingEnabled = false;
             this.context.globalCompositeOperation = 'source-over';
             this.surface.style.backfaceVisibility = 'hidden';
         }

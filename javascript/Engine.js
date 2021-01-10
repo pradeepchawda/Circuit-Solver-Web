@@ -530,6 +530,7 @@ function load_app() {
         }
         try {
             ctx.globalCompositeOperation = 'copy';
+            ctx.imageSmoothingEnabled = false;
         }
         catch (e) { }
         global.CANVAS_STROKE_WIDTH_1 = global.CANVAS_STROKE_WIDTH_BASE * 2.25;
