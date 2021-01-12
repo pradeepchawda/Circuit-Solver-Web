@@ -97,8 +97,8 @@ class EngineFunctions {
                     for (var i = 0; i < resistors.length; i++) {
                         if (resistors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': resistors[i].elm.type,
-                                'Id': resistors[i].elm.id,
+                                Type: resistors[i].elm.type,
+                                Id: resistors[i].elm.id
                             });
                             if (resistors[i].elm.type === global.selected_type && resistors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -108,8 +108,8 @@ class EngineFunctions {
                     for (var i = 0; i < capacitors.length; i++) {
                         if (capacitors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': capacitors[i].elm.type,
-                                'Id': capacitors[i].elm.id,
+                                Type: capacitors[i].elm.type,
+                                Id: capacitors[i].elm.id
                             });
                             if (capacitors[i].elm.type === global.selected_type && capacitors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -119,8 +119,8 @@ class EngineFunctions {
                     for (var i = 0; i < inductors.length; i++) {
                         if (inductors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': inductors[i].elm.type,
-                                'Id': inductors[i].elm.id,
+                                Type: inductors[i].elm.type,
+                                Id: inductors[i].elm.id
                             });
                             if (inductors[i].elm.type === global.selected_type && inductors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -130,8 +130,8 @@ class EngineFunctions {
                     for (var i = 0; i < grounds.length; i++) {
                         if (grounds[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': grounds[i].elm.type,
-                                'Id': grounds[i].elm.id,
+                                Type: grounds[i].elm.type,
+                                Id: grounds[i].elm.id
                             });
                             if (grounds[i].elm.type === global.selected_type && grounds[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -141,8 +141,8 @@ class EngineFunctions {
                     for (var i = 0; i < dcsources.length; i++) {
                         if (dcsources[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': dcsources[i].elm.type,
-                                'Id': dcsources[i].elm.id,
+                                Type: dcsources[i].elm.type,
+                                Id: dcsources[i].elm.id
                             });
                             if (dcsources[i].elm.type === global.selected_type && dcsources[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -152,8 +152,8 @@ class EngineFunctions {
                     for (var i = 0; i < dccurrents.length; i++) {
                         if (dccurrents[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': dccurrents[i].elm.type,
-                                'Id': dccurrents[i].elm.id,
+                                Type: dccurrents[i].elm.type,
+                                Id: dccurrents[i].elm.id
                             });
                             if (dccurrents[i].elm.type === global.selected_type && dccurrents[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -163,8 +163,8 @@ class EngineFunctions {
                     for (var i = 0; i < acsources.length; i++) {
                         if (acsources[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': acsources[i].elm.type,
-                                'Id': acsources[i].elm.id,
+                                Type: acsources[i].elm.type,
+                                Id: acsources[i].elm.id
                             });
                             if (acsources[i].elm.type === global.selected_type && acsources[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -174,8 +174,8 @@ class EngineFunctions {
                     for (var i = 0; i < accurrents.length; i++) {
                         if (accurrents[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': accurrents[i].elm.type,
-                                'Id': accurrents[i].elm.id,
+                                Type: accurrents[i].elm.type,
+                                Id: accurrents[i].elm.id
                             });
                             if (accurrents[i].elm.type === global.selected_type && accurrents[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -185,8 +185,8 @@ class EngineFunctions {
                     for (var i = 0; i < squarewaves.length; i++) {
                         if (squarewaves[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': squarewaves[i].elm.type,
-                                'Id': squarewaves[i].elm.id,
+                                Type: squarewaves[i].elm.type,
+                                Id: squarewaves[i].elm.id
                             });
                             if (squarewaves[i].elm.type === global.selected_type && squarewaves[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -196,8 +196,8 @@ class EngineFunctions {
                     for (var i = 0; i < sawwaves.length; i++) {
                         if (sawwaves[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': sawwaves[i].elm.type,
-                                'Id': sawwaves[i].elm.id,
+                                Type: sawwaves[i].elm.type,
+                                Id: sawwaves[i].elm.id
                             });
                             if (sawwaves[i].elm.type === global.selected_type && sawwaves[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -207,8 +207,8 @@ class EngineFunctions {
                     for (var i = 0; i < trianglewaves.length; i++) {
                         if (trianglewaves[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': trianglewaves[i].elm.type,
-                                'Id': trianglewaves[i].elm.id,
+                                Type: trianglewaves[i].elm.type,
+                                Id: trianglewaves[i].elm.id
                             });
                             if (trianglewaves[i].elm.type === global.selected_type && trianglewaves[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -218,8 +218,8 @@ class EngineFunctions {
                     for (var i = 0; i < constants.length; i++) {
                         if (constants[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': constants[i].elm.type,
-                                'Id': constants[i].elm.id,
+                                Type: constants[i].elm.type,
+                                Id: constants[i].elm.id
                             });
                             if (constants[i].elm.type === global.selected_type && constants[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -229,8 +229,8 @@ class EngineFunctions {
                     for (var i = 0; i < wires.length; i++) {
                         if (wires[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': wires[i].elm.type,
-                                'Id': wires[i].elm.id,
+                                Type: wires[i].elm.type,
+                                Id: wires[i].elm.id
                             });
                             if (wires[i].elm.type === global.selected_type && wires[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -240,8 +240,8 @@ class EngineFunctions {
                     for (var i = 0; i < nets.length; i++) {
                         if (nets[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': nets[i].elm.type,
-                                'Id': nets[i].elm.id,
+                                Type: nets[i].elm.type,
+                                Id: nets[i].elm.id
                             });
                             if (nets[i].elm.type === global.selected_type && nets[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -251,8 +251,8 @@ class EngineFunctions {
                     for (var i = 0; i < notes.length; i++) {
                         if (notes[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': notes[i].elm.type,
-                                'Id': notes[i].elm.id,
+                                Type: notes[i].elm.type,
+                                Id: notes[i].elm.id
                             });
                             if (notes[i].elm.type === global.selected_type && notes[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -262,8 +262,8 @@ class EngineFunctions {
                     for (var i = 0; i < rails.length; i++) {
                         if (rails[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': rails[i].elm.type,
-                                'Id': rails[i].elm.id,
+                                Type: rails[i].elm.type,
+                                Id: rails[i].elm.id
                             });
                             if (rails[i].elm.type === global.selected_type && rails[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -273,8 +273,8 @@ class EngineFunctions {
                     for (var i = 0; i < voltmeters.length; i++) {
                         if (voltmeters[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': voltmeters[i].elm.type,
-                                'Id': voltmeters[i].elm.id,
+                                Type: voltmeters[i].elm.type,
+                                Id: voltmeters[i].elm.id
                             });
                             if (voltmeters[i].elm.type === global.selected_type && voltmeters[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -284,8 +284,8 @@ class EngineFunctions {
                     for (var i = 0; i < ohmmeters.length; i++) {
                         if (ohmmeters[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': ohmmeters[i].elm.type,
-                                'Id': ohmmeters[i].elm.id,
+                                Type: ohmmeters[i].elm.type,
+                                Id: ohmmeters[i].elm.id
                             });
                             if (ohmmeters[i].elm.type === global.selected_type && ohmmeters[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -295,8 +295,8 @@ class EngineFunctions {
                     for (var i = 0; i < ammeters.length; i++) {
                         if (ammeters[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': ammeters[i].elm.type,
-                                'Id': ammeters[i].elm.id,
+                                Type: ammeters[i].elm.type,
+                                Id: ammeters[i].elm.id
                             });
                             if (ammeters[i].elm.type === global.selected_type && ammeters[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -306,8 +306,8 @@ class EngineFunctions {
                     for (var i = 0; i < wattmeters.length; i++) {
                         if (wattmeters[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': wattmeters[i].elm.type,
-                                'Id': wattmeters[i].elm.id,
+                                Type: wattmeters[i].elm.type,
+                                Id: wattmeters[i].elm.id
                             });
                             if (wattmeters[i].elm.type === global.selected_type && wattmeters[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -317,8 +317,8 @@ class EngineFunctions {
                     for (var i = 0; i < fuses.length; i++) {
                         if (fuses[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': fuses[i].elm.type,
-                                'Id': fuses[i].elm.id,
+                                Type: fuses[i].elm.type,
+                                Id: fuses[i].elm.id
                             });
                             if (fuses[i].elm.type === global.selected_type && fuses[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -328,8 +328,8 @@ class EngineFunctions {
                     for (var i = 0; i < spsts.length; i++) {
                         if (spsts[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': spsts[i].elm.type,
-                                'Id': spsts[i].elm.id,
+                                Type: spsts[i].elm.type,
+                                Id: spsts[i].elm.id
                             });
                             if (spsts[i].elm.type === global.selected_type && spsts[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -339,8 +339,8 @@ class EngineFunctions {
                     for (var i = 0; i < spdts.length; i++) {
                         if (spdts[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': spdts[i].elm.type,
-                                'Id': spdts[i].elm.id,
+                                Type: spdts[i].elm.type,
+                                Id: spdts[i].elm.id
                             });
                             if (spdts[i].elm.type === global.selected_type && spdts[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -350,8 +350,8 @@ class EngineFunctions {
                     for (var i = 0; i < nots.length; i++) {
                         if (nots[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': nots[i].elm.type,
-                                'Id': nots[i].elm.id,
+                                Type: nots[i].elm.type,
+                                Id: nots[i].elm.id
                             });
                             if (nots[i].elm.type === global.selected_type && nots[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -361,8 +361,8 @@ class EngineFunctions {
                     for (var i = 0; i < diodes.length; i++) {
                         if (diodes[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': diodes[i].elm.type,
-                                'Id': diodes[i].elm.id,
+                                Type: diodes[i].elm.type,
+                                Id: diodes[i].elm.id
                             });
                             if (diodes[i].elm.type === global.selected_type && diodes[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -372,8 +372,8 @@ class EngineFunctions {
                     for (var i = 0; i < leds.length; i++) {
                         if (leds[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': leds[i].elm.type,
-                                'Id': leds[i].elm.id,
+                                Type: leds[i].elm.type,
+                                Id: leds[i].elm.id
                             });
                             if (leds[i].elm.type === global.selected_type && leds[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -383,8 +383,8 @@ class EngineFunctions {
                     for (var i = 0; i < zeners.length; i++) {
                         if (zeners[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': zeners[i].elm.type,
-                                'Id': zeners[i].elm.id,
+                                Type: zeners[i].elm.type,
+                                Id: zeners[i].elm.id
                             });
                             if (zeners[i].elm.type === global.selected_type && zeners[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -394,8 +394,8 @@ class EngineFunctions {
                     for (var i = 0; i < potentiometers.length; i++) {
                         if (potentiometers[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': potentiometers[i].elm.type,
-                                'Id': potentiometers[i].elm.id,
+                                Type: potentiometers[i].elm.type,
+                                Id: potentiometers[i].elm.id
                             });
                             if (potentiometers[i].elm.type === global.selected_type && potentiometers[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -405,8 +405,8 @@ class EngineFunctions {
                     for (var i = 0; i < ands.length; i++) {
                         if (ands[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': ands[i].elm.type,
-                                'Id': ands[i].elm.id,
+                                Type: ands[i].elm.type,
+                                Id: ands[i].elm.id
                             });
                             if (ands[i].elm.type === global.selected_type && ands[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -416,8 +416,8 @@ class EngineFunctions {
                     for (var i = 0; i < ors.length; i++) {
                         if (ors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': ors[i].elm.type,
-                                'Id': ors[i].elm.id,
+                                Type: ors[i].elm.type,
+                                Id: ors[i].elm.id
                             });
                             if (ors[i].elm.type === global.selected_type && ors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -427,8 +427,8 @@ class EngineFunctions {
                     for (var i = 0; i < nands.length; i++) {
                         if (nands[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': nands[i].elm.type,
-                                'Id': nands[i].elm.id,
+                                Type: nands[i].elm.type,
+                                Id: nands[i].elm.id
                             });
                             if (nands[i].elm.type === global.selected_type && nands[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -438,8 +438,8 @@ class EngineFunctions {
                     for (var i = 0; i < nors.length; i++) {
                         if (nors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': nors[i].elm.type,
-                                'Id': nors[i].elm.id,
+                                Type: nors[i].elm.type,
+                                Id: nors[i].elm.id
                             });
                             if (nors[i].elm.type === global.selected_type && nors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -449,8 +449,8 @@ class EngineFunctions {
                     for (var i = 0; i < xors.length; i++) {
                         if (xors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': xors[i].elm.type,
-                                'Id': xors[i].elm.id,
+                                Type: xors[i].elm.type,
+                                Id: xors[i].elm.id
                             });
                             if (xors[i].elm.type === global.selected_type && xors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -460,8 +460,8 @@ class EngineFunctions {
                     for (var i = 0; i < xnors.length; i++) {
                         if (xnors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': xnors[i].elm.type,
-                                'Id': xnors[i].elm.id,
+                                Type: xnors[i].elm.type,
+                                Id: xnors[i].elm.id
                             });
                             if (xnors[i].elm.type === global.selected_type && xnors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -471,8 +471,8 @@ class EngineFunctions {
                     for (var i = 0; i < dffs.length; i++) {
                         if (dffs[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': dffs[i].elm.type,
-                                'Id': dffs[i].elm.id,
+                                Type: dffs[i].elm.type,
+                                Id: dffs[i].elm.id
                             });
                             if (dffs[i].elm.type === global.selected_type && dffs[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -482,8 +482,8 @@ class EngineFunctions {
                     for (var i = 0; i < vsats.length; i++) {
                         if (vsats[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vsats[i].elm.type,
-                                'Id': vsats[i].elm.id,
+                                Type: vsats[i].elm.type,
+                                Id: vsats[i].elm.id
                             });
                             if (vsats[i].elm.type === global.selected_type && vsats[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -493,8 +493,8 @@ class EngineFunctions {
                     for (var i = 0; i < adders.length; i++) {
                         if (adders[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': adders[i].elm.type,
-                                'Id': adders[i].elm.id,
+                                Type: adders[i].elm.type,
+                                Id: adders[i].elm.id
                             });
                             if (adders[i].elm.type === global.selected_type && adders[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -504,8 +504,8 @@ class EngineFunctions {
                     for (var i = 0; i < subtractors.length; i++) {
                         if (subtractors[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': subtractors[i].elm.type,
-                                'Id': subtractors[i].elm.id,
+                                Type: subtractors[i].elm.type,
+                                Id: subtractors[i].elm.id
                             });
                             if (subtractors[i].elm.type === global.selected_type && subtractors[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -515,8 +515,8 @@ class EngineFunctions {
                     for (var i = 0; i < multipliers.length; i++) {
                         if (multipliers[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': multipliers[i].elm.type,
-                                'Id': multipliers[i].elm.id,
+                                Type: multipliers[i].elm.type,
+                                Id: multipliers[i].elm.id
                             });
                             if (multipliers[i].elm.type === global.selected_type && multipliers[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -526,8 +526,8 @@ class EngineFunctions {
                     for (var i = 0; i < dividers.length; i++) {
                         if (dividers[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': dividers[i].elm.type,
-                                'Id': dividers[i].elm.id,
+                                Type: dividers[i].elm.type,
+                                Id: dividers[i].elm.id
                             });
                             if (dividers[i].elm.type === global.selected_type && dividers[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -537,8 +537,8 @@ class EngineFunctions {
                     for (var i = 0; i < gains.length; i++) {
                         if (gains[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': gains[i].elm.type,
-                                'Id': gains[i].elm.id,
+                                Type: gains[i].elm.type,
+                                Id: gains[i].elm.id
                             });
                             if (gains[i].elm.type === global.selected_type && gains[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -548,8 +548,8 @@ class EngineFunctions {
                     for (var i = 0; i < absvals.length; i++) {
                         if (absvals[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': absvals[i].elm.type,
-                                'Id': absvals[i].elm.id,
+                                Type: absvals[i].elm.type,
+                                Id: absvals[i].elm.id
                             });
                             if (absvals[i].elm.type === global.selected_type && absvals[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -559,8 +559,8 @@ class EngineFunctions {
                     for (var i = 0; i < vcsws.length; i++) {
                         if (vcsws[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vcsws[i].elm.type,
-                                'Id': vcsws[i].elm.id,
+                                Type: vcsws[i].elm.type,
+                                Id: vcsws[i].elm.id
                             });
                             if (vcsws[i].elm.type === global.selected_type && vcsws[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -570,8 +570,8 @@ class EngineFunctions {
                     for (var i = 0; i < vcvss.length; i++) {
                         if (vcvss[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vcvss[i].elm.type,
-                                'Id': vcvss[i].elm.id,
+                                Type: vcvss[i].elm.type,
+                                Id: vcvss[i].elm.id
                             });
                             if (vcvss[i].elm.type === global.selected_type && vcvss[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -581,8 +581,8 @@ class EngineFunctions {
                     for (var i = 0; i < vccss.length; i++) {
                         if (vccss[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vccss[i].elm.type,
-                                'Id': vccss[i].elm.id,
+                                Type: vccss[i].elm.type,
+                                Id: vccss[i].elm.id
                             });
                             if (vccss[i].elm.type === global.selected_type && vccss[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -592,8 +592,8 @@ class EngineFunctions {
                     for (var i = 0; i < cccss.length; i++) {
                         if (cccss[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': cccss[i].elm.type,
-                                'Id': cccss[i].elm.id,
+                                Type: cccss[i].elm.type,
+                                Id: cccss[i].elm.id
                             });
                             if (cccss[i].elm.type === global.selected_type && cccss[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -603,8 +603,8 @@ class EngineFunctions {
                     for (var i = 0; i < ccvss.length; i++) {
                         if (ccvss[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': ccvss[i].elm.type,
-                                'Id': ccvss[i].elm.id,
+                                Type: ccvss[i].elm.type,
+                                Id: ccvss[i].elm.id
                             });
                             if (ccvss[i].elm.type === global.selected_type && ccvss[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -614,8 +614,8 @@ class EngineFunctions {
                     for (var i = 0; i < opamps.length; i++) {
                         if (opamps[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': opamps[i].elm.type,
-                                'Id': opamps[i].elm.id,
+                                Type: opamps[i].elm.type,
+                                Id: opamps[i].elm.id
                             });
                             if (opamps[i].elm.type === global.selected_type && opamps[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -625,8 +625,8 @@ class EngineFunctions {
                     for (var i = 0; i < nmosfets.length; i++) {
                         if (nmosfets[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': nmosfets[i].elm.type,
-                                'Id': nmosfets[i].elm.id,
+                                Type: nmosfets[i].elm.type,
+                                Id: nmosfets[i].elm.id
                             });
                             if (nmosfets[i].elm.type === global.selected_type && nmosfets[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -636,8 +636,8 @@ class EngineFunctions {
                     for (var i = 0; i < pmosfets.length; i++) {
                         if (pmosfets[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': pmosfets[i].elm.type,
-                                'Id': pmosfets[i].elm.id,
+                                Type: pmosfets[i].elm.type,
+                                Id: pmosfets[i].elm.id
                             });
                             if (pmosfets[i].elm.type === global.selected_type && pmosfets[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -647,8 +647,8 @@ class EngineFunctions {
                     for (var i = 0; i < npns.length; i++) {
                         if (npns[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': npns[i].elm.type,
-                                'Id': npns[i].elm.id,
+                                Type: npns[i].elm.type,
+                                Id: npns[i].elm.id
                             });
                             if (npns[i].elm.type === global.selected_type && npns[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -658,8 +658,8 @@ class EngineFunctions {
                     for (var i = 0; i < pnps.length; i++) {
                         if (pnps[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': pnps[i].elm.type,
-                                'Id': pnps[i].elm.id,
+                                Type: pnps[i].elm.type,
+                                Id: pnps[i].elm.id
                             });
                             if (pnps[i].elm.type === global.selected_type && pnps[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -669,8 +669,8 @@ class EngineFunctions {
                     for (var i = 0; i < adcs.length; i++) {
                         if (adcs[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': adcs[i].elm.type,
-                                'Id': adcs[i].elm.id,
+                                Type: adcs[i].elm.type,
+                                Id: adcs[i].elm.id
                             });
                             if (adcs[i].elm.type === global.selected_type && adcs[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -680,8 +680,8 @@ class EngineFunctions {
                     for (var i = 0; i < dacs.length; i++) {
                         if (dacs[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': dacs[i].elm.type,
-                                'Id': dacs[i].elm.id,
+                                Type: dacs[i].elm.type,
+                                Id: dacs[i].elm.id
                             });
                             if (dacs[i].elm.type === global.selected_type && dacs[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -691,8 +691,8 @@ class EngineFunctions {
                     for (var i = 0; i < sandhs.length; i++) {
                         if (sandhs[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': sandhs[i].elm.type,
-                                'Id': sandhs[i].elm.id,
+                                Type: sandhs[i].elm.type,
+                                Id: sandhs[i].elm.id
                             });
                             if (sandhs[i].elm.type === global.selected_type && sandhs[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -702,8 +702,8 @@ class EngineFunctions {
                     for (var i = 0; i < pwms.length; i++) {
                         if (pwms[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': pwms[i].elm.type,
-                                'Id': pwms[i].elm.id,
+                                Type: pwms[i].elm.type,
+                                Id: pwms[i].elm.id
                             });
                             if (pwms[i].elm.type === global.selected_type && pwms[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -713,8 +713,8 @@ class EngineFunctions {
                     for (var i = 0; i < integrators.length; i++) {
                         if (integrators[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': integrators[i].elm.type,
-                                'Id': integrators[i].elm.id,
+                                Type: integrators[i].elm.type,
+                                Id: integrators[i].elm.id
                             });
                             if (integrators[i].elm.type === global.selected_type && integrators[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -724,8 +724,8 @@ class EngineFunctions {
                     for (var i = 0; i < differentiators.length; i++) {
                         if (differentiators[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': differentiators[i].elm.type,
-                                'Id': differentiators[i].elm.id,
+                                Type: differentiators[i].elm.type,
+                                Id: differentiators[i].elm.id
                             });
                             if (differentiators[i].elm.type === global.selected_type && differentiators[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -735,8 +735,8 @@ class EngineFunctions {
                     for (var i = 0; i < lowpasses.length; i++) {
                         if (lowpasses[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': lowpasses[i].elm.type,
-                                'Id': lowpasses[i].elm.id,
+                                Type: lowpasses[i].elm.type,
+                                Id: lowpasses[i].elm.id
                             });
                             if (lowpasses[i].elm.type === global.selected_type && lowpasses[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -746,8 +746,8 @@ class EngineFunctions {
                     for (var i = 0; i < highpasses.length; i++) {
                         if (highpasses[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': highpasses[i].elm.type,
-                                'Id': highpasses[i].elm.id,
+                                Type: highpasses[i].elm.type,
+                                Id: highpasses[i].elm.id
                             });
                             if (highpasses[i].elm.type === global.selected_type && highpasses[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -757,8 +757,8 @@ class EngineFunctions {
                     for (var i = 0; i < relays.length; i++) {
                         if (relays[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': relays[i].elm.type,
-                                'Id': relays[i].elm.id,
+                                Type: relays[i].elm.type,
+                                Id: relays[i].elm.id
                             });
                             if (relays[i].elm.type === global.selected_type && relays[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -768,8 +768,8 @@ class EngineFunctions {
                     for (var i = 0; i < pids.length; i++) {
                         if (pids[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': pids[i].elm.type,
-                                'Id': pids[i].elm.id,
+                                Type: pids[i].elm.type,
+                                Id: pids[i].elm.id
                             });
                             if (pids[i].elm.type === global.selected_type && pids[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -779,8 +779,8 @@ class EngineFunctions {
                     for (var i = 0; i < luts.length; i++) {
                         if (luts[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': luts[i].elm.type,
-                                'Id': luts[i].elm.id,
+                                Type: luts[i].elm.type,
+                                Id: luts[i].elm.id
                             });
                             if (luts[i].elm.type === global.selected_type && luts[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -790,8 +790,8 @@ class EngineFunctions {
                     for (var i = 0; i < vcrs.length; i++) {
                         if (vcrs[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vcrs[i].elm.type,
-                                'Id': vcrs[i].elm.id,
+                                Type: vcrs[i].elm.type,
+                                Id: vcrs[i].elm.id
                             });
                             if (vcrs[i].elm.type === global.selected_type && vcrs[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -801,8 +801,8 @@ class EngineFunctions {
                     for (var i = 0; i < vccas.length; i++) {
                         if (vccas[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vccas[i].elm.type,
-                                'Id': vccas[i].elm.id,
+                                Type: vccas[i].elm.type,
+                                Id: vccas[i].elm.id
                             });
                             if (vccas[i].elm.type === global.selected_type && vccas[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -812,8 +812,8 @@ class EngineFunctions {
                     for (var i = 0; i < vcls.length; i++) {
                         if (vcls[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': vcls[i].elm.type,
-                                'Id': vcls[i].elm.id,
+                                Type: vcls[i].elm.type,
+                                Id: vcls[i].elm.id
                             });
                             if (vcls[i].elm.type === global.selected_type && vcls[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -823,8 +823,8 @@ class EngineFunctions {
                     for (var i = 0; i < grts.length; i++) {
                         if (grts[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': grts[i].elm.type,
-                                'Id': grts[i].elm.id,
+                                Type: grts[i].elm.type,
+                                Id: grts[i].elm.id
                             });
                             if (grts[i].elm.type === global.selected_type && grts[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -834,8 +834,8 @@ class EngineFunctions {
                     for (var i = 0; i < tptzs.length; i++) {
                         if (tptzs[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': tptzs[i].elm.type,
-                                'Id': tptzs[i].elm.id,
+                                Type: tptzs[i].elm.type,
+                                Id: tptzs[i].elm.id
                             });
                             if (tptzs[i].elm.type === global.selected_type && tptzs[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -845,8 +845,8 @@ class EngineFunctions {
                     for (var i = 0; i < transformers.length; i++) {
                         if (transformers[i].bounds.is_near(global.selected_bounds, width)) {
                             global.selection_nearest_neighbors.push({
-                                'Type': transformers[i].elm.type,
-                                'Id': transformers[i].elm.id,
+                                Type: transformers[i].elm.type,
+                                Id: transformers[i].elm.id
                             });
                             if (transformers[i].elm.type === global.selected_type && transformers[i].elm.id === global.selected_id) {
                                 global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
@@ -3169,8 +3169,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        resistors.push(new Resistor(global.TYPE_RESISTOR, engine_functions
-            .get_resistor_assignment(), this.mapper2.n1, this.mapper2.n2));
+        resistors.push(new Resistor(global.TYPE_RESISTOR, engine_functions.get_resistor_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = resistors.length - 1;
         if (index < resistors.length) {
             resistors[index].is_translating = false;
@@ -3192,8 +3191,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        capacitors.push(new Capacitor(global.TYPE_CAPACITOR, engine_functions
-            .get_capacitor_assignment(), this.mapper2.n1, this.mapper2.n2));
+        capacitors.push(new Capacitor(global.TYPE_CAPACITOR, engine_functions.get_capacitor_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = capacitors.length - 1;
         if (index < capacitors.length) {
             capacitors[index].is_translating = false;
@@ -3215,8 +3213,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        inductors.push(new Inductor(global.TYPE_INDUCTOR, engine_functions
-            .get_inductor_assignment(), this.mapper2.n1, this.mapper2.n2));
+        inductors.push(new Inductor(global.TYPE_INDUCTOR, engine_functions.get_inductor_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = inductors.length - 1;
         if (index < inductors.length) {
             inductors[index].is_translating = false;
@@ -3235,8 +3232,7 @@ class EngineFunctions {
         this.y1 = global.mouse_y;
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         this.mapper1.map_node1(p1[0], p1[1]);
-        grounds.push(new Ground(global.TYPE_GROUND, engine_functions
-            .get_ground_assignment(), this.mapper1.n1));
+        grounds.push(new Ground(global.TYPE_GROUND, engine_functions.get_ground_assignment(), this.mapper1.n1));
         var index = grounds.length - 1;
         if (index < grounds.length) {
             grounds[index].is_translating = false;
@@ -3258,8 +3254,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        dcsources.push(new DCSource(global.TYPE_DCSOURCE, engine_functions
-            .get_dcsource_assignment(), this.mapper2.n1, this.mapper2.n2));
+        dcsources.push(new DCSource(global.TYPE_DCSOURCE, engine_functions.get_dcsource_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = dcsources.length - 1;
         if (index < dcsources.length) {
             dcsources[index].is_translating = false;
@@ -3281,8 +3276,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        dccurrents.push(new DCCurrent(global.TYPE_DCCURRENT, engine_functions
-            .get_dccurrent_assignment(), this.mapper2.n1, this.mapper2.n2));
+        dccurrents.push(new DCCurrent(global.TYPE_DCCURRENT, engine_functions.get_dccurrent_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = dccurrents.length - 1;
         if (index < dccurrents.length) {
             dccurrents[index].is_translating = false;
@@ -3304,8 +3298,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        acsources.push(new ACSource(global.TYPE_ACSOURCE, engine_functions
-            .get_acsource_assignment(), this.mapper2.n1, this.mapper2.n2));
+        acsources.push(new ACSource(global.TYPE_ACSOURCE, engine_functions.get_acsource_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = acsources.length - 1;
         if (index < acsources.length) {
             acsources[index].is_translating = false;
@@ -3327,8 +3320,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        accurrents.push(new ACCurrent(global.TYPE_ACCURRENT, engine_functions
-            .get_accurrent_assignment(), this.mapper2.n1, this.mapper2.n2));
+        accurrents.push(new ACCurrent(global.TYPE_ACCURRENT, engine_functions.get_accurrent_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = accurrents.length - 1;
         if (index < accurrents.length) {
             accurrents[index].is_translating = false;
@@ -3350,8 +3342,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        squarewaves.push(new SquareWave(global.TYPE_SQUAREWAVE, engine_functions
-            .get_squarewave_assignment(), this.mapper2.n1, this.mapper2.n2));
+        squarewaves.push(new SquareWave(global.TYPE_SQUAREWAVE, engine_functions.get_squarewave_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = squarewaves.length - 1;
         if (index < squarewaves.length) {
             squarewaves[index].is_translating = false;
@@ -3373,8 +3364,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        sawwaves.push(new SawWave(global.TYPE_SAW, engine_functions
-            .get_sawwave_assignment(), this.mapper2.n1, this.mapper2.n2));
+        sawwaves.push(new SawWave(global.TYPE_SAW, engine_functions.get_sawwave_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = sawwaves.length - 1;
         if (index < sawwaves.length) {
             sawwaves[index].is_translating = false;
@@ -3396,8 +3386,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        trianglewaves.push(new TriangleWave(global.TYPE_TRI, engine_functions
-            .get_trianglewave_assignment(), this.mapper2.n1, this.mapper2.n2));
+        trianglewaves.push(new TriangleWave(global.TYPE_TRI, engine_functions.get_trianglewave_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = trianglewaves.length - 1;
         if (index < trianglewaves.length) {
             trianglewaves[index].is_translating = false;
@@ -3416,8 +3405,7 @@ class EngineFunctions {
         this.y1 = global.mouse_y;
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         this.mapper1.map_node1(p1[0], p1[1]);
-        constants.push(new Constant(global.TYPE_CONSTANT, engine_functions
-            .get_constant_assignment(), this.mapper1.n1));
+        constants.push(new Constant(global.TYPE_CONSTANT, engine_functions.get_constant_assignment(), this.mapper1.n1));
         var index = constants.length - 1;
         if (index < constants.length) {
             constants[index].is_translating = false;
@@ -3436,8 +3424,7 @@ class EngineFunctions {
         this.y1 = global.mouse_y;
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         this.mapper1.map_node1(p1[0], p1[1]);
-        nets.push(new Net(global.TYPE_NET, engine_functions
-            .get_net_assignment(), this.mapper1.n1));
+        nets.push(new Net(global.TYPE_NET, engine_functions.get_net_assignment(), this.mapper1.n1));
         var index = nets.length - 1;
         if (index < nets.length) {
             nets[index].is_translating = false;
@@ -3456,8 +3443,7 @@ class EngineFunctions {
         this.y1 = global.mouse_y;
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         this.mapper1.map_node1(p1[0], p1[1]);
-        notes.push(new Note(global.TYPE_NOTE, engine_functions
-            .get_note_assignment(), this.mapper1.n1));
+        notes.push(new Note(global.TYPE_NOTE, engine_functions.get_note_assignment(), this.mapper1.n1));
         var index = notes.length - 1;
         if (index < notes.length) {
             notes[index].is_translating = false;
@@ -3476,8 +3462,7 @@ class EngineFunctions {
         this.y1 = global.mouse_y;
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         this.mapper1.map_node1(p1[0], p1[1]);
-        rails.push(new Rail(global.TYPE_RAIL, engine_functions
-            .get_rail_assignment(), this.mapper1.n1));
+        rails.push(new Rail(global.TYPE_RAIL, engine_functions.get_rail_assignment(), this.mapper1.n1));
         var index = rails.length - 1;
         if (index < rails.length) {
             rails[index].is_translating = false;
@@ -3499,8 +3484,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        voltmeters.push(new VoltMeter(global.TYPE_VOLTMETER, engine_functions
-            .get_voltmeter_assignment(), this.mapper2.n1, this.mapper2.n2));
+        voltmeters.push(new VoltMeter(global.TYPE_VOLTMETER, engine_functions.get_voltmeter_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = voltmeters.length - 1;
         if (index < voltmeters.length) {
             voltmeters[index].is_translating = false;
@@ -3522,8 +3506,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        ohmmeters.push(new OhmMeter(global.TYPE_OHMMETER, engine_functions
-            .get_ohmmeter_assignment(), this.mapper2.n1, this.mapper2.n2));
+        ohmmeters.push(new OhmMeter(global.TYPE_OHMMETER, engine_functions.get_ohmmeter_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = ohmmeters.length - 1;
         if (index < ohmmeters.length) {
             ohmmeters[index].is_translating = false;
@@ -3545,8 +3528,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        ammeters.push(new AmMeter(global.TYPE_AMMETER, engine_functions
-            .get_ammeter_assignment(), this.mapper2.n1, this.mapper2.n2));
+        ammeters.push(new AmMeter(global.TYPE_AMMETER, engine_functions.get_ammeter_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = ammeters.length - 1;
         if (index < ammeters.length) {
             ammeters[index].is_translating = false;
@@ -3571,8 +3553,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        wattmeters.push(new WattMeter(global.TYPE_WATTMETER, engine_functions
-            .get_wattmeter_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        wattmeters.push(new WattMeter(global.TYPE_WATTMETER, engine_functions.get_wattmeter_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = wattmeters.length - 1;
         if (index < wattmeters.length) {
             wattmeters[index].is_translating = false;
@@ -3594,8 +3575,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        fuses.push(new Fuse(global.TYPE_FUSE, engine_functions
-            .get_fuse_assignment(), this.mapper2.n1, this.mapper2.n2));
+        fuses.push(new Fuse(global.TYPE_FUSE, engine_functions.get_fuse_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = fuses.length - 1;
         if (index < fuses.length) {
             fuses[index].is_translating = false;
@@ -3617,8 +3597,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        spsts.push(new SinglePoleSingleThrow(global.TYPE_SPST, engine_functions
-            .get_spst_assignment(), this.mapper2.n1, this.mapper2.n2));
+        spsts.push(new SinglePoleSingleThrow(global.TYPE_SPST, engine_functions.get_spst_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = spsts.length - 1;
         if (index < spsts.length) {
             spsts[index].is_translating = false;
@@ -3643,8 +3622,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        spdts.push(new SinglePoleDoubleThrow(global.TYPE_SPDT, engine_functions
-            .get_spdt_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        spdts.push(new SinglePoleDoubleThrow(global.TYPE_SPDT, engine_functions.get_spdt_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = spdts.length - 1;
         if (index < spdts.length) {
             spdts[index].is_translating = false;
@@ -3666,8 +3644,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        nots.push(new NOTGate(global.TYPE_NOT, engine_functions
-            .get_not_assignment(), this.mapper2.n1, this.mapper2.n2));
+        nots.push(new NOTGate(global.TYPE_NOT, engine_functions.get_not_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = nots.length - 1;
         if (index < nots.length) {
             nots[index].is_translating = false;
@@ -3689,8 +3666,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        diodes.push(new Diode(global.TYPE_DIODE, engine_functions
-            .get_diode_assignment(), this.mapper2.n1, this.mapper2.n2));
+        diodes.push(new Diode(global.TYPE_DIODE, engine_functions.get_diode_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = diodes.length - 1;
         if (index < diodes.length) {
             diodes[index].is_translating = false;
@@ -3712,8 +3688,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        leds.push(new LightEmittingDiode(global.TYPE_LED, engine_functions
-            .get_led_assignment(), this.mapper2.n1, this.mapper2.n2));
+        leds.push(new LightEmittingDiode(global.TYPE_LED, engine_functions.get_led_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = leds.length - 1;
         if (index < leds.length) {
             leds[index].is_translating = false;
@@ -3735,8 +3710,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        zeners.push(new ZenerDiode(global.TYPE_ZENER, engine_functions
-            .get_zener_assignment(), this.mapper2.n1, this.mapper2.n2));
+        zeners.push(new ZenerDiode(global.TYPE_ZENER, engine_functions.get_zener_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = zeners.length - 1;
         if (index < zeners.length) {
             zeners[index].is_translating = false;
@@ -3761,8 +3735,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        potentiometers.push(new Potentiometer(global.TYPE_POTENTIOMETER, engine_functions
-            .get_potentiometer_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        potentiometers.push(new Potentiometer(global.TYPE_POTENTIOMETER, engine_functions.get_potentiometer_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = potentiometers.length - 1;
         if (index < potentiometers.length) {
             potentiometers[index].is_translating = false;
@@ -3787,8 +3760,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        ands.push(new ANDGate(global.TYPE_AND, engine_functions
-            .get_and_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        ands.push(new ANDGate(global.TYPE_AND, engine_functions.get_and_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = ands.length - 1;
         if (index < ands.length) {
             ands[index].is_translating = false;
@@ -3813,8 +3785,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        ors.push(new ORGate(global.TYPE_OR, engine_functions
-            .get_or_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        ors.push(new ORGate(global.TYPE_OR, engine_functions.get_or_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = ors.length - 1;
         if (index < ors.length) {
             ors[index].is_translating = false;
@@ -3839,8 +3810,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        nands.push(new NANDGate(global.TYPE_NAND, engine_functions
-            .get_nand_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        nands.push(new NANDGate(global.TYPE_NAND, engine_functions.get_nand_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = nands.length - 1;
         if (index < nands.length) {
             nands[index].is_translating = false;
@@ -3865,8 +3835,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        nors.push(new NORGate(global.TYPE_NOR, engine_functions
-            .get_nor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        nors.push(new NORGate(global.TYPE_NOR, engine_functions.get_nor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = nors.length - 1;
         if (index < nors.length) {
             nors[index].is_translating = false;
@@ -3891,8 +3860,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        xors.push(new XORGate(global.TYPE_XOR, engine_functions
-            .get_xor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        xors.push(new XORGate(global.TYPE_XOR, engine_functions.get_xor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = xors.length - 1;
         if (index < xors.length) {
             xors[index].is_translating = false;
@@ -3917,8 +3885,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        xnors.push(new XNORGate(global.TYPE_XNOR, engine_functions
-            .get_xnor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        xnors.push(new XNORGate(global.TYPE_XNOR, engine_functions.get_xnor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = xnors.length - 1;
         if (index < xnors.length) {
             xnors[index].is_translating = false;
@@ -3946,8 +3913,7 @@ class EngineFunctions {
         let p3 = this.mapper4.snap_to_grid(this.x3, this.y3);
         let p4 = this.mapper4.snap_to_grid(this.x4, this.y4);
         this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-        dffs.push(new DFlipFlop(global.TYPE_DFF, engine_functions
-            .get_dff_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
+        dffs.push(new DFlipFlop(global.TYPE_DFF, engine_functions.get_dff_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
         var index = dffs.length - 1;
         if (index < dffs.length) {
             dffs[index].is_translating = false;
@@ -3969,8 +3935,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        vsats.push(new VoltageSaturation(global.TYPE_VSAT, engine_functions
-            .get_vsat_assignment(), this.mapper2.n1, this.mapper2.n2));
+        vsats.push(new VoltageSaturation(global.TYPE_VSAT, engine_functions.get_vsat_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = vsats.length - 1;
         if (index < vsats.length) {
             vsats[index].is_translating = false;
@@ -3995,8 +3960,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        adders.push(new Adder(global.TYPE_ADD, engine_functions
-            .get_adder_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        adders.push(new Adder(global.TYPE_ADD, engine_functions.get_adder_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = adders.length - 1;
         if (index < adders.length) {
             adders[index].is_translating = false;
@@ -4021,8 +3985,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        subtractors.push(new Subtractor(global.TYPE_SUB, engine_functions
-            .get_subtractor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        subtractors.push(new Subtractor(global.TYPE_SUB, engine_functions.get_subtractor_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = subtractors.length - 1;
         if (index < subtractors.length) {
             subtractors[index].is_translating = false;
@@ -4047,8 +4010,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        multipliers.push(new Multiplier(global.TYPE_MUL, engine_functions
-            .get_multiplier_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        multipliers.push(new Multiplier(global.TYPE_MUL, engine_functions.get_multiplier_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = multipliers.length - 1;
         if (index < multipliers.length) {
             multipliers[index].is_translating = false;
@@ -4073,8 +4035,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        dividers.push(new Divider(global.TYPE_DIV, engine_functions
-            .get_divider_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        dividers.push(new Divider(global.TYPE_DIV, engine_functions.get_divider_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = dividers.length - 1;
         if (index < dividers.length) {
             dividers[index].is_translating = false;
@@ -4096,8 +4057,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        gains.push(new GainBlock(global.TYPE_GAIN, engine_functions
-            .get_gain_assignment(), this.mapper2.n1, this.mapper2.n2));
+        gains.push(new GainBlock(global.TYPE_GAIN, engine_functions.get_gain_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = gains.length - 1;
         if (index < gains.length) {
             gains[index].is_translating = false;
@@ -4119,8 +4079,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        absvals.push(new AbsoluteValue(global.TYPE_ABS, engine_functions
-            .get_absval_assignment(), this.mapper2.n1, this.mapper2.n2));
+        absvals.push(new AbsoluteValue(global.TYPE_ABS, engine_functions.get_absval_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = absvals.length - 1;
         if (index < absvals.length) {
             absvals[index].is_translating = false;
@@ -4145,8 +4104,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        vcsws.push(new VoltageControlledSwitch(global.TYPE_VCSW, engine_functions
-            .get_vcsw_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        vcsws.push(new VoltageControlledSwitch(global.TYPE_VCSW, engine_functions.get_vcsw_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = vcsws.length - 1;
         if (index < vcsws.length) {
             vcsws[index].is_translating = false;
@@ -4174,8 +4132,7 @@ class EngineFunctions {
         let p3 = this.mapper4.snap_to_grid(this.x3, this.y3);
         let p4 = this.mapper4.snap_to_grid(this.x4, this.y4);
         this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-        vcvss.push(new VoltageControlledVoltageSource(global.TYPE_VCVS, engine_functions
-            .get_vcvs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
+        vcvss.push(new VoltageControlledVoltageSource(global.TYPE_VCVS, engine_functions.get_vcvs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
         var index = vcvss.length - 1;
         if (index < vcvss.length) {
             vcvss[index].is_translating = false;
@@ -4203,8 +4160,7 @@ class EngineFunctions {
         let p3 = this.mapper4.snap_to_grid(this.x3, this.y3);
         let p4 = this.mapper4.snap_to_grid(this.x4, this.y4);
         this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-        vccss.push(new VoltageControlledCurrentSource(global.TYPE_VCCS, engine_functions
-            .get_vccs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
+        vccss.push(new VoltageControlledCurrentSource(global.TYPE_VCCS, engine_functions.get_vccs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
         var index = vccss.length - 1;
         if (index < vccss.length) {
             vccss[index].is_translating = false;
@@ -4232,8 +4188,7 @@ class EngineFunctions {
         let p3 = this.mapper4.snap_to_grid(this.x3, this.y3);
         let p4 = this.mapper4.snap_to_grid(this.x4, this.y4);
         this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-        cccss.push(new CurrentControlledCurrentSource(global.TYPE_CCCS, engine_functions
-            .get_cccs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
+        cccss.push(new CurrentControlledCurrentSource(global.TYPE_CCCS, engine_functions.get_cccs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
         var index = cccss.length - 1;
         if (index < cccss.length) {
             cccss[index].is_translating = false;
@@ -4261,8 +4216,7 @@ class EngineFunctions {
         let p3 = this.mapper4.snap_to_grid(this.x3, this.y3);
         let p4 = this.mapper4.snap_to_grid(this.x4, this.y4);
         this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-        ccvss.push(new CurrentControlledVoltageSource(global.TYPE_CCVS, engine_functions
-            .get_ccvs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
+        ccvss.push(new CurrentControlledVoltageSource(global.TYPE_CCVS, engine_functions.get_ccvs_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
         var index = ccvss.length - 1;
         if (index < ccvss.length) {
             ccvss[index].is_translating = false;
@@ -4287,8 +4241,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        opamps.push(new OperationalAmplifier(global.TYPE_OPAMP, engine_functions
-            .get_opamp_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        opamps.push(new OperationalAmplifier(global.TYPE_OPAMP, engine_functions.get_opamp_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = opamps.length - 1;
         if (index < opamps.length) {
             opamps[index].is_translating = false;
@@ -4313,8 +4266,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        nmosfets.push(new NChannelMOSFET(global.TYPE_NMOS, engine_functions
-            .get_nmosfet_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        nmosfets.push(new NChannelMOSFET(global.TYPE_NMOS, engine_functions.get_nmosfet_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = nmosfets.length - 1;
         if (index < nmosfets.length) {
             nmosfets[index].is_translating = false;
@@ -4339,8 +4291,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        pmosfets.push(new PChannelMOSFET(global.TYPE_PMOS, engine_functions
-            .get_pmosfet_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        pmosfets.push(new PChannelMOSFET(global.TYPE_PMOS, engine_functions.get_pmosfet_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = pmosfets.length - 1;
         if (index < pmosfets.length) {
             pmosfets[index].is_translating = false;
@@ -4365,8 +4316,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        npns.push(new NPNBipolarJunctionTransistor(global.TYPE_NPN, engine_functions
-            .get_npn_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        npns.push(new NPNBipolarJunctionTransistor(global.TYPE_NPN, engine_functions.get_npn_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = npns.length - 1;
         if (index < npns.length) {
             npns[index].is_translating = false;
@@ -4391,8 +4341,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        pnps.push(new PNPBipolarJunctionTransistor(global.TYPE_PNP, engine_functions
-            .get_pnp_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        pnps.push(new PNPBipolarJunctionTransistor(global.TYPE_PNP, engine_functions.get_pnp_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = pnps.length - 1;
         if (index < pnps.length) {
             pnps[index].is_translating = false;
@@ -4414,8 +4363,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        adcs.push(new ADCModule(global.TYPE_ADC, engine_functions
-            .get_adc_assignment(), this.mapper2.n1, this.mapper2.n2));
+        adcs.push(new ADCModule(global.TYPE_ADC, engine_functions.get_adc_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = adcs.length - 1;
         if (index < adcs.length) {
             adcs[index].is_translating = false;
@@ -4437,8 +4385,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        dacs.push(new DACModule(global.TYPE_DAC, engine_functions
-            .get_dac_assignment(), this.mapper2.n1, this.mapper2.n2));
+        dacs.push(new DACModule(global.TYPE_DAC, engine_functions.get_dac_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = dacs.length - 1;
         if (index < dacs.length) {
             dacs[index].is_translating = false;
@@ -4463,8 +4410,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        sandhs.push(new SampleAndHold(global.TYPE_SAH, engine_functions
-            .get_samplers_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        sandhs.push(new SampleAndHold(global.TYPE_SAH, engine_functions.get_samplers_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = sandhs.length - 1;
         if (index < sandhs.length) {
             sandhs[index].is_translating = false;
@@ -4489,8 +4435,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        pwms.push(new PulseWidthModulator(global.TYPE_PWM, engine_functions
-            .get_pwm_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        pwms.push(new PulseWidthModulator(global.TYPE_PWM, engine_functions.get_pwm_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = pwms.length - 1;
         if (index < pwms.length) {
             pwms[index].is_translating = false;
@@ -4512,8 +4457,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        integrators.push(new IntegratorModule(global.TYPE_INTEGRATOR, engine_functions
-            .get_integrator_assignment(), this.mapper2.n1, this.mapper2.n2));
+        integrators.push(new IntegratorModule(global.TYPE_INTEGRATOR, engine_functions.get_integrator_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = integrators.length - 1;
         if (index < integrators.length) {
             integrators[index].is_translating = false;
@@ -4535,8 +4479,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        differentiators.push(new DifferentiatorModule(global.TYPE_DIFFERENTIATOR, engine_functions
-            .get_differentiator_assignment(), this.mapper2.n1, this.mapper2.n2));
+        differentiators.push(new DifferentiatorModule(global.TYPE_DIFFERENTIATOR, engine_functions.get_differentiator_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = differentiators.length - 1;
         if (index < differentiators.length) {
             differentiators[index].is_translating = false;
@@ -4558,8 +4501,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        lowpasses.push(new LowPassFilter(global.TYPE_LPF, engine_functions
-            .get_lowpass_assignment(), this.mapper2.n1, this.mapper2.n2));
+        lowpasses.push(new LowPassFilter(global.TYPE_LPF, engine_functions.get_lowpass_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = lowpasses.length - 1;
         if (index < lowpasses.length) {
             lowpasses[index].is_translating = false;
@@ -4581,8 +4523,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        highpasses.push(new HighPassFilter(global.TYPE_HPF, engine_functions
-            .get_highpass_assignment(), this.mapper2.n1, this.mapper2.n2));
+        highpasses.push(new HighPassFilter(global.TYPE_HPF, engine_functions.get_highpass_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = highpasses.length - 1;
         if (index < highpasses.length) {
             highpasses[index].is_translating = false;
@@ -4610,8 +4551,7 @@ class EngineFunctions {
         let p3 = this.mapper4.snap_to_grid(this.x3, this.y3);
         let p4 = this.mapper4.snap_to_grid(this.x4, this.y4);
         this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-        relays.push(new Relay(global.TYPE_REL, engine_functions
-            .get_relay_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
+        relays.push(new Relay(global.TYPE_REL, engine_functions.get_relay_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
         var index = relays.length - 1;
         if (index < relays.length) {
             relays[index].is_translating = false;
@@ -4636,8 +4576,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        pids.push(new PIDModule(global.TYPE_PID, engine_functions
-            .get_pid_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        pids.push(new PIDModule(global.TYPE_PID, engine_functions.get_pid_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = pids.length - 1;
         if (index < pids.length) {
             pids[index].is_translating = false;
@@ -4659,8 +4598,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        luts.push(new LookUpTable(global.TYPE_LUT, engine_functions
-            .get_lut_assignment(), this.mapper2.n1, this.mapper2.n2));
+        luts.push(new LookUpTable(global.TYPE_LUT, engine_functions.get_lut_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = luts.length - 1;
         if (index < luts.length) {
             luts[index].is_translating = false;
@@ -4685,8 +4623,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        vcrs.push(new VoltageControlledResistor(global.TYPE_VCR, engine_functions
-            .get_vcr_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        vcrs.push(new VoltageControlledResistor(global.TYPE_VCR, engine_functions.get_vcr_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = vcrs.length - 1;
         if (index < vcrs.length) {
             vcrs[index].is_translating = false;
@@ -4711,8 +4648,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        vccas.push(new VoltageControlledCapacitor(global.TYPE_VCCA, engine_functions
-            .get_vcca_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        vccas.push(new VoltageControlledCapacitor(global.TYPE_VCCA, engine_functions.get_vcca_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = vccas.length - 1;
         if (index < vccas.length) {
             vccas[index].is_translating = false;
@@ -4737,8 +4673,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        vcls.push(new VoltageControlledInductor(global.TYPE_VCL, engine_functions
-            .get_vcl_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        vcls.push(new VoltageControlledInductor(global.TYPE_VCL, engine_functions.get_vcl_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = vcls.length - 1;
         if (index < vcls.length) {
             vcls[index].is_translating = false;
@@ -4763,8 +4698,7 @@ class EngineFunctions {
         let p2 = this.mapper3.snap_to_grid(this.x2, this.y2);
         let p3 = this.mapper3.snap_to_grid(this.x3, this.y3);
         this.mapper3.map_node3(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-        grts.push(new GreaterThan(global.TYPE_GRT, engine_functions
-            .get_grt_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
+        grts.push(new GreaterThan(global.TYPE_GRT, engine_functions.get_grt_assignment(), this.mapper3.n1, this.mapper3.n2, this.mapper3.n3));
         var index = grts.length - 1;
         if (index < grts.length) {
             grts[index].is_translating = false;
@@ -4786,8 +4720,7 @@ class EngineFunctions {
         let p1 = this.mapper2.snap_to_grid(this.x1, this.y1);
         let p2 = this.mapper2.snap_to_grid(this.x2, this.y2);
         this.mapper2.map_node2(p1[0], p1[1], p2[0], p2[1]);
-        tptzs.push(new TPTZModule(global.TYPE_TPTZ, engine_functions
-            .get_tptz_assignment(), this.mapper2.n1, this.mapper2.n2));
+        tptzs.push(new TPTZModule(global.TYPE_TPTZ, engine_functions.get_tptz_assignment(), this.mapper2.n1, this.mapper2.n2));
         var index = tptzs.length - 1;
         if (index < tptzs.length) {
             tptzs[index].is_translating = false;
@@ -4815,8 +4748,7 @@ class EngineFunctions {
         let p3 = this.mapper4.snap_to_grid(this.x3, this.y3);
         let p4 = this.mapper4.snap_to_grid(this.x4, this.y4);
         this.mapper4.map_node4(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
-        transformers.push(new Transformer(global.TYPE_TRAN, engine_functions
-            .get_transformer_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
+        transformers.push(new Transformer(global.TYPE_TRAN, engine_functions.get_transformer_assignment(), this.mapper4.n1, this.mapper4.n2, this.mapper4.n3, this.mapper4.n4));
         var index = transformers.length - 1;
         if (index < transformers.length) {
             transformers[index].is_translating = false;

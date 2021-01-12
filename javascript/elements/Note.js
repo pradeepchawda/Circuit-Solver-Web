@@ -587,6 +587,8 @@ class Note {
                     if (global.WIRE_BUILDER['step'] === 0 &&
                         !global.FLAG_MENU_OPEN_DOWN &&
                         this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
+                        !global.SIGNAL_ADD_ELEMENT &&
+                        !global.SIGNAL_HISTORY_LOCK &&
                         global.NODE_HINTS &&
                         !global.PICTURE_REQUEST &&
                         !multi_select_manager.MULTI_SELECT &&

@@ -720,9 +720,11 @@ class LowPassFilter {
                 if (global.WIRE_BUILDER['step'] === 0 &&
                     this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
                     global.NODE_HINTS &&
-                    !global.PICTURE_REQUEST &&
                     !multi_select_manager.MULTI_SELECT &&
                     !this.MULTI_SELECTED &&
+                    !global.SIGNAL_ADD_ELEMENT &&
+                    !global.SIGNAL_HISTORY_LOCK &&
+                    !global.PICTURE_REQUEST &&
                     !global.FLAG_SAVE_CIRCUIT &&
                     !global.FLAG_SAVE_IMAGE &&
                     !global.FLAG_MENU_OPEN_DOWN &&
