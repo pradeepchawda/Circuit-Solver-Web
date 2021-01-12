@@ -560,6 +560,7 @@ function load_app(): void {
 		main();
 	}
 	function resize_canvas(): void {
+		global.DEVICE_PIXEL_RATIO = window.devicePixelRatio;
 		/* Wait until the system proccesses the information then over-write the data. */
 		if (global.RESIZE_EVENT === false) {
 			global.last_view_port_right = view_port.right;
@@ -572,11 +573,11 @@ function load_app(): void {
 		solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
 		solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		solver_container.style.background = 'black';
-		view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth, window.innerHeight);
-		surface.width = window.innerWidth;
-		surface.height = window.innerHeight;
-		surface.style.width = solver_container.style.width;
-		surface.style.height = solver_container.style.height;
+		view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth * global.DEVICE_PIXEL_RATIO, window.innerHeight * global.DEVICE_PIXEL_RATIO);
+		surface.width = window.innerWidth * global.DEVICE_PIXEL_RATIO;
+		surface.height = window.innerHeight * global.DEVICE_PIXEL_RATIO;
+		surface.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
+		surface.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		global.resize_w_factor = view_port.view_width / global.last_view_port_width;
 		global.resize_h_factor = view_port.view_height / global.last_view_port_height;
 		/* Resize all the text and stroke widths */
@@ -616,13 +617,13 @@ function load_app(): void {
 	function mouse_down(mouse_event: MouseEvent): void {
 		if (global.system_initialization['completed']) {
 			if (global.MOBILE_MODE === false) {
-				global.mouse_x = mouse_event.clientX;
-				global.mouse_y = mouse_event.clientY;
+				global.mouse_x = mouse_event.clientX * global.DEVICE_PIXEL_RATIO;
+				global.mouse_y = mouse_event.clientY * global.DEVICE_PIXEL_RATIO;
 			} else {
 				//@ts-ignore
 				touch = mouse_event.touches[0];
-				global.mouse_x = touch.clientX;
-				global.mouse_y = touch.clientY;
+				global.mouse_x = touch.clientX * global.DEVICE_PIXEL_RATIO;
+				global.mouse_y = touch.clientY * global.DEVICE_PIXEL_RATIO;
 			}
 			if (bottom_menu.handle_file_explorer()) {
 				if (!global.user_file_selected) {
@@ -1495,13 +1496,13 @@ function load_app(): void {
 	function handle_mouse_down(): void {
 		global.component_touched = false;
 		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_down_event.clientX;
-			global.mouse_y = global.mouse_down_event.clientY;
+			global.mouse_x = global.mouse_down_event.clientX * global.DEVICE_PIXEL_RATIO;
+			global.mouse_y = global.mouse_down_event.clientY * global.DEVICE_PIXEL_RATIO;
 		} else {
 			//@ts-expect-error
 			touch = global.mouse_down_event.touches[0];
-			global.mouse_x = touch.clientX;
-			global.mouse_y = touch.clientY;
+			global.mouse_x = touch.clientX * global.DEVICE_PIXEL_RATIO;
+			global.mouse_y = touch.clientY * global.DEVICE_PIXEL_RATIO;
 		}
 		global.last_mouse_x = global.mouse_x;
 		global.last_mouse_y = global.mouse_y;
@@ -1797,13 +1798,13 @@ function load_app(): void {
 		global.last_mouse_x = global.mouse_x;
 		global.last_mouse_y = global.mouse_y;
 		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_move_event.clientX;
-			global.mouse_y = global.mouse_move_event.clientY;
+			global.mouse_x = global.mouse_move_event.clientX * global.DEVICE_PIXEL_RATIO;
+			global.mouse_y = global.mouse_move_event.clientY * global.DEVICE_PIXEL_RATIO;
 		} else {
 			//@ts-expect-error
 			touch = global.mouse_move_event.touches[0];
-			global.mouse_x = touch.clientX;
-			global.mouse_y = touch.clientY;
+			global.mouse_x = touch.clientX * global.DEVICE_PIXEL_RATIO;
+			global.mouse_y = touch.clientY * global.DEVICE_PIXEL_RATIO;
 		}
 		global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
 		global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
@@ -2062,8 +2063,8 @@ function load_app(): void {
 		global.mouse_down_x = -1;
 		global.mouse_down_y = -1;
 		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_up_event.clientX;
-			global.mouse_y = global.mouse_up_event.clientY;
+			global.mouse_x = global.mouse_up_event.clientX * global.DEVICE_PIXEL_RATIO;
+			global.mouse_y = global.mouse_up_event.clientY * global.DEVICE_PIXEL_RATIO;
 		} else {
 			/* Mobile doesn't generate new touch points for mouse up. We shall utilize whatever mouse coordinates exist. I'm
       assuming if we got this far then we have some touch events atlesat! */
@@ -2331,8 +2332,8 @@ function load_app(): void {
 		global.SIGNAL_HISTORY_LOCK = false;
 	}
 	function handle_mouse_wheel(): void {
-		global.mouse_x = global.mouse_wheel_event.clientX;
-		global.mouse_y = global.mouse_wheel_event.clientY;
+		global.mouse_x = global.mouse_wheel_event.clientX * global.DEVICE_PIXEL_RATIO;
+		global.mouse_y = global.mouse_wheel_event.clientY * global.DEVICE_PIXEL_RATIO;
 		if (
 			!global.FLAG_SAVE_IMAGE &&
 			!global.FLAG_SAVE_CIRCUIT &&
@@ -2351,8 +2352,8 @@ function load_app(): void {
 		menu_bar.mouse_wheel();
 	}
 	function handle_double_click(): void {
-		global.mouse_x = global.mouse_double_click_event.clientX;
-		global.mouse_y = global.mouse_double_click_event.clientY;
+		global.mouse_x = global.mouse_double_click_event.clientX * global.DEVICE_PIXEL_RATIO;
+		global.mouse_y = global.mouse_double_click_event.clientY * global.DEVICE_PIXEL_RATIO;
 		time_step_window.double_click();
 		save_image_window.double_click();
 		save_circuit_window.double_click();
