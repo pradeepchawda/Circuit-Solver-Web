@@ -37,7 +37,6 @@ class ElementOptions {
 	public show_2: boolean;
 	public show_3: boolean;
 	public edit_path0: Path;
-	public edit_path1: Path;
 	public trash_path0: Path;
 	public trash_path1: Path;
 	public flip_path0: Path;
@@ -110,7 +109,6 @@ class ElementOptions {
 		this.show_2 = false;
 		this.show_3 = false;
 		this.edit_path0 = new Path();
-		this.edit_path1 = new Path();
 		this.trash_path0 = new Path();
 		this.trash_path1 = new Path();
 		this.flip_path0 = new Path();
@@ -222,9 +220,9 @@ class ElementOptions {
 		let holder_y: Array<string> = [];
 		let edit_x0: string = '0.746,0.274,0.114,0.112,0.584';
 		let edit_y0: string = '0.406,0.874,0.876,0.734,0.264';
-		let edit_x1: string = '0.902,0.784,0.63,0.75';
-		let edit_y1: string = '0.244,0.368,0.226,0.104';
 		let padding: number = 0.1;
+		let offset_x: number = rect.get_width() * 0.1;
+		let offset_y: number = rect.get_height() * -0.07;
 		/* Loading the first path of edit  */
 		holder_x = edit_x0.split(',');
 		holder_y = edit_y0.split(',');
@@ -232,8 +230,8 @@ class ElementOptions {
 		for (var i: number = 0; i < holder_x.length; i++) {
 			points.push(
 				new PointF(
-					rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
-					rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])
+					rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]) + offset_x,
+					rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i]) + offset_y
 				)
 			);
 		}
@@ -246,27 +244,6 @@ class ElementOptions {
 			}
 		}
 		this.edit_path0.close();
-		/* Loading the second path of edit */
-		holder_x = edit_x1.split(',');
-		holder_y = edit_y1.split(',');
-		points = [];
-		for (var i: number = 0; i < holder_x.length; i++) {
-			points.push(
-				new PointF(
-					rect.left + padding * rect.get_width() + rect.get_width() * (1.0 - 2 * padding) * parseFloat(holder_x[i]),
-					rect.top + padding * rect.get_height() + rect.get_height() * (1.0 - 2 * padding) * parseFloat(holder_y[i])
-				)
-			);
-		}
-		this.edit_path1.reset();
-		for (var i: number = 0; i < points.length; i++) {
-			if (i === 0) {
-				this.edit_path1.move_to(points[i].x, points[i].y);
-			} else {
-				this.edit_path1.line_to(points[i].x, points[i].y);
-			}
-		}
-		this.edit_path1.close();
 	}
 	load_trash_svg(rect: RectF): void {
 		let holder_x: Array<string> = [];
@@ -2841,7 +2818,6 @@ class ElementOptions {
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							canvas.draw_path(this.edit_path1, this.icon_paint);
 							if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 								canvas.draw_text('E', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
 							}
@@ -2906,7 +2882,6 @@ class ElementOptions {
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							canvas.draw_path(this.edit_path1, this.icon_paint);
 							if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 								canvas.draw_text('E', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
 							}
@@ -2990,7 +2965,6 @@ class ElementOptions {
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							canvas.draw_path(this.edit_path1, this.icon_paint);
 							if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 								canvas.draw_text('E', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
 							}
@@ -3047,7 +3021,6 @@ class ElementOptions {
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							canvas.draw_path(this.edit_path1, this.icon_paint);
 							if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 								canvas.draw_text('E', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
 							}

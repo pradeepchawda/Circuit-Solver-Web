@@ -38,7 +38,7 @@ class VirtualCanvas {
 			this.surface.id = 'virutal_canvas_' + this.id;
 		}
 		/* Get the drawing context */
-		this.context = this.surface.getContext('2d');
+		this.context = this.surface.getContext('2d', { alpha: false });
 	}
 	resize(): void {
 		this.surface.width = window.innerWidth * global.DEVICE_PIXEL_RATIO;
@@ -51,6 +51,14 @@ class VirtualCanvas {
 			this.surface.style.display = 'none';
 			this.surface.style.zIndex = '0';
 			this.context.imageSmoothingEnabled = false;
+			//@ts-expect-error
+			this.context.mozImageSmoothingEnabled = false;
+			//@ts-expect-error
+			this.context.oImageSmoothingEnabled = false;
+			//@ts-expect-error
+			this.context.webkitImageSmoothingEnabled = false;
+			//@ts-expect-error
+			this.context.msImageSmoothingEnabled = false;
 			this.context.globalCompositeOperation = 'source-over';
 			this.surface.style.backfaceVisibility = 'hidden';
 		} catch (e) {}

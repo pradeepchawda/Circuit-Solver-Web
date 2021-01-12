@@ -404,7 +404,7 @@ var transformers: Array<Transformer> = [];
 /* A generic class to manage the on screen keyboard. */
 var on_screen_keyboard: OnScreenKeyboard = new OnScreenKeyboard();
 /* A toast for me matey! Argghhh */
-var toast: Toast = new Toast();
+var toast: Toast = global.NULL;
 /* The history manager of the whole system */
 var history_manager: HistoryManager = new HistoryManager();
 /* The options observer of the whole system */
@@ -495,6 +495,7 @@ function load_app(): void {
   (After everything is initialized) */
 	function initialize(step: number): void {
 		if (step === 0) {
+			toast = new Toast();
 			resize_canvas();
 			engine_functions.create_nodes(workspace.bounds);
 			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
@@ -513,7 +514,6 @@ function load_app(): void {
 			zoom_window = new ZoomWindow();
 			settings_window = new SettingsWindow();
 			yes_no_window = new YesNoWindow();
-			toast = new Toast();
 			simulation_manager = new SimulationManager();
 		} else if (step === 4) {
 			register_cross_platform_listeners();
@@ -591,6 +591,14 @@ function load_app(): void {
 		try {
 			ctx.globalCompositeOperation = 'copy';
 			ctx.imageSmoothingEnabled = false;
+			//@ts-expect-error
+			ctx.mozImageSmoothingEnabled = false;
+			//@ts-expect-error
+			ctx.oImageSmoothingEnabled = false;
+			//@ts-expect-error
+			ctx.webkitImageSmoothingEnabled = false;
+			//@ts-expect-error
+			ctx.msImageSmoothingEnabled = false;
 		} catch (e) {}
 		global.CANVAS_STROKE_WIDTH_1 = global.CANVAS_STROKE_WIDTH_BASE * 2.25;
 		global.CANVAS_STROKE_WIDTH_2 = global.CANVAS_STROKE_WIDTH_BASE * 2.65;
@@ -827,18 +835,32 @@ function load_app(): void {
 			}
 			/* Handling the render / update portions of the code when the draw flag is set. */
 			if (global.canvas_draw_event) {
-				TEMP_DRAW_SIGNAL =
-					!global.FLAG_SIMULATING ||
-					global.RESIZE_EVENT ||
-					global.MOUSE_DOWN_EVENT ||
-					global.MOUSE_MOVE_EVENT ||
-					global.MOUSE_UP_EVENT ||
-					global.MOUSE_WHEEL_EVENT ||
-					global.KEY_UP_EVENT ||
-					global.KEY_DOWN_EVENT ||
-					global.PICTURE_REQUEST ||
-					!workspace.DRAW_TO_SCREEN ||
-					toast.draw_text;
+				if (global.system_initialization['completed']) {
+					TEMP_DRAW_SIGNAL =
+						!global.FLAG_SIMULATING ||
+						global.RESIZE_EVENT ||
+						global.MOUSE_DOWN_EVENT ||
+						global.MOUSE_MOVE_EVENT ||
+						global.MOUSE_UP_EVENT ||
+						global.MOUSE_WHEEL_EVENT ||
+						global.KEY_UP_EVENT ||
+						global.KEY_DOWN_EVENT ||
+						global.PICTURE_REQUEST ||
+						!workspace.DRAW_TO_SCREEN ||
+						toast.draw_text;
+				} else {
+					TEMP_DRAW_SIGNAL =
+						!global.FLAG_SIMULATING ||
+						global.RESIZE_EVENT ||
+						global.MOUSE_DOWN_EVENT ||
+						global.MOUSE_MOVE_EVENT ||
+						global.MOUSE_UP_EVENT ||
+						global.MOUSE_WHEEL_EVENT ||
+						global.KEY_UP_EVENT ||
+						global.KEY_DOWN_EVENT ||
+						global.PICTURE_REQUEST ||
+						!workspace.DRAW_TO_SCREEN;
+				}
 				global.last_selected = global.selected;
 				update();
 				if (global.last_selected !== global.selected) {
