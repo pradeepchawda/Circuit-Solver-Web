@@ -750,6 +750,7 @@ function load_app() {
                 global.MOUSE_MOVE_EVENT ||
                 global.MOUSE_UP_EVENT ||
                 global.MOUSE_WHEEL_EVENT ||
+                global.MOUSE_DOUBLE_CLICK_EVENT ||
                 global.KEY_UP_EVENT ||
                 global.KEY_DOWN_EVENT ||
                 global.PICTURE_REQUEST ||
@@ -764,6 +765,7 @@ function load_app() {
                 global.MOUSE_MOVE_EVENT ||
                 global.MOUSE_UP_EVENT ||
                 global.MOUSE_WHEEL_EVENT ||
+                global.MOUSE_DOUBLE_CLICK_EVENT ||
                 global.KEY_UP_EVENT ||
                 global.KEY_DOWN_EVENT ||
                 global.PICTURE_REQUEST ||
@@ -790,6 +792,7 @@ function load_app() {
                             global.MOUSE_MOVE_EVENT ||
                             global.MOUSE_UP_EVENT ||
                             global.MOUSE_WHEEL_EVENT ||
+                            global.MOUSE_DOUBLE_CLICK_EVENT ||
                             global.KEY_UP_EVENT ||
                             global.KEY_DOWN_EVENT ||
                             global.PICTURE_REQUEST ||
@@ -804,6 +807,7 @@ function load_app() {
                             global.MOUSE_MOVE_EVENT ||
                             global.MOUSE_UP_EVENT ||
                             global.MOUSE_WHEEL_EVENT ||
+                            global.MOUSE_DOUBLE_CLICK_EVENT ||
                             global.KEY_UP_EVENT ||
                             global.KEY_DOWN_EVENT ||
                             global.PICTURE_REQUEST ||
