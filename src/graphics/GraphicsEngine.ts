@@ -52,6 +52,7 @@ class GraphicsEngine {
 	public ENABLE_LINE_JOIN: boolean;
 	public FONT_TEMPLATE: string;
 	public FAST_PI_MUL_2: number;
+	public PI_MUL_2: number;
 	public dict: PATH_T;
 	public command: string;
 	public cache: Array<number>;
@@ -93,6 +94,7 @@ class GraphicsEngine {
 		this.ENABLE_LINE_JOIN = false;
 		this.FONT_TEMPLATE = 'spx f';
 		this.FAST_PI_MUL_2 = 7;
+		this.PI_MUL_2 = Math.PI * 2;
 		this.dict = null;
 		this.command = '';
 		this.cache = [];
@@ -280,7 +282,7 @@ class GraphicsEngine {
 		this.x = (global.ZERO_PT_FIVE + x) >> global.ZERO;
 		this.y = (global.ZERO_PT_FIVE + y) >> global.ZERO;
 		this.apply_paint(paint, false);
-		this.ctx.arc(this.x, this.y, radius, 0, this.FAST_PI_MUL_2);
+		this.ctx.arc(this.x, this.y, radius, 0, this.PI_MUL_2);
 		switch (paint.paint_style) {
 			case paint.style.FILL:
 				this.ctx.fill();
@@ -303,7 +305,7 @@ class GraphicsEngine {
 		this.x = (global.ZERO_PT_FIVE + rect.get_center_x()) >> global.ZERO;
 		this.y = (global.ZERO_PT_FIVE + rect.get_center_y()) >> global.ZERO;
 		this.apply_paint(paint, false);
-		this.ctx.arc(this.x, this.y, this.width, 0, this.FAST_PI_MUL_2);
+		this.ctx.arc(this.x, this.y, this.width, 0, this.PI_MUL_2);
 		switch (paint.paint_style) {
 			case paint.style.FILL:
 				this.ctx.fill();
@@ -326,7 +328,7 @@ class GraphicsEngine {
 		this.x = (global.ZERO_PT_FIVE + rect.get_center_x()) >> global.ZERO;
 		this.y = (global.ZERO_PT_FIVE + rect.get_center_y()) >> global.ZERO;
 		this.apply_paint(paint, false);
-		this.ctx.arc(this.x, this.y, this.width, 0, this.FAST_PI_MUL_2);
+		this.ctx.arc(this.x, this.y, this.width, 0, this.PI_MUL_2);
 		switch (paint.paint_style) {
 			case paint.style.FILL:
 				this.ctx.fill();
@@ -351,7 +353,7 @@ class GraphicsEngine {
 			this.x = (global.ZERO_PT_FIVE + this.cache[0]) >> global.ZERO;
 			this.y = (global.ZERO_PT_FIVE + this.cache[1]) >> global.ZERO;
 			this.ctx.moveTo(this.x, this.y);
-			this.ctx.arc(this.x, this.y, this.cache[2], 0, this.FAST_PI_MUL_2);
+			this.ctx.arc(this.x, this.y, this.cache[2], 0, this.PI_MUL_2);
 		}
 		switch (paint.paint_style) {
 			case paint.style.FILL:
