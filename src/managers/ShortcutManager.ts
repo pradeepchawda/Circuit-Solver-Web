@@ -480,13 +480,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							resistors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							resistors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							resistors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							resistors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -497,13 +497,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							capacitors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							capacitors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							capacitors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							capacitors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -514,13 +514,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							inductors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							inductors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							inductors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							inductors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -531,13 +531,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							grounds[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							grounds[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							grounds[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							grounds[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -548,13 +548,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dcsources[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							dcsources[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							dcsources[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							dcsources[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -565,13 +565,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dccurrents[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							dccurrents[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							dccurrents[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							dccurrents[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -582,13 +582,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							acsources[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							acsources[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							acsources[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							acsources[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -599,13 +599,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							accurrents[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							accurrents[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							accurrents[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							accurrents[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -616,13 +616,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							squarewaves[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							squarewaves[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							squarewaves[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							squarewaves[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -633,13 +633,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							sawwaves[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							sawwaves[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							sawwaves[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							sawwaves[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -650,13 +650,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							trianglewaves[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							trianglewaves[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							trianglewaves[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							trianglewaves[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -667,13 +667,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							constants[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							constants[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							constants[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							constants[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -684,13 +684,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nets[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							nets[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							nets[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							nets[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -701,13 +701,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							notes[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							notes[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							notes[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							notes[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -718,13 +718,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							rails[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							rails[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							rails[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							rails[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -735,13 +735,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							voltmeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							voltmeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							voltmeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							voltmeters[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -752,13 +752,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ohmmeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							ohmmeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							ohmmeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							ohmmeters[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -769,13 +769,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ammeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							ammeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							ammeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							ammeters[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -786,13 +786,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							wattmeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							wattmeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							wattmeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							wattmeters[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -803,13 +803,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							fuses[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							fuses[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							fuses[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							fuses[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -820,13 +820,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							spsts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							spsts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							spsts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							spsts[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -837,13 +837,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							spdts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							spdts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							spdts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							spdts[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -854,13 +854,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nots[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							nots[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							nots[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							nots[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -871,13 +871,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							diodes[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							diodes[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							diodes[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							diodes[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -888,13 +888,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							leds[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							leds[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							leds[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							leds[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -905,13 +905,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							zeners[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							zeners[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							zeners[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							zeners[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -922,13 +922,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							potentiometers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							potentiometers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							potentiometers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							potentiometers[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -939,13 +939,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ands[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							ands[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							ands[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							ands[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -956,13 +956,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							ors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							ors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							ors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -973,13 +973,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nands[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							nands[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							nands[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							nands[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -990,13 +990,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							nors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							nors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							nors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1007,13 +1007,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							xors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							xors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							xors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							xors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1024,13 +1024,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							xnors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							xnors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							xnors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							xnors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1041,13 +1041,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dffs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							dffs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							dffs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							dffs[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1058,13 +1058,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vsats[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							vsats[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							vsats[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							vsats[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1075,13 +1075,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							adders[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							adders[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							adders[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							adders[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1092,13 +1092,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							subtractors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							subtractors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							subtractors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							subtractors[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1109,13 +1109,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							multipliers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							multipliers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							multipliers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							multipliers[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1126,13 +1126,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dividers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							dividers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							dividers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							dividers[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1143,13 +1143,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							gains[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							gains[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							gains[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							gains[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1160,13 +1160,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							absvals[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							absvals[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							absvals[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							absvals[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1177,13 +1177,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcsws[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							vcsws[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							vcsws[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							vcsws[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1194,13 +1194,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcvss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							vcvss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							vcvss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							vcvss[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1211,13 +1211,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vccss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							vccss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							vccss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							vccss[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1228,13 +1228,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							cccss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							cccss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							cccss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							cccss[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1245,13 +1245,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ccvss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							ccvss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							ccvss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							ccvss[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1262,13 +1262,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							opamps[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							opamps[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							opamps[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							opamps[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1279,13 +1279,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nmosfets[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							nmosfets[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							nmosfets[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							nmosfets[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1296,13 +1296,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pmosfets[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							pmosfets[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							pmosfets[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							pmosfets[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1313,13 +1313,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							npns[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							npns[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							npns[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							npns[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1330,13 +1330,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pnps[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							pnps[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							pnps[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							pnps[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1347,13 +1347,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							adcs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							adcs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							adcs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							adcs[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1364,13 +1364,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dacs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							dacs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							dacs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							dacs[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1381,13 +1381,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							sandhs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							sandhs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							sandhs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							sandhs[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1398,13 +1398,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pwms[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							pwms[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							pwms[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							pwms[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1415,13 +1415,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							integrators[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							integrators[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							integrators[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							integrators[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1432,13 +1432,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							differentiators[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							differentiators[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							differentiators[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							differentiators[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1449,13 +1449,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							lowpasses[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							lowpasses[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							lowpasses[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							lowpasses[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1466,13 +1466,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							highpasses[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							highpasses[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							highpasses[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							highpasses[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1483,13 +1483,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							relays[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							relays[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							relays[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							relays[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1500,13 +1500,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pids[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							pids[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							pids[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							pids[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1517,13 +1517,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							luts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							luts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							luts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							luts[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1534,13 +1534,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcrs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							vcrs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							vcrs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							vcrs[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1551,13 +1551,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vccas[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							vccas[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							vccas[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							vccas[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1568,13 +1568,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcls[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							vcls[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							vcls[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							vcls[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1585,13 +1585,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							grts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							grts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							grts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							grts[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1602,13 +1602,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							tptzs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							tptzs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							tptzs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							tptzs[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1619,13 +1619,13 @@ class ShortcutManager {
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							transformers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
+							/* Down. */
 							transformers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
+							/* Left. */
 							transformers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
+							/* Right. */
 							transformers[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -4393,19 +4393,19 @@ class ShortcutManager {
 						resistors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						resistors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						resistors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						resistors[i].move_element(global.node_space_x, 0);
@@ -4426,19 +4426,19 @@ class ShortcutManager {
 						capacitors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						capacitors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						capacitors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						capacitors[i].move_element(global.node_space_x, 0);
@@ -4459,19 +4459,19 @@ class ShortcutManager {
 						inductors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						inductors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						inductors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						inductors[i].move_element(global.node_space_x, 0);
@@ -4492,19 +4492,19 @@ class ShortcutManager {
 						grounds[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grounds[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grounds[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grounds[i].move_element(global.node_space_x, 0);
@@ -4525,19 +4525,19 @@ class ShortcutManager {
 						dcsources[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dcsources[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dcsources[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dcsources[i].move_element(global.node_space_x, 0);
@@ -4558,19 +4558,19 @@ class ShortcutManager {
 						dccurrents[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dccurrents[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dccurrents[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dccurrents[i].move_element(global.node_space_x, 0);
@@ -4591,19 +4591,19 @@ class ShortcutManager {
 						acsources[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						acsources[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						acsources[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						acsources[i].move_element(global.node_space_x, 0);
@@ -4624,19 +4624,19 @@ class ShortcutManager {
 						accurrents[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						accurrents[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						accurrents[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						accurrents[i].move_element(global.node_space_x, 0);
@@ -4657,19 +4657,19 @@ class ShortcutManager {
 						squarewaves[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						squarewaves[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						squarewaves[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						squarewaves[i].move_element(global.node_space_x, 0);
@@ -4690,19 +4690,19 @@ class ShortcutManager {
 						sawwaves[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sawwaves[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sawwaves[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sawwaves[i].move_element(global.node_space_x, 0);
@@ -4723,19 +4723,19 @@ class ShortcutManager {
 						trianglewaves[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						trianglewaves[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						trianglewaves[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						trianglewaves[i].move_element(global.node_space_x, 0);
@@ -4756,19 +4756,19 @@ class ShortcutManager {
 						constants[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						constants[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						constants[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						constants[i].move_element(global.node_space_x, 0);
@@ -4789,19 +4789,19 @@ class ShortcutManager {
 						wires[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wires[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wires[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wires[i].move_element(global.node_space_x, 0);
@@ -4822,19 +4822,19 @@ class ShortcutManager {
 						nets[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nets[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nets[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nets[i].move_element(global.node_space_x, 0);
@@ -4855,19 +4855,19 @@ class ShortcutManager {
 						notes[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						notes[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						notes[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						notes[i].move_element(global.node_space_x, 0);
@@ -4888,19 +4888,19 @@ class ShortcutManager {
 						rails[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						rails[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						rails[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						rails[i].move_element(global.node_space_x, 0);
@@ -4921,19 +4921,19 @@ class ShortcutManager {
 						voltmeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						voltmeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						voltmeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						voltmeters[i].move_element(global.node_space_x, 0);
@@ -4954,19 +4954,19 @@ class ShortcutManager {
 						ohmmeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ohmmeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ohmmeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ohmmeters[i].move_element(global.node_space_x, 0);
@@ -4987,19 +4987,19 @@ class ShortcutManager {
 						ammeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ammeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ammeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ammeters[i].move_element(global.node_space_x, 0);
@@ -5020,19 +5020,19 @@ class ShortcutManager {
 						wattmeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wattmeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wattmeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wattmeters[i].move_element(global.node_space_x, 0);
@@ -5053,19 +5053,19 @@ class ShortcutManager {
 						fuses[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						fuses[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						fuses[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						fuses[i].move_element(global.node_space_x, 0);
@@ -5086,19 +5086,19 @@ class ShortcutManager {
 						spsts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spsts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spsts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spsts[i].move_element(global.node_space_x, 0);
@@ -5119,19 +5119,19 @@ class ShortcutManager {
 						spdts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spdts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spdts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spdts[i].move_element(global.node_space_x, 0);
@@ -5152,19 +5152,19 @@ class ShortcutManager {
 						nots[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nots[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nots[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nots[i].move_element(global.node_space_x, 0);
@@ -5185,19 +5185,19 @@ class ShortcutManager {
 						diodes[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						diodes[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						diodes[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						diodes[i].move_element(global.node_space_x, 0);
@@ -5218,19 +5218,19 @@ class ShortcutManager {
 						leds[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						leds[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						leds[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						leds[i].move_element(global.node_space_x, 0);
@@ -5251,19 +5251,19 @@ class ShortcutManager {
 						zeners[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						zeners[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						zeners[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						zeners[i].move_element(global.node_space_x, 0);
@@ -5284,19 +5284,19 @@ class ShortcutManager {
 						potentiometers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						potentiometers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						potentiometers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						potentiometers[i].move_element(global.node_space_x, 0);
@@ -5317,19 +5317,19 @@ class ShortcutManager {
 						ands[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ands[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ands[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ands[i].move_element(global.node_space_x, 0);
@@ -5350,19 +5350,19 @@ class ShortcutManager {
 						ors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ors[i].move_element(global.node_space_x, 0);
@@ -5383,19 +5383,19 @@ class ShortcutManager {
 						nands[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nands[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nands[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nands[i].move_element(global.node_space_x, 0);
@@ -5416,19 +5416,19 @@ class ShortcutManager {
 						nors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nors[i].move_element(global.node_space_x, 0);
@@ -5449,19 +5449,19 @@ class ShortcutManager {
 						xors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xors[i].move_element(global.node_space_x, 0);
@@ -5482,19 +5482,19 @@ class ShortcutManager {
 						xnors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xnors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xnors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xnors[i].move_element(global.node_space_x, 0);
@@ -5515,19 +5515,19 @@ class ShortcutManager {
 						dffs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dffs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dffs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dffs[i].move_element(global.node_space_x, 0);
@@ -5548,19 +5548,19 @@ class ShortcutManager {
 						vsats[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vsats[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vsats[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vsats[i].move_element(global.node_space_x, 0);
@@ -5581,19 +5581,19 @@ class ShortcutManager {
 						adders[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adders[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adders[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adders[i].move_element(global.node_space_x, 0);
@@ -5614,19 +5614,19 @@ class ShortcutManager {
 						subtractors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						subtractors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						subtractors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						subtractors[i].move_element(global.node_space_x, 0);
@@ -5647,19 +5647,19 @@ class ShortcutManager {
 						multipliers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						multipliers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						multipliers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						multipliers[i].move_element(global.node_space_x, 0);
@@ -5680,19 +5680,19 @@ class ShortcutManager {
 						dividers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dividers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dividers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dividers[i].move_element(global.node_space_x, 0);
@@ -5713,19 +5713,19 @@ class ShortcutManager {
 						gains[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						gains[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						gains[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						gains[i].move_element(global.node_space_x, 0);
@@ -5746,19 +5746,19 @@ class ShortcutManager {
 						absvals[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						absvals[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						absvals[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						absvals[i].move_element(global.node_space_x, 0);
@@ -5779,19 +5779,19 @@ class ShortcutManager {
 						vcsws[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcsws[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcsws[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcsws[i].move_element(global.node_space_x, 0);
@@ -5812,19 +5812,19 @@ class ShortcutManager {
 						vcvss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcvss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcvss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcvss[i].move_element(global.node_space_x, 0);
@@ -5845,19 +5845,19 @@ class ShortcutManager {
 						vccss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccss[i].move_element(global.node_space_x, 0);
@@ -5878,19 +5878,19 @@ class ShortcutManager {
 						cccss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						cccss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						cccss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						cccss[i].move_element(global.node_space_x, 0);
@@ -5911,19 +5911,19 @@ class ShortcutManager {
 						ccvss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ccvss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ccvss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ccvss[i].move_element(global.node_space_x, 0);
@@ -5944,19 +5944,19 @@ class ShortcutManager {
 						opamps[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						opamps[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						opamps[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						opamps[i].move_element(global.node_space_x, 0);
@@ -5977,19 +5977,19 @@ class ShortcutManager {
 						nmosfets[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nmosfets[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nmosfets[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nmosfets[i].move_element(global.node_space_x, 0);
@@ -6010,19 +6010,19 @@ class ShortcutManager {
 						pmosfets[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pmosfets[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pmosfets[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pmosfets[i].move_element(global.node_space_x, 0);
@@ -6043,19 +6043,19 @@ class ShortcutManager {
 						npns[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						npns[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						npns[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						npns[i].move_element(global.node_space_x, 0);
@@ -6076,19 +6076,19 @@ class ShortcutManager {
 						pnps[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pnps[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pnps[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pnps[i].move_element(global.node_space_x, 0);
@@ -6109,19 +6109,19 @@ class ShortcutManager {
 						adcs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adcs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adcs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adcs[i].move_element(global.node_space_x, 0);
@@ -6142,19 +6142,19 @@ class ShortcutManager {
 						dacs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dacs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dacs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dacs[i].move_element(global.node_space_x, 0);
@@ -6175,19 +6175,19 @@ class ShortcutManager {
 						sandhs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sandhs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sandhs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sandhs[i].move_element(global.node_space_x, 0);
@@ -6208,19 +6208,19 @@ class ShortcutManager {
 						pwms[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pwms[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pwms[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pwms[i].move_element(global.node_space_x, 0);
@@ -6241,19 +6241,19 @@ class ShortcutManager {
 						integrators[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						integrators[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						integrators[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						integrators[i].move_element(global.node_space_x, 0);
@@ -6274,19 +6274,19 @@ class ShortcutManager {
 						differentiators[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						differentiators[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						differentiators[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						differentiators[i].move_element(global.node_space_x, 0);
@@ -6307,19 +6307,19 @@ class ShortcutManager {
 						lowpasses[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						lowpasses[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						lowpasses[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						lowpasses[i].move_element(global.node_space_x, 0);
@@ -6340,19 +6340,19 @@ class ShortcutManager {
 						highpasses[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						highpasses[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						highpasses[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						highpasses[i].move_element(global.node_space_x, 0);
@@ -6373,19 +6373,19 @@ class ShortcutManager {
 						relays[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						relays[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						relays[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						relays[i].move_element(global.node_space_x, 0);
@@ -6406,19 +6406,19 @@ class ShortcutManager {
 						pids[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pids[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pids[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pids[i].move_element(global.node_space_x, 0);
@@ -6439,19 +6439,19 @@ class ShortcutManager {
 						luts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						luts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						luts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						luts[i].move_element(global.node_space_x, 0);
@@ -6472,19 +6472,19 @@ class ShortcutManager {
 						vcrs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcrs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcrs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcrs[i].move_element(global.node_space_x, 0);
@@ -6505,19 +6505,19 @@ class ShortcutManager {
 						vccas[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccas[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccas[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccas[i].move_element(global.node_space_x, 0);
@@ -6538,19 +6538,19 @@ class ShortcutManager {
 						vcls[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcls[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcls[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcls[i].move_element(global.node_space_x, 0);
@@ -6571,19 +6571,19 @@ class ShortcutManager {
 						grts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grts[i].move_element(global.node_space_x, 0);
@@ -6604,19 +6604,19 @@ class ShortcutManager {
 						tptzs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						tptzs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						tptzs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						tptzs[i].move_element(global.node_space_x, 0);
@@ -6637,19 +6637,19 @@ class ShortcutManager {
 						transformers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
+					/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						transformers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
+					/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						transformers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
+					/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						transformers[i].move_element(global.node_space_x, 0);
