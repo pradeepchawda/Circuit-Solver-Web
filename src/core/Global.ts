@@ -68,75 +68,75 @@ class Global {
 	public 'TYPE_COUNTER': number;
 	/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-	public 'TYPE_RESISTOR': number;
-	public 'TYPE_CAPACITOR': number;
-	public 'TYPE_INDUCTOR': number;
-	public 'TYPE_GROUND': number;
-	public 'TYPE_DCSOURCE': number;
-	public 'TYPE_DCCURRENT': number;
-	public 'TYPE_ACSOURCE': number;
-	public 'TYPE_ACCURRENT': number;
-	public 'TYPE_SQUAREWAVE': number;
-	public 'TYPE_SAW': number;
-	public 'TYPE_TRI': number;
-	public 'TYPE_CONSTANT': number;
-	public 'TYPE_WIRE': number;
-	public 'TYPE_NET': number;
-	public 'TYPE_NOTE': number;
-	public 'TYPE_RAIL': number;
-	public 'TYPE_VOLTMETER': number;
-	public 'TYPE_OHMMETER': number;
-	public 'TYPE_AMMETER': number;
-	public 'TYPE_WATTMETER': number;
-	public 'TYPE_FUSE': number;
-	public 'TYPE_SPST': number;
-	public 'TYPE_SPDT': number;
-	public 'TYPE_NOT': number;
-	public 'TYPE_DIODE': number;
-	public 'TYPE_LED': number;
-	public 'TYPE_ZENER': number;
-	public 'TYPE_POTENTIOMETER': number;
-	public 'TYPE_AND': number;
-	public 'TYPE_OR': number;
-	public 'TYPE_NAND': number;
-	public 'TYPE_NOR': number;
-	public 'TYPE_XOR': number;
-	public 'TYPE_XNOR': number;
-	public 'TYPE_DFF': number;
-	public 'TYPE_VSAT': number;
-	public 'TYPE_ADD': number;
-	public 'TYPE_SUB': number;
-	public 'TYPE_MUL': number;
-	public 'TYPE_DIV': number;
-	public 'TYPE_GAIN': number;
-	public 'TYPE_ABS': number;
-	public 'TYPE_VCSW': number;
-	public 'TYPE_VCVS': number;
-	public 'TYPE_VCCS': number;
-	public 'TYPE_CCCS': number;
-	public 'TYPE_CCVS': number;
-	public 'TYPE_OPAMP': number;
-	public 'TYPE_NMOS': number;
-	public 'TYPE_PMOS': number;
-	public 'TYPE_NPN': number;
-	public 'TYPE_PNP': number;
-	public 'TYPE_ADC': number;
-	public 'TYPE_DAC': number;
-	public 'TYPE_SAH': number;
-	public 'TYPE_PWM': number;
-	public 'TYPE_INTEGRATOR': number;
-	public 'TYPE_DIFFERENTIATOR': number;
-	public 'TYPE_LPF': number;
-	public 'TYPE_HPF': number;
-	public 'TYPE_REL': number;
-	public 'TYPE_PID': number;
-	public 'TYPE_LUT': number;
-	public 'TYPE_VCR': number;
-	public 'TYPE_VCCA': number;
-	public 'TYPE_VCL': number;
-	public 'TYPE_GRT': number;
-	public 'TYPE_TPTZ': number;
-	public 'TYPE_TRAN': number;
+	public TYPE_RESISTOR: number;
+	public TYPE_CAPACITOR: number;
+	public TYPE_INDUCTOR: number;
+	public TYPE_GROUND: number;
+	public TYPE_DCSOURCE: number;
+	public TYPE_DCCURRENT: number;
+	public TYPE_ACSOURCE: number;
+	public TYPE_ACCURRENT: number;
+	public TYPE_SQUAREWAVE: number;
+	public TYPE_SAW: number;
+	public TYPE_TRI: number;
+	public TYPE_CONSTANT: number;
+	public TYPE_WIRE: number;
+	public TYPE_NET: number;
+	public TYPE_NOTE: number;
+	public TYPE_RAIL: number;
+	public TYPE_VOLTMETER: number;
+	public TYPE_OHMMETER: number;
+	public TYPE_AMMETER: number;
+	public TYPE_WATTMETER: number;
+	public TYPE_FUSE: number;
+	public TYPE_SPST: number;
+	public TYPE_SPDT: number;
+	public TYPE_NOT: number;
+	public TYPE_DIODE: number;
+	public TYPE_LED: number;
+	public TYPE_ZENER: number;
+	public TYPE_POTENTIOMETER: number;
+	public TYPE_AND: number;
+	public TYPE_OR: number;
+	public TYPE_NAND: number;
+	public TYPE_NOR: number;
+	public TYPE_XOR: number;
+	public TYPE_XNOR: number;
+	public TYPE_DFF: number;
+	public TYPE_VSAT: number;
+	public TYPE_ADD: number;
+	public TYPE_SUB: number;
+	public TYPE_MUL: number;
+	public TYPE_DIV: number;
+	public TYPE_GAIN: number;
+	public TYPE_ABS: number;
+	public TYPE_VCSW: number;
+	public TYPE_VCVS: number;
+	public TYPE_VCCS: number;
+	public TYPE_CCCS: number;
+	public TYPE_CCVS: number;
+	public TYPE_OPAMP: number;
+	public TYPE_NMOS: number;
+	public TYPE_PMOS: number;
+	public TYPE_NPN: number;
+	public TYPE_PNP: number;
+	public TYPE_ADC: number;
+	public TYPE_DAC: number;
+	public TYPE_SAH: number;
+	public TYPE_PWM: number;
+	public TYPE_INTEGRATOR: number;
+	public TYPE_DIFFERENTIATOR: number;
+	public TYPE_LPF: number;
+	public TYPE_HPF: number;
+	public TYPE_REL: number;
+	public TYPE_PID: number;
+	public TYPE_LUT: number;
+	public TYPE_VCR: number;
+	public TYPE_VCCA: number;
+	public TYPE_VCL: number;
+	public TYPE_GRT: number;
+	public TYPE_TPTZ: number;
+	public TYPE_TRAN: number;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	/* Constants for the different amounts of pre-determined rotation */
 	public readonly 'ROTATION_0': number;
@@ -339,211 +339,211 @@ class Global {
 	/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	/* Base structure for Resistor properties */
-	public readonly 'PROPERTY_RESISTOR': PROPERTY_RESISTOR_T;
+	public readonly PROPERTY_RESISTOR: PROPERTY_RESISTOR_T;
 
 	/* Base structure for Capacitor properties */
-	public readonly 'PROPERTY_CAPACITOR': PROPERTY_CAPACITOR_T;
+	public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T;
 
 	/* Base structure for Inductor properties */
-	public readonly 'PROPERTY_INDUCTOR': PROPERTY_INDUCTOR_T;
+	public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T;
 
 	/* Base structure for Ground properties */
-	public readonly 'PROPERTY_GROUND': PROPERTY_GROUND_T;
+	public readonly PROPERTY_GROUND: PROPERTY_GROUND_T;
 
 	/* Base structure for DCSource properties */
-	public readonly 'PROPERTY_DCSOURCE': PROPERTY_DCSOURCE_T;
+	public readonly PROPERTY_DCSOURCE: PROPERTY_DCSOURCE_T;
 
 	/* Base structure for DCCurrent properties */
-	public readonly 'PROPERTY_DCCURRENT': PROPERTY_DCCURRENT_T;
+	public readonly PROPERTY_DCCURRENT: PROPERTY_DCCURRENT_T;
 
 	/* Base structure for ACSource properties */
-	public readonly 'PROPERTY_ACSOURCE': PROPERTY_ACSOURCE_T;
+	public readonly PROPERTY_ACSOURCE: PROPERTY_ACSOURCE_T;
 
 	/* Base structure for ACCurrent properties */
-	public readonly 'PROPERTY_ACCURRENT': PROPERTY_ACCURRENT_T;
+	public readonly PROPERTY_ACCURRENT: PROPERTY_ACCURRENT_T;
 
 	/* Base structure for SquareWave properties */
-	public readonly 'PROPERTY_SQUAREWAVE': PROPERTY_SQUAREWAVE_T;
+	public readonly PROPERTY_SQUAREWAVE: PROPERTY_SQUAREWAVE_T;
 
 	/* Base structure for SawWave properties */
-	public readonly 'PROPERTY_SAW': PROPERTY_SAW_T;
+	public readonly PROPERTY_SAW: PROPERTY_SAW_T;
 
 	/* Base structure for TriangleWave properties */
-	public readonly 'PROPERTY_TRI': PROPERTY_TRI_T;
+	public readonly PROPERTY_TRI: PROPERTY_TRI_T;
 
 	/* Base structure for Constant properties */
-	public readonly 'PROPERTY_CONSTANT': PROPERTY_CONSTANT_T;
+	public readonly PROPERTY_CONSTANT: PROPERTY_CONSTANT_T;
 
 	/* Base structure for Wire properties */
-	public readonly 'PROPERTY_WIRE': PROPERTY_WIRE_T;
+	public readonly PROPERTY_WIRE: PROPERTY_WIRE_T;
 
 	/* Base structure for Net properties */
-	public readonly 'PROPERTY_NET': PROPERTY_NET_T;
+	public readonly PROPERTY_NET: PROPERTY_NET_T;
 
 	/* Base structure for Note properties */
-	public readonly 'PROPERTY_NOTE': PROPERTY_NOTE_T;
+	public readonly PROPERTY_NOTE: PROPERTY_NOTE_T;
 
 	/* Base structure for Rail properties */
-	public readonly 'PROPERTY_RAIL': PROPERTY_RAIL_T;
+	public readonly PROPERTY_RAIL: PROPERTY_RAIL_T;
 
 	/* Base structure for VoltMeter properties */
-	public readonly 'PROPERTY_VOLTMETER': PROPERTY_VOLTMETER_T;
+	public readonly PROPERTY_VOLTMETER: PROPERTY_VOLTMETER_T;
 
 	/* Base structure for OhmMeter properties */
-	public readonly 'PROPERTY_OHMMETER': PROPERTY_OHMMETER_T;
+	public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T;
 
 	/* Base structure for AmMeter properties */
-	public readonly 'PROPERTY_AMMETER': PROPERTY_AMMETER_T;
+	public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T;
 
 	/* Base structure for WattMeter properties */
-	public readonly 'PROPERTY_WATTMETER': PROPERTY_WATTMETER_T;
+	public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T;
 
 	/* Base structure for Fuse properties */
-	public readonly 'PROPERTY_FUSE': PROPERTY_FUSE_T;
+	public readonly PROPERTY_FUSE: PROPERTY_FUSE_T;
 
 	/* Base structure for SinglePoleSingleThrow properties */
-	public readonly 'PROPERTY_SPST': PROPERTY_SPST_T;
+	public readonly PROPERTY_SPST: PROPERTY_SPST_T;
 
 	/* Base structure for SinglePoleDoubleThrow properties */
-	public readonly 'PROPERTY_SPDT': PROPERTY_SPDT_T;
+	public readonly PROPERTY_SPDT: PROPERTY_SPDT_T;
 
 	/* Base structure for NOTGate properties */
-	public readonly 'PROPERTY_NOT': PROPERTY_NOT_T;
+	public readonly PROPERTY_NOT: PROPERTY_NOT_T;
 
 	/* Base structure for Diode properties */
-	public readonly 'PROPERTY_DIODE': PROPERTY_DIODE_T;
+	public readonly PROPERTY_DIODE: PROPERTY_DIODE_T;
 
 	/* Base structure for LightEmittingDiode properties */
-	public readonly 'PROPERTY_LED': PROPERTY_LED_T;
+	public readonly PROPERTY_LED: PROPERTY_LED_T;
 
 	/* Base structure for ZenerDiode properties */
-	public readonly 'PROPERTY_ZENER': PROPERTY_ZENER_T;
+	public readonly PROPERTY_ZENER: PROPERTY_ZENER_T;
 
 	/* Base structure for Potentiometer properties */
-	public readonly 'PROPERTY_POTENTIOMETER': PROPERTY_POTENTIOMETER_T;
+	public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T;
 
 	/* Base structure for ANDGate properties */
-	public readonly 'PROPERTY_AND': PROPERTY_AND_T;
+	public readonly PROPERTY_AND: PROPERTY_AND_T;
 
 	/* Base structure for ORGate properties */
-	public readonly 'PROPERTY_OR': PROPERTY_OR_T;
+	public readonly PROPERTY_OR: PROPERTY_OR_T;
 
 	/* Base structure for NANDGate properties */
-	public readonly 'PROPERTY_NAND': PROPERTY_NAND_T;
+	public readonly PROPERTY_NAND: PROPERTY_NAND_T;
 
 	/* Base structure for NORGate properties */
-	public readonly 'PROPERTY_NOR': PROPERTY_NOR_T;
+	public readonly PROPERTY_NOR: PROPERTY_NOR_T;
 
 	/* Base structure for XORGate properties */
-	public readonly 'PROPERTY_XOR': PROPERTY_XOR_T;
+	public readonly PROPERTY_XOR: PROPERTY_XOR_T;
 
 	/* Base structure for XNORGate properties */
-	public readonly 'PROPERTY_XNOR': PROPERTY_XNOR_T;
+	public readonly PROPERTY_XNOR: PROPERTY_XNOR_T;
 
 	/* Base structure for DFlipFlop properties */
-	public readonly 'PROPERTY_DFF': PROPERTY_DFF_T;
+	public readonly PROPERTY_DFF: PROPERTY_DFF_T;
 
 	/* Base structure for VoltageSaturation properties */
-	public readonly 'PROPERTY_VSAT': PROPERTY_VSAT_T;
+	public readonly PROPERTY_VSAT: PROPERTY_VSAT_T;
 
 	/* Base structure for Adder properties */
-	public readonly 'PROPERTY_ADD': PROPERTY_ADD_T;
+	public readonly PROPERTY_ADD: PROPERTY_ADD_T;
 
 	/* Base structure for Subtractor properties */
-	public readonly 'PROPERTY_SUB': PROPERTY_SUB_T;
+	public readonly PROPERTY_SUB: PROPERTY_SUB_T;
 
 	/* Base structure for Multiplier properties */
-	public readonly 'PROPERTY_MUL': PROPERTY_MUL_T;
+	public readonly PROPERTY_MUL: PROPERTY_MUL_T;
 
 	/* Base structure for Divider properties */
-	public readonly 'PROPERTY_DIV': PROPERTY_DIV_T;
+	public readonly PROPERTY_DIV: PROPERTY_DIV_T;
 
 	/* Base structure for GainBlock properties */
-	public readonly 'PROPERTY_GAIN': PROPERTY_GAIN_T;
+	public readonly PROPERTY_GAIN: PROPERTY_GAIN_T;
 
 	/* Base structure for AbsoluteValue properties */
-	public readonly 'PROPERTY_ABS': PROPERTY_ABS_T;
+	public readonly PROPERTY_ABS: PROPERTY_ABS_T;
 
 	/* Base structure for VoltageControlledSwitch properties */
-	public readonly 'PROPERTY_VCSW': PROPERTY_VCSW_T;
+	public readonly PROPERTY_VCSW: PROPERTY_VCSW_T;
 
 	/* Base structure for VoltageControlledVoltageSource properties */
-	public readonly 'PROPERTY_VCVS': PROPERTY_VCVS_T;
+	public readonly PROPERTY_VCVS: PROPERTY_VCVS_T;
 
 	/* Base structure for VoltageControlledCurrentSource properties */
-	public readonly 'PROPERTY_VCCS': PROPERTY_VCCS_T;
+	public readonly PROPERTY_VCCS: PROPERTY_VCCS_T;
 
 	/* Base structure for CurrentControlledCurrentSource properties */
-	public readonly 'PROPERTY_CCCS': PROPERTY_CCCS_T;
+	public readonly PROPERTY_CCCS: PROPERTY_CCCS_T;
 
 	/* Base structure for CurrentControlledVoltageSource properties */
-	public readonly 'PROPERTY_CCVS': PROPERTY_CCVS_T;
+	public readonly PROPERTY_CCVS: PROPERTY_CCVS_T;
 
 	/* Base structure for OperationalAmplifier properties */
-	public readonly 'PROPERTY_OPAMP': PROPERTY_OPAMP_T;
+	public readonly PROPERTY_OPAMP: PROPERTY_OPAMP_T;
 
 	/* Base structure for NChannelMOSFET properties */
-	public readonly 'PROPERTY_NMOS': PROPERTY_NMOS_T;
+	public readonly PROPERTY_NMOS: PROPERTY_NMOS_T;
 
 	/* Base structure for PChannelMOSFET properties */
-	public readonly 'PROPERTY_PMOS': PROPERTY_PMOS_T;
+	public readonly PROPERTY_PMOS: PROPERTY_PMOS_T;
 
 	/* Base structure for NPNBipolarJunctionTransistor properties */
-	public readonly 'PROPERTY_NPN': PROPERTY_NPN_T;
+	public readonly PROPERTY_NPN: PROPERTY_NPN_T;
 
 	/* Base structure for PNPBipolarJunctionTransistor properties */
-	public readonly 'PROPERTY_PNP': PROPERTY_PNP_T;
+	public readonly PROPERTY_PNP: PROPERTY_PNP_T;
 
 	/* Base structure for ADCModule properties */
-	public readonly 'PROPERTY_ADC': PROPERTY_ADC_T;
+	public readonly PROPERTY_ADC: PROPERTY_ADC_T;
 
 	/* Base structure for DACModule properties */
-	public readonly 'PROPERTY_DAC': PROPERTY_DAC_T;
+	public readonly PROPERTY_DAC: PROPERTY_DAC_T;
 
 	/* Base structure for SampleAndHold properties */
-	public readonly 'PROPERTY_SAH': PROPERTY_SAH_T;
+	public readonly PROPERTY_SAH: PROPERTY_SAH_T;
 
 	/* Base structure for PulseWidthModulator properties */
-	public readonly 'PROPERTY_PWM': PROPERTY_PWM_T;
+	public readonly PROPERTY_PWM: PROPERTY_PWM_T;
 
 	/* Base structure for IntegratorModule properties */
-	public readonly 'PROPERTY_INTEGRATOR': PROPERTY_INTEGRATOR_T;
+	public readonly PROPERTY_INTEGRATOR: PROPERTY_INTEGRATOR_T;
 
 	/* Base structure for DifferentiatorModule properties */
-	public readonly 'PROPERTY_DIFFERENTIATOR': PROPERTY_DIFFERENTIATOR_T;
+	public readonly PROPERTY_DIFFERENTIATOR: PROPERTY_DIFFERENTIATOR_T;
 
 	/* Base structure for LowPassFilter properties */
-	public readonly 'PROPERTY_LPF': PROPERTY_LPF_T;
+	public readonly PROPERTY_LPF: PROPERTY_LPF_T;
 
 	/* Base structure for HighPassFilter properties */
-	public readonly 'PROPERTY_HPF': PROPERTY_HPF_T;
+	public readonly PROPERTY_HPF: PROPERTY_HPF_T;
 
 	/* Base structure for Relay properties */
-	public readonly 'PROPERTY_REL': PROPERTY_REL_T;
+	public readonly PROPERTY_REL: PROPERTY_REL_T;
 
 	/* Base structure for PIDModule properties */
-	public readonly 'PROPERTY_PID': PROPERTY_PID_T;
+	public readonly PROPERTY_PID: PROPERTY_PID_T;
 
 	/* Base structure for LookUpTable properties */
-	public readonly 'PROPERTY_LUT': PROPERTY_LUT_T;
+	public readonly PROPERTY_LUT: PROPERTY_LUT_T;
 
 	/* Base structure for VoltageControlledResistor properties */
-	public readonly 'PROPERTY_VCR': PROPERTY_VCR_T;
+	public readonly PROPERTY_VCR: PROPERTY_VCR_T;
 
 	/* Base structure for VoltageControlledCapacitor properties */
-	public readonly 'PROPERTY_VCCA': PROPERTY_VCCA_T;
+	public readonly PROPERTY_VCCA: PROPERTY_VCCA_T;
 
 	/* Base structure for VoltageControlledInductor properties */
-	public readonly 'PROPERTY_VCL': PROPERTY_VCL_T;
+	public readonly PROPERTY_VCL: PROPERTY_VCL_T;
 
 	/* Base structure for GreaterThan properties */
-	public readonly 'PROPERTY_GRT': PROPERTY_GRT_T;
+	public readonly PROPERTY_GRT: PROPERTY_GRT_T;
 
 	/* Base structure for TPTZModule properties */
-	public readonly 'PROPERTY_TPTZ': PROPERTY_TPTZ_T;
+	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
 
 	/* Base structure for Transformer properties */
-	public readonly 'PROPERTY_TRAN': PROPERTY_TRAN_T;
+	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
 
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	/* Keeps track of all the changes made to elements. There is a manager for
