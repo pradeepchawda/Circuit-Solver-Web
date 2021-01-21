@@ -1,10 +1,10 @@
 'use strict';
 class BottomMenu {
-	public DRAW_BOTTOM_PATH: boolean;
-	public TIME_STEP_BUTTON_WIDTH: number;
-	public VERSION_TAG_TEMPLATE: string;
-	public TIMESTEP_TEMPLATE: string;
-	public FILE_BUTTON_TEXT_TEMPLATE: string;
+	public draw_bottom_path: boolean;
+	public time_step_button_width: number;
+	public readonly VERSION_TAG_TEMPLATE: string;
+	public readonly TIMESTEP_TEMPLATE: string;
+	public readonly FILE_BUTTON_TEXT_TEMPLATE: string;
 	public line_paint: Paint;
 	public fill_paint: Paint;
 	public text_paint: Paint;
@@ -13,12 +13,12 @@ class BottomMenu {
 	public time_step_button: Button;
 	public first_touch_x: number;
 	public first_touch_y: number;
-	public INITIAL_RESIZE_COUNTER: number;
-	public INITIAL_RESIZE_COUNTER_MAX: number;
-	public RELOAD_BOTTOM_PATH: boolean;
+	public initial_resize_counter: number;
+	public readonly INITIAL_RESIZE_COUNTER_MAX: number;
+	public reload_bottom_path: boolean;
 	constructor() {
-		this.DRAW_BOTTOM_PATH = true;
-		this.TIME_STEP_BUTTON_WIDTH = 1;
+		this.draw_bottom_path = true;
+		this.time_step_button_width = 1;
 		this.VERSION_TAG_TEMPLATE = 'v{VERSION_TAG}   ';
 		this.TIMESTEP_TEMPLATE = 'Δt:={TIMESTEP}s';
 		this.FILE_BUTTON_TEXT_TEMPLATE = '  {TEXT}  ';
@@ -62,7 +62,7 @@ class BottomMenu {
 		this.file_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
 		this.file_button.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
 		this.file_button.resize_paint();
-		this.time_step_button = new Button(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + 2 * global.canvas_stroke_width_4, view_port.right, view_port.bottom);
+		this.time_step_button = new Button(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + 2 * global.canvas_stroke_width_4, view_port.right, view_port.bottom);
 		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
 		this.time_step_button.draw_stroke = false;
 		this.time_step_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
@@ -71,9 +71,9 @@ class BottomMenu {
 		this.load_bottom_path();
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
-		this.INITIAL_RESIZE_COUNTER = 0;
+		this.initial_resize_counter = 0;
 		this.INITIAL_RESIZE_COUNTER_MAX = global.CANVAS_REDRAW_MAX;
-		this.RELOAD_BOTTOM_PATH = true;
+		this.reload_bottom_path = true;
 	}
 	load_bottom_path(): void {
 		this.bottom_path.reset();
@@ -89,8 +89,8 @@ class BottomMenu {
 	}
 	update(): void {}
 	resize_bottom_menu(): void {
-		this.INITIAL_RESIZE_COUNTER = 0;
-		this.RELOAD_BOTTOM_PATH = true;
+		this.initial_resize_counter = 0;
+		this.reload_bottom_path = true;
 		this.file_button.resize();
 		this.time_step_button.resize();
 		this.file_button.line_paint.set_stroke_width(global.canvas_stroke_width_1);
@@ -132,21 +132,21 @@ class BottomMenu {
 		if (!global.is_right_click && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
 			if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
 				if (
-					!global.FLAG_SIMULATING &&
-					!global.FLAG_SAVE_IMAGE &&
-					!global.FLAG_SAVE_CIRCUIT &&
-					!global.FLAG_ZOOM &&
-					!global.FLAG_ELEMENT_OPTIONS &&
-					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-					!global.FLAG_GRAPH &&
-					!global.FLAG_SELECT_ELEMENT &&
-					!global.FLAG_SELECT_TIMESTEP &&
-					!global.FLAG_SELECT_SETTINGS &&
+					!global.flag_simulating &&
+					!global.flag_save_image &&
+					!global.flag_save_circuit &&
+					!global.flag_zoom &&
+					!global.flag_element_options &&
+					!global.flag_element_options_edit &&
+					!global.flag_graph &&
+					!global.flag_select_element &&
+					!global.flag_select_timestep &&
+					!global.flag_select_settings &&
 					!global.flag_remove_all
 				) {
 					if (this.time_step_button.contains_xy(global.mouse_x, global.mouse_y)) {
 						time_step_window.input_button.text = global.exponentiate_quickly(global.time_step);
-						this.handle_timestep_flag(!global.FLAG_SELECT_TIMESTEP);
+						this.handle_timestep_flag(!global.flag_select_timestep);
 						global.component_touched = true;
 					}
 				}
@@ -160,16 +160,16 @@ class BottomMenu {
 		}
 		if (!global.mouse_keyboard_lock) {
 			if (
-				!global.FLAG_SIMULATING &&
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_GRAPH &&
-				!global.FLAG_SELECT_ELEMENT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_SELECT_SETTINGS &&
+				!global.flag_simulating &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_zoom &&
+				!global.flag_element_options &&
+				!global.flag_element_options_edit &&
+				!global.flag_graph &&
+				!global.flag_select_element &&
+				!global.flag_select_timestep &&
+				!global.flag_select_settings &&
 				!global.flag_remove_all &&
 				!global.flag_menu_element_toolbox &&
 				!global.component_touched
@@ -188,23 +188,23 @@ class BottomMenu {
 			time_step_window.reset_cursor();
 		}
 		bottom_menu.resize_bottom_menu();
-		global.FLAG_SELECT_TIMESTEP = ON;
+		global.flag_select_timestep = ON;
 	}
 	recolor(): void {
-		if (!global.FLAG_SIMULATING && !global.FLAG_GRAPH && !global.flag_menu_element_toolbox) {
+		if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
 			if (
 				this.file_button.contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.flag_menu_element_toolbox &&
 				!global.flag_menu_element_toolbox &&
-				!global.FLAG_SIMULATING &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_SELECT_SETTINGS &&
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_GRAPH &&
+				!global.flag_simulating &&
+				!global.flag_zoom &&
+				!global.flag_select_settings &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_select_timestep &&
+				!global.flag_element_options_edit &&
+				!global.flag_element_options &&
+				!global.flag_graph &&
 				!global.flag_remove_all &&
 				!multi_select_manager.CTRL_PRESSED_STARTED &&
 				!global.MOBILE_MODE
@@ -217,15 +217,15 @@ class BottomMenu {
 				this.time_step_button.contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.flag_menu_element_toolbox &&
 				!global.flag_menu_element_toolbox &&
-				!global.FLAG_SIMULATING &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_SELECT_SETTINGS &&
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_GRAPH &&
+				!global.flag_simulating &&
+				!global.flag_zoom &&
+				!global.flag_select_settings &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_select_timestep &&
+				!global.flag_element_options_edit &&
+				!global.flag_element_options &&
+				!global.flag_graph &&
 				!global.flag_remove_all &&
 				!multi_select_manager.CTRL_PRESSED_STARTED &&
 				!global.MOBILE_MODE
@@ -239,15 +239,15 @@ class BottomMenu {
 				this.file_button.contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.flag_menu_element_toolbox &&
 				!global.flag_menu_element_toolbox &&
-				!global.FLAG_SIMULATING &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_SELECT_SETTINGS &&
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_GRAPH &&
+				!global.flag_simulating &&
+				!global.flag_zoom &&
+				!global.flag_select_settings &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_select_timestep &&
+				!global.flag_element_options_edit &&
+				!global.flag_element_options &&
+				!global.flag_graph &&
 				!global.flag_remove_all &&
 				!multi_select_manager.CTRL_PRESSED_STARTED &&
 				!global.MOBILE_MODE
@@ -260,15 +260,15 @@ class BottomMenu {
 				this.time_step_button.contains_xy(global.mouse_x, global.mouse_y) &&
 				!global.flag_menu_element_toolbox &&
 				!global.flag_menu_element_toolbox &&
-				!global.FLAG_SIMULATING &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_SELECT_SETTINGS &&
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_GRAPH &&
+				!global.flag_simulating &&
+				!global.flag_zoom &&
+				!global.flag_select_settings &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_select_timestep &&
+				!global.flag_element_options_edit &&
+				!global.flag_element_options &&
+				!global.flag_graph &&
 				!global.flag_remove_all &&
 				!multi_select_manager.CTRL_PRESSED_STARTED &&
 				!global.MOBILE_MODE
@@ -283,7 +283,7 @@ class BottomMenu {
 		this.recolor();
 		this.file_button.text = language_manager.FILE[global.LANGUAGES[global.language_index]] + global.user_file.title;
 		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
-		this.TIME_STEP_BUTTON_WIDTH = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
+		this.time_step_button_width = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
 		let padding: number = 2 * global.canvas_stroke_width_4;
 		this.file_button.set_bounds(
 			view_port.left,
@@ -291,20 +291,20 @@ class BottomMenu {
 			view_port.left + this.file_button.text_paint.measure_text(this.FILE_BUTTON_TEXT_TEMPLATE.replace('{TEXT}', this.file_button.text)),
 			view_port.bottom
 		);
-		this.time_step_button.set_bounds(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + padding, view_port.right, view_port.bottom);
-		if (this.DRAW_BOTTOM_PATH) {
+		this.time_step_button.set_bounds(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + padding, view_port.right, view_port.bottom);
+		if (this.draw_bottom_path) {
 			if (this.file_button.draw_fill) {
 				this.file_button.draw_fill = false;
 			}
 			if (this.time_step_button.draw_fill) {
 				this.time_step_button.draw_fill = false;
 			}
-			if (this.RELOAD_BOTTOM_PATH === true) {
+			if (this.reload_bottom_path === true) {
 				this.load_bottom_path();
-				this.INITIAL_RESIZE_COUNTER++;
-				if (this.INITIAL_RESIZE_COUNTER >= this.INITIAL_RESIZE_COUNTER_MAX) {
-					this.INITIAL_RESIZE_COUNTER = 0;
-					this.RELOAD_BOTTOM_PATH = false;
+				this.initial_resize_counter++;
+				if (this.initial_resize_counter >= this.INITIAL_RESIZE_COUNTER_MAX) {
+					this.initial_resize_counter = 0;
+					this.reload_bottom_path = false;
 				}
 			}
 			canvas.draw_path(this.bottom_path, this.fill_paint);

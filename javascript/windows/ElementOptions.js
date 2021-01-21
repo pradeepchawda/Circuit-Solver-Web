@@ -1,18 +1,18 @@
 'use strict';
 class ElementOptions {
     constructor() {
-        let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
+        let temp_stroke_width = 0.65 * global.canvas_stroke_width_3;
         this.MAX_ICONS = 8;
         if (global.MOBILE_MODE) {
-            temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
+            temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
         }
         this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
         this.mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
         this.mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
-        this.option_0 = new RectF(this.mb_x - this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_1 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_2 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_3 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
+        this.option_0 = new RectF(this.mb_x - this.mb_width * 0.5, menu_bar.bounds.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, menu_bar.bounds.bottom + global.canvas_stroke_width_3 + this.mb_height);
+        this.option_1 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_0.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, this.option_0.bottom + global.canvas_stroke_width_3 + this.mb_height);
+        this.option_2 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_1.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, this.option_1.bottom + global.canvas_stroke_width_3 + this.mb_height);
+        this.option_3 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_2.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, this.option_2.bottom + global.canvas_stroke_width_3 + this.mb_height);
         this.show_0 = false;
         this.show_1 = false;
         this.show_2 = false;
@@ -28,7 +28,7 @@ class ElementOptions {
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
         this.line_paint.set_stroke_width(temp_stroke_width);
         this.line_paint.set_color(global.GENERAL_GRAY_COLOR);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.line_paint.set_text_size(global.canvas_text_size_4);
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -36,9 +36,9 @@ class ElementOptions {
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
         this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.fill_paint.set_text_size(global.canvas_text_size_4);
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -48,7 +48,7 @@ class ElementOptions {
         this.line_paint_alt.set_paint_join(this.line_paint_alt.join.ROUND);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
         this.line_paint_alt.set_color(global.GENERAL_WHITE_COLOR);
-        this.line_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.line_paint_alt.set_text_size(global.canvas_text_size_4);
         this.line_paint_alt.set_font(global.DEFAULT_FONT);
         this.line_paint_alt.set_alpha(255);
         this.line_paint_alt.set_paint_align(this.line_paint_alt.align.CENTER);
@@ -58,7 +58,7 @@ class ElementOptions {
         this.meter_line_paint.set_paint_join(this.meter_line_paint.join.ROUND);
         this.meter_line_paint.set_stroke_width(temp_stroke_width);
         this.meter_line_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.meter_line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.meter_line_paint.set_text_size(global.canvas_text_size_4);
         this.meter_line_paint.set_font(global.DEFAULT_FONT);
         this.meter_line_paint.set_alpha(255);
         this.meter_line_paint.set_paint_align(this.meter_line_paint.align.CENTER);
@@ -66,9 +66,9 @@ class ElementOptions {
         this.text_paint.set_paint_style(this.line_paint.style.FILL);
         this.text_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.text_paint.set_paint_join(this.line_paint.join.MITER);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.text_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.text_paint.set_text_size(global.canvas_text_size_5);
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.line_paint.align.RIGHT);
@@ -76,9 +76,9 @@ class ElementOptions {
         this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
         this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
         this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
-        this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
+        this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
         this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
-        this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.hover_paint.set_text_size(global.canvas_text_size_5);
         this.hover_paint.set_font(global.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
         this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
@@ -86,9 +86,9 @@ class ElementOptions {
         this.icon_paint.set_paint_style(this.icon_paint.style.FILL);
         this.icon_paint.set_paint_cap(this.icon_paint.cap.ROUND);
         this.icon_paint.set_paint_join(this.icon_paint.join.MITER);
-        this.icon_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.icon_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.icon_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.icon_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.icon_paint.set_text_size(global.canvas_text_size_4);
         this.icon_paint.set_font(global.DEFAULT_FONT);
         this.icon_paint.set_alpha(255);
         this.icon_paint.set_paint_align(this.icon_paint.align.CENTER);
@@ -220,31 +220,31 @@ class ElementOptions {
         this.flip_path1.close();
     }
     resize() {
-        let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
+        let temp_stroke_width = 0.65 * global.canvas_stroke_width_3;
         if (global.MOBILE_MODE) {
-            temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
+            temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
         }
         this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
         this.mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
         this.mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
-        this.option_0.set_bounds(this.mb_x - this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_1.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_2.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        this.option_3.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
+        this.option_0.set_bounds(this.mb_x - this.mb_width * 0.5, menu_bar.bounds.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, menu_bar.bounds.bottom + global.canvas_stroke_width_3 + this.mb_height);
+        this.option_1.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_0.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, this.option_0.bottom + global.canvas_stroke_width_3 + this.mb_height);
+        this.option_2.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_1.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, this.option_1.bottom + global.canvas_stroke_width_3 + this.mb_height);
+        this.option_3.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_2.bottom + global.canvas_stroke_width_3, this.mb_x + this.mb_width * 0.5, this.option_2.bottom + global.canvas_stroke_width_3 + this.mb_height);
         this.line_paint.set_stroke_width(temp_stroke_width);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.line_paint.set_text_size(global.canvas_text_size_4);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
-        this.line_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        this.icon_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.icon_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.line_paint_alt.set_text_size(global.canvas_text_size_4);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.fill_paint.set_text_size(global.canvas_text_size_4);
+        this.icon_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.icon_paint.set_text_size(global.canvas_text_size_4);
         this.meter_line_paint.set_stroke_width(temp_stroke_width);
-        this.meter_line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-        this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-        this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.meter_line_paint.set_text_size(global.canvas_text_size_4);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.text_paint.set_text_size(global.canvas_text_size_5);
+        this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
+        this.hover_paint.set_text_size(global.canvas_text_size_5);
         this.map_options();
     }
     update() {
@@ -469,17 +469,17 @@ class ElementOptions {
         }
     }
     mouse_down() {
-        if (!global.FLAG_SAVE_IMAGE &&
-            !global.FLAG_SAVE_CIRCUIT &&
-            !global.FLAG_ZOOM &&
-            !global.FLAG_ELEMENT_OPTIONS &&
-            !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-            !global.FLAG_SELECT_ELEMENT &&
-            !global.FLAG_SELECT_TIMESTEP &&
-            !global.FLAG_SELECT_SETTINGS &&
-            !global.FLAG_REMOVE_ALL &&
-            !global.FLAG_MENU_OPEN_DOWN &&
-            !global.FLAG_GRAPH) {
+        if (!global.flag_save_image &&
+            !global.flag_save_circuit &&
+            !global.flag_zoom &&
+            !global.flag_element_options &&
+            !global.flag_element_options_edit &&
+            !global.flag_select_element &&
+            !global.flag_select_timestep &&
+            !global.flag_select_settings &&
+            !global.flag_remove_all &&
+            !global.flag_menu_element_toolbox &&
+            !global.flag_graph) {
             if (global.selected) {
                 if (this.opts['c0'] !== this.NO_ICON) {
                     if (this.option_0.contains_xywh(global.mouse_x, global.mouse_y, this.option_0.get_width() * 1.25, this.option_0.get_height() * 1.25)) {
@@ -509,33 +509,33 @@ class ElementOptions {
     mouse_move() { }
     mouse_up() {
         if (!global.mouse_keyboard_lock) {
-            if (!global.FLAG_SAVE_IMAGE &&
-                !global.FLAG_SAVE_CIRCUIT &&
-                !global.FLAG_ZOOM &&
-                !global.FLAG_ELEMENT_OPTIONS &&
-                !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                !global.FLAG_SELECT_ELEMENT &&
-                !global.FLAG_SELECT_TIMESTEP &&
-                !global.FLAG_SELECT_SETTINGS &&
-                !global.FLAG_REMOVE_ALL &&
-                !global.FLAG_MENU_OPEN_DOWN &&
-                !global.FLAG_GRAPH) {
+            if (!global.flag_save_image &&
+                !global.flag_save_circuit &&
+                !global.flag_zoom &&
+                !global.flag_element_options &&
+                !global.flag_element_options_edit &&
+                !global.flag_select_element &&
+                !global.flag_select_timestep &&
+                !global.flag_select_settings &&
+                !global.flag_remove_all &&
+                !global.flag_menu_element_toolbox &&
+                !global.flag_graph) {
                 if (global.selected) {
                     if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c0');
-                        global.SIGNAL_BUILD_ELEMENT = true;
+                        global.signal_build_element = true;
                     }
                     if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c1');
-                        global.SIGNAL_BUILD_ELEMENT = true;
+                        global.signal_build_element = true;
                     }
                     if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c2');
-                        global.SIGNAL_BUILD_ELEMENT = true;
+                        global.signal_build_element = true;
                     }
                     if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
                         this.handle_options('c3');
-                        global.SIGNAL_BUILD_ELEMENT = true;
+                        global.signal_build_element = true;
                     }
                 }
             }
@@ -543,21 +543,21 @@ class ElementOptions {
     }
     handle_options(key) {
         if (this.opts[key] === this.EDIT_ICON) {
-            menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
+            menu_bar.handle_element_options_flag(!global.flag_element_options);
         }
         else if (this.opts[key] === this.EYE_ICON) {
             this.handle_eye_option();
         }
-        else if (this.opts[key] === this.TRASH_ICON && !global.FLAG_SIMULATING) {
+        else if (this.opts[key] === this.TRASH_ICON && !global.flag_simulating) {
             this.handle_trash_option();
         }
-        else if (this.opts[key] === this.FLIP_ICON && !global.FLAG_SIMULATING) {
+        else if (this.opts[key] === this.FLIP_ICON && !global.flag_simulating) {
             this.handle_flip_option();
         }
-        else if (this.opts[key] === this.ROTATE_ICON && !global.FLAG_SIMULATING) {
+        else if (this.opts[key] === this.ROTATE_ICON && !global.flag_simulating) {
             this.handle_rotate_option();
         }
-        else if (this.opts[key] === this.WIRE_ICON && !global.FLAG_SIMULATING) {
+        else if (this.opts[key] === this.WIRE_ICON && !global.flag_simulating) {
             this.handle_wire_option();
         }
         global.component_touched = true;
@@ -2572,7 +2572,7 @@ class ElementOptions {
         this.icon_paint.set_color(global.GENERAL_WHITE_COLOR);
     }
     update_color() {
-        if (!global.FLAG_SIMULATING) {
+        if (!global.flag_simulating) {
             this.icon_paint.set_color(global.GENERAL_WHITE_COLOR);
             this.line_paint_alt.set_color(global.GENERAL_WHITE_COLOR);
         }
@@ -2582,20 +2582,20 @@ class ElementOptions {
         }
     }
     draw_options(canvas) {
-        if (global.FLAG_IDLE && !global.FLAG_MENU_OPEN_DOWN && !global.FLAG_GRAPH) {
+        if (global.flag_idle && !global.flag_menu_element_toolbox && !global.flag_graph) {
             if (global.selected) {
                 if (this.show_0) {
                     if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
-                        !global.FLAG_MENU_OPEN_DOWN &&
-                        !global.FLAG_ZOOM &&
-                        !global.FLAG_SELECT_SETTINGS &&
-                        !global.FLAG_SAVE_IMAGE &&
-                        !global.FLAG_SAVE_CIRCUIT &&
-                        !global.FLAG_SELECT_TIMESTEP &&
-                        !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                        !global.FLAG_ELEMENT_OPTIONS &&
-                        !global.FLAG_GRAPH &&
-                        !global.FLAG_REMOVE_ALL &&
+                        !global.flag_menu_element_toolbox &&
+                        !global.flag_zoom &&
+                        !global.flag_select_settings &&
+                        !global.flag_save_image &&
+                        !global.flag_save_circuit &&
+                        !global.flag_select_timestep &&
+                        !global.flag_element_options_edit &&
+                        !global.flag_element_options &&
+                        !global.flag_graph &&
+                        !global.flag_remove_all &&
                         !global.MOBILE_MODE) {
                         canvas.draw_circle3(this.option_0, 1.1, this.hover_paint);
                     }
@@ -2607,13 +2607,13 @@ class ElementOptions {
                             this.update_color();
                             this.draw_rotate(this.option_0, canvas);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('R', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
                             }
                             break;
                         case this.EDIT_ICON:
                             canvas.draw_path(this.edit_path0, this.icon_paint);
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('E', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2622,7 +2622,7 @@ class ElementOptions {
                             canvas.draw_path(this.trash_path0, this.icon_paint);
                             canvas.draw_path(this.trash_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('DEL', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2631,13 +2631,13 @@ class ElementOptions {
                             canvas.draw_path(this.flip_path0, this.icon_paint);
                             canvas.draw_path(this.flip_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('F', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
                             }
                             break;
                         case this.WIRE_ICON:
                             this.draw_wire_style(this.option_0, canvas);
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('R', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2647,16 +2647,16 @@ class ElementOptions {
                 }
                 if (this.show_1) {
                     if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
-                        !global.FLAG_MENU_OPEN_DOWN &&
-                        !global.FLAG_ZOOM &&
-                        !global.FLAG_SELECT_SETTINGS &&
-                        !global.FLAG_SAVE_IMAGE &&
-                        !global.FLAG_SAVE_CIRCUIT &&
-                        !global.FLAG_SELECT_TIMESTEP &&
-                        !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                        !global.FLAG_ELEMENT_OPTIONS &&
-                        !global.FLAG_GRAPH &&
-                        !global.FLAG_REMOVE_ALL &&
+                        !global.flag_menu_element_toolbox &&
+                        !global.flag_zoom &&
+                        !global.flag_select_settings &&
+                        !global.flag_save_image &&
+                        !global.flag_save_circuit &&
+                        !global.flag_select_timestep &&
+                        !global.flag_element_options_edit &&
+                        !global.flag_element_options &&
+                        !global.flag_graph &&
+                        !global.flag_remove_all &&
                         !global.MOBILE_MODE) {
                         canvas.draw_circle3(this.option_1, 1.1, this.hover_paint);
                     }
@@ -2670,13 +2670,13 @@ class ElementOptions {
                             this.update_color();
                             this.draw_rotate(this.option_1, canvas);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('R', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
                             }
                             break;
                         case this.EDIT_ICON:
                             canvas.draw_path(this.edit_path0, this.icon_paint);
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('E', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2685,7 +2685,7 @@ class ElementOptions {
                             canvas.draw_path(this.trash_path0, this.icon_paint);
                             canvas.draw_path(this.trash_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('DEL', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2694,7 +2694,7 @@ class ElementOptions {
                             canvas.draw_path(this.flip_path0, this.icon_paint);
                             canvas.draw_path(this.flip_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('F', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2708,7 +2708,7 @@ class ElementOptions {
                             canvas.draw_arc2(this.option_1.left + width_mul_0p2, this.option_1.get_center_y(), this.option_1.right - width_mul_0p2, this.option_1.get_center_y(), this.option_1.get_height() >> 1, this.meter_line_paint);
                             canvas.draw_arc2(this.option_1.left + width_mul_0p2, this.option_1.get_center_y(), this.option_1.right - width_mul_0p2, this.option_1.get_center_y(), -this.option_1.get_height() >> 1, this.meter_line_paint);
                             canvas.draw_circle(this.option_1.get_center_x(), this.option_1.get_center_y(), this.option_1.get_width() * 0.1, this.meter_line_paint);
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('E', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2718,16 +2718,16 @@ class ElementOptions {
                 }
                 if (this.show_2) {
                     if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) &&
-                        !global.FLAG_MENU_OPEN_DOWN &&
-                        !global.FLAG_ZOOM &&
-                        !global.FLAG_SELECT_SETTINGS &&
-                        !global.FLAG_SAVE_IMAGE &&
-                        !global.FLAG_SAVE_CIRCUIT &&
-                        !global.FLAG_SELECT_TIMESTEP &&
-                        !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                        !global.FLAG_ELEMENT_OPTIONS &&
-                        !global.FLAG_GRAPH &&
-                        !global.FLAG_REMOVE_ALL &&
+                        !global.flag_menu_element_toolbox &&
+                        !global.flag_zoom &&
+                        !global.flag_select_settings &&
+                        !global.flag_save_image &&
+                        !global.flag_save_circuit &&
+                        !global.flag_select_timestep &&
+                        !global.flag_element_options_edit &&
+                        !global.flag_element_options &&
+                        !global.flag_graph &&
+                        !global.flag_remove_all &&
                         !global.MOBILE_MODE) {
                         canvas.draw_circle3(this.option_2, 1.1, this.hover_paint);
                     }
@@ -2739,13 +2739,13 @@ class ElementOptions {
                             this.update_color();
                             this.draw_rotate(this.option_2, canvas);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('R', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
                             }
                             break;
                         case this.EDIT_ICON:
                             canvas.draw_path(this.edit_path0, this.icon_paint);
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('E', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2754,7 +2754,7 @@ class ElementOptions {
                             canvas.draw_path(this.trash_path0, this.icon_paint);
                             canvas.draw_path(this.trash_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('DEL', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2763,7 +2763,7 @@ class ElementOptions {
                             canvas.draw_path(this.flip_path0, this.icon_paint);
                             canvas.draw_path(this.flip_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('F', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2773,16 +2773,16 @@ class ElementOptions {
                 }
                 if (this.show_3) {
                     if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) &&
-                        !global.FLAG_MENU_OPEN_DOWN &&
-                        !global.FLAG_ZOOM &&
-                        !global.FLAG_SELECT_SETTINGS &&
-                        !global.FLAG_SAVE_IMAGE &&
-                        !global.FLAG_SAVE_CIRCUIT &&
-                        !global.FLAG_SELECT_TIMESTEP &&
-                        !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                        !global.FLAG_ELEMENT_OPTIONS &&
-                        !global.FLAG_GRAPH &&
-                        !global.FLAG_REMOVE_ALL &&
+                        !global.flag_menu_element_toolbox &&
+                        !global.flag_zoom &&
+                        !global.flag_select_settings &&
+                        !global.flag_save_image &&
+                        !global.flag_save_circuit &&
+                        !global.flag_select_timestep &&
+                        !global.flag_element_options_edit &&
+                        !global.flag_element_options &&
+                        !global.flag_graph &&
+                        !global.flag_remove_all &&
                         !global.MOBILE_MODE) {
                         canvas.draw_circle3(this.option_3, 1.1, this.hover_paint);
                     }
@@ -2794,13 +2794,13 @@ class ElementOptions {
                             this.update_color();
                             this.draw_rotate(this.option_3, canvas);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('R', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
                             }
                             break;
                         case this.EDIT_ICON:
                             canvas.draw_path(this.edit_path0, this.icon_paint);
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('E', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2809,7 +2809,7 @@ class ElementOptions {
                             canvas.draw_path(this.trash_path0, this.icon_paint);
                             canvas.draw_path(this.trash_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('DEL', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2818,7 +2818,7 @@ class ElementOptions {
                             canvas.draw_path(this.flip_path0, this.icon_paint);
                             canvas.draw_path(this.flip_path1, this.icon_paint);
                             this.restore_color();
-                            if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+                            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                                 canvas.draw_text('F', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
                             }
                             break;
@@ -2844,31 +2844,31 @@ class ElementOptions {
         let cached_width = rect.get_width() * 0.303;
         let cached_height = rect.get_height() * 0.303;
         if (global.selected_wire_style === global.WIRE_STYLE_0) {
-            canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
-            canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+            canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.canvas_stroke_width_1, this.line_paint_alt);
+            canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.canvas_stroke_width_1, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
         }
         else if (global.selected_wire_style === global.WIRE_STYLE_1) {
-            canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
-            canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+            canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.canvas_stroke_width_1, this.line_paint_alt);
+            canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.canvas_stroke_width_1, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.top + cached_height, this.line_paint_alt);
             canvas.draw_line(rect.right - cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
         }
         else if (global.selected_wire_style === global.WIRE_STYLE_2) {
-            canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
-            canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+            canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.canvas_stroke_width_1, this.line_paint_alt);
+            canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.canvas_stroke_width_1, this.line_paint_alt);
             canvas.draw_line(rect.right - cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.bottom - cached_width, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
         }
         else if (global.selected_wire_style === global.WIRE_STYLE_3) {
-            canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
-            canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+            canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.canvas_stroke_width_1, this.line_paint_alt);
+            canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.canvas_stroke_width_1, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.bottom - cached_width, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
         }
         else if (global.selected_wire_style === global.WIRE_STYLE_4) {
-            canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
-            canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.CANVAS_STROKE_WIDTH_1, this.line_paint_alt);
+            canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.canvas_stroke_width_1, this.line_paint_alt);
+            canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.canvas_stroke_width_1, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.top + cached_height, this.line_paint_alt);
             canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
         }

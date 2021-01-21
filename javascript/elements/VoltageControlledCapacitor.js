@@ -50,9 +50,9 @@ class VoltageControlledCapacitor {
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
-        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
+        this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
         this.line_paint.set_color(global.ELEMENT_COLOR);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+        this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -60,9 +60,9 @@ class VoltageControlledCapacitor {
         this.point_paint.set_paint_style(this.point_paint.style.FILL);
         this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
         this.point_paint.set_paint_join(this.point_paint.join.MITER);
-        this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
+        this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
         this.point_paint.set_color(global.ELEMENT_COLOR);
-        this.point_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+        this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
         this.point_paint.set_font(global.DEFAULT_FONT);
         this.point_paint.set_alpha(255);
         this.point_paint.set_paint_align(this.point_paint.align.CENTER);
@@ -70,9 +70,9 @@ class VoltageControlledCapacitor {
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
         this.text_paint.set_paint_join(this.text_paint.join.MITER);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
         this.text_paint.set_color(global.ELEMENT_COLOR);
-        this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+        this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
@@ -124,7 +124,7 @@ class VoltageControlledCapacitor {
         this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
     }
     update() {
-        if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
+        if (global.flag_simulating && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage'] = global.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
                 if (this.elm.properties['Interpolate'] === global.ON) {
@@ -223,17 +223,17 @@ class VoltageControlledCapacitor {
         }
     }
     mouse_down() {
-        if (global.FLAG_IDLE &&
-            !global.FLAG_SAVE_IMAGE &&
-            !global.FLAG_SAVE_CIRCUIT &&
-            !global.FLAG_ZOOM &&
-            !global.FLAG_ELEMENT_OPTIONS &&
-            !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-            !global.FLAG_SELECT_ELEMENT &&
-            !global.FLAG_SELECT_TIMESTEP &&
-            !global.FLAG_SELECT_SETTINGS &&
-            !global.FLAG_REMOVE_ALL &&
-            !global.FLAG_MENU_OPEN_DOWN) {
+        if (global.flag_idle &&
+            !global.flag_save_image &&
+            !global.flag_save_circuit &&
+            !global.flag_zoom &&
+            !global.flag_element_options &&
+            !global.flag_element_options_edit &&
+            !global.flag_select_element &&
+            !global.flag_select_timestep &&
+            !global.flag_select_settings &&
+            !global.flag_remove_all &&
+            !global.flag_menu_element_toolbox) {
             if (!global.focused && !global.component_touched && !global.multi_selected) {
                 if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
                     this.is_translating = false;
@@ -244,7 +244,7 @@ class VoltageControlledCapacitor {
                     global.component_touched = true;
                 }
                 else {
-                    if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
+                    if (this.elm.consistent() && !global.component_touched && !global.flag_simulating) {
                         if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
                             this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
                             global.component_touched = true;
@@ -305,7 +305,7 @@ class VoltageControlledCapacitor {
         this.anchor_wires();
     }
     mouse_move() {
-        if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
+        if (global.flag_idle && !global.flag_simulating) {
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                     global.is_dragging = false;
@@ -344,7 +344,7 @@ class VoltageControlledCapacitor {
         }
     }
     mouse_up() {
-        if (global.FLAG_IDLE) {
+        if (global.flag_idle) {
             if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
                 if (this.is_translating) {
                     this.is_translating = false;
@@ -411,7 +411,7 @@ class VoltageControlledCapacitor {
         }
     }
     wire_reference_maintenance() {
-        if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
+        if (this.wire_reference.length > 0 && global.signal_wire_deleted) {
             let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -543,7 +543,7 @@ class VoltageControlledCapacitor {
         }
     }
     build_element() {
-        if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
+        if (this.BUILD_ELEMENT || global.signal_build_element) {
             let cache_0 = 0.75 * this.x_space;
             let cache_1 = 0.667 * this.x_space;
             let cache_2 = 0.75 * this.y_space;
@@ -582,7 +582,7 @@ class VoltageControlledCapacitor {
         }
     }
     resize() {
-        if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
+        if (this.BUILD_ELEMENT || global.signal_build_element) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
                     this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y), global.node_space_x * 2, global.node_space_y * 2);
@@ -594,12 +594,12 @@ class VoltageControlledCapacitor {
             else {
                 this.refactor();
             }
-            this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-            this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-            this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-            this.point_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-            this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+            this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+            this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
+            this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+            this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
+            this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+            this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
         }
     }
     refactor() {
@@ -663,7 +663,7 @@ class VoltageControlledCapacitor {
         if (this.MULTI_SELECTED) {
             multi_select_manager.determine_enveloping_bounds(this.bounds);
         }
-        if (global.PICTURE_REQUEST ||
+        if (global.picture_request_flag ||
             (this.c_x >= view_port.left - global.node_space_x &&
                 this.c_x - global.node_space_x <= view_port.right &&
                 this.c_y >= view_port.top + -global.node_space_y &&
@@ -683,9 +683,9 @@ class VoltageControlledCapacitor {
             this.line_buffer[this.indexer++] = Array(this.vcca_9.x, this.vcca_9.y, this.vcca_11.x, this.vcca_11.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             this.indexer = 0;
-            this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+            this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.canvas_stroke_width_2_zoom);
+            this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.canvas_stroke_width_2_zoom);
+            this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.canvas_stroke_width_2_zoom);
             canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
@@ -716,22 +716,22 @@ class VoltageControlledCapacitor {
                     global.NODE_HINTS &&
                     !multi_select_manager.MULTI_SELECT &&
                     !this.MULTI_SELECTED &&
-                    !global.SIGNAL_ADD_ELEMENT &&
-                    !global.SIGNAL_HISTORY_LOCK &&
-                    !global.PICTURE_REQUEST &&
-                    !global.FLAG_SAVE_CIRCUIT &&
-                    !global.FLAG_SAVE_IMAGE &&
-                    !global.FLAG_MENU_OPEN_DOWN &&
-                    !global.FLAG_SELECT_TIMESTEP &&
-                    !global.FLAG_ELEMENT_OPTIONS &&
-                    !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                    !global.FLAG_ZOOM &&
-                    !global.FLAG_GRAPH &&
-                    !global.FLAG_SIMULATING &&
-                    !global.FLAG_SELECT_SETTINGS &&
-                    !global.FLAG_SELECT_ELEMENT &&
-                    !global.FLAG_REMOVE_ALL &&
-                    !global.SIGNAL_ADD_ELEMENT) {
+                    !global.signal_add_element &&
+                    !global.signal_history_lock &&
+                    !global.picture_request_flag &&
+                    !global.flag_save_circuit &&
+                    !global.flag_save_image &&
+                    !global.flag_menu_element_toolbox &&
+                    !global.flag_select_timestep &&
+                    !global.flag_element_options &&
+                    !global.flag_element_options_edit &&
+                    !global.flag_zoom &&
+                    !global.flag_graph &&
+                    !global.flag_simulating &&
+                    !global.flag_select_settings &&
+                    !global.flag_select_element &&
+                    !global.flag_remove_all &&
+                    !global.signal_add_element) {
                     if (this.elm.consistent()) {
                         let node_id_array = this.elm.get_nodes();
                         for (var i = 0; i < node_id_array.length; i++) {

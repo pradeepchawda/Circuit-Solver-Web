@@ -6,9 +6,9 @@ class ElectricalNode {
         this.node_line_paint.set_paint_style(this.node_line_paint.style.STROKE);
         this.node_line_paint.set_paint_cap(this.node_line_paint.cap.ROUND);
         this.node_line_paint.set_paint_join(this.node_line_paint.join.MITER);
-        this.node_line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.node_line_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.node_line_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.node_line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.node_line_paint.set_text_size(global.canvas_text_size_5);
         this.node_line_paint.set_font(global.DEFAULT_FONT);
         this.node_line_paint.set_alpha(192);
         this.node_line_paint.set_paint_align(this.node_line_paint.align.CENTER);
@@ -16,9 +16,9 @@ class ElectricalNode {
         this.node_fill_paint.set_paint_style(this.node_fill_paint.style.FILL);
         this.node_fill_paint.set_paint_cap(this.node_fill_paint.cap.ROUND);
         this.node_fill_paint.set_paint_join(this.node_fill_paint.join.MITER);
-        this.node_fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.node_fill_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.node_fill_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.node_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.node_fill_paint.set_text_size(global.canvas_text_size_5);
         this.node_fill_paint.set_font(global.DEFAULT_FONT);
         this.node_fill_paint.set_alpha(192);
         this.node_fill_paint.set_paint_align(this.node_fill_paint.align.CENTER);
@@ -26,9 +26,9 @@ class ElectricalNode {
         this.node_fill_paint_alt.set_paint_style(this.node_fill_paint_alt.style.FILL);
         this.node_fill_paint_alt.set_paint_cap(this.node_fill_paint_alt.cap.ROUND);
         this.node_fill_paint_alt.set_paint_join(this.node_fill_paint_alt.join.MITER);
-        this.node_fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.node_fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
         this.node_fill_paint_alt.set_color(global.GENERAL_GREEN_COLOR);
-        this.node_fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.node_fill_paint_alt.set_text_size(global.canvas_text_size_5);
         this.node_fill_paint_alt.set_font(global.DEFAULT_FONT);
         this.node_fill_paint_alt.set_alpha(192);
         this.node_fill_paint_alt.set_paint_align(this.node_fill_paint_alt.align.CENTER);
@@ -48,7 +48,7 @@ class ElectricalNode {
         this.loc_y_precalc = this.column * global.settings.INV_SQRT_M_1;
     }
     resize(n_x, n_y, m_n_x, m_n_y) {
-        if (global.SIGNAL_BUILD_ELEMENT) {
+        if (global.signal_build_element) {
             this.location.x = workspace.bounds.left + this.loc_x_precalc * workspace.bounds.get_width();
             this.location.y = workspace.bounds.top + this.loc_y_precalc * workspace.bounds.get_height();
             if (!global.MOBILE_MODE) {
@@ -57,12 +57,12 @@ class ElectricalNode {
             else {
                 this.bounds.set_bounds(this.location.x - m_n_x, this.location.y - m_n_y, this.location.x + m_n_x, this.location.y + m_n_y);
             }
-            this.node_line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.node_line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-            this.node_fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.node_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-            this.node_fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.node_fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
+            this.node_line_paint.set_stroke_width(global.canvas_stroke_width_1);
+            this.node_line_paint.set_text_size(global.canvas_text_size_5);
+            this.node_fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+            this.node_fill_paint.set_text_size(global.canvas_text_size_5);
+            this.node_fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
+            this.node_fill_paint_alt.set_text_size(global.canvas_text_size_5);
         }
     }
     set_color(color) {
@@ -164,7 +164,7 @@ class ElectricalNode {
     draw(canvas) {
         if (this.references.length > 0) {
             if (global.DEVELOPER_MODE) {
-                canvas.draw_circle(this.location.x, this.location.y, 2 * global.CANVAS_STROKE_WIDTH_3, this.node_line_paint);
+                canvas.draw_circle(this.location.x, this.location.y, 2 * global.canvas_stroke_width_3, this.node_line_paint);
                 canvas.draw_text(this.debug_info(), this.location.x, this.location.y, this.node_line_paint);
             }
             else {

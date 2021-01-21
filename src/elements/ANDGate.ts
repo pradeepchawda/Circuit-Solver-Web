@@ -1,10 +1,7 @@
 'use strict';
-
 class ANDGate {
 	public INITIALIZED: boolean;
-
 	public bounds: RectF;
-
 	public elm: Element3;
 	public p1: PointF;
 	public p2: PointF;
@@ -16,56 +13,37 @@ class ANDGate {
 	public and_4: PointF;
 	public and_5: PointF;
 	public and_6: PointF;
-
 	public equilateral_center: Array<number>;
-
 	public c_x: number;
-
 	public c_y: number;
-
 	public x_space: number;
-
 	public y_space: number;
-
 	public connect1_x: number;
 	public connect1_y: number;
 	public connect2_x: number;
 	public connect2_y: number;
-
 	public theta_m90: number;
-
 	public theta: number;
-
 	public phi: number;
 	public grid_point: Array<number>;
-
 	public line_paint: Paint;
-
 	public point_paint: Paint;
-
 	public text_paint: Paint;
-
 	public is_translating: boolean;
 	public wire_reference: Array<WIRE_REFERENCE_T>;
-
 	public simulation_id: number;
-
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
 	public MULTI_SELECTED: boolean;
-
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	public BUILD_ELEMENT: boolean;
 	public ANGLE: number;
 	constructor(type: number, id: number, n1: number, n2: number, n3: number) {
 		this.INITIALIZED = false;
-
 		this.bounds = new RectF(0, 0, 0, 0);
-
 		this.elm = new Element3(id, type, global.copy(global.PROPERTY_AND));
-
 		this.elm.set_nodes(n1, n2, n3);
 		if (this.elm.consistent()) {
 			this.equilateral_center = global.equilateral_triangle_center(
@@ -78,15 +56,11 @@ class ANDGate {
 			);
 			this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
 		}
-
 		this.elm.set_rotation(global.ROTATION_0);
-
 		this.elm.set_flip(global.FLIP_0);
-
 		this.release_nodes();
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
-
 		this.capture_nodes();
 		this.p1 = new PointF(0, 0);
 		this.p2 = new PointF(0, 0);
@@ -103,29 +77,19 @@ class ANDGate {
 		this.and_4 = new PointF(0, 0);
 		this.and_5 = new PointF(0, 0);
 		this.and_6 = new PointF(0, 0);
-
 		this.equilateral_center = [];
-
 		this.c_x = this.bounds.get_center_x();
-
 		this.c_y = this.bounds.get_center_y();
-
 		this.x_space = global.node_space_x >> 1;
-
 		this.y_space = global.node_space_y >> 1;
-
 		this.connect1_x = 0;
 		this.connect1_y = 0;
 		this.connect2_x = 0;
 		this.connect2_y = 0;
-
 		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-
 		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.grid_point = [];
-
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -136,7 +100,6 @@ class ANDGate {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-
 		this.point_paint = new Paint();
 		this.point_paint.set_paint_style(this.point_paint.style.FILL);
 		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -147,7 +110,6 @@ class ANDGate {
 		this.point_paint.set_font(global.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
 		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -158,19 +120,15 @@ class ANDGate {
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-
 		this.is_translating = false;
 		this.build_element();
 		this.wire_reference = [];
-
 		this.simulation_id = 0;
-
 		this.indexer = 0;
 		this.m_x = 0;
 		this.m_y = 0;
 		this.INITIALIZED = true;
 		this.MULTI_SELECTED = false;
-
 		this.line_buffer = [];
 		this.circle_buffer = [];
 		this.BUILD_ELEMENT = true;
@@ -181,11 +139,9 @@ class ANDGate {
 			this.p1 = new PointF(0, 0);
 			this.p2 = new PointF(0, 0);
 			this.p3 = new PointF(0, 0);
-
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 			this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
-
 			this.equilateral_center = global.equilateral_triangle_center(
 				nodes[this.elm.n1].location.x,
 				nodes[this.elm.n2].location.x,
@@ -200,9 +156,8 @@ class ANDGate {
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-
 	update(): void {
-		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
+		if (global.flag_simulating && simulation_manager.SOLUTIONS_READY) {
 			if (this.elm.consistent()) {
 				this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) / this.elm.properties['High Voltage'] - 0.5));
 				this.elm.properties['Input Voltage2'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n2, -1) / this.elm.properties['High Voltage'] - 0.5));
@@ -215,7 +170,6 @@ class ANDGate {
 			engine_functions.stamp_voltage(this.elm.n3, -1, this.elm.properties['Output Voltage'], simulation_manager.ELEMENT_AND_OFFSET + this.simulation_id);
 		}
 	}
-
 	get_vertices(): Array<number> {
 		let vertices: Array<number> = [];
 		let p1: Array<number> = [];
@@ -262,7 +216,6 @@ class ANDGate {
 			this.wire_reference = [];
 		}
 	}
-
 	release_nodes(): void {
 		if (this.elm.consistent()) {
 			nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
@@ -271,7 +224,6 @@ class ANDGate {
 			this.elm.set_nodes(-1, -1, -1);
 		}
 	}
-
 	capture_nodes(): void {
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
@@ -281,18 +233,17 @@ class ANDGate {
 			nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
 		}
 	}
-
 	mouse_down(): void {
 		if (
-			global.FLAG_IDLE &&
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			global.flag_idle &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
@@ -305,7 +256,7 @@ class ANDGate {
 					global.focused = true;
 					global.component_touched = true;
 				} else {
-					if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
+					if (this.elm.consistent() && !global.component_touched && !global.flag_simulating) {
 						if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
 							this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
 							global.component_touched = true;
@@ -321,7 +272,6 @@ class ANDGate {
 			}
 		}
 	}
-
 	handle_wire_builder(n: number, anchor: number): void {
 		if (global.WIRE_BUILDER['step'] === 0) {
 			global.WIRE_BUILDER['n1'] = n;
@@ -361,9 +311,8 @@ class ANDGate {
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-
 	mouse_move(): void {
-		if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
+		if (global.flag_idle && !global.flag_simulating) {
 			if (global.focused) {
 				if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
 					global.is_dragging = false;
@@ -398,9 +347,8 @@ class ANDGate {
 			}
 		}
 	}
-
 	mouse_up(): void {
-		if (global.FLAG_IDLE) {
+		if (global.flag_idle) {
 			if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
 				if (this.is_translating) {
 					this.is_translating = false;
@@ -464,7 +412,7 @@ class ANDGate {
 		}
 	}
 	wire_reference_maintenance(): void {
-		if (this.wire_reference.length > 0 && global.signal_wire_element) {
+		if (this.wire_reference.length > 0 && global.signal_wire_deleted) {
 			let id: number = -1;
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -567,7 +515,6 @@ class ANDGate {
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-
 	set_rotation(rotation: number): void {
 		this.BUILD_ELEMENT = true;
 		wire_manager.reset_wire_builder();
@@ -579,13 +526,11 @@ class ANDGate {
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-
 	push_history(): void {
 		if (this.INITIALIZED) {
 			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
 		}
 	}
-
 	build_element(): void {
 		if (this.BUILD_ELEMENT || global.signal_build_element) {
 			let cache_0: number = 1.5 * this.x_space;
@@ -594,27 +539,23 @@ class ANDGate {
 			let cache_3: number = 0.75 * this.y_space;
 			let cache_4: number = 2.5 * this.x_space;
 			let cache_5: number = 2.5 * this.y_space;
-
 			this.and_0.x = this.p1.x + cache_0 * global.cosine(this.theta);
 			this.and_0.y = this.p1.y + cache_1 * global.sine(this.theta);
 			this.and_1.x = this.and_0.x + cache_2 * global.cosine(this.theta_m90);
 			this.and_1.y = this.and_0.y + cache_3 * global.sine(this.theta_m90);
 			this.and_2.x = this.and_1.x + cache_2 * global.cosine(this.theta - Math.PI);
 			this.and_2.y = this.and_1.y + cache_3 * global.sine(this.theta - Math.PI);
-
 			this.and_3.x = this.p1.x + cache_4 * global.cosine(this.theta);
 			this.and_3.y = this.p1.y + cache_5 * global.sine(this.theta);
 			this.and_4.x = this.and_3.x + cache_2 * global.cosine(this.theta_m90);
 			this.and_4.y = this.and_3.y + cache_3 * global.sine(this.theta_m90);
 			this.and_5.x = this.and_4.x + cache_2 * global.cosine(this.theta);
 			this.and_5.y = this.and_4.y + cache_3 * global.sine(this.theta);
-
 			this.and_6.x = this.p3.x - cache_2 * global.cosine(this.theta_m90);
 			this.and_6.y = this.p3.y - cache_3 * global.sine(this.theta_m90);
 			this.BUILD_ELEMENT = false;
 		}
 	}
-
 	resize(): void {
 		if (this.BUILD_ELEMENT || global.signal_build_element) {
 			if (this.bounds.anchored) {
@@ -635,7 +576,6 @@ class ANDGate {
 			} else {
 				this.refactor();
 			}
-
 			this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
 			this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
 			this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
@@ -644,7 +584,6 @@ class ANDGate {
 			this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
 		}
 	}
-
 	refactor(): void {
 		let vertices: Array<number> = this.get_vertices();
 		this.p1.x = vertices[0];
@@ -657,11 +596,8 @@ class ANDGate {
 		this.y_space = global.node_space_y >> 1;
 		this.c_x = this.bounds.get_center_x();
 		this.c_y = this.bounds.get_center_y();
-
 		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-
 		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.build_element();
 	}
@@ -699,12 +635,10 @@ class ANDGate {
 	is_selected_element(): boolean {
 		return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
 	}
-
 	draw_component(canvas: GraphicsEngine): void {
 		this.wire_reference_maintenance();
 		this.recolor();
 		this.resize();
-
 		if (this.MULTI_SELECTED) {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
@@ -778,17 +712,17 @@ class ANDGate {
 					!global.signal_add_element &&
 					!global.signal_history_lock &&
 					!global.picture_request_flag &&
-					!global.FLAG_SAVE_CIRCUIT &&
-					!global.FLAG_SAVE_IMAGE &&
+					!global.flag_save_circuit &&
+					!global.flag_save_image &&
 					!global.flag_menu_element_toolbox &&
-					!global.FLAG_SELECT_TIMESTEP &&
-					!global.FLAG_ELEMENT_OPTIONS &&
-					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-					!global.FLAG_ZOOM &&
-					!global.FLAG_GRAPH &&
-					!global.FLAG_SIMULATING &&
-					!global.FLAG_SELECT_SETTINGS &&
-					!global.FLAG_SELECT_ELEMENT &&
+					!global.flag_select_timestep &&
+					!global.flag_element_options &&
+					!global.flag_element_options_edit &&
+					!global.flag_zoom &&
+					!global.flag_graph &&
+					!global.flag_simulating &&
+					!global.flag_select_settings &&
+					!global.flag_select_element &&
 					!global.flag_remove_all &&
 					!global.signal_add_element
 				) {
@@ -805,7 +739,6 @@ class ANDGate {
 			}
 		}
 	}
-
 	patch(): void {
 		if (!global.not_null(this.line_buffer)) {
 			this.line_buffer = [];
@@ -835,7 +768,6 @@ class ANDGate {
 				}
 			}
 		}
-
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

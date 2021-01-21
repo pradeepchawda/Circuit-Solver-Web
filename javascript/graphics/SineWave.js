@@ -8,9 +8,9 @@ class SineWave {
         this.sine_wave_paint.set_paint_style(this.sine_wave_paint.style.STROKE);
         this.sine_wave_paint.set_paint_cap(this.sine_wave_paint.cap.ROUND);
         this.sine_wave_paint.set_paint_join(this.sine_wave_paint.join.MITER);
-        this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+        this.sine_wave_paint.set_stroke_width(global.canvas_stroke_width_2);
         this.sine_wave_paint.set_color(global.ELEMENT_COLOR);
-        this.sine_wave_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.sine_wave_paint.set_text_size(global.canvas_text_size_4);
         this.sine_wave_paint.set_font(global.DEFAULT_FONT);
         this.sine_wave_paint.set_alpha(255);
         this.sine_wave_paint.set_paint_align(this.sine_wave_paint.align.CENTER);
@@ -43,12 +43,12 @@ class SineWave {
     }
     resize(style) {
         if (style === this.STYLE_0) {
-            this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2_ZOOM);
-            this.sine_wave_paint.set_text_size(global.CANVAS_TEXT_SIZE_4_ZOOM);
+            this.sine_wave_paint.set_stroke_width(global.canvas_stroke_width_2_zoom);
+            this.sine_wave_paint.set_text_size(global.canvas_text_size_4_zoom);
         }
         else if (style === this.STYLE_1) {
-            this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-            this.sine_wave_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.sine_wave_paint.set_stroke_width(global.canvas_stroke_width_2);
+            this.sine_wave_paint.set_text_size(global.canvas_text_size_4);
         }
         this.last_x1 = -1;
         this.last_x2 = -1;

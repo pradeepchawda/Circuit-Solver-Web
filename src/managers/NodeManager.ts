@@ -1,18 +1,14 @@
 'use strict';
-
 class NodeManager {
 	public active_nodes: Array<number>;
-
 	public unique_nodes: Array<NodeNetwork>;
 	constructor() {
 		this.active_nodes = [];
-
 		this.unique_nodes = [];
 	}
 	clear_active_nodes(): void {
 		this.active_nodes.splice(0, this.active_nodes.length);
 	}
-
 	add_node(id: number): void {
 		if (id > -1 && id < global.settings.MAXNODES) {
 			if (this.find_node(id) === false) {
@@ -20,7 +16,6 @@ class NodeManager {
 			}
 		}
 	}
-
 	remove_node(id: number): void {
 		if (id > -1 && id < global.settings.MAXNODES) {
 			let index: number = this.find_node_index(id);
@@ -29,7 +24,6 @@ class NodeManager {
 			}
 		}
 	}
-
 	find_node(id: number): boolean {
 		for (var i: number = 0; i < this.active_nodes.length; i++) {
 			if (this.active_nodes[i] === id) {
@@ -38,7 +32,6 @@ class NodeManager {
 		}
 		return false;
 	}
-
 	find_node_index(id: number): number {
 		for (var i: number = 0; i < this.active_nodes.length; i++) {
 			if (this.active_nodes[i] === id) {
@@ -47,7 +40,6 @@ class NodeManager {
 		}
 		return -1;
 	}
-
 	assign_node_simulation_ids(): void {
 		for (var i: number = 0; i < this.active_nodes.length; i++) {
 			nodes[this.active_nodes[i]].simulation_id = i;
@@ -55,7 +47,6 @@ class NodeManager {
 	}
 	generate_unique_nodes_list(): void {
 		this.unique_nodes.splice(0, this.unique_nodes.length);
-
 		for (var i: number = 0; i < grounds.length; i++) {
 			this.unique_nodes.push(new NodeNetwork(grounds[i].elm.n1, grounds[i].elm.n1));
 		}
@@ -80,7 +71,6 @@ class NodeManager {
 				}
 			}
 		}
-
 		for (var i: number = 0; i < wires.length; i++) {
 			this.unique_nodes.push(new NodeNetwork(wires[i].elm.n1, wires[i].elm.n2));
 		}

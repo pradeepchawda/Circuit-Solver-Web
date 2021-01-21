@@ -9,9 +9,9 @@ class MultiSelectManager {
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
-        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.line_paint.set_text_size(global.canvas_text_size_5);
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -19,9 +19,9 @@ class MultiSelectManager {
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
         this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.fill_paint.set_text_size(global.canvas_text_size_5);
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(90);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -493,19 +493,19 @@ class MultiSelectManager {
     }
     key_down(key_event) {
         if (this.ENABLE_KEYS && !global.MOBILE_MODE) {
-            if (!global.FLAG_SIMULATING &&
-                !global.FLAG_SAVE_IMAGE &&
-                !global.FLAG_SAVE_CIRCUIT &&
-                !global.FLAG_ZOOM &&
-                !global.FLAG_ELEMENT_OPTIONS &&
-                !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                !global.FLAG_GRAPH &&
-                !global.FLAG_SELECT_ELEMENT &&
-                !global.FLAG_SELECT_TIMESTEP &&
-                !global.FLAG_SELECT_SETTINGS &&
-                !global.FLAG_REMOVE_ALL &&
-                !global.FLAG_MENU_OPEN_DOWN &&
-                !global.SIGNAL_HISTORY_LOCK) {
+            if (!global.flag_simulating &&
+                !global.flag_save_image &&
+                !global.flag_save_circuit &&
+                !global.flag_zoom &&
+                !global.flag_element_options &&
+                !global.flag_element_options_edit &&
+                !global.flag_graph &&
+                !global.flag_select_element &&
+                !global.flag_select_timestep &&
+                !global.flag_select_settings &&
+                !global.flag_remove_all &&
+                !global.flag_menu_element_toolbox &&
+                !global.signal_history_lock) {
                 if (key_event['ctrl']) {
                     this.CTRL_PRESSED_STARTED = true;
                 }
@@ -513,7 +513,7 @@ class MultiSelectManager {
         }
     }
     key_up(key_event) {
-        if (this.ENABLE_KEYS && !global.SIGNAL_HISTORY_LOCK && !global.MOBILE_MODE) {
+        if (this.ENABLE_KEYS && !global.signal_history_lock && !global.MOBILE_MODE) {
             if (!this.MOUSE_DOWN) {
                 this.CTRL_PRESSED_STARTED = false;
                 this.CTRL_PRESSED = false;
@@ -522,21 +522,21 @@ class MultiSelectManager {
         }
     }
     mouse_down() {
-        if (!global.FLAG_SIMULATING &&
-            !global.FLAG_SAVE_IMAGE &&
-            !global.FLAG_SAVE_CIRCUIT &&
-            !global.FLAG_ZOOM &&
-            !global.FLAG_ELEMENT_OPTIONS &&
-            !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-            !global.FLAG_GRAPH &&
-            !global.FLAG_SELECT_ELEMENT &&
-            !global.FLAG_SELECT_TIMESTEP &&
-            !global.FLAG_SELECT_SETTINGS &&
-            !global.FLAG_REMOVE_ALL &&
-            !global.FLAG_MENU_OPEN_DOWN &&
-            !global.SIGNAL_HISTORY_LOCK &&
+        if (!global.flag_simulating &&
+            !global.flag_save_image &&
+            !global.flag_save_circuit &&
+            !global.flag_zoom &&
+            !global.flag_element_options &&
+            !global.flag_element_options_edit &&
+            !global.flag_graph &&
+            !global.flag_select_element &&
+            !global.flag_select_timestep &&
+            !global.flag_select_settings &&
+            !global.flag_remove_all &&
+            !global.flag_menu_element_toolbox &&
+            !global.signal_history_lock &&
             !global.MOBILE_MODE) {
-            if (this.ENABLE_KEYS && !global.SIGNAL_HISTORY_LOCK) {
+            if (this.ENABLE_KEYS && !global.signal_history_lock) {
                 this.MOUSE_DOWN = true;
                 if (this.CTRL_PRESSED_STARTED) {
                     this.CTRL_PRESSED_STARTED = true;
@@ -587,19 +587,19 @@ class MultiSelectManager {
         }
     }
     mouse_move() {
-        if (!global.FLAG_SIMULATING &&
-            !global.FLAG_SAVE_IMAGE &&
-            !global.FLAG_SAVE_CIRCUIT &&
-            !global.FLAG_ZOOM &&
-            !global.FLAG_ELEMENT_OPTIONS &&
-            !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-            !global.FLAG_GRAPH &&
-            !global.FLAG_SELECT_ELEMENT &&
-            !global.FLAG_SELECT_TIMESTEP &&
-            !global.FLAG_SELECT_SETTINGS &&
-            !global.FLAG_REMOVE_ALL &&
-            !global.FLAG_MENU_OPEN_DOWN &&
-            !global.SIGNAL_HISTORY_LOCK &&
+        if (!global.flag_simulating &&
+            !global.flag_save_image &&
+            !global.flag_save_circuit &&
+            !global.flag_zoom &&
+            !global.flag_element_options &&
+            !global.flag_element_options_edit &&
+            !global.flag_graph &&
+            !global.flag_select_element &&
+            !global.flag_select_timestep &&
+            !global.flag_select_settings &&
+            !global.flag_remove_all &&
+            !global.flag_menu_element_toolbox &&
+            !global.signal_history_lock &&
             !global.MOBILE_MODE) {
             if (this.CTRL_PRESSED_STARTED) {
                 if (Math.abs(global.mouse_x - this.SELECT_X) > global.node_space_x || Math.abs(global.mouse_y - this.SELECT_Y) > global.node_space_y) {
@@ -679,7 +679,7 @@ class MultiSelectManager {
             }
         }
         if (dx !== 0 || dy !== 0) {
-            global.SIGNAL_BUILD_ELEMENT = true;
+            global.signal_build_element = true;
             global.signal_build_counter = 0;
             this.ELEMENTS_MOVED = true;
             /* #INSERT_GENERATE_MULTI_SELECT_ELEMENT_MOVE# */
@@ -1174,17 +1174,17 @@ class MultiSelectManager {
         }
     }
     determine_enveloping_bounds(bounds) {
-        if (!global.FLAG_SAVE_IMAGE &&
-            !global.FLAG_SAVE_CIRCUIT &&
-            !global.FLAG_ZOOM &&
-            !global.FLAG_ELEMENT_OPTIONS &&
-            !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-            !global.FLAG_GRAPH &&
-            !global.FLAG_SELECT_ELEMENT &&
-            !global.FLAG_SELECT_TIMESTEP &&
-            !global.FLAG_SELECT_SETTINGS &&
-            !global.FLAG_REMOVE_ALL &&
-            !global.FLAG_MENU_OPEN_DOWN) {
+        if (!global.flag_save_image &&
+            !global.flag_save_circuit &&
+            !global.flag_zoom &&
+            !global.flag_element_options &&
+            !global.flag_element_options_edit &&
+            !global.flag_graph &&
+            !global.flag_select_element &&
+            !global.flag_select_timestep &&
+            !global.flag_select_settings &&
+            !global.flag_remove_all &&
+            !global.flag_menu_element_toolbox) {
             global.multi_selected = true;
             this.SELECTED_COMPONENTS_BOUNDS.left = Math.min(this.SELECTED_COMPONENTS_BOUNDS.left, bounds.left - global.node_space_x);
             this.SELECTED_COMPONENTS_BOUNDS.top = Math.min(this.SELECTED_COMPONENTS_BOUNDS.top, bounds.top - global.node_space_y);
@@ -1194,17 +1194,17 @@ class MultiSelectManager {
     }
     draw_bounds(canvas) {
         if (this.MULTI_SELECT) {
-            if (!global.FLAG_SAVE_IMAGE &&
-                !global.FLAG_SAVE_CIRCUIT &&
-                !global.FLAG_ZOOM &&
-                !global.FLAG_ELEMENT_OPTIONS &&
-                !global.FLAG_ELEMENT_OPTIONS_EDIT &&
-                !global.FLAG_GRAPH &&
-                !global.FLAG_SELECT_ELEMENT &&
-                !global.FLAG_SELECT_TIMESTEP &&
-                !global.FLAG_SELECT_SETTINGS &&
-                !global.FLAG_REMOVE_ALL &&
-                !global.FLAG_MENU_OPEN_DOWN) {
+            if (!global.flag_save_image &&
+                !global.flag_save_circuit &&
+                !global.flag_zoom &&
+                !global.flag_element_options &&
+                !global.flag_element_options_edit &&
+                !global.flag_graph &&
+                !global.flag_select_element &&
+                !global.flag_select_timestep &&
+                !global.flag_select_settings &&
+                !global.flag_remove_all &&
+                !global.flag_menu_element_toolbox) {
                 canvas.draw_rect2(this.MULTI_SELECT_BOUNDS, this.fill_paint);
             }
         }

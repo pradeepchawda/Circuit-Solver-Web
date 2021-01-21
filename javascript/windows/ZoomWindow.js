@@ -6,9 +6,9 @@ class ZoomWindow {
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
-        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.line_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.line_paint.set_text_size(global.canvas_text_size_5);
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -16,9 +16,9 @@ class ZoomWindow {
         this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
         this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
         this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
-        this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.bounds_paint.set_color(global.GENERAL_FILL_COLOR);
-        this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.bounds_paint.set_text_size(global.canvas_text_size_5);
         this.bounds_paint.set_font(global.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
         this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
@@ -26,9 +26,9 @@ class ZoomWindow {
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
         this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.fill_paint.set_text_size(global.canvas_text_size_5);
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -36,13 +36,13 @@ class ZoomWindow {
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
         this.text_paint.set_paint_join(this.text_paint.join.MITER);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(0.75 * global.CANVAS_TEXT_SIZE_6);
+            this.text_paint.set_text_size(0.75 * global.canvas_text_size_6);
         }
         else {
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+            this.text_paint.set_text_size(global.canvas_text_size_5);
         }
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
@@ -50,9 +50,9 @@ class ZoomWindow {
         this.option_0_paint.set_paint_style(this.option_0_paint.style.FILL);
         this.option_0_paint.set_paint_cap(this.option_0_paint.cap.ROUND);
         this.option_0_paint.set_paint_join(this.option_0_paint.join.MITER);
-        this.option_0_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.option_0_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.option_0_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.option_0_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.option_0_paint.set_text_size(global.canvas_text_size_5);
         this.option_0_paint.set_font(global.DEFAULT_FONT);
         this.option_0_paint.set_alpha(255);
         this.option_0_paint.set_paint_align(this.option_0_paint.align.CENTER);
@@ -60,9 +60,9 @@ class ZoomWindow {
         this.option_1_paint.set_paint_style(this.option_1_paint.style.FILL);
         this.option_1_paint.set_paint_cap(this.option_1_paint.cap.ROUND);
         this.option_1_paint.set_paint_join(this.option_1_paint.join.MITER);
-        this.option_1_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.option_1_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.option_1_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.option_1_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.option_1_paint.set_text_size(global.canvas_text_size_5);
         this.option_1_paint.set_font(global.DEFAULT_FONT);
         this.option_1_paint.set_alpha(255);
         this.option_1_paint.set_paint_align(this.option_1_paint.align.CENTER);
@@ -70,9 +70,9 @@ class ZoomWindow {
         this.option_2_paint.set_paint_style(this.option_2_paint.style.FILL);
         this.option_2_paint.set_paint_cap(this.option_2_paint.cap.ROUND);
         this.option_2_paint.set_paint_join(this.option_2_paint.join.MITER);
-        this.option_2_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.option_2_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.option_2_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.option_2_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.option_2_paint.set_text_size(global.canvas_text_size_5);
         this.option_2_paint.set_font(global.DEFAULT_FONT);
         this.option_2_paint.set_alpha(255);
         this.option_2_paint.set_paint_align(this.option_2_paint.align.CENTER);
@@ -80,9 +80,9 @@ class ZoomWindow {
         this.option_3_paint.set_paint_style(this.option_3_paint.style.FILL);
         this.option_3_paint.set_paint_cap(this.option_3_paint.cap.ROUND);
         this.option_3_paint.set_paint_join(this.option_3_paint.join.MITER);
-        this.option_3_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.option_3_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.option_3_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.option_3_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.option_3_paint.set_text_size(global.canvas_text_size_5);
         this.option_3_paint.set_font(global.DEFAULT_FONT);
         this.option_3_paint.set_alpha(255);
         this.option_3_paint.set_paint_align(this.option_3_paint.align.CENTER);
@@ -144,51 +144,51 @@ class ZoomWindow {
         this.first_touch_y = 0;
     }
     mouse_down() {
-        if (global.FLAG_ZOOM) {
+        if (global.flag_zoom) {
             this.first_touch_x = global.mouse_x;
             this.first_touch_y = global.mouse_y;
         }
     }
     mouse_move() {
-        if (global.FLAG_ZOOM) {
+        if (global.flag_zoom) {
             if (!global.MOBILE_MODE) {
                 this.hover();
             }
         }
     }
     mouse_up() {
-        if (global.FLAG_ZOOM) {
+        if (global.flag_zoom) {
             if (!global.mouse_keyboard_lock) {
                 if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
-                    menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+                    menu_bar.handle_zoom_flag(!global.flag_zoom);
                     global.component_touched = true;
                 }
                 else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     this.set_zoom(this.options['c0']['number']);
-                    menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+                    menu_bar.handle_zoom_flag(!global.flag_zoom);
                     global.component_touched = true;
                 }
                 else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     this.set_zoom(this.options['c1']['number']);
-                    menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+                    menu_bar.handle_zoom_flag(!global.flag_zoom);
                     global.component_touched = true;
                 }
                 else if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     this.set_zoom(this.options['c2']['number']);
-                    menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+                    menu_bar.handle_zoom_flag(!global.flag_zoom);
                     global.component_touched = true;
                 }
                 else if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
-                    menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+                    menu_bar.handle_zoom_flag(!global.flag_zoom);
                     global.component_touched = true;
                 }
             }
         }
     }
     key_down(key_event) {
-        if (global.FLAG_ZOOM) {
+        if (global.flag_zoom) {
             if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
-                menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+                menu_bar.handle_zoom_flag(!global.flag_zoom);
                 global.component_touched = true;
             }
         }
@@ -221,7 +221,7 @@ class ZoomWindow {
     }
     set_zoom(zoom) {
         if (zoom >= global.ZOOM_MIN && zoom <= global.ZOOM_MAX) {
-            global.SIGNAL_BUILD_ELEMENT = true;
+            global.signal_build_element = true;
             global.signal_build_counter = 0;
             global.workspace_zoom_scale = zoom;
             global.x_offset = 0;
@@ -251,22 +251,22 @@ class ZoomWindow {
         this.option_1.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.top + padding, this.bounds.right - padding, this.bounds.get_center_y() - padding * 0.5);
         this.option_2.set_bounds(this.bounds.left + padding, this.bounds.get_center_y() + padding * 0.5, this.bounds.get_center_x() - padding * 0.5, this.bounds.bottom - padding);
         this.option_3.set_bounds(this.bounds.get_center_x() + padding * 0.5, this.bounds.get_center_y() + padding * 0.5, this.bounds.right - padding, this.bounds.bottom - padding);
-        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.line_paint.set_text_size(global.canvas_text_size_5);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
         if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(0.75 * global.CANVAS_TEXT_SIZE_6);
+            this.text_paint.set_text_size(0.75 * global.canvas_text_size_6);
         }
         else {
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+            this.text_paint.set_text_size(global.canvas_text_size_5);
         }
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-        this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.fill_paint.set_text_size(global.canvas_text_size_5);
+        this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.bounds_paint.set_text_size(global.canvas_text_size_5);
     }
     draw_window(canvas) {
-        if (global.FLAG_ZOOM) {
+        if (global.flag_zoom) {
             if (!global.MOBILE_MODE) {
                 canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
             }
@@ -278,7 +278,7 @@ class ZoomWindow {
             canvas.draw_rect2(this.option_2, this.option_2_paint);
             canvas.draw_text(this.options['c2']['string'], this.option_2.get_center_x(), this.option_2.get_center_y(), this.text_paint);
             canvas.draw_rect2(this.option_3, this.option_3_paint);
-            canvas.draw_text(language_manager.EXIT[global.LANGUAGES[global.LANGUAGE_INDEX]], this.option_3.get_center_x(), this.option_3.get_center_y(), this.text_paint);
+            canvas.draw_text(language_manager.EXIT[global.LANGUAGES[global.language_index]], this.option_3.get_center_x(), this.option_3.get_center_y(), this.text_paint);
         }
     }
 }

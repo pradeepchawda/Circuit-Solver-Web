@@ -1,111 +1,77 @@
 'use strict';
-
 class Element3 {
 	public n1: number;
-
 	public n2: number;
-
 	public n3: number;
-
 	public type: number;
-
 	public id: number;
-
 	public port_size: number;
-
 	public rotation: number;
-
 	public flip: number;
-
 	public properties: ELEMENT_PROPERTY_T;
-
 	public FUDGE_FACTOR: number;
 	constructor(id: number, type: number, properties: ELEMENT_PROPERTY_T) {
 		this.n1 = -1;
-
 		this.n2 = -1;
-
 		this.n3 = -1;
-
 		this.type = type;
-
 		this.id = id;
-
 		this.port_size = 3;
-
 		this.rotation = 0;
-
 		this.flip = 0;
-
 		this.properties = properties;
-
 		this.FUDGE_FACTOR = 0.98;
 	}
-
 	set_properties(properties: ELEMENT_PROPERTY_T): void {
 		this.properties = properties;
 	}
-
 	get_properties(): ELEMENT_PROPERTY_T {
 		return this.properties;
 	}
-
 	set_rotation(rotation: number): void {
 		this.rotation = rotation;
 	}
-
 	get_rotation(): number {
 		return this.rotation;
 	}
-
 	set_flip(flip: number): void {
 		this.flip = flip;
 	}
-
 	get_flip(): number {
 		return this.flip;
 	}
-
 	get_port_size(): number {
 		return this.port_size;
 	}
-
 	set_node_1(n1: number): void {
 		this.n1 = n1;
 	}
-
 	set_node_2(n2: number): void {
 		this.n2 = n2;
 	}
 	set_node_3(n3: number): void {
 		this.n3 = n3;
 	}
-
 	get_node_1(): number {
 		return this.n1;
 	}
-
 	get_node_2(): number {
 		return this.n2;
 	}
 	get_node_3(): number {
 		return this.n3;
 	}
-
 	set_nodes(n1: number, n2: number, n3: number): void {
 		this.n1 = n1;
 		this.n2 = n2;
 		this.n3 = n3;
 	}
-
 	get_nodes(): Array<number> {
 		return Array(this.n1, this.n2, this.n3);
 	}
-
 	consistent(): boolean {
 		return this.n1 > -1 && this.n2 > -1 && this.n3 > -1;
 	}
-
 	map_node3(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): void {
 		let sqrt: number = this.round(global.settings.SQRT_MAXNODES);
 		let w_factor: number = (this.FUDGE_FACTOR / workspace.bounds.get_width()) * sqrt;
@@ -125,7 +91,6 @@ class Element3 {
 			this.n3 = n3;
 		}
 	}
-
 	to_index(sqrt: number, x: number, y: number): number {
 		return y * sqrt + x;
 	}

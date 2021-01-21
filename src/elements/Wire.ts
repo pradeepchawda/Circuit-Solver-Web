@@ -132,15 +132,15 @@ class Wire {
 	move_element(dx: number, dy: number): void {}
 	mouse_down(): void {
 		if (
-			global.FLAG_IDLE &&
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			global.flag_idle &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
@@ -157,7 +157,7 @@ class Wire {
 	}
 	mouse_move(): void {}
 	mouse_up(): void {
-		if (global.FLAG_IDLE) {
+		if (global.flag_idle) {
 			if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
 				if (!global.selected) {
 					this.select();
@@ -267,7 +267,7 @@ class Wire {
 		}
 	}
 	update(): void {
-		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
+		if (global.flag_simulating && simulation_manager.SOLUTIONS_READY) {
 			if (this.elm.consistent()) {
 				this.wire_voltage = Math.max(engine_functions.get_voltage(this.elm.n1, -1), engine_functions.get_voltage(this.elm.n2, -1));
 			}
@@ -433,7 +433,7 @@ class Wire {
 			this.line_buffer = [];
 			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-			if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step) {
+			if (global.flag_simulating && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step) {
 				if (this.elm.consistent()) {
 					this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 					if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
@@ -471,7 +471,7 @@ class Wire {
 			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
 			this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-			if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step + global.time_step) {
+			if (global.flag_simulating && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step + global.time_step) {
 				if (this.elm.consistent()) {
 					if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
 						if (global.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {

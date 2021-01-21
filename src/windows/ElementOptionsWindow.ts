@@ -21,8 +21,8 @@ class ElementOptionsWindow {
 	public exit_button: Button;
 	public attributes: Array<RectF>;
 	public ATTRIBUTE_HEIGHT: number;
-	public OFFSET_X: number;
-	public OFFSET_Y: number;
+	public offset_x: number;
+	public offset_y: number;
 	public WINDOW_ANCHORED: boolean;
 	public ANCHOR_X: number;
 	public ANCHOR_Y: number;
@@ -161,8 +161,8 @@ class ElementOptionsWindow {
 				)
 			);
 		}
-		this.OFFSET_X = 0;
-		this.OFFSET_Y = 0;
+		this.offset_x = 0;
+		this.offset_y = 0;
 		this.WINDOW_ANCHORED = true;
 		this.ANCHOR_X = 0;
 		this.ANCHOR_Y = 0;
@@ -175,13 +175,13 @@ class ElementOptionsWindow {
 		this.toggle_switch_button.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 	}
 	mouse_down(): void {
-		if (global.FLAG_ELEMENT_OPTIONS) {
+		if (global.flag_element_options) {
 			if (
-				this.title_bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
-				!this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y)
+				this.title_bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+				!this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)
 			) {
-				this.ANCHOR_X = global.mouse_x - this.OFFSET_X;
-				this.ANCHOR_Y = global.mouse_y - this.OFFSET_Y;
+				this.ANCHOR_X = global.mouse_x - this.offset_x;
+				this.ANCHOR_Y = global.mouse_y - this.offset_y;
 				this.WINDOW_ANCHORED = false;
 			}
 			this.first_touch_x = global.mouse_x;
@@ -189,48 +189,48 @@ class ElementOptionsWindow {
 		}
 	}
 	mouse_move(): void {
-		if (global.FLAG_ELEMENT_OPTIONS) {
+		if (global.flag_element_options) {
 			if (!this.WINDOW_ANCHORED) {
-				this.OFFSET_X = global.mouse_x - this.ANCHOR_X;
-				this.OFFSET_Y = global.mouse_y - this.ANCHOR_Y;
-				if (this.bounds.right + this.OFFSET_X >= view_port.right) {
-					this.OFFSET_X = view_port.right - this.bounds.right;
+				this.offset_x = global.mouse_x - this.ANCHOR_X;
+				this.offset_y = global.mouse_y - this.ANCHOR_Y;
+				if (this.bounds.right + this.offset_x >= view_port.right) {
+					this.offset_x = view_port.right - this.bounds.right;
 				}
-				if (this.bounds.left + this.OFFSET_X <= view_port.left) {
-					this.OFFSET_X = view_port.left - this.bounds.left;
+				if (this.bounds.left + this.offset_x <= view_port.left) {
+					this.offset_x = view_port.left - this.bounds.left;
 				}
-				if (this.bounds.top + this.OFFSET_Y <= view_port.top) {
-					this.OFFSET_Y = view_port.top - this.bounds.top;
+				if (this.bounds.top + this.offset_y <= view_port.top) {
+					this.offset_y = view_port.top - this.bounds.top;
 				}
-				if (this.bounds.bottom + this.OFFSET_Y >= view_port.bottom) {
-					this.OFFSET_Y = view_port.bottom - this.bounds.bottom;
+				if (this.bounds.bottom + this.offset_y >= view_port.bottom) {
+					this.offset_y = view_port.bottom - this.bounds.bottom;
 				}
 			}
 		}
 	}
 	mouse_up(): void {
-		if (global.FLAG_ELEMENT_OPTIONS) {
+		if (global.flag_element_options) {
 			if (!global.mouse_keyboard_lock) {
 				if (this.WINDOW_ANCHORED) {
 					if (
-						!this.bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
-						!this.bounds.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
+						!this.bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						!this.bounds.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
+						menu_bar.handle_element_options_flag(!global.flag_element_options);
 						global.component_touched = true;
 						global.mouse_keyboard_lock = true;
 					} else if (
-						this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
-						this.okay_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
+						this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.okay_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
+						menu_bar.handle_element_options_flag(!global.flag_element_options);
 						global.component_touched = true;
 						global.mouse_keyboard_lock = true;
 					} else if (
-						this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
-						this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
+						this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.exit_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
+						menu_bar.handle_element_options_flag(!global.flag_element_options);
 						global.component_touched = true;
 						global.mouse_keyboard_lock = true;
 					} else {
@@ -238,8 +238,8 @@ class ElementOptionsWindow {
 							if (global.not_null(global.selected_properties)) {
 								if (i < global.selected_properties['options'].length) {
 									if (
-										this.attributes[i].contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
-										this.attributes[i].contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
+										this.attributes[i].contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+										this.attributes[i].contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 									) {
 										this.on_attribute_clicked(i);
 										break;
@@ -249,8 +249,8 @@ class ElementOptionsWindow {
 						}
 					}
 				} else {
-					this.ANCHOR_X = global.mouse_x - this.OFFSET_X;
-					this.ANCHOR_Y = global.mouse_y - this.OFFSET_Y;
+					this.ANCHOR_X = global.mouse_x - this.offset_x;
+					this.ANCHOR_Y = global.mouse_y - this.offset_y;
 				}
 				this.WINDOW_ANCHORED = true;
 			}
@@ -273,8 +273,8 @@ class ElementOptionsWindow {
 					element_options_edit_window.set_input_text(global.selected_properties[global.selected_properties['options'][index]]);
 				}
 				element_options_edit_window.option_index = index;
-				menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-				menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
+				menu_bar.handle_element_options_flag(!global.flag_element_options);
+				menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
 			}
 			global.component_touched = true;
 			global.mouse_keyboard_lock = true;
@@ -282,9 +282,9 @@ class ElementOptionsWindow {
 		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (global.FLAG_ELEMENT_OPTIONS) {
+		if (global.flag_element_options) {
 			if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
-				menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
+				menu_bar.handle_element_options_flag(!global.flag_element_options);
 				global.component_touched = true;
 				global.mouse_keyboard_lock = true;
 			}
@@ -435,57 +435,57 @@ class ElementOptionsWindow {
 		}
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.FLAG_ELEMENT_OPTIONS) {
+		if (global.flag_element_options) {
 			if (!global.MOBILE_MODE) {
 				canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.language_index]];
-			canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);
-			this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
-			if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+			canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
+			this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
+			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
+			if (this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
 				this.okay_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
 				this.okay_button.fill_paint.set_alpha(255);
 			} else {
 				this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
 				this.okay_button.fill_paint.set_alpha(130);
 			}
-			this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
+			this.okay_button.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
 			if (global.not_null(global.selected_properties['options'])) {
 				for (var i: number = 0; i < this.attributes.length; i++) {
 					if (i < global.selected_properties['options'].length) {
-						if (this.attributes[i].contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+						if (this.attributes[i].contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
 							canvas.draw_rect(
-								this.attributes[i].left + this.OFFSET_X,
-								this.attributes[i].top + this.OFFSET_Y,
-								this.attributes[i].right + this.OFFSET_X,
-								this.attributes[i].bottom + this.OFFSET_Y,
+								this.attributes[i].left + this.offset_x,
+								this.attributes[i].top + this.offset_y,
+								this.attributes[i].right + this.offset_x,
+								this.attributes[i].bottom + this.offset_y,
 								this.hover_paint
 							);
 						} else {
 							canvas.draw_rect(
-								this.attributes[i].left + this.OFFSET_X,
-								this.attributes[i].top + this.OFFSET_Y,
-								this.attributes[i].right + this.OFFSET_X,
-								this.attributes[i].bottom + this.OFFSET_Y,
+								this.attributes[i].left + this.offset_x,
+								this.attributes[i].top + this.offset_y,
+								this.attributes[i].right + this.offset_x,
+								this.attributes[i].bottom + this.offset_y,
 								this.fill_paint
 							);
 						}
 						canvas.draw_text(
 							global.selected_properties['options'][i] + ':=',
-							this.attributes[i].left + this.PADDING * this.bounds.get_width() + this.OFFSET_X,
-							this.attributes[i].get_center_y() + this.OFFSET_Y,
+							this.attributes[i].left + this.PADDING * this.bounds.get_width() + this.offset_x,
+							this.attributes[i].get_center_y() + this.offset_y,
 							this.text_paint
 						);
 						if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
-							canvas.draw_text(i + 1 + '', this.attributes[i].left + this.OFFSET_X, this.attributes[i].top + this.OFFSET_Y, this.shorcut_text_paint);
+							canvas.draw_text(i + 1 + '', this.attributes[i].left + this.offset_x, this.attributes[i].top + this.offset_y, this.shorcut_text_paint);
 						}
 						if (!this.special_property(global.selected_properties['options'][i])) {
 							if (!this.special_type(global.selected_type)) {
 								canvas.draw_text(
 									global.exponentiate_quickly(<any>(<string>global.selected_properties[global.selected_properties['options'][i]])) + global.selected_properties['options_units'][i],
-									this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.OFFSET_X,
-									this.attributes[i].get_center_y() + this.OFFSET_Y,
+									this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.offset_x,
+									this.attributes[i].get_center_y() + this.offset_y,
 									this.value_paint
 								);
 							} else {
@@ -502,13 +502,13 @@ class ElementOptionsWindow {
 										this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 									}
 									if (global.not_null(this.toggle_switch_button)) {
-										this.toggle_switch_button.draw_toggle_switch_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
+										this.toggle_switch_button.draw_toggle_switch_dxdy(canvas, this.offset_x, this.offset_y);
 									}
 								} else {
 									canvas.draw_text(
 										global.selected_properties[global.selected_properties['options'][i]] + global.selected_properties['options_units'][i],
-										this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.OFFSET_X,
-										this.attributes[i].get_center_y() + this.OFFSET_Y,
+										this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.offset_x,
+										this.attributes[i].get_center_y() + this.offset_y,
 										this.value_paint
 									);
 								}
@@ -527,13 +527,13 @@ class ElementOptionsWindow {
 									this.toggle_switch_button.toggle_paint.set_color(global.GENERAL_BOUNDS_COLOR);
 								}
 								if (global.not_null(this.toggle_switch_button)) {
-									this.toggle_switch_button.draw_toggle_switch_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
+									this.toggle_switch_button.draw_toggle_switch_dxdy(canvas, this.offset_x, this.offset_y);
 								}
 							} else {
 								canvas.draw_text(
 									global.selected_properties[global.selected_properties['options'][i]] + global.selected_properties['options_units'][i],
-									this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.OFFSET_X,
-									this.attributes[i].get_center_y() + this.OFFSET_Y,
+									this.attributes[i].right - this.PADDING * this.bounds.get_width() + this.offset_x,
+									this.attributes[i].get_center_y() + this.offset_y,
 									this.value_paint
 								);
 							}
@@ -541,29 +541,29 @@ class ElementOptionsWindow {
 					}
 				}
 			}
-			if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+			if (this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
 				canvas.draw_rect(
-					this.exit_button.left + this.OFFSET_X,
-					this.exit_button.top + this.OFFSET_Y,
-					this.exit_button.right + this.OFFSET_X,
-					this.exit_button.bottom + this.OFFSET_Y,
+					this.exit_button.left + this.offset_x,
+					this.exit_button.top + this.offset_y,
+					this.exit_button.right + this.offset_x,
+					this.exit_button.bottom + this.offset_y,
 					this.hover_paint
 				);
 			}
 			let width_mul_0p3636: number = this.exit_button.get_width() * 0.3636;
 			let height_mul_0p3636: number = this.exit_button.get_height() * 0.3636;
 			canvas.draw_line(
-				this.exit_button.left + width_mul_0p3636 + this.OFFSET_X,
-				this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y,
-				this.exit_button.right - width_mul_0p3636 + this.OFFSET_X,
-				this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y,
+				this.exit_button.left + width_mul_0p3636 + this.offset_x,
+				this.exit_button.top + height_mul_0p3636 + this.offset_y,
+				this.exit_button.right - width_mul_0p3636 + this.offset_x,
+				this.exit_button.bottom - height_mul_0p3636 + this.offset_y,
 				this.line_paint
 			);
 			canvas.draw_line(
-				this.exit_button.right - width_mul_0p3636 + this.OFFSET_X,
-				this.exit_button.top + height_mul_0p3636 + this.OFFSET_Y,
-				this.exit_button.left + width_mul_0p3636 + this.OFFSET_X,
-				this.exit_button.bottom - height_mul_0p3636 + this.OFFSET_Y,
+				this.exit_button.right - width_mul_0p3636 + this.offset_x,
+				this.exit_button.top + height_mul_0p3636 + this.offset_y,
+				this.exit_button.left + width_mul_0p3636 + this.offset_x,
+				this.exit_button.bottom - height_mul_0p3636 + this.offset_y,
 				this.line_paint
 			);
 		}

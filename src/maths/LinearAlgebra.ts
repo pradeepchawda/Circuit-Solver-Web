@@ -12,9 +12,9 @@ class LinearAlgebra {
 	public abs_a: number;
 	public P: Array<number>;
 	public lup_det: number;
-	public GENERAL_VECTOR: Array<number>;
-	public GENERAL_MATRIX: Array<Array<number>>;
-	public FIRST_LUP_SOLVE: boolean;
+	public general_vector: Array<number>;
+	public General_matrix: Array<Array<number>>;
+	public first_lup_solve: boolean;
 	constructor() {
 		this.x_matrix = [[0], [0]];
 		this.det_threshold = 0;
@@ -28,9 +28,9 @@ class LinearAlgebra {
 		this.abs_a = 0;
 		this.P = [];
 		this.lup_det = 0;
-		this.GENERAL_MATRIX;
-		this.GENERAL_VECTOR;
-		this.FIRST_LUP_SOLVE = true;
+		this.General_matrix;
+		this.general_vector;
+		this.first_lup_solve = true;
 	}
 	lup_solve(a_matrix: Array<Array<number>>, b_matrix: Array<Array<number>>): Array<Array<number>> {
 		if (a_matrix.length > 0 && a_matrix[0].length > 0) {
@@ -41,10 +41,10 @@ class LinearAlgebra {
 			this._i_max = 0;
 			this.max_a = 0;
 			this.abs_a = 0;
-			if (this.FIRST_LUP_SOLVE) {
+			if (this.first_lup_solve) {
 				this.P = this.vector2(this.SIZE + 1);
 				this.x_matrix = this.matrix(this.SIZE, 1);
-				this.FIRST_LUP_SOLVE = false;
+				this.first_lup_solve = false;
 			} else {
 				for (var i: number = 0; i < this.P.length; i++) {
 					this.P[i] = i;
@@ -113,27 +113,27 @@ class LinearAlgebra {
 		return matrix;
 	}
 	matrix(rows: number, cols: number): Array<Array<number>> {
-		this.GENERAL_MATRIX = [];
+		this.General_matrix = [];
 		for (var i: number = 0; i < rows; i++) {
-			this.GENERAL_MATRIX.push(new Array(cols));
+			this.General_matrix.push(new Array(cols));
 			for (var j: number = 0; j < cols; j++) {
-				this.GENERAL_MATRIX[i][j] = 0;
+				this.General_matrix[i][j] = 0;
 			}
 		}
-		return this.GENERAL_MATRIX;
+		return this.General_matrix;
 	}
 	vector(size: number): Array<number> {
-		this.GENERAL_VECTOR = new Array(size);
+		this.general_vector = new Array(size);
 		for (var i: number = 0; i < size; i++) {
-			this.GENERAL_VECTOR[i] = 0;
+			this.general_vector[i] = 0;
 		}
-		return this.GENERAL_VECTOR;
+		return this.general_vector;
 	}
 	vector2(size: number): Array<number> {
-		this.GENERAL_VECTOR = new Array(size);
+		this.general_vector = new Array(size);
 		for (var i: number = 0; i < size; i++) {
-			this.GENERAL_VECTOR[i] = i;
+			this.general_vector[i] = i;
 		}
-		return this.GENERAL_VECTOR;
+		return this.general_vector;
 	}
 }

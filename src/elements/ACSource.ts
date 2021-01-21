@@ -1,65 +1,44 @@
 'use strict';
-
 class ACSource {
 	public INITIALIZED: boolean;
-
 	public bounds: RectF;
-
 	public elm: Element2;
 	public plus_point: PointF;
 	public sine_wave_p1: PointF;
 	public sine_wave_p2: PointF;
 	public p1: PointF;
 	public p2: PointF;
-
 	public theta_m90: number;
-
 	public theta: number;
-
 	public c_x: number;
-
 	public c_y: number;
-
 	public x_space: number;
-
 	public y_space: number;
-
 	public connect1_x: number;
 	public connect1_y: number;
 	public connect2_x: number;
 	public connect2_y: number;
-
 	public grid_point: Array<number>;
-
 	public line_paint: Paint;
-
 	public point_paint: Paint;
-
 	public text_paint: Paint;
-
 	public is_translating: boolean;
 	public sine_wave: SineWave;
 	public temp_color: string;
 	public wire_reference: Array<WIRE_REFERENCE_T>;
-
 	public simulation_id: number;
-
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
 	public MULTI_SELECTED: boolean;
-
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	public BUILD_ELEMENT: boolean;
 	public ANGLE: number;
 	constructor(type: number, id: number, n1: number, n2: number) {
 		this.INITIALIZED = false;
-
 		this.bounds = new RectF(0, 0, 0, 0);
-
 		this.elm = new Element2(id, type, global.copy(global.PROPERTY_ACSOURCE));
-
 		this.elm.set_nodes(n1, n2);
 		if (this.elm.consistent()) {
 			this.bounds.set_center2(
@@ -69,15 +48,11 @@ class ACSource {
 				global.node_space_y * 2
 			);
 		}
-
 		this.elm.set_rotation(global.ROTATION_0);
-
 		this.elm.set_flip(global.FLIP_0);
-
 		this.release_nodes();
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
-
 		this.capture_nodes();
 		this.plus_point = new PointF(0, 0);
 		this.sine_wave_p1 = new PointF(0, 0);
@@ -88,26 +63,17 @@ class ACSource {
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 		}
-
 		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-
 		this.c_x = this.bounds.get_center_x();
-
 		this.c_y = this.bounds.get_center_y();
-
 		this.x_space = global.node_space_x >> 1;
-
 		this.y_space = global.node_space_y >> 1;
-
 		this.connect1_x = 0;
 		this.connect1_y = 0;
 		this.connect2_x = 0;
 		this.connect2_y = 0;
-
 		this.grid_point = [];
-
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -118,7 +84,6 @@ class ACSource {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-
 		this.point_paint = new Paint();
 		this.point_paint.set_paint_style(this.point_paint.style.FILL);
 		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -129,7 +94,6 @@ class ACSource {
 		this.point_paint.set_font(global.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
 		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -140,21 +104,17 @@ class ACSource {
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-
 		this.is_translating = false;
 		this.sine_wave = new SineWave(0, 0, 0, 0, this.x_space >> 1);
 		this.temp_color = global.GENERAL_RED_COLOR;
 		this.build_element();
 		this.wire_reference = [];
-
 		this.simulation_id = 0;
-
 		this.indexer = 0;
 		this.m_x = 0;
 		this.m_y = 0;
 		this.INITIALIZED = true;
 		this.MULTI_SELECTED = false;
-
 		this.line_buffer = [];
 		this.circle_buffer = [];
 		this.BUILD_ELEMENT = true;
@@ -164,10 +124,8 @@ class ACSource {
 		if (this.elm.consistent()) {
 			this.p1 = new PointF(0, 0);
 			this.p2 = new PointF(0, 0);
-
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
-
 			this.bounds.set_center2(
 				global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x),
 				global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y),
@@ -190,7 +148,6 @@ class ACSource {
 			);
 		}
 	}
-
 	get_vertices(): Array<number> {
 		let vertices: Array<number> = [];
 		let p1: Array<number> = [];
@@ -231,7 +188,6 @@ class ACSource {
 			this.wire_reference = [];
 		}
 	}
-
 	release_nodes(): void {
 		if (this.elm.consistent()) {
 			nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
@@ -239,7 +195,6 @@ class ACSource {
 			this.elm.set_nodes(-1, -1);
 		}
 	}
-
 	capture_nodes(): void {
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
@@ -248,18 +203,17 @@ class ACSource {
 			nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
 		}
 	}
-
 	mouse_down(): void {
 		if (
-			global.FLAG_IDLE &&
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			global.flag_idle &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
@@ -272,7 +226,7 @@ class ACSource {
 					global.focused = true;
 					global.component_touched = true;
 				} else {
-					if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
+					if (this.elm.consistent() && !global.component_touched && !global.flag_simulating) {
 						if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
 							this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
 							global.component_touched = true;
@@ -285,7 +239,6 @@ class ACSource {
 			}
 		}
 	}
-
 	handle_wire_builder(n: number, anchor: number): void {
 		if (global.WIRE_BUILDER['step'] === 0) {
 			global.WIRE_BUILDER['n1'] = n;
@@ -325,9 +278,8 @@ class ACSource {
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-
 	mouse_move(): void {
-		if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
+		if (global.flag_idle && !global.flag_simulating) {
 			if (global.focused) {
 				if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
 					global.is_dragging = false;
@@ -362,9 +314,8 @@ class ACSource {
 			}
 		}
 	}
-
 	mouse_up(): void {
-		if (global.FLAG_IDLE) {
+		if (global.flag_idle) {
 			if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
 				if (this.is_translating) {
 					this.is_translating = false;
@@ -427,7 +378,7 @@ class ACSource {
 		}
 	}
 	wire_reference_maintenance(): void {
-		if (this.wire_reference.length > 0 && global.signal_wire_element) {
+		if (this.wire_reference.length > 0 && global.signal_wire_deleted) {
 			let id: number = -1;
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -512,7 +463,6 @@ class ACSource {
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-
 	set_rotation(rotation: number): void {
 		this.BUILD_ELEMENT = true;
 		wire_manager.reset_wire_builder();
@@ -524,13 +474,11 @@ class ACSource {
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-
 	push_history(): void {
 		if (this.INITIALIZED) {
 			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
 		}
 	}
-
 	build_element(): void {
 		if (this.BUILD_ELEMENT || global.signal_build_element) {
 			let cache_0: number = 1.25 * this.x_space;
@@ -552,7 +500,6 @@ class ACSource {
 			this.BUILD_ELEMENT = false;
 		}
 	}
-
 	resize(): void {
 		if (this.BUILD_ELEMENT || global.signal_build_element) {
 			if (this.bounds.anchored) {
@@ -570,7 +517,6 @@ class ACSource {
 			} else {
 				this.refactor();
 			}
-
 			this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
 			this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
 			this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
@@ -580,7 +526,6 @@ class ACSource {
 			this.sine_wave.resize(this.sine_wave.STYLE_0);
 		}
 	}
-
 	refactor(): void {
 		let vertices: Array<number> = this.get_vertices();
 		this.p1.x = vertices[0];
@@ -595,7 +540,6 @@ class ACSource {
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 		this.build_element();
 	}
-
 	update(): void {}
 	increment_rotation(): void {
 		this.elm.rotation++;
@@ -642,12 +586,10 @@ class ACSource {
 	is_selected_element(): boolean {
 		return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
 	}
-
 	draw_component(canvas: GraphicsEngine): void {
 		this.wire_reference_maintenance();
 		this.recolor();
 		this.resize();
-
 		if (this.MULTI_SELECTED) {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
@@ -734,17 +676,17 @@ class ACSource {
 					!global.signal_add_element &&
 					!global.signal_history_lock &&
 					!global.picture_request_flag &&
-					!global.FLAG_SAVE_CIRCUIT &&
-					!global.FLAG_SAVE_IMAGE &&
+					!global.flag_save_circuit &&
+					!global.flag_save_image &&
 					!global.flag_menu_element_toolbox &&
-					!global.FLAG_SELECT_TIMESTEP &&
-					!global.FLAG_ELEMENT_OPTIONS &&
-					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-					!global.FLAG_ZOOM &&
-					!global.FLAG_GRAPH &&
-					!global.FLAG_SIMULATING &&
-					!global.FLAG_SELECT_SETTINGS &&
-					!global.FLAG_SELECT_ELEMENT &&
+					!global.flag_select_timestep &&
+					!global.flag_element_options &&
+					!global.flag_element_options_edit &&
+					!global.flag_zoom &&
+					!global.flag_graph &&
+					!global.flag_simulating &&
+					!global.flag_select_settings &&
+					!global.flag_select_element &&
 					!global.flag_remove_all &&
 					!global.signal_add_element
 				) {
@@ -761,7 +703,6 @@ class ACSource {
 			}
 		}
 	}
-
 	patch(): void {
 		if (!global.not_null(this.line_buffer)) {
 			this.line_buffer = [];
@@ -791,7 +732,6 @@ class ACSource {
 				}
 			}
 		}
-
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

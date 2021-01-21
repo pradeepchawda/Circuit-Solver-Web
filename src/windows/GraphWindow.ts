@@ -257,7 +257,7 @@ class GraphWindow {
 		this.graph_trace_c.push(value, t);
 	}
 	mouse_down(): void {
-		if (global.FLAG_GRAPH) {
+		if (global.flag_graph) {
 			this.first_touch_x = global.mouse_x;
 			this.first_touch_y = global.mouse_y;
 			if (this.download_button.contains_xy(global.mouse_x, global.mouse_y)) {
@@ -314,7 +314,7 @@ class GraphWindow {
 		}
 	}
 	mouse_move(): void {
-		if (global.FLAG_GRAPH) {
+		if (global.flag_graph) {
 			this.mouse_hover();
 		}
 	}
@@ -327,15 +327,15 @@ class GraphWindow {
 		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (global.FLAG_GRAPH) {
+		if (global.flag_graph) {
 			if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
-				menu_bar.handle_graph_flag(!global.FLAG_GRAPH);
+				menu_bar.handle_graph_flag(!global.flag_graph);
 				global.component_touched = true;
 			}
 		}
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.FLAG_GRAPH) {
+		if (global.flag_graph) {
 			canvas.draw_rect2(this.bounds, this.fill_paint);
 			canvas.draw_rect2(this.inner_bounds, this.line_paint);
 			let cached_value: number = this.x_axis.length >> 1;

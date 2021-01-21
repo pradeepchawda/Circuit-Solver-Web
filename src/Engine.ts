@@ -133,73 +133,141 @@ var matrix_x_copy: Array<Array<number>> = linear_algebra.matrix(1, 1);
 /* #INSERT_GENERATE_CREATE_ELEMENT_INSTANCE# */
 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 var resistors: Array<Resistor> = [];
+
 var capacitors: Array<Capacitor> = [];
+
 var inductors: Array<Inductor> = [];
+
 var grounds: Array<Ground> = [];
+
 var dcsources: Array<DCSource> = [];
+
 var dccurrents: Array<DCCurrent> = [];
+
 var acsources: Array<ACSource> = [];
+
 var accurrents: Array<ACCurrent> = [];
+
 var squarewaves: Array<SquareWave> = [];
+
 var sawwaves: Array<SawWave> = [];
+
 var trianglewaves: Array<TriangleWave> = [];
+
 var constants: Array<Constant> = [];
+
 var wires: Array<Wire> = [];
+
 var nets: Array<Net> = [];
+
 var notes: Array<Note> = [];
+
 var rails: Array<Rail> = [];
+
 var voltmeters: Array<VoltMeter> = [];
+
 var ohmmeters: Array<OhmMeter> = [];
+
 var ammeters: Array<AmMeter> = [];
+
 var wattmeters: Array<WattMeter> = [];
+
 var fuses: Array<Fuse> = [];
+
 var spsts: Array<SinglePoleSingleThrow> = [];
+
 var spdts: Array<SinglePoleDoubleThrow> = [];
+
 var nots: Array<NOTGate> = [];
+
 var diodes: Array<Diode> = [];
+
 var leds: Array<LightEmittingDiode> = [];
+
 var zeners: Array<ZenerDiode> = [];
+
 var potentiometers: Array<Potentiometer> = [];
+
 var ands: Array<ANDGate> = [];
+
 var ors: Array<ORGate> = [];
+
 var nands: Array<NANDGate> = [];
+
 var nors: Array<NORGate> = [];
+
 var xors: Array<XORGate> = [];
+
 var xnors: Array<XNORGate> = [];
+
 var dffs: Array<DFlipFlop> = [];
+
 var vsats: Array<VoltageSaturation> = [];
+
 var adders: Array<Adder> = [];
+
 var subtractors: Array<Subtractor> = [];
+
 var multipliers: Array<Multiplier> = [];
+
 var dividers: Array<Divider> = [];
+
 var gains: Array<GainBlock> = [];
+
 var absvals: Array<AbsoluteValue> = [];
+
 var vcsws: Array<VoltageControlledSwitch> = [];
+
 var vcvss: Array<VoltageControlledVoltageSource> = [];
+
 var vccss: Array<VoltageControlledCurrentSource> = [];
+
 var cccss: Array<CurrentControlledCurrentSource> = [];
+
 var ccvss: Array<CurrentControlledVoltageSource> = [];
+
 var opamps: Array<OperationalAmplifier> = [];
+
 var nmosfets: Array<NChannelMOSFET> = [];
+
 var pmosfets: Array<PChannelMOSFET> = [];
+
 var npns: Array<NPNBipolarJunctionTransistor> = [];
+
 var pnps: Array<PNPBipolarJunctionTransistor> = [];
+
 var adcs: Array<ADCModule> = [];
+
 var dacs: Array<DACModule> = [];
+
 var sandhs: Array<SampleAndHold> = [];
+
 var pwms: Array<PulseWidthModulator> = [];
+
 var integrators: Array<IntegratorModule> = [];
+
 var differentiators: Array<DifferentiatorModule> = [];
+
 var lowpasses: Array<LowPassFilter> = [];
+
 var highpasses: Array<HighPassFilter> = [];
+
 var relays: Array<Relay> = [];
+
 var pids: Array<PIDModule> = [];
+
 var luts: Array<LookUpTable> = [];
+
 var vcrs: Array<VoltageControlledResistor> = [];
+
 var vccas: Array<VoltageControlledCapacitor> = [];
+
 var vcls: Array<VoltageControlledInductor> = [];
+
 var grts: Array<GreaterThan> = [];
+
 var tptzs: Array<TPTZModule> = [];
+
 var transformers: Array<Transformer> = [];
 /* <!-- END AUTOMATICALLY GENERATED !--> */
 var on_screen_keyboard: OnScreenKeyboard = new OnScreenKeyboard();
@@ -324,7 +392,7 @@ function load_app(): void {
 		main();
 	}
 	function resize_canvas(): void {
-		global.DEVICE_PIXEL_RATIO = window.devicePixelRatio;
+		global.device_pixel_ratio = window.devicePixelRatio;
 		if (global.resize_event === false) {
 			global.last_view_port_right = view_port.right;
 			global.last_view_port_bottom = view_port.bottom;
@@ -336,9 +404,9 @@ function load_app(): void {
 		solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
 		solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		solver_container.style.background = 'black';
-		view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth * global.DEVICE_PIXEL_RATIO, window.innerHeight * global.DEVICE_PIXEL_RATIO);
-		surface.width = window.innerWidth * global.DEVICE_PIXEL_RATIO;
-		surface.height = window.innerHeight * global.DEVICE_PIXEL_RATIO;
+		view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth * global.device_pixel_ratio, window.innerHeight * global.device_pixel_ratio);
+		surface.width = window.innerWidth * global.device_pixel_ratio;
+		surface.height = window.innerHeight * global.device_pixel_ratio;
 		surface.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
 		surface.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		global.resize_w_factor = view_port.view_width / global.last_view_port_width;
@@ -387,13 +455,13 @@ function load_app(): void {
 	function mouse_down(mouse_event: MouseEvent): void {
 		if (global.system_initialization['completed']) {
 			if (global.MOBILE_MODE === false) {
-				global.mouse_x = mouse_event.clientX * global.DEVICE_PIXEL_RATIO;
-				global.mouse_y = mouse_event.clientY * global.DEVICE_PIXEL_RATIO;
+				global.mouse_x = mouse_event.clientX * global.device_pixel_ratio;
+				global.mouse_y = mouse_event.clientY * global.device_pixel_ratio;
 			} else {
 				//@ts-ignore
 				touch = mouse_event.touches[0];
-				global.mouse_x = touch.clientX * global.DEVICE_PIXEL_RATIO;
-				global.mouse_y = touch.clientY * global.DEVICE_PIXEL_RATIO;
+				global.mouse_x = touch.clientX * global.device_pixel_ratio;
+				global.mouse_y = touch.clientY * global.device_pixel_ratio;
 			}
 			if (bottom_menu.handle_file_explorer()) {
 				if (!global.user_file_selected) {
@@ -565,7 +633,7 @@ function load_app(): void {
 				global.key_up_event_flag ||
 				global.key_down_event_flag ||
 				global.picture_request_flag ||
-				global.FLAG_SIMULATING ||
+				global.flag_simulating ||
 				!workspace.DRAW_TO_SCREEN ||
 				toast.draw_text ||
 				!global.system_initialization['completed']
@@ -581,7 +649,7 @@ function load_app(): void {
 				global.key_up_event_flag ||
 				global.key_down_event_flag ||
 				global.picture_request_flag ||
-				global.FLAG_SIMULATING ||
+				global.flag_simulating ||
 				!global.system_initialization['completed']
 			);
 		}
@@ -595,7 +663,7 @@ function load_app(): void {
 			if (global.canvas_draw_event) {
 				if (global.system_initialization['completed']) {
 					TEMP_DRAW_SIGNAL =
-						!global.FLAG_SIMULATING ||
+						!global.flag_simulating ||
 						global.resize_event ||
 						global.mouse_down_event_flag ||
 						global.mouse_move_event_flag ||
@@ -609,7 +677,7 @@ function load_app(): void {
 						toast.draw_text;
 				} else {
 					TEMP_DRAW_SIGNAL =
-						!global.FLAG_SIMULATING ||
+						!global.flag_simulating ||
 						global.resize_event ||
 						global.mouse_down_event_flag ||
 						global.mouse_move_event_flag ||
@@ -634,9 +702,9 @@ function load_app(): void {
 					resize_canvas();
 				}
 				FPS_DIV ^= 1;
-				if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.FLAG_SIMULATING) || !global.FLAG_SIMULATING) {
+				if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.flag_simulating) || !global.flag_simulating) {
 					if (global.system_initialization['completed']) {
-						if ((global.FLAG_SIMULATING && global.canvas_draw_request) || TEMP_DRAW_SIGNAL) {
+						if ((global.flag_simulating && global.canvas_draw_request) || TEMP_DRAW_SIGNAL) {
 							if (!global.on_restore_event) {
 								if (!global.draw_block) {
 									ctx.drawImage(
@@ -673,9 +741,9 @@ function load_app(): void {
 						global.signal_build_counter = 0;
 					}
 				}
-				if (global.signal_wire_element) {
+				if (global.signal_wire_deleted) {
 					if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-						global.signal_wire_element = false;
+						global.signal_wire_deleted = false;
 						global.signal_wire_deleted_counter = 0;
 					}
 				}
@@ -808,14 +876,14 @@ function load_app(): void {
 				global.mouse_keyboard_lock = false;
 			}
 			if (
-				global.FLAG_IDLE &&
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_SELECT_SETTINGS &&
+				global.flag_idle &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_zoom &&
+				!global.flag_element_options &&
+				!global.flag_element_options_edit &&
+				!global.flag_select_timestep &&
+				!global.flag_select_settings &&
 				!global.flag_remove_all
 			) {
 				simulation_manager.simulate();
@@ -1053,18 +1121,18 @@ function load_app(): void {
 		if (!global.picture_request_flag) {
 			if (!global.MOBILE_MODE) {
 				if (
-					global.FLAG_IDLE &&
-					!global.FLAG_SAVE_IMAGE &&
-					!global.FLAG_SAVE_CIRCUIT &&
-					!global.FLAG_ZOOM &&
-					!global.FLAG_ELEMENT_OPTIONS &&
-					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-					!global.FLAG_SELECT_ELEMENT &&
-					!global.FLAG_SELECT_TIMESTEP &&
-					!global.FLAG_SELECT_SETTINGS &&
+					global.flag_idle &&
+					!global.flag_save_image &&
+					!global.flag_save_circuit &&
+					!global.flag_zoom &&
+					!global.flag_element_options &&
+					!global.flag_element_options_edit &&
+					!global.flag_select_element &&
+					!global.flag_select_timestep &&
+					!global.flag_select_settings &&
 					!global.flag_remove_all &&
 					!global.flag_menu_element_toolbox &&
-					!global.FLAG_GRAPH
+					!global.flag_graph
 				) {
 					multi_select_manager.reset_enveloping_bounds();
 				}
@@ -1129,18 +1197,18 @@ function load_app(): void {
 				toast.draw_toast(canvas);
 			} else {
 				if (
-					global.FLAG_IDLE &&
-					!global.FLAG_SAVE_IMAGE &&
-					!global.FLAG_SAVE_CIRCUIT &&
-					!global.FLAG_ZOOM &&
-					!global.FLAG_ELEMENT_OPTIONS &&
-					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-					!global.FLAG_SELECT_TIMESTEP &&
-					!global.FLAG_SELECT_SETTINGS &&
+					global.flag_idle &&
+					!global.flag_save_image &&
+					!global.flag_save_circuit &&
+					!global.flag_zoom &&
+					!global.flag_element_options &&
+					!global.flag_element_options_edit &&
+					!global.flag_select_timestep &&
+					!global.flag_select_settings &&
 					!global.flag_remove_all
 				) {
 					workspace.workspace_draw(canvas);
-					if (!global.FLAG_GRAPH) {
+					if (!global.flag_graph) {
 						if (global.signal_build_element) {
 							NSX = 0.29375 * global.node_space_x;
 							NSY = 0.29375 * global.node_space_y;
@@ -1212,13 +1280,13 @@ function load_app(): void {
 	function handle_mouse_down(): void {
 		global.component_touched = false;
 		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_down_event.clientX * global.DEVICE_PIXEL_RATIO;
-			global.mouse_y = global.mouse_down_event.clientY * global.DEVICE_PIXEL_RATIO;
+			global.mouse_x = global.mouse_down_event.clientX * global.device_pixel_ratio;
+			global.mouse_y = global.mouse_down_event.clientY * global.device_pixel_ratio;
 		} else {
 			//@ts-expect-error
 			touch = global.mouse_down_event.touches[0];
-			global.mouse_x = touch.clientX * global.DEVICE_PIXEL_RATIO;
-			global.mouse_y = touch.clientY * global.DEVICE_PIXEL_RATIO;
+			global.mouse_x = touch.clientX * global.device_pixel_ratio;
+			global.mouse_y = touch.clientY * global.device_pixel_ratio;
 		}
 		global.last_mouse_x = global.mouse_x;
 		global.last_mouse_y = global.mouse_y;
@@ -1253,15 +1321,15 @@ function load_app(): void {
 			on_screen_keyboard.mouse_down();
 		}
 		if (
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_GRAPH &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_graph &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
@@ -1496,13 +1564,13 @@ function load_app(): void {
 		global.last_mouse_x = global.mouse_x;
 		global.last_mouse_y = global.mouse_y;
 		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_move_event.clientX * global.DEVICE_PIXEL_RATIO;
-			global.mouse_y = global.mouse_move_event.clientY * global.DEVICE_PIXEL_RATIO;
+			global.mouse_x = global.mouse_move_event.clientX * global.device_pixel_ratio;
+			global.mouse_y = global.mouse_move_event.clientY * global.device_pixel_ratio;
 		} else {
 			//@ts-expect-error
 			touch = global.mouse_move_event.touches[0];
-			global.mouse_x = touch.clientX * global.DEVICE_PIXEL_RATIO;
-			global.mouse_y = touch.clientY * global.DEVICE_PIXEL_RATIO;
+			global.mouse_x = touch.clientX * global.device_pixel_ratio;
+			global.mouse_y = touch.clientY * global.device_pixel_ratio;
 		}
 		global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
 		global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
@@ -1514,18 +1582,18 @@ function load_app(): void {
 			global.is_dragging = false;
 		}
 		if (
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_GRAPH &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_graph &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all
 		) {
-			if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
+			if (global.flag_idle && !global.flag_simulating) {
 				/* #INSERT_GENERATE_MOUSE_MOVE# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 				for (var i: number = 0; i < resistors.length; i++) {
@@ -1761,8 +1829,8 @@ function load_app(): void {
 		global.mouse_down_x = -1;
 		global.mouse_down_y = -1;
 		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_up_event.clientX * global.DEVICE_PIXEL_RATIO;
-			global.mouse_y = global.mouse_up_event.clientY * global.DEVICE_PIXEL_RATIO;
+			global.mouse_x = global.mouse_up_event.clientX * global.device_pixel_ratio;
+			global.mouse_y = global.mouse_up_event.clientY * global.device_pixel_ratio;
 		} else {
 		}
 		global.last_mouse_x = global.mouse_x;
@@ -1771,15 +1839,15 @@ function load_app(): void {
 		global.is_dragging = false;
 		global.temp_is_dragging = global.is_dragging;
 		if (
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_GRAPH &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_graph &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all
 		) {
 			if (!global.component_touched && !global.is_right_click) {
@@ -2026,18 +2094,18 @@ function load_app(): void {
 		global.signal_history_lock = false;
 	}
 	function handle_mouse_wheel(): void {
-		global.mouse_x = global.mouse_wheel_event.clientX * global.DEVICE_PIXEL_RATIO;
-		global.mouse_y = global.mouse_wheel_event.clientY * global.DEVICE_PIXEL_RATIO;
+		global.mouse_x = global.mouse_wheel_event.clientX * global.device_pixel_ratio;
+		global.mouse_y = global.mouse_wheel_event.clientY * global.device_pixel_ratio;
 		if (
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_GRAPH &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_graph &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
@@ -2046,8 +2114,8 @@ function load_app(): void {
 		menu_bar.mouse_wheel();
 	}
 	function handle_double_click(): void {
-		global.mouse_x = global.mouse_double_click_event.clientX * global.DEVICE_PIXEL_RATIO;
-		global.mouse_y = global.mouse_double_click_event.clientY * global.DEVICE_PIXEL_RATIO;
+		global.mouse_x = global.mouse_double_click_event.clientX * global.device_pixel_ratio;
+		global.mouse_y = global.mouse_double_click_event.clientY * global.device_pixel_ratio;
 		time_step_window.double_click();
 		save_image_window.double_click();
 		save_circuit_window.double_click();

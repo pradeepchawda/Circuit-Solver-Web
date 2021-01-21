@@ -13,9 +13,9 @@ class Toast {
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
-        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.line_paint.set_color(global.GENERAL_BLACK_COLOR);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.line_paint.set_text_size(global.canvas_text_size_4);
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -23,9 +23,9 @@ class Toast {
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
         this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.fill_paint.set_text_size(global.canvas_text_size_4);
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -33,13 +33,13 @@ class Toast {
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
         this.text_paint.set_paint_join(this.text_paint.join.MITER);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5 * 1.25);
+            this.text_paint.set_text_size(global.canvas_text_size_5 * 1.25);
         }
         else {
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.text_paint.set_text_size(global.canvas_text_size_4);
         }
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
@@ -78,16 +78,16 @@ class Toast {
         this.draw_text = true;
     }
     resize_toast() {
-        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.line_paint.set_text_size(global.canvas_text_size_4);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.fill_paint.set_text_size(global.canvas_text_size_4);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
         if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5 * 1.25);
+            this.text_paint.set_text_size(global.canvas_text_size_5 * 1.25);
         }
         else {
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+            this.text_paint.set_text_size(global.canvas_text_size_4);
         }
         this.last_text = this.text;
         this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;

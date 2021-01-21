@@ -1,6 +1,6 @@
 'use strict';
 class ElementOptions {
-	public MAX_ICONS: number;
+	public readonly MAX_ICONS: number;
 	public mb_x: number;
 	public mb_width: number;
 	public mb_height: number;
@@ -24,13 +24,13 @@ class ElementOptions {
 	public text_paint: Paint;
 	public hover_paint: Paint;
 	public icon_paint: Paint;
-	public ROTATE_ICON: number;
-	public EDIT_ICON: number;
-	public FLIP_ICON: number;
-	public TRASH_ICON: number;
-	public WIRE_ICON: number;
-	public EYE_ICON: number;
-	public NO_ICON: number;
+	public readonly ROTATE_ICON: number;
+	public readonly EDIT_ICON: number;
+	public readonly FLIP_ICON: number;
+	public readonly TRASH_ICON: number;
+	public readonly WIRE_ICON: number;
+	public readonly EYE_ICON: number;
+	public readonly NO_ICON: number;
 	public opts: ELEMENT_OPTIONS_T;
 	public first_touch_x: number;
 	public first_touch_y: number;
@@ -543,17 +543,17 @@ class ElementOptions {
 	}
 	mouse_down(): void {
 		if (
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox &&
-			!global.FLAG_GRAPH
+			!global.flag_graph
 		) {
 			if (global.selected) {
 				if (this.opts['c0'] !== this.NO_ICON) {
@@ -585,17 +585,17 @@ class ElementOptions {
 	mouse_up(): void {
 		if (!global.mouse_keyboard_lock) {
 			if (
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_SELECT_ELEMENT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_SELECT_SETTINGS &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_zoom &&
+				!global.flag_element_options &&
+				!global.flag_element_options_edit &&
+				!global.flag_select_element &&
+				!global.flag_select_timestep &&
+				!global.flag_select_settings &&
 				!global.flag_remove_all &&
 				!global.flag_menu_element_toolbox &&
-				!global.FLAG_GRAPH
+				!global.flag_graph
 			) {
 				if (global.selected) {
 					if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
@@ -620,16 +620,16 @@ class ElementOptions {
 	}
 	handle_options(key: string): void {
 		if (this.opts[key] === this.EDIT_ICON) {
-			menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
+			menu_bar.handle_element_options_flag(!global.flag_element_options);
 		} else if (this.opts[key] === this.EYE_ICON) {
 			this.handle_eye_option();
-		} else if (this.opts[key] === this.TRASH_ICON && !global.FLAG_SIMULATING) {
+		} else if (this.opts[key] === this.TRASH_ICON && !global.flag_simulating) {
 			this.handle_trash_option();
-		} else if (this.opts[key] === this.FLIP_ICON && !global.FLAG_SIMULATING) {
+		} else if (this.opts[key] === this.FLIP_ICON && !global.flag_simulating) {
 			this.handle_flip_option();
-		} else if (this.opts[key] === this.ROTATE_ICON && !global.FLAG_SIMULATING) {
+		} else if (this.opts[key] === this.ROTATE_ICON && !global.flag_simulating) {
 			this.handle_rotate_option();
-		} else if (this.opts[key] === this.WIRE_ICON && !global.FLAG_SIMULATING) {
+		} else if (this.opts[key] === this.WIRE_ICON && !global.flag_simulating) {
 			this.handle_wire_option();
 		}
 		global.component_touched = true;
@@ -2434,7 +2434,7 @@ class ElementOptions {
 		this.icon_paint.set_color(global.GENERAL_WHITE_COLOR);
 	}
 	update_color(): void {
-		if (!global.FLAG_SIMULATING) {
+		if (!global.flag_simulating) {
 			this.icon_paint.set_color(global.GENERAL_WHITE_COLOR);
 			this.line_paint_alt.set_color(global.GENERAL_WHITE_COLOR);
 		} else {
@@ -2443,20 +2443,20 @@ class ElementOptions {
 		}
 	}
 	draw_options(canvas: GraphicsEngine): void {
-		if (global.FLAG_IDLE && !global.flag_menu_element_toolbox && !global.FLAG_GRAPH) {
+		if (global.flag_idle && !global.flag_menu_element_toolbox && !global.flag_graph) {
 			if (global.selected) {
 				if (this.show_0) {
 					if (
 						this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
 						!global.flag_menu_element_toolbox &&
-						!global.FLAG_ZOOM &&
-						!global.FLAG_SELECT_SETTINGS &&
-						!global.FLAG_SAVE_IMAGE &&
-						!global.FLAG_SAVE_CIRCUIT &&
-						!global.FLAG_SELECT_TIMESTEP &&
-						!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-						!global.FLAG_ELEMENT_OPTIONS &&
-						!global.FLAG_GRAPH &&
+						!global.flag_zoom &&
+						!global.flag_select_settings &&
+						!global.flag_save_image &&
+						!global.flag_save_circuit &&
+						!global.flag_select_timestep &&
+						!global.flag_element_options_edit &&
+						!global.flag_element_options &&
+						!global.flag_graph &&
 						!global.flag_remove_all &&
 						!global.MOBILE_MODE
 					) {
@@ -2511,14 +2511,14 @@ class ElementOptions {
 					if (
 						this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
 						!global.flag_menu_element_toolbox &&
-						!global.FLAG_ZOOM &&
-						!global.FLAG_SELECT_SETTINGS &&
-						!global.FLAG_SAVE_IMAGE &&
-						!global.FLAG_SAVE_CIRCUIT &&
-						!global.FLAG_SELECT_TIMESTEP &&
-						!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-						!global.FLAG_ELEMENT_OPTIONS &&
-						!global.FLAG_GRAPH &&
+						!global.flag_zoom &&
+						!global.flag_select_settings &&
+						!global.flag_save_image &&
+						!global.flag_save_circuit &&
+						!global.flag_select_timestep &&
+						!global.flag_element_options_edit &&
+						!global.flag_element_options &&
+						!global.flag_graph &&
 						!global.flag_remove_all &&
 						!global.MOBILE_MODE
 					) {
@@ -2596,14 +2596,14 @@ class ElementOptions {
 					if (
 						this.option_2.contains_xy(global.mouse_x, global.mouse_y) &&
 						!global.flag_menu_element_toolbox &&
-						!global.FLAG_ZOOM &&
-						!global.FLAG_SELECT_SETTINGS &&
-						!global.FLAG_SAVE_IMAGE &&
-						!global.FLAG_SAVE_CIRCUIT &&
-						!global.FLAG_SELECT_TIMESTEP &&
-						!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-						!global.FLAG_ELEMENT_OPTIONS &&
-						!global.FLAG_GRAPH &&
+						!global.flag_zoom &&
+						!global.flag_select_settings &&
+						!global.flag_save_image &&
+						!global.flag_save_circuit &&
+						!global.flag_select_timestep &&
+						!global.flag_element_options_edit &&
+						!global.flag_element_options &&
+						!global.flag_graph &&
 						!global.flag_remove_all &&
 						!global.MOBILE_MODE
 					) {
@@ -2652,14 +2652,14 @@ class ElementOptions {
 					if (
 						this.option_3.contains_xy(global.mouse_x, global.mouse_y) &&
 						!global.flag_menu_element_toolbox &&
-						!global.FLAG_ZOOM &&
-						!global.FLAG_SELECT_SETTINGS &&
-						!global.FLAG_SAVE_IMAGE &&
-						!global.FLAG_SAVE_CIRCUIT &&
-						!global.FLAG_SELECT_TIMESTEP &&
-						!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-						!global.FLAG_ELEMENT_OPTIONS &&
-						!global.FLAG_GRAPH &&
+						!global.flag_zoom &&
+						!global.flag_select_settings &&
+						!global.flag_save_image &&
+						!global.flag_save_circuit &&
+						!global.flag_select_timestep &&
+						!global.flag_element_options_edit &&
+						!global.flag_element_options &&
+						!global.flag_graph &&
 						!global.flag_remove_all &&
 						!global.MOBILE_MODE
 					) {

@@ -1,20 +1,12 @@
 'use strict';
-
 class ElectricalNode {
 	public location: PointF;
-
 	public node_line_paint: Paint;
-
 	public node_fill_paint: Paint;
-
 	public node_fill_paint_alt: Paint;
-
 	public id: number;
-
 	public simulation_id: number;
-
 	public references: Array<NodeReference>;
-
 	public column: number;
 	public row: number;
 	public bounds: RectF;
@@ -22,7 +14,6 @@ class ElectricalNode {
 	public loc_y_precalc: number;
 	constructor(x: number, y: number, id: number) {
 		this.location = new PointF(x, y);
-
 		this.node_line_paint = new Paint();
 		this.node_line_paint.set_paint_style(this.node_line_paint.style.STROKE);
 		this.node_line_paint.set_paint_cap(this.node_line_paint.cap.ROUND);
@@ -33,7 +24,6 @@ class ElectricalNode {
 		this.node_line_paint.set_font(global.DEFAULT_FONT);
 		this.node_line_paint.set_alpha(192);
 		this.node_line_paint.set_paint_align(this.node_line_paint.align.CENTER);
-
 		this.node_fill_paint = new Paint();
 		this.node_fill_paint.set_paint_style(this.node_fill_paint.style.FILL);
 		this.node_fill_paint.set_paint_cap(this.node_fill_paint.cap.ROUND);
@@ -44,7 +34,6 @@ class ElectricalNode {
 		this.node_fill_paint.set_font(global.DEFAULT_FONT);
 		this.node_fill_paint.set_alpha(192);
 		this.node_fill_paint.set_paint_align(this.node_fill_paint.align.CENTER);
-
 		this.node_fill_paint_alt = new Paint();
 		this.node_fill_paint_alt.set_paint_style(this.node_fill_paint_alt.style.FILL);
 		this.node_fill_paint_alt.set_paint_cap(this.node_fill_paint_alt.cap.ROUND);
@@ -55,13 +44,9 @@ class ElectricalNode {
 		this.node_fill_paint_alt.set_font(global.DEFAULT_FONT);
 		this.node_fill_paint_alt.set_alpha(192);
 		this.node_fill_paint_alt.set_paint_align(this.node_fill_paint_alt.align.CENTER);
-
 		this.id = id;
-
 		this.simulation_id = -1;
-
 		this.references = [];
-
 		this.column = Math.floor(this.id / Math.round(global.settings.SQRT_MAXNODES));
 		this.row = this.id % Math.round(global.settings.SQRT_MAXNODES);
 		let node_space_x: number = 1.175 * (global.node_space_x >> 2);
@@ -74,7 +59,6 @@ class ElectricalNode {
 		this.loc_x_precalc = this.row * global.settings.INV_SQRT_M_1;
 		this.loc_y_precalc = this.column * global.settings.INV_SQRT_M_1;
 	}
-
 	resize(n_x: number, n_y: number, m_n_x: number, m_n_y: number): void {
 		if (global.signal_build_element) {
 			this.location.x = workspace.bounds.left + this.loc_x_precalc * workspace.bounds.get_width();
@@ -92,40 +76,32 @@ class ElectricalNode {
 			this.node_fill_paint_alt.set_text_size(global.canvas_text_size_5);
 		}
 	}
-
 	set_color(color: string): void {
 		this.node_line_paint.set_color(color);
 		this.node_fill_paint.set_color(color);
 		this.node_fill_paint_alt.set_color(color);
 	}
-
 	get_bounds(): RectF {
 		return this.bounds;
 	}
-
 	contains_xy(x: number, y: number): boolean {
 		return this.bounds.contains_xy(x, y);
 	}
-
 	contains_xywh(x: number, y: number, w: number, h: number): boolean {
 		return this.bounds.contains_xywh(x, y, w, h);
 	}
-
 	get_id(): number {
 		return this.id;
 	}
-
 	clear_references(): void {
 		this.references = [];
 		node_manager.remove_node(this.id);
 	}
-
 	add_reference_list(reference_list: Array<NodeReference>): void {
 		for (var i: number = 0; i < reference_list.length; i++) {
 			this.add_reference(reference_list[i].id, reference_list[i].type);
 		}
 	}
-
 	add_reference(id: number, type: number): void {
 		let is_found: boolean = false;
 		for (var i: number = 0; i < this.references.length; i++) {
@@ -141,7 +117,6 @@ class ElectricalNode {
 			}
 		}
 	}
-
 	remove_reference(id: number, type: number): void {
 		if (this.references.length > 0) {
 			for (var i: number = 0; i < this.references.length; i++) {
@@ -155,7 +130,6 @@ class ElectricalNode {
 			}
 		}
 	}
-
 	contains_element_type(type: number): boolean {
 		let out: boolean = false;
 		for (var i: number = 0; i < this.references.length; i++) {
@@ -166,7 +140,6 @@ class ElectricalNode {
 		}
 		return out;
 	}
-
 	draw_node_builder_helper(): boolean {
 		let count: number = 0;
 		let index: number = -1;
@@ -197,7 +170,6 @@ class ElectricalNode {
 		}
 		return str;
 	}
-
 	draw(canvas: GraphicsEngine): void {
 		if (this.references.length > 0) {
 			if (global.DEVELOPER_MODE) {

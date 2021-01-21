@@ -27,11 +27,11 @@ class InductorSymbol {
 	public point_paint: Paint;
 	public text_paint: Paint;
 	public text_background_paint: Paint;
-	public FLAG_ADD_ELEMENT: boolean;
+	public flag_add_element: boolean;
 	public TAG: string;
-	public DRAW_TAG: boolean;
+	public draw_tag: boolean;
 	public text_bounds: RectF;
-	public HEIGHT_RATIO: number;
+	public height_ratio: number;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {
@@ -110,16 +110,16 @@ class InductorSymbol {
 		this.text_background_paint.set_alpha(255);
 		this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
 		this.build_element();
-		this.FLAG_ADD_ELEMENT = false;
+		this.flag_add_element = false;
 		this.TAG = language_manager.TAG_INDUCTOR;
-		this.DRAW_TAG = false;
+		this.draw_tag = false;
 		this.text_bounds = new RectF(0, 0, 0, 0);
-		this.HEIGHT_RATIO = 0.35;
+		this.height_ratio = 0.35;
 		this.line_buffer = [];
 		this.circle_buffer = [];
 	}
 	update() {
-		if (this.FLAG_ADD_ELEMENT) {
+		if (this.flag_add_element) {
 			if (
 				workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
 				!this.bounds.contains_xy(global.mouse_x, global.mouse_y)
@@ -127,15 +127,15 @@ class InductorSymbol {
 				shortcut_manager.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
 				global.signal_history_lock = true;
 				engine_functions.add_inductor();
-				this.FLAG_ADD_ELEMENT = false;
+				this.flag_add_element = false;
 			}
 		}
 	}
 	mouse_down(page: number, width: number, height: number) {
 		if (this.page === page) {
 			if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
-				if (!this.FLAG_ADD_ELEMENT) {
-					this.FLAG_ADD_ELEMENT = true;
+				if (!this.flag_add_element) {
+					this.flag_add_element = true;
 					global.signal_add_element = true;
 					global.component_touched = true;
 				}
@@ -144,9 +144,9 @@ class InductorSymbol {
 	}
 	mouse_move(page: number, width: number, height: number) {
 		if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
-			this.DRAW_TAG = true;
+			this.draw_tag = true;
 		} else {
-			this.DRAW_TAG = false;
+			this.draw_tag = false;
 		}
 		if (this.page === page) {
 		}
@@ -155,7 +155,7 @@ class InductorSymbol {
 		if (this.page === page) {
 			if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
 			}
-			this.FLAG_ADD_ELEMENT = false;
+			this.flag_add_element = false;
 			global.signal_add_element = false;
 		}
 	}
@@ -204,7 +204,7 @@ class InductorSymbol {
 		this.inductor_arc_3.resize2();
 	}
 	recolor() {
-		if (this.FLAG_ADD_ELEMENT) {
+		if (this.flag_add_element) {
 			this.line_paint.set_color(global.SELECTED_COLOR);
 			this.point_paint.set_color(global.SELECTED_COLOR);
 			this.text_paint.set_color(global.SELECTED_COLOR);
@@ -239,11 +239,11 @@ class InductorSymbol {
 			this.circle_buffer[indexer++] = Array(this.p1.x, this.p1.y, 1.5 * global.canvas_stroke_width_2);
 			this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.canvas_stroke_width_2);
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
-			if (this.DRAW_TAG && !global.signal_add_element) {
+			if (this.draw_tag && !global.signal_add_element) {
 				this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-				this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
+				this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.height_ratio * this.bounds.get_height();
 				this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-				this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
+				this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.height_ratio * this.bounds.get_height();
 				canvas.draw_rect2(this.text_bounds, this.text_background_paint);
 				canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
 			}

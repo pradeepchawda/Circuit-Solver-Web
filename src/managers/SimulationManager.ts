@@ -1,25 +1,17 @@
 'use strict';
-
 class SimulationManager {
 	public NODE_SIZE: number;
-
 	public OFFSET: number;
-
 	public INITIALIZED: boolean;
-
 	public SIMULATION_MAX_TIME: number;
-
 	public CONTINUE_SOLVING: boolean;
-
 	public ITERATOR: number;
-
 	public SOLUTIONS_READY: boolean;
 	public SIMULATION_STEP: number;
 	public FIRST_MATRIX_BUILD: boolean;
 	public FIRST_ERROR_CHECK: boolean;
 	public FIRST_X_MATRIX_COPY: boolean;
 	public FIST_X_MATRIX_SOLUTION: boolean;
-
 	public TIME_DATA: Array<TIME_DATA_TEMPLATE_T>;
 	/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -95,24 +87,17 @@ class SimulationManager {
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	constructor() {
 		this.NODE_SIZE = 0;
-
 		this.OFFSET = 0;
-
 		this.INITIALIZED = false;
-
 		this.SIMULATION_MAX_TIME = 1e18;
-
 		this.CONTINUE_SOLVING = true;
-
 		this.ITERATOR = 0;
-
 		this.SOLUTIONS_READY = false;
 		this.SIMULATION_STEP = 0;
 		this.FIRST_MATRIX_BUILD = true;
 		this.FIRST_ERROR_CHECK = true;
 		this.FIRST_X_MATRIX_COPY = true;
 		this.FIST_X_MATRIX_SOLUTION = false;
-
 		this.TIME_DATA = [];
 		/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -160,12 +145,9 @@ class SimulationManager {
 		this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-
 	reset_simulation(): void {
 		this.INITIALIZED = false;
-
 		global.simulation_time = 0;
-
 		this.CONTINUE_SOLVING = true;
 		this.SOLUTIONS_READY = false;
 		this.ITERATOR = 0;
@@ -174,16 +156,13 @@ class SimulationManager {
 		this.FIRST_ERROR_CHECK = true;
 		this.FIRST_X_MATRIX_COPY = true;
 		this.FIST_X_MATRIX_SOLUTION = false;
-		linear_algebra.FIRST_LUP_SOLVE = true;
+		linear_algebra.first_lup_solve = true;
 	}
 	setup(): void {
 		this.patch();
-
 		global.is_singular = false;
 		this.FIRST_MATRIX_BUILD = true;
-
 		this.reset_simulation();
-
 		if (global.system_options['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
 			global.time_step = this.determine_optimal_timestep();
 			bottom_menu.resize_bottom_menu();
@@ -191,19 +170,13 @@ class SimulationManager {
 			this.TIME_DATA.splice(0, this.TIME_DATA.length);
 		}
 		this.reset_elements();
-
 		this.reset_memory_devices();
 		this.reset_reactive_elements();
 		this.reset_non_linear_elements();
-
 		this.reset_meter_values();
-
 		node_manager.generate_unique_nodes_list();
-
 		node_manager.assign_node_simulation_ids();
-
 		engine_functions.assign_element_simulation_ids();
-
 		this.NODE_SIZE = node_manager.active_nodes.length;
 		/* #INSERT_GENERATE_SIMULATION_MATRIX_SIZE# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -296,12 +269,10 @@ class SimulationManager {
 		this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
 		this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
-
 		toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.language_index]]);
 		toast.show();
 		this.SOLUTIONS_READY = false;
 		global.signal_build_element = true;
-
 		this.INITIALIZED = true;
 	}
 	determine_optimal_timestep(): number {
@@ -660,7 +631,6 @@ class SimulationManager {
 		this.SIMULATION_STEP = 0;
 		this.SOLUTIONS_READY = false;
 		global.is_singular = false;
-
 		toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.language_index]]);
 		toast.show();
 	}
@@ -966,7 +936,6 @@ class SimulationManager {
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-
 	clear_meter_values(): void {
 		/* #INSERT_GENERATE_RESET_METER# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -991,13 +960,11 @@ class SimulationManager {
 			this.clear_meter_values();
 		}
 	}
-
 	led_check(): void {
 		for (var i: number = 0; i < leds.length; i++) {
 			leds[i].turn_on_check();
 		}
 	}
-
 	convergence_check(): void {
 		if (this.NODE_SIZE > 0 && matrix_x.length === matrix_x_copy.length) {
 			if (this.FIRST_ERROR_CHECK) {
@@ -1044,7 +1011,6 @@ class SimulationManager {
 					}
 				}
 			}
-
 			if (matrix_x.length - this.NODE_SIZE <= 0) {
 				global.i_conv = true;
 			}
@@ -1100,7 +1066,7 @@ class SimulationManager {
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	simulate(): void {
-		if (global.FLAG_SIMULATING && this.INITIALIZED) {
+		if (global.flag_simulating && this.INITIALIZED) {
 			if (this.SIMULATION_STEP === 0) {
 				this.solve();
 				if (this.CONTINUE_SOLVING && !global.MOBILE_MODE) {
@@ -1110,15 +1076,15 @@ class SimulationManager {
 				this.update_reactive_elements();
 				if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
 					if (this.ITERATOR >= global.settings.ITL4) {
-						menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
+						menu_bar.handle_simulation_flag(!global.flag_simulating);
 						toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.language_index]]);
 						toast.show();
 					} else if (global.is_singular) {
-						menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
+						menu_bar.handle_simulation_flag(!global.flag_simulating);
 						toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.language_index]]);
 						toast.show();
 					} else if (global.simulation_time >= this.SIMULATION_MAX_TIME) {
-						menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
+						menu_bar.handle_simulation_flag(!global.flag_simulating);
 						toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.language_index]]);
 						toast.show();
 					}
@@ -1151,11 +1117,8 @@ class SimulationManager {
 					}
 				}
 			}
-
 			matrix_a = linear_algebra.set_matrix_diagonal(matrix_a, global.settings.INV_R_MAX, this.NODE_SIZE);
-
 			engine_functions.stamp_elements();
-
 			if (this.FIRST_X_MATRIX_COPY) {
 				if (!this.FIST_X_MATRIX_SOLUTION) {
 					matrix_x_copy = linear_algebra.matrix(this.NODE_SIZE + this.OFFSET, 1);
@@ -1168,7 +1131,6 @@ class SimulationManager {
 					matrix_x_copy[i][0] = matrix_x[i][0];
 				}
 			}
-
 			matrix_x = linear_algebra.lup_solve(matrix_a, matrix_z);
 			for (var i: number = 0; i < matrix_x.length; i++) {
 				if (isNaN(matrix_x[i][0])) {
@@ -1180,20 +1142,14 @@ class SimulationManager {
 			if (!this.FIST_X_MATRIX_SOLUTION) {
 				this.FIST_X_MATRIX_SOLUTION = true;
 			}
-
 			if (global.is_singular) {
 				this.ITERATOR = 0;
-
 				this.CONTINUE_SOLVING = false;
-
 				this.SIMULATION_STEP++;
 			}
 			this.SOLUTIONS_READY = true;
-
 			this.non_linear_update();
-
 			this.convergence_check();
-
 			this.ITERATOR++;
 			if (!this.CONTINUE_SOLVING) {
 				this.SIMULATION_STEP++;
@@ -1202,7 +1158,6 @@ class SimulationManager {
 			this.SIMULATION_STEP++;
 		}
 	}
-
 	patch(): void {
 		global.settings.patch();
 	}

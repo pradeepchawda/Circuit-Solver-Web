@@ -144,7 +144,7 @@ class DifferentiatorModule {
 		this.wire_reference.push(ref);
 	}
 	update(): void {
-		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
+		if (global.flag_simulating && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
 			if (this.elm.consistent()) {
 				if (global.simulation_time < global.time_step * 1.5) {
 					this.elm.properties['Last Value'] = global.copy(this.elm.properties['Initial Value']);
@@ -221,15 +221,15 @@ class DifferentiatorModule {
 	}
 	mouse_down(): void {
 		if (
-			global.FLAG_IDLE &&
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			global.flag_idle &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
@@ -242,7 +242,7 @@ class DifferentiatorModule {
 					global.focused = true;
 					global.component_touched = true;
 				} else {
-					if (this.elm.consistent() && !global.component_touched && !global.FLAG_SIMULATING) {
+					if (this.elm.consistent() && !global.component_touched && !global.flag_simulating) {
 						if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
 							this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
 							global.component_touched = true;
@@ -295,7 +295,7 @@ class DifferentiatorModule {
 		this.anchor_wires();
 	}
 	mouse_move(): void {
-		if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
+		if (global.flag_idle && !global.flag_simulating) {
 			if (global.focused) {
 				if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
 					global.is_dragging = false;
@@ -331,7 +331,7 @@ class DifferentiatorModule {
 		}
 	}
 	mouse_up(): void {
-		if (global.FLAG_IDLE) {
+		if (global.flag_idle) {
 			if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
 				if (this.is_translating) {
 					this.is_translating = false;
@@ -394,7 +394,7 @@ class DifferentiatorModule {
 		}
 	}
 	wire_reference_maintenance(): void {
-		if (this.wire_reference.length > 0 && global.signal_wire_element) {
+		if (this.wire_reference.length > 0 && global.signal_wire_deleted) {
 			let id: number = -1;
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -670,17 +670,17 @@ class DifferentiatorModule {
 					!global.signal_add_element &&
 					!global.signal_history_lock &&
 					!global.picture_request_flag &&
-					!global.FLAG_SAVE_CIRCUIT &&
-					!global.FLAG_SAVE_IMAGE &&
+					!global.flag_save_circuit &&
+					!global.flag_save_image &&
 					!global.flag_menu_element_toolbox &&
-					!global.FLAG_SELECT_TIMESTEP &&
-					!global.FLAG_ELEMENT_OPTIONS &&
-					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-					!global.FLAG_ZOOM &&
-					!global.FLAG_GRAPH &&
-					!global.FLAG_SIMULATING &&
-					!global.FLAG_SELECT_SETTINGS &&
-					!global.FLAG_SELECT_ELEMENT &&
+					!global.flag_select_timestep &&
+					!global.flag_element_options &&
+					!global.flag_element_options_edit &&
+					!global.flag_zoom &&
+					!global.flag_graph &&
+					!global.flag_simulating &&
+					!global.flag_select_settings &&
+					!global.flag_select_element &&
 					!global.flag_remove_all &&
 					!global.signal_add_element
 				) {

@@ -160,47 +160,47 @@ class ZoomWindow {
 		this.first_touch_y = 0;
 	}
 	mouse_down(): void {
-		if (global.FLAG_ZOOM) {
+		if (global.flag_zoom) {
 			this.first_touch_x = global.mouse_x;
 			this.first_touch_y = global.mouse_y;
 		}
 	}
 	mouse_move(): void {
-		if (global.FLAG_ZOOM) {
+		if (global.flag_zoom) {
 			if (!global.MOBILE_MODE) {
 				this.hover();
 			}
 		}
 	}
 	mouse_up(): void {
-		if (global.FLAG_ZOOM) {
+		if (global.flag_zoom) {
 			if (!global.mouse_keyboard_lock) {
 				if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
-					menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+					menu_bar.handle_zoom_flag(!global.flag_zoom);
 					global.component_touched = true;
 				} else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
 					this.set_zoom(this.options['c0']['number']);
-					menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+					menu_bar.handle_zoom_flag(!global.flag_zoom);
 					global.component_touched = true;
 				} else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
 					this.set_zoom(this.options['c1']['number']);
-					menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+					menu_bar.handle_zoom_flag(!global.flag_zoom);
 					global.component_touched = true;
 				} else if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
 					this.set_zoom(this.options['c2']['number']);
-					menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+					menu_bar.handle_zoom_flag(!global.flag_zoom);
 					global.component_touched = true;
 				} else if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
-					menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+					menu_bar.handle_zoom_flag(!global.flag_zoom);
 					global.component_touched = true;
 				}
 			}
 		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (global.FLAG_ZOOM) {
+		if (global.flag_zoom) {
 			if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
-				menu_bar.handle_zoom_flag(!global.FLAG_ZOOM);
+				menu_bar.handle_zoom_flag(!global.flag_zoom);
 				global.component_touched = true;
 			}
 		}
@@ -272,7 +272,7 @@ class ZoomWindow {
 		this.bounds_paint.set_text_size(global.canvas_text_size_5);
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.FLAG_ZOOM) {
+		if (global.flag_zoom) {
 			if (!global.MOBILE_MODE) {
 				canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}

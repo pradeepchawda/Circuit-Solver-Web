@@ -1,13 +1,10 @@
 'use strict';
-
 class MultiSelectManager {
 	public OFFSCREEN_X: number;
 	public OFFSCREEN_Y: number;
 	public MULTI_SELECT_BOUNDS: RectF;
 	public MULTI_SELECT: boolean;
-
 	public line_paint: Paint;
-
 	public fill_paint: Paint;
 	public SELECT_X: number;
 	public SELECT_Y: number;
@@ -25,9 +22,7 @@ class MultiSelectManager {
 	public CTRL_PRESSED: boolean;
 	public MULTI_SELECTED_ELEMENT: boolean;
 	public MOUSE_DOWN: boolean;
-
 	public SELECTED_COMPONENTS_BOUNDS: RectF;
-
 	public ENABLE_KEYS: boolean;
 	public DRAW_BOUNDS: RectF;
 	constructor() {
@@ -35,7 +30,6 @@ class MultiSelectManager {
 		this.OFFSCREEN_Y = -500e3;
 		this.MULTI_SELECT_BOUNDS = new RectF(this.OFFSCREEN_X, this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
 		this.MULTI_SELECT = false;
-
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -46,7 +40,6 @@ class MultiSelectManager {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -73,13 +66,10 @@ class MultiSelectManager {
 		this.CTRL_PRESSED = false;
 		this.MULTI_SELECTED_ELEMENT = false;
 		this.MOUSE_DOWN = false;
-
 		this.SELECTED_COMPONENTS_BOUNDS = new RectF(-this.OFFSCREEN_X, -this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
-
 		this.ENABLE_KEYS = true;
 		this.DRAW_BOUNDS = new RectF(0, 0, 0, 0);
 	}
-
 	reset_enveloping_bounds(): void {
 		global.multi_selected = false;
 		this.SELECTED_COMPONENTS_BOUNDS.left = -this.OFFSCREEN_X;
@@ -529,16 +519,16 @@ class MultiSelectManager {
 	key_down(key_event: KEY_EVENT_T): void {
 		if (this.ENABLE_KEYS && !global.MOBILE_MODE) {
 			if (
-				!global.FLAG_SIMULATING &&
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_GRAPH &&
-				!global.FLAG_SELECT_ELEMENT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_SELECT_SETTINGS &&
+				!global.flag_simulating &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_zoom &&
+				!global.flag_element_options &&
+				!global.flag_element_options_edit &&
+				!global.flag_graph &&
+				!global.flag_select_element &&
+				!global.flag_select_timestep &&
+				!global.flag_select_settings &&
 				!global.flag_remove_all &&
 				!global.flag_menu_element_toolbox &&
 				!global.signal_history_lock
@@ -560,16 +550,16 @@ class MultiSelectManager {
 	}
 	mouse_down(): void {
 		if (
-			!global.FLAG_SIMULATING &&
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_GRAPH &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_simulating &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_graph &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox &&
 			!global.signal_history_lock &&
@@ -625,16 +615,16 @@ class MultiSelectManager {
 	}
 	mouse_move(): void {
 		if (
-			!global.FLAG_SIMULATING &&
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_GRAPH &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_simulating &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_graph &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox &&
 			!global.signal_history_lock &&
@@ -695,25 +685,21 @@ class MultiSelectManager {
 	handle_multi_move(): void {
 		let dx: number = (this.DELTA_DX - this.DELTA_LAST_DX) * global.node_space_x;
 		let dy: number = (this.DELTA_DY - this.DELTA_LAST_DY) * global.node_space_y;
-
 		if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y)) {
 			if (dy < 0) {
 				dy = 0;
 			}
 		}
-
 		if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y)) {
 			if (dy > 0) {
 				dy = 0;
 			}
 		}
-
 		if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x)) {
 			if (dx < 0) {
 				dx = 0;
 			}
 		}
-
 		if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x)) {
 			if (dx > 0) {
 				dx = 0;
@@ -732,7 +718,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < capacitors.length; i++) {
 				if (capacitors[i].MULTI_SELECTED) {
 					{
@@ -740,7 +725,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < inductors.length; i++) {
 				if (inductors[i].MULTI_SELECTED) {
 					{
@@ -748,7 +732,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < grounds.length; i++) {
 				if (grounds[i].MULTI_SELECTED) {
 					{
@@ -756,7 +739,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < dcsources.length; i++) {
 				if (dcsources[i].MULTI_SELECTED) {
 					{
@@ -764,7 +746,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < dccurrents.length; i++) {
 				if (dccurrents[i].MULTI_SELECTED) {
 					{
@@ -772,7 +753,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < acsources.length; i++) {
 				if (acsources[i].MULTI_SELECTED) {
 					{
@@ -780,7 +760,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < accurrents.length; i++) {
 				if (accurrents[i].MULTI_SELECTED) {
 					{
@@ -788,7 +767,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < squarewaves.length; i++) {
 				if (squarewaves[i].MULTI_SELECTED) {
 					{
@@ -796,7 +774,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < sawwaves.length; i++) {
 				if (sawwaves[i].MULTI_SELECTED) {
 					{
@@ -804,7 +781,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < trianglewaves.length; i++) {
 				if (trianglewaves[i].MULTI_SELECTED) {
 					{
@@ -812,7 +788,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < constants.length; i++) {
 				if (constants[i].MULTI_SELECTED) {
 					{
@@ -820,7 +795,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < wires.length; i++) {
 				if (wires[i].MULTI_SELECTED) {
 					{
@@ -828,7 +802,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < nets.length; i++) {
 				if (nets[i].MULTI_SELECTED) {
 					{
@@ -836,7 +809,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < notes.length; i++) {
 				if (notes[i].MULTI_SELECTED) {
 					{
@@ -844,7 +816,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < rails.length; i++) {
 				if (rails[i].MULTI_SELECTED) {
 					{
@@ -852,7 +823,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < voltmeters.length; i++) {
 				if (voltmeters[i].MULTI_SELECTED) {
 					{
@@ -860,7 +830,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < ohmmeters.length; i++) {
 				if (ohmmeters[i].MULTI_SELECTED) {
 					{
@@ -868,7 +837,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < ammeters.length; i++) {
 				if (ammeters[i].MULTI_SELECTED) {
 					{
@@ -876,7 +844,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < wattmeters.length; i++) {
 				if (wattmeters[i].MULTI_SELECTED) {
 					{
@@ -884,7 +851,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < fuses.length; i++) {
 				if (fuses[i].MULTI_SELECTED) {
 					{
@@ -892,7 +858,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < spsts.length; i++) {
 				if (spsts[i].MULTI_SELECTED) {
 					{
@@ -900,7 +865,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < spdts.length; i++) {
 				if (spdts[i].MULTI_SELECTED) {
 					{
@@ -908,7 +872,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < nots.length; i++) {
 				if (nots[i].MULTI_SELECTED) {
 					{
@@ -916,7 +879,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < diodes.length; i++) {
 				if (diodes[i].MULTI_SELECTED) {
 					{
@@ -924,7 +886,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < leds.length; i++) {
 				if (leds[i].MULTI_SELECTED) {
 					{
@@ -932,7 +893,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < zeners.length; i++) {
 				if (zeners[i].MULTI_SELECTED) {
 					{
@@ -940,7 +900,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < potentiometers.length; i++) {
 				if (potentiometers[i].MULTI_SELECTED) {
 					{
@@ -948,7 +907,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < ands.length; i++) {
 				if (ands[i].MULTI_SELECTED) {
 					{
@@ -956,7 +914,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < ors.length; i++) {
 				if (ors[i].MULTI_SELECTED) {
 					{
@@ -964,7 +921,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < nands.length; i++) {
 				if (nands[i].MULTI_SELECTED) {
 					{
@@ -972,7 +928,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < nors.length; i++) {
 				if (nors[i].MULTI_SELECTED) {
 					{
@@ -980,7 +935,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < xors.length; i++) {
 				if (xors[i].MULTI_SELECTED) {
 					{
@@ -988,7 +942,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < xnors.length; i++) {
 				if (xnors[i].MULTI_SELECTED) {
 					{
@@ -996,7 +949,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < dffs.length; i++) {
 				if (dffs[i].MULTI_SELECTED) {
 					{
@@ -1004,7 +956,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < vsats.length; i++) {
 				if (vsats[i].MULTI_SELECTED) {
 					{
@@ -1012,7 +963,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < adders.length; i++) {
 				if (adders[i].MULTI_SELECTED) {
 					{
@@ -1020,7 +970,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < subtractors.length; i++) {
 				if (subtractors[i].MULTI_SELECTED) {
 					{
@@ -1028,7 +977,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < multipliers.length; i++) {
 				if (multipliers[i].MULTI_SELECTED) {
 					{
@@ -1036,7 +984,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < dividers.length; i++) {
 				if (dividers[i].MULTI_SELECTED) {
 					{
@@ -1044,7 +991,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < gains.length; i++) {
 				if (gains[i].MULTI_SELECTED) {
 					{
@@ -1052,7 +998,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < absvals.length; i++) {
 				if (absvals[i].MULTI_SELECTED) {
 					{
@@ -1060,7 +1005,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < vcsws.length; i++) {
 				if (vcsws[i].MULTI_SELECTED) {
 					{
@@ -1068,7 +1012,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < vcvss.length; i++) {
 				if (vcvss[i].MULTI_SELECTED) {
 					{
@@ -1076,7 +1019,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < vccss.length; i++) {
 				if (vccss[i].MULTI_SELECTED) {
 					{
@@ -1084,7 +1026,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < cccss.length; i++) {
 				if (cccss[i].MULTI_SELECTED) {
 					{
@@ -1092,7 +1033,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < ccvss.length; i++) {
 				if (ccvss[i].MULTI_SELECTED) {
 					{
@@ -1100,7 +1040,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < opamps.length; i++) {
 				if (opamps[i].MULTI_SELECTED) {
 					{
@@ -1108,7 +1047,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < nmosfets.length; i++) {
 				if (nmosfets[i].MULTI_SELECTED) {
 					{
@@ -1116,7 +1054,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < pmosfets.length; i++) {
 				if (pmosfets[i].MULTI_SELECTED) {
 					{
@@ -1124,7 +1061,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < npns.length; i++) {
 				if (npns[i].MULTI_SELECTED) {
 					{
@@ -1132,7 +1068,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < pnps.length; i++) {
 				if (pnps[i].MULTI_SELECTED) {
 					{
@@ -1140,7 +1075,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < adcs.length; i++) {
 				if (adcs[i].MULTI_SELECTED) {
 					{
@@ -1148,7 +1082,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < dacs.length; i++) {
 				if (dacs[i].MULTI_SELECTED) {
 					{
@@ -1156,7 +1089,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < sandhs.length; i++) {
 				if (sandhs[i].MULTI_SELECTED) {
 					{
@@ -1164,7 +1096,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < pwms.length; i++) {
 				if (pwms[i].MULTI_SELECTED) {
 					{
@@ -1172,7 +1103,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < integrators.length; i++) {
 				if (integrators[i].MULTI_SELECTED) {
 					{
@@ -1180,7 +1110,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < differentiators.length; i++) {
 				if (differentiators[i].MULTI_SELECTED) {
 					{
@@ -1188,7 +1117,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < lowpasses.length; i++) {
 				if (lowpasses[i].MULTI_SELECTED) {
 					{
@@ -1196,7 +1124,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < highpasses.length; i++) {
 				if (highpasses[i].MULTI_SELECTED) {
 					{
@@ -1204,7 +1131,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < relays.length; i++) {
 				if (relays[i].MULTI_SELECTED) {
 					{
@@ -1212,7 +1138,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < pids.length; i++) {
 				if (pids[i].MULTI_SELECTED) {
 					{
@@ -1220,7 +1145,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < luts.length; i++) {
 				if (luts[i].MULTI_SELECTED) {
 					{
@@ -1228,7 +1152,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < vcrs.length; i++) {
 				if (vcrs[i].MULTI_SELECTED) {
 					{
@@ -1236,7 +1159,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < vccas.length; i++) {
 				if (vccas[i].MULTI_SELECTED) {
 					{
@@ -1244,7 +1166,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < vcls.length; i++) {
 				if (vcls[i].MULTI_SELECTED) {
 					{
@@ -1252,7 +1173,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < grts.length; i++) {
 				if (grts[i].MULTI_SELECTED) {
 					{
@@ -1260,7 +1180,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < tptzs.length; i++) {
 				if (tptzs[i].MULTI_SELECTED) {
 					{
@@ -1268,7 +1187,6 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			for (var i: number = 0; i < transformers.length; i++) {
 				if (transformers[i].MULTI_SELECTED) {
 					{
@@ -1276,25 +1194,23 @@ class MultiSelectManager {
 					}
 				}
 			}
-
 			/* <!-- END AUTOMATICALLY GENERATED !--> */
 			if (!global.component_touched) {
 				global.component_touched = true;
 			}
 		}
 	}
-
 	determine_enveloping_bounds(bounds: RectF): void {
 		if (
-			!global.FLAG_SAVE_IMAGE &&
-			!global.FLAG_SAVE_CIRCUIT &&
-			!global.FLAG_ZOOM &&
-			!global.FLAG_ELEMENT_OPTIONS &&
-			!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-			!global.FLAG_GRAPH &&
-			!global.FLAG_SELECT_ELEMENT &&
-			!global.FLAG_SELECT_TIMESTEP &&
-			!global.FLAG_SELECT_SETTINGS &&
+			!global.flag_save_image &&
+			!global.flag_save_circuit &&
+			!global.flag_zoom &&
+			!global.flag_element_options &&
+			!global.flag_element_options_edit &&
+			!global.flag_graph &&
+			!global.flag_select_element &&
+			!global.flag_select_timestep &&
+			!global.flag_select_settings &&
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
@@ -1308,15 +1224,15 @@ class MultiSelectManager {
 	draw_bounds(canvas: GraphicsEngine): void {
 		if (this.MULTI_SELECT) {
 			if (
-				!global.FLAG_SAVE_IMAGE &&
-				!global.FLAG_SAVE_CIRCUIT &&
-				!global.FLAG_ZOOM &&
-				!global.FLAG_ELEMENT_OPTIONS &&
-				!global.FLAG_ELEMENT_OPTIONS_EDIT &&
-				!global.FLAG_GRAPH &&
-				!global.FLAG_SELECT_ELEMENT &&
-				!global.FLAG_SELECT_TIMESTEP &&
-				!global.FLAG_SELECT_SETTINGS &&
+				!global.flag_save_image &&
+				!global.flag_save_circuit &&
+				!global.flag_zoom &&
+				!global.flag_element_options &&
+				!global.flag_element_options_edit &&
+				!global.flag_graph &&
+				!global.flag_select_element &&
+				!global.flag_select_timestep &&
+				!global.flag_select_settings &&
 				!global.flag_remove_all &&
 				!global.flag_menu_element_toolbox
 			) {

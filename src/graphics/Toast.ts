@@ -1,6 +1,6 @@
 'use strict';
 class Toast {
-	private HEIGHT_RATIO: number;
+	private height_ratio: number;
 	private HEIGHT_FACTOR: number;
 	private line_paint: Paint;
 	private fill_paint: Paint;
@@ -16,10 +16,10 @@ class Toast {
 	private text_measure_div2: number;
 	constructor() {
 		if (global.MOBILE_MODE) {
-			this.HEIGHT_RATIO = 0.85;
+			this.height_ratio = 0.85;
 			this.HEIGHT_FACTOR = 0.7;
 		} else {
-			this.HEIGHT_RATIO = 0.9;
+			this.height_ratio = 0.9;
 			this.HEIGHT_FACTOR = 0.5;
 		}
 		this.line_paint = new Paint();
@@ -110,9 +110,9 @@ class Toast {
 				this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;
 			}
 			this.bounds.left = view_port.center_x - this.text_measure_div2;
-			this.bounds.top = view_port.top + view_port.view_height * this.HEIGHT_RATIO;
+			this.bounds.top = view_port.top + view_port.view_height * this.height_ratio;
 			this.bounds.right = view_port.center_x + this.text_measure_div2;
-			this.bounds.bottom = view_port.top + view_port.view_height * (this.HEIGHT_RATIO + (1.0 - this.HEIGHT_RATIO) * this.HEIGHT_FACTOR);
+			this.bounds.bottom = view_port.top + view_port.view_height * (this.height_ratio + (1.0 - this.height_ratio) * this.HEIGHT_FACTOR);
 			canvas.draw_rect2(this.bounds, this.fill_paint);
 			canvas.draw_rect2(this.bounds, this.line_paint);
 			canvas.draw_text(this.text, this.bounds.get_center_x(), this.bounds.get_center_y(), this.text_paint);

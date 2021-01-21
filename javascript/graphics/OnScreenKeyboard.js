@@ -12,9 +12,9 @@ class OnScreenKeyboard {
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
         this.line_paint.set_paint_join(this.line_paint.join.MITER);
-        this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+        this.line_paint.set_stroke_width(global.canvas_stroke_width_2);
         this.line_paint.set_color(global.GENERAL_BLACK_COLOR);
-        this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.line_paint.set_text_size(global.canvas_text_size_5);
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -22,9 +22,9 @@ class OnScreenKeyboard {
         this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
         this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
         this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
-        this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.bounds_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.bounds_paint.set_text_size(global.canvas_text_size_5);
         this.bounds_paint.set_font(global.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
         this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
@@ -32,9 +32,9 @@ class OnScreenKeyboard {
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
         this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-        this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.fill_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.fill_paint.set_text_size(global.canvas_text_size_5);
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -42,9 +42,9 @@ class OnScreenKeyboard {
         this.fill_paint_alt.set_paint_style(this.fill_paint_alt.style.FILL);
         this.fill_paint_alt.set_paint_cap(this.fill_paint_alt.cap.ROUND);
         this.fill_paint_alt.set_paint_join(this.fill_paint_alt.join.MITER);
-        this.fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
         this.fill_paint_alt.set_color(global.GENERAL_GRAY_COLOR);
-        this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
         this.fill_paint_alt.set_font(global.DEFAULT_FONT);
         this.fill_paint_alt.set_alpha(255);
         this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
@@ -52,9 +52,9 @@ class OnScreenKeyboard {
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
         this.text_paint.set_paint_join(this.text_paint.join.MITER);
-        this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+        this.text_paint.set_text_size(global.canvas_text_size_5);
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
@@ -277,20 +277,20 @@ class OnScreenKeyboard {
             this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
             this.bounds.bottom = view_port.bottom;
             this.load_keyboard();
-            this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-            this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-            this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-            this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-            this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-            this.fill_paint_alt.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-            this.fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
+            this.line_paint.set_stroke_width(global.canvas_stroke_width_2);
+            this.line_paint.set_text_size(global.canvas_text_size_5);
+            this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
+            this.text_paint.set_text_size(global.canvas_text_size_5);
+            this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+            this.fill_paint.set_text_size(global.canvas_text_size_5);
+            this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
+            this.bounds_paint.set_text_size(global.canvas_text_size_5);
+            this.fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
+            this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
         }
     }
     mouse_down() {
-        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
+        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
             this.FLAG_KEY_UP = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
                 if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
@@ -302,11 +302,11 @@ class OnScreenKeyboard {
         }
     }
     mouse_move() {
-        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT) && this.FLAG_KEY_DOWN) {
+        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.FLAG_KEY_DOWN) {
         }
     }
     mouse_up() {
-        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT) && this.FLAG_KEY_DOWN) {
+        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.FLAG_KEY_DOWN) {
             this.HOVER_INDEX = -1;
             let FOUND = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
@@ -314,8 +314,8 @@ class OnScreenKeyboard {
                     FOUND = true;
                     if (this.KEYBOARD_MAPPING[i].length === 1 && this.approve_keys(i)) {
                         this.KEYBOARD_KEY_EVENT.code = global.key_to_code(this.KEYBOARD_MAPPING[i]);
-                        global.KEY_DOWN_EVENT = true;
-                        global.KEY_UP_EVENT = true;
+                        global.key_down_event_flag = true;
+                        global.key_up_event_flag = true;
                         global.key_down_event_queue.push({
                             event: global.copy(this.KEYBOARD_KEY_EVENT),
                             alt: false,
@@ -338,8 +338,8 @@ class OnScreenKeyboard {
                         else if (this.KEYBOARD_MAPPING[i] === 'ENTER') {
                             this.FLAG_ENTER = !this.FLAG_ENTER;
                             this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_ENTER;
-                            global.KEY_DOWN_EVENT = true;
-                            global.KEY_UP_EVENT = true;
+                            global.key_down_event_flag = true;
+                            global.key_up_event_flag = true;
                             global.key_down_event_queue.push({
                                 event: global.copy(this.KEYBOARD_KEY_EVENT),
                                 alt: false,
@@ -351,8 +351,8 @@ class OnScreenKeyboard {
                         }
                         else if (this.KEYBOARD_MAPPING[i] === '<<') {
                             this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_BACKSPACE;
-                            global.KEY_DOWN_EVENT = true;
-                            global.KEY_UP_EVENT = true;
+                            global.key_down_event_flag = true;
+                            global.key_up_event_flag = true;
                             global.key_down_event_queue.push({
                                 event: global.copy(this.KEYBOARD_KEY_EVENT),
                                 alt: false,
@@ -402,13 +402,13 @@ class OnScreenKeyboard {
         }
     }
     draw_keyboard(canvas) {
-        if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
-            if (global.FLAG_ELEMENT_OPTIONS_EDIT === true || global.FLAG_SELECT_TIMESTEP === true) {
+        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
+            if (global.flag_element_options_edit === true || global.flag_select_timestep === true) {
                 if (global.selected_type !== global.TYPE_NOTE && global.selected_type !== global.TYPE_NET) {
                     this.ENGINEERING_KEYBOARD_MODE = true;
                 }
                 else {
-                    if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
+                    if (global.flag_element_options_edit) {
                         this.ENGINEERING_KEYBOARD_MODE = false;
                     }
                     else {

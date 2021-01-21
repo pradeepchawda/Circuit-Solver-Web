@@ -79,7 +79,7 @@ class SimulationManager {
         global.is_singular = false;
         this.FIRST_MATRIX_BUILD = true;
         this.reset_simulation();
-        if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
+        if (global.system_options['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
             global.time_step = this.determine_optimal_timestep();
             bottom_menu.resize_bottom_menu();
         }
@@ -97,49 +97,7 @@ class SimulationManager {
         this.NODE_SIZE = node_manager.active_nodes.length;
         /* #INSERT_GENERATE_SIMULATION_MATRIX_SIZE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        this.OFFSET =
-            dcsources.length +
-                acsources.length +
-                squarewaves.length +
-                sawwaves.length +
-                trianglewaves.length +
-                constants.length +
-                rails.length +
-                ohmmeters.length +
-                ammeters.length +
-                wattmeters.length +
-                nots.length +
-                ands.length +
-                ors.length +
-                nands.length +
-                nors.length +
-                xors.length +
-                xnors.length +
-                2 * dffs.length +
-                vsats.length +
-                adders.length +
-                subtractors.length +
-                multipliers.length +
-                dividers.length +
-                gains.length +
-                absvals.length +
-                vcvss.length +
-                cccss.length +
-                2 * ccvss.length +
-                opamps.length +
-                adcs.length +
-                dacs.length +
-                sandhs.length +
-                pwms.length +
-                integrators.length +
-                differentiators.length +
-                lowpasses.length +
-                highpasses.length +
-                pids.length +
-                luts.length +
-                grts.length +
-                tptzs.length +
-                transformers.length;
+        this.OFFSET = dcsources.length + acsources.length + squarewaves.length + sawwaves.length + trianglewaves.length + constants.length + rails.length + ohmmeters.length + ammeters.length + wattmeters.length + nots.length + ands.length + ors.length + nands.length + nors.length + xors.length + xnors.length + 2 * dffs.length + vsats.length + adders.length + subtractors.length + multipliers.length + dividers.length + gains.length + absvals.length + vcvss.length + cccss.length + 2 * ccvss.length + opamps.length + adcs.length + dacs.length + sandhs.length + pwms.length + integrators.length + differentiators.length + lowpasses.length + highpasses.length + pids.length + luts.length + grts.length + tptzs.length + transformers.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -186,10 +144,10 @@ class SimulationManager {
         this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
         this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+        toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.language_index]]);
         toast.show();
         this.SOLUTIONS_READY = false;
-        global.SIGNAL_BUILD_ELEMENT = true;
+        global.signal_build_element = true;
         this.INITIALIZED = true;
     }
     determine_optimal_timestep() {
@@ -549,7 +507,7 @@ class SimulationManager {
         this.SIMULATION_STEP = 0;
         this.SOLUTIONS_READY = false;
         global.is_singular = false;
-        toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+        toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.language_index]]);
         toast.show();
     }
     reset_elements() {
@@ -990,7 +948,7 @@ class SimulationManager {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     simulate() {
-        if (global.FLAG_SIMULATING && this.INITIALIZED) {
+        if (global.flag_simulating && this.INITIALIZED) {
             if (this.SIMULATION_STEP === 0) {
                 this.solve();
                 if (this.CONTINUE_SOLVING && !global.MOBILE_MODE) {
@@ -1001,18 +959,18 @@ class SimulationManager {
                 this.update_reactive_elements();
                 if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
                     if (this.ITERATOR >= global.settings.ITL4) {
-                        menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-                        toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+                        menu_bar.handle_simulation_flag(!global.flag_simulating);
+                        toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.language_index]]);
                         toast.show();
                     }
                     else if (global.is_singular) {
-                        menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-                        toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+                        menu_bar.handle_simulation_flag(!global.flag_simulating);
+                        toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.language_index]]);
                         toast.show();
                     }
                     else if (global.simulation_time >= this.SIMULATION_MAX_TIME) {
-                        menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-                        toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+                        menu_bar.handle_simulation_flag(!global.flag_simulating);
+                        toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.language_index]]);
                         toast.show();
                     }
                 }

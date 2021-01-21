@@ -2,7 +2,7 @@
 class OnScreenKeyboard {
 	public KEYBOARD_MAX_KEYS: number;
 	public bounds: RectF;
-	public HEIGHT_RATIO: number;
+	public height_ratio: number;
 	public line_paint: Paint;
 	public bounds_paint: Paint;
 	public fill_paint: Paint;
@@ -45,10 +45,10 @@ class OnScreenKeyboard {
 	constructor() {
 		this.KEYBOARD_MAX_KEYS = 67;
 		this.bounds = new RectF(0, 0, 0, 0);
-		this.HEIGHT_RATIO = 0.5;
+		this.height_ratio = 0.5;
 		this.bounds.left = view_port.left;
 		this.bounds.right = view_port.right;
-		this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
+		this.bounds.top = view_port.bottom - view_port.view_height * this.height_ratio;
 		this.bounds.bottom = view_port.bottom;
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
@@ -325,7 +325,7 @@ class OnScreenKeyboard {
 		if (global.MOBILE_MODE) {
 			this.bounds.left = view_port.left;
 			this.bounds.right = view_port.right;
-			this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
+			this.bounds.top = view_port.bottom - view_port.view_height * this.height_ratio;
 			this.bounds.bottom = view_port.bottom;
 			this.load_keyboard();
 			this.line_paint.set_stroke_width(global.canvas_stroke_width_2);
@@ -341,7 +341,7 @@ class OnScreenKeyboard {
 		}
 	}
 	mouse_down(): void {
-		if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
+		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
 			this.FLAG_KEY_UP = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
 				if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
@@ -353,11 +353,11 @@ class OnScreenKeyboard {
 		}
 	}
 	mouse_move(): void {
-		if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT) && this.FLAG_KEY_DOWN) {
+		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.FLAG_KEY_DOWN) {
 		}
 	}
 	mouse_up(): void {
-		if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT) && this.FLAG_KEY_DOWN) {
+		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.FLAG_KEY_DOWN) {
 			this.HOVER_INDEX = -1;
 			let FOUND: boolean = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
@@ -446,12 +446,12 @@ class OnScreenKeyboard {
 		}
 	}
 	draw_keyboard(canvas: GraphicsEngine): void {
-		if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
-			if (global.FLAG_ELEMENT_OPTIONS_EDIT === true || global.FLAG_SELECT_TIMESTEP === true) {
+		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
+			if (global.flag_element_options_edit === true || global.flag_select_timestep === true) {
 				if (global.selected_type !== global.TYPE_NOTE && global.selected_type !== global.TYPE_NET) {
 					this.ENGINEERING_KEYBOARD_MODE = true;
 				} else {
-					if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
+					if (global.flag_element_options_edit) {
 						this.ENGINEERING_KEYBOARD_MODE = false;
 					} else {
 						this.ENGINEERING_KEYBOARD_MODE = true;

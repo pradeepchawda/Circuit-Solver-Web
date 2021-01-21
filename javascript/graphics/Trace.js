@@ -22,9 +22,9 @@ class Trace {
         this.trace_stroke_paint.set_paint_style(this.trace_stroke_paint.style.STROKE);
         this.trace_stroke_paint.set_paint_cap(this.trace_stroke_paint.cap.ROUND);
         this.trace_stroke_paint.set_paint_join(this.trace_stroke_paint.join.MITER);
-        this.trace_stroke_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+        this.trace_stroke_paint.set_stroke_width(global.canvas_stroke_width_2);
         this.trace_stroke_paint.set_color(global.TRACE_DEFAULT_COLOR);
-        this.trace_stroke_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.trace_stroke_paint.set_text_size(global.canvas_text_size_4);
         this.trace_stroke_paint.set_font(global.DEFAULT_FONT);
         this.trace_stroke_paint.set_alpha(255);
         this.trace_stroke_paint.set_paint_align(this.trace_stroke_paint.align.CENTER);
@@ -32,9 +32,9 @@ class Trace {
         this.trace_fill_paint.set_paint_style(this.trace_fill_paint.style.FILL);
         this.trace_fill_paint.set_paint_cap(this.trace_fill_paint.cap.ROUND);
         this.trace_fill_paint.set_paint_join(this.trace_fill_paint.join.MITER);
-        this.trace_fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+        this.trace_fill_paint.set_stroke_width(global.canvas_stroke_width_2);
         this.trace_fill_paint.set_color(global.TRACE_DEFAULT_COLOR);
-        this.trace_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.trace_fill_paint.set_text_size(global.canvas_text_size_4);
         this.trace_fill_paint.set_font(global.DEFAULT_FONT);
         this.trace_fill_paint.set_alpha(255);
         this.trace_fill_paint.set_paint_align(this.trace_fill_paint.align.CENTER);
@@ -75,10 +75,10 @@ class Trace {
         this.bounds.bottom = rect.bottom;
     }
     resize_trace() {
-        this.trace_stroke_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-        this.trace_stroke_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-        this.trace_fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-        this.trace_fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+        this.trace_stroke_paint.set_stroke_width(global.canvas_stroke_width_2);
+        this.trace_stroke_paint.set_text_size(global.canvas_text_size_4);
+        this.trace_fill_paint.set_stroke_width(global.canvas_stroke_width_2);
+        this.trace_fill_paint.set_text_size(global.canvas_text_size_4);
         let constant = this.width / (this.X_AXIS_LENGTH >> 1);
         let constant2 = (this.height * this.ratio) / this.temporary_norm;
         for (var i = 0; i < this.trace.length; i++) {

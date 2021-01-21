@@ -11,7 +11,7 @@ class HistoryManager {
         }
     }
     push(packet) {
-        if (!global.SIGNAL_ADD_ELEMENT && !global.SIGNAL_HISTORY_LOCK) {
+        if (!global.signal_add_element && !global.signal_history_lock) {
             if (this.history.length > 0) {
                 let last_history_index = this.history.length - 1;
                 if (this.history[last_history_index] !== packet) {

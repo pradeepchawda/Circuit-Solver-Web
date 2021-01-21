@@ -1,5 +1,4 @@
 'use strict';
-
 class Digit {
 	public num: number;
 	constructor(setter: number) {
