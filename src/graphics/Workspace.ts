@@ -29,9 +29,9 @@ class Workspace {
 		this.view_paint.set_paint_style(this.view_paint.style.STROKE);
 		this.view_paint.set_paint_cap(this.view_paint.cap.ROUND);
 		this.view_paint.set_paint_join(this.view_paint.join.MITER);
-		this.view_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.view_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.view_paint.set_color(global.GENERAL_GREEN_COLOR);
-		this.view_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.view_paint.set_text_size(global.canvas_text_size_4);
 		this.view_paint.set_font(global.DEFAULT_FONT);
 		this.view_paint.set_alpha(255);
 		this.view_paint.set_paint_align(this.view_paint.align.CENTER);
@@ -39,9 +39,9 @@ class Workspace {
 		this.bounds_paint.set_paint_style(this.bounds_paint.style.STROKE);
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
 		this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
-		this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_3 >> 1);
+		this.bounds_paint.set_stroke_width(global.canvas_stroke_width_3 >> 1);
 		this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
-		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.bounds_paint.set_text_size(global.canvas_text_size_4);
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(160);
 		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
@@ -49,9 +49,9 @@ class Workspace {
 		this.grid_paint.set_paint_style(this.grid_paint.style.STROKE);
 		this.grid_paint.set_paint_cap(this.grid_paint.cap.ROUND);
 		this.grid_paint.set_paint_join(this.grid_paint.join.MITER);
-		this.grid_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.grid_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.grid_paint.set_color(global.GENERAL_GRAY_COLOR);
-		this.grid_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.grid_paint.set_text_size(global.canvas_text_size_4);
 		this.grid_paint.set_font(global.DEFAULT_FONT);
 		this.grid_paint.set_alpha(60);
 		this.grid_paint.set_paint_align(this.grid_paint.align.CENTER);
@@ -59,7 +59,7 @@ class Workspace {
 		this.work_area_paint.set_paint_style(this.work_area_paint.style.FILL);
 		this.work_area_paint.set_paint_cap(this.work_area_paint.cap.ROUND);
 		this.work_area_paint.set_paint_join(this.work_area_paint.join.MITER);
-		this.work_area_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.work_area_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.work_area_paint.set_color(global.WORKSPACE_WORK_AREA_COLOR);
 		this.work_area_paint.set_text_size(25);
 		this.work_area_paint.set_font(global.DEFAULT_FONT);
@@ -73,12 +73,12 @@ class Workspace {
 	}
 	workspace_resize(): void {
 		this.GRID_MOVED = true;
-		this.view_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.view_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_3 >> 1);
-		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.grid_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.grid_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.view_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.view_paint.set_text_size(global.canvas_text_size_4);
+		this.bounds_paint.set_stroke_width(global.canvas_stroke_width_3 >> 1);
+		this.bounds_paint.set_text_size(global.canvas_text_size_4);
+		this.grid_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.grid_paint.set_text_size(global.canvas_text_size_4);
 		this.view.left = global.remap_position(this.view.left, true);
 		this.view.top = global.remap_position(this.view.top, false);
 		this.view.right = global.remap_position(this.view.right, true);
@@ -92,15 +92,15 @@ class Workspace {
 		}
 		global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
 		global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-		if (!this.FIRST_RESIZE_FLAG || global.FORCE_RESIZE_EVENT) {
+		if (!this.FIRST_RESIZE_FLAG || global.force_resize_event) {
 			zoom_window.set_zoom(global.workspace_zoom_scale);
 			this.FIRST_RESIZE_FLAG = true;
 		}
-		this.grid_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.grid_paint.set_stroke_width(global.canvas_stroke_width_1);
 	}
 	workspace_zoom(): void {
 		this.GRID_MOVED = true;
-		global.SIGNAL_BUILD_ELEMENT = true;
+		global.signal_build_element = true;
 		global.signal_build_counter = 0;
 		this.bounds.left = global.delta_x;
 		this.bounds.top = global.delta_y;
@@ -126,7 +126,7 @@ class Workspace {
 	}
 	workspace_translate_bounds(dx: number, dy: number): void {
 		this.GRID_MOVED = true;
-		global.SIGNAL_BUILD_ELEMENT = true;
+		global.signal_build_element = true;
 		global.signal_build_counter = 0;
 		this.bounds.left += dx;
 		this.bounds.right += dx;

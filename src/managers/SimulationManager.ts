@@ -184,7 +184,7 @@ class SimulationManager {
 
 		this.reset_simulation();
 
-		if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
+		if (global.system_options['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
 			global.time_step = this.determine_optimal_timestep();
 			bottom_menu.resize_bottom_menu();
 		} else {
@@ -297,10 +297,10 @@ class SimulationManager {
 		this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 
-		toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+		toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.language_index]]);
 		toast.show();
 		this.SOLUTIONS_READY = false;
-		global.SIGNAL_BUILD_ELEMENT = true;
+		global.signal_build_element = true;
 
 		this.INITIALIZED = true;
 	}
@@ -661,7 +661,7 @@ class SimulationManager {
 		this.SOLUTIONS_READY = false;
 		global.is_singular = false;
 
-		toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+		toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.language_index]]);
 		toast.show();
 	}
 	reset_elements(): void {
@@ -1111,15 +1111,15 @@ class SimulationManager {
 				if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
 					if (this.ITERATOR >= global.settings.ITL4) {
 						menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-						toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+						toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.language_index]]);
 						toast.show();
 					} else if (global.is_singular) {
 						menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-						toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+						toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.language_index]]);
 						toast.show();
 					} else if (global.simulation_time >= this.SIMULATION_MAX_TIME) {
 						menu_bar.handle_simulation_flag(!global.FLAG_SIMULATING);
-						toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.LANGUAGE_INDEX]]);
+						toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.language_index]]);
 						toast.show();
 					}
 				}

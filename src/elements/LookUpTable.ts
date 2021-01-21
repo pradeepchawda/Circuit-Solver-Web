@@ -85,9 +85,9 @@ class LookUpTable {
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
 		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
+		this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
 		this.line_paint.set_color(global.ELEMENT_COLOR);
-		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+		this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -95,9 +95,9 @@ class LookUpTable {
 		this.point_paint.set_paint_style(this.point_paint.style.FILL);
 		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
 		this.point_paint.set_paint_join(this.point_paint.join.MITER);
-		this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
+		this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
 		this.point_paint.set_color(global.ELEMENT_COLOR);
-		this.point_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+		this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
 		this.point_paint.set_font(global.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
 		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
@@ -105,9 +105,9 @@ class LookUpTable {
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
 		this.text_paint.set_paint_join(this.text_paint.join.MITER);
-		this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
+		this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
 		this.text_paint.set_color(global.ELEMENT_COLOR);
-		this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+		this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
@@ -250,8 +250,8 @@ class LookUpTable {
 			!global.FLAG_SELECT_ELEMENT &&
 			!global.FLAG_SELECT_TIMESTEP &&
 			!global.FLAG_SELECT_SETTINGS &&
-			!global.FLAG_REMOVE_ALL &&
-			!global.FLAG_MENU_OPEN_DOWN
+			!global.flag_remove_all &&
+			!global.flag_menu_element_toolbox
 		) {
 			if (!global.focused && !global.component_touched && !global.multi_selected) {
 				if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
@@ -414,7 +414,7 @@ class LookUpTable {
 		}
 	}
 	wire_reference_maintenance(): void {
-		if (this.wire_reference.length > 0 && global.SIGNAL_WIRE_DELETED) {
+		if (this.wire_reference.length > 0 && global.signal_wire_element) {
 			let id: number = -1;
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -516,7 +516,7 @@ class LookUpTable {
 		}
 	}
 	build_element(): void {
-		if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
+		if (this.BUILD_ELEMENT || global.signal_build_element) {
 			let cache_0: number = 1.5 * this.x_space;
 			let cache_1: number = 1.414 * this.x_space;
 			let cache_2: number = 1.5 * this.y_space;
@@ -543,7 +543,7 @@ class LookUpTable {
 		}
 	}
 	resize(): void {
-		if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
+		if (this.BUILD_ELEMENT || global.signal_build_element) {
 			if (this.bounds.anchored) {
 				if (this.elm.consistent()) {
 					this.bounds.set_center2(
@@ -559,12 +559,12 @@ class LookUpTable {
 			} else {
 				this.refactor();
 			}
-			this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-			this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-			this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-			this.point_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
-			this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
+			this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+			this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
+			this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+			this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
+			this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+			this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
 		}
 	}
 	refactor(): void {
@@ -630,7 +630,7 @@ class LookUpTable {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
 		if (
-			global.PICTURE_REQUEST ||
+			global.picture_request_flag ||
 			(this.c_x >= view_port.left - global.node_space_x &&
 				this.c_x - global.node_space_x <= view_port.right &&
 				this.c_y >= view_port.top + -global.node_space_y &&
@@ -640,7 +640,7 @@ class LookUpTable {
 			if (!this.is_selected_element() && !this.MULTI_SELECTED) {
 				this.point_paint.set_color(global.ELEMENT_COLOR);
 			}
-			canvas.draw_circle(this.plus_point.x, this.plus_point.y, global.CANVAS_STROKE_WIDTH_2_ZOOM, this.point_paint);
+			canvas.draw_circle(this.plus_point.x, this.plus_point.y, global.canvas_stroke_width_2_zoom, this.point_paint);
 			this.point_paint.set_color(this.temp_color);
 			this.indexer = 0;
 			this.circle_buffer = [];
@@ -654,8 +654,8 @@ class LookUpTable {
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			this.indexer = 0;
 			canvas.draw_text('LUT', this.c_x, this.c_y, this.text_paint);
-			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
-			this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.CANVAS_STROKE_WIDTH_2_ZOOM);
+			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.canvas_stroke_width_2_zoom);
+			this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.canvas_stroke_width_2_zoom);
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
 			if (global.DEVELOPER_MODE) {
 				canvas.draw_rect2(this.bounds, this.line_paint);
@@ -687,12 +687,12 @@ class LookUpTable {
 					global.NODE_HINTS &&
 					!multi_select_manager.MULTI_SELECT &&
 					!this.MULTI_SELECTED &&
-					!global.SIGNAL_ADD_ELEMENT &&
-					!global.SIGNAL_HISTORY_LOCK &&
-					!global.PICTURE_REQUEST &&
+					!global.signal_add_element &&
+					!global.signal_history_lock &&
+					!global.picture_request_flag &&
 					!global.FLAG_SAVE_CIRCUIT &&
 					!global.FLAG_SAVE_IMAGE &&
-					!global.FLAG_MENU_OPEN_DOWN &&
+					!global.flag_menu_element_toolbox &&
 					!global.FLAG_SELECT_TIMESTEP &&
 					!global.FLAG_ELEMENT_OPTIONS &&
 					!global.FLAG_ELEMENT_OPTIONS_EDIT &&
@@ -701,8 +701,8 @@ class LookUpTable {
 					!global.FLAG_SIMULATING &&
 					!global.FLAG_SELECT_SETTINGS &&
 					!global.FLAG_SELECT_ELEMENT &&
-					!global.FLAG_REMOVE_ALL &&
-					!global.SIGNAL_ADD_ELEMENT
+					!global.flag_remove_all &&
+					!global.signal_add_element
 				) {
 					if (this.elm.consistent()) {
 						let node_id_array: Array<number> = this.elm.get_nodes();

@@ -45,12 +45,12 @@ class GraphWindow {
 		this.SCOPE_2_INDEX = 2;
 		this.bounds.left = view_port.left;
 		this.bounds.right = view_port.right;
-		this.bounds.top = menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
+		this.bounds.top = menu_bar.graph_button.bottom + 2 * global.canvas_stroke_width_3;
 		this.bounds.bottom = view_port.bottom;
 		this.width = 1;
 		this.height = 1;
 		this.trim = 1;
-		this.PADDING = global.CANVAS_STROKE_WIDTH_5;
+		this.PADDING = global.canvas_stroke_width_5;
 		if (global.MOBILE_MODE) {
 			this.BUTTON_WIDTH_RATIO = 0.12;
 			this.BUTTON_HEIGHT_RATIO = 0.08;
@@ -62,9 +62,9 @@ class GraphWindow {
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
 		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.line_paint.set_color(global.GENERAL_WHITE_COLOR);
-		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.line_paint.set_text_size(global.canvas_text_size_4);
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -72,9 +72,9 @@ class GraphWindow {
 		this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
 		this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
-		this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
-		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.bounds_paint.set_text_size(global.canvas_text_size_4);
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
 		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
@@ -82,9 +82,9 @@ class GraphWindow {
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
 		this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-		this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.fill_paint.set_color(global.GRAPH_AREA_COLOR);
-		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.fill_paint.set_text_size(global.canvas_text_size_4);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -92,12 +92,12 @@ class GraphWindow {
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
 		this.text_paint.set_paint_join(this.text_paint.join.MITER);
-		this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.text_paint.set_color(global.GENERAL_RED_COLOR);
 		if (global.MOBILE_MODE) {
-			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+			this.text_paint.set_text_size(global.canvas_text_size_5);
 		} else {
-			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+			this.text_paint.set_text_size(global.canvas_text_size_4);
 		}
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
@@ -106,9 +106,9 @@ class GraphWindow {
 		this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
 		this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
-		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
+		this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
 		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
-		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+		this.hover_paint.set_text_size(global.canvas_text_size_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
 		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
@@ -116,9 +116,9 @@ class GraphWindow {
 		this.graph_text_a_paint.set_paint_style(this.graph_text_a_paint.style.FILL);
 		this.graph_text_a_paint.set_paint_cap(this.graph_text_a_paint.cap.ROUND);
 		this.graph_text_a_paint.set_paint_join(this.graph_text_a_paint.join.MITER);
-		this.graph_text_a_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.graph_text_a_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.graph_text_a_paint.set_color(global.TRACE_I_COLOR);
-		this.graph_text_a_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.graph_text_a_paint.set_text_size(global.canvas_text_size_4);
 		this.graph_text_a_paint.set_font(global.DEFAULT_FONT);
 		this.graph_text_a_paint.set_alpha(255);
 		this.graph_text_a_paint.set_paint_align(this.graph_text_a_paint.align.LEFT);
@@ -126,9 +126,9 @@ class GraphWindow {
 		this.graph_text_b_paint.set_paint_style(this.graph_text_b_paint.style.FILL);
 		this.graph_text_b_paint.set_paint_cap(this.graph_text_b_paint.cap.ROUND);
 		this.graph_text_b_paint.set_paint_join(this.graph_text_b_paint.join.MITER);
-		this.graph_text_b_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.graph_text_b_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.graph_text_b_paint.set_color(global.TRACE_II_COLOR);
-		this.graph_text_b_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.graph_text_b_paint.set_text_size(global.canvas_text_size_4);
 		this.graph_text_b_paint.set_font(global.DEFAULT_FONT);
 		this.graph_text_b_paint.set_alpha(255);
 		this.graph_text_b_paint.set_paint_align(this.graph_text_b_paint.align.LEFT);
@@ -136,9 +136,9 @@ class GraphWindow {
 		this.graph_text_c_paint.set_paint_style(this.graph_text_c_paint.style.FILL);
 		this.graph_text_c_paint.set_paint_cap(this.graph_text_c_paint.cap.ROUND);
 		this.graph_text_c_paint.set_paint_join(this.graph_text_c_paint.join.MITER);
-		this.graph_text_c_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.graph_text_c_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.graph_text_c_paint.set_color(global.TRACE_III_COLOR);
-		this.graph_text_c_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.graph_text_c_paint.set_text_size(global.canvas_text_size_4);
 		this.graph_text_c_paint.set_font(global.DEFAULT_FONT);
 		this.graph_text_c_paint.set_alpha(255);
 		this.graph_text_c_paint.set_paint_align(this.graph_text_c_paint.align.LEFT);
@@ -195,32 +195,32 @@ class GraphWindow {
 		}
 	}
 	resize_window(): void {
-		this.PADDING = global.CANVAS_STROKE_WIDTH_5;
+		this.PADDING = global.canvas_stroke_width_5;
 		this.bounds.left = view_port.left;
 		this.bounds.right = view_port.right;
-		this.bounds.top = menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
+		this.bounds.top = menu_bar.graph_button.bottom + 2 * global.canvas_stroke_width_3;
 		this.bounds.bottom = view_port.bottom;
 		this.load_axis();
-		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.line_paint.set_text_size(global.canvas_text_size_4);
+		this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
 		if (global.MOBILE_MODE) {
-			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+			this.text_paint.set_text_size(global.canvas_text_size_5);
 		} else {
-			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+			this.text_paint.set_text_size(global.canvas_text_size_4);
 		}
-		this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.bounds_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.bounds_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.graph_text_a_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.graph_text_a_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.graph_text_b_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.graph_text_b_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.graph_text_c_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.graph_text_c_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+		this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.fill_paint.set_text_size(global.canvas_text_size_4);
+		this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.bounds_paint.set_text_size(global.canvas_text_size_4);
+		this.graph_text_a_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.graph_text_a_paint.set_text_size(global.canvas_text_size_4);
+		this.graph_text_b_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.graph_text_b_paint.set_text_size(global.canvas_text_size_4);
+		this.graph_text_c_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.graph_text_c_paint.set_text_size(global.canvas_text_size_4);
+		this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
+		this.hover_paint.set_text_size(global.canvas_text_size_5);
 		this.graph_trace_a.resize_trace();
 		this.graph_trace_b.resize_trace();
 		this.graph_trace_c.resize_trace();
@@ -350,7 +350,7 @@ class GraphWindow {
 			if (scope_manager.ENTRY.length > 0) {
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_0_INDEX),
-					this.bounds.get_center_x() - 1.25 * global.CANVAS_TEXT_SIZE_BASE * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))),
+					this.bounds.get_center_x() - 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))),
 					this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 					this.graph_text_a_paint
 				);
@@ -420,7 +420,7 @@ class GraphWindow {
 			if (scope_manager.ENTRY.length > 2) {
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_2_INDEX),
-					this.bounds.get_center_x() + 1.25 * global.CANVAS_TEXT_SIZE_BASE * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX))),
+					this.bounds.get_center_x() + 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX))),
 					this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 					this.graph_text_c_paint
 				);
@@ -475,7 +475,7 @@ class GraphWindow {
 						canvas.draw_text(
 							this.time_tag + 's',
 							view_port.left + this.graph_trace_a.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
-							this.inner_bounds.bottom - global.CANVAS_STROKE_WIDTH_6,
+							this.inner_bounds.bottom - global.canvas_stroke_width_6,
 							this.text_paint
 						);
 					} else {
@@ -489,7 +489,7 @@ class GraphWindow {
 						canvas.draw_text(
 							this.time_tag + 's',
 							view_port.left + this.graph_trace_b.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
-							this.inner_bounds.bottom - global.CANVAS_STROKE_WIDTH_6,
+							this.inner_bounds.bottom - global.canvas_stroke_width_6,
 							this.text_paint
 						);
 					} else {
@@ -503,7 +503,7 @@ class GraphWindow {
 						canvas.draw_text(
 							this.time_tag + 's',
 							view_port.left + this.graph_trace_c.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
-							this.inner_bounds.bottom - global.CANVAS_STROKE_WIDTH_6,
+							this.inner_bounds.bottom - global.canvas_stroke_width_6,
 							this.text_paint
 						);
 					} else {

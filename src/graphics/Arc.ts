@@ -13,9 +13,9 @@ class Arc {
 		this.arc_paint.set_paint_style(this.arc_paint.style.STROKE);
 		this.arc_paint.set_paint_cap(this.arc_paint.cap.ROUND);
 		this.arc_paint.set_paint_join(this.arc_paint.join.MITER);
-		this.arc_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2_ZOOM);
+		this.arc_paint.set_stroke_width(global.canvas_stroke_width_2_zoom);
 		this.arc_paint.set_color(global.ELEMENT_COLOR);
-		this.arc_paint.set_text_size(global.CANVAS_TEXT_SIZE_4_ZOOM);
+		this.arc_paint.set_text_size(global.canvas_text_size_4_zoom);
 		this.arc_paint.set_font(global.DEFAULT_FONT);
 		this.arc_paint.set_alpha(255);
 		this.arc_paint.set_paint_align(this.arc_paint.align.CENTER);
@@ -32,12 +32,12 @@ class Arc {
 		this.y2 = y2;
 	}
 	resize(): void {
-		this.arc_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-		this.arc_paint.set_text_size(global.CANVAS_TEXT_SIZE_4_ZOOM);
+		this.arc_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+		this.arc_paint.set_text_size(global.canvas_text_size_4_zoom);
 	}
 	resize2(): void {
-		this.arc_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-		this.arc_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.arc_paint.set_stroke_width(global.canvas_stroke_width_2);
+		this.arc_paint.set_text_size(global.canvas_text_size_4);
 	}
 	set_color(color: string): void {
 		this.arc_paint.set_color(color);

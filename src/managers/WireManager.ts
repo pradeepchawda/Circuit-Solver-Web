@@ -40,11 +40,11 @@ class WireManager {
 						if (index > -1 && index < wires.length) {
 							wires[index].select();
 						}
-						global.SIGNAL_WIRE_CREATED = true;
+						global.signal_wire_created = true;
 					}
 				} else {
 					if (global.WIRE_BUILDER['n1'] !== global.WIRE_BUILDER['n2'] && global.WIRE_BUILDER['id1'] === global.WIRE_BUILDER['id2'] && global.WIRE_BUILDER['type1'] === global.WIRE_BUILDER['type2']) {
-						toast.set_text(language_manager.CONNECTION_NOT_ALLOWED[global.LANGUAGES[global.LANGUAGE_INDEX]] + '.');
+						toast.set_text(language_manager.CONNECTION_NOT_ALLOWED[global.LANGUAGES[global.language_index]] + '.');
 						toast.show();
 					}
 				}

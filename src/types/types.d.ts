@@ -62,6 +62,10 @@ declare type PATH_3P_T = {
 	x4: number;
 	y4: number;
 };
+declare type NEAREST_NEIGHBOR_T = {
+	Type: number;
+	Id: number;
+};
 declare type PATH_T = PATH_1P_T | PATH_2P_T | PATH_3P_T;
 declare type KEYBOARD_EXPAND_T = {
 	Id: number;

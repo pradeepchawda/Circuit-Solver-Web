@@ -104,9 +104,9 @@ class ElementWindow {
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
 		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.line_paint.set_color(global.GENERAL_WHITE_COLOR);
-		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.line_paint.set_text_size(global.canvas_text_size_4);
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
@@ -114,9 +114,9 @@ class ElementWindow {
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
 		this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-		this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+		this.fill_paint.set_text_size(global.canvas_text_size_4);
 		this.fill_paint.set_font(global.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
@@ -124,12 +124,12 @@ class ElementWindow {
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
 		this.text_paint.set_paint_join(this.text_paint.join.MITER);
-		this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
 		if (global.MOBILE_MODE) {
-			this.text_paint.set_text_size(2 * global.CANVAS_TEXT_SIZE_6);
+			this.text_paint.set_text_size(2 * global.canvas_text_size_6);
 		} else {
-			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_6);
+			this.text_paint.set_text_size(global.canvas_text_size_6);
 		}
 		this.text_paint.set_paint_baseline(this.text_paint.baseline.ALPHABETIC);
 		this.text_paint.set_font(global.DEFAULT_FONT);
@@ -139,9 +139,9 @@ class ElementWindow {
 		this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
 		this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
-		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
+		this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
 		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
-		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+		this.hover_paint.set_text_size(global.canvas_text_size_5);
 		this.hover_paint.set_font(global.DEFAULT_FONT);
 		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
@@ -306,16 +306,16 @@ class ElementWindow {
 		let height: number = 0;
 		for (var i: number = 0; i < this.MAX_ICONS; i++) {
 			temp_bounds.left = this.bounds.left + i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
-			temp_bounds.top = this.bounds.top + global.CANVAS_STROKE_WIDTH_3;
+			temp_bounds.top = this.bounds.top + global.canvas_stroke_width_3;
 			temp_bounds.right = this.bounds.left + ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
-			temp_bounds.bottom = this.bounds.bottom - global.CANVAS_STROKE_WIDTH_3;
+			temp_bounds.bottom = this.bounds.bottom - global.canvas_stroke_width_3;
 			height = temp_bounds.get_height();
 			temp_bounds.set_center2(temp_bounds.get_center_x(), temp_bounds.get_center_y(), height, height);
 			this.positions.push(new RectF(temp_bounds.left, temp_bounds.top, temp_bounds.right, temp_bounds.bottom));
 		}
 	}
 	update(): void {
-		if (global.FLAG_MENU_OPEN_DOWN) {
+		if (global.flag_menu_element_toolbox) {
 			if (!global.mouse_keyboard_lock) {
 				{
 					/* #INSERT_GENERATE_ELEMENT_WINDOW_ICON_UPDATE# */
@@ -395,7 +395,7 @@ class ElementWindow {
 	}
 	mouse_wheel(): void {
 		if (this.ENABLE_MOUSE_WHEEL) {
-			if (global.FLAG_MENU_OPEN_DOWN) {
+			if (global.flag_menu_element_toolbox) {
 				if (!global.mouse_keyboard_lock) {
 					this.MOUSE_WHEEL_COUNTER++;
 					if (this.MOUSE_WHEEL_COUNTER >= this.MOUSE_WHEEL_COUNTER_MAX) {
@@ -416,7 +416,7 @@ class ElementWindow {
 		}
 	}
 	mouse_down(): void {
-		if (global.FLAG_MENU_OPEN_DOWN) {
+		if (global.flag_menu_element_toolbox) {
 			if (!global.mouse_keyboard_lock) {
 				this.first_touch_x = global.mouse_x;
 				this.first_touch_y = global.mouse_y;
@@ -509,7 +509,7 @@ class ElementWindow {
 		}
 	}
 	mouse_move(): void {
-		if (global.FLAG_MENU_OPEN_DOWN) {
+		if (global.flag_menu_element_toolbox) {
 			if (!global.mouse_keyboard_lock) {
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
 				/* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE# */
@@ -587,7 +587,7 @@ class ElementWindow {
 		}
 	}
 	mouse_up(): void {
-		if (global.FLAG_MENU_OPEN_DOWN) {
+		if (global.flag_menu_element_toolbox) {
 			if (!global.mouse_keyboard_lock) {
 				if (
 					this.positions[this.NAVIGATE_BACK].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
@@ -755,18 +755,18 @@ class ElementWindow {
 		this.tptz_symbol.resize(this.positions[this.tptz_symbol.index]);
 		this.transformer_symbol.resize(this.positions[this.transformer_symbol.index]);
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
-		this.fill_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
-		this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
+		this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.line_paint.set_text_size(global.canvas_text_size_4);
+		this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.fill_paint.set_text_size(global.canvas_text_size_4);
+		this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
 		if (global.MOBILE_MODE) {
-			this.text_paint.set_text_size(2 * global.CANVAS_TEXT_SIZE_6);
+			this.text_paint.set_text_size(2 * global.canvas_text_size_6);
 		} else {
-			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_6);
+			this.text_paint.set_text_size(global.canvas_text_size_6);
 		}
-		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
-		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
+		this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
+		this.hover_paint.set_text_size(global.canvas_text_size_5);
 	}
 	draw_hover(canvas: GraphicsEngine): void {
 		for (var i: number = 0; i < this.positions.length; i++) {
@@ -804,7 +804,7 @@ class ElementWindow {
 		}
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.FLAG_MENU_OPEN_DOWN) {
+		if (global.flag_menu_element_toolbox) {
 			canvas.draw_rect2(this.bounds, this.fill_paint);
 			if (global.MOBILE_MODE === false) {
 				this.draw_hover(canvas);

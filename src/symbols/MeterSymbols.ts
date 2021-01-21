@@ -25,9 +25,9 @@ class MeterSymbols {
 		this.meter_paint.set_paint_style(this.meter_paint.style.STROKE);
 		this.meter_paint.set_paint_cap(this.meter_paint.cap.ROUND);
 		this.meter_paint.set_paint_join(this.meter_paint.join.MITER);
-		this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+		this.meter_paint.set_stroke_width(global.canvas_stroke_width_2);
 		this.meter_paint.set_color(global.ELEMENT_COLOR);
-		this.meter_paint.set_text_size(global.CANVAS_TEXT_SIZE_1);
+		this.meter_paint.set_text_size(global.canvas_text_size_1);
 		this.meter_paint.set_font(global.DEFAULT_FONT);
 		this.meter_paint.set_alpha(255);
 		this.meter_paint.set_paint_align(this.meter_paint.align.CENTER);
@@ -50,12 +50,12 @@ class MeterSymbols {
 		if (style === this.STYLE_0) {
 			this.meter_paint.set_color(global.ELEMENT_COLOR);
 			this.meter_paint.set_paint_style(this.meter_paint.style.STROKE);
-			this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
+			this.meter_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
 			this.meter_paint.set_paint_cap(this.meter_paint.cap.ROUND);
 		} else if (style === this.STYLE_1) {
 			this.meter_paint.set_color(global.GENERAL_GRAY_COLOR);
 			this.meter_paint.set_paint_style(this.meter_paint.style.STROKE);
-			this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
+			this.meter_paint.set_stroke_width(global.canvas_stroke_width_2);
 			this.meter_paint.set_paint_cap(this.meter_paint.cap.ROUND);
 		}
 		this.points.splice(0, this.points.length);
@@ -159,11 +159,11 @@ class MeterSymbols {
 	}
 	resize_symbol(style: number): void {
 		if (style === this.STYLE_0) {
-			this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
-			this.meter_paint.set_text_size(global.CANVAS_TEXT_SIZE_1);
+			this.meter_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+			this.meter_paint.set_text_size(global.canvas_text_size_1);
 		} else if (style === this.STYLE_1) {
-			this.meter_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
-			this.meter_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
+			this.meter_paint.set_stroke_width(global.canvas_stroke_width_2);
+			this.meter_paint.set_text_size(global.canvas_text_size_4);
 		}
 	}
 	draw_symbol(canvas: GraphicsEngine): void {
