@@ -1,59 +1,26 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Wire.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle the wire element. It will automatically generate
- *                   the stamps necessary to simulate and it will also draw the component and
- *                   handle its movement / node dependencies.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class Wire {
     constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
-        /* Inititalize the element2 class that will hold the basic data about our component */
         this.elm = new Element2(id, type, global.copy(global.PROPERTY_WIRE));
-        /* Initialize the initial nodes that the component will be occupying */
         this.elm.set_nodes(n1, n2);
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         if (this.elm.consistent()) {
-            /* Create some points to hold the node locations, this will be used for drawing components */
             this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
-        /* Push the reference to the nodes */
         this.capture_nodes();
-        /* Angle from p1 to p2 minus 90 degrees */
         this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-        /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.c_x = 0;
         this.c_y = 0;
         if (this.elm.consistent()) {
-            /* The center (x-coord) of n1.x + n2.x */
             this.c_x = global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
-            /* The center (y-coord) of n1.y + n2.y */
             this.c_y = global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
         }
-        /* The spacing of the nodes in the x-direction, divided by 2 */
         this.x_space = global.node_space_x >> 1;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
         this.y_space = global.node_space_y >> 1;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -64,7 +31,6 @@ class Wire {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
         this.point_paint = new Paint();
         this.point_paint.set_paint_style(this.point_paint.style.FILL);
         this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -75,7 +41,6 @@ class Wire {
         this.point_paint.set_font(global.DEFAULT_FONT);
         this.point_paint.set_alpha(255);
         this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -86,17 +51,13 @@ class Wire {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-        /* This is for handling the different styles of the wire (center point) */
         this.wire_point = new PointF(0, 0);
         this.update_wire_style();
-        /* Just to keep the rebuild code happy. CAN BE TAKEN OUT LATER. */
         this.bounds = new RectF(0, 0, 0, 0);
         this.total_bounds = new RectF(0, 0, 0, 0);
-        /* The voltage of the wire. */
         this.wire_voltage = 0;
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
         this.line_buffer = [];
         this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
@@ -108,15 +69,12 @@ class Wire {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
-            /* Create some points to hold the node locations, this will be used for drawing components */
             this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
     }
-    /* Stamp for MNA wire (should be empty.) */
     stamp() { }
     release_wires() { }
-    /* Handle capture and release from nodes themselves... (references) */
     release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
@@ -139,7 +97,6 @@ class Wire {
         }
         this.BUILD_ELEMENT = true;
     }
-    /* Push the components references to the Nodes */
     capture_nodes() {
         this.elm.map_node2(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
         if (this.elm.consistent() && !this.is_translating) {
@@ -149,7 +106,6 @@ class Wire {
         this.BUILD_ELEMENT = true;
     }
     move_element(dx, dy) { }
-    /* Handling a mouse down event. */
     mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
@@ -173,9 +129,7 @@ class Wire {
             }
         }
     }
-    /* Handling a mouse move event. */
     mouse_move() { }
-    /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
@@ -219,7 +173,6 @@ class Wire {
         global.selected = true;
     }
     update_total_bounds() {
-        /* Calculate the bounds of the wire (always enclose the wire)) */
         this.total_bounds.left = Math.min(this.p1.x, this.p2.x);
         this.total_bounds.top = Math.min(this.p1.y, this.p2.y);
         this.total_bounds.right = Math.max(this.p1.x, this.p2.x);
@@ -254,7 +207,6 @@ class Wire {
         }
         global.SIGNAL_BUILD_ELEMENT = true;
     }
-    /* This is used to update the SVG */
     refactor() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             this.x_space = global.node_space_x >> 1;
@@ -263,17 +215,13 @@ class Wire {
             this.c_y = this.bounds.get_center_y();
         }
     }
-    /* General function to help with resizing, i.e., canvas dimension change, zooming*/
     resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             this.update_wire_style();
             if (this.elm.consistent()) {
-                /* The center (x-coord) of n1.x + n2.x */
                 this.c_x = global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
-                /* The center (y-coord) of n1.y + n2.y */
                 this.c_y = global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
             }
-            /* Resize the stroke widths and the text sizes. */
             this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
             this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
@@ -298,7 +246,6 @@ class Wire {
             this.BUILD_ELEMENT = false;
         }
     }
-    /* General function to handle any processing required by the component */
     update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
             if (this.elm.consistent()) {
@@ -314,7 +261,6 @@ class Wire {
         this.refactor();
         this.capture_nodes();
     }
-    /* Sets the rotation of the component */
     set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
@@ -323,13 +269,11 @@ class Wire {
         this.refactor();
         this.capture_nodes();
     }
-    /* Push the changes of this object to the element observer */
     push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
     }
-    /* Sets the wire style of the component */
     set_wire_style(style) {
         this.elm.set_wire_style(style);
         this.refactor();
@@ -407,13 +351,10 @@ class Wire {
     is_selected_element() {
         return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
-    /* Draws the component */
     draw_component(canvas) {
         this.refactor();
         this.recolor();
         this.resize();
-        /* Help multi-select determine the maximum bounds... */
-        /* Each element has a finite bounds, let's help determine a box that bounds the entire grouping of selected elements. */
         if (this.MULTI_SELECTED) {
             multi_select_manager.determine_enveloping_bounds(this.bounds);
         }
@@ -422,7 +363,6 @@ class Wire {
             this.line_buffer = [];
             this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-            /* Draw the wire's voltage */
             if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step) {
                 if (this.elm.consistent()) {
                     this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
@@ -449,7 +389,6 @@ class Wire {
             this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
             this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-            /* Draw the wire's voltage */
             if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step + global.time_step) {
                 if (this.elm.consistent()) {
                     if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
@@ -494,13 +433,11 @@ class Wire {
             canvas.draw_rect2(this.total_bounds, this.line_paint);
         }
     }
-    /* Handles future proofing of elements! */
     patch() {
         if (!global.not_null(this.total_bounds)) {
             this.total_bounds = new RectF(0, 0, 0, 0);
         }
         if (!global.not_null(this.line_buffer)) {
-            /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
             this.line_buffer = [];
         }
         if (!global.not_null(this.circle_buffer)) {

@@ -1,24 +1,5 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : ShortcutManager.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle all the shortcuts in the system.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
+
 class ShortcutManager {
 	public SHORTCUT_COPY: string;
 	public SHORTCUT_PASTE: string;
@@ -142,7 +123,6 @@ class ShortcutManager {
 		}
 	}
 	handle_select_all(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -367,7 +347,6 @@ class ShortcutManager {
 		}
 	}
 	handle_toggle_switches(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -404,14 +383,13 @@ class ShortcutManager {
 				if (global.SIGNAL_ADD_ELEMENT) {
 					global.SIGNAL_ADD_ELEMENT = false;
 					menu_bar.ESCAPE_INTERRUPT = true;
-					/* Reset the element window draw flags. */
+
 					menu_bar.mouse_move();
 				}
 			}
 		}
 	}
 	handle_add_element_flag(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -431,7 +409,6 @@ class ShortcutManager {
 					key_event['event'].code === global.KEY_CODE_END ||
 					key_event['event'].code === global.KEY_CODE_HOME
 				) {
-					/* Left. */
 					if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
 						let temp_x: number = global.mouse_x;
 						let temp_y: number = global.mouse_y;
@@ -442,7 +419,6 @@ class ShortcutManager {
 						global.mouse_x = temp_x;
 						global.mouse_y = temp_y;
 					} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 						let temp_x: number = global.mouse_x;
 						let temp_y: number = global.mouse_y;
 						global.mouse_x = menu_bar.element_window.positions[menu_bar.element_window.NAVIGATE_FORWARD].get_center_x();
@@ -452,10 +428,8 @@ class ShortcutManager {
 						global.mouse_x = temp_x;
 						global.mouse_y = temp_y;
 					} else if (key_event['event'].code === global.KEY_CODE_END) {
-						/* End. */
 						menu_bar.element_window.PAGE_NUMBER = menu_bar.element_window.MAX_PAGE_NUMBER;
 					} else if (key_event['event'].code === global.KEY_CODE_HOME) {
-						/* Home. */
 						menu_bar.element_window.PAGE_NUMBER = 0;
 					}
 				}
@@ -476,1156 +450,884 @@ class ShortcutManager {
 				if (global.selected_type === global.TYPE_RESISTOR) {
 					var index: number = engine_functions.get_resistor(global.selected_id);
 					if (index < resistors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							resistors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							resistors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							resistors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							resistors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_CAPACITOR) {
 					var index: number = engine_functions.get_capacitor(global.selected_id);
 					if (index < capacitors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							capacitors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							capacitors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							capacitors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							capacitors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_INDUCTOR) {
 					var index: number = engine_functions.get_inductor(global.selected_id);
 					if (index < inductors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							inductors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							inductors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							inductors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							inductors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_GROUND) {
 					var index: number = engine_functions.get_ground(global.selected_id);
 					if (index < grounds.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							grounds[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							grounds[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							grounds[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							grounds[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_DCSOURCE) {
 					var index: number = engine_functions.get_dcsource(global.selected_id);
 					if (index < dcsources.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dcsources[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							dcsources[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							dcsources[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							dcsources[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_DCCURRENT) {
 					var index: number = engine_functions.get_dccurrent(global.selected_id);
 					if (index < dccurrents.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dccurrents[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							dccurrents[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							dccurrents[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							dccurrents[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_ACSOURCE) {
 					var index: number = engine_functions.get_acsource(global.selected_id);
 					if (index < acsources.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							acsources[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							acsources[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							acsources[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							acsources[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_ACCURRENT) {
 					var index: number = engine_functions.get_accurrent(global.selected_id);
 					if (index < accurrents.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							accurrents[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							accurrents[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							accurrents[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							accurrents[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_SQUAREWAVE) {
 					var index: number = engine_functions.get_squarewave(global.selected_id);
 					if (index < squarewaves.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							squarewaves[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							squarewaves[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							squarewaves[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							squarewaves[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_SAW) {
 					var index: number = engine_functions.get_sawwave(global.selected_id);
 					if (index < sawwaves.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							sawwaves[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							sawwaves[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							sawwaves[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							sawwaves[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_TRI) {
 					var index: number = engine_functions.get_trianglewave(global.selected_id);
 					if (index < trianglewaves.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							trianglewaves[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							trianglewaves[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							trianglewaves[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							trianglewaves[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_CONSTANT) {
 					var index: number = engine_functions.get_constant(global.selected_id);
 					if (index < constants.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							constants[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							constants[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							constants[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							constants[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_NET) {
 					var index: number = engine_functions.get_net(global.selected_id);
 					if (index < nets.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nets[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							nets[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							nets[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							nets[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_NOTE) {
 					var index: number = engine_functions.get_note(global.selected_id);
 					if (index < notes.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							notes[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							notes[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							notes[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							notes[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_RAIL) {
 					var index: number = engine_functions.get_rail(global.selected_id);
 					if (index < rails.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							rails[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							rails[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							rails[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							rails[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VOLTMETER) {
 					var index: number = engine_functions.get_voltmeter(global.selected_id);
 					if (index < voltmeters.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							voltmeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							voltmeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							voltmeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							voltmeters[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_OHMMETER) {
 					var index: number = engine_functions.get_ohmmeter(global.selected_id);
 					if (index < ohmmeters.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ohmmeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							ohmmeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							ohmmeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							ohmmeters[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_AMMETER) {
 					var index: number = engine_functions.get_ammeter(global.selected_id);
 					if (index < ammeters.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ammeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							ammeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							ammeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							ammeters[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_WATTMETER) {
 					var index: number = engine_functions.get_wattmeter(global.selected_id);
 					if (index < wattmeters.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							wattmeters[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							wattmeters[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							wattmeters[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							wattmeters[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_FUSE) {
 					var index: number = engine_functions.get_fuse(global.selected_id);
 					if (index < fuses.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							fuses[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							fuses[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							fuses[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							fuses[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_SPST) {
 					var index: number = engine_functions.get_spst(global.selected_id);
 					if (index < spsts.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							spsts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							spsts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							spsts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							spsts[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_SPDT) {
 					var index: number = engine_functions.get_spdt(global.selected_id);
 					if (index < spdts.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							spdts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							spdts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							spdts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							spdts[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_NOT) {
 					var index: number = engine_functions.get_not(global.selected_id);
 					if (index < nots.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nots[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							nots[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							nots[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							nots[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_DIODE) {
 					var index: number = engine_functions.get_diode(global.selected_id);
 					if (index < diodes.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							diodes[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							diodes[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							diodes[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							diodes[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_LED) {
 					var index: number = engine_functions.get_led(global.selected_id);
 					if (index < leds.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							leds[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							leds[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							leds[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							leds[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_ZENER) {
 					var index: number = engine_functions.get_zener(global.selected_id);
 					if (index < zeners.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							zeners[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							zeners[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							zeners[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							zeners[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_POTENTIOMETER) {
 					var index: number = engine_functions.get_potentiometer(global.selected_id);
 					if (index < potentiometers.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							potentiometers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							potentiometers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							potentiometers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							potentiometers[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_AND) {
 					var index: number = engine_functions.get_and(global.selected_id);
 					if (index < ands.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ands[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							ands[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							ands[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							ands[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_OR) {
 					var index: number = engine_functions.get_or(global.selected_id);
 					if (index < ors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							ors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							ors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							ors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_NAND) {
 					var index: number = engine_functions.get_nand(global.selected_id);
 					if (index < nands.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nands[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							nands[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							nands[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							nands[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_NOR) {
 					var index: number = engine_functions.get_nor(global.selected_id);
 					if (index < nors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							nors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							nors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							nors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_XOR) {
 					var index: number = engine_functions.get_xor(global.selected_id);
 					if (index < xors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							xors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							xors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							xors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							xors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_XNOR) {
 					var index: number = engine_functions.get_xnor(global.selected_id);
 					if (index < xnors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							xnors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							xnors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							xnors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							xnors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_DFF) {
 					var index: number = engine_functions.get_dff(global.selected_id);
 					if (index < dffs.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dffs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							dffs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							dffs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							dffs[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VSAT) {
 					var index: number = engine_functions.get_vsat(global.selected_id);
 					if (index < vsats.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vsats[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							vsats[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							vsats[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							vsats[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_ADD) {
 					var index: number = engine_functions.get_adder(global.selected_id);
 					if (index < adders.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							adders[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							adders[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							adders[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							adders[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_SUB) {
 					var index: number = engine_functions.get_subtractor(global.selected_id);
 					if (index < subtractors.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							subtractors[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							subtractors[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							subtractors[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							subtractors[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_MUL) {
 					var index: number = engine_functions.get_multiplier(global.selected_id);
 					if (index < multipliers.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							multipliers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							multipliers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							multipliers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							multipliers[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_DIV) {
 					var index: number = engine_functions.get_divider(global.selected_id);
 					if (index < dividers.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dividers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							dividers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							dividers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							dividers[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_GAIN) {
 					var index: number = engine_functions.get_gain(global.selected_id);
 					if (index < gains.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							gains[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							gains[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							gains[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							gains[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_ABS) {
 					var index: number = engine_functions.get_absval(global.selected_id);
 					if (index < absvals.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							absvals[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							absvals[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							absvals[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							absvals[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VCSW) {
 					var index: number = engine_functions.get_vcsw(global.selected_id);
 					if (index < vcsws.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcsws[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							vcsws[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							vcsws[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							vcsws[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VCVS) {
 					var index: number = engine_functions.get_vcvs(global.selected_id);
 					if (index < vcvss.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcvss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							vcvss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							vcvss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							vcvss[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VCCS) {
 					var index: number = engine_functions.get_vccs(global.selected_id);
 					if (index < vccss.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vccss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							vccss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							vccss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							vccss[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_CCCS) {
 					var index: number = engine_functions.get_cccs(global.selected_id);
 					if (index < cccss.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							cccss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							cccss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							cccss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							cccss[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_CCVS) {
 					var index: number = engine_functions.get_ccvs(global.selected_id);
 					if (index < ccvss.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							ccvss[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							ccvss[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							ccvss[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							ccvss[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_OPAMP) {
 					var index: number = engine_functions.get_opamp(global.selected_id);
 					if (index < opamps.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							opamps[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							opamps[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							opamps[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							opamps[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_NMOS) {
 					var index: number = engine_functions.get_nmosfet(global.selected_id);
 					if (index < nmosfets.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							nmosfets[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							nmosfets[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							nmosfets[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							nmosfets[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_PMOS) {
 					var index: number = engine_functions.get_pmosfet(global.selected_id);
 					if (index < pmosfets.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pmosfets[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							pmosfets[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							pmosfets[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							pmosfets[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_NPN) {
 					var index: number = engine_functions.get_npn(global.selected_id);
 					if (index < npns.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							npns[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							npns[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							npns[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							npns[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_PNP) {
 					var index: number = engine_functions.get_pnp(global.selected_id);
 					if (index < pnps.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pnps[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							pnps[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							pnps[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							pnps[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_ADC) {
 					var index: number = engine_functions.get_adc(global.selected_id);
 					if (index < adcs.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							adcs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							adcs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							adcs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							adcs[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_DAC) {
 					var index: number = engine_functions.get_dac(global.selected_id);
 					if (index < dacs.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							dacs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							dacs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							dacs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							dacs[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_SAH) {
 					var index: number = engine_functions.get_samplers(global.selected_id);
 					if (index < sandhs.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							sandhs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							sandhs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							sandhs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							sandhs[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_PWM) {
 					var index: number = engine_functions.get_pwm(global.selected_id);
 					if (index < pwms.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pwms[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							pwms[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							pwms[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							pwms[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_INTEGRATOR) {
 					var index: number = engine_functions.get_integrator(global.selected_id);
 					if (index < integrators.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							integrators[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							integrators[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							integrators[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							integrators[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_DIFFERENTIATOR) {
 					var index: number = engine_functions.get_differentiator(global.selected_id);
 					if (index < differentiators.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							differentiators[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							differentiators[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							differentiators[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							differentiators[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_LPF) {
 					var index: number = engine_functions.get_lowpass(global.selected_id);
 					if (index < lowpasses.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							lowpasses[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							lowpasses[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							lowpasses[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							lowpasses[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_HPF) {
 					var index: number = engine_functions.get_highpass(global.selected_id);
 					if (index < highpasses.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							highpasses[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							highpasses[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							highpasses[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							highpasses[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_REL) {
 					var index: number = engine_functions.get_relay(global.selected_id);
 					if (index < relays.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							relays[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							relays[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							relays[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							relays[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_PID) {
 					var index: number = engine_functions.get_pid(global.selected_id);
 					if (index < pids.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							pids[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							pids[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							pids[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							pids[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_LUT) {
 					var index: number = engine_functions.get_lut(global.selected_id);
 					if (index < luts.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							luts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							luts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							luts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							luts[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VCR) {
 					var index: number = engine_functions.get_vcr(global.selected_id);
 					if (index < vcrs.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcrs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							vcrs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							vcrs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							vcrs[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VCCA) {
 					var index: number = engine_functions.get_vcca(global.selected_id);
 					if (index < vccas.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vccas[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							vccas[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							vccas[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							vccas[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_VCL) {
 					var index: number = engine_functions.get_vcl(global.selected_id);
 					if (index < vcls.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							vcls[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							vcls[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							vcls[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							vcls[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_GRT) {
 					var index: number = engine_functions.get_grt(global.selected_id);
 					if (index < grts.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							grts[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							grts[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							grts[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							grts[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_TPTZ) {
 					var index: number = engine_functions.get_tptz(global.selected_id);
 					if (index < tptzs.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							tptzs[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							tptzs[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							tptzs[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							tptzs[index].move_element(global.node_space_x, 0);
 						}
 					}
 				} else if (global.selected_type === global.TYPE_TRAN) {
 					var index: number = engine_functions.get_transformer(global.selected_id);
 					if (index < transformers.length) {
-						/* Up. */
 						if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 							transformers[index].move_element(0, -global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-						/* Down. */
 							transformers[index].move_element(0, global.node_space_y);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-						/* Left. */
 							transformers[index].move_element(-global.node_space_x, 0);
 						} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-						/* Right. */
 							transformers[index].move_element(global.node_space_x, 0);
 						}
 					}
@@ -1726,7 +1428,6 @@ class ShortcutManager {
 		}
 	}
 	handle_delete_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -2226,7 +1927,6 @@ class ShortcutManager {
 		}
 	}
 	handle_rotate_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -2685,7 +2385,6 @@ class ShortcutManager {
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
 		if (this.command === this.SHORTCUT_QUERY) {
-			/* Get the text field */
 			var text_input: HTMLElement = document.getElementById('text_input');
 			let MeterTemplate: MeterTemplate_T = {
 				Tag: '',
@@ -2717,18 +2416,17 @@ class ShortcutManager {
 			}
 			//@ts-ignore
 			text_input.value = JSON.stringify(solution_vector);
-			/* Select the text field */
+
 			//@ts-ignore
 			text_input.select();
-			/*For mobile devices*/
+
 			//@ts-ignore
 			text_input.setSelectionRange(0, 99999);
-			/* Copy the text inside the text field */
+
 			document.execCommand('copy');
 		}
 	}
 	handle_undo_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -2737,7 +2435,6 @@ class ShortcutManager {
 		}
 	}
 	handle_redo_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -2746,7 +2443,6 @@ class ShortcutManager {
 		}
 	}
 	handle_save_image_flag(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -2755,7 +2451,6 @@ class ShortcutManager {
 		}
 	}
 	handle_save_circuit_flag(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -2764,7 +2459,6 @@ class ShortcutManager {
 		}
 	}
 	handle_flip_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -3192,7 +2886,6 @@ class ShortcutManager {
 		}
 	}
 	handle_edit_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -3221,7 +2914,6 @@ class ShortcutManager {
 		}
 	}
 	handle_remove_all_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -3232,7 +2924,6 @@ class ShortcutManager {
 		}
 	}
 	handle_simulate_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -3241,7 +2932,6 @@ class ShortcutManager {
 		}
 	}
 	handle_copy_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -3680,7 +3370,6 @@ class ShortcutManager {
 		}
 	}
 	handle_paste_shortcut(key_event: KEY_EVENT_T): void {
-		/* Extract the essentials. */
 		this.shift = key_event['shift'];
 		this.command = key_event['event'].code;
 		this.caps = key_event['caps'];
@@ -4385,7 +4074,6 @@ class ShortcutManager {
 	handle_move_resistors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < resistors.length) {
 			if (resistors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4393,19 +4081,16 @@ class ShortcutManager {
 						resistors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						resistors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						resistors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						resistors[i].move_element(global.node_space_x, 0);
@@ -4418,7 +4103,6 @@ class ShortcutManager {
 	handle_move_capacitors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < capacitors.length) {
 			if (capacitors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4426,19 +4110,16 @@ class ShortcutManager {
 						capacitors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						capacitors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						capacitors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						capacitors[i].move_element(global.node_space_x, 0);
@@ -4451,7 +4132,6 @@ class ShortcutManager {
 	handle_move_inductors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < inductors.length) {
 			if (inductors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4459,19 +4139,16 @@ class ShortcutManager {
 						inductors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						inductors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						inductors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						inductors[i].move_element(global.node_space_x, 0);
@@ -4484,7 +4161,6 @@ class ShortcutManager {
 	handle_move_grounds(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < grounds.length) {
 			if (grounds[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4492,19 +4168,16 @@ class ShortcutManager {
 						grounds[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grounds[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grounds[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grounds[i].move_element(global.node_space_x, 0);
@@ -4517,7 +4190,6 @@ class ShortcutManager {
 	handle_move_dcsources(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < dcsources.length) {
 			if (dcsources[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4525,19 +4197,16 @@ class ShortcutManager {
 						dcsources[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dcsources[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dcsources[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dcsources[i].move_element(global.node_space_x, 0);
@@ -4550,7 +4219,6 @@ class ShortcutManager {
 	handle_move_dccurrents(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < dccurrents.length) {
 			if (dccurrents[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4558,19 +4226,16 @@ class ShortcutManager {
 						dccurrents[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dccurrents[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dccurrents[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dccurrents[i].move_element(global.node_space_x, 0);
@@ -4583,7 +4248,6 @@ class ShortcutManager {
 	handle_move_acsources(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < acsources.length) {
 			if (acsources[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4591,19 +4255,16 @@ class ShortcutManager {
 						acsources[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						acsources[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						acsources[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						acsources[i].move_element(global.node_space_x, 0);
@@ -4616,7 +4277,6 @@ class ShortcutManager {
 	handle_move_accurrents(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < accurrents.length) {
 			if (accurrents[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4624,19 +4284,16 @@ class ShortcutManager {
 						accurrents[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						accurrents[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						accurrents[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						accurrents[i].move_element(global.node_space_x, 0);
@@ -4649,7 +4306,6 @@ class ShortcutManager {
 	handle_move_squarewaves(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < squarewaves.length) {
 			if (squarewaves[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4657,19 +4313,16 @@ class ShortcutManager {
 						squarewaves[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						squarewaves[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						squarewaves[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						squarewaves[i].move_element(global.node_space_x, 0);
@@ -4682,7 +4335,6 @@ class ShortcutManager {
 	handle_move_sawwaves(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < sawwaves.length) {
 			if (sawwaves[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4690,19 +4342,16 @@ class ShortcutManager {
 						sawwaves[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sawwaves[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sawwaves[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sawwaves[i].move_element(global.node_space_x, 0);
@@ -4715,7 +4364,6 @@ class ShortcutManager {
 	handle_move_trianglewaves(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < trianglewaves.length) {
 			if (trianglewaves[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4723,19 +4371,16 @@ class ShortcutManager {
 						trianglewaves[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						trianglewaves[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						trianglewaves[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						trianglewaves[i].move_element(global.node_space_x, 0);
@@ -4748,7 +4393,6 @@ class ShortcutManager {
 	handle_move_constants(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < constants.length) {
 			if (constants[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4756,19 +4400,16 @@ class ShortcutManager {
 						constants[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						constants[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						constants[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						constants[i].move_element(global.node_space_x, 0);
@@ -4781,7 +4422,6 @@ class ShortcutManager {
 	handle_move_wires(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < wires.length) {
 			if (wires[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4789,19 +4429,16 @@ class ShortcutManager {
 						wires[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wires[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wires[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wires[i].move_element(global.node_space_x, 0);
@@ -4814,7 +4451,6 @@ class ShortcutManager {
 	handle_move_nets(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < nets.length) {
 			if (nets[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4822,19 +4458,16 @@ class ShortcutManager {
 						nets[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nets[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nets[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nets[i].move_element(global.node_space_x, 0);
@@ -4847,7 +4480,6 @@ class ShortcutManager {
 	handle_move_notes(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < notes.length) {
 			if (notes[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4855,19 +4487,16 @@ class ShortcutManager {
 						notes[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						notes[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						notes[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						notes[i].move_element(global.node_space_x, 0);
@@ -4880,7 +4509,6 @@ class ShortcutManager {
 	handle_move_rails(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < rails.length) {
 			if (rails[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4888,19 +4516,16 @@ class ShortcutManager {
 						rails[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						rails[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						rails[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						rails[i].move_element(global.node_space_x, 0);
@@ -4913,7 +4538,6 @@ class ShortcutManager {
 	handle_move_voltmeters(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < voltmeters.length) {
 			if (voltmeters[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4921,19 +4545,16 @@ class ShortcutManager {
 						voltmeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						voltmeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						voltmeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						voltmeters[i].move_element(global.node_space_x, 0);
@@ -4946,7 +4567,6 @@ class ShortcutManager {
 	handle_move_ohmmeters(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < ohmmeters.length) {
 			if (ohmmeters[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4954,19 +4574,16 @@ class ShortcutManager {
 						ohmmeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ohmmeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ohmmeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ohmmeters[i].move_element(global.node_space_x, 0);
@@ -4979,7 +4596,6 @@ class ShortcutManager {
 	handle_move_ammeters(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < ammeters.length) {
 			if (ammeters[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -4987,19 +4603,16 @@ class ShortcutManager {
 						ammeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ammeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ammeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ammeters[i].move_element(global.node_space_x, 0);
@@ -5012,7 +4625,6 @@ class ShortcutManager {
 	handle_move_wattmeters(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < wattmeters.length) {
 			if (wattmeters[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5020,19 +4632,16 @@ class ShortcutManager {
 						wattmeters[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wattmeters[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wattmeters[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						wattmeters[i].move_element(global.node_space_x, 0);
@@ -5045,7 +4654,6 @@ class ShortcutManager {
 	handle_move_fuses(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < fuses.length) {
 			if (fuses[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5053,19 +4661,16 @@ class ShortcutManager {
 						fuses[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						fuses[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						fuses[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						fuses[i].move_element(global.node_space_x, 0);
@@ -5078,7 +4683,6 @@ class ShortcutManager {
 	handle_move_spsts(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < spsts.length) {
 			if (spsts[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5086,19 +4690,16 @@ class ShortcutManager {
 						spsts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spsts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spsts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spsts[i].move_element(global.node_space_x, 0);
@@ -5111,7 +4712,6 @@ class ShortcutManager {
 	handle_move_spdts(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < spdts.length) {
 			if (spdts[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5119,19 +4719,16 @@ class ShortcutManager {
 						spdts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spdts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spdts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						spdts[i].move_element(global.node_space_x, 0);
@@ -5144,7 +4741,6 @@ class ShortcutManager {
 	handle_move_nots(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < nots.length) {
 			if (nots[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5152,19 +4748,16 @@ class ShortcutManager {
 						nots[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nots[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nots[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nots[i].move_element(global.node_space_x, 0);
@@ -5177,7 +4770,6 @@ class ShortcutManager {
 	handle_move_diodes(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < diodes.length) {
 			if (diodes[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5185,19 +4777,16 @@ class ShortcutManager {
 						diodes[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						diodes[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						diodes[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						diodes[i].move_element(global.node_space_x, 0);
@@ -5210,7 +4799,6 @@ class ShortcutManager {
 	handle_move_leds(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < leds.length) {
 			if (leds[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5218,19 +4806,16 @@ class ShortcutManager {
 						leds[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						leds[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						leds[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						leds[i].move_element(global.node_space_x, 0);
@@ -5243,7 +4828,6 @@ class ShortcutManager {
 	handle_move_zeners(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < zeners.length) {
 			if (zeners[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5251,19 +4835,16 @@ class ShortcutManager {
 						zeners[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						zeners[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						zeners[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						zeners[i].move_element(global.node_space_x, 0);
@@ -5276,7 +4857,6 @@ class ShortcutManager {
 	handle_move_potentiometers(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < potentiometers.length) {
 			if (potentiometers[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5284,19 +4864,16 @@ class ShortcutManager {
 						potentiometers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						potentiometers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						potentiometers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						potentiometers[i].move_element(global.node_space_x, 0);
@@ -5309,7 +4886,6 @@ class ShortcutManager {
 	handle_move_ands(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < ands.length) {
 			if (ands[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5317,19 +4893,16 @@ class ShortcutManager {
 						ands[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ands[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ands[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ands[i].move_element(global.node_space_x, 0);
@@ -5342,7 +4915,6 @@ class ShortcutManager {
 	handle_move_ors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < ors.length) {
 			if (ors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5350,19 +4922,16 @@ class ShortcutManager {
 						ors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ors[i].move_element(global.node_space_x, 0);
@@ -5375,7 +4944,6 @@ class ShortcutManager {
 	handle_move_nands(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < nands.length) {
 			if (nands[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5383,19 +4951,16 @@ class ShortcutManager {
 						nands[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nands[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nands[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nands[i].move_element(global.node_space_x, 0);
@@ -5408,7 +4973,6 @@ class ShortcutManager {
 	handle_move_nors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < nors.length) {
 			if (nors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5416,19 +4980,16 @@ class ShortcutManager {
 						nors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nors[i].move_element(global.node_space_x, 0);
@@ -5441,7 +5002,6 @@ class ShortcutManager {
 	handle_move_xors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < xors.length) {
 			if (xors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5449,19 +5009,16 @@ class ShortcutManager {
 						xors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xors[i].move_element(global.node_space_x, 0);
@@ -5474,7 +5031,6 @@ class ShortcutManager {
 	handle_move_xnors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < xnors.length) {
 			if (xnors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5482,19 +5038,16 @@ class ShortcutManager {
 						xnors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xnors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xnors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						xnors[i].move_element(global.node_space_x, 0);
@@ -5507,7 +5060,6 @@ class ShortcutManager {
 	handle_move_dffs(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < dffs.length) {
 			if (dffs[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5515,19 +5067,16 @@ class ShortcutManager {
 						dffs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dffs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dffs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dffs[i].move_element(global.node_space_x, 0);
@@ -5540,7 +5089,6 @@ class ShortcutManager {
 	handle_move_vsats(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < vsats.length) {
 			if (vsats[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5548,19 +5096,16 @@ class ShortcutManager {
 						vsats[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vsats[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vsats[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vsats[i].move_element(global.node_space_x, 0);
@@ -5573,7 +5118,6 @@ class ShortcutManager {
 	handle_move_adders(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < adders.length) {
 			if (adders[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5581,19 +5125,16 @@ class ShortcutManager {
 						adders[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adders[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adders[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adders[i].move_element(global.node_space_x, 0);
@@ -5606,7 +5147,6 @@ class ShortcutManager {
 	handle_move_subtractors(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < subtractors.length) {
 			if (subtractors[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5614,19 +5154,16 @@ class ShortcutManager {
 						subtractors[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						subtractors[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						subtractors[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						subtractors[i].move_element(global.node_space_x, 0);
@@ -5639,7 +5176,6 @@ class ShortcutManager {
 	handle_move_multipliers(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < multipliers.length) {
 			if (multipliers[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5647,19 +5183,16 @@ class ShortcutManager {
 						multipliers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						multipliers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						multipliers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						multipliers[i].move_element(global.node_space_x, 0);
@@ -5672,7 +5205,6 @@ class ShortcutManager {
 	handle_move_dividers(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < dividers.length) {
 			if (dividers[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5680,19 +5212,16 @@ class ShortcutManager {
 						dividers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dividers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dividers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dividers[i].move_element(global.node_space_x, 0);
@@ -5705,7 +5234,6 @@ class ShortcutManager {
 	handle_move_gains(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < gains.length) {
 			if (gains[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5713,19 +5241,16 @@ class ShortcutManager {
 						gains[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						gains[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						gains[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						gains[i].move_element(global.node_space_x, 0);
@@ -5738,7 +5263,6 @@ class ShortcutManager {
 	handle_move_absvals(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < absvals.length) {
 			if (absvals[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5746,19 +5270,16 @@ class ShortcutManager {
 						absvals[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						absvals[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						absvals[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						absvals[i].move_element(global.node_space_x, 0);
@@ -5771,7 +5292,6 @@ class ShortcutManager {
 	handle_move_vcsws(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < vcsws.length) {
 			if (vcsws[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5779,19 +5299,16 @@ class ShortcutManager {
 						vcsws[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcsws[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcsws[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcsws[i].move_element(global.node_space_x, 0);
@@ -5804,7 +5321,6 @@ class ShortcutManager {
 	handle_move_vcvss(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < vcvss.length) {
 			if (vcvss[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5812,19 +5328,16 @@ class ShortcutManager {
 						vcvss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcvss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcvss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcvss[i].move_element(global.node_space_x, 0);
@@ -5837,7 +5350,6 @@ class ShortcutManager {
 	handle_move_vccss(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < vccss.length) {
 			if (vccss[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5845,19 +5357,16 @@ class ShortcutManager {
 						vccss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccss[i].move_element(global.node_space_x, 0);
@@ -5870,7 +5379,6 @@ class ShortcutManager {
 	handle_move_cccss(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < cccss.length) {
 			if (cccss[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5878,19 +5386,16 @@ class ShortcutManager {
 						cccss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						cccss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						cccss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						cccss[i].move_element(global.node_space_x, 0);
@@ -5903,7 +5408,6 @@ class ShortcutManager {
 	handle_move_ccvss(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < ccvss.length) {
 			if (ccvss[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5911,19 +5415,16 @@ class ShortcutManager {
 						ccvss[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ccvss[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ccvss[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						ccvss[i].move_element(global.node_space_x, 0);
@@ -5936,7 +5437,6 @@ class ShortcutManager {
 	handle_move_opamps(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < opamps.length) {
 			if (opamps[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5944,19 +5444,16 @@ class ShortcutManager {
 						opamps[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						opamps[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						opamps[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						opamps[i].move_element(global.node_space_x, 0);
@@ -5969,7 +5466,6 @@ class ShortcutManager {
 	handle_move_nmosfets(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < nmosfets.length) {
 			if (nmosfets[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -5977,19 +5473,16 @@ class ShortcutManager {
 						nmosfets[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nmosfets[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nmosfets[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						nmosfets[i].move_element(global.node_space_x, 0);
@@ -6002,7 +5495,6 @@ class ShortcutManager {
 	handle_move_pmosfets(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < pmosfets.length) {
 			if (pmosfets[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6010,19 +5502,16 @@ class ShortcutManager {
 						pmosfets[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pmosfets[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pmosfets[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pmosfets[i].move_element(global.node_space_x, 0);
@@ -6035,7 +5524,6 @@ class ShortcutManager {
 	handle_move_npns(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < npns.length) {
 			if (npns[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6043,19 +5531,16 @@ class ShortcutManager {
 						npns[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						npns[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						npns[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						npns[i].move_element(global.node_space_x, 0);
@@ -6068,7 +5553,6 @@ class ShortcutManager {
 	handle_move_pnps(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < pnps.length) {
 			if (pnps[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6076,19 +5560,16 @@ class ShortcutManager {
 						pnps[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pnps[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pnps[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pnps[i].move_element(global.node_space_x, 0);
@@ -6101,7 +5582,6 @@ class ShortcutManager {
 	handle_move_adcs(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < adcs.length) {
 			if (adcs[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6109,19 +5589,16 @@ class ShortcutManager {
 						adcs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adcs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adcs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						adcs[i].move_element(global.node_space_x, 0);
@@ -6134,7 +5611,6 @@ class ShortcutManager {
 	handle_move_dacs(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < dacs.length) {
 			if (dacs[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6142,19 +5618,16 @@ class ShortcutManager {
 						dacs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dacs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dacs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						dacs[i].move_element(global.node_space_x, 0);
@@ -6167,7 +5640,6 @@ class ShortcutManager {
 	handle_move_sandhs(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < sandhs.length) {
 			if (sandhs[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6175,19 +5647,16 @@ class ShortcutManager {
 						sandhs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sandhs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sandhs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						sandhs[i].move_element(global.node_space_x, 0);
@@ -6200,7 +5669,6 @@ class ShortcutManager {
 	handle_move_pwms(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < pwms.length) {
 			if (pwms[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6208,19 +5676,16 @@ class ShortcutManager {
 						pwms[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pwms[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pwms[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pwms[i].move_element(global.node_space_x, 0);
@@ -6233,7 +5698,6 @@ class ShortcutManager {
 	handle_move_integrators(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < integrators.length) {
 			if (integrators[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6241,19 +5705,16 @@ class ShortcutManager {
 						integrators[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						integrators[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						integrators[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						integrators[i].move_element(global.node_space_x, 0);
@@ -6266,7 +5727,6 @@ class ShortcutManager {
 	handle_move_differentiators(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < differentiators.length) {
 			if (differentiators[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6274,19 +5734,16 @@ class ShortcutManager {
 						differentiators[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						differentiators[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						differentiators[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						differentiators[i].move_element(global.node_space_x, 0);
@@ -6299,7 +5756,6 @@ class ShortcutManager {
 	handle_move_lowpasses(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < lowpasses.length) {
 			if (lowpasses[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6307,19 +5763,16 @@ class ShortcutManager {
 						lowpasses[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						lowpasses[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						lowpasses[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						lowpasses[i].move_element(global.node_space_x, 0);
@@ -6332,7 +5785,6 @@ class ShortcutManager {
 	handle_move_highpasses(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < highpasses.length) {
 			if (highpasses[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6340,19 +5792,16 @@ class ShortcutManager {
 						highpasses[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						highpasses[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						highpasses[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						highpasses[i].move_element(global.node_space_x, 0);
@@ -6365,7 +5814,6 @@ class ShortcutManager {
 	handle_move_relays(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < relays.length) {
 			if (relays[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6373,19 +5821,16 @@ class ShortcutManager {
 						relays[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						relays[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						relays[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						relays[i].move_element(global.node_space_x, 0);
@@ -6398,7 +5843,6 @@ class ShortcutManager {
 	handle_move_pids(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < pids.length) {
 			if (pids[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6406,19 +5850,16 @@ class ShortcutManager {
 						pids[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pids[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pids[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						pids[i].move_element(global.node_space_x, 0);
@@ -6431,7 +5872,6 @@ class ShortcutManager {
 	handle_move_luts(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < luts.length) {
 			if (luts[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6439,19 +5879,16 @@ class ShortcutManager {
 						luts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						luts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						luts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						luts[i].move_element(global.node_space_x, 0);
@@ -6464,7 +5901,6 @@ class ShortcutManager {
 	handle_move_vcrs(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < vcrs.length) {
 			if (vcrs[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6472,19 +5908,16 @@ class ShortcutManager {
 						vcrs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcrs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcrs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcrs[i].move_element(global.node_space_x, 0);
@@ -6497,7 +5930,6 @@ class ShortcutManager {
 	handle_move_vccas(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < vccas.length) {
 			if (vccas[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6505,19 +5937,16 @@ class ShortcutManager {
 						vccas[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccas[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccas[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vccas[i].move_element(global.node_space_x, 0);
@@ -6530,7 +5959,6 @@ class ShortcutManager {
 	handle_move_vcls(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < vcls.length) {
 			if (vcls[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6538,19 +5966,16 @@ class ShortcutManager {
 						vcls[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcls[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcls[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						vcls[i].move_element(global.node_space_x, 0);
@@ -6563,7 +5988,6 @@ class ShortcutManager {
 	handle_move_grts(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < grts.length) {
 			if (grts[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6571,19 +5995,16 @@ class ShortcutManager {
 						grts[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grts[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grts[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						grts[i].move_element(global.node_space_x, 0);
@@ -6596,7 +6017,6 @@ class ShortcutManager {
 	handle_move_tptzs(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < tptzs.length) {
 			if (tptzs[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6604,19 +6024,16 @@ class ShortcutManager {
 						tptzs[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						tptzs[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						tptzs[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						tptzs[i].move_element(global.node_space_x, 0);
@@ -6629,7 +6046,6 @@ class ShortcutManager {
 	handle_move_transformers(i: number, key_event: KEY_EVENT_T): void {
 		if (i > -1 && i < transformers.length) {
 			if (transformers[i].MULTI_SELECTED) {
-				/* Up. */
 				if (key_event['event'].code === global.KEY_CODE_ARROW_UP) {
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
@@ -6637,19 +6053,16 @@ class ShortcutManager {
 						transformers[i].move_element(0, -global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_DOWN) {
-				/* Down. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y) {
 						this.MULTI_MOVED_ELEMENT = true;
 						transformers[i].move_element(0, global.node_space_y);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT) {
-				/* Left. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						transformers[i].move_element(-global.node_space_x, 0);
 					}
 				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT) {
-				/* Right. */
 					if (multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x) {
 						this.MULTI_MOVED_ELEMENT = true;
 						transformers[i].move_element(global.node_space_x, 0);

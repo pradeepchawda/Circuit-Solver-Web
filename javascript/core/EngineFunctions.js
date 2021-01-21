@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : EngineFunctions.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class will be used to keep a set of algorithms that will be
- *                   pertinent to the engine.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class EngineFunctions {
     constructor() {
         this.node_1 = -1;
@@ -33,7 +12,6 @@ class EngineFunctions {
         this.v_node_1 = 0;
         this.v_node_2 = 0;
         this.meta_data = new Metadata();
-        /* Temporary position holders for the generation of new elements. */
         this.x1 = -1;
         this.y1 = -1;
         this.x2 = -1;
@@ -42,34 +20,19 @@ class EngineFunctions {
         this.y3 = -1;
         this.x4 = -1;
         this.y4 = -1;
-        /* Solely for mapping nodes (single nodes) baby! */
         this.mapper1 = new Element1(-1, -1, global.NULL);
-        /* Solely for mapping nodes (double nodes) baby! */
         this.mapper2 = new Element2(-1, -1, global.NULL);
-        /* Solely for mapping nodes (triple nodes) baby! */
         this.mapper3 = new Element3(-1, -1, global.NULL);
-        /* Solely for mapping nodes (quadruple nodes) baby! */
         this.mapper4 = new Element4(-1, -1, global.NULL);
     }
-    /* Create a series of nodes based on some arbitrary bounds. We will use this for the initial generation
-  of the nodes, after that they should resize them selves. */
     create_nodes(bounds) {
-        /* A counter to keep track of where we are in the x-direciton */
         let counter_x = 0;
-        /* A counter to keep traack of where we are in the y-direction */
         let counter_y = 0;
-        /* The left of the bounds */
         let left = 0;
-        /* The top of the bounds */
         let top = 0;
-        /* A little bit of spacing to make sure that the nodes sit on the end corners
-    of the bounds */
         let divider = Math.round(global.settings.SQRT_MAXNODES);
-        /* A little nudge in the x direction */
         let shifter_x = global.node_space_x / divider;
-        /* A little nudge in the y direction */
         let shifter_y = global.node_space_y / divider;
-        /* The loop that makes the nodes. */
         if (global.settings.MAXNODES > 0) {
             let index = 0;
             for (var i = 0; i < global.settings.MAXNODES; i++) {
@@ -85,7 +48,6 @@ class EngineFunctions {
         }
     }
     handle_nearest_neighbors(temp_translation_lock) {
-        /* History lock is only set when moving elements on new add or on paste. */
         if (!global.is_dragging && !global.SIGNAL_HISTORY_LOCK) {
             if (!global.is_right_click) {
                 if (global.selected_type > -1) {
@@ -5218,7 +5180,6 @@ class EngineFunctions {
         }
         return this.temp2;
     }
-    /* Resistor */
     stamp_resistor(n1, n2, resistance) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5233,14 +5194,12 @@ class EngineFunctions {
             matrix_a[this.node_2][this.node_1] += -1.0 / resistance;
         }
     }
-    /* Node */
     stamp_node(n1, resistance) {
         this.node_1 = this.map_node(n1);
         if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.node_1] += 1.0 / resistance;
         }
     }
-    /* Node */
     stamp_across_nodes(n1, n2, resistance) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5248,7 +5207,6 @@ class EngineFunctions {
             matrix_a[this.node_1][this.node_2] += 1.0 / resistance;
         }
     }
-    /* Voltage Source */
     stamp_voltage(n1, n2, voltage, id) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5256,24 +5214,19 @@ class EngineFunctions {
         if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.offset + id] = 1;
             matrix_a[this.offset + id][this.node_1] = 1;
-            /* Adding finite resistance. */
             matrix_a[this.node_1][this.node_1] += 1.0 / global.settings.R_MAX;
         }
         if (this.node_2 !== -1) {
             matrix_a[this.node_2][this.offset + id] = -1;
             matrix_a[this.offset + id][this.node_2] = -1;
-            /* Adding finite resistance. */
             matrix_a[this.node_2][this.node_2] += 1.0 / global.settings.R_MAX;
         }
-        /* Adding finite resistance. */
         if (this.node_1 !== -1 && this.node_2 !== -1) {
             matrix_a[this.node_1][this.node_2] += -1.0 / global.settings.R_MAX;
             matrix_a[this.node_2][this.node_1] += -1.0 / global.settings.R_MAX;
         }
-        /* Prevent Singular Matrix. */
         matrix_z[this.offset + id][0] += voltage;
     }
-    /* Current Source */
     stamp_current(n1, n2, current) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5284,7 +5237,6 @@ class EngineFunctions {
             matrix_z[this.node_2][0] += -current;
         }
     }
-    /* Capacitor */
     stamp_capacitor(n1, n2, transient_resistance, transient_ieq) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5301,7 +5253,6 @@ class EngineFunctions {
             matrix_a[this.node_2][this.node_1] += -1.0 / transient_resistance;
         }
     }
-    /* Inductor */
     stamp_inductor(n1, n2, transient_resistance, transient_ieq) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5318,7 +5269,6 @@ class EngineFunctions {
             matrix_a[this.node_2][this.node_1] += -1.0 / transient_resistance;
         }
     }
-    /* Current Controlled Voltage Source */
     stamp_ccvs(n1, n2, n3, n4, gain, id) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5343,7 +5293,6 @@ class EngineFunctions {
         }
         matrix_a[this.offset + id + 1][this.offset + id] = -gain;
     }
-    /* Voltage Controlled Current Source */
     stamp_vccs(n1, n2, n3, n4, gain) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5362,7 +5311,6 @@ class EngineFunctions {
             matrix_a[this.node_3][this.node_4] += gain;
         }
     }
-    /* Current Controlled Current Source */
     stamp_cccs(n1, n2, n3, n4, gain, id) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5384,7 +5332,6 @@ class EngineFunctions {
             matrix_a[this.node_4][this.offset + id] = -1;
         }
     }
-    /* Voltage Controlled Voltage Source */
     stamp_vcvs(n1, n2, n3, n4, gain, id) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5406,7 +5353,6 @@ class EngineFunctions {
             matrix_a[this.offset + id][this.node_4] = gain;
         }
     }
-    /* Operational Amplifier */
     stamp_ideal_opamp(n1, n2, n3, id) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5421,10 +5367,8 @@ class EngineFunctions {
         if (this.node_3 !== -1) {
             matrix_a[this.node_3][this.offset + id] = 1;
         }
-        /* Giving the op-amp finite gain. */
         matrix_a[this.offset + id][this.offset + id] += 1e-18;
     }
-    /* Transformer */
     stamp_transformer(n1, n2, n3, n4, gain, id) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5448,7 +5392,6 @@ class EngineFunctions {
             matrix_a[this.node_4][this.offset + id] = gain;
         }
     }
-    /* Generic voltage extraction */
     get_voltage(n1, n2) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
@@ -5460,7 +5403,6 @@ class EngineFunctions {
         if (this.node_2 !== -1) {
             this.v_node_2 = matrix_x[this.node_2][0];
         }
-        /* Mever let NaN get into the elements. */
         return this.v_node_1 - this.v_node_2;
     }
     file_manager() {
@@ -5481,7 +5423,6 @@ class EngineFunctions {
         }
     }
     parse_elements(packet) {
-        /* Reset selection and focus. */
         global.focused = false;
         global.focused_id = global.NULL;
         global.focused_type = global.NULL;
@@ -5537,7 +5478,6 @@ class EngineFunctions {
                 global.user_file.title = obj.file_name;
             }
         }
-        /* Support previous versions of saved files. */
         /* #INSERT_GENERATE_SUPPORT_LEGACY_FILES# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (obj.elm.properties['tag'] === global.PROPERTY_RESISTOR['tag']) {
@@ -7984,7 +7924,6 @@ class EngineFunctions {
         this.meta_data.user_settings = global.copy(global.settings);
         this.meta_data.user_timestep = global.time_step;
         this.meta_data.file_name = global.user_file.title;
-        /* Add all element offsets for x and y so we can always know where everything is. */
         this.meta_data.calibration_string = workspace.bounds.left + ', ' + workspace.bounds.top + ', ' + workspace.bounds.right + ', ' + workspace.bounds.bottom;
         packet[indexer++] = JSON.stringify(this.meta_data);
         /* #INSERT_GENERATE_ELEMENT_HISTORY# */
@@ -9488,7 +9427,6 @@ class EngineFunctions {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     draw_selected_components(canvas) {
-        /* Draw the selected component last! It'll always be on top. */
         /* #INSERT_GENERATE_DRAW_SELECTED# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         if (global.selected) {
@@ -10098,11 +10036,9 @@ class EngineFunctions {
     capture_image() {
         let temp_zoom = global.workspace_zoom_scale;
         global.workspace_zoom_scale = global.PICTURE_ZOOM;
-        /* Zoom w/ respect to the center of the workspace bounds. */
         global.mouse_x = workspace.bounds.get_center_x();
         global.mouse_y = workspace.bounds.get_center_y();
         workspace.workspace_zoom();
-        /* Move the traces to position */
         /* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {
@@ -10118,28 +10054,20 @@ class EngineFunctions {
             wattmeters[i].refresh_bounds();
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        /* Save where we last where (left and top) */
         let temp_left = workspace.bounds.left;
         let temp_top = workspace.bounds.top;
-        /* Go to 0, 0 (left and top) */
         workspace.workspace_translate_bounds(-temp_left, -temp_top);
-        /* Create a temporary canvas element */
         let temp_surface = document.createElement('canvas');
         temp_surface.width = workspace.bounds.get_width() + 1;
         temp_surface.height = workspace.bounds.get_height() + 1;
-        /* Assign the temporary surface an id */
         temp_surface.id = 'temp_canvas';
-        /* Access the styling for the canvas. */
-        /* Keep it hidden! */
         temp_surface.style.position = 'absolute';
         temp_surface.style.padding = '0';
         temp_surface.style.margin = '0';
         temp_surface.style.zIndex = '0';
         temp_surface.style.visibility = 'hidden';
         temp_surface.style.display = 'none';
-        /* Get the drawing context */
         let temp_ctx = temp_surface.getContext('2d');
-        /* Create a temporary drawing engine */
         let temp_canvas = new GraphicsEngine(temp_ctx);
         global.CANVAS_STROKE_WIDTH_1_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.25 * global.workspace_zoom_scale;
         global.CANVAS_STROKE_WIDTH_2_ZOOM = global.CANVAS_STROKE_WIDTH_BASE * 2.65 * global.workspace_zoom_scale;
@@ -10153,24 +10081,19 @@ class EngineFunctions {
         global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.workspace_zoom_scale;
         global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.workspace_zoom_scale;
         global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.workspace_zoom_scale;
-        /* Capture several frames to make sure everythings there! */
         for (var i = 0; i < global.PICTURE_EXPOSURE_TIME; i++) {
             global.SIGNAL_BUILD_ELEMENT = true;
             global.signal_build_counter = 0;
             this.snapshot(temp_surface, temp_canvas);
         }
-        /* Save the image w/ the name of the global file. */
         if (!global.MOBILE_MODE) {
             save_image(global.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
         }
         else {
             save_image_mobile(global.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
         }
-        /* Translate the bounds back to where we need it to be. */
         workspace.workspace_translate_bounds(temp_left, temp_top);
-        /* Restore the zoom! */
         global.workspace_zoom_scale = temp_zoom;
-        /* Zoom w/ respect to the center of the workspace bounds. */
         global.mouse_x = workspace.bounds.get_center_x();
         global.mouse_y = workspace.bounds.get_center_y();
         workspace.workspace_zoom();
@@ -10186,7 +10109,6 @@ class EngineFunctions {
         global.CANVAS_TEXT_SIZE_4_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 16 * global.workspace_zoom_scale;
         global.CANVAS_TEXT_SIZE_5_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 21 * global.workspace_zoom_scale;
         global.CANVAS_TEXT_SIZE_6_ZOOM = global.CANVAS_TEXT_SIZE_BASE * 43 * global.workspace_zoom_scale;
-        /* Move the traces to position */
         /* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {

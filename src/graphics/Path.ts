@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Path.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle the path element for the html canvas. It's a convenient way
- *                   of storing an arbitrary collection of lines
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class Path {
 	public path_2d: Array<PATH_T>;
 	private indexer: number;
@@ -52,7 +31,6 @@ class Path {
 			}
 		}
 	}
-	/* Moves the location of the path element */
 	move_to(x: number, y: number): void {
 		this.path_2d[this.indexer++] = {
 			command: 'MOVE',
@@ -60,8 +38,6 @@ class Path {
 			y1: (global.ZERO_PT_FIVE + y) >> global.ZERO
 		};
 	}
-	/* creates a curve from the current location of the path element to the
-  destination point */
 	curve_to(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): void {
 		this.path_2d[this.indexer++] = {
 			command: 'CURVE',
@@ -73,8 +49,6 @@ class Path {
 			y3: (global.ZERO_PT_FIVE + y3) >> global.ZERO
 		};
 	}
-	/* creates a quadratic bezier spline from the current location of the path element to the
-  destination point */
 	quad_to(x1: number, y1: number, x2: number, y2: number): void {
 		this.path_2d[this.indexer++] = {
 			command: 'QUAD',
@@ -84,7 +58,6 @@ class Path {
 			y2: (global.ZERO_PT_FIVE + y2) >> global.ZERO
 		};
 	}
-	/* Creates a line from the current location to the detailed point */
 	line_to(x: number, y: number): void {
 		this.path_2d[this.indexer++] = {
 			command: 'LINE',
@@ -92,7 +65,6 @@ class Path {
 			y1: (global.ZERO_PT_FIVE + y) >> global.ZERO
 		};
 	}
-	/* Closes the path */
 	close(): void {
 		this.path_2d[this.indexer++] = {
 			command: 'CLOSE',
@@ -100,12 +72,10 @@ class Path {
 			y1: 0
 		};
 	}
-	/* Reset the path element */
 	reset(): void {
 		this.indexer = 0;
 		this.path_2d = [];
 	}
-	/* Get the path element */
 	get_path(): Array<PATH_T> {
 		return this.path_2d;
 	}

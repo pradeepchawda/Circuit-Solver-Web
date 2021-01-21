@@ -1,24 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : ScopeManager.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class handles the resources for the scope display.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class ScopeManager {
     constructor() {
         this.MAX_ENTRIES = 3;
@@ -32,11 +12,9 @@ class ScopeManager {
         this.voltage = -1;
         this.power = -1;
     }
-    /* Clear all entries. */
     clear_entries() {
         this.ENTRY.splice(0, this.ENTRY.length);
     }
-    /* Automatically generate the units of the scope based on the type of meter. */
     get_units(index) {
         if (index > -1 && index < this.ENTRY.length) {
             if (this.ENTRY[index]['element_type'] === global.TYPE_VOLTMETER) {
@@ -54,14 +32,12 @@ class ScopeManager {
         }
         return '';
     }
-    /* Generate the scope name, i.e. "VM1", tag + id */
     get_scope_name(index) {
         if (index > -1 && index < this.ENTRY.length) {
             return this.ENTRY[index]['element_tag'] + this.ENTRY[index]['element_id'];
         }
         return '';
     }
-    /* Check to see if a meter is in the list of entries. */
     find_entry(id, type) {
         for (var i = 0; i < this.ENTRY.length; i++) {
             if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
@@ -70,7 +46,6 @@ class ScopeManager {
         }
         return false;
     }
-    /* Grab the index of the meter is it is within the list of entries. */
     find_entry_index(id, type) {
         for (var i = 0; i < this.ENTRY.length; i++) {
             if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
@@ -79,21 +54,16 @@ class ScopeManager {
         }
         return -1;
     }
-    /* A quick check to see if an element is a meter type or not. */
     is_meter(type) {
         return type === global.TYPE_VOLTMETER || type === global.TYPE_OHMMETER || type === global.TYPE_AMMETER || type === global.TYPE_WATTMETER;
     }
-    /* Request a meter to be added to the list of entries. */
     push(id, type, tag) {
         if (this.is_meter(type)) {
             if (this.ENTRY.length < this.MAX_ENTRIES) {
                 if (!this.find_entry(id, type)) {
                     this.ENTRY.push({
-                        /* The id of the element (should be the same as elm.properties.id) */
                         element_id: id,
-                        /* The type of the element (should be the same as elm.properties.type) */
                         element_type: type,
-                        /* The tag of the element (should be the same as property.tag) */
                         element_tag: tag
                     });
                 }
@@ -104,10 +74,8 @@ class ScopeManager {
             }
         }
         else {
-            /* This should never fire unless we make a mistake :> */
         }
     }
-    /* Remove a meter from the list of entries based on its id and type (unique combination) */
     remove(id, type) {
         let index = this.find_entry_index(id, type);
         if (index !== -1) {
@@ -115,9 +83,6 @@ class ScopeManager {
             this.ENTRY.splice(index, 1);
         }
     }
-    /* Automatically update the scopes when the system is simulating. It will add the new
-  solutions values into the scope trace. If a meter is connected to the graph trace it will
-  update that as well. */
     update_scopes() {
         this.index = -1;
         this.met_max = global.meter_max();
@@ -158,23 +123,19 @@ class ScopeManager {
             }
             /* #METER_TAG# */
             if (i < voltmeters.length) {
-                /* Push to the element. */
                 voltmeters[i].push_voltage(engine_functions.get_voltage(voltmeters[i].elm.n1, voltmeters[i].elm.n2));
             }
             if (i < ammeters.length) {
-                /* Push to the element. */
                 if (ammeters[i].get_simulation_index() < matrix_x.length) {
                     ammeters[i].push_current(matrix_x[ammeters[i].get_simulation_index()][0]);
                 }
             }
             if (i < ohmmeters.length) {
-                /* Push to the element. */
                 if (ohmmeters[i].get_simulation_index() < matrix_x.length) {
                     ohmmeters[i].push_voltage_current(engine_functions.get_voltage(ohmmeters[i].elm.n1, ohmmeters[i].elm.n2), matrix_x[ohmmeters[i].get_simulation_index()][0]);
                 }
             }
             if (i < wattmeters.length) {
-                /* Push to the element. */
                 if (wattmeters[i].get_simulation_index() < matrix_x.length) {
                     this.v_side_1 = Math.abs(engine_functions.get_voltage(wattmeters[i].elm.n1, -1));
                     this.v_side_2 = Math.abs(engine_functions.get_voltage(wattmeters[i].elm.n2, -1));
@@ -183,18 +144,14 @@ class ScopeManager {
             }
         }
     }
-    /* Push the meter values tothe graph window. */
     push_to_graph(selector, value, time) {
         if (selector === 0) {
-            /* Push to the scope A. */
             graph_window.push_trace_a(value, time);
         }
         else if (selector === 1) {
-            /* Push to the scope B. */
             graph_window.push_trace_b(value, time);
         }
         else if (selector === 2) {
-            /* Push to the scope C. */
             graph_window.push_trace_c(value, time);
         }
     }

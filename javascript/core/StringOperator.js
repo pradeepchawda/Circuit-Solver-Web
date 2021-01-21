@@ -1,28 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : StringOperator.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class will automatically handle the parsing of variables.
- *                   This class uses nomial expansion in order to represent the numbers
- *                   in a symbolic fashion. Afterwards we assign special characters for
- *                   "-" and ".". We can now do digit manipulation w/ the numbers and
- *                    re-arrange / format them.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class StringOperator {
     constructor() {
         this.bases = [-18, -15, -12, -9, -6, -3, 0, 3, 6, 9, 12, 15, 18];

@@ -7,7 +7,6 @@ declare type WIRE_REFERENCE_T = {
 	anchor_point: number;
 	linkage: number;
 };
-/* To facilitate the generation of new wires. */
 declare type WIRE_BUILDER_T = {
 	n1: number;
 	id1: number;
@@ -35,13 +34,11 @@ declare type KEY_EVENT_T = {
 declare type HISTORY_MANAGER_T = {
 	packet: Array<string>;
 };
-/* Base structure for system properties */
 declare type SYSTEM_OPTIONS_T = {
 	options: Array<string>;
 	values: Array<string>;
 };
 declare type PAINT_COMMAND_T = 'MOVE' | 'LINE' | 'QUAD' | 'CURVE' | 'CLOSE';
-
 declare type PATH_1P_T = {
 	command: PAINT_COMMAND_T;
 	x1: number;
@@ -108,11 +105,8 @@ declare type ANGLE_STRUCT_T = {
 	angle: number;
 };
 declare type SCOPE_ENTRY_T = {
-	/* The id of the element (should be the same as elm.properties.id) */
 	element_id: number;
-	/* The type of the element (should be the same as elm.properties.type) */
 	element_type: number;
-	/* The tag of the element (should be the same as property.tag) */
 	element_tag: string;
 };
 declare type SYSTEM_INITIALIZATION_T = {
@@ -126,7 +120,6 @@ declare type TIME_DATA_TEMPLATE_T = {
 	Capacitance: number;
 	Inductance: number;
 };
-/* Used to determine which wire point is associated to an elements nodes. */
 declare type ANCHOR_POINT_T = {
 	p1: number;
 	p2: number;
@@ -276,13 +269,11 @@ declare type COLOR_ARRAY_T = {
 	yellow: string;
 	yellowgreen: string;
 };
-/* Structure for saving meta data details */
 declare type PROPERTY_META_DATA_T = {
 	[company: string]: string;
 	version: string;
 	date: string;
 };
-/* Base structure for resistor properties */
 declare type PROPERTY_RESISTOR_T = {
 	Resistance: number;
 	tag: string;
@@ -293,7 +284,6 @@ declare type PROPERTY_RESISTOR_T = {
 		Resistance: Array<number>;
 	};
 };
-/* Base structure for SPST properties */
 declare type PROPERTY_SPST_T = {
 	'Open Resistance': number;
 	'Closed Resistance': number;
@@ -306,7 +296,6 @@ declare type PROPERTY_SPST_T = {
 		'Closed Resistance': Array<number>;
 	};
 };
-/* Base structure for NOT properties */
 declare type PROPERTY_NOT_T = {
 	'High Voltage': number;
 	'Input Voltage': number;
@@ -319,7 +308,6 @@ declare type PROPERTY_NOT_T = {
 		'High Voltage': Array<number>;
 	};
 };
-/* Base structure for diode properties */
 declare type PROPERTY_DIODE_T = {
 	'Emission Coefficient': number;
 	'Saturation Current': number;
@@ -337,7 +325,6 @@ declare type PROPERTY_DIODE_T = {
 		'Saturation Current': Array<number>;
 	};
 };
-/* Base structure for led properties */
 declare type PROPERTY_LED_T = {
 	'Emission Coefficient': number;
 	'Saturation Current': number;
@@ -358,7 +345,6 @@ declare type PROPERTY_LED_T = {
 		Wavelength: Array<number>;
 	};
 };
-/* Base structure for zener properties */
 declare type PROPERTY_ZENER_T = {
 	'Zener Voltage': number;
 	'Emission Coefficient': number;
@@ -378,7 +364,6 @@ declare type PROPERTY_ZENER_T = {
 		'Saturation Current': Array<number>;
 	};
 };
-/* Base structure for voltmeter properties */
 declare type PROPERTY_VOLTMETER_T = {
 	Voltage: number;
 	tag: string;
@@ -387,7 +372,6 @@ declare type PROPERTY_VOLTMETER_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for voltmeter properties */
 declare type PROPERTY_WATTMETER_T = {
 	Wattage: number;
 	'Test Voltage': number;
@@ -397,7 +381,6 @@ declare type PROPERTY_WATTMETER_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for ammeter properties */
 declare type PROPERTY_AMMETER_T = {
 	Current: number;
 	'Test Voltage': number;
@@ -407,7 +390,6 @@ declare type PROPERTY_AMMETER_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for ohmmeter properties */
 declare type PROPERTY_OHMMETER_T = {
 	'Sensed Resistance': number;
 	'Test Voltage': number;
@@ -417,7 +399,6 @@ declare type PROPERTY_OHMMETER_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for resistor properties */
 declare type PROPERTY_WIRE_T = {
 	tag: string;
 	units: string;
@@ -425,7 +406,6 @@ declare type PROPERTY_WIRE_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for dc source properties */
 declare type PROPERTY_DCSOURCE_T = {
 	Voltage: number;
 	tag: string;
@@ -436,7 +416,6 @@ declare type PROPERTY_DCSOURCE_T = {
 		Voltage: Array<number>;
 	};
 };
-/* Base structure for ac source properties */
 declare type PROPERTY_ACSOURCE_T = {
 	Voltage: number;
 	Frequency: number;
@@ -453,7 +432,6 @@ declare type PROPERTY_ACSOURCE_T = {
 		Offset: Array<number>;
 	};
 };
-/* Base structure for square wave source properties */
 declare type PROPERTY_SQUAREWAVE_T = {
 	Voltage: number;
 	Frequency: number;
@@ -470,7 +448,6 @@ declare type PROPERTY_SQUAREWAVE_T = {
 		Offset: Array<number>;
 	};
 };
-/* Base structure for ac source properties */
 declare type PROPERTY_ACCURRENT_T = {
 	Current: number;
 	Frequency: number;
@@ -487,7 +464,6 @@ declare type PROPERTY_ACCURRENT_T = {
 		Offset: Array<number>;
 	};
 };
-/* Base structure for dc current properties */
 declare type PROPERTY_DCCURRENT_T = {
 	Current: number;
 	tag: string;
@@ -498,7 +474,6 @@ declare type PROPERTY_DCCURRENT_T = {
 		Current: Array<number>;
 	};
 };
-/* Base structure for capacitor properties */
 declare type PROPERTY_CAPACITOR_T = {
 	Capacitance: number;
 	'Transient Resistance': number;
@@ -515,7 +490,6 @@ declare type PROPERTY_CAPACITOR_T = {
 		'Initial Voltage': Array<number>;
 	};
 };
-/* Base structure for inductor properties */
 declare type PROPERTY_INDUCTOR_T = {
 	Inductance: number;
 	'Transient Resistance': number;
@@ -532,12 +506,10 @@ declare type PROPERTY_INDUCTOR_T = {
 		'Initial Current': Array<number>;
 	};
 };
-/* Base structure for ground properties */
 declare type PROPERTY_GROUND_T = {
 	tag: string;
 	units: string;
 };
-/* Base structure for net properties */
 declare type PROPERTY_NET_T = {
 	Name: string;
 	tag: string;
@@ -545,12 +517,10 @@ declare type PROPERTY_NET_T = {
 	units: string;
 	options: Array<string>;
 	options_units: Array<string>;
-	/* This element doesn't have one! */
 	option_limits: {
 		Name: Array<number>;
 	};
 };
-/* Base structure for constant properties */
 declare type PROPERTY_CONSTANT_T = {
 	Voltage: number;
 	tag: string;
@@ -561,7 +531,6 @@ declare type PROPERTY_CONSTANT_T = {
 		Voltage: Array<number>;
 	};
 };
-/* Base structure for potentiometer properties */
 declare type PROPERTY_POTENTIOMETER_T = {
 	Resistance: number;
 	'Wiper Percentage': number;
@@ -574,7 +543,6 @@ declare type PROPERTY_POTENTIOMETER_T = {
 		'Wiper Percentage': Array<number>;
 	};
 };
-/* Base structure for and properties */
 declare type PROPERTY_AND_T = {
 	'High Voltage': number;
 	'Input Voltage1': number;
@@ -588,7 +556,6 @@ declare type PROPERTY_AND_T = {
 		'High Voltage': Array<number>;
 	};
 };
-/* Base structure for or properties */
 declare type PROPERTY_OR_T = {
 	'High Voltage': number;
 	'Input Voltage1': number;
@@ -602,7 +569,6 @@ declare type PROPERTY_OR_T = {
 		'High Voltage': Array<number>;
 	};
 };
-/* Base structure for nand properties */
 declare type PROPERTY_NAND_T = {
 	'High Voltage': number;
 	'Input Voltage1': number;
@@ -616,7 +582,6 @@ declare type PROPERTY_NAND_T = {
 		'High Voltage': Array<number>;
 	};
 };
-/* Base structure for nor properties */
 declare type PROPERTY_NOR_T = {
 	'High Voltage': number;
 	'Input Voltage1': number;
@@ -630,7 +595,6 @@ declare type PROPERTY_NOR_T = {
 		'High Voltage': Array<number>;
 	};
 };
-/* Base structure for xor properties */
 declare type PROPERTY_XOR_T = {
 	'High Voltage': number;
 	'Input Voltage1': number;
@@ -644,7 +608,6 @@ declare type PROPERTY_XOR_T = {
 		'High Voltage': Array<number>;
 	};
 };
-/* Base structure for xnor properties */
 declare type PROPERTY_XNOR_T = {
 	'High Voltage': number;
 	'Input Voltage1': number;
@@ -658,7 +621,6 @@ declare type PROPERTY_XNOR_T = {
 		'High Voltage': Array<number>;
 	};
 };
-/* Base structure for vcsw properties */
 declare type PROPERTY_VCSW_T = {
 	'High Voltage': number;
 	'Closed Resistance': number;
@@ -673,7 +635,6 @@ declare type PROPERTY_VCSW_T = {
 		'Closed Resistance': Array<number>;
 	};
 };
-/* Base structure for vcr properties */
 declare type PROPERTY_VCR_T = {
 	'Low Voltage': number;
 	'High Voltage': number;
@@ -698,7 +659,6 @@ declare type PROPERTY_VCR_T = {
 		Interpolate: Array<string>;
 	};
 };
-/* Base structure for vcvs properties */
 declare type PROPERTY_VCVS_T = {
 	Gain: number;
 	tag: string;
@@ -709,7 +669,6 @@ declare type PROPERTY_VCVS_T = {
 		Gain: Array<number>;
 	};
 };
-/* Base structure for vccs properties */
 declare type PROPERTY_VCCS_T = {
 	Gain: number;
 	tag: string;
@@ -720,7 +679,6 @@ declare type PROPERTY_VCCS_T = {
 		Gain: Array<number>;
 	};
 };
-/* Base structure for cccs properties */
 declare type PROPERTY_CCCS_T = {
 	Gain: number;
 	tag: string;
@@ -731,7 +689,6 @@ declare type PROPERTY_CCCS_T = {
 		Gain: Array<number>;
 	};
 };
-/* Base structure for ccvs properties */
 declare type PROPERTY_CCVS_T = {
 	Gain: number;
 	tag: string;
@@ -742,7 +699,6 @@ declare type PROPERTY_CCVS_T = {
 		Gain: Array<number>;
 	};
 };
-/* Base structure for SPST properties */
 declare type PROPERTY_SPDT_T = {
 	'Open Resistance': number;
 	'Closed Resistance': number;
@@ -755,7 +711,6 @@ declare type PROPERTY_SPDT_T = {
 		'Closed Resistance': Array<number>;
 	};
 };
-/* Base structure for opamp properties */
 declare type PROPERTY_OPAMP_T = {
 	tag: string;
 	units: string;
@@ -763,7 +718,6 @@ declare type PROPERTY_OPAMP_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for vsat properties */
 declare type PROPERTY_VSAT_T = {
 	'High Voltage': number;
 	'Low Voltage': number;
@@ -778,7 +732,6 @@ declare type PROPERTY_VSAT_T = {
 		'Low Voltage': Array<number>;
 	};
 };
-/* Base structure for saw wave source properties */
 declare type PROPERTY_SAW_T = {
 	Voltage: number;
 	Frequency: number;
@@ -795,7 +748,6 @@ declare type PROPERTY_SAW_T = {
 		Offset: Array<number>;
 	};
 };
-/* Base structure for triangle wave source properties */
 declare type PROPERTY_TRI_T = {
 	Voltage: number;
 	Frequency: number;
@@ -812,7 +764,6 @@ declare type PROPERTY_TRI_T = {
 		Offset: Array<number>;
 	};
 };
-/* Base structure for adder properties */
 declare type PROPERTY_ADD_T = {
 	'Input Voltage1': number;
 	'Input Voltage2': number;
@@ -823,7 +774,6 @@ declare type PROPERTY_ADD_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for subtractor properties */
 declare type PROPERTY_SUB_T = {
 	'Input Voltage1': number;
 	'Input Voltage2': number;
@@ -834,7 +784,6 @@ declare type PROPERTY_SUB_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for multiplier properties */
 declare type PROPERTY_MUL_T = {
 	'Input Voltage1': number;
 	'Input Voltage2': number;
@@ -845,7 +794,6 @@ declare type PROPERTY_MUL_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for greater than properties */
 declare type PROPERTY_GRT_T = {
 	'Input Voltage1': number;
 	'Input Voltage2': number;
@@ -856,7 +804,6 @@ declare type PROPERTY_GRT_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for adder properties */
 declare type PROPERTY_DIV_T = {
 	'Input Voltage1': number;
 	'Input Voltage2': number;
@@ -867,7 +814,6 @@ declare type PROPERTY_DIV_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for nmosfet properties */
 declare type PROPERTY_NMOS_T = {
 	'W/L Ratio': number;
 	"K'n": number;
@@ -892,7 +838,6 @@ declare type PROPERTY_NMOS_T = {
 		Lambda: Array<number>;
 	};
 };
-/* Base structure for pmosfet properties */
 declare type PROPERTY_PMOS_T = {
 	'W/L Ratio': number;
 	"K'p": number;
@@ -917,7 +862,6 @@ declare type PROPERTY_PMOS_T = {
 		Lambda: Array<number>;
 	};
 };
-/* Base structure for npnbjt properties */
 declare type PROPERTY_NPN_T = {
 	'Forward Beta': number;
 	'Reverse Beta': number;
@@ -945,7 +889,6 @@ declare type PROPERTY_NPN_T = {
 		'Saturation Current': Array<number>;
 	};
 };
-/* Base structure for pnpbjt properties */
 declare type PROPERTY_PNP_T = {
 	'Forward Beta': number;
 	'Reverse Beta': number;
@@ -973,7 +916,6 @@ declare type PROPERTY_PNP_T = {
 		'Saturation Current': Array<number>;
 	};
 };
-/* Base structure for transformer properties */
 declare type PROPERTY_TRAN_T = {
 	'Turns Ratio': number;
 	tag: string;
@@ -984,7 +926,6 @@ declare type PROPERTY_TRAN_T = {
 		'NP/NS': Array<number>;
 	};
 };
-/* Base structure for adc properties */
 declare type PROPERTY_ADC_T = {
 	'Bit Resolution': number;
 	'Reference Voltage': number;
@@ -1001,7 +942,6 @@ declare type PROPERTY_ADC_T = {
 		'Reference Voltage': Array<number>;
 	};
 };
-/* Base structure for dac properties */
 declare type PROPERTY_DAC_T = {
 	'Bit Resolution': number;
 	'Reference Voltage': number;
@@ -1018,7 +958,6 @@ declare type PROPERTY_DAC_T = {
 		'Reference Voltage': Array<number>;
 	};
 };
-/* Base structure for pwm properties */
 declare type PROPERTY_PWM_T = {
 	'Max Frequency': number;
 	'Min Frequency': number;
@@ -1050,7 +989,6 @@ declare type PROPERTY_PWM_T = {
 		Postscaler: Array<number>;
 	};
 };
-/* Base structure for integrator properties */
 declare type PROPERTY_INTEGRATOR_T = {
 	'Initial Value': number;
 	'High Voltage': number;
@@ -1068,7 +1006,6 @@ declare type PROPERTY_INTEGRATOR_T = {
 		'Low Voltage': Array<number>;
 	};
 };
-/* Base structure for differentiator properties */
 declare type PROPERTY_DIFFERENTIATOR_T = {
 	'Initial Value': number;
 	'High Voltage': number;
@@ -1086,7 +1023,6 @@ declare type PROPERTY_DIFFERENTIATOR_T = {
 		'Low Voltage': Array<number>;
 	};
 };
-/* Base structure for gain properties */
 declare type PROPERTY_GAIN_T = {
 	Gain: number;
 	'Input Voltage': number;
@@ -1099,7 +1035,6 @@ declare type PROPERTY_GAIN_T = {
 		Gain: Array<number>;
 	};
 };
-/* Base structure for abs properties */
 declare type PROPERTY_ABS_T = {
 	'Input Voltage': number;
 	'Output Voltage': number;
@@ -1109,7 +1044,6 @@ declare type PROPERTY_ABS_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for lpf properties */
 declare type PROPERTY_LPF_T = {
 	'Cutoff Frequency': number;
 	'Y Out': number;
@@ -1125,7 +1059,6 @@ declare type PROPERTY_LPF_T = {
 		'Cutoff Frequency': Array<number>;
 	};
 };
-/* Base structure for hpf properties */
 declare type PROPERTY_HPF_T = {
 	'Cutoff Frequency': number;
 	'Y Out': number;
@@ -1142,7 +1075,6 @@ declare type PROPERTY_HPF_T = {
 		'Cutoff Frequency': Array<number>;
 	};
 };
-/* Base structure for rail properties */
 declare type PROPERTY_RAIL_T = {
 	Voltage: number;
 	tag: string;
@@ -1153,7 +1085,6 @@ declare type PROPERTY_RAIL_T = {
 		Voltage: Array<number>;
 	};
 };
-/* Base structure for relay properties */
 declare type PROPERTY_REL_T = {
 	Inductance: number;
 	'Transient Resistance': number;
@@ -1174,7 +1105,6 @@ declare type PROPERTY_REL_T = {
 		'Closed Resistance': Array<number>;
 	};
 };
-/* Base structure for pid properties */
 declare type PROPERTY_PID_T = {
 	Setpoint: number;
 	Kp: number;
@@ -1200,7 +1130,6 @@ declare type PROPERTY_PID_T = {
 		'Max Output': Array<number>;
 	};
 };
-/* Base structure for samplers properties */
 declare type PROPERTY_SAH_T = {
 	'Input Voltage1': number;
 	'Input Voltage2': number;
@@ -1213,7 +1142,6 @@ declare type PROPERTY_SAH_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for Look-Up-Table properties */
 declare type PROPERTY_LUT_T = {
 	Elm0: number;
 	Elm1: number;
@@ -1238,7 +1166,6 @@ declare type PROPERTY_LUT_T = {
 		Interpolate: Array<string>;
 	};
 };
-/* Base structure for tptz properties */
 declare type PROPERTY_TPTZ_T = {
 	A1: number;
 	A2: number;
@@ -1259,7 +1186,6 @@ declare type PROPERTY_TPTZ_T = {
 		B2: Array<number>;
 	};
 };
-/* Base structure for note properties */
 declare type PROPERTY_NOTE_T = {
 	Note: string;
 	tag: string;
@@ -1268,12 +1194,10 @@ declare type PROPERTY_NOTE_T = {
 	units: string;
 	options: Array<string>;
 	options_units: Array<string>;
-	/* This element doesn't have one! */
 	option_limits: {
 		Note: Array<number>;
 	};
 };
-/* Base structure for fuse properties */
 declare type PROPERTY_FUSE_T = {
 	'Current Rating': number;
 	Resistance: number;
@@ -1288,7 +1212,6 @@ declare type PROPERTY_FUSE_T = {
 		Resistance: Array<number>;
 	};
 };
-/* Base structure for dff properties */
 declare type PROPERTY_DFF_T = {
 	'Input Voltage1': number;
 	'Last Clock': number;
@@ -1301,7 +1224,6 @@ declare type PROPERTY_DFF_T = {
 	options_units: Array<string>;
 	option_limits: {};
 };
-/* Base structure for vcca properties */
 declare type PROPERTY_VCCA_T = {
 	'Low Voltage': number;
 	'High Voltage': number;
@@ -1330,7 +1252,6 @@ declare type PROPERTY_VCCA_T = {
 		Interpolate: Array<string>;
 	};
 };
-/* Base structure for vcl properties */
 declare type PROPERTY_VCL_T = {
 	'Low Voltage': number;
 	'High Voltage': number;

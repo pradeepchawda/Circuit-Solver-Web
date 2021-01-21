@@ -1,31 +1,10 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : ElementOptionsEditWindow.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A general class to edit the properties of an element.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class ElementOptionsEditWindow {
     constructor() {
         this.TITLE_HEIGHT_RATIO = 0.25;
         this.BUTTON_WIDTH_RATIO = 0.3;
         this.BUTTON_HEIGHT_RATIO = 0.25;
         this.PADDING = 0.0175;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -36,7 +15,6 @@ class ElementOptionsEditWindow {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
         this.point_paint = new Paint();
         this.point_paint.set_paint_style(this.point_paint.style.FILL);
         this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -47,7 +25,6 @@ class ElementOptionsEditWindow {
         this.point_paint.set_font(global.DEFAULT_FONT);
         this.point_paint.set_alpha(255);
         this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -63,7 +40,6 @@ class ElementOptionsEditWindow {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.LEFT);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.hover_paint = new Paint();
         this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
         this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -74,7 +50,6 @@ class ElementOptionsEditWindow {
         this.hover_paint.set_font(global.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
         this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.bounds_paint = new Paint();
         this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
         this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
@@ -134,7 +109,6 @@ class ElementOptionsEditWindow {
         this.input_button.draw_text = false;
         this.input_button.text_paint.set_color(global.GENERAL_BLACK_COLOR);
         this.input_button.resize_paint();
-        /* This paint is used for drawing the selected portions of text. */
         this.select_paint = new Paint();
         this.select_paint.set_paint_style(this.select_paint.style.FILL);
         this.select_paint.set_paint_cap(this.select_paint.cap.ROUND);
@@ -146,19 +120,15 @@ class ElementOptionsEditWindow {
         this.select_paint.set_alpha(64);
         this.select_paint.set_paint_align(this.select_paint.align.CENTER);
         this.option_index = -1;
-        /* Controls where the insert of new characters occur. */
         this.CURSOR_POSITION = 0;
         this.SELECT_ALL = false;
-        /* Controls for window dragging. */
         this.OFFSET_X = 0;
         this.OFFSET_Y = 0;
         this.WINDOW_ANCHORED = true;
         this.ANCHOR_X = 0;
         this.ANCHOR_Y = 0;
-        /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
-        /* Keeps track of the width of the text input. */
         this.measured_text = -1;
         this.INITIAL_CURSOR_DOWN = -1;
         this.SELECT_START = -1;
@@ -232,7 +202,6 @@ class ElementOptionsEditWindow {
                             if (!on_screen_keyboard.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
                                 menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
                                 menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-                                /* Block out the reset selection portion of the code! */
                                 global.component_touched = true;
                                 global.mouse_keyboard_lock = true;
                             }
@@ -240,7 +209,6 @@ class ElementOptionsEditWindow {
                         else {
                             menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
                             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-                            /* Block out the reset selection portion of the code! */
                             global.component_touched = true;
                             global.mouse_keyboard_lock = true;
                         }
@@ -251,7 +219,6 @@ class ElementOptionsEditWindow {
                             menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
                             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
                         }
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                         global.mouse_keyboard_lock = true;
                     }
@@ -259,7 +226,6 @@ class ElementOptionsEditWindow {
                         this.cancel_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
                         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                         global.mouse_keyboard_lock = true;
                     }
@@ -267,7 +233,6 @@ class ElementOptionsEditWindow {
                         this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_element_options_edit_flag(!global.FLAG_ELEMENT_OPTIONS_EDIT);
                         menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                         global.mouse_keyboard_lock = true;
                     }
@@ -290,7 +255,6 @@ class ElementOptionsEditWindow {
         }
     }
     insert_cursor(is_mouse_up, is_mouse_move) {
-        /* Figuring out where the cursor should go. */
         let min = this.input_button.get_center_x() - this.measured_text * 0.5;
         let max = this.input_button.get_center_x() + this.measured_text * 0.5;
         let remapped_x = global.mouse_x - this.OFFSET_X;
@@ -306,12 +270,9 @@ class ElementOptionsEditWindow {
         let percent = (remapped_x - min) / width;
         let insert_at = Math.ceil(percent * char_length);
         if (is_mouse_up && this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
-            /* Only update cursor position on mouse up. We will use mouse move to make it possible to update the highlight when the mouse is moving.*/
             if (!is_mouse_move) {
-                /* Assign the cursor position to the calculated insert. */
                 this.CURSOR_POSITION = insert_at;
             }
-            /* Make sure initial cursor down is calculated. */
             if (this.INITIAL_CURSOR_DOWN !== -1 && insert_at !== this.INITIAL_CURSOR_DOWN) {
                 if (this.INITIAL_CURSOR_DOWN < insert_at) {
                     this.ASCENDING = true;
@@ -340,7 +301,6 @@ class ElementOptionsEditWindow {
         if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
         }
     }
-    /* Handle the user's input! */
     handle_keyboard(key_event) {
         if (!this.special_type(global.selected_type)) {
             if (global.is_valid_si_units(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
@@ -1212,7 +1172,6 @@ class ElementOptionsEditWindow {
             }
         }
     }
-    /* Text based classes (i.e., net, note)*/
     special_type(elm_type) {
         if (elm_type === global.TYPE_NET || elm_type === global.TYPE_NOTE) {
             return true;
@@ -1267,7 +1226,6 @@ class ElementOptionsEditWindow {
                     toast.show();
                     ERROR_FLAG = true;
                 }
-                /* Conservation of energy */
                 if (capacitors[index].elm.properties['options'][this.option_index] === 'Capacitance') {
                     capacitors[index].conserve_energy();
                 }
@@ -1294,7 +1252,6 @@ class ElementOptionsEditWindow {
                     toast.show();
                     ERROR_FLAG = true;
                 }
-                /* Conservation of energy */
                 if (inductors[index].elm.properties['options'][this.option_index] === 'Inductance') {
                     inductors[index].conserve_energy();
                 }
@@ -2581,7 +2538,6 @@ class ElementOptionsEditWindow {
                     toast.show();
                     ERROR_FLAG = true;
                 }
-                /* Conservation of energy */
                 if (relays[index].elm.properties['options'][this.option_index] === 'Inductance') {
                     relays[index].conserve_energy();
                 }
@@ -2773,7 +2729,6 @@ class ElementOptionsEditWindow {
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         if (!ERROR_FLAG) {
-            /* We changed something! */
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
             this.option_index = -1;
         }
@@ -2833,7 +2788,6 @@ class ElementOptionsEditWindow {
         this.exit_button.resize_paint();
         this.input_button.set_bounds(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
         this.input_button.resize_paint();
-        /* Resize the stroke widths and the text sizes. */
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -2858,13 +2812,11 @@ class ElementOptionsEditWindow {
             }
         }
     }
-    /* Fix up escapes... also make sure notes are okay! */
     draw_window(canvas) {
         if (global.FLAG_ELEMENT_OPTIONS_EDIT) {
             if (!global.MOBILE_MODE) {
                 canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
             }
-            /* Makes sure the window is always visisble. */
             if (global.MOBILE_MODE) {
                 if (this.bounds.bottom + this.OFFSET_Y >= on_screen_keyboard.bounds.top) {
                     this.OFFSET_Y = on_screen_keyboard.bounds.top - this.bounds.bottom;
@@ -2872,9 +2824,7 @@ class ElementOptionsEditWindow {
             }
             this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
             this.cancel_button.text = language_manager.CANCEL[global.LANGUAGES[global.LANGUAGE_INDEX]];
-            /* This draws the bounds of the interface. */
             canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);
-            /* This draws the title space */
             this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
             this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
             if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {

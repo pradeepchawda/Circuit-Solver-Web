@@ -1,26 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : NodeNetwork.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class handles the inter-connections of nodes. It maps out how each
- *                   node is related to another in order to group them and reduce the complexity
- *                   of the circuit.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class NodeNetwork {
 	public references: Array<number>;
 	public lowest: number;

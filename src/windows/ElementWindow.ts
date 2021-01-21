@@ -1,44 +1,18 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : ElementWindow.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to help organize the addition of new elements onto the board.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class ElementWindow {
 	public ENABLE_MOUSE_WHEEL: boolean;
 	public positions: Array<RectF>;
-	/* Controls the rate of the mouse wheel event for this specific element. */
 	public MOUSE_WHEEL_COUNTER: number;
 	public MOUSE_WHEEL_COUNTER_MAX: number;
 	public readonly NAVIGATE_TEXT: string;
 	public readonly MAX_ICONS: number;
 	public NAVIGATE_BACK: number;
 	public NAVIGATE_FORWARD: number;
-	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
-	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-	/* This paint is used for drawing background colors. */
 	public fill_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-	/* This paint is used for drawing the icons that the component is comprised of. */
 	public hover_paint: Paint;
 	public bounds: RectF;
 	public PAGE_NUMBER: number;
@@ -47,156 +21,85 @@ class ElementWindow {
 	/* #INSERT_GENERATE_CREATE_ELEMENT_WINDOW_ICON_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public resistor_symbol: ResistorSymbol;
-
 	public capacitor_symbol: CapacitorSymbol;
-
 	public inductor_symbol: InductorSymbol;
-
 	public ground_symbol: GroundSymbol;
-
 	public dcsource_symbol: DCSourceSymbol;
-
 	public dccurrent_symbol: DCCurrentSymbol;
-
 	public acsource_symbol: ACSourceSymbol;
-
 	public accurrent_symbol: ACCurrentSymbol;
-
 	public squarewave_symbol: SquareWaveSymbol;
-
 	public sawwave_symbol: SawWaveSymbol;
-
 	public trianglewave_symbol: TriangleWaveSymbol;
-
 	public constant_symbol: ConstantSymbol;
-
 	public net_symbol: NetSymbol;
-
 	public note_symbol: NoteSymbol;
-
 	public rail_symbol: RailSymbol;
-
 	public voltmeter_symbol: VoltMeterSymbol;
-
 	public ohmmeter_symbol: OhmMeterSymbol;
-
 	public ammeter_symbol: AmMeterSymbol;
-
 	public wattmeter_symbol: WattMeterSymbol;
-
 	public fuse_symbol: FuseSymbol;
-
 	public spst_symbol: SinglePoleSingleThrowSymbol;
-
 	public spdt_symbol: SinglePoleDoubleThrowSymbol;
-
 	public not_symbol: NOTGateSymbol;
-
 	public diode_symbol: DiodeSymbol;
-
 	public led_symbol: LightEmittingDiodeSymbol;
-
 	public zener_symbol: ZenerDiodeSymbol;
-
 	public potentiometer_symbol: PotentiometerSymbol;
-
 	public and_symbol: ANDGateSymbol;
-
 	public or_symbol: ORGateSymbol;
-
 	public nand_symbol: NANDGateSymbol;
-
 	public nor_symbol: NORGateSymbol;
-
 	public xor_symbol: XORGateSymbol;
-
 	public xnor_symbol: XNORGateSymbol;
-
 	public dff_symbol: DFlipFlopSymbol;
-
 	public vsat_symbol: VoltageSaturationSymbol;
-
 	public adder_symbol: AdderSymbol;
-
 	public subtractor_symbol: SubtractorSymbol;
-
 	public multiplier_symbol: MultiplierSymbol;
-
 	public divider_symbol: DividerSymbol;
-
 	public gain_symbol: GainBlockSymbol;
-
 	public absval_symbol: AbsoluteValueSymbol;
-
 	public vcsw_symbol: VoltageControlledSwitchSymbol;
-
 	public vcvs_symbol: VoltageControlledVoltageSourceSymbol;
-
 	public vccs_symbol: VoltageControlledCurrentSourceSymbol;
-
 	public cccs_symbol: CurrentControlledCurrentSourceSymbol;
-
 	public ccvs_symbol: CurrentControlledVoltageSourceSymbol;
-
 	public opamp_symbol: OperationalAmplifierSymbol;
-
 	public nmosfet_symbol: NChannelMOSFETSymbol;
-
 	public pmosfet_symbol: PChannelMOSFETSymbol;
-
 	public npn_symbol: NPNBipolarJunctionTransistorSymbol;
-
 	public pnp_symbol: PNPBipolarJunctionTransistorSymbol;
-
 	public adc_symbol: ADCModuleSymbol;
-
 	public dac_symbol: DACModuleSymbol;
-
 	public samplers_symbol: SampleAndHoldSymbol;
-
 	public pwm_symbol: PulseWidthModulatorSymbol;
-
 	public integrator_symbol: IntegratorModuleSymbol;
-
 	public differentiator_symbol: DifferentiatorModuleSymbol;
-
 	public lowpass_symbol: LowPassFilterSymbol;
-
 	public highpass_symbol: HighPassFilterSymbol;
-
 	public relay_symbol: RelaySymbol;
-
 	public pid_symbol: PIDModuleSymbol;
-
 	public lut_symbol: LookUpTableSymbol;
-
 	public vcr_symbol: VoltageControlledResistorSymbol;
-
 	public vcca_symbol: VoltageControlledCapacitorSymbol;
-
 	public vcl_symbol: VoltageControlledInductorSymbol;
-
 	public grt_symbol: GreaterThanSymbol;
-
 	public tptz_symbol: TPTZModuleSymbol;
-
 	public transformer_symbol: TransformerSymbol;
-
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	constructor(left: number, top: number, right: number, bottom: number) {
 		this.ENABLE_MOUSE_WHEEL = true;
 		this.positions = [];
-		/* Controls the rate of the mouse wheel event for this specific element. */
 		this.MOUSE_WHEEL_COUNTER = 0;
 		this.MOUSE_WHEEL_COUNTER_MAX = 1;
 		this.NAVIGATE_TEXT = '...';
 		this.MAX_ICONS = 8;
 		this.NAVIGATE_BACK = 0;
 		this.NAVIGATE_FORWARD = this.MAX_ICONS - 1;
-		/* Enforcing the system from cascading events. */
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -207,7 +110,6 @@ class ElementWindow {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing background colors. */
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -218,7 +120,6 @@ class ElementWindow {
 		this.fill_paint.set_font(global.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -234,7 +135,6 @@ class ElementWindow {
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.hover_paint = new Paint();
 		this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -254,218 +154,150 @@ class ElementWindow {
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 		this.resistor_symbol = new ResistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.capacitor_symbol = new CapacitorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.inductor_symbol = new InductorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ground_symbol = new GroundSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dcsource_symbol = new DCSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dccurrent_symbol = new DCCurrentSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.acsource_symbol = new ACSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.accurrent_symbol = new ACCurrentSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.squarewave_symbol = new SquareWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.sawwave_symbol = new SawWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.trianglewave_symbol = new TriangleWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.constant_symbol = new ConstantSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.net_symbol = new NetSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.note_symbol = new NoteSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.rail_symbol = new RailSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.voltmeter_symbol = new VoltMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ohmmeter_symbol = new OhmMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ammeter_symbol = new AmMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.wattmeter_symbol = new WattMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.fuse_symbol = new FuseSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.spst_symbol = new SinglePoleSingleThrowSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.spdt_symbol = new SinglePoleDoubleThrowSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.not_symbol = new NOTGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.diode_symbol = new DiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.led_symbol = new LightEmittingDiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.zener_symbol = new ZenerDiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.potentiometer_symbol = new PotentiometerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.and_symbol = new ANDGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.or_symbol = new ORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.nand_symbol = new NANDGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.nor_symbol = new NORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.xor_symbol = new XORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.xnor_symbol = new XNORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dff_symbol = new DFlipFlopSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vsat_symbol = new VoltageSaturationSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.adder_symbol = new AdderSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.subtractor_symbol = new SubtractorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.multiplier_symbol = new MultiplierSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.divider_symbol = new DividerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.gain_symbol = new GainBlockSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.absval_symbol = new AbsoluteValueSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vcsw_symbol = new VoltageControlledSwitchSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.vcvs_symbol = new VoltageControlledVoltageSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vccs_symbol = new VoltageControlledCurrentSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.cccs_symbol = new CurrentControlledCurrentSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.ccvs_symbol = new CurrentControlledVoltageSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.opamp_symbol = new OperationalAmplifierSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.nmosfet_symbol = new NChannelMOSFETSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.pmosfet_symbol = new PChannelMOSFETSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.npn_symbol = new NPNBipolarJunctionTransistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.pnp_symbol = new PNPBipolarJunctionTransistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.adc_symbol = new ADCModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.dac_symbol = new DACModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.samplers_symbol = new SampleAndHoldSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.pwm_symbol = new PulseWidthModulatorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.integrator_symbol = new IntegratorModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.differentiator_symbol = new DifferentiatorModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.lowpass_symbol = new LowPassFilterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.highpass_symbol = new HighPassFilterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.relay_symbol = new RelaySymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.pid_symbol = new PIDModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.lut_symbol = new LookUpTableSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vcr_symbol = new VoltageControlledResistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vcca_symbol = new VoltageControlledCapacitorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.vcl_symbol = new VoltageControlledInductorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.grt_symbol = new GreaterThanSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX = 1;
 		this.MAX_PAGE_NUMBER++;
-
 		this.tptz_symbol = new TPTZModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
 		this.ELEMENT_INDEX++;
-
 		this.transformer_symbol = new TransformerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	load_positions(): void {
@@ -764,7 +596,6 @@ class ElementWindow {
 					if (this.PAGE_NUMBER > 0) {
 						this.PAGE_NUMBER--;
 					}
-					/* Block out the reset selection portion of the code! */
 					global.component_touched = true;
 				} else if (
 					this.positions[this.NAVIGATE_FORWARD].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
@@ -773,7 +604,6 @@ class ElementWindow {
 					if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
 						this.PAGE_NUMBER++;
 					}
-					/* Block out the reset selection portion of the code! */
 					global.component_touched = true;
 				}
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
@@ -925,7 +755,6 @@ class ElementWindow {
 		this.tptz_symbol.resize(this.positions[this.tptz_symbol.index]);
 		this.transformer_symbol.resize(this.positions[this.transformer_symbol.index]);
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		/* Resize the stroke widths and the text sizes. */
 		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
 		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -940,7 +769,6 @@ class ElementWindow {
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 	}
 	draw_hover(canvas: GraphicsEngine): void {
-		/* Handle the hover here! */
 		for (var i: number = 0; i < this.positions.length; i++) {
 			if (this.positions[i].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
 				if (i !== this.NAVIGATE_BACK && i !== this.NAVIGATE_FORWARD) {
@@ -962,7 +790,6 @@ class ElementWindow {
 			}
 		}
 	}
-	/* Check the limits of the hover effect on the elements. */
 	hover_limits(current_page: number, index: number, overflow: number, max_pages: number): boolean {
 		if (current_page <= max_pages) {
 			if (current_page < max_pages) {

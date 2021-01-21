@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : WireManager.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle the generation of wires. It also assigns the elements
- *                   who is responsible for the different leads of the wire.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class WireManager {
     constructor() {
         this.wire_id = -1;
@@ -110,7 +89,6 @@ class WireManager {
             global.WIRE_BUILDER['type2'] = -1;
             global.WIRE_BUILDER['anchor_point2'] = -1;
             global.WIRE_BUILDER['linkage2']['wire'] = -1;
-            /* Reset it! */
             global.WIRE_BUILDER['step'] = 0;
         }
     }

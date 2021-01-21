@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : SettingsWindow.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class displays the different settings available and it will provide
- *                   a means to edit them.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class SettingsWindow {
     constructor() {
         this.TITLE_HEIGHT_RATIO = 0.1;
@@ -31,7 +10,6 @@ class SettingsWindow {
         else {
             this.PADDING = 0.0125;
         }
-        /* The amount of pre-loaded attributes. There should be no more than 5 for this application. */
         this.ATTRIBUTE_SIZE = 6;
         if (global.MOBILE_MODE === false) {
             this.ATTRIBUTE_SHOW_SIZE = 4;
@@ -39,9 +17,7 @@ class SettingsWindow {
         else {
             this.ATTRIBUTE_SHOW_SIZE = 2;
         }
-        /* Used to quick select. */
         this.ATTRIBUTE_SELECT = ['1', '2', '3', '4', '5', '6'];
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -52,7 +28,6 @@ class SettingsWindow {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing background colors. */
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -63,7 +38,6 @@ class SettingsWindow {
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(130);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -79,7 +53,6 @@ class SettingsWindow {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.LEFT);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.hover_paint = new Paint();
         this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
         this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -90,7 +63,6 @@ class SettingsWindow {
         this.hover_paint.set_font(global.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
         this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.shorcut_text_paint = new Paint();
         this.shorcut_text_paint.set_paint_style(this.shorcut_text_paint.style.FILL);
         this.shorcut_text_paint.set_paint_cap(this.shorcut_text_paint.cap.ROUND);
@@ -101,7 +73,6 @@ class SettingsWindow {
         this.shorcut_text_paint.set_font(global.DEFAULT_FONT);
         this.shorcut_text_paint.set_alpha(255);
         this.shorcut_text_paint.set_paint_align(this.shorcut_text_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.value_paint = new Paint();
         this.value_paint.set_paint_style(this.value_paint.style.FILL);
         this.value_paint.set_paint_cap(this.value_paint.cap.ROUND);
@@ -117,7 +88,6 @@ class SettingsWindow {
         this.value_paint.set_font(global.DEFAULT_FONT);
         this.value_paint.set_alpha(255);
         this.value_paint.set_paint_align(this.value_paint.align.RIGHT);
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.bounds_paint = new Paint();
         this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
         this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
@@ -160,20 +130,16 @@ class SettingsWindow {
         this.exit_button.draw_stroke = true;
         this.exit_button.draw_fill = false;
         this.exit_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-        /* We shall pre-load 5 attributes and enable / disable what we don't need. */
         this.attributes = [];
         this.ATTRIBUTE_HEIGHT = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
-        /* Populating the attributes */
         for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
             this.attributes.push(new RectF(this.title_bounds.left + padding, this.title_bounds.bottom + padding * 1.5 + i * this.ATTRIBUTE_HEIGHT, this.title_bounds.right - padding, this.title_bounds.bottom + padding + (i + 1) * this.ATTRIBUTE_HEIGHT - 1.25 * padding));
         }
-        /* Controls for window dragging. */
         this.OFFSET_X = 0;
         this.OFFSET_Y = 0;
         this.WINDOW_ANCHORED = true;
         this.ANCHOR_X = 0;
         this.ANCHOR_Y = 0;
-        /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
         this.toggle_switch_button = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
@@ -190,7 +156,6 @@ class SettingsWindow {
                 this.ANCHOR_Y = global.mouse_y - this.OFFSET_Y;
                 this.WINDOW_ANCHORED = false;
             }
-            /* Enforcing the system from cascading events. */
             this.first_touch_x = global.mouse_x;
             this.first_touch_y = global.mouse_y;
         }
@@ -222,19 +187,16 @@ class SettingsWindow {
                     if (!this.bounds.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         !this.bounds.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_select_settings_flag(!global.FLAG_SELECT_SETTINGS);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                     else if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         this.okay_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_select_settings_flag(!global.FLAG_SELECT_SETTINGS);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                     else if (this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
                         this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
                         menu_bar.handle_select_settings_flag(!global.FLAG_SELECT_SETTINGS);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                     else {
@@ -281,7 +243,6 @@ class SettingsWindow {
                     }
                     global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_LANGUAGE] = global.LANGUAGES[global.LANGUAGE_INDEX];
                 }
-                /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
             }
             else if (index === global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP) {
@@ -293,7 +254,6 @@ class SettingsWindow {
                         global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] = global.OFF;
                     }
                 }
-                /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
             }
             else if (index === global.SYSTEM_OPTION_SHORTCUT_HINTS) {
@@ -305,7 +265,6 @@ class SettingsWindow {
                         global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] = global.OFF;
                     }
                 }
-                /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
             }
             else if (index === global.SYSTEM_OPTION_STRETCH_WINDOW) {
@@ -321,7 +280,6 @@ class SettingsWindow {
                         global.FORCE_RESIZE_EVENT = true;
                     }
                 }
-                /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
             }
         }
@@ -331,14 +289,12 @@ class SettingsWindow {
         if (global.FLAG_SELECT_SETTINGS) {
             if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
                 menu_bar.handle_select_settings_flag(!global.FLAG_SELECT_SETTINGS);
-                /* Block out the reset selection portion of the code! */
                 global.component_touched = true;
             }
             if (!global.mouse_keyboard_lock) {
                 for (var i = 0; i < this.ATTRIBUTE_SELECT.length; i++) {
                     if (global.decode_key(key_event) === this.ATTRIBUTE_SELECT[i]) {
                         this.on_attribute_clicked(i);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                         global.mouse_keyboard_lock = true;
                         break;
@@ -347,7 +303,6 @@ class SettingsWindow {
             }
         }
     }
-    /* A function to resize the entire component. */
     resize_window() {
         if (global.MOBILE_MODE) {
             this.width = view_port.view_width * 0.2;
@@ -357,11 +312,9 @@ class SettingsWindow {
             this.width = view_port.view_width * 0.15;
             this.height = view_port.view_height * 0.3;
         }
-        /* Refactors the bounds / title bounds of the window. */
         this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
         this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
         this.title_bounds.resize_paint();
-        /* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
         let padding = this.PADDING * this.bounds.get_width();
         let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
         let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
@@ -373,7 +326,6 @@ class SettingsWindow {
         for (var i = 0; i < this.ATTRIBUTE_SIZE; i++) {
             this.attributes[i].set_bounds(this.title_bounds.left + padding, this.title_bounds.bottom + padding * 1.5 + i * this.ATTRIBUTE_HEIGHT, this.title_bounds.right - padding, this.title_bounds.bottom + padding + (i + 1) * this.ATTRIBUTE_HEIGHT - 1.25 * padding);
         }
-        /* Resize the stroke widths and the text sizes. */
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -403,7 +355,6 @@ class SettingsWindow {
             this.toggle_switch_button.resize_paint();
         }
     }
-    /* A function to handle the drawing of the component. */
     draw_window(canvas) {
         if (global.FLAG_SELECT_SETTINGS) {
             if (!global.MOBILE_MODE) {
@@ -411,9 +362,7 @@ class SettingsWindow {
             }
             this.title_bounds.text = language_manager.SYSTEM_SETTINGS[global.LANGUAGES[global.LANGUAGE_INDEX]];
             this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
-            /* This draws the bounds of the interface. */
             canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);
-            /* This draws the title space */
             this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
             this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
             if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
@@ -424,9 +373,7 @@ class SettingsWindow {
                 this.okay_button.fill_paint.set_color(global.GENERAL_BLACK_COLOR);
                 this.okay_button.fill_paint.set_alpha(130);
             }
-            /* Draws the okay button */
             this.okay_button.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
-            /* Run through the attributes and print off their info. (from selected component) */
             for (var i = 0; i < this.ATTRIBUTE_SHOW_SIZE; i++) {
                 if (global.not_null(global.SYSTEM_OPTIONS)) {
                     if (i < global.SYSTEM_OPTIONS['options'].length && global.not_null(this.attributes[i])) {

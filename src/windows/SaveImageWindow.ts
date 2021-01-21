@@ -1,38 +1,13 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : SaveImageWindow.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A window to handle saving images.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class SaveImageWindow {
 	public TITLE_HEIGHT_RATIO: number;
 	public BUTTON_WIDTH_RATIO: number;
 	public BUTTON_HEIGHT_RATIO: number;
 	public PADDING: number;
-	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-	/* This paint is used for drawing the "nodes" that the component is connected to. */
 	public point_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public bounds_paint: Paint;
-	/* This paint is used for drawing the selected portions of text. */
 	public select_paint: Paint;
 	public hover_paint: Paint;
 	public width: number;
@@ -43,19 +18,15 @@ class SaveImageWindow {
 	public cancel_button: Button;
 	public exit_button: Button;
 	public input_button: Button;
-	/* Controls where the insert of new characters occur. */
 	public CURSOR_POSITION: number;
 	public SELECT_ALL: boolean;
-	/* Controls for window dragging. */
 	public OFFSET_X: number;
 	public OFFSET_Y: number;
 	public WINDOW_ANCHORED: boolean;
 	public ANCHOR_X: number;
 	public ANCHOR_Y: number;
-	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
-	/* Keeps track of the width of the text input. */
 	public measured_text: number;
 	public INITIAL_CURSOR_DOWN: number;
 	public SELECT_START: number;
@@ -69,7 +40,6 @@ class SaveImageWindow {
 		this.BUTTON_WIDTH_RATIO = 0.3;
 		this.BUTTON_HEIGHT_RATIO = 0.25;
 		this.PADDING = 0.025;
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -80,7 +50,6 @@ class SaveImageWindow {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing the "nodes" that the component is connected to. */
 		this.point_paint = new Paint();
 		this.point_paint.set_paint_style(this.point_paint.style.FILL);
 		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -91,7 +60,6 @@ class SaveImageWindow {
 		this.point_paint.set_font(global.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
 		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -106,7 +74,6 @@ class SaveImageWindow {
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.LEFT);
-		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.hover_paint = new Paint();
 		this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -117,7 +84,6 @@ class SaveImageWindow {
 		this.hover_paint.set_font(global.DEFAULT_FONT);
 		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.bounds_paint = new Paint();
 		this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
@@ -128,7 +94,6 @@ class SaveImageWindow {
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
 		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
-		/* This paint is used for drawing the selected portions of text. */
 		this.select_paint = new Paint();
 		this.select_paint.set_paint_style(this.select_paint.style.FILL);
 		this.select_paint.set_paint_cap(this.select_paint.cap.ROUND);
@@ -187,19 +152,15 @@ class SaveImageWindow {
 		this.input_button.draw_text = false;
 		this.input_button.text_paint.set_color(global.GENERAL_BLACK_COLOR);
 		this.input_button.resize_paint();
-		/* Controls where the insert of new characters occur. */
 		this.CURSOR_POSITION = 0;
 		this.SELECT_ALL = false;
-		/* Controls for window dragging. */
 		this.OFFSET_X = 0;
 		this.OFFSET_Y = 0;
 		this.WINDOW_ANCHORED = true;
 		this.ANCHOR_X = 0;
 		this.ANCHOR_Y = 0;
-		/* Enforcing the system from cascading events. */
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
-		/* Keeps track of the width of the text input. */
 		this.measured_text = -1;
 		this.INITIAL_CURSOR_DOWN = -1;
 		this.SELECT_START = -1;
@@ -268,12 +229,10 @@ class SaveImageWindow {
 						if (global.MOBILE_MODE) {
 							if (!on_screen_keyboard.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
 								menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
-								/* Block out the reset selection portion of the code! */
 								global.component_touched = true;
 							}
 						} else {
 							menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
-							/* Block out the reset selection portion of the code! */
 							global.component_touched = true;
 						}
 					} else if (
@@ -284,21 +243,18 @@ class SaveImageWindow {
 							global.PICTURE_REQUEST = true;
 						}
 						menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
-						/* Block out the reset selection portion of the code! */
 						global.component_touched = true;
 					} else if (
 						this.cancel_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
 						this.cancel_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
 					) {
 						menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
-						/* Block out the reset selection portion of the code! */
 						global.component_touched = true;
 					} else if (
 						this.exit_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
 						this.exit_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)
 					) {
 						menu_bar.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
-						/* Block out the reset selection portion of the code! */
 						global.component_touched = true;
 					} else if (
 						this.input_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) &&
@@ -320,7 +276,6 @@ class SaveImageWindow {
 		}
 	}
 	insert_cursor(is_mouse_up: boolean, is_mouse_move: boolean): number {
-		/* Figuring out where the cursor should go. */
 		let min: number = this.input_button.get_center_x() - this.measured_text * 0.5;
 		let max: number = this.input_button.get_center_x() + this.measured_text * 0.5;
 		let remapped_x: number = global.mouse_x - this.OFFSET_X;
@@ -336,12 +291,9 @@ class SaveImageWindow {
 		let percent: number = (remapped_x - min) / width;
 		let insert_at: number = Math.ceil(percent * char_length);
 		if (is_mouse_up && this.input_button.contains_xy(this.first_touch_x - this.OFFSET_X, this.first_touch_y - this.OFFSET_Y)) {
-			/* Only update cursor position on mouse up. We will use mouse move to make it possible to update the highlight when the mouse is moving.*/
 			if (!is_mouse_move) {
-				/* Assign the cursor position to the calculated insert. */
 				this.CURSOR_POSITION = insert_at;
 			}
-			/* Make sure initial cursor down is calculated. */
 			if (this.INITIAL_CURSOR_DOWN !== -1 && insert_at !== this.INITIAL_CURSOR_DOWN) {
 				if (this.INITIAL_CURSOR_DOWN < insert_at) {
 					this.ASCENDING = true;
@@ -366,7 +318,6 @@ class SaveImageWindow {
 		if (global.FLAG_SAVE_IMAGE) {
 		}
 	}
-	/* Handle the user's input! */
 	handle_keyboard(key_event: KEY_EVENT_T): void {
 		if (global.is_alpha_numeric(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
 			if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
@@ -677,7 +628,6 @@ class SaveImageWindow {
 		this.exit_button.resize_paint();
 		this.input_button.set_bounds(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
 		this.input_button.resize_paint();
-		/* Resize the stroke widths and the text sizes. */
 		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
 		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -706,7 +656,6 @@ class SaveImageWindow {
 			if (!global.MOBILE_MODE) {
 				canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}
-			/* Makes sure the window is always visisble. */
 			if (global.MOBILE_MODE) {
 				if (this.bounds.bottom + this.OFFSET_Y >= on_screen_keyboard.bounds.top) {
 					this.OFFSET_Y = on_screen_keyboard.bounds.top - this.bounds.bottom;
@@ -715,9 +664,7 @@ class SaveImageWindow {
 			this.title_bounds.text = language_manager.SAVE_IMAGE[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.okay_button.text = language_manager.OKAY[global.LANGUAGES[global.LANGUAGE_INDEX]];
 			this.cancel_button.text = language_manager.CANCEL[global.LANGUAGES[global.LANGUAGE_INDEX]];
-			/* This draws the bounds of the interface. */
 			canvas.draw_rect(this.bounds.left + this.OFFSET_X, this.bounds.top + this.OFFSET_Y, this.bounds.right + this.OFFSET_X, this.bounds.bottom + this.OFFSET_Y, this.bounds_paint);
-			/* This draws the title space */
 			this.title_bounds.draw_button_dxdy(canvas, this.OFFSET_X, this.OFFSET_Y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.OFFSET_X, this.title_bounds.get_center_y() + this.OFFSET_Y);
 			if (this.okay_button.contains_xy(global.mouse_x - this.OFFSET_X, global.mouse_y - this.OFFSET_Y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {

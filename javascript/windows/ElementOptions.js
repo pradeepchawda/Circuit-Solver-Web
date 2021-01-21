@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : ElementOptions.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A general class to handle all the options availabe to a single selected
- *                   element.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class ElementOptions {
     constructor() {
         let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
@@ -27,11 +6,8 @@ class ElementOptions {
         if (global.MOBILE_MODE) {
             temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
         }
-        /* The menu bar icons center_x (last box) */
         this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
-        /* The menu bar icons width */
         this.mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
-        /* The menu bar icons height */
         this.mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
         this.option_0 = new RectF(this.mb_x - this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
         this.option_1 = new RectF(this.mb_x - this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
@@ -46,7 +22,6 @@ class ElementOptions {
         this.trash_path1 = new Path();
         this.flip_path0 = new Path();
         this.flip_path1 = new Path();
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -57,7 +32,6 @@ class ElementOptions {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -68,7 +42,6 @@ class ElementOptions {
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.line_paint_alt = new Paint();
         this.line_paint_alt.set_paint_style(this.line_paint_alt.style.STROKE);
         this.line_paint_alt.set_paint_cap(this.line_paint_alt.cap.ROUND);
@@ -79,7 +52,6 @@ class ElementOptions {
         this.line_paint_alt.set_font(global.DEFAULT_FONT);
         this.line_paint_alt.set_alpha(255);
         this.line_paint_alt.set_paint_align(this.line_paint_alt.align.CENTER);
-        /* This paint is used for drawing the "lines" that the component needs to display */
         this.meter_line_paint = new Paint();
         this.meter_line_paint.set_paint_style(this.meter_line_paint.style.STROKE);
         this.meter_line_paint.set_paint_cap(this.meter_line_paint.cap.ROUND);
@@ -90,7 +62,6 @@ class ElementOptions {
         this.meter_line_paint.set_font(global.DEFAULT_FONT);
         this.meter_line_paint.set_alpha(255);
         this.meter_line_paint.set_paint_align(this.meter_line_paint.align.CENTER);
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.line_paint.style.FILL);
         this.text_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -101,7 +72,6 @@ class ElementOptions {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.line_paint.align.RIGHT);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.hover_paint = new Paint();
         this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
         this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -112,7 +82,6 @@ class ElementOptions {
         this.hover_paint.set_font(global.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
         this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.icon_paint = new Paint();
         this.icon_paint.set_paint_style(this.icon_paint.style.FILL);
         this.icon_paint.set_paint_cap(this.icon_paint.cap.ROUND);
@@ -123,7 +92,6 @@ class ElementOptions {
         this.icon_paint.set_font(global.DEFAULT_FONT);
         this.icon_paint.set_alpha(255);
         this.icon_paint.set_paint_align(this.icon_paint.align.CENTER);
-        /* Constants for Options */
         this.ROTATE_ICON = 0;
         this.EDIT_ICON = 1;
         this.FLIP_ICON = 2;
@@ -131,14 +99,12 @@ class ElementOptions {
         this.WIRE_ICON = 4;
         this.EYE_ICON = 5;
         this.NO_ICON = -1;
-        /* Manager for the different configurations. */
         this.opts = {
             c0: this.NO_ICON,
             c1: this.NO_ICON,
             c2: this.NO_ICON,
             c3: this.NO_ICON
         };
-        /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
     }
@@ -156,7 +122,6 @@ class ElementOptions {
         let padding = 0.1;
         let offset_x = rect.get_width() * 0.1;
         let offset_y = rect.get_height() * -0.07;
-        /* Loading the first path of edit  */
         holder_x = edit_x0.split(',');
         holder_y = edit_y0.split(',');
         let points = [];
@@ -181,7 +146,6 @@ class ElementOptions {
         let trash_y0 = '0.4,0.4,0.75,0.75';
         let trash_x1 = '0.28,0.45,0.45,0.55,0.55,0.72,0.72,0.28';
         let trash_y1 = '0.27,0.27,0.21,0.21,0.27,0.27,0.325,0.325';
-        /* Loading the first path of edit  */
         holder_x = trash_x0.split(',');
         holder_y = trash_y0.split(',');
         let points = [];
@@ -198,7 +162,6 @@ class ElementOptions {
             }
         }
         this.trash_path0.close();
-        /* Loading the second path of edit */
         holder_x = trash_x1.split(',');
         holder_y = trash_y1.split(',');
         points = [];
@@ -223,7 +186,6 @@ class ElementOptions {
         let flip_y0 = '0.2,0.7,0.7';
         let flip_x1 = '0.55,0.55,0.85';
         let flip_y1 = '0.2,0.7,0.7';
-        /* Loading the first path of edit  */
         holder_x = flip_x0.split(',');
         holder_y = flip_y0.split(',');
         let points = [];
@@ -240,7 +202,6 @@ class ElementOptions {
             }
         }
         this.flip_path0.close();
-        /* Loading the second path of edit */
         holder_x = flip_x1.split(',');
         holder_y = flip_y1.split(',');
         points = [];
@@ -263,17 +224,13 @@ class ElementOptions {
         if (global.MOBILE_MODE) {
             temp_stroke_width = 0.85 * global.CANVAS_STROKE_WIDTH_3;
         }
-        /* The menu bar icons center_x (last box) */
         this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
-        /* The menu bar icons width */
         this.mb_width = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_width();
-        /* The menu bar icons height */
         this.mb_height = menu_bar.menu_icons[menu_bar.REMOVE_ALL_INDEX].get_height();
         this.option_0.set_bounds(this.mb_x - this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, menu_bar.bounds.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
         this.option_1.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_0.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
         this.option_2.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_1.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
         this.option_3.set_bounds(this.mb_x - this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3, this.mb_x + this.mb_width * 0.5, this.option_2.bottom + global.CANVAS_STROKE_WIDTH_3 + this.mb_height);
-        /* Resize the stroke widths and the text sizes. */
         this.line_paint.set_stroke_width(temp_stroke_width);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
@@ -291,7 +248,6 @@ class ElementOptions {
         this.map_options();
     }
     update() {
-        /* Based on the selected element it'll draw the options available! */
         if (global.selected) {
             switch (global.selected_type) {
                 /* #INSERT_GENERATE_ELEMENT_OPTIONS_UPDATE# */
@@ -525,25 +481,21 @@ class ElementOptions {
             !global.FLAG_MENU_OPEN_DOWN &&
             !global.FLAG_GRAPH) {
             if (global.selected) {
-                /* Block around c0 (so components don't register mouse down)*/
                 if (this.opts['c0'] !== this.NO_ICON) {
                     if (this.option_0.contains_xywh(global.mouse_x, global.mouse_y, this.option_0.get_width() * 1.25, this.option_0.get_height() * 1.25)) {
                         global.component_touched = true;
                     }
                 }
-                /* Block around c1 (so components don't register mouse down)*/
                 if (this.opts['c1'] !== this.NO_ICON) {
                     if (this.option_1.contains_xywh(global.mouse_x, global.mouse_y, this.option_1.get_width() * 1.25, this.option_1.get_height() * 1.25)) {
                         global.component_touched = true;
                     }
                 }
-                /* Block around c2 (so components don't register mouse down)*/
                 if (this.opts['c2'] !== this.NO_ICON) {
                     if (this.option_2.contains_xywh(global.mouse_x, global.mouse_y, this.option_2.get_width() * 1.25, this.option_2.get_height() * 1.25)) {
                         global.component_touched = true;
                     }
                 }
-                /* Block around c3 (so components don't register mouse down)*/
                 if (this.opts['c3'] !== this.NO_ICON) {
                     if (this.option_3.contains_xywh(global.mouse_x, global.mouse_y, this.option_3.get_width() * 1.25, this.option_3.get_height() * 1.25)) {
                         global.component_touched = true;
@@ -589,7 +541,6 @@ class ElementOptions {
             }
         }
     }
-    /* Handy function for handling all the possibile options for every element! */
     handle_options(key) {
         if (this.opts[key] === this.EDIT_ICON) {
             menu_bar.handle_element_options_flag(!global.FLAG_ELEMENT_OPTIONS);
@@ -609,7 +560,6 @@ class ElementOptions {
         else if (this.opts[key] === this.WIRE_ICON && !global.FLAG_SIMULATING) {
             this.handle_wire_option();
         }
-        /* Block out the reset selection portion of the code! */
         global.component_touched = true;
     }
     handle_wire_option() {
@@ -2564,7 +2514,6 @@ class ElementOptions {
         this.map_options();
     }
     /* <!-- END AUTOMATICALLY GENERATED !--> */
-    /* Don't assign an icon to multiple buttons! */
     map_options() {
         switch (this.opts['c0']) {
             case this.EDIT_ICON:

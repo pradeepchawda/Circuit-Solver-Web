@@ -1,24 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : GraphWindow.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to draw all the graphs required by the application.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class GraphWindow {
 	public bounds: RectF;
 	public inner_bounds: RectF;
@@ -28,27 +8,16 @@ class GraphWindow {
 	public readonly SCOPE_0_INDEX: number;
 	public readonly SCOPE_1_INDEX: number;
 	public readonly SCOPE_2_INDEX: number;
-	/* Padding for the graph window. */
 	public PADDING: number;
-	/* This controls the width of the buttons relative to the width of the window */
 	public BUTTON_WIDTH_RATIO: number;
-	/* This controls the height of the buttons relative to the height of the window */
 	public BUTTON_HEIGHT_RATIO: number;
-	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public bounds_paint: Paint;
-	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public fill_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-	/* This paint is used for drawing the icons that the component is comprised of. */
 	public hover_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public graph_text_a_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public graph_text_b_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public graph_text_c_paint: Paint;
 	public x_axis: Array<PointF>;
 	public y_axis: Array<PointF>;
@@ -59,10 +28,8 @@ class GraphWindow {
 	public time_axis_value: string;
 	public time_tag: string;
 	public download_button: Button;
-	/* Enforcing the system from cascading events. */
 	public first_touch_x: number;
 	public first_touch_y: number;
-	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;
 	public trim: number;
 	public width: number;
@@ -83,20 +50,14 @@ class GraphWindow {
 		this.width = 1;
 		this.height = 1;
 		this.trim = 1;
-		/* Padding for the graph window. */
 		this.PADDING = global.CANVAS_STROKE_WIDTH_5;
 		if (global.MOBILE_MODE) {
-			/* This controls the width of the buttons relative to the width of the window */
 			this.BUTTON_WIDTH_RATIO = 0.12;
-			/* This controls the height of the buttons relative to the height of the window */
 			this.BUTTON_HEIGHT_RATIO = 0.08;
 		} else {
-			/* This controls the width of the buttons relative to the width of the window */
 			this.BUTTON_WIDTH_RATIO = 0.085;
-			/* This controls the height of the buttons relative to the height of the window */
 			this.BUTTON_HEIGHT_RATIO = 0.05;
 		}
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -107,7 +68,6 @@ class GraphWindow {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.bounds_paint = new Paint();
 		this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
@@ -118,7 +78,6 @@ class GraphWindow {
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
 		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -129,7 +88,6 @@ class GraphWindow {
 		this.fill_paint.set_font(global.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -144,7 +102,6 @@ class GraphWindow {
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.LEFT);
-		/* This paint is used for drawing the icons that the component is comprised of. */
 		this.hover_paint = new Paint();
 		this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
 		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -155,7 +112,6 @@ class GraphWindow {
 		this.hover_paint.set_font(global.DEFAULT_FONT);
 		this.hover_paint.set_alpha(255);
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.graph_text_a_paint = new Paint();
 		this.graph_text_a_paint.set_paint_style(this.graph_text_a_paint.style.FILL);
 		this.graph_text_a_paint.set_paint_cap(this.graph_text_a_paint.cap.ROUND);
@@ -166,7 +122,6 @@ class GraphWindow {
 		this.graph_text_a_paint.set_font(global.DEFAULT_FONT);
 		this.graph_text_a_paint.set_alpha(255);
 		this.graph_text_a_paint.set_paint_align(this.graph_text_a_paint.align.LEFT);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.graph_text_b_paint = new Paint();
 		this.graph_text_b_paint.set_paint_style(this.graph_text_b_paint.style.FILL);
 		this.graph_text_b_paint.set_paint_cap(this.graph_text_b_paint.cap.ROUND);
@@ -177,7 +132,6 @@ class GraphWindow {
 		this.graph_text_b_paint.set_font(global.DEFAULT_FONT);
 		this.graph_text_b_paint.set_alpha(255);
 		this.graph_text_b_paint.set_paint_align(this.graph_text_b_paint.align.LEFT);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.graph_text_c_paint = new Paint();
 		this.graph_text_c_paint.set_paint_style(this.graph_text_c_paint.style.FILL);
 		this.graph_text_c_paint.set_paint_cap(this.graph_text_c_paint.cap.ROUND);
@@ -213,10 +167,8 @@ class GraphWindow {
 		this.download_button.fill_paint.set_alpha(255);
 		this.download_button.draw_stroke = false;
 		this.download_button.draw_fill = true;
-		/* Enforcing the system from cascading events. */
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
-		/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 		this.line_buffer = [];
 	}
 	load_axis(): void {
@@ -243,14 +195,12 @@ class GraphWindow {
 		}
 	}
 	resize_window(): void {
-		/* Padding for the graph window. */
 		this.PADDING = global.CANVAS_STROKE_WIDTH_5;
 		this.bounds.left = view_port.left;
 		this.bounds.right = view_port.right;
 		this.bounds.top = menu_bar.graph_button.bottom + 2 * global.CANVAS_STROKE_WIDTH_3;
 		this.bounds.bottom = view_port.bottom;
 		this.load_axis();
-		/* Resize the stroke widths and the text sizes. */
 		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
 		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -271,11 +221,9 @@ class GraphWindow {
 		this.graph_text_c_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		this.hover_paint.set_stroke_width(0.6 * global.CANVAS_STROKE_WIDTH_3);
 		this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
-		/* Resize the traces */
 		this.graph_trace_a.resize_trace();
 		this.graph_trace_b.resize_trace();
 		this.graph_trace_c.resize_trace();
-		/* Recalculates the padding with and height of the buttons as well as refactors the attribute rectangles */
 		let padding: number = 0.0125 * this.bounds.get_width();
 		if (global.MOBILE_MODE) {
 			padding = 0.00875 * this.bounds.get_width();
@@ -294,26 +242,20 @@ class GraphWindow {
 			this.graph_trace_c.reset();
 		}
 	}
-	/* reset the trace and remove all the points. */
 	reset(): void {
 		this.graph_trace_a.reset();
 		this.graph_trace_b.reset();
 		this.graph_trace_c.reset();
 	}
-	/* Add a new value to the trace (A) */
 	push_trace_a(value: number, t: number): void {
 		this.graph_trace_a.push(value, t);
 	}
-	/* Add a new value to the trace (B) */
 	push_trace_b(value: number, t: number): void {
 		this.graph_trace_b.push(value, t);
 	}
-	/* Add a new value to the trace (C) */
 	push_trace_c(value: number, t: number): void {
 		this.graph_trace_c.push(value, t);
 	}
-	/* Catch any mouse events within the graph view, this makes the main program look
-  cleaner! */
 	mouse_down(): void {
 		if (global.FLAG_GRAPH) {
 			this.first_touch_x = global.mouse_x;
@@ -377,8 +319,6 @@ class GraphWindow {
 		}
 	}
 	mouse_up(): void {}
-	/* This function converts the users xy coordinates into an index so the graph's
-  information can be displayed for easy visualization. */
 	mouse_hover(): void {
 		if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
 			this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.X_AXIS_LENGTH)) * 0.5);
@@ -390,17 +330,12 @@ class GraphWindow {
 		if (global.FLAG_GRAPH) {
 			if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
 				menu_bar.handle_graph_flag(!global.FLAG_GRAPH);
-				/* Block out the reset selection portion of the code! */
 				global.component_touched = true;
 			}
 		}
 	}
-	/* Draw the Graph Window */
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.FLAG_GRAPH) {
-			/* The graph view is comprised of two views, a main bounds and an inner bounds. */
-			/* First we draw the main bounds and then the inner bounds. Note the types of paint
-      being used to draw each one of these portions. */
 			canvas.draw_rect2(this.bounds, this.fill_paint);
 			canvas.draw_rect2(this.inner_bounds, this.line_paint);
 			let cached_value: number = this.x_axis.length >> 1;
@@ -412,16 +347,13 @@ class GraphWindow {
 				this.line_buffer[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
 			}
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-			/* This handles all the bells and whistles for drawing scope trace number one! */
 			if (scope_manager.ENTRY.length > 0) {
-				/* Display the element that is attached to scope trace number one. */
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_0_INDEX),
 					this.bounds.get_center_x() - 1.25 * global.CANVAS_TEXT_SIZE_BASE * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))),
 					this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 					this.graph_text_a_paint
 				);
-				/* Draw the meter value that corresponds to the location of the mouse. */
 				if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_a.trace.length) {
 					if (this.graph_trace_a.get_value(this.meter_hover_index)[1] !== '') {
 						canvas.draw_text(
@@ -431,7 +363,6 @@ class GraphWindow {
 							this.graph_text_a_paint
 						);
 					} else {
-						/* Draw the empty signal sign! We got nothing! */
 						canvas.draw_text(
 							'0' + scope_manager.get_units(this.SCOPE_0_INDEX),
 							this.inner_bounds.left,
@@ -439,9 +370,6 @@ class GraphWindow {
 							this.graph_text_a_paint
 						);
 					}
-					/* Pick up the time index from the trace, we shall do this 3x, this is out of
-          laziness in figuring out if theres atleast one scope trace to grab this value
-          from (they should all be the same! (after the graphs line up) )*/
 					this.time_axis_value = this.graph_trace_a.get_value(this.meter_hover_index)[0];
 					if (global.MOBILE_MODE) {
 						canvas.draw_line(
@@ -454,7 +382,6 @@ class GraphWindow {
 					}
 				}
 			}
-			/* This handles all the bells and whistles for drawing scope trace number two! */
 			if (scope_manager.ENTRY.length > 1) {
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_1_INDEX),
@@ -462,7 +389,6 @@ class GraphWindow {
 					this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 					this.graph_text_b_paint
 				);
-				/* Draw the meter value that corresponds to the location of the mouse. */
 				if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_b.trace.length) {
 					if (this.graph_trace_b.get_value(this.meter_hover_index)[1] !== '') {
 						canvas.draw_text(
@@ -472,7 +398,6 @@ class GraphWindow {
 							this.graph_text_b_paint
 						);
 					} else {
-						/* Draw the empty signal sign! We got nothing! */
 						canvas.draw_text(
 							'0' + scope_manager.get_units(this.SCOPE_1_INDEX),
 							this.inner_bounds.left + view_port.view_width * 0.1,
@@ -492,7 +417,6 @@ class GraphWindow {
 					}
 				}
 			}
-			/* This handles all the bells and whistles for drawing scope trace number three! */
 			if (scope_manager.ENTRY.length > 2) {
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_2_INDEX),
@@ -500,7 +424,6 @@ class GraphWindow {
 					this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 					this.graph_text_c_paint
 				);
-				/* Draw the meter value that corresponds to the location of the mouse. */
 				if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_c.trace.length) {
 					if (this.graph_trace_c.get_value(this.meter_hover_index)[1] !== '') {
 						canvas.draw_text(
@@ -510,7 +433,6 @@ class GraphWindow {
 							this.graph_text_c_paint
 						);
 					} else {
-						/* Draw the empty signal sign! We got nothing! */
 						canvas.draw_text(
 							'0' + scope_manager.get_units(this.SCOPE_2_INDEX),
 							this.inner_bounds.left + view_port.view_width * 0.2,
@@ -530,8 +452,6 @@ class GraphWindow {
 					}
 				}
 			}
-			/* Draw the time axis value so the user can see if it they scroll over the graph! This
-      is bench-boarding of the meter index (hover) values. */
 			if (scope_manager.ENTRY.length > 0) {
 				if (
 					this.meter_hover_index > -1 &&
@@ -548,10 +468,7 @@ class GraphWindow {
 					);
 				}
 			}
-			/* Let's draw the time stamps for the tick marks! Only one of the scopes has to
-      do it though! */
 			if (this.graph_trace_a.magnitude_list.length > 0) {
-				/* Stepping at a fixed interval through the elements. */
 				for (var i: number = Math.round(this.X_AXIS_LENGTH * 0.1); i < Math.round(this.X_AXIS_LENGTH >> 1); i += Math.round(this.X_AXIS_LENGTH * 0.1)) {
 					if (i < this.graph_trace_a.magnitude_list.length) {
 						this.time_tag = global.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
@@ -594,7 +511,6 @@ class GraphWindow {
 					}
 				}
 			}
-			/* Draw the timestep of the graph at the top right. */
 			canvas.draw_text(
 				global.exponentiate_quickly(global.time_step) + 's/step',
 				this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   '),
@@ -608,7 +524,6 @@ class GraphWindow {
 			} else {
 				this.download_button.draw_button(canvas);
 			}
-			/* Last but not least, draw trace a, b, and c */
 			this.graph_trace_a.draw_trace(canvas, view_port.left, 0);
 			this.graph_trace_b.draw_trace(canvas, view_port.left, 0);
 			this.graph_trace_c.draw_trace(canvas, view_port.left, 0);

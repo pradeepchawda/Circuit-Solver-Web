@@ -1,24 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : MenuBar.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle the various "menu" buttons within the system.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class MenuBar {
     constructor() {
         let temp_stroke_width = 0.65 * global.CANVAS_STROKE_WIDTH_3;
@@ -111,7 +91,6 @@ class MenuBar {
         this.go_paint.set_font(global.DEFAULT_FONT);
         this.go_paint.set_alpha(255);
         this.go_paint.set_paint_align(this.go_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.hover_paint = new Paint();
         this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
         this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -122,7 +101,6 @@ class MenuBar {
         this.hover_paint.set_font(global.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
         this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.undo_paint = new Paint();
         this.undo_paint.set_paint_style(this.undo_paint.style.FILL);
         this.undo_paint.set_paint_cap(this.undo_paint.cap.ROUND);
@@ -133,7 +111,6 @@ class MenuBar {
         this.undo_paint.set_font(global.DEFAULT_FONT);
         this.undo_paint.set_alpha(255);
         this.undo_paint.set_paint_align(this.undo_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.redo_paint = new Paint();
         this.redo_paint.set_paint_style(this.redo_paint.style.FILL);
         this.redo_paint.set_paint_cap(this.redo_paint.cap.ROUND);
@@ -144,7 +121,6 @@ class MenuBar {
         this.redo_paint.set_font(global.DEFAULT_FONT);
         this.redo_paint.set_alpha(255);
         this.redo_paint.set_paint_align(this.redo_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.remove_all_paint = new Paint();
         this.remove_all_paint.set_paint_style(this.remove_all_paint.style.STROKE);
         this.remove_all_paint.set_paint_cap(this.remove_all_paint.cap.ROUND);
@@ -155,7 +131,6 @@ class MenuBar {
         this.remove_all_paint.set_font(global.DEFAULT_FONT);
         this.remove_all_paint.set_alpha(255);
         this.remove_all_paint.set_paint_align(this.remove_all_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.settings_paint = new Paint();
         this.settings_paint.set_paint_style(this.settings_paint.style.FILL);
         this.settings_paint.set_paint_cap(this.settings_paint.cap.ROUND);
@@ -166,7 +141,6 @@ class MenuBar {
         this.settings_paint.set_font(global.DEFAULT_FONT);
         this.settings_paint.set_alpha(255);
         this.settings_paint.set_paint_align(this.settings_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.zoom_paint = new Paint();
         this.zoom_paint.set_paint_style(this.zoom_paint.style.STROKE);
         this.zoom_paint.set_paint_cap(this.zoom_paint.cap.ROUND);
@@ -177,7 +151,6 @@ class MenuBar {
         this.zoom_paint.set_font(global.DEFAULT_FONT);
         this.zoom_paint.set_alpha(255);
         this.zoom_paint.set_paint_align(this.zoom_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.save_circuit_paint = new Paint();
         this.save_circuit_paint.set_paint_style(this.save_circuit_paint.style.FILL);
         this.save_circuit_paint.set_paint_cap(this.save_circuit_paint.cap.ROUND);
@@ -188,7 +161,6 @@ class MenuBar {
         this.save_circuit_paint.set_font(global.DEFAULT_FONT);
         this.save_circuit_paint.set_alpha(255);
         this.save_circuit_paint.set_paint_align(this.save_circuit_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.save_image_fill_paint = new Paint();
         this.save_image_fill_paint.set_paint_style(this.save_image_fill_paint.style.FILL);
         this.save_image_fill_paint.set_paint_cap(this.save_image_fill_paint.cap.ROUND);
@@ -199,7 +171,6 @@ class MenuBar {
         this.save_image_fill_paint.set_font(global.DEFAULT_FONT);
         this.save_image_fill_paint.set_alpha(255);
         this.save_image_fill_paint.set_paint_align(this.save_image_fill_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -225,7 +196,6 @@ class MenuBar {
         this.BASE_WIDTH = this.bounds.get_width() / this.MAX_ICONS;
         this.load_icons();
         this.element_window = new ElementWindow(this.bounds.left, this.bounds.bottom + (global.CANVAS_STROKE_WIDTH_4 >> 1), this.bounds.right, this.bounds.bottom + this.bounds.get_height() - (global.CANVAS_STROKE_WIDTH_4 >> 1));
-        /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
         this.line_buffer = [];
@@ -267,7 +237,6 @@ class MenuBar {
         let save_image_y0 = '0.2,0.2,0.1,0.1,0.2,0.2,0.9,0.9';
         let settings_x0 = '1.0, 1.0, 1.0, 1.0, 1.0, 0.9934920867284139, 0.9632813855876824, 0.9310958772401093, 0.898900308926026, 0.8667176144670256, 0.8517436108474309, 0.8382149592895681, 0.852235971018672, 0.8721059667877853, 0.8923988069412493, 0.9112128218015035, 0.9002679932164028, 0.8788748190563638, 0.8563378008839209, 0.8331869729639342, 0.8089273832932425, 0.7810980184003711, 0.7527282693557087, 0.727096592864541, 0.701456029523797, 0.6758199640474913, 0.6467022655609375, 0.6162105080438778, 0.6108267524881134, 0.6064186423318461, 0.6012345408380497, 0.5937985905911773, 0.5663190266840985, 0.5337711869505029, 0.5012173140854657, 0.46866813184624334, 0.4361164718241781, 0.40715407851773006, 0.40081444452698634, 0.3959175788479203, 0.3910203182499726, 0.386123283887476, 0.35585521440953016, 0.32642722098974747, 0.30049026290165176, 0.2745656373873618, 0.24863463744016676, 0.22082339397942027, 0.19361996404040838, 0.16975125656608725, 0.14631342107895762, 0.12354099329240853, 0.10205076998681761, 0.09197266896565755, 0.10988783514282356, 0.12993418603825072, 0.1499534062265108, 0.16103872576301606, 0.1475472861978536, 0.13495604110842882, 0.10275829363066198, 0.07055229887636234, 0.03835386749854782, 0.0074986897719403105, 0.0, 0.0, 0.0, 0.0, 0.0, 0.016952471807599068, 0.04913716988919248, 0.08131658617639914, 0.11350765017323283, 0.1408239520387724, 0.15269691601861268, 0.1599932238459587, 0.1406248129302791, 0.12060636364428014, 0.10013750711611162, 0.08903226256370544, 0.10783015106183787, 0.1297984685127934, 0.15260558414350575, 0.17608138039455903, 0.2011607689006875, 0.23105494181315103, 0.25708113824441625, 0.2828043325137859, 0.3085288387737819, 0.33529861717640114, 0.365136893466115, 0.386726199532859, 0.3908368767006323, 0.39549243450164795, 0.40117931509545696, 0.4144287146627903, 0.44644416899802764, 0.4789958411392945, 0.5115472525923224, 0.5440984076434461, 0.576630413842698, 0.596207310829944, 0.6011046421448706, 0.6060029944255803, 0.6108990910123092, 0.6256667744989196, 0.6558733033016323, 0.6837695463885515, 0.7097701312290715, 0.7357704596027806, 0.7617648447276224, 0.7915054404487213, 0.8159337330434937, 0.8394739046052564, 0.8625641933467705, 0.8848724365525413, 0.9054115638136864, 0.9019729116310676, 0.8822763332476219, 0.8621486475070318, 0.8423171602965643, 0.8444087134751802, 0.8568457301783686, 0.878334287847737, 0.9105133883688122, 0.9426849815110169, 0.9748611594650166, 0.9991691062847773';
         let settings_y0 = '0.5709618897914576, 0.5384153122919836, 0.505859321172006, 0.47330752913903024, 0.44075241134820925, 0.4098098377386729, 0.4001963887646222, 0.39532506858228683, 0.39045222581042555, 0.3855813315139282, 0.3594257568086808, 0.32982840641246486, 0.30315260713299114, 0.27735758231331903, 0.2519112429048012, 0.22559292117754617, 0.19664088318434855, 0.17212102544726804, 0.14863401075126603, 0.1257516536473607, 0.10405931403511204, 0.08790412529682119, 0.10231456093901059, 0.12237413384514184, 0.1424406616770284, 0.16250366944109373, 0.15123617431769767, 0.1398463575169444, 0.10871785341684397, 0.07646272975640993, 0.0443234287473994, 0.012686355505138636, 0.0, 0.0, 0.0, 0.0, 0.0, 0.010665021293486157, 0.04241579310837551, 0.07459519614223827, 0.10677719435732295, 0.1389577058823003, 0.15039474008760104, 0.16261712573926465, 0.1429344696014899, 0.1232611722253975, 0.10358303751369628, 0.08792247762903571, 0.10369449544426364, 0.1258378947871582, 0.1484229591054221, 0.17168211953442855, 0.19612483001158884, 0.22552327315012613, 0.25249076838372275, 0.27814571852407727, 0.30380926993287477, 0.33054587709678646, 0.36015567707363516, 0.38847301579274546, 0.3932235031255307, 0.3979752072696077, 0.4027257955056787, 0.4111492237231384, 0.4416649484304423, 0.4742220070049446, 0.5067689640616578, 0.539315819585075, 0.5718693101628863, 0.596879451846083, 0.6017560322951473, 0.606600245499673, 0.6114462121228522, 0.6220048268636068, 0.6523036956787109, 0.680874248345693, 0.7070447500639906, 0.7327125683271637, 0.7580138354872664, 0.7867269814014435, 0.8131095828333249, 0.8371201998864611, 0.8603387709202556, 0.8829021371639101, 0.9036122691662362, 0.9090234376490116, 0.8895078538612134, 0.8695630583045283, 0.8496172454797488, 0.8405519075070819, 0.8535505086183548, 0.8716506260291984, 0.9039441804246354, 0.9361639817555746, 0.9682022082464149, 0.9968005046248436, 1.0, 1.0, 1.0, 1.0, 0.9996621928488215, 0.9771555288317965, 0.944973065905136, 0.9127838937747583, 0.8806095447762535, 0.8566725435278689, 0.8445742954111969, 0.845060760013439, 0.8646527499989013, 0.8842445467312032, 0.9038318650999221, 0.9092636940379938, 0.8878549191867933, 0.8653789299617832, 0.842431723799867, 0.8187305747608965, 0.7934918651978174, 0.7633038681621352, 0.7373872098202506, 0.71179752672712, 0.6859915849636309, 0.6578633202395091, 0.6277970628968129, 0.6101277854203827, 0.6052042071985788, 0.600281777646766, 0.5953586465936951, 0.5774648025011023';
-        /* Loading the first path of save circuit */
         holder_x = save_x1.split(',');
         holder_y = save_y1.split(',');
         let points = [];
@@ -284,7 +253,6 @@ class MenuBar {
             }
         }
         this.save_ckt_path1.close();
-        /* Loading the second path of save circuit */
         holder_x = save_x2.split(',');
         holder_y = save_y2.split(',');
         points = [];
@@ -301,7 +269,6 @@ class MenuBar {
             }
         }
         this.save_ckt_path2.close();
-        /* Loading the go path */
         holder_x = go_x.split(',');
         holder_y = go_y.split(',');
         points = [];
@@ -318,7 +285,6 @@ class MenuBar {
             }
         }
         this.go_path.close();
-        /* Loading the undo path */
         holder_x = undo_x.split(',');
         holder_y = undo_y.split(',');
         points = [];
@@ -335,7 +301,6 @@ class MenuBar {
             }
         }
         this.undo_path.close();
-        /* Loading the redo path */
         holder_x = redo_x.split(',');
         holder_y = redo_y.split(',');
         points = [];
@@ -352,7 +317,6 @@ class MenuBar {
             }
         }
         this.redo_path.close();
-        /* Loading the first path of save image */
         holder_x = save_image_x0.split(',');
         holder_y = save_image_y0.split(',');
         points = [];
@@ -369,7 +333,6 @@ class MenuBar {
             }
         }
         this.save_img_path.close();
-        /* Loading the first path of settings */
         holder_x = settings_x0.split(',');
         holder_y = settings_y0.split(',');
         points = [];
@@ -396,7 +359,6 @@ class MenuBar {
         this.bounds.set_bounds(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.HEIGHT_RATIO);
         this.BASE_WIDTH = this.bounds.get_width() / this.MAX_ICONS;
         this.load_icons();
-        /* Resize the stroke widths and the text sizes. */
         this.line_paint.set_stroke_width(temp_stroke_width);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
@@ -446,7 +408,6 @@ class MenuBar {
     mouse_down() {
         if (!global.focused) {
             this.element_window.mouse_down();
-            /* Block the click from propagating to the components if it's contained in the menu bar bounds */
             if (global.FLAG_MENU_OPEN) {
                 if (this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
                     global.component_touched = true;
@@ -486,13 +447,11 @@ class MenuBar {
                         !global.FLAG_ELEMENT_OPTIONS) {
                         if (global.FLAG_MENU_OPEN) {
                             this.handle_menu_open_flag(!global.FLAG_MENU_OPEN);
-                            /* Block out the reset selection portion of the code! */
                             global.component_touched = true;
                         }
                         else {
                             if (this.contains(this.menu_icons[this.UP_DOWN_INDEX], false)) {
                                 this.handle_menu_open_flag(!global.FLAG_MENU_OPEN);
-                                /* Block out the reset selection portion of the code! */
                                 global.component_touched = true;
                             }
                         }
@@ -516,13 +475,11 @@ class MenuBar {
                         if (global.FLAG_MENU_OPEN) {
                             if (this.contains(this.menu_icons[this.ADD_INDEX], true)) {
                                 this.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
-                                /* Block out the reset selection portion of the code! */
                                 global.component_touched = true;
                             }
                             else {
                                 if (global.FLAG_MENU_OPEN_DOWN && !global.SIGNAL_ADD_ELEMENT && !this.element_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                                     this.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
-                                    /* Block out the reset selection portion of the code! */
                                     global.component_touched = true;
                                 }
                             }
@@ -544,7 +501,6 @@ class MenuBar {
                             !global.FLAG_REMOVE_ALL &&
                             !global.FLAG_MENU_OPEN_DOWN) {
                             this.handle_graph_flag(!global.FLAG_GRAPH);
-                            /* Block out the reset selection portion of the code! */
                             global.component_touched = true;
                         }
                     }
@@ -562,7 +518,6 @@ class MenuBar {
                                 !global.FLAG_MENU_OPEN_DOWN &&
                                 !graph_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                                 this.handle_graph_flag(!global.FLAG_GRAPH);
-                                /* Block out the reset selection portion of the code! */
                                 global.component_touched = true;
                             }
                         }
@@ -584,7 +539,6 @@ class MenuBar {
                                 !global.FLAG_MENU_OPEN &&
                                 !global.FLAG_ZOOM) {
                                 this.handle_zoom_flag(!global.FLAG_ZOOM);
-                                /* Block out the reset selection portion of the code! */
                                 global.component_touched = true;
                             }
                         }
@@ -605,7 +559,6 @@ class MenuBar {
                             !global.FLAG_MENU_OPEN_DOWN &&
                             this.menu_icons[this.REMOVE_ALL_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
                             this.handle_remove_all_flag(!global.FLAG_REMOVE_ALL);
-                            /* Block out the reset selection portion of the code! */
                             global.component_touched = true;
                         }
                     }
@@ -623,7 +576,6 @@ class MenuBar {
                         !global.FLAG_SELECT_SETTINGS &&
                         !global.FLAG_REMOVE_ALL) {
                         this.handle_select_settings_flag(!global.FLAG_SELECT_SETTINGS);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                 }
@@ -642,7 +594,6 @@ class MenuBar {
                         global.FLAG_MENU_OPEN &&
                         !global.FLAG_MENU_OPEN_DOWN) {
                         this.handle_save_circuit_flag(!global.FLAG_SAVE_CIRCUIT);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                 }
@@ -661,7 +612,6 @@ class MenuBar {
                         global.FLAG_MENU_OPEN &&
                         !global.FLAG_MENU_OPEN_DOWN) {
                         this.handle_save_image_flag(!global.FLAG_SAVE_IMAGE);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                 }
@@ -681,7 +631,6 @@ class MenuBar {
                         global.FLAG_MENU_OPEN &&
                         !global.FLAG_MENU_OPEN_DOWN) {
                         this.handle_undo_flag();
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                 }
@@ -701,7 +650,6 @@ class MenuBar {
                         global.FLAG_MENU_OPEN &&
                         !global.FLAG_MENU_OPEN_DOWN) {
                         this.handle_redo_flag();
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                 }
@@ -719,7 +667,6 @@ class MenuBar {
                         global.FLAG_MENU_OPEN &&
                         !global.FLAG_MENU_OPEN_DOWN) {
                         this.handle_simulation_flag(!global.FLAG_SIMULATING);
-                        /* Block out the reset selection portion of the code! */
                         global.component_touched = true;
                     }
                 }
@@ -743,13 +690,11 @@ class MenuBar {
                         if (global.FLAG_MENU_OPEN) {
                             if (this.contains(this.menu_icons[this.ADD_INDEX], true)) {
                                 this.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
-                                /* Block out the reset selection portion of the code! */
                                 global.component_touched = true;
                             }
                             else {
                                 if (global.FLAG_MENU_OPEN_DOWN && !global.SIGNAL_ADD_ELEMENT) {
                                     this.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
-                                    /* Block out the reset selection portion of the code! */
                                     global.component_touched = true;
                                 }
                             }
@@ -897,7 +842,6 @@ class MenuBar {
                     if (global.FLAG_MENU_OPEN_DOWN && !global.SIGNAL_ADD_ELEMENT) {
                         if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
                             this.handle_menu_open_down_flag(!global.FLAG_MENU_OPEN_DOWN);
-                            /* Block out the reset selection portion of the code! */
                             global.component_touched = true;
                         }
                     }
@@ -1056,13 +1000,11 @@ class MenuBar {
             if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                 canvas.draw_text('X', this.menu_icons[this.REMOVE_ALL_INDEX].left, this.menu_icons[this.REMOVE_ALL_INDEX].top, this.text_paint);
             }
-            /* Drawing Save Circuit Path */
             canvas.draw_path(this.save_ckt_path1, this.save_circuit_paint);
             canvas.draw_path(this.save_ckt_path2, this.save_circuit_paint);
             if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
                 canvas.draw_text('S', this.menu_icons[this.SAVE_INDEX].left, this.menu_icons[this.SAVE_INDEX].top, this.text_paint);
             }
-            /* Drawing Save Image Path */
             canvas.draw_path(this.save_img_path, this.save_image_fill_paint);
             canvas.draw_circle(this.menu_icons[this.SAVE_IMG_INDEX].get_center_x(), this.menu_icons[this.SAVE_IMG_INDEX].get_center_y(), this.menu_icons[this.SAVE_IMG_INDEX].get_width() >> 3, this.fill_paint_alt);
             if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
@@ -1103,7 +1045,6 @@ class MenuBar {
         else {
             let indexer = 0;
             this.line_buffer = [];
-            /* Drawing the background for the magnifying glass */
             canvas.draw_circle3(this.menu_icons[this.REMOVE_ALL_INDEX], 1.15, this.fill_paint);
             if (this.menu_icons[this.REMOVE_ALL_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
                 !global.FLAG_MENU_OPEN_DOWN &&
@@ -1122,7 +1063,6 @@ class MenuBar {
                 !global.MOBILE_MODE) {
                 canvas.draw_circle3(this.menu_icons[this.REMOVE_ALL_INDEX], 1.15, this.hover_paint);
             }
-            /* Drawing the background for the up down icon */
             canvas.draw_circle3(this.menu_icons[this.UP_DOWN_INDEX], 1.15, this.fill_paint);
             if (this.menu_icons[this.UP_DOWN_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
                 !global.FLAG_ZOOM &&
@@ -1137,9 +1077,7 @@ class MenuBar {
                 !global.MOBILE_MODE) {
                 canvas.draw_circle3(this.menu_icons[this.UP_DOWN_INDEX], 1.15, this.hover_paint);
             }
-            /* Drawing the up down icon */
             canvas.draw_arrow(this.menu_icons[this.UP_DOWN_INDEX].get_center_x(), this.menu_icons[this.UP_DOWN_INDEX].get_center_y(), this.menu_icons[this.UP_DOWN_INDEX].get_width() * 0.3, false, this.up_down_paint);
-            /* Drawing the magnifying icon (Zoom) */
             let pad_w = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() * 0.075;
             let pad_h = this.menu_icons[this.REMOVE_ALL_INDEX].get_height() * 0.075;
             let width_rshift_3 = this.menu_icons[this.REMOVE_ALL_INDEX].get_width() >> 3;

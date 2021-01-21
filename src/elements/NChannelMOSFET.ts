@@ -1,31 +1,7 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : NChannelMOSFET.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle the NMOSFET element. It will automatically generate
- *                   the stamps necessary to simulate and it will also draw the component and
- *                   handle its movement / node dependencies.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class NChannelMOSFET {
 	public INITIALIZED: boolean;
-	/* Create a new rectangle for the bounds of this component */
 	public bounds: RectF;
-	/* Inititalize the element2 class that will hold the basic data about our component */
 	public elm: Element3;
 	public p1: PointF;
 	public p2: PointF;
@@ -39,69 +15,47 @@ class NChannelMOSFET {
 	public nmos_6: PointF;
 	public nmos_7: PointF;
 	public nmos_8: PointF;
-	/* Calculating the "true" center of an equilateral triangle, not the centroid. */
 	public equilateral_center: Array<number>;
-	/* The center (x-coord) of the bounds */
 	public c_x: number;
-	/* The center (y-coord) of the bounds */
 	public c_y: number;
-	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
-	/* The spacing of the nodes in the y-direction, divided by 2 */
 	public y_space: number;
-	/* Some points we'll be extending the leads of the resistor to. */
 	public connect1_x: number;
 	public connect1_y: number;
 	public connect2_x: number;
 	public connect2_y: number;
-	/* Angle from p1 to p2 minus 90 degrees */
 	public theta_m90: number;
-	/* Angle from p1 to p2 */
 	public theta: number;
-	/* Angle from center to p2 */
 	public phi: number;
 	public grid_point: Array<number>;
-	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-	/* This paint is used for drawing the "nodes" that the component is connected to. */
 	public point_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-	/* Flag to denote when the component is actually moving. */
 	public is_translating: boolean;
 	public wire_reference: Array<WIRE_REFERENCE_T>;
-	/* This is to keep track of the simulation id's */
 	public simulation_id: number;
 	public GAMMA: number;
 	public KAPPA: number;
 	public GMIN: number;
 	public GMIN_START: number;
-	/* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-or overlapped)*/
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
-	/* Ideal low poss filter to extract the dc value...*/
 	public y_hat: number;
 	public y_out: number;
 	public _alpha: number;
 	public f_cutoff: number;
 	public MULTI_SELECTED: boolean;
-	/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	public BUILD_ELEMENT: boolean;
 	public ANGLE: number;
 	constructor(type: number, id: number, n1: number, n2: number, n3: number) {
 		this.INITIALIZED = false;
-		/* Create a new rectangle for the bounds of this component */
 		this.bounds = new RectF(0, 0, 0, 0);
-		/* Inititalize the element2 class that will hold the basic data about our component */
 		this.elm = new Element3(id, type, global.copy(global.PROPERTY_NMOS));
-		/* Initialize the initial nodes that the component will be occupying */
 		this.elm.set_nodes(n1, n2, n3);
 		if (this.elm.consistent()) {
-			/* Re-locate the bounds of the component to the center of the two points. */
 			this.equilateral_center = global.equilateral_triangle_center(
 				nodes[this.elm.n1].location.x,
 				nodes[this.elm.n2].location.x,
@@ -112,21 +66,16 @@ or overlapped)*/
 			);
 			this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
 		}
-		/* Set the rotation of this component to 0. */
 		this.elm.set_rotation(global.ROTATION_0);
-		/* Set the flip of the component to 0, resistors should not be flippable. */
 		this.elm.set_flip(global.FLIP_0);
-		/* Re-map those bad boys! */
 		this.release_nodes();
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
-		/* Add this components references to the nodes it's attached to currently. */
 		this.capture_nodes();
 		this.p1 = new PointF(0, 0);
 		this.p2 = new PointF(0, 0);
 		this.p3 = new PointF(0, 0);
 		if (this.elm.consistent()) {
-			/* Create some points to hold the node locations, this will be used for drawing components */
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 			this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
@@ -140,37 +89,25 @@ or overlapped)*/
 		this.nmos_6 = new PointF(0, 0);
 		this.nmos_7 = new PointF(0, 0);
 		this.nmos_8 = new PointF(0, 0);
-		/* Calculating the "true" center of an equilateral triangle, not the centroid. */
 		this.equilateral_center = [];
-		/* The center (x-coord) of the bounds */
 		this.c_x = this.bounds.get_center_x();
-		/* The center (y-coord) of the bounds */
 		this.c_y = this.bounds.get_center_y();
-		/* The spacing of the nodes in the x-direction, divided by 2 */
 		this.x_space = global.node_space_x >> 1;
-		/* The spacing of the nodes in the y-direction, divided by 2 */
 		this.y_space = global.node_space_y >> 1;
-		/* Some points we'll be extending the leads of the resistor to. */
 		this.connect1_x = 0;
 		this.connect1_y = 0;
 		this.connect2_x = 0;
 		this.connect2_y = 0;
 		if (this.elm.flip === global.FLIP_180) {
-			/* Angle from p1 to p2 minus 90 degrees */
 			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
 		} else if (this.elm.flip === global.FLIP_0) {
-			/* Angle from p1 to p2 minus 90 degrees */
 			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
 		} else {
-			/* Angle from p1 to p2 minus 90 degrees */
 			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
 		}
-		/* Angle from p1 to p2 */
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-		/* Angle from center to p2 */
 		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.grid_point = [];
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -181,7 +118,6 @@ or overlapped)*/
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing the "nodes" that the component is connected to. */
 		this.point_paint = new Paint();
 		this.point_paint.set_paint_style(this.point_paint.style.FILL);
 		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -192,7 +128,6 @@ or overlapped)*/
 		this.point_paint.set_font(global.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
 		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -203,29 +138,23 @@ or overlapped)*/
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-		/* Flag to denote when the component is actually moving. */
 		this.is_translating = false;
 		this.build_element();
 		this.wire_reference = [];
-		/* This is to keep track of the simulation id's */
 		this.simulation_id = 0;
 		this.GAMMA = 0.12;
 		this.KAPPA = 0.414;
 		this.GMIN = 1e-9;
 		this.GMIN_START = 12;
-		/* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-  or overlapped)*/
 		this.indexer = 0;
 		this.m_x = 0;
 		this.m_y = 0;
-		/* Ideal low poss filter to extract the dc value...*/
 		this.y_hat = 0;
 		this.y_out = 0;
 		this._alpha = 0;
 		this.f_cutoff = 250;
 		this.INITIALIZED = true;
 		this.MULTI_SELECTED = false;
-		/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 		this.line_buffer = [];
 		this.circle_buffer = [];
 		this.BUILD_ELEMENT = true;
@@ -242,11 +171,9 @@ or overlapped)*/
 			this.p1 = new PointF(0, 0);
 			this.p2 = new PointF(0, 0);
 			this.p3 = new PointF(0, 0);
-			/* Create some points to hold the node locations, this will be used for drawing components */
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 			this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
-			/* Re-locate the bounds of the component to the center of the two points. */
 			this.equilateral_center = global.equilateral_triangle_center(
 				nodes[this.elm.n1].location.x,
 				nodes[this.elm.n2].location.x,
@@ -291,7 +218,6 @@ or overlapped)*/
 	get_nmosfet_error() {
 		return Math.abs(this.elm.properties['Vgs'] - this.elm.properties['Last Vgs']);
 	}
-	/* General function to handle any processing required by the component */
 	update(): void {
 		if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY) {
 			if (this.elm.consistent()) {
@@ -299,7 +225,6 @@ or overlapped)*/
 				this.elm.properties['Last Io'] = this.elm.properties['Io'];
 				this.elm.properties['Vgs'] = global.log_damping(engine_functions.get_voltage(this.elm.n3, this.elm.n2), this.elm.properties['Vgs'], this.GAMMA, this.KAPPA);
 				this.elm.properties['Vds'] = global.log_damping(engine_functions.get_voltage(this.elm.n1, this.elm.n2), this.elm.properties['Vds'], this.GAMMA, this.KAPPA);
-				/* Handle PN Junciton GMIN iteration. */
 				this.gmin_step(this.GMIN_START, this.get_nmosfet_error());
 				let kn = 0.5 * this.elm.properties['W/L Ratio'] * this.elm.properties["K'n"];
 				if (this.elm.properties['Vgs'] <= this.elm.properties['VTN']) {
@@ -333,7 +258,6 @@ or overlapped)*/
 			this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.ITERATOR / global.settings.ITL4)));
 		}
 	}
-	/* Vertex handling (for rotation) */
 	get_vertices(): Array<number> {
 		let vertices: Array<number> = [];
 		let p1: Array<number> = [];
@@ -430,7 +354,6 @@ or overlapped)*/
 			this.wire_reference = [];
 		}
 	}
-	/* Handle capture and release from nodes themselves... (references) */
 	release_nodes(): void {
 		if (this.elm.consistent()) {
 			nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
@@ -439,7 +362,6 @@ or overlapped)*/
 			this.elm.set_nodes(-1, -1, -1);
 		}
 	}
-	/* Push the components references to the Nodes */
 	capture_nodes(): void {
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
@@ -449,7 +371,6 @@ or overlapped)*/
 			nodes[this.elm.n3].add_reference(this.elm.id, this.elm.type);
 		}
 	}
-	/* Handling a mouse down event. */
 	mouse_down(): void {
 		if (
 			global.FLAG_IDLE &&
@@ -489,7 +410,6 @@ or overlapped)*/
 			}
 		}
 	}
-	/* This is to help build wires! */
 	handle_wire_builder(n: number, anchor: number): void {
 		if (global.WIRE_BUILDER['step'] === 0) {
 			global.WIRE_BUILDER['n1'] = n;
@@ -529,13 +449,10 @@ or overlapped)*/
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-	/* Handling a mouse move event. */
 	mouse_move(): void {
 		if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
-			/* Move the bounds of the element. Re-locates the center of the bounds. */
 			if (global.focused) {
 				if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-					/* Prevent the screen from moving, we are only handling one wire point at a time. */
 					global.is_dragging = false;
 					if (!this.is_translating) {
 						if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
@@ -568,7 +485,6 @@ or overlapped)*/
 			}
 		}
 	}
-	/* Handling a mouse up event. */
 	mouse_up(): void {
 		if (global.FLAG_IDLE) {
 			if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
@@ -737,7 +653,6 @@ or overlapped)*/
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-	/* Sets the rotation of the component */
 	set_rotation(rotation: number): void {
 		this.BUILD_ELEMENT = true;
 		wire_manager.reset_wire_builder();
@@ -749,13 +664,11 @@ or overlapped)*/
 		this.capture_nodes();
 		this.anchor_wires();
 	}
-	/* Push the changes of this object to the element observer */
 	push_history(): void {
 		if (this.INITIALIZED) {
 			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
 		}
 	}
-	/* Generate the SVG for the component. */
 	build_element(): void {
 		if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
 			let cache_0: number = 1.5 * this.x_space;
@@ -770,7 +683,6 @@ or overlapped)*/
 			let cache_9: number = 0.7 * this.y_space;
 			let cache_10: number = this.x_space;
 			let cache_11: number = this.y_space;
-			/* Top segment */
 			this.nmos_0.x = this.p1.x + cache_10 * global.cosine(this.theta);
 			this.nmos_0.y = this.p1.y + cache_11 * global.sine(this.theta);
 			this.nmos_1.x = this.nmos_0.x + 2 * cache_10 * global.cosine(this.theta_m90);
@@ -785,7 +697,6 @@ or overlapped)*/
 			this.nmos_5.y = this.p1.y + cache_3 * global.sine(this.theta) + cache_3 * global.sine(this.theta_m90);
 			this.nmos_6.x = this.p3.x - cache_6 * global.cosine(this.theta_m90);
 			this.nmos_6.y = this.p3.y - cache_7 * global.sine(this.theta_m90);
-			/* Arrow */
 			this.nmos_7.x = this.nmos_3.x + cache_8 * global.cosine(this.theta_m90 + global.PI_DIV_6);
 			this.nmos_7.y = this.nmos_3.y + cache_9 * global.sine(this.theta_m90 + global.PI_DIV_6);
 			this.nmos_8.x = this.nmos_3.x + cache_8 * global.cosine(this.theta_m90 - global.PI_DIV_6);
@@ -793,12 +704,10 @@ or overlapped)*/
 			this.BUILD_ELEMENT = false;
 		}
 	}
-	/* General function to help with resizing, i.e., canvas dimension change, zooming*/
 	resize(): void {
 		if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
 			if (this.bounds.anchored) {
 				if (this.elm.consistent()) {
-					/* Set the bounds of the element */
 					this.equilateral_center = global.equilateral_triangle_center(
 						nodes[this.elm.n1].location.x,
 						nodes[this.elm.n2].location.x,
@@ -815,7 +724,6 @@ or overlapped)*/
 			} else {
 				this.refactor();
 			}
-			/* Resize the stroke widths and the text sizes. */
 			this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
 			this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
 			this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
@@ -824,10 +732,7 @@ or overlapped)*/
 			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
 		}
 	}
-	/* This is used to update the SVG */
 	refactor(): void {
-		/* Movement of the bounds is handled in mouse move */
-		/* Re-factor the vector graphics */
 		let vertices: Array<number> = this.get_vertices();
 		this.p1.x = vertices[0];
 		this.p1.y = vertices[1];
@@ -840,18 +745,13 @@ or overlapped)*/
 		this.c_x = this.bounds.get_center_x();
 		this.c_y = this.bounds.get_center_y();
 		if (this.elm.flip === global.FLIP_180) {
-			/* Angle from p1 to p2 minus 90 degrees */
 			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
 		} else if (this.elm.flip === global.FLIP_0) {
-			/* Angle from p1 to p2 minus 90 degrees */
 			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
 		} else {
-			/* Angle from p1 to p2 minus 90 degrees */
 			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
 		}
-		/* Angle from p1 to p2 */
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-		/* Angle from center to p2 */
 		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.build_element();
 	}
@@ -895,13 +795,10 @@ or overlapped)*/
 	is_selected_element(): boolean {
 		return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
 	}
-	/* Draws the component */
 	draw_component(canvas: GraphicsEngine): void {
 		this.wire_reference_maintenance();
 		this.recolor();
 		this.resize();
-		/* Help multi-select determine the maximum bounds... */
-		/* Each element has a finite bounds, let's help determine a box that bounds the entire grouping of selected elements. */
 		if (this.MULTI_SELECTED) {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
@@ -1003,7 +900,6 @@ or overlapped)*/
 			}
 		}
 	}
-	/* Handles future proofing of elements! */
 	patch(): void {
 		if (!global.not_null(this.GMIN)) {
 			this.GMIN = 1e-9;
@@ -1024,7 +920,6 @@ or overlapped)*/
 			this.KAPPA = 0.414;
 		}
 		if (!global.not_null(this.line_buffer)) {
-			/* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
 			this.line_buffer = [];
 		}
 		if (!global.not_null(this.circle_buffer)) {
@@ -1052,7 +947,6 @@ or overlapped)*/
 				}
 			}
 		}
-
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

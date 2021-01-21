@@ -1,39 +1,13 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : OnScreenKeyboard.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to key inputs for mobile platforms.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class OnScreenKeyboard {
 	public KEYBOARD_MAX_KEYS: number;
 	public bounds: RectF;
 	public HEIGHT_RATIO: number;
-	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public bounds_paint: Paint;
-	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public fill_paint: Paint;
-	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public fill_paint_alt: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-	/* Flags to help us determine what keys are being pressed. */
 	public FLAG_CAPS_LOCK: boolean;
 	public FLAG_SHIFT: boolean;
 	public FLAG_ENTER: boolean;
@@ -76,7 +50,6 @@ class OnScreenKeyboard {
 		this.bounds.right = view_port.right;
 		this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
 		this.bounds.bottom = view_port.bottom;
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -87,7 +60,6 @@ class OnScreenKeyboard {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.bounds_paint = new Paint();
 		this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
 		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
@@ -98,7 +70,6 @@ class OnScreenKeyboard {
 		this.bounds_paint.set_font(global.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
 		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -109,7 +80,6 @@ class OnScreenKeyboard {
 		this.fill_paint.set_font(global.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.fill_paint_alt = new Paint();
 		this.fill_paint_alt.set_paint_style(this.fill_paint_alt.style.FILL);
 		this.fill_paint_alt.set_paint_cap(this.fill_paint_alt.cap.ROUND);
@@ -120,7 +90,6 @@ class OnScreenKeyboard {
 		this.fill_paint_alt.set_font(global.DEFAULT_FONT);
 		this.fill_paint_alt.set_alpha(255);
 		this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -131,7 +100,6 @@ class OnScreenKeyboard {
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-		/* Flags to help us determine what keys are being pressed. */
 		this.FLAG_CAPS_LOCK = false;
 		this.FLAG_SHIFT = false;
 		this.FLAG_ENTER = false;
@@ -198,7 +166,6 @@ class OnScreenKeyboard {
 		this.line_buffer = [];
 		this.load_keyboard();
 	}
-	/* Load the structure of the on screen keyboard. */
 	load_keyboard(): void {
 		this.KEYBOARD_KEYS.splice(0, this.KEYBOARD_KEYS.length);
 		this.KEYBOARD_MAPPING.splice(0, this.KEYBOARD_MAPPING.length);
@@ -339,7 +306,6 @@ class OnScreenKeyboard {
 		this.KEYBOARD_SPECIAL_REF.push(this.ALT_2_REF);
 		this.KEYBOARD_SPECIAL_REF.push(this.EXIT_REF);
 		this.KEYBOARD_SPECIAL_REF.push(this.TAB_REF);
-		/* Cache the filter results for each index. */
 		for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
 			this.ENGINEERING_KEYBOARD_MODE = true;
 			if (this.filter_keys(this.KEYBOARD_MAPPING[i])) {
@@ -355,16 +321,13 @@ class OnScreenKeyboard {
 			}
 		}
 	}
-	/* Resize the on-screen keyboard */
 	resize_keyboard(): void {
 		if (global.MOBILE_MODE) {
-			/* Padding for the graph window. */
 			this.bounds.left = view_port.left;
 			this.bounds.right = view_port.right;
 			this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
 			this.bounds.bottom = view_port.bottom;
 			this.load_keyboard();
-			/* Resize the stroke widths and the text sizes. */
 			this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
 			this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
 			this.text_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -421,7 +384,6 @@ class OnScreenKeyboard {
 							this.FLAG_CAPS_LOCK = !this.FLAG_CAPS_LOCK;
 							break;
 						} else if (this.KEYBOARD_MAPPING[i] === 'ENTER') {
-							/* ENTER */
 							this.FLAG_ENTER = !this.FLAG_ENTER;
 							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_ENTER;
 							global.KEY_DOWN_EVENT = true;
@@ -435,7 +397,6 @@ class OnScreenKeyboard {
 							});
 							break;
 						} else if (this.KEYBOARD_MAPPING[i] === '<<') {
-							/* BACK SPACE */
 							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_BACKSPACE;
 							global.KEY_DOWN_EVENT = true;
 							global.KEY_UP_EVENT = true;
@@ -484,7 +445,6 @@ class OnScreenKeyboard {
 			return this.FILE_NAME_KEYBOARD_FILTER_INDEX[index];
 		}
 	}
-	/* Draw the on screen keyboard */
 	draw_keyboard(canvas: GraphicsEngine): void {
 		if (global.MOBILE_MODE && (global.FLAG_SAVE_CIRCUIT || global.FLAG_SAVE_IMAGE || global.FLAG_SELECT_TIMESTEP || global.FLAG_ELEMENT_OPTIONS_EDIT)) {
 			if (global.FLAG_ELEMENT_OPTIONS_EDIT === true || global.FLAG_SELECT_TIMESTEP === true) {

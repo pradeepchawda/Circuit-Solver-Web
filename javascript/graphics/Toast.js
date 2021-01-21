@@ -1,28 +1,6 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Toast.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A generalized class to display updates and feedback to the user. Refernce
- *                   from "Toast" in android development.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class Toast {
     constructor() {
-        /* This is used to place the height at which the toast will display its bounds. */
         if (global.MOBILE_MODE) {
             this.HEIGHT_RATIO = 0.85;
             this.HEIGHT_FACTOR = 0.7;
@@ -31,7 +9,6 @@ class Toast {
             this.HEIGHT_RATIO = 0.9;
             this.HEIGHT_FACTOR = 0.5;
         }
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -42,7 +19,6 @@ class Toast {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing the fill of the component. */
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -53,7 +29,6 @@ class Toast {
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -69,17 +44,11 @@ class Toast {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-        /* The text to be displayed. */
         this.text = '';
-        /* The timer for how long we should display the text. */
         this.timer = 0;
-        /* The maximum amount of seconds to show the text. */
         this.MAX_SECONDS = 2;
-        /* The maximum amount of time to show the text. */
         this.MAX_TIME = FPS;
-        /* A flag that dictates when this component can draw to the screen. */
         this.draw_text = false;
-        /* This is to draw a surrounding box around the text. */
         this.bounds = new RectF(0, 0, 0, 0);
         this.TOAST_REQUEST_DRAW = false;
         this.last_text = '-';
@@ -109,7 +78,6 @@ class Toast {
         this.draw_text = true;
     }
     resize_toast() {
-        /* Resize the stroke widths and the text sizes. */
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);

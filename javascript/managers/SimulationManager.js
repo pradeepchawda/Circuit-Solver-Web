@@ -1,52 +1,19 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : SimulationManager.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class coordinates the circuit simulation (setup and termination as
- *                   well as active solving).
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class SimulationManager {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     constructor() {
-        /* The amount of unique nodes in the system. Each one will have a voltage associated with it
-    after we solve the modified nodal analysis matrix. */
         this.NODE_SIZE = 0;
-        /* Essentially keeps track of the independent / dependent sources in the system. */
         this.OFFSET = 0;
-        /* A flag to force initialization before simulation begins. */
         this.INITIALIZED = false;
-        /* A parameter to detail the maximum time we can achieve in the simulation. */
-        /* This is kept here because it should be a constant (not a setting!) */
         this.SIMULATION_MAX_TIME = 1e18;
-        /* Helper flags for solving a non-linear system of equations. */
-        /* Checks to see if each element is satisfied w/ the simulation results. */
         this.CONTINUE_SOLVING = true;
-        /* Counts how many times we solve the circuit for a single time-step */
         this.ITERATOR = 0;
-        /* Make sure we have a solution before the rest of the components grab data from matrix_x */
         this.SOLUTIONS_READY = false;
         this.SIMULATION_STEP = 0;
         this.FIRST_MATRIX_BUILD = true;
         this.FIRST_ERROR_CHECK = true;
         this.FIRST_X_MATRIX_COPY = true;
         this.FIST_X_MATRIX_SOLUTION = false;
-        /* Array Containing all time varying sources and their key parameters. This array will be
-    used to determine the best time-step for the system. */
         this.TIME_DATA = [];
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -94,14 +61,9 @@ class SimulationManager {
         this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    /* Prepare the system for another simulation! (Called once, like an init) */
     reset_simulation() {
-        /* Reset the initialized flag, we haven't setup the environment yet. */
         this.INITIALIZED = false;
-        /* Start the simulation back at time 0 */
         global.simulation_time = 0;
-        /* Reset the flag to true for first instance. (So we can compute when we get into that phase).
-    Also set the iterator back to zero! */
         this.CONTINUE_SOLVING = true;
         this.SOLUTIONS_READY = false;
         this.ITERATOR = 0;
@@ -114,34 +76,24 @@ class SimulationManager {
     }
     setup() {
         this.patch();
-        /* Reset the singular matrix flag. */
         global.is_singular = false;
         this.FIRST_MATRIX_BUILD = true;
-        /* Reset the system and get it ready for simulation! */
         this.reset_simulation();
-        /* Determine the optimal time-step. */
         if (global.SYSTEM_OPTIONS['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
             global.time_step = this.determine_optimal_timestep();
             bottom_menu.resize_bottom_menu();
         }
         else {
-            /* Remove all time data */
             this.TIME_DATA.splice(0, this.TIME_DATA.length);
         }
         this.reset_elements();
-        /* Reset the components that are non-linear or have memory */
         this.reset_memory_devices();
         this.reset_reactive_elements();
         this.reset_non_linear_elements();
-        /* Clear all values stored in the meters. */
         this.reset_meter_values();
-        /* Do some house-keeping to reduce the node size (eliminate superfluous nodes) */
         node_manager.generate_unique_nodes_list();
-        /* Assign simulation id's to the nodes that are unique. */
         node_manager.assign_node_simulation_ids();
-        /* Assign the elements their simulation id's */
         engine_functions.assign_element_simulation_ids();
-        /* Start constructing the matrix sizes based on the elements sizes. */
         this.NODE_SIZE = node_manager.active_nodes.length;
         /* #INSERT_GENERATE_SIMULATION_MATRIX_SIZE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -234,16 +186,13 @@ class SimulationManager {
         this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
         this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        /* Let's display that we are simulating to the user! */
         toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
         toast.show();
         this.SOLUTIONS_READY = false;
         global.SIGNAL_BUILD_ELEMENT = true;
-        /* Set the flag to indicate that we have prepared the system. */
         this.INITIALIZED = true;
     }
     determine_optimal_timestep() {
-        /* Remove all time data */
         this.TIME_DATA.splice(0, this.TIME_DATA.length);
         /* #INSERT_GENERATE_PUSH_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -533,7 +482,6 @@ class SimulationManager {
         }
         parallel_resistance = 1.0 / parallel_resistance;
         if (!parallel_series_updated) {
-            /* Impedance of free-space. */
             parallel_resistance = 376.73;
             series_resistance = 376.73;
         }
@@ -601,7 +549,6 @@ class SimulationManager {
         this.SIMULATION_STEP = 0;
         this.SOLUTIONS_READY = false;
         global.is_singular = false;
-        /* Let's display that we are not simulating to the user! */
         toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.LANGUAGE_INDEX]]);
         toast.show();
     }
@@ -907,7 +854,6 @@ class SimulationManager {
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    /* Clear the immediate value used for i,v,r calculation */
     clear_meter_values() {
         /* #INSERT_GENERATE_RESET_METER# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -933,15 +879,12 @@ class SimulationManager {
             this.clear_meter_values();
         }
     }
-    /* Check to see if the LED's should be on! */
     led_check() {
         for (var i = 0; i < leds.length; i++) {
             leds[i].turn_on_check();
         }
     }
-    /* Alternate convergence algorithm */
     convergence_check() {
-        /* Run the other convergence algorithm */
         if (this.NODE_SIZE > 0 && matrix_x.length === matrix_x_copy.length) {
             if (this.FIRST_ERROR_CHECK) {
                 global.v_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
@@ -992,7 +935,6 @@ class SimulationManager {
                     }
                 }
             }
-            /* In case there are no currents */
             if (matrix_x.length - this.NODE_SIZE <= 0) {
                 global.i_conv = true;
             }
@@ -1050,14 +992,12 @@ class SimulationManager {
     simulate() {
         if (global.FLAG_SIMULATING && this.INITIALIZED) {
             if (this.SIMULATION_STEP === 0) {
-                /* Try to simulate at least two matrices per frame. */
                 this.solve();
                 if (this.CONTINUE_SOLVING && !global.MOBILE_MODE) {
                     this.solve();
                 }
             }
             else {
-                /* Update capacitors and inductors */
                 this.update_reactive_elements();
                 if (!this.CONTINUE_SOLVING || this.ITERATOR >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
                     if (this.ITERATOR >= global.settings.ITL4) {
@@ -1105,11 +1045,8 @@ class SimulationManager {
                     }
                 }
             }
-            /* Sprinkle some resistance in the diagonal to avoid a singular matrix. */
             matrix_a = linear_algebra.set_matrix_diagonal(matrix_a, global.settings.INV_R_MAX, this.NODE_SIZE);
-            /* Stamp all the elements into the matrix! */
             engine_functions.stamp_elements();
-            /* Copy the x-matrix! */
             if (this.FIRST_X_MATRIX_COPY) {
                 if (!this.FIST_X_MATRIX_SOLUTION) {
                     matrix_x_copy = linear_algebra.matrix(this.NODE_SIZE + this.OFFSET, 1);
@@ -1124,11 +1061,9 @@ class SimulationManager {
                     matrix_x_copy[i][0] = matrix_x[i][0];
                 }
             }
-            /* Solve the matrix! */
             matrix_x = linear_algebra.lup_solve(matrix_a, matrix_z);
             for (var i = 0; i < matrix_x.length; i++) {
                 if (isNaN(matrix_x[i][0])) {
-                    /* Terminate the simulation */
                     this.CONTINUE_SOLVING = false;
                     this.ITERATOR = global.settings.ITL4;
                     matrix_x[i][0] = 0;
@@ -1137,21 +1072,14 @@ class SimulationManager {
             if (!this.FIST_X_MATRIX_SOLUTION) {
                 this.FIST_X_MATRIX_SOLUTION = true;
             }
-            /* Check for a singular matrix */
             if (global.is_singular) {
-                /* Make sure that the singular matrix is flag is the only one shown. */
                 this.ITERATOR = 0;
-                /* Terminate the simulation */
                 this.CONTINUE_SOLVING = false;
-                /* Fall out of the solving loop, any answer is useless at this point. */
                 this.SIMULATION_STEP++;
             }
             this.SOLUTIONS_READY = true;
-            /* Check non-linear elements */
             this.non_linear_update();
-            /* Run the alternative convergence algorithm */
             this.convergence_check();
-            /* Increment the iterator */
             this.ITERATOR++;
             if (!this.CONTINUE_SOLVING) {
                 this.SIMULATION_STEP++;
@@ -1161,7 +1089,6 @@ class SimulationManager {
             this.SIMULATION_STEP++;
         }
     }
-    /* Handles furture proofing of system settings. */
     patch() {
         global.settings.patch();
     }

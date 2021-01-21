@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Global.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class will handle all the drawing for the entire application. It
- *                   is a general drawing wrapper for the HTML Canvas in "2d" mode.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class GraphicsEngine {
     constructor(ctx) {
         this.ctx = ctx;
@@ -64,14 +43,12 @@ class GraphicsEngine {
         this.end_degree_radians = 0;
         this.start_degree_radians = 0;
     }
-    /* Set the context of the engine */
     set_context(ctx) {
         this.ctx = ctx;
     }
     get_context() {
         return this.ctx;
     }
-    /* The canavs's context isn't saved on resize! */
     on_resize() {
         this.last_alpha = -1;
         this.last_fill_color = '';
@@ -84,7 +61,6 @@ class GraphicsEngine {
         this.last_text_align = '';
         this.last_line_cap = '';
     }
-    /* Applies the paint's properties to the context */
     apply_paint(paint, is_text) {
         this.ctx.beginPath();
         if (this.last_fill_color !== paint.color && paint.style.FILL === paint.paint_style) {
@@ -131,14 +107,12 @@ class GraphicsEngine {
             }
         }
     }
-    /* Draw a line */
     draw_line(x1, y1, x2, y2, paint) {
         this.apply_paint(paint, false);
         this.ctx.moveTo((global.ZERO_PT_FIVE + x1) >> global.ZERO, (global.ZERO_PT_FIVE + y1) >> global.ZERO);
         this.ctx.lineTo((global.ZERO_PT_FIVE + x2) >> global.ZERO, (global.ZERO_PT_FIVE + y2) >> global.ZERO);
         this.ctx.stroke();
     }
-    /* Draw a line */
     draw_line_buffer(coords, paint) {
         this.apply_paint(paint, false);
         for (var i = coords.length - 1; i > -1; i--) {
@@ -148,7 +122,6 @@ class GraphicsEngine {
         }
         this.ctx.stroke();
     }
-    /* Draw a Rect */
     draw_rect(left, top, right, bottom, paint) {
         this.width = (global.ZERO_PT_FIVE + (right - left)) >> global.ZERO;
         this.height = (global.ZERO_PT_FIVE + (bottom - top)) >> global.ZERO;
@@ -171,7 +144,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a Rect */
     draw_rect2(rect, paint) {
         this.width = (global.ZERO_PT_FIVE + rect.get_width()) >> global.ZERO;
         this.height = (global.ZERO_PT_FIVE + rect.get_height()) >> global.ZERO;
@@ -194,7 +166,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a Rect */
     draw_rect3(x, y, w, h, paint) {
         this.width = (global.ZERO_PT_FIVE + w) >> global.ZERO;
         this.height = (global.ZERO_PT_FIVE + h) >> global.ZERO;
@@ -217,7 +188,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draws a triangle */
     draw_arrow(c_x, c_y, radius, is_up, paint) {
         this.general_path.reset();
         this.c_xp = (global.ZERO_PT_FIVE + c_x) >> global.ZERO;
@@ -239,7 +209,6 @@ class GraphicsEngine {
         }
         this.draw_path(this.general_path, paint);
     }
-    /* Draw a circle */
     draw_circle(x, y, radius, paint) {
         this.x = (global.ZERO_PT_FIVE + x) >> global.ZERO;
         this.y = (global.ZERO_PT_FIVE + y) >> global.ZERO;
@@ -261,7 +230,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a circle */
     draw_circle2(rect, paint) {
         this.width = (global.ZERO_PT_FIVE + (rect.get_width() >> 1)) >> global.ZERO;
         this.x = (global.ZERO_PT_FIVE + rect.get_center_x()) >> global.ZERO;
@@ -284,7 +252,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a circle */
     draw_circle3(rect, strech_factor, paint) {
         this.width = (global.ZERO_PT_FIVE + ((rect.get_width() * strech_factor) >> 1)) >> global.ZERO;
         this.x = (global.ZERO_PT_FIVE + rect.get_center_x()) >> global.ZERO;
@@ -307,7 +274,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a circle */
     draw_circle_buffer(buffer, paint) {
         this.apply_paint(paint, false);
         for (var i = buffer.length - 1; i > -1; i--) {
@@ -333,28 +299,24 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a color */
     draw_color(_surface, color, alpha) {
         this.fill_paint.set_color(color);
         this.fill_paint.set_alpha(alpha);
         this.apply_paint(this.fill_paint, false);
         this.ctx.fillRect(0, 0, (global.ZERO_PT_FIVE + _surface.width) >> global.ZERO, (global.ZERO_PT_FIVE + _surface.height) >> global.ZERO);
     }
-    /* Draw a color */
     draw_color2(color, alpha, x, y, w, h) {
         this.fill_paint.set_color(color);
         this.fill_paint.set_alpha(alpha);
         this.apply_paint(this.fill_paint, false);
         this.ctx.fillRect((global.ZERO_PT_FIVE + x) >> global.ZERO, (global.ZERO_PT_FIVE + y) >> global.ZERO, (global.ZERO_PT_FIVE + w) >> global.ZERO, (global.ZERO_PT_FIVE + h) >> global.ZERO);
     }
-    /* Draw text */
     draw_text(txt, x, y, paint) {
         this.x = (global.ZERO_PT_FIVE + x) >> global.ZERO;
         this.y = (global.ZERO_PT_FIVE + y) >> global.ZERO;
         this.apply_paint(paint, true);
         this.ctx.fillText(txt, this.x, this.y);
     }
-    /* Draw arc */
     draw_arc(rect, start_degree, end_degree, paint) {
         this.radius = (global.ZERO_PT_FIVE + Math.max(rect.get_width() >> 1, rect.get_height() >> 1)) >> global.ZERO;
         this.x = (global.ZERO_PT_FIVE + rect.get_center_x()) >> global.ZERO;
@@ -379,7 +341,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw arc */
     draw_arc2(x1, y1, x2, y2, amplitude, paint) {
         this.x = (x1 + x2) >> 1;
         this.y = (y1 + y2) >> 1;
@@ -391,7 +352,6 @@ class GraphicsEngine {
         this.general_path.curve_to(this.temp_x, this.temp_y, (this.x + amplitude * global.cosine(this.degree)) >> global.ZERO, (this.y + amplitude * global.sine(this.degree)) >> global.ZERO, (global.ZERO_PT_FIVE + x2) >> global.ZERO, (global.ZERO_PT_FIVE + y2) >> global.ZERO);
         this.draw_path(this.general_path, paint);
     }
-    /* Draw arc */
     draw_arc3(c_x, c_y, radius, start_degree, end_degree, paint) {
         this.radius = (global.ZERO_PT_FIVE + radius) >> global.ZERO;
         this.x = (global.ZERO_PT_FIVE + c_x) >> global.ZERO;
@@ -416,7 +376,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a path */
     draw_path(path, paint) {
         this.apply_paint(paint, false);
         for (var i = 0; i < path.path_2d.length; i++) {
@@ -451,7 +410,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Draw a path */
     draw_path2(path, x_offset, y_offset, paint) {
         this.apply_paint(paint, false);
         this.ctx.translate(x_offset, y_offset);
@@ -488,7 +446,6 @@ class GraphicsEngine {
                 break;
         }
     }
-    /* Rotate the canvas */
     rotate(x, y, angle) {
         this.r_theta = ((global.ZERO_PT_FIVE + angle) >> global.ZERO) * global.PI_DIV_180;
         this.transform_var_1 = global.sine(this.r_theta);
@@ -498,15 +455,12 @@ class GraphicsEngine {
         this.ctx.transform(this.transform_var_2, this.transform_var_1, -this.transform_var_1, this.transform_var_2, this.r_x, this.r_y);
         this.ctx.translate(-this.r_x, -this.r_y);
     }
-    /* Restore the canvas settings. Don't use reset transform because of microsoft edge. */
     restore() {
         this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
-    /* Clear the screen */
     clear(_surface) {
         this.ctx.clearRect(0, 0, _surface.width >> global.ZERO, _surface.height >> global.ZERO);
     }
-    /* Clear the screen */
     clear_xywh(x, y, w, h) {
         this.ctx.clearRect((x - this.padding) >> global.ZERO, (y - this.padding) >> global.ZERO, ((w + this.padding) << 1) >> global.ZERO, ((h + this.padding) << 1) >> global.ZERO);
     }

@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : SineWave.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle drawing sine waves and editing their properties on
- *                   the fly.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class SineWave {
     constructor(x1, y1, x2, y2, amplitude) {
         this.STYLE_0 = 0;
@@ -63,7 +42,6 @@ class SineWave {
         this.sine_wave_paint.set_color(color);
     }
     resize(style) {
-        /* Resize the stroke widths and the text sizes. */
         if (style === this.STYLE_0) {
             this.sine_wave_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2_ZOOM);
             this.sine_wave_paint.set_text_size(global.CANVAS_TEXT_SIZE_4_ZOOM);

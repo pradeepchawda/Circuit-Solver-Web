@@ -1,31 +1,10 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : MultiSelectManager.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This class handles the multi-select capabilities of the system.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class MultiSelectManager {
     constructor() {
         this.OFFSCREEN_X = -500e3;
         this.OFFSCREEN_Y = -500e3;
         this.MULTI_SELECT_BOUNDS = new RectF(this.OFFSCREEN_X, this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
         this.MULTI_SELECT = false;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -36,7 +15,6 @@ class MultiSelectManager {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing the "fill" that the component is comprised of. */
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -63,13 +41,10 @@ class MultiSelectManager {
         this.CTRL_PRESSED = false;
         this.MULTI_SELECTED_ELEMENT = false;
         this.MOUSE_DOWN = false;
-        /* The initalization values are important! */
         this.SELECTED_COMPONENTS_BOUNDS = new RectF(-this.OFFSCREEN_X, -this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
-        /* A flag to map the multi-select to a shortcut or to enable it always. */
         this.ENABLE_KEYS = true;
         this.DRAW_BOUNDS = new RectF(0, 0, 0, 0);
     }
-    /* Reset the enveloping bounds. */
     reset_enveloping_bounds() {
         global.multi_selected = false;
         this.SELECTED_COMPONENTS_BOUNDS.left = -this.OFFSCREEN_X;
@@ -681,29 +656,23 @@ class MultiSelectManager {
         }
     }
     handle_multi_move() {
-        /* This logic works... i'll have to block the actual mouse movements for the rest of the elements... */
-        /* Add undo / redo capabilities. */
         let dx = (this.DELTA_DX - this.DELTA_LAST_DX) * global.node_space_x;
         let dy = (this.DELTA_DY - this.DELTA_LAST_DY) * global.node_space_y;
-        /* Block the selected components if the bounding rect is too close to the top. */
         if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y)) {
             if (dy < 0) {
                 dy = 0;
             }
         }
-        /* Block the selected components if the bounding rect is too close to the bottom. */
         if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y)) {
             if (dy > 0) {
                 dy = 0;
             }
         }
-        /* Block the selected components if the bounding rect is too close to the left. */
         if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x)) {
             if (dx < 0) {
                 dx = 0;
             }
         }
-        /* Block the selected components if the bounding rect is too close to the right. */
         if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x)) {
             if (dx > 0) {
                 dx = 0;
@@ -1204,7 +1173,6 @@ class MultiSelectManager {
             }
         }
     }
-    /* Called by all elements in update... */
     determine_enveloping_bounds(bounds) {
         if (!global.FLAG_SAVE_IMAGE &&
             !global.FLAG_SAVE_CIRCUIT &&

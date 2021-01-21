@@ -1,30 +1,8 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : LanguageManager.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to store all the language translations for circuit solver. It
- *                   serves as general purpose storage. Only "this.VARIABLES" are to be stored here!
- *                   This file is shielded from any obfuscatiion if you follow this rule.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
+
 class LanguageManager {
-	/* Do not create any functions in this class. */
 	public WATERMARK: string;
-	/* Padding for the text bounds! */
+
 	public TEXT_PADDING: string;
 	public CONNECTION_NOT_ALLOWED: LANGUAGE_T;
 	public STRETCH_WINDOW: LANGUAGE_T;
@@ -136,9 +114,8 @@ class LanguageManager {
 	public TAG_TRAN: string;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	constructor() {
-		/* Do not create any functions in this class. */
 		this.WATERMARK = 'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
-		/* Padding for the text bounds! */
+
 		this.TEXT_PADDING = '    ';
 		this.CONNECTION_NOT_ALLOWED = {
 			English: 'Connection not allowed',

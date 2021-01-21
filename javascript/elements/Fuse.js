@@ -1,75 +1,36 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Fuse.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle the fuse element. It will automatically generate
- *                   the stamps necessary to simulate and it will also draw the component and
- *                   handle its movement / node dependencies.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class Fuse {
     constructor(type, id, n1, n2) {
         this.INITIALIZED = false;
-        /* Create a new rectangle for the bounds of this component */
         this.bounds = new RectF(0, 0, 0, 0);
-        /* Inititalize the element2 class that will hold the basic data about our component */
         this.elm = new Element2(id, type, global.copy(global.PROPERTY_FUSE));
-        /* Initialize the initial nodes that the component will be occupying */
         this.elm.set_nodes(n1, n2);
         if (this.elm.consistent()) {
-            /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
-        /* Set the rotation of this component to 0. */
         this.elm.set_rotation(global.ROTATION_0);
-        /* Set the flip of the component to 0, resistors should not be flippable. */
         this.elm.set_flip(global.FLIP_0);
-        /* Re-map those bad boys! */
         this.release_nodes();
         let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
-        /* Add this components references to the nodes it's attached to currently. */
         this.capture_nodes();
         this.p1 = new PointF(0, 0);
         this.p2 = new PointF(0, 0);
         if (this.elm.consistent()) {
-            /* Create some points to hold the node locations, this will be used for drawing components */
             this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
         }
-        /* Angle from p1 to p2 minus 90 degrees */
         this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-        /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-        /* The center (x-coord) of the bounds */
         this.c_x = this.bounds.get_center_x();
-        /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y();
-        /* The spacing of the nodes in the x-direction, divided by 2 */
         this.x_space = global.node_space_x >> 1;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
         this.y_space = global.node_space_y >> 1;
-        /* Some points we'll be extending the leads of the resistor to. */
         this.connect1_x = 0;
         this.connect1_y = 0;
         this.connect2_x = 0;
         this.connect2_y = 0;
         this.grid_point = [];
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -80,7 +41,6 @@ class Fuse {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
         this.point_paint = new Paint();
         this.point_paint.set_paint_style(this.point_paint.style.FILL);
         this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -91,7 +51,6 @@ class Fuse {
         this.point_paint.set_font(global.DEFAULT_FONT);
         this.point_paint.set_alpha(255);
         this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -102,20 +61,15 @@ class Fuse {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-        /* Flag to denote when the component is actually moving. */
         this.is_translating = false;
         this.build_element();
         this.wire_reference = [];
-        /* This is to keep track of the simulation id's */
         this.simulation_id = 0;
-        /* Used to limit the amount of travel for the bounds (so the graphics don't get clipped
-  or overlapped)*/
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;
         this.INITIALIZED = true;
         this.MULTI_SELECTED = false;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
         this.line_buffer = [];
         this.circle_buffer = [];
         this.BUILD_ELEMENT = true;
@@ -125,10 +79,8 @@ class Fuse {
         if (this.elm.consistent()) {
             this.p1 = new PointF(0, 0);
             this.p2 = new PointF(0, 0);
-            /* Create some points to hold the node locations, this will be used for drawing components */
             this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
-            /* Re-locate the bounds of the component to the center of the two points. */
             this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.node_space_x * 2, global.node_space_y * 2);
         }
     }
@@ -142,7 +94,6 @@ class Fuse {
             }
         }
     }
-    /* Vertex handling (for rotation) */
     get_vertices() {
         let vertices = [];
         let p1 = [];
@@ -187,7 +138,6 @@ class Fuse {
             this.wire_reference = [];
         }
     }
-    /* Handle capture and release from nodes themselves... (references) */
     release_nodes() {
         if (this.elm.consistent()) {
             nodes[this.elm.n1].remove_reference(this.elm.id, this.elm.type);
@@ -195,7 +145,6 @@ class Fuse {
             this.elm.set_nodes(-1, -1);
         }
     }
-    /* Push the components references to the Nodes */
     capture_nodes() {
         let vertices = this.get_vertices();
         this.elm.map_node2(vertices[0], vertices[1], vertices[2], vertices[3]);
@@ -204,7 +153,6 @@ class Fuse {
             nodes[this.elm.n2].add_reference(this.elm.id, this.elm.type);
         }
     }
-    /* Handling a mouse down event. */
     mouse_down() {
         if (global.FLAG_IDLE &&
             !global.FLAG_SAVE_IMAGE &&
@@ -241,7 +189,6 @@ class Fuse {
             }
         }
     }
-    /* This is to help build wires! */
     handle_wire_builder(n, anchor) {
         if (global.WIRE_BUILDER['step'] === 0) {
             global.WIRE_BUILDER['n1'] = n;
@@ -284,13 +231,10 @@ class Fuse {
         this.capture_nodes();
         this.anchor_wires();
     }
-    /* Handling a mouse move event. */
     mouse_move() {
         if (global.FLAG_IDLE && !global.FLAG_SIMULATING) {
-            /* Move the bounds of the element. Re-locates the center of the bounds. */
             if (global.focused) {
                 if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-                    /* Prevent the screen from moving, we are only handling one wire point at a time. */
                     global.is_dragging = false;
                     if (!this.is_translating) {
                         if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
@@ -326,7 +270,6 @@ class Fuse {
             }
         }
     }
-    /* Handling a mouse up event. */
     mouse_up() {
         if (global.FLAG_IDLE) {
             if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
@@ -488,7 +431,6 @@ class Fuse {
         this.capture_nodes();
         this.anchor_wires();
     }
-    /* Sets the rotation of the component */
     set_rotation(rotation) {
         this.BUILD_ELEMENT = true;
         wire_manager.reset_wire_builder();
@@ -500,13 +442,11 @@ class Fuse {
         this.capture_nodes();
         this.anchor_wires();
     }
-    /* Push the changes of this object to the element observer */
     push_history() {
         if (this.INITIALIZED) {
             global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
         }
     }
-    /* Generate the SVG for the component. */
     build_element() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             this.connect1_x = this.c_x - this.x_space * global.cosine(this.theta);
@@ -516,12 +456,10 @@ class Fuse {
             this.BUILD_ELEMENT = false;
         }
     }
-    /* General function to help with resizing, i.e., canvas dimension change, zooming*/
     resize() {
         if (this.BUILD_ELEMENT || global.SIGNAL_BUILD_ELEMENT) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
-                    /* Set the bounds of the element */
                     this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.node_space_x * 2, global.node_space_y * 2);
                     this.refactor();
                 }
@@ -531,7 +469,6 @@ class Fuse {
             else {
                 this.refactor();
             }
-            /* Resize the stroke widths and the text sizes. */
             this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
             this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
             this.point_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1_ZOOM);
@@ -540,10 +477,7 @@ class Fuse {
             this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_3_ZOOM);
         }
     }
-    /* This is used to update the SVG */
     refactor() {
-        /* Movement of the bounds is handled in mouse move */
-        /* Re-factor the vector graphics */
         let vertices = this.get_vertices();
         this.p1.x = vertices[0];
         this.p1.y = vertices[1];
@@ -560,7 +494,6 @@ class Fuse {
     reset_fuse() {
         this.elm.properties['Broken'] = false;
     }
-    /* General function to handle any processing required by the component */
     update() {
         if (global.FLAG_SIMULATING && simulation_manager.SOLUTIONS_READY && simulation_manager.SIMULATION_STEP !== 0) {
             if (this.elm.consistent()) {
@@ -613,13 +546,10 @@ class Fuse {
     is_selected_element() {
         return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
     }
-    /* Draws the component */
     draw_component(canvas) {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
-        /* Help multi-select determine the maximum bounds... */
-        /* Each element has a finite bounds, let's help determine a box that bounds the entire grouping of selected elements. */
         if (this.MULTI_SELECTED) {
             multi_select_manager.determine_enveloping_bounds(this.bounds);
         }
@@ -698,10 +628,8 @@ class Fuse {
             }
         }
     }
-    /* Handles future proofing of elements! */
     patch() {
         if (!global.not_null(this.line_buffer)) {
-            /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
             this.line_buffer = [];
         }
         if (!global.not_null(this.circle_buffer)) {

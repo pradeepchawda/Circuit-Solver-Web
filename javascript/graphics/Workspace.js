@@ -1,39 +1,12 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Workspace.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle all the zoom and translations of the main applications
- *                   canvas.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class Workspace {
     constructor(left, top, right, bottom, scale) {
-        /* Flag to make sure that the bounds are resized before we draw it to the screen. */
         this.FIRST_RESIZE_FLAG = false;
-        /* Flag to control when we draw things to the screen. */
         this.DRAW_TO_SCREEN = false;
-        /* A rectangle that outlines the html canvas */
         this.view = new RectF(left, top, right, bottom);
-        /* The workspace that we will be using. Initial sizing */
         this.bounds = new RectF(view_port.center_x - view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y - view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale, view_port.center_x + view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y + view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale);
-        /* Compute the node space (x and y) based on how many nodes we are to generate. */
         global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
         global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-        /* The paint for the view's outline! */
         this.view_paint = new Paint();
         this.view_paint.set_paint_style(this.view_paint.style.STROKE);
         this.view_paint.set_paint_cap(this.view_paint.cap.ROUND);
@@ -44,7 +17,6 @@ class Workspace {
         this.view_paint.set_font(global.DEFAULT_FONT);
         this.view_paint.set_alpha(255);
         this.view_paint.set_paint_align(this.view_paint.align.CENTER);
-        /* The paint for the bounds line! */
         this.bounds_paint = new Paint();
         this.bounds_paint.set_paint_style(this.bounds_paint.style.STROKE);
         this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
@@ -55,7 +27,6 @@ class Workspace {
         this.bounds_paint.set_font(global.DEFAULT_FONT);
         this.bounds_paint.set_alpha(160);
         this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
-        /* Paint for the grid of the workspace. */
         this.grid_paint = new Paint();
         this.grid_paint.set_paint_style(this.grid_paint.style.STROKE);
         this.grid_paint.set_paint_cap(this.grid_paint.cap.ROUND);
@@ -66,7 +37,6 @@ class Workspace {
         this.grid_paint.set_font(global.DEFAULT_FONT);
         this.grid_paint.set_alpha(60);
         this.grid_paint.set_paint_align(this.grid_paint.align.CENTER);
-        /* Paint for the workarea of the workspace. */
         this.work_area_paint = new Paint();
         this.work_area_paint.set_paint_style(this.work_area_paint.style.FILL);
         this.work_area_paint.set_paint_cap(this.work_area_paint.cap.ROUND);
@@ -80,11 +50,9 @@ class Workspace {
         this.sqrt = -1;
         this.sqrt_m_1 = -1;
         this.DRAW_GRID = false;
-        /* Quickly drawing the lines for the workspace without wasting time on over-head calls.  */
         this.line_buffer = [];
         this.GRID_MOVED = true;
     }
-    /* Resize the workspace. This is called whenever the screen size changes. */
     workspace_resize() {
         this.GRID_MOVED = true;
         this.view_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -104,28 +72,22 @@ class Workspace {
         if (global.settings.WORKSPACE_PERFECT_SQUARE) {
             this.bounds.set_center2(this.bounds.get_center_x(), this.bounds.get_center_y(), global.natural_width * global.workspace_zoom_scale, global.natural_height * global.workspace_zoom_scale);
         }
-        /* Once we change bounds, we must compute the new node spaces (x and y) */
         global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
         global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-        /* Report that we have resized atleast once. */
         if (!this.FIRST_RESIZE_FLAG || global.FORCE_RESIZE_EVENT) {
             zoom_window.set_zoom(global.workspace_zoom_scale);
             this.FIRST_RESIZE_FLAG = true;
         }
         this.grid_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
     }
-    /* This is for zooming the bounds to a specified point (mouse_x and mouse_y) */
     workspace_zoom() {
         this.GRID_MOVED = true;
         global.SIGNAL_BUILD_ELEMENT = true;
         global.signal_build_counter = 0;
-        /* Setting the left most and top most part of the bounds (pre-shifted), the idea is to move and grow the
-    bounds around a point. delta_x/y and scale are calculated in Engine */
         this.bounds.left = global.delta_x;
         this.bounds.top = global.delta_y;
         this.bounds.right = this.bounds.left + global.natural_width * global.workspace_zoom_scale;
         this.bounds.bottom = this.bounds.top + global.natural_height * global.workspace_zoom_scale;
-        /* We changed the bounds, we must re-compute the node spaces (x and y) */
         global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
         global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
         /* #INSERT_METER_RESIZE_TRACE# */
@@ -144,7 +106,6 @@ class Workspace {
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    /* This is for a translation event, it will just shift the bounds by dx and dy*/
     workspace_translate_bounds(dx, dy) {
         this.GRID_MOVED = true;
         global.SIGNAL_BUILD_ELEMENT = true;
@@ -156,13 +117,11 @@ class Workspace {
     }
     workspace_draw(canvas) {
         if (this.DRAW_TO_SCREEN) {
-            /* Draw the work area (background of bounds)*/
             if (this.DRAW_GRID === true) {
                 canvas.draw_rect2(this.bounds, this.work_area_paint);
                 canvas.draw_rect2(this.bounds, this.grid_paint);
             }
             canvas.draw_rect2(this.bounds, this.bounds_paint);
-            /* This is a performance hit. */
             if (this.DRAW_GRID === true) {
                 if (this.GRID_MOVED === true) {
                     let floored_sqrt_m_1 = Math.floor(global.settings.SQRT_MAXNODES_M1);
@@ -202,8 +161,6 @@ class Workspace {
                 canvas.draw_line_buffer(this.line_buffer, this.grid_paint);
             }
         }
-        /* Handle the flags here (draw should be the one to handle it, the next frame will be
-   drawn to the screen if it passes.) */
         if (this.FIRST_RESIZE_FLAG) {
             if (!this.DRAW_TO_SCREEN) {
                 this.DRAW_TO_SCREEN = true;

@@ -1,40 +1,17 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : ElementWindow.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to help organize the addition of new elements onto the board.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class ElementWindow {
     /* <!-- END AUTOMATICALLY GENERATED !--> */
     constructor(left, top, right, bottom) {
         this.ENABLE_MOUSE_WHEEL = true;
         this.positions = [];
-        /* Controls the rate of the mouse wheel event for this specific element. */
         this.MOUSE_WHEEL_COUNTER = 0;
         this.MOUSE_WHEEL_COUNTER_MAX = 1;
         this.NAVIGATE_TEXT = '...';
         this.MAX_ICONS = 8;
         this.NAVIGATE_BACK = 0;
         this.NAVIGATE_FORWARD = this.MAX_ICONS - 1;
-        /* Enforcing the system from cascading events. */
         this.first_touch_x = 0;
         this.first_touch_y = 0;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -45,7 +22,6 @@ class ElementWindow {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing background colors. */
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
         this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -56,7 +32,6 @@ class ElementWindow {
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -73,7 +48,6 @@ class ElementWindow {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-        /* This paint is used for drawing the icons that the component is comprised of. */
         this.hover_paint = new Paint();
         this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
         this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
@@ -531,7 +505,6 @@ class ElementWindow {
                     if (this.PAGE_NUMBER > 0) {
                         this.PAGE_NUMBER--;
                     }
-                    /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
                 else if (this.positions[this.NAVIGATE_FORWARD].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
@@ -539,7 +512,6 @@ class ElementWindow {
                     if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
                         this.PAGE_NUMBER++;
                     }
-                    /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
                 let cached_value = this.bounds.get_width() / this.MAX_ICONS;
@@ -691,7 +663,6 @@ class ElementWindow {
         this.tptz_symbol.resize(this.positions[this.tptz_symbol.index]);
         this.transformer_symbol.resize(this.positions[this.transformer_symbol.index]);
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        /* Resize the stroke widths and the text sizes. */
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
         this.fill_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
@@ -707,7 +678,6 @@ class ElementWindow {
         this.hover_paint.set_text_size(global.CANVAS_TEXT_SIZE_5);
     }
     draw_hover(canvas) {
-        /* Handle the hover here! */
         for (var i = 0; i < this.positions.length; i++) {
             if (this.positions[i].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
                 if (i !== this.NAVIGATE_BACK && i !== this.NAVIGATE_FORWARD) {
@@ -730,7 +700,6 @@ class ElementWindow {
             }
         }
     }
-    /* Check the limits of the hover effect on the elements. */
     hover_limits(current_page, index, overflow, max_pages) {
         if (current_page <= max_pages) {
             if (current_page < max_pages) {

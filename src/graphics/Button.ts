@@ -1,56 +1,21 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Button.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A general purpose class to draw and handle the basic aspects of a button.
- *
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class Button extends RectF {
-	/* The text that will be drawn by the button. */
 	public text: string;
-	/* A flag to indicate whether or not to draw the fill of the button. */
 	public draw_fill: boolean;
-	/* A flag to indicate whether or not to draw the trim of the button. */
 	public draw_stroke: boolean;
-	/* A flag to indicate whether or not to draw the text of the button. */
 	public draw_text: boolean;
-	/* A flag to indicate whether or not to draw the solid cursor of the button. */
 	public draw_cursor: boolean;
-	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-	/* This paint is used for drawing the "fill" that the component is comprised of. */
 	public fill_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
 	private TEXT_UNDERSCORE_TEMPLATE: string;
 	constructor(left: number, top: number, right: number, bottom: number) {
 		super(left, top, right, bottom);
-		/* The text that will be drawn by the button. */
 		this.text = '';
-		/* A flag to indicate whether or not to draw the fill of the button. */
 		this.draw_fill = false;
-		/* A flag to indicate whether or not to draw the trim of the button. */
 		this.draw_stroke = true;
-		/* A flag to indicate whether or not to draw the text of the button. */
 		this.draw_text = true;
-		/* A flag to indicate whether or not to draw the solid cursor of the button. */
 		this.draw_cursor = false;
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -61,7 +26,6 @@ class Button extends RectF {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing the "fill" that the component is comprised of. */
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
 		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
@@ -72,7 +36,6 @@ class Button extends RectF {
 		this.fill_paint.set_font(global.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
 		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -89,7 +52,6 @@ class Button extends RectF {
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
 		this.TEXT_UNDERSCORE_TEMPLATE = '{TEXT}_';
 	}
-	/* Resize the stroke widths and the text sizes. */
 	resize_paint(): void {
 		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_1);
 		this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -102,11 +64,9 @@ class Button extends RectF {
 			this.text_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
 		}
 	}
-	/* Resize the buttons and the paint stroke and text sizes. */
 	resize_button(): void {
 		this.resize();
 	}
-	/* Draw the button text. */
 	draw_button_text(canvas: GraphicsEngine, x: number, y: number): void {
 		if (!this.draw_cursor) {
 			canvas.draw_text(this.text, x, y, this.text_paint);
@@ -114,7 +74,6 @@ class Button extends RectF {
 			canvas.draw_text(this.TEXT_UNDERSCORE_TEMPLATE.replace('{TEXT}', this.text), x, y, this.text_paint);
 		}
 	}
-	/* Draws the button to screen. */
 	draw_button(canvas: GraphicsEngine): void {
 		if (this.draw_fill) {
 			canvas.draw_rect2(this, this.fill_paint);
@@ -126,7 +85,6 @@ class Button extends RectF {
 			this.draw_button_text(canvas, this.get_center_x(), this.get_center_y());
 		}
 	}
-	/* Draws the button to screen. */
 	draw_button_dxdy(canvas: GraphicsEngine, offset_x: number, offset_y: number) {
 		if (this.draw_fill) {
 			canvas.draw_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint);

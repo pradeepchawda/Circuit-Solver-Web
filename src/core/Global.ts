@@ -1,25 +1,4 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Global.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A global class to store global functions and constants.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
-
 class Global {
 	public readonly 'NULL': any;
 	public readonly 'MOBILE_MODE': boolean;
@@ -28,43 +7,28 @@ class Global {
 	public 'DEVICE_PIXEL_RATIO': number;
 	public 'system_initialization': SYSTEM_INITIALIZATION_T;
 	public readonly 'VERSION_TAG': string;
-	/* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
 	public 'workspace_zoom_scale': number;
-	/* The maximum amount of zoom the user may apply */
 	public readonly 'ZOOM_MAX': number;
-	/* The minimum amount of zoom the user may apply */
 	public readonly 'ZOOM_MIN': number;
 	public readonly 'ZERO_PT_FIVE': number;
 	public readonly 'ZERO': number;
 	public 'node_line_buffer': Array<Array<number>>;
 	public 'node_line_buffer_index': number;
-	/* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
 	public 'ZOOM_FACTOR': number;
-	/* These are used a relative metric to know how much to change the view of the
-    workspace when a zooming event takes place */
 	public 'natural_width': number;
 	public 'natural_height': number;
-	/* User settings, very handy to make them global. */
 	public 'settings': Settings;
-	/* Don't change the name of these guys...the obfuscator is referenced to their names.*/
 	public 'DEVELOPER_MODE': boolean;
 	public 'PRODUCTION_MODE': boolean;
-	/* Generic Templates to avoid string concatenation. */
 	public readonly 'ELEMENT_TAG_TEMPLATE': string;
 	public readonly 'ELEMENT_VAL_TEMPLATE': string;
 	public readonly 'DIVISION_TEXT_TEMPLATE': string;
 	public readonly 'PIXEL_TEMPLATE': string;
 	public readonly 'PNG_TEMPLATE': string;
-	/* To help with system settings. */
 	public readonly 'ON': string;
 	public readonly 'OFF': string;
-	/* Keeping track of the virtual canvas's we create. */
 	public 'virtual_canvas_id': number;
-	/* Constants for different elements in the application. */
-	/* Meta data is reserved for storing user info when exporting / importing circuits */
-	/* When we generate the output text file, it sits on the first portion of the file. */
 	public readonly 'TYPE_META_DATA': number;
-	/* Using a counter to keep track of the size of elements. */
 	public 'TYPE_COUNTER': number;
 	/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -138,419 +102,192 @@ class Global {
 	public TYPE_TPTZ: number;
 	public TYPE_TRAN: number;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
-	/* Constants for the different amounts of pre-determined rotation */
 	public readonly 'ROTATION_0': number;
 	public readonly 'ROTATION_90': number;
 	public readonly 'ROTATION_180': number;
 	public readonly 'ROTATION_270': number;
 	public readonly 'FLIP_0': number;
 	public readonly 'FLIP_180': number;
-	/* Constants for the different styles the wire can display */
-	/* Each wire has a property for changing it's appearance. These are the different
-    styles that can be applied to the wire.  */
 	public readonly 'WIRE_STYLE_0': number;
 	public readonly 'WIRE_STYLE_1': number;
 	public readonly 'WIRE_STYLE_2': number;
 	public readonly 'WIRE_STYLE_3': number;
 	public readonly 'WIRE_STYLE_4': number;
-	/* Constants for the different flips, 0;
-	public readonly FLIP_180: number;
-	/* A setting to help facillitate controlling one object at a time */
-	/* Each object has access to this global variable. */
 	public 'focused': boolean;
 	public 'focused_id': number;
 	public 'focused_type': number;
 	public 'focused_bounds': RectF;
 	public 'last_selected': boolean;
-	/* A setting to help facillitate which component is selected */
-	/* Each object can override the selected item if it becomes selected itself. This is
-    so that there's only one item selected at a time. This will need to be tweaked for
-    multi-select. */
 	public 'selected': boolean;
-	/* The identity of the selected element */
 	public 'selected_id': number;
-	/* The type of the selected element */
 	public 'selected_type': number;
-	/* If the type of element is a wire, this field will not be null. */
 	public 'selected_wire_style': number;
-	/* The bounds of the selected item */
 	public 'selected_bounds': RectF;
-	/* The properties of the selected item. Each element has properties associated with it */
 	public 'selected_properties': ELEMENT_PROPERTY_T;
-	/* Selectios nearest neighbors */
 	public 'selection_nearest_neighbors';
 	public 'nearest_neighbor_index': number;
-	/* A general flag to determining if any of the elements are multi-selected. */
 	public 'multi_selected': boolean;
-	/* Used to copying / pasting elements. */
 	public 'clipboard_type': number;
 	public 'clipboard_rotation': number;
 	public 'clipboard_flip': number;
 	public 'clipboard_property': any;
-	/* A variable to help coordinate multi-selection. */
 	public 'component_translating': boolean;
-	/* System Flags */
-	/* These flags are to represent what state the appplication is in. The idea is to make
-    them indicative of what functions are avaiable on what page and what elements need to be
-    drawn. */
-	/* We are observing the main application (No windows are up) */
-	/* Do no chnage these variables directly, there is a function inside menu_bar that handles the
-    changes (it does so while cleaning up the change in states.) */
 	public 'FLAG_IDLE': boolean;
-	/* The simulation button was hit and we are currently simulating. */
 	public 'FLAG_SIMULATING': boolean;
-	/* The user is trying to enter a name for the image they're trying to save, either that
-    or they are cancelling the prompt. */
 	public 'FLAG_SAVE_IMAGE': boolean;
-	/* The user is trying to enter a name for the circuit they're trying to save, either that
-    or they are cancelling the prompt. */
 	public 'FLAG_SAVE_CIRCUIT': boolean;
-	/* The zoom window should be up. */
 	public 'FLAG_ZOOM': boolean;
-	/* The element options "mini-menu" should be open on the right hand side of the application. */
 	public 'FLAG_ELEMENT_OPTIONS': boolean;
-	/* The component has to be options in order to have any of it's properties show up here.
-    If the property element of the application is generated correctly, this should all be
-    automatic */
 	public 'FLAG_ELEMENT_OPTIONS_EDIT': boolean;
-	/* The graph menu should be opened and displayed when this variable is true. */
 	public 'FLAG_GRAPH': boolean;
-	/* The user has the menu-bar dropped down and has the second drop down for selecting a new component. */
 	public 'FLAG_SELECT_ELEMENT': boolean;
-	/* The user is trying to select a new time-step */
 	public 'FLAG_SELECT_TIMESTEP': boolean;
-	/* The user is changing settings */
 	public 'FLAG_SELECT_SETTINGS': boolean;
-	/* The user would like to remove all the elements in the workspace at once. */
 	public 'FLAG_REMOVE_ALL': boolean;
-	/* The menu-bar first drop down should be down when this is changed to true. */
 	public 'FLAG_MENU_OPEN': boolean;
-	/* The menu-bar second drop down should be down when this is changed to true. */
 	public 'FLAG_MENU_OPEN_DOWN': boolean;
-	/* Special signal for adding elements :> */
 	public 'SIGNAL_ADD_ELEMENT': boolean;
-	/* Special signal for when a wire is deleted */
 	public 'SIGNAL_WIRE_DELETED': boolean;
-	/* Special signal for when a wire is created */
 	public 'SIGNAL_WIRE_CREATED': boolean;
-	/* Special signal for history-locks elements :> */
 	public 'SIGNAL_HISTORY_LOCK': boolean;
-	/* Global rendering flag */
 	public 'SIGNAL_BUILD_ELEMENT': boolean;
 	public 'signal_build_counter': number;
-	/* Intentionally 2x re-draw counter.*/
 	public 'SIGNAL_BUILD_COUNTER_MAX': number;
-	/* Counts up to counter max and resets the signal wire deleted flag. */
 	public 'signal_wire_deleted_counter': number;
 	public 'SIGNAL_WIRE_DELETED_COUNTER_MAX': number;
-	/* Flag to help coordinate when an element is touched */
 	public 'component_touched': boolean;
-	/* Some elements require the mouse to be locked out until a mouse-up event occurs. This is
-    so that we don't have events propagating to other portions of the code. */
 	public 'mouse_keyboard_lock': boolean;
 	public 'translation_lock': boolean;
-	/* Used for solving the matrix, If the matrix is found to be singluar, this flag will be set
-    and the simulation will end throwing an sinular matrix fault. */
 	public 'is_singular': boolean;
-	/* Storing mouse events in this template so they can be serialized */
 	public 'mouse_down_event': MouseEvent;
 	public 'mouse_move_event': MouseEvent;
 	public 'mouse_up_event': MouseEvent;
 	public 'mouse_wheel_event': MouseEvent;
 	public 'mouse_double_click_event': MouseEvent;
-	/* Storing key events into queue's to prevent keystrokes from being missed. */
 	public 'mouse_down_event_queue': Array<MouseEvent>;
 	public 'mouse_up_event_queue': Array<MouseEvent>;
 	public 'mouse_wheel_event_queue': Array<MouseEvent>;
 	public 'mouse_double_click_event_queue': Array<MouseEvent>;
-	/* Determine the web-browser! */
 	public 'BROWSER_IE': boolean;
 	public 'BROWSER_CHROME': boolean;
 	public 'BROWSER_OPERA': boolean;
 	public 'BROWSER_FIREFOX': boolean;
 	public 'BROWSER_SAFARI': boolean;
-	/* Text styles for the note element. */
 	public readonly 'TEXT_STYLE_1': string;
 	public readonly 'TEXT_STYLE_2': string;
 	public readonly 'TEXT_STYLE_3': string;
 	public readonly 'TEXT_STYLE_4': string;
 	public readonly 'TEXT_STYLE_5': string;
-	/* Storing key events in this template so they can be serialized */
 	public 'key_down_event': KEY_EVENT_T;
 	public 'key_up_event': KEY_EVENT_T;
-	/* Storing key events into queue's to prevent keystrokes from being missed. */
 	public 'key_down_event_queue': Array<KEY_EVENT_T>;
 	public 'key_up_event_queue': Array<KEY_EVENT_T>;
 	public 'mouse_down_x': number;
 	public 'mouse_down_y': number;
-	/* Stores the last mouse event when a new one comes in, its used to calculate dx and dy for
-    the mouse movements.  */
 	public 'last_mouse_x': number;
 	public 'last_mouse_y': number;
-	/* The difference between the current mouse coordinates and the last coordinates recorded. */
 	public 'dx': number;
 	public 'dy': number;
-	/* Stores the location of mouse events this is used in mouse_move, mouse_down, mouse_up, handle_zoom, etc. */
 	public 'mouse_x': number;
 	public 'mouse_y': number;
-	/* A flag to indicate when a mouse click event occurs. */
 	public 'is_touching': boolean;
-	/* A flag to indicate when a dragging event occurs. This is only set if is_right_click is true. */
 	public 'is_dragging': boolean;
 	public 'temp_is_dragging': boolean;
-	/* A flag to indicate when the user performs a right click */
 	public 'is_right_click': boolean;
-	/* Used to calculate the shift in when the zoom-to-point logic starts, this essenntially is the left and top of the workspace view */
 	public 'delta_x': number;
 	public 'delta_y': number;
-	/* Used for zoom to point, its a relative */
 	public 'x_offset': number;
 	public 'y_offset': number;
-	/* The node-spacing in the x-direction */
 	public 'node_space_x': number;
-	/* The node-spacing in the y-direction */
 	public 'node_space_y': number;
-	/* The last surface width, this is used for 1:1 resizing */
 	public 'last_surface_width': number;
-	/* The last surface height, this is used for 1:1 resizing */
 	public 'last_surface_height': number;
-	/* The last view port width, this is used for 1:1 resizing */
 	public 'last_view_port_width': number;
-	/* The last view port height, this is used for 1:1 resizing */
 	public 'last_view_port_height': number;
 	public 'last_view_port_right': number;
 	public 'last_view_port_bottom': number;
-	/* Used to determine which wire point is associated to an elements nodes. */
 	public 'ANCHOR_POINT': ANCHOR_POINT_T;
-	/* Store the pre-divided SI units to save some computation time. */
 	public 'SI_UNIT_ARRAY': Array<number>;
-	/* Cache the thresholds.. */
 	public 'SI_UNIT_THRESHOLD_ARRAY': Array<number>;
 	public 'SI_UNIT_ABBREVIATION': Array<string>;
-	/* To facilitate the generation of new wires. */
 	public 'WIRE_BUILDER': WIRE_BUILDER_T;
-	/* Accessing the limits of each variable in the element properties structures below.*/
 	public readonly 'PROPERTY_LIMIT_MIN': number;
 	public readonly 'PROPERTY_LIMIT_MAX': number;
-	/* A builder to help create new wires. */
 	public readonly 'WIRE_REFERENCE': WIRE_REFERENCE_T;
-	/* Structure for saving meta data details */
 	public readonly 'PROPERTY_META_DATA': PROPERTY_META_DATA_T;
 	/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-	/* Base structure for Resistor properties */
 	public readonly PROPERTY_RESISTOR: PROPERTY_RESISTOR_T;
-
-	/* Base structure for Capacitor properties */
 	public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T;
-
-	/* Base structure for Inductor properties */
 	public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T;
-
-	/* Base structure for Ground properties */
 	public readonly PROPERTY_GROUND: PROPERTY_GROUND_T;
-
-	/* Base structure for DCSource properties */
 	public readonly PROPERTY_DCSOURCE: PROPERTY_DCSOURCE_T;
-
-	/* Base structure for DCCurrent properties */
 	public readonly PROPERTY_DCCURRENT: PROPERTY_DCCURRENT_T;
-
-	/* Base structure for ACSource properties */
 	public readonly PROPERTY_ACSOURCE: PROPERTY_ACSOURCE_T;
-
-	/* Base structure for ACCurrent properties */
 	public readonly PROPERTY_ACCURRENT: PROPERTY_ACCURRENT_T;
-
-	/* Base structure for SquareWave properties */
 	public readonly PROPERTY_SQUAREWAVE: PROPERTY_SQUAREWAVE_T;
-
-	/* Base structure for SawWave properties */
 	public readonly PROPERTY_SAW: PROPERTY_SAW_T;
-
-	/* Base structure for TriangleWave properties */
 	public readonly PROPERTY_TRI: PROPERTY_TRI_T;
-
-	/* Base structure for Constant properties */
 	public readonly PROPERTY_CONSTANT: PROPERTY_CONSTANT_T;
-
-	/* Base structure for Wire properties */
 	public readonly PROPERTY_WIRE: PROPERTY_WIRE_T;
-
-	/* Base structure for Net properties */
 	public readonly PROPERTY_NET: PROPERTY_NET_T;
-
-	/* Base structure for Note properties */
 	public readonly PROPERTY_NOTE: PROPERTY_NOTE_T;
-
-	/* Base structure for Rail properties */
 	public readonly PROPERTY_RAIL: PROPERTY_RAIL_T;
-
-	/* Base structure for VoltMeter properties */
 	public readonly PROPERTY_VOLTMETER: PROPERTY_VOLTMETER_T;
-
-	/* Base structure for OhmMeter properties */
 	public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T;
-
-	/* Base structure for AmMeter properties */
 	public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T;
-
-	/* Base structure for WattMeter properties */
 	public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T;
-
-	/* Base structure for Fuse properties */
 	public readonly PROPERTY_FUSE: PROPERTY_FUSE_T;
-
-	/* Base structure for SinglePoleSingleThrow properties */
 	public readonly PROPERTY_SPST: PROPERTY_SPST_T;
-
-	/* Base structure for SinglePoleDoubleThrow properties */
 	public readonly PROPERTY_SPDT: PROPERTY_SPDT_T;
-
-	/* Base structure for NOTGate properties */
 	public readonly PROPERTY_NOT: PROPERTY_NOT_T;
-
-	/* Base structure for Diode properties */
 	public readonly PROPERTY_DIODE: PROPERTY_DIODE_T;
-
-	/* Base structure for LightEmittingDiode properties */
 	public readonly PROPERTY_LED: PROPERTY_LED_T;
-
-	/* Base structure for ZenerDiode properties */
 	public readonly PROPERTY_ZENER: PROPERTY_ZENER_T;
-
-	/* Base structure for Potentiometer properties */
 	public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T;
-
-	/* Base structure for ANDGate properties */
 	public readonly PROPERTY_AND: PROPERTY_AND_T;
-
-	/* Base structure for ORGate properties */
 	public readonly PROPERTY_OR: PROPERTY_OR_T;
-
-	/* Base structure for NANDGate properties */
 	public readonly PROPERTY_NAND: PROPERTY_NAND_T;
-
-	/* Base structure for NORGate properties */
 	public readonly PROPERTY_NOR: PROPERTY_NOR_T;
-
-	/* Base structure for XORGate properties */
 	public readonly PROPERTY_XOR: PROPERTY_XOR_T;
-
-	/* Base structure for XNORGate properties */
 	public readonly PROPERTY_XNOR: PROPERTY_XNOR_T;
-
-	/* Base structure for DFlipFlop properties */
 	public readonly PROPERTY_DFF: PROPERTY_DFF_T;
-
-	/* Base structure for VoltageSaturation properties */
 	public readonly PROPERTY_VSAT: PROPERTY_VSAT_T;
-
-	/* Base structure for Adder properties */
 	public readonly PROPERTY_ADD: PROPERTY_ADD_T;
-
-	/* Base structure for Subtractor properties */
 	public readonly PROPERTY_SUB: PROPERTY_SUB_T;
-
-	/* Base structure for Multiplier properties */
 	public readonly PROPERTY_MUL: PROPERTY_MUL_T;
-
-	/* Base structure for Divider properties */
 	public readonly PROPERTY_DIV: PROPERTY_DIV_T;
-
-	/* Base structure for GainBlock properties */
 	public readonly PROPERTY_GAIN: PROPERTY_GAIN_T;
-
-	/* Base structure for AbsoluteValue properties */
 	public readonly PROPERTY_ABS: PROPERTY_ABS_T;
-
-	/* Base structure for VoltageControlledSwitch properties */
 	public readonly PROPERTY_VCSW: PROPERTY_VCSW_T;
-
-	/* Base structure for VoltageControlledVoltageSource properties */
 	public readonly PROPERTY_VCVS: PROPERTY_VCVS_T;
-
-	/* Base structure for VoltageControlledCurrentSource properties */
 	public readonly PROPERTY_VCCS: PROPERTY_VCCS_T;
-
-	/* Base structure for CurrentControlledCurrentSource properties */
 	public readonly PROPERTY_CCCS: PROPERTY_CCCS_T;
-
-	/* Base structure for CurrentControlledVoltageSource properties */
 	public readonly PROPERTY_CCVS: PROPERTY_CCVS_T;
-
-	/* Base structure for OperationalAmplifier properties */
 	public readonly PROPERTY_OPAMP: PROPERTY_OPAMP_T;
-
-	/* Base structure for NChannelMOSFET properties */
 	public readonly PROPERTY_NMOS: PROPERTY_NMOS_T;
-
-	/* Base structure for PChannelMOSFET properties */
 	public readonly PROPERTY_PMOS: PROPERTY_PMOS_T;
-
-	/* Base structure for NPNBipolarJunctionTransistor properties */
 	public readonly PROPERTY_NPN: PROPERTY_NPN_T;
-
-	/* Base structure for PNPBipolarJunctionTransistor properties */
 	public readonly PROPERTY_PNP: PROPERTY_PNP_T;
-
-	/* Base structure for ADCModule properties */
 	public readonly PROPERTY_ADC: PROPERTY_ADC_T;
-
-	/* Base structure for DACModule properties */
 	public readonly PROPERTY_DAC: PROPERTY_DAC_T;
-
-	/* Base structure for SampleAndHold properties */
 	public readonly PROPERTY_SAH: PROPERTY_SAH_T;
-
-	/* Base structure for PulseWidthModulator properties */
 	public readonly PROPERTY_PWM: PROPERTY_PWM_T;
-
-	/* Base structure for IntegratorModule properties */
 	public readonly PROPERTY_INTEGRATOR: PROPERTY_INTEGRATOR_T;
-
-	/* Base structure for DifferentiatorModule properties */
 	public readonly PROPERTY_DIFFERENTIATOR: PROPERTY_DIFFERENTIATOR_T;
-
-	/* Base structure for LowPassFilter properties */
 	public readonly PROPERTY_LPF: PROPERTY_LPF_T;
-
-	/* Base structure for HighPassFilter properties */
 	public readonly PROPERTY_HPF: PROPERTY_HPF_T;
-
-	/* Base structure for Relay properties */
 	public readonly PROPERTY_REL: PROPERTY_REL_T;
-
-	/* Base structure for PIDModule properties */
 	public readonly PROPERTY_PID: PROPERTY_PID_T;
-
-	/* Base structure for LookUpTable properties */
 	public readonly PROPERTY_LUT: PROPERTY_LUT_T;
-
-	/* Base structure for VoltageControlledResistor properties */
 	public readonly PROPERTY_VCR: PROPERTY_VCR_T;
-
-	/* Base structure for VoltageControlledCapacitor properties */
 	public readonly PROPERTY_VCCA: PROPERTY_VCCA_T;
-
-	/* Base structure for VoltageControlledInductor properties */
 	public readonly PROPERTY_VCL: PROPERTY_VCL_T;
-
-	/* Base structure for GreaterThan properties */
 	public readonly PROPERTY_GRT: PROPERTY_GRT_T;
-
-	/* Base structure for TPTZModule properties */
 	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
-
-	/* Base structure for Transformer properties */
 	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
-
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
-	/* Keeps track of all the changes made to elements. There is a manager for
-    the history generated inside the application. Its queued up so we don't miss
-    anything! */
 	public readonly 'HISTORY_MANAGER': HISTORY_MANAGER_T;
-	/* The various landuages available to pick from. */
 	public readonly 'LANGUAGES': Array<string>;
 	public 'LANGUGE_INDEX_COUNTER': number;
 	public readonly 'LANGUAGE_INDEX_ENGLISH': number;
@@ -561,11 +298,8 @@ class Global {
 	public readonly 'LANGUAGE_INDEX_RUSSIAN': number;
 	public readonly 'LANGUAGE_INDEX_GERMAN': number;
 	public readonly 'LANGUAGE_INDEX_INDONESIAN': number;
-	/* The current language index. */
 	public 'LANGUAGE_INDEX': number;
-	/* Base structure for system properties */
 	public 'SYSTEM_OPTIONS': SYSTEM_OPTIONS_T;
-	/* Index's to access system options. Make sure they're in order. */
 	public 'indexer': number;
 	public 'circle_buffer': Array<Array<number>>;
 	public 'line_buffer': Array<Array<number>>;
@@ -573,8 +307,6 @@ class Global {
 	public 'SYSTEM_OPTION_AUTOMATIC_TIMESTEP': number;
 	public 'SYSTEM_OPTION_SHORTCUT_HINTS': number;
 	public 'SYSTEM_OPTION_STRETCH_WINDOW': number;
-	/* 99.999% Of the colors are stored here for conveinence. This is to help when moving from canvas-2d to some other libraries
-    in the future. Paint.js has one definition there... (The order of includes are hard to manage.)*/
 	public readonly 'BACKGROUND_COLOR': string;
 	public readonly 'ELEMENT_COLOR': string;
 	public readonly 'SELECTED_COLOR': string;
@@ -603,13 +335,9 @@ class Global {
 	public readonly 'GENERAL_CYAN_COLOR': string;
 	public readonly 'GENERAL_HOVER_COLOR': string;
 	public readonly 'GENERAL_YELLOW_COLOR': string;
-	/* The default font for all paints created in the system */
 	public readonly 'DEFAULT_FONT': string;
-	/* A flag to detail if the user has selected a file or not. */
 	public 'user_file_selected': boolean;
-	/* A descriptor for the users circuit */
 	public 'user_file': Circuit;
-	/* Key Event Code Constants */
 	public 'KEY_CODE_ESCAPE': string;
 	public 'KEY_CODE_BACK_QUOTE': string;
 	public 'KEY_CODE_0': string;
@@ -690,16 +418,11 @@ class Global {
 	public 'KEY_CODE_NUMPAD7': string;
 	public 'KEY_CODE_NUMPAD8': string;
 	public 'KEY_CODE_NUMPAD9': string;
-	/* No modifier, Shift, Capslock */
 	public 'KEY_EVENT_CODES';
 	public 'KEY_EVENT_KEYS';
-	/* Variables for Circuit Simulation */
 	public 'time_step': number;
-	/* Keeps track of the simulation time. */
 	public 'simulation_time': number;
-	/* Serializing the inputs (so they occur in a predictable manner.) */
 	public 'RESIZE_EVENT': boolean;
-	/* Used for changing from window modes. */
 	public 'FORCE_RESIZE_EVENT': boolean;
 	public 'ON_RESTORE_EVENT': boolean;
 	public 'MOUSE_DOWN_EVENT': boolean;
@@ -709,20 +432,16 @@ class Global {
 	public 'MOUSE_WHEEL_EVENT': boolean;
 	public 'KEY_UP_EVENT': boolean;
 	public 'KEY_DOWN_EVENT': boolean;
-	/* A flag to disable the system from drawing to the real buffer. */
 	public 'draw_block': boolean;
-	/* Flag to dictate that the system is ready for a close up (Taking a snaps shot of  the workspace area.). */
 	public 'PICTURE_REQUEST': boolean;
 	public readonly 'PICTURE_ZOOM': number;
 	public readonly 'PICTURE_EXPOSURE_TIME': number;
-	/* Canvas drawing optimization flag */
 	public 'canvas_draw_request': boolean;
 	public 'canvas_draw_request_counter': number;
 	public 'CANVAS_DRAW_REQUEST_COUNTER_MAX': number;
 	public 'canvas_draw_event': boolean;
 	public 'CANVAS_REDRAW_MAX': number;
 	public 'canvas_redraw_counter': number;
-	/* Quantizing the stroke width's for the entire system. Ideally, the system will use one of these sizes. */
 	public 'CANVAS_STROKE_WIDTH_BASE': number;
 	public 'CANVAS_STROKE_WIDTH_1': number;
 	public 'CANVAS_STROKE_WIDTH_2': number;
@@ -736,7 +455,6 @@ class Global {
 	public 'CANVAS_STROKE_WIDTH_4_ZOOM': number;
 	public 'CANVAS_STROKE_WIDTH_5_ZOOM': number;
 	public 'CANVAS_STROKE_WIDTH_6_ZOOM': number;
-	/* Quantizing the text size's for the entire system. Ideally, the system will use one of these sizes. */
 	public 'CANVAS_TEXT_SIZE_BASE': number;
 	public 'CANVAS_TEXT_SIZE_1': number;
 	public 'CANVAS_TEXT_SIZE_2': number;
@@ -750,15 +468,10 @@ class Global {
 	public 'CANVAS_TEXT_SIZE_4_ZOOM': number;
 	public 'CANVAS_TEXT_SIZE_5_ZOOM': number;
 	public 'CANVAS_TEXT_SIZE_6_ZOOM': number;
-	/* This is how history event components are seperated. */
 	public readonly 'PACKET_DIVIDER': string;
-	/* Paint used to draw the grid highlights when a component is moved. */
 	public 'move_paint': Paint;
-	/* Thermal voltage tor PN Junctions. */
 	public 'vt': number;
-	/* Default GMIN value! (Used for gmin stepping) */
 	public 'gmin_default': number;
-	/* Non-linear simulation variables */
 	public 'v_max_err': Array<Array<number>>;
 	public 'i_max_err': Array<Array<number>>;
 	public 'v_locked': boolean;
@@ -774,7 +487,6 @@ class Global {
 	public readonly 'NEG_PI_DIV_180': number;
 	public readonly '_180_DIV_PI': number;
 	public readonly 'PI_MUL_2': number;
-	/* Dividing PI into a 16-bit number (Qx) */
 	public 'TRIG_TABLE_Q_NUMBER': number;
 	public 'TRIG_SINE_TABLE': Array<number>;
 	public 'TRIG_TABLE_SIZE': number;
@@ -783,7 +495,6 @@ class Global {
 	public 'TRIG_TABLE_MASK': number;
 	public 'TRIG_TABLE_ROUND': number;
 	public 'TIME_DATA_TEMPLATE': TIME_DATA_TEMPLATE_T;
-	/* This is the maximum text length of any text field. */
 	public 'MAX_TEXT_LENGTH': number;
 	public 'inv_sqrt_buf': ArrayBuffer;
 	public 'inv_sqrt_f32': Float32Array;
@@ -822,48 +533,31 @@ class Global {
 		};
 		this.VERSION_TAG = '1.1.02';
 		if (this.MOBILE_MODE) {
-			/* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
 			this.workspace_zoom_scale = 2.5;
-			/* The maximum amount of zoom the user may apply */
 			this.ZOOM_MAX = 3.5;
-			/* The minimum amount of zoom the user may apply */
 			this.ZOOM_MIN = 1.0;
 		} else {
-			/* The scale of the workspace. It's to be limited by ZOOM_MAX and ZOOM_MIN*/
 			this.workspace_zoom_scale = 1.0;
-			/* The maximum amount of zoom the user may apply */
 			this.ZOOM_MAX = 2.0;
-			/* The minimum amount of zoom the user may apply */
 			this.ZOOM_MIN = 0.5;
 		}
 		this.ZERO_PT_FIVE = 0.5;
 		this.ZERO = 0 >> 0;
-		/* The incremental change in zoom, *= ZOOM_FACTOR or /= ZOOM_FACTOR */
 		this.ZOOM_FACTOR = 1.085;
-		/* These are used a relative metric to know how much to change the view of the workspace when a zooming event takes place */
 		this.natural_width = 0;
 		this.natural_height = 0;
-		/* User settings, very handy to make them global. */
 		this.settings = new Settings();
-		/* Don't change the name of these guys...the obfuscator is referenced to their names.*/
 		this.DEVELOPER_MODE = false;
 		this.PRODUCTION_MODE = false;
-		/* Generic Templates to avoid string concatenation. */
 		this.ELEMENT_TAG_TEMPLATE = '{TAG}{ID}';
 		this.ELEMENT_VAL_TEMPLATE = '{VAL}{UNIT}';
 		this.DIVISION_TEXT_TEMPLATE = '{A} / {B}';
 		this.PIXEL_TEMPLATE = '{VALUE}px';
 		this.PNG_TEMPLATE = '{NAME}.png';
-		/* To help with system settings. */
 		this.ON = 'ON';
 		this.OFF = 'OFF';
-		/* Keeping track of the virtual canvas's we create. */
 		this.virtual_canvas_id = 0;
-		/* Constants for different elements in the application. */
-		/* Meta data is reserved for storing user info when exporting / importing circuits */
-		/* When we generate the output text file, it sits on the first portion of the file. */
 		this.TYPE_META_DATA = -2;
-		/* Using a counter to keep track of the size of elements. */
 		this.TYPE_COUNTER = 0;
 		/* #INSERT_GENERATE_ELEMENT_TYPE# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -937,155 +631,90 @@ class Global {
 		this.TYPE_TPTZ = this.TYPE_COUNTER++;
 		this.TYPE_TRAN = this.TYPE_COUNTER++;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		/* Constants for the different amounts of pre-determined rotation */
 		this.ROTATION_0 = 0;
 		this.ROTATION_90 = 1;
 		this.ROTATION_180 = 2;
 		this.ROTATION_270 = 3;
-		/* Constants for the different styles the wire can display */
-		/* Each wire has a property for changing it's appearance. These are the different
-    styles that can be applied to the wire.  */
 		this.WIRE_STYLE_0 = 0;
 		this.WIRE_STYLE_1 = 1;
 		this.WIRE_STYLE_2 = 2;
 		this.WIRE_STYLE_3 = 3;
 		this.WIRE_STYLE_4 = 4;
-		/* Constants for the different flips, 0 = normal, 180 = flipped over y-axis */
-		/* Some components like the OPAMPs and Transistors have the ability to be flipped. */
 		this.FLIP_0 = 0;
 		this.FLIP_180 = 1;
-		/* A setting to help facillitate controlling one object at a time */
-		/* Each object has access to this global variable. */
 		this.focused = false;
 		this.focused_id = this.NULL;
 		this.focused_type = this.NULL;
 		this.focused_bounds = this.NULL;
 		this.last_selected = false;
-		/* A setting to help facillitate which component is selected */
-		/* Each object can override the selected item if it becomes selected itself. This is
-    so that there's only one item selected at a time. This will need to be tweaked for
-    multi-select. */
 		this.selected = false;
-		/* The identity of the selected element */
 		this.selected_id = this.NULL;
-		/* The type of the selected element */
 		this.selected_type = -1;
-		/* If the type of element is a wire, this field will not be null. */
 		this.selected_wire_style = this.NULL;
-		/* The bounds of the selected item */
 		this.selected_bounds = this.NULL;
-		/* The properties of the selected item. Each element has properties associated with it */
 		this.selected_properties = this.NULL;
-		/* Selectios nearest neighbors */
 		this.selection_nearest_neighbors = [];
 		this.nearest_neighbor_index = 0;
-		/* A general flag to determining if any of the elements are multi-selected. */
 		this.multi_selected = false;
-		/* Used to copying / pasting elements. */
 		this.clipboard_type = this.NULL;
 		this.clipboard_rotation = this.NULL;
 		this.clipboard_flip = this.NULL;
 		this.clipboard_property = this.NULL;
-		/* A variable to help coordinate multi-selection. */
 		this.component_translating = false;
-		/* Thermal voltage tor PN Junctions. */
 		this.vt = 25.6e-3;
-		/* Default GMIN value! (Used for gmin stepping) */
 		this.gmin_default = 1e-9;
-		/* Non-linear simulation variables */
 		this.v_max_err = [];
 		this.i_max_err = [];
 		this.v_locked = false;
 		this.i_locked = false;
 		this.v_conv = false;
 		this.i_conv = false;
-		/* System Flags */
-		/* These flags are to represent what state the appplication is in. The idea is to make
-    them indicative of what functions are avaiable on what page and what elements need to be
-    drawn. */
-		/* We are observing the main application (No windows are up) */
-		/* Do no chnage these variables directly, there is a function inside menu_bar that handles the
-    changes (it does so while cleaning up the change in states.) */
 		this.FLAG_IDLE = true;
-		/* The simulation button was hit and we are currently simulating. */
 		this.FLAG_SIMULATING = false;
-		/* The user is trying to enter a name for the image they're trying to save, either that
-    or they are cancelling the prompt. */
 		this.FLAG_SAVE_IMAGE = false;
-		/* The user is trying to enter a name for the circuit they're trying to save, either that
-    or they are cancelling the prompt. */
 		this.FLAG_SAVE_CIRCUIT = false;
-		/* The zoom window should be up. */
 		this.FLAG_ZOOM = false;
-		/* The element options "mini-menu" should be open on the right hand side of the application. */
 		this.FLAG_ELEMENT_OPTIONS = false;
-		/* The component has to be options in order to have any of it's properties show up here.
-    If the property element of the application is generated correctly, this should all be
-    automatic */
 		this.FLAG_ELEMENT_OPTIONS_EDIT = false;
-		/* The graph menu should be opened and displayed when this variable is true. */
 		this.FLAG_GRAPH = false;
-		/* The user has the menu-bar dropped down and has the second drop down for selecting a new component. */
 		this.FLAG_SELECT_ELEMENT = false;
-		/* The user is trying to select a new time-step */
 		this.FLAG_SELECT_TIMESTEP = false;
-		/* The user is changing settings */
 		this.FLAG_SELECT_SETTINGS = false;
-		/* The user would like to remove all the elements in the workspace at once. */
 		this.FLAG_REMOVE_ALL = false;
-		/* The menu-bar first drop down should be down when this is changed to true. */
 		this.FLAG_MENU_OPEN = false;
-		/* The menu-bar second drop down should be down when this is changed to true. */
 		this.FLAG_MENU_OPEN_DOWN = false;
-		/* Special signal for adding elements :> */
 		this.SIGNAL_ADD_ELEMENT = false;
-		/* Special signal for when a wire is deleted */
 		this.SIGNAL_WIRE_DELETED = false;
-		/* Special signal for when a wire is created */
 		this.SIGNAL_WIRE_CREATED = false;
-		/* Special signal for history-locks elements :> */
 		this.SIGNAL_HISTORY_LOCK = false;
-		/* Global rendering flag */
 		this.SIGNAL_BUILD_ELEMENT = false;
 		this.signal_build_counter = 0;
-		/* Intentionally 2x re-draw counter.*/
 		this.SIGNAL_BUILD_COUNTER_MAX = 3;
-		/* Counts up to counter max and resets the signal wire deleted flag. */
 		this.signal_wire_deleted_counter = 0;
 		this.SIGNAL_WIRE_DELETED_COUNTER_MAX = 3;
-		/* Flag to help coordinate when an element is touched */
 		this.component_touched = false;
-		/* Some elements require the mouse to be locked out until a mouse-up event occurs. This is
-    so that we don't have events propagating to other portions of the code. */
 		this.mouse_keyboard_lock = false;
 		this.translation_lock = true;
-		/* Used for solving the matrix, If the matrix is found to be singluar, this flag will be set
-    and the simulation will end throwing an sinular matrix fault. */
 		this.is_singular = false;
-		/* Storing mouse events in this template so they can be serialized */
 		this.mouse_down_event = this.NULL;
 		this.mouse_move_event = this.NULL;
 		this.mouse_up_event = this.NULL;
 		this.mouse_wheel_event = this.NULL;
 		this.mouse_double_click_event = this.NULL;
-		/* Storing key events into queue's to prevent keystrokes from being missed. */
 		this.mouse_down_event_queue = [];
 		this.mouse_up_event_queue = [];
 		this.mouse_wheel_event_queue = [];
 		this.mouse_double_click_event_queue = [];
-		/* Determine the web-browser! */
 		this.BROWSER_IE = false;
 		this.BROWSER_CHROME = false;
 		this.BROWSER_OPERA = false;
 		this.BROWSER_FIREFOX = false;
 		this.BROWSER_SAFARI = false;
-		/* Text styles for the note element. */
 		this.TEXT_STYLE_1 = 'Style1';
 		this.TEXT_STYLE_2 = 'Style2';
 		this.TEXT_STYLE_3 = 'Style3';
 		this.TEXT_STYLE_4 = 'Style4';
 		this.TEXT_STYLE_5 = 'Style5';
-		/* Storing key events in this template so they can be serialized */
 		this.key_down_event = {
 			event: null,
 			alt: false,
@@ -1100,58 +729,39 @@ class Global {
 			ctrl: false,
 			caps: false
 		};
-		/* Storing key events into queue's to prevent keystrokes from being missed. */
 		this.key_down_event_queue = [];
 		this.key_up_event_queue = [];
 		this.mouse_down_x = 0;
 		this.mouse_down_y = 0;
-		/* Stores the last mouse event when a new one comes in, its used to calculate dx and dy for
-    the mouse movements.  */
 		this.last_mouse_x = 0;
 		this.last_mouse_y = 0;
-		/* The difference between the current mouse coordinates and the last coordinates recorded. */
 		this.dx = 0;
 		this.dy = 0;
-		/* Stores the location of mouse events this is used in mouse_move, mouse_down, mouse_up, handle_zoom, etc. */
 		this.mouse_x = 0;
 		this.mouse_y = 0;
-		/* A flag to indicate when a mouse click event occurs. */
 		this.is_touching = false;
-		/* A flag to indicate when a dragging event occurs. This is only set if is_right_click is true. */
 		this.is_dragging = false;
 		this.temp_is_dragging = false;
-		/* A flag to indicate when the user performs a right click */
 		this.is_right_click = false;
-		/* Used to calculate the shift in when the zoom-to-point logic starts, this essenntially is the left and top of the workspace view */
 		this.delta_x = 0;
 		this.delta_y = 0;
-		/* Used for zoom to point, its a relative */
 		this.x_offset = 0;
 		this.y_offset = 0;
-		/* The node-spacing in the x-direction */
 		this.node_space_x = 0;
-		/* The node-spacing in the y-direction */
 		this.node_space_y = 0;
-		/* The last surface width, this is used for 1:1 resizing */
 		this.last_surface_width = 0;
-		/* The last surface height, this is used for 1:1 resizing */
 		this.last_surface_height = 0;
-		/* The last view port width, this is used for 1:1 resizing */
 		this.last_view_port_width = 0;
-		/* The last view port height, this is used for 1:1 resizing */
 		this.last_view_port_height = 0;
 		this.last_view_port_right = 0;
 		this.last_view_port_bottom = 0;
-		/* Used to determine which wire point is associated to an elements nodes. */
 		this.ANCHOR_POINT = {
 			p1: 0,
 			p2: 1,
 			p3: 2,
 			p4: 3
 		};
-		/* Store the pre-divided SI units to save some computation time. */
 		this.SI_UNIT_ARRAY = [1 / 1e21, 1 / 1e18, 1 / 1e15, 1 / 1e12, 1 / 1e9, 1 / 1e6, 1 / 1e3, 1, 1 / 1e-3, 1 / 1e-6, 1 / 1e-9, 1 / 1e-12, 1 / 1e-15, 1 / 1e-18, 1 / 1e-21];
-		/* Cache the thresholds.. */
 		this.SI_UNIT_THRESHOLD_ARRAY = [
 			0.99 * 1e21,
 			0.99 * 1e18,
@@ -1170,7 +780,6 @@ class Global {
 			0.99 * 1e-21
 		];
 		this.SI_UNIT_ABBREVIATION = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
-		/* To facilitate the generation of new wires. */
 		this.WIRE_BUILDER = {
 			n1: -1,
 			id1: -1,
@@ -1188,22 +797,18 @@ class Global {
 			},
 			step: 0
 		};
-		/* Accessing the limits of each variable in the element properties structures below.*/
 		this.PROPERTY_LIMIT_MIN = 0;
 		this.PROPERTY_LIMIT_MAX = 1;
-		/* A builder to help create new wires. */
 		this.WIRE_REFERENCE = {
 			wire_id: -1,
 			anchor_point: -1,
 			linkage: -1
 		};
-		/* Structure for saving meta data details */
 		this.PROPERTY_META_DATA = {
 			company: 'phasorsystems',
 			version: this.VERSION_TAG,
 			date: ''
 		};
-		/* Base structure for resistor properties */
 		this.PROPERTY_RESISTOR = {
 			Resistance: 1.0e3,
 			tag: 'R',
@@ -1214,7 +819,6 @@ class Global {
 				Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
 			}
 		};
-		/* Base structure for SPST properties */
 		this.PROPERTY_SPST = {
 			'Open Resistance': this.settings.R_MAX * 0.5,
 			'Closed Resistance': this.settings.WIRE_RESISTANCE,
@@ -1227,7 +831,6 @@ class Global {
 				'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
 			}
 		};
-		/* Base structure for NOT properties */
 		this.PROPERTY_NOT = {
 			'High Voltage': 5,
 			'Input Voltage': 0,
@@ -1240,7 +843,6 @@ class Global {
 				'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for diode properties */
 		this.PROPERTY_DIODE = {
 			'Emission Coefficient': 1,
 			'Saturation Current': 1e-15,
@@ -1258,7 +860,6 @@ class Global {
 				'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
 			}
 		};
-		/* Base structure for led properties */
 		this.PROPERTY_LED = {
 			'Emission Coefficient': 3.73,
 			'Saturation Current': 93.2e-12,
@@ -1279,7 +880,6 @@ class Global {
 				Wavelength: [this.settings.MIN_WAVELENGTH, this.settings.MAX_WAVELENGTH]
 			}
 		};
-		/* Base structure for zener properties */
 		this.PROPERTY_ZENER = {
 			'Zener Voltage': 5.6,
 			'Emission Coefficient': 1,
@@ -1299,7 +899,6 @@ class Global {
 				'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
 			}
 		};
-		/* Base structure for voltmeter properties */
 		this.PROPERTY_VOLTMETER = {
 			Voltage: 0,
 			tag: 'VM',
@@ -1308,7 +907,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for voltmeter properties */
 		this.PROPERTY_WATTMETER = {
 			Wattage: 0,
 			'Test Voltage': 1e-9,
@@ -1318,7 +916,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for ammeter properties */
 		this.PROPERTY_AMMETER = {
 			Current: 0,
 			'Test Voltage': 1e-9,
@@ -1328,7 +925,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for ohmmeter properties */
 		this.PROPERTY_OHMMETER = {
 			'Sensed Resistance': 0,
 			'Test Voltage': 1e-9,
@@ -1338,7 +934,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for resistor properties */
 		this.PROPERTY_WIRE = {
 			tag: 'W',
 			units: 'Ω',
@@ -1346,7 +941,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for dc source properties */
 		this.PROPERTY_DCSOURCE = {
 			Voltage: 12,
 			tag: 'DC',
@@ -1357,7 +951,6 @@ class Global {
 				Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for ac source properties */
 		this.PROPERTY_ACSOURCE = {
 			Voltage: 12,
 			Frequency: 60,
@@ -1374,7 +967,6 @@ class Global {
 				Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for square wave source properties */
 		this.PROPERTY_SQUAREWAVE = {
 			Voltage: 12,
 			Frequency: 60,
@@ -1391,7 +983,6 @@ class Global {
 				Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for ac source properties */
 		this.PROPERTY_ACCURRENT = {
 			Current: 12,
 			Frequency: 60,
@@ -1408,7 +999,6 @@ class Global {
 				Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_CURRENT]
 			}
 		};
-		/* Base structure for dc current properties */
 		this.PROPERTY_DCCURRENT = {
 			Current: 12,
 			tag: 'DCC',
@@ -1419,7 +1009,6 @@ class Global {
 				Current: [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
 			}
 		};
-		/* Base structure for capacitor properties */
 		this.PROPERTY_CAPACITOR = {
 			Capacitance: 1.0e-6,
 			'Transient Resistance': this.settings.R_MAX,
@@ -1436,7 +1025,6 @@ class Global {
 				'Initial Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for inductor properties */
 		this.PROPERTY_INDUCTOR = {
 			Inductance: 1.0e-3,
 			'Transient Resistance': this.settings.R_MAX,
@@ -1453,12 +1041,10 @@ class Global {
 				'Initial Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
 			}
 		};
-		/* Base structure for ground properties */
 		this.PROPERTY_GROUND = {
 			tag: 'G',
 			units: ''
 		};
-		/* Base structure for net properties */
 		this.PROPERTY_NET = {
 			Name: 'Net',
 			tag: 'N',
@@ -1466,12 +1052,10 @@ class Global {
 			units: '',
 			options: ['Name', 'Show Name'],
 			options_units: ['', ''],
-			/* This element doesn't have one! */
 			option_limits: {
 				Name: [-1, 1]
 			}
 		};
-		/* Base structure for constant properties */
 		this.PROPERTY_CONSTANT = {
 			Voltage: 12,
 			tag: 'CV',
@@ -1482,7 +1066,6 @@ class Global {
 				Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for potentiometer properties */
 		this.PROPERTY_POTENTIOMETER = {
 			Resistance: 1e3,
 			'Wiper Percentage': 50,
@@ -1495,7 +1078,6 @@ class Global {
 				'Wiper Percentage': [this.settings.MIN_POTENTIOMETER_WIPER, this.settings.MAX_POTENTIOMETER_WIPER]
 			}
 		};
-		/* Base structure for and properties */
 		this.PROPERTY_AND = {
 			'High Voltage': 5,
 			'Input Voltage1': 0,
@@ -1509,7 +1091,6 @@ class Global {
 				'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for or properties */
 		this.PROPERTY_OR = {
 			'High Voltage': 5,
 			'Input Voltage1': 0,
@@ -1523,7 +1104,6 @@ class Global {
 				'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for nand properties */
 		this.PROPERTY_NAND = {
 			'High Voltage': 5,
 			'Input Voltage1': 0,
@@ -1537,7 +1117,6 @@ class Global {
 				'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for nor properties */
 		this.PROPERTY_NOR = {
 			'High Voltage': 5,
 			'Input Voltage1': 0,
@@ -1551,7 +1130,6 @@ class Global {
 				'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for xor properties */
 		this.PROPERTY_XOR = {
 			'High Voltage': 5,
 			'Input Voltage1': 0,
@@ -1565,7 +1143,6 @@ class Global {
 				'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for xnor properties */
 		this.PROPERTY_XNOR = {
 			'High Voltage': 5,
 			'Input Voltage1': 0,
@@ -1579,7 +1156,6 @@ class Global {
 				'High Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for vcsw properties */
 		this.PROPERTY_VCSW = {
 			'High Voltage': 5,
 			'Closed Resistance': 1.0 / this.settings.R_MAX,
@@ -1594,7 +1170,6 @@ class Global {
 				'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
 			}
 		};
-		/* Base structure for vcr properties */
 		this.PROPERTY_VCR = {
 			'Low Voltage': 0,
 			'High Voltage': 1,
@@ -1619,7 +1194,6 @@ class Global {
 				Interpolate: ['', '']
 			}
 		};
-		/* Base structure for vcvs properties */
 		this.PROPERTY_VCVS = {
 			Gain: 1,
 			tag: 'VCVS',
@@ -1630,7 +1204,6 @@ class Global {
 				Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for vccs properties */
 		this.PROPERTY_VCCS = {
 			Gain: 1,
 			tag: 'VCCS',
@@ -1641,7 +1214,6 @@ class Global {
 				Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for cccs properties */
 		this.PROPERTY_CCCS = {
 			Gain: 1,
 			tag: 'CCCS',
@@ -1652,7 +1224,6 @@ class Global {
 				Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for ccvs properties */
 		this.PROPERTY_CCVS = {
 			Gain: 1,
 			tag: 'CCVS',
@@ -1663,7 +1234,6 @@ class Global {
 				Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for SPST properties */
 		this.PROPERTY_SPDT = {
 			'Open Resistance': this.settings.R_MAX * 0.5,
 			'Closed Resistance': 1.0 / this.settings.R_MAX,
@@ -1676,7 +1246,6 @@ class Global {
 				'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
 			}
 		};
-		/* Base structure for opamp properties */
 		this.PROPERTY_OPAMP = {
 			tag: 'OP',
 			units: '',
@@ -1684,7 +1253,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for vsat properties */
 		this.PROPERTY_VSAT = {
 			'High Voltage': 12,
 			'Low Voltage': -12,
@@ -1699,7 +1267,6 @@ class Global {
 				'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for saw wave source properties */
 		this.PROPERTY_SAW = {
 			Voltage: 12,
 			Frequency: 60,
@@ -1716,7 +1283,6 @@ class Global {
 				Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for triangle wave source properties */
 		this.PROPERTY_TRI = {
 			Voltage: 12,
 			Frequency: 60,
@@ -1733,7 +1299,6 @@ class Global {
 				Offset: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for adder properties */
 		this.PROPERTY_ADD = {
 			'Input Voltage1': 0,
 			'Input Voltage2': 0,
@@ -1744,7 +1309,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for subtractor properties */
 		this.PROPERTY_SUB = {
 			'Input Voltage1': 0,
 			'Input Voltage2': 0,
@@ -1755,7 +1319,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for multiplier properties */
 		this.PROPERTY_MUL = {
 			'Input Voltage1': 0,
 			'Input Voltage2': 0,
@@ -1766,7 +1329,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for greater than properties */
 		this.PROPERTY_GRT = {
 			'Input Voltage1': 0,
 			'Input Voltage2': 0,
@@ -1777,7 +1339,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for adder properties */
 		this.PROPERTY_DIV = {
 			'Input Voltage1': 0,
 			'Input Voltage2': 0,
@@ -1788,7 +1349,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for nmosfet properties */
 		this.PROPERTY_NMOS = {
 			'W/L Ratio': 50,
 			"K'n": 118e-6,
@@ -1813,7 +1373,6 @@ class Global {
 				Lambda: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for pmosfet properties */
 		this.PROPERTY_PMOS = {
 			'W/L Ratio': 50,
 			"K'p": -118e-6,
@@ -1838,7 +1397,6 @@ class Global {
 				Lambda: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for npnbjt properties */
 		this.PROPERTY_NPN = {
 			'Forward Beta': 100,
 			'Reverse Beta': 1,
@@ -1866,7 +1424,6 @@ class Global {
 				'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
 			}
 		};
-		/* Base structure for pnpbjt properties */
 		this.PROPERTY_PNP = {
 			'Forward Beta': 100,
 			'Reverse Beta': 1,
@@ -1894,7 +1451,6 @@ class Global {
 				'Saturation Current': [this.settings.MIN_CURRENT, this.settings.MAX_CURRENT]
 			}
 		};
-		/* Base structure for transformer properties */
 		this.PROPERTY_TRAN = {
 			'Turns Ratio': 1,
 			tag: 'TRAN',
@@ -1905,7 +1461,6 @@ class Global {
 				'NP/NS': [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for adc properties */
 		this.PROPERTY_ADC = {
 			'Bit Resolution': 12,
 			'Reference Voltage': 3.3,
@@ -1922,7 +1477,6 @@ class Global {
 				'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for dac properties */
 		this.PROPERTY_DAC = {
 			'Bit Resolution': 12,
 			'Reference Voltage': 3.3,
@@ -1939,7 +1493,6 @@ class Global {
 				'Reference Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for pwm properties */
 		this.PROPERTY_PWM = {
 			'Max Frequency': 120,
 			'Min Frequency': 60,
@@ -1971,7 +1524,6 @@ class Global {
 				Postscaler: [this.settings.MIN_POSTSCALER, this.settings.MAX_POSTSCALER]
 			}
 		};
-		/* Base structure for integrator properties */
 		this.PROPERTY_INTEGRATOR = {
 			'Initial Value': 0,
 			'High Voltage': 5,
@@ -1989,7 +1541,6 @@ class Global {
 				'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for differentiator properties */
 		this.PROPERTY_DIFFERENTIATOR = {
 			'Initial Value': 0,
 			'High Voltage': 5,
@@ -2007,7 +1558,6 @@ class Global {
 				'Low Voltage': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for gain properties */
 		this.PROPERTY_GAIN = {
 			Gain: 1,
 			'Input Voltage': 0,
@@ -2020,7 +1570,6 @@ class Global {
 				Gain: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for abs properties */
 		this.PROPERTY_ABS = {
 			'Input Voltage': 0,
 			'Output Voltage': 0,
@@ -2030,7 +1579,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for lpf properties */
 		this.PROPERTY_LPF = {
 			'Cutoff Frequency': 120,
 			'Y Out': 0,
@@ -2046,7 +1594,6 @@ class Global {
 				'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
 			}
 		};
-		/* Base structure for hpf properties */
 		this.PROPERTY_HPF = {
 			'Cutoff Frequency': 120,
 			'Y Out': 0,
@@ -2063,7 +1610,6 @@ class Global {
 				'Cutoff Frequency': [this.settings.MIN_FREQUENCY, this.settings.MAX_FREQUENCY]
 			}
 		};
-		/* Base structure for rail properties */
 		this.PROPERTY_RAIL = {
 			Voltage: 12,
 			tag: 'PR',
@@ -2074,7 +1620,6 @@ class Global {
 				Voltage: [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for relay properties */
 		this.PROPERTY_REL = {
 			Inductance: 1.0e-3,
 			'Transient Resistance': this.settings.R_MAX,
@@ -2095,7 +1640,6 @@ class Global {
 				'Closed Resistance': [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
 			}
 		};
-		/* Base structure for pid properties */
 		this.PROPERTY_PID = {
 			Setpoint: 0,
 			Kp: 1,
@@ -2121,7 +1665,6 @@ class Global {
 				'Max Output': [this.settings.MIN_VOLTAGE, this.settings.MAX_VOLTAGE]
 			}
 		};
-		/* Base structure for samplers properties */
 		this.PROPERTY_SAH = {
 			'Input Voltage1': 0,
 			'Input Voltage2': 0,
@@ -2134,7 +1677,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for Look-Up-Table properties */
 		this.PROPERTY_LUT = {
 			Elm0: 12,
 			Elm1: 12,
@@ -2159,7 +1701,6 @@ class Global {
 				Interpolate: ['', '']
 			}
 		};
-		/* Base structure for tptz properties */
 		this.PROPERTY_TPTZ = {
 			A1: 0,
 			A2: 0,
@@ -2180,7 +1721,6 @@ class Global {
 				B2: [this.settings.MIN_GAIN, this.settings.MAX_GAIN]
 			}
 		};
-		/* Base structure for note properties */
 		this.PROPERTY_NOTE = {
 			Note: 'empty',
 			tag: 'NOTE',
@@ -2189,12 +1729,10 @@ class Global {
 			units: '',
 			options: ['Note', 'Text Style', 'Show Marker'],
 			options_units: ['', '', ''],
-			/* This element doesn't have one! */
 			option_limits: {
 				Note: [-1, 1]
 			}
 		};
-		/* Base structure for fuse properties */
 		this.PROPERTY_FUSE = {
 			'Current Rating': 500e-3,
 			Resistance: this.settings.WIRE_RESISTANCE,
@@ -2209,7 +1747,6 @@ class Global {
 				Resistance: [this.settings.WIRE_RESISTANCE, this.settings.R_MAX * 0.5]
 			}
 		};
-		/* Base structure for dff properties */
 		this.PROPERTY_DFF = {
 			'Input Voltage1': 0,
 			'Last Clock': 1,
@@ -2222,7 +1759,6 @@ class Global {
 			options_units: [''],
 			option_limits: {}
 		};
-		/* Base structure for vcca properties */
 		this.PROPERTY_VCCA = {
 			'Low Voltage': 0,
 			'High Voltage': 1,
@@ -2251,7 +1787,6 @@ class Global {
 				Interpolate: ['', '']
 			}
 		};
-		/* Base structure for vcl properties */
 		this.PROPERTY_VCL = {
 			'Low Voltage': 0,
 			'High Voltage': 1,
@@ -2280,13 +1815,9 @@ class Global {
 				Interpolate: ['', '']
 			}
 		};
-		/* Keeps track of all the changes made to elements. There is a manager for
-    the history generated inside the application. Its queued up so we don't miss
-    anything! */
 		this.HISTORY_MANAGER = {
 			packet: []
 		};
-		/* The various landuages available to pick from. */
 		this.LANGUAGES = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];
 		this.LANGUGE_INDEX_COUNTER = 0;
 		this.LANGUAGE_INDEX_ENGLISH = this.LANGUGE_INDEX_COUNTER++;
@@ -2297,14 +1828,11 @@ class Global {
 		this.LANGUAGE_INDEX_RUSSIAN = this.LANGUGE_INDEX_COUNTER++;
 		this.LANGUAGE_INDEX_GERMAN = this.LANGUGE_INDEX_COUNTER++;
 		this.LANGUAGE_INDEX_INDONESIAN = this.LANGUGE_INDEX_COUNTER++;
-		/* The current language index. */
 		this.LANGUAGE_INDEX = this.LANGUAGE_INDEX_ENGLISH;
-		/* Base structure for resistor properties */
 		this.SYSTEM_OPTIONS = {
 			options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
 			values: [this.LANGUAGES[this.LANGUAGE_INDEX], this.ON, this.ON, this.OFF, this.OFF, this.OFF]
 		};
-		/* Index's to access system options. Make sure they're in order. */
 		let indexer: number = 0;
 		this.circle_buffer = [];
 		this.line_buffer = [];
@@ -2320,8 +1848,6 @@ class Global {
 		if (this.DESKTOP_MODE || this.DESKTOP_MODE) {
 			this.SYSTEM_OPTIONS['values'][this.SYSTEM_OPTION_STRETCH_WINDOW] = this.ON;
 		}
-		/* 99.999% Of the colors are stored here for conveinence. This is to help when moving from canvas-2d to some other libraries
-    in the future. Paint.js has one definition there... (The order of includes are hard to manage.)*/
 		this.BACKGROUND_COLOR = this.ColorNameToHex('black');
 		this.ELEMENT_COLOR = this.ColorNameToHex('silver');
 		this.SELECTED_COLOR = this.ColorNameToHex('cyan');
@@ -2350,13 +1876,9 @@ class Global {
 		this.GENERAL_CYAN_COLOR = this.ColorNameToHex('cyan');
 		this.GENERAL_HOVER_COLOR = '#18d8d8';
 		this.GENERAL_YELLOW_COLOR = this.ColorNameToHex('yellow');
-		/* The default font for all paints created in the system */
 		this.DEFAULT_FONT = 'Arial';
-		/* A flag to detail if the user has selected a file or not. */
 		this.user_file_selected = false;
-		/* A descriptor for the users circuit */
 		this.user_file = new Circuit();
-		/* Key Event Code Constants */
 		this.KEY_CODE_ESCAPE = 'Escape';
 		this.KEY_CODE_BACK_QUOTE = 'Backquote';
 		this.KEY_CODE_0 = 'Digit0';
@@ -2437,7 +1959,6 @@ class Global {
 		this.KEY_CODE_NUMPAD7 = 'Numpad7';
 		this.KEY_CODE_NUMPAD8 = 'Numpad8';
 		this.KEY_CODE_NUMPAD9 = 'Numpad9';
-		/* No modifier, Shift, Capslock */
 		this.KEY_EVENT_CODES = {
 			Escape: ['', '', ''],
 			Backquote: ['`', '~', ''],
@@ -2521,13 +2042,9 @@ class Global {
 			Numpad9: ['9', '', '']
 		};
 		this.KEY_EVENT_KEYS = Object.keys(this.KEY_EVENT_CODES);
-		/* Variables for Circuit Simulation */
 		this.time_step = 5e-6;
-		/* Keeps track of the simulation time. */
 		this.simulation_time = 0;
-		/* Serializing the inputs (so they occur in a predictable manner.) */
 		this.RESIZE_EVENT = false;
-		/* Used for changing from window modes. */
 		this.FORCE_RESIZE_EVENT = false;
 		this.ON_RESTORE_EVENT = false;
 		this.MOUSE_DOWN_EVENT = false;
@@ -2537,20 +2054,16 @@ class Global {
 		this.MOUSE_WHEEL_EVENT = false;
 		this.KEY_UP_EVENT = false;
 		this.KEY_DOWN_EVENT = false;
-		/* A flag to disable the system from drawing to the real buffer. */
 		this.draw_block = false;
-		/* Flag to dictate that the system is ready for a close up (Taking a snaps shot of  the workspace area.). */
 		this.PICTURE_REQUEST = false;
 		this.PICTURE_ZOOM = this.ZOOM_MAX;
 		this.PICTURE_EXPOSURE_TIME = 3;
-		/* Canvas drawing optimization flag */
 		this.canvas_draw_request = false;
 		this.canvas_draw_request_counter = 0;
 		this.CANVAS_DRAW_REQUEST_COUNTER_MAX = 3;
 		this.canvas_draw_event = false;
 		this.CANVAS_REDRAW_MAX = 3;
 		this.canvas_redraw_counter = 0;
-		/* Quantizing the stroke width's for the entire system. Ideally, the system will use one of these sizes. */
 		this.CANVAS_STROKE_WIDTH_BASE = 1;
 		this.CANVAS_STROKE_WIDTH_1 = 2.25;
 		this.CANVAS_STROKE_WIDTH_2 = 2.5;
@@ -2564,7 +2077,6 @@ class Global {
 		this.CANVAS_STROKE_WIDTH_4_ZOOM = 16;
 		this.CANVAS_STROKE_WIDTH_5_ZOOM = 21;
 		this.CANVAS_STROKE_WIDTH_6_ZOOM = 43;
-		/* Quantizing the text size's for the entire system. Ideally, the system will use one of these sizes. */
 		this.CANVAS_TEXT_SIZE_BASE = 1;
 		this.CANVAS_TEXT_SIZE_1 = 2.25;
 		this.CANVAS_TEXT_SIZE_2 = 2.5;
@@ -2578,9 +2090,7 @@ class Global {
 		this.CANVAS_TEXT_SIZE_4_ZOOM = 16;
 		this.CANVAS_TEXT_SIZE_5_ZOOM = 21;
 		this.CANVAS_TEXT_SIZE_6_ZOOM = 43;
-		/* This is how history event components are seperated. */
 		this.PACKET_DIVIDER = '#DIVIDER#';
-		/* Paint used to draw the grid highlights when a component is moved. */
 		this.move_paint = new Paint();
 		this.move_paint.set_paint_style(this.move_paint.style.FILL);
 		this.move_paint.set_paint_cap(this.move_paint.cap.ROUND);
@@ -2600,7 +2110,6 @@ class Global {
 		this.NEG_PI_DIV_180 = -Math.PI / 180;
 		this._180_DIV_PI = 180 / Math.PI;
 		this.PI_MUL_2 = Math.PI * 2;
-		/* Dividing PI into a 16-bit number (Qx) */
 		this.TRIG_TABLE_Q_NUMBER = 12;
 		this.TRIG_SINE_TABLE = [];
 		this.TRIG_TABLE_SIZE = Math.round(Math.pow(2, this.TRIG_TABLE_Q_NUMBER));
@@ -2617,7 +2126,6 @@ class Global {
 			Capacitance: -1,
 			Inductance: -1
 		};
-		/* This is the maximum text length of any text field. */
 		this.MAX_TEXT_LENGTH = 30;
 		this.inv_sqrt_buf = new ArrayBuffer(4);
 		this.inv_sqrt_f32 = new Float32Array(this.inv_sqrt_buf);
@@ -2802,7 +2310,6 @@ class Global {
 	cosine(theta: number): number {
 		return this.TRIG_SINE_TABLE[(theta * this.TRIG_TABLE_INDEX_CONSTANT + this.TRIG_TABLE_ROUND) & this.TRIG_TABLE_MASK];
 	}
-	/* Re-calculates the new position of an object based on the last screen width and the current screen width. */
 	remap_position(input: number, is_width: boolean): number {
 		if (is_width === true) {
 			return view_port.right - (this.last_view_port_right - input) * this.resize_w_factor;
@@ -2816,7 +2323,6 @@ class Global {
 	reset_angle_radian_cache(): void {
 		this.angle_radian_array = [];
 	}
-	/* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
 	search_angle_array(x: number, y: number): boolean {
 		this.temp_boolean = false;
 		this.saved_angle = -1;
@@ -2832,7 +2338,6 @@ class Global {
 		}
 		return this.temp_boolean;
 	}
-	/* Search the array to see if any metrics exist for the text w/ the input paint. The function also cleans up the storage array. */
 	search_angle_radian_array(x: number, y: number): boolean {
 		this.temp_boolean = false;
 		this.saved_angle_radians = -1;
@@ -2884,7 +2389,6 @@ class Global {
 	house_keeping_radians() {
 		this.angle_radian_array.splice(this.angle_radian_array.length - 1, 1);
 	}
-	/* Calculate the angle of a vector in degrees */
 	calc_degree(x: number, y: number): number {
 		this.general_integer = this.atan2_approx2(y, x) * global._180_DIV_PI;
 		if (this.general_integer < 0) {
@@ -2892,7 +2396,6 @@ class Global {
 		}
 		return this.general_integer;
 	}
-	/* calculate the angle of a vector in radians */
 	calc_degree_radians(x: number, y: number): number {
 		this.general_integer = this.atan2_approx2(y, x);
 		if (this.general_integer < 0) {
@@ -2900,7 +2403,6 @@ class Global {
 		}
 		return this.general_integer;
 	}
-	/* Converts degrees to radians */
 	to_radians(degrees: number): number {
 		return degrees * this.PI_DIV_180;
 	}
@@ -2939,24 +2441,18 @@ class Global {
 		}
 		return this.general_integer2;
 	}
-	/* Calculates the norm of a vector */
 	norm(x: number, y: number): number {
 		return Math.sqrt(x * x + y * y);
 	}
-	/* Rounds a value to three decimal places */
 	round(value: number): number {
 		return Math.round((value + Number.EPSILON) * 1000) / 1000;
 	}
-	/* A function to try and safely cast a float to an "int" */
 	cast_int(value: number): number {
 		return Math.trunc(Math.round(value));
 	}
-	/* Returns the average of two numbers: a and b */
 	get_average2(a: number, b: number): number {
 		return (a + b) * 0.5;
 	}
-	/* Calculate the incenter of a triangle. NOTE: Don't use this.general_integerx here..., it'll cause a value change.
-  because of calc_degree_radians */
 	equilateral_triangle_center(p1_x: number, p2_x: number, p3_x: number, p1_y: number, p2_y: number, p3_y: number): Array<number> {
 		let temp: number = 0;
 		temp = this.norm(p2_x - p1_x, p2_y - p1_y) * 0.5;
@@ -2968,26 +2464,20 @@ class Global {
 		let c_y: number = p_y + temp * this.sine(theta_p_p3);
 		return Array(c_x, c_y);
 	}
-	/* Returns the average of four numbers: a, b, c, and d */
 	get_average4(a: number, b: number, c: number, d: number): number {
 		return (a + b + c + d) * 0.25;
 	}
-	/* Check to see if an element is null or undefined. */
 	not_null(obj: any) {
 		return !(obj == this.NULL);
 	}
-	/* Using lodash to deep clone an object. */
 	copy(obj: any) {
 		return _.cloneDeep(obj);
 	}
-	/* A safe function to print stuff out when debugging. Developer mode is automatically set to false
-  when the production script is run. */
 	print(obj: any) {
 		if (this.DEVELOPER_MODE) {
 			console.log(obj);
 		}
 	}
-	/* A function to quickly format a number into SI units */
 	exponentiate_quickly(input: number): string {
 		let str: string = '';
 		let val: number = 0;
@@ -3011,9 +2501,6 @@ class Global {
 		}
 		return str;
 	}
-	/* Find the max of the elements. This is so we don't waste time looping
-  through each element.
-  This is automatically generated, no touchy! */
 	element_max(): number {
 		/* #INSERT_GENERATE_MAX_ELEMENT# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -3097,8 +2584,6 @@ class Global {
 		}
 		return this.max_general_number;
 	}
-	/* Find the highest number of meter type elements.
-  This is automatially generated! */
 	meter_max(): number {
 		/* #INSERT_GENERATE_MAX_METER# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -3112,7 +2597,6 @@ class Global {
 		}
 		return this.max_general_number;
 	}
-	/* Find the maximum size of non-linear elements. */
 	non_linear_max(): number {
 		/* #INSERT_GENERATE_MAX_NON_LINEAR# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -3126,7 +2610,6 @@ class Global {
 		}
 		return this.max_general_number;
 	}
-	/* Line collision baby! */
 	line_collision(p0_x: number, p0_y: number, p1_x: number, p1_y: number, p2_x: number, p2_y: number, p3_x: number, p3_y: number): boolean {
 		let s1_x: number = p1_x - p0_x;
 		let s1_y: number = p1_y - p0_y;
@@ -3136,7 +2619,6 @@ class Global {
 		let t: number = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
 		return s >= 0 && s <= 1 && t >= 0 && t <= 1;
 	}
-	/* Decodes a key code from a key event */
 	decode_key(key_event: KEY_EVENT_T): string {
 		let shift: boolean = key_event['shift'];
 		let caps: boolean = key_event['caps'];
@@ -3165,19 +2647,15 @@ class Global {
 		}
 		return ret;
 	}
-	/* Detects if a key is alpha numeric or not. */
 	is_alpha_numeric(key_event: KEY_EVENT_T): boolean {
 		return /[a-z A-Z0-9]/.test(this.decode_key(key_event));
 	}
-	/* Detects if a key is alpha numeric or not. */
 	is_alpha_numeric_note(key_event: KEY_EVENT_T): boolean {
 		return /[!@#$%`~^&_{}()a-z A-Z0-9=:'",?<>;:*/+-|]/.test(this.decode_key(key_event));
 	}
-	/* Detects if a key is a valid si unit or a number. */
 	is_valid_si_units(key_event: KEY_EVENT_T): boolean {
 		return /[-.kmu0123456789MnGpf]/.test(this.decode_key(key_event));
 	}
-	/* General function to limit a number within a range. */
 	limit(inp: number, low: number, high: number): number {
 		if (inp < low) {
 			return low;
@@ -3187,22 +2665,18 @@ class Global {
 			return inp;
 		}
 	}
-	/* General function for creating getting the current date */
 	get_date_stamp(): string {
 		let date: Date = new Date();
 		return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
 	}
-	/* Genetating a timestamp! */
 	get_time_stamp(): string {
 		let date: Date = new Date();
 		let TIMESTAMP_TEMPLATE: string = '{DATE}->{TIME_ZONE}';
 		return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', <string>(<unknown>date.getTimezoneOffset()));
 	}
-	/* Logarithmic Damping Algorithm. Base E. */
 	log_damping(next: number, now: number, gamma: number, kappa: number): number {
 		return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
 	}
-	/* Returns the sign of the number.*/
 	signum(inp: number): number {
 		if (inp < 0) {
 			return -1;
@@ -3210,7 +2684,6 @@ class Global {
 			return 1;
 		}
 	}
-	/* Change of base formula. */
 	logbx(b: number, x: number): number {
 		return Math.log(x) / Math.log(b);
 	}
@@ -3219,7 +2692,6 @@ class Global {
 	}
 	perm32(inp: number): number {
 		this.general_integer = 12;
-		/* 12 Rounds */
 		let x: number = ((inp >> 8) ^ inp) * 0x6b + this.general_integer--;
 		x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;
 		x = ((x >> 8) ^ x) * 0x6b + this.general_integer--;

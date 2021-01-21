@@ -1,65 +1,23 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : Trace.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to handle the drawing of traces on the graph window.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class Trace {
     constructor(x_len, y_len, ratio) {
-        /* The trace path of the trace itself. */
         this.trace_path = new Path();
-        /* The list of all the trace points magnitudes */
         this.magnitude_list = [];
-        /* The trace points that we will generate the path from. */
         this.trace = [];
-        /* The norm of the trace points (Maximum value) */
         this.norm = 1;
-        /* The last norm. This is used to track if the graph should be re-scaled. */
         this.last_norm = 1;
-        /* A temporary value we will be using for calculation. */
         this.temporary_norm = 1;
-        /* The bounds of the trace. */
         this.bounds = new RectF(0, 0, 0, 0);
-        /* The purpose of these variables is to genetate a bezier or quadratic curve from
-    two points calculating their mid-point. This is to ensure that the graph have curvature
-    but it passes through all the points generated from the solutions of the system. */
-        /* A point used to calculate the path of the trace. */
         this.previous_point = new PointF(0, 0);
-        /* Another point used to calculate the path of the trace. */
         this.current_point = new PointF(0, 0);
-        /* Yet another point to calculate the path of the trace. */
         this.mid_point = new PointF(0, 0);
-        /* Trim on the left and right hand side of the trace (this is for the idea of inner and
-  outer bounds)*/
         this.trim = 0;
-        /* The width of the trace space */
         this.width = 0;
-        /* The height of the trace space */
         this.height = 0;
-        /* A helper variable used to store the magnitudes of the traces if they need to be re-scaled */
         this.plot_magnitude = 0;
-        /* A ratio of the spacing (in the y direction) of the traces. */
         this.ratio = ratio;
-        /* The X-AXIS length of the trace */
         this.X_AXIS_LENGTH = x_len;
-        /* The Y-AXIS length of the trace */
         this.Y_AXIS_LENGTH = y_len;
-        /*  Trace Stroke Paint  */
         this.trace_stroke_paint = new Paint();
         this.trace_stroke_paint.set_paint_style(this.trace_stroke_paint.style.STROKE);
         this.trace_stroke_paint.set_paint_cap(this.trace_stroke_paint.cap.ROUND);
@@ -70,7 +28,6 @@ class Trace {
         this.trace_stroke_paint.set_font(global.DEFAULT_FONT);
         this.trace_stroke_paint.set_alpha(255);
         this.trace_stroke_paint.set_paint_align(this.trace_stroke_paint.align.CENTER);
-        /* Trace Fill Paint  */
         this.trace_fill_paint = new Paint();
         this.trace_fill_paint.set_paint_style(this.trace_fill_paint.style.FILL);
         this.trace_fill_paint.set_paint_cap(this.trace_fill_paint.cap.ROUND);
@@ -82,36 +39,28 @@ class Trace {
         this.trace_fill_paint.set_alpha(255);
         this.trace_fill_paint.set_paint_align(this.trace_fill_paint.align.CENTER);
     }
-    /* Set the color of the trace */
     set_color(color) {
         this.trace_stroke_paint.set_color(color);
         this.trace_fill_paint.set_color(color);
     }
-    /* Set the x axis length of the trace */
     set_x_axis_length(len) {
         this.X_AXIS_LENGTH = len;
     }
-    /* Set the the y axis length of the trace */
     set_y_axis_length(len) {
         this.Y_AXIS_LENGTH = len;
     }
-    /* Set the ratio of the trace */
     set_ratio(ratio) {
         this.ratio = ratio;
     }
-    /* Set the maximum width of the trace (spacial confinds) */
     set_width(width) {
         this.width = width;
     }
-    /* Set the maximum height of the trace (spacial confinds) */
     set_height(height) {
         this.height = height;
     }
-    /* Set the trim of the trace */
     set_trim(trim) {
         this.trim = trim;
     }
-    /* A nice function to handle updating all of the parameters of the trace at once. */
     update_parameters(bounds, ratio, width, height, trim) {
         this.set_bounds(bounds);
         this.set_ratio(ratio);
@@ -119,14 +68,12 @@ class Trace {
         this.set_height(height);
         this.set_trim(trim);
     }
-    /* Set the bounds of the trace */
     set_bounds(rect) {
         this.bounds.left = rect.left;
         this.bounds.top = rect.top;
         this.bounds.right = rect.right;
         this.bounds.bottom = rect.bottom;
     }
-    /* Resize the trace (dynamically) */
     resize_trace() {
         this.trace_stroke_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.trace_stroke_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -145,7 +92,6 @@ class Trace {
         }
         this.create_path();
     }
-    /* Reset the trace. (Remove data and remove the trace path) */
     reset() {
         this.trace.splice(0, this.trace.length);
         this.magnitude_list.splice(0, this.magnitude_list.length);
@@ -157,7 +103,6 @@ class Trace {
     reset_path() {
         this.trace_path.reset();
     }
-    /* Get a specific value of the trace at at specific index. */
     get_value(index) {
         let ret = [];
         if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
@@ -166,7 +111,6 @@ class Trace {
         }
         return ret;
     }
-    /* Get a specific value of the trace at at specific index. */
     get_value_double(index) {
         let ret = [];
         if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
@@ -175,7 +119,6 @@ class Trace {
         }
         return ret;
     }
-    /* Add a new entry to the trace. */
     push(value, t) {
         value *= -1;
         if (Math.abs(value) < 1e-18) {
@@ -231,7 +174,6 @@ class Trace {
         }
         this.create_path();
     }
-    /* Create the path of the trace based on the trace points */
     create_path() {
         if (this.trace.length > 0) {
             let temp_height = this.height >> 1;
@@ -256,7 +198,6 @@ class Trace {
             this.trace_path.line_to(this.previous_point.x, this.previous_point.y);
         }
     }
-    /* Draw the trace itself! */
     draw_trace(canvas, x_offset, y_offset) {
         if (this.trace.length > 0) {
             canvas.draw_path2(this.trace_path, x_offset, y_offset, this.trace_stroke_paint);

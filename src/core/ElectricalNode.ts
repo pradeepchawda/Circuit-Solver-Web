@@ -1,54 +1,28 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : ElectricalNode.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : This is a general class that holds the positions of the nodes as well as
- *                   collects information about what is attached to this specific location in
- *                   the application. It will be the corner stone of reducing the amount of
- *                   unnecessary computations.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
+
 class ElectricalNode {
-	/* The radius of the node when it is drawn. */
-	/* The location of the node */
 	public location: PointF;
-	/* This is the paint that will be used to draw anything for debugging */
+
 	public node_line_paint: Paint;
-	/* This is the paint that will be used to draw anything for debugging */
+
 	public node_fill_paint: Paint;
-	/* This is the paint that will be used to draw anything for debugging */
+
 	public node_fill_paint_alt: Paint;
-	/* This is used to keep a unique tag of the node in question. */
+
 	public id: number;
-	/* This is used to re-map the nodes when doing simulation. */
+
 	public simulation_id: number;
-	/* The references attached to this node, essentially whatever is residing the the same location of this node. */
+
 	public references: Array<NodeReference>;
-	/* Mapping the ID to a row and column. This is useful to know where the node must go upon resizing. */
+
 	public column: number;
 	public row: number;
 	public bounds: RectF;
 	public loc_x_precalc: number;
 	public loc_y_precalc: number;
 	constructor(x: number, y: number, id: number) {
-		/* The radius of the node when it is drawn. */
-		/* The location of the node */
 		this.location = new PointF(x, y);
-		/* This is the paint that will be used to draw anything for debugging */
+
 		this.node_line_paint = new Paint();
 		this.node_line_paint.set_paint_style(this.node_line_paint.style.STROKE);
 		this.node_line_paint.set_paint_cap(this.node_line_paint.cap.ROUND);
@@ -59,7 +33,7 @@ class ElectricalNode {
 		this.node_line_paint.set_font(global.DEFAULT_FONT);
 		this.node_line_paint.set_alpha(192);
 		this.node_line_paint.set_paint_align(this.node_line_paint.align.CENTER);
-		/* This is the paint that will be used to draw anything for debugging */
+
 		this.node_fill_paint = new Paint();
 		this.node_fill_paint.set_paint_style(this.node_fill_paint.style.FILL);
 		this.node_fill_paint.set_paint_cap(this.node_fill_paint.cap.ROUND);
@@ -70,7 +44,7 @@ class ElectricalNode {
 		this.node_fill_paint.set_font(global.DEFAULT_FONT);
 		this.node_fill_paint.set_alpha(192);
 		this.node_fill_paint.set_paint_align(this.node_fill_paint.align.CENTER);
-		/* This is the paint that will be used to draw anything for debugging */
+
 		this.node_fill_paint_alt = new Paint();
 		this.node_fill_paint_alt.set_paint_style(this.node_fill_paint_alt.style.FILL);
 		this.node_fill_paint_alt.set_paint_cap(this.node_fill_paint_alt.cap.ROUND);
@@ -81,13 +55,13 @@ class ElectricalNode {
 		this.node_fill_paint_alt.set_font(global.DEFAULT_FONT);
 		this.node_fill_paint_alt.set_alpha(192);
 		this.node_fill_paint_alt.set_paint_align(this.node_fill_paint_alt.align.CENTER);
-		/* This is used to keep a unique tag of the node in question. */
+
 		this.id = id;
-		/* This is used to re-map the nodes when doing simulation. */
+
 		this.simulation_id = -1;
-		/* The references attached to this node, essentially whatever is residing the the same location of this node. */
+
 		this.references = [];
-		/* Mapping the ID to a row and column. This is useful to know where the node must go upon resizing. */
+
 		this.column = Math.floor(this.id / Math.round(global.settings.SQRT_MAXNODES));
 		this.row = this.id % Math.round(global.settings.SQRT_MAXNODES);
 		let node_space_x: number = 1.175 * (global.node_space_x >> 2);
@@ -100,8 +74,7 @@ class ElectricalNode {
 		this.loc_x_precalc = this.row * global.settings.INV_SQRT_M_1;
 		this.loc_y_precalc = this.column * global.settings.INV_SQRT_M_1;
 	}
-	/* A resizing handler, it will compute the new locations of the nodes as well as handle any zooming
-  the user does. */
+
 	resize(n_x: number, n_y: number, m_n_x: number, m_n_y: number): void {
 		if (global.SIGNAL_BUILD_ELEMENT) {
 			this.location.x = workspace.bounds.left + this.loc_x_precalc * workspace.bounds.get_width();
@@ -119,40 +92,40 @@ class ElectricalNode {
 			this.node_fill_paint_alt.set_text_size(global.CANVAS_TEXT_SIZE_5);
 		}
 	}
-	/* Sets the color of the node interface paint */
+
 	set_color(color: string): void {
 		this.node_line_paint.set_color(color);
 		this.node_fill_paint.set_color(color);
 		this.node_fill_paint_alt.set_color(color);
 	}
-	/* Gets the bounds of the node (some default padding is applied)*/
+
 	get_bounds(): RectF {
 		return this.bounds;
 	}
-	/* A quick check to see if the rectangle contains an x,y coordinate */
+
 	contains_xy(x: number, y: number): boolean {
 		return this.bounds.contains_xy(x, y);
 	}
-	/* A quick check to see if the rectangle contains an x,y coordinate (width and height constraints) */
+
 	contains_xywh(x: number, y: number, w: number, h: number): boolean {
 		return this.bounds.contains_xywh(x, y, w, h);
 	}
-	/* Gets the node's ID */
+
 	get_id(): number {
 		return this.id;
 	}
-	/* Clears the references attached to this node */
+
 	clear_references(): void {
 		this.references = [];
 		node_manager.remove_node(this.id);
 	}
-	/* Add a reference list to this node. */
+
 	add_reference_list(reference_list: Array<NodeReference>): void {
 		for (var i: number = 0; i < reference_list.length; i++) {
 			this.add_reference(reference_list[i].id, reference_list[i].type);
 		}
 	}
-	/* Add a reference to this node. */
+
 	add_reference(id: number, type: number): void {
 		let is_found: boolean = false;
 		for (var i: number = 0; i < this.references.length; i++) {
@@ -168,7 +141,7 @@ class ElectricalNode {
 			}
 		}
 	}
-	/* Removes the reference from this node. */
+
 	remove_reference(id: number, type: number): void {
 		if (this.references.length > 0) {
 			for (var i: number = 0; i < this.references.length; i++) {
@@ -182,7 +155,7 @@ class ElectricalNode {
 			}
 		}
 	}
-	/* Checks to see if the references contain an element type */
+
 	contains_element_type(type: number): boolean {
 		let out: boolean = false;
 		for (var i: number = 0; i < this.references.length; i++) {
@@ -193,7 +166,7 @@ class ElectricalNode {
 		}
 		return out;
 	}
-	/* Checks to see if the references contain an element type */
+
 	draw_node_builder_helper(): boolean {
 		let count: number = 0;
 		let index: number = -1;
@@ -224,7 +197,7 @@ class ElectricalNode {
 		}
 		return str;
 	}
-	/* Draw the node using the graphics engine */
+
 	draw(canvas: GraphicsEngine): void {
 		if (this.references.length > 0) {
 			if (global.DEVELOPER_MODE) {

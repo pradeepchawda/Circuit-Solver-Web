@@ -1,51 +1,20 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : GroundSymbol.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to draw the ground element without worrying about the
- *                   nodes / other properties.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class GroundSymbol {
     constructor(rect, index, page) {
-        /* Index of the bounds (Inside New Element Window) */
         this.index = index;
-        /* Page to be drawn on (Inside New Element Window) */
         this.page = page;
         this.bounds = new RectF(0, 0, 0, 0);
         if (global.not_null(rect)) {
-            /* Create a new rectangle for the bounds of this component */
             this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
         }
         this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
         this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
-        /* Angle from p1 to p2 minus 90 degrees */
         this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-        /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-        /* The center (x-coord) of the bounds */
         this.c_x = this.bounds.get_center_x();
-        /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y() - (this.bounds.get_height() >> 2);
-        /* The spacing of the nodes in the x-direction, divided by 2 */
         this.x_space = this.bounds.get_width() >> 2;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
         this.y_space = this.bounds.get_height() >> 2;
-        /* This paint is used for drawing the "lines" that the component is comprised of. */
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -56,7 +25,6 @@ class GroundSymbol {
         this.line_paint.set_font(global.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-        /* This paint is used for drawing the "nodes" that the component is connected to. */
         this.point_paint = new Paint();
         this.point_paint.set_paint_style(this.point_paint.style.FILL);
         this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -67,7 +35,6 @@ class GroundSymbol {
         this.point_paint.set_font(global.DEFAULT_FONT);
         this.point_paint.set_alpha(255);
         this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-        /* This paint is used for drawing the "text" that the component needs to display */
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(this.text_paint.style.FILL);
         this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -78,7 +45,6 @@ class GroundSymbol {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-        /* Text background paint */
         this.text_background_paint = new Paint();
         this.text_background_paint.set_paint_style(this.text_background_paint.style.FILL);
         this.text_background_paint.set_paint_cap(this.text_background_paint.cap.ROUND);
@@ -114,7 +80,6 @@ class GroundSymbol {
                 if (!this.FLAG_ADD_ELEMENT) {
                     this.FLAG_ADD_ELEMENT = true;
                     global.SIGNAL_ADD_ELEMENT = true;
-                    /* Block out the reset selection portion of the code! */
                     global.component_touched = true;
                 }
             }
@@ -139,21 +104,14 @@ class GroundSymbol {
         }
     }
     resize(rect) {
-        /* Create a new rectangle for the bounds of this component */
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
-        /* The center (x-coord) of the bounds */
         this.c_x = this.bounds.get_center_x();
-        /* The center (y-coord) of the bounds */
         this.c_y = this.bounds.get_center_y() - (this.bounds.get_height() >> 2);
-        /* The spacing of the nodes in the x-direction, divided by 2 */
         this.x_space = this.bounds.get_width() >> 2;
-        /* The spacing of the nodes in the y-direction, divided by 2 */
         this.y_space = this.bounds.get_height() >> 2;
         this.p1.set_point(this.bounds.left, this.bounds.get_center_y());
         this.p2.set_point(this.bounds.right, this.bounds.get_center_y());
-        /* Angle from p1 to p2 minus 90 degrees */
         this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-        /* Angle from p1 to p2 */
         this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
         this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
         this.line_paint.set_text_size(global.CANVAS_TEXT_SIZE_4);
@@ -174,11 +132,9 @@ class GroundSymbol {
             this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
         }
     }
-    /* Draws the Symbol */
     draw_symbol(canvas, page) {
         this.recolor();
         if (this.page === page) {
-            /* To the bottom! */
             canvas.draw_circle(this.c_x, this.c_y, 1.5 * global.CANVAS_STROKE_WIDTH_2, this.point_paint);
             let indexer = 0;
             this.circle_buffer = [];

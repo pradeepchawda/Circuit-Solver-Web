@@ -1,65 +1,27 @@
 'use strict';
-/**********************************************************************
- * Project           : Circuit Solver
- * File		        : DCCurrentSymbol.js
- * Author            : nboatengc
- * Date created      : 20190928
- *
- * Purpose           : A class to draw the dccurrent element without worrying about the
- *                   nodes / other properties.
- *
- * Copyright PHASORSYSTEMS, 2019. All Rights Reserved.
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF PHASORSYSTEMS.
- *
- * Revision History  :
- *
- * Date        Author      	Ref    Revision (Date in YYYYMMDD format)
- * 20190928    nboatengc     1      Initial Commit.
- *
- ***********************************************************************/
 class DCCurrentSymbol {
-	/* Index of the bounds (Inside New Element Window) */
 	public index: number;
-	/* Page to be drawn on (Inside New Element Window) */
 	public page: number;
 	public bounds: RectF;
 	public p1: PointF;
 	public p2: PointF;
-	/* Angle from p1 to p2 minus 90 degrees */
 	public theta_m90: number;
-	/* Angle from p1 to p2 */
 	public theta: number;
-	/* DCCurrent point 0 */
 	public dcc_0: PointF;
-	/* DCCurrent point 1 */
 	public dcc_1: PointF;
-	/* DCCurrent point 2 */
 	public dcc_2: PointF;
-	/* DCCurrent point 3 */
 	public dcc_3: PointF;
-	/* The center (x-coord) of the bounds */
 	public c_x: number;
-	/* The center (y-coord) of the bounds */
 	public c_y: number;
-	/* The spacing of the nodes in the x-direction, divided by 2 */
 	public x_space: number;
-	/* The spacing of the nodes in the y-direction, divided by 2 */
 	public y_space: number;
-	/* Some points we'll be extending the leads of the resistor to. */
 	public connect1_x: number;
 	public connect1_y: number;
 	public connect2_x: number;
 	public connect2_y: number;
-	/* This paint is used for drawing the "lines" that the component is comprised of. */
 	public line_paint: Paint;
-	/* This paint is used for drawing the "nodes" that the component is connected to. */
 	public point_paint: Paint;
-	/* This paint is used for drawing the "text" that the component needs to display */
 	public text_paint: Paint;
-	/* Text background paint */
 	public text_background_paint: Paint;
 	public FLAG_ADD_ELEMENT: boolean;
 	public TAG: string;
@@ -69,43 +31,28 @@ class DCCurrentSymbol {
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor(rect: RectF, index: number, page: number) {
-		/* Index of the bounds (Inside New Element Window) */
 		this.index = index;
-		/* Page to be drawn on (Inside New Element Window) */
 		this.page = page;
 		this.bounds = new RectF(0, 0, 0, 0);
 		if (global.not_null(rect)) {
-			/* Create a new rectangle for the bounds of this component */
 			this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
 		}
 		this.p1 = new PointF(this.bounds.left, this.bounds.get_center_y());
 		this.p2 = new PointF(this.bounds.right, this.bounds.get_center_y());
-		/* Angle from p1 to p2 minus 90 degrees */
 		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-		/* Angle from p1 to p2 */
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-		/* DCCurrent point 0 */
 		this.dcc_0 = new PointF(0, 0);
-		/* DCCurrent point 1 */
 		this.dcc_1 = new PointF(0, 0);
-		/* DCCurrent point 2 */
 		this.dcc_2 = new PointF(0, 0);
-		/* DCCurrent point 3 */
 		this.dcc_3 = new PointF(0, 0);
-		/* The center (x-coord) of the bounds */
 		this.c_x = this.bounds.get_center_x();
-		/* The center (y-coord) of the bounds */
 		this.c_y = this.bounds.get_center_y();
-		/* The spacing of the nodes in the x-direction, divided by 2 */
 		this.x_space = this.bounds.get_width() >> 2;
-		/* The spacing of the nodes in the y-direction, divided by 2 */
 		this.y_space = this.bounds.get_height() >> 2;
-		/* Some points we'll be extending the leads of the resistor to. */
 		this.connect1_x = 0;
 		this.connect1_y = 0;
 		this.connect2_x = 0;
 		this.connect2_y = 0;
-		/* This paint is used for drawing the "lines" that the component is comprised of. */
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
 		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -116,7 +63,6 @@ class DCCurrentSymbol {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		/* This paint is used for drawing the "nodes" that the component is connected to. */
 		this.point_paint = new Paint();
 		this.point_paint.set_paint_style(this.point_paint.style.FILL);
 		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
@@ -127,7 +73,6 @@ class DCCurrentSymbol {
 		this.point_paint.set_font(global.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
 		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
-		/* This paint is used for drawing the "text" that the component needs to display */
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(this.text_paint.style.FILL);
 		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
@@ -138,7 +83,6 @@ class DCCurrentSymbol {
 		this.text_paint.set_font(global.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-		/* Text background paint */
 		this.text_background_paint = new Paint();
 		this.text_background_paint.set_paint_style(this.text_background_paint.style.FILL);
 		this.text_background_paint.set_paint_cap(this.text_background_paint.cap.ROUND);
@@ -177,7 +121,6 @@ class DCCurrentSymbol {
 				if (!this.FLAG_ADD_ELEMENT) {
 					this.FLAG_ADD_ELEMENT = true;
 					global.SIGNAL_ADD_ELEMENT = true;
-					/* Block out the reset selection portion of the code! */
 					global.component_touched = true;
 				}
 			}
@@ -200,7 +143,6 @@ class DCCurrentSymbol {
 			global.SIGNAL_ADD_ELEMENT = false;
 		}
 	}
-	/* Generate the SVG for the component. */
 	build_element() {
 		this.dcc_0.x = this.c_x - this.x_space * 0.5 * global.cosine(this.theta);
 		this.dcc_0.y = this.c_y - this.y_space * 0.5 * global.sine(this.theta);
@@ -216,21 +158,14 @@ class DCCurrentSymbol {
 		this.connect2_y = this.c_y + this.y_space * global.sine(this.theta);
 	}
 	resize(rect: RectF) {
-		/* Create a new rectangle for the bounds of this component */
 		this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);
-		/* The center (x-coord) of the bounds */
 		this.c_x = this.bounds.get_center_x();
-		/* The center (y-coord) of the bounds */
 		this.c_y = this.bounds.get_center_y();
-		/* The spacing of the nodes in the x-direction, divided by 2 */
 		this.x_space = this.bounds.get_width() >> 2;
-		/* The spacing of the nodes in the y-direction, divided by 2 */
 		this.y_space = this.bounds.get_height() >> 2;
 		this.p1.set_point(this.bounds.left, this.bounds.get_center_y());
 		this.p2.set_point(this.bounds.right, this.bounds.get_center_y());
-		/* Angle from p1 to p2 minus 90 degrees */
 		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-		/* Angle from p1 to p2 */
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 		this.build_element();
 		this.line_paint.set_stroke_width(global.CANVAS_STROKE_WIDTH_2);
@@ -251,7 +186,6 @@ class DCCurrentSymbol {
 			this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
 		}
 	}
-	/* Draws the Symbol */
 	draw_symbol(canvas: GraphicsEngine, page: number) {
 		this.recolor();
 		if (this.page === page) {
