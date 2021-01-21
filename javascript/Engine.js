@@ -20,10 +20,12 @@ function save_file(title, content) {
     let blob = new Blob([content], {
         type: 'text/plain;charset=utf-8'
     });
+    //@ts-expect-error
     saveAs(blob, title);
 }
 function save_image(title, canvas) {
     canvas.toBlob(function (blob) {
+        //@ts-expect-error
         saveAs(blob, title);
     });
 }
