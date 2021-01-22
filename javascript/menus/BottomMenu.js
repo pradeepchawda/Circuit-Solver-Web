@@ -1,8 +1,8 @@
 'use strict';
 class BottomMenu {
     constructor() {
-        this.DRAW_BOTTOM_PATH = true;
-        this.TIME_STEP_BUTTON_WIDTH = 1;
+        this.draw_bottom_path = true;
+        this.time_step_button_width = 1;
         this.VERSION_TAG_TEMPLATE = 'v{VERSION_TAG}   ';
         this.TIMESTEP_TEMPLATE = 'Δt:={TIMESTEP}s';
         this.FILE_BUTTON_TEXT_TEMPLATE = '  {TEXT}  ';
@@ -47,7 +47,7 @@ class BottomMenu {
         this.file_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
         this.file_button.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
         this.file_button.resize_paint();
-        this.time_step_button = new Button(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + 2 * global.canvas_stroke_width_4, view_port.right, view_port.bottom);
+        this.time_step_button = new Button(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + 2 * global.canvas_stroke_width_4, view_port.right, view_port.bottom);
         this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
         this.time_step_button.draw_stroke = false;
         this.time_step_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
@@ -56,9 +56,9 @@ class BottomMenu {
         this.load_bottom_path();
         this.first_touch_x = 0;
         this.first_touch_y = 0;
-        this.INITIAL_RESIZE_COUNTER = 0;
+        this.initial_resize_counter = 0;
         this.INITIAL_RESIZE_COUNTER_MAX = global.CANVAS_REDRAW_MAX;
-        this.RELOAD_BOTTOM_PATH = true;
+        this.reload_bottom_path = true;
     }
     load_bottom_path() {
         this.bottom_path.reset();
@@ -74,8 +74,8 @@ class BottomMenu {
     }
     update() { }
     resize_bottom_menu() {
-        this.INITIAL_RESIZE_COUNTER = 0;
-        this.RELOAD_BOTTOM_PATH = true;
+        this.initial_resize_counter = 0;
+        this.reload_bottom_path = true;
         this.file_button.resize();
         this.time_step_button.resize();
         this.file_button.line_paint.set_stroke_width(global.canvas_stroke_width_1);
@@ -117,7 +117,7 @@ class BottomMenu {
     mouse_move() { }
     mouse_up() {
         if (!global.is_right_click && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
-            if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
+            if (!global.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed && global.component_touched) {
                 if (!global.flag_simulating &&
                     !global.flag_save_image &&
                     !global.flag_save_circuit &&
@@ -188,7 +188,7 @@ class BottomMenu {
                 !global.flag_element_options &&
                 !global.flag_graph &&
                 !global.flag_remove_all &&
-                !multi_select_manager.CTRL_PRESSED_STARTED &&
+                !multi_select_manager.ctrl_pressed_started &&
                 !global.MOBILE_MODE) {
                 this.file_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);
             }
@@ -208,7 +208,7 @@ class BottomMenu {
                 !global.flag_element_options &&
                 !global.flag_graph &&
                 !global.flag_remove_all &&
-                !multi_select_manager.CTRL_PRESSED_STARTED &&
+                !multi_select_manager.ctrl_pressed_started &&
                 !global.MOBILE_MODE) {
                 this.time_step_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);
             }
@@ -230,7 +230,7 @@ class BottomMenu {
                 !global.flag_element_options &&
                 !global.flag_graph &&
                 !global.flag_remove_all &&
-                !multi_select_manager.CTRL_PRESSED_STARTED &&
+                !multi_select_manager.ctrl_pressed_started &&
                 !global.MOBILE_MODE) {
                 this.file_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);
             }
@@ -250,7 +250,7 @@ class BottomMenu {
                 !global.flag_element_options &&
                 !global.flag_graph &&
                 !global.flag_remove_all &&
-                !multi_select_manager.CTRL_PRESSED_STARTED &&
+                !multi_select_manager.ctrl_pressed_started &&
                 !global.MOBILE_MODE) {
                 this.time_step_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);
             }
@@ -263,23 +263,23 @@ class BottomMenu {
         this.recolor();
         this.file_button.text = language_manager.FILE[global.LANGUAGES[global.language_index]] + global.user_file.title;
         this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
-        this.TIME_STEP_BUTTON_WIDTH = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
+        this.time_step_button_width = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
         let padding = 2 * global.canvas_stroke_width_4;
         this.file_button.set_bounds(view_port.left, menu_bar.settings_button.bottom + padding, view_port.left + this.file_button.text_paint.measure_text(this.FILE_BUTTON_TEXT_TEMPLATE.replace('{TEXT}', this.file_button.text)), view_port.bottom);
-        this.time_step_button.set_bounds(view_port.right - this.TIME_STEP_BUTTON_WIDTH, menu_bar.settings_button.bottom + padding, view_port.right, view_port.bottom);
-        if (this.DRAW_BOTTOM_PATH) {
+        this.time_step_button.set_bounds(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + padding, view_port.right, view_port.bottom);
+        if (this.draw_bottom_path) {
             if (this.file_button.draw_fill) {
                 this.file_button.draw_fill = false;
             }
             if (this.time_step_button.draw_fill) {
                 this.time_step_button.draw_fill = false;
             }
-            if (this.RELOAD_BOTTOM_PATH === true) {
+            if (this.reload_bottom_path === true) {
                 this.load_bottom_path();
-                this.INITIAL_RESIZE_COUNTER++;
-                if (this.INITIAL_RESIZE_COUNTER >= this.INITIAL_RESIZE_COUNTER_MAX) {
-                    this.INITIAL_RESIZE_COUNTER = 0;
-                    this.RELOAD_BOTTOM_PATH = false;
+                this.initial_resize_counter++;
+                if (this.initial_resize_counter >= this.INITIAL_RESIZE_COUNTER_MAX) {
+                    this.initial_resize_counter = 0;
+                    this.reload_bottom_path = false;
                 }
             }
             canvas.draw_path(this.bottom_path, this.fill_paint);

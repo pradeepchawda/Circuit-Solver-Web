@@ -1,13 +1,13 @@
 'use strict';
 class ElementWindow {
-	public ENABLE_MOUSE_WHEEL: boolean;
+	public readonly ENABLE_MOUSE_WHEEL: boolean;
 	public positions: Array<RectF>;
-	public MOUSE_WHEEL_COUNTER: number;
-	public MOUSE_WHEEL_COUNTER_MAX: number;
+	public mouse_wheel_counter: number;
+	public readonly MOUSE_WHEEL_COUNTER_MAX: number;
 	public readonly NAVIGATE_TEXT: string;
 	public readonly MAX_ICONS: number;
-	public NAVIGATE_BACK: number;
-	public NAVIGATE_FORWARD: number;
+	public readonly NAVIGATE_BACK_INDEX: number;
+	public readonly NAVIGATE_FORWARD_INDEX: number;
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public line_paint: Paint;
@@ -15,9 +15,9 @@ class ElementWindow {
 	public text_paint: Paint;
 	public hover_paint: Paint;
 	public bounds: RectF;
-	public PAGE_NUMBER: number;
-	public ELEMENT_INDEX: number;
-	public MAX_PAGE_NUMBER: number;
+	public Page_number: number;
+	public element_index: number;
+	public readonly MAX_PAGE_NUMBER: number;
 	/* #INSERT_GENERATE_CREATE_ELEMENT_WINDOW_ICON_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public resistor_symbol: ResistorSymbol;
@@ -92,12 +92,12 @@ class ElementWindow {
 	constructor(left: number, top: number, right: number, bottom: number) {
 		this.ENABLE_MOUSE_WHEEL = true;
 		this.positions = [];
-		this.MOUSE_WHEEL_COUNTER = 0;
+		this.mouse_wheel_counter = 0;
 		this.MOUSE_WHEEL_COUNTER_MAX = 1;
 		this.NAVIGATE_TEXT = '...';
 		this.MAX_ICONS = 8;
-		this.NAVIGATE_BACK = 0;
-		this.NAVIGATE_FORWARD = this.MAX_ICONS - 1;
+		this.NAVIGATE_BACK_INDEX = 0;
+		this.NAVIGATE_FORWARD_INDEX = this.MAX_ICONS - 1;
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
 		this.line_paint = new Paint();
@@ -147,157 +147,157 @@ class ElementWindow {
 		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
 		this.bounds = new RectF(left, top, right, bottom);
 		this.load_positions();
-		this.PAGE_NUMBER = 0;
-		this.ELEMENT_INDEX = 1;
+		this.Page_number = 0;
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER = 0;
 		/* #INSERT_GENERATE_CREATE_ELEMENT_WINDOW_ICON# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.resistor_symbol = new ResistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.capacitor_symbol = new CapacitorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.inductor_symbol = new InductorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.ground_symbol = new GroundSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.dcsource_symbol = new DCSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.dccurrent_symbol = new DCCurrentSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.resistor_symbol = new ResistorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.capacitor_symbol = new CapacitorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.inductor_symbol = new InductorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.ground_symbol = new GroundSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.dcsource_symbol = new DCSourceSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.dccurrent_symbol = new DCCurrentSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.acsource_symbol = new ACSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.accurrent_symbol = new ACCurrentSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.squarewave_symbol = new SquareWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.sawwave_symbol = new SawWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.trianglewave_symbol = new TriangleWaveSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.constant_symbol = new ConstantSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.acsource_symbol = new ACSourceSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.accurrent_symbol = new ACCurrentSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.squarewave_symbol = new SquareWaveSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.sawwave_symbol = new SawWaveSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.trianglewave_symbol = new TriangleWaveSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.constant_symbol = new ConstantSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.net_symbol = new NetSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.note_symbol = new NoteSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.rail_symbol = new RailSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.voltmeter_symbol = new VoltMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.ohmmeter_symbol = new OhmMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.ammeter_symbol = new AmMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.net_symbol = new NetSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.note_symbol = new NoteSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.rail_symbol = new RailSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.voltmeter_symbol = new VoltMeterSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.ohmmeter_symbol = new OhmMeterSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.ammeter_symbol = new AmMeterSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.wattmeter_symbol = new WattMeterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.fuse_symbol = new FuseSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.spst_symbol = new SinglePoleSingleThrowSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.spdt_symbol = new SinglePoleDoubleThrowSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.not_symbol = new NOTGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.diode_symbol = new DiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.wattmeter_symbol = new WattMeterSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.fuse_symbol = new FuseSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.spst_symbol = new SinglePoleSingleThrowSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.spdt_symbol = new SinglePoleDoubleThrowSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.not_symbol = new NOTGateSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.diode_symbol = new DiodeSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.led_symbol = new LightEmittingDiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.zener_symbol = new ZenerDiodeSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.potentiometer_symbol = new PotentiometerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.and_symbol = new ANDGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.or_symbol = new ORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.nand_symbol = new NANDGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.led_symbol = new LightEmittingDiodeSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.zener_symbol = new ZenerDiodeSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.potentiometer_symbol = new PotentiometerSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.and_symbol = new ANDGateSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.or_symbol = new ORGateSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.nand_symbol = new NANDGateSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.nor_symbol = new NORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.xor_symbol = new XORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.xnor_symbol = new XNORGateSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.dff_symbol = new DFlipFlopSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.vsat_symbol = new VoltageSaturationSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.adder_symbol = new AdderSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.nor_symbol = new NORGateSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.xor_symbol = new XORGateSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.xnor_symbol = new XNORGateSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.dff_symbol = new DFlipFlopSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.vsat_symbol = new VoltageSaturationSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.adder_symbol = new AdderSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.subtractor_symbol = new SubtractorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.multiplier_symbol = new MultiplierSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.divider_symbol = new DividerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.gain_symbol = new GainBlockSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.absval_symbol = new AbsoluteValueSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.vcsw_symbol = new VoltageControlledSwitchSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.subtractor_symbol = new SubtractorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.multiplier_symbol = new MultiplierSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.divider_symbol = new DividerSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.gain_symbol = new GainBlockSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.absval_symbol = new AbsoluteValueSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.vcsw_symbol = new VoltageControlledSwitchSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.vcvs_symbol = new VoltageControlledVoltageSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.vccs_symbol = new VoltageControlledCurrentSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.cccs_symbol = new CurrentControlledCurrentSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.ccvs_symbol = new CurrentControlledVoltageSourceSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.opamp_symbol = new OperationalAmplifierSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.nmosfet_symbol = new NChannelMOSFETSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.vcvs_symbol = new VoltageControlledVoltageSourceSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.vccs_symbol = new VoltageControlledCurrentSourceSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.cccs_symbol = new CurrentControlledCurrentSourceSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.ccvs_symbol = new CurrentControlledVoltageSourceSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.opamp_symbol = new OperationalAmplifierSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.nmosfet_symbol = new NChannelMOSFETSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.pmosfet_symbol = new PChannelMOSFETSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.npn_symbol = new NPNBipolarJunctionTransistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.pnp_symbol = new PNPBipolarJunctionTransistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.adc_symbol = new ADCModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.dac_symbol = new DACModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.samplers_symbol = new SampleAndHoldSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.pmosfet_symbol = new PChannelMOSFETSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.npn_symbol = new NPNBipolarJunctionTransistorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.pnp_symbol = new PNPBipolarJunctionTransistorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.adc_symbol = new ADCModuleSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.dac_symbol = new DACModuleSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.samplers_symbol = new SampleAndHoldSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.pwm_symbol = new PulseWidthModulatorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.integrator_symbol = new IntegratorModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.differentiator_symbol = new DifferentiatorModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.lowpass_symbol = new LowPassFilterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.highpass_symbol = new HighPassFilterSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.relay_symbol = new RelaySymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.pwm_symbol = new PulseWidthModulatorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.integrator_symbol = new IntegratorModuleSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.differentiator_symbol = new DifferentiatorModuleSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.lowpass_symbol = new LowPassFilterSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.highpass_symbol = new HighPassFilterSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.relay_symbol = new RelaySymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.pid_symbol = new PIDModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.lut_symbol = new LookUpTableSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.vcr_symbol = new VoltageControlledResistorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.vcca_symbol = new VoltageControlledCapacitorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.vcl_symbol = new VoltageControlledInductorSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.grt_symbol = new GreaterThanSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX = 1;
+		this.pid_symbol = new PIDModuleSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.lut_symbol = new LookUpTableSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.vcr_symbol = new VoltageControlledResistorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.vcca_symbol = new VoltageControlledCapacitorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.vcl_symbol = new VoltageControlledInductorSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.grt_symbol = new GreaterThanSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index = 1;
 		this.MAX_PAGE_NUMBER++;
-		this.tptz_symbol = new TPTZModuleSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
-		this.ELEMENT_INDEX++;
-		this.transformer_symbol = new TransformerSymbol(this.positions[this.ELEMENT_INDEX], this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER);
+		this.tptz_symbol = new TPTZModuleSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
+		this.element_index++;
+		this.transformer_symbol = new TransformerSymbol(this.positions[this.element_index], this.element_index, this.MAX_PAGE_NUMBER);
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	load_positions(): void {
@@ -397,19 +397,19 @@ class ElementWindow {
 		if (this.ENABLE_MOUSE_WHEEL) {
 			if (global.flag_menu_element_toolbox) {
 				if (!global.mouse_keyboard_lock) {
-					this.MOUSE_WHEEL_COUNTER++;
-					if (this.MOUSE_WHEEL_COUNTER >= this.MOUSE_WHEEL_COUNTER_MAX) {
+					this.mouse_wheel_counter++;
+					if (this.mouse_wheel_counter >= this.MOUSE_WHEEL_COUNTER_MAX) {
 						//@ts-expect-error
 						if (global.mouse_wheel_event.wheelDelta < 0 || global.mouse_wheel_event.detail > 0) {
-							if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
-								this.PAGE_NUMBER++;
+							if (this.Page_number < this.MAX_PAGE_NUMBER) {
+								this.Page_number++;
 							}
 						} else {
-							if (this.PAGE_NUMBER > 0) {
-								this.PAGE_NUMBER--;
+							if (this.Page_number > 0) {
+								this.Page_number--;
 							}
 						}
-						this.MOUSE_WHEEL_COUNTER = 0;
+						this.mouse_wheel_counter = 0;
 					}
 				}
 			}
@@ -423,84 +423,84 @@ class ElementWindow {
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
 				/* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_DOWN# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-				this.resistor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.capacitor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.inductor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ground_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dcsource_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dccurrent_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.acsource_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.accurrent_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.squarewave_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.sawwave_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.trianglewave_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.constant_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.net_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.note_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.rail_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.voltmeter_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ohmmeter_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ammeter_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.wattmeter_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.fuse_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.spst_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.spdt_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.not_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.diode_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.led_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.zener_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.potentiometer_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.and_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.or_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nand_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.xor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.xnor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dff_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vsat_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.adder_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.subtractor_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.multiplier_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.divider_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.gain_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.absval_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcsw_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcvs_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vccs_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.cccs_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ccvs_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.opamp_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nmosfet_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pmosfet_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.npn_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pnp_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.adc_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dac_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.samplers_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pwm_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.integrator_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.differentiator_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.lowpass_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.highpass_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.relay_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pid_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.lut_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcr_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcca_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcl_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.grt_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.tptz_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.transformer_symbol.mouse_down(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
+				this.resistor_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.capacitor_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.inductor_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.ground_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.dcsource_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.dccurrent_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.acsource_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.accurrent_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.squarewave_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.sawwave_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.trianglewave_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.constant_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.net_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.note_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.rail_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.voltmeter_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.ohmmeter_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.ammeter_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.wattmeter_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.fuse_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.spst_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.spdt_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.not_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.diode_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.led_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.zener_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.potentiometer_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.and_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.or_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.nand_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.nor_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.xor_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.xnor_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.dff_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.vsat_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.adder_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.subtractor_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.multiplier_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.divider_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.gain_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.absval_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcsw_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcvs_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.vccs_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.cccs_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.ccvs_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.opamp_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.nmosfet_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.pmosfet_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.npn_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.pnp_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.adc_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.dac_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.samplers_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.pwm_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.integrator_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.differentiator_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.lowpass_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.highpass_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.relay_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.pid_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.lut_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcr_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcca_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcl_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.grt_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.tptz_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
+				this.transformer_symbol.mouse_down(this.Page_number, cached_value, this.bounds.get_height());
 				/* <!-- END AUTOMATICALLY GENERATED !--> */
 				if (global.MOBILE_MODE) {
 					if (
-						this.positions[this.NAVIGATE_BACK].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
-						this.positions[this.NAVIGATE_BACK].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
+						this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+						this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 					) {
 						global.component_touched = true;
 					} else if (
-						this.positions[this.NAVIGATE_FORWARD].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
-						this.positions[this.NAVIGATE_FORWARD].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
+						this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+						this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 					) {
 						global.component_touched = true;
 					}
@@ -514,74 +514,74 @@ class ElementWindow {
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
 				/* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-				this.resistor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.capacitor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.inductor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ground_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dcsource_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dccurrent_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.acsource_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.accurrent_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.squarewave_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.sawwave_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.trianglewave_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.constant_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.net_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.note_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.rail_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.voltmeter_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ohmmeter_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ammeter_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.wattmeter_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.fuse_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.spst_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.spdt_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.not_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.diode_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.led_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.zener_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.potentiometer_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.and_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.or_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nand_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.xor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.xnor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dff_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vsat_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.adder_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.subtractor_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.multiplier_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.divider_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.gain_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.absval_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcsw_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcvs_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vccs_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.cccs_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ccvs_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.opamp_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nmosfet_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pmosfet_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.npn_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pnp_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.adc_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dac_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.samplers_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pwm_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.integrator_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.differentiator_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.lowpass_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.highpass_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.relay_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pid_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.lut_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcr_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcca_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcl_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.grt_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.tptz_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.transformer_symbol.mouse_move(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
+				this.resistor_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.capacitor_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.inductor_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.ground_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.dcsource_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.dccurrent_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.acsource_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.accurrent_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.squarewave_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.sawwave_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.trianglewave_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.constant_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.net_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.note_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.rail_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.voltmeter_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.ohmmeter_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.ammeter_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.wattmeter_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.fuse_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.spst_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.spdt_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.not_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.diode_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.led_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.zener_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.potentiometer_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.and_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.or_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.nand_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.nor_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.xor_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.xnor_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.dff_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.vsat_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.adder_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.subtractor_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.multiplier_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.divider_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.gain_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.absval_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcsw_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcvs_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.vccs_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.cccs_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.ccvs_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.opamp_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.nmosfet_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.pmosfet_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.npn_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.pnp_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.adc_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.dac_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.samplers_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.pwm_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.integrator_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.differentiator_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.lowpass_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.highpass_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.relay_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.pid_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.lut_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcr_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcca_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcl_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.grt_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.tptz_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
+				this.transformer_symbol.mouse_move(this.Page_number, cached_value, this.bounds.get_height());
 				/* <!-- END AUTOMATICALLY GENERATED !--> */
 			}
 		}
@@ -590,93 +590,93 @@ class ElementWindow {
 		if (global.flag_menu_element_toolbox) {
 			if (!global.mouse_keyboard_lock) {
 				if (
-					this.positions[this.NAVIGATE_BACK].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
-					this.positions[this.NAVIGATE_BACK].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
+					this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+					this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 				) {
-					if (this.PAGE_NUMBER > 0) {
-						this.PAGE_NUMBER--;
+					if (this.Page_number > 0) {
+						this.Page_number--;
 					}
 					global.component_touched = true;
 				} else if (
-					this.positions[this.NAVIGATE_FORWARD].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
-					this.positions[this.NAVIGATE_FORWARD].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
+					this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+					this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 				) {
-					if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
-						this.PAGE_NUMBER++;
+					if (this.Page_number < this.MAX_PAGE_NUMBER) {
+						this.Page_number++;
 					}
 					global.component_touched = true;
 				}
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
 				/* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_UP# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-				this.resistor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.capacitor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.inductor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ground_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dcsource_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dccurrent_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.acsource_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.accurrent_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.squarewave_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.sawwave_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.trianglewave_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.constant_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.net_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.note_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.rail_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.voltmeter_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ohmmeter_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ammeter_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.wattmeter_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.fuse_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.spst_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.spdt_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.not_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.diode_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.led_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.zener_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.potentiometer_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.and_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.or_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nand_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.xor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.xnor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dff_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vsat_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.adder_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.subtractor_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.multiplier_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.divider_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.gain_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.absval_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcsw_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcvs_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vccs_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.cccs_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.ccvs_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.opamp_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.nmosfet_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pmosfet_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.npn_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pnp_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.adc_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.dac_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.samplers_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pwm_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.integrator_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.differentiator_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.lowpass_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.highpass_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.relay_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.pid_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.lut_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcr_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcca_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.vcl_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.grt_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.tptz_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
-				this.transformer_symbol.mouse_up(this.PAGE_NUMBER, cached_value, this.bounds.get_height());
+				this.resistor_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.capacitor_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.inductor_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.ground_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.dcsource_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.dccurrent_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.acsource_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.accurrent_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.squarewave_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.sawwave_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.trianglewave_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.constant_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.net_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.note_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.rail_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.voltmeter_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.ohmmeter_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.ammeter_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.wattmeter_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.fuse_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.spst_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.spdt_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.not_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.diode_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.led_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.zener_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.potentiometer_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.and_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.or_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.nand_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.nor_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.xor_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.xnor_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.dff_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.vsat_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.adder_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.subtractor_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.multiplier_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.divider_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.gain_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.absval_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcsw_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcvs_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.vccs_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.cccs_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.ccvs_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.opamp_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.nmosfet_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.pmosfet_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.npn_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.pnp_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.adc_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.dac_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.samplers_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.pwm_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.integrator_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.differentiator_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.lowpass_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.highpass_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.relay_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.pid_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.lut_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcr_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcca_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.vcl_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.grt_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.tptz_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
+				this.transformer_symbol.mouse_up(this.Page_number, cached_value, this.bounds.get_height());
 				/* <!-- END AUTOMATICALLY GENERATED !--> */
 			}
 		}
@@ -771,18 +771,18 @@ class ElementWindow {
 	draw_hover(canvas: GraphicsEngine): void {
 		for (var i: number = 0; i < this.positions.length; i++) {
 			if (this.positions[i].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
-				if (i !== this.NAVIGATE_BACK && i !== this.NAVIGATE_FORWARD) {
-					if (this.hover_limits(this.PAGE_NUMBER, i, this.ELEMENT_INDEX, this.MAX_PAGE_NUMBER)) {
+				if (i !== this.NAVIGATE_BACK_INDEX && i !== this.NAVIGATE_FORWARD_INDEX) {
+					if (this.hover_limits(this.Page_number, i, this.element_index, this.MAX_PAGE_NUMBER)) {
 						canvas.draw_rect3(this.positions[i].get_center_x(), this.positions[i].get_center_y(), this.positions[i].get_width() * 1.25, this.positions[i].get_height() * 1.25, this.hover_paint);
 					}
 				} else {
-					if (i === this.NAVIGATE_BACK) {
-						if (this.PAGE_NUMBER > 0) {
+					if (i === this.NAVIGATE_BACK_INDEX) {
+						if (this.Page_number > 0) {
 							canvas.draw_rect3(this.positions[i].get_center_x(), this.positions[i].get_center_y(), this.positions[i].get_width() * 1.25, this.positions[i].get_height() * 1.25, this.hover_paint);
 						}
 					}
-					if (i === this.NAVIGATE_FORWARD) {
-						if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
+					if (i === this.NAVIGATE_FORWARD_INDEX) {
+						if (this.Page_number < this.MAX_PAGE_NUMBER) {
 							canvas.draw_rect3(this.positions[i].get_center_x(), this.positions[i].get_center_y(), this.positions[i].get_width() * 1.25, this.positions[i].get_height() * 1.25, this.hover_paint);
 						}
 					}
@@ -809,82 +809,82 @@ class ElementWindow {
 			if (global.MOBILE_MODE === false) {
 				this.draw_hover(canvas);
 			}
-			if (this.PAGE_NUMBER > 0) {
-				canvas.draw_text(this.NAVIGATE_TEXT, this.positions[this.NAVIGATE_BACK].get_center_x(), this.positions[this.NAVIGATE_BACK].get_center_y(), this.text_paint);
+			if (this.Page_number > 0) {
+				canvas.draw_text(this.NAVIGATE_TEXT, this.positions[this.NAVIGATE_BACK_INDEX].get_center_x(), this.positions[this.NAVIGATE_BACK_INDEX].get_center_y(), this.text_paint);
 			}
-			if (this.PAGE_NUMBER < this.MAX_PAGE_NUMBER) {
-				canvas.draw_text(this.NAVIGATE_TEXT, this.positions[this.NAVIGATE_FORWARD].get_center_x(), this.positions[this.NAVIGATE_FORWARD].get_center_y(), this.text_paint);
+			if (this.Page_number < this.MAX_PAGE_NUMBER) {
+				canvas.draw_text(this.NAVIGATE_TEXT, this.positions[this.NAVIGATE_FORWARD_INDEX].get_center_x(), this.positions[this.NAVIGATE_FORWARD_INDEX].get_center_y(), this.text_paint);
 			}
 			/* #INSERT_GENERATE_ELEMENT_WINDOW_DRAW# */
 			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-			this.resistor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.capacitor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.inductor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.ground_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.dcsource_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.dccurrent_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.acsource_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.accurrent_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.squarewave_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.sawwave_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.trianglewave_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.constant_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.net_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.note_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.rail_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.voltmeter_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.ohmmeter_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.ammeter_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.wattmeter_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.fuse_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.spst_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.spdt_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.not_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.diode_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.led_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.zener_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.potentiometer_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.and_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.or_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.nand_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.nor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.xor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.xnor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.dff_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.vsat_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.adder_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.subtractor_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.multiplier_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.divider_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.gain_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.absval_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.vcsw_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.vcvs_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.vccs_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.cccs_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.ccvs_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.opamp_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.nmosfet_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.pmosfet_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.npn_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.pnp_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.adc_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.dac_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.samplers_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.pwm_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.integrator_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.differentiator_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.lowpass_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.highpass_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.relay_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.pid_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.lut_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.vcr_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.vcca_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.vcl_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.grt_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.tptz_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
-			this.transformer_symbol.draw_symbol(canvas, this.PAGE_NUMBER);
+			this.resistor_symbol.draw_symbol(canvas, this.Page_number);
+			this.capacitor_symbol.draw_symbol(canvas, this.Page_number);
+			this.inductor_symbol.draw_symbol(canvas, this.Page_number);
+			this.ground_symbol.draw_symbol(canvas, this.Page_number);
+			this.dcsource_symbol.draw_symbol(canvas, this.Page_number);
+			this.dccurrent_symbol.draw_symbol(canvas, this.Page_number);
+			this.acsource_symbol.draw_symbol(canvas, this.Page_number);
+			this.accurrent_symbol.draw_symbol(canvas, this.Page_number);
+			this.squarewave_symbol.draw_symbol(canvas, this.Page_number);
+			this.sawwave_symbol.draw_symbol(canvas, this.Page_number);
+			this.trianglewave_symbol.draw_symbol(canvas, this.Page_number);
+			this.constant_symbol.draw_symbol(canvas, this.Page_number);
+			this.net_symbol.draw_symbol(canvas, this.Page_number);
+			this.note_symbol.draw_symbol(canvas, this.Page_number);
+			this.rail_symbol.draw_symbol(canvas, this.Page_number);
+			this.voltmeter_symbol.draw_symbol(canvas, this.Page_number);
+			this.ohmmeter_symbol.draw_symbol(canvas, this.Page_number);
+			this.ammeter_symbol.draw_symbol(canvas, this.Page_number);
+			this.wattmeter_symbol.draw_symbol(canvas, this.Page_number);
+			this.fuse_symbol.draw_symbol(canvas, this.Page_number);
+			this.spst_symbol.draw_symbol(canvas, this.Page_number);
+			this.spdt_symbol.draw_symbol(canvas, this.Page_number);
+			this.not_symbol.draw_symbol(canvas, this.Page_number);
+			this.diode_symbol.draw_symbol(canvas, this.Page_number);
+			this.led_symbol.draw_symbol(canvas, this.Page_number);
+			this.zener_symbol.draw_symbol(canvas, this.Page_number);
+			this.potentiometer_symbol.draw_symbol(canvas, this.Page_number);
+			this.and_symbol.draw_symbol(canvas, this.Page_number);
+			this.or_symbol.draw_symbol(canvas, this.Page_number);
+			this.nand_symbol.draw_symbol(canvas, this.Page_number);
+			this.nor_symbol.draw_symbol(canvas, this.Page_number);
+			this.xor_symbol.draw_symbol(canvas, this.Page_number);
+			this.xnor_symbol.draw_symbol(canvas, this.Page_number);
+			this.dff_symbol.draw_symbol(canvas, this.Page_number);
+			this.vsat_symbol.draw_symbol(canvas, this.Page_number);
+			this.adder_symbol.draw_symbol(canvas, this.Page_number);
+			this.subtractor_symbol.draw_symbol(canvas, this.Page_number);
+			this.multiplier_symbol.draw_symbol(canvas, this.Page_number);
+			this.divider_symbol.draw_symbol(canvas, this.Page_number);
+			this.gain_symbol.draw_symbol(canvas, this.Page_number);
+			this.absval_symbol.draw_symbol(canvas, this.Page_number);
+			this.vcsw_symbol.draw_symbol(canvas, this.Page_number);
+			this.vcvs_symbol.draw_symbol(canvas, this.Page_number);
+			this.vccs_symbol.draw_symbol(canvas, this.Page_number);
+			this.cccs_symbol.draw_symbol(canvas, this.Page_number);
+			this.ccvs_symbol.draw_symbol(canvas, this.Page_number);
+			this.opamp_symbol.draw_symbol(canvas, this.Page_number);
+			this.nmosfet_symbol.draw_symbol(canvas, this.Page_number);
+			this.pmosfet_symbol.draw_symbol(canvas, this.Page_number);
+			this.npn_symbol.draw_symbol(canvas, this.Page_number);
+			this.pnp_symbol.draw_symbol(canvas, this.Page_number);
+			this.adc_symbol.draw_symbol(canvas, this.Page_number);
+			this.dac_symbol.draw_symbol(canvas, this.Page_number);
+			this.samplers_symbol.draw_symbol(canvas, this.Page_number);
+			this.pwm_symbol.draw_symbol(canvas, this.Page_number);
+			this.integrator_symbol.draw_symbol(canvas, this.Page_number);
+			this.differentiator_symbol.draw_symbol(canvas, this.Page_number);
+			this.lowpass_symbol.draw_symbol(canvas, this.Page_number);
+			this.highpass_symbol.draw_symbol(canvas, this.Page_number);
+			this.relay_symbol.draw_symbol(canvas, this.Page_number);
+			this.pid_symbol.draw_symbol(canvas, this.Page_number);
+			this.lut_symbol.draw_symbol(canvas, this.Page_number);
+			this.vcr_symbol.draw_symbol(canvas, this.Page_number);
+			this.vcca_symbol.draw_symbol(canvas, this.Page_number);
+			this.vcl_symbol.draw_symbol(canvas, this.Page_number);
+			this.grt_symbol.draw_symbol(canvas, this.Page_number);
+			this.tptz_symbol.draw_symbol(canvas, this.Page_number);
+			this.transformer_symbol.draw_symbol(canvas, this.Page_number);
 			/* <!-- END AUTOMATICALLY GENERATED !--> */
 		}
 	}

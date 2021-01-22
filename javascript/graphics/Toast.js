@@ -2,11 +2,11 @@
 class Toast {
     constructor() {
         if (global.MOBILE_MODE) {
-            this.HEIGHT_RATIO = 0.85;
+            this.height_ratio = 0.85;
             this.HEIGHT_FACTOR = 0.7;
         }
         else {
-            this.HEIGHT_RATIO = 0.9;
+            this.height_ratio = 0.9;
             this.HEIGHT_FACTOR = 0.5;
         }
         this.line_paint = new Paint();
@@ -50,7 +50,7 @@ class Toast {
         this.MAX_TIME = FPS;
         this.draw_text = false;
         this.bounds = new RectF(0, 0, 0, 0);
-        this.TOAST_REQUEST_DRAW = false;
+        this.toast_request_draw = false;
         this.last_text = '-';
         this.text_measure_div2 = -1;
     }
@@ -67,7 +67,7 @@ class Toast {
         this.last_text = '-';
         this.timer = 0;
         this.draw_text = false;
-        this.TOAST_REQUEST_DRAW = true;
+        this.toast_request_draw = true;
     }
     set_text(str) {
         this.text = language_manager.TEXT_PADDING + str + language_manager.TEXT_PADDING;
@@ -99,16 +99,16 @@ class Toast {
                 this.text_measure_div2 = this.text_paint.measure_text(this.text) * 0.5;
             }
             this.bounds.left = view_port.center_x - this.text_measure_div2;
-            this.bounds.top = view_port.top + view_port.view_height * this.HEIGHT_RATIO;
+            this.bounds.top = view_port.top + view_port.view_height * this.height_ratio;
             this.bounds.right = view_port.center_x + this.text_measure_div2;
-            this.bounds.bottom = view_port.top + view_port.view_height * (this.HEIGHT_RATIO + (1.0 - this.HEIGHT_RATIO) * this.HEIGHT_FACTOR);
+            this.bounds.bottom = view_port.top + view_port.view_height * (this.height_ratio + (1.0 - this.height_ratio) * this.HEIGHT_FACTOR);
             canvas.draw_rect2(this.bounds, this.fill_paint);
             canvas.draw_rect2(this.bounds, this.line_paint);
             canvas.draw_text(this.text, this.bounds.get_center_x(), this.bounds.get_center_y(), this.text_paint);
             this.update();
         }
-        if (this.TOAST_REQUEST_DRAW) {
-            this.TOAST_REQUEST_DRAW = false;
+        if (this.toast_request_draw) {
+            this.toast_request_draw = false;
         }
     }
 }

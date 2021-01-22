@@ -1,7 +1,7 @@
 'use strict';
 class Workspace {
-	public FIRST_RESIZE_FLAG: boolean;
-	public DRAW_TO_SCREEN: boolean;
+	public first_resize_flag: boolean;
+	public draw_to_screen: boolean;
 	public view: RectF;
 	public bounds: RectF;
 	public view_paint: Paint;
@@ -10,12 +10,12 @@ class Workspace {
 	public work_area_paint: Paint;
 	public sqrt: number;
 	public sqrt_m_1: number;
-	public DRAW_GRID: boolean;
+	public readonly DRAW_GRID: boolean;
 	public line_buffer: Array<Array<number>>;
-	public GRID_MOVED: boolean;
+	public grid_moved: boolean;
 	constructor(left: number, top: number, right: number, bottom: number, scale: number) {
-		this.FIRST_RESIZE_FLAG = false;
-		this.DRAW_TO_SCREEN = false;
+		this.first_resize_flag = false;
+		this.draw_to_screen = false;
 		this.view = new RectF(left, top, right, bottom);
 		this.bounds = new RectF(
 			view_port.center_x - view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale,
@@ -69,10 +69,10 @@ class Workspace {
 		this.sqrt_m_1 = -1;
 		this.DRAW_GRID = false;
 		this.line_buffer = [];
-		this.GRID_MOVED = true;
+		this.grid_moved = true;
 	}
 	workspace_resize(): void {
-		this.GRID_MOVED = true;
+		this.grid_moved = true;
 		this.view_paint.set_stroke_width(global.canvas_stroke_width_1);
 		this.view_paint.set_text_size(global.canvas_text_size_4);
 		this.bounds_paint.set_stroke_width(global.canvas_stroke_width_3 >> 1);
@@ -92,14 +92,14 @@ class Workspace {
 		}
 		global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
 		global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-		if (!this.FIRST_RESIZE_FLAG || global.force_resize_event) {
+		if (!this.first_resize_flag || global.force_resize_event) {
 			zoom_window.set_zoom(global.workspace_zoom_scale);
-			this.FIRST_RESIZE_FLAG = true;
+			this.first_resize_flag = true;
 		}
 		this.grid_paint.set_stroke_width(global.canvas_stroke_width_1);
 	}
 	workspace_zoom(): void {
-		this.GRID_MOVED = true;
+		this.grid_moved = true;
 		global.signal_build_element = true;
 		global.signal_build_counter = 0;
 		this.bounds.left = global.delta_x;
@@ -108,24 +108,24 @@ class Workspace {
 		this.bounds.bottom = this.bounds.top + global.natural_height * global.workspace_zoom_scale;
 		global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
 		global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-/* #INSERT_METER_RESIZE_TRACE# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-for (var i : number = 0; i < voltmeters.length; i++) {
-      voltmeters[i].RESIZE_METER_TRACE = true;
-    }
-for (var i : number = 0; i < ohmmeters.length; i++) {
-      ohmmeters[i].RESIZE_METER_TRACE = true;
-    }
-for (var i : number = 0; i < ammeters.length; i++) {
-      ammeters[i].RESIZE_METER_TRACE = true;
-    }
-for (var i : number = 0; i < wattmeters.length; i++) {
-      wattmeters[i].RESIZE_METER_TRACE = true;
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_METER_RESIZE_TRACE# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		for (var i: number = 0; i < voltmeters.length; i++) {
+			voltmeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < ohmmeters.length; i++) {
+			ohmmeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < ammeters.length; i++) {
+			ammeters[i].RESIZE_METER_TRACE = true;
+		}
+		for (var i: number = 0; i < wattmeters.length; i++) {
+			wattmeters[i].RESIZE_METER_TRACE = true;
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	workspace_translate_bounds(dx: number, dy: number): void {
-		this.GRID_MOVED = true;
+		this.grid_moved = true;
 		global.signal_build_element = true;
 		global.signal_build_counter = 0;
 		this.bounds.left += dx;
@@ -134,14 +134,14 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 		this.bounds.bottom += dy;
 	}
 	workspace_draw(canvas: GraphicsEngine): void {
-		if (this.DRAW_TO_SCREEN) {
+		if (this.draw_to_screen) {
 			if (this.DRAW_GRID === true) {
 				canvas.draw_rect2(this.bounds, this.work_area_paint);
 				canvas.draw_rect2(this.bounds, this.grid_paint);
 			}
 			canvas.draw_rect2(this.bounds, this.bounds_paint);
 			if (this.DRAW_GRID === true) {
-				if (this.GRID_MOVED === true) {
+				if (this.grid_moved === true) {
 					let floored_sqrt_m_1: number = Math.floor(global.settings.SQRT_MAXNODES_M1);
 					let floored_sqrt: number = Math.floor(global.settings.SQRT_MAXNODES);
 					let x_space: number = Math.floor(global.node_space_x >> 1);
@@ -174,14 +174,14 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 						}
 						horizontal_index += floored_sqrt;
 					}
-					this.GRID_MOVED = false;
+					this.grid_moved = false;
 				}
 				canvas.draw_line_buffer(this.line_buffer, this.grid_paint);
 			}
 		}
-		if (this.FIRST_RESIZE_FLAG) {
-			if (!this.DRAW_TO_SCREEN) {
-				this.DRAW_TO_SCREEN = true;
+		if (this.first_resize_flag) {
+			if (!this.draw_to_screen) {
+				this.draw_to_screen = true;
 			}
 		}
 	}

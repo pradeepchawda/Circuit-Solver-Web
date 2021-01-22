@@ -1,12 +1,12 @@
 'use strict';
 class SettingsWindow {
-	public TITLE_HEIGHT_RATIO: number;
-	public BUTTON_WIDTH_RATIO: number;
-	public BUTTON_HEIGHT_RATIO: number;
-	public PADDING: number;
+	public readonly TITLE_HEIGHT_RATIO: number;
+	public readonly BUTTON_WIDTH_RATIO: number;
+	public readonly BUTTON_HEIGHT_RATIO: number;
+	public readonly PADDING: number;
 	public readonly ATTRIBUTE_SIZE: number;
 	public readonly ATTRIBUTE_SHOW_SIZE: number;
-	public ATTRIBUTE_SELECT: Array<string>;
+	public readonly ATTRIBUTE_SELECT: Array<string>;
 	public line_paint: Paint;
 	public fill_paint: Paint;
 	public text_paint: Paint;
@@ -21,12 +21,12 @@ class SettingsWindow {
 	public okay_button: Button;
 	public exit_button: Button;
 	public attributes: Array<RectF>;
-	public ATTRIBUTE_HEIGHT: number;
+	public attribute_height: number;
 	public offset_x: number;
 	public offset_y: number;
-	public WINDOW_ANCHORED: boolean;
-	public ANCHOR_X: number;
-	public ANCHOR_Y: number;
+	public window_anchored: boolean;
+	public anchor_x: number;
+	public anchor_y: number;
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public toggle_switch_button: ToggleSwitch;
@@ -156,22 +156,22 @@ class SettingsWindow {
 		this.exit_button.draw_fill = false;
 		this.exit_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
 		this.attributes = [];
-		this.ATTRIBUTE_HEIGHT = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
+		this.attribute_height = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
 		for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
 			this.attributes.push(
 				new RectF(
 					this.title_bounds.left + padding,
-					this.title_bounds.bottom + padding * 1.5 + i * this.ATTRIBUTE_HEIGHT,
+					this.title_bounds.bottom + padding * 1.5 + i * this.attribute_height,
 					this.title_bounds.right - padding,
-					this.title_bounds.bottom + padding + (i + 1) * this.ATTRIBUTE_HEIGHT - 1.25 * padding
+					this.title_bounds.bottom + padding + (i + 1) * this.attribute_height - 1.25 * padding
 				)
 			);
 		}
 		this.offset_x = 0;
 		this.offset_y = 0;
-		this.WINDOW_ANCHORED = true;
-		this.ANCHOR_X = 0;
-		this.ANCHOR_Y = 0;
+		this.window_anchored = true;
+		this.anchor_x = 0;
+		this.anchor_y = 0;
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
 		this.toggle_switch_button = new ToggleSwitch(view_port.left, view_port.top, view_port.left + 200, view_port.top + 100);
@@ -186,9 +186,9 @@ class SettingsWindow {
 				this.title_bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
 				!this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)
 			) {
-				this.ANCHOR_X = global.mouse_x - this.offset_x;
-				this.ANCHOR_Y = global.mouse_y - this.offset_y;
-				this.WINDOW_ANCHORED = false;
+				this.anchor_x = global.mouse_x - this.offset_x;
+				this.anchor_y = global.mouse_y - this.offset_y;
+				this.window_anchored = false;
 			}
 			this.first_touch_x = global.mouse_x;
 			this.first_touch_y = global.mouse_y;
@@ -196,9 +196,9 @@ class SettingsWindow {
 	}
 	mouse_move(): void {
 		if (global.flag_select_settings) {
-			if (!this.WINDOW_ANCHORED) {
-				this.offset_x = global.mouse_x - this.ANCHOR_X;
-				this.offset_y = global.mouse_y - this.ANCHOR_Y;
+			if (!this.window_anchored) {
+				this.offset_x = global.mouse_x - this.anchor_x;
+				this.offset_y = global.mouse_y - this.anchor_y;
 				if (this.bounds.right + this.offset_x >= view_port.right) {
 					this.offset_x = view_port.right - this.bounds.right;
 				}
@@ -217,7 +217,7 @@ class SettingsWindow {
 	mouse_up(): void {
 		if (global.flag_select_settings) {
 			if (!global.mouse_keyboard_lock) {
-				if (this.WINDOW_ANCHORED) {
+				if (this.window_anchored) {
 					if (
 						!this.bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
 						!this.bounds.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
@@ -264,10 +264,10 @@ class SettingsWindow {
 						}
 					}
 				} else {
-					this.ANCHOR_X = global.mouse_x - this.offset_x;
-					this.ANCHOR_Y = global.mouse_y - this.offset_y;
+					this.anchor_x = global.mouse_x - this.offset_x;
+					this.anchor_y = global.mouse_y - this.offset_y;
 				}
-				this.WINDOW_ANCHORED = true;
+				this.window_anchored = true;
 			}
 		}
 	}
@@ -307,11 +307,11 @@ class SettingsWindow {
 				if (global.SYSTEM_OPTION_STRETCH_WINDOW < this.ATTRIBUTE_SHOW_SIZE) {
 					if (global.system_options['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] === global.OFF) {
 						global.system_options['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] = global.ON;
-						view_port.APPLY_SPREAD_FACTOR = true;
+						view_port.apply_spread_factor = true;
 						global.force_resize_event = true;
 					} else {
 						global.system_options['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] = global.OFF;
-						view_port.APPLY_SPREAD_FACTOR = false;
+						view_port.apply_spread_factor = false;
 						global.force_resize_event = true;
 					}
 				}
@@ -356,13 +356,13 @@ class SettingsWindow {
 		this.okay_button.resize_paint();
 		this.exit_button.set_bounds(this.title_bounds.right - this.title_bounds.get_height(), this.title_bounds.top, this.title_bounds.right, this.title_bounds.bottom);
 		this.exit_button.resize_paint();
-		this.ATTRIBUTE_HEIGHT = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
+		this.attribute_height = (this.okay_button.top - padding - (this.title_bounds.bottom + padding)) / this.ATTRIBUTE_SIZE;
 		for (var i: number = 0; i < this.ATTRIBUTE_SIZE; i++) {
 			this.attributes[i].set_bounds(
 				this.title_bounds.left + padding,
-				this.title_bounds.bottom + padding * 1.5 + i * this.ATTRIBUTE_HEIGHT,
+				this.title_bounds.bottom + padding * 1.5 + i * this.attribute_height,
 				this.title_bounds.right - padding,
-				this.title_bounds.bottom + padding + (i + 1) * this.ATTRIBUTE_HEIGHT - 1.25 * padding
+				this.title_bounds.bottom + padding + (i + 1) * this.attribute_height - 1.25 * padding
 			);
 		}
 		this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
@@ -402,7 +402,7 @@ class SettingsWindow {
 			canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
 			this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
-			if (this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+			if (this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.MOBILE_MODE) {
 				this.okay_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
 				this.okay_button.fill_paint.set_alpha(255);
 			} else {
@@ -413,7 +413,7 @@ class SettingsWindow {
 			for (var i: number = 0; i < this.ATTRIBUTE_SHOW_SIZE; i++) {
 				if (global.not_null(global.system_options)) {
 					if (i < global.system_options['options'].length && global.not_null(this.attributes[i])) {
-						if (this.attributes[i].contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+						if (this.attributes[i].contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.MOBILE_MODE) {
 							canvas.draw_rect(
 								this.attributes[i].left + this.offset_x,
 								this.attributes[i].top + this.offset_y,
@@ -471,7 +471,7 @@ class SettingsWindow {
 						}
 						if (global.system_options['values'][i] === global.ON || global.system_options['values'][i] === global.OFF) {
 							let padding: number = this.attributes[i].get_height() * 0.1;
-							this.toggle_switch_button.STATE = global.system_options['values'][i];
+							this.toggle_switch_button.state = global.system_options['values'][i];
 							this.toggle_switch_button.left = this.attributes[i].right - this.attributes[i].get_width() * 0.3;
 							this.toggle_switch_button.right = this.attributes[i].right - this.PADDING * this.bounds.get_width();
 							this.toggle_switch_button.top = this.attributes[i].top + padding;
@@ -495,7 +495,7 @@ class SettingsWindow {
 					}
 				}
 			}
-			if (this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+			if (this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.MOBILE_MODE) {
 				canvas.draw_rect(
 					this.exit_button.left + this.offset_x,
 					this.exit_button.top + this.offset_y,

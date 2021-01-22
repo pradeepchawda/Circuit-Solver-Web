@@ -55,30 +55,30 @@ class NoteSymbol {
         this.text_background_paint.set_font(global.DEFAULT_FONT);
         this.text_background_paint.set_alpha(255);
         this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
-        this.FLAG_ADD_ELEMENT = false;
-        this.TAG = language_manager.TAG_NOTE;
-        this.DRAW_TAG = false;
+        this.flag_add_element = false;
+        this.tag = language_manager.TAG_NOTE;
+        this.draw_tag = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
-        this.HEIGHT_RATIO = 0.35;
+        this.height_ratio = 0.35;
         this.line_buffer = [];
         this.circle_buffer = [];
     }
     update() {
-        if (this.FLAG_ADD_ELEMENT) {
+        if (this.flag_add_element) {
             if (workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
                 !this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-                shortcut_manager.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
+                shortcut_manager.temp_history_snapshot = engine_functions.history_snapshot();
                 global.signal_history_lock = true;
                 engine_functions.add_note();
-                this.FLAG_ADD_ELEMENT = false;
+                this.flag_add_element = false;
             }
         }
     }
     mouse_down(page, width, height) {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
-                if (!this.FLAG_ADD_ELEMENT) {
-                    this.FLAG_ADD_ELEMENT = true;
+                if (!this.flag_add_element) {
+                    this.flag_add_element = true;
                     global.signal_add_element = true;
                     global.component_touched = true;
                 }
@@ -87,10 +87,10 @@ class NoteSymbol {
     }
     mouse_move(page, width, height) {
         if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height) && !global.MOBILE_MODE) {
-            this.DRAW_TAG = true;
+            this.draw_tag = true;
         }
         else {
-            this.DRAW_TAG = false;
+            this.draw_tag = false;
         }
         if (this.page === page) {
         }
@@ -99,7 +99,7 @@ class NoteSymbol {
         if (this.page === page) {
             if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, width, height)) {
             }
-            this.FLAG_ADD_ELEMENT = false;
+            this.flag_add_element = false;
             global.signal_add_element = false;
         }
     }
@@ -121,7 +121,7 @@ class NoteSymbol {
         this.text_paint.set_text_size(global.canvas_text_size_4);
     }
     recolor() {
-        if (this.FLAG_ADD_ELEMENT) {
+        if (this.flag_add_element) {
             this.line_paint.set_color(global.SELECTED_COLOR);
             this.point_paint.set_color(global.SELECTED_COLOR);
             this.text_paint.set_color(global.SELECTED_COLOR);
@@ -136,13 +136,13 @@ class NoteSymbol {
         this.recolor();
         if (this.page === page) {
             canvas.draw_circle(this.c_x, this.c_y + (this.bounds.get_height() >> 2), 1.5 * global.canvas_stroke_width_2, this.point_paint);
-            if (this.DRAW_TAG && !global.signal_add_element) {
-                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.HEIGHT_RATIO * this.bounds.get_height();
-                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
-                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.HEIGHT_RATIO * this.bounds.get_height();
+            if (this.draw_tag && !global.signal_add_element) {
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.tag) >> 1);
+                this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.height_ratio * this.bounds.get_height();
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.tag) >> 1);
+                this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.height_ratio * this.bounds.get_height();
                 canvas.draw_rect2(this.text_bounds, this.text_background_paint);
-                canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
+                canvas.draw_text(this.tag, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
             }
         }
     }

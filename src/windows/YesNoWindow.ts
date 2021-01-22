@@ -1,6 +1,6 @@
 'use strict';
 class YesNoWindow {
-	public PADDING: number;
+	public readonly PADDING: number;
 	public line_paint: Paint;
 	public bounds_paint: Paint;
 	public fill_paint: Paint;
@@ -118,7 +118,7 @@ class YesNoWindow {
 					engine_functions.clear_all_elements();
 					scope_manager.clear_entries();
 					graph_window.reset();
-					global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+					global.history_manager['packet'].push(engine_functions.history_snapshot());
 					menu_bar.handle_remove_all_flag(!global.flag_remove_all);
 					global.user_file.title = 'untitled';
 					global.component_touched = true;

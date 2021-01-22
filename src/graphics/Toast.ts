@@ -1,7 +1,7 @@
 'use strict';
 class Toast {
 	private height_ratio: number;
-	private HEIGHT_FACTOR: number;
+	private readonly HEIGHT_FACTOR: number;
 	private line_paint: Paint;
 	private fill_paint: Paint;
 	private text_paint: Paint;
@@ -11,7 +11,7 @@ class Toast {
 	private readonly MAX_TIME: number;
 	public draw_text: boolean;
 	private bounds: RectF;
-	private TOAST_REQUEST_DRAW: boolean;
+	private toast_request_draw: boolean;
 	private last_text: string;
 	private text_measure_div2: number;
 	constructor() {
@@ -62,7 +62,7 @@ class Toast {
 		this.MAX_TIME = FPS;
 		this.draw_text = false;
 		this.bounds = new RectF(0, 0, 0, 0);
-		this.TOAST_REQUEST_DRAW = false;
+		this.toast_request_draw = false;
 		this.last_text = '-';
 		this.text_measure_div2 = -1;
 	}
@@ -79,7 +79,7 @@ class Toast {
 		this.last_text = '-';
 		this.timer = 0;
 		this.draw_text = false;
-		this.TOAST_REQUEST_DRAW = true;
+		this.toast_request_draw = true;
 	}
 	set_text(str: string): void {
 		this.text = language_manager.TEXT_PADDING + str + language_manager.TEXT_PADDING;
@@ -118,8 +118,8 @@ class Toast {
 			canvas.draw_text(this.text, this.bounds.get_center_x(), this.bounds.get_center_y(), this.text_paint);
 			this.update();
 		}
-		if (this.TOAST_REQUEST_DRAW) {
-			this.TOAST_REQUEST_DRAW = false;
+		if (this.toast_request_draw) {
+			this.toast_request_draw = false;
 		}
 	}
 }

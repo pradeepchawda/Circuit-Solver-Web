@@ -7,7 +7,7 @@ class Element1 {
 	public rotation: number;
 	public flip: number;
 	public properties: ELEMENT_PROPERTY_T;
-	public FUDGE_FACTOR: number;
+	public readonly FUDGE_FACTOR: number;
 	constructor(id: number, type: number, properties: ELEMENT_PROPERTY_T) {
 		this.n1 = -1;
 		this.type = type;

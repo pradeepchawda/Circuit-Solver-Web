@@ -28,7 +28,7 @@ class InductorSymbol {
 	public text_paint: Paint;
 	public text_background_paint: Paint;
 	public flag_add_element: boolean;
-	public TAG: string;
+	public tag: string;
 	public draw_tag: boolean;
 	public text_bounds: RectF;
 	public height_ratio: number;
@@ -47,16 +47,16 @@ class InductorSymbol {
 		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 		this.inductor_arc_0 = new Arc(0, 0, 0, 0, global.canvas_stroke_width_5);
 		this.inductor_arc_0.set_color(global.GENERAL_WHITE_COLOR);
-		this.inductor_arc_0.IS_TRANSFORM_SCALED = false;
+		this.inductor_arc_0.transform_scaled = false;
 		this.inductor_arc_1 = new Arc(0, 0, 0, 0, global.canvas_stroke_width_5);
 		this.inductor_arc_1.set_color(global.GENERAL_WHITE_COLOR);
-		this.inductor_arc_1.IS_TRANSFORM_SCALED = false;
+		this.inductor_arc_1.transform_scaled = false;
 		this.inductor_arc_2 = new Arc(0, 0, 0, 0, global.canvas_stroke_width_5);
 		this.inductor_arc_2.set_color(global.GENERAL_WHITE_COLOR);
-		this.inductor_arc_2.IS_TRANSFORM_SCALED = false;
+		this.inductor_arc_2.transform_scaled = false;
 		this.inductor_arc_3 = new Arc(0, 0, 0, 0, global.canvas_stroke_width_5);
 		this.inductor_arc_3.set_color(global.GENERAL_WHITE_COLOR);
-		this.inductor_arc_3.IS_TRANSFORM_SCALED = false;
+		this.inductor_arc_3.transform_scaled = false;
 		this.ind_0 = new PointF(0, 0);
 		this.ind_1 = new PointF(0, 0);
 		this.ind_2 = new PointF(0, 0);
@@ -111,7 +111,7 @@ class InductorSymbol {
 		this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
 		this.build_element();
 		this.flag_add_element = false;
-		this.TAG = language_manager.TAG_INDUCTOR;
+		this.tag = language_manager.TAG_INDUCTOR;
 		this.draw_tag = false;
 		this.text_bounds = new RectF(0, 0, 0, 0);
 		this.height_ratio = 0.35;
@@ -124,7 +124,7 @@ class InductorSymbol {
 				workspace.bounds.contains_xywh(global.mouse_x, global.mouse_y, workspace.bounds.get_width() - 4.5 * global.node_space_x, workspace.bounds.get_height() - 4.5 * global.node_space_y) &&
 				!this.bounds.contains_xy(global.mouse_x, global.mouse_y)
 			) {
-				shortcut_manager.TEMP_HISTORY_SNAPSHOT = engine_functions.history_snapshot();
+				shortcut_manager.temp_history_snapshot = engine_functions.history_snapshot();
 				global.signal_history_lock = true;
 				engine_functions.add_inductor();
 				this.flag_add_element = false;
@@ -240,12 +240,12 @@ class InductorSymbol {
 			this.circle_buffer[indexer++] = Array(this.p2.x, this.p2.y, 1.5 * global.canvas_stroke_width_2);
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
 			if (this.draw_tag && !global.signal_add_element) {
-				this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+				this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.tag) >> 1);
 				this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.height_ratio * this.bounds.get_height();
-				this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
+				this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.tag) >> 1);
 				this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.height_ratio * this.bounds.get_height();
 				canvas.draw_rect2(this.text_bounds, this.text_background_paint);
-				canvas.draw_text(this.TAG, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
+				canvas.draw_text(this.tag, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
 			}
 		}
 	}

@@ -210,7 +210,7 @@ class Global {
 	public readonly 'SI_UNIT_ARRAY': Array<number>;
 	public readonly 'SI_UNIT_THRESHOLD_ARRAY': Array<number>;
 	public readonly 'SI_UNIT_ABBREVIATION': Array<string>;
-	public readonly 'WIRE_BUILDER': WIRE_BUILDER_T;
+	public 'wire_builder': WIRE_BUILDER_T;
 	public readonly 'PROPERTY_LIMIT_MIN': number;
 	public readonly 'PROPERTY_LIMIT_MAX': number;
 	public readonly 'WIRE_REFERENCE': WIRE_REFERENCE_T;
@@ -287,7 +287,7 @@ class Global {
 	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
 	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
-	public readonly 'HISTORY_MANAGER': HISTORY_MANAGER_T;
+	public readonly 'history_manager': HISTORY_MANAGER_T;
 	public readonly 'LANGUAGES': Array<string>;
 	public 'language_index_counter': number;
 	public readonly 'LANGUAGE_INDEX_ENGLISH': number;
@@ -780,7 +780,7 @@ class Global {
 			0.99 * 1e-21
 		];
 		this.SI_UNIT_ABBREVIATION = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
-		this.WIRE_BUILDER = {
+		this.wire_builder = {
 			n1: -1,
 			id1: -1,
 			type1: -1,
@@ -1815,7 +1815,7 @@ class Global {
 				Interpolate: ['', '']
 			}
 		};
-		this.HISTORY_MANAGER = {
+		this.history_manager = {
 			packet: []
 		};
 		this.LANGUAGES = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];

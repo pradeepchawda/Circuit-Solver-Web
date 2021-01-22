@@ -1,9 +1,9 @@
 'use strict';
 class TimeStepWindow {
-	public TITLE_HEIGHT_RATIO: number;
-	public BUTTON_WIDTH_RATIO: number;
-	public BUTTON_HEIGHT_RATIO: number;
-	public PADDING: number;
+	public readonly TITLE_HEIGHT_RATIO: number;
+	public readonly BUTTON_WIDTH_RATIO: number;
+	public readonly BUTTON_HEIGHT_RATIO: number;
+	public readonly PADDING: number;
 	public line_paint: Paint;
 	public point_paint: Paint;
 	public text_paint: Paint;
@@ -22,19 +22,19 @@ class TimeStepWindow {
 	public select_all: boolean;
 	public offset_x: number;
 	public offset_y: number;
-	public WINDOW_ANCHORED: boolean;
-	public ANCHOR_X: number;
-	public ANCHOR_Y: number;
+	public window_anchored: boolean;
+	public anchor_x: number;
+	public anchor_y: number;
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public measured_text: number;
-	public INITIAL_CURSOR_DOWN: number;
-	public SELECT_START: number;
-	public SELECT_END: number;
-	public SELECT_WIDTH: number;
-	public SELECT_OFFSET_X: number;
-	public MOUSE_DOWN: boolean;
-	public ASCENDING: boolean;
+	public initial_cursor_down: number;
+	public select_start: number;
+	public select_end: number;
+	public select_width: number;
+	public select_offset_x: number;
+	public mouse_down_flag: boolean;
+	public ascending_flag: boolean;
 	constructor() {
 		this.TITLE_HEIGHT_RATIO = 0.25;
 		this.BUTTON_WIDTH_RATIO = 0.3;
@@ -156,19 +156,19 @@ class TimeStepWindow {
 		this.select_all = false;
 		this.offset_x = 0;
 		this.offset_y = 0;
-		this.WINDOW_ANCHORED = true;
-		this.ANCHOR_X = 0;
-		this.ANCHOR_Y = 0;
+		this.window_anchored = true;
+		this.anchor_x = 0;
+		this.anchor_y = 0;
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
 		this.measured_text = -1;
-		this.INITIAL_CURSOR_DOWN = -1;
-		this.SELECT_START = -1;
-		this.SELECT_END = -1;
-		this.SELECT_WIDTH = -1;
-		this.SELECT_OFFSET_X = -1;
-		this.MOUSE_DOWN = false;
-		this.ASCENDING = false;
+		this.initial_cursor_down = -1;
+		this.select_start = -1;
+		this.select_end = -1;
+		this.select_width = -1;
+		this.select_offset_x = -1;
+		this.mouse_down_flag = false;
+		this.ascending_flag = false;
 	}
 	mouse_down(): void {
 		if (global.flag_select_timestep) {
@@ -176,21 +176,21 @@ class TimeStepWindow {
 				this.title_bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
 				!this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)
 			) {
-				this.ANCHOR_X = global.mouse_x - this.offset_x;
-				this.ANCHOR_Y = global.mouse_y - this.offset_y;
-				this.WINDOW_ANCHORED = false;
+				this.anchor_x = global.mouse_x - this.offset_x;
+				this.anchor_y = global.mouse_y - this.offset_y;
+				this.window_anchored = false;
 			}
 			this.first_touch_x = global.mouse_x;
 			this.first_touch_y = global.mouse_y;
-			this.INITIAL_CURSOR_DOWN = this.insert_cursor(false, false);
-			this.MOUSE_DOWN = true;
+			this.initial_cursor_down = this.insert_cursor(false, false);
+			this.mouse_down_flag = true;
 		}
 	}
 	mouse_move(): void {
 		if (global.flag_select_timestep) {
-			if (!this.WINDOW_ANCHORED) {
-				this.offset_x = global.mouse_x - this.ANCHOR_X;
-				this.offset_y = global.mouse_y - this.ANCHOR_Y;
+			if (!this.window_anchored) {
+				this.offset_x = global.mouse_x - this.anchor_x;
+				this.offset_y = global.mouse_y - this.anchor_y;
 				if (this.bounds.right + this.offset_x >= view_port.right) {
 					this.offset_x = view_port.right - this.bounds.right;
 				}
@@ -210,7 +210,7 @@ class TimeStepWindow {
 					}
 				}
 			} else {
-				if (this.MOUSE_DOWN && this.INITIAL_CURSOR_DOWN !== -1) {
+				if (this.mouse_down_flag && this.initial_cursor_down !== -1) {
 					this.insert_cursor(true, true);
 				}
 			}
@@ -219,9 +219,9 @@ class TimeStepWindow {
 	mouse_up(): void {
 		if (global.flag_select_timestep) {
 			if (!global.mouse_keyboard_lock) {
-				if (this.WINDOW_ANCHORED) {
+				if (this.window_anchored) {
 					this.insert_cursor(true, false);
-					this.INITIAL_CURSOR_DOWN = -1;
+					this.initial_cursor_down = -1;
 					if (
 						!this.bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
 						!this.bounds.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
@@ -262,11 +262,11 @@ class TimeStepWindow {
 						}
 					}
 				} else {
-					this.ANCHOR_X = global.mouse_x - this.offset_x;
-					this.ANCHOR_Y = global.mouse_y - this.offset_y;
+					this.anchor_x = global.mouse_x - this.offset_x;
+					this.anchor_y = global.mouse_y - this.offset_y;
 				}
-				this.WINDOW_ANCHORED = true;
-				this.MOUSE_DOWN = false;
+				this.window_anchored = true;
+				this.mouse_down_flag = false;
 			}
 		}
 	}
@@ -289,17 +289,17 @@ class TimeStepWindow {
 			if (!is_mouse_move) {
 				this.cursor_position = insert_at;
 			}
-			if (this.INITIAL_CURSOR_DOWN !== -1 && insert_at !== this.INITIAL_CURSOR_DOWN) {
-				if (this.INITIAL_CURSOR_DOWN < insert_at) {
-					this.ASCENDING = true;
+			if (this.initial_cursor_down !== -1 && insert_at !== this.initial_cursor_down) {
+				if (this.initial_cursor_down < insert_at) {
+					this.ascending_flag = true;
 				} else {
-					this.ASCENDING = false;
+					this.ascending_flag = false;
 				}
-				this.SELECT_START = Math.min(insert_at, this.INITIAL_CURSOR_DOWN);
-				this.SELECT_END = Math.max(insert_at, this.INITIAL_CURSOR_DOWN);
+				this.select_start = Math.min(insert_at, this.initial_cursor_down);
+				this.select_end = Math.max(insert_at, this.initial_cursor_down);
 			} else {
-				this.SELECT_START = -1;
-				this.SELECT_END = -1;
+				this.select_start = -1;
+				this.select_end = -1;
 			}
 		}
 		return insert_at;
@@ -317,7 +317,7 @@ class TimeStepWindow {
 		if (global.is_valid_si_units(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
 			if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
 				if (!this.select_all) {
-					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
+					if (this.select_start !== -1 && this.select_end !== -1) {
 						this.handle_partial_select();
 					}
 					this.input_button.text =
@@ -350,11 +350,11 @@ class TimeStepWindow {
 		} else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
 			if (this.input_button.text.length > 0) {
 				if (!this.select_all) {
-					if (this.SELECT_START === this.SELECT_END) {
-						this.SELECT_START = -1;
-						this.SELECT_END = -1;
+					if (this.select_start === this.select_end) {
+						this.select_start = -1;
+						this.select_end = -1;
 					}
-					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
+					if (this.select_start !== -1 && this.select_end !== -1) {
 						this.handle_partial_select();
 					} else {
 						this.input_button.text = this.input_button.text.substring(0, this.cursor_position - 1) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
@@ -371,11 +371,11 @@ class TimeStepWindow {
 		} else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
 			if (this.input_button.text.length > 0) {
 				if (!this.select_all) {
-					if (this.SELECT_START === this.SELECT_END) {
-						this.SELECT_START = -1;
-						this.SELECT_END = -1;
+					if (this.select_start === this.select_end) {
+						this.select_start = -1;
+						this.select_end = -1;
 					}
-					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
+					if (this.select_start !== -1 && this.select_end !== -1) {
 						this.handle_partial_select();
 					} else {
 						if (this.cursor_position < this.input_button.text.length) {
@@ -391,7 +391,7 @@ class TimeStepWindow {
 		} else if ((key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) && !key_event['shift']) {
 			if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
 				if (!this.select_all) {
-					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
+					if (this.select_start !== -1 && this.select_end !== -1) {
 						this.handle_partial_select();
 					}
 					this.input_button.text = this.input_button.text.substring(0, this.cursor_position) + '-' + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
@@ -411,7 +411,7 @@ class TimeStepWindow {
 		} else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
 			if (this.input_button.text.length < global.MAX_TEXT_LENGTH) {
 				if (!this.select_all) {
-					if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
+					if (this.select_start !== -1 && this.select_end !== -1) {
 						this.handle_partial_select();
 					}
 					this.input_button.text = this.input_button.text.substring(0, this.cursor_position) + '.' + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
@@ -433,64 +433,64 @@ class TimeStepWindow {
 			bottom_menu.handle_timestep_flag(!global.flag_select_timestep);
 		} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
 			if (key_event['shift'] === false) {
-				this.SELECT_START = -1;
-				this.SELECT_END = -1;
+				this.select_start = -1;
+				this.select_end = -1;
 				if (this.cursor_position > 0) {
 					this.cursor_position--;
 					this.select_all = false;
 				}
 			} else {
-				if (this.SELECT_START === -1 && this.SELECT_END === -1) {
-					this.SELECT_START = this.cursor_position - 1;
-					this.SELECT_END = this.cursor_position;
-					if (this.SELECT_START < 0) {
-						this.SELECT_START = 0;
-						this.SELECT_END = 0;
+				if (this.select_start === -1 && this.select_end === -1) {
+					this.select_start = this.cursor_position - 1;
+					this.select_end = this.cursor_position;
+					if (this.select_start < 0) {
+						this.select_start = 0;
+						this.select_end = 0;
 					}
-					this.cursor_position = this.SELECT_START;
-					this.ASCENDING = false;
+					this.cursor_position = this.select_start;
+					this.ascending_flag = false;
 				} else {
-					if (this.ASCENDING) {
-						if (this.SELECT_END > 0) {
-							this.SELECT_END--;
-							this.cursor_position = this.SELECT_END;
+					if (this.ascending_flag) {
+						if (this.select_end > 0) {
+							this.select_end--;
+							this.cursor_position = this.select_end;
 						}
 					} else {
-						if (this.SELECT_START > 0) {
-							this.SELECT_START--;
-							this.cursor_position = this.SELECT_START;
+						if (this.select_start > 0) {
+							this.select_start--;
+							this.cursor_position = this.select_start;
 						}
 					}
 				}
 			}
 		} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
 			if (key_event['shift'] === false) {
-				this.SELECT_START = -1;
-				this.SELECT_END = -1;
+				this.select_start = -1;
+				this.select_end = -1;
 				if (this.cursor_position < this.input_button.text.length) {
 					this.cursor_position++;
 					this.select_all = false;
 				}
 			} else {
-				if (this.SELECT_START === -1 && this.SELECT_END === -1) {
-					this.SELECT_START = this.cursor_position;
-					this.SELECT_END = this.cursor_position + 1;
+				if (this.select_start === -1 && this.select_end === -1) {
+					this.select_start = this.cursor_position;
+					this.select_end = this.cursor_position + 1;
 					if (this.cursor_position >= this.input_button.text.length) {
-						this.SELECT_START = this.cursor_position;
-						this.SELECT_END = this.cursor_position;
+						this.select_start = this.cursor_position;
+						this.select_end = this.cursor_position;
 					}
-					this.cursor_position = this.SELECT_END;
-					this.ASCENDING = true;
+					this.cursor_position = this.select_end;
+					this.ascending_flag = true;
 				} else {
-					if (this.ASCENDING) {
-						if (this.SELECT_END < this.input_button.text.length) {
-							this.SELECT_END++;
-							this.cursor_position = this.SELECT_END;
+					if (this.ascending_flag) {
+						if (this.select_end < this.input_button.text.length) {
+							this.select_end++;
+							this.cursor_position = this.select_end;
 						}
 					} else {
-						if (this.SELECT_START < this.input_button.text.length) {
-							this.SELECT_START++;
-							this.cursor_position = this.SELECT_START;
+						if (this.select_start < this.input_button.text.length) {
+							this.select_start++;
+							this.cursor_position = this.select_start;
 						}
 					}
 				}
@@ -499,33 +499,33 @@ class TimeStepWindow {
 			bottom_menu.handle_timestep_flag(!global.flag_select_timestep);
 		} else if (key_event['event'].code === global.KEY_CODE_HOME) {
 			if (key_event['shift'] === false) {
-				this.SELECT_START = -1;
-				this.SELECT_END = -1;
+				this.select_start = -1;
+				this.select_end = -1;
 				this.cursor_position = 0;
 				this.select_all = false;
 			} else {
-				if (this.SELECT_START === -1 && this.SELECT_END === -1) {
+				if (this.select_start === -1 && this.select_end === -1) {
 					this.select_all = false;
-					this.SELECT_START = 0;
-					this.SELECT_END = this.cursor_position;
-					if (this.SELECT_START < 0) {
-						this.SELECT_START = 0;
-						this.SELECT_END = 0;
+					this.select_start = 0;
+					this.select_end = this.cursor_position;
+					if (this.select_start < 0) {
+						this.select_start = 0;
+						this.select_end = 0;
 					}
-					this.cursor_position = this.SELECT_START;
-					this.ASCENDING = false;
+					this.cursor_position = this.select_start;
+					this.ascending_flag = false;
 				} else {
-					if (this.ASCENDING) {
+					if (this.ascending_flag) {
 						this.select_all = false;
-						if (this.SELECT_END > 0) {
-							this.SELECT_END = 0;
-							this.cursor_position = this.SELECT_END;
+						if (this.select_end > 0) {
+							this.select_end = 0;
+							this.cursor_position = this.select_end;
 						}
 					} else {
 						this.select_all = false;
-						if (this.SELECT_START > 0) {
-							this.SELECT_START = 0;
-							this.cursor_position = this.SELECT_START;
+						if (this.select_start > 0) {
+							this.select_start = 0;
+							this.cursor_position = this.select_start;
 						}
 					}
 				}
@@ -534,66 +534,66 @@ class TimeStepWindow {
 			if (key_event['shift'] === false) {
 				this.reset_cursor();
 			} else {
-				if (this.SELECT_START === -1 && this.SELECT_END === -1) {
+				if (this.select_start === -1 && this.select_end === -1) {
 					this.select_all = false;
-					this.SELECT_START = this.cursor_position;
-					this.SELECT_END = this.input_button.text.length;
+					this.select_start = this.cursor_position;
+					this.select_end = this.input_button.text.length;
 					if (this.cursor_position >= this.input_button.text.length) {
-						this.SELECT_START = this.cursor_position;
-						this.SELECT_END = this.cursor_position;
+						this.select_start = this.cursor_position;
+						this.select_end = this.cursor_position;
 					}
-					this.cursor_position = this.SELECT_END;
-					this.ASCENDING = true;
+					this.cursor_position = this.select_end;
+					this.ascending_flag = true;
 				} else {
-					if (this.ASCENDING) {
+					if (this.ascending_flag) {
 						this.select_all = false;
-						if (this.SELECT_END < this.input_button.text.length) {
-							this.SELECT_END = this.input_button.text.length;
-							this.cursor_position = this.SELECT_END;
+						if (this.select_end < this.input_button.text.length) {
+							this.select_end = this.input_button.text.length;
+							this.cursor_position = this.select_end;
 						}
 					} else {
 						this.select_all = false;
-						if (this.SELECT_START < this.input_button.text.length) {
-							this.SELECT_START = this.input_button.text.length;
-							this.cursor_position = this.SELECT_START;
+						if (this.select_start < this.input_button.text.length) {
+							this.select_start = this.input_button.text.length;
+							this.cursor_position = this.select_start;
 						}
 					}
 				}
 			}
 		} else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
 			this.select_all = false;
-			this.SELECT_START = 0;
-			this.ASCENDING = true;
-			this.SELECT_END = this.input_button.text.length;
+			this.select_start = 0;
+			this.ascending_flag = true;
+			this.select_end = this.input_button.text.length;
 			this.cursor_position = this.input_button.text.length;
 		}
 	}
 	handle_partial_select(): void {
-		if (this.SELECT_START !== this.SELECT_END) {
-			let min: number = Math.min(this.SELECT_START, this.SELECT_END);
-			let max: number = Math.max(this.SELECT_START, this.SELECT_END);
+		if (this.select_start !== this.select_end) {
+			let min: number = Math.min(this.select_start, this.select_end);
+			let max: number = Math.max(this.select_start, this.select_end);
 			this.input_button.text = this.input_button.text.substring(0, min) + this.input_button.text.substring(max, this.input_button.text.length);
 			if (this.cursor_position > 0) {
 				this.cursor_position = Math.min(min, max);
 			}
 		}
-		this.SELECT_START = -1;
-		this.SELECT_END = -1;
+		this.select_start = -1;
+		this.select_end = -1;
 	}
 	reset_cursor(): void {
 		this.cursor_position = this.input_button.text.length;
 		this.select_all = false;
-		this.SELECT_START = -1;
-		this.SELECT_END = -1;
+		this.select_start = -1;
+		this.select_end = -1;
 	}
 	double_click(): void {
 		if (global.mouse_double_click_event_flag) {
 			if (this.input_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)) {
 				this.select_all = !this.select_all;
 				if (this.select_all) {
-					this.SELECT_START = 0;
-					this.ASCENDING = true;
-					this.SELECT_END = this.input_button.text.length;
+					this.select_start = 0;
+					this.ascending_flag = true;
+					this.select_end = this.input_button.text.length;
 					this.cursor_position = this.input_button.text.length;
 				}
 			}
@@ -660,7 +660,7 @@ class TimeStepWindow {
 			canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
 			this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
-			if (this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+			if (this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.MOBILE_MODE) {
 				this.okay_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
 				this.okay_button.fill_paint.set_alpha(255);
 			} else {
@@ -668,7 +668,7 @@ class TimeStepWindow {
 				this.okay_button.fill_paint.set_alpha(130);
 			}
 			this.okay_button.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
-			if (this.cancel_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+			if (this.cancel_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.MOBILE_MODE) {
 				this.cancel_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
 				this.cancel_button.fill_paint.set_alpha(255);
 			} else {
@@ -681,7 +681,7 @@ class TimeStepWindow {
 			canvas.draw_text(text, this.input_button.get_center_x() + this.offset_x, this.input_button.get_center_y() + this.offset_y, this.input_button.text_paint);
 			this.measured_text = this.input_button.text_paint.measure_text(text);
 			let adj_text: string = this.input_button.text;
-			if (this.select_all && this.SELECT_START === -1 && this.SELECT_END === -1) {
+			if (this.select_all && this.select_start === -1 && this.select_end === -1) {
 				canvas.draw_rect3(
 					this.input_button.get_center_x() + this.offset_x,
 					this.input_button.get_center_y() + this.offset_y,
@@ -691,15 +691,15 @@ class TimeStepWindow {
 				);
 			}
 			let cached_measured_text: number = this.measured_text * 0.5;
-			if (this.SELECT_START !== -1 && this.SELECT_END !== -1) {
-				let min = Math.min(this.SELECT_START, this.SELECT_END);
-				let max = Math.max(this.SELECT_START, this.SELECT_END);
-				this.SELECT_WIDTH = this.text_paint.measure_text(adj_text.substring(min, max));
-				this.SELECT_OFFSET_X = this.text_paint.measure_text(adj_text.substring(0, min));
+			if (this.select_start !== -1 && this.select_end !== -1) {
+				let min = Math.min(this.select_start, this.select_end);
+				let max = Math.max(this.select_start, this.select_end);
+				this.select_width = this.text_paint.measure_text(adj_text.substring(min, max));
+				this.select_offset_x = this.text_paint.measure_text(adj_text.substring(0, min));
 				canvas.draw_rect(
-					this.input_button.get_center_x() - cached_measured_text + this.SELECT_OFFSET_X + this.offset_x,
+					this.input_button.get_center_x() - cached_measured_text + this.select_offset_x + this.offset_x,
 					this.input_button.get_center_y() - this.input_button.get_height() * 0.35 + this.offset_y,
-					this.input_button.get_center_x() - cached_measured_text + this.SELECT_OFFSET_X + this.offset_x + this.SELECT_WIDTH,
+					this.input_button.get_center_x() - cached_measured_text + this.select_offset_x + this.offset_x + this.select_width,
 					this.input_button.get_center_y() + this.input_button.get_height() * 0.35 + this.offset_y,
 					this.select_paint
 				);
@@ -710,7 +710,7 @@ class TimeStepWindow {
 				this.input_button.get_center_y() + this.offset_y,
 				this.input_button.text_paint
 			);
-			if (this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.WINDOW_ANCHORED && !global.MOBILE_MODE) {
+			if (this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.MOBILE_MODE) {
 				canvas.draw_rect(
 					this.exit_button.left + this.offset_x,
 					this.exit_button.top + this.offset_y,

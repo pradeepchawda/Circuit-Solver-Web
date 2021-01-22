@@ -17,9 +17,8 @@ class Paint {
 	public alpha: number;
 	public metric_array: Array<PAINT_METRICS_ARRAY_T>;
 	public saved_metric: PAINT_METRICS_T;
-	public GARBAGE_COLLECTOR_SIZE: number;
+	public garbage_collector_size: number;
 	private temp_boolean: boolean;
-	private general_index: number;
 	private readonly FONT_TEMPLATE: string;
 	private paint_surface: VirtualCanvas;
 	private last_font: string;
@@ -43,9 +42,8 @@ class Paint {
 		this.alpha = 1;
 		this.metric_array = [];
 		this.saved_metric = null;
-		this.GARBAGE_COLLECTOR_SIZE = 16;
+		this.garbage_collector_size = 16;
 		this.temp_boolean = false;
-		this.general_index = 0;
 		this.FONT_TEMPLATE = 'spx f';
 		this.paint_surface = new VirtualCanvas(1, 1, -1);
 		this.last_font = '';
@@ -158,7 +156,7 @@ class Paint {
 		if (this.search_array(txt)) {
 			return this.saved_metric;
 		} else {
-			if (this.metric_array.length > this.GARBAGE_COLLECTOR_SIZE) {
+			if (this.metric_array.length > this.garbage_collector_size) {
 				this.house_keeping(txt);
 			}
 			this.metric_array.push({
@@ -187,11 +185,11 @@ class Paint {
 		if (!global.not_null(this.saved_metric)) {
 			this.saved_metric = global.NULL;
 		}
-		if (!global.not_null(this.GARBAGE_COLLECTOR_SIZE)) {
-			this.GARBAGE_COLLECTOR_SIZE = 16;
+		if (!global.not_null(this.garbage_collector_size)) {
+			this.garbage_collector_size = 16;
 		}
-		if (this.GARBAGE_COLLECTOR_SIZE != 16) {
-			this.GARBAGE_COLLECTOR_SIZE = 16;
+		if (this.garbage_collector_size != 16) {
+			this.garbage_collector_size = 16;
 		}
 		if (!global.not_null(this.paint_style)) {
 			this.paint_style = this.style.STROKE;

@@ -28,10 +28,10 @@ class GraphicsEngine {
 	public last_text_baseline: string;
 	public last_text_align: string;
 	public last_line_cap: string;
-	public ENABLE_LINE_JOIN: boolean;
-	public FONT_TEMPLATE: string;
-	public FAST_PI_MUL_2: number;
-	public PI_MUL_2: number;
+	public readonly ENABLE_LINE_JOIN: boolean;
+	public readonly FONT_TEMPLATE: string;
+	public readonly FAST_PI_MUL_2: number;
+	public readonly PI_MUL_2: number;
 	public dict: PATH_T;
 	public command: string;
 	public cache: Array<number>;

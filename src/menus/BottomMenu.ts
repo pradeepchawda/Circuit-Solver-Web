@@ -130,7 +130,7 @@ class BottomMenu {
 	mouse_move(): void {}
 	mouse_up(): void {
 		if (!global.is_right_click && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
-			if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
+			if (!global.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed && global.component_touched) {
 				if (
 					!global.flag_simulating &&
 					!global.flag_save_image &&
@@ -206,7 +206,7 @@ class BottomMenu {
 				!global.flag_element_options &&
 				!global.flag_graph &&
 				!global.flag_remove_all &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				this.file_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);
@@ -227,7 +227,7 @@ class BottomMenu {
 				!global.flag_element_options &&
 				!global.flag_graph &&
 				!global.flag_remove_all &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				this.time_step_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);
@@ -249,7 +249,7 @@ class BottomMenu {
 				!global.flag_element_options &&
 				!global.flag_graph &&
 				!global.flag_remove_all &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				this.file_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);
@@ -270,7 +270,7 @@ class BottomMenu {
 				!global.flag_element_options &&
 				!global.flag_graph &&
 				!global.flag_remove_all &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				this.time_step_button.text_paint.set_color(global.GENERAL_CYAN_COLOR);

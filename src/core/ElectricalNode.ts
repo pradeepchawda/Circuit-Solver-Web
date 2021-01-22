@@ -176,9 +176,9 @@ class ElectricalNode {
 				canvas.draw_circle(this.location.x, this.location.y, 2 * global.canvas_stroke_width_3, this.node_line_paint);
 				canvas.draw_text(this.debug_info(), this.location.x, this.location.y, this.node_line_paint);
 			} else {
-				if (global.WIRE_BUILDER['step'] > 0) {
-					if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-						if (global.WIRE_BUILDER['n1'] !== this.id && this.draw_node_builder_helper()) {
+				if (global.wire_builder['step'] > 0) {
+					if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
+						if (global.wire_builder['n1'] !== this.id && this.draw_node_builder_helper()) {
 							global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
 							global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
 							global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);

@@ -1,13 +1,13 @@
 'use strict';
 class AmMeter {
     constructor(type, id, n1, n2) {
-        this.INITIALIZED = false;
-        this.X_AXIS_LENGTH = 600;
-        this.Y_AXIS_LENGTH = 100;
+        this.initialized = false;
+        this.x_axis_length = 600;
+        this.y_axis_length = 100;
         this.RATIO = 0.75;
         this.bounds = new RectF(0, 0, 0, 0);
         this.trace_bounds = new RectF(0, 0, 0, 0);
-        this.meter_trace = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+        this.meter_trace = new Trace(this.x_axis_length, this.y_axis_length, this.RATIO);
         this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
         this.elm = new Element2(id, type, global.copy(global.PROPERTY_AMMETER));
         this.elm.set_nodes(n1, n2);
@@ -84,12 +84,12 @@ class AmMeter {
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;
-        this.INITIALIZED = true;
-        this.MULTI_SELECTED = false;
+        this.initialized = true;
+        this.multi_selected = false;
         this.line_buffer = [];
         this.circle_buffer = [];
-        this.BUILD_ELEMENT = true;
-        this.ANGLE = 0;
+        this.build_element_flag = true;
+        this.angle = 0;
     }
     refresh_bounds() {
         if (this.elm.consistent()) {
@@ -207,21 +207,21 @@ class AmMeter {
         }
     }
     handle_wire_builder(n, anchor) {
-        if (global.WIRE_BUILDER['step'] === 0) {
-            global.WIRE_BUILDER['n1'] = n;
-            global.WIRE_BUILDER['type1'] = this.elm.type;
-            global.WIRE_BUILDER['id1'] = this.elm.id;
-            global.WIRE_BUILDER['anchor_point1'] = anchor;
-            global.WIRE_BUILDER['linkage1']['wire'] = global.WIRE_BUILDER['step'];
-            global.WIRE_BUILDER['step']++;
+        if (global.wire_builder['step'] === 0) {
+            global.wire_builder['n1'] = n;
+            global.wire_builder['type1'] = this.elm.type;
+            global.wire_builder['id1'] = this.elm.id;
+            global.wire_builder['anchor_point1'] = anchor;
+            global.wire_builder['linkage1']['wire'] = global.wire_builder['step'];
+            global.wire_builder['step']++;
         }
-        else if (global.WIRE_BUILDER['step'] === 1) {
-            global.WIRE_BUILDER['n2'] = n;
-            global.WIRE_BUILDER['type2'] = this.elm.type;
-            global.WIRE_BUILDER['id2'] = this.elm.id;
-            global.WIRE_BUILDER['anchor_point2'] = anchor;
-            global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
-            global.WIRE_BUILDER['step']++;
+        else if (global.wire_builder['step'] === 1) {
+            global.wire_builder['n2'] = n;
+            global.wire_builder['type2'] = this.elm.type;
+            global.wire_builder['id2'] = this.elm.id;
+            global.wire_builder['anchor_point2'] = anchor;
+            global.wire_builder['linkage2']['wire'] = global.wire_builder['step'];
+            global.wire_builder['step']++;
         }
     }
     move_element(dx, dy) {
@@ -289,7 +289,7 @@ class AmMeter {
                         this.trace_bounds.set_bounds(this.c_x - global.node_space_x, this.c_y - 2 * global.node_space_y, this.c_x + global.node_space_x, this.c_y - 1 * global.node_space_y);
                         this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
                         this.RESIZE_METER_TRACE = true;
-                        this.BUILD_ELEMENT = true;
+                        this.build_element_flag = true;
                     }
                 }
             }
@@ -334,7 +334,7 @@ class AmMeter {
         }
     }
     select() {
-        if (global.WIRE_BUILDER['step'] !== 0) {
+        if (global.wire_builder['step'] !== 0) {
             wire_manager.reset_wire_builder();
         }
         global.selected_id = this.elm.id;
@@ -446,7 +446,7 @@ class AmMeter {
         }
     }
     set_flip(flip) {
-        this.BUILD_ELEMENT = true;
+        this.build_element_flag = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.push_history();
@@ -457,7 +457,7 @@ class AmMeter {
         this.anchor_wires();
     }
     set_rotation(rotation) {
-        this.BUILD_ELEMENT = true;
+        this.build_element_flag = true;
         wire_manager.reset_wire_builder();
         this.unanchor_wires();
         this.push_history();
@@ -468,12 +468,12 @@ class AmMeter {
         this.anchor_wires();
     }
     push_history() {
-        if (this.INITIALIZED) {
-            global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+        if (this.initialized) {
+            global.history_manager['packet'].push(engine_functions.history_snapshot());
         }
     }
     build_element() {
-        if (this.BUILD_ELEMENT || global.signal_build_element) {
+        if (this.build_element_flag || global.signal_build_element) {
             let cache_0 = 1.25 * this.x_space;
             let cache_1 = 1.25 * this.y_space;
             let cache_2 = this.x_space;
@@ -488,11 +488,11 @@ class AmMeter {
             this.plus_point.y = this.c_y - cache_1 * global.sine(this.theta) - cache_1 * global.sine(this.theta_m90);
             this.meter_symbol.set_bounds(this.bounds.left + w_cache, this.bounds.top + h_cache, this.bounds.right - w_cache, this.bounds.bottom - h_cache);
             this.meter_symbol.resize_symbol(this.meter_symbol.STYLE_0);
-            this.BUILD_ELEMENT = false;
+            this.build_element_flag = false;
         }
     }
     resize() {
-        if (this.BUILD_ELEMENT || global.signal_build_element || this.RESIZE_METER_TRACE) {
+        if (this.build_element_flag || global.signal_build_element || this.RESIZE_METER_TRACE) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
                     this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.node_space_x * 2, global.node_space_y * 2);
@@ -556,13 +556,13 @@ class AmMeter {
         this.elm.properties['Current'] = 0;
     }
     push_current(current) {
-        if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.SOLUTIONS_READY) {
+        if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
             this.elm.properties['Current'] = current;
             this.meter_trace.push(current, global.simulation_time);
         }
     }
     get_simulation_index() {
-        return simulation_manager.NODE_SIZE + simulation_manager.ELEMENT_AMMETER_OFFSET + this.simulation_id;
+        return simulation_manager.node_size + simulation_manager.ELEMENT_AMMETER_OFFSET + this.simulation_id;
     }
     recolor() {
         if (global.selected) {
@@ -580,7 +580,7 @@ class AmMeter {
             }
         }
         else {
-            if (this.MULTI_SELECTED) {
+            if (this.multi_selected) {
                 this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
                 this.point_paint.set_color(global.MULTI_SELECTED_COLOR);
                 this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
@@ -619,7 +619,7 @@ class AmMeter {
         this.wire_reference_maintenance();
         this.recolor();
         this.resize();
-        if (this.MULTI_SELECTED) {
+        if (this.multi_selected) {
             multi_select_manager.determine_enveloping_bounds(this.bounds);
         }
         if (global.picture_request_flag ||
@@ -648,10 +648,10 @@ class AmMeter {
             if (global.DEVELOPER_MODE) {
                 canvas.draw_rect2(this.bounds, this.line_paint);
             }
-            this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-            if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
+            this.angle = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+            if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
                 if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
-                    if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.SOLUTIONS_READY) {
+                    if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Current'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.025, this.text_paint);
                         this.text_paint.set_color(global.ELEMENT_COLOR);
@@ -660,11 +660,11 @@ class AmMeter {
                 }
                 this.meter_symbol.draw_symbol(canvas);
             }
-            else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
+            else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
                 canvas.rotate(this.c_x, this.c_y, -90);
                 this.meter_symbol.draw_symbol(canvas);
                 if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
-                    if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.SOLUTIONS_READY) {
+                    if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Current'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.025, this.text_paint);
                         this.recolor();
@@ -674,11 +674,11 @@ class AmMeter {
                 canvas.restore();
             }
             if (!global.MOBILE_MODE) {
-                if (global.WIRE_BUILDER['step'] === 0 &&
+                if (global.wire_builder['step'] === 0 &&
                     this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
                     global.NODE_HINTS &&
-                    !multi_select_manager.MULTI_SELECT &&
-                    !this.MULTI_SELECTED &&
+                    !multi_select_manager.multi_select &&
+                    !this.multi_selected &&
                     !global.signal_add_element &&
                     !global.signal_history_lock &&
                     !global.picture_request_flag &&
@@ -723,11 +723,11 @@ class AmMeter {
         if (!global.not_null(this.circle_buffer)) {
             this.circle_buffer = [];
         }
-        if (!global.not_null(this.BUILD_ELEMENT)) {
-            this.BUILD_ELEMENT = false;
+        if (!global.not_null(this.build_element_flag)) {
+            this.build_element_flag = false;
         }
-        if (!global.not_null(this.ANGLE)) {
-            this.ANGLE = 0;
+        if (!global.not_null(this.angle)) {
+            this.angle = 0;
         }
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;

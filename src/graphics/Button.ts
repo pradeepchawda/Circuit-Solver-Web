@@ -8,7 +8,7 @@ class Button extends RectF {
 	public line_paint: Paint;
 	public fill_paint: Paint;
 	public text_paint: Paint;
-	private TEXT_UNDERSCORE_TEMPLATE: string;
+	private readonly TEXT_UNDERSCORE_TEMPLATE: string;
 	constructor(left: number, top: number, right: number, bottom: number) {
 		super(left, top, right, bottom);
 		this.text = '';

@@ -99,10 +99,10 @@ function handle_file_loading(): void {
 	try {
 		engine_functions.parse_elements(global.user_file.content);
 	} catch (error) {}
-	global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+	global.history_manager['packet'].push(engine_functions.history_snapshot());
 	global.draw_block = true;
 	global.user_file_selected = false;
-	MOUSE_EVENT_LATCH = false;
+	mouse_event_latch = false;
 }
 var solver_container: HTMLElement = document.getElementById('solver');
 var surface: HTMLCanvasElement = document.createElement('canvas');
@@ -118,11 +118,11 @@ var language_manager: LanguageManager = new LanguageManager();
 var shortcut_manager: ShortcutManager = new ShortcutManager();
 var string_operator: StringOperator = new StringOperator();
 var multi_select_manager: MultiSelectManager = new MultiSelectManager();
-var CANVAS_ASPECT_RATIO: number = 1.333;
+var canvas_aspect_ratio: number = 1.333;
 if (global.MOBILE_MODE) {
-	CANVAS_ASPECT_RATIO = 1.618;
+	canvas_aspect_ratio = 1.618;
 }
-var view_port: Viewport = new Viewport(CANVAS_ASPECT_RATIO, 800, 800 / CANVAS_ASPECT_RATIO);
+var view_port: Viewport = new Viewport(canvas_aspect_ratio, 800, 800 / canvas_aspect_ratio);
 var workspace: Workspace = new Workspace(0, 0, 0, 0, global.workspace_zoom_scale);
 var simulation_manager: SimulationManager = global.NULL;
 var scope_manager: ScopeManager = new ScopeManager();
@@ -291,14 +291,14 @@ var node_manager: NodeManager = new NodeManager();
 var graph_window: GraphWindow = global.NULL;
 var FPS: number = 30;
 var FPS_DIV_ARRAY: Array<number> = [2, 2];
-var FPS_COUNTER: number = 0;
-var FPS_INDEX: number = 0;
-var FPS_COMPARE: number = FPS_DIV_ARRAY[FPS_INDEX];
-var FPS_DIV: number = 0;
+var fps_counter: number = 0;
+var fps_index: number = 0;
+var fps_compare: number = FPS_DIV_ARRAY[fps_index];
+var fps_div: number = 0;
 var general_paint: Paint = new Paint();
 var webpage_document_title: HTMLElement = global.NULL;
 var last_webpage_document_title: string = 'untitled';
-var MOUSE_EVENT_LATCH: boolean = false;
+var mouse_event_latch: boolean = false;
 /* #END_GLOBAL_EXTRACT# */
 function load_app(): void {
 	browser_detection();
@@ -306,14 +306,14 @@ function load_app(): void {
 	global.last_surface_width = 0;
 	global.last_surface_height = 0;
 	let canvas: GraphicsEngine = new GraphicsEngine(virtual_surface.context);
-	let FIFO_INDEX: number = 0;
+	let fifo_index: number = 0;
 	let touch: any = global.NULL;
-	let TEMP_DRAW_SIGNAL: boolean = false;
-	let NSX: number = 0;
-	let NSY: number = 0;
-	let MNSX: number = 0;
-	let MNSY: number = 0;
-	let NODE_LENGTH: number = 0;
+	let temp_draw_signal: boolean = false;
+	let node_space_x_cache: number = 0;
+	let node_space_y_cache: number = 0;
+	let mult_node_space_x_cache: number = 0;
+	let mult_node_space_y_cache: number = 0;
+	let node_length: number = 0;
 	general_paint = new Paint();
 	general_paint.set_paint_style(general_paint.style.FILL);
 	general_paint.set_paint_cap(general_paint.cap.ROUND);
@@ -333,7 +333,7 @@ function load_app(): void {
 			toast = new Toast();
 			resize_canvas();
 			engine_functions.create_nodes(workspace.bounds);
-			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+			global.history_manager['packet'].push(engine_functions.history_snapshot());
 		} else if (step === 1) {
 			menu_bar = new MenuBar();
 			bottom_menu = new BottomMenu();
@@ -362,7 +362,7 @@ function load_app(): void {
 				webpage_document_title = document.getElementById('title_text');
 			}
 			if (global.system_options['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] === global.ON) {
-				view_port.APPLY_SPREAD_FACTOR = true;
+				view_port.apply_spread_factor = true;
 				global.force_resize_event = true;
 			}
 		}
@@ -404,7 +404,7 @@ function load_app(): void {
 		solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
 		solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		solver_container.style.background = 'black';
-		view_port.resize(CANVAS_ASPECT_RATIO, window.innerWidth * global.device_pixel_ratio, window.innerHeight * global.device_pixel_ratio);
+		view_port.resize(canvas_aspect_ratio, window.innerWidth * global.device_pixel_ratio, window.innerHeight * global.device_pixel_ratio);
 		surface.width = window.innerWidth * global.device_pixel_ratio;
 		surface.height = window.innerHeight * global.device_pixel_ratio;
 		surface.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
@@ -471,7 +471,7 @@ function load_app(): void {
 					toast.show();
 				}
 			} else {
-				if (!MOUSE_EVENT_LATCH) {
+				if (!mouse_event_latch) {
 					if (global.MOBILE_MODE) {
 						if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
 							global.mouse_down_event_flag = true;
@@ -503,7 +503,7 @@ function load_app(): void {
 		mouse_event.stopPropagation();
 	}
 	function mouse_up(mouse_event: MouseEvent): void {
-		if (MOUSE_EVENT_LATCH) {
+		if (mouse_event_latch) {
 			if (global.MOBILE_MODE) {
 				if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
 					global.mouse_up_event_flag = true;
@@ -634,7 +634,7 @@ function load_app(): void {
 				global.key_down_event_flag ||
 				global.picture_request_flag ||
 				global.flag_simulating ||
-				!workspace.DRAW_TO_SCREEN ||
+				!workspace.draw_to_screen ||
 				toast.draw_text ||
 				!global.system_initialization['completed']
 			);
@@ -662,7 +662,7 @@ function load_app(): void {
 			}
 			if (global.canvas_draw_event) {
 				if (global.system_initialization['completed']) {
-					TEMP_DRAW_SIGNAL =
+					temp_draw_signal =
 						!global.flag_simulating ||
 						global.resize_event ||
 						global.mouse_down_event_flag ||
@@ -673,10 +673,10 @@ function load_app(): void {
 						global.key_up_event_flag ||
 						global.key_down_event_flag ||
 						global.picture_request_flag ||
-						!workspace.DRAW_TO_SCREEN ||
+						!workspace.draw_to_screen ||
 						toast.draw_text;
 				} else {
-					TEMP_DRAW_SIGNAL =
+					temp_draw_signal =
 						!global.flag_simulating ||
 						global.resize_event ||
 						global.mouse_down_event_flag ||
@@ -687,7 +687,7 @@ function load_app(): void {
 						global.key_up_event_flag ||
 						global.key_down_event_flag ||
 						global.picture_request_flag ||
-						!workspace.DRAW_TO_SCREEN;
+						!workspace.draw_to_screen;
 				}
 				global.last_selected = global.selected;
 				update();
@@ -701,10 +701,10 @@ function load_app(): void {
 					global.draw_block = true;
 					resize_canvas();
 				}
-				FPS_DIV ^= 1;
-				if (((FPS_DIV == 1 || TEMP_DRAW_SIGNAL) && global.flag_simulating) || !global.flag_simulating) {
+				fps_div ^= 1;
+				if (((fps_div == 1 || temp_draw_signal) && global.flag_simulating) || !global.flag_simulating) {
 					if (global.system_initialization['completed']) {
-						if ((global.flag_simulating && global.canvas_draw_request) || TEMP_DRAW_SIGNAL) {
+						if ((global.flag_simulating && global.canvas_draw_request) || temp_draw_signal) {
 							if (!global.on_restore_event) {
 								if (!global.draw_block) {
 									ctx.drawImage(
@@ -780,12 +780,12 @@ function load_app(): void {
 					global.on_restore_event = false;
 				}
 			}
-			if (global.mouse_down_event_queue.length > 0 && !MOUSE_EVENT_LATCH) {
-				FIFO_INDEX = global.mouse_down_event_queue.length - 1;
-				global.mouse_down_event = global.mouse_down_event_queue[FIFO_INDEX];
-				MOUSE_EVENT_LATCH = true;
+			if (global.mouse_down_event_queue.length > 0 && !mouse_event_latch) {
+				fifo_index = global.mouse_down_event_queue.length - 1;
+				global.mouse_down_event = global.mouse_down_event_queue[fifo_index];
+				mouse_event_latch = true;
 				handle_mouse_down();
-				global.mouse_down_event_queue.splice(FIFO_INDEX, 1);
+				global.mouse_down_event_queue.splice(fifo_index, 1);
 				if (global.mouse_down_event_queue.length === 0) {
 					global.mouse_down_event_flag = false;
 				}
@@ -798,12 +798,12 @@ function load_app(): void {
 				global.canvas_draw_request_counter = 0;
 				global.mouse_move_event_flag = false;
 			}
-			if (global.mouse_up_event_queue.length > 0 && MOUSE_EVENT_LATCH) {
-				FIFO_INDEX = global.mouse_up_event_queue.length - 1;
-				global.mouse_up_event = global.mouse_up_event_queue[FIFO_INDEX];
-				MOUSE_EVENT_LATCH = false;
+			if (global.mouse_up_event_queue.length > 0 && mouse_event_latch) {
+				fifo_index = global.mouse_up_event_queue.length - 1;
+				global.mouse_up_event = global.mouse_up_event_queue[fifo_index];
+				mouse_event_latch = false;
 				handle_mouse_up();
-				global.mouse_up_event_queue.splice(FIFO_INDEX, 1);
+				global.mouse_up_event_queue.splice(fifo_index, 1);
 				if (global.mouse_up_event_queue.length === 0) {
 					global.mouse_up_event_flag = false;
 					global.mouse_move_event_flag = false;
@@ -813,10 +813,10 @@ function load_app(): void {
 				global.canvas_draw_request_counter = 0;
 			}
 			if (global.mouse_double_click_event_queue.length > 0) {
-				FIFO_INDEX = global.mouse_double_click_event_queue.length - 1;
-				global.mouse_double_click_event = global.mouse_double_click_event_queue[FIFO_INDEX];
+				fifo_index = global.mouse_double_click_event_queue.length - 1;
+				global.mouse_double_click_event = global.mouse_double_click_event_queue[fifo_index];
 				handle_double_click();
-				global.mouse_double_click_event_queue.splice(FIFO_INDEX, 1);
+				global.mouse_double_click_event_queue.splice(fifo_index, 1);
 				if (global.mouse_double_click_event_queue.length === 0) {
 					global.mouse_double_click_event_flag = false;
 				}
@@ -824,10 +824,10 @@ function load_app(): void {
 				global.canvas_draw_request_counter = 0;
 			}
 			if (global.mouse_wheel_event_queue.length > 0) {
-				FIFO_INDEX = global.mouse_wheel_event_queue.length - 1;
-				global.mouse_wheel_event = global.mouse_wheel_event_queue[FIFO_INDEX];
+				fifo_index = global.mouse_wheel_event_queue.length - 1;
+				global.mouse_wheel_event = global.mouse_wheel_event_queue[fifo_index];
 				handle_mouse_wheel();
-				global.mouse_wheel_event_queue.splice(FIFO_INDEX, 1);
+				global.mouse_wheel_event_queue.splice(fifo_index, 1);
 				if (global.mouse_wheel_event_queue.length === 0) {
 					global.mouse_wheel_event_flag = false;
 				}
@@ -850,10 +850,10 @@ function load_app(): void {
 				global.resize_event = false;
 			}
 			if (global.key_down_event_queue.length > 0) {
-				FIFO_INDEX = global.key_down_event_queue.length - 1;
-				global.key_down_event = global.key_down_event_queue[FIFO_INDEX];
+				fifo_index = global.key_down_event_queue.length - 1;
+				global.key_down_event = global.key_down_event_queue[fifo_index];
 				handle_key_down();
-				global.key_down_event_queue.splice(FIFO_INDEX, 1);
+				global.key_down_event_queue.splice(fifo_index, 1);
 				if (global.key_down_event_queue.length === 0) {
 					global.key_down_event_flag = false;
 				}
@@ -861,11 +861,11 @@ function load_app(): void {
 				global.canvas_draw_request_counter = 0;
 			}
 			if (global.key_up_event_queue.length > 0) {
-				FIFO_INDEX = global.key_up_event_queue.length - 1;
-				global.key_up_event = global.key_up_event_queue[FIFO_INDEX];
+				fifo_index = global.key_up_event_queue.length - 1;
+				global.key_up_event = global.key_up_event_queue[fifo_index];
 				handle_key_up();
 				global.key_down_event_queue = [];
-				global.key_up_event_queue.splice(FIFO_INDEX, 1);
+				global.key_up_event_queue.splice(fifo_index, 1);
 				if (global.key_up_event_queue.length === 0) {
 					global.key_up_event_flag = false;
 				}
@@ -1137,27 +1137,27 @@ function load_app(): void {
 					multi_select_manager.reset_enveloping_bounds();
 				}
 				if (global.signal_build_element) {
-					NSX = 0.29375 * global.node_space_x;
-					NSY = 0.29375 * global.node_space_y;
-					MNSX = 1.25 * NSX;
-					MNSY = 1.25 * NSY;
-					NODE_LENGTH = nodes.length;
-					for (var i: number = 0; i < NODE_LENGTH; i++) {
-						nodes[i].resize(NSX, NSY, MNSX, MNSY);
-						if (NODE_LENGTH - 1 - i === i + 1) {
+					node_space_x_cache = 0.29375 * global.node_space_x;
+					node_space_y_cache = 0.29375 * global.node_space_y;
+					mult_node_space_x_cache = 1.25 * node_space_x_cache;
+					mult_node_space_y_cache = 1.25 * node_space_y_cache;
+					node_length = nodes.length;
+					for (var i: number = 0; i < node_length; i++) {
+						nodes[i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
+						if (node_length - 1 - i === i + 1) {
 							break;
 						}
-						nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
+						nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
 					}
 				}
 				if (global.DEVELOPER_MODE) {
-					NODE_LENGTH = nodes.length;
-					for (var i: number = 0; i < NODE_LENGTH; i++) {
+					node_length = nodes.length;
+					for (var i: number = 0; i < node_length; i++) {
 						nodes[i].draw(canvas);
-						if (NODE_LENGTH - 1 - i === i + 1) {
+						if (node_length - 1 - i === i + 1) {
 							break;
 						}
-						nodes[NODE_LENGTH - 1 - i].draw(canvas);
+						nodes[node_length - 1 - i].draw(canvas);
 					}
 				}
 				workspace.workspace_draw(canvas);
@@ -1165,20 +1165,20 @@ function load_app(): void {
 				engine_functions.draw_wires(canvas);
 				engine_functions.draw_selected_components(canvas);
 				engine_functions.draw_meter_traces(canvas);
-				if (global.WIRE_BUILDER['step'] > 0) {
+				if (global.wire_builder['step'] > 0) {
 					global.node_line_buffer = [];
 					global.node_line_buffer_index = 0;
-					NODE_LENGTH = nodes.length;
-					for (var i: number = 0; i < NODE_LENGTH; i++) {
+					node_length = nodes.length;
+					for (var i: number = 0; i < node_length; i++) {
 						nodes[i].draw(canvas);
-						if (NODE_LENGTH - 1 - i === i + 1) {
+						if (node_length - 1 - i === i + 1) {
 							break;
 						}
-						nodes[NODE_LENGTH - 1 - i].draw(canvas);
+						nodes[node_length - 1 - i].draw(canvas);
 					}
-					if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-						canvas.draw_line_buffer(global.node_line_buffer, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
-						canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
+					if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
+						canvas.draw_line_buffer(global.node_line_buffer, nodes[global.wire_builder['n1']].node_line_paint);
+						canvas.draw_rect2(nodes[global.wire_builder['n1']].bounds, nodes[global.wire_builder['n1']].node_fill_paint);
 					}
 				}
 				multi_select_manager.draw_bounds(canvas);
@@ -1210,47 +1210,47 @@ function load_app(): void {
 					workspace.workspace_draw(canvas);
 					if (!global.flag_graph) {
 						if (global.signal_build_element) {
-							NSX = 0.29375 * global.node_space_x;
-							NSY = 0.29375 * global.node_space_y;
-							MNSX = 1.25 * NSX;
-							MNSY = 1.25 * NSY;
-							NODE_LENGTH = nodes.length;
-							for (var i: number = 0; i < NODE_LENGTH; i++) {
-								nodes[i].resize(NSX, NSY, MNSX, MNSY);
-								if (NODE_LENGTH - 1 - i === i + 1) {
+							node_space_x_cache = 0.29375 * global.node_space_x;
+							node_space_y_cache = 0.29375 * global.node_space_y;
+							mult_node_space_x_cache = 1.25 * node_space_x_cache;
+							mult_node_space_y_cache = 1.25 * node_space_y_cache;
+							node_length = nodes.length;
+							for (var i: number = 0; i < node_length; i++) {
+								nodes[i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
+								if (node_length - 1 - i === i + 1) {
 									break;
 								}
-								nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
+								nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
 							}
 						}
 						if (global.DEVELOPER_MODE) {
-							NODE_LENGTH = nodes.length;
-							for (var i: number = 0; i < NODE_LENGTH; i++) {
+							node_length = nodes.length;
+							for (var i: number = 0; i < node_length; i++) {
 								nodes[i].draw(canvas);
-								if (NODE_LENGTH - 1 - i === i + 1) {
+								if (node_length - 1 - i === i + 1) {
 									break;
 								}
-								nodes[NODE_LENGTH - 1 - i].draw(canvas);
+								nodes[node_length - 1 - i].draw(canvas);
 							}
 						}
 						engine_functions.draw_unselected_components(canvas);
 						engine_functions.draw_wires(canvas);
 						engine_functions.draw_selected_components(canvas);
 						engine_functions.draw_meter_traces(canvas);
-						if (global.WIRE_BUILDER['step'] > 0) {
+						if (global.wire_builder['step'] > 0) {
 							global.node_line_buffer = [];
 							global.node_line_buffer_index = 0;
-							NODE_LENGTH = nodes.length;
-							for (var i: number = 0; i < NODE_LENGTH; i++) {
+							node_length = nodes.length;
+							for (var i: number = 0; i < node_length; i++) {
 								nodes[i].draw(canvas);
-								if (NODE_LENGTH - 1 - i === i + 1) {
+								if (node_length - 1 - i === i + 1) {
 									break;
 								}
-								nodes[NODE_LENGTH - 1 - i].draw(canvas);
+								nodes[node_length - 1 - i].draw(canvas);
 							}
-							if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-								canvas.draw_line_buffer(global.node_line_buffer, nodes[global.WIRE_BUILDER['n1']].node_line_paint);
-								canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
+							if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
+								canvas.draw_line_buffer(global.node_line_buffer, nodes[global.wire_builder['n1']].node_line_paint);
+								canvas.draw_rect2(nodes[global.wire_builder['n1']].bounds, nodes[global.wire_builder['n1']].node_fill_paint);
 							}
 						}
 						element_options.draw_options(canvas);
@@ -1851,7 +1851,7 @@ function load_app(): void {
 			!global.flag_remove_all
 		) {
 			if (!global.component_touched && !global.is_right_click) {
-				if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
+				if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
 					wire_manager.reset_wire_builder();
 				}
 			}
@@ -2067,7 +2067,7 @@ function load_app(): void {
 			wires[i].mouse_up();
 		}
 		if (global.signal_wire_created) {
-			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+			global.history_manager['packet'].push(engine_functions.history_snapshot());
 			global.signal_wire_created = false;
 		}
 		let component_touched: boolean = global.component_touched;
@@ -2193,11 +2193,11 @@ function load_app(): void {
 		requestAnimationFrame(main);
 	}
 	function throttle_loop(): void {
-		switch (++FPS_COUNTER) {
-			case FPS_COMPARE:
-				FPS_INDEX ^= 1;
-				FPS_COMPARE = FPS_DIV_ARRAY[FPS_INDEX];
-				FPS_COUNTER = 0;
+		switch (++fps_counter) {
+			case fps_compare:
+				fps_index ^= 1;
+				fps_compare = FPS_DIV_ARRAY[fps_index];
+				fps_counter = 0;
 				system_loop();
 				break;
 			default:

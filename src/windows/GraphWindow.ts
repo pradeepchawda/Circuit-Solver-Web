@@ -2,15 +2,15 @@
 class GraphWindow {
 	public bounds: RectF;
 	public inner_bounds: RectF;
-	public X_AXIS_LENGTH: number;
-	public Y_AXIS_LENGTH: number;
-	public RATIO: number;
+	public readonly X_AXIS_LENGTH: number;
+	public readonly Y_AXIS_LENGTH: number;
+	public readonly RATIO: number;
 	public readonly SCOPE_0_INDEX: number;
 	public readonly SCOPE_1_INDEX: number;
 	public readonly SCOPE_2_INDEX: number;
-	public PADDING: number;
-	public BUTTON_WIDTH_RATIO: number;
-	public BUTTON_HEIGHT_RATIO: number;
+	public padding: number;
+	public readonly BUTTON_WIDTH_RATIO: number;
+	public readonly BUTTON_HEIGHT_RATIO: number;
 	public line_paint: Paint;
 	public bounds_paint: Paint;
 	public fill_paint: Paint;
@@ -50,7 +50,7 @@ class GraphWindow {
 		this.width = 1;
 		this.height = 1;
 		this.trim = 1;
-		this.PADDING = global.canvas_stroke_width_5;
+		this.padding = global.canvas_stroke_width_5;
 		if (global.MOBILE_MODE) {
 			this.BUTTON_WIDTH_RATIO = 0.12;
 			this.BUTTON_HEIGHT_RATIO = 0.08;
@@ -174,10 +174,10 @@ class GraphWindow {
 	load_axis(): void {
 		this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
 		this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-		let left: number = this.bounds.left + this.PADDING;
-		let top: number = this.bounds.top + 2 * this.PADDING;
-		let right: number = this.bounds.right - this.PADDING;
-		let bottom: number = this.bounds.bottom - this.PADDING;
+		let left: number = this.bounds.left + this.padding;
+		let top: number = this.bounds.top + 2 * this.padding;
+		let right: number = this.bounds.right - this.padding;
+		let bottom: number = this.bounds.bottom - this.padding;
 		this.inner_bounds = new RectF(left, top, right, bottom);
 		this.trim = (this.bounds.get_width() - this.inner_bounds.get_width()) * 0.5;
 		this.width = this.inner_bounds.get_width();
@@ -195,7 +195,7 @@ class GraphWindow {
 		}
 	}
 	resize_window(): void {
-		this.PADDING = global.canvas_stroke_width_5;
+		this.padding = global.canvas_stroke_width_5;
 		this.bounds.left = view_port.left;
 		this.bounds.right = view_port.right;
 		this.bounds.top = menu_bar.graph_button.bottom + 2 * global.canvas_stroke_width_3;
@@ -347,7 +347,7 @@ class GraphWindow {
 				this.line_buffer[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
 			}
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-			if (scope_manager.ENTRY.length > 0) {
+			if (scope_manager.entry.length > 0) {
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_0_INDEX),
 					this.bounds.get_center_x() - 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))),
@@ -382,7 +382,7 @@ class GraphWindow {
 					}
 				}
 			}
-			if (scope_manager.ENTRY.length > 1) {
+			if (scope_manager.entry.length > 1) {
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_1_INDEX),
 					this.bounds.get_center_x(),
@@ -417,7 +417,7 @@ class GraphWindow {
 					}
 				}
 			}
-			if (scope_manager.ENTRY.length > 2) {
+			if (scope_manager.entry.length > 2) {
 				canvas.draw_text(
 					scope_manager.get_scope_name(this.SCOPE_2_INDEX),
 					this.bounds.get_center_x() + 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX))),
@@ -452,7 +452,7 @@ class GraphWindow {
 					}
 				}
 			}
-			if (scope_manager.ENTRY.length > 0) {
+			if (scope_manager.entry.length > 0) {
 				if (
 					this.meter_hover_index > -1 &&
 					(this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)

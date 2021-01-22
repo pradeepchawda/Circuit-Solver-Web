@@ -1,8 +1,8 @@
 'use strict';
 class Workspace {
     constructor(left, top, right, bottom, scale) {
-        this.FIRST_RESIZE_FLAG = false;
-        this.DRAW_TO_SCREEN = false;
+        this.first_resize_flag = false;
+        this.draw_to_screen = false;
         this.view = new RectF(left, top, right, bottom);
         this.bounds = new RectF(view_port.center_x - view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y - view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale, view_port.center_x + view_port.view_width * global.settings.WORKSPACE_RATIO_X * scale, view_port.center_y + view_port.view_height * global.settings.WORKSPACE_RATIO_Y * scale);
         global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
@@ -51,10 +51,10 @@ class Workspace {
         this.sqrt_m_1 = -1;
         this.DRAW_GRID = false;
         this.line_buffer = [];
-        this.GRID_MOVED = true;
+        this.grid_moved = true;
     }
     workspace_resize() {
-        this.GRID_MOVED = true;
+        this.grid_moved = true;
         this.view_paint.set_stroke_width(global.canvas_stroke_width_1);
         this.view_paint.set_text_size(global.canvas_text_size_4);
         this.bounds_paint.set_stroke_width(global.canvas_stroke_width_3 >> 1);
@@ -74,14 +74,14 @@ class Workspace {
         }
         global.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
         global.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-        if (!this.FIRST_RESIZE_FLAG || global.force_resize_event) {
+        if (!this.first_resize_flag || global.force_resize_event) {
             zoom_window.set_zoom(global.workspace_zoom_scale);
-            this.FIRST_RESIZE_FLAG = true;
+            this.first_resize_flag = true;
         }
         this.grid_paint.set_stroke_width(global.canvas_stroke_width_1);
     }
     workspace_zoom() {
-        this.GRID_MOVED = true;
+        this.grid_moved = true;
         global.signal_build_element = true;
         global.signal_build_counter = 0;
         this.bounds.left = global.delta_x;
@@ -107,7 +107,7 @@ class Workspace {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     workspace_translate_bounds(dx, dy) {
-        this.GRID_MOVED = true;
+        this.grid_moved = true;
         global.signal_build_element = true;
         global.signal_build_counter = 0;
         this.bounds.left += dx;
@@ -116,14 +116,14 @@ class Workspace {
         this.bounds.bottom += dy;
     }
     workspace_draw(canvas) {
-        if (this.DRAW_TO_SCREEN) {
+        if (this.draw_to_screen) {
             if (this.DRAW_GRID === true) {
                 canvas.draw_rect2(this.bounds, this.work_area_paint);
                 canvas.draw_rect2(this.bounds, this.grid_paint);
             }
             canvas.draw_rect2(this.bounds, this.bounds_paint);
             if (this.DRAW_GRID === true) {
-                if (this.GRID_MOVED === true) {
+                if (this.grid_moved === true) {
                     let floored_sqrt_m_1 = Math.floor(global.settings.SQRT_MAXNODES_M1);
                     let floored_sqrt = Math.floor(global.settings.SQRT_MAXNODES);
                     let x_space = Math.floor(global.node_space_x >> 1);
@@ -156,14 +156,14 @@ class Workspace {
                         }
                         horizontal_index += floored_sqrt;
                     }
-                    this.GRID_MOVED = false;
+                    this.grid_moved = false;
                 }
                 canvas.draw_line_buffer(this.line_buffer, this.grid_paint);
             }
         }
-        if (this.FIRST_RESIZE_FLAG) {
-            if (!this.DRAW_TO_SCREEN) {
-                this.DRAW_TO_SCREEN = true;
+        if (this.first_resize_flag) {
+            if (!this.draw_to_screen) {
+                this.draw_to_screen = true;
             }
         }
     }

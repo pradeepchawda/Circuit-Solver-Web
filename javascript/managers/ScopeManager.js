@@ -2,7 +2,7 @@
 class ScopeManager {
     constructor() {
         this.MAX_ENTRIES = 3;
-        this.ENTRY = [];
+        this.entry = [];
         this.index = -1;
         this.met_max = -1;
         this.iteration_size = -1;
@@ -13,42 +13,42 @@ class ScopeManager {
         this.power = -1;
     }
     clear_entries() {
-        this.ENTRY.splice(0, this.ENTRY.length);
+        this.entry.splice(0, this.entry.length);
     }
     get_units(index) {
-        if (index > -1 && index < this.ENTRY.length) {
-            if (this.ENTRY[index]['element_type'] === global.TYPE_VOLTMETER) {
+        if (index > -1 && index < this.entry.length) {
+            if (this.entry[index]['element_type'] === global.TYPE_VOLTMETER) {
                 return global.PROPERTY_VOLTMETER['units'];
             }
-            else if (this.ENTRY[index]['element_type'] === global.TYPE_AMMETER) {
+            else if (this.entry[index]['element_type'] === global.TYPE_AMMETER) {
                 return global.PROPERTY_AMMETER['units'];
             }
-            else if (this.ENTRY[index]['element_type'] === global.TYPE_OHMMETER) {
+            else if (this.entry[index]['element_type'] === global.TYPE_OHMMETER) {
                 return global.PROPERTY_OHMMETER['units'];
             }
-            else if (this.ENTRY[index]['element_type'] === global.TYPE_WATTMETER) {
+            else if (this.entry[index]['element_type'] === global.TYPE_WATTMETER) {
                 return global.PROPERTY_WATTMETER['units'];
             }
         }
         return '';
     }
     get_scope_name(index) {
-        if (index > -1 && index < this.ENTRY.length) {
-            return this.ENTRY[index]['element_tag'] + this.ENTRY[index]['element_id'];
+        if (index > -1 && index < this.entry.length) {
+            return this.entry[index]['element_tag'] + this.entry[index]['element_id'];
         }
         return '';
     }
     find_entry(id, type) {
-        for (var i = 0; i < this.ENTRY.length; i++) {
-            if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
+        for (var i = 0; i < this.entry.length; i++) {
+            if (this.entry[i]['element_type'] === type && this.entry[i]['element_id'] === id) {
                 return true;
             }
         }
         return false;
     }
     find_entry_index(id, type) {
-        for (var i = 0; i < this.ENTRY.length; i++) {
-            if (this.ENTRY[i]['element_type'] === type && this.ENTRY[i]['element_id'] === id) {
+        for (var i = 0; i < this.entry.length; i++) {
+            if (this.entry[i]['element_type'] === type && this.entry[i]['element_id'] === id) {
                 return i;
             }
         }
@@ -59,9 +59,9 @@ class ScopeManager {
     }
     push(id, type, tag) {
         if (this.is_meter(type)) {
-            if (this.ENTRY.length < this.MAX_ENTRIES) {
+            if (this.entry.length < this.MAX_ENTRIES) {
                 if (!this.find_entry(id, type)) {
-                    this.ENTRY.push({
+                    this.entry.push({
                         element_id: id,
                         element_type: type,
                         element_tag: tag
@@ -80,37 +80,37 @@ class ScopeManager {
         let index = this.find_entry_index(id, type);
         if (index !== -1) {
             graph_window.reset_trace(index);
-            this.ENTRY.splice(index, 1);
+            this.entry.splice(index, 1);
         }
     }
     update_scopes() {
         this.index = -1;
         this.met_max = global.meter_max();
-        this.iteration_size = Math.max(this.met_max, this.ENTRY.length);
+        this.iteration_size = Math.max(this.met_max, this.entry.length);
         this.v_side_1 = 0;
         this.v_side_2 = 0;
         for (var i = 0; i < this.iteration_size; i++) {
-            if (i < this.ENTRY.length) {
-                if (this.ENTRY[i]['element_type'] === global.TYPE_VOLTMETER) {
-                    this.index = engine_functions.get_voltmeter(this.ENTRY[i]['element_id']);
+            if (i < this.entry.length) {
+                if (this.entry[i]['element_type'] === global.TYPE_VOLTMETER) {
+                    this.index = engine_functions.get_voltmeter(this.entry[i]['element_id']);
                     if (this.index > -1 && this.index < voltmeters.length) {
                         this.push_to_graph(i, engine_functions.get_voltage(voltmeters[this.index].elm.n1, voltmeters[this.index].elm.n2), global.simulation_time);
                     }
                 }
-                else if (this.ENTRY[i]['element_type'] === global.TYPE_AMMETER) {
-                    this.index = engine_functions.get_ammeter(this.ENTRY[i]['element_id']);
+                else if (this.entry[i]['element_type'] === global.TYPE_AMMETER) {
+                    this.index = engine_functions.get_ammeter(this.entry[i]['element_id']);
                     if (this.index > -1 && this.index < ammeters.length) {
                         this.push_to_graph(i, matrix_x[ammeters[this.index].get_simulation_index()][0], global.simulation_time);
                     }
                 }
-                else if (this.ENTRY[i]['element_type'] === global.TYPE_OHMMETER) {
-                    this.index = engine_functions.get_ohmmeter(this.ENTRY[i]['element_id']);
+                else if (this.entry[i]['element_type'] === global.TYPE_OHMMETER) {
+                    this.index = engine_functions.get_ohmmeter(this.entry[i]['element_id']);
                     if (this.index > -1 && this.index < ohmmeters.length) {
                         this.push_to_graph(i, Math.abs(engine_functions.get_voltage(ohmmeters[this.index].elm.n1, ohmmeters[this.index].elm.n2) / matrix_x[ohmmeters[this.index].get_simulation_index()][0]), global.simulation_time);
                     }
                 }
-                else if (this.ENTRY[i]['element_type'] === global.TYPE_WATTMETER) {
-                    this.index = engine_functions.get_wattmeter(this.ENTRY[i]['element_id']);
+                else if (this.entry[i]['element_type'] === global.TYPE_WATTMETER) {
+                    this.index = engine_functions.get_wattmeter(this.entry[i]['element_id']);
                     if (this.index > -1 && this.index < wattmeters.length) {
                         this.v_side_1 = Math.abs(engine_functions.get_voltage(wattmeters[this.index].elm.n1, -1));
                         this.v_side_2 = Math.abs(engine_functions.get_voltage(wattmeters[this.index].elm.n2, -1));

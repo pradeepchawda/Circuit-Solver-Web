@@ -6,7 +6,7 @@ class Arc {
 	private x2: number;
 	private y1: number;
 	private y2: number;
-	public IS_TRANSFORM_SCALED: boolean;
+	public transform_scaled: boolean;
 	constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
 		this.amplitude = amplitude;
 		this.arc_paint = new Paint();
@@ -23,7 +23,7 @@ class Arc {
 		this.x2 = x2;
 		this.y1 = y1;
 		this.y2 = y2;
-		this.IS_TRANSFORM_SCALED = true;
+		this.transform_scaled = true;
 	}
 	set_points(x1: number, y1: number, x2: number, y2: number): void {
 		this.x1 = x1;
@@ -43,7 +43,7 @@ class Arc {
 		this.arc_paint.set_color(color);
 	}
 	draw_arc(canvas: GraphicsEngine): void {
-		if (this.IS_TRANSFORM_SCALED) {
+		if (this.transform_scaled) {
 			this.resize();
 		} else {
 			this.resize2();

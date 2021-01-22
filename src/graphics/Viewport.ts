@@ -1,8 +1,8 @@
 'use strict';
 class Viewport {
 	public line_paint: Paint;
-	public DRAW_BOUNDS: boolean;
-	public APPLY_SPREAD_FACTOR: boolean;
+	public readonly DRAW_BOUNDS_FLAG: boolean;
+	public apply_spread_factor: boolean;
 	public screen_width: number;
 	public screen_height: number;
 	public center_x: number;
@@ -28,11 +28,11 @@ class Viewport {
 		this.line_paint.set_font(global.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
-		this.DRAW_BOUNDS = false;
+		this.DRAW_BOUNDS_FLAG = false;
 		if (global.MOBILE_MODE === true || global.DESKTOP_MODE === true) {
-			this.APPLY_SPREAD_FACTOR = true;
+			this.apply_spread_factor = true;
 		} else {
-			this.APPLY_SPREAD_FACTOR = false;
+			this.apply_spread_factor = false;
 		}
 		this.screen_width = screen_width;
 		this.screen_height = screen_height;
@@ -41,7 +41,7 @@ class Viewport {
 		this.aspect_ratio = aspect_ratio;
 		this.view_width = Math.min(this.screen_width, this.screen_height);
 		this.view_height = this.view_width / this.aspect_ratio;
-		if (this.APPLY_SPREAD_FACTOR) {
+		if (this.apply_spread_factor) {
 			this.width_spread_factor = this.screen_width / this.view_width;
 			this.height_spread_factor = this.screen_height / this.view_height;
 			this.spread_factor = Math.min(this.width_spread_factor, this.height_spread_factor);
@@ -65,7 +65,7 @@ class Viewport {
 		this.aspect_ratio = aspect_ratio;
 		this.view_width = Math.min(this.screen_width, this.screen_height);
 		this.view_height = this.view_width / this.aspect_ratio;
-		if (this.APPLY_SPREAD_FACTOR) {
+		if (this.apply_spread_factor) {
 			this.width_spread_factor = this.screen_width / this.view_width;
 			this.height_spread_factor = this.screen_height / this.view_height;
 			this.spread_factor = Math.min(this.width_spread_factor, this.height_spread_factor);
@@ -82,7 +82,7 @@ class Viewport {
 		global.signal_build_counter = 0;
 	}
 	draw_viewport(canvas: GraphicsEngine): void {
-		if (this.DRAW_BOUNDS) {
+		if (this.DRAW_BOUNDS_FLAG) {
 			canvas.draw_rect(this.left, this.top, this.right, this.bottom, this.line_paint);
 		}
 	}

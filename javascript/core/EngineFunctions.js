@@ -5210,7 +5210,7 @@ class EngineFunctions {
     stamp_voltage(n1, n2, voltage, id) {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
-        this.offset = simulation_manager.NODE_SIZE;
+        this.offset = simulation_manager.node_size;
         if (this.node_1 !== -1) {
             matrix_a[this.node_1][this.offset + id] = 1;
             matrix_a[this.offset + id][this.node_1] = 1;
@@ -5274,7 +5274,7 @@ class EngineFunctions {
         this.node_2 = this.map_node(n2);
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
-        this.offset = simulation_manager.NODE_SIZE;
+        this.offset = simulation_manager.node_size;
         if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = 1;
             matrix_a[this.node_1][this.offset + id] = 1;
@@ -5316,7 +5316,7 @@ class EngineFunctions {
         this.node_2 = this.map_node(n2);
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
-        this.offset = simulation_manager.NODE_SIZE;
+        this.offset = simulation_manager.node_size;
         if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = 1;
             matrix_a[this.node_1][this.offset + id] = 1;
@@ -5337,7 +5337,7 @@ class EngineFunctions {
         this.node_2 = this.map_node(n2);
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
-        this.offset = simulation_manager.NODE_SIZE;
+        this.offset = simulation_manager.node_size;
         if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = -gain;
         }
@@ -5357,7 +5357,7 @@ class EngineFunctions {
         this.node_1 = this.map_node(n1);
         this.node_2 = this.map_node(n2);
         this.node_3 = this.map_node(n3);
-        this.offset = simulation_manager.NODE_SIZE;
+        this.offset = simulation_manager.node_size;
         if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = 1;
         }
@@ -5374,7 +5374,7 @@ class EngineFunctions {
         this.node_2 = this.map_node(n2);
         this.node_3 = this.map_node(n3);
         this.node_4 = this.map_node(n4);
-        this.offset = simulation_manager.NODE_SIZE;
+        this.offset = simulation_manager.node_size;
         if (this.node_1 !== -1) {
             matrix_a[this.offset + id][this.node_1] = -1;
             matrix_a[this.node_1][this.offset + id] = 1;
@@ -5411,9 +5411,9 @@ class EngineFunctions {
                 this.parse_elements(global.user_file.content);
             }
             catch (error) { }
-            global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+            global.history_manager['packet'].push(engine_functions.history_snapshot());
             global.user_file_selected = false;
-            MOUSE_EVENT_LATCH = false;
+            mouse_event_latch = false;
         }
     }
     image_manager() {
@@ -5468,7 +5468,7 @@ class EngineFunctions {
                 });
             }
             if (global.not_null(obj.user_scope_settings)) {
-                scope_manager.ENTRY = global.copy(obj.user_scope_settings);
+                scope_manager.entry = global.copy(obj.user_scope_settings);
             }
             if (global.not_null(obj.user_timestep)) {
                 global.time_step = obj.user_timestep;
@@ -5914,7 +5914,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -5941,7 +5941,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -5968,7 +5968,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.inductor_arc_0, Arc.prototype);
         Object.setPrototypeOf(obj.inductor_arc_1, Arc.prototype);
         Object.setPrototypeOf(obj.inductor_arc_2, Arc.prototype);
@@ -6003,7 +6003,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6030,7 +6030,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6057,7 +6057,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6084,7 +6084,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.sine_wave, SineWave.prototype);
         Object.setPrototypeOf(obj.sine_wave.sine_wave_paint, Paint.prototype);
         obj.refresh_bounds();
@@ -6113,7 +6113,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.sine_wave, SineWave.prototype);
         Object.setPrototypeOf(obj.sine_wave.sine_wave_paint, Paint.prototype);
         obj.refresh_bounds();
@@ -6142,7 +6142,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6169,7 +6169,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6196,7 +6196,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6223,7 +6223,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6251,7 +6251,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6278,7 +6278,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6305,7 +6305,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6332,7 +6332,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6359,7 +6359,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.meter_symbol, MeterSymbols.prototype);
         Object.setPrototypeOf(obj.trace_bounds, RectF.prototype);
         Object.setPrototypeOf(obj.meter_trace, Trace.prototype);
@@ -6397,7 +6397,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.meter_symbol, MeterSymbols.prototype);
         Object.setPrototypeOf(obj.trace_bounds, RectF.prototype);
         Object.setPrototypeOf(obj.meter_trace, Trace.prototype);
@@ -6435,7 +6435,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.meter_symbol, MeterSymbols.prototype);
         Object.setPrototypeOf(obj.trace_bounds, RectF.prototype);
         Object.setPrototypeOf(obj.meter_trace, Trace.prototype);
@@ -6473,7 +6473,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.meter_symbol, MeterSymbols.prototype);
         Object.setPrototypeOf(obj.trace_bounds, RectF.prototype);
         Object.setPrototypeOf(obj.meter_trace, Trace.prototype);
@@ -6511,7 +6511,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6538,7 +6538,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6565,7 +6565,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6592,7 +6592,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6619,7 +6619,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6646,7 +6646,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6673,7 +6673,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6700,7 +6700,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6727,7 +6727,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6754,7 +6754,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6781,7 +6781,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6808,7 +6808,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6835,7 +6835,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6862,7 +6862,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6889,7 +6889,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6916,7 +6916,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6943,7 +6943,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6970,7 +6970,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -6997,7 +6997,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7024,7 +7024,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7051,7 +7051,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7078,7 +7078,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7105,7 +7105,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7132,7 +7132,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7159,7 +7159,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7186,7 +7186,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7213,7 +7213,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7240,7 +7240,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7267,7 +7267,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7294,7 +7294,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7321,7 +7321,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7348,7 +7348,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7375,7 +7375,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7402,7 +7402,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7429,7 +7429,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7456,7 +7456,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7483,7 +7483,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7510,7 +7510,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7537,7 +7537,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7564,7 +7564,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7591,7 +7591,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7618,7 +7618,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.pid_controller, PIDController.prototype);
         obj.refresh_bounds();
         obj.capture_nodes();
@@ -7646,7 +7646,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7673,7 +7673,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7700,7 +7700,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7727,7 +7727,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.vcl_arc_0, Arc.prototype);
         Object.setPrototypeOf(obj.vcl_arc_1, Arc.prototype);
         Object.setPrototypeOf(obj.vcl_arc_2, Arc.prototype);
@@ -7762,7 +7762,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7789,7 +7789,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         Object.setPrototypeOf(obj.tptz_controller, TPTZController.prototype);
         obj.refresh_bounds();
         obj.capture_nodes();
@@ -7817,7 +7817,7 @@ class EngineFunctions {
         obj.point_paint.patch();
         Object.setPrototypeOf(obj.text_paint, Paint.prototype);
         obj.text_paint.patch();
-        obj.MULTI_SELECTED = false;
+        obj.multi_selected = false;
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
@@ -7920,7 +7920,7 @@ class EngineFunctions {
         let packet = [];
         let indexer = 0;
         this.meta_data.elm.properties['date'] = global.get_date_stamp();
-        this.meta_data.user_scope_settings = global.copy(scope_manager.ENTRY);
+        this.meta_data.user_scope_settings = global.copy(scope_manager.entry);
         this.meta_data.user_settings = global.copy(global.settings);
         this.meta_data.user_timestep = global.time_step;
         this.meta_data.file_name = global.user_file.title;
@@ -9000,211 +9000,211 @@ class EngineFunctions {
                     /* #INSERT_GENERATE_RESET_MULTI_SELECT_ELEMENTS# */
                     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                     for (var i = 0; i < resistors.length; i++) {
-                        resistors[i].MULTI_SELECTED = false;
+                        resistors[i].multi_selected = false;
                     }
                     for (var i = 0; i < capacitors.length; i++) {
-                        capacitors[i].MULTI_SELECTED = false;
+                        capacitors[i].multi_selected = false;
                     }
                     for (var i = 0; i < inductors.length; i++) {
-                        inductors[i].MULTI_SELECTED = false;
+                        inductors[i].multi_selected = false;
                     }
                     for (var i = 0; i < grounds.length; i++) {
-                        grounds[i].MULTI_SELECTED = false;
+                        grounds[i].multi_selected = false;
                     }
                     for (var i = 0; i < dcsources.length; i++) {
-                        dcsources[i].MULTI_SELECTED = false;
+                        dcsources[i].multi_selected = false;
                     }
                     for (var i = 0; i < dccurrents.length; i++) {
-                        dccurrents[i].MULTI_SELECTED = false;
+                        dccurrents[i].multi_selected = false;
                     }
                     for (var i = 0; i < acsources.length; i++) {
-                        acsources[i].MULTI_SELECTED = false;
+                        acsources[i].multi_selected = false;
                     }
                     for (var i = 0; i < accurrents.length; i++) {
-                        accurrents[i].MULTI_SELECTED = false;
+                        accurrents[i].multi_selected = false;
                     }
                     for (var i = 0; i < squarewaves.length; i++) {
-                        squarewaves[i].MULTI_SELECTED = false;
+                        squarewaves[i].multi_selected = false;
                     }
                     for (var i = 0; i < sawwaves.length; i++) {
-                        sawwaves[i].MULTI_SELECTED = false;
+                        sawwaves[i].multi_selected = false;
                     }
                     for (var i = 0; i < trianglewaves.length; i++) {
-                        trianglewaves[i].MULTI_SELECTED = false;
+                        trianglewaves[i].multi_selected = false;
                     }
                     for (var i = 0; i < constants.length; i++) {
-                        constants[i].MULTI_SELECTED = false;
+                        constants[i].multi_selected = false;
                     }
                     for (var i = 0; i < wires.length; i++) {
-                        wires[i].MULTI_SELECTED = false;
+                        wires[i].multi_selected = false;
                     }
                     for (var i = 0; i < nets.length; i++) {
-                        nets[i].MULTI_SELECTED = false;
+                        nets[i].multi_selected = false;
                     }
                     for (var i = 0; i < notes.length; i++) {
-                        notes[i].MULTI_SELECTED = false;
+                        notes[i].multi_selected = false;
                     }
                     for (var i = 0; i < rails.length; i++) {
-                        rails[i].MULTI_SELECTED = false;
+                        rails[i].multi_selected = false;
                     }
                     for (var i = 0; i < voltmeters.length; i++) {
-                        voltmeters[i].MULTI_SELECTED = false;
+                        voltmeters[i].multi_selected = false;
                     }
                     for (var i = 0; i < ohmmeters.length; i++) {
-                        ohmmeters[i].MULTI_SELECTED = false;
+                        ohmmeters[i].multi_selected = false;
                     }
                     for (var i = 0; i < ammeters.length; i++) {
-                        ammeters[i].MULTI_SELECTED = false;
+                        ammeters[i].multi_selected = false;
                     }
                     for (var i = 0; i < wattmeters.length; i++) {
-                        wattmeters[i].MULTI_SELECTED = false;
+                        wattmeters[i].multi_selected = false;
                     }
                     for (var i = 0; i < fuses.length; i++) {
-                        fuses[i].MULTI_SELECTED = false;
+                        fuses[i].multi_selected = false;
                     }
                     for (var i = 0; i < spsts.length; i++) {
-                        spsts[i].MULTI_SELECTED = false;
+                        spsts[i].multi_selected = false;
                     }
                     for (var i = 0; i < spdts.length; i++) {
-                        spdts[i].MULTI_SELECTED = false;
+                        spdts[i].multi_selected = false;
                     }
                     for (var i = 0; i < nots.length; i++) {
-                        nots[i].MULTI_SELECTED = false;
+                        nots[i].multi_selected = false;
                     }
                     for (var i = 0; i < diodes.length; i++) {
-                        diodes[i].MULTI_SELECTED = false;
+                        diodes[i].multi_selected = false;
                     }
                     for (var i = 0; i < leds.length; i++) {
-                        leds[i].MULTI_SELECTED = false;
+                        leds[i].multi_selected = false;
                     }
                     for (var i = 0; i < zeners.length; i++) {
-                        zeners[i].MULTI_SELECTED = false;
+                        zeners[i].multi_selected = false;
                     }
                     for (var i = 0; i < potentiometers.length; i++) {
-                        potentiometers[i].MULTI_SELECTED = false;
+                        potentiometers[i].multi_selected = false;
                     }
                     for (var i = 0; i < ands.length; i++) {
-                        ands[i].MULTI_SELECTED = false;
+                        ands[i].multi_selected = false;
                     }
                     for (var i = 0; i < ors.length; i++) {
-                        ors[i].MULTI_SELECTED = false;
+                        ors[i].multi_selected = false;
                     }
                     for (var i = 0; i < nands.length; i++) {
-                        nands[i].MULTI_SELECTED = false;
+                        nands[i].multi_selected = false;
                     }
                     for (var i = 0; i < nors.length; i++) {
-                        nors[i].MULTI_SELECTED = false;
+                        nors[i].multi_selected = false;
                     }
                     for (var i = 0; i < xors.length; i++) {
-                        xors[i].MULTI_SELECTED = false;
+                        xors[i].multi_selected = false;
                     }
                     for (var i = 0; i < xnors.length; i++) {
-                        xnors[i].MULTI_SELECTED = false;
+                        xnors[i].multi_selected = false;
                     }
                     for (var i = 0; i < dffs.length; i++) {
-                        dffs[i].MULTI_SELECTED = false;
+                        dffs[i].multi_selected = false;
                     }
                     for (var i = 0; i < vsats.length; i++) {
-                        vsats[i].MULTI_SELECTED = false;
+                        vsats[i].multi_selected = false;
                     }
                     for (var i = 0; i < adders.length; i++) {
-                        adders[i].MULTI_SELECTED = false;
+                        adders[i].multi_selected = false;
                     }
                     for (var i = 0; i < subtractors.length; i++) {
-                        subtractors[i].MULTI_SELECTED = false;
+                        subtractors[i].multi_selected = false;
                     }
                     for (var i = 0; i < multipliers.length; i++) {
-                        multipliers[i].MULTI_SELECTED = false;
+                        multipliers[i].multi_selected = false;
                     }
                     for (var i = 0; i < dividers.length; i++) {
-                        dividers[i].MULTI_SELECTED = false;
+                        dividers[i].multi_selected = false;
                     }
                     for (var i = 0; i < gains.length; i++) {
-                        gains[i].MULTI_SELECTED = false;
+                        gains[i].multi_selected = false;
                     }
                     for (var i = 0; i < absvals.length; i++) {
-                        absvals[i].MULTI_SELECTED = false;
+                        absvals[i].multi_selected = false;
                     }
                     for (var i = 0; i < vcsws.length; i++) {
-                        vcsws[i].MULTI_SELECTED = false;
+                        vcsws[i].multi_selected = false;
                     }
                     for (var i = 0; i < vcvss.length; i++) {
-                        vcvss[i].MULTI_SELECTED = false;
+                        vcvss[i].multi_selected = false;
                     }
                     for (var i = 0; i < vccss.length; i++) {
-                        vccss[i].MULTI_SELECTED = false;
+                        vccss[i].multi_selected = false;
                     }
                     for (var i = 0; i < cccss.length; i++) {
-                        cccss[i].MULTI_SELECTED = false;
+                        cccss[i].multi_selected = false;
                     }
                     for (var i = 0; i < ccvss.length; i++) {
-                        ccvss[i].MULTI_SELECTED = false;
+                        ccvss[i].multi_selected = false;
                     }
                     for (var i = 0; i < opamps.length; i++) {
-                        opamps[i].MULTI_SELECTED = false;
+                        opamps[i].multi_selected = false;
                     }
                     for (var i = 0; i < nmosfets.length; i++) {
-                        nmosfets[i].MULTI_SELECTED = false;
+                        nmosfets[i].multi_selected = false;
                     }
                     for (var i = 0; i < pmosfets.length; i++) {
-                        pmosfets[i].MULTI_SELECTED = false;
+                        pmosfets[i].multi_selected = false;
                     }
                     for (var i = 0; i < npns.length; i++) {
-                        npns[i].MULTI_SELECTED = false;
+                        npns[i].multi_selected = false;
                     }
                     for (var i = 0; i < pnps.length; i++) {
-                        pnps[i].MULTI_SELECTED = false;
+                        pnps[i].multi_selected = false;
                     }
                     for (var i = 0; i < adcs.length; i++) {
-                        adcs[i].MULTI_SELECTED = false;
+                        adcs[i].multi_selected = false;
                     }
                     for (var i = 0; i < dacs.length; i++) {
-                        dacs[i].MULTI_SELECTED = false;
+                        dacs[i].multi_selected = false;
                     }
                     for (var i = 0; i < sandhs.length; i++) {
-                        sandhs[i].MULTI_SELECTED = false;
+                        sandhs[i].multi_selected = false;
                     }
                     for (var i = 0; i < pwms.length; i++) {
-                        pwms[i].MULTI_SELECTED = false;
+                        pwms[i].multi_selected = false;
                     }
                     for (var i = 0; i < integrators.length; i++) {
-                        integrators[i].MULTI_SELECTED = false;
+                        integrators[i].multi_selected = false;
                     }
                     for (var i = 0; i < differentiators.length; i++) {
-                        differentiators[i].MULTI_SELECTED = false;
+                        differentiators[i].multi_selected = false;
                     }
                     for (var i = 0; i < lowpasses.length; i++) {
-                        lowpasses[i].MULTI_SELECTED = false;
+                        lowpasses[i].multi_selected = false;
                     }
                     for (var i = 0; i < highpasses.length; i++) {
-                        highpasses[i].MULTI_SELECTED = false;
+                        highpasses[i].multi_selected = false;
                     }
                     for (var i = 0; i < relays.length; i++) {
-                        relays[i].MULTI_SELECTED = false;
+                        relays[i].multi_selected = false;
                     }
                     for (var i = 0; i < pids.length; i++) {
-                        pids[i].MULTI_SELECTED = false;
+                        pids[i].multi_selected = false;
                     }
                     for (var i = 0; i < luts.length; i++) {
-                        luts[i].MULTI_SELECTED = false;
+                        luts[i].multi_selected = false;
                     }
                     for (var i = 0; i < vcrs.length; i++) {
-                        vcrs[i].MULTI_SELECTED = false;
+                        vcrs[i].multi_selected = false;
                     }
                     for (var i = 0; i < vccas.length; i++) {
-                        vccas[i].MULTI_SELECTED = false;
+                        vccas[i].multi_selected = false;
                     }
                     for (var i = 0; i < vcls.length; i++) {
-                        vcls[i].MULTI_SELECTED = false;
+                        vcls[i].multi_selected = false;
                     }
                     for (var i = 0; i < grts.length; i++) {
-                        grts[i].MULTI_SELECTED = false;
+                        grts[i].multi_selected = false;
                     }
                     for (var i = 0; i < tptzs.length; i++) {
-                        tptzs[i].MULTI_SELECTED = false;
+                        tptzs[i].multi_selected = false;
                     }
                     for (var i = 0; i < transformers.length; i++) {
-                        transformers[i].MULTI_SELECTED = false;
+                        transformers[i].multi_selected = false;
                     }
                     /* <!-- END AUTOMATICALLY GENERATED !--> */
                 }
@@ -10009,17 +10009,17 @@ class EngineFunctions {
     }
     snapshot(surface, canvas) {
         canvas.clear(surface);
-        let NSX = 0.29375 * global.node_space_x;
-        let NSY = 0.29375 * global.node_space_y;
-        let MNSX = 1.25 * NSX;
-        let MNSY = 1.25 * NSY;
-        let NODE_LENGTH = nodes.length;
-        for (var i = 0; i < NODE_LENGTH; i++) {
-            nodes[i].resize(NSX, NSY, MNSX, MNSY);
-            if (NODE_LENGTH - 1 - i === i + 1) {
+        let node_space_x_cache = 0.29375 * global.node_space_x;
+        let node_space_y_cache = 0.29375 * global.node_space_y;
+        let mult_node_space_x_cache = 1.25 * node_space_x_cache;
+        let mult_node_space_y_cache = 1.25 * node_space_y_cache;
+        let node_length = nodes.length;
+        for (var i = 0; i < node_length; i++) {
+            nodes[i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
+            if (node_length - 1 - i === i + 1) {
                 break;
             }
-            nodes[NODE_LENGTH - 1 - i].resize(NSX, NSY, MNSX, MNSY);
+            nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
         }
         workspace.workspace_draw(canvas);
         engine_functions.draw_unselected_components(canvas);
@@ -10027,9 +10027,9 @@ class EngineFunctions {
         engine_functions.draw_selected_components(canvas);
         engine_functions.draw_meter_traces(canvas);
         canvas.draw_text(language_manager.WATERMARK, 5, 10, general_paint);
-        if (global.WIRE_BUILDER['step'] > 0) {
-            if (global.WIRE_BUILDER['n1'] > -1 && global.WIRE_BUILDER['n1'] < global.settings.MAXNODES) {
-                canvas.draw_rect2(nodes[global.WIRE_BUILDER['n1']].bounds, nodes[global.WIRE_BUILDER['n1']].node_fill_paint);
+        if (global.wire_builder['step'] > 0) {
+            if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
+                canvas.draw_rect2(nodes[global.wire_builder['n1']].bounds, nodes[global.wire_builder['n1']].node_fill_paint);
             }
         }
     }

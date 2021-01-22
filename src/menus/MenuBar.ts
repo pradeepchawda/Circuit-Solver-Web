@@ -530,7 +530,7 @@ class MenuBar {
 	}
 	mouse_up(): void {
 		if (!global.is_right_click && !this.escape_interrupt) {
-			if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED && global.component_touched) {
+			if (!global.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed && global.component_touched) {
 				let cached_value: number = this.base_width;
 				if (
 					this.contains(this.menu_icons[this.UP_DOWN_INDEX], true) &&
@@ -798,7 +798,7 @@ class MenuBar {
 					}
 				}
 				this.element_window.mouse_up();
-			} else if (!global.mouse_keyboard_lock && !multi_select_manager.CTRL_PRESSED) {
+			} else if (!global.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed) {
 				if (
 					(this.contains(this.menu_icons[this.ADD_INDEX], true) || (!this.contains(this.element_window.bounds, false) && global.flag_menu_element_toolbox)) &&
 					!global.flag_graph &&
@@ -1090,7 +1090,7 @@ class MenuBar {
 				!global.flag_element_options &&
 				!global.flag_element_options_edit &&
 				!global.flag_zoom &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				let cached_value: number = this.base_width;
@@ -1216,7 +1216,7 @@ class MenuBar {
 				!global.flag_element_options &&
 				!global.flag_graph &&
 				!global.flag_remove_all &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				canvas.draw_circle3(this.menu_icons[this.REMOVE_ALL_INDEX], 1.15, this.hover_paint);
@@ -1232,7 +1232,7 @@ class MenuBar {
 				!global.flag_element_options_edit &&
 				!global.flag_element_options &&
 				!global.flag_remove_all &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				canvas.draw_circle3(this.menu_icons[this.UP_DOWN_INDEX], 1.15, this.hover_paint);
@@ -1292,7 +1292,7 @@ class MenuBar {
 				!global.flag_element_options_edit &&
 				!global.flag_element_options &&
 				!global.flag_remove_all &&
-				!multi_select_manager.CTRL_PRESSED_STARTED &&
+				!multi_select_manager.ctrl_pressed_started &&
 				!global.MOBILE_MODE
 			) {
 				canvas.draw_circle3(this.graph_button, 1.15, this.hover_paint);
@@ -1327,7 +1327,7 @@ class MenuBar {
 			!global.flag_element_options &&
 			!global.flag_graph &&
 			!global.flag_remove_all &&
-			!multi_select_manager.CTRL_PRESSED_STARTED &&
+			!multi_select_manager.ctrl_pressed_started &&
 			!global.MOBILE_MODE
 		) {
 			canvas.draw_circle3(this.settings_button, 1.15, this.hover_paint);
@@ -1347,7 +1347,7 @@ class MenuBar {
 			!global.flag_element_options &&
 			!global.flag_graph &&
 			!global.flag_remove_all &&
-			!multi_select_manager.CTRL_PRESSED_STARTED &&
+			!multi_select_manager.ctrl_pressed_started &&
 			!global.MOBILE_MODE
 		) {
 			canvas.draw_circle(this.settings_button.get_center_x(), this.settings_button.get_center_y(), this.settings_button.get_width() * 0.125, this.hover_paint);

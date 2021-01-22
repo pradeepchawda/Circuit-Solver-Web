@@ -3,10 +3,10 @@ class OnScreenKeyboard {
     constructor() {
         this.KEYBOARD_MAX_KEYS = 67;
         this.bounds = new RectF(0, 0, 0, 0);
-        this.HEIGHT_RATIO = 0.5;
+        this.height_ratio = 0.5;
         this.bounds.left = view_port.left;
         this.bounds.right = view_port.right;
-        this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
+        this.bounds.top = view_port.bottom - view_port.view_height * this.height_ratio;
         this.bounds.bottom = view_port.bottom;
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
@@ -58,23 +58,23 @@ class OnScreenKeyboard {
         this.text_paint.set_font(global.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.CENTER);
-        this.FLAG_CAPS_LOCK = false;
-        this.FLAG_SHIFT = false;
-        this.FLAG_ENTER = false;
-        this.CAP_REF = 0;
+        this.flag_caps_lock = false;
+        this.flag_shift = false;
+        this.flag_enter = false;
+        this.cap_ref = 0;
         this.LETTER_ROW_1 = 'qwertyuiop';
         this.LETTER_ROW_2 = 'asdfghjkl';
         this.LETTER_ROW_3 = 'zxcvbnm';
-        this.ALT_1_REF = 0;
-        this.ALT_2_REF = 0;
-        this.EXIT_REF = 0;
-        this.TAB_REF = 0;
-        this.BACKSPACE_REF = 0;
-        this.SHIFT_1_REF = 0;
-        this.ENTER_REF = 0;
-        this.CTRL_1_REF = 0;
-        this.CTRL_2_REF = 0;
-        this.SHIFT_2_REF = 0;
+        this.alt_1_ref = 0;
+        this.alt_2_ref = 0;
+        this.exit_ref = 0;
+        this.tab_ref = 0;
+        this.backspace_ref = 0;
+        this.shift_1_ref = 0;
+        this.enter_ref = 0;
+        this.ctrl_1_ref = 0;
+        this.ctrl_2_ref = 0;
+        this.shift_2_ref = 0;
         this.KEYBOARD_LETTER_REF = [];
         this.KEYBOARD_SPECIAL_REF = [];
         this.KEYBOARD_MAPPING = [];
@@ -110,14 +110,14 @@ class OnScreenKeyboard {
         this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 5.5;
         this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
         this.KEYBOARD_KEYS = [];
-        this.FLAG_KEY_DOWN = false;
-        this.FLAG_KEY_UP = false;
-        this.ENGINEERING_KEYBOARD_MODE = false;
+        this.flag_key_down = false;
+        this.flag_key_up = false;
+        this.engineering_keyboard_mode = false;
         this.ENGINEERING_KEYBOARD_FILTER = /[-.kmu0123456789MnGpf]/;
         this.FILE_NAME_KEYBOARD_FILTER = /[-abcdefghijklmn opqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()]/;
         this.ENGINEERING_KEYBOARD_FILTER_INDEX = [];
         this.FILE_NAME_KEYBOARD_FILTER_INDEX = [];
-        this.HOVER_INDEX = -1;
+        this.hover_index = -1;
         this.KEYBOARD_KEY_EVENT = {
             code: 'keyA'
         };
@@ -193,9 +193,9 @@ class OnScreenKeyboard {
         this.KEYBOARD_MAPPING.push('-');
         this.KEYBOARD_MAPPING.push('=');
         this.KEYBOARD_MAPPING.push('<<');
-        this.BACKSPACE_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.backspace_ref = this.KEYBOARD_MAPPING.length - 1;
         this.KEYBOARD_MAPPING.push('TAB');
-        this.TAB_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.tab_ref = this.KEYBOARD_MAPPING.length - 1;
         for (var i = 0; i < this.LETTER_ROW_1.length; i++) {
             this.KEYBOARD_MAPPING.push(this.LETTER_ROW_1.charAt(i) + '');
             this.KEYBOARD_LETTER_REF.push(this.KEYBOARD_MAPPING.length - 1);
@@ -205,7 +205,7 @@ class OnScreenKeyboard {
         this.KEYBOARD_MAPPING.push("''");
         this.KEYBOARD_MAPPING.push('\\');
         this.KEYBOARD_MAPPING.push('CAPS');
-        this.CAP_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.cap_ref = this.KEYBOARD_MAPPING.length - 1;
         for (var i = 0; i < this.LETTER_ROW_2.length; i++) {
             this.KEYBOARD_MAPPING.push(this.LETTER_ROW_2.charAt(i) + '');
             this.KEYBOARD_LETTER_REF.push(this.KEYBOARD_MAPPING.length - 1);
@@ -213,9 +213,9 @@ class OnScreenKeyboard {
         this.KEYBOARD_MAPPING.push(';');
         this.KEYBOARD_MAPPING.push("'");
         this.KEYBOARD_MAPPING.push('ENTER');
-        this.ENTER_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.enter_ref = this.KEYBOARD_MAPPING.length - 1;
         this.KEYBOARD_MAPPING.push('SHIFT');
-        this.SHIFT_1_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.shift_1_ref = this.KEYBOARD_MAPPING.length - 1;
         for (var i = 0; i < this.LETTER_ROW_3.length; i++) {
             this.KEYBOARD_MAPPING.push(this.LETTER_ROW_3.charAt(i) + '');
             this.KEYBOARD_LETTER_REF.push(this.KEYBOARD_MAPPING.length - 1);
@@ -225,43 +225,43 @@ class OnScreenKeyboard {
         this.KEYBOARD_MAPPING.push('/');
         this.KEYBOARD_MAPPING.push('^');
         this.KEYBOARD_MAPPING.push('SHIFT');
-        this.SHIFT_2_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.shift_2_ref = this.KEYBOARD_MAPPING.length - 1;
         this.KEYBOARD_MAPPING.push('FN');
         this.KEYBOARD_MAPPING.push('CTRL');
-        this.CTRL_1_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.ctrl_1_ref = this.KEYBOARD_MAPPING.length - 1;
         this.KEYBOARD_MAPPING.push('WIN');
         this.KEYBOARD_MAPPING.push('ALT');
-        this.ALT_1_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.alt_1_ref = this.KEYBOARD_MAPPING.length - 1;
         this.KEYBOARD_MAPPING.push(language_manager.SPACE);
         this.KEYBOARD_MAPPING.push('ALT');
-        this.ALT_2_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.alt_2_ref = this.KEYBOARD_MAPPING.length - 1;
         this.KEYBOARD_MAPPING.push('CTRL');
-        this.CTRL_2_REF = this.KEYBOARD_MAPPING.length - 1;
+        this.ctrl_2_ref = this.KEYBOARD_MAPPING.length - 1;
         this.KEYBOARD_MAPPING.push('<');
         this.KEYBOARD_MAPPING.push('_');
         this.KEYBOARD_MAPPING.push('>');
         this.KEYBOARD_MAPPING.push('INS');
-        this.EXIT_REF = this.KEYBOARD_MAPPING.length - 1;
-        this.KEYBOARD_SPECIAL_REF.push(this.CAP_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.BACKSPACE_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.SHIFT_1_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.SHIFT_2_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.ENTER_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.CTRL_1_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.ALT_1_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.CTRL_2_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.ALT_2_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.EXIT_REF);
-        this.KEYBOARD_SPECIAL_REF.push(this.TAB_REF);
+        this.exit_ref = this.KEYBOARD_MAPPING.length - 1;
+        this.KEYBOARD_SPECIAL_REF.push(this.cap_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.backspace_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.shift_1_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.shift_2_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.enter_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.ctrl_1_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.alt_1_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.ctrl_2_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.alt_2_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.exit_ref);
+        this.KEYBOARD_SPECIAL_REF.push(this.tab_ref);
         for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
-            this.ENGINEERING_KEYBOARD_MODE = true;
+            this.engineering_keyboard_mode = true;
             if (this.filter_keys(this.KEYBOARD_MAPPING[i])) {
                 this.ENGINEERING_KEYBOARD_FILTER_INDEX.push(true);
             }
             else {
                 this.ENGINEERING_KEYBOARD_FILTER_INDEX.push(false);
             }
-            this.ENGINEERING_KEYBOARD_MODE = false;
+            this.engineering_keyboard_mode = false;
             if (this.filter_keys(this.KEYBOARD_MAPPING[i])) {
                 this.FILE_NAME_KEYBOARD_FILTER_INDEX.push(true);
             }
@@ -274,7 +274,7 @@ class OnScreenKeyboard {
         if (global.MOBILE_MODE) {
             this.bounds.left = view_port.left;
             this.bounds.right = view_port.right;
-            this.bounds.top = view_port.bottom - view_port.view_height * this.HEIGHT_RATIO;
+            this.bounds.top = view_port.bottom - view_port.view_height * this.height_ratio;
             this.bounds.bottom = view_port.bottom;
             this.load_keyboard();
             this.line_paint.set_stroke_width(global.canvas_stroke_width_2);
@@ -291,23 +291,23 @@ class OnScreenKeyboard {
     }
     mouse_down() {
         if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
-            this.FLAG_KEY_UP = false;
+            this.flag_key_up = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
                 if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
-                    this.FLAG_KEY_DOWN = true;
-                    this.HOVER_INDEX = i;
+                    this.flag_key_down = true;
+                    this.hover_index = i;
                     break;
                 }
             }
         }
     }
     mouse_move() {
-        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.FLAG_KEY_DOWN) {
+        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
         }
     }
     mouse_up() {
-        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.FLAG_KEY_DOWN) {
-            this.HOVER_INDEX = -1;
+        if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
+            this.hover_index = -1;
             let FOUND = false;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
                 if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
@@ -319,33 +319,33 @@ class OnScreenKeyboard {
                         global.key_down_event_queue.push({
                             event: global.copy(this.KEYBOARD_KEY_EVENT),
                             alt: false,
-                            shift: this.FLAG_SHIFT,
+                            shift: this.flag_shift,
                             ctrl: false,
-                            caps: this.FLAG_CAPS_LOCK
+                            caps: this.flag_caps_lock
                         });
                         break;
                     }
                     else {
                         if (this.KEYBOARD_MAPPING[i] === 'SHIFT') {
-                            this.FLAG_SHIFT = !this.FLAG_SHIFT;
+                            this.flag_shift = !this.flag_shift;
                             FOUND = false;
                             break;
                         }
                         else if (this.KEYBOARD_MAPPING[i] === 'CAPS') {
-                            this.FLAG_CAPS_LOCK = !this.FLAG_CAPS_LOCK;
+                            this.flag_caps_lock = !this.flag_caps_lock;
                             break;
                         }
                         else if (this.KEYBOARD_MAPPING[i] === 'ENTER') {
-                            this.FLAG_ENTER = !this.FLAG_ENTER;
+                            this.flag_enter = !this.flag_enter;
                             this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_ENTER;
                             global.key_down_event_flag = true;
                             global.key_up_event_flag = true;
                             global.key_down_event_queue.push({
                                 event: global.copy(this.KEYBOARD_KEY_EVENT),
                                 alt: false,
-                                shift: this.FLAG_SHIFT,
+                                shift: this.flag_shift,
                                 ctrl: false,
-                                caps: this.FLAG_CAPS_LOCK
+                                caps: this.flag_caps_lock
                             });
                             break;
                         }
@@ -356,9 +356,9 @@ class OnScreenKeyboard {
                             global.key_down_event_queue.push({
                                 event: global.copy(this.KEYBOARD_KEY_EVENT),
                                 alt: false,
-                                shift: this.FLAG_SHIFT,
+                                shift: this.flag_shift,
                                 ctrl: false,
-                                caps: this.FLAG_CAPS_LOCK
+                                caps: this.flag_caps_lock
                             });
                             break;
                         }
@@ -368,20 +368,20 @@ class OnScreenKeyboard {
                 }
             }
             if (FOUND === true) {
-                if (this.FLAG_SHIFT) {
-                    this.FLAG_SHIFT = false;
+                if (this.flag_shift) {
+                    this.flag_shift = false;
                 }
             }
-            this.FLAG_KEY_UP = true;
+            this.flag_key_up = true;
         }
     }
     filter_keys(input) {
         let output = false;
         let filter;
-        if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
+        if (this.flag_shift || this.flag_caps_lock) {
             input = input.toUpperCase();
         }
-        if (this.ENGINEERING_KEYBOARD_MODE === true) {
+        if (this.engineering_keyboard_mode === true) {
             filter = this.ENGINEERING_KEYBOARD_FILTER;
         }
         else {
@@ -394,7 +394,7 @@ class OnScreenKeyboard {
         return output || input === 'CAPS' || input === 'ENTER' || input === '<<' || input === 'SHIFT' || input === ' ';
     }
     approve_keys(index) {
-        if (this.ENGINEERING_KEYBOARD_MODE === true) {
+        if (this.engineering_keyboard_mode === true) {
             return this.ENGINEERING_KEYBOARD_FILTER_INDEX[index];
         }
         else {
@@ -405,31 +405,31 @@ class OnScreenKeyboard {
         if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
             if (global.flag_element_options_edit === true || global.flag_select_timestep === true) {
                 if (global.selected_type !== global.TYPE_NOTE && global.selected_type !== global.TYPE_NET) {
-                    this.ENGINEERING_KEYBOARD_MODE = true;
+                    this.engineering_keyboard_mode = true;
                 }
                 else {
                     if (global.flag_element_options_edit) {
-                        this.ENGINEERING_KEYBOARD_MODE = false;
+                        this.engineering_keyboard_mode = false;
                     }
                     else {
-                        this.ENGINEERING_KEYBOARD_MODE = true;
+                        this.engineering_keyboard_mode = true;
                     }
                 }
             }
             else {
-                this.ENGINEERING_KEYBOARD_MODE = false;
+                this.engineering_keyboard_mode = false;
             }
             canvas.draw_rect2(this.bounds, this.bounds_paint);
             let indexer = 0;
             for (var i = 0; i < this.KEYBOARD_MAPPING.length; i++) {
                 this.line_buffer[indexer++] = Array(this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].left, this.KEYBOARD_KEYS[i].bottom);
                 this.line_buffer[indexer++] = Array(this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].top, this.KEYBOARD_KEYS[i].right, this.KEYBOARD_KEYS[i].bottom);
-                if (this.ENGINEERING_KEYBOARD_MODE) {
+                if (this.engineering_keyboard_mode) {
                     if (this.ENGINEERING_KEYBOARD_FILTER_INDEX[i]) {
-                        if (this.HOVER_INDEX === i) {
+                        if (this.hover_index === i) {
                             canvas.draw_rect2(this.KEYBOARD_KEYS[i], this.fill_paint);
                         }
-                        if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
+                        if (this.flag_shift || this.flag_caps_lock) {
                             if (this.KEYBOARD_MAPPING[i].toUpperCase() !== 'F' &&
                                 this.KEYBOARD_MAPPING[i].toUpperCase() !== 'U' &&
                                 this.KEYBOARD_MAPPING[i].toUpperCase() !== 'N' &&
@@ -445,10 +445,10 @@ class OnScreenKeyboard {
                 }
                 else {
                     if (this.FILE_NAME_KEYBOARD_FILTER_INDEX[i]) {
-                        if (this.HOVER_INDEX === i) {
+                        if (this.hover_index === i) {
                             canvas.draw_rect2(this.KEYBOARD_KEYS[i], this.fill_paint);
                         }
-                        if (this.FLAG_SHIFT || this.FLAG_CAPS_LOCK) {
+                        if (this.flag_shift || this.flag_caps_lock) {
                             canvas.draw_text(this.KEYBOARD_MAPPING[i].toUpperCase(), this.KEYBOARD_KEYS[i].get_center_x(), this.KEYBOARD_KEYS[i].get_center_y(), this.text_paint);
                         }
                         else {
@@ -467,9 +467,9 @@ class OnScreenKeyboard {
             this.line_buffer[indexer++] = Array(this.bounds.left, this.KEYBOARD_KEYS[43].bottom, this.bounds.right, this.KEYBOARD_KEYS[43].bottom);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
         }
-        if (this.FLAG_KEY_UP) {
-            this.FLAG_KEY_UP = false;
-            this.FLAG_KEY_DOWN = false;
+        if (this.flag_key_up) {
+            this.flag_key_up = false;
+            this.flag_key_down = false;
         }
     }
 }

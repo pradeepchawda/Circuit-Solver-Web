@@ -261,7 +261,7 @@ class Global {
             0.99 * 1e-21
         ];
         this.SI_UNIT_ABBREVIATION = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
-        this.WIRE_BUILDER = {
+        this.wire_builder = {
             n1: -1,
             id1: -1,
             type1: -1,
@@ -1296,7 +1296,7 @@ class Global {
                 Interpolate: ['', '']
             }
         };
-        this.HISTORY_MANAGER = {
+        this.history_manager = {
             packet: []
         };
         this.LANGUAGES = ['English', 'Spanish', 'French', 'Italian', 'Dutch', 'Russian', 'German', 'Indonesian'];

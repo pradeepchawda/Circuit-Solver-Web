@@ -15,8 +15,8 @@ class Trace {
 	public height: number;
 	public plot_magnitude: number;
 	public ratio: number;
-	public X_AXIS_LENGTH: number;
-	public Y_AXIS_LENGTH: number;
+	public x_axis_length: number;
+	public y_axis_length: number;
 	public trace_stroke_paint: Paint;
 	public trace_fill_paint: Paint;
 	constructor(x_len: number, y_len: number, ratio: number) {
@@ -35,8 +35,8 @@ class Trace {
 		this.height = 0;
 		this.plot_magnitude = 0;
 		this.ratio = ratio;
-		this.X_AXIS_LENGTH = x_len;
-		this.Y_AXIS_LENGTH = y_len;
+		this.x_axis_length = x_len;
+		this.y_axis_length = y_len;
 		this.trace_stroke_paint = new Paint();
 		this.trace_stroke_paint.set_paint_style(this.trace_stroke_paint.style.STROKE);
 		this.trace_stroke_paint.set_paint_cap(this.trace_stroke_paint.cap.ROUND);
@@ -63,10 +63,10 @@ class Trace {
 		this.trace_fill_paint.set_color(color);
 	}
 	set_x_axis_length(len: number): void {
-		this.X_AXIS_LENGTH = len;
+		this.x_axis_length = len;
 	}
 	set_y_axis_length(len: number): void {
-		this.Y_AXIS_LENGTH = len;
+		this.y_axis_length = len;
 	}
 	set_ratio(ratio: number): void {
 		this.ratio = ratio;
@@ -98,7 +98,7 @@ class Trace {
 		this.trace_stroke_paint.set_text_size(global.canvas_text_size_4);
 		this.trace_fill_paint.set_stroke_width(global.canvas_stroke_width_2);
 		this.trace_fill_paint.set_text_size(global.canvas_text_size_4);
-		let constant: number = this.width / (this.X_AXIS_LENGTH >> 1);
+		let constant: number = this.width / (this.x_axis_length >> 1);
 		let constant2: number = (this.height * this.ratio) / this.temporary_norm;
 		for (var i: number = 0; i < this.trace.length; i++) {
 			this.trace[i].x = i * constant + this.trim;
@@ -123,7 +123,7 @@ class Trace {
 	}
 	get_value(index: number): Array<string> {
 		let ret: Array<string> = [];
-		if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
+		if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.x_axis_length >> 1) - 2) {
 			ret.push(global.exponentiate_quickly(this.magnitude_list[index].x));
 			ret.push(global.exponentiate_quickly(-this.magnitude_list[index].y));
 		}
@@ -131,7 +131,7 @@ class Trace {
 	}
 	get_value_double(index: number): Array<number> {
 		let ret: Array<number> = [];
-		if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.X_AXIS_LENGTH >> 1) - 2) {
+		if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.x_axis_length >> 1) - 2) {
 			ret.push(this.magnitude_list[index].x);
 			ret.push(-this.magnitude_list[index].y);
 		}
@@ -163,7 +163,7 @@ class Trace {
 				this.trace[i].y = this.plot_magnitude * temp_const;
 			}
 		}
-		let constant: number = this.width / (this.X_AXIS_LENGTH >> 1);
+		let constant: number = this.width / (this.x_axis_length >> 1);
 		let constant2: number = (this.height * this.ratio) / this.temporary_norm;
 		if (this.temporary_norm > 0) {
 			if (global.not_null(value / this.temporary_norm)) {
@@ -171,7 +171,7 @@ class Trace {
 			} else {
 				this.trace.push(new PointF(this.trace.length * constant + this.trim, 0));
 			}
-			if (this.trace.length > this.X_AXIS_LENGTH >> 1) {
+			if (this.trace.length > this.x_axis_length >> 1) {
 				this.trace.splice(0, 1);
 				this.magnitude_list.splice(0, 1);
 				for (var i: number = 0; i < this.trace.length; i++) {
@@ -180,7 +180,7 @@ class Trace {
 			}
 		} else {
 			this.trace.push(new PointF(this.trace.length * constant + this.trim, 0));
-			if (this.trace.length > this.X_AXIS_LENGTH >> 1) {
+			if (this.trace.length > this.x_axis_length >> 1) {
 				this.trace.splice(0, 1);
 				this.magnitude_list.splice(0, 1);
 				for (var i: number = 0; i < this.trace.length; i++) {

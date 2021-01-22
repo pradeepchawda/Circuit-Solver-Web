@@ -4,7 +4,7 @@ class MultiSelectManager {
         this.OFFSCREEN_X = -500e3;
         this.OFFSCREEN_Y = -500e3;
         this.MULTI_SELECT_BOUNDS = new RectF(this.OFFSCREEN_X, this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
-        this.MULTI_SELECT = false;
+        this.multi_select = false;
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(this.line_paint.style.STROKE);
         this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
@@ -25,35 +25,35 @@ class MultiSelectManager {
         this.fill_paint.set_font(global.DEFAULT_FONT);
         this.fill_paint.set_alpha(90);
         this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
-        this.SELECT_X = 0;
-        this.SELECT_Y = 0;
-        this.DELTA_CENTER_X = 0;
-        this.DELTA_CENTER_Y = 0;
-        this.DELTA_END_X = 0;
-        this.DELTA_END_Y = 0;
-        this.DELTA_DX = 0;
-        this.DELTA_DY = 0;
-        this.DELTA_LAST_DX = 0;
-        this.DELTA_LAST_DY = 0;
-        this.DELTA_LATCH = false;
-        this.ELEMENTS_MOVED = false;
-        this.CTRL_PRESSED_STARTED = false;
-        this.CTRL_PRESSED = false;
-        this.MULTI_SELECTED_ELEMENT = false;
-        this.MOUSE_DOWN = false;
-        this.SELECTED_COMPONENTS_BOUNDS = new RectF(-this.OFFSCREEN_X, -this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
-        this.ENABLE_KEYS = true;
-        this.DRAW_BOUNDS = new RectF(0, 0, 0, 0);
+        this.select_x = 0;
+        this.select_y = 0;
+        this.delta_center_x = 0;
+        this.delta_center_y = 0;
+        this.delta_end_x = 0;
+        this.delta_end_y = 0;
+        this.delta_dx = 0;
+        this.delta_dy = 0;
+        this.delta_last_dx = 0;
+        this.delta_last_dy = 0;
+        this.delta_latch = false;
+        this.elements_moved = false;
+        this.ctrl_pressed_started = false;
+        this.ctrl_pressed = false;
+        this.multi_selected_element = false;
+        this.mouse_down_flag = false;
+        this.selected_components_bounds = new RectF(-this.OFFSCREEN_X, -this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
+        this.enable_keys = true;
+        this.draw_bounds_flag = new RectF(0, 0, 0, 0);
     }
     reset_enveloping_bounds() {
         global.multi_selected = false;
-        this.SELECTED_COMPONENTS_BOUNDS.left = -this.OFFSCREEN_X;
-        this.SELECTED_COMPONENTS_BOUNDS.top = -this.OFFSCREEN_Y;
-        this.SELECTED_COMPONENTS_BOUNDS.right = this.OFFSCREEN_X + 1;
-        this.SELECTED_COMPONENTS_BOUNDS.bottom = this.OFFSCREEN_Y + 1;
+        this.selected_components_bounds.left = -this.OFFSCREEN_X;
+        this.selected_components_bounds.top = -this.OFFSCREEN_Y;
+        this.selected_components_bounds.right = this.OFFSCREEN_X + 1;
+        this.selected_components_bounds.bottom = this.OFFSCREEN_Y + 1;
     }
     refresh_multi_select() {
-        this.MULTI_SELECTED_ELEMENT = false;
+        this.multi_selected_element = false;
         if (global.selected) {
             if (!global.component_touched) {
                 global.selected_id = global.NULL;
@@ -63,436 +63,436 @@ class MultiSelectManager {
                 global.selected = false;
             }
         }
-        if (this.MULTI_SELECT) {
+        if (this.multi_select) {
             /* #INSERT_GENERATE_MULTI_SELECT_ELEMENTS# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
             for (var i = 0; i < resistors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(resistors[i].bounds.get_center_x(), resistors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    resistors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    resistors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < capacitors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(capacitors[i].bounds.get_center_x(), capacitors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    capacitors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    capacitors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < inductors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(inductors[i].bounds.get_center_x(), inductors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    inductors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    inductors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < grounds.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(grounds[i].bounds.get_center_x(), grounds[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    grounds[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    grounds[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < dcsources.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(dcsources[i].bounds.get_center_x(), dcsources[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    dcsources[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    dcsources[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < dccurrents.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(dccurrents[i].bounds.get_center_x(), dccurrents[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    dccurrents[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    dccurrents[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < acsources.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(acsources[i].bounds.get_center_x(), acsources[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    acsources[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    acsources[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < accurrents.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(accurrents[i].bounds.get_center_x(), accurrents[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    accurrents[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    accurrents[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < squarewaves.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(squarewaves[i].bounds.get_center_x(), squarewaves[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    squarewaves[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    squarewaves[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < sawwaves.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(sawwaves[i].bounds.get_center_x(), sawwaves[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    sawwaves[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    sawwaves[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < trianglewaves.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(trianglewaves[i].bounds.get_center_x(), trianglewaves[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    trianglewaves[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    trianglewaves[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < constants.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(constants[i].bounds.get_center_x(), constants[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    constants[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    constants[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < wires.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(wires[i].bounds.get_center_x(), wires[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    wires[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    wires[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < nets.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(nets[i].bounds.get_center_x(), nets[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    nets[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    nets[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < notes.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(notes[i].bounds.get_center_x(), notes[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    notes[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    notes[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < rails.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(rails[i].bounds.get_center_x(), rails[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    rails[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    rails[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < voltmeters.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(voltmeters[i].bounds.get_center_x(), voltmeters[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    voltmeters[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    voltmeters[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < ohmmeters.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(ohmmeters[i].bounds.get_center_x(), ohmmeters[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    ohmmeters[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    ohmmeters[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < ammeters.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(ammeters[i].bounds.get_center_x(), ammeters[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    ammeters[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    ammeters[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < wattmeters.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(wattmeters[i].bounds.get_center_x(), wattmeters[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    wattmeters[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    wattmeters[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < fuses.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(fuses[i].bounds.get_center_x(), fuses[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    fuses[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    fuses[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < spsts.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(spsts[i].bounds.get_center_x(), spsts[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    spsts[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    spsts[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < spdts.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(spdts[i].bounds.get_center_x(), spdts[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    spdts[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    spdts[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < nots.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(nots[i].bounds.get_center_x(), nots[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    nots[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    nots[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < diodes.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(diodes[i].bounds.get_center_x(), diodes[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    diodes[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    diodes[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < leds.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(leds[i].bounds.get_center_x(), leds[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    leds[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    leds[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < zeners.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(zeners[i].bounds.get_center_x(), zeners[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    zeners[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    zeners[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < potentiometers.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(potentiometers[i].bounds.get_center_x(), potentiometers[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    potentiometers[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    potentiometers[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < ands.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(ands[i].bounds.get_center_x(), ands[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    ands[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    ands[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < ors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(ors[i].bounds.get_center_x(), ors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    ors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    ors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < nands.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(nands[i].bounds.get_center_x(), nands[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    nands[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    nands[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < nors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(nors[i].bounds.get_center_x(), nors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    nors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    nors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < xors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(xors[i].bounds.get_center_x(), xors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    xors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    xors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < xnors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(xnors[i].bounds.get_center_x(), xnors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    xnors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    xnors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < dffs.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(dffs[i].bounds.get_center_x(), dffs[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    dffs[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    dffs[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < vsats.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(vsats[i].bounds.get_center_x(), vsats[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    vsats[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    vsats[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < adders.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(adders[i].bounds.get_center_x(), adders[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    adders[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    adders[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < subtractors.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(subtractors[i].bounds.get_center_x(), subtractors[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    subtractors[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    subtractors[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < multipliers.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(multipliers[i].bounds.get_center_x(), multipliers[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    multipliers[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    multipliers[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < dividers.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(dividers[i].bounds.get_center_x(), dividers[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    dividers[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    dividers[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < gains.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(gains[i].bounds.get_center_x(), gains[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    gains[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    gains[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < absvals.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(absvals[i].bounds.get_center_x(), absvals[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    absvals[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    absvals[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < vcsws.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(vcsws[i].bounds.get_center_x(), vcsws[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    vcsws[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    vcsws[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < vcvss.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(vcvss[i].bounds.get_center_x(), vcvss[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    vcvss[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    vcvss[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < vccss.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(vccss[i].bounds.get_center_x(), vccss[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    vccss[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    vccss[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < cccss.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(cccss[i].bounds.get_center_x(), cccss[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    cccss[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    cccss[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < ccvss.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(ccvss[i].bounds.get_center_x(), ccvss[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    ccvss[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    ccvss[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < opamps.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(opamps[i].bounds.get_center_x(), opamps[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    opamps[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    opamps[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < nmosfets.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(nmosfets[i].bounds.get_center_x(), nmosfets[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    nmosfets[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    nmosfets[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < pmosfets.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(pmosfets[i].bounds.get_center_x(), pmosfets[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    pmosfets[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    pmosfets[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < npns.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(npns[i].bounds.get_center_x(), npns[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    npns[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    npns[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < pnps.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(pnps[i].bounds.get_center_x(), pnps[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    pnps[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    pnps[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < adcs.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(adcs[i].bounds.get_center_x(), adcs[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    adcs[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    adcs[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < dacs.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(dacs[i].bounds.get_center_x(), dacs[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    dacs[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    dacs[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < sandhs.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(sandhs[i].bounds.get_center_x(), sandhs[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    sandhs[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    sandhs[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < pwms.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(pwms[i].bounds.get_center_x(), pwms[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    pwms[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    pwms[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < integrators.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(integrators[i].bounds.get_center_x(), integrators[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    integrators[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    integrators[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < differentiators.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(differentiators[i].bounds.get_center_x(), differentiators[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    differentiators[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    differentiators[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < lowpasses.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(lowpasses[i].bounds.get_center_x(), lowpasses[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    lowpasses[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    lowpasses[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < highpasses.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(highpasses[i].bounds.get_center_x(), highpasses[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    highpasses[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    highpasses[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < relays.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(relays[i].bounds.get_center_x(), relays[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    relays[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    relays[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < pids.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(pids[i].bounds.get_center_x(), pids[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    pids[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    pids[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < luts.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(luts[i].bounds.get_center_x(), luts[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    luts[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    luts[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < vcrs.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(vcrs[i].bounds.get_center_x(), vcrs[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    vcrs[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    vcrs[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < vccas.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(vccas[i].bounds.get_center_x(), vccas[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    vccas[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    vccas[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < vcls.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(vcls[i].bounds.get_center_x(), vcls[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    vcls[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    vcls[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < grts.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(grts[i].bounds.get_center_x(), grts[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    grts[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    grts[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < tptzs.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(tptzs[i].bounds.get_center_x(), tptzs[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    tptzs[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    tptzs[i].multi_selected = true;
                 }
             }
             for (var i = 0; i < transformers.length; i++) {
                 if (this.MULTI_SELECT_BOUNDS.contains_xy(transformers[i].bounds.get_center_x(), transformers[i].bounds.get_center_y())) {
-                    this.MULTI_SELECTED_ELEMENT = true;
-                    transformers[i].MULTI_SELECTED = true;
+                    this.multi_selected_element = true;
+                    transformers[i].multi_selected = true;
                 }
             }
             /* <!-- END AUTOMATICALLY GENERATED !--> */
         }
-        if (this.MULTI_SELECTED_ELEMENT) {
-            this.MULTI_SELECTED_ELEMENT = false;
+        if (this.multi_selected_element) {
+            this.multi_selected_element = false;
         }
         this.MULTI_SELECT_BOUNDS.left = this.OFFSCREEN_X;
         this.MULTI_SELECT_BOUNDS.top = this.OFFSCREEN_Y;
         this.MULTI_SELECT_BOUNDS.right = this.OFFSCREEN_X + 1;
         this.MULTI_SELECT_BOUNDS.bottom = this.OFFSCREEN_Y + 1;
-        this.MULTI_SELECT = false;
+        this.multi_select = false;
     }
     key_down(key_event) {
-        if (this.ENABLE_KEYS && !global.MOBILE_MODE) {
+        if (this.enable_keys && !global.MOBILE_MODE) {
             if (!global.flag_simulating &&
                 !global.flag_save_image &&
                 !global.flag_save_circuit &&
@@ -507,17 +507,17 @@ class MultiSelectManager {
                 !global.flag_menu_element_toolbox &&
                 !global.signal_history_lock) {
                 if (key_event['ctrl']) {
-                    this.CTRL_PRESSED_STARTED = true;
+                    this.ctrl_pressed_started = true;
                 }
             }
         }
     }
     key_up(key_event) {
-        if (this.ENABLE_KEYS && !global.signal_history_lock && !global.MOBILE_MODE) {
-            if (!this.MOUSE_DOWN) {
-                this.CTRL_PRESSED_STARTED = false;
-                this.CTRL_PRESSED = false;
-                this.DELTA_LATCH = false;
+        if (this.enable_keys && !global.signal_history_lock && !global.MOBILE_MODE) {
+            if (!this.mouse_down_flag) {
+                this.ctrl_pressed_started = false;
+                this.ctrl_pressed = false;
+                this.delta_latch = false;
             }
         }
     }
@@ -536,52 +536,52 @@ class MultiSelectManager {
             !global.flag_menu_element_toolbox &&
             !global.signal_history_lock &&
             !global.MOBILE_MODE) {
-            if (this.ENABLE_KEYS && !global.signal_history_lock) {
-                this.MOUSE_DOWN = true;
-                if (this.CTRL_PRESSED_STARTED) {
-                    this.CTRL_PRESSED_STARTED = true;
-                    this.MULTI_SELECT = true;
-                    this.SELECT_X = global.mouse_x;
-                    this.SELECT_Y = global.mouse_y;
+            if (this.enable_keys && !global.signal_history_lock) {
+                this.mouse_down_flag = true;
+                if (this.ctrl_pressed_started) {
+                    this.ctrl_pressed_started = true;
+                    this.multi_select = true;
+                    this.select_x = global.mouse_x;
+                    this.select_y = global.mouse_y;
                     this.MULTI_SELECT_BOUNDS.left = global.mouse_x;
                     this.MULTI_SELECT_BOUNDS.top = global.mouse_y;
                     this.MULTI_SELECT_BOUNDS.right = global.mouse_x;
                     this.MULTI_SELECT_BOUNDS.bottom = global.mouse_y;
-                    this.SELECTED_COMPONENTS_BOUNDS.left = -this.OFFSCREEN_X;
-                    this.SELECTED_COMPONENTS_BOUNDS.top = -this.OFFSCREEN_Y;
-                    this.SELECTED_COMPONENTS_BOUNDS.right = this.OFFSCREEN_X + 1;
-                    this.SELECTED_COMPONENTS_BOUNDS.bottom = this.OFFSCREEN_Y + 1;
+                    this.selected_components_bounds.left = -this.OFFSCREEN_X;
+                    this.selected_components_bounds.top = -this.OFFSCREEN_Y;
+                    this.selected_components_bounds.right = this.OFFSCREEN_X + 1;
+                    this.selected_components_bounds.bottom = this.OFFSCREEN_Y + 1;
                 }
             }
             else {
                 if (!global.component_touched) {
-                    this.CTRL_PRESSED_STARTED = true;
-                    this.MULTI_SELECT = true;
-                    this.SELECT_X = global.mouse_x;
-                    this.SELECT_Y = global.mouse_y;
+                    this.ctrl_pressed_started = true;
+                    this.multi_select = true;
+                    this.select_x = global.mouse_x;
+                    this.select_y = global.mouse_y;
                     this.MULTI_SELECT_BOUNDS.left = global.mouse_x;
                     this.MULTI_SELECT_BOUNDS.top = global.mouse_y;
                     this.MULTI_SELECT_BOUNDS.right = global.mouse_x;
                     this.MULTI_SELECT_BOUNDS.bottom = global.mouse_y;
-                    this.SELECTED_COMPONENTS_BOUNDS.left = -this.OFFSCREEN_X;
-                    this.SELECTED_COMPONENTS_BOUNDS.top = -this.OFFSCREEN_Y;
-                    this.SELECTED_COMPONENTS_BOUNDS.right = this.OFFSCREEN_X + 1;
-                    this.SELECTED_COMPONENTS_BOUNDS.bottom = this.OFFSCREEN_Y + 1;
+                    this.selected_components_bounds.left = -this.OFFSCREEN_X;
+                    this.selected_components_bounds.top = -this.OFFSCREEN_Y;
+                    this.selected_components_bounds.right = this.OFFSCREEN_X + 1;
+                    this.selected_components_bounds.bottom = this.OFFSCREEN_Y + 1;
                 }
             }
             if (global.multi_selected) {
-                this.DELTA_CENTER_X = global.mouse_x;
-                this.DELTA_CENTER_Y = global.mouse_y;
-                this.DELTA_DX = 0;
-                this.DELTA_DY = 0;
-                this.DELTA_LAST_DX = 0;
-                this.DELTA_LAST_DY = 0;
-                this.ELEMENTS_MOVED = false;
-                if (this.SELECTED_COMPONENTS_BOUNDS.contains_xy(global.mouse_x, global.mouse_y)) {
-                    this.DELTA_LATCH = true;
+                this.delta_center_x = global.mouse_x;
+                this.delta_center_y = global.mouse_y;
+                this.delta_dx = 0;
+                this.delta_dy = 0;
+                this.delta_last_dx = 0;
+                this.delta_last_dy = 0;
+                this.elements_moved = false;
+                if (this.selected_components_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
+                    this.delta_latch = true;
                 }
                 else {
-                    this.DELTA_LATCH = false;
+                    this.delta_latch = false;
                 }
             }
         }
@@ -601,79 +601,79 @@ class MultiSelectManager {
             !global.flag_menu_element_toolbox &&
             !global.signal_history_lock &&
             !global.MOBILE_MODE) {
-            if (this.CTRL_PRESSED_STARTED) {
-                if (Math.abs(global.mouse_x - this.SELECT_X) > global.node_space_x || Math.abs(global.mouse_y - this.SELECT_Y) > global.node_space_y) {
-                    this.CTRL_PRESSED = true;
+            if (this.ctrl_pressed_started) {
+                if (Math.abs(global.mouse_x - this.select_x) > global.node_space_x || Math.abs(global.mouse_y - this.select_y) > global.node_space_y) {
+                    this.ctrl_pressed = true;
                 }
                 if (global.component_translating) {
-                    this.CTRL_PRESSED = false;
-                    this.CTRL_PRESSED_STARTED = false;
+                    this.ctrl_pressed = false;
+                    this.ctrl_pressed_started = false;
                 }
             }
-            if (global.multi_selected && this.DELTA_LATCH) {
-                this.DELTA_END_X = global.mouse_x;
-                this.DELTA_END_Y = global.mouse_y;
-                if (this.DELTA_CENTER_X > 0 && this.DELTA_CENTER_Y > 0) {
-                    this.DELTA_LAST_DX = this.DELTA_DX;
-                    this.DELTA_LAST_DY = this.DELTA_DY;
-                    this.DELTA_DX = Math.floor((this.DELTA_END_X - this.DELTA_CENTER_X) / global.node_space_x);
-                    this.DELTA_DY = Math.floor((this.DELTA_END_Y - this.DELTA_CENTER_Y) / global.node_space_y);
-                    if (this.DELTA_DX !== this.DELTA_LAST_DX || this.DELTA_DY !== this.DELTA_LAST_DY) {
+            if (global.multi_selected && this.delta_latch) {
+                this.delta_end_x = global.mouse_x;
+                this.delta_end_y = global.mouse_y;
+                if (this.delta_center_x > 0 && this.delta_center_y > 0) {
+                    this.delta_last_dx = this.delta_dx;
+                    this.delta_last_dy = this.delta_dy;
+                    this.delta_dx = Math.floor((this.delta_end_x - this.delta_center_x) / global.node_space_x);
+                    this.delta_dy = Math.floor((this.delta_end_y - this.delta_center_y) / global.node_space_y);
+                    if (this.delta_dx !== this.delta_last_dx || this.delta_dy !== this.delta_last_dy) {
                         this.handle_multi_move();
                     }
                 }
             }
         }
-        if (this.CTRL_PRESSED) {
-            if (global.mouse_x >= this.SELECT_X) {
-                this.MULTI_SELECT_BOUNDS.left = this.SELECT_X;
+        if (this.ctrl_pressed) {
+            if (global.mouse_x >= this.select_x) {
+                this.MULTI_SELECT_BOUNDS.left = this.select_x;
                 this.MULTI_SELECT_BOUNDS.right = global.mouse_x;
             }
             else {
-                this.MULTI_SELECT_BOUNDS.right = this.SELECT_X;
+                this.MULTI_SELECT_BOUNDS.right = this.select_x;
                 this.MULTI_SELECT_BOUNDS.left = global.mouse_x;
             }
-            if (global.mouse_y >= this.SELECT_Y) {
-                this.MULTI_SELECT_BOUNDS.top = this.SELECT_Y;
+            if (global.mouse_y >= this.select_y) {
+                this.MULTI_SELECT_BOUNDS.top = this.select_y;
                 this.MULTI_SELECT_BOUNDS.bottom = global.mouse_y;
             }
             else {
-                this.MULTI_SELECT_BOUNDS.bottom = this.SELECT_Y;
+                this.MULTI_SELECT_BOUNDS.bottom = this.select_y;
                 this.MULTI_SELECT_BOUNDS.top = global.mouse_y;
             }
         }
     }
     mouse_up() {
         if (!global.MOBILE_MODE) {
-            this.MOUSE_DOWN = false;
-            this.CTRL_PRESSED_STARTED = false;
-            this.CTRL_PRESSED = false;
-            this.DELTA_LATCH = false;
-            if (this.ELEMENTS_MOVED) {
-                global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
-                this.ELEMENTS_MOVED = false;
+            this.mouse_down_flag = false;
+            this.ctrl_pressed_started = false;
+            this.ctrl_pressed = false;
+            this.delta_latch = false;
+            if (this.elements_moved) {
+                global.history_manager['packet'].push(engine_functions.history_snapshot());
+                this.elements_moved = false;
             }
         }
     }
     handle_multi_move() {
-        let dx = (this.DELTA_DX - this.DELTA_LAST_DX) * global.node_space_x;
-        let dy = (this.DELTA_DY - this.DELTA_LAST_DY) * global.node_space_y;
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.top > workspace.bounds.top + global.node_space_y)) {
+        let dx = (this.delta_dx - this.delta_last_dx) * global.node_space_x;
+        let dy = (this.delta_dy - this.delta_last_dy) * global.node_space_y;
+        if (!(multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.node_space_y)) {
             if (dy < 0) {
                 dy = 0;
             }
         }
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.bottom < workspace.bounds.bottom - global.node_space_y)) {
+        if (!(multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.node_space_y)) {
             if (dy > 0) {
                 dy = 0;
             }
         }
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.left > workspace.bounds.left + global.node_space_x)) {
+        if (!(multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.node_space_x)) {
             if (dx < 0) {
                 dx = 0;
             }
         }
-        if (!(multi_select_manager.SELECTED_COMPONENTS_BOUNDS.right < workspace.bounds.right - global.node_space_x)) {
+        if (!(multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.node_space_x)) {
             if (dx > 0) {
                 dx = 0;
             }
@@ -681,487 +681,487 @@ class MultiSelectManager {
         if (dx !== 0 || dy !== 0) {
             global.signal_build_element = true;
             global.signal_build_counter = 0;
-            this.ELEMENTS_MOVED = true;
+            this.elements_moved = true;
             /* #INSERT_GENERATE_MULTI_SELECT_ELEMENT_MOVE# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
             for (var i = 0; i < resistors.length; i++) {
-                if (resistors[i].MULTI_SELECTED) {
+                if (resistors[i].multi_selected) {
                     {
                         resistors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < capacitors.length; i++) {
-                if (capacitors[i].MULTI_SELECTED) {
+                if (capacitors[i].multi_selected) {
                     {
                         capacitors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < inductors.length; i++) {
-                if (inductors[i].MULTI_SELECTED) {
+                if (inductors[i].multi_selected) {
                     {
                         inductors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < grounds.length; i++) {
-                if (grounds[i].MULTI_SELECTED) {
+                if (grounds[i].multi_selected) {
                     {
                         grounds[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < dcsources.length; i++) {
-                if (dcsources[i].MULTI_SELECTED) {
+                if (dcsources[i].multi_selected) {
                     {
                         dcsources[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < dccurrents.length; i++) {
-                if (dccurrents[i].MULTI_SELECTED) {
+                if (dccurrents[i].multi_selected) {
                     {
                         dccurrents[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < acsources.length; i++) {
-                if (acsources[i].MULTI_SELECTED) {
+                if (acsources[i].multi_selected) {
                     {
                         acsources[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < accurrents.length; i++) {
-                if (accurrents[i].MULTI_SELECTED) {
+                if (accurrents[i].multi_selected) {
                     {
                         accurrents[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < squarewaves.length; i++) {
-                if (squarewaves[i].MULTI_SELECTED) {
+                if (squarewaves[i].multi_selected) {
                     {
                         squarewaves[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < sawwaves.length; i++) {
-                if (sawwaves[i].MULTI_SELECTED) {
+                if (sawwaves[i].multi_selected) {
                     {
                         sawwaves[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < trianglewaves.length; i++) {
-                if (trianglewaves[i].MULTI_SELECTED) {
+                if (trianglewaves[i].multi_selected) {
                     {
                         trianglewaves[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < constants.length; i++) {
-                if (constants[i].MULTI_SELECTED) {
+                if (constants[i].multi_selected) {
                     {
                         constants[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < wires.length; i++) {
-                if (wires[i].MULTI_SELECTED) {
+                if (wires[i].multi_selected) {
                     {
                         wires[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < nets.length; i++) {
-                if (nets[i].MULTI_SELECTED) {
+                if (nets[i].multi_selected) {
                     {
                         nets[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < notes.length; i++) {
-                if (notes[i].MULTI_SELECTED) {
+                if (notes[i].multi_selected) {
                     {
                         notes[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < rails.length; i++) {
-                if (rails[i].MULTI_SELECTED) {
+                if (rails[i].multi_selected) {
                     {
                         rails[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < voltmeters.length; i++) {
-                if (voltmeters[i].MULTI_SELECTED) {
+                if (voltmeters[i].multi_selected) {
                     {
                         voltmeters[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < ohmmeters.length; i++) {
-                if (ohmmeters[i].MULTI_SELECTED) {
+                if (ohmmeters[i].multi_selected) {
                     {
                         ohmmeters[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < ammeters.length; i++) {
-                if (ammeters[i].MULTI_SELECTED) {
+                if (ammeters[i].multi_selected) {
                     {
                         ammeters[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < wattmeters.length; i++) {
-                if (wattmeters[i].MULTI_SELECTED) {
+                if (wattmeters[i].multi_selected) {
                     {
                         wattmeters[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < fuses.length; i++) {
-                if (fuses[i].MULTI_SELECTED) {
+                if (fuses[i].multi_selected) {
                     {
                         fuses[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < spsts.length; i++) {
-                if (spsts[i].MULTI_SELECTED) {
+                if (spsts[i].multi_selected) {
                     {
                         spsts[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < spdts.length; i++) {
-                if (spdts[i].MULTI_SELECTED) {
+                if (spdts[i].multi_selected) {
                     {
                         spdts[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < nots.length; i++) {
-                if (nots[i].MULTI_SELECTED) {
+                if (nots[i].multi_selected) {
                     {
                         nots[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < diodes.length; i++) {
-                if (diodes[i].MULTI_SELECTED) {
+                if (diodes[i].multi_selected) {
                     {
                         diodes[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < leds.length; i++) {
-                if (leds[i].MULTI_SELECTED) {
+                if (leds[i].multi_selected) {
                     {
                         leds[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < zeners.length; i++) {
-                if (zeners[i].MULTI_SELECTED) {
+                if (zeners[i].multi_selected) {
                     {
                         zeners[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < potentiometers.length; i++) {
-                if (potentiometers[i].MULTI_SELECTED) {
+                if (potentiometers[i].multi_selected) {
                     {
                         potentiometers[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < ands.length; i++) {
-                if (ands[i].MULTI_SELECTED) {
+                if (ands[i].multi_selected) {
                     {
                         ands[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < ors.length; i++) {
-                if (ors[i].MULTI_SELECTED) {
+                if (ors[i].multi_selected) {
                     {
                         ors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < nands.length; i++) {
-                if (nands[i].MULTI_SELECTED) {
+                if (nands[i].multi_selected) {
                     {
                         nands[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < nors.length; i++) {
-                if (nors[i].MULTI_SELECTED) {
+                if (nors[i].multi_selected) {
                     {
                         nors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < xors.length; i++) {
-                if (xors[i].MULTI_SELECTED) {
+                if (xors[i].multi_selected) {
                     {
                         xors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < xnors.length; i++) {
-                if (xnors[i].MULTI_SELECTED) {
+                if (xnors[i].multi_selected) {
                     {
                         xnors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < dffs.length; i++) {
-                if (dffs[i].MULTI_SELECTED) {
+                if (dffs[i].multi_selected) {
                     {
                         dffs[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < vsats.length; i++) {
-                if (vsats[i].MULTI_SELECTED) {
+                if (vsats[i].multi_selected) {
                     {
                         vsats[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < adders.length; i++) {
-                if (adders[i].MULTI_SELECTED) {
+                if (adders[i].multi_selected) {
                     {
                         adders[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < subtractors.length; i++) {
-                if (subtractors[i].MULTI_SELECTED) {
+                if (subtractors[i].multi_selected) {
                     {
                         subtractors[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < multipliers.length; i++) {
-                if (multipliers[i].MULTI_SELECTED) {
+                if (multipliers[i].multi_selected) {
                     {
                         multipliers[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < dividers.length; i++) {
-                if (dividers[i].MULTI_SELECTED) {
+                if (dividers[i].multi_selected) {
                     {
                         dividers[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < gains.length; i++) {
-                if (gains[i].MULTI_SELECTED) {
+                if (gains[i].multi_selected) {
                     {
                         gains[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < absvals.length; i++) {
-                if (absvals[i].MULTI_SELECTED) {
+                if (absvals[i].multi_selected) {
                     {
                         absvals[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < vcsws.length; i++) {
-                if (vcsws[i].MULTI_SELECTED) {
+                if (vcsws[i].multi_selected) {
                     {
                         vcsws[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < vcvss.length; i++) {
-                if (vcvss[i].MULTI_SELECTED) {
+                if (vcvss[i].multi_selected) {
                     {
                         vcvss[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < vccss.length; i++) {
-                if (vccss[i].MULTI_SELECTED) {
+                if (vccss[i].multi_selected) {
                     {
                         vccss[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < cccss.length; i++) {
-                if (cccss[i].MULTI_SELECTED) {
+                if (cccss[i].multi_selected) {
                     {
                         cccss[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < ccvss.length; i++) {
-                if (ccvss[i].MULTI_SELECTED) {
+                if (ccvss[i].multi_selected) {
                     {
                         ccvss[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < opamps.length; i++) {
-                if (opamps[i].MULTI_SELECTED) {
+                if (opamps[i].multi_selected) {
                     {
                         opamps[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < nmosfets.length; i++) {
-                if (nmosfets[i].MULTI_SELECTED) {
+                if (nmosfets[i].multi_selected) {
                     {
                         nmosfets[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < pmosfets.length; i++) {
-                if (pmosfets[i].MULTI_SELECTED) {
+                if (pmosfets[i].multi_selected) {
                     {
                         pmosfets[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < npns.length; i++) {
-                if (npns[i].MULTI_SELECTED) {
+                if (npns[i].multi_selected) {
                     {
                         npns[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < pnps.length; i++) {
-                if (pnps[i].MULTI_SELECTED) {
+                if (pnps[i].multi_selected) {
                     {
                         pnps[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < adcs.length; i++) {
-                if (adcs[i].MULTI_SELECTED) {
+                if (adcs[i].multi_selected) {
                     {
                         adcs[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < dacs.length; i++) {
-                if (dacs[i].MULTI_SELECTED) {
+                if (dacs[i].multi_selected) {
                     {
                         dacs[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < sandhs.length; i++) {
-                if (sandhs[i].MULTI_SELECTED) {
+                if (sandhs[i].multi_selected) {
                     {
                         sandhs[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < pwms.length; i++) {
-                if (pwms[i].MULTI_SELECTED) {
+                if (pwms[i].multi_selected) {
                     {
                         pwms[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < integrators.length; i++) {
-                if (integrators[i].MULTI_SELECTED) {
+                if (integrators[i].multi_selected) {
                     {
                         integrators[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < differentiators.length; i++) {
-                if (differentiators[i].MULTI_SELECTED) {
+                if (differentiators[i].multi_selected) {
                     {
                         differentiators[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < lowpasses.length; i++) {
-                if (lowpasses[i].MULTI_SELECTED) {
+                if (lowpasses[i].multi_selected) {
                     {
                         lowpasses[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < highpasses.length; i++) {
-                if (highpasses[i].MULTI_SELECTED) {
+                if (highpasses[i].multi_selected) {
                     {
                         highpasses[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < relays.length; i++) {
-                if (relays[i].MULTI_SELECTED) {
+                if (relays[i].multi_selected) {
                     {
                         relays[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < pids.length; i++) {
-                if (pids[i].MULTI_SELECTED) {
+                if (pids[i].multi_selected) {
                     {
                         pids[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < luts.length; i++) {
-                if (luts[i].MULTI_SELECTED) {
+                if (luts[i].multi_selected) {
                     {
                         luts[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < vcrs.length; i++) {
-                if (vcrs[i].MULTI_SELECTED) {
+                if (vcrs[i].multi_selected) {
                     {
                         vcrs[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < vccas.length; i++) {
-                if (vccas[i].MULTI_SELECTED) {
+                if (vccas[i].multi_selected) {
                     {
                         vccas[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < vcls.length; i++) {
-                if (vcls[i].MULTI_SELECTED) {
+                if (vcls[i].multi_selected) {
                     {
                         vcls[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < grts.length; i++) {
-                if (grts[i].MULTI_SELECTED) {
+                if (grts[i].multi_selected) {
                     {
                         grts[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < tptzs.length; i++) {
-                if (tptzs[i].MULTI_SELECTED) {
+                if (tptzs[i].multi_selected) {
                     {
                         tptzs[i].move_element(dx, dy);
                     }
                 }
             }
             for (var i = 0; i < transformers.length; i++) {
-                if (transformers[i].MULTI_SELECTED) {
+                if (transformers[i].multi_selected) {
                     {
                         transformers[i].move_element(dx, dy);
                     }
@@ -1186,14 +1186,14 @@ class MultiSelectManager {
             !global.flag_remove_all &&
             !global.flag_menu_element_toolbox) {
             global.multi_selected = true;
-            this.SELECTED_COMPONENTS_BOUNDS.left = Math.min(this.SELECTED_COMPONENTS_BOUNDS.left, bounds.left - global.node_space_x);
-            this.SELECTED_COMPONENTS_BOUNDS.top = Math.min(this.SELECTED_COMPONENTS_BOUNDS.top, bounds.top - global.node_space_y);
-            this.SELECTED_COMPONENTS_BOUNDS.right = Math.max(this.SELECTED_COMPONENTS_BOUNDS.right, bounds.right + global.node_space_x);
-            this.SELECTED_COMPONENTS_BOUNDS.bottom = Math.max(this.SELECTED_COMPONENTS_BOUNDS.bottom, bounds.bottom + global.node_space_y);
+            this.selected_components_bounds.left = Math.min(this.selected_components_bounds.left, bounds.left - global.node_space_x);
+            this.selected_components_bounds.top = Math.min(this.selected_components_bounds.top, bounds.top - global.node_space_y);
+            this.selected_components_bounds.right = Math.max(this.selected_components_bounds.right, bounds.right + global.node_space_x);
+            this.selected_components_bounds.bottom = Math.max(this.selected_components_bounds.bottom, bounds.bottom + global.node_space_y);
         }
     }
     draw_bounds(canvas) {
-        if (this.MULTI_SELECT) {
+        if (this.multi_select) {
             if (!global.flag_save_image &&
                 !global.flag_save_circuit &&
                 !global.flag_zoom &&
@@ -1209,19 +1209,19 @@ class MultiSelectManager {
             }
         }
         if (global.multi_selected) {
-            if (this.SELECTED_COMPONENTS_BOUNDS.left > this.OFFSCREEN_X >> 1 &&
-                this.SELECTED_COMPONENTS_BOUNDS.top > this.OFFSCREEN_Y >> 1 &&
-                this.SELECTED_COMPONENTS_BOUNDS.right > this.OFFSCREEN_X >> 1 &&
-                this.SELECTED_COMPONENTS_BOUNDS.bottom > this.OFFSCREEN_Y >> 1) {
-                this.DRAW_BOUNDS.left = this.SELECTED_COMPONENTS_BOUNDS.left;
-                this.DRAW_BOUNDS.top = this.SELECTED_COMPONENTS_BOUNDS.top;
-                this.DRAW_BOUNDS.right = this.SELECTED_COMPONENTS_BOUNDS.right;
-                this.DRAW_BOUNDS.bottom = this.SELECTED_COMPONENTS_BOUNDS.bottom;
-                canvas.draw_rect2(this.DRAW_BOUNDS, this.line_paint);
+            if (this.selected_components_bounds.left > this.OFFSCREEN_X >> 1 &&
+                this.selected_components_bounds.top > this.OFFSCREEN_Y >> 1 &&
+                this.selected_components_bounds.right > this.OFFSCREEN_X >> 1 &&
+                this.selected_components_bounds.bottom > this.OFFSCREEN_Y >> 1) {
+                this.draw_bounds_flag.left = this.selected_components_bounds.left;
+                this.draw_bounds_flag.top = this.selected_components_bounds.top;
+                this.draw_bounds_flag.right = this.selected_components_bounds.right;
+                this.draw_bounds_flag.bottom = this.selected_components_bounds.bottom;
+                canvas.draw_rect2(this.draw_bounds_flag, this.line_paint);
             }
         }
         if (global.DEVELOPER_MODE) {
-            canvas.draw_line(this.DELTA_CENTER_X, this.DELTA_CENTER_Y, this.DELTA_END_X, this.DELTA_END_Y, this.line_paint);
+            canvas.draw_line(this.delta_center_x, this.delta_center_y, this.delta_end_x, this.delta_end_y, this.line_paint);
         }
     }
 }

@@ -13,7 +13,7 @@ class LinearAlgebra {
 	public P: Array<number>;
 	public lup_det: number;
 	public general_vector: Array<number>;
-	public General_matrix: Array<Array<number>>;
+	public general_matrix: Array<Array<number>>;
 	public first_lup_solve: boolean;
 	constructor() {
 		this.x_matrix = [[0], [0]];
@@ -28,7 +28,7 @@ class LinearAlgebra {
 		this.abs_a = 0;
 		this.P = [];
 		this.lup_det = 0;
-		this.General_matrix;
+		this.general_matrix;
 		this.general_vector;
 		this.first_lup_solve = true;
 	}
@@ -113,14 +113,14 @@ class LinearAlgebra {
 		return matrix;
 	}
 	matrix(rows: number, cols: number): Array<Array<number>> {
-		this.General_matrix = [];
+		this.general_matrix = [];
 		for (var i: number = 0; i < rows; i++) {
-			this.General_matrix.push(new Array(cols));
+			this.general_matrix.push(new Array(cols));
 			for (var j: number = 0; j < cols; j++) {
-				this.General_matrix[i][j] = 0;
+				this.general_matrix[i][j] = 0;
 			}
 		}
-		return this.General_matrix;
+		return this.general_matrix;
 	}
 	vector(size: number): Array<number> {
 		this.general_vector = new Array(size);

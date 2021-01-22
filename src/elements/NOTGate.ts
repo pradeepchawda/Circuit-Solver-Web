@@ -1,6 +1,6 @@
 'use strict';
 class NOTGate {
-	public INITIALIZED: boolean;
+	public initialized: boolean;
 	public bounds: RectF;
 	public elm: Element2;
 	public p1: PointF;
@@ -29,13 +29,13 @@ class NOTGate {
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
-	public MULTI_SELECTED: boolean;
+	public multi_selected: boolean;
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
-	public BUILD_ELEMENT: boolean;
-	public ANGLE: number;
+	public build_element_flag: boolean;
+	public angle: number;
 	constructor(type: number, id: number, n1: number, n2: number) {
-		this.INITIALIZED = false;
+		this.initialized = false;
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.elm = new Element2(id, type, global.copy(global.PROPERTY_NOT));
 		this.elm.set_nodes(n1, n2);
@@ -111,12 +111,12 @@ class NOTGate {
 		this.indexer = 0;
 		this.m_x = 0;
 		this.m_y = 0;
-		this.INITIALIZED = true;
-		this.MULTI_SELECTED = false;
+		this.initialized = true;
+		this.multi_selected = false;
 		this.line_buffer = [];
 		this.circle_buffer = [];
-		this.BUILD_ELEMENT = true;
-		this.ANGLE = 0;
+		this.build_element_flag = true;
+		this.angle = 0;
 	}
 	refresh_bounds(): void {
 		if (this.elm.consistent()) {
@@ -136,7 +136,7 @@ class NOTGate {
 		this.wire_reference.push(ref);
 	}
 	update(): void {
-		if (global.flag_simulating && simulation_manager.SOLUTIONS_READY) {
+		if (global.flag_simulating && simulation_manager.solutions_ready) {
 			if (this.elm.consistent()) {
 				this.elm.properties['Input Voltage'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) / this.elm.properties['High Voltage'] - 0.5));
 				this.elm.properties['Output Voltage'] = this.elm.properties['High Voltage'] * 0.5 * (1 - this.elm.properties['Input Voltage']);
@@ -240,20 +240,20 @@ class NOTGate {
 		}
 	}
 	handle_wire_builder(n: number, anchor: number): void {
-		if (global.WIRE_BUILDER['step'] === 0) {
-			global.WIRE_BUILDER['n1'] = n;
-			global.WIRE_BUILDER['type1'] = this.elm.type;
-			global.WIRE_BUILDER['id1'] = this.elm.id;
-			global.WIRE_BUILDER['anchor_point1'] = anchor;
-			global.WIRE_BUILDER['linkage1']['wire'] = global.WIRE_BUILDER['step'];
-			global.WIRE_BUILDER['step']++;
-		} else if (global.WIRE_BUILDER['step'] === 1) {
-			global.WIRE_BUILDER['n2'] = n;
-			global.WIRE_BUILDER['type2'] = this.elm.type;
-			global.WIRE_BUILDER['id2'] = this.elm.id;
-			global.WIRE_BUILDER['anchor_point2'] = anchor;
-			global.WIRE_BUILDER['linkage2']['wire'] = global.WIRE_BUILDER['step'];
-			global.WIRE_BUILDER['step']++;
+		if (global.wire_builder['step'] === 0) {
+			global.wire_builder['n1'] = n;
+			global.wire_builder['type1'] = this.elm.type;
+			global.wire_builder['id1'] = this.elm.id;
+			global.wire_builder['anchor_point1'] = anchor;
+			global.wire_builder['linkage1']['wire'] = global.wire_builder['step'];
+			global.wire_builder['step']++;
+		} else if (global.wire_builder['step'] === 1) {
+			global.wire_builder['n2'] = n;
+			global.wire_builder['type2'] = this.elm.type;
+			global.wire_builder['id2'] = this.elm.id;
+			global.wire_builder['anchor_point2'] = anchor;
+			global.wire_builder['linkage2']['wire'] = global.wire_builder['step'];
+			global.wire_builder['step']++;
 		}
 	}
 	move_element(dx: number, dy: number): void {
@@ -308,7 +308,7 @@ class NOTGate {
 						wire_manager.reset_wire_builder();
 						this.bounds.set_center(this.grid_point[0], this.grid_point[1]);
 						this.unanchor_wires();
-						this.BUILD_ELEMENT = true;
+						this.build_element_flag = true;
 					}
 				}
 			}
@@ -349,7 +349,7 @@ class NOTGate {
 		}
 	}
 	select(): void {
-		if (global.WIRE_BUILDER['step'] !== 0) {
+		if (global.wire_builder['step'] !== 0) {
 			wire_manager.reset_wire_builder();
 		}
 		global.selected_id = this.elm.id;
@@ -453,7 +453,7 @@ class NOTGate {
 		}
 	}
 	set_flip(flip: number): void {
-		this.BUILD_ELEMENT = true;
+		this.build_element_flag = true;
 		wire_manager.reset_wire_builder();
 		this.unanchor_wires();
 		this.push_history();
@@ -464,7 +464,7 @@ class NOTGate {
 		this.anchor_wires();
 	}
 	set_rotation(rotation: number): void {
-		this.BUILD_ELEMENT = true;
+		this.build_element_flag = true;
 		wire_manager.reset_wire_builder();
 		this.unanchor_wires();
 		this.push_history();
@@ -475,12 +475,12 @@ class NOTGate {
 		this.anchor_wires();
 	}
 	push_history(): void {
-		if (this.INITIALIZED) {
-			global.HISTORY_MANAGER['packet'].push(engine_functions.history_snapshot());
+		if (this.initialized) {
+			global.history_manager['packet'].push(engine_functions.history_snapshot());
 		}
 	}
 	build_element(): void {
-		if (this.BUILD_ELEMENT || global.signal_build_element) {
+		if (this.build_element_flag || global.signal_build_element) {
 			let cache_0: number = 1.3 * this.x_space;
 			let cache_1: number = 1.3 * this.y_space;
 			let cache_2: number = 1.6 * this.x_space;
@@ -499,11 +499,11 @@ class NOTGate {
 			this.connect1_y = this.c_y - cache_5 * global.sine(this.theta);
 			this.connect2_x = this.c_x + cache_2 * global.cosine(this.theta);
 			this.connect2_y = this.c_y + cache_3 * global.sine(this.theta);
-			this.BUILD_ELEMENT = false;
+			this.build_element_flag = false;
 		}
 	}
 	resize(): void {
-		if (this.BUILD_ELEMENT || global.signal_build_element) {
+		if (this.build_element_flag || global.signal_build_element) {
 			if (this.bounds.anchored) {
 				if (this.elm.consistent()) {
 					this.bounds.set_center2(
@@ -568,7 +568,7 @@ class NOTGate {
 				this.text_paint.set_color(global.ELEMENT_COLOR);
 			}
 		} else {
-			if (this.MULTI_SELECTED) {
+			if (this.multi_selected) {
 				this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
 				this.point_paint.set_color(global.MULTI_SELECTED_COLOR);
 				this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
@@ -586,7 +586,7 @@ class NOTGate {
 		this.wire_reference_maintenance();
 		this.recolor();
 		this.resize();
-		if (this.MULTI_SELECTED) {
+		if (this.multi_selected) {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
 		if (
@@ -614,8 +614,8 @@ class NOTGate {
 				canvas.draw_rect2(this.bounds, this.line_paint);
 			}
 			if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
-				this.ANGLE = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-				if ((this.ANGLE > 170 && this.ANGLE < 190) || (this.ANGLE > -10 && this.ANGLE < 10)) {
+				this.angle = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+				if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 					canvas.draw_text(
 						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['High Voltage'])).replace('{UNIT}', this.elm.properties['units']),
 						this.c_x,
@@ -628,7 +628,7 @@ class NOTGate {
 						this.bounds.bottom - this.bounds.get_height() * 0.1,
 						this.text_paint
 					);
-				} else if ((this.ANGLE > 260 && this.ANGLE < 280) || (this.ANGLE > 80 && this.ANGLE < 100)) {
+				} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
 					canvas.rotate(this.c_x, this.c_y, -90);
 					canvas.draw_text(
 						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['High Voltage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -647,11 +647,11 @@ class NOTGate {
 			}
 			if (!global.MOBILE_MODE) {
 				if (
-					global.WIRE_BUILDER['step'] === 0 &&
+					global.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
 					global.NODE_HINTS &&
-					!multi_select_manager.MULTI_SELECT &&
-					!this.MULTI_SELECTED &&
+					!multi_select_manager.multi_select &&
+					!this.multi_selected &&
 					!global.signal_add_element &&
 					!global.signal_history_lock &&
 					!global.picture_request_flag &&
@@ -689,11 +689,11 @@ class NOTGate {
 		if (!global.not_null(this.circle_buffer)) {
 			this.circle_buffer = [];
 		}
-		if (!global.not_null(this.BUILD_ELEMENT)) {
-			this.BUILD_ELEMENT = false;
+		if (!global.not_null(this.build_element_flag)) {
+			this.build_element_flag = false;
 		}
-		if (!global.not_null(this.ANGLE)) {
-			this.ANGLE = 0;
+		if (!global.not_null(this.angle)) {
+			this.angle = 0;
 		}
 		if (!global.not_null(this.indexer)) {
 			this.indexer = 0;

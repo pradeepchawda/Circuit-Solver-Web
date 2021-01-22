@@ -1,6 +1,6 @@
 'use strict';
 class ZoomWindow {
-	public PADDING: number;
+	public readonly PADDING: number;
 	public line_paint: Paint;
 	public bounds_paint: Paint;
 	public fill_paint: Paint;

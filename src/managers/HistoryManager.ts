@@ -7,9 +7,9 @@ class HistoryManager {
 		this.history_index = -1;
 	}
 	watch(): void {
-		if (global.HISTORY_MANAGER['packet'].length > 0) {
-			this.push(global.HISTORY_MANAGER['packet'][0]);
-			global.HISTORY_MANAGER['packet'].splice(0, 1);
+		if (global.history_manager['packet'].length > 0) {
+			this.push(global.history_manager['packet'][0]);
+			global.history_manager['packet'].splice(0, 1);
 		}
 	}
 	push(packet: string): void {

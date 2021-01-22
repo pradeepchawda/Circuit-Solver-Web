@@ -16,7 +16,7 @@ class GraphWindow {
         this.width = 1;
         this.height = 1;
         this.trim = 1;
-        this.PADDING = global.canvas_stroke_width_5;
+        this.padding = global.canvas_stroke_width_5;
         if (global.MOBILE_MODE) {
             this.BUTTON_WIDTH_RATIO = 0.12;
             this.BUTTON_HEIGHT_RATIO = 0.08;
@@ -142,10 +142,10 @@ class GraphWindow {
     load_axis() {
         this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
         this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-        let left = this.bounds.left + this.PADDING;
-        let top = this.bounds.top + 2 * this.PADDING;
-        let right = this.bounds.right - this.PADDING;
-        let bottom = this.bounds.bottom - this.PADDING;
+        let left = this.bounds.left + this.padding;
+        let top = this.bounds.top + 2 * this.padding;
+        let right = this.bounds.right - this.padding;
+        let bottom = this.bounds.bottom - this.padding;
         this.inner_bounds = new RectF(left, top, right, bottom);
         this.trim = (this.bounds.get_width() - this.inner_bounds.get_width()) * 0.5;
         this.width = this.inner_bounds.get_width();
@@ -163,7 +163,7 @@ class GraphWindow {
         }
     }
     resize_window() {
-        this.PADDING = global.canvas_stroke_width_5;
+        this.padding = global.canvas_stroke_width_5;
         this.bounds.left = view_port.left;
         this.bounds.right = view_port.right;
         this.bounds.top = menu_bar.graph_button.bottom + 2 * global.canvas_stroke_width_3;
@@ -323,7 +323,7 @@ class GraphWindow {
                 this.line_buffer[index++] = Array(this.x_axis[temp].x, this.x_axis[temp].y, this.x_axis[temp].x, this.x_axis[temp].y - this.inner_bounds.get_width() * 0.01);
             }
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-            if (scope_manager.ENTRY.length > 0) {
+            if (scope_manager.entry.length > 0) {
                 canvas.draw_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX), this.bounds.get_center_x() - 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_a_paint);
                 if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_a.trace.length) {
                     if (this.graph_trace_a.get_value(this.meter_hover_index)[1] !== '') {
@@ -338,7 +338,7 @@ class GraphWindow {
                     }
                 }
             }
-            if (scope_manager.ENTRY.length > 1) {
+            if (scope_manager.entry.length > 1) {
                 canvas.draw_text(scope_manager.get_scope_name(this.SCOPE_1_INDEX), this.bounds.get_center_x(), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_b_paint);
                 if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_b.trace.length) {
                     if (this.graph_trace_b.get_value(this.meter_hover_index)[1] !== '') {
@@ -353,7 +353,7 @@ class GraphWindow {
                     }
                 }
             }
-            if (scope_manager.ENTRY.length > 2) {
+            if (scope_manager.entry.length > 2) {
                 canvas.draw_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX), this.bounds.get_center_x() + 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX))), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_c_paint);
                 if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_c.trace.length) {
                     if (this.graph_trace_c.get_value(this.meter_hover_index)[1] !== '') {
@@ -368,7 +368,7 @@ class GraphWindow {
                     }
                 }
             }
-            if (scope_manager.ENTRY.length > 0) {
+            if (scope_manager.entry.length > 0) {
                 if (this.meter_hover_index > -1 &&
                     (this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)) {
                     canvas.draw_text(this.time_axis_value + 's', this.inner_bounds.right -
