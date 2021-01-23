@@ -34,11 +34,11 @@ class NPNBipolarJunctionTransistor {
 	public is_translating: boolean;
 	public wire_reference: Array<WIRE_REFERENCE_T>;
 	public simulation_id: number;
-	public GAMMA: number;
-	public KAPPA: number;
-	public GMIN: number;
-	public GMIN_START: number;
-	public DAMPING_SAFETY_FACTOR: number;
+	public gamma: number;
+	public kappa: number;
+	public gmin: number;
+	public gmin_start: number;
+	public damping_safety_factor: number;
 	public indexer: number;
 	public m_x: number;
 	public m_y: number;
@@ -139,11 +139,11 @@ class NPNBipolarJunctionTransistor {
 		this.build_element();
 		this.wire_reference = [];
 		this.simulation_id = 0;
-		this.GAMMA = 0.12;
-		this.KAPPA = 0.414;
-		this.GMIN = 1e-9;
-		this.GMIN_START = 12;
-		this.DAMPING_SAFETY_FACTOR = 0.97;
+		this.gamma = 0.12;
+		this.kappa = 0.414;
+		this.gmin = 1e-9;
+		this.gmin_start = 12;
+		this.damping_safety_factor = 0.97;
 		this.indexer = 0;
 		this.m_x = 0;
 		this.m_y = 0;
@@ -223,10 +223,10 @@ class NPNBipolarJunctionTransistor {
 				let next_vbe: number = engine_functions.get_voltage(this.elm.n3, this.elm.n2);
 				let vcrit: number = this.calculate_vcrit();
 				let vbe: number = 0;
-				if (next_vbe > this.DAMPING_SAFETY_FACTOR * vcrit) {
-					vbe = global.log_damping(next_vbe, this.elm.properties['Vbe'], this.GAMMA, this.KAPPA);
-				} else if (next_vbe < -this.DAMPING_SAFETY_FACTOR * vcrit) {
-					vbe = global.log_damping(next_vbe, this.elm.properties['Vbe'], this.GAMMA, this.KAPPA);
+				if (next_vbe > this.damping_safety_factor * vcrit) {
+					vbe = global.log_damping(next_vbe, this.elm.properties['Vbe'], this.gamma, this.kappa);
+				} else if (next_vbe < -this.damping_safety_factor * vcrit) {
+					vbe = global.log_damping(next_vbe, this.elm.properties['Vbe'], this.gamma, this.kappa);
 				} else {
 					vbe = next_vbe;
 				}
@@ -234,16 +234,16 @@ class NPNBipolarJunctionTransistor {
 				this.elm.properties['Vbe'] = vbe;
 				let next_vbc: number = engine_functions.get_voltage(this.elm.n3, this.elm.n1);
 				let vbc: number = 0;
-				if (next_vbc > this.DAMPING_SAFETY_FACTOR * vcrit) {
-					vbc = global.log_damping(next_vbc, this.elm.properties['Vbc'], this.GAMMA, this.KAPPA);
-				} else if (next_vbc < -this.DAMPING_SAFETY_FACTOR * vcrit) {
-					vbc = global.log_damping(next_vbc, this.elm.properties['Vbc'], this.GAMMA, this.KAPPA);
+				if (next_vbc > this.damping_safety_factor * vcrit) {
+					vbc = global.log_damping(next_vbc, this.elm.properties['Vbc'], this.gamma, this.kappa);
+				} else if (next_vbc < -this.damping_safety_factor * vcrit) {
+					vbc = global.log_damping(next_vbc, this.elm.properties['Vbc'], this.gamma, this.kappa);
 				} else {
 					vbc = next_vbc;
 				}
 				vbc = global.limit(vbc, -vcrit, vcrit);
 				this.elm.properties['Vbc'] = vbc;
-				this.gmin_step(this.GMIN_START, this.get_npnbjt_error());
+				this.gmin_step(this.gmin_start, this.get_npnbjt_error());
 				let forward_alpha: number = this.elm.properties['Forward Beta'] / (1 + this.elm.properties['Forward Beta']);
 				let reverse_alpha: number = this.elm.properties['Reverse Beta'] / (1 + this.elm.properties['Reverse Beta']);
 				this.elm.properties['g_ee'] = (this.elm.properties['Saturation Current'] / global.vt) * Math.exp(this.elm.properties['Vbe'] / global.vt);
@@ -262,9 +262,9 @@ class NPNBipolarJunctionTransistor {
 		}
 	}
 	gmin_step(step: number, error: number): void {
-		this.GMIN = global.gmin_default;
+		this.gmin = global.gmin_default;
 		if (simulation_manager.iterator > step && error > global.settings.TOLERANCE) {
-			this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.iterator / global.settings.ITL4)));
+			this.gmin = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.iterator / global.settings.ITL4)));
 		}
 	}
 	get_vertices(): Array<number> {
@@ -938,17 +938,17 @@ class NPNBipolarJunctionTransistor {
 		}
 	}
 	patch(): void {
-		if (!global.not_null(this.GMIN)) {
-			this.GMIN = 1e-9;
+		if (!global.not_null(this.gmin)) {
+			this.gmin = 1e-9;
 		}
-		if (!global.not_null(this.GMIN_START)) {
-			this.GMIN_START = 12;
+		if (!global.not_null(this.gmin_start)) {
+			this.gmin_start = 12;
 		}
-		if (!global.not_null(this.GAMMA)) {
-			this.GAMMA = 0.8;
+		if (!global.not_null(this.gamma)) {
+			this.gamma = 0.8;
 		}
-		if (!global.not_null(this.KAPPA)) {
-			this.KAPPA = 0.414;
+		if (!global.not_null(this.kappa)) {
+			this.kappa = 0.414;
 		}
 		if (!global.not_null(this.line_buffer)) {
 			this.line_buffer = [];
@@ -971,20 +971,20 @@ class NPNBipolarJunctionTransistor {
 		if (!global.not_null(this.multi_selected)) {
 			this.multi_selected = false;
 		}
-		if (!global.not_null(this.DAMPING_SAFETY_FACTOR)) {
-			this.DAMPING_SAFETY_FACTOR = 0.97;
+		if (!global.not_null(this.damping_safety_factor)) {
+			this.damping_safety_factor = 0.97;
 		}
-		if (this.GMIN !== 1e-9) {
-			this.GMIN = 1e-9;
+		if (this.gmin !== 1e-9) {
+			this.gmin = 1e-9;
 		}
-		if (this.GMIN_START !== 12) {
-			this.GMIN_START = 12;
+		if (this.gmin_start !== 12) {
+			this.gmin_start = 12;
 		}
-		if (this.GAMMA !== 0.8) {
-			this.GAMMA = 0.8;
+		if (this.gamma !== 0.8) {
+			this.gamma = 0.8;
 		}
-		if (this.KAPPA !== 0.414) {
-			this.KAPPA = 0.414;
+		if (this.kappa !== 0.414) {
+			this.kappa = 0.414;
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
