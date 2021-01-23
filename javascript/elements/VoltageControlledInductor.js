@@ -805,6 +805,12 @@ class VoltageControlledInductor {
         if (!global.not_null(this.vcl_7)) {
             this.vcl_7 = new PointF(0, 0);
         }
+        if (!global.not_null(this.initialized)) {
+            this.initialized = false;
+        }
+        if (!global.not_null(this.multi_selected)) {
+            this.multi_selected = false;
+        }
     }
     time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */

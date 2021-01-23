@@ -71,11 +71,11 @@ class ZenerDiode {
         this.build_element();
         this.wire_reference = [];
         this.simulation_id = 0;
-        this.GAMMA = 0.12;
-        this.KAPPA = 0.414;
-        this.GMIN = 1e-9;
-        this.GMIN_START = 12;
-        this.DAMPING_SAFETY_FACTOR = 0.97;
+        this.gamma = 0.12;
+        this.kappa = 0.414;
+        this.gmin = 1e-9;
+        this.gmin_start = 12;
+        this.damping_safety_factor = 0.97;
         this.ZENER_MARGIN_SAFETY_FACTOR = 0.85;
         this.indexer = 0;
         this.m_x = 0;
@@ -101,7 +101,7 @@ class ZenerDiode {
     }
     stamp() {
         if (this.elm.consistent()) {
-            engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.GMIN);
+            engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.gmin);
             engine_functions.stamp_current(this.elm.n1, this.elm.n2, this.elm.properties['Equivalent Current']);
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, this.elm.properties['Resistance']);
         }
@@ -136,19 +136,19 @@ class ZenerDiode {
                 let next_voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
                 let vcrit = this.calculate_vcrit();
                 let diode_voltage = 0;
-                if (next_voltage > this.DAMPING_SAFETY_FACTOR * vcrit) {
-                    diode_voltage = global.log_damping(next_voltage, this.elm.properties['Voltage'], this.GAMMA, this.KAPPA);
+                if (next_voltage > this.damping_safety_factor * vcrit) {
+                    diode_voltage = global.log_damping(next_voltage, this.elm.properties['Voltage'], this.gamma, this.kappa);
                 }
-                else if (next_voltage < -this.DAMPING_SAFETY_FACTOR * this.elm.properties['Zener Voltage']) {
-                    diode_voltage = global.log_damping(next_voltage, this.elm.properties['Voltage'], this.GAMMA, this.KAPPA);
+                else if (next_voltage < -this.damping_safety_factor * this.elm.properties['Zener Voltage']) {
+                    diode_voltage = global.log_damping(next_voltage, this.elm.properties['Voltage'], this.gamma, this.kappa);
                 }
                 else {
                     diode_voltage = next_voltage;
                 }
                 diode_voltage = global.limit(diode_voltage, -this.elm.properties['Zener Voltage'], vcrit);
-                this.gmin_step(this.GMIN_START, this.get_zener_error());
+                this.gmin_step(this.gmin_start, this.get_zener_error());
                 this.elm.properties['Voltage'] = diode_voltage;
-                let adjusted_zener_voltage = this.DAMPING_SAFETY_FACTOR * this.elm.properties['Zener Voltage'] - this.ZENER_MARGIN_SAFETY_FACTOR;
+                let adjusted_zener_voltage = this.damping_safety_factor * this.elm.properties['Zener Voltage'] - this.ZENER_MARGIN_SAFETY_FACTOR;
                 if (diode_voltage >= 0) {
                     this.elm.properties['Resistance'] =
                         1.0 /
@@ -169,9 +169,9 @@ class ZenerDiode {
         }
     }
     gmin_step(step, error) {
-        this.GMIN = global.gmin_default;
+        this.gmin = global.gmin_default;
         if (simulation_manager.iterator > step && error > global.settings.TOLERANCE) {
-            this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.iterator / global.settings.ITL4)));
+            this.gmin = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.iterator / global.settings.ITL4)));
         }
     }
     get_vertices() {
@@ -713,23 +713,17 @@ class ZenerDiode {
         }
     }
     patch() {
-        if (!global.not_null(this.GMIN)) {
-            this.GMIN = 1e-9;
+        if (!global.not_null(this.gmin)) {
+            this.gmin = 1e-9;
         }
-        if (!global.not_null(this.GMIN_START)) {
-            this.GMIN_START = 12;
+        if (!global.not_null(this.gmin_start)) {
+            this.gmin_start = 12;
         }
-        if (this.GMIN !== 1e-9) {
-            this.GMIN = 1e-9;
+        if (!global.not_null(this.gamma)) {
+            this.gamma = 0.8;
         }
-        if (this.GMIN_START !== 12) {
-            this.GMIN_START = 12;
-        }
-        if (this.GAMMA !== 0.8) {
-            this.GAMMA = 0.8;
-        }
-        if (this.KAPPA !== 0.414) {
-            this.KAPPA = 0.414;
+        if (!global.not_null(this.kappa)) {
+            this.kappa = 0.414;
         }
         if (!global.not_null(this.line_buffer)) {
             this.line_buffer = [];
@@ -745,6 +739,30 @@ class ZenerDiode {
         }
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
+        }
+        if (!global.not_null(this.initialized)) {
+            this.initialized = false;
+        }
+        if (!global.not_null(this.multi_selected)) {
+            this.multi_selected = false;
+        }
+        if (!global.not_null(this.damping_safety_factor)) {
+            this.damping_safety_factor = 0.97;
+        }
+        if (!global.not_null(this.ZENER_MARGIN_SAFETY_FACTOR)) {
+            this.ZENER_MARGIN_SAFETY_FACTOR = 0.85;
+        }
+        if (this.gmin !== 1e-9) {
+            this.gmin = 1e-9;
+        }
+        if (this.gmin_start !== 12) {
+            this.gmin_start = 12;
+        }
+        if (this.gamma !== 0.8) {
+            this.gamma = 0.8;
+        }
+        if (this.kappa !== 0.414) {
+            this.kappa = 0.414;
         }
     }
     time_data() {

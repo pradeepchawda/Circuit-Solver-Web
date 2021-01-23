@@ -87,10 +87,10 @@ class PChannelMOSFET {
         this.build_element();
         this.wire_reference = [];
         this.simulation_id = 0;
-        this.GAMMA = 0.12;
-        this.KAPPA = 0.414;
-        this.GMIN = 1e-9;
-        this.GMIN_START = 12;
+        this.gamma = 0.12;
+        this.kappa = 0.414;
+        this.gmin = 1e-9;
+        this.gmin_start = 12;
         this.indexer = 0;
         this.m_x = 0;
         this.m_y = 0;
@@ -131,7 +131,7 @@ class PChannelMOSFET {
             if (this.elm.properties['Mosfet Mode'] !== 0) {
                 engine_functions.stamp_vccs(this.elm.n1, this.elm.n3, this.elm.n2, this.elm.n1, this.elm.properties['gm']);
             }
-            engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.GMIN);
+            engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.gmin);
             engine_functions.stamp_current(this.elm.n1, this.elm.n2, this.elm.properties['Io']);
             engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, 1.0 / this.elm.properties['gsd']);
         }
@@ -162,9 +162,9 @@ class PChannelMOSFET {
             if (this.elm.consistent()) {
                 this.elm.properties['Last Vsg'] = global.copy(this.elm.properties['Vsg']);
                 this.elm.properties['Last Io'] = global.copy(this.elm.properties['Io']);
-                this.elm.properties['Vsg'] = global.log_damping(engine_functions.get_voltage(this.elm.n1, this.elm.n3), this.elm.properties['Vsg'], this.GAMMA, this.KAPPA);
-                this.elm.properties['Vsd'] = global.log_damping(engine_functions.get_voltage(this.elm.n1, this.elm.n2), this.elm.properties['Vsd'], this.GAMMA, this.KAPPA);
-                this.gmin_step(this.GMIN_START, this.get_pmosfet_error());
+                this.elm.properties['Vsg'] = global.log_damping(engine_functions.get_voltage(this.elm.n1, this.elm.n3), this.elm.properties['Vsg'], this.gamma, this.kappa);
+                this.elm.properties['Vsd'] = global.log_damping(engine_functions.get_voltage(this.elm.n1, this.elm.n2), this.elm.properties['Vsd'], this.gamma, this.kappa);
+                this.gmin_step(this.gmin_start, this.get_pmosfet_error());
                 let kp = 0.5 * this.elm.properties['W/L Ratio'] * -this.elm.properties["K'p"];
                 if (this.elm.properties['Vsg'] <= -this.elm.properties['VTP']) {
                     this.elm.properties['Mosfet Mode'] = 0;
@@ -194,9 +194,9 @@ class PChannelMOSFET {
         }
     }
     gmin_step(step, error) {
-        this.GMIN = global.gmin_default;
+        this.gmin = global.gmin_default;
         if (simulation_manager.iterator > step && error > global.settings.TOLERANCE) {
-            this.GMIN = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.iterator / global.settings.ITL4)));
+            this.gmin = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.iterator / global.settings.ITL4)));
         }
     }
     get_vertices() {
@@ -854,23 +854,17 @@ class PChannelMOSFET {
         }
     }
     patch() {
-        if (!global.not_null(this.GMIN)) {
-            this.GMIN = 1e-9;
+        if (!global.not_null(this.gmin)) {
+            this.gmin = 1e-9;
         }
-        if (!global.not_null(this.GMIN_START)) {
-            this.GMIN_START = 12;
+        if (!global.not_null(this.gmin_start)) {
+            this.gmin_start = 12;
         }
-        if (this.GMIN !== 1e-9) {
-            this.GMIN = 1e-9;
+        if (!global.not_null(this.gamma)) {
+            this.gamma = 0.8;
         }
-        if (this.GMIN_START !== 12) {
-            this.GMIN_START = 12;
-        }
-        if (this.GAMMA !== 0.8) {
-            this.GAMMA = 0.8;
-        }
-        if (this.KAPPA !== 0.414) {
-            this.KAPPA = 0.414;
+        if (!global.not_null(this.kappa)) {
+            this.kappa = 0.414;
         }
         if (!global.not_null(this.line_buffer)) {
             this.line_buffer = [];
@@ -886,6 +880,24 @@ class PChannelMOSFET {
         }
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
+        }
+        if (!global.not_null(this.initialized)) {
+            this.initialized = false;
+        }
+        if (!global.not_null(this.multi_selected)) {
+            this.multi_selected = false;
+        }
+        if (this.gmin !== 1e-9) {
+            this.gmin = 1e-9;
+        }
+        if (this.gmin_start !== 12) {
+            this.gmin_start = 12;
+        }
+        if (this.gamma !== 0.8) {
+            this.gamma = 0.8;
+        }
+        if (this.kappa !== 0.414) {
+            this.kappa = 0.414;
         }
     }
     time_data() {

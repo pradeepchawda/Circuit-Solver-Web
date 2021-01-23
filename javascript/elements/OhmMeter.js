@@ -729,6 +729,27 @@ class OhmMeter {
         if (!global.not_null(this.indexer)) {
             this.indexer = 0;
         }
+        if (!global.not_null(this.initialized)) {
+            this.initialized = false;
+        }
+        if (!global.not_null(this.x_axis_length)) {
+            this.x_axis_length = 600;
+        }
+        if (!global.not_null(this.y_axis_length)) {
+            this.y_axis_length = 100;
+        }
+        if (!global.not_null(this.ratio)) {
+            this.ratio = 0.75;
+        }
+        if (!global.not_null(this.multi_selected)) {
+            this.multi_selected = false;
+        }
+        if (!global.not_null(this.resize_meter_trace)) {
+            this.resize_meter_trace = false;
+        }
+        if (!global.not_null(this.scope_index_check)) {
+            this.scope_index_check = -1;
+        }
     }
     time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */

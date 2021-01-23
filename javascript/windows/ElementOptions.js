@@ -998,8 +998,7 @@ class ElementOptions {
         if (global.selected_type === global.TYPE_VOLTMETER) {
             index = engine_functions.get_voltmeter(global.selected_id);
             if (index < voltmeters.length) {
-                if (!scope_manager.find_entry(voltmeters[index].elm.id, voltmeters[index].elm
-                    .type)) {
+                if (!scope_manager.find_entry(voltmeters[index].elm.id, voltmeters[index].elm.type)) {
                     scope_manager.push(voltmeters[index].elm.id, voltmeters[index].elm.type, voltmeters[index].elm.properties['tag']);
                     global.history_manager['packet'].push(engine_functions.history_snapshot());
                 }
@@ -1012,8 +1011,7 @@ class ElementOptions {
         else if (global.selected_type === global.TYPE_OHMMETER) {
             index = engine_functions.get_ohmmeter(global.selected_id);
             if (index < ohmmeters.length) {
-                if (!scope_manager.find_entry(ohmmeters[index].elm.id, ohmmeters[index].elm
-                    .type)) {
+                if (!scope_manager.find_entry(ohmmeters[index].elm.id, ohmmeters[index].elm.type)) {
                     scope_manager.push(ohmmeters[index].elm.id, ohmmeters[index].elm.type, ohmmeters[index].elm.properties['tag']);
                     global.history_manager['packet'].push(engine_functions.history_snapshot());
                 }
@@ -1026,8 +1024,7 @@ class ElementOptions {
         else if (global.selected_type === global.TYPE_AMMETER) {
             index = engine_functions.get_ammeter(global.selected_id);
             if (index < ammeters.length) {
-                if (!scope_manager.find_entry(ammeters[index].elm.id, ammeters[index].elm
-                    .type)) {
+                if (!scope_manager.find_entry(ammeters[index].elm.id, ammeters[index].elm.type)) {
                     scope_manager.push(ammeters[index].elm.id, ammeters[index].elm.type, ammeters[index].elm.properties['tag']);
                     global.history_manager['packet'].push(engine_functions.history_snapshot());
                 }
@@ -1040,8 +1037,7 @@ class ElementOptions {
         else if (global.selected_type === global.TYPE_WATTMETER) {
             index = engine_functions.get_wattmeter(global.selected_id);
             if (index < wattmeters.length) {
-                if (!scope_manager.find_entry(wattmeters[index].elm.id, wattmeters[index].elm
-                    .type)) {
+                if (!scope_manager.find_entry(wattmeters[index].elm.id, wattmeters[index].elm.type)) {
                     scope_manager.push(wattmeters[index].elm.id, wattmeters[index].elm.type, wattmeters[index].elm.properties['tag']);
                     global.history_manager['packet'].push(engine_functions.history_snapshot());
                 }
