@@ -30,78 +30,78 @@ class Global {
 	public 'virtual_canvas_id': number;
 	public readonly 'TYPE_META_DATA': number;
 	public 'type_counter': number;
-/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    public readonly TYPE_RESISTOR : number;
-    public readonly TYPE_CAPACITOR : number;
-    public readonly TYPE_INDUCTOR : number;
-    public readonly TYPE_GROUND : number;
-    public readonly TYPE_DCSOURCE : number;
-    public readonly TYPE_DCCURRENT : number;
-    public readonly TYPE_ACSOURCE : number;
-    public readonly TYPE_ACCURRENT : number;
-    public readonly TYPE_SQUAREWAVE : number;
-    public readonly TYPE_SAW : number;
-    public readonly TYPE_TRI : number;
-    public readonly TYPE_CONSTANT : number;
-    public readonly TYPE_WIRE : number;
-    public readonly TYPE_NET : number;
-    public readonly TYPE_NOTE : number;
-    public readonly TYPE_RAIL : number;
-    public readonly TYPE_VOLTMETER : number;
-    public readonly TYPE_OHMMETER : number;
-    public readonly TYPE_AMMETER : number;
-    public readonly TYPE_WATTMETER : number;
-    public readonly TYPE_FUSE : number;
-    public readonly TYPE_SPST : number;
-    public readonly TYPE_SPDT : number;
-    public readonly TYPE_NOT : number;
-    public readonly TYPE_DIODE : number;
-    public readonly TYPE_LED : number;
-    public readonly TYPE_ZENER : number;
-    public readonly TYPE_POTENTIOMETER : number;
-    public readonly TYPE_AND : number;
-    public readonly TYPE_OR : number;
-    public readonly TYPE_NAND : number;
-    public readonly TYPE_NOR : number;
-    public readonly TYPE_XOR : number;
-    public readonly TYPE_XNOR : number;
-    public readonly TYPE_DFF : number;
-    public readonly TYPE_VSAT : number;
-    public readonly TYPE_ADD : number;
-    public readonly TYPE_SUB : number;
-    public readonly TYPE_MUL : number;
-    public readonly TYPE_DIV : number;
-    public readonly TYPE_GAIN : number;
-    public readonly TYPE_ABS : number;
-    public readonly TYPE_VCSW : number;
-    public readonly TYPE_VCVS : number;
-    public readonly TYPE_VCCS : number;
-    public readonly TYPE_CCCS : number;
-    public readonly TYPE_CCVS : number;
-    public readonly TYPE_OPAMP : number;
-    public readonly TYPE_NMOS : number;
-    public readonly TYPE_PMOS : number;
-    public readonly TYPE_NPN : number;
-    public readonly TYPE_PNP : number;
-    public readonly TYPE_ADC : number;
-    public readonly TYPE_DAC : number;
-    public readonly TYPE_SAH : number;
-    public readonly TYPE_PWM : number;
-    public readonly TYPE_INTEGRATOR : number;
-    public readonly TYPE_DIFFERENTIATOR : number;
-    public readonly TYPE_LPF : number;
-    public readonly TYPE_HPF : number;
-    public readonly TYPE_REL : number;
-    public readonly TYPE_PID : number;
-    public readonly TYPE_LUT : number;
-    public readonly TYPE_VCR : number;
-    public readonly TYPE_VCCA : number;
-    public readonly TYPE_VCL : number;
-    public readonly TYPE_GRT : number;
-    public readonly TYPE_TPTZ : number;
-    public readonly TYPE_TRAN : number;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+	/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
+	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+	public readonly TYPE_RESISTOR: number;
+	public readonly TYPE_CAPACITOR: number;
+	public readonly TYPE_INDUCTOR: number;
+	public readonly TYPE_GROUND: number;
+	public readonly TYPE_DCSOURCE: number;
+	public readonly TYPE_DCCURRENT: number;
+	public readonly TYPE_ACSOURCE: number;
+	public readonly TYPE_ACCURRENT: number;
+	public readonly TYPE_SQUAREWAVE: number;
+	public readonly TYPE_SAW: number;
+	public readonly TYPE_TRI: number;
+	public readonly TYPE_CONSTANT: number;
+	public readonly TYPE_WIRE: number;
+	public readonly TYPE_NET: number;
+	public readonly TYPE_NOTE: number;
+	public readonly TYPE_RAIL: number;
+	public readonly TYPE_VOLTMETER: number;
+	public readonly TYPE_OHMMETER: number;
+	public readonly TYPE_AMMETER: number;
+	public readonly TYPE_WATTMETER: number;
+	public readonly TYPE_FUSE: number;
+	public readonly TYPE_SPST: number;
+	public readonly TYPE_SPDT: number;
+	public readonly TYPE_NOT: number;
+	public readonly TYPE_DIODE: number;
+	public readonly TYPE_LED: number;
+	public readonly TYPE_ZENER: number;
+	public readonly TYPE_POTENTIOMETER: number;
+	public readonly TYPE_AND: number;
+	public readonly TYPE_OR: number;
+	public readonly TYPE_NAND: number;
+	public readonly TYPE_NOR: number;
+	public readonly TYPE_XOR: number;
+	public readonly TYPE_XNOR: number;
+	public readonly TYPE_DFF: number;
+	public readonly TYPE_VSAT: number;
+	public readonly TYPE_ADD: number;
+	public readonly TYPE_SUB: number;
+	public readonly TYPE_MUL: number;
+	public readonly TYPE_DIV: number;
+	public readonly TYPE_GAIN: number;
+	public readonly TYPE_ABS: number;
+	public readonly TYPE_VCSW: number;
+	public readonly TYPE_VCVS: number;
+	public readonly TYPE_VCCS: number;
+	public readonly TYPE_CCCS: number;
+	public readonly TYPE_CCVS: number;
+	public readonly TYPE_OPAMP: number;
+	public readonly TYPE_NMOS: number;
+	public readonly TYPE_PMOS: number;
+	public readonly TYPE_NPN: number;
+	public readonly TYPE_PNP: number;
+	public readonly TYPE_ADC: number;
+	public readonly TYPE_DAC: number;
+	public readonly TYPE_SAH: number;
+	public readonly TYPE_PWM: number;
+	public readonly TYPE_INTEGRATOR: number;
+	public readonly TYPE_DIFFERENTIATOR: number;
+	public readonly TYPE_LPF: number;
+	public readonly TYPE_HPF: number;
+	public readonly TYPE_REL: number;
+	public readonly TYPE_PID: number;
+	public readonly TYPE_LUT: number;
+	public readonly TYPE_VCR: number;
+	public readonly TYPE_VCCA: number;
+	public readonly TYPE_VCL: number;
+	public readonly TYPE_GRT: number;
+	public readonly TYPE_TPTZ: number;
+	public readonly TYPE_TRAN: number;
+	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	public readonly 'ROTATION_0': number;
 	public readonly 'ROTATION_90': number;
 	public readonly 'ROTATION_180': number;
@@ -215,147 +215,78 @@ class Global {
 	public readonly 'PROPERTY_LIMIT_MAX': number;
 	public readonly 'WIRE_REFERENCE': WIRE_REFERENCE_T;
 	public readonly 'PROPERTY_META_DATA': PROPERTY_META_DATA_T;
-/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+	/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
+	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public readonly PROPERTY_RESISTOR: PROPERTY_RESISTOR_T;
-
 	public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T;
-
 	public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T;
-
 	public readonly PROPERTY_GROUND: PROPERTY_GROUND_T;
-
 	public readonly PROPERTY_DCSOURCE: PROPERTY_DCSOURCE_T;
-
 	public readonly PROPERTY_DCCURRENT: PROPERTY_DCCURRENT_T;
-
 	public readonly PROPERTY_ACSOURCE: PROPERTY_ACSOURCE_T;
-
 	public readonly PROPERTY_ACCURRENT: PROPERTY_ACCURRENT_T;
-
 	public readonly PROPERTY_SQUAREWAVE: PROPERTY_SQUAREWAVE_T;
-
 	public readonly PROPERTY_SAW: PROPERTY_SAW_T;
-
 	public readonly PROPERTY_TRI: PROPERTY_TRI_T;
-
 	public readonly PROPERTY_CONSTANT: PROPERTY_CONSTANT_T;
-
 	public readonly PROPERTY_WIRE: PROPERTY_WIRE_T;
-
 	public readonly PROPERTY_NET: PROPERTY_NET_T;
-
 	public readonly PROPERTY_NOTE: PROPERTY_NOTE_T;
-
 	public readonly PROPERTY_RAIL: PROPERTY_RAIL_T;
-
 	public readonly PROPERTY_VOLTMETER: PROPERTY_VOLTMETER_T;
-
 	public readonly PROPERTY_OHMMETER: PROPERTY_OHMMETER_T;
-
 	public readonly PROPERTY_AMMETER: PROPERTY_AMMETER_T;
-
 	public readonly PROPERTY_WATTMETER: PROPERTY_WATTMETER_T;
-
 	public readonly PROPERTY_FUSE: PROPERTY_FUSE_T;
-
 	public readonly PROPERTY_SPST: PROPERTY_SPST_T;
-
 	public readonly PROPERTY_SPDT: PROPERTY_SPDT_T;
-
 	public readonly PROPERTY_NOT: PROPERTY_NOT_T;
-
 	public readonly PROPERTY_DIODE: PROPERTY_DIODE_T;
-
 	public readonly PROPERTY_LED: PROPERTY_LED_T;
-
 	public readonly PROPERTY_ZENER: PROPERTY_ZENER_T;
-
 	public readonly PROPERTY_POTENTIOMETER: PROPERTY_POTENTIOMETER_T;
-
 	public readonly PROPERTY_AND: PROPERTY_AND_T;
-
 	public readonly PROPERTY_OR: PROPERTY_OR_T;
-
 	public readonly PROPERTY_NAND: PROPERTY_NAND_T;
-
 	public readonly PROPERTY_NOR: PROPERTY_NOR_T;
-
 	public readonly PROPERTY_XOR: PROPERTY_XOR_T;
-
 	public readonly PROPERTY_XNOR: PROPERTY_XNOR_T;
-
 	public readonly PROPERTY_DFF: PROPERTY_DFF_T;
-
 	public readonly PROPERTY_VSAT: PROPERTY_VSAT_T;
-
 	public readonly PROPERTY_ADD: PROPERTY_ADD_T;
-
 	public readonly PROPERTY_SUB: PROPERTY_SUB_T;
-
 	public readonly PROPERTY_MUL: PROPERTY_MUL_T;
-
 	public readonly PROPERTY_DIV: PROPERTY_DIV_T;
-
 	public readonly PROPERTY_GAIN: PROPERTY_GAIN_T;
-
 	public readonly PROPERTY_ABS: PROPERTY_ABS_T;
-
 	public readonly PROPERTY_VCSW: PROPERTY_VCSW_T;
-
 	public readonly PROPERTY_VCVS: PROPERTY_VCVS_T;
-
 	public readonly PROPERTY_VCCS: PROPERTY_VCCS_T;
-
 	public readonly PROPERTY_CCCS: PROPERTY_CCCS_T;
-
 	public readonly PROPERTY_CCVS: PROPERTY_CCVS_T;
-
 	public readonly PROPERTY_OPAMP: PROPERTY_OPAMP_T;
-
 	public readonly PROPERTY_NMOS: PROPERTY_NMOS_T;
-
 	public readonly PROPERTY_PMOS: PROPERTY_PMOS_T;
-
 	public readonly PROPERTY_NPN: PROPERTY_NPN_T;
-
 	public readonly PROPERTY_PNP: PROPERTY_PNP_T;
-
 	public readonly PROPERTY_ADC: PROPERTY_ADC_T;
-
 	public readonly PROPERTY_DAC: PROPERTY_DAC_T;
-
 	public readonly PROPERTY_SAH: PROPERTY_SAH_T;
-
 	public readonly PROPERTY_PWM: PROPERTY_PWM_T;
-
 	public readonly PROPERTY_INTEGRATOR: PROPERTY_INTEGRATOR_T;
-
 	public readonly PROPERTY_DIFFERENTIATOR: PROPERTY_DIFFERENTIATOR_T;
-
 	public readonly PROPERTY_LPF: PROPERTY_LPF_T;
-
 	public readonly PROPERTY_HPF: PROPERTY_HPF_T;
-
 	public readonly PROPERTY_REL: PROPERTY_REL_T;
-
 	public readonly PROPERTY_PID: PROPERTY_PID_T;
-
 	public readonly PROPERTY_LUT: PROPERTY_LUT_T;
-
 	public readonly PROPERTY_VCR: PROPERTY_VCR_T;
-
 	public readonly PROPERTY_VCCA: PROPERTY_VCCA_T;
-
 	public readonly PROPERTY_VCL: PROPERTY_VCL_T;
-
 	public readonly PROPERTY_GRT: PROPERTY_GRT_T;
-
 	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
-
 	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
-
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	public readonly 'history_manager': HISTORY_MANAGER_T;
 	public readonly 'LANGUAGES': Array<string>;
 	public 'language_index_counter': number;
@@ -628,78 +559,78 @@ class Global {
 		this.virtual_canvas_id = 0;
 		this.TYPE_META_DATA = -2;
 		this.type_counter = 0;
-/* #INSERT_GENERATE_ELEMENT_TYPE# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    this.TYPE_RESISTOR = this.type_counter++;
-    this.TYPE_CAPACITOR = this.type_counter++;
-    this.TYPE_INDUCTOR = this.type_counter++;
-    this.TYPE_GROUND = this.type_counter++;
-    this.TYPE_DCSOURCE = this.type_counter++;
-    this.TYPE_DCCURRENT = this.type_counter++;
-    this.TYPE_ACSOURCE = this.type_counter++;
-    this.TYPE_ACCURRENT = this.type_counter++;
-    this.TYPE_SQUAREWAVE = this.type_counter++;
-    this.TYPE_SAW = this.type_counter++;
-    this.TYPE_TRI = this.type_counter++;
-    this.TYPE_CONSTANT = this.type_counter++;
-    this.TYPE_WIRE = this.type_counter++;
-    this.TYPE_NET = this.type_counter++;
-    this.TYPE_NOTE = this.type_counter++;
-    this.TYPE_RAIL = this.type_counter++;
-    this.TYPE_VOLTMETER = this.type_counter++;
-    this.TYPE_OHMMETER = this.type_counter++;
-    this.TYPE_AMMETER = this.type_counter++;
-    this.TYPE_WATTMETER = this.type_counter++;
-    this.TYPE_FUSE = this.type_counter++;
-    this.TYPE_SPST = this.type_counter++;
-    this.TYPE_SPDT = this.type_counter++;
-    this.TYPE_NOT = this.type_counter++;
-    this.TYPE_DIODE = this.type_counter++;
-    this.TYPE_LED = this.type_counter++;
-    this.TYPE_ZENER = this.type_counter++;
-    this.TYPE_POTENTIOMETER = this.type_counter++;
-    this.TYPE_AND = this.type_counter++;
-    this.TYPE_OR = this.type_counter++;
-    this.TYPE_NAND = this.type_counter++;
-    this.TYPE_NOR = this.type_counter++;
-    this.TYPE_XOR = this.type_counter++;
-    this.TYPE_XNOR = this.type_counter++;
-    this.TYPE_DFF = this.type_counter++;
-    this.TYPE_VSAT = this.type_counter++;
-    this.TYPE_ADD = this.type_counter++;
-    this.TYPE_SUB = this.type_counter++;
-    this.TYPE_MUL = this.type_counter++;
-    this.TYPE_DIV = this.type_counter++;
-    this.TYPE_GAIN = this.type_counter++;
-    this.TYPE_ABS = this.type_counter++;
-    this.TYPE_VCSW = this.type_counter++;
-    this.TYPE_VCVS = this.type_counter++;
-    this.TYPE_VCCS = this.type_counter++;
-    this.TYPE_CCCS = this.type_counter++;
-    this.TYPE_CCVS = this.type_counter++;
-    this.TYPE_OPAMP = this.type_counter++;
-    this.TYPE_NMOS = this.type_counter++;
-    this.TYPE_PMOS = this.type_counter++;
-    this.TYPE_NPN = this.type_counter++;
-    this.TYPE_PNP = this.type_counter++;
-    this.TYPE_ADC = this.type_counter++;
-    this.TYPE_DAC = this.type_counter++;
-    this.TYPE_SAH = this.type_counter++;
-    this.TYPE_PWM = this.type_counter++;
-    this.TYPE_INTEGRATOR = this.type_counter++;
-    this.TYPE_DIFFERENTIATOR = this.type_counter++;
-    this.TYPE_LPF = this.type_counter++;
-    this.TYPE_HPF = this.type_counter++;
-    this.TYPE_REL = this.type_counter++;
-    this.TYPE_PID = this.type_counter++;
-    this.TYPE_LUT = this.type_counter++;
-    this.TYPE_VCR = this.type_counter++;
-    this.TYPE_VCCA = this.type_counter++;
-    this.TYPE_VCL = this.type_counter++;
-    this.TYPE_GRT = this.type_counter++;
-    this.TYPE_TPTZ = this.type_counter++;
-    this.TYPE_TRAN = this.type_counter++;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_ELEMENT_TYPE# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		this.TYPE_RESISTOR = this.type_counter++;
+		this.TYPE_CAPACITOR = this.type_counter++;
+		this.TYPE_INDUCTOR = this.type_counter++;
+		this.TYPE_GROUND = this.type_counter++;
+		this.TYPE_DCSOURCE = this.type_counter++;
+		this.TYPE_DCCURRENT = this.type_counter++;
+		this.TYPE_ACSOURCE = this.type_counter++;
+		this.TYPE_ACCURRENT = this.type_counter++;
+		this.TYPE_SQUAREWAVE = this.type_counter++;
+		this.TYPE_SAW = this.type_counter++;
+		this.TYPE_TRI = this.type_counter++;
+		this.TYPE_CONSTANT = this.type_counter++;
+		this.TYPE_WIRE = this.type_counter++;
+		this.TYPE_NET = this.type_counter++;
+		this.TYPE_NOTE = this.type_counter++;
+		this.TYPE_RAIL = this.type_counter++;
+		this.TYPE_VOLTMETER = this.type_counter++;
+		this.TYPE_OHMMETER = this.type_counter++;
+		this.TYPE_AMMETER = this.type_counter++;
+		this.TYPE_WATTMETER = this.type_counter++;
+		this.TYPE_FUSE = this.type_counter++;
+		this.TYPE_SPST = this.type_counter++;
+		this.TYPE_SPDT = this.type_counter++;
+		this.TYPE_NOT = this.type_counter++;
+		this.TYPE_DIODE = this.type_counter++;
+		this.TYPE_LED = this.type_counter++;
+		this.TYPE_ZENER = this.type_counter++;
+		this.TYPE_POTENTIOMETER = this.type_counter++;
+		this.TYPE_AND = this.type_counter++;
+		this.TYPE_OR = this.type_counter++;
+		this.TYPE_NAND = this.type_counter++;
+		this.TYPE_NOR = this.type_counter++;
+		this.TYPE_XOR = this.type_counter++;
+		this.TYPE_XNOR = this.type_counter++;
+		this.TYPE_DFF = this.type_counter++;
+		this.TYPE_VSAT = this.type_counter++;
+		this.TYPE_ADD = this.type_counter++;
+		this.TYPE_SUB = this.type_counter++;
+		this.TYPE_MUL = this.type_counter++;
+		this.TYPE_DIV = this.type_counter++;
+		this.TYPE_GAIN = this.type_counter++;
+		this.TYPE_ABS = this.type_counter++;
+		this.TYPE_VCSW = this.type_counter++;
+		this.TYPE_VCVS = this.type_counter++;
+		this.TYPE_VCCS = this.type_counter++;
+		this.TYPE_CCCS = this.type_counter++;
+		this.TYPE_CCVS = this.type_counter++;
+		this.TYPE_OPAMP = this.type_counter++;
+		this.TYPE_NMOS = this.type_counter++;
+		this.TYPE_PMOS = this.type_counter++;
+		this.TYPE_NPN = this.type_counter++;
+		this.TYPE_PNP = this.type_counter++;
+		this.TYPE_ADC = this.type_counter++;
+		this.TYPE_DAC = this.type_counter++;
+		this.TYPE_SAH = this.type_counter++;
+		this.TYPE_PWM = this.type_counter++;
+		this.TYPE_INTEGRATOR = this.type_counter++;
+		this.TYPE_DIFFERENTIATOR = this.type_counter++;
+		this.TYPE_LPF = this.type_counter++;
+		this.TYPE_HPF = this.type_counter++;
+		this.TYPE_REL = this.type_counter++;
+		this.TYPE_PID = this.type_counter++;
+		this.TYPE_LUT = this.type_counter++;
+		this.TYPE_VCR = this.type_counter++;
+		this.TYPE_VCCA = this.type_counter++;
+		this.TYPE_VCL = this.type_counter++;
+		this.TYPE_GRT = this.type_counter++;
+		this.TYPE_TPTZ = this.type_counter++;
+		this.TYPE_TRAN = this.type_counter++;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.ROTATION_0 = 0;
 		this.ROTATION_90 = 1;
 		this.ROTATION_180 = 2;
@@ -2571,10 +2502,80 @@ class Global {
 		return str;
 	}
 	element_max(): number {
-/* #INSERT_GENERATE_MAX_ELEMENT# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-this.element_max_array = Array(resistors.length, capacitors.length, inductors.length, grounds.length, dcsources.length, dccurrents.length, acsources.length, accurrents.length, squarewaves.length, sawwaves.length, trianglewaves.length, constants.length, wires.length, nets.length, notes.length, rails.length, voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length, fuses.length, spsts.length, spdts.length, nots.length, diodes.length, leds.length, zeners.length, potentiometers.length, ands.length, ors.length, nands.length, nors.length, xors.length, xnors.length, dffs.length, vsats.length, adders.length, subtractors.length, multipliers.length, dividers.length, gains.length, absvals.length, vcsws.length, vcvss.length, vccss.length, cccss.length, ccvss.length, opamps.length, nmosfets.length, pmosfets.length, npns.length, pnps.length, adcs.length, dacs.length, sandhs.length, pwms.length, integrators.length, differentiators.length, lowpasses.length, highpasses.length, relays.length, pids.length, luts.length, vcrs.length, vccas.length, vcls.length, grts.length, tptzs.length, transformers.length);
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_MAX_ELEMENT# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		this.element_max_array = Array(
+			resistors.length,
+			capacitors.length,
+			inductors.length,
+			grounds.length,
+			dcsources.length,
+			dccurrents.length,
+			acsources.length,
+			accurrents.length,
+			squarewaves.length,
+			sawwaves.length,
+			trianglewaves.length,
+			constants.length,
+			wires.length,
+			nets.length,
+			notes.length,
+			rails.length,
+			voltmeters.length,
+			ohmmeters.length,
+			ammeters.length,
+			wattmeters.length,
+			fuses.length,
+			spsts.length,
+			spdts.length,
+			nots.length,
+			diodes.length,
+			leds.length,
+			zeners.length,
+			potentiometers.length,
+			ands.length,
+			ors.length,
+			nands.length,
+			nors.length,
+			xors.length,
+			xnors.length,
+			dffs.length,
+			vsats.length,
+			adders.length,
+			subtractors.length,
+			multipliers.length,
+			dividers.length,
+			gains.length,
+			absvals.length,
+			vcsws.length,
+			vcvss.length,
+			vccss.length,
+			cccss.length,
+			ccvss.length,
+			opamps.length,
+			nmosfets.length,
+			pmosfets.length,
+			npns.length,
+			pnps.length,
+			adcs.length,
+			dacs.length,
+			sandhs.length,
+			pwms.length,
+			integrators.length,
+			differentiators.length,
+			lowpasses.length,
+			highpasses.length,
+			relays.length,
+			pids.length,
+			luts.length,
+			vcrs.length,
+			vccas.length,
+			vcls.length,
+			grts.length,
+			tptzs.length,
+			transformers.length
+		);
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.element_max_array.length; i++) {
 			if (this.element_max_array[i] > this.max_general_number) {
@@ -2584,10 +2585,10 @@ this.element_max_array = Array(resistors.length, capacitors.length, inductors.le
 		return this.max_general_number;
 	}
 	meter_max(): number {
-/* #INSERT_GENERATE_MAX_METER# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_MAX_METER# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.meter_max_array.length; i++) {
 			if (this.meter_max_array[i] > this.max_general_number) {
@@ -2597,10 +2598,10 @@ this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.lengt
 		return this.max_general_number;
 	}
 	non_linear_max(): number {
-/* #INSERT_GENERATE_MAX_NON_LINEAR# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_MAX_NON_LINEAR# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.non_linear_max_array.length; i++) {
 			if (this.non_linear_max_array[i] > this.max_general_number) {
