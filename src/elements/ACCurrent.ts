@@ -726,6 +726,12 @@ class ACCurrent {
 		if (!global.not_null(this.indexer)) {
 			this.indexer = 0;
 		}
+		if (!global.not_null(this.initialized)) {
+			this.initialized = false;
+		}
+		if (!global.not_null(this.multi_selected)) {
+			this.multi_selected = false;
+		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
@@ -739,6 +745,7 @@ class ACCurrent {
 				}
 			}
 		}
+
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

@@ -533,16 +533,16 @@ function load_app() {
         /* #INSERT_METER_RESIZE_TRACE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {
-            voltmeters[i].RESIZE_METER_TRACE = true;
+            voltmeters[i].resize_meter_trace = true;
         }
         for (var i = 0; i < ohmmeters.length; i++) {
-            ohmmeters[i].RESIZE_METER_TRACE = true;
+            ohmmeters[i].resize_meter_trace = true;
         }
         for (var i = 0; i < ammeters.length; i++) {
-            ammeters[i].RESIZE_METER_TRACE = true;
+            ammeters[i].resize_meter_trace = true;
         }
         for (var i = 0; i < wattmeters.length; i++) {
-            wattmeters[i].RESIZE_METER_TRACE = true;
+            wattmeters[i].resize_meter_trace = true;
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
@@ -603,111 +603,110 @@ function load_app() {
         }
     }
     function system_loop() {
-        try {
-            if (normal_draw_permissions()) {
-                global.canvas_redraw_counter = 0;
-                global.canvas_draw_event = true;
+        // try {
+        if (normal_draw_permissions()) {
+            global.canvas_redraw_counter = 0;
+            global.canvas_draw_event = true;
+        }
+        if (global.canvas_draw_event) {
+            if (global.system_initialization['completed']) {
+                temp_draw_signal =
+                    !global.flag_simulating ||
+                        global.resize_event ||
+                        global.mouse_down_event_flag ||
+                        global.mouse_move_event_flag ||
+                        global.mouse_up_event_flag ||
+                        global.mouse_wheel_event_flag ||
+                        global.mouse_double_click_event_flag ||
+                        global.key_up_event_flag ||
+                        global.key_down_event_flag ||
+                        global.picture_request_flag ||
+                        !workspace.draw_to_screen ||
+                        toast.draw_text;
             }
-            if (global.canvas_draw_event) {
+            else {
+                temp_draw_signal =
+                    !global.flag_simulating ||
+                        global.resize_event ||
+                        global.mouse_down_event_flag ||
+                        global.mouse_move_event_flag ||
+                        global.mouse_up_event_flag ||
+                        global.mouse_wheel_event_flag ||
+                        global.mouse_double_click_event_flag ||
+                        global.key_up_event_flag ||
+                        global.key_down_event_flag ||
+                        global.picture_request_flag ||
+                        !workspace.draw_to_screen;
+            }
+            global.last_selected = global.selected;
+            update();
+            if (global.last_selected !== global.selected) {
+                wire_manager.reset_wire_builder();
+            }
+            if (global.force_resize_event) {
+                global.signal_build_element = true;
+                global.signal_build_counter = 0;
+                global.force_resize_event = false;
+                global.draw_block = true;
+                resize_canvas();
+            }
+            fps_div ^= 1;
+            if (((fps_div == 1 || temp_draw_signal) && global.flag_simulating) || !global.flag_simulating) {
                 if (global.system_initialization['completed']) {
-                    temp_draw_signal =
-                        !global.flag_simulating ||
-                            global.resize_event ||
-                            global.mouse_down_event_flag ||
-                            global.mouse_move_event_flag ||
-                            global.mouse_up_event_flag ||
-                            global.mouse_wheel_event_flag ||
-                            global.mouse_double_click_event_flag ||
-                            global.key_up_event_flag ||
-                            global.key_down_event_flag ||
-                            global.picture_request_flag ||
-                            !workspace.draw_to_screen ||
-                            toast.draw_text;
-                }
-                else {
-                    temp_draw_signal =
-                        !global.flag_simulating ||
-                            global.resize_event ||
-                            global.mouse_down_event_flag ||
-                            global.mouse_move_event_flag ||
-                            global.mouse_up_event_flag ||
-                            global.mouse_wheel_event_flag ||
-                            global.mouse_double_click_event_flag ||
-                            global.key_up_event_flag ||
-                            global.key_down_event_flag ||
-                            global.picture_request_flag ||
-                            !workspace.draw_to_screen;
-                }
-                global.last_selected = global.selected;
-                update();
-                if (global.last_selected !== global.selected) {
-                    wire_manager.reset_wire_builder();
-                }
-                if (global.force_resize_event) {
-                    global.signal_build_element = true;
-                    global.signal_build_counter = 0;
-                    global.force_resize_event = false;
-                    global.draw_block = true;
-                    resize_canvas();
-                }
-                fps_div ^= 1;
-                if (((fps_div == 1 || temp_draw_signal) && global.flag_simulating) || !global.flag_simulating) {
-                    if (global.system_initialization['completed']) {
-                        if ((global.flag_simulating && global.canvas_draw_request) || temp_draw_signal) {
-                            if (!global.on_restore_event) {
-                                if (!global.draw_block) {
-                                    ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                                }
-                                canvas.release();
-                                canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                                draw();
-                                if (global.draw_block) {
-                                    global.draw_block = false;
-                                }
+                    if ((global.flag_simulating && global.canvas_draw_request) || temp_draw_signal) {
+                        if (!global.on_restore_event) {
+                            if (!global.draw_block) {
+                                ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
                             }
-                            if (global.canvas_draw_request) {
-                                if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-                                    global.canvas_draw_request_counter = 0;
-                                    global.canvas_draw_request = false;
-                                }
+                            canvas.release();
+                            canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                            draw();
+                            if (global.draw_block) {
+                                global.draw_block = false;
+                            }
+                        }
+                        if (global.canvas_draw_request) {
+                            if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+                                global.canvas_draw_request_counter = 0;
+                                global.canvas_draw_request = false;
                             }
                         }
                     }
                 }
-                if (global.signal_build_element) {
-                    if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
-                        global.signal_build_element = false;
-                        global.signal_build_counter = 0;
-                    }
-                }
-                if (global.signal_wire_deleted) {
-                    if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-                        global.signal_wire_deleted = false;
-                        global.signal_wire_deleted_counter = 0;
-                    }
-                }
-                if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
-                    global.canvas_redraw_counter = 0;
-                    global.canvas_draw_event = false;
+            }
+            if (global.signal_build_element) {
+                if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
+                    global.signal_build_element = false;
+                    global.signal_build_counter = 0;
                 }
             }
-        }
-        catch (e) {
-            if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
-                let post_data = e + '\r\n' + e.stack + '\r\n';
-                let url = 'solver_errors.php?msg="' + post_data + '"';
-                let method = 'POST';
-                let should_be_async = true;
-                let request = new XMLHttpRequest();
-                request.onload = function () {
-                    let status = request.status;
-                    let data = request.responseText;
-                };
-                request.open(method, url, should_be_async);
-                request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-                request.send(post_data);
+            if (global.signal_wire_deleted) {
+                if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+                    global.signal_wire_deleted = false;
+                    global.signal_wire_deleted_counter = 0;
+                }
+            }
+            if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
+                global.canvas_redraw_counter = 0;
+                global.canvas_draw_event = false;
             }
         }
+        // } catch (e) {
+        // 	if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
+        // 		let post_data: string = e + '\r\n' + e.stack + '\r\n';
+        // 		let url: string = 'solver_errors.php?msg="' + post_data + '"';
+        // 		let method: string = 'POST';
+        // 		let should_be_async: boolean = true;
+        // 		let request: XMLHttpRequest = new XMLHttpRequest();
+        // 		request.onload = function (): void {
+        // 			let status: number = request.status;
+        // 			let data: string = request.responseText;
+        // 		};
+        // 		request.open(method, url, should_be_async);
+        // 		request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+        // 		request.send(post_data);
+        // 	}
+        // }
     }
     function update() {
         if (global.system_initialization['completed']) {

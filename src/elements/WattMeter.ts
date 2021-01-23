@@ -3,7 +3,7 @@ class WattMeter {
 	public initialized: boolean;
 	public x_axis_length: number;
 	public y_axis_length: number;
-	public RATIO: number;
+	public ratio: number;
 	public bounds: RectF;
 	public trace_bounds: RectF;
 	public meter_trace: Trace;
@@ -38,8 +38,8 @@ class WattMeter {
 	public is_translating: boolean;
 	public meter_symbol: MeterSymbols;
 	public temp_color: string;
-	public RESIZE_METER_TRACE: boolean;
-	public SCOPE_INDEX_CHECK: number;
+	public resize_meter_trace: boolean;
+	public scope_index_check: number;
 	public wire_reference: Array<WIRE_REFERENCE_T>;
 	public simulation_id: number;
 	public indexer: number;
@@ -54,10 +54,10 @@ class WattMeter {
 		this.initialized = false;
 		this.x_axis_length = 600;
 		this.y_axis_length = 100;
-		this.RATIO = 0.75;
+		this.ratio = 0.75;
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.trace_bounds = new RectF(0, 0, 0, 0);
-		this.meter_trace = new Trace(this.x_axis_length, this.y_axis_length, this.RATIO);
+		this.meter_trace = new Trace(this.x_axis_length, this.y_axis_length, this.ratio);
 		this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
 		this.elm = new Element3(id, type, global.copy(global.PROPERTY_WATTMETER));
 		this.elm.set_nodes(n1, n2, n3);
@@ -72,7 +72,7 @@ class WattMeter {
 			);
 			this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
 			this.trace_bounds.set_bounds(this.c_x - global.node_space_x, this.c_y - 2 * global.node_space_y, this.c_x + global.node_space_x, this.c_y - 1 * global.node_space_y);
-			this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
+			this.meter_trace.update_parameters(this.trace_bounds, this.ratio, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
 		}
 		this.elm.set_rotation(global.ROTATION_0);
 		this.elm.set_flip(global.FLIP_0);
@@ -157,8 +157,8 @@ class WattMeter {
 		this.meter_symbol.set_color(global.ELEMENT_COLOR);
 		this.temp_color = global.GENERAL_RED_COLOR;
 		this.build_element();
-		this.RESIZE_METER_TRACE = false;
-		this.SCOPE_INDEX_CHECK = -1;
+		this.resize_meter_trace = false;
+		this.scope_index_check = -1;
 		this.wire_reference = [];
 		this.simulation_id = 0;
 		this.indexer = 0;
@@ -189,7 +189,7 @@ class WattMeter {
 			);
 			this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
 			this.trace_bounds.set_bounds(this.c_x - global.node_space_x, this.c_y - 2 * global.node_space_y, this.c_x + global.node_space_x, this.c_y - 1 * global.node_space_y);
-			this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
+			this.meter_trace.update_parameters(this.trace_bounds, this.ratio, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
 		}
 	}
 	push_reference(ref: WIRE_REFERENCE_T): void {
@@ -434,8 +434,8 @@ class WattMeter {
 						this.bounds.set_center(this.grid_point[0], this.grid_point[1]);
 						this.unanchor_wires();
 						this.trace_bounds.set_bounds(this.c_x - global.node_space_x, this.c_y - 2 * global.node_space_y, this.c_x + global.node_space_x, this.c_y - 1 * global.node_space_y);
-						this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
-						this.RESIZE_METER_TRACE = true;
+						this.meter_trace.update_parameters(this.trace_bounds, this.ratio, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
+						this.resize_meter_trace = true;
 						this.build_element_flag = true;
 					}
 				}
@@ -665,7 +665,7 @@ class WattMeter {
 		}
 	}
 	resize(): void {
-		if (this.build_element_flag || global.signal_build_element || this.RESIZE_METER_TRACE) {
+		if (this.build_element_flag || global.signal_build_element || this.resize_meter_trace) {
 			if (this.bounds.anchored) {
 				if (this.elm.consistent()) {
 					this.equilateral_center = global.equilateral_triangle_center(
@@ -679,13 +679,13 @@ class WattMeter {
 					this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.node_space_x * 2, global.node_space_y * 2);
 					this.refactor();
 					this.trace_bounds.set_bounds(this.c_x - global.node_space_x, this.c_y - 2 * global.node_space_y, this.c_x + global.node_space_x, this.c_y - global.node_space_y);
-					this.meter_trace.update_parameters(this.trace_bounds, this.RATIO, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
+					this.meter_trace.update_parameters(this.trace_bounds, this.ratio, this.trace_bounds.get_width(), this.trace_bounds.get_height(), 0);
 				}
 				this.unanchor_wires();
 				this.anchor_wires();
-				if (this.RESIZE_METER_TRACE) {
+				if (this.resize_meter_trace) {
 					this.meter_trace.resize_trace();
-					this.RESIZE_METER_TRACE = false;
+					this.resize_meter_trace = false;
 				}
 			} else {
 				this.refactor();
@@ -779,13 +779,13 @@ class WattMeter {
 				this.meter_symbol.set_color(global.ELEMENT_COLOR);
 			}
 		}
-		this.SCOPE_INDEX_CHECK = scope_manager.find_entry_index(this.elm.id, this.elm.type);
-		if (this.SCOPE_INDEX_CHECK > -1) {
-			if (this.SCOPE_INDEX_CHECK === graph_window.SCOPE_0_INDEX) {
+		this.scope_index_check = scope_manager.find_entry_index(this.elm.id, this.elm.type);
+		if (this.scope_index_check > -1) {
+			if (this.scope_index_check === graph_window.SCOPE_0_INDEX) {
 				this.meter_trace.set_color(global.TRACE_I_COLOR);
-			} else if (this.SCOPE_INDEX_CHECK === graph_window.SCOPE_1_INDEX) {
+			} else if (this.scope_index_check === graph_window.SCOPE_1_INDEX) {
 				this.meter_trace.set_color(global.TRACE_II_COLOR);
-			} else if (this.SCOPE_INDEX_CHECK === graph_window.SCOPE_2_INDEX) {
+			} else if (this.scope_index_check === graph_window.SCOPE_2_INDEX) {
 				this.meter_trace.set_color(global.TRACE_III_COLOR);
 			} else {
 				this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
@@ -935,6 +935,27 @@ class WattMeter {
 		if (!global.not_null(this.indexer)) {
 			this.indexer = 0;
 		}
+		if (!global.not_null(this.initialized)) {
+			this.initialized = false;
+		}
+		if (!global.not_null(this.x_axis_length)) {
+			this.x_axis_length = 600;
+		}
+		if (!global.not_null(this.y_axis_length)) {
+			this.y_axis_length = 100;
+		}
+		if (!global.not_null(this.ratio)) {
+			this.ratio = 0.75;
+		}
+		if (!global.not_null(this.multi_selected)) {
+			this.multi_selected = false;
+		}
+		if (!global.not_null(this.resize_meter_trace)) {
+			this.resize_meter_trace = false;
+		}
+		if (!global.not_null(this.scope_index_check)) {
+			this.scope_index_check = -1;
+		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
@@ -948,6 +969,7 @@ class WattMeter {
 				}
 			}
 		}
+
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

@@ -93,16 +93,16 @@ class Workspace {
         /* #INSERT_METER_RESIZE_TRACE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {
-            voltmeters[i].RESIZE_METER_TRACE = true;
+            voltmeters[i].resize_meter_trace = true;
         }
         for (var i = 0; i < ohmmeters.length; i++) {
-            ohmmeters[i].RESIZE_METER_TRACE = true;
+            ohmmeters[i].resize_meter_trace = true;
         }
         for (var i = 0; i < ammeters.length; i++) {
-            ammeters[i].RESIZE_METER_TRACE = true;
+            ammeters[i].resize_meter_trace = true;
         }
         for (var i = 0; i < wattmeters.length; i++) {
-            wattmeters[i].RESIZE_METER_TRACE = true;
+            wattmeters[i].resize_meter_trace = true;
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }

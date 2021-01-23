@@ -823,6 +823,12 @@ class VoltageControlledCapacitor {
 		if (!global.not_null(this.vcca_11)) {
 			this.vcca_11 = new PointF(0, 0);
 		}
+		if (!global.not_null(this.initialized)) {
+			this.initialized = false;
+		}
+		if (!global.not_null(this.multi_selected)) {
+			this.multi_selected = false;
+		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
@@ -836,6 +842,7 @@ class VoltageControlledCapacitor {
 				}
 			}
 		}
+
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

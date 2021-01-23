@@ -2,9 +2,9 @@
 class GraphWindow {
 	public bounds: RectF;
 	public inner_bounds: RectF;
-	public readonly X_AXIS_LENGTH: number;
-	public readonly Y_AXIS_LENGTH: number;
-	public readonly RATIO: number;
+	public readonly GRAPH_X_AXIS_LENGTH: number;
+	public readonly GRAPH_Y_AXIS_LENGTH: number;
+	public readonly ratio: number;
 	public readonly SCOPE_0_INDEX: number;
 	public readonly SCOPE_1_INDEX: number;
 	public readonly SCOPE_2_INDEX: number;
@@ -37,9 +37,9 @@ class GraphWindow {
 	constructor() {
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.inner_bounds = new RectF(0, 0, 0, 0);
-		this.X_AXIS_LENGTH = 1200;
-		this.Y_AXIS_LENGTH = 100;
-		this.RATIO = 0.75;
+		this.GRAPH_X_AXIS_LENGTH = 1200;
+		this.GRAPH_Y_AXIS_LENGTH = 100;
+		this.ratio = 0.75;
 		this.SCOPE_0_INDEX = 0;
 		this.SCOPE_1_INDEX = 1;
 		this.SCOPE_2_INDEX = 2;
@@ -142,13 +142,13 @@ class GraphWindow {
 		this.graph_text_c_paint.set_font(global.DEFAULT_FONT);
 		this.graph_text_c_paint.set_alpha(255);
 		this.graph_text_c_paint.set_paint_align(this.graph_text_c_paint.align.LEFT);
-		this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
-		this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
-		this.graph_trace_a = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+		this.x_axis = new Array(this.GRAPH_X_AXIS_LENGTH).fill(new PointF(0, 0));
+		this.y_axis = new Array(this.GRAPH_Y_AXIS_LENGTH).fill(new PointF(0, 0));
+		this.graph_trace_a = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
 		this.graph_trace_a.set_color(global.TRACE_I_COLOR);
-		this.graph_trace_b = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+		this.graph_trace_b = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
 		this.graph_trace_b.set_color(global.TRACE_II_COLOR);
-		this.graph_trace_c = new Trace(this.X_AXIS_LENGTH, this.Y_AXIS_LENGTH, this.RATIO);
+		this.graph_trace_c = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
 		this.graph_trace_c.set_color(global.TRACE_III_COLOR);
 		this.meter_hover_index = -1;
 		this.time_axis_value = '';
@@ -172,8 +172,8 @@ class GraphWindow {
 		this.line_buffer = [];
 	}
 	load_axis(): void {
-		this.x_axis = new Array(this.X_AXIS_LENGTH).fill(new PointF(0, 0));
-		this.y_axis = new Array(this.Y_AXIS_LENGTH).fill(new PointF(0, 0));
+		this.x_axis = new Array(this.GRAPH_X_AXIS_LENGTH).fill(new PointF(0, 0));
+		this.y_axis = new Array(this.GRAPH_Y_AXIS_LENGTH).fill(new PointF(0, 0));
 		let left: number = this.bounds.left + this.padding;
 		let top: number = this.bounds.top + 2 * this.padding;
 		let right: number = this.bounds.right - this.padding;
@@ -182,10 +182,10 @@ class GraphWindow {
 		this.trim = (this.bounds.get_width() - this.inner_bounds.get_width()) * 0.5;
 		this.width = this.inner_bounds.get_width();
 		this.height = this.inner_bounds.get_height();
-		this.graph_trace_a.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
-		this.graph_trace_b.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
-		this.graph_trace_c.update_parameters(this.inner_bounds, this.RATIO, this.width, this.height, this.trim);
-		for (var i: number = 0; i < this.X_AXIS_LENGTH >> 1; i++) {
+		this.graph_trace_a.update_parameters(this.inner_bounds, this.ratio, this.width, this.height, this.trim);
+		this.graph_trace_b.update_parameters(this.inner_bounds, this.ratio, this.width, this.height, this.trim);
+		this.graph_trace_c.update_parameters(this.inner_bounds, this.ratio, this.width, this.height, this.trim);
+		for (var i: number = 0; i < this.GRAPH_X_AXIS_LENGTH >> 1; i++) {
 			this.x_axis[i] = new PointF(left + (this.width / (this.x_axis.length >> 1)) * i, top);
 			this.x_axis[i + (this.x_axis.length >> 1)] = new PointF(left + (this.width / (this.x_axis.length >> 1)) * i, bottom);
 			if (i < this.y_axis.length * 0.5) {
@@ -321,7 +321,7 @@ class GraphWindow {
 	mouse_up(): void {}
 	mouse_hover(): void {
 		if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-			this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.X_AXIS_LENGTH)) * 0.5);
+			this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.GRAPH_X_AXIS_LENGTH)) * 0.5);
 		} else {
 			this.meter_hover_index = -1;
 		}
@@ -469,7 +469,7 @@ class GraphWindow {
 				}
 			}
 			if (this.graph_trace_a.magnitude_list.length > 0) {
-				for (var i: number = Math.round(this.X_AXIS_LENGTH * 0.1); i < Math.round(this.X_AXIS_LENGTH >> 1); i += Math.round(this.X_AXIS_LENGTH * 0.1)) {
+				for (var i: number = Math.round(this.GRAPH_X_AXIS_LENGTH * 0.1); i < Math.round(this.GRAPH_X_AXIS_LENGTH >> 1); i += Math.round(this.GRAPH_X_AXIS_LENGTH * 0.1)) {
 					if (i < this.graph_trace_a.magnitude_list.length) {
 						this.time_tag = global.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
 						canvas.draw_text(
@@ -483,7 +483,7 @@ class GraphWindow {
 					}
 				}
 			} else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length > 0) {
-				for (var i: number = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
+				for (var i: number = (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1; i < this.GRAPH_X_AXIS_LENGTH >> 1; i += (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1) {
 					if (i < this.graph_trace_b.magnitude_list.length) {
 						this.time_tag = global.exponentiate_quickly(this.graph_trace_b.magnitude_list[i].x);
 						canvas.draw_text(
@@ -497,7 +497,7 @@ class GraphWindow {
 					}
 				}
 			} else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length === 0 && this.graph_trace_c.magnitude_list.length > 0) {
-				for (var i: number = (this.X_AXIS_LENGTH >> 1) * 0.1; i < this.X_AXIS_LENGTH >> 1; i += (this.X_AXIS_LENGTH >> 1) * 0.1) {
+				for (var i: number = (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1; i < this.GRAPH_X_AXIS_LENGTH >> 1; i += (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1) {
 					if (i < this.graph_trace_c.magnitude_list.length) {
 						this.time_tag = global.exponentiate_quickly(this.graph_trace_c.magnitude_list[i].x);
 						canvas.draw_text(

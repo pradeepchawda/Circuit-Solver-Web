@@ -217,4 +217,15 @@ class Trace {
 			canvas.draw_path2(this.trace_path, x_offset, y_offset, this.trace_stroke_paint);
 		}
 	}
+	patch(): void {
+		if (!global.not_null(this.x_axis_length)) {
+			this.x_axis_length = 600;
+		}
+		if (!global.not_null(this.y_axis_length)) {
+			this.y_axis_length = 100;
+		}
+		if (!global.not_null(this.ratio)) {
+			this.ratio = 0.75;
+		}
+	}
 }

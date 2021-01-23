@@ -907,16 +907,10 @@ class PChannelMOSFET {
 		if (!global.not_null(this.GMIN_START)) {
 			this.GMIN_START = 12;
 		}
-		if (this.GMIN !== 1e-9) {
-			this.GMIN = 1e-9;
-		}
-		if (this.GMIN_START !== 12) {
-			this.GMIN_START = 12;
-		}
-		if (this.GAMMA !== 0.8) {
+		if (!global.not_null(this.GAMMA)) {
 			this.GAMMA = 0.8;
 		}
-		if (this.KAPPA !== 0.414) {
+		if (!global.not_null(this.KAPPA)) {
 			this.KAPPA = 0.414;
 		}
 		if (!global.not_null(this.line_buffer)) {
@@ -934,6 +928,24 @@ class PChannelMOSFET {
 		if (!global.not_null(this.indexer)) {
 			this.indexer = 0;
 		}
+		if (!global.not_null(this.initialized)) {
+			this.initialized = false;
+		}
+		if (!global.not_null(this.multi_selected)) {
+			this.multi_selected = false;
+		}
+		if (this.GMIN !== 1e-9) {
+			this.GMIN = 1e-9;
+		}
+		if (this.GMIN_START !== 12) {
+			this.GMIN_START = 12;
+		}
+		if (this.GAMMA !== 0.8) {
+			this.GAMMA = 0.8;
+		}
+		if (this.KAPPA !== 0.414) {
+			this.KAPPA = 0.414;
+		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
@@ -947,6 +959,7 @@ class PChannelMOSFET {
 				}
 			}
 		}
+
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
