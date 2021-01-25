@@ -40,7 +40,7 @@ class CurrentControlledVoltageSourceSymbol {
 	public text_paint: Paint;
 	public text_background_paint: Paint;
 	public flag_add_element: boolean;
-	public tag: string;
+	public TAG: string;
 	public draw_tag: boolean;
 	public text_bounds: RectF;
 	public height_ratio: number;
@@ -127,7 +127,7 @@ class CurrentControlledVoltageSourceSymbol {
 		this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
 		this.build_element();
 		this.flag_add_element = false;
-		this.tag = language_manager.TAG_CCVS;
+		this.TAG = language_manager.TAG_CCVS;
 		this.draw_tag = false;
 		this.text_bounds = new RectF(0, 0, 0, 0);
 		this.height_ratio = 0.35;
@@ -271,12 +271,10 @@ class CurrentControlledVoltageSourceSymbol {
 			this.circle_buffer[indexer++] = Array(this.p4.x, this.p4.y, 1.5 * global.canvas_stroke_width_2);
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
 			if (this.draw_tag && !global.signal_add_element) {
-				this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.tag) >> 1);
+				this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
 				this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.height_ratio * this.bounds.get_height();
-				this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.tag) >> 1);
+				this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint.measure_text(this.TAG) >> 1);
 				this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.height_ratio * this.bounds.get_height();
-				canvas.draw_rect2(this.text_bounds, this.text_background_paint);
-				canvas.draw_text(this.tag, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint);
 			}
 		}
 	}

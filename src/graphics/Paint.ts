@@ -188,9 +188,6 @@ class Paint {
 		if (!global.not_null(this.garbage_collector_size)) {
 			this.garbage_collector_size = 16;
 		}
-		if (this.garbage_collector_size != 16) {
-			this.garbage_collector_size = 16;
-		}
 		if (!global.not_null(this.paint_style)) {
 			this.paint_style = this.style.STROKE;
 		}
@@ -205,6 +202,9 @@ class Paint {
 		}
 		if (!global.not_null(this.text_baseline)) {
 			this.text_baseline = this.baseline.MIDDLE;
+		}
+		if (this.garbage_collector_size != 16) {
+			this.garbage_collector_size = 16;
 		}
 	}
 }

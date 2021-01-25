@@ -85,7 +85,7 @@ class PIDModuleSymbol {
         this.text_background_paint.set_paint_align(this.text_background_paint.align.CENTER);
         this.build_element();
         this.flag_add_element = false;
-        this.tag = language_manager.TAG_PID;
+        this.TAG = language_manager.TAG_PID;
         this.draw_tag = false;
         this.text_bounds = new RectF(0, 0, 0, 0);
         this.height_ratio = 0.35;
@@ -209,12 +209,10 @@ class PIDModuleSymbol {
             canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
             canvas.draw_text('PID', this.c_x, this.c_y, this.text_paint);
             if (this.draw_tag) {
-                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint_alt.measure_text(this.tag) >> 1);
+                this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
                 this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.height_ratio * this.bounds.get_height();
-                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint_alt.measure_text(this.tag) >> 1);
+                this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
                 this.text_bounds.bottom = this.bounds.bottom + this.bounds.get_height() + this.height_ratio * this.bounds.get_height();
-                canvas.draw_rect2(this.text_bounds, this.text_background_paint);
-                canvas.draw_text(this.tag, this.bounds.get_center_x(), this.text_bounds.get_center_y(), this.text_paint_alt);
             }
         }
     }

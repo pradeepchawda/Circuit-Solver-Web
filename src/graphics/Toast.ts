@@ -1,14 +1,14 @@
 'use strict';
 class Toast {
-	private height_ratio: number;
 	private readonly HEIGHT_FACTOR: number;
+	private readonly MAX_SECONDS: number;
+	private readonly MAX_TIME: number;
+	private height_ratio: number;
 	private line_paint: Paint;
 	private fill_paint: Paint;
 	private text_paint: Paint;
 	private text: string;
 	private timer: number;
-	private readonly MAX_SECONDS: number;
-	private readonly MAX_TIME: number;
 	public draw_text: boolean;
 	private bounds: RectF;
 	private toast_request_draw: boolean;
@@ -121,5 +121,6 @@ class Toast {
 		if (this.toast_request_draw) {
 			this.toast_request_draw = false;
 		}
+		
 	}
 }
