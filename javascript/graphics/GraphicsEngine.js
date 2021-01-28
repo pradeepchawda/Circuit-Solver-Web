@@ -30,7 +30,7 @@ class GraphicsEngine {
         this.last_text_baseline = '';
         this.last_text_align = '';
         this.last_line_cap = '';
-        this.ENABLE_LINE_JOIN = false;
+        this.ENABLE_LINE_JOIN = true;
         this.FONT_TEMPLATE = 'spx f';
         this.FAST_PI_MUL_2 = 7;
         this.PI_MUL_2 = Math.PI * 2;
@@ -342,8 +342,8 @@ class GraphicsEngine {
         }
     }
     draw_arc2(x1, y1, x2, y2, amplitude, paint) {
-        this.x = (x1 + x2) >> 1;
-        this.y = (y1 + y2) >> 1;
+        this.x = (global.ZERO_PT_FIVE + x1 + x2) >> 1;
+        this.y = (global.ZERO_PT_FIVE + y1 + y2) >> 1;
         this.temp_x = (global.ZERO_PT_FIVE + x1) >> global.ZERO;
         this.temp_y = (global.ZERO_PT_FIVE + y1) >> global.ZERO;
         this.degree = global.retrieve_angle_radian(x2 - x1, y2 - y1) - global.PI_DIV_2;
@@ -411,6 +411,8 @@ class GraphicsEngine {
         }
     }
     draw_path2(path, x_offset, y_offset, paint) {
+        x_offset = (global.ZERO_PT_FIVE + x_offset) >> global.ZERO;
+        y_offset = (global.ZERO_PT_FIVE + y_offset) >> global.ZERO;
         this.apply_paint(paint, false);
         this.ctx.translate(x_offset, y_offset);
         for (var i = 0; i < path.path_2d.length; i++) {
@@ -459,10 +461,10 @@ class GraphicsEngine {
         this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
     clear(_surface) {
-        this.ctx.clearRect(0, 0, _surface.width >> global.ZERO, _surface.height >> global.ZERO);
+        this.ctx.clearRect(0, 0, (_surface.width + global.ZERO_PT_FIVE) >> global.ZERO, (_surface.height + global.ZERO_PT_FIVE) >> global.ZERO);
     }
     clear_xywh(x, y, w, h) {
-        this.ctx.clearRect((x - this.padding) >> global.ZERO, (y - this.padding) >> global.ZERO, ((w + this.padding) << 1) >> global.ZERO, ((h + this.padding) << 1) >> global.ZERO);
+        this.ctx.clearRect((x - this.padding + global.ZERO_PT_FIVE) >> global.ZERO, (y - this.padding + global.ZERO_PT_FIVE) >> global.ZERO, ((w + this.padding + global.ZERO_PT_FIVE) << 1) >> global.ZERO, ((h + this.padding + global.ZERO_PT_FIVE) << 1) >> global.ZERO);
     }
     release() {
         this.general_path.reset();
