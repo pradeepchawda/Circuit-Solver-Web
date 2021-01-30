@@ -19,17 +19,17 @@ class Viewport {
 	public bottom: number;
 	constructor(aspect_ratio: number, screen_width: number, screen_height: number) {
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(1.5 * global.canvas_stroke_width_2);
+		this.line_paint.set_paint_style(PAINT.style.STROKE);
+		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
 		this.line_paint.set_color(global.MENU_HIGHLIGHT_COLOR);
-		this.line_paint.set_text_size(global.canvas_text_size_4);
-		this.line_paint.set_font(global.DEFAULT_FONT);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
+		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+		this.line_paint.set_paint_align(PAINT.align.CENTER);
 		this.DRAW_BOUNDS_FLAG = false;
-		if (global.MOBILE_MODE === true || global.DESKTOP_MODE === true) {
+		if (global.CONSTANTS.MOBILE_MODE === true || global.DESKTOP_MODE === true) {
 			this.apply_spread_factor = true;
 		} else {
 			this.apply_spread_factor = false;
@@ -52,9 +52,9 @@ class Viewport {
 		this.top = this.center_y - (this.view_height >> 1);
 		this.right = this.center_x + (this.view_width >> 1);
 		this.bottom = this.center_y + (this.view_height >> 1);
-		this.line_paint.set_stroke_width(1.5 * global.canvas_stroke_width_2);
-		this.line_paint.set_text_size(global.canvas_text_size_4);
-		global.signal_build_element = true;
+		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
+		global.flags.signal_build_element = true;
 		global.signal_build_counter = 0;
 	}
 	resize(aspect_ratio: number, screen_width: number, screen_height: number): void {
@@ -76,9 +76,9 @@ class Viewport {
 		this.top = this.center_y - (this.view_height >> 1);
 		this.right = this.center_x + (this.view_width >> 1);
 		this.bottom = this.center_y + (this.view_height >> 1);
-		this.line_paint.set_stroke_width(1.5 * global.canvas_stroke_width_2);
-		this.line_paint.set_text_size(global.canvas_text_size_4);
-		global.signal_build_element = true;
+		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
+		global.flags.signal_build_element = true;
 		global.signal_build_counter = 0;
 	}
 	draw_viewport(canvas: GraphicsEngine): void {

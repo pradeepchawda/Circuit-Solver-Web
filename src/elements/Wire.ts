@@ -43,38 +43,38 @@ class Wire {
 			this.c_x = global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
 			this.c_y = global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
 		}
-		this.x_space = global.node_space_x >> 1;
-		this.y_space = global.node_space_y >> 1;
+		this.x_space = global.variables.node_space_x >> 1;
+		this.y_space = global.variables.node_space_y >> 1;
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+		this.line_paint.set_paint_style(PAINT.style.STROKE);
+		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.line_paint.set_color(global.ELEMENT_COLOR);
-		this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
-		this.line_paint.set_font(global.DEFAULT_FONT);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+		this.line_paint.set_paint_align(PAINT.align.CENTER);
 		this.point_paint = new Paint();
-		this.point_paint.set_paint_style(this.point_paint.style.FILL);
-		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
-		this.point_paint.set_paint_join(this.point_paint.join.MITER);
-		this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+		this.point_paint.set_paint_style(PAINT.style.FILL);
+		this.point_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.point_paint.set_paint_join(PAINT.join.MITER);
+		this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.point_paint.set_color(global.ELEMENT_COLOR);
-		this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
-		this.point_paint.set_font(global.DEFAULT_FONT);
+		this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+		this.point_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
-		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
+		this.point_paint.set_paint_align(PAINT.align.CENTER);
 		this.text_paint = new Paint();
-		this.text_paint.set_paint_style(this.text_paint.style.FILL);
-		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-		this.text_paint.set_paint_join(this.text_paint.join.MITER);
-		this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
-		this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-		this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
-		this.text_paint.set_font(global.DEFAULT_FONT);
+		this.text_paint.set_paint_style(PAINT.style.FILL);
+		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.text_paint.set_paint_join(PAINT.join.MITER);
+		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+		this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
-		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
+		this.text_paint.set_paint_align(PAINT.align.CENTER);
 		this.wire_point = new PointF(0, 0);
 		this.update_wire_style();
 		this.bounds = new RectF(0, 0, 0, 0);
@@ -148,7 +148,7 @@ class Wire {
 				if (this.wire_collision() && !global.component_touched) {
 					global.focused_id = this.elm.id;
 					global.focused_type = this.elm.type;
-					global.focused_bounds = global.NULL;
+					global.focused_bounds = global.CONSTANTS.NULL;
 					global.focused = true;
 					global.component_touched = true;
 				}
@@ -163,19 +163,19 @@ class Wire {
 					this.select();
 				} else {
 					if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-						global.selected_id = global.NULL;
+						global.selected_id = global.CONSTANTS.NULL;
 						global.selected_type = -1;
-						global.selected_bounds = global.NULL;
-						global.selected_properties = global.NULL;
-						global.selected_wire_style = global.NULL;
+						global.selected_bounds = global.CONSTANTS.NULL;
+						global.selected_properties = global.CONSTANTS.NULL;
+						global.selected_wire_style = global.CONSTANTS.NULL;
 						global.selected = false;
 					} else {
 						this.select();
 					}
 				}
-				global.focused_id = global.NULL;
-				global.focused_type = global.NULL;
-				global.focused_bounds = global.NULL;
+				global.focused_id = global.CONSTANTS.NULL;
+				global.focused_type = global.CONSTANTS.NULL;
+				global.focused_bounds = global.CONSTANTS.NULL;
 				global.focused = false;
 			}
 			if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
@@ -185,7 +185,7 @@ class Wire {
 		}
 	}
 	select(): void {
-		if (global.wire_builder['step'] !== 0) {
+		if (global.variables.wire_builder['step'] !== 0) {
 			wire_manager.reset_wire_builder();
 		}
 		global.selected_id = this.elm.id;
@@ -201,11 +201,11 @@ class Wire {
 		this.total_bounds.top = Math.min(this.p1.y, this.p2.y);
 		this.total_bounds.right = Math.max(this.p1.x, this.p2.x);
 		this.total_bounds.bottom = Math.max(this.p1.y, this.p2.y);
-		if (this.total_bounds.get_width() < 2 * global.node_space_x) {
-			this.total_bounds.set_center2(this.c_x, this.c_y, 2 * global.node_space_x, this.total_bounds.get_height());
+		if (this.total_bounds.get_width() < 2 * global.variables.node_space_x) {
+			this.total_bounds.set_center2(this.c_x, this.c_y, 2 * global.variables.node_space_x, this.total_bounds.get_height());
 		}
-		if (this.total_bounds.get_height() < 2 * global.node_space_y) {
-			this.total_bounds.set_center2(this.c_x, this.c_y, this.total_bounds.get_width(), 2 * global.node_space_y);
+		if (this.total_bounds.get_height() < 2 * global.variables.node_space_y) {
+			this.total_bounds.set_center2(this.c_x, this.c_y, this.total_bounds.get_width(), 2 * global.variables.node_space_y);
 		}
 	}
 	update_wire_style() {
@@ -225,29 +225,29 @@ class Wire {
 			this.wire_point.x = global.get_average2(this.p1.x, this.p2.x);
 			this.wire_point.y = global.get_average2(this.p1.y, this.p2.y);
 		}
-		global.signal_build_element = true;
+		global.flags.signal_build_element = true;
 	}
 	refactor(): void {
-		if (this.build_element_flag || global.signal_build_element) {
-			this.x_space = global.node_space_x >> 1;
-			this.y_space = global.node_space_y >> 1;
+		if (this.build_element_flag || global.flags.signal_build_element) {
+			this.x_space = global.variables.node_space_x >> 1;
+			this.y_space = global.variables.node_space_y >> 1;
 			this.c_x = this.bounds.get_center_x();
 			this.c_y = this.bounds.get_center_y();
 		}
 	}
 	resize(): void {
-		if (this.build_element_flag || global.signal_build_element) {
+		if (this.build_element_flag || global.flags.signal_build_element) {
 			this.update_wire_style();
 			if (this.elm.consistent()) {
 				this.c_x = global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
 				this.c_y = global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
 			}
-			this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
-			this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
-			this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
-			this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
-			this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
-			this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
+			this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+			this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+			this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+			this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+			this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+			this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 			if (this.elm.n1 !== -1) {
 				this.p1.x = nodes[this.elm.n1].location.x;
 				this.p1.y = nodes[this.elm.n1].location.y;
@@ -291,7 +291,7 @@ class Wire {
 	}
 	push_history(): void {
 		if (this.initialized) {
-			global.history_manager['packet'].push(engine_functions.history_snapshot());
+			global.variables.history['packet'].push(engine_functions.history_snapshot());
 		}
 	}
 	set_wire_style(style: number): void {
@@ -312,19 +312,19 @@ class Wire {
 	increment_flip(): void {}
 	remove_focus(): void {
 		if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-			global.focused_id = global.NULL;
-			global.focused_type = global.NULL;
-			global.focused_bounds = global.NULL;
+			global.focused_id = global.CONSTANTS.NULL;
+			global.focused_type = global.CONSTANTS.NULL;
+			global.focused_bounds = global.CONSTANTS.NULL;
 			global.focused = false;
 		}
 	}
 	remove_selection(): void {
 		if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-			global.selected_id = global.NULL;
+			global.selected_id = global.CONSTANTS.NULL;
 			global.selected_type = -1;
-			global.selected_bounds = global.NULL;
-			global.selected_properties = global.NULL;
-			global.selected_wire_style = global.NULL;
+			global.selected_bounds = global.CONSTANTS.NULL;
+			global.selected_properties = global.CONSTANTS.NULL;
+			global.selected_wire_style = global.CONSTANTS.NULL;
 			global.selected = false;
 		}
 	}
@@ -337,7 +337,7 @@ class Wire {
 			} else {
 				this.line_paint.set_color(global.ELEMENT_COLOR);
 				this.point_paint.set_color(global.ELEMENT_COLOR);
-				this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
+				this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 			}
 		} else {
 			if (this.multi_selected) {
@@ -347,27 +347,27 @@ class Wire {
 			} else {
 				this.line_paint.set_color(global.ELEMENT_COLOR);
 				this.point_paint.set_color(global.ELEMENT_COLOR);
-				this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
+				this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 			}
 		}
 	}
 	wire_collision(): boolean {
 		if (this.elm.wire_style === global.WIRE_STYLE_0) {
 			let collision_0: boolean = global.line_collision(
-				global.mouse_x - (global.node_space_x >> 1),
-				global.mouse_y - global.canvas_stroke_width_1_zoom,
-				global.mouse_x + (global.node_space_x >> 1),
-				global.mouse_y + global.canvas_stroke_width_1_zoom,
+				global.mouse_x - (global.variables.node_space_x >> 1),
+				global.mouse_y - global.variables.canvas_stroke_width_1_zoom,
+				global.mouse_x + (global.variables.node_space_x >> 1),
+				global.mouse_y + global.variables.canvas_stroke_width_1_zoom,
 				this.p1.x,
 				this.p1.y,
 				this.p2.x,
 				this.p2.y
 			);
 			let collision_1: boolean = global.line_collision(
-				global.mouse_x - global.canvas_stroke_width_1_zoom,
-				global.mouse_y - (global.node_space_x >> 1),
-				global.mouse_x + global.canvas_stroke_width_1,
-				global.mouse_y + (global.node_space_x >> 1),
+				global.mouse_x - global.variables.canvas_stroke_width_1_zoom,
+				global.mouse_y - (global.variables.node_space_x >> 1),
+				global.mouse_x + global.variables.canvas_stroke_width_1,
+				global.mouse_y + (global.variables.node_space_x >> 1),
 				this.p1.x,
 				this.p1.y,
 				this.p2.x,
@@ -376,9 +376,9 @@ class Wire {
 			return collision_0 || collision_1;
 		} else {
 			let collision_2: boolean = global.line_collision(
-				global.mouse_x - (global.node_space_x >> 1),
+				global.mouse_x - (global.variables.node_space_x >> 1),
 				global.mouse_y,
-				global.mouse_x + (global.node_space_x >> 1),
+				global.mouse_x + (global.variables.node_space_x >> 1),
 				global.mouse_y,
 				this.p1.x,
 				this.p1.y,
@@ -387,18 +387,18 @@ class Wire {
 			);
 			let collision_3: boolean = global.line_collision(
 				global.mouse_x,
-				global.mouse_y - (global.node_space_x >> 1),
+				global.mouse_y - (global.variables.node_space_x >> 1),
 				global.mouse_x,
-				global.mouse_y + global.node_space_x / 2,
+				global.mouse_y + global.variables.node_space_x / 2,
 				this.p1.x,
 				this.p1.y,
 				this.wire_point.x,
 				this.wire_point.y
 			);
 			let collision_4: boolean = global.line_collision(
-				global.mouse_x - (global.node_space_x >> 1),
+				global.mouse_x - (global.variables.node_space_x >> 1),
 				global.mouse_y,
-				global.mouse_x + (global.node_space_x >> 1),
+				global.mouse_x + (global.variables.node_space_x >> 1),
 				global.mouse_y,
 				this.wire_point.x,
 				this.wire_point.y,
@@ -407,9 +407,9 @@ class Wire {
 			);
 			let collision_5: boolean = global.line_collision(
 				global.mouse_x,
-				global.mouse_y - (global.node_space_x >> 1),
+				global.mouse_y - (global.variables.node_space_x >> 1),
 				global.mouse_x,
-				global.mouse_y + global.node_space_x / 2,
+				global.mouse_y + global.variables.node_space_x / 2,
 				this.wire_point.x,
 				this.wire_point.y,
 				this.p2.x,
@@ -473,7 +473,7 @@ class Wire {
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			if (global.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step + global.time_step) {
 				if (this.elm.consistent()) {
-					if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
+					if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 						if (global.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {
 							this.angle = global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y);
 							if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) < 10)) {
@@ -535,7 +535,7 @@ class Wire {
 				}
 			}
 		}
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			canvas.draw_text(<string>(<unknown>this.elm.id), this.c_x, this.c_y, this.text_paint);
 			canvas.draw_rect2(this.total_bounds, this.line_paint);
 		}

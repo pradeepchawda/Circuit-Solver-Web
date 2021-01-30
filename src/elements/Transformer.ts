@@ -54,8 +54,8 @@ class Transformer {
 			this.bounds.set_center2(
 				global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x),
 				global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y),
-				global.node_space_x * 2,
-				global.node_space_y * 2
+				global.variables.node_space_x * 2,
+				global.variables.node_space_y * 2
 			);
 		}
 		this.elm.set_rotation(global.ROTATION_0);
@@ -88,8 +88,8 @@ class Transformer {
 		this.trans_11 = new PointF(0, 0);
 		this.c_x = this.bounds.get_center_x();
 		this.c_y = this.bounds.get_center_y();
-		this.x_space = global.node_space_x >> 1;
-		this.y_space = global.node_space_y >> 1;
+		this.x_space = global.variables.node_space_x >> 1;
+		this.y_space = global.variables.node_space_y >> 1;
 		this.connect1_x = 0;
 		this.connect1_y = 0;
 		this.connect2_x = 0;
@@ -99,35 +99,35 @@ class Transformer {
 		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.grid_point = [];
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+		this.line_paint.set_paint_style(PAINT.style.STROKE);
+		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.line_paint.set_color(global.ELEMENT_COLOR);
-		this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
-		this.line_paint.set_font(global.DEFAULT_FONT);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+		this.line_paint.set_paint_align(PAINT.align.CENTER);
 		this.point_paint = new Paint();
-		this.point_paint.set_paint_style(this.point_paint.style.FILL);
-		this.point_paint.set_paint_cap(this.point_paint.cap.ROUND);
-		this.point_paint.set_paint_join(this.point_paint.join.MITER);
-		this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+		this.point_paint.set_paint_style(PAINT.style.FILL);
+		this.point_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.point_paint.set_paint_join(PAINT.join.MITER);
+		this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.point_paint.set_color(global.ELEMENT_COLOR);
-		this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
-		this.point_paint.set_font(global.DEFAULT_FONT);
+		this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+		this.point_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
-		this.point_paint.set_paint_align(this.point_paint.align.CENTER);
+		this.point_paint.set_paint_align(PAINT.align.CENTER);
 		this.text_paint = new Paint();
-		this.text_paint.set_paint_style(this.text_paint.style.FILL);
-		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-		this.text_paint.set_paint_join(this.text_paint.join.MITER);
-		this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
+		this.text_paint.set_paint_style(PAINT.style.FILL);
+		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.text_paint.set_paint_join(PAINT.join.MITER);
+		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.text_paint.set_color(global.ELEMENT_COLOR);
-		this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
-		this.text_paint.set_font(global.DEFAULT_FONT);
+		this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
-		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
+		this.text_paint.set_paint_align(PAINT.align.CENTER);
 		this.is_translating = false;
 		this.build_element();
 		this.wire_reference = [];
@@ -155,8 +155,8 @@ class Transformer {
 			this.bounds.set_center2(
 				global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x),
 				global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y),
-				global.node_space_x * 2,
-				global.node_space_y * 2
+				global.variables.node_space_x * 2,
+				global.variables.node_space_y * 2
 			);
 		}
 	}
@@ -283,20 +283,20 @@ class Transformer {
 		}
 	}
 	handle_wire_builder(n: number, anchor: number): void {
-		if (global.wire_builder['step'] === 0) {
-			global.wire_builder['n1'] = n;
-			global.wire_builder['type1'] = this.elm.type;
-			global.wire_builder['id1'] = this.elm.id;
-			global.wire_builder['anchor_point1'] = anchor;
-			global.wire_builder['linkage1']['wire'] = global.wire_builder['step'];
-			global.wire_builder['step']++;
-		} else if (global.wire_builder['step'] === 1) {
-			global.wire_builder['n2'] = n;
-			global.wire_builder['type2'] = this.elm.type;
-			global.wire_builder['id2'] = this.elm.id;
-			global.wire_builder['anchor_point2'] = anchor;
-			global.wire_builder['linkage2']['wire'] = global.wire_builder['step'];
-			global.wire_builder['step']++;
+		if (global.variables.wire_builder['step'] === 0) {
+			global.variables.wire_builder['n1'] = n;
+			global.variables.wire_builder['type1'] = this.elm.type;
+			global.variables.wire_builder['id1'] = this.elm.id;
+			global.variables.wire_builder['anchor_point1'] = anchor;
+			global.variables.wire_builder['linkage1']['wire'] = global.variables.wire_builder['step'];
+			global.variables.wire_builder['step']++;
+		} else if (global.variables.wire_builder['step'] === 1) {
+			global.variables.wire_builder['n2'] = n;
+			global.variables.wire_builder['type2'] = this.elm.type;
+			global.variables.wire_builder['id2'] = this.elm.id;
+			global.variables.wire_builder['anchor_point2'] = anchor;
+			global.variables.wire_builder['linkage2']['wire'] = global.variables.wire_builder['step'];
+			global.variables.wire_builder['step']++;
 		}
 	}
 	move_element(dx: number, dy: number): void {
@@ -305,15 +305,15 @@ class Transformer {
 		this.release_nodes();
 		this.m_x = this.c_x + dx;
 		this.m_y = this.c_y + dy;
-		if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
-			this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
-		} else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
-			this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
+		if (this.m_x < workspace.bounds.left + 2.5 * global.variables.node_space_x) {
+			this.m_x = workspace.bounds.left + 2.5 * global.variables.node_space_x;
+		} else if (this.m_x > workspace.bounds.right - 2.0 * global.variables.node_space_x) {
+			this.m_x = workspace.bounds.right - 2.0 * global.variables.node_space_x;
 		}
-		if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
-			this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
-		} else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
-			this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
+		if (this.m_y < workspace.bounds.top + 2.5 * global.variables.node_space_y) {
+			this.m_y = workspace.bounds.top + 2.5 * global.variables.node_space_y;
+		} else if (this.m_y > workspace.bounds.bottom - 2.0 * global.variables.node_space_y) {
+			this.m_y = workspace.bounds.bottom - 2.0 * global.variables.node_space_y;
 		}
 		this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
 		this.bounds.set_center(this.grid_point[0], this.grid_point[1]);
@@ -337,15 +337,15 @@ class Transformer {
 					} else {
 						this.m_x = global.mouse_x;
 						this.m_y = global.mouse_y;
-						if (this.m_x < workspace.bounds.left + 2.5 * global.node_space_x) {
-							this.m_x = workspace.bounds.left + 2.5 * global.node_space_x;
-						} else if (this.m_x > workspace.bounds.right - 2.0 * global.node_space_x) {
-							this.m_x = workspace.bounds.right - 2.0 * global.node_space_x;
+						if (this.m_x < workspace.bounds.left + 2.5 * global.variables.node_space_x) {
+							this.m_x = workspace.bounds.left + 2.5 * global.variables.node_space_x;
+						} else if (this.m_x > workspace.bounds.right - 2.0 * global.variables.node_space_x) {
+							this.m_x = workspace.bounds.right - 2.0 * global.variables.node_space_x;
 						}
-						if (this.m_y < workspace.bounds.top + 2.5 * global.node_space_y) {
-							this.m_y = workspace.bounds.top + 2.5 * global.node_space_y;
-						} else if (this.m_y > workspace.bounds.bottom - 2.0 * global.node_space_y) {
-							this.m_y = workspace.bounds.bottom - 2.0 * global.node_space_y;
+						if (this.m_y < workspace.bounds.top + 2.5 * global.variables.node_space_y) {
+							this.m_y = workspace.bounds.top + 2.5 * global.variables.node_space_y;
+						} else if (this.m_y > workspace.bounds.bottom - 2.0 * global.variables.node_space_y) {
+							this.m_y = workspace.bounds.bottom - 2.0 * global.variables.node_space_y;
 						}
 						this.grid_point = this.elm.snap_to_grid(this.m_x, this.m_y);
 						wire_manager.reset_wire_builder();
@@ -371,20 +371,20 @@ class Transformer {
 						this.select();
 					} else {
 						if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-							global.selected_id = global.NULL;
+							global.selected_id = global.CONSTANTS.NULL;
 							global.selected_type = -1;
-							global.selected_bounds = global.NULL;
-							global.selected_properties = global.NULL;
-							global.selected_wire_style = global.NULL;
+							global.selected_bounds = global.CONSTANTS.NULL;
+							global.selected_properties = global.CONSTANTS.NULL;
+							global.selected_wire_style = global.CONSTANTS.NULL;
 							global.selected = false;
 						} else {
 							this.select();
 						}
 					}
 				}
-				global.focused_id = global.NULL;
-				global.focused_type = global.NULL;
-				global.focused_bounds = global.NULL;
+				global.focused_id = global.CONSTANTS.NULL;
+				global.focused_type = global.CONSTANTS.NULL;
+				global.focused_bounds = global.CONSTANTS.NULL;
 				global.focused = false;
 			}
 			if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
@@ -393,31 +393,31 @@ class Transformer {
 		}
 	}
 	select(): void {
-		if (global.wire_builder['step'] !== 0) {
+		if (global.variables.wire_builder['step'] !== 0) {
 			wire_manager.reset_wire_builder();
 		}
 		global.selected_id = this.elm.id;
 		global.selected_type = this.elm.type;
 		global.selected_bounds = global.copy(this.bounds);
 		global.selected_properties = global.copy(this.elm.properties);
-		global.selected_wire_style = global.NULL;
+		global.selected_wire_style = global.CONSTANTS.NULL;
 		global.selected = true;
 	}
 	remove_focus(): void {
 		if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-			global.focused_id = global.NULL;
-			global.focused_type = global.NULL;
-			global.focused_bounds = global.NULL;
+			global.focused_id = global.CONSTANTS.NULL;
+			global.focused_type = global.CONSTANTS.NULL;
+			global.focused_bounds = global.CONSTANTS.NULL;
 			global.focused = false;
 		}
 	}
 	remove_selection(): void {
 		if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-			global.selected_id = global.NULL;
+			global.selected_id = global.CONSTANTS.NULL;
 			global.selected_type = -1;
-			global.selected_bounds = global.NULL;
-			global.selected_properties = global.NULL;
-			global.selected_wire_style = global.NULL;
+			global.selected_bounds = global.CONSTANTS.NULL;
+			global.selected_properties = global.CONSTANTS.NULL;
+			global.selected_wire_style = global.CONSTANTS.NULL;
 			global.selected = false;
 		}
 	}
@@ -556,11 +556,11 @@ class Transformer {
 	}
 	push_history(): void {
 		if (this.initialized) {
-			global.history_manager['packet'].push(engine_functions.history_snapshot());
+			global.variables.history['packet'].push(engine_functions.history_snapshot());
 		}
 	}
 	build_element(): void {
-		if (this.build_element_flag || global.signal_build_element) {
+		if (this.build_element_flag || global.flags.signal_build_element) {
 			let cache_0: number = 3.0 * this.x_space;
 			let cache_1: number = 3.0 * this.y_space;
 			let cache_2: number = 2.0 * this.x_space;
@@ -598,14 +598,14 @@ class Transformer {
 		}
 	}
 	resize(): void {
-		if (this.build_element_flag || global.signal_build_element) {
+		if (this.build_element_flag || global.flags.signal_build_element) {
 			if (this.bounds.anchored) {
 				if (this.elm.consistent()) {
 					this.bounds.set_center2(
 						global.get_average4(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n4].location.x),
 						global.get_average4(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y, nodes[this.elm.n4].location.y),
-						global.node_space_x * 2,
-						global.node_space_y * 2
+						global.variables.node_space_x * 2,
+						global.variables.node_space_y * 2
 					);
 					this.refactor();
 				}
@@ -614,12 +614,12 @@ class Transformer {
 			} else {
 				this.refactor();
 			}
-			this.line_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
-			this.line_paint.set_text_size(global.canvas_text_size_3_zoom);
-			this.point_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
-			this.point_paint.set_text_size(global.canvas_text_size_3_zoom);
-			this.text_paint.set_stroke_width(global.canvas_stroke_width_1_zoom);
-			this.text_paint.set_text_size(global.canvas_text_size_3_zoom);
+			this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+			this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+			this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+			this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
+			this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+			this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 		}
 	}
 	refactor(): void {
@@ -632,8 +632,8 @@ class Transformer {
 		this.p3.y = vertices[5];
 		this.p4.x = vertices[6];
 		this.p4.y = vertices[7];
-		this.x_space = global.node_space_x >> 1;
-		this.y_space = global.node_space_y >> 1;
+		this.x_space = global.variables.node_space_x >> 1;
+		this.y_space = global.variables.node_space_y >> 1;
 		this.c_x = this.bounds.get_center_x();
 		this.c_y = this.bounds.get_center_y();
 		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
@@ -684,10 +684,10 @@ class Transformer {
 		}
 		if (
 			global.picture_request_flag ||
-			(this.c_x >= view_port.left - global.node_space_x &&
-				this.c_x - global.node_space_x <= view_port.right &&
-				this.c_y >= view_port.top + -global.node_space_y &&
-				this.c_y - global.node_space_y <= view_port.bottom)
+			(this.c_x >= view_port.left - global.variables.node_space_x &&
+				this.c_x - global.variables.node_space_x <= view_port.right &&
+				this.c_y >= view_port.top + -global.variables.node_space_y &&
+				this.c_y - global.variables.node_space_y <= view_port.bottom)
 		) {
 			this.indexer = 0;
 			this.circle_buffer = [];
@@ -706,18 +706,18 @@ class Transformer {
 			canvas.draw_arc2(this.trans_7.x, this.trans_7.y, this.trans_8.x, this.trans_8.y, -this.bounds.get_width() * 0.1667, this.line_paint);
 			canvas.draw_arc2(this.trans_8.x, this.trans_8.y, this.trans_9.x, this.trans_9.y, -this.bounds.get_width() * 0.1667, this.line_paint);
 			canvas.draw_arc2(this.trans_9.x, this.trans_9.y, this.trans_3.x, this.trans_3.y, -this.bounds.get_width() * 0.1667, this.line_paint);
-			this.circle_buffer[this.indexer++] = Array(this.trans_10.x, this.trans_10.y, global.canvas_stroke_width_2_zoom);
-			this.circle_buffer[this.indexer++] = Array(this.trans_11.x, this.trans_11.y, global.canvas_stroke_width_2_zoom);
-			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.canvas_stroke_width_2_zoom);
-			this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.canvas_stroke_width_2_zoom);
-			this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.canvas_stroke_width_2_zoom);
-			this.circle_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, global.canvas_stroke_width_2_zoom);
+			this.circle_buffer[this.indexer++] = Array(this.trans_10.x, this.trans_10.y, global.variables.canvas_stroke_width_2_zoom);
+			this.circle_buffer[this.indexer++] = Array(this.trans_11.x, this.trans_11.y, global.variables.canvas_stroke_width_2_zoom);
+			this.circle_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, global.variables.canvas_stroke_width_2_zoom);
+			this.circle_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, global.variables.canvas_stroke_width_2_zoom);
+			this.circle_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, global.variables.canvas_stroke_width_2_zoom);
+			this.circle_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, global.variables.canvas_stroke_width_2_zoom);
 			canvas.draw_circle_buffer(this.circle_buffer, this.point_paint);
-			if (global.DEVELOPER_MODE) {
+			if (global.CONSTANTS.DEVELOPER_MODE) {
 				canvas.draw_rect2(this.bounds, this.line_paint);
 				canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
 			}
-			if (global.workspace_zoom_scale > 1.085 || (!global.MOBILE_MODE && global.workspace_zoom_scale >= 0.99)) {
+			if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 				this.angle = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 				if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 					canvas.rotate(this.c_x, this.c_y, -90);
@@ -749,9 +749,9 @@ class Transformer {
 					);
 				}
 			}
-			if (!global.MOBILE_MODE) {
+			if (!global.CONSTANTS.MOBILE_MODE) {
 				if (
-					global.wire_builder['step'] === 0 &&
+					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
 					global.NODE_HINTS &&
 					!multi_select_manager.multi_select &&
@@ -782,7 +782,7 @@ class Transformer {
 				}
 			}
 			if (this.is_translating) {
-				canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.node_space_x << 2, global.node_space_y << 2, global.move_paint);
+				canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.move_paint);
 			}
 		}
 	}

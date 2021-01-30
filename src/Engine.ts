@@ -1,5 +1,6 @@
 'use strict';
 /* #START_GLOBAL_EXTRACT# */
+var PAINT: Paint = new Paint();
 var global: Global = new Global();
 //@ts-ignore
 String.prototype.hashCode = function (): number {
@@ -38,8 +39,8 @@ function save_image_mobile(title: string, canvas: HTMLCanvasElement): void {
 		};
 	});
 }
-var file_reader: HTMLElement = global.NULL;
-if (global.MOBILE_MODE) {
+var file_reader: HTMLElement = global.CONSTANTS.NULL;
+if (global.CONSTANTS.MOBILE_MODE) {
 	file_reader = document.getElementById('file_explorer_mobile');
 } else {
 	file_reader = document.getElementById('file_explorer');
@@ -48,60 +49,60 @@ var file_saver = document.getElementById('file_saver');
 var file_loader = document.getElementById('file_loader');
 function file_event(input: HTMLInputElement): void {
 	let reader: FileReader = new FileReader();
-	reader.onload = function (e): void {
+	reader.onload = function (e: ProgressEvent<FileReader>): void {
 		let text: string = <string>(<unknown>reader.result);
 		let title: string = input.files[0].name.split('.')[0];
-		if (title.length > global.MAX_TEXT_LENGTH) {
-			title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
+		if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+			title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
 		}
-		global.user_file.title = title;
+		global.variables.user_file.title = title;
 		bottom_menu.resize_bottom_menu();
-		global.user_file.content = text;
-		global.user_file_selected = true;
-		global.canvas_draw_event = true;
+		global.variables.user_file.content = text;
+		global.variables.user_file_selected = true;
+		global.flags.canvas_draw_event = true;
 	};
 	reader.onerror = function (err: ProgressEvent<FileReader>) {};
 	reader.readAsText(input.files[0]);
 }
 function file_event_mobile(title: string, data: string): void {
-	if (title.length > global.MAX_TEXT_LENGTH) {
-		title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
+	if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+		title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
 	}
-	global.user_file.title = title;
+	global.variables.user_file.title = title;
 	bottom_menu.resize_bottom_menu();
-	global.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
+	global.variables.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
 }
 function restore_system_options(index: number, value: string): void {
-	if (index === global.SYSTEM_OPTION_LANGUAGE) {
-		for (var i: number = 0; i < global.LANGUAGES.length; i++) {
-			if (value === global.LANGUAGES[i]) {
-				global.language_index = i;
+	if (index === global.CONSTANTS.SYSTEM_OPTION_LANGUAGE) {
+		for (var i: number = 0; i < global.CONSTANTS.LANGUAGES.length; i++) {
+			if (value === global.CONSTANTS.LANGUAGES[i]) {
+				global.variables.language_index = i;
 			}
 		}
 	}
-	global.system_options['values'][index] = value;
+	global.variables.system_options['values'][index] = value;
 }
 function restore_zoom_offset(zoom: number, delta_x: number, dx: number, x_offset: number, delta_y: number, dy: number, y_offset: number): void {
-	global.workspace_zoom_scale = Number(zoom);
-	global.dx = Number(dx);
-	global.dy = Number(dy);
-	global.x_offset = Number(x_offset);
-	global.y_offset = Number(y_offset);
-	global.delta_x = Number(delta_x);
-	global.delta_y = Number(delta_y);
+	global.variables.workspace_zoom_scale = Number(zoom);
+	global.variables.dx = Number(dx);
+	global.variables.dy = Number(dy);
+	global.variables.x_offset = Number(x_offset);
+	global.variables.y_offset = Number(y_offset);
+	global.variables.delta_x = Number(delta_x);
+	global.variables.delta_y = Number(delta_y);
 	workspace.workspace_zoom();
-	global.draw_block = true;
-	global.signal_build_element = true;
+	global.flags.draw_block = true;
+	global.flags.signal_build_element = true;
 }
 function handle_file_loading(): void {
-	global.user_file_selected = true;
-	global.canvas_draw_event = true;
+	global.variables.user_file_selected = true;
+	global.flags.canvas_draw_event = true;
 	try {
-		engine_functions.parse_elements(global.user_file.content);
+		engine_functions.parse_elements(global.variables.user_file.content);
 	} catch (error) {}
-	global.history_manager['packet'].push(engine_functions.history_snapshot());
-	global.draw_block = true;
-	global.user_file_selected = false;
+	global.variables.history['packet'].push(engine_functions.history_snapshot());
+	global.flags.draw_block = true;
+	global.variables.user_file_selected = false;
 	mouse_event_latch = false;
 }
 var solver_container: HTMLElement = document.getElementById('solver');
@@ -112,19 +113,19 @@ surface.style.zIndex = '0';
 surface.style.position = 'absolute';
 solver_container.appendChild(surface);
 var ctx: CanvasRenderingContext2D = surface.getContext('2d');
-var virtual_surface: VirtualCanvas = new VirtualCanvas(1, 1, global.virtual_canvas_id++);
+var virtual_surface: VirtualCanvas = new VirtualCanvas(1, 1, global.variables.virtual_canvas_id++);
 var linear_algebra: LinearAlgebra = new LinearAlgebra();
 var language_manager: LanguageManager = new LanguageManager();
 var shortcut_manager: ShortcutManager = new ShortcutManager();
 var string_operator: StringOperator = new StringOperator();
 var multi_select_manager: MultiSelectManager = new MultiSelectManager();
 var canvas_aspect_ratio: number = 1.333;
-if (global.MOBILE_MODE) {
+if (global.CONSTANTS.MOBILE_MODE) {
 	canvas_aspect_ratio = 1.618;
 }
 var view_port: Viewport = new Viewport(canvas_aspect_ratio, 800, 800 / canvas_aspect_ratio);
-var workspace: Workspace = new Workspace(0, 0, 0, 0, global.workspace_zoom_scale);
-var simulation_manager: SimulationManager = global.NULL;
+var workspace: Workspace = new Workspace(0, 0, 0, 0, global.variables.workspace_zoom_scale);
+var simulation_manager: SimulationManager = global.CONSTANTS.NULL;
 var scope_manager: ScopeManager = new ScopeManager();
 var matrix_a: Array<Array<number>> = linear_algebra.matrix(1, 1);
 var matrix_z: Array<Array<number>> = linear_algebra.matrix(1, 1);
@@ -203,24 +204,24 @@ var tptzs: Array<TPTZModule> = [];
 var transformers: Array<Transformer> = [];
 /* <!-- END AUTOMATICALLY GENERATED !--> */
 var on_screen_keyboard: OnScreenKeyboard = new OnScreenKeyboard();
-var toast: Toast = global.NULL;
+var toast: Toast = global.CONSTANTS.NULL;
 var history_manager: HistoryManager = new HistoryManager();
-var element_options: ElementOptions = global.NULL;
-var menu_bar: MenuBar = global.NULL;
-var bottom_menu: BottomMenu = global.NULL;
-var time_step_window: TimeStepWindow = global.NULL;
-var save_circuit_window: SaveCircuitWindow = global.NULL;
-var save_image_window: SaveImageWindow = global.NULL;
-var element_options_window: ElementOptionsWindow = global.NULL;
-var element_options_edit_window: ElementOptionsEditWindow = global.NULL;
-var zoom_window: ZoomWindow = global.NULL;
-var settings_window: SettingsWindow = global.NULL;
-var yes_no_window: YesNoWindow = global.NULL;
+var element_options: ElementOptions = global.CONSTANTS.NULL;
+var menu_bar: MenuBar = global.CONSTANTS.NULL;
+var bottom_menu: BottomMenu = global.CONSTANTS.NULL;
+var time_step_window: TimeStepWindow = global.CONSTANTS.NULL;
+var save_circuit_window: SaveCircuitWindow = global.CONSTANTS.NULL;
+var save_image_window: SaveImageWindow = global.CONSTANTS.NULL;
+var element_options_window: ElementOptionsWindow = global.CONSTANTS.NULL;
+var element_options_edit_window: ElementOptionsEditWindow = global.CONSTANTS.NULL;
+var zoom_window: ZoomWindow = global.CONSTANTS.NULL;
+var settings_window: SettingsWindow = global.CONSTANTS.NULL;
+var yes_no_window: YesNoWindow = global.CONSTANTS.NULL;
 var wire_manager: WireManager = new WireManager();
 var engine_functions: EngineFunctions = new EngineFunctions();
 var nodes: Array<ElectricalNode> = [];
 var node_manager: NodeManager = new NodeManager();
-var graph_window: GraphWindow = global.NULL;
+var graph_window: GraphWindow = global.CONSTANTS.NULL;
 var FPS: number = 30;
 var FPS_DIV_ARRAY: Array<number> = [2, 2];
 var fps_counter: number = 0;
@@ -228,18 +229,18 @@ var fps_index: number = 0;
 var fps_compare: number = FPS_DIV_ARRAY[fps_index];
 var fps_div: number = 0;
 var general_paint: Paint = new Paint();
-var webpage_document_title: HTMLElement = global.NULL;
+var webpage_document_title: HTMLElement = global.CONSTANTS.NULL;
 var last_webpage_document_title: string = 'untitled';
 var mouse_event_latch: boolean = false;
 /* #END_GLOBAL_EXTRACT# */
 function load_app(): void {
 	browser_detection();
-	workspace = new Workspace(view_port.left, view_port.top, view_port.view_width, view_port.view_height, global.workspace_zoom_scale);
-	global.last_surface_width = 0;
-	global.last_surface_height = 0;
+	workspace = new Workspace(view_port.left, view_port.top, view_port.view_width, view_port.view_height, global.variables.workspace_zoom_scale);
+	global.utils.last_surface_width = 0;
+	global.utils.last_surface_height = 0;
 	let canvas: GraphicsEngine = new GraphicsEngine(virtual_surface.context);
 	let fifo_index: number = 0;
-	let touch: any = global.NULL;
+	let touch: any = global.CONSTANTS.NULL;
 	let temp_draw_signal: boolean = false;
 	let node_space_x_cache: number = 0;
 	let node_space_y_cache: number = 0;
@@ -247,17 +248,17 @@ function load_app(): void {
 	let mult_node_space_y_cache: number = 0;
 	let node_length: number = 0;
 	general_paint = new Paint();
-	general_paint.set_paint_style(general_paint.style.FILL);
-	general_paint.set_paint_cap(general_paint.cap.ROUND);
-	general_paint.set_paint_join(general_paint.join.MITER);
-	general_paint.set_stroke_width(global.canvas_stroke_width_1);
-	if (global.MOBILE_MODE) {
-		general_paint.set_color(global.GENERAL_WHITE_COLOR);
+	general_paint.set_paint_style(PAINT.style.FILL);
+	general_paint.set_paint_cap(PAINT.cap.ROUND);
+	general_paint.set_paint_join(PAINT.join.MITER);
+	general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+	if (global.CONSTANTS.MOBILE_MODE) {
+		general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 	} else {
-		general_paint.set_color(global.GENERAL_BLACK_COLOR);
+		general_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 	}
-	general_paint.set_text_size(global.canvas_text_size_5);
-	general_paint.set_font(global.DEFAULT_FONT);
+	general_paint.set_text_size(global.variables.canvas_text_size_5);
+	general_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 	general_paint.set_alpha(255);
 	general_paint.set_paint_align(general_paint.align.LEFT);
 	function initialize(step: number): void {
@@ -265,7 +266,7 @@ function load_app(): void {
 			toast = new Toast();
 			resize_canvas();
 			engine_functions.create_nodes(workspace.bounds);
-			global.history_manager['packet'].push(engine_functions.history_snapshot());
+			global.variables.history['packet'].push(engine_functions.history_snapshot());
 		} else if (step === 1) {
 			menu_bar = new MenuBar();
 			bottom_menu = new BottomMenu();
@@ -284,23 +285,23 @@ function load_app(): void {
 			simulation_manager = new SimulationManager();
 		} else if (step === 4) {
 			register_cross_platform_listeners();
-			if (!global.MOBILE_MODE) {
+			if (!global.CONSTANTS.MOBILE_MODE) {
 				window.addEventListener('keydown', key_down, false);
 				window.addEventListener('keyup', key_up, false);
 			}
 			window.addEventListener('resize', resize_canvas, false);
-			if (!global.MOBILE_MODE) {
+			if (!global.CONSTANTS.MOBILE_MODE) {
 				window.addEventListener('dblclick', double_click, false);
 				webpage_document_title = document.getElementById('title_text');
 			}
-			if (global.system_options['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.ON) {
 				view_port.apply_spread_factor = true;
-				global.force_resize_event = true;
+				global.flags.force_resize_event = true;
 			}
 		}
 	}
 	function register_cross_platform_listeners(): void {
-		if (global.MOBILE_MODE === true) {
+		if (global.CONSTANTS.MOBILE_MODE === true) {
 			surface.addEventListener('touchstart', mouse_down, false);
 			surface.addEventListener('touchmove', mouse_move, false);
 			surface.addEventListener('touchend', mouse_up, false);
@@ -309,8 +310,8 @@ function load_app(): void {
 			surface.addEventListener('mousemove', mouse_move, false);
 			surface.addEventListener('mouseup', mouse_up, false);
 		}
-		if (!global.MOBILE_MODE) {
-			if (global.browser_firefox) {
+		if (!global.CONSTANTS.MOBILE_MODE) {
+			if (global.variables.browser_firefox) {
 				surface.addEventListener('DOMMouseScroll', mouse_wheel, false);
 			} else {
 				surface.addEventListener('mousewheel', mouse_wheel, false);
@@ -318,37 +319,37 @@ function load_app(): void {
 		}
 	}
 	function start_system(): void {
-		if (!global.MOBILE_MODE) {
+		if (!global.CONSTANTS.MOBILE_MODE) {
 			register();
 		}
 		main();
 	}
 	function resize_canvas(): void {
-		global.device_pixel_ratio = window.devicePixelRatio;
-		if (global.resize_event === false) {
+		global.variables.device_pixel_ratio = window.devicePixelRatio;
+		if (global.flags.flag_resize_event === false) {
 			global.last_view_port_right = view_port.right;
 			global.last_view_port_bottom = view_port.bottom;
 			global.last_view_port_width = view_port.view_width;
 			global.last_view_port_height = view_port.view_height;
-			global.last_surface_width = surface.width;
-			global.last_surface_height = surface.height;
+			global.utils.last_surface_width = surface.width;
+			global.utils.last_surface_height = surface.height;
 		}
 		solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
 		solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		solver_container.style.background = 'black';
-		view_port.resize(canvas_aspect_ratio, window.innerWidth * global.device_pixel_ratio, window.innerHeight * global.device_pixel_ratio);
-		surface.width = window.innerWidth * global.device_pixel_ratio;
-		surface.height = window.innerHeight * global.device_pixel_ratio;
+		view_port.resize(canvas_aspect_ratio, window.innerWidth * global.variables.device_pixel_ratio, window.innerHeight * global.variables.device_pixel_ratio);
+		surface.width = window.innerWidth * global.variables.device_pixel_ratio;
+		surface.height = window.innerHeight * global.variables.device_pixel_ratio;
 		surface.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
 		surface.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		global.resize_w_factor = view_port.view_width / global.last_view_port_width;
 		global.resize_h_factor = view_port.view_height / global.last_view_port_height;
-		if (global.MOBILE_MODE) {
-			global.canvas_stroke_width_base = 0.000775 * view_port.view_width;
-			global.canvas_text_size_base = 0.000775 * view_port.view_width;
+		if (global.CONSTANTS.MOBILE_MODE) {
+			global.variables.canvas_stroke_width_base = 0.000775 * view_port.view_width;
+			global.variables.canvas_text_size_base = 0.000775 * view_port.view_width;
 		} else {
-			global.canvas_stroke_width_base = 0.000725 * view_port.view_width;
-			global.canvas_text_size_base = 0.000725 * view_port.view_width;
+			global.variables.canvas_stroke_width_base = 0.000725 * view_port.view_width;
+			global.variables.canvas_text_size_base = 0.000725 * view_port.view_width;
 		}
 		try {
 			ctx.globalCompositeOperation = 'copy';
@@ -362,22 +363,22 @@ function load_app(): void {
 			//@ts-expect-error
 			ctx.msImageSmoothingEnabled = false;
 		} catch (e) {}
-		global.canvas_stroke_width_1 = global.canvas_stroke_width_base * 2.25;
-		global.canvas_stroke_width_2 = global.canvas_stroke_width_base * 2.65;
-		global.canvas_stroke_width_3 = global.canvas_stroke_width_base * 9;
-		global.canvas_stroke_width_4 = global.canvas_stroke_width_base * 16;
-		global.canvas_stroke_width_5 = global.canvas_stroke_width_base * 21;
-		global.canvas_stroke_width_6 = global.canvas_stroke_width_base * 43;
-		global.canvas_text_size_1 = global.canvas_text_size_base * 2.25;
-		global.canvas_text_size_2 = global.canvas_text_size_base * 2.65;
-		global.canvas_text_size_3 = global.canvas_text_size_base * 9;
-		global.canvas_text_size_4 = global.canvas_text_size_base * 16;
-		global.canvas_text_size_5 = global.canvas_text_size_base * 21;
-		global.canvas_text_size_6 = global.canvas_text_size_base * 43;
-		global.signal_build_element = true;
+		global.variables.canvas_stroke_width_1 = global.variables.canvas_stroke_width_base * 2.25;
+		global.variables.canvas_stroke_width_2 = global.variables.canvas_stroke_width_base * 2.65;
+		global.variables.canvas_stroke_width_3 = global.variables.canvas_stroke_width_base * 9;
+		global.variables.canvas_stroke_width_4 = global.variables.canvas_stroke_width_base * 16;
+		global.variables.canvas_stroke_width_5 = global.variables.canvas_stroke_width_base * 21;
+		global.variables.canvas_stroke_width_6 = global.variables.canvas_stroke_width_base * 43;
+		global.variables.canvas_text_size_1 = global.variables.canvas_text_size_base * 2.25;
+		global.variables.canvas_text_size_2 = global.variables.canvas_text_size_base * 2.65;
+		global.variables.canvas_text_size_3 = global.variables.canvas_text_size_base * 9;
+		global.variables.canvas_text_size_4 = global.variables.canvas_text_size_base * 16;
+		global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
+		global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
+		global.flags.signal_build_element = true;
 		global.signal_build_counter = 0;
 		virtual_surface.resize();
-		global.resize_event = true;
+		global.flags.flag_resize_event = true;
 		canvas.on_resize();
 		surface.style.backfaceVisibility = 'hidden';
 		if (surface.style.visibility === 'hidden') {
@@ -386,25 +387,25 @@ function load_app(): void {
 	}
 	function mouse_down(mouse_event: MouseEvent): void {
 		if (global.system_initialization['completed']) {
-			if (global.MOBILE_MODE === false) {
-				global.mouse_x = mouse_event.clientX * global.device_pixel_ratio;
-				global.mouse_y = mouse_event.clientY * global.device_pixel_ratio;
+			if (global.CONSTANTS.MOBILE_MODE === false) {
+				global.mouse_x = mouse_event.clientX * global.variables.device_pixel_ratio;
+				global.mouse_y = mouse_event.clientY * global.variables.device_pixel_ratio;
 			} else {
 				//@ts-ignore
 				touch = mouse_event.touches[0];
-				global.mouse_x = touch.clientX * global.device_pixel_ratio;
-				global.mouse_y = touch.clientY * global.device_pixel_ratio;
+				global.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+				global.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
 			}
 			if (bottom_menu.handle_file_explorer()) {
-				if (!global.user_file_selected) {
+				if (!global.variables.user_file_selected) {
 					file_reader.click();
 				} else {
-					toast.set_text(language_manager.TRY_AGAIN[global.LANGUAGES[global.language_index]]);
+					toast.set_text(language_manager.TRY_AGAIN[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 					toast.show();
 				}
 			} else {
 				if (!mouse_event_latch) {
-					if (global.MOBILE_MODE) {
+					if (global.CONSTANTS.MOBILE_MODE) {
 						if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
 							global.mouse_down_event_flag = true;
 							global.mouse_down_event_queue.push(mouse_event);
@@ -421,7 +422,7 @@ function load_app(): void {
 	}
 	function mouse_move(mouse_event: MouseEvent): void {
 		if (!global.mouse_move_event_flag) {
-			if (global.MOBILE_MODE) {
+			if (global.CONSTANTS.MOBILE_MODE) {
 				if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
 					global.mouse_move_event = mouse_event;
 					global.mouse_move_event_flag = true;
@@ -436,7 +437,7 @@ function load_app(): void {
 	}
 	function mouse_up(mouse_event: MouseEvent): void {
 		if (mouse_event_latch) {
-			if (global.MOBILE_MODE) {
+			if (global.CONSTANTS.MOBILE_MODE) {
 				if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
 					global.mouse_up_event_flag = true;
 					global.mouse_up_event_queue.push(mouse_event);
@@ -450,7 +451,7 @@ function load_app(): void {
 		mouse_event.stopPropagation();
 	}
 	function mouse_wheel(mouse_event: MouseEvent): void {
-		if (!global.mouse_wheel_event_flag && !global.MOBILE_MODE) {
+		if (!global.mouse_wheel_event_flag && !global.CONSTANTS.MOBILE_MODE) {
 			global.mouse_wheel_event_flag = true;
 			global.mouse_wheel_event_queue.push(mouse_event);
 		}
@@ -458,7 +459,7 @@ function load_app(): void {
 		mouse_event.stopPropagation();
 	}
 	function double_click(mouse_event: MouseEvent): void {
-		if (!global.MOBILE_MODE) {
+		if (!global.CONSTANTS.MOBILE_MODE) {
 			global.mouse_double_click_event_flag = true;
 			global.mouse_double_click_event_queue.push(mouse_event);
 		}
@@ -530,33 +531,33 @@ function load_app(): void {
 	}
 	function handle_zoom(mouse_event: MouseEvent): void {
 		if (!global.focused) {
-			global.x_offset = (global.mouse_x - global.delta_x) / global.workspace_zoom_scale;
-			global.y_offset = (global.mouse_y - global.delta_y) / global.workspace_zoom_scale;
+			global.variables.x_offset = (global.mouse_x - global.variables.delta_x) / global.variables.workspace_zoom_scale;
+			global.variables.y_offset = (global.mouse_y - global.variables.delta_y) / global.variables.workspace_zoom_scale;
 			//@ts-ignore
 			if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
-				if (global.workspace_zoom_scale > global.ZOOM_MIN) {
-					global.workspace_zoom_scale /= global.ZOOM_FACTOR;
+				if (global.variables.workspace_zoom_scale > global.ZOOM_MIN) {
+					global.variables.workspace_zoom_scale /= global.ZOOM_FACTOR;
 				}
 			} else {
-				if (global.workspace_zoom_scale < global.ZOOM_MAX) {
-					global.workspace_zoom_scale *= global.ZOOM_FACTOR;
+				if (global.variables.workspace_zoom_scale < global.ZOOM_MAX) {
+					global.variables.workspace_zoom_scale *= global.ZOOM_FACTOR;
 				}
 			}
-			global.delta_x = global.mouse_x - global.x_offset * global.workspace_zoom_scale;
-			global.delta_y = global.mouse_y - global.y_offset * global.workspace_zoom_scale;
+			global.variables.delta_x = global.mouse_x - global.variables.x_offset * global.variables.workspace_zoom_scale;
+			global.variables.delta_y = global.mouse_y - global.variables.y_offset * global.variables.workspace_zoom_scale;
 			workspace.workspace_zoom();
 		}
 	}
 	function reset_zoom(): void {
-		global.x_offset = 0;
-		global.y_offset = 0;
-		global.delta_x = workspace.bounds.left;
-		global.delta_y = workspace.bounds.top;
+		global.variables.x_offset = 0;
+		global.variables.y_offset = 0;
+		global.variables.delta_x = workspace.bounds.left;
+		global.variables.delta_y = workspace.bounds.top;
 	}
 	function normal_draw_permissions(): boolean {
 		if (global.system_initialization['completed']) {
 			return (
-				global.resize_event ||
+				global.flags.flag_resize_event ||
 				global.mouse_down_event_flag ||
 				global.mouse_move_event_flag ||
 				global.mouse_up_event_flag ||
@@ -572,7 +573,7 @@ function load_app(): void {
 			);
 		} else {
 			return (
-				global.resize_event ||
+				global.flags.flag_resize_event ||
 				global.mouse_down_event_flag ||
 				global.mouse_move_event_flag ||
 				global.mouse_up_event_flag ||
@@ -590,13 +591,13 @@ function load_app(): void {
 		try {
 			if (normal_draw_permissions()) {
 				global.canvas_redraw_counter = 0;
-				global.canvas_draw_event = true;
+				global.flags.canvas_draw_event = true;
 			}
-			if (global.canvas_draw_event) {
+			if (global.flags.canvas_draw_event) {
 				if (global.system_initialization['completed']) {
 					temp_draw_signal =
 						!global.flag_simulating ||
-						global.resize_event ||
+						global.flags.flag_resize_event ||
 						global.mouse_down_event_flag ||
 						global.mouse_move_event_flag ||
 						global.mouse_up_event_flag ||
@@ -610,7 +611,7 @@ function load_app(): void {
 				} else {
 					temp_draw_signal =
 						!global.flag_simulating ||
-						global.resize_event ||
+						global.flags.flag_resize_event ||
 						global.mouse_down_event_flag ||
 						global.mouse_move_event_flag ||
 						global.mouse_up_event_flag ||
@@ -626,11 +627,11 @@ function load_app(): void {
 				if (global.last_selected !== global.selected) {
 					wire_manager.reset_wire_builder();
 				}
-				if (global.force_resize_event) {
-					global.signal_build_element = true;
+				if (global.flags.force_resize_event) {
+					global.flags.signal_build_element = true;
 					global.signal_build_counter = 0;
-					global.force_resize_event = false;
-					global.draw_block = true;
+					global.flags.force_resize_event = false;
+					global.flags.draw_block = true;
 					resize_canvas();
 				}
 				fps_div ^= 1;
@@ -638,7 +639,7 @@ function load_app(): void {
 					if (global.system_initialization['completed']) {
 						if ((global.flag_simulating && global.canvas_draw_request) || temp_draw_signal) {
 							if (!global.on_restore_event) {
-								if (!global.draw_block) {
+								if (!global.flags.draw_block) {
 									ctx.drawImage(
 										virtual_surface.get_surface(),
 										view_port.left,
@@ -654,8 +655,8 @@ function load_app(): void {
 								canvas.release();
 								canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 								draw();
-								if (global.draw_block) {
-									global.draw_block = false;
+								if (global.flags.draw_block) {
+									global.flags.draw_block = false;
 								}
 							}
 							if (global.canvas_draw_request) {
@@ -667,9 +668,9 @@ function load_app(): void {
 						}
 					}
 				}
-				if (global.signal_build_element) {
+				if (global.flags.signal_build_element) {
 					if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
-						global.signal_build_element = false;
+						global.flags.signal_build_element = false;
 						global.signal_build_counter = 0;
 					}
 				}
@@ -681,11 +682,11 @@ function load_app(): void {
 				}
 				if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
 					global.canvas_redraw_counter = 0;
-					global.canvas_draw_event = false;
+					global.flags.canvas_draw_event = false;
 				}
 			}
 		} catch (e) {
-			if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
+			if (!global.CONSTANTS.DEVELOPER_MODE && !global.CONSTANTS.MOBILE_MODE) {
 				let post_data: string = e + '\r\n' + e.stack + '\r\n';
 				let url: string = 'solver_errors.php?msg="' + post_data + '"';
 				let method: string = 'POST';
@@ -705,9 +706,9 @@ function load_app(): void {
 		if (global.system_initialization['completed']) {
 			engine_functions.file_manager();
 			global.component_translating = false;
-			if (global.MOBILE_MODE) {
+			if (global.CONSTANTS.MOBILE_MODE) {
 				if (global.on_restore_event) {
-					global.signal_build_element = true;
+					global.flags.signal_build_element = true;
 					window.JsInterface.onRestore();
 					global.on_restore_event = false;
 				}
@@ -767,19 +768,19 @@ function load_app(): void {
 				global.canvas_draw_request_counter = 0;
 				global.is_dragging = false;
 			}
-			if (global.resize_event) {
-				general_paint.set_stroke_width(global.canvas_stroke_width_1);
-				if (global.MOBILE_MODE) {
-					general_paint.set_color(global.GENERAL_WHITE_COLOR);
+			if (global.flags.flag_resize_event) {
+				general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+				if (global.CONSTANTS.MOBILE_MODE) {
+					general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 				} else {
-					general_paint.set_color(global.GENERAL_BLACK_COLOR);
+					general_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 				}
-				general_paint.set_text_size(global.canvas_text_size_5);
+				general_paint.set_text_size(global.variables.canvas_text_size_5);
 				global.mouse_x = 0;
 				global.mouse_y = 0;
 				reset_zoom();
 				resize_components();
-				global.resize_event = false;
+				global.flags.flag_resize_event = false;
 			}
 			if (global.key_down_event_queue.length > 0) {
 				fifo_index = global.key_down_event_queue.length - 1;
@@ -1013,10 +1014,10 @@ function load_app(): void {
 				element_options.update();
 				history_manager.watch();
 				wire_manager.watch();
-				if (!global.MOBILE_MODE) {
-					if (last_webpage_document_title !== global.user_file.title) {
-						webpage_document_title.innerHTML = global.user_file.title;
-						last_webpage_document_title = global.user_file.title;
+				if (!global.CONSTANTS.MOBILE_MODE) {
+					if (last_webpage_document_title !== global.variables.user_file.title) {
+						webpage_document_title.innerHTML = global.variables.user_file.title;
+						last_webpage_document_title = global.variables.user_file.title;
 					}
 				}
 			}
@@ -1024,34 +1025,34 @@ function load_app(): void {
 			initialize(global.system_initialization['step']);
 			global.system_initialization['step']++;
 			if (global.system_initialization['step'] >= global.system_initialization['max']) {
-				if (global.MOBILE_MODE) {
+				if (global.CONSTANTS.MOBILE_MODE) {
 					global.on_restore_event = true;
 				}
 				global.system_initialization['step'] = 0;
 				global.system_initialization['completed'] = true;
-				global.signal_build_element = true;
+				global.flags.signal_build_element = true;
 			}
 		}
 	}
 	function refactor_sizes(): void {
-		global.canvas_stroke_width_1_zoom = global.canvas_stroke_width_base * 2.25 * global.workspace_zoom_scale;
-		global.canvas_stroke_width_2_zoom = global.canvas_stroke_width_base * 2.65 * global.workspace_zoom_scale;
-		global.canvas_stroke_width_3_zoom = global.canvas_stroke_width_base * 9 * global.workspace_zoom_scale;
-		global.canvas_stroke_width_4_zoom = global.canvas_stroke_width_base * 16 * global.workspace_zoom_scale;
-		global.canvas_stroke_width_5_zoom = global.canvas_stroke_width_base * 21 * global.workspace_zoom_scale;
-		global.canvas_stroke_width_6_zoom = global.canvas_stroke_width_base * 43 * global.workspace_zoom_scale;
-		global.canvas_text_size_1_zoom = global.canvas_text_size_base * 2.25 * global.workspace_zoom_scale;
-		global.canvas_text_size_2_zoom = global.canvas_text_size_base * 2.65 * global.workspace_zoom_scale;
-		global.canvas_text_size_3_zoom = global.canvas_text_size_base * 9 * global.workspace_zoom_scale;
-		global.canvas_text_size_4_zoom = global.canvas_text_size_base * 16 * global.workspace_zoom_scale;
-		global.canvas_text_size_5_zoom = global.canvas_text_size_base * 21 * global.workspace_zoom_scale;
-		global.canvas_text_size_6_zoom = global.canvas_text_size_base * 43 * global.workspace_zoom_scale;
+		global.variables.canvas_stroke_width_1_zoom = global.variables.canvas_stroke_width_base * 2.25 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_stroke_width_2_zoom = global.variables.canvas_stroke_width_base * 2.65 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_stroke_width_3_zoom = global.variables.canvas_stroke_width_base * 9 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_stroke_width_4_zoom = global.variables.canvas_stroke_width_base * 16 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_stroke_width_5_zoom = global.variables.canvas_stroke_width_base * 21 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_stroke_width_6_zoom = global.variables.canvas_stroke_width_base * 43 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_text_size_1_zoom = global.variables.canvas_text_size_base * 2.25 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_text_size_2_zoom = global.variables.canvas_text_size_base * 2.65 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_text_size_3_zoom = global.variables.canvas_text_size_base * 9 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
+		global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
 	}
 	function draw(): void {
 		refactor_sizes();
 		engine_functions.image_manager();
 		if (!global.picture_request_flag) {
-			if (!global.MOBILE_MODE) {
+			if (!global.CONSTANTS.MOBILE_MODE) {
 				if (
 					global.flag_idle &&
 					!global.flag_save_image &&
@@ -1068,9 +1069,9 @@ function load_app(): void {
 				) {
 					multi_select_manager.reset_enveloping_bounds();
 				}
-				if (global.signal_build_element) {
-					node_space_x_cache = 0.29375 * global.node_space_x;
-					node_space_y_cache = 0.29375 * global.node_space_y;
+				if (global.flags.signal_build_element) {
+					node_space_x_cache = 0.29375 * global.variables.node_space_x;
+					node_space_y_cache = 0.29375 * global.variables.node_space_y;
 					mult_node_space_x_cache = 1.25 * node_space_x_cache;
 					mult_node_space_y_cache = 1.25 * node_space_y_cache;
 					node_length = nodes.length;
@@ -1082,7 +1083,7 @@ function load_app(): void {
 						nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
 					}
 				}
-				if (global.DEVELOPER_MODE) {
+				if (global.CONSTANTS.DEVELOPER_MODE) {
 					node_length = nodes.length;
 					for (var i: number = 0; i < node_length; i++) {
 						nodes[i].draw(canvas);
@@ -1097,9 +1098,9 @@ function load_app(): void {
 				engine_functions.draw_wires(canvas);
 				engine_functions.draw_selected_components(canvas);
 				engine_functions.draw_meter_traces(canvas);
-				if (global.wire_builder['step'] > 0) {
-					global.node_line_buffer = [];
-					global.node_line_buffer_index = 0;
+				if (global.variables.wire_builder['step'] > 0) {
+					global.variables.node_line_buffer = [];
+					global.variables.node_line_buffer_index = 0;
 					node_length = nodes.length;
 					for (var i: number = 0; i < node_length; i++) {
 						nodes[i].draw(canvas);
@@ -1108,9 +1109,9 @@ function load_app(): void {
 						}
 						nodes[node_length - 1 - i].draw(canvas);
 					}
-					if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
-						canvas.draw_line_buffer(global.node_line_buffer, nodes[global.wire_builder['n1']].node_line_paint);
-						canvas.draw_rect2(nodes[global.wire_builder['n1']].bounds, nodes[global.wire_builder['n1']].node_fill_paint);
+					if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
+						canvas.draw_line_buffer(global.variables.node_line_buffer, nodes[global.variables.wire_builder['n1']].node_line_paint);
+						canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);
 					}
 				}
 				multi_select_manager.draw_bounds(canvas);
@@ -1141,9 +1142,9 @@ function load_app(): void {
 				) {
 					workspace.workspace_draw(canvas);
 					if (!global.flag_graph) {
-						if (global.signal_build_element) {
-							node_space_x_cache = 0.29375 * global.node_space_x;
-							node_space_y_cache = 0.29375 * global.node_space_y;
+						if (global.flags.signal_build_element) {
+							node_space_x_cache = 0.29375 * global.variables.node_space_x;
+							node_space_y_cache = 0.29375 * global.variables.node_space_y;
 							mult_node_space_x_cache = 1.25 * node_space_x_cache;
 							mult_node_space_y_cache = 1.25 * node_space_y_cache;
 							node_length = nodes.length;
@@ -1155,7 +1156,7 @@ function load_app(): void {
 								nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
 							}
 						}
-						if (global.DEVELOPER_MODE) {
+						if (global.CONSTANTS.DEVELOPER_MODE) {
 							node_length = nodes.length;
 							for (var i: number = 0; i < node_length; i++) {
 								nodes[i].draw(canvas);
@@ -1169,9 +1170,9 @@ function load_app(): void {
 						engine_functions.draw_wires(canvas);
 						engine_functions.draw_selected_components(canvas);
 						engine_functions.draw_meter_traces(canvas);
-						if (global.wire_builder['step'] > 0) {
-							global.node_line_buffer = [];
-							global.node_line_buffer_index = 0;
+						if (global.variables.wire_builder['step'] > 0) {
+							global.variables.node_line_buffer = [];
+							global.variables.node_line_buffer_index = 0;
 							node_length = nodes.length;
 							for (var i: number = 0; i < node_length; i++) {
 								nodes[i].draw(canvas);
@@ -1180,9 +1181,9 @@ function load_app(): void {
 								}
 								nodes[node_length - 1 - i].draw(canvas);
 							}
-							if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
-								canvas.draw_line_buffer(global.node_line_buffer, nodes[global.wire_builder['n1']].node_line_paint);
-								canvas.draw_rect2(nodes[global.wire_builder['n1']].bounds, nodes[global.wire_builder['n1']].node_fill_paint);
+							if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
+								canvas.draw_line_buffer(global.variables.node_line_buffer, nodes[global.variables.wire_builder['n1']].node_line_paint);
+								canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);
 							}
 						}
 						element_options.draw_options(canvas);
@@ -1203,7 +1204,7 @@ function load_app(): void {
 				toast.draw_toast(canvas);
 			}
 		}
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			canvas.draw_circle(global.mouse_x, global.mouse_y, 20, general_paint);
 			canvas.draw_text(global.mouse_x + ', ' + global.mouse_y, global.mouse_x, global.mouse_y + 50, general_paint);
 		}
@@ -1211,14 +1212,14 @@ function load_app(): void {
 	}
 	function handle_mouse_down(): void {
 		global.component_touched = false;
-		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_down_event.clientX * global.device_pixel_ratio;
-			global.mouse_y = global.mouse_down_event.clientY * global.device_pixel_ratio;
+		if (global.CONSTANTS.MOBILE_MODE === false) {
+			global.mouse_x = global.mouse_down_event.clientX * global.variables.device_pixel_ratio;
+			global.mouse_y = global.mouse_down_event.clientY * global.variables.device_pixel_ratio;
 		} else {
 			//@ts-expect-error
 			touch = global.mouse_down_event.touches[0];
-			global.mouse_x = touch.clientX * global.device_pixel_ratio;
-			global.mouse_y = touch.clientY * global.device_pixel_ratio;
+			global.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+			global.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
 		}
 		global.last_mouse_x = global.mouse_x;
 		global.last_mouse_y = global.mouse_y;
@@ -1226,7 +1227,7 @@ function load_app(): void {
 		global.mouse_down_x = global.mouse_x;
 		global.mouse_down_y = global.mouse_y;
 		global.translation_lock = true;
-		if (!global.MOBILE_MODE) {
+		if (!global.CONSTANTS.MOBILE_MODE) {
 			if ('which' in global.mouse_down_event) {
 				global.is_right_click = global.mouse_down_event.which === 3;
 			} else if ('button' in global.mouse_down_event) {
@@ -1265,7 +1266,7 @@ function load_app(): void {
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox
 		) {
-			if (global.MOBILE_MODE === false) {
+			if (global.CONSTANTS.MOBILE_MODE === false) {
 				if (global.is_right_click) {
 					global.is_dragging = true;
 					global.temp_is_dragging = global.is_dragging;
@@ -1483,7 +1484,7 @@ function load_app(): void {
 					wires[i].mouse_down();
 				}
 			}
-			if (global.MOBILE_MODE === true) {
+			if (global.CONSTANTS.MOBILE_MODE === true) {
 				if (global.component_touched === false) {
 					global.is_dragging = true;
 					global.temp_is_dragging = global.is_dragging;
@@ -1495,18 +1496,21 @@ function load_app(): void {
 	function handle_mouse_move(): void {
 		global.last_mouse_x = global.mouse_x;
 		global.last_mouse_y = global.mouse_y;
-		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_move_event.clientX * global.device_pixel_ratio;
-			global.mouse_y = global.mouse_move_event.clientY * global.device_pixel_ratio;
+		if (global.CONSTANTS.MOBILE_MODE === false) {
+			global.mouse_x = global.mouse_move_event.clientX * global.variables.device_pixel_ratio;
+			global.mouse_y = global.mouse_move_event.clientY * global.variables.device_pixel_ratio;
 		} else {
 			//@ts-expect-error
 			touch = global.mouse_move_event.touches[0];
-			global.mouse_x = touch.clientX * global.device_pixel_ratio;
-			global.mouse_y = touch.clientY * global.device_pixel_ratio;
+			global.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+			global.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
 		}
-		global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
-		global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
-		if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) && global.translation_lock) {
+		global.variables.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
+		global.variables.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
+		if (
+			global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.variables.node_space_x, global.variables.node_space_y) &&
+			global.translation_lock
+		) {
 			global.translation_lock = false;
 			global.is_dragging = global.temp_is_dragging;
 		}
@@ -1760,9 +1764,9 @@ function load_app(): void {
 		global.translation_lock = true;
 		global.mouse_down_x = -1;
 		global.mouse_down_y = -1;
-		if (global.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_up_event.clientX * global.device_pixel_ratio;
-			global.mouse_y = global.mouse_up_event.clientY * global.device_pixel_ratio;
+		if (global.CONSTANTS.MOBILE_MODE === false) {
+			global.mouse_x = global.mouse_up_event.clientX * global.variables.device_pixel_ratio;
+			global.mouse_y = global.mouse_up_event.clientY * global.variables.device_pixel_ratio;
 		} else {
 		}
 		global.last_mouse_x = global.mouse_x;
@@ -1783,7 +1787,7 @@ function load_app(): void {
 			!global.flag_remove_all
 		) {
 			if (!global.component_touched && !global.is_right_click) {
-				if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
+				if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
 					wire_manager.reset_wire_builder();
 				}
 			}
@@ -1999,7 +2003,7 @@ function load_app(): void {
 			wires[i].mouse_up();
 		}
 		if (global.signal_wire_created) {
-			global.history_manager['packet'].push(engine_functions.history_snapshot());
+			global.variables.history['packet'].push(engine_functions.history_snapshot());
 			global.signal_wire_created = false;
 		}
 		let component_touched: boolean = global.component_touched;
@@ -2026,8 +2030,8 @@ function load_app(): void {
 		global.signal_history_lock = false;
 	}
 	function handle_mouse_wheel(): void {
-		global.mouse_x = global.mouse_wheel_event.clientX * global.device_pixel_ratio;
-		global.mouse_y = global.mouse_wheel_event.clientY * global.device_pixel_ratio;
+		global.mouse_x = global.mouse_wheel_event.clientX * global.variables.device_pixel_ratio;
+		global.mouse_y = global.mouse_wheel_event.clientY * global.variables.device_pixel_ratio;
 		if (
 			!global.flag_save_image &&
 			!global.flag_save_circuit &&
@@ -2046,8 +2050,8 @@ function load_app(): void {
 		menu_bar.mouse_wheel();
 	}
 	function handle_double_click(): void {
-		global.mouse_x = global.mouse_double_click_event.clientX * global.device_pixel_ratio;
-		global.mouse_y = global.mouse_double_click_event.clientY * global.device_pixel_ratio;
+		global.mouse_x = global.mouse_double_click_event.clientX * global.variables.device_pixel_ratio;
+		global.mouse_y = global.mouse_double_click_event.clientY * global.variables.device_pixel_ratio;
 		time_step_window.double_click();
 		save_image_window.double_click();
 		save_circuit_window.double_click();
@@ -2072,26 +2076,26 @@ function load_app(): void {
 	}
 	function handle_workspace_drag(): void {
 		let sqrt: number = Math.round(global.settings.SQRT_MAXNODES * 0.75);
-		let x_space: number = sqrt * global.node_space_x;
-		let y_space: number = sqrt * global.node_space_y;
-		if (workspace.bounds.left + global.dx < view_port.left - x_space) {
-			global.dx = view_port.left - x_space - workspace.bounds.left;
+		let x_space: number = sqrt * global.variables.node_space_x;
+		let y_space: number = sqrt * global.variables.node_space_y;
+		if (workspace.bounds.left + global.variables.dx < view_port.left - x_space) {
+			global.variables.dx = view_port.left - x_space - workspace.bounds.left;
 		}
-		if (workspace.bounds.right + global.dx > view_port.right + x_space) {
-			global.dx = view_port.right + x_space - workspace.bounds.right;
+		if (workspace.bounds.right + global.variables.dx > view_port.right + x_space) {
+			global.variables.dx = view_port.right + x_space - workspace.bounds.right;
 		}
-		if (workspace.bounds.top + global.dy < view_port.top - y_space) {
-			global.dy = view_port.top - y_space - workspace.bounds.top;
+		if (workspace.bounds.top + global.variables.dy < view_port.top - y_space) {
+			global.variables.dy = view_port.top - y_space - workspace.bounds.top;
 		}
-		if (workspace.bounds.bottom + global.dy > view_port.bottom + y_space) {
-			global.dy = view_port.bottom + y_space - workspace.bounds.bottom;
+		if (workspace.bounds.bottom + global.variables.dy > view_port.bottom + y_space) {
+			global.variables.dy = view_port.bottom + y_space - workspace.bounds.bottom;
 		}
-		workspace.workspace_translate_bounds(global.dx, global.dy);
-		global.delta_x += global.dx;
-		global.delta_y += global.dy;
+		workspace.workspace_translate_bounds(global.variables.dx, global.variables.dy);
+		global.variables.delta_x += global.variables.dx;
+		global.variables.delta_y += global.variables.dy;
 	}
 	function register(): void {
-		if (!global.DEVELOPER_MODE) {
+		if (!global.CONSTANTS.DEVELOPER_MODE) {
 			let post_data: string = 'pinged @ {' + global.get_time_stamp() + '}';
 			let url: string = 'analytics.php?msg="' + post_data + '"';
 			let method: string = 'POST';
@@ -2108,16 +2112,16 @@ function load_app(): void {
 	}
 	function browser_detection(): void {
 		if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) !== -1) {
-			global.browser_opera = true;
+			global.variables.browser_opera = true;
 		} else if (navigator.userAgent.indexOf('Chrome') !== -1) {
-			global.browser_chrome = true;
+			global.variables.browser_chrome = true;
 		} else if (navigator.userAgent.indexOf('Safari') !== -1) {
-			global.browser_safari = true;
+			global.variables.browser_safari = true;
 		} else if (navigator.userAgent.indexOf('Firefox') !== -1) {
-			global.browser_firefox = true;
+			global.variables.browser_firefox = true;
 			//@ts-ignore
 		} else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true) {
-			global.browser_ie = true;
+			global.variables.browser_ie = true;
 		}
 	}
 	function main(): void {

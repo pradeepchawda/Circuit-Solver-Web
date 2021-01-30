@@ -27,13 +27,13 @@ class ScopeManager {
 	}
 	get_units(index: number): string {
 		if (index > -1 && index < this.entry.length) {
-			if (this.entry[index]['element_type'] === global.TYPE_VOLTMETER) {
+			if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
 				return global.PROPERTY_VOLTMETER['units'];
-			} else if (this.entry[index]['element_type'] === global.TYPE_AMMETER) {
+			} else if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_AMMETER) {
 				return global.PROPERTY_AMMETER['units'];
-			} else if (this.entry[index]['element_type'] === global.TYPE_OHMMETER) {
+			} else if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_OHMMETER) {
 				return global.PROPERTY_OHMMETER['units'];
-			} else if (this.entry[index]['element_type'] === global.TYPE_WATTMETER) {
+			} else if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_WATTMETER) {
 				return global.PROPERTY_WATTMETER['units'];
 			}
 		}
@@ -62,7 +62,7 @@ class ScopeManager {
 		return -1;
 	}
 	is_meter(type: number): boolean {
-		return type === global.TYPE_VOLTMETER || type === global.TYPE_OHMMETER || type === global.TYPE_AMMETER || type === global.TYPE_WATTMETER;
+		return type === global.ELEMENT_TYPES.TYPE_VOLTMETER || type === global.ELEMENT_TYPES.TYPE_OHMMETER || type === global.ELEMENT_TYPES.TYPE_AMMETER || type === global.ELEMENT_TYPES.TYPE_WATTMETER;
 	}
 	push(id: number, type: number, tag: string): void {
 		if (this.is_meter(type)) {
@@ -96,17 +96,17 @@ class ScopeManager {
 		this.v_side_2 = 0;
 		for (var i: number = 0; i < this.iteration_size; i++) {
 			if (i < this.entry.length) {
-				if (this.entry[i]['element_type'] === global.TYPE_VOLTMETER) {
+				if (this.entry[i]['element_type'] === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
 					this.index = engine_functions.get_voltmeter(this.entry[i]['element_id']);
 					if (this.index > -1 && this.index < voltmeters.length) {
 						this.push_to_graph(i, engine_functions.get_voltage(voltmeters[this.index].elm.n1, voltmeters[this.index].elm.n2), global.simulation_time);
 					}
-				} else if (this.entry[i]['element_type'] === global.TYPE_AMMETER) {
+				} else if (this.entry[i]['element_type'] === global.ELEMENT_TYPES.TYPE_AMMETER) {
 					this.index = engine_functions.get_ammeter(this.entry[i]['element_id']);
 					if (this.index > -1 && this.index < ammeters.length) {
 						this.push_to_graph(i, matrix_x[ammeters[this.index].get_simulation_index()][0], global.simulation_time);
 					}
-				} else if (this.entry[i]['element_type'] === global.TYPE_OHMMETER) {
+				} else if (this.entry[i]['element_type'] === global.ELEMENT_TYPES.TYPE_OHMMETER) {
 					this.index = engine_functions.get_ohmmeter(this.entry[i]['element_id']);
 					if (this.index > -1 && this.index < ohmmeters.length) {
 						this.push_to_graph(
@@ -115,7 +115,7 @@ class ScopeManager {
 							global.simulation_time
 						);
 					}
-				} else if (this.entry[i]['element_type'] === global.TYPE_WATTMETER) {
+				} else if (this.entry[i]['element_type'] === global.ELEMENT_TYPES.TYPE_WATTMETER) {
 					this.index = engine_functions.get_wattmeter(this.entry[i]['element_id']);
 					if (this.index > -1 && this.index < wattmeters.length) {
 						this.v_side_1 = Math.abs(engine_functions.get_voltage(wattmeters[this.index].elm.n1, -1));

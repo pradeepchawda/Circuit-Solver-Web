@@ -140,7 +140,7 @@ class Paint {
 	}
 	search_array(txt: string): boolean {
 		this.temp_boolean = false;
-		this.saved_metric = global.NULL;
+		this.saved_metric = global.CONSTANTS.NULL;
 		for (var i: number = 0; i < this.metric_array.length; i++) {
 			if (!this.temp_boolean) {
 				if (this.metric_array[i]['text'] === txt && this.metric_array[i]['font'] === this.font && this.metric_array[i]['text size'] === this.text_size) {
@@ -183,7 +183,7 @@ class Paint {
 			this.metric_array = [];
 		}
 		if (!global.not_null(this.saved_metric)) {
-			this.saved_metric = global.NULL;
+			this.saved_metric = global.CONSTANTS.NULL;
 		}
 		if (!global.not_null(this.garbage_collector_size)) {
 			this.garbage_collector_size = 16;

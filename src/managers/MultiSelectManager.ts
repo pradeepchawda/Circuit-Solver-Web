@@ -31,25 +31,25 @@ class MultiSelectManager {
 		this.multi_select_bounds = new RectF(this.OFFSCREEN_X, this.OFFSCREEN_Y, this.OFFSCREEN_X + 1, this.OFFSCREEN_Y + 1);
 		this.multi_select = false;
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
+		this.line_paint.set_paint_style(PAINT.style.STROKE);
+		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
-		this.line_paint.set_text_size(global.canvas_text_size_5);
-		this.line_paint.set_font(global.DEFAULT_FONT);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+		this.line_paint.set_paint_align(PAINT.align.CENTER);
 		this.fill_paint = new Paint();
-		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
-		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
-		this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-		this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-		this.fill_paint.set_color(global.GENERAL_GRAY_COLOR);
-		this.fill_paint.set_text_size(global.canvas_text_size_5);
-		this.fill_paint.set_font(global.DEFAULT_FONT);
+		this.fill_paint.set_paint_style(PAINT.style.FILL);
+		this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.fill_paint.set_paint_join(PAINT.join.MITER);
+		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+		this.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
+		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint.set_alpha(90);
-		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
+		this.fill_paint.set_paint_align(PAINT.align.CENTER);
 		this.select_x = 0;
 		this.select_y = 0;
 		this.delta_center_x = 0;
@@ -81,10 +81,10 @@ class MultiSelectManager {
 		this.multi_selected_element = false;
 		if (global.selected) {
 			if (!global.component_touched) {
-				global.selected_id = global.NULL;
+				global.selected_id = global.CONSTANTS.NULL;
 				global.selected_type = -1;
-				global.selected_bounds = global.NULL;
-				global.selected_properties = global.NULL;
+				global.selected_bounds = global.CONSTANTS.NULL;
+				global.selected_properties = global.CONSTANTS.NULL;
 				global.selected = false;
 			}
 		}
@@ -517,7 +517,7 @@ class MultiSelectManager {
 		this.multi_select = false;
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (this.enable_keys && !global.MOBILE_MODE) {
+		if (this.enable_keys && !global.CONSTANTS.MOBILE_MODE) {
 			if (
 				!global.flag_simulating &&
 				!global.flag_save_image &&
@@ -540,7 +540,7 @@ class MultiSelectManager {
 		}
 	}
 	key_up(key_event: KEY_EVENT_T): void {
-		if (this.enable_keys && !global.signal_history_lock && !global.MOBILE_MODE) {
+		if (this.enable_keys && !global.signal_history_lock && !global.CONSTANTS.MOBILE_MODE) {
 			if (!this.mouse_down_flag) {
 				this.ctrl_pressed_started = false;
 				this.ctrl_pressed = false;
@@ -563,7 +563,7 @@ class MultiSelectManager {
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox &&
 			!global.signal_history_lock &&
-			!global.MOBILE_MODE
+			!global.CONSTANTS.MOBILE_MODE
 		) {
 			if (this.enable_keys && !global.signal_history_lock) {
 				this.mouse_down_flag = true;
@@ -628,10 +628,10 @@ class MultiSelectManager {
 			!global.flag_remove_all &&
 			!global.flag_menu_element_toolbox &&
 			!global.signal_history_lock &&
-			!global.MOBILE_MODE
+			!global.CONSTANTS.MOBILE_MODE
 		) {
 			if (this.ctrl_pressed_started) {
-				if (Math.abs(global.mouse_x - this.select_x) > global.node_space_x || Math.abs(global.mouse_y - this.select_y) > global.node_space_y) {
+				if (Math.abs(global.mouse_x - this.select_x) > global.variables.node_space_x || Math.abs(global.mouse_y - this.select_y) > global.variables.node_space_y) {
 					this.ctrl_pressed = true;
 				}
 				if (global.component_translating) {
@@ -645,8 +645,8 @@ class MultiSelectManager {
 				if (this.delta_center_x > 0 && this.delta_center_y > 0) {
 					this.delta_last_dx = this.delta_dx;
 					this.delta_last_dy = this.delta_dy;
-					this.delta_dx = Math.floor((this.delta_end_x - this.delta_center_x) / global.node_space_x);
-					this.delta_dy = Math.floor((this.delta_end_y - this.delta_center_y) / global.node_space_y);
+					this.delta_dx = Math.floor((this.delta_end_x - this.delta_center_x) / global.variables.node_space_x);
+					this.delta_dy = Math.floor((this.delta_end_y - this.delta_center_y) / global.variables.node_space_y);
 					if (this.delta_dx !== this.delta_last_dx || this.delta_dy !== this.delta_last_dy) {
 						this.handle_multi_move();
 					}
@@ -671,42 +671,42 @@ class MultiSelectManager {
 		}
 	}
 	mouse_up(): void {
-		if (!global.MOBILE_MODE) {
+		if (!global.CONSTANTS.MOBILE_MODE) {
 			this.mouse_down_flag = false;
 			this.ctrl_pressed_started = false;
 			this.ctrl_pressed = false;
 			this.delta_latch = false;
 			if (this.elements_moved) {
-				global.history_manager['packet'].push(engine_functions.history_snapshot());
+				global.variables.history['packet'].push(engine_functions.history_snapshot());
 				this.elements_moved = false;
 			}
 		}
 	}
 	handle_multi_move(): void {
-		let dx: number = (this.delta_dx - this.delta_last_dx) * global.node_space_x;
-		let dy: number = (this.delta_dy - this.delta_last_dy) * global.node_space_y;
-		if (!(multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.node_space_y)) {
+		let dx: number = (this.delta_dx - this.delta_last_dx) * global.variables.node_space_x;
+		let dy: number = (this.delta_dy - this.delta_last_dy) * global.variables.node_space_y;
+		if (!(multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y)) {
 			if (dy < 0) {
 				dy = 0;
 			}
 		}
-		if (!(multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.node_space_y)) {
+		if (!(multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y)) {
 			if (dy > 0) {
 				dy = 0;
 			}
 		}
-		if (!(multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.node_space_x)) {
+		if (!(multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x)) {
 			if (dx < 0) {
 				dx = 0;
 			}
 		}
-		if (!(multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.node_space_x)) {
+		if (!(multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x)) {
 			if (dx > 0) {
 				dx = 0;
 			}
 		}
 		if (dx !== 0 || dy !== 0) {
-			global.signal_build_element = true;
+			global.flags.signal_build_element = true;
 			global.signal_build_counter = 0;
 			this.elements_moved = true;
 			/* #INSERT_GENERATE_MULTI_SELECT_ELEMENT_MOVE# */
@@ -1284,10 +1284,10 @@ class MultiSelectManager {
 			!global.flag_menu_element_toolbox
 		) {
 			global.multi_selected = true;
-			this.selected_components_bounds.left = Math.min(this.selected_components_bounds.left, bounds.left - global.node_space_x);
-			this.selected_components_bounds.top = Math.min(this.selected_components_bounds.top, bounds.top - global.node_space_y);
-			this.selected_components_bounds.right = Math.max(this.selected_components_bounds.right, bounds.right + global.node_space_x);
-			this.selected_components_bounds.bottom = Math.max(this.selected_components_bounds.bottom, bounds.bottom + global.node_space_y);
+			this.selected_components_bounds.left = Math.min(this.selected_components_bounds.left, bounds.left - global.variables.node_space_x);
+			this.selected_components_bounds.top = Math.min(this.selected_components_bounds.top, bounds.top - global.variables.node_space_y);
+			this.selected_components_bounds.right = Math.max(this.selected_components_bounds.right, bounds.right + global.variables.node_space_x);
+			this.selected_components_bounds.bottom = Math.max(this.selected_components_bounds.bottom, bounds.bottom + global.variables.node_space_y);
 		}
 	}
 	draw_bounds(canvas: GraphicsEngine): void {
@@ -1322,7 +1322,7 @@ class MultiSelectManager {
 				canvas.draw_rect2(this.draw_bounds_flag, this.line_paint);
 			}
 		}
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			canvas.draw_line(this.delta_center_x, this.delta_center_y, this.delta_end_x, this.delta_end_y, this.line_paint);
 		}
 	}

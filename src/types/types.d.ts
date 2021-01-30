@@ -31,7 +31,7 @@ declare type KEY_EVENT_T = {
 	ctrl: boolean;
 	caps: boolean;
 };
-declare type HISTORY_MANAGER_T = {
+declare type HISTORY_T = {
 	packet: Array<string>;
 };
 declare type SYSTEM_OPTIONS_T = {

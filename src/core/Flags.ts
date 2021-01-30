@@ -19,7 +19,7 @@ class Flags {
 	public signal_wire_created: boolean;
 	public signal_history_lock: boolean;
 	public signal_build_element: boolean;
-	public resize_event: boolean;
+	public flag_resize_event: boolean;
 	public force_resize_event: boolean;
 	public on_restore_event: boolean;
 	public mouse_down_event_flag: boolean;
@@ -54,7 +54,7 @@ class Flags {
 		this.signal_wire_created = false;
 		this.signal_history_lock = false;
 		this.signal_build_element = false;
-		this.resize_event = false;
+		this.flag_resize_event = false;
 		this.force_resize_event = false;
 		this.on_restore_event = false;
 		this.mouse_down_event_flag = false;

@@ -51,55 +51,55 @@ class OnScreenKeyboard {
 		this.bounds.top = view_port.bottom - view_port.view_height * this.height_ratio;
 		this.bounds.bottom = view_port.bottom;
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-		this.line_paint.set_paint_join(this.line_paint.join.MITER);
-		this.line_paint.set_stroke_width(global.canvas_stroke_width_2);
-		this.line_paint.set_color(global.GENERAL_BLACK_COLOR);
-		this.line_paint.set_text_size(global.canvas_text_size_5);
-		this.line_paint.set_font(global.DEFAULT_FONT);
+		this.line_paint.set_paint_style(PAINT.style.STROKE);
+		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
+		this.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+		this.line_paint.set_paint_align(PAINT.align.CENTER);
 		this.bounds_paint = new Paint();
-		this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
-		this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
-		this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
-		this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
-		this.bounds_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-		this.bounds_paint.set_text_size(global.canvas_text_size_5);
-		this.bounds_paint.set_font(global.DEFAULT_FONT);
+		this.bounds_paint.set_paint_style(PAINT.style.FILL);
+		this.bounds_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.bounds_paint.set_paint_join(PAINT.join.MITER);
+		this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+		this.bounds_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+		this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.bounds_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
-		this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
+		this.bounds_paint.set_paint_align(PAINT.align.CENTER);
 		this.fill_paint = new Paint();
-		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
-		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
-		this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-		this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-		this.fill_paint.set_color(global.GENERAL_CYAN_COLOR);
-		this.fill_paint.set_text_size(global.canvas_text_size_5);
-		this.fill_paint.set_font(global.DEFAULT_FONT);
+		this.fill_paint.set_paint_style(PAINT.style.FILL);
+		this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.fill_paint.set_paint_join(PAINT.join.MITER);
+		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+		this.fill_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
+		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
-		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
+		this.fill_paint.set_paint_align(PAINT.align.CENTER);
 		this.fill_paint_alt = new Paint();
-		this.fill_paint_alt.set_paint_style(this.fill_paint_alt.style.FILL);
-		this.fill_paint_alt.set_paint_cap(this.fill_paint_alt.cap.ROUND);
-		this.fill_paint_alt.set_paint_join(this.fill_paint_alt.join.MITER);
-		this.fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
-		this.fill_paint_alt.set_color(global.GENERAL_GRAY_COLOR);
-		this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
-		this.fill_paint_alt.set_font(global.DEFAULT_FONT);
+		this.fill_paint_alt.set_paint_style(PAINT.style.FILL);
+		this.fill_paint_alt.set_paint_cap(PAINT.cap.ROUND);
+		this.fill_paint_alt.set_paint_join(PAINT.join.MITER);
+		this.fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
+		this.fill_paint_alt.set_color(global.COLORS.GENERAL_GRAY_COLOR);
+		this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
+		this.fill_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint_alt.set_alpha(255);
-		this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
+		this.fill_paint_alt.set_paint_align(PAINT.align.CENTER);
 		this.text_paint = new Paint();
-		this.text_paint.set_paint_style(this.text_paint.style.FILL);
-		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-		this.text_paint.set_paint_join(this.text_paint.join.MITER);
-		this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
-		this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-		this.text_paint.set_text_size(global.canvas_text_size_5);
-		this.text_paint.set_font(global.DEFAULT_FONT);
+		this.text_paint.set_paint_style(PAINT.style.FILL);
+		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.text_paint.set_paint_join(PAINT.join.MITER);
+		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+		this.text_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
-		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
+		this.text_paint.set_paint_align(PAINT.align.CENTER);
 		this.flag_caps_lock = false;
 		this.flag_shift = false;
 		this.flag_enter = false;
@@ -322,26 +322,26 @@ class OnScreenKeyboard {
 		}
 	}
 	resize_keyboard(): void {
-		if (global.MOBILE_MODE) {
+		if (global.CONSTANTS.MOBILE_MODE) {
 			this.bounds.left = view_port.left;
 			this.bounds.right = view_port.right;
 			this.bounds.top = view_port.bottom - view_port.view_height * this.height_ratio;
 			this.bounds.bottom = view_port.bottom;
 			this.load_keyboard();
-			this.line_paint.set_stroke_width(global.canvas_stroke_width_2);
-			this.line_paint.set_text_size(global.canvas_text_size_5);
-			this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
-			this.text_paint.set_text_size(global.canvas_text_size_5);
-			this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-			this.fill_paint.set_text_size(global.canvas_text_size_5);
-			this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
-			this.bounds_paint.set_text_size(global.canvas_text_size_5);
-			this.fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
-			this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
+			this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
+			this.line_paint.set_text_size(global.variables.canvas_text_size_5);
+			this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+			this.text_paint.set_text_size(global.variables.canvas_text_size_5);
+			this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+			this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+			this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+			this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
+			this.fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
+			this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
 		}
 	}
 	mouse_down(): void {
-		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
+		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
 			this.flag_key_up = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
 				if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
@@ -353,11 +353,11 @@ class OnScreenKeyboard {
 		}
 	}
 	mouse_move(): void {
-		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
+		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
 		}
 	}
 	mouse_up(): void {
-		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
+		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
 			this.hover_index = -1;
 			let FOUND: boolean = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
@@ -446,9 +446,9 @@ class OnScreenKeyboard {
 		}
 	}
 	draw_keyboard(canvas: GraphicsEngine): void {
-		if (global.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
+		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
 			if (global.flag_element_options_edit === true || global.flag_select_timestep === true) {
-				if (global.selected_type !== global.TYPE_NOTE && global.selected_type !== global.TYPE_NET) {
+				if (global.selected_type !== global.ELEMENT_TYPES.TYPE_NOTE && global.selected_type !== global.ELEMENT_TYPES.TYPE_NET) {
 					this.engineering_keyboard_mode = true;
 				} else {
 					if (global.flag_element_options_edit) {

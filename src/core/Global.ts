@@ -1,7 +1,5 @@
 'use strict';
 class Global {
-	public readonly Paint: Paint;
-
 	public readonly CONSTANTS: Constants;
 	public readonly COLORS: Colors;
 	public readonly TEMPLATES: Templates;
@@ -12,6 +10,7 @@ class Global {
 	public flags: Flags;
 	public utils: Util;
 	public settings: Settings;
+	public variables: Variables;
 
 	// public 'circle_buffer': Array<Array<number>>;
 	// public 'line_buffer': Array<Array<number>>;
@@ -38,6 +37,7 @@ class Global {
 		this.events = new Events(this.CONSTANTS.NULL);
 		this.flags = new Flags();
 		this.utils = new Util(this.CONSTANTS, this.TEMPLATES, this.KEY_CODES);
+		this.variables = new Variables(this.CONSTANTS, this.COLORS);
 
 		this.vt = 25.6e-3;
 		this.gmin_default = 1e-9;

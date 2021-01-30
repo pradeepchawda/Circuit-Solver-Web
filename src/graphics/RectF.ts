@@ -47,10 +47,10 @@ class RectF {
 		this.bottom = bottom;
 	}
 	resize(): void {
-		this.left = global.remap_position(this.left, true);
-		this.top = global.remap_position(this.top, false);
-		this.right = global.remap_position(this.right, true);
-		this.bottom = global.remap_position(this.bottom, false);
+		this.left = global.utils.remap_position(this.left, true);
+		this.top = global.utils.remap_position(this.top, false);
+		this.right = global.utils.remap_position(this.right, true);
+		this.bottom = global.utils.remap_position(this.bottom, false);
 		this.last_left = -1;
 		this.last_right = -1;
 		this.last_top = -1;

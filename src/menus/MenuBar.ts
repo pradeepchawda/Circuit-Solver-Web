@@ -46,11 +46,11 @@ class MenuBar {
 	public line_buffer: Array<Array<number>>;
 	public circle_buffer: Array<Array<number>>;
 	constructor() {
-		let temp_stroke_width: number = 0.65 * global.canvas_stroke_width_3;
+		let temp_stroke_width: number = 0.65 * global.variables.canvas_stroke_width_3;
 		this.MAX_ICONS = 8;
-		if (global.MOBILE_MODE) {
+		if (global.CONSTANTS.MOBILE_MODE) {
 			this.height_ratio = 0.15;
-			temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
+			temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
 		} else {
 			this.height_ratio = 0.1;
 		}
@@ -66,165 +66,165 @@ class MenuBar {
 		this.UP_DOWN_INDEX = 7;
 		this.escape_interrupt = false;
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-		this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-		this.line_paint.set_paint_join(this.line_paint.join.MITER);
+		this.line_paint.set_paint_style(PAINT.style.STROKE);
+		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.line_paint.set_paint_join(PAINT.join.MITER);
 		this.line_paint.set_stroke_width(temp_stroke_width);
-		this.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-		this.line_paint.set_text_size(global.canvas_text_size_5);
-		this.line_paint.set_font(global.DEFAULT_FONT);
+		this.line_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+		this.line_paint.set_paint_align(PAINT.align.CENTER);
 		this.fill_paint = new Paint();
-		this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
-		this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
-		this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
+		this.fill_paint.set_paint_style(PAINT.style.FILL);
+		this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.fill_paint.set_paint_join(PAINT.join.MITER);
 		this.fill_paint.set_stroke_width(temp_stroke_width);
-		this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-		this.fill_paint.set_text_size(global.canvas_text_size_5);
-		this.fill_paint.set_font(global.DEFAULT_FONT);
+		this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
-		this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
+		this.fill_paint.set_paint_align(PAINT.align.CENTER);
 		this.line_paint_alt = new Paint();
-		this.line_paint_alt.set_paint_style(this.line_paint_alt.style.STROKE);
-		this.line_paint_alt.set_paint_cap(this.line_paint_alt.cap.ROUND);
-		this.line_paint_alt.set_paint_join(this.line_paint_alt.join.MITER);
+		this.line_paint_alt.set_paint_style(PAINT.style.STROKE);
+		this.line_paint_alt.set_paint_cap(PAINT.cap.ROUND);
+		this.line_paint_alt.set_paint_join(PAINT.join.MITER);
 		this.line_paint_alt.set_stroke_width(temp_stroke_width);
 		this.line_paint_alt.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.line_paint_alt.set_text_size(global.canvas_text_size_5);
-		this.line_paint_alt.set_font(global.DEFAULT_FONT);
+		this.line_paint_alt.set_text_size(global.variables.canvas_text_size_5);
+		this.line_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint_alt.set_alpha(255);
-		this.line_paint_alt.set_paint_align(this.line_paint_alt.align.CENTER);
+		this.line_paint_alt.set_paint_align(PAINT.align.CENTER);
 		this.fill_paint_alt = new Paint();
-		this.fill_paint_alt.set_paint_style(this.fill_paint_alt.style.FILL);
-		this.fill_paint_alt.set_paint_cap(this.fill_paint_alt.cap.ROUND);
-		this.fill_paint_alt.set_paint_join(this.fill_paint_alt.join.MITER);
+		this.fill_paint_alt.set_paint_style(PAINT.style.FILL);
+		this.fill_paint_alt.set_paint_cap(PAINT.cap.ROUND);
+		this.fill_paint_alt.set_paint_join(PAINT.join.MITER);
 		this.fill_paint_alt.set_stroke_width(temp_stroke_width);
-		this.fill_paint_alt.set_color(global.GENERAL_BOUNDS_COLOR);
-		this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
-		this.fill_paint_alt.set_font(global.DEFAULT_FONT);
+		this.fill_paint_alt.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+		this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
+		this.fill_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint_alt.set_alpha(255);
-		this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
+		this.fill_paint_alt.set_paint_align(PAINT.align.CENTER);
 		this.up_down_paint = new Paint();
-		this.up_down_paint.set_paint_style(this.up_down_paint.style.FILL);
-		this.up_down_paint.set_paint_cap(this.up_down_paint.cap.ROUND);
-		this.up_down_paint.set_paint_join(this.up_down_paint.join.MITER);
+		this.up_down_paint.set_paint_style(PAINT.style.FILL);
+		this.up_down_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.up_down_paint.set_paint_join(PAINT.join.MITER);
 		this.up_down_paint.set_stroke_width(temp_stroke_width);
-		this.up_down_paint.set_color(global.GENERAL_WHITE_COLOR);
-		this.up_down_paint.set_text_size(global.canvas_text_size_5);
-		this.up_down_paint.set_font(global.DEFAULT_FONT);
+		this.up_down_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+		this.up_down_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.up_down_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.up_down_paint.set_alpha(255);
-		this.up_down_paint.set_paint_align(this.up_down_paint.align.CENTER);
+		this.up_down_paint.set_paint_align(PAINT.align.CENTER);
 		this.add_paint = new Paint();
-		this.add_paint.set_paint_style(this.add_paint.style.FILL);
-		this.add_paint.set_paint_cap(this.add_paint.cap.ROUND);
-		this.add_paint.set_paint_join(this.add_paint.join.MITER);
+		this.add_paint.set_paint_style(PAINT.style.FILL);
+		this.add_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.add_paint.set_paint_join(PAINT.join.MITER);
 		this.add_paint.set_stroke_width(temp_stroke_width);
 		this.add_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.add_paint.set_text_size(global.canvas_text_size_5);
-		this.add_paint.set_font(global.DEFAULT_FONT);
+		this.add_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.add_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.add_paint.set_alpha(255);
-		this.add_paint.set_paint_align(this.add_paint.align.CENTER);
+		this.add_paint.set_paint_align(PAINT.align.CENTER);
 		this.go_paint = new Paint();
-		this.go_paint.set_paint_style(this.go_paint.style.FILL);
+		this.go_paint.set_paint_style(PAINT.style.FILL);
 		this.go_paint.set_paint_cap(this.go_paint.cap.BUTT);
-		this.go_paint.set_paint_join(this.go_paint.join.MITER);
+		this.go_paint.set_paint_join(PAINT.join.MITER);
 		this.go_paint.set_stroke_width(temp_stroke_width);
 		this.go_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.go_paint.set_text_size(global.canvas_text_size_5);
-		this.go_paint.set_font(global.DEFAULT_FONT);
+		this.go_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.go_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.go_paint.set_alpha(255);
-		this.go_paint.set_paint_align(this.go_paint.align.CENTER);
+		this.go_paint.set_paint_align(PAINT.align.CENTER);
 		this.hover_paint = new Paint();
-		this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
-		this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
-		this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
+		this.hover_paint.set_paint_style(PAINT.style.FILL);
+		this.hover_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.hover_paint.set_paint_join(PAINT.join.MITER);
 		this.hover_paint.set_stroke_width(temp_stroke_width);
-		this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
-		this.hover_paint.set_text_size(global.canvas_text_size_5);
-		this.hover_paint.set_font(global.DEFAULT_FONT);
+		this.hover_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
+		this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.hover_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.hover_paint.set_alpha(255);
-		this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
+		this.hover_paint.set_paint_align(PAINT.align.CENTER);
 		this.undo_paint = new Paint();
-		this.undo_paint.set_paint_style(this.undo_paint.style.FILL);
-		this.undo_paint.set_paint_cap(this.undo_paint.cap.ROUND);
-		this.undo_paint.set_paint_join(this.undo_paint.join.MITER);
+		this.undo_paint.set_paint_style(PAINT.style.FILL);
+		this.undo_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.undo_paint.set_paint_join(PAINT.join.MITER);
 		this.undo_paint.set_stroke_width(temp_stroke_width);
 		this.undo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.undo_paint.set_text_size(global.canvas_text_size_5);
-		this.undo_paint.set_font(global.DEFAULT_FONT);
+		this.undo_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.undo_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.undo_paint.set_alpha(255);
-		this.undo_paint.set_paint_align(this.undo_paint.align.CENTER);
+		this.undo_paint.set_paint_align(PAINT.align.CENTER);
 		this.redo_paint = new Paint();
-		this.redo_paint.set_paint_style(this.redo_paint.style.FILL);
-		this.redo_paint.set_paint_cap(this.redo_paint.cap.ROUND);
-		this.redo_paint.set_paint_join(this.redo_paint.join.MITER);
+		this.redo_paint.set_paint_style(PAINT.style.FILL);
+		this.redo_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.redo_paint.set_paint_join(PAINT.join.MITER);
 		this.redo_paint.set_stroke_width(temp_stroke_width);
 		this.redo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.redo_paint.set_text_size(global.canvas_text_size_5);
-		this.redo_paint.set_font(global.DEFAULT_FONT);
+		this.redo_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.redo_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.redo_paint.set_alpha(255);
-		this.redo_paint.set_paint_align(this.redo_paint.align.CENTER);
+		this.redo_paint.set_paint_align(PAINT.align.CENTER);
 		this.remove_all_paint = new Paint();
-		this.remove_all_paint.set_paint_style(this.remove_all_paint.style.STROKE);
-		this.remove_all_paint.set_paint_cap(this.remove_all_paint.cap.ROUND);
-		this.remove_all_paint.set_paint_join(this.remove_all_paint.join.MITER);
+		this.remove_all_paint.set_paint_style(PAINT.style.STROKE);
+		this.remove_all_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.remove_all_paint.set_paint_join(PAINT.join.MITER);
 		this.remove_all_paint.set_stroke_width(temp_stroke_width);
 		this.remove_all_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.remove_all_paint.set_text_size(global.canvas_text_size_5);
-		this.remove_all_paint.set_font(global.DEFAULT_FONT);
+		this.remove_all_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.remove_all_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.remove_all_paint.set_alpha(255);
-		this.remove_all_paint.set_paint_align(this.remove_all_paint.align.CENTER);
+		this.remove_all_paint.set_paint_align(PAINT.align.CENTER);
 		this.settings_paint = new Paint();
-		this.settings_paint.set_paint_style(this.settings_paint.style.FILL);
-		this.settings_paint.set_paint_cap(this.settings_paint.cap.ROUND);
-		this.settings_paint.set_paint_join(this.settings_paint.join.MITER);
+		this.settings_paint.set_paint_style(PAINT.style.FILL);
+		this.settings_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.settings_paint.set_paint_join(PAINT.join.MITER);
 		this.settings_paint.set_stroke_width(temp_stroke_width);
 		this.settings_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.settings_paint.set_text_size(global.canvas_text_size_5);
-		this.settings_paint.set_font(global.DEFAULT_FONT);
+		this.settings_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.settings_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.settings_paint.set_alpha(255);
-		this.settings_paint.set_paint_align(this.settings_paint.align.CENTER);
+		this.settings_paint.set_paint_align(PAINT.align.CENTER);
 		this.zoom_paint = new Paint();
-		this.zoom_paint.set_paint_style(this.zoom_paint.style.STROKE);
-		this.zoom_paint.set_paint_cap(this.zoom_paint.cap.ROUND);
-		this.zoom_paint.set_paint_join(this.zoom_paint.join.MITER);
+		this.zoom_paint.set_paint_style(PAINT.style.STROKE);
+		this.zoom_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.zoom_paint.set_paint_join(PAINT.join.MITER);
 		this.zoom_paint.set_stroke_width(temp_stroke_width);
 		this.zoom_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.zoom_paint.set_text_size(global.canvas_text_size_5);
-		this.zoom_paint.set_font(global.DEFAULT_FONT);
+		this.zoom_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.zoom_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.zoom_paint.set_alpha(255);
-		this.zoom_paint.set_paint_align(this.zoom_paint.align.CENTER);
+		this.zoom_paint.set_paint_align(PAINT.align.CENTER);
 		this.save_circuit_paint = new Paint();
-		this.save_circuit_paint.set_paint_style(this.save_circuit_paint.style.FILL);
-		this.save_circuit_paint.set_paint_cap(this.save_circuit_paint.cap.ROUND);
-		this.save_circuit_paint.set_paint_join(this.save_circuit_paint.join.MITER);
+		this.save_circuit_paint.set_paint_style(PAINT.style.FILL);
+		this.save_circuit_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.save_circuit_paint.set_paint_join(PAINT.join.MITER);
 		this.save_circuit_paint.set_stroke_width(temp_stroke_width);
 		this.save_circuit_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.save_circuit_paint.set_text_size(global.canvas_text_size_5);
-		this.save_circuit_paint.set_font(global.DEFAULT_FONT);
+		this.save_circuit_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.save_circuit_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.save_circuit_paint.set_alpha(255);
-		this.save_circuit_paint.set_paint_align(this.save_circuit_paint.align.CENTER);
+		this.save_circuit_paint.set_paint_align(PAINT.align.CENTER);
 		this.save_image_fill_paint = new Paint();
-		this.save_image_fill_paint.set_paint_style(this.save_image_fill_paint.style.FILL);
-		this.save_image_fill_paint.set_paint_cap(this.save_image_fill_paint.cap.ROUND);
-		this.save_image_fill_paint.set_paint_join(this.save_image_fill_paint.join.MITER);
+		this.save_image_fill_paint.set_paint_style(PAINT.style.FILL);
+		this.save_image_fill_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.save_image_fill_paint.set_paint_join(PAINT.join.MITER);
 		this.save_image_fill_paint.set_stroke_width(temp_stroke_width);
 		this.save_image_fill_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-		this.save_image_fill_paint.set_text_size(global.canvas_text_size_5);
-		this.save_image_fill_paint.set_font(global.DEFAULT_FONT);
+		this.save_image_fill_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.save_image_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.save_image_fill_paint.set_alpha(255);
-		this.save_image_fill_paint.set_paint_align(this.save_image_fill_paint.align.CENTER);
+		this.save_image_fill_paint.set_paint_align(PAINT.align.CENTER);
 		this.text_paint = new Paint();
-		this.text_paint.set_paint_style(this.text_paint.style.FILL);
-		this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-		this.text_paint.set_paint_join(this.text_paint.join.MITER);
+		this.text_paint.set_paint_style(PAINT.style.FILL);
+		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.text_paint.set_paint_join(PAINT.join.MITER);
 		this.text_paint.set_stroke_width(temp_stroke_width);
-		this.text_paint.set_color(global.GENERAL_CYAN_COLOR);
-		this.text_paint.set_text_size(global.canvas_text_size_5);
-		this.text_paint.set_font(global.DEFAULT_FONT);
+		this.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
+		this.text_paint.set_text_size(global.variables.canvas_text_size_5);
+		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
-		this.text_paint.set_paint_align(this.text_paint.align.CENTER);
+		this.text_paint.set_paint_align(PAINT.align.CENTER);
 		this.save_ckt_path1 = new Path();
 		this.save_ckt_path2 = new Path();
 		this.go_path = new Path();
@@ -235,15 +235,15 @@ class MenuBar {
 		this.graph_button = new RectF(0, 0, 0, 0);
 		this.settings_button = new RectF(0, 0, 0, 0);
 		this.sine_wave = new SineWave(0, 0, 0, 0, 1);
-		this.sine_wave.sine_wave_paint.set_color(global.GENERAL_WHITE_COLOR);
+		this.sine_wave.sine_wave_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.sine_wave.resize(this.sine_wave.STYLE_1);
 		this.base_width = this.bounds.get_width() / this.MAX_ICONS;
 		this.load_icons();
 		this.element_window = new ElementWindow(
 			this.bounds.left,
-			this.bounds.bottom + (global.canvas_stroke_width_4 >> 1),
+			this.bounds.bottom + (global.variables.canvas_stroke_width_4 >> 1),
 			this.bounds.right,
-			this.bounds.bottom + this.bounds.get_height() - (global.canvas_stroke_width_4 >> 1)
+			this.bounds.bottom + this.bounds.get_height() - (global.variables.canvas_stroke_width_4 >> 1)
 		);
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
@@ -256,18 +256,18 @@ class MenuBar {
 		let height: number = 0;
 		for (var i: number = 0; i < this.MAX_ICONS; i++) {
 			temp_bounds.left = this.bounds.left + i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
-			temp_bounds.top = this.bounds.top + global.canvas_stroke_width_4;
+			temp_bounds.top = this.bounds.top + global.variables.canvas_stroke_width_4;
 			temp_bounds.right = this.bounds.left + ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
-			temp_bounds.bottom = this.bounds.bottom - global.canvas_stroke_width_4;
+			temp_bounds.bottom = this.bounds.bottom - global.variables.canvas_stroke_width_4;
 			height = temp_bounds.get_height();
 			temp_bounds.set_center2(temp_bounds.get_center_x(), temp_bounds.get_center_y(), height, height);
 			this.menu_icons.push(new RectF(temp_bounds.left, temp_bounds.top, temp_bounds.right, temp_bounds.bottom));
 		}
 		this.graph_button.set_bounds(
 			this.menu_icons[this.REMOVE_ALL_INDEX].left,
-			this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 2 * global.canvas_stroke_width_4,
+			this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 2 * global.variables.canvas_stroke_width_4,
 			this.menu_icons[this.REMOVE_ALL_INDEX].right,
-			this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 3 * global.canvas_stroke_width_4 + this.menu_icons[this.REMOVE_ALL_INDEX].get_height() - global.canvas_stroke_width_4
+			this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 3 * global.variables.canvas_stroke_width_4 + this.menu_icons[this.REMOVE_ALL_INDEX].get_height() - global.variables.canvas_stroke_width_4
 		);
 		this.settings_button.set_bounds(
 			this.menu_icons[this.REMOVE_ALL_INDEX].left,
@@ -446,50 +446,50 @@ class MenuBar {
 		this.settings_path.close();
 	}
 	resize_menu_bar(): void {
-		let temp_stroke_width: number = 0.65 * global.canvas_stroke_width_3;
-		if (global.MOBILE_MODE) {
-			temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
+		let temp_stroke_width: number = 0.65 * global.variables.canvas_stroke_width_3;
+		if (global.CONSTANTS.MOBILE_MODE) {
+			temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
 		}
 		this.bounds.set_bounds(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.height_ratio);
 		this.base_width = this.bounds.get_width() / this.MAX_ICONS;
 		this.load_icons();
 		this.line_paint.set_stroke_width(temp_stroke_width);
-		this.line_paint.set_text_size(global.canvas_text_size_5);
+		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.line_paint_alt.set_stroke_width(temp_stroke_width);
-		this.line_paint_alt.set_text_size(global.canvas_text_size_5);
+		this.line_paint_alt.set_text_size(global.variables.canvas_text_size_5);
 		this.fill_paint.set_stroke_width(temp_stroke_width);
-		this.fill_paint.set_text_size(global.canvas_text_size_5);
+		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.fill_paint_alt.set_stroke_width(temp_stroke_width);
-		this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
+		this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
 		this.add_paint.set_stroke_width(temp_stroke_width);
-		this.add_paint.set_text_size(global.canvas_text_size_5);
+		this.add_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.up_down_paint.set_stroke_width(temp_stroke_width);
-		this.up_down_paint.set_text_size(global.canvas_text_size_5);
+		this.up_down_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.go_paint.set_stroke_width(temp_stroke_width);
-		this.go_paint.set_text_size(global.canvas_text_size_5);
+		this.go_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.hover_paint.set_stroke_width(temp_stroke_width);
-		this.hover_paint.set_text_size(global.canvas_text_size_5);
+		this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.undo_paint.set_stroke_width(temp_stroke_width);
-		this.undo_paint.set_text_size(global.canvas_text_size_5);
+		this.undo_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.redo_paint.set_stroke_width(temp_stroke_width);
-		this.redo_paint.set_text_size(global.canvas_text_size_5);
+		this.redo_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.text_paint.set_stroke_width(temp_stroke_width);
-		this.text_paint.set_text_size(global.canvas_text_size_5);
+		this.text_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.remove_all_paint.set_stroke_width(temp_stroke_width);
-		this.remove_all_paint.set_text_size(global.canvas_text_size_5);
+		this.remove_all_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.settings_paint.set_stroke_width(temp_stroke_width);
-		this.settings_paint.set_text_size(global.canvas_text_size_5);
+		this.settings_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.zoom_paint.set_stroke_width(temp_stroke_width);
-		this.zoom_paint.set_text_size(global.canvas_text_size_5);
+		this.zoom_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.save_circuit_paint.set_stroke_width(temp_stroke_width);
-		this.save_circuit_paint.set_text_size(global.canvas_text_size_5);
+		this.save_circuit_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.save_image_fill_paint.set_stroke_width(temp_stroke_width);
-		this.save_image_fill_paint.set_text_size(global.canvas_text_size_5);
+		this.save_image_fill_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.element_window.resize_window(
 			this.bounds.left,
-			this.bounds.bottom + (global.canvas_stroke_width_4 >> 1),
+			this.bounds.bottom + (global.variables.canvas_stroke_width_4 >> 1),
 			this.bounds.right,
-			this.bounds.bottom + this.bounds.get_height() - (global.canvas_stroke_width_4 >> 1)
+			this.bounds.bottom + this.bounds.get_height() - (global.variables.canvas_stroke_width_4 >> 1)
 		);
 		this.sine_wave.resize(this.sine_wave.STYLE_1);
 		this.sine_wave.sine_wave_paint.set_stroke_width(temp_stroke_width);
@@ -843,7 +843,7 @@ class MenuBar {
 		if (ON) {
 			element_options_window.title_bounds.text = global.selected_properties['tag'] + global.selected_id;
 		}
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('ELEMENT OPTIONS');
 		}
 	}
@@ -852,24 +852,24 @@ class MenuBar {
 		if (ON) {
 			element_options_edit_window.reset_cursor();
 		}
-		global.signal_build_element = true;
+		global.flags.signal_build_element = true;
 		global.signal_build_counter = 0;
 		global.flag_element_options_edit = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('ELEMENT OPTIONS EDIT');
 		}
 	}
 	handle_undo_flag(): void {
 		global.mouse_keyboard_lock = true;
 		history_manager.undo();
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('UNDO');
 		}
 	}
 	handle_redo_flag(): void {
 		global.mouse_keyboard_lock = true;
 		history_manager.redo();
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('REDO');
 		}
 	}
@@ -879,44 +879,44 @@ class MenuBar {
 		if (!ON) {
 			global.flag_menu_element_toolbox = ON;
 		}
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('MENU OPEN');
 		}
 	}
 	handle_menu_open_down_flag(ON: boolean): void {
 		global.mouse_keyboard_lock = true;
 		global.flag_menu_element_toolbox = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('MENU OPEN DOWN');
 		}
 	}
 	handle_save_image_flag(ON: boolean): void {
 		if (ON) {
-			save_image_window.input_button.text = global.user_file.title;
+			save_image_window.input_button.text = global.variables.user_file.title;
 			save_image_window.reset_cursor();
 		}
 		global.mouse_keyboard_lock = true;
 		global.flag_save_image = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('SAVE IMAGE');
 		}
 	}
 	handle_save_circuit_flag(ON: boolean): void {
 		if (ON) {
-			save_circuit_window.input_button.text = global.user_file.title;
+			save_circuit_window.input_button.text = global.variables.user_file.title;
 			save_circuit_window.reset_cursor();
 		}
 		bottom_menu.resize_bottom_menu();
 		global.mouse_keyboard_lock = true;
 		global.flag_save_circuit = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('SAVE CIRCUIT');
 		}
 	}
 	handle_select_settings_flag(ON: boolean): void {
 		global.mouse_keyboard_lock = true;
 		global.flag_select_settings = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('SETTINGS');
 		}
 	}
@@ -928,28 +928,28 @@ class MenuBar {
 		} else {
 			simulation_manager.terminate();
 		}
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('SIMULATION ' + (ON ? 'START' : 'END'));
 		}
 	}
 	handle_graph_flag(ON: boolean): void {
 		global.mouse_keyboard_lock = true;
 		global.flag_graph = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('GRAPH');
 		}
 	}
 	handle_remove_all_flag(ON: boolean): void {
 		global.mouse_keyboard_lock = true;
 		global.flag_remove_all = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('REMOVE ALL');
 		}
 	}
 	handle_zoom_flag(ON: boolean): void {
 		global.mouse_keyboard_lock = true;
 		global.flag_zoom = ON;
-		if (global.DEVELOPER_MODE) {
+		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('ZOOM');
 		}
 	}
@@ -1070,14 +1070,14 @@ class MenuBar {
 	}
 	draw_menu_bar(canvas: GraphicsEngine): void {
 		this.recolor();
-		let temp_stroke_width: number = 0.65 * global.canvas_stroke_width_3;
-		if (global.MOBILE_MODE) {
-			temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
+		let temp_stroke_width: number = 0.65 * global.variables.canvas_stroke_width_3;
+		if (global.CONSTANTS.MOBILE_MODE) {
+			temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
 		}
 		if (global.flag_menu_open) {
 			if (global.flag_menu_element_toolbox) {
-				if (!global.MOBILE_MODE) {
-					canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+				if (!global.CONSTANTS.MOBILE_MODE) {
+					canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 				}
 			}
 			canvas.draw_rect2(this.bounds, this.fill_paint);
@@ -1091,7 +1091,7 @@ class MenuBar {
 				!global.flag_element_options_edit &&
 				!global.flag_zoom &&
 				!multi_select_manager.ctrl_pressed_started &&
-				!global.MOBILE_MODE
+				!global.CONSTANTS.MOBILE_MODE
 			) {
 				let cached_value: number = this.base_width;
 				for (var i: number = 0; i < this.menu_icons.length; i++) {
@@ -1128,12 +1128,12 @@ class MenuBar {
 			canvas.draw_line_buffer(this.line_buffer, this.remove_all_paint);
 			indexer = 0;
 			this.line_buffer = [];
-			if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 				canvas.draw_text('X', this.menu_icons[this.REMOVE_ALL_INDEX].left, this.menu_icons[this.REMOVE_ALL_INDEX].top, this.text_paint);
 			}
 			canvas.draw_path(this.save_ckt_path1, this.save_circuit_paint);
 			canvas.draw_path(this.save_ckt_path2, this.save_circuit_paint);
-			if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 				canvas.draw_text('S', this.menu_icons[this.SAVE_INDEX].left, this.menu_icons[this.SAVE_INDEX].top, this.text_paint);
 			}
 			canvas.draw_path(this.save_img_path, this.save_image_fill_paint);
@@ -1143,7 +1143,7 @@ class MenuBar {
 				this.menu_icons[this.SAVE_IMG_INDEX].get_width() >> 3,
 				this.fill_paint_alt
 			);
-			if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 				canvas.draw_text('I', this.menu_icons[this.SAVE_IMG_INDEX].left, this.menu_icons[this.SAVE_IMG_INDEX].top, this.text_paint);
 			}
 			let width_rshift_3: number = this.menu_icons[this.ADD_INDEX].get_width() >> 3;
@@ -1164,7 +1164,7 @@ class MenuBar {
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			indexer = 0;
 			this.line_buffer = [];
-			if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 				canvas.draw_text('N', this.menu_icons[this.ADD_INDEX].left, this.menu_icons[this.ADD_INDEX].top, this.text_paint);
 			}
 			if (!global.flag_simulating) {
@@ -1180,15 +1180,15 @@ class MenuBar {
 					this.go_paint
 				);
 			}
-			if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 				canvas.draw_text('A', this.menu_icons[this.GO_INDEX].left, this.menu_icons[this.GO_INDEX].top, this.text_paint);
 			}
 			canvas.draw_path(this.undo_path, this.undo_paint);
-			if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 				canvas.draw_text('Z', this.menu_icons[this.UNDO_INDEX].left, this.menu_icons[this.UNDO_INDEX].top, this.text_paint);
 			}
 			canvas.draw_path(this.redo_path, this.redo_paint);
-			if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
 				canvas.draw_text('Y', this.menu_icons[this.REDO_INDEX].left, this.menu_icons[this.REDO_INDEX].top, this.text_paint);
 			}
 			canvas.draw_arrow(
@@ -1217,7 +1217,7 @@ class MenuBar {
 				!global.flag_graph &&
 				!global.flag_remove_all &&
 				!multi_select_manager.ctrl_pressed_started &&
-				!global.MOBILE_MODE
+				!global.CONSTANTS.MOBILE_MODE
 			) {
 				canvas.draw_circle3(this.menu_icons[this.REMOVE_ALL_INDEX], 1.15, this.hover_paint);
 			}
@@ -1233,7 +1233,7 @@ class MenuBar {
 				!global.flag_element_options &&
 				!global.flag_remove_all &&
 				!multi_select_manager.ctrl_pressed_started &&
-				!global.MOBILE_MODE
+				!global.CONSTANTS.MOBILE_MODE
 			) {
 				canvas.draw_circle3(this.menu_icons[this.UP_DOWN_INDEX], 1.15, this.hover_paint);
 			}
@@ -1293,7 +1293,7 @@ class MenuBar {
 				!global.flag_element_options &&
 				!global.flag_remove_all &&
 				!multi_select_manager.ctrl_pressed_started &&
-				!global.MOBILE_MODE
+				!global.CONSTANTS.MOBILE_MODE
 			) {
 				canvas.draw_circle3(this.graph_button, 1.15, this.hover_paint);
 			}
@@ -1328,7 +1328,7 @@ class MenuBar {
 			!global.flag_graph &&
 			!global.flag_remove_all &&
 			!multi_select_manager.ctrl_pressed_started &&
-			!global.MOBILE_MODE
+			!global.CONSTANTS.MOBILE_MODE
 		) {
 			canvas.draw_circle3(this.settings_button, 1.15, this.hover_paint);
 		}
@@ -1348,7 +1348,7 @@ class MenuBar {
 			!global.flag_graph &&
 			!global.flag_remove_all &&
 			!multi_select_manager.ctrl_pressed_started &&
-			!global.MOBILE_MODE
+			!global.CONSTANTS.MOBILE_MODE
 		) {
 			canvas.draw_circle(this.settings_button.get_center_x(), this.settings_button.get_center_y(), this.settings_button.get_width() * 0.125, this.hover_paint);
 		} else {

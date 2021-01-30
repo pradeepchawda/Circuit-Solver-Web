@@ -1,5 +1,4 @@
 'use strict';
-
 class KeyCodes {
 	public readonly KEY_CODE_ESCAPE: string;
 	public readonly KEY_CODE_BACK_QUOTE: string;

@@ -163,7 +163,7 @@ class SimulationManager {
 		global.is_singular = false;
 		this.first_matrix_build = true;
 		this.reset_simulation();
-		if (global.system_options['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
+		if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
 			global.time_step = this.determine_optimal_timestep();
 			bottom_menu.resize_bottom_menu();
 		} else {
@@ -269,10 +269,10 @@ class SimulationManager {
 		this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
 		this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.language_index]]);
+		toast.set_text(language_manager.START_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 		toast.show();
 		this.solutions_ready = false;
-		global.signal_build_element = true;
+		global.flags.signal_build_element = true;
 		this.initialized = true;
 	}
 	determine_optimal_timestep(): number {
@@ -487,16 +487,16 @@ class SimulationManager {
 			this.time_data.push(transformers[i].time_data());
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		let max_frequency: number = global.ZERO;
+		let max_frequency: number = global.CONSTANTS.ZERO;
 		let min_frequency: number = Number.MAX_VALUE;
-		let max_resistance: number = global.ZERO;
+		let max_resistance: number = global.CONSTANTS.ZERO;
 		let min_resistance: number = Number.MAX_VALUE;
-		let max_capacitance: number = global.ZERO;
+		let max_capacitance: number = global.CONSTANTS.ZERO;
 		let min_capacitance: number = Number.MAX_VALUE;
-		let max_inductance: number = global.ZERO;
+		let max_inductance: number = global.CONSTANTS.ZERO;
 		let min_inductance: number = Number.MAX_VALUE;
-		let parallel_resistance: number = global.ZERO;
-		let series_resistance: number = global.ZERO;
+		let parallel_resistance: number = global.CONSTANTS.ZERO;
+		let series_resistance: number = global.CONSTANTS.ZERO;
 		let parallel_series_updated: boolean = false;
 		let min_freq_updated: boolean = false;
 		let max_freq_updated: boolean = false;
@@ -631,7 +631,7 @@ class SimulationManager {
 		this.simulation_step = 0;
 		this.solutions_ready = false;
 		global.is_singular = false;
-		toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.language_index]]);
+		toast.set_text(language_manager.STOP_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 		toast.show();
 	}
 	reset_elements(): void {
@@ -1069,7 +1069,7 @@ class SimulationManager {
 		if (global.flag_simulating && this.initialized) {
 			if (this.simulation_step === 0) {
 				this.solve();
-				if (this.continue_solving && !global.MOBILE_MODE) {
+				if (this.continue_solving && !global.CONSTANTS.MOBILE_MODE) {
 					this.solve();
 				}
 			} else {
@@ -1077,15 +1077,15 @@ class SimulationManager {
 				if (!this.continue_solving || this.iterator >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
 					if (this.iterator >= global.settings.ITL4) {
 						menu_bar.handle_simulation_flag(!global.flag_simulating);
-						toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.language_index]]);
+						toast.set_text(language_manager.CONVERGENCE_ERROR[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 						toast.show();
 					} else if (global.is_singular) {
 						menu_bar.handle_simulation_flag(!global.flag_simulating);
-						toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.language_index]]);
+						toast.set_text(language_manager.SINGULAR_MATRIX[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 						toast.show();
 					} else if (global.simulation_time >= this.SIMULATION_MAX_TIME) {
 						menu_bar.handle_simulation_flag(!global.flag_simulating);
-						toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.language_index]]);
+						toast.set_text(language_manager.END_OF_TIME[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 						toast.show();
 					}
 				}

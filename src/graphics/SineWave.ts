@@ -19,15 +19,15 @@ class SineWave {
 		this.STYLE_1 = 1;
 		this.amplitude = amplitude;
 		this.sine_wave_paint = new Paint();
-		this.sine_wave_paint.set_paint_style(this.sine_wave_paint.style.STROKE);
-		this.sine_wave_paint.set_paint_cap(this.sine_wave_paint.cap.ROUND);
-		this.sine_wave_paint.set_paint_join(this.sine_wave_paint.join.MITER);
-		this.sine_wave_paint.set_stroke_width(global.canvas_stroke_width_2);
+		this.sine_wave_paint.set_paint_style(PAINT.style.STROKE);
+		this.sine_wave_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.sine_wave_paint.set_paint_join(PAINT.join.MITER);
+		this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 		this.sine_wave_paint.set_color(global.ELEMENT_COLOR);
-		this.sine_wave_paint.set_text_size(global.canvas_text_size_4);
-		this.sine_wave_paint.set_font(global.DEFAULT_FONT);
+		this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4);
+		this.sine_wave_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.sine_wave_paint.set_alpha(255);
-		this.sine_wave_paint.set_paint_align(this.sine_wave_paint.align.CENTER);
+		this.sine_wave_paint.set_paint_align(PAINT.align.CENTER);
 		this.x1 = x1;
 		this.x2 = x2;
 		this.y1 = y1;
@@ -57,11 +57,11 @@ class SineWave {
 	}
 	resize(style: number): void {
 		if (style === this.STYLE_0) {
-			this.sine_wave_paint.set_stroke_width(global.canvas_stroke_width_2_zoom);
-			this.sine_wave_paint.set_text_size(global.canvas_text_size_4_zoom);
+			this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2_zoom);
+			this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4_zoom);
 		} else if (style === this.STYLE_1) {
-			this.sine_wave_paint.set_stroke_width(global.canvas_stroke_width_2);
-			this.sine_wave_paint.set_text_size(global.canvas_text_size_4);
+			this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
+			this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4);
 		}
 		this.last_x1 = -1;
 		this.last_x2 = -1;

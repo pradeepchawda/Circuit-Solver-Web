@@ -96,7 +96,7 @@ class Variables {
 	public 'canvas_text_size_5_zoom': number;
 	public 'canvas_text_size_6_zoom': number;
 	public 'move_paint': Paint;
-	public history_manager: HISTORY_MANAGER_T;
+	public history: HISTORY_T;
 
 	constructor(CONSTANTS: Constants, COLORS: Colors) {
 		this.device_pixel_ratio = 1;
@@ -186,7 +186,7 @@ class Variables {
 			step: 0
 		};
 
-		this.history_manager = {
+		this.history = {
 			packet: []
 		};
 
@@ -239,14 +239,14 @@ class Variables {
 		this.canvas_text_size_5_zoom = 21;
 		this.canvas_text_size_6_zoom = 43;
 		this.move_paint = new Paint();
-		this.move_paint.set_paint_style(this.move_paint.style.FILL);
-		this.move_paint.set_paint_cap(this.move_paint.cap.ROUND);
-		this.move_paint.set_paint_join(this.move_paint.join.MITER);
+		this.move_paint.set_paint_style(PAINT.style.FILL);
+		this.move_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.move_paint.set_paint_join(PAINT.join.MITER);
 		this.move_paint.set_stroke_width(this.canvas_stroke_width_1);
 		this.move_paint.set_color(COLORS.GENERAL_GRAY_COLOR);
 		this.move_paint.set_text_size(this.canvas_text_size_1);
 		this.move_paint.set_font(CONSTANTS.DEFAULT_FONT);
 		this.move_paint.set_alpha(60);
-		this.move_paint.set_paint_align(this.move_paint.align.CENTER);
+		this.move_paint.set_paint_align(PAINT.align.CENTER);
 	}
 }

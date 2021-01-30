@@ -38,25 +38,25 @@ class Trace {
 		this.x_axis_length = x_len;
 		this.y_axis_length = y_len;
 		this.trace_stroke_paint = new Paint();
-		this.trace_stroke_paint.set_paint_style(this.trace_stroke_paint.style.STROKE);
-		this.trace_stroke_paint.set_paint_cap(this.trace_stroke_paint.cap.ROUND);
-		this.trace_stroke_paint.set_paint_join(this.trace_stroke_paint.join.MITER);
-		this.trace_stroke_paint.set_stroke_width(global.canvas_stroke_width_2);
+		this.trace_stroke_paint.set_paint_style(PAINT.style.STROKE);
+		this.trace_stroke_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.trace_stroke_paint.set_paint_join(PAINT.join.MITER);
+		this.trace_stroke_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 		this.trace_stroke_paint.set_color(global.TRACE_DEFAULT_COLOR);
-		this.trace_stroke_paint.set_text_size(global.canvas_text_size_4);
-		this.trace_stroke_paint.set_font(global.DEFAULT_FONT);
+		this.trace_stroke_paint.set_text_size(global.variables.canvas_text_size_4);
+		this.trace_stroke_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.trace_stroke_paint.set_alpha(255);
-		this.trace_stroke_paint.set_paint_align(this.trace_stroke_paint.align.CENTER);
+		this.trace_stroke_paint.set_paint_align(PAINT.align.CENTER);
 		this.trace_fill_paint = new Paint();
-		this.trace_fill_paint.set_paint_style(this.trace_fill_paint.style.FILL);
-		this.trace_fill_paint.set_paint_cap(this.trace_fill_paint.cap.ROUND);
-		this.trace_fill_paint.set_paint_join(this.trace_fill_paint.join.MITER);
-		this.trace_fill_paint.set_stroke_width(global.canvas_stroke_width_2);
+		this.trace_fill_paint.set_paint_style(PAINT.style.FILL);
+		this.trace_fill_paint.set_paint_cap(PAINT.cap.ROUND);
+		this.trace_fill_paint.set_paint_join(PAINT.join.MITER);
+		this.trace_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 		this.trace_fill_paint.set_color(global.TRACE_DEFAULT_COLOR);
-		this.trace_fill_paint.set_text_size(global.canvas_text_size_4);
-		this.trace_fill_paint.set_font(global.DEFAULT_FONT);
+		this.trace_fill_paint.set_text_size(global.variables.canvas_text_size_4);
+		this.trace_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.trace_fill_paint.set_alpha(255);
-		this.trace_fill_paint.set_paint_align(this.trace_fill_paint.align.CENTER);
+		this.trace_fill_paint.set_paint_align(PAINT.align.CENTER);
 	}
 	set_color(color: string): void {
 		this.trace_stroke_paint.set_color(color);
@@ -94,10 +94,10 @@ class Trace {
 		this.bounds.bottom = rect.bottom;
 	}
 	resize_trace(): void {
-		this.trace_stroke_paint.set_stroke_width(global.canvas_stroke_width_2);
-		this.trace_stroke_paint.set_text_size(global.canvas_text_size_4);
-		this.trace_fill_paint.set_stroke_width(global.canvas_stroke_width_2);
-		this.trace_fill_paint.set_text_size(global.canvas_text_size_4);
+		this.trace_stroke_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
+		this.trace_stroke_paint.set_text_size(global.variables.canvas_text_size_4);
+		this.trace_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
+		this.trace_fill_paint.set_text_size(global.variables.canvas_text_size_4);
 		let constant: number = this.width / (this.x_axis_length >> 1);
 		let constant2: number = (this.height * this.ratio) / this.temporary_norm;
 		for (var i: number = 0; i < this.trace.length; i++) {
