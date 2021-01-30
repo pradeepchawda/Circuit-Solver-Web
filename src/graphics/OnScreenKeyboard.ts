@@ -372,7 +372,7 @@ class OnScreenKeyboard {
 				if (this.KEYBOARD_KEYS[i].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 					FOUND = true;
 					if (this.KEYBOARD_MAPPING[i].length === 1 && this.approve_keys(i)) {
-						this.KEYBOARD_KEY_EVENT.code = global.key_to_code(this.KEYBOARD_MAPPING[i]);
+						this.KEYBOARD_KEY_EVENT.code = global.utils.key_to_code(this.KEYBOARD_MAPPING[i]);
 						global.flags.key_down_event_flag = true;
 						global.flags.key_up_event_flag = true;
 						global.events.key_down_event_queue.push({

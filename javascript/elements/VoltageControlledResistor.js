@@ -3,13 +3,13 @@ class VoltageControlledResistor {
     constructor(type, id, n1, n2, n3) {
         this.initialized = false;
         this.bounds = new RectF(0, 0, 0, 0);
-        this.elm = new Element3(id, type, global.utils.copy(global.PROPERTY_VCR));
+        this.elm = new Element3(id, type, global.utils.copy(global.PROPERTY.PROPERTY_VCR));
         this.elm.set_nodes(n1, n2, n3);
         if (this.elm.consistent()) {
-            this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y), global.variables.node_space_x * 2, global.variables.node_space_y * 2);
+            this.bounds.set_center2(global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x), global.utils.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y), global.variables.node_space_x * 2, global.variables.node_space_y * 2);
         }
-        this.elm.set_rotation(global.ROTATION_0);
-        this.elm.set_flip(global.FLIP_0);
+        this.elm.set_rotation(global.CONSTANTS.ROTATION_0);
+        this.elm.set_flip(global.CONSTANTS.FLIP_0);
         this.release_nodes();
         let vertices = this.get_vertices();
         this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
@@ -103,7 +103,7 @@ class VoltageControlledResistor {
             this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
             this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
-            this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y), global.variables.node_space_x * 2, global.variables.node_space_y * 2);
+            this.bounds.set_center2(global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x), global.utils.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y), global.variables.node_space_x * 2, global.variables.node_space_y * 2);
         }
     }
     push_reference(ref) {
@@ -114,7 +114,7 @@ class VoltageControlledResistor {
             if (this.elm.consistent()) {
                 this.elm.properties['Input Voltage'] = global.utils.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
                 if (this.elm.properties['Interpolate'] === global.CONSTANTS.ON) {
-                    this.elm.properties['Output Resistance'] = global.linterp([
+                    this.elm.properties['Output Resistance'] = global.utils.linterp([
                         this.elm.properties['High Voltage'] * 0,
                         this.elm.properties['High Voltage'] * 0.25,
                         this.elm.properties['High Voltage'] * 0.5,
@@ -155,25 +155,25 @@ class VoltageControlledResistor {
         let p1 = [];
         let p2 = [];
         let p3 = [];
-        if (this.elm.rotation === global.ROTATION_0) {
+        if (this.elm.rotation === global.CONSTANTS.ROTATION_0) {
             p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             p2 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.variables.node_space_y);
             p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
-        else if (this.elm.rotation === global.ROTATION_90) {
+        else if (this.elm.rotation === global.CONSTANTS.ROTATION_90) {
             p1 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.variables.node_space_y);
             p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
             p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() + global.variables.node_space_y);
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
-        else if (this.elm.rotation === global.ROTATION_180) {
+        else if (this.elm.rotation === global.CONSTANTS.ROTATION_180) {
             p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
             p2 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() + global.variables.node_space_y);
             p3 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
-        else if (this.elm.rotation === global.ROTATION_270) {
+        else if (this.elm.rotation === global.CONSTANTS.ROTATION_270) {
             p1 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() + global.variables.node_space_y);
             p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.get_center_y() - global.variables.node_space_y);
@@ -241,15 +241,15 @@ class VoltageControlledResistor {
                 else {
                     if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
                         if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
+                            this.handle_wire_builder(this.elm.n1, global.CONSTANTS.anchor_point['p1']);
                             global.variables.component_touched = true;
                         }
                         else if (nodes[this.elm.n2].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n2, global.ANCHOR_POINT['p2']);
+                            this.handle_wire_builder(this.elm.n2, global.CONSTANTS.anchor_point['p2']);
                             global.variables.component_touched = true;
                         }
                         else if (nodes[this.elm.n3].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n3, global.ANCHOR_POINT['p3']);
+                            this.handle_wire_builder(this.elm.n3, global.CONSTANTS.anchor_point['p3']);
                             global.variables.component_touched = true;
                         }
                     }
@@ -423,7 +423,7 @@ class VoltageControlledResistor {
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
-                    if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+                    if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[0];
@@ -434,7 +434,7 @@ class VoltageControlledResistor {
                             wires[id].p2.x = vertices[0];
                         }
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[2];
@@ -445,7 +445,7 @@ class VoltageControlledResistor {
                             wires[id].p2.y = vertices[3];
                         }
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p3']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[4];
@@ -470,7 +470,7 @@ class VoltageControlledResistor {
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
-                    if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+                    if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[0];
                             wires[id].p1.y = vertices[1];
@@ -481,7 +481,7 @@ class VoltageControlledResistor {
                         }
                         wires[id].capture_nodes();
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[2];
                             wires[id].p1.y = vertices[3];
@@ -492,7 +492,7 @@ class VoltageControlledResistor {
                         }
                         wires[id].capture_nodes();
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p3']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[4];
                             wires[id].p1.y = vertices[5];
@@ -573,22 +573,22 @@ class VoltageControlledResistor {
             this.vcr_12.y = this.c_y - cache_9 * global.utils.sine(this.theta) + cache_5 * global.utils.sine(Math.PI + this.theta_m90);
             this.vcr_0.x = this.connect1_x + cache_8 * global.utils.cosine(this.theta) + cache_6 * global.utils.cosine(this.theta_m90);
             this.vcr_0.y = this.connect1_y + cache_9 * global.utils.sine(this.theta) + cache_7 * global.utils.sine(this.theta_m90);
-            this.vcr_13.x = this.p1.x + 1.5 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_4);
-            this.vcr_13.y = this.p1.y + 1.5 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_4);
-            this.vcr_14.x = this.p3.x - 1.5 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_4);
-            this.vcr_14.y = this.p3.y - 1.5 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_4);
+            this.vcr_13.x = this.p1.x + 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+            this.vcr_13.y = this.p1.y + 1.5 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+            this.vcr_14.x = this.p3.x - 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+            this.vcr_14.y = this.p3.y - 1.5 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
             this.theta = global.utils.retrieve_angle_radian(this.vcr_14.x - this.vcr_13.x, this.vcr_14.y - this.vcr_13.y);
-            this.vcr_15.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta + global.PI_DIV_6);
-            this.vcr_15.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta + global.PI_DIV_6);
-            this.vcr_16.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_6);
-            this.vcr_16.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_6);
+            this.vcr_15.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+            this.vcr_15.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
+            this.vcr_16.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+            this.vcr_16.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
             this.theta = global.utils.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
             this.vcr_1.x = this.p2.x + 0.8 * cache_8 * global.utils.cosine(this.phi);
             this.vcr_1.y = this.p2.y + 0.8 * cache_9 * global.utils.sine(this.phi);
-            this.vcr_2.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_6);
-            this.vcr_2.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_6);
-            this.vcr_3.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta + global.PI_DIV_6);
-            this.vcr_3.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta + global.PI_DIV_6);
+            this.vcr_2.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+            this.vcr_2.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
+            this.vcr_3.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+            this.vcr_3.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
             this.theta = global.utils.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
             this.build_element_flag = false;
         }
@@ -597,7 +597,7 @@ class VoltageControlledResistor {
         if (this.build_element_flag || global.flags.signal_build_element) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
-                    this.bounds.set_center2(global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x), global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y), global.variables.node_space_x * 2, global.variables.node_space_y * 2);
+                    this.bounds.set_center2(global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n3].location.x), global.utils.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n3].location.y), global.variables.node_space_x * 2, global.variables.node_space_y * 2);
                     this.refactor();
                 }
                 this.unanchor_wires();
@@ -633,8 +633,8 @@ class VoltageControlledResistor {
     }
     increment_rotation() {
         this.elm.rotation++;
-        if (this.elm.rotation > global.ROTATION_270) {
-            this.elm.rotation = global.ROTATION_0;
+        if (this.elm.rotation > global.CONSTANTS.ROTATION_270) {
+            this.elm.rotation = global.CONSTANTS.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
     }
@@ -654,9 +654,9 @@ class VoltageControlledResistor {
         }
         else {
             if (this.multi_selected) {
-                this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
-                this.point_paint.set_color(global.MULTI_SELECTED_COLOR);
-                this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
+                this.line_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+                this.point_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+                this.text_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
             }
             else {
                 this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -708,28 +708,28 @@ class VoltageControlledResistor {
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-                this.angle = global.retrieve_angle(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
+                this.angle = global.utils.retrieve_angle(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
                 if (this.angle > 170 && this.angle < 190) {
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
                 }
                 else if (this.angle > -10 && this.angle < 10) {
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                 }
                 else if (this.angle > 260 && this.angle < 280) {
                     canvas.rotate(this.c_x, this.c_y, -90);
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
                 }
                 else if (this.angle > 80 && this.angle < 100) {
                     canvas.rotate(this.c_x, this.c_y, -90);
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
+                    canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
                 }
             }
             if (!global.CONSTANTS.MOBILE_MODE) {
                 if (global.variables.wire_builder['step'] === 0 &&
                     this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
-                    global.NODE_HINTS &&
+                    global.CONSTANTS.NODE_HINTS &&
                     !multi_select_manager.multi_select &&
                     !this.multi_selected &&
                     !global.flags.signal_add_element &&
@@ -757,7 +757,7 @@ class VoltageControlledResistor {
                 }
             }
             if (this.is_translating) {
-                canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.move_paint);
+                canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.variables.move_paint);
             }
         }
     }
@@ -799,7 +799,7 @@ class VoltageControlledResistor {
     time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        let time_data = global.utils.copy(global.TIME_DATA_TEMPLATE);
+        let time_data = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {

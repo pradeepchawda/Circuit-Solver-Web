@@ -134,10 +134,10 @@ class NChannelMOSFETSymbol {
         this.nmos_5.y = this.p1.y + 2.5 * this.y_space * global.utils.sine(this.theta) + 2.5 * this.y_space * global.utils.sine(this.theta_m90);
         this.nmos_6.x = this.p3.x - 1.605 * this.x_space * global.utils.cosine(this.theta_m90);
         this.nmos_6.y = this.p3.y - 1.605 * this.y_space * global.utils.sine(this.theta_m90);
-        this.nmos_7.x = this.nmos_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 + global.PI_DIV_6);
-        this.nmos_7.y = this.nmos_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 + global.PI_DIV_6);
-        this.nmos_8.x = this.nmos_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 - global.PI_DIV_6);
-        this.nmos_8.y = this.nmos_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 - global.PI_DIV_6);
+        this.nmos_7.x = this.nmos_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_6);
+        this.nmos_7.y = this.nmos_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_6);
+        this.nmos_8.x = this.nmos_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_6);
+        this.nmos_8.y = this.nmos_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_6);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

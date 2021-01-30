@@ -46,7 +46,7 @@ class MenuBar {
         this.line_paint_alt.set_paint_cap(PAINT.cap.ROUND);
         this.line_paint_alt.set_paint_join(PAINT.join.MITER);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
-        this.line_paint_alt.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.line_paint_alt.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.line_paint_alt.set_text_size(global.variables.canvas_text_size_5);
         this.line_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.line_paint_alt.set_alpha(255);
@@ -76,7 +76,7 @@ class MenuBar {
         this.add_paint.set_paint_cap(PAINT.cap.ROUND);
         this.add_paint.set_paint_join(PAINT.join.MITER);
         this.add_paint.set_stroke_width(temp_stroke_width);
-        this.add_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.add_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.add_paint.set_text_size(global.variables.canvas_text_size_5);
         this.add_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.add_paint.set_alpha(255);
@@ -86,7 +86,7 @@ class MenuBar {
         this.go_paint.set_paint_cap(this.go_paint.cap.BUTT);
         this.go_paint.set_paint_join(PAINT.join.MITER);
         this.go_paint.set_stroke_width(temp_stroke_width);
-        this.go_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.go_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.go_paint.set_text_size(global.variables.canvas_text_size_5);
         this.go_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.go_paint.set_alpha(255);
@@ -106,7 +106,7 @@ class MenuBar {
         this.undo_paint.set_paint_cap(PAINT.cap.ROUND);
         this.undo_paint.set_paint_join(PAINT.join.MITER);
         this.undo_paint.set_stroke_width(temp_stroke_width);
-        this.undo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.undo_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.undo_paint.set_text_size(global.variables.canvas_text_size_5);
         this.undo_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.undo_paint.set_alpha(255);
@@ -116,7 +116,7 @@ class MenuBar {
         this.redo_paint.set_paint_cap(PAINT.cap.ROUND);
         this.redo_paint.set_paint_join(PAINT.join.MITER);
         this.redo_paint.set_stroke_width(temp_stroke_width);
-        this.redo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.redo_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.redo_paint.set_text_size(global.variables.canvas_text_size_5);
         this.redo_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.redo_paint.set_alpha(255);
@@ -126,7 +126,7 @@ class MenuBar {
         this.remove_all_paint.set_paint_cap(PAINT.cap.ROUND);
         this.remove_all_paint.set_paint_join(PAINT.join.MITER);
         this.remove_all_paint.set_stroke_width(temp_stroke_width);
-        this.remove_all_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.remove_all_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.remove_all_paint.set_text_size(global.variables.canvas_text_size_5);
         this.remove_all_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.remove_all_paint.set_alpha(255);
@@ -136,7 +136,7 @@ class MenuBar {
         this.settings_paint.set_paint_cap(PAINT.cap.ROUND);
         this.settings_paint.set_paint_join(PAINT.join.MITER);
         this.settings_paint.set_stroke_width(temp_stroke_width);
-        this.settings_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.settings_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.settings_paint.set_text_size(global.variables.canvas_text_size_5);
         this.settings_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.settings_paint.set_alpha(255);
@@ -146,7 +146,7 @@ class MenuBar {
         this.zoom_paint.set_paint_cap(PAINT.cap.ROUND);
         this.zoom_paint.set_paint_join(PAINT.join.MITER);
         this.zoom_paint.set_stroke_width(temp_stroke_width);
-        this.zoom_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.zoom_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.zoom_paint.set_text_size(global.variables.canvas_text_size_5);
         this.zoom_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.zoom_paint.set_alpha(255);
@@ -156,7 +156,7 @@ class MenuBar {
         this.save_circuit_paint.set_paint_cap(PAINT.cap.ROUND);
         this.save_circuit_paint.set_paint_join(PAINT.join.MITER);
         this.save_circuit_paint.set_stroke_width(temp_stroke_width);
-        this.save_circuit_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.save_circuit_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.save_circuit_paint.set_text_size(global.variables.canvas_text_size_5);
         this.save_circuit_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.save_circuit_paint.set_alpha(255);
@@ -166,7 +166,7 @@ class MenuBar {
         this.save_image_fill_paint.set_paint_cap(PAINT.cap.ROUND);
         this.save_image_fill_paint.set_paint_join(PAINT.join.MITER);
         this.save_image_fill_paint.set_stroke_width(temp_stroke_width);
-        this.save_image_fill_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.save_image_fill_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.save_image_fill_paint.set_text_size(global.variables.canvas_text_size_5);
         this.save_image_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.save_image_fill_paint.set_alpha(255);
@@ -859,25 +859,25 @@ class MenuBar {
     }
     recolor() {
         if (global.flags.flag_simulating) {
-            this.go_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
+            this.go_paint.set_color(global.COLORS.MENU_ICON_ACTIVE_COLOR);
         }
         else {
             if (!global.flags.flag_menu_element_toolbox) {
-                this.go_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+                this.go_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
             }
             else {
                 this.go_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
         if (global.flags.flag_graph) {
-            this.sine_wave.sine_wave_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
+            this.sine_wave.sine_wave_paint.set_color(global.COLORS.MENU_ICON_ACTIVE_COLOR);
         }
         else {
-            this.sine_wave.sine_wave_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+            this.sine_wave.sine_wave_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         }
         if (history_manager.history_index > 0) {
             if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-                this.undo_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
+                this.undo_paint.set_color(global.COLORS.MENU_ICON_ACTIVE_COLOR);
             }
             else {
                 this.undo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
@@ -885,7 +885,7 @@ class MenuBar {
         }
         else {
             if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-                this.undo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+                this.undo_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
             }
             else {
                 this.undo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
@@ -893,7 +893,7 @@ class MenuBar {
         }
         if (history_manager.history_index < history_manager.history.length - 1) {
             if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-                this.redo_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
+                this.redo_paint.set_color(global.COLORS.MENU_ICON_ACTIVE_COLOR);
             }
             else {
                 this.redo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
@@ -901,7 +901,7 @@ class MenuBar {
         }
         else {
             if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-                this.redo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+                this.redo_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
             }
             else {
                 this.redo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
@@ -909,7 +909,7 @@ class MenuBar {
         }
         if (global.flags.flag_menu_element_toolbox) {
             if (!global.flags.flag_simulating && !global.flags.flag_graph) {
-                this.add_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
+                this.add_paint.set_color(global.COLORS.MENU_ICON_ACTIVE_COLOR);
             }
             else {
                 this.add_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
@@ -917,7 +917,7 @@ class MenuBar {
         }
         else {
             if (!global.flags.flag_simulating && !global.flags.flag_graph) {
-                this.add_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+                this.add_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
             }
             else {
                 this.add_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
@@ -925,32 +925,32 @@ class MenuBar {
         }
         if (global.flags.flag_menu_open) {
             if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-                this.remove_all_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+                this.remove_all_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
             }
             else {
                 this.remove_all_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
         if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-            this.settings_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+            this.settings_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         }
         else {
             this.settings_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
         }
         if (!global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-            this.zoom_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+            this.zoom_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         }
         else {
             this.zoom_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
         }
         if (!global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-            this.save_circuit_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+            this.save_circuit_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         }
         else {
             this.save_circuit_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
         }
         if (!global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
-            this.save_image_fill_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+            this.save_image_fill_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         }
         else {
             this.save_image_fill_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);

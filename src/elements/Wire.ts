@@ -26,7 +26,7 @@ class Wire {
 	public is_translating: boolean;
 	constructor(type: number, id: number, n1: number, n2: number) {
 		this.initialized = false;
-		this.elm = new Element2(id, type, global.utils.copy(global.PROPERTY_WIRE));
+		this.elm = new Element2(id, type, global.utils.copy(global.PROPERTY.PROPERTY_WIRE));
 		this.elm.set_nodes(n1, n2);
 		this.p1 = new PointF(0, 0);
 		this.p2 = new PointF(0, 0);
@@ -40,8 +40,8 @@ class Wire {
 		this.c_x = 0;
 		this.c_y = 0;
 		if (this.elm.consistent()) {
-			this.c_x = global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
-			this.c_y = global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
+			this.c_x = global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
+			this.c_y = global.utils.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
 		}
 		this.x_space = global.variables.node_space_x >> 1;
 		this.y_space = global.variables.node_space_y >> 1;
@@ -222,8 +222,8 @@ class Wire {
 			this.wire_point.x = Math.min(this.p1.x, this.p2.x);
 			this.wire_point.y = Math.min(this.p1.y, this.p2.y);
 		} else {
-			this.wire_point.x = global.get_average2(this.p1.x, this.p2.x);
-			this.wire_point.y = global.get_average2(this.p1.y, this.p2.y);
+			this.wire_point.x = global.utils.get_average2(this.p1.x, this.p2.x);
+			this.wire_point.y = global.utils.get_average2(this.p1.y, this.p2.y);
 		}
 		global.flags.signal_build_element = true;
 	}
@@ -239,8 +239,8 @@ class Wire {
 		if (this.build_element_flag || global.flags.signal_build_element) {
 			this.update_wire_style();
 			if (this.elm.consistent()) {
-				this.c_x = global.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
-				this.c_y = global.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
+				this.c_x = global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
+				this.c_y = global.utils.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y);
 			}
 			this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 			this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
@@ -341,9 +341,9 @@ class Wire {
 			}
 		} else {
 			if (this.multi_selected) {
-				this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
-				this.point_paint.set_color(global.MULTI_SELECTED_COLOR);
-				this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
+				this.line_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+				this.point_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+				this.text_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
 			} else {
 				this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
 				this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -353,7 +353,7 @@ class Wire {
 	}
 	wire_collision(): boolean {
 		if (this.elm.wire_style === global.CONSTANTS.WIRE_STYLE_0) {
-			let collision_0: boolean = global.line_collision(
+			let collision_0: boolean = global.utils.line_collision(
 				global.variables.mouse_x - (global.variables.node_space_x >> 1),
 				global.variables.mouse_y - global.variables.canvas_stroke_width_1_zoom,
 				global.variables.mouse_x + (global.variables.node_space_x >> 1),
@@ -363,7 +363,7 @@ class Wire {
 				this.p2.x,
 				this.p2.y
 			);
-			let collision_1: boolean = global.line_collision(
+			let collision_1: boolean = global.utils.line_collision(
 				global.variables.mouse_x - global.variables.canvas_stroke_width_1_zoom,
 				global.variables.mouse_y - (global.variables.node_space_x >> 1),
 				global.variables.mouse_x + global.variables.canvas_stroke_width_1,
@@ -375,7 +375,7 @@ class Wire {
 			);
 			return collision_0 || collision_1;
 		} else {
-			let collision_2: boolean = global.line_collision(
+			let collision_2: boolean = global.utils.line_collision(
 				global.variables.mouse_x - (global.variables.node_space_x >> 1),
 				global.variables.mouse_y,
 				global.variables.mouse_x + (global.variables.node_space_x >> 1),
@@ -385,7 +385,7 @@ class Wire {
 				this.wire_point.x,
 				this.wire_point.y
 			);
-			let collision_3: boolean = global.line_collision(
+			let collision_3: boolean = global.utils.line_collision(
 				global.variables.mouse_x,
 				global.variables.mouse_y - (global.variables.node_space_x >> 1),
 				global.variables.mouse_x,
@@ -395,7 +395,7 @@ class Wire {
 				this.wire_point.x,
 				this.wire_point.y
 			);
-			let collision_4: boolean = global.line_collision(
+			let collision_4: boolean = global.utils.line_collision(
 				global.variables.mouse_x - (global.variables.node_space_x >> 1),
 				global.variables.mouse_y,
 				global.variables.mouse_x + (global.variables.node_space_x >> 1),
@@ -405,7 +405,7 @@ class Wire {
 				this.p2.x,
 				this.p2.y
 			);
-			let collision_5: boolean = global.line_collision(
+			let collision_5: boolean = global.utils.line_collision(
 				global.variables.mouse_x,
 				global.variables.mouse_y - (global.variables.node_space_x >> 1),
 				global.variables.mouse_x,
@@ -435,10 +435,10 @@ class Wire {
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step) {
 				if (this.elm.consistent()) {
-					this.angle = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+					this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 					if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 						canvas.draw_text(
-							global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
 							this.c_x,
 							this.c_y - this.y_space * 1.5,
 							this.text_paint
@@ -446,7 +446,7 @@ class Wire {
 					} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
 						canvas.rotate(this.c_x, this.c_y, -90);
 						canvas.draw_text(
-							global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
 							this.c_x,
 							this.c_y - this.y_space * 1.5,
 							this.text_paint
@@ -455,7 +455,7 @@ class Wire {
 					} else {
 						canvas.rotate(this.c_x, this.c_y, Math.round(this.angle));
 						canvas.draw_text(
-							global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
 							this.c_x,
 							this.c_y - this.y_space * 1.5,
 							this.text_paint
@@ -475,27 +475,27 @@ class Wire {
 				if (this.elm.consistent()) {
 					if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 						if (global.utils.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.utils.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {
-							this.angle = global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y);
-							if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && global.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) < 10)) {
+							this.angle = global.utils.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y);
+							if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && global.utils.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) < 10)) {
 								canvas.draw_text(
-									global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
-									global.get_average2(this.wire_point.x, this.p1.x),
-									global.get_average2(this.wire_point.y, this.p1.y) - this.y_space * 1.5,
+									global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+									global.utils.get_average2(this.wire_point.x, this.p1.x),
+									global.utils.get_average2(this.wire_point.y, this.p1.y) - this.y_space * 1.5,
 									this.text_paint
 								);
 							} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
-								canvas.rotate(global.get_average2(this.wire_point.x, this.p1.x), global.get_average2(this.wire_point.y, this.p1.y), -90);
+								canvas.rotate(global.utils.get_average2(this.wire_point.x, this.p1.x), global.utils.get_average2(this.wire_point.y, this.p1.y), -90);
 								canvas.draw_text(
-									global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
-									global.get_average2(this.wire_point.x, this.p1.x),
-									global.get_average2(this.wire_point.y, this.p1.y) - this.y_space * 1.5,
+									global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+									global.utils.get_average2(this.wire_point.x, this.p1.x),
+									global.utils.get_average2(this.wire_point.y, this.p1.y) - this.y_space * 1.5,
 									this.text_paint
 								);
 								canvas.restore();
 							} else {
-								canvas.rotate(this.c_x, this.c_y, Math.round(global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y)));
+								canvas.rotate(this.c_x, this.c_y, Math.round(global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y)));
 								canvas.draw_text(
-									global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+									global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
 									this.c_x,
 									this.c_y - this.y_space * 1.5,
 									this.text_paint
@@ -503,27 +503,27 @@ class Wire {
 								canvas.restore();
 							}
 						} else {
-							this.angle = global.retrieve_angle(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y);
-							if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && global.retrieve_angle(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) < 10)) {
+							this.angle = global.utils.retrieve_angle(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y);
+							if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && global.utils.retrieve_angle(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) < 10)) {
 								canvas.draw_text(
-									global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
-									global.get_average2(this.wire_point.x, this.p2.x),
-									global.get_average2(this.wire_point.y, this.p2.y) - this.y_space * 1.5,
+									global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+									global.utils.get_average2(this.wire_point.x, this.p2.x),
+									global.utils.get_average2(this.wire_point.y, this.p2.y) - this.y_space * 1.5,
 									this.text_paint
 								);
 							} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
-								canvas.rotate(global.get_average2(this.wire_point.x, this.p2.x), global.get_average2(this.wire_point.y, this.p2.y), -90);
+								canvas.rotate(global.utils.get_average2(this.wire_point.x, this.p2.x), global.utils.get_average2(this.wire_point.y, this.p2.y), -90);
 								canvas.draw_text(
-									global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
-									global.get_average2(this.wire_point.x, this.p2.x),
-									global.get_average2(this.wire_point.y, this.p2.y) - this.y_space * 1.5,
+									global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+									global.utils.get_average2(this.wire_point.x, this.p2.x),
+									global.utils.get_average2(this.wire_point.y, this.p2.y) - this.y_space * 1.5,
 									this.text_paint
 								);
 								canvas.restore();
 							} else {
-								canvas.rotate(this.c_x, this.c_y, Math.round(global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y)));
+								canvas.rotate(this.c_x, this.c_y, Math.round(global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y)));
 								canvas.draw_text(
-									global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
+									global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.wire_voltage)).replace('{UNIT}', 'V'),
 									this.c_x,
 									this.c_y - this.y_space * 1.5,
 									this.text_paint
@@ -569,7 +569,7 @@ class Wire {
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TIME_DATA_TEMPLATE);
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
 		let keys: Array<string> = Object.keys(this.elm.properties);
 		for (var i: number = keys.length - 1; i > -1; i--) {
 			if (typeof this.elm.properties[keys[i]] === 'number') {

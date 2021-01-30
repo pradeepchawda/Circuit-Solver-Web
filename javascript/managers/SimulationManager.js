@@ -76,7 +76,7 @@ class SimulationManager {
     }
     setup() {
         this.patch();
-        global.is_singular = false;
+        global.variables.is_singular = false;
         this.first_matrix_build = true;
         this.reset_simulation();
         if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.CONSTANTS.ON) {
@@ -519,9 +519,9 @@ class SimulationManager {
             let rc_series = Math.min(Math.max(series_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             let rl_series = Math.min(Math.max((min_inductance / series_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             let min_period = (1.0 / min_frequency) * multiplier;
-            let ts1 = global.min3(rc_parallel, rl_parallel, max_period);
-            let ts2 = global.min3(rc_series, rl_series, min_period);
-            ts_final = global.min3(ts1, ts2, t_lc);
+            let ts1 = global.utils.min3(rc_parallel, rl_parallel, max_period);
+            let ts2 = global.utils.min3(rc_series, rl_series, min_period);
+            ts_final = global.utils.min3(ts1, ts2, t_lc);
             ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             if (!max_freq_updated && !min_freq_updated && !min_cap_updated && !max_cap_updated && !min_ind_updated && !max_ind_updated) {
                 ts_final = 1;
@@ -531,7 +531,7 @@ class SimulationManager {
             let t_lc = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             let max_period = (1.0 / max_frequency) * multiplier;
             let min_period = (1.0 / min_frequency) * multiplier;
-            ts_final = global.min3(max_period, min_period, t_lc);
+            ts_final = global.utils.min3(max_period, min_period, t_lc);
             ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             if (!max_freq_updated && !min_freq_updated && !min_cap_updated && !max_cap_updated && !min_ind_updated && !max_ind_updated) {
                 ts_final = 1;
@@ -548,7 +548,7 @@ class SimulationManager {
         global.simulation_time = 0;
         this.simulation_step = 0;
         this.solutions_ready = false;
-        global.is_singular = false;
+        global.variables.is_singular = false;
         toast.set_text(language_manager.STOP_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
         toast.show();
     }
@@ -999,13 +999,13 @@ class SimulationManager {
             }
             else {
                 this.update_reactive_elements();
-                if (!this.continue_solving || this.iterator >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
+                if (!this.continue_solving || this.iterator >= global.settings.ITL4 || global.variables.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
                     if (this.iterator >= global.settings.ITL4) {
                         menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
                         toast.set_text(language_manager.CONVERGENCE_ERROR[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                         toast.show();
                     }
-                    else if (global.is_singular) {
+                    else if (global.variables.is_singular) {
                         menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
                         toast.set_text(language_manager.SINGULAR_MATRIX[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                         toast.show();
@@ -1072,7 +1072,7 @@ class SimulationManager {
             if (!this.first_x_matrix_solution) {
                 this.first_x_matrix_solution = true;
             }
-            if (global.is_singular) {
+            if (global.variables.is_singular) {
                 this.iterator = 0;
                 this.continue_solving = false;
                 this.simulation_step++;

@@ -139,16 +139,16 @@ class CurrentControlledCurrentSourceSymbol {
         this.vccs_3.y = this.p2.y + 3.0 * this.y_space * global.utils.sine(this.theta_m90);
         this.vccs_4.x = this.vccs_2.x + this.x_space * global.utils.cosine(this.theta);
         this.vccs_4.y = this.vccs_2.y + this.y_space * global.utils.sine(this.theta);
-        this.vccs_5.x = this.vccs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vccs_5.y = this.vccs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta - global.PI_DIV_4);
-        this.vccs_6.x = this.vccs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta + global.PI_DIV_4);
-        this.vccs_6.y = this.vccs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta + global.PI_DIV_4);
+        this.vccs_5.x = this.vccs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vccs_5.y = this.vccs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vccs_6.x = this.vccs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_4);
+        this.vccs_6.y = this.vccs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_4);
         this.vccs_7.x = this.vccs_2.x + 3.0 * this.x_space * global.utils.cosine(this.theta);
         this.vccs_7.y = this.vccs_2.y + 3.0 * this.y_space * global.utils.sine(this.theta);
-        this.vccs_8.x = this.vccs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vccs_8.y = this.vccs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta - global.PI_DIV_4);
-        this.vccs_9.x = this.vccs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta + global.PI_DIV_4);
-        this.vccs_9.y = this.vccs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta + global.PI_DIV_4);
+        this.vccs_8.x = this.vccs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vccs_8.y = this.vccs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vccs_9.x = this.vccs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_4);
+        this.vccs_9.y = this.vccs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_4);
         this.vccs_10.x = this.vccs_2.x + 2.0 * this.x_space * global.utils.cosine(this.theta);
         this.vccs_10.y = this.vccs_2.y + 2.0 * this.y_space * global.utils.sine(this.theta);
         this.vccs_11.x = this.vccs_2.x + 2.5 * this.x_space * global.utils.cosine(this.theta);
@@ -161,8 +161,8 @@ class CurrentControlledCurrentSourceSymbol {
         this.vccs_14.y = this.vccs_2.y + 1.5 * this.y_space * global.utils.sine(this.theta);
         this.vccs_15.x = this.vccs_2.x + 1.5 * this.x_space * global.utils.cosine(this.theta);
         this.vccs_15.y = this.vccs_2.y + 1.5 * this.y_space * global.utils.sine(this.theta);
-        this.vccs_16.x = this.p1.x + 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.vccs_16.y = this.p1.y + 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
+        this.vccs_16.x = this.p1.x + 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+        this.vccs_16.y = this.p1.y + 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

@@ -50,7 +50,7 @@ class GraphWindow {
         this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
         this.fill_paint.set_paint_join(PAINT.join.MITER);
         this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.fill_paint.set_color(global.GRAPH_AREA_COLOR);
+        this.fill_paint.set_color(global.COLORS.GRAPH_AREA_COLOR);
         this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
         this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
@@ -85,7 +85,7 @@ class GraphWindow {
         this.graph_text_a_paint.set_paint_cap(PAINT.cap.ROUND);
         this.graph_text_a_paint.set_paint_join(PAINT.join.MITER);
         this.graph_text_a_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.graph_text_a_paint.set_color(global.TRACE_I_COLOR);
+        this.graph_text_a_paint.set_color(global.COLORS.TRACE_I_COLOR);
         this.graph_text_a_paint.set_text_size(global.variables.canvas_text_size_4);
         this.graph_text_a_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.graph_text_a_paint.set_alpha(255);
@@ -95,7 +95,7 @@ class GraphWindow {
         this.graph_text_b_paint.set_paint_cap(PAINT.cap.ROUND);
         this.graph_text_b_paint.set_paint_join(PAINT.join.MITER);
         this.graph_text_b_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.graph_text_b_paint.set_color(global.TRACE_II_COLOR);
+        this.graph_text_b_paint.set_color(global.COLORS.TRACE_II_COLOR);
         this.graph_text_b_paint.set_text_size(global.variables.canvas_text_size_4);
         this.graph_text_b_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.graph_text_b_paint.set_alpha(255);
@@ -105,7 +105,7 @@ class GraphWindow {
         this.graph_text_c_paint.set_paint_cap(PAINT.cap.ROUND);
         this.graph_text_c_paint.set_paint_join(PAINT.join.MITER);
         this.graph_text_c_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.graph_text_c_paint.set_color(global.TRACE_III_COLOR);
+        this.graph_text_c_paint.set_color(global.COLORS.TRACE_III_COLOR);
         this.graph_text_c_paint.set_text_size(global.variables.canvas_text_size_4);
         this.graph_text_c_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.graph_text_c_paint.set_alpha(255);
@@ -113,11 +113,11 @@ class GraphWindow {
         this.x_axis = new Array(this.GRAPH_X_AXIS_LENGTH).fill(new PointF(0, 0));
         this.y_axis = new Array(this.GRAPH_Y_AXIS_LENGTH).fill(new PointF(0, 0));
         this.graph_trace_a = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
-        this.graph_trace_a.set_color(global.TRACE_I_COLOR);
+        this.graph_trace_a.set_color(global.COLORS.TRACE_I_COLOR);
         this.graph_trace_b = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
-        this.graph_trace_b.set_color(global.TRACE_II_COLOR);
+        this.graph_trace_b.set_color(global.COLORS.TRACE_II_COLOR);
         this.graph_trace_c = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
-        this.graph_trace_c.set_color(global.TRACE_III_COLOR);
+        this.graph_trace_c.set_color(global.COLORS.TRACE_III_COLOR);
         this.meter_hover_index = -1;
         this.time_axis_value = '';
         this.time_tag = '';

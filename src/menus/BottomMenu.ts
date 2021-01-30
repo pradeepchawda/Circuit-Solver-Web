@@ -318,6 +318,6 @@ class BottomMenu {
 		}
 		this.file_button.draw_button(canvas);
 		this.time_step_button.draw_button(canvas);
-		canvas.draw_text(this.VERSION_TAG_TEMPLATE.replace('{VERSION_TAG}', global.VERSION_TAG), view_port.right, menu_bar.settings_button.bottom, this.text_paint);
+		canvas.draw_text(this.VERSION_TAG_TEMPLATE.replace('{VERSION_TAG}', global.CONSTANTS.VERSION_TAG), view_port.right, menu_bar.settings_button.bottom, this.text_paint);
 	}
 }

@@ -321,12 +321,12 @@ class ElementOptionsWindow {
 				next_state = global.CONSTANTS.OFF;
 			}
 			if (property === 'Text Style') {
-				if (state === global.TEXT_STYLE_1) {
-					next_state = global.TEXT_STYLE_2;
-				} else if (state === global.TEXT_STYLE_2) {
-					next_state = global.TEXT_STYLE_3;
-				} else if (state === global.TEXT_STYLE_3) {
-					next_state = global.TEXT_STYLE_1;
+				if (state === global.CONSTANTS.TEXT_STYLE_1) {
+					next_state = global.CONSTANTS.TEXT_STYLE_2;
+				} else if (state === global.CONSTANTS.TEXT_STYLE_2) {
+					next_state = global.CONSTANTS.TEXT_STYLE_3;
+				} else if (state === global.CONSTANTS.TEXT_STYLE_3) {
+					next_state = global.CONSTANTS.TEXT_STYLE_1;
 				}
 			}
 			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {

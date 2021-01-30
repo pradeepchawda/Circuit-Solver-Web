@@ -44,13 +44,13 @@ class BottomMenu {
         this.file_button = new Button(view_port.left, menu_bar.settings_button.bottom + 2 * global.variables.canvas_stroke_width_4, view_port.left + 1, view_port.bottom);
         this.file_button.text = '';
         this.file_button.draw_stroke = false;
-        this.file_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.file_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.file_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
         this.file_button.resize_paint();
         this.time_step_button = new Button(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + 2 * global.variables.canvas_stroke_width_4, view_port.right, view_port.bottom);
         this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(global.time_step));
         this.time_step_button.draw_stroke = false;
-        this.time_step_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+        this.time_step_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.time_step_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
         this.time_step_button.resize_paint();
         this.load_bottom_path();
@@ -193,7 +193,7 @@ class BottomMenu {
                 this.file_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
             }
             else {
-                this.file_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+                this.file_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
             }
             if (this.time_step_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
                 !global.flags.flag_menu_element_toolbox &&
@@ -213,7 +213,7 @@ class BottomMenu {
                 this.time_step_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
             }
             else {
-                this.time_step_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+                this.time_step_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
             }
         }
         else {
@@ -294,6 +294,6 @@ class BottomMenu {
         }
         this.file_button.draw_button(canvas);
         this.time_step_button.draw_button(canvas);
-        canvas.draw_text(this.VERSION_TAG_TEMPLATE.replace('{VERSION_TAG}', global.VERSION_TAG), view_port.right, menu_bar.settings_button.bottom, this.text_paint);
+        canvas.draw_text(this.VERSION_TAG_TEMPLATE.replace('{VERSION_TAG}', global.CONSTANTS.VERSION_TAG), view_port.right, menu_bar.settings_button.bottom, this.text_paint);
     }
 }

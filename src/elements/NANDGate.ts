@@ -45,10 +45,10 @@ class NANDGate {
 	constructor(type: number, id: number, n1: number, n2: number, n3: number) {
 		this.initialized = false;
 		this.bounds = new RectF(0, 0, 0, 0);
-		this.elm = new Element3(id, type, global.utils.copy(global.PROPERTY_NAND));
+		this.elm = new Element3(id, type, global.utils.copy(global.PROPERTY.PROPERTY_NAND));
 		this.elm.set_nodes(n1, n2, n3);
 		if (this.elm.consistent()) {
-			this.equilateral_center = global.equilateral_triangle_center(
+			this.equilateral_center = global.utils.equilateral_triangle_center(
 				nodes[this.elm.n1].location.x,
 				nodes[this.elm.n2].location.x,
 				nodes[this.elm.n3].location.x,
@@ -58,8 +58,8 @@ class NANDGate {
 			);
 			this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.variables.node_space_x * 2, global.variables.node_space_y * 2);
 		}
-		this.elm.set_rotation(global.ROTATION_0);
-		this.elm.set_flip(global.FLIP_0);
+		this.elm.set_rotation(global.CONSTANTS.ROTATION_0);
+		this.elm.set_flip(global.CONSTANTS.FLIP_0);
 		this.release_nodes();
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
@@ -146,7 +146,7 @@ class NANDGate {
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 			this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
-			this.equilateral_center = global.equilateral_triangle_center(
+			this.equilateral_center = global.utils.equilateral_triangle_center(
 				nodes[this.elm.n1].location.x,
 				nodes[this.elm.n2].location.x,
 				nodes[this.elm.n3].location.x,
@@ -180,22 +180,22 @@ class NANDGate {
 		let p1: Array<number> = [];
 		let p2: Array<number> = [];
 		let p3: Array<number> = [];
-		if (this.elm.rotation === global.ROTATION_0) {
+		if (this.elm.rotation === global.CONSTANTS.ROTATION_0) {
 			p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
 			p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
 			p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
 			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-		} else if (this.elm.rotation === global.ROTATION_90) {
+		} else if (this.elm.rotation === global.CONSTANTS.ROTATION_90) {
 			p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
 			p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
 			p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.bottom);
 			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-		} else if (this.elm.rotation === global.ROTATION_180) {
+		} else if (this.elm.rotation === global.CONSTANTS.ROTATION_180) {
 			p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
 			p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
 			p3 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
 			vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
-		} else if (this.elm.rotation === global.ROTATION_270) {
+		} else if (this.elm.rotation === global.CONSTANTS.ROTATION_270) {
 			p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
 			p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
 			p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.top);
@@ -263,13 +263,13 @@ class NANDGate {
 				} else {
 					if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
 						if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-							this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
+							this.handle_wire_builder(this.elm.n1, global.CONSTANTS.anchor_point['p1']);
 							global.variables.component_touched = true;
 						} else if (nodes[this.elm.n2].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-							this.handle_wire_builder(this.elm.n2, global.ANCHOR_POINT['p2']);
+							this.handle_wire_builder(this.elm.n2, global.CONSTANTS.anchor_point['p2']);
 							global.variables.component_touched = true;
 						} else if (nodes[this.elm.n3].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-							this.handle_wire_builder(this.elm.n3, global.ANCHOR_POINT['p3']);
+							this.handle_wire_builder(this.elm.n3, global.CONSTANTS.anchor_point['p3']);
 							global.variables.component_touched = true;
 						}
 					}
@@ -434,7 +434,7 @@ class NANDGate {
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
 				if (id > -1 && id < wires.length) {
-					if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+					if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[0];
@@ -443,7 +443,7 @@ class NANDGate {
 							wires[id].p2.y = vertices[1];
 							wires[id].p2.x = vertices[0];
 						}
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[2];
@@ -452,7 +452,7 @@ class NANDGate {
 							wires[id].p2.x = vertices[2];
 							wires[id].p2.y = vertices[3];
 						}
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p3']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[4];
@@ -475,7 +475,7 @@ class NANDGate {
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
 				if (id > -1 && id < wires.length) {
-					if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+					if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[0];
 							wires[id].p1.y = vertices[1];
@@ -484,7 +484,7 @@ class NANDGate {
 							wires[id].p2.y = vertices[1];
 						}
 						wires[id].capture_nodes();
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[2];
 							wires[id].p1.y = vertices[3];
@@ -493,7 +493,7 @@ class NANDGate {
 							wires[id].p2.y = vertices[3];
 						}
 						wires[id].capture_nodes();
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p3']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[4];
 							wires[id].p1.y = vertices[5];
@@ -577,7 +577,7 @@ class NANDGate {
 		if (this.build_element_flag || global.flags.signal_build_element) {
 			if (this.bounds.anchored) {
 				if (this.elm.consistent()) {
-					this.equilateral_center = global.equilateral_triangle_center(
+					this.equilateral_center = global.utils.equilateral_triangle_center(
 						nodes[this.elm.n1].location.x,
 						nodes[this.elm.n2].location.x,
 						nodes[this.elm.n3].location.x,
@@ -620,8 +620,8 @@ class NANDGate {
 	}
 	increment_rotation(): void {
 		this.elm.rotation++;
-		if (this.elm.rotation > global.ROTATION_270) {
-			this.elm.rotation = global.ROTATION_0;
+		if (this.elm.rotation > global.CONSTANTS.ROTATION_270) {
+			this.elm.rotation = global.CONSTANTS.ROTATION_0;
 		}
 		this.set_rotation(this.elm.rotation);
 	}
@@ -639,9 +639,9 @@ class NANDGate {
 			}
 		} else {
 			if (this.multi_selected) {
-				this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
-				this.point_paint.set_color(global.MULTI_SELECTED_COLOR);
-				this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
+				this.line_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+				this.point_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+				this.text_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
 			} else {
 				this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
 				this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -689,17 +689,17 @@ class NANDGate {
 				canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
 			}
 			if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-				this.angle = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+				this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 				if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 					canvas.rotate(this.c_x, this.c_y, -90);
 					canvas.draw_text(
-						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['High Voltage'])).replace('{UNIT}', this.elm.properties['units']),
+						global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['High Voltage'])).replace('{UNIT}', this.elm.properties['units']),
 						this.c_x,
 						this.bounds.top - this.bounds.get_height() * 0.15,
 						this.text_paint
 					);
 					canvas.draw_text(
-						global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
+						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
 						this.c_x,
 						this.bounds.bottom + this.bounds.get_height() * 0.15,
 						this.text_paint
@@ -707,13 +707,13 @@ class NANDGate {
 					canvas.restore();
 				} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
 					canvas.draw_text(
-						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['High Voltage'])).replace('{UNIT}', this.elm.properties['units']),
+						global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['High Voltage'])).replace('{UNIT}', this.elm.properties['units']),
 						this.c_x,
 						this.bounds.top - this.bounds.get_height() * 0.15,
 						this.text_paint
 					);
 					canvas.draw_text(
-						global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
+						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
 						this.c_x,
 						this.bounds.bottom + this.bounds.get_height() * 0.15,
 						this.text_paint
@@ -724,7 +724,7 @@ class NANDGate {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
-					global.NODE_HINTS &&
+					global.CONSTANTS.NODE_HINTS &&
 					!multi_select_manager.multi_select &&
 					!this.multi_selected &&
 					!global.flags.signal_add_element &&
@@ -753,7 +753,7 @@ class NANDGate {
 				}
 			}
 			if (this.is_translating) {
-				canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.move_paint);
+				canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.variables.move_paint);
 			}
 		}
 	}
@@ -783,7 +783,7 @@ class NANDGate {
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TIME_DATA_TEMPLATE);
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
 		let keys: Array<string> = Object.keys(this.elm.properties);
 		for (var i: number = keys.length - 1; i > -1; i--) {
 			if (typeof this.elm.properties[keys[i]] === 'number') {

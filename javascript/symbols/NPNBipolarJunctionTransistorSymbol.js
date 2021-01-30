@@ -122,22 +122,22 @@ class NPNBipolarJunctionTransistorSymbol {
     build_element() {
         this.npn_0.x = this.p1.x + this.x_space * global.utils.cosine(this.theta);
         this.npn_0.y = this.p1.y + this.y_space * global.utils.sine(this.theta);
-        this.npn_1.x = this.npn_0.x + 2.0 * this.x_space * global.utils.cosine(this.theta_m90 - global.PI_DIV_12);
-        this.npn_1.y = this.npn_0.y + 2.0 * this.y_space * global.utils.sine(this.theta_m90 - global.PI_DIV_12);
+        this.npn_1.x = this.npn_0.x + 2.0 * this.x_space * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_12);
+        this.npn_1.y = this.npn_0.y + 2.0 * this.y_space * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_12);
         this.npn_2.x = this.p1.x + this.x_space * global.utils.cosine(this.theta) + 2.0 * this.x_space * global.utils.cosine(this.theta_m90);
         this.npn_2.y = this.p1.y + this.y_space * global.utils.sine(this.theta) + 2.0 * this.y_space * global.utils.sine(this.theta_m90);
         this.npn_3.x = this.p1.x + 3.0 * this.x_space * global.utils.cosine(this.theta);
         this.npn_3.y = this.p1.y + 3.0 * this.y_space * global.utils.sine(this.theta);
-        this.npn_4.x = this.npn_3.x + 2.0 * this.x_space * global.utils.cosine(this.theta_m90 + global.PI_DIV_12);
-        this.npn_4.y = this.npn_3.y + 2.0 * this.y_space * global.utils.sine(this.theta_m90 + global.PI_DIV_12);
+        this.npn_4.x = this.npn_3.x + 2.0 * this.x_space * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_12);
+        this.npn_4.y = this.npn_3.y + 2.0 * this.y_space * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_12);
         this.npn_5.x = this.p1.x + 3.0 * this.x_space * global.utils.cosine(this.theta) + 2.0 * this.x_space * global.utils.cosine(this.theta_m90);
         this.npn_5.y = this.p1.y + 3.0 * this.y_space * global.utils.sine(this.theta) + 2.0 * this.y_space * global.utils.sine(this.theta_m90);
         this.npn_6.x = this.p3.x - 2.1 * this.x_space * global.utils.cosine(this.theta_m90);
         this.npn_6.y = this.p3.y - 2.1 * this.y_space * global.utils.sine(this.theta_m90);
-        this.npn_7.x = this.npn_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.npn_7.y = this.npn_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
-        this.npn_8.x = this.npn_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 - global.PI_DIV_12);
-        this.npn_8.y = this.npn_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 - global.PI_DIV_12);
+        this.npn_7.x = this.npn_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+        this.npn_7.y = this.npn_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+        this.npn_8.x = this.npn_3.x + 0.707 * this.x_space * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_12);
+        this.npn_8.y = this.npn_3.y + 0.707 * this.y_space * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_12);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

@@ -141,22 +141,22 @@ class VoltageControlledCapacitorSymbol {
         this.vcca_6.y = this.c_y + cache_2 * global.utils.sine(this.theta) + cache_3 * global.utils.sine(Math.PI + this.theta_m90);
         this.vcca_7.x = this.c_x - cache_0 * global.utils.cosine(this.theta) + cache_1 * global.utils.cosine(Math.PI + this.theta_m90);
         this.vcca_7.y = this.c_y - cache_2 * global.utils.sine(this.theta) + cache_3 * global.utils.sine(Math.PI + this.theta_m90);
-        this.vcca_8.x = this.p1.x + 1.5 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vcca_8.y = this.p1.y + 1.5 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_4);
-        this.vcca_9.x = this.p3.x - 1.5 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vcca_9.y = this.p3.y - 1.5 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_4);
+        this.vcca_8.x = this.p1.x + 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcca_8.y = this.p1.y + 1.5 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcca_9.x = this.p3.x - 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcca_9.y = this.p3.y - 1.5 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
         this.theta = global.utils.retrieve_angle_radian(this.vcca_9.x - this.vcca_8.x, this.vcca_9.y - this.vcca_8.y);
-        this.vcca_10.x = this.vcca_9.x - 0.4 * cache_8 * global.utils.cosine(this.theta + global.PI_DIV_6);
-        this.vcca_10.y = this.vcca_9.y - 0.4 * cache_9 * global.utils.sine(this.theta + global.PI_DIV_6);
-        this.vcca_11.x = this.vcca_9.x - 0.4 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_6);
-        this.vcca_11.y = this.vcca_9.y - 0.4 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_6);
+        this.vcca_10.x = this.vcca_9.x - 0.4 * cache_8 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.vcca_10.y = this.vcca_9.y - 0.4 * cache_9 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.vcca_11.x = this.vcca_9.x - 0.4 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcca_11.y = this.vcca_9.y - 0.4 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
         this.theta = global.utils.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
         this.vcca_1.x = this.p2.x + 0.8 * cache_8 * global.utils.cosine(this.phi);
         this.vcca_1.y = this.p2.y + 0.8 * cache_9 * global.utils.sine(this.phi);
-        this.vcca_2.x = this.vcca_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_6);
-        this.vcca_2.y = this.vcca_1.y + 0.4 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_6);
-        this.vcca_3.x = this.vcca_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta + global.PI_DIV_6);
-        this.vcca_3.y = this.vcca_1.y + 0.4 * cache_9 * global.utils.sine(this.theta + global.PI_DIV_6);
+        this.vcca_2.x = this.vcca_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcca_2.y = this.vcca_1.y + 0.4 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcca_3.x = this.vcca_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.vcca_3.y = this.vcca_1.y + 0.4 * cache_9 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

@@ -133,15 +133,16 @@ class VoltageSaturationSymbol {
         this.connect1_y = this.c_y - this.y_space * global.utils.sine(this.theta);
         this.connect2_x = this.c_x + this.x_space * global.utils.cosine(this.theta);
         this.connect2_y = this.c_y + this.y_space * global.utils.sine(this.theta);
-        this.vsat_6.x = this.connect1_x + 0.5 * this.x_space * global.utils.cosine(this.theta + global.PI_DIV_4);
-        this.vsat_6.y = this.connect1_y + 0.5 * this.y_space * global.utils.sine(this.theta + global.PI_DIV_4);
-        this.vsat_7.x = this.connect1_x + 0.5 * this.x_space * global.utils.cosine(this.theta + global.PI_DIV_4) + 0.25 * this.x_space * global.utils.cosine(this.theta);
-        this.vsat_7.y = this.connect1_y + 0.5 * this.y_space * global.utils.sine(this.theta + global.PI_DIV_4) + 0.25 * this.y_space * global.utils.sine(this.theta);
-        this.vsat_8.x = this.connect2_x + 0.5 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_2 - global.PI_DIV_4);
-        this.vsat_8.y = this.connect2_y + 0.5 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_2 - global.PI_DIV_4);
+        this.vsat_6.x = this.connect1_x + 0.5 * this.x_space * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_4);
+        this.vsat_6.y = this.connect1_y + 0.5 * this.y_space * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_4);
+        this.vsat_7.x = this.connect1_x + 0.5 * this.x_space * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_4) + 0.25 * this.x_space * global.utils.cosine(this.theta);
+        this.vsat_7.y = this.connect1_y + 0.5 * this.y_space * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_4) + 0.25 * this.y_space * global.utils.sine(this.theta);
+        this.vsat_8.x = this.connect2_x + 0.5 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_2 - global.CONSTANTS.PI_DIV_4);
+        this.vsat_8.y = this.connect2_y + 0.5 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_2 - global.CONSTANTS.PI_DIV_4);
         this.vsat_9.x =
-            this.connect2_x + 0.5 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_2 - global.PI_DIV_4) + 0.25 * this.x_space * global.utils.cosine(this.theta - Math.PI);
-        this.vsat_9.y = this.connect2_y + 0.5 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_2 - global.PI_DIV_4) + 0.25 * this.y_space * global.utils.sine(this.theta - Math.PI);
+            this.connect2_x + 0.5 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_2 - global.CONSTANTS.PI_DIV_4) + 0.25 * this.x_space * global.utils.cosine(this.theta - Math.PI);
+        this.vsat_9.y =
+            this.connect2_y + 0.5 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_2 - global.CONSTANTS.PI_DIV_4) + 0.25 * this.y_space * global.utils.sine(this.theta - Math.PI);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

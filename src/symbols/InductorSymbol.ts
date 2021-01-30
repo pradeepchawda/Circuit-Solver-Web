@@ -173,10 +173,10 @@ class InductorSymbol {
 		this.ind_0.y = this.c_y + this.y_space * global.utils.sine(this.theta);
 		this.ind_1.x = this.c_x + (this.x_space >> 1) * global.utils.cosine(this.theta);
 		this.ind_1.y = this.c_y + (this.y_space >> 1) * global.utils.sine(this.theta);
-		this.ind_2.x = this.c_x + (this.x_space >> 1) * global.utils.cosine(this.theta - global.to_radians(180));
-		this.ind_2.y = this.c_y + (this.y_space >> 1) * global.utils.sine(this.theta - global.to_radians(180));
-		this.ind_3.x = this.c_x + this.x_space * global.utils.cosine(this.theta - global.to_radians(180));
-		this.ind_3.y = this.c_y + this.y_space * global.utils.sine(this.theta - global.to_radians(180));
+		this.ind_2.x = this.c_x + (this.x_space >> 1) * global.utils.cosine(this.theta - global.utils.to_radians(180));
+		this.ind_2.y = this.c_y + (this.y_space >> 1) * global.utils.sine(this.theta - global.utils.to_radians(180));
+		this.ind_3.x = this.c_x + this.x_space * global.utils.cosine(this.theta - global.utils.to_radians(180));
+		this.ind_3.y = this.c_y + this.y_space * global.utils.sine(this.theta - global.utils.to_radians(180));
 		this.inductor_arc_0.set_points(this.ind_0.x, this.ind_0.y, this.ind_1.x, this.ind_1.y);
 		this.inductor_arc_0.amplitude = global.variables.canvas_stroke_width_5;
 		this.inductor_arc_1.set_points(this.ind_1.x, this.ind_1.y, this.c_x, this.c_y);

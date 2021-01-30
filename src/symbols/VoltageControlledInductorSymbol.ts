@@ -197,10 +197,10 @@ class VoltageControlledInductorSymbol {
 		this.vcl_0.y = this.c_y + cache_3 * global.utils.sine(this.theta);
 		this.vcl_1.x = this.c_x + (cache_2 >> 1) * global.utils.cosine(this.theta);
 		this.vcl_1.y = this.c_y + (cache_3 >> 1) * global.utils.sine(this.theta);
-		this.vcl_2.x = this.c_x + (cache_2 >> 1) * global.utils.cosine(this.theta - global.to_radians(180));
-		this.vcl_2.y = this.c_y + (cache_3 >> 1) * global.utils.sine(this.theta - global.to_radians(180));
-		this.vcl_3.x = this.c_x + cache_2 * global.utils.cosine(this.theta - global.to_radians(180));
-		this.vcl_3.y = this.c_y + cache_3 * global.utils.sine(this.theta - global.to_radians(180));
+		this.vcl_2.x = this.c_x + (cache_2 >> 1) * global.utils.cosine(this.theta - global.utils.to_radians(180));
+		this.vcl_2.y = this.c_y + (cache_3 >> 1) * global.utils.sine(this.theta - global.utils.to_radians(180));
+		this.vcl_3.x = this.c_x + cache_2 * global.utils.cosine(this.theta - global.utils.to_radians(180));
+		this.vcl_3.y = this.c_y + cache_3 * global.utils.sine(this.theta - global.utils.to_radians(180));
 		this.vcl_4.x = this.p1.x + 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
 		this.vcl_4.y = this.p1.y + 1.5 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
 		this.vcl_5.x = this.p3.x - 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);

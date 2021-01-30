@@ -125,10 +125,10 @@ class VoltageControlledSwitchSymbol {
         this.theta = global.utils.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
         this.vcsw_1.x = this.p2.x + 4 * this.x_space * 0.2 * global.utils.cosine(this.phi);
         this.vcsw_1.y = this.p2.y + 4 * this.y_space * 0.2 * global.utils.sine(this.phi);
-        this.vcsw_2.x = this.vcsw_1.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta - global.PI_DIV_6);
-        this.vcsw_2.y = this.vcsw_1.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta - global.PI_DIV_6);
-        this.vcsw_3.x = this.vcsw_1.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta + global.PI_DIV_6);
-        this.vcsw_3.y = this.vcsw_1.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta + global.PI_DIV_6);
+        this.vcsw_2.x = this.vcsw_1.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcsw_2.y = this.vcsw_1.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcsw_3.x = this.vcsw_1.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.vcsw_3.y = this.vcsw_1.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

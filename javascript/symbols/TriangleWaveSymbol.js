@@ -114,16 +114,16 @@ class TriangleWaveSymbol {
         }
     }
     build_element() {
-        this.sq_0.x = this.c_x - (this.x_space >> 2) * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.sq_0.y = this.c_y - (this.x_space >> 2) * global.utils.sine(this.theta - global.PI_DIV_4);
-        this.sq_1.x = this.c_x + (this.x_space >> 2) * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.sq_1.y = this.c_y + (this.x_space >> 2) * global.utils.sine(this.theta - global.PI_DIV_4);
+        this.sq_0.x = this.c_x - (this.x_space >> 2) * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.sq_0.y = this.c_y - (this.x_space >> 2) * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.sq_1.x = this.c_x + (this.x_space >> 2) * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.sq_1.y = this.c_y + (this.x_space >> 2) * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
         this.sq_2.x = this.sq_0.x + (this.x_space >> 1) * global.utils.cosine(this.theta_m90);
         this.sq_2.y = this.sq_0.y + (this.x_space >> 1) * global.utils.sine(this.theta_m90);
-        this.sq_3.x = this.sq_0.x - (this.x_space >> 1) * global.utils.cosine(this.theta_m90 - global.PI_DIV_4);
-        this.sq_3.y = this.sq_0.y - (this.x_space >> 1) * global.utils.sine(this.theta_m90 - global.PI_DIV_4);
-        this.sq_4.x = this.sq_1.x + (this.x_space >> 1) * global.utils.cosine(this.theta_m90 - global.PI_DIV_4);
-        this.sq_4.y = this.sq_1.y + (this.x_space >> 1) * global.utils.sine(this.theta_m90 - global.PI_DIV_4);
+        this.sq_3.x = this.sq_0.x - (this.x_space >> 1) * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+        this.sq_3.y = this.sq_0.y - (this.x_space >> 1) * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+        this.sq_4.x = this.sq_1.x + (this.x_space >> 1) * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+        this.sq_4.y = this.sq_1.y + (this.x_space >> 1) * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
         this.connect1_x = this.c_x - this.x_space * global.utils.cosine(this.theta);
         this.connect1_y = this.c_y - this.y_space * global.utils.sine(this.theta);
         this.connect2_x = this.c_x + this.x_space * global.utils.cosine(this.theta);

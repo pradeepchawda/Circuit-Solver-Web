@@ -39,13 +39,13 @@ class Constants {
         this.TEXT_STYLE_3 = 'Style3';
         this.TEXT_STYLE_4 = 'Style4';
         this.TEXT_STYLE_5 = 'Style5';
-        this.ANCHOR_POINT = {
+        this.anchor_point = {
             p1: 0,
             p2: 1,
             p3: 2,
             p4: 3
         };
-        this.WIRE_REFERENCE = {
+        this.wire_reference = {
             wire_id: -1,
             anchor_point: -1,
             linkage: -1

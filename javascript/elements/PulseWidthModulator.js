@@ -3,14 +3,14 @@ class PulseWidthModulator {
     constructor(type, id, n1, n2, n3) {
         this.initialized = false;
         this.bounds = new RectF(0, 0, 0, 0);
-        this.elm = new Element3(id, type, global.utils.copy(global.PROPERTY_PWM));
+        this.elm = new Element3(id, type, global.utils.copy(global.PROPERTY.PROPERTY_PWM));
         this.elm.set_nodes(n1, n2, n3);
         if (this.elm.consistent()) {
-            this.equilateral_center = global.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
+            this.equilateral_center = global.utils.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
             this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.variables.node_space_x * 2, global.variables.node_space_y * 2);
         }
-        this.elm.set_rotation(global.ROTATION_0);
-        this.elm.set_flip(global.FLIP_0);
+        this.elm.set_rotation(global.CONSTANTS.ROTATION_0);
+        this.elm.set_flip(global.CONSTANTS.FLIP_0);
         this.release_nodes();
         let vertices = this.get_vertices();
         this.elm.map_node3(vertices[0], vertices[1], vertices[2], vertices[3], vertices[4], vertices[5]);
@@ -41,10 +41,10 @@ class PulseWidthModulator {
         this.connect1_y = 0;
         this.connect2_x = 0;
         this.connect2_y = 0;
-        if (this.elm.flip === global.FLIP_0) {
+        if (this.elm.flip === global.CONSTANTS.FLIP_0) {
             this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
         }
-        else if (this.elm.flip === global.FLIP_180) {
+        else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
             this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.CONSTANTS.PI_DIV_2;
         }
         else {
@@ -105,7 +105,7 @@ class PulseWidthModulator {
             this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
             this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
             this.p3.set_point(nodes[this.elm.n3].location.x, nodes[this.elm.n3].location.y);
-            this.equilateral_center = global.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
+            this.equilateral_center = global.utils.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
             this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.variables.node_space_x * 2, global.variables.node_space_y * 2);
         }
     }
@@ -125,12 +125,12 @@ class PulseWidthModulator {
                 this.elm.properties['Last Output Voltage'] = this.elm.properties['Output Voltage'];
                 this.elm.properties['Output Voltage'] = global.utils.copy(this.elm.properties['A']);
                 if (Math.abs(this.elm.properties['Last Output Voltage'] - this.elm.properties['Output Voltage']) > 0 || global.simulation_time < global.time_step + global.time_step) {
-                    this.elm.properties['Frequency'] = global.map_range(this.elm.properties['Input Voltage1'], this.elm.properties['Min Frequency'], this.elm.properties['Max Frequency']);
-                    this.elm.properties['Duty'] = global.map_range(this.elm.properties['Input Voltage2'], this.elm.properties['Min Duty'], this.elm.properties['Max Duty']);
+                    this.elm.properties['Frequency'] = global.utils.map_range(this.elm.properties['Input Voltage1'], this.elm.properties['Min Frequency'], this.elm.properties['Max Frequency']);
+                    this.elm.properties['Duty'] = global.utils.map_range(this.elm.properties['Input Voltage2'], this.elm.properties['Min Duty'], this.elm.properties['Max Duty']);
                     this.elm.properties['Counter']++;
                 }
                 this.elm.properties['Saw Wave'] =
-                    0.5 - (1 / Math.PI) * Math.atan(1.0 / Math.tan(global.simulation_time * Math.PI * this.elm.properties['Frequency'] + global.to_radians(this.elm.properties['Phase'])));
+                    0.5 - (1 / Math.PI) * Math.atan(1.0 / Math.tan(global.simulation_time * Math.PI * this.elm.properties['Frequency'] + global.utils.to_radians(this.elm.properties['Phase'])));
                 if (this.elm.properties['Saw Wave'] > 1.0 - this.elm.properties['Duty'] * 0.01) {
                     this.elm.properties['A'] = global.utils.copy(this.elm.properties['High Voltage']);
                 }
@@ -150,13 +150,13 @@ class PulseWidthModulator {
         let p1 = [];
         let p2 = [];
         let p3 = [];
-        if (this.elm.rotation === global.ROTATION_0) {
-            if (this.elm.flip === global.FLIP_0) {
+        if (this.elm.rotation === global.CONSTANTS.ROTATION_0) {
+            if (this.elm.flip === global.CONSTANTS.FLIP_0) {
                 p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
                 p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
                 p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
             }
-            else if (this.elm.flip === global.FLIP_180) {
+            else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
                 p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
                 p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
                 p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
@@ -168,13 +168,13 @@ class PulseWidthModulator {
             }
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
-        else if (this.elm.rotation === global.ROTATION_90) {
-            if (this.elm.flip === global.FLIP_0) {
+        else if (this.elm.rotation === global.CONSTANTS.ROTATION_90) {
+            if (this.elm.flip === global.CONSTANTS.FLIP_0) {
                 p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
                 p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
                 p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.bottom);
             }
-            else if (this.elm.flip === global.FLIP_180) {
+            else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
                 p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
                 p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
                 p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.bottom);
@@ -186,13 +186,13 @@ class PulseWidthModulator {
             }
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
-        else if (this.elm.rotation === global.ROTATION_180) {
-            if (this.elm.flip === global.FLIP_0) {
+        else if (this.elm.rotation === global.CONSTANTS.ROTATION_180) {
+            if (this.elm.flip === global.CONSTANTS.FLIP_0) {
                 p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
                 p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
                 p3 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
             }
-            else if (this.elm.flip === global.FLIP_180) {
+            else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
                 p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.top);
                 p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
                 p3 = this.elm.snap_to_grid(this.bounds.left, this.bounds.get_center_y());
@@ -204,13 +204,13 @@ class PulseWidthModulator {
             }
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
-        else if (this.elm.rotation === global.ROTATION_270) {
-            if (this.elm.flip === global.FLIP_0) {
+        else if (this.elm.rotation === global.CONSTANTS.ROTATION_270) {
+            if (this.elm.flip === global.CONSTANTS.FLIP_0) {
                 p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
                 p2 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
                 p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.top);
             }
-            else if (this.elm.flip === global.FLIP_180) {
+            else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
                 p1 = this.elm.snap_to_grid(this.bounds.right, this.bounds.bottom);
                 p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
                 p3 = this.elm.snap_to_grid(this.bounds.get_center_x(), this.bounds.top);
@@ -223,12 +223,12 @@ class PulseWidthModulator {
             vertices = Array(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
         }
         else {
-            if (this.elm.flip === global.FLIP_0) {
+            if (this.elm.flip === global.CONSTANTS.FLIP_0) {
                 p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
                 p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
                 p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
             }
-            else if (this.elm.flip === global.FLIP_180) {
+            else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
                 p1 = this.elm.snap_to_grid(this.bounds.left, this.bounds.bottom);
                 p2 = this.elm.snap_to_grid(this.bounds.left, this.bounds.top);
                 p3 = this.elm.snap_to_grid(this.bounds.right, this.bounds.get_center_y());
@@ -296,15 +296,15 @@ class PulseWidthModulator {
                 else {
                     if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
                         if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
+                            this.handle_wire_builder(this.elm.n1, global.CONSTANTS.anchor_point['p1']);
                             global.variables.component_touched = true;
                         }
                         else if (nodes[this.elm.n2].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n2, global.ANCHOR_POINT['p2']);
+                            this.handle_wire_builder(this.elm.n2, global.CONSTANTS.anchor_point['p2']);
                             global.variables.component_touched = true;
                         }
                         else if (nodes[this.elm.n3].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n3, global.ANCHOR_POINT['p3']);
+                            this.handle_wire_builder(this.elm.n3, global.CONSTANTS.anchor_point['p3']);
                             global.variables.component_touched = true;
                         }
                     }
@@ -478,7 +478,7 @@ class PulseWidthModulator {
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
-                    if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+                    if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[0];
@@ -489,7 +489,7 @@ class PulseWidthModulator {
                             wires[id].p2.x = vertices[0];
                         }
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[2];
@@ -500,7 +500,7 @@ class PulseWidthModulator {
                             wires[id].p2.y = vertices[3];
                         }
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p3']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[4];
@@ -525,7 +525,7 @@ class PulseWidthModulator {
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
-                    if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+                    if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[0];
                             wires[id].p1.y = vertices[1];
@@ -536,7 +536,7 @@ class PulseWidthModulator {
                         }
                         wires[id].capture_nodes();
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[2];
                             wires[id].p1.y = vertices[3];
@@ -547,7 +547,7 @@ class PulseWidthModulator {
                         }
                         wires[id].capture_nodes();
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p3']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[4];
                             wires[id].p1.y = vertices[5];
@@ -616,23 +616,23 @@ class PulseWidthModulator {
             this.pwm_5.y = this.pwm_4.y + cache_3 * global.utils.sine(this.theta);
             this.pwm_6.x = this.p3.x - cache_6 * global.utils.cosine(this.theta_m90);
             this.pwm_6.y = this.p3.y - cache_7 * global.utils.sine(this.theta_m90);
-            if (this.elm.flip === global.FLIP_0) {
-                this.pwm_7.x = this.p1.x + cache_4 * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-                this.pwm_7.y = this.p1.y + cache_5 * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
-                this.pwm_8.x = this.p2.x + cache_4 * global.utils.cosine(this.theta_m90 - global.PI_DIV_4);
-                this.pwm_8.y = this.p2.y + cache_5 * global.utils.sine(this.theta_m90 - global.PI_DIV_4);
+            if (this.elm.flip === global.CONSTANTS.FLIP_0) {
+                this.pwm_7.x = this.p1.x + cache_4 * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+                this.pwm_7.y = this.p1.y + cache_5 * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+                this.pwm_8.x = this.p2.x + cache_4 * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+                this.pwm_8.y = this.p2.y + cache_5 * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
             }
-            else if (this.elm.flip === global.FLIP_180) {
-                this.pwm_7.x = this.p1.x + cache_4 * global.utils.cosine(this.theta_m90 - global.PI_DIV_4);
-                this.pwm_7.y = this.p1.y + cache_5 * global.utils.sine(this.theta_m90 - global.PI_DIV_4);
-                this.pwm_8.x = this.p2.x + cache_4 * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-                this.pwm_8.y = this.p2.y + cache_5 * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
+            else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
+                this.pwm_7.x = this.p1.x + cache_4 * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+                this.pwm_7.y = this.p1.y + cache_5 * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+                this.pwm_8.x = this.p2.x + cache_4 * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+                this.pwm_8.y = this.p2.y + cache_5 * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
             }
             else {
-                this.pwm_7.x = this.p1.x + cache_4 * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-                this.pwm_7.y = this.p1.y + cache_5 * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
-                this.pwm_8.x = this.p2.x + cache_4 * global.utils.cosine(this.theta_m90 - global.PI_DIV_4);
-                this.pwm_8.y = this.p2.y + cache_5 * global.utils.sine(this.theta_m90 - global.PI_DIV_4);
+                this.pwm_7.x = this.p1.x + cache_4 * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+                this.pwm_7.y = this.p1.y + cache_5 * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+                this.pwm_8.x = this.p2.x + cache_4 * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+                this.pwm_8.y = this.p2.y + cache_5 * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
             }
             this.build_element_flag = false;
         }
@@ -641,7 +641,7 @@ class PulseWidthModulator {
         if (this.build_element_flag || global.flags.signal_build_element) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
-                    this.equilateral_center = global.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
+                    this.equilateral_center = global.utils.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
                     this.bounds.set_center2(this.equilateral_center[0], this.equilateral_center[1], global.variables.node_space_x * 2, global.variables.node_space_y * 2);
                     this.refactor();
                 }
@@ -671,10 +671,10 @@ class PulseWidthModulator {
         this.y_space = global.variables.node_space_y >> 1;
         this.c_x = this.bounds.get_center_x();
         this.c_y = this.bounds.get_center_y();
-        if (this.elm.flip === global.FLIP_0) {
+        if (this.elm.flip === global.CONSTANTS.FLIP_0) {
             this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
         }
-        else if (this.elm.flip === global.FLIP_180) {
+        else if (this.elm.flip === global.CONSTANTS.FLIP_180) {
             this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.CONSTANTS.PI_DIV_2;
         }
         else {
@@ -686,15 +686,15 @@ class PulseWidthModulator {
     }
     increment_rotation() {
         this.elm.rotation++;
-        if (this.elm.rotation > global.ROTATION_270) {
-            this.elm.rotation = global.ROTATION_0;
+        if (this.elm.rotation > global.CONSTANTS.ROTATION_270) {
+            this.elm.rotation = global.CONSTANTS.ROTATION_0;
         }
         this.set_rotation(this.elm.rotation);
     }
     increment_flip() {
         this.elm.flip++;
-        if (this.elm.flip > global.FLIP_180) {
-            this.elm.flip = global.FLIP_0;
+        if (this.elm.flip > global.CONSTANTS.FLIP_180) {
+            this.elm.flip = global.CONSTANTS.FLIP_0;
         }
         this.set_flip(this.elm.flip);
     }
@@ -713,9 +713,9 @@ class PulseWidthModulator {
         }
         else {
             if (this.multi_selected) {
-                this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
-                this.point_paint.set_color(global.MULTI_SELECTED_COLOR);
-                this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
+                this.line_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+                this.point_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+                this.text_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
             }
             else {
                 this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -764,20 +764,20 @@ class PulseWidthModulator {
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-                this.angle = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+                this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
                 if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
+                    canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
                     canvas.restore();
                 }
                 else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
-                    canvas.draw_text(global.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
+                    canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
                 }
             }
             if (!global.CONSTANTS.MOBILE_MODE) {
                 if (global.variables.wire_builder['step'] === 0 &&
                     this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
-                    global.NODE_HINTS &&
+                    global.CONSTANTS.NODE_HINTS &&
                     !multi_select_manager.multi_select &&
                     !this.multi_selected &&
                     !global.flags.signal_add_element &&
@@ -805,7 +805,7 @@ class PulseWidthModulator {
                 }
             }
             if (this.is_translating) {
-                canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.move_paint);
+                canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.variables.move_paint);
             }
         }
     }
@@ -835,7 +835,7 @@ class PulseWidthModulator {
     time_data() {
         /* #INSERT_GENERATE_TIME_DATA# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        let time_data = global.utils.copy(global.TIME_DATA_TEMPLATE);
+        let time_data = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
         let keys = Object.keys(this.elm.properties);
         for (var i = keys.length - 1; i > -1; i--) {
             if (typeof this.elm.properties[keys[i]] === 'number') {

@@ -51,767 +51,767 @@ class EngineFunctions {
         if (!global.variables.is_dragging && !global.flags.signal_history_lock) {
             if (!global.variables.is_right_click) {
                 if (global.variables.selected_type > -1) {
-                    global.selection_nearest_neighbors = [];
-                    global.nearest_neighbor_index = 0;
+                    global.variables.selection_nearest_neighbors = [];
+                    global.variables.nearest_neighbor_index = 0;
                     let width = 1.5125 * global.variables.selected_bounds.get_width();
                     /* #INSERT_GENERATE_FIND_SELECTION_NEIGHBORS# */
                     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                     for (var i = 0; i < resistors.length; i++) {
                         if (resistors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: resistors[i].elm.type,
                                 Id: resistors[i].elm.id
                             });
                             if (resistors[i].elm.type === global.variables.selected_type && resistors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < capacitors.length; i++) {
                         if (capacitors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: capacitors[i].elm.type,
                                 Id: capacitors[i].elm.id
                             });
                             if (capacitors[i].elm.type === global.variables.selected_type && capacitors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < inductors.length; i++) {
                         if (inductors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: inductors[i].elm.type,
                                 Id: inductors[i].elm.id
                             });
                             if (inductors[i].elm.type === global.variables.selected_type && inductors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < grounds.length; i++) {
                         if (grounds[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: grounds[i].elm.type,
                                 Id: grounds[i].elm.id
                             });
                             if (grounds[i].elm.type === global.variables.selected_type && grounds[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dcsources.length; i++) {
                         if (dcsources[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: dcsources[i].elm.type,
                                 Id: dcsources[i].elm.id
                             });
                             if (dcsources[i].elm.type === global.variables.selected_type && dcsources[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dccurrents.length; i++) {
                         if (dccurrents[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: dccurrents[i].elm.type,
                                 Id: dccurrents[i].elm.id
                             });
                             if (dccurrents[i].elm.type === global.variables.selected_type && dccurrents[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < acsources.length; i++) {
                         if (acsources[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: acsources[i].elm.type,
                                 Id: acsources[i].elm.id
                             });
                             if (acsources[i].elm.type === global.variables.selected_type && acsources[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < accurrents.length; i++) {
                         if (accurrents[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: accurrents[i].elm.type,
                                 Id: accurrents[i].elm.id
                             });
                             if (accurrents[i].elm.type === global.variables.selected_type && accurrents[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < squarewaves.length; i++) {
                         if (squarewaves[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: squarewaves[i].elm.type,
                                 Id: squarewaves[i].elm.id
                             });
                             if (squarewaves[i].elm.type === global.variables.selected_type && squarewaves[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < sawwaves.length; i++) {
                         if (sawwaves[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: sawwaves[i].elm.type,
                                 Id: sawwaves[i].elm.id
                             });
                             if (sawwaves[i].elm.type === global.variables.selected_type && sawwaves[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < trianglewaves.length; i++) {
                         if (trianglewaves[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: trianglewaves[i].elm.type,
                                 Id: trianglewaves[i].elm.id
                             });
                             if (trianglewaves[i].elm.type === global.variables.selected_type && trianglewaves[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < constants.length; i++) {
                         if (constants[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: constants[i].elm.type,
                                 Id: constants[i].elm.id
                             });
                             if (constants[i].elm.type === global.variables.selected_type && constants[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < wires.length; i++) {
                         if (wires[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: wires[i].elm.type,
                                 Id: wires[i].elm.id
                             });
                             if (wires[i].elm.type === global.variables.selected_type && wires[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nets.length; i++) {
                         if (nets[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: nets[i].elm.type,
                                 Id: nets[i].elm.id
                             });
                             if (nets[i].elm.type === global.variables.selected_type && nets[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < notes.length; i++) {
                         if (notes[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: notes[i].elm.type,
                                 Id: notes[i].elm.id
                             });
                             if (notes[i].elm.type === global.variables.selected_type && notes[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < rails.length; i++) {
                         if (rails[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: rails[i].elm.type,
                                 Id: rails[i].elm.id
                             });
                             if (rails[i].elm.type === global.variables.selected_type && rails[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < voltmeters.length; i++) {
                         if (voltmeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: voltmeters[i].elm.type,
                                 Id: voltmeters[i].elm.id
                             });
                             if (voltmeters[i].elm.type === global.variables.selected_type && voltmeters[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ohmmeters.length; i++) {
                         if (ohmmeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: ohmmeters[i].elm.type,
                                 Id: ohmmeters[i].elm.id
                             });
                             if (ohmmeters[i].elm.type === global.variables.selected_type && ohmmeters[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ammeters.length; i++) {
                         if (ammeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: ammeters[i].elm.type,
                                 Id: ammeters[i].elm.id
                             });
                             if (ammeters[i].elm.type === global.variables.selected_type && ammeters[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < wattmeters.length; i++) {
                         if (wattmeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: wattmeters[i].elm.type,
                                 Id: wattmeters[i].elm.id
                             });
                             if (wattmeters[i].elm.type === global.variables.selected_type && wattmeters[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < fuses.length; i++) {
                         if (fuses[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: fuses[i].elm.type,
                                 Id: fuses[i].elm.id
                             });
                             if (fuses[i].elm.type === global.variables.selected_type && fuses[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < spsts.length; i++) {
                         if (spsts[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: spsts[i].elm.type,
                                 Id: spsts[i].elm.id
                             });
                             if (spsts[i].elm.type === global.variables.selected_type && spsts[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < spdts.length; i++) {
                         if (spdts[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: spdts[i].elm.type,
                                 Id: spdts[i].elm.id
                             });
                             if (spdts[i].elm.type === global.variables.selected_type && spdts[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nots.length; i++) {
                         if (nots[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: nots[i].elm.type,
                                 Id: nots[i].elm.id
                             });
                             if (nots[i].elm.type === global.variables.selected_type && nots[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < diodes.length; i++) {
                         if (diodes[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: diodes[i].elm.type,
                                 Id: diodes[i].elm.id
                             });
                             if (diodes[i].elm.type === global.variables.selected_type && diodes[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < leds.length; i++) {
                         if (leds[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: leds[i].elm.type,
                                 Id: leds[i].elm.id
                             });
                             if (leds[i].elm.type === global.variables.selected_type && leds[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < zeners.length; i++) {
                         if (zeners[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: zeners[i].elm.type,
                                 Id: zeners[i].elm.id
                             });
                             if (zeners[i].elm.type === global.variables.selected_type && zeners[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < potentiometers.length; i++) {
                         if (potentiometers[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: potentiometers[i].elm.type,
                                 Id: potentiometers[i].elm.id
                             });
                             if (potentiometers[i].elm.type === global.variables.selected_type && potentiometers[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ands.length; i++) {
                         if (ands[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: ands[i].elm.type,
                                 Id: ands[i].elm.id
                             });
                             if (ands[i].elm.type === global.variables.selected_type && ands[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ors.length; i++) {
                         if (ors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: ors[i].elm.type,
                                 Id: ors[i].elm.id
                             });
                             if (ors[i].elm.type === global.variables.selected_type && ors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nands.length; i++) {
                         if (nands[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: nands[i].elm.type,
                                 Id: nands[i].elm.id
                             });
                             if (nands[i].elm.type === global.variables.selected_type && nands[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nors.length; i++) {
                         if (nors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: nors[i].elm.type,
                                 Id: nors[i].elm.id
                             });
                             if (nors[i].elm.type === global.variables.selected_type && nors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < xors.length; i++) {
                         if (xors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: xors[i].elm.type,
                                 Id: xors[i].elm.id
                             });
                             if (xors[i].elm.type === global.variables.selected_type && xors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < xnors.length; i++) {
                         if (xnors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: xnors[i].elm.type,
                                 Id: xnors[i].elm.id
                             });
                             if (xnors[i].elm.type === global.variables.selected_type && xnors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dffs.length; i++) {
                         if (dffs[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: dffs[i].elm.type,
                                 Id: dffs[i].elm.id
                             });
                             if (dffs[i].elm.type === global.variables.selected_type && dffs[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vsats.length; i++) {
                         if (vsats[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: vsats[i].elm.type,
                                 Id: vsats[i].elm.id
                             });
                             if (vsats[i].elm.type === global.variables.selected_type && vsats[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < adders.length; i++) {
                         if (adders[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: adders[i].elm.type,
                                 Id: adders[i].elm.id
                             });
                             if (adders[i].elm.type === global.variables.selected_type && adders[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < subtractors.length; i++) {
                         if (subtractors[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: subtractors[i].elm.type,
                                 Id: subtractors[i].elm.id
                             });
                             if (subtractors[i].elm.type === global.variables.selected_type && subtractors[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < multipliers.length; i++) {
                         if (multipliers[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: multipliers[i].elm.type,
                                 Id: multipliers[i].elm.id
                             });
                             if (multipliers[i].elm.type === global.variables.selected_type && multipliers[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dividers.length; i++) {
                         if (dividers[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: dividers[i].elm.type,
                                 Id: dividers[i].elm.id
                             });
                             if (dividers[i].elm.type === global.variables.selected_type && dividers[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < gains.length; i++) {
                         if (gains[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: gains[i].elm.type,
                                 Id: gains[i].elm.id
                             });
                             if (gains[i].elm.type === global.variables.selected_type && gains[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < absvals.length; i++) {
                         if (absvals[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: absvals[i].elm.type,
                                 Id: absvals[i].elm.id
                             });
                             if (absvals[i].elm.type === global.variables.selected_type && absvals[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vcsws.length; i++) {
                         if (vcsws[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: vcsws[i].elm.type,
                                 Id: vcsws[i].elm.id
                             });
                             if (vcsws[i].elm.type === global.variables.selected_type && vcsws[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vcvss.length; i++) {
                         if (vcvss[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: vcvss[i].elm.type,
                                 Id: vcvss[i].elm.id
                             });
                             if (vcvss[i].elm.type === global.variables.selected_type && vcvss[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vccss.length; i++) {
                         if (vccss[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: vccss[i].elm.type,
                                 Id: vccss[i].elm.id
                             });
                             if (vccss[i].elm.type === global.variables.selected_type && vccss[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < cccss.length; i++) {
                         if (cccss[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: cccss[i].elm.type,
                                 Id: cccss[i].elm.id
                             });
                             if (cccss[i].elm.type === global.variables.selected_type && cccss[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < ccvss.length; i++) {
                         if (ccvss[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: ccvss[i].elm.type,
                                 Id: ccvss[i].elm.id
                             });
                             if (ccvss[i].elm.type === global.variables.selected_type && ccvss[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < opamps.length; i++) {
                         if (opamps[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: opamps[i].elm.type,
                                 Id: opamps[i].elm.id
                             });
                             if (opamps[i].elm.type === global.variables.selected_type && opamps[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < nmosfets.length; i++) {
                         if (nmosfets[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: nmosfets[i].elm.type,
                                 Id: nmosfets[i].elm.id
                             });
                             if (nmosfets[i].elm.type === global.variables.selected_type && nmosfets[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pmosfets.length; i++) {
                         if (pmosfets[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: pmosfets[i].elm.type,
                                 Id: pmosfets[i].elm.id
                             });
                             if (pmosfets[i].elm.type === global.variables.selected_type && pmosfets[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < npns.length; i++) {
                         if (npns[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: npns[i].elm.type,
                                 Id: npns[i].elm.id
                             });
                             if (npns[i].elm.type === global.variables.selected_type && npns[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pnps.length; i++) {
                         if (pnps[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: pnps[i].elm.type,
                                 Id: pnps[i].elm.id
                             });
                             if (pnps[i].elm.type === global.variables.selected_type && pnps[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < adcs.length; i++) {
                         if (adcs[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: adcs[i].elm.type,
                                 Id: adcs[i].elm.id
                             });
                             if (adcs[i].elm.type === global.variables.selected_type && adcs[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < dacs.length; i++) {
                         if (dacs[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: dacs[i].elm.type,
                                 Id: dacs[i].elm.id
                             });
                             if (dacs[i].elm.type === global.variables.selected_type && dacs[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < sandhs.length; i++) {
                         if (sandhs[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: sandhs[i].elm.type,
                                 Id: sandhs[i].elm.id
                             });
                             if (sandhs[i].elm.type === global.variables.selected_type && sandhs[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pwms.length; i++) {
                         if (pwms[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: pwms[i].elm.type,
                                 Id: pwms[i].elm.id
                             });
                             if (pwms[i].elm.type === global.variables.selected_type && pwms[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < integrators.length; i++) {
                         if (integrators[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: integrators[i].elm.type,
                                 Id: integrators[i].elm.id
                             });
                             if (integrators[i].elm.type === global.variables.selected_type && integrators[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < differentiators.length; i++) {
                         if (differentiators[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: differentiators[i].elm.type,
                                 Id: differentiators[i].elm.id
                             });
                             if (differentiators[i].elm.type === global.variables.selected_type && differentiators[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < lowpasses.length; i++) {
                         if (lowpasses[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: lowpasses[i].elm.type,
                                 Id: lowpasses[i].elm.id
                             });
                             if (lowpasses[i].elm.type === global.variables.selected_type && lowpasses[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < highpasses.length; i++) {
                         if (highpasses[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: highpasses[i].elm.type,
                                 Id: highpasses[i].elm.id
                             });
                             if (highpasses[i].elm.type === global.variables.selected_type && highpasses[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < relays.length; i++) {
                         if (relays[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: relays[i].elm.type,
                                 Id: relays[i].elm.id
                             });
                             if (relays[i].elm.type === global.variables.selected_type && relays[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < pids.length; i++) {
                         if (pids[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: pids[i].elm.type,
                                 Id: pids[i].elm.id
                             });
                             if (pids[i].elm.type === global.variables.selected_type && pids[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < luts.length; i++) {
                         if (luts[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: luts[i].elm.type,
                                 Id: luts[i].elm.id
                             });
                             if (luts[i].elm.type === global.variables.selected_type && luts[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vcrs.length; i++) {
                         if (vcrs[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: vcrs[i].elm.type,
                                 Id: vcrs[i].elm.id
                             });
                             if (vcrs[i].elm.type === global.variables.selected_type && vcrs[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vccas.length; i++) {
                         if (vccas[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: vccas[i].elm.type,
                                 Id: vccas[i].elm.id
                             });
                             if (vccas[i].elm.type === global.variables.selected_type && vccas[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < vcls.length; i++) {
                         if (vcls[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: vcls[i].elm.type,
                                 Id: vcls[i].elm.id
                             });
                             if (vcls[i].elm.type === global.variables.selected_type && vcls[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < grts.length; i++) {
                         if (grts[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: grts[i].elm.type,
                                 Id: grts[i].elm.id
                             });
                             if (grts[i].elm.type === global.variables.selected_type && grts[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < tptzs.length; i++) {
                         if (tptzs[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: tptzs[i].elm.type,
                                 Id: tptzs[i].elm.id
                             });
                             if (tptzs[i].elm.type === global.variables.selected_type && tptzs[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
                     for (var i = 0; i < transformers.length; i++) {
                         if (transformers[i].bounds.is_near(global.variables.selected_bounds, width)) {
-                            global.selection_nearest_neighbors.push({
+                            global.variables.selection_nearest_neighbors.push({
                                 Type: transformers[i].elm.type,
                                 Id: transformers[i].elm.id
                             });
                             if (transformers[i].elm.type === global.variables.selected_type && transformers[i].elm.id === global.variables.selected_id) {
-                                global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+                                global.variables.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
                             }
                         }
                     }
@@ -820,561 +820,561 @@ class EngineFunctions {
             }
             else {
                 if (global.variables.selected_type > -1 && temp_translation_lock) {
-                    if (global.selection_nearest_neighbors.length > 1) {
-                        global.nearest_neighbor_index++;
-                        if (global.nearest_neighbor_index >= global.selection_nearest_neighbors.length) {
-                            global.nearest_neighbor_index = 0;
+                    if (global.variables.selection_nearest_neighbors.length > 1) {
+                        global.variables.nearest_neighbor_index++;
+                        if (global.variables.nearest_neighbor_index >= global.variables.selection_nearest_neighbors.length) {
+                            global.variables.nearest_neighbor_index = 0;
                         }
                         let index = -1;
                         /* #INSERT_GENERATE_SWAP_SELECTION_NEIGHBORS# */
                         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RESISTOR) {
                             for (var i = 0; i < resistors.length; i++) {
-                                if (resistors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (resistors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     resistors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
                             for (var i = 0; i < capacitors.length; i++) {
-                                if (capacitors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (capacitors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     capacitors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
                             for (var i = 0; i < inductors.length; i++) {
-                                if (inductors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (inductors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     inductors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GROUND) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GROUND) {
                             for (var i = 0; i < grounds.length; i++) {
-                                if (grounds[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (grounds[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     grounds[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
                             for (var i = 0; i < dcsources.length; i++) {
-                                if (dcsources[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (dcsources[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     dcsources[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
                             for (var i = 0; i < dccurrents.length; i++) {
-                                if (dccurrents[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (dccurrents[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     dccurrents[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
                             for (var i = 0; i < acsources.length; i++) {
-                                if (acsources[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (acsources[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     acsources[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
                             for (var i = 0; i < accurrents.length; i++) {
-                                if (accurrents[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (accurrents[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     accurrents[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
                             for (var i = 0; i < squarewaves.length; i++) {
-                                if (squarewaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (squarewaves[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     squarewaves[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAW) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAW) {
                             for (var i = 0; i < sawwaves.length; i++) {
-                                if (sawwaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (sawwaves[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     sawwaves[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRI) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRI) {
                             for (var i = 0; i < trianglewaves.length; i++) {
-                                if (trianglewaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (trianglewaves[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     trianglewaves[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CONSTANT) {
                             for (var i = 0; i < constants.length; i++) {
-                                if (constants[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (constants[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     constants[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WIRE) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WIRE) {
                             for (var i = 0; i < wires.length; i++) {
-                                if (wires[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (wires[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     wires[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NET) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NET) {
                             for (var i = 0; i < nets.length; i++) {
-                                if (nets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (nets[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     nets[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOTE) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOTE) {
                             for (var i = 0; i < notes.length; i++) {
-                                if (notes[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (notes[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     notes[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RAIL) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RAIL) {
                             for (var i = 0; i < rails.length; i++) {
-                                if (rails[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (rails[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     rails[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
                             for (var i = 0; i < voltmeters.length; i++) {
-                                if (voltmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (voltmeters[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     voltmeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OHMMETER) {
                             for (var i = 0; i < ohmmeters.length; i++) {
-                                if (ohmmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (ohmmeters[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     ohmmeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AMMETER) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AMMETER) {
                             for (var i = 0; i < ammeters.length; i++) {
-                                if (ammeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (ammeters[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     ammeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WATTMETER) {
                             for (var i = 0; i < wattmeters.length; i++) {
-                                if (wattmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (wattmeters[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     wattmeters[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_FUSE) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_FUSE) {
                             for (var i = 0; i < fuses.length; i++) {
-                                if (fuses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (fuses[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     fuses[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPST) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPST) {
                             for (var i = 0; i < spsts.length; i++) {
-                                if (spsts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (spsts[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     spsts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPDT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPDT) {
                             for (var i = 0; i < spdts.length; i++) {
-                                if (spdts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (spdts[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     spdts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOT) {
                             for (var i = 0; i < nots.length; i++) {
-                                if (nots[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (nots[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     nots[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIODE) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIODE) {
                             for (var i = 0; i < diodes.length; i++) {
-                                if (diodes[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (diodes[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     diodes[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LED) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LED) {
                             for (var i = 0; i < leds.length; i++) {
-                                if (leds[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (leds[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     leds[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ZENER) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ZENER) {
                             for (var i = 0; i < zeners.length; i++) {
-                                if (zeners[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (zeners[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     zeners[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
                             for (var i = 0; i < potentiometers.length; i++) {
-                                if (potentiometers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (potentiometers[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     potentiometers[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AND) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AND) {
                             for (var i = 0; i < ands.length; i++) {
-                                if (ands[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (ands[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     ands[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OR) {
                             for (var i = 0; i < ors.length; i++) {
-                                if (ors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (ors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     ors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NAND) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NAND) {
                             for (var i = 0; i < nands.length; i++) {
-                                if (nands[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (nands[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     nands[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOR) {
                             for (var i = 0; i < nors.length; i++) {
-                                if (nors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (nors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     nors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XOR) {
                             for (var i = 0; i < xors.length; i++) {
-                                if (xors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (xors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     xors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XNOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XNOR) {
                             for (var i = 0; i < xnors.length; i++) {
-                                if (xnors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (xnors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     xnors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DFF) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DFF) {
                             for (var i = 0; i < dffs.length; i++) {
-                                if (dffs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (dffs[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     dffs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VSAT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VSAT) {
                             for (var i = 0; i < vsats.length; i++) {
-                                if (vsats[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (vsats[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     vsats[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADD) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADD) {
                             for (var i = 0; i < adders.length; i++) {
-                                if (adders[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (adders[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     adders[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SUB) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SUB) {
                             for (var i = 0; i < subtractors.length; i++) {
-                                if (subtractors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (subtractors[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     subtractors[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_MUL) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_MUL) {
                             for (var i = 0; i < multipliers.length; i++) {
-                                if (multipliers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (multipliers[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     multipliers[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIV) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIV) {
                             for (var i = 0; i < dividers.length; i++) {
-                                if (dividers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (dividers[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     dividers[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GAIN) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GAIN) {
                             for (var i = 0; i < gains.length; i++) {
-                                if (gains[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (gains[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     gains[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ABS) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ABS) {
                             for (var i = 0; i < absvals.length; i++) {
-                                if (absvals[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (absvals[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     absvals[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCSW) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCSW) {
                             for (var i = 0; i < vcsws.length; i++) {
-                                if (vcsws[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (vcsws[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     vcsws[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCVS) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCVS) {
                             for (var i = 0; i < vcvss.length; i++) {
-                                if (vcvss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (vcvss[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     vcvss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCS) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCS) {
                             for (var i = 0; i < vccss.length; i++) {
-                                if (vccss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (vccss[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     vccss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCCS) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCCS) {
                             for (var i = 0; i < cccss.length; i++) {
-                                if (cccss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (cccss[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     cccss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCVS) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCVS) {
                             for (var i = 0; i < ccvss.length; i++) {
-                                if (ccvss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (ccvss[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     ccvss[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OPAMP) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OPAMP) {
                             for (var i = 0; i < opamps.length; i++) {
-                                if (opamps[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (opamps[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     opamps[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NMOS) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NMOS) {
                             for (var i = 0; i < nmosfets.length; i++) {
-                                if (nmosfets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (nmosfets[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     nmosfets[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PMOS) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PMOS) {
                             for (var i = 0; i < pmosfets.length; i++) {
-                                if (pmosfets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (pmosfets[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     pmosfets[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NPN) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NPN) {
                             for (var i = 0; i < npns.length; i++) {
-                                if (npns[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (npns[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     npns[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PNP) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PNP) {
                             for (var i = 0; i < pnps.length; i++) {
-                                if (pnps[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (pnps[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     pnps[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADC) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADC) {
                             for (var i = 0; i < adcs.length; i++) {
-                                if (adcs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (adcs[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     adcs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DAC) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DAC) {
                             for (var i = 0; i < dacs.length; i++) {
-                                if (dacs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (dacs[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     dacs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAH) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAH) {
                             for (var i = 0; i < sandhs.length; i++) {
-                                if (sandhs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (sandhs[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     sandhs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PWM) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PWM) {
                             for (var i = 0; i < pwms.length; i++) {
-                                if (pwms[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (pwms[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     pwms[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
                             for (var i = 0; i < integrators.length; i++) {
-                                if (integrators[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (integrators[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     integrators[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
                             for (var i = 0; i < differentiators.length; i++) {
-                                if (differentiators[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (differentiators[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     differentiators[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LPF) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LPF) {
                             for (var i = 0; i < lowpasses.length; i++) {
-                                if (lowpasses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (lowpasses[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     lowpasses[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_HPF) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_HPF) {
                             for (var i = 0; i < highpasses.length; i++) {
-                                if (highpasses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (highpasses[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     highpasses[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_REL) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_REL) {
                             for (var i = 0; i < relays.length; i++) {
-                                if (relays[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (relays[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     relays[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PID) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PID) {
                             for (var i = 0; i < pids.length; i++) {
-                                if (pids[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (pids[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     pids[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LUT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LUT) {
                             for (var i = 0; i < luts.length; i++) {
-                                if (luts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (luts[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     luts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCR) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCR) {
                             for (var i = 0; i < vcrs.length; i++) {
-                                if (vcrs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (vcrs[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     vcrs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCA) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCA) {
                             for (var i = 0; i < vccas.length; i++) {
-                                if (vccas[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (vccas[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     vccas[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCL) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCL) {
                             for (var i = 0; i < vcls.length; i++) {
-                                if (vcls[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (vcls[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     vcls[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GRT) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GRT) {
                             for (var i = 0; i < grts.length; i++) {
-                                if (grts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (grts[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     grts[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TPTZ) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TPTZ) {
                             for (var i = 0; i < tptzs.length; i++) {
-                                if (tptzs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (tptzs[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     tptzs[i].select();
                                     break;
                                 }
                             }
                         }
-                        if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRAN) {
+                        if (global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRAN) {
                             for (var i = 0; i < transformers.length; i++) {
-                                if (transformers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+                                if (transformers[i].elm.id === global.variables.selection_nearest_neighbors[global.variables.nearest_neighbor_index]['Id']) {
                                     transformers[i].select();
                                     break;
                                 }
@@ -4727,7 +4727,7 @@ class EngineFunctions {
     assign_element_simulation_ids() {
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_IDS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        let elm_max = global.element_max();
+        let elm_max = global.utils.element_max();
         for (var i = 0; i < elm_max; i++) {
             if (i > -1 && i < resistors.length) {
                 resistors[i].simulation_id = i;
@@ -5436,7 +5436,7 @@ class EngineFunctions {
         this.clear_all_elements();
         scope_manager.clear_entries();
         graph_window.reset();
-        let elements = packet.split(global.PACKET_DIVIDER);
+        let elements = packet.split(global.CONSTANTS.PACKET_DIVIDER);
         for (var i = 0; i < elements.length; i++) {
             if (elements[i] !== '') {
                 this.rebuild_elements(JSON.parse(elements[i]));
@@ -5480,211 +5480,211 @@ class EngineFunctions {
         }
         /* #INSERT_GENERATE_SUPPORT_LEGACY_FILES# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        if (obj.elm.properties['tag'] === global.PROPERTY_RESISTOR['tag']) {
+        if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_RESISTOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_RESISTOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_CAPACITOR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_CAPACITOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_CAPACITOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_INDUCTOR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_INDUCTOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_INDUCTOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_GROUND['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_GROUND['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_GROUND;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_DCSOURCE['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_DCSOURCE['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_DCSOURCE;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_DCCURRENT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_DCCURRENT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_DCCURRENT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_ACSOURCE['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_ACSOURCE['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_ACSOURCE;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_ACCURRENT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_ACCURRENT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_ACCURRENT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_SQUAREWAVE['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_SQUAREWAVE['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_SQUAREWAVE;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_SAW['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_SAW['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_SAW;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_TRI['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_TRI['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_TRI;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_CONSTANT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_CONSTANT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_CONSTANT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_WIRE['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_WIRE['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_WIRE;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_NET['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_NET['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_NET;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_NOTE['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_NOTE['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_NOTE;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_RAIL['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_RAIL['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_RAIL;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VOLTMETER['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VOLTMETER['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VOLTMETER;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_OHMMETER['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_OHMMETER['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_OHMMETER;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_AMMETER['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_AMMETER['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_AMMETER;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_WATTMETER['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_WATTMETER['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_WATTMETER;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_FUSE['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_FUSE['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_FUSE;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_SPST['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_SPST['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_SPST;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_SPDT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_SPDT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_SPDT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_NOT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_NOT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_NOT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_DIODE['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_DIODE['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_DIODE;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_LED['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_LED['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_LED;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_ZENER['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_ZENER['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_ZENER;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_POTENTIOMETER['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_POTENTIOMETER['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_POTENTIOMETER;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_AND['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_AND['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_AND;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_OR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_OR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_OR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_NAND['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_NAND['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_NAND;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_NOR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_NOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_NOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_XOR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_XOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_XOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_XNOR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_XNOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_XNOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_DFF['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_DFF['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_DFF;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VSAT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VSAT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VSAT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_ADD['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_ADD['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_ADD;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_SUB['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_SUB['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_SUB;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_MUL['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_MUL['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_MUL;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_DIV['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_DIV['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_DIV;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_GAIN['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_GAIN['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_GAIN;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_ABS['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_ABS['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_ABS;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VCSW['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VCSW['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VCSW;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VCVS['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VCVS['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VCVS;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VCCS['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VCCS['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VCCS;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_CCCS['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_CCCS['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_CCCS;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_CCVS['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_CCVS['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_CCVS;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_OPAMP['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_OPAMP['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_OPAMP;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_NMOS['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_NMOS['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_NMOS;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_PMOS['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_PMOS['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_PMOS;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_NPN['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_NPN['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_NPN;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_PNP['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_PNP['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_PNP;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_ADC['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_ADC['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_ADC;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_DAC['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_DAC['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_DAC;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_SAH['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_SAH['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_SAH;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_PWM['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_PWM['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_PWM;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_INTEGRATOR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_INTEGRATOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_INTEGRATOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_DIFFERENTIATOR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_DIFFERENTIATOR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_LPF['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_LPF['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_LPF;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_HPF['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_HPF['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_HPF;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_REL['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_REL['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_REL;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_PID['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_PID['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_PID;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_LUT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_LUT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_LUT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VCR['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VCR['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VCR;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VCCA['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VCCA['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VCCA;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_VCL['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_VCL['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_VCL;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_GRT['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_GRT['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_GRT;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_TPTZ['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_TPTZ['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_TPTZ;
         }
-        else if (obj.elm.properties['tag'] === global.PROPERTY_TRAN['tag']) {
+        else if (obj.elm.properties['tag'] === global.PROPERTY.PROPERTY_TRAN['tag']) {
             obj.elm.type = global.ELEMENT_TYPES.TYPE_TRAN;
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -5918,9 +5918,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_RESISTOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_RESISTOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_RESISTOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_RESISTOR[key];
             }
         });
         Object.keys(Resistor).forEach(function (key) {
@@ -5945,9 +5945,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_CAPACITOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_CAPACITOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_CAPACITOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_CAPACITOR[key];
             }
         });
         Object.keys(Capacitor).forEach(function (key) {
@@ -5980,9 +5980,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_INDUCTOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_INDUCTOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_INDUCTOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_INDUCTOR[key];
             }
         });
         Object.keys(Inductor).forEach(function (key) {
@@ -6007,9 +6007,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_GROUND).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_GROUND).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_GROUND[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_GROUND[key];
             }
         });
         Object.keys(Ground).forEach(function (key) {
@@ -6034,9 +6034,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_DCSOURCE).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_DCSOURCE).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_DCSOURCE[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_DCSOURCE[key];
             }
         });
         Object.keys(DCSource).forEach(function (key) {
@@ -6061,9 +6061,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_DCCURRENT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_DCCURRENT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_DCCURRENT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_DCCURRENT[key];
             }
         });
         Object.keys(DCCurrent).forEach(function (key) {
@@ -6090,9 +6090,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_ACSOURCE).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_ACSOURCE).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_ACSOURCE[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_ACSOURCE[key];
             }
         });
         Object.keys(ACSource).forEach(function (key) {
@@ -6119,9 +6119,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_ACCURRENT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_ACCURRENT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_ACCURRENT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_ACCURRENT[key];
             }
         });
         Object.keys(ACCurrent).forEach(function (key) {
@@ -6146,9 +6146,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_SQUAREWAVE).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_SQUAREWAVE).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_SQUAREWAVE[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_SQUAREWAVE[key];
             }
         });
         Object.keys(SquareWave).forEach(function (key) {
@@ -6173,9 +6173,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_SAW).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_SAW).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_SAW[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_SAW[key];
             }
         });
         Object.keys(SawWave).forEach(function (key) {
@@ -6200,9 +6200,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_TRI).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_TRI).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_TRI[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_TRI[key];
             }
         });
         Object.keys(TriangleWave).forEach(function (key) {
@@ -6227,9 +6227,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_CONSTANT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_CONSTANT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_CONSTANT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_CONSTANT[key];
             }
         });
         Object.keys(Constant).forEach(function (key) {
@@ -6255,9 +6255,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_WIRE).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_WIRE).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_WIRE[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_WIRE[key];
             }
         });
         Object.keys(Wire).forEach(function (key) {
@@ -6282,9 +6282,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_NET).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_NET).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_NET[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_NET[key];
             }
         });
         Object.keys(Net).forEach(function (key) {
@@ -6309,9 +6309,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_NOTE).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_NOTE).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_NOTE[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_NOTE[key];
             }
         });
         Object.keys(Note).forEach(function (key) {
@@ -6336,9 +6336,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_RAIL).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_RAIL).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_RAIL[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_RAIL[key];
             }
         });
         Object.keys(Rail).forEach(function (key) {
@@ -6375,9 +6375,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VOLTMETER).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VOLTMETER).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VOLTMETER[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VOLTMETER[key];
             }
         });
         Object.keys(VoltMeter).forEach(function (key) {
@@ -6414,9 +6414,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_OHMMETER).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_OHMMETER).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_OHMMETER[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_OHMMETER[key];
             }
         });
         Object.keys(OhmMeter).forEach(function (key) {
@@ -6453,9 +6453,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_AMMETER).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_AMMETER).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_AMMETER[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_AMMETER[key];
             }
         });
         Object.keys(AmMeter).forEach(function (key) {
@@ -6492,9 +6492,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_WATTMETER).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_WATTMETER).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_WATTMETER[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_WATTMETER[key];
             }
         });
         Object.keys(WattMeter).forEach(function (key) {
@@ -6519,9 +6519,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_FUSE).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_FUSE).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_FUSE[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_FUSE[key];
             }
         });
         Object.keys(Fuse).forEach(function (key) {
@@ -6546,9 +6546,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_SPST).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_SPST).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_SPST[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_SPST[key];
             }
         });
         Object.keys(SinglePoleSingleThrow).forEach(function (key) {
@@ -6573,9 +6573,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_SPDT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_SPDT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_SPDT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_SPDT[key];
             }
         });
         Object.keys(SinglePoleDoubleThrow).forEach(function (key) {
@@ -6600,9 +6600,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_NOT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_NOT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_NOT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_NOT[key];
             }
         });
         Object.keys(NOTGate).forEach(function (key) {
@@ -6627,9 +6627,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_DIODE).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_DIODE).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_DIODE[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_DIODE[key];
             }
         });
         Object.keys(Diode).forEach(function (key) {
@@ -6654,9 +6654,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_LED).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_LED).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_LED[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_LED[key];
             }
         });
         Object.keys(LightEmittingDiode).forEach(function (key) {
@@ -6681,9 +6681,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_ZENER).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_ZENER).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_ZENER[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_ZENER[key];
             }
         });
         Object.keys(ZenerDiode).forEach(function (key) {
@@ -6708,9 +6708,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_POTENTIOMETER).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_POTENTIOMETER).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_POTENTIOMETER[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_POTENTIOMETER[key];
             }
         });
         Object.keys(Potentiometer).forEach(function (key) {
@@ -6735,9 +6735,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_AND).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_AND).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_AND[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_AND[key];
             }
         });
         Object.keys(ANDGate).forEach(function (key) {
@@ -6762,9 +6762,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_OR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_OR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_OR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_OR[key];
             }
         });
         Object.keys(ORGate).forEach(function (key) {
@@ -6789,9 +6789,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_NAND).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_NAND).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_NAND[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_NAND[key];
             }
         });
         Object.keys(NANDGate).forEach(function (key) {
@@ -6816,9 +6816,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_NOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_NOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_NOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_NOR[key];
             }
         });
         Object.keys(NORGate).forEach(function (key) {
@@ -6843,9 +6843,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_XOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_XOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_XOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_XOR[key];
             }
         });
         Object.keys(XORGate).forEach(function (key) {
@@ -6870,9 +6870,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_XNOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_XNOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_XNOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_XNOR[key];
             }
         });
         Object.keys(XNORGate).forEach(function (key) {
@@ -6897,9 +6897,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_DFF).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_DFF).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_DFF[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_DFF[key];
             }
         });
         Object.keys(DFlipFlop).forEach(function (key) {
@@ -6924,9 +6924,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VSAT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VSAT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VSAT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VSAT[key];
             }
         });
         Object.keys(VoltageSaturation).forEach(function (key) {
@@ -6951,9 +6951,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_ADD).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_ADD).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_ADD[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_ADD[key];
             }
         });
         Object.keys(Adder).forEach(function (key) {
@@ -6978,9 +6978,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_SUB).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_SUB).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_SUB[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_SUB[key];
             }
         });
         Object.keys(Subtractor).forEach(function (key) {
@@ -7005,9 +7005,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_MUL).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_MUL).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_MUL[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_MUL[key];
             }
         });
         Object.keys(Multiplier).forEach(function (key) {
@@ -7032,9 +7032,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_DIV).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_DIV).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_DIV[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_DIV[key];
             }
         });
         Object.keys(Divider).forEach(function (key) {
@@ -7059,9 +7059,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_GAIN).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_GAIN).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_GAIN[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_GAIN[key];
             }
         });
         Object.keys(GainBlock).forEach(function (key) {
@@ -7086,9 +7086,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_ABS).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_ABS).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_ABS[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_ABS[key];
             }
         });
         Object.keys(AbsoluteValue).forEach(function (key) {
@@ -7113,9 +7113,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VCSW).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VCSW).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VCSW[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VCSW[key];
             }
         });
         Object.keys(VoltageControlledSwitch).forEach(function (key) {
@@ -7140,9 +7140,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VCVS).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VCVS).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VCVS[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VCVS[key];
             }
         });
         Object.keys(VoltageControlledVoltageSource).forEach(function (key) {
@@ -7167,9 +7167,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VCCS).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VCCS).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VCCS[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VCCS[key];
             }
         });
         Object.keys(VoltageControlledCurrentSource).forEach(function (key) {
@@ -7194,9 +7194,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_CCCS).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_CCCS).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_CCCS[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_CCCS[key];
             }
         });
         Object.keys(CurrentControlledCurrentSource).forEach(function (key) {
@@ -7221,9 +7221,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_CCVS).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_CCVS).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_CCVS[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_CCVS[key];
             }
         });
         Object.keys(CurrentControlledVoltageSource).forEach(function (key) {
@@ -7248,9 +7248,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_OPAMP).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_OPAMP).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_OPAMP[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_OPAMP[key];
             }
         });
         Object.keys(OperationalAmplifier).forEach(function (key) {
@@ -7275,9 +7275,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_NMOS).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_NMOS).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_NMOS[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_NMOS[key];
             }
         });
         Object.keys(NChannelMOSFET).forEach(function (key) {
@@ -7302,9 +7302,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_PMOS).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_PMOS).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_PMOS[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_PMOS[key];
             }
         });
         Object.keys(PChannelMOSFET).forEach(function (key) {
@@ -7329,9 +7329,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_NPN).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_NPN).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_NPN[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_NPN[key];
             }
         });
         Object.keys(NPNBipolarJunctionTransistor).forEach(function (key) {
@@ -7356,9 +7356,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_PNP).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_PNP).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_PNP[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_PNP[key];
             }
         });
         Object.keys(PNPBipolarJunctionTransistor).forEach(function (key) {
@@ -7383,9 +7383,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_ADC).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_ADC).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_ADC[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_ADC[key];
             }
         });
         Object.keys(ADCModule).forEach(function (key) {
@@ -7410,9 +7410,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_DAC).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_DAC).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_DAC[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_DAC[key];
             }
         });
         Object.keys(DACModule).forEach(function (key) {
@@ -7437,9 +7437,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_SAH).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_SAH).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_SAH[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_SAH[key];
             }
         });
         Object.keys(SampleAndHold).forEach(function (key) {
@@ -7464,9 +7464,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_PWM).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_PWM).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_PWM[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_PWM[key];
             }
         });
         Object.keys(PulseWidthModulator).forEach(function (key) {
@@ -7491,9 +7491,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_INTEGRATOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_INTEGRATOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_INTEGRATOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_INTEGRATOR[key];
             }
         });
         Object.keys(IntegratorModule).forEach(function (key) {
@@ -7518,9 +7518,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_DIFFERENTIATOR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_DIFFERENTIATOR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_DIFFERENTIATOR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_DIFFERENTIATOR[key];
             }
         });
         Object.keys(DifferentiatorModule).forEach(function (key) {
@@ -7545,9 +7545,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_LPF).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_LPF).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_LPF[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_LPF[key];
             }
         });
         Object.keys(LowPassFilter).forEach(function (key) {
@@ -7572,9 +7572,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_HPF).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_HPF).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_HPF[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_HPF[key];
             }
         });
         Object.keys(HighPassFilter).forEach(function (key) {
@@ -7599,9 +7599,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_REL).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_REL).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_REL[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_REL[key];
             }
         });
         Object.keys(Relay).forEach(function (key) {
@@ -7627,9 +7627,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_PID).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_PID).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_PID[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_PID[key];
             }
         });
         Object.keys(PIDModule).forEach(function (key) {
@@ -7654,9 +7654,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_LUT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_LUT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_LUT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_LUT[key];
             }
         });
         Object.keys(LookUpTable).forEach(function (key) {
@@ -7681,9 +7681,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VCR).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VCR).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VCR[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VCR[key];
             }
         });
         Object.keys(VoltageControlledResistor).forEach(function (key) {
@@ -7708,9 +7708,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VCCA).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VCCA).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VCCA[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VCCA[key];
             }
         });
         Object.keys(VoltageControlledCapacitor).forEach(function (key) {
@@ -7743,9 +7743,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_VCL).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_VCL).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_VCL[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_VCL[key];
             }
         });
         Object.keys(VoltageControlledInductor).forEach(function (key) {
@@ -7770,9 +7770,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_GRT).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_GRT).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_GRT[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_GRT[key];
             }
         });
         Object.keys(GreaterThan).forEach(function (key) {
@@ -7798,9 +7798,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_TPTZ).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_TPTZ).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_TPTZ[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_TPTZ[key];
             }
         });
         Object.keys(TPTZModule).forEach(function (key) {
@@ -7825,9 +7825,9 @@ class EngineFunctions {
         obj.refresh_bounds();
         obj.capture_nodes();
         obj.bounds.anchored = true;
-        Object.keys(global.PROPERTY_TRAN).forEach(function (key) {
+        Object.keys(global.PROPERTY.PROPERTY_TRAN).forEach(function (key) {
             if (!global.utils.not_null(obj.elm.properties[key])) {
-                obj.elm.properties[key] = global.PROPERTY_TRAN[key];
+                obj.elm.properties[key] = global.PROPERTY.PROPERTY_TRAN[key];
             }
         });
         Object.keys(Transformer).forEach(function (key) {
@@ -7845,7 +7845,7 @@ class EngineFunctions {
         for (var i = wires.length - 1; i > -1; i--) {
             this.remove_wire(i);
         }
-        let elm_max = global.element_max();
+        let elm_max = global.utils.element_max();
         for (var i = elm_max - 1; i > -1; i--) {
             /* #INSERT_GENERATE_CLEAR_ELEMENTS# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -7923,7 +7923,7 @@ class EngineFunctions {
     history_snapshot() {
         let packet = [];
         let indexer = 0;
-        this.meta_data.elm.properties['date'] = global.get_date_stamp();
+        this.meta_data.elm.properties['date'] = global.utils.get_date_stamp();
         this.meta_data.user_scope_settings = global.utils.copy(scope_manager.entry);
         this.meta_data.user_settings = global.utils.copy(global.settings);
         this.meta_data.user_timestep = global.time_step;
@@ -8140,7 +8140,7 @@ class EngineFunctions {
             packet[indexer++] = JSON.stringify(transformers[i]);
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        return packet.join(global.PACKET_DIVIDER);
+        return packet.join(global.CONSTANTS.PACKET_DIVIDER);
     }
     /* #INSERT_GENERATE_REMOVE_ELEMENTS# */
     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -10039,7 +10039,7 @@ class EngineFunctions {
     }
     capture_image() {
         let temp_zoom = global.variables.workspace_zoom_scale;
-        global.variables.workspace_zoom_scale = global.PICTURE_ZOOM;
+        global.variables.workspace_zoom_scale = global.CONSTANTS.PICTURE_ZOOM;
         global.variables.mouse_x = workspace.bounds.get_center_x();
         global.variables.mouse_y = workspace.bounds.get_center_y();
         /* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
@@ -10084,16 +10084,16 @@ class EngineFunctions {
         global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
         global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
         global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
-        for (var i = 0; i < global.PICTURE_REQUEST_MAX_TIME; i++) {
+        for (var i = 0; i < global.CONSTANTS.PICTURE_REQUEST_MAX_TIME; i++) {
             global.flags.signal_build_element = true;
             global.variables.signal_build_counter = 0;
             this.snapshot(temp_surface, temp_canvas);
         }
         if (!global.CONSTANTS.MOBILE_MODE) {
-            save_image(global.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+            save_image(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
         }
         else {
-            save_image_mobile(global.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+            save_image_mobile(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
         }
         workspace.workspace_translate_bounds(temp_left, temp_top);
         global.variables.workspace_zoom_scale = temp_zoom;

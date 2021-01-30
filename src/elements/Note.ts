@@ -27,13 +27,13 @@ class Note {
 	constructor(type: number, id: number, n1: number) {
 		this.initialized = false;
 		this.bounds = new RectF(0, 0, 0, 0);
-		this.elm = new Element1(id, type, global.utils.copy(global.PROPERTY_NOTE));
+		this.elm = new Element1(id, type, global.utils.copy(global.PROPERTY.PROPERTY_NOTE));
 		this.elm.set_nodes(n1);
 		this.elm.properties['Note'] = 'Note' + id;
 		if (this.elm.consistent()) {
 			this.bounds.set_center2(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y, global.variables.node_space_x * 2, global.variables.node_space_y * 2);
 		}
-		this.elm.set_rotation(global.ROTATION_90);
+		this.elm.set_rotation(global.CONSTANTS.ROTATION_90);
 		this.release_nodes();
 		let vertices: Array<number> = this.get_vertices();
 		this.elm.map_node1(vertices[0], vertices[1]);
@@ -150,7 +150,7 @@ class Note {
 			if (!global.variables.focused && !global.variables.component_touched && !global.variables.multi_selected) {
 				if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
 					if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.elm.properties['Show Marker'] === global.CONSTANTS.ON) {
-						this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
+						this.handle_wire_builder(this.elm.n1, global.CONSTANTS.anchor_point['p1']);
 						global.variables.component_touched = true;
 					} else if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 0.8, this.bounds.get_height() * 0.8)) {
 						this.is_translating = false;
@@ -323,7 +323,7 @@ class Note {
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
 				if (id > -1 && id < wires.length) {
-					if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+					if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[0];
@@ -332,7 +332,7 @@ class Note {
 							wires[id].p2.y = vertices[1];
 							wires[id].p2.x = vertices[0];
 						}
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[2];
@@ -355,7 +355,7 @@ class Note {
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
 				if (id > -1 && id < wires.length) {
-					if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p1']) {
+					if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[0];
 							wires[id].p1.y = vertices[1];
@@ -364,7 +364,7 @@ class Note {
 							wires[id].p2.y = vertices[1];
 						}
 						wires[id].capture_nodes();
-					} else if (this.wire_reference[i]['anchor_point'] === global.ANCHOR_POINT['p2']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[2];
 							wires[id].p1.y = vertices[3];
@@ -398,11 +398,11 @@ class Note {
 				this.refactor();
 			}
 			let temp_size = global.variables.canvas_text_size_1 * global.variables.workspace_zoom_scale;
-			if (this.elm.properties['Text Style'] === global.TEXT_STYLE_1) {
+			if (this.elm.properties['Text Style'] === global.CONSTANTS.TEXT_STYLE_1) {
 				temp_size = global.variables.canvas_text_size_3 * global.variables.workspace_zoom_scale;
-			} else if (this.elm.properties['Text Style'] === global.TEXT_STYLE_2) {
+			} else if (this.elm.properties['Text Style'] === global.CONSTANTS.TEXT_STYLE_2) {
 				temp_size = 0.85 * global.variables.canvas_text_size_4 * global.variables.workspace_zoom_scale;
-			} else if (this.elm.properties['Text Style'] === global.TEXT_STYLE_3) {
+			} else if (this.elm.properties['Text Style'] === global.CONSTANTS.TEXT_STYLE_3) {
 				temp_size = 0.85 * global.variables.canvas_text_size_5 * global.variables.workspace_zoom_scale;
 			}
 			this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
@@ -436,8 +436,8 @@ class Note {
 	}
 	increment_rotation(): void {
 		this.elm.rotation++;
-		if (this.elm.rotation > global.ROTATION_270) {
-			this.elm.rotation = global.ROTATION_0;
+		if (this.elm.rotation > global.CONSTANTS.ROTATION_270) {
+			this.elm.rotation = global.CONSTANTS.ROTATION_0;
 		}
 		this.set_rotation(this.elm.rotation);
 	}
@@ -455,9 +455,9 @@ class Note {
 			}
 		} else {
 			if (this.multi_selected) {
-				this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
-				this.point_paint.set_color(global.MULTI_SELECTED_COLOR);
-				this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
+				this.line_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+				this.point_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
+				this.text_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
 			} else {
 				this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
 				this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -482,33 +482,33 @@ class Note {
 				this.c_y >= view_port.top + -global.variables.node_space_y &&
 				this.c_y - global.variables.node_space_y <= view_port.bottom)
 		) {
-			if (this.elm.rotation === global.ROTATION_90) {
+			if (this.elm.rotation === global.CONSTANTS.ROTATION_90) {
 				canvas.draw_text(
-					global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
+					global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
 					this.c_x,
 					this.bounds.top + this.bounds.get_height() * 0.25,
 					this.text_paint
 				);
-			} else if (this.elm.rotation === global.ROTATION_270) {
+			} else if (this.elm.rotation === global.CONSTANTS.ROTATION_270) {
 				canvas.draw_text(
-					global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
+					global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
 					this.c_x,
 					this.bounds.bottom - this.bounds.get_height() * 0.25,
 					this.text_paint
 				);
-			} else if (this.elm.rotation === global.ROTATION_0) {
+			} else if (this.elm.rotation === global.CONSTANTS.ROTATION_0) {
 				canvas.rotate(this.bounds.left, this.c_y, -90);
 				canvas.draw_text(
-					global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
+					global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
 					this.bounds.left,
 					this.c_y + this.bounds.get_height() * 0.25,
 					this.text_paint
 				);
 				canvas.restore();
-			} else if (this.elm.rotation === global.ROTATION_180) {
+			} else if (this.elm.rotation === global.CONSTANTS.ROTATION_180) {
 				canvas.rotate(this.bounds.right, this.c_y, -90);
 				canvas.draw_text(
-					global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
+					global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', this.elm.properties['Note']).replace('{UNIT}', this.elm.properties['units']),
 					this.bounds.right,
 					this.c_y - this.bounds.get_height() * 0.25,
 					this.text_paint
@@ -516,13 +516,13 @@ class Note {
 				canvas.restore();
 			}
 			if (this.elm.properties['Show Marker'] === global.CONSTANTS.ON) {
-				if (this.elm.rotation === global.ROTATION_0) {
+				if (this.elm.rotation === global.CONSTANTS.ROTATION_0) {
 					canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
-				} else if (this.elm.rotation === global.ROTATION_90) {
+				} else if (this.elm.rotation === global.CONSTANTS.ROTATION_90) {
 					canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
-				} else if (this.elm.rotation === global.ROTATION_180) {
+				} else if (this.elm.rotation === global.CONSTANTS.ROTATION_180) {
 					canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
-				} else if (this.elm.rotation === global.ROTATION_270) {
+				} else if (this.elm.rotation === global.CONSTANTS.ROTATION_270) {
 					canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
 				}
 			}
@@ -538,7 +538,7 @@ class Note {
 						this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
 						!global.flags.signal_add_element &&
 						!global.flags.signal_history_lock &&
-						global.NODE_HINTS &&
+						global.CONSTANTS.NODE_HINTS &&
 						!global.flags.picture_request_flag &&
 						!multi_select_manager.multi_select &&
 						!this.multi_selected &&
@@ -565,13 +565,13 @@ class Note {
 				}
 			}
 			if (this.is_translating) {
-				canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.move_paint);
+				canvas.draw_rect3(this.bounds.get_center_x(), this.bounds.get_center_y(), global.variables.node_space_x << 2, global.variables.node_space_y << 2, global.variables.move_paint);
 			}
 		}
 	}
 	patch(): void {
 		if (!global.utils.not_null(this.elm.properties['Text Style'])) {
-			this.elm.properties['Text Style'] = global.TEXT_STYLE_1;
+			this.elm.properties['Text Style'] = global.CONSTANTS.TEXT_STYLE_1;
 			this.elm.properties['options'].push('Text Style');
 			this.elm.properties['options_units'].push('');
 		}
@@ -605,7 +605,7 @@ class Note {
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TIME_DATA_TEMPLATE);
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
 		let keys: Array<string> = Object.keys(this.elm.properties);
 		for (var i: number = keys.length - 1; i > -1; i--) {
 			if (typeof this.elm.properties[keys[i]] === 'number') {

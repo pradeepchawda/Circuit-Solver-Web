@@ -23,7 +23,7 @@ class Trace {
         this.trace_stroke_paint.set_paint_cap(PAINT.cap.ROUND);
         this.trace_stroke_paint.set_paint_join(PAINT.join.MITER);
         this.trace_stroke_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
-        this.trace_stroke_paint.set_color(global.TRACE_DEFAULT_COLOR);
+        this.trace_stroke_paint.set_color(global.COLORS.TRACE_DEFAULT_COLOR);
         this.trace_stroke_paint.set_text_size(global.variables.canvas_text_size_4);
         this.trace_stroke_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.trace_stroke_paint.set_alpha(255);
@@ -33,7 +33,7 @@ class Trace {
         this.trace_fill_paint.set_paint_cap(PAINT.cap.ROUND);
         this.trace_fill_paint.set_paint_join(PAINT.join.MITER);
         this.trace_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
-        this.trace_fill_paint.set_color(global.TRACE_DEFAULT_COLOR);
+        this.trace_fill_paint.set_color(global.COLORS.TRACE_DEFAULT_COLOR);
         this.trace_fill_paint.set_text_size(global.variables.canvas_text_size_4);
         this.trace_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.trace_fill_paint.set_alpha(255);

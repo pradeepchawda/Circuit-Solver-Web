@@ -154,10 +154,10 @@ class PotentiometerSymbol {
         this.theta = global.utils.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
         this.pot_1.x = this.p2.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.phi);
         this.pot_1.y = this.p2.y + 2 * this.y_space * 0.2 * global.utils.sine(this.phi);
-        this.pot_3.x = this.pot_12.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta - global.PI_DIV_6);
-        this.pot_3.y = this.pot_12.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta - global.PI_DIV_6);
-        this.pot_5.x = this.pot_12.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta + global.PI_DIV_6);
-        this.pot_5.y = this.pot_12.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta + global.PI_DIV_6);
+        this.pot_3.x = this.pot_12.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.pot_3.y = this.pot_12.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.pot_5.x = this.pot_12.x + 2 * this.x_space * 0.2 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.pot_5.y = this.pot_12.y + 2 * this.y_space * 0.2 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

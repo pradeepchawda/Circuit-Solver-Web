@@ -160,12 +160,12 @@ class DFlipFlopSymbol {
         this.dff_8.y = this.dff_1.y + 0.5 * this.y_space * global.utils.sine(this.theta_m90);
         this.dff_9.x = this.dff_1.x - 0.5 * this.x_space * global.utils.cosine(this.theta);
         this.dff_9.y = this.dff_1.y - 0.5 * this.y_space * global.utils.sine(this.theta);
-        this.dff_10.x = this.dff_0.x + 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.dff_10.y = this.dff_0.y + 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
-        this.dff_11.x = this.dff_2.x - 0.75 * this.x_space * global.utils.cosine(this.theta_m90 - global.PI_DIV_4);
-        this.dff_11.y = this.dff_2.y - 0.75 * this.y_space * global.utils.sine(this.theta_m90 - global.PI_DIV_4);
-        this.dff_12.x = this.dff_3.x - 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.dff_12.y = this.dff_3.y - 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
+        this.dff_10.x = this.dff_0.x + 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+        this.dff_10.y = this.dff_0.y + 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+        this.dff_11.x = this.dff_2.x - 0.75 * this.x_space * global.utils.cosine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+        this.dff_11.y = this.dff_2.y - 0.75 * this.y_space * global.utils.sine(this.theta_m90 - global.CONSTANTS.PI_DIV_4);
+        this.dff_12.x = this.dff_3.x - 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+        this.dff_12.y = this.dff_3.y - 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

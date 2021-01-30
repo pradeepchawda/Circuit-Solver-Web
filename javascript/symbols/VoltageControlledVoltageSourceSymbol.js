@@ -139,16 +139,16 @@ class VoltageControlledVoltageSourceSymbol {
         this.vcvs_3.y = this.p2.y + 3.0 * this.y_space * global.utils.sine(this.theta_m90);
         this.vcvs_4.x = this.vcvs_2.x + this.x_space * global.utils.cosine(this.theta);
         this.vcvs_4.y = this.vcvs_2.y + this.y_space * global.utils.sine(this.theta);
-        this.vcvs_5.x = this.vcvs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vcvs_5.y = this.vcvs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta - global.PI_DIV_4);
-        this.vcvs_6.x = this.vcvs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta + global.PI_DIV_4);
-        this.vcvs_6.y = this.vcvs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta + global.PI_DIV_4);
+        this.vcvs_5.x = this.vcvs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcvs_5.y = this.vcvs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcvs_6.x = this.vcvs_4.x + 1.414 * this.x_space * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_4);
+        this.vcvs_6.y = this.vcvs_4.y + 1.414 * this.y_space * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_4);
         this.vcvs_7.x = this.vcvs_2.x + 3.0 * this.x_space * global.utils.cosine(this.theta);
         this.vcvs_7.y = this.vcvs_2.y + 3.0 * this.y_space * global.utils.sine(this.theta);
-        this.vcvs_8.x = this.vcvs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vcvs_8.y = this.vcvs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta - global.PI_DIV_4);
-        this.vcvs_9.x = this.vcvs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta + global.PI_DIV_4);
-        this.vcvs_9.y = this.vcvs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta + global.PI_DIV_4);
+        this.vcvs_8.x = this.vcvs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcvs_8.y = this.vcvs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcvs_9.x = this.vcvs_7.x - 1.414 * this.x_space * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_4);
+        this.vcvs_9.y = this.vcvs_7.y - 1.414 * this.y_space * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_4);
         this.vcvs_10.x = this.vcvs_2.x + 1.5 * this.x_space * global.utils.cosine(this.theta);
         this.vcvs_10.y = this.vcvs_2.y + 1.5 * this.y_space * global.utils.sine(this.theta);
         this.vcvs_11.x = this.vcvs_2.x + 2.0 * this.x_space * global.utils.cosine(this.theta);
@@ -161,8 +161,8 @@ class VoltageControlledVoltageSourceSymbol {
         this.vcvs_14.y = this.vcvs_2.y + 2.25 * this.y_space * global.utils.sine(this.theta) + (this.y_space >> 2) * global.utils.sine(this.theta_m90);
         this.vcvs_15.x = this.vcvs_2.x + 2.25 * this.x_space * global.utils.cosine(this.theta) - (this.x_space >> 2) * global.utils.cosine(this.theta_m90);
         this.vcvs_15.y = this.vcvs_2.y + 2.25 * this.y_space * global.utils.sine(this.theta) - (this.y_space >> 2) * global.utils.sine(this.theta_m90);
-        this.vcvs_16.x = this.p1.x + 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.PI_DIV_4);
-        this.vcvs_16.y = this.p1.y + 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.PI_DIV_4);
+        this.vcvs_16.x = this.p1.x + 0.75 * this.x_space * global.utils.cosine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
+        this.vcvs_16.y = this.p1.y + 0.75 * this.y_space * global.utils.sine(this.theta_m90 + global.CONSTANTS.PI_DIV_4);
     }
     resize(rect) {
         this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

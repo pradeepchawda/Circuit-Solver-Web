@@ -162,22 +162,22 @@ class VoltageControlledResistorSymbol {
         this.vcr_12.y = this.c_y - cache_9 * global.utils.sine(this.theta) + cache_5 * global.utils.sine(Math.PI + this.theta_m90);
         this.vcr_0.x = this.connect1_x + cache_8 * global.utils.cosine(this.theta) + cache_6 * global.utils.cosine(this.theta_m90);
         this.vcr_0.y = this.connect1_y + cache_9 * global.utils.sine(this.theta) + cache_7 * global.utils.sine(this.theta_m90);
-        this.vcr_13.x = this.p1.x + 1.5 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vcr_13.y = this.p1.y + 1.5 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_4);
-        this.vcr_14.x = this.p3.x - 1.5 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_4);
-        this.vcr_14.y = this.p3.y - 1.5 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_4);
+        this.vcr_13.x = this.p1.x + 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcr_13.y = this.p1.y + 1.5 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcr_14.x = this.p3.x - 1.5 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_4);
+        this.vcr_14.y = this.p3.y - 1.5 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_4);
         this.theta = global.utils.retrieve_angle_radian(this.vcr_14.x - this.vcr_13.x, this.vcr_14.y - this.vcr_13.y);
-        this.vcr_15.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta + global.PI_DIV_6);
-        this.vcr_15.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta + global.PI_DIV_6);
-        this.vcr_16.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_6);
-        this.vcr_16.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_6);
+        this.vcr_15.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.vcr_15.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.vcr_16.x = this.vcr_14.x - 0.4 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcr_16.y = this.vcr_14.y - 0.4 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
         this.theta = global.utils.retrieve_angle_radian(-(this.c_x - this.p2.x), -(this.c_y - this.p2.y));
         this.vcr_1.x = this.p2.x + 0.8 * cache_8 * global.utils.cosine(this.phi);
         this.vcr_1.y = this.p2.y + 0.8 * cache_9 * global.utils.sine(this.phi);
-        this.vcr_2.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta - global.PI_DIV_6);
-        this.vcr_2.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta - global.PI_DIV_6);
-        this.vcr_3.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta + global.PI_DIV_6);
-        this.vcr_3.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta + global.PI_DIV_6);
+        this.vcr_2.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcr_2.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta - global.CONSTANTS.PI_DIV_6);
+        this.vcr_3.x = this.vcr_1.x + 0.4 * cache_8 * global.utils.cosine(this.theta + global.CONSTANTS.PI_DIV_6);
+        this.vcr_3.y = this.vcr_1.y + 0.4 * cache_9 * global.utils.sine(this.theta + global.CONSTANTS.PI_DIV_6);
         this.theta = global.utils.retrieve_angle_radian(this.p3.x - this.p1.x, this.p3.y - this.p1.y);
     }
     resize(rect) {
