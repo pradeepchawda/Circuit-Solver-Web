@@ -1,5 +1,5 @@
 'use strict';
-class Property {
+class ElementProperties {
 	public readonly 'PROPERTY_META_DATA': PROPERTY_META_DATA_T;
 	/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -77,12 +77,12 @@ class Property {
 	public readonly 'PROPERTY_LIMIT_MIN': number;
 	public readonly 'PROPERTY_LIMIT_MAX': number;
 
-	constructor(SYSTEM_CONSTANTS: Constants, settings: Settings) {
+	constructor(CONSTANTS: Constants, settings: Settings) {
 		this.PROPERTY_LIMIT_MIN = 0;
 		this.PROPERTY_LIMIT_MAX = 1;
 		this.PROPERTY_META_DATA = {
 			company: 'phasorsystems',
-			version: SYSTEM_CONSTANTS.VERSION_TAG,
+			version: CONSTANTS.VERSION_TAG,
 			date: ''
 		};
 		this.PROPERTY_RESISTOR = {
@@ -98,7 +98,7 @@ class Property {
 		this.PROPERTY_SPST = {
 			'Open Resistance': settings.R_MAX * 0.5,
 			'Closed Resistance': settings.WIRE_RESISTANCE,
-			'Switch State': SYSTEM_CONSTANTS.OFF,
+			'Switch State': CONSTANTS.OFF,
 			tag: 'SPST',
 			units: 'Ω',
 			options: ['Closed Resistance', 'Switch State'],
@@ -324,7 +324,7 @@ class Property {
 		this.PROPERTY_NET = {
 			Name: 'Net',
 			tag: 'N',
-			'Show Name': SYSTEM_CONSTANTS.ON,
+			'Show Name': CONSTANTS.ON,
 			units: '',
 			options: ['Name', 'Show Name'],
 			options_units: ['', ''],
@@ -454,7 +454,7 @@ class Property {
 			Elm2: 1e3,
 			Elm3: 1e3,
 			Elm4: 1e3,
-			Interpolate: SYSTEM_CONSTANTS.ON,
+			Interpolate: CONSTANTS.ON,
 			'Input Voltage': 0,
 			'Output Resistance': settings.WIRE_RESISTANCE,
 			tag: 'VCR',
@@ -513,7 +513,7 @@ class Property {
 		this.PROPERTY_SPDT = {
 			'Open Resistance': settings.R_MAX * 0.5,
 			'Closed Resistance': 1.0 / settings.R_MAX,
-			'Switch State': SYSTEM_CONSTANTS.OFF,
+			'Switch State': CONSTANTS.OFF,
 			tag: 'SPDT',
 			units: 'Ω',
 			options: ['Closed Resistance', 'Switch State'],
@@ -959,7 +959,7 @@ class Property {
 			Elm2: 12,
 			Elm3: 12,
 			Elm4: 12,
-			Interpolate: SYSTEM_CONSTANTS.ON,
+			Interpolate: CONSTANTS.ON,
 			'High Voltage': 1,
 			'Low Voltage': 0,
 			'Input Voltage1': 0,
@@ -1000,8 +1000,8 @@ class Property {
 		this.PROPERTY_NOTE = {
 			Note: 'empty',
 			tag: 'NOTE',
-			'Text Style': SYSTEM_CONSTANTS.TEXT_STYLE_1,
-			'Show Marker': SYSTEM_CONSTANTS.ON,
+			'Text Style': CONSTANTS.TEXT_STYLE_1,
+			'Show Marker': CONSTANTS.ON,
 			units: '',
 			options: ['Note', 'Text Style', 'Show Marker'],
 			options_units: ['', '', ''],
@@ -1042,7 +1042,7 @@ class Property {
 			Elm1: 1e-6,
 			Elm2: 1e-6,
 			Elm3: 1e-6,
-			Interpolate: SYSTEM_CONSTANTS.ON,
+			Interpolate: CONSTANTS.ON,
 			'Input Voltage': 0,
 			'Output Capacitance': 1e-6,
 			'Initial Voltage': 0,
@@ -1070,7 +1070,7 @@ class Property {
 			Elm1: 1e-3,
 			Elm2: 1e-3,
 			Elm3: 1e-3,
-			Interpolate: SYSTEM_CONSTANTS.ON,
+			Interpolate: CONSTANTS.ON,
 			'Input Voltage': 0,
 			'Output Inductance': 1e-3,
 			'Initial Current': 0,

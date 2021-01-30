@@ -33,11 +33,7 @@ class Constants {
 	public readonly TEXT_STYLE_4: string;
 	public readonly TEXT_STYLE_5: string;
 	public readonly ANCHOR_POINT: ANCHOR_POINT_T;
-	public readonly SI_UNIT_ARRAY: Array<number>;
-	public readonly SI_UNIT_THRESHOLD_ARRAY: Array<number>;
-	public readonly SI_UNIT_ABBREVIATION: Array<string>;
 	public readonly WIRE_REFERENCE: WIRE_REFERENCE_T;
-	public readonly history_manager: HISTORY_MANAGER_T;
 	public readonly LANGUAGES: Array<string>;
 	public readonly LANGUAGE_INDEX_ENGLISH: number;
 	public readonly LANGUAGE_INDEX_SPANISH: number;
@@ -52,7 +48,6 @@ class Constants {
 	public readonly SYSTEM_OPTION_SHORTCUT_HINTS: number;
 	public readonly SYSTEM_OPTION_STRETCH_WINDOW: number;
 	public readonly DEFAULT_FONT: string;
-
 	public readonly PICTURE_ZOOM: number;
 	public readonly PICTURE_REQUEST_MAX_TIME: number;
 	public readonly CANVAS_DRAW_REQUEST_COUNTER_MAX: number;
@@ -75,9 +70,6 @@ class Constants {
 	public readonly TRIG_TABLE_MASK: number;
 	public readonly TRIG_TABLE_ROUND: number;
 	public readonly MAX_TEXT_LENGTH: number;
-	public readonly inv_sqrt_buf: ArrayBuffer;
-	public readonly inv_sqrt_f32: Float32Array;
-	public readonly inv_sqrt_u32: Uint32Array;
 	public readonly ALPHA_ARRAY: Array<number>;
 	public readonly GARBAGE_COLLECTOR_SIZE: number;
 
@@ -125,26 +117,6 @@ class Constants {
 			p3: 2,
 			p4: 3
 		};
-		this.SI_UNIT_ARRAY = [1 / 1e21, 1 / 1e18, 1 / 1e15, 1 / 1e12, 1 / 1e9, 1 / 1e6, 1 / 1e3, 1, 1 / 1e-3, 1 / 1e-6, 1 / 1e-9, 1 / 1e-12, 1 / 1e-15, 1 / 1e-18, 1 / 1e-21];
-		this.SI_UNIT_THRESHOLD_ARRAY = [
-			0.99 * 1e21,
-			0.99 * 1e18,
-			0.99 * 1e15,
-			0.99 * 1e12,
-			0.99 * 1e9,
-			0.99 * 1e6,
-			0.99 * 1e3,
-			0.99 * 1,
-			0.99 * 1e-3,
-			0.99 * 1e-6,
-			0.99 * 1e-9,
-			0.99 * 1e-12,
-			0.99 * 1e-15,
-			0.99 * 1e-18,
-			0.99 * 1e-21
-		];
-		this.SI_UNIT_ABBREVIATION = ['Z', 'E', 'P', 'T', 'G', 'M', 'k', '', 'm', 'u', 'n', 'p', 'f', 'a', 'z'];
-
 		this.WIRE_REFERENCE = {
 			wire_id: -1,
 			anchor_point: -1,
@@ -171,5 +143,30 @@ class Constants {
 		this.CANVAS_DRAW_REQUEST_COUNTER_MAX = 3;
 		this.CANVAS_REDRAW_MAX = 3;
 		this.PACKET_DIVIDER = '#DIVIDER#';
+		this.PI_DIV_2 = Math.PI * 0.5;
+		this.PI_DIV_4 = Math.PI * 0.25;
+		this.PI_MUL_3_DIV_4 = Math.PI * 0.75;
+		this.PI_DIV_6 = Math.PI / 6;
+		this.PI_DIV_12 = Math.PI / 12;
+		this.PI_DIV_180 = Math.PI / 180;
+		this.NEG_PI_DIV_180 = -Math.PI / 180;
+		this._180_DIV_PI = 180 / Math.PI;
+		this.PI_MUL_2 = Math.PI * 2;
+		this.TRIG_TABLE_Q_NUMBER = 12;
+		this.TRIG_SINE_TABLE = [];
+		this.TRIG_TABLE_SIZE = Math.round(Math.pow(2, this.TRIG_TABLE_Q_NUMBER));
+		this.TRIG_TABLE_SCALE_CONSTANT = 2.0 / this.TRIG_TABLE_SIZE;
+		this.TRIG_TABLE_INDEX_CONSTANT = (this.TRIG_TABLE_SIZE * 0.5) / Math.PI;
+		this.TRIG_TABLE_MASK = this.TRIG_TABLE_SIZE - 1;
+		this.TRIG_TABLE_ROUND = this.TRIG_TABLE_SIZE * 0.25;
+		for (var i: number = 0; i < this.TRIG_TABLE_SIZE; i++) {
+			this.TRIG_SINE_TABLE.push(Math.sin(i * Math.PI * this.TRIG_TABLE_SCALE_CONSTANT));
+		}
+		this.MAX_TEXT_LENGTH = 30;
+		this.ALPHA_ARRAY = [];
+		for (var i: number = 0; i <= 256; i++) {
+			this.ALPHA_ARRAY.push(i / 256.0);
+		}
+		this.GARBAGE_COLLECTOR_SIZE = 16;
 	}
 }

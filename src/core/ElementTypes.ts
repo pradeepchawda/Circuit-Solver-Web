@@ -1,5 +1,5 @@
 'use strict';
-class ElementType {
+class ElementTypes {
 	public readonly TYPE_META_DATA: number;
 	/* #INSERT_GENERATE_ELEMENT_TYPE_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */

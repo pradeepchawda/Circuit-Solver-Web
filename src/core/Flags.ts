@@ -19,6 +19,21 @@ class Flags {
 	public signal_wire_created: boolean;
 	public signal_history_lock: boolean;
 	public signal_build_element: boolean;
+	public resize_event: boolean;
+	public force_resize_event: boolean;
+	public on_restore_event: boolean;
+	public mouse_down_event_flag: boolean;
+	public mouse_move_event_flag: boolean;
+	public mouse_up_event_flag: boolean;
+	public mouse_double_click_event_flag: boolean;
+	public mouse_wheel_event_flag: boolean;
+	public key_up_event_flag: boolean;
+	public key_down_event_flag: boolean;
+	public draw_block: boolean;
+	public picture_request_flag: boolean;
+	public canvas_draw_request: boolean;
+	public canvas_draw_event: boolean;
+
 	constructor() {
 		this.flag_idle = true;
 		this.flag_simulating = false;
@@ -39,5 +54,19 @@ class Flags {
 		this.signal_wire_created = false;
 		this.signal_history_lock = false;
 		this.signal_build_element = false;
+		this.resize_event = false;
+		this.force_resize_event = false;
+		this.on_restore_event = false;
+		this.mouse_down_event_flag = false;
+		this.mouse_move_event_flag = false;
+		this.mouse_up_event_flag = false;
+		this.mouse_double_click_event_flag = false;
+		this.mouse_wheel_event_flag = false;
+		this.key_up_event_flag = false;
+		this.key_down_event_flag = false;
+		this.draw_block = false;
+		this.picture_request_flag = false;
+		this.canvas_draw_request = false;
+		this.canvas_draw_event = false;
 	}
 }

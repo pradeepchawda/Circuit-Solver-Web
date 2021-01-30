@@ -164,7 +164,6 @@ class KeyCodes {
 		this.KEY_CODE_NUMPAD7 = 'Numpad7';
 		this.KEY_CODE_NUMPAD8 = 'Numpad8';
 		this.KEY_CODE_NUMPAD9 = 'Numpad9';
-
 		this.KEY_EVENT_CODES = {
 			Escape: ['', '', ''],
 			Backquote: ['`', '~', ''],
