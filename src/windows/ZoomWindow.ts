@@ -160,75 +160,75 @@ class ZoomWindow {
 		this.first_touch_y = 0;
 	}
 	mouse_down(): void {
-		if (global.flag_zoom) {
-			this.first_touch_x = global.mouse_x;
-			this.first_touch_y = global.mouse_y;
+		if (global.flags.flag_zoom) {
+			this.first_touch_x = global.variables.mouse_x;
+			this.first_touch_y = global.variables.mouse_y;
 		}
 	}
 	mouse_move(): void {
-		if (global.flag_zoom) {
+		if (global.flags.flag_zoom) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				this.hover();
 			}
 		}
 	}
 	mouse_up(): void {
-		if (global.flag_zoom) {
-			if (!global.mouse_keyboard_lock) {
-				if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
-					menu_bar.handle_zoom_flag(!global.flag_zoom);
-					global.component_touched = true;
-				} else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
+		if (global.flags.flag_zoom) {
+			if (!global.variables.mouse_keyboard_lock) {
+				if (!this.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					menu_bar.handle_zoom_flag(!global.flags.flag_zoom);
+					global.variables.component_touched = true;
+				} else if (this.option_0.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
 					this.set_zoom(this.options['c0']['number']);
-					menu_bar.handle_zoom_flag(!global.flag_zoom);
-					global.component_touched = true;
-				} else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					menu_bar.handle_zoom_flag(!global.flags.flag_zoom);
+					global.variables.component_touched = true;
+				} else if (this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
 					this.set_zoom(this.options['c1']['number']);
-					menu_bar.handle_zoom_flag(!global.flag_zoom);
-					global.component_touched = true;
-				} else if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					menu_bar.handle_zoom_flag(!global.flags.flag_zoom);
+					global.variables.component_touched = true;
+				} else if (this.option_2.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
 					this.set_zoom(this.options['c2']['number']);
-					menu_bar.handle_zoom_flag(!global.flag_zoom);
-					global.component_touched = true;
-				} else if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
-					menu_bar.handle_zoom_flag(!global.flag_zoom);
-					global.component_touched = true;
+					menu_bar.handle_zoom_flag(!global.flags.flag_zoom);
+					global.variables.component_touched = true;
+				} else if (this.option_3.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					menu_bar.handle_zoom_flag(!global.flags.flag_zoom);
+					global.variables.component_touched = true;
 				}
 			}
 		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (global.flag_zoom) {
-			if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
-				menu_bar.handle_zoom_flag(!global.flag_zoom);
-				global.component_touched = true;
+		if (global.flags.flag_zoom) {
+			if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
+				menu_bar.handle_zoom_flag(!global.flags.flag_zoom);
+				global.variables.component_touched = true;
 			}
 		}
 	}
 	hover(): void {
-		if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
+		if (this.option_0.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 			this.option_0_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 		} else {
 			this.option_0_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		}
-		if (this.option_1.contains_xy(global.mouse_x, global.mouse_y)) {
+		if (this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 			this.option_1_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 		} else {
 			this.option_1_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		}
-		if (this.option_2.contains_xy(global.mouse_x, global.mouse_y)) {
+		if (this.option_2.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 			this.option_2_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 		} else {
 			this.option_2_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		}
-		if (this.option_3.contains_xy(global.mouse_x, global.mouse_y)) {
+		if (this.option_3.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 			this.option_3_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 		} else {
 			this.option_3_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		}
 	}
 	set_zoom(zoom: number): void {
-		if (zoom >= global.ZOOM_MIN && zoom <= global.ZOOM_MAX) {
+		if (zoom >= global.CONSTANTS.ZOOM_MIN && zoom <= global.CONSTANTS.ZOOM_MAX) {
 			global.flags.signal_build_element = true;
 			global.variables.signal_build_counter = 0;
 			global.variables.workspace_zoom_scale = zoom;
@@ -272,7 +272,7 @@ class ZoomWindow {
 		this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.flag_zoom) {
+		if (global.flags.flag_zoom) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}

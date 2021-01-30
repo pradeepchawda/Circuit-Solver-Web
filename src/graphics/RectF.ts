@@ -65,7 +65,7 @@ class RectF {
 		this.w_last_bottom = -1;
 	}
 	is_near(bounds: RectF, norm_magnitude: number): boolean {
-		let norm: number = global.norm(this.get_center_x() - bounds.get_center_x(), this.get_center_y() - bounds.get_center_y());
+		let norm: number = global.utils.norm(this.get_center_x() - bounds.get_center_x(), this.get_center_y() - bounds.get_center_y());
 		if (norm <= norm_magnitude) {
 			return true;
 		} else {

@@ -59,20 +59,20 @@ class BottomMenu {
 		this.file_button = new Button(view_port.left, menu_bar.settings_button.bottom + 2 * global.variables.canvas_stroke_width_4, view_port.left + 1, view_port.bottom);
 		this.file_button.text = '';
 		this.file_button.draw_stroke = false;
-		this.file_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+		this.file_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
 		this.file_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
 		this.file_button.resize_paint();
 		this.time_step_button = new Button(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + 2 * global.variables.canvas_stroke_width_4, view_port.right, view_port.bottom);
-		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
+		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(global.time_step));
 		this.time_step_button.draw_stroke = false;
-		this.time_step_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+		this.time_step_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
 		this.time_step_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
 		this.time_step_button.resize_paint();
 		this.load_bottom_path();
 		this.first_touch_x = 0;
 		this.first_touch_y = 0;
 		this.initial_resize_counter = 0;
-		this.INITIAL_RESIZE_COUNTER_MAX = global.CANVAS_REDRAW_MAX;
+		this.INITIAL_RESIZE_COUNTER_MAX = global.CONSTANTS.CANVAS_REDRAW_MAX;
 		this.reload_bottom_path = true;
 	}
 	load_bottom_path(): void {
@@ -118,36 +118,36 @@ class BottomMenu {
 		}
 	}
 	mouse_down(): void {
-		if (this.time_step_button.contains_xy(global.mouse_x, global.mouse_y)) {
-			global.component_touched = true;
+		if (this.time_step_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+			global.variables.component_touched = true;
 		}
-		if (this.file_button.contains_xy(global.mouse_x, global.mouse_y)) {
-			global.component_touched = true;
+		if (this.file_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+			global.variables.component_touched = true;
 		}
-		this.first_touch_x = global.mouse_x;
-		this.first_touch_y = global.mouse_y;
+		this.first_touch_x = global.variables.mouse_x;
+		this.first_touch_y = global.variables.mouse_y;
 	}
 	mouse_move(): void {}
 	mouse_up(): void {
-		if (!global.is_right_click && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
-			if (!global.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed && global.component_touched) {
+		if (!global.variables.is_right_click && this.time_step_button.contains_xy(this.first_touch_x, this.first_touch_y)) {
+			if (!global.variables.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed && global.variables.component_touched) {
 				if (
-					!global.flag_simulating &&
-					!global.flag_save_image &&
-					!global.flag_save_circuit &&
-					!global.flag_zoom &&
-					!global.flag_element_options &&
-					!global.flag_element_options_edit &&
-					!global.flag_graph &&
-					!global.flag_select_element &&
-					!global.flag_select_timestep &&
-					!global.flag_select_settings &&
-					!global.flag_remove_all
+					!global.flags.flag_simulating &&
+					!global.flags.flag_save_image &&
+					!global.flags.flag_save_circuit &&
+					!global.flags.flag_zoom &&
+					!global.flags.flag_element_options &&
+					!global.flags.flag_element_options_edit &&
+					!global.flags.flag_graph &&
+					!global.flags.flag_select_element &&
+					!global.flags.flag_select_timestep &&
+					!global.flags.flag_select_settings &&
+					!global.flags.flag_remove_all
 				) {
-					if (this.time_step_button.contains_xy(global.mouse_x, global.mouse_y)) {
-						time_step_window.input_button.text = global.exponentiate_quickly(global.time_step);
-						this.handle_timestep_flag(!global.flag_select_timestep);
-						global.component_touched = true;
+					if (this.time_step_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+						time_step_window.input_button.text = global.utils.exponentiate_quickly(global.time_step);
+						this.handle_timestep_flag(!global.flags.flag_select_timestep);
+						global.variables.component_touched = true;
 					}
 				}
 			}
@@ -155,27 +155,27 @@ class BottomMenu {
 	}
 	handle_file_explorer(): boolean {
 		if (global.CONSTANTS.MOBILE_MODE) {
-			global.mouse_keyboard_lock = false;
-			global.component_touched = false;
+			global.variables.mouse_keyboard_lock = false;
+			global.variables.component_touched = false;
 		}
-		if (!global.mouse_keyboard_lock) {
+		if (!global.variables.mouse_keyboard_lock) {
 			if (
-				!global.flag_simulating &&
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_zoom &&
-				!global.flag_element_options &&
-				!global.flag_element_options_edit &&
-				!global.flag_graph &&
-				!global.flag_select_element &&
-				!global.flag_select_timestep &&
-				!global.flag_select_settings &&
-				!global.flag_remove_all &&
-				!global.flag_menu_element_toolbox &&
-				!global.component_touched
+				!global.flags.flag_simulating &&
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_graph &&
+				!global.flags.flag_select_element &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_remove_all &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.variables.component_touched
 			) {
-				if (this.file_button.contains_xy(global.mouse_x, global.mouse_y)) {
-					global.component_touched = true;
+				if (this.file_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+					global.variables.component_touched = true;
 					return true;
 				}
 			}
@@ -183,106 +183,106 @@ class BottomMenu {
 		return false;
 	}
 	handle_timestep_flag(ON: boolean): void {
-		global.mouse_keyboard_lock = true;
+		global.variables.mouse_keyboard_lock = true;
 		if (ON) {
 			time_step_window.reset_cursor();
 		}
 		bottom_menu.resize_bottom_menu();
-		global.flag_select_timestep = ON;
+		global.flags.flag_select_timestep = ON;
 	}
 	recolor(): void {
-		if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
+		if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
 			if (
-				this.file_button.contains_xy(global.mouse_x, global.mouse_y) &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_simulating &&
-				!global.flag_zoom &&
-				!global.flag_select_settings &&
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_select_timestep &&
-				!global.flag_element_options_edit &&
-				!global.flag_element_options &&
-				!global.flag_graph &&
-				!global.flag_remove_all &&
+				this.file_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_simulating &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_graph &&
+				!global.flags.flag_remove_all &&
 				!multi_select_manager.ctrl_pressed_started &&
 				!global.CONSTANTS.MOBILE_MODE
 			) {
 				this.file_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
 			} else {
-				this.file_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+				this.file_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
 			}
 			if (
-				this.time_step_button.contains_xy(global.mouse_x, global.mouse_y) &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_simulating &&
-				!global.flag_zoom &&
-				!global.flag_select_settings &&
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_select_timestep &&
-				!global.flag_element_options_edit &&
-				!global.flag_element_options &&
-				!global.flag_graph &&
-				!global.flag_remove_all &&
+				this.time_step_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_simulating &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_graph &&
+				!global.flags.flag_remove_all &&
 				!multi_select_manager.ctrl_pressed_started &&
 				!global.CONSTANTS.MOBILE_MODE
 			) {
 				this.time_step_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
 			} else {
-				this.time_step_button.text_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
+				this.time_step_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
 			}
 		} else {
 			if (
-				this.file_button.contains_xy(global.mouse_x, global.mouse_y) &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_simulating &&
-				!global.flag_zoom &&
-				!global.flag_select_settings &&
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_select_timestep &&
-				!global.flag_element_options_edit &&
-				!global.flag_element_options &&
-				!global.flag_graph &&
-				!global.flag_remove_all &&
+				this.file_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_simulating &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_graph &&
+				!global.flags.flag_remove_all &&
 				!multi_select_manager.ctrl_pressed_started &&
 				!global.CONSTANTS.MOBILE_MODE
 			) {
 				this.file_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
 			} else {
-				this.file_button.text_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+				this.file_button.text_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
 			}
 			if (
-				this.time_step_button.contains_xy(global.mouse_x, global.mouse_y) &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_simulating &&
-				!global.flag_zoom &&
-				!global.flag_select_settings &&
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_select_timestep &&
-				!global.flag_element_options_edit &&
-				!global.flag_element_options &&
-				!global.flag_graph &&
-				!global.flag_remove_all &&
+				this.time_step_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_simulating &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_graph &&
+				!global.flags.flag_remove_all &&
 				!multi_select_manager.ctrl_pressed_started &&
 				!global.CONSTANTS.MOBILE_MODE
 			) {
 				this.time_step_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
 			} else {
-				this.time_step_button.text_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+				this.time_step_button.text_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
 			}
 		}
 	}
 	draw_bottom_menu(canvas: GraphicsEngine): void {
 		this.recolor();
 		this.file_button.text = language_manager.FILE[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + global.variables.user_file.title;
-		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.exponentiate_quickly(global.time_step));
+		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(global.time_step));
 		this.time_step_button_width = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
 		let padding: number = 2 * global.variables.canvas_stroke_width_4;
 		this.file_button.set_bounds(

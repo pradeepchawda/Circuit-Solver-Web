@@ -58,8 +58,8 @@ class WattMeter {
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.trace_bounds = new RectF(0, 0, 0, 0);
 		this.meter_trace = new Trace(this.x_axis_length, this.y_axis_length, this.ratio);
-		this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
-		this.elm = new Element3(id, type, global.copy(global.PROPERTY_WATTMETER));
+		this.meter_trace.set_color(global.COLORS.TRACE_DEFAULT_COLOR);
+		this.elm = new Element3(id, type, global.utils.copy(global.PROPERTY_WATTMETER));
 		this.elm.set_nodes(n1, n2, n3);
 		if (this.elm.consistent()) {
 			this.equilateral_center = global.equilateral_triangle_center(
@@ -111,21 +111,21 @@ class WattMeter {
 		this.connect2_x = 0;
 		this.connect2_y = 0;
 		if (this.elm.flip === global.FLIP_0) {
-			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+			this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
 		} else if (this.elm.flip === global.FLIP_180) {
-			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
+			this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.CONSTANTS.PI_DIV_2;
 		} else {
-			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+			this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
 		}
-		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
+		this.theta = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+		this.phi = global.utils.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.grid_point = [];
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(PAINT.style.STROKE);
 		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.line_paint.set_paint_join(PAINT.join.MITER);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
-		this.line_paint.set_color(global.ELEMENT_COLOR);
+		this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
@@ -135,7 +135,7 @@ class WattMeter {
 		this.point_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.point_paint.set_paint_join(PAINT.join.MITER);
 		this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
-		this.point_paint.set_color(global.ELEMENT_COLOR);
+		this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 		this.point_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
@@ -145,7 +145,7 @@ class WattMeter {
 		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.text_paint.set_paint_join(PAINT.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
-		this.text_paint.set_color(global.ELEMENT_COLOR);
+		this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
@@ -159,7 +159,7 @@ class WattMeter {
 			this.bounds.right - this.bounds.get_width() * 0.4,
 			this.bounds.bottom - this.bounds.get_height() * 0.4
 		);
-		this.meter_symbol.set_color(global.ELEMENT_COLOR);
+		this.meter_symbol.set_color(global.COLORS.ELEMENT_COLOR);
 		this.temp_color = global.COLORS.GENERAL_RED_COLOR;
 		this.build_element();
 		this.resize_meter_trace = false;
@@ -206,7 +206,7 @@ class WattMeter {
 		this.wire_reference.push(ref);
 	}
 	update(): void {
-		if (global.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
+		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
 			if (this.elm.consistent()) {
 			}
 		}
@@ -332,37 +332,37 @@ class WattMeter {
 	}
 	mouse_down(): void {
 		if (
-			global.flag_idle &&
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox
+			global.flags.flag_idle &&
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox
 		) {
-			if (!global.focused && !global.component_touched && !global.multi_selected) {
-				if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
+			if (!global.variables.focused && !global.variables.component_touched && !global.variables.multi_selected) {
+				if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.variables.component_touched) {
 					this.is_translating = false;
-					global.focused_id = this.elm.id;
-					global.focused_type = this.elm.type;
-					global.focused_bounds = global.copy(this.bounds);
-					global.focused = true;
-					global.component_touched = true;
+					global.variables.focused_id = this.elm.id;
+					global.variables.focused_type = this.elm.type;
+					global.variables.focused_bounds = global.utils.copy(this.bounds);
+					global.variables.focused = true;
+					global.variables.component_touched = true;
 				} else {
-					if (this.elm.consistent() && !global.component_touched && !global.flag_simulating) {
-						if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
+					if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
+						if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 							this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
-							global.component_touched = true;
-						} else if (nodes[this.elm.n2].contains_xy(global.mouse_x, global.mouse_y)) {
+							global.variables.component_touched = true;
+						} else if (nodes[this.elm.n2].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 							this.handle_wire_builder(this.elm.n2, global.ANCHOR_POINT['p2']);
-							global.component_touched = true;
-						} else if (nodes[this.elm.n3].contains_xy(global.mouse_x, global.mouse_y)) {
+							global.variables.component_touched = true;
+						} else if (nodes[this.elm.n3].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 							this.handle_wire_builder(this.elm.n3, global.ANCHOR_POINT['p3']);
-							global.component_touched = true;
+							global.variables.component_touched = true;
 						}
 					}
 				}
@@ -409,26 +409,26 @@ class WattMeter {
 		this.anchor_wires();
 	}
 	reset_trace_path(): void {
-		if (global.not_null(this.meter_trace)) {
+		if (global.utils.not_null(this.meter_trace)) {
 			this.meter_trace.trace_path.reset();
 		}
 	}
 	mouse_move(): void {
-		if (global.flag_idle && !global.flag_simulating) {
-			if (global.focused) {
-				if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-					global.is_dragging = false;
+		if (global.flags.flag_idle && !global.flags.flag_simulating) {
+			if (global.variables.focused) {
+				if (global.variables.focused_id === this.elm.id && global.variables.focused_type === this.elm.type) {
+					global.variables.is_dragging = false;
 					if (!this.is_translating) {
-						if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
+						if (!this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
 							this.release_nodes();
 							this.bounds.anchored = false;
 							this.is_translating = true;
-							global.component_translating = true;
+							global.variables.component_translating = true;
 							this.select();
 						}
 					} else {
-						this.m_x = global.mouse_x;
-						this.m_y = global.mouse_y;
+						this.m_x = global.variables.mouse_x;
+						this.m_y = global.variables.mouse_y;
 						if (this.m_x < workspace.bounds.left + 2.5 * global.variables.node_space_x) {
 							this.m_x = workspace.bounds.left + 2.5 * global.variables.node_space_x;
 						} else if (this.m_x > workspace.bounds.right - 2.0 * global.variables.node_space_x) {
@@ -458,8 +458,8 @@ class WattMeter {
 		}
 	}
 	mouse_up(): void {
-		if (global.flag_idle) {
-			if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
+		if (global.flags.flag_idle) {
+			if (global.variables.focused && global.variables.focused_id === this.elm.id && global.variables.focused_type === this.elm.type) {
 				if (this.is_translating) {
 					this.is_translating = false;
 					this.capture_nodes();
@@ -467,28 +467,28 @@ class WattMeter {
 					this.bounds.anchored = true;
 					this.anchor_wires();
 				} else {
-					if (!global.selected) {
+					if (!global.variables.selected) {
 						this.select();
 					} else {
-						if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-							global.selected_id = global.CONSTANTS.NULL;
-							global.selected_type = -1;
-							global.selected_bounds = global.CONSTANTS.NULL;
-							global.selected_properties = global.CONSTANTS.NULL;
-							global.selected_wire_style = global.CONSTANTS.NULL;
-							global.selected = false;
+						if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+							global.variables.selected_id = global.CONSTANTS.NULL;
+							global.variables.selected_type = -1;
+							global.variables.selected_bounds = global.CONSTANTS.NULL;
+							global.variables.selected_properties = global.CONSTANTS.NULL;
+							global.variables.selected_wire_style = global.CONSTANTS.NULL;
+							global.variables.selected = false;
 						} else {
 							this.select();
 						}
 					}
 				}
-				global.focused_id = global.CONSTANTS.NULL;
-				global.focused_type = global.CONSTANTS.NULL;
-				global.focused_bounds = global.CONSTANTS.NULL;
-				global.focused = false;
+				global.variables.focused_id = global.CONSTANTS.NULL;
+				global.variables.focused_type = global.CONSTANTS.NULL;
+				global.variables.focused_bounds = global.CONSTANTS.NULL;
+				global.variables.focused = false;
 			}
-			if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-				global.selected_bounds = global.copy(this.bounds);
+			if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+				global.variables.selected_bounds = global.utils.copy(this.bounds);
 			}
 		}
 	}
@@ -496,33 +496,33 @@ class WattMeter {
 		if (global.variables.wire_builder['step'] !== 0) {
 			wire_manager.reset_wire_builder();
 		}
-		global.selected_id = this.elm.id;
-		global.selected_type = this.elm.type;
-		global.selected_bounds = global.copy(this.bounds);
-		global.selected_properties = global.copy(this.elm.properties);
-		global.selected_wire_style = global.CONSTANTS.NULL;
-		global.selected = true;
+		global.variables.selected_id = this.elm.id;
+		global.variables.selected_type = this.elm.type;
+		global.variables.selected_bounds = global.utils.copy(this.bounds);
+		global.variables.selected_properties = global.utils.copy(this.elm.properties);
+		global.variables.selected_wire_style = global.CONSTANTS.NULL;
+		global.variables.selected = true;
 	}
 	remove_focus(): void {
-		if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-			global.focused_id = global.CONSTANTS.NULL;
-			global.focused_type = global.CONSTANTS.NULL;
-			global.focused_bounds = global.CONSTANTS.NULL;
-			global.focused = false;
+		if (global.variables.focused && global.variables.focused_id === this.elm.id && global.variables.focused_type === this.elm.type) {
+			global.variables.focused_id = global.CONSTANTS.NULL;
+			global.variables.focused_type = global.CONSTANTS.NULL;
+			global.variables.focused_bounds = global.CONSTANTS.NULL;
+			global.variables.focused = false;
 		}
 	}
 	remove_selection(): void {
-		if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-			global.selected_id = global.CONSTANTS.NULL;
-			global.selected_type = -1;
-			global.selected_bounds = global.CONSTANTS.NULL;
-			global.selected_properties = global.CONSTANTS.NULL;
-			global.selected_wire_style = global.CONSTANTS.NULL;
-			global.selected = false;
+		if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+			global.variables.selected_id = global.CONSTANTS.NULL;
+			global.variables.selected_type = -1;
+			global.variables.selected_bounds = global.CONSTANTS.NULL;
+			global.variables.selected_properties = global.CONSTANTS.NULL;
+			global.variables.selected_wire_style = global.CONSTANTS.NULL;
+			global.variables.selected = false;
 		}
 	}
 	wire_reference_maintenance(): void {
-		if (this.wire_reference.length > 0 && global.signal_wire_deleted) {
+		if (this.wire_reference.length > 0 && global.flags.signal_wire_deleted) {
 			let id: number = -1;
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -653,22 +653,22 @@ class WattMeter {
 			let cache_7: number = 0.75 * this.y_space;
 			let cache_8: number = this.x_space;
 			let cache_9: number = this.y_space;
-			this.plus_point.x = this.c_x - cache_0 * global.cosine(this.theta) - cache_1 * global.cosine(this.theta_m90);
-			this.plus_point.y = this.c_y - cache_2 * global.sine(this.theta) - cache_3 * global.sine(this.theta_m90);
-			this.wattmeter_0.x = this.p1.x + cache_4 * global.cosine(this.theta_m90);
-			this.wattmeter_0.y = this.p1.y + cache_5 * global.sine(this.theta_m90);
-			this.wattmeter_1.x = this.wattmeter_0.x + cache_8 * global.cosine(this.theta);
-			this.wattmeter_1.y = this.wattmeter_0.y + cache_9 * global.sine(this.theta);
-			this.wattmeter_2.x = this.wattmeter_1.x + cache_6 * global.cosine(this.theta - Math.PI);
-			this.wattmeter_2.y = this.wattmeter_1.y + cache_7 * global.sine(this.theta - Math.PI);
-			this.wattmeter_3.x = this.p2.x + cache_4 * global.cosine(this.theta_m90);
-			this.wattmeter_3.y = this.p2.y + cache_5 * global.sine(this.theta_m90);
-			this.wattmeter_4.x = this.wattmeter_3.x - cache_8 * global.cosine(this.theta);
-			this.wattmeter_4.y = this.wattmeter_3.y - cache_9 * global.sine(this.theta);
-			this.wattmeter_5.x = this.wattmeter_4.x + cache_6 * global.cosine(this.theta);
-			this.wattmeter_5.y = this.wattmeter_4.y + cache_7 * global.sine(this.theta);
-			this.wattmeter_6.x = this.p3.x - cache_8 * global.cosine(this.theta_m90);
-			this.wattmeter_6.y = this.p3.y - cache_9 * global.sine(this.theta_m90);
+			this.plus_point.x = this.c_x - cache_0 * global.utils.cosine(this.theta) - cache_1 * global.utils.cosine(this.theta_m90);
+			this.plus_point.y = this.c_y - cache_2 * global.utils.sine(this.theta) - cache_3 * global.utils.sine(this.theta_m90);
+			this.wattmeter_0.x = this.p1.x + cache_4 * global.utils.cosine(this.theta_m90);
+			this.wattmeter_0.y = this.p1.y + cache_5 * global.utils.sine(this.theta_m90);
+			this.wattmeter_1.x = this.wattmeter_0.x + cache_8 * global.utils.cosine(this.theta);
+			this.wattmeter_1.y = this.wattmeter_0.y + cache_9 * global.utils.sine(this.theta);
+			this.wattmeter_2.x = this.wattmeter_1.x + cache_6 * global.utils.cosine(this.theta - Math.PI);
+			this.wattmeter_2.y = this.wattmeter_1.y + cache_7 * global.utils.sine(this.theta - Math.PI);
+			this.wattmeter_3.x = this.p2.x + cache_4 * global.utils.cosine(this.theta_m90);
+			this.wattmeter_3.y = this.p2.y + cache_5 * global.utils.sine(this.theta_m90);
+			this.wattmeter_4.x = this.wattmeter_3.x - cache_8 * global.utils.cosine(this.theta);
+			this.wattmeter_4.y = this.wattmeter_3.y - cache_9 * global.utils.sine(this.theta);
+			this.wattmeter_5.x = this.wattmeter_4.x + cache_6 * global.utils.cosine(this.theta);
+			this.wattmeter_5.y = this.wattmeter_4.y + cache_7 * global.utils.sine(this.theta);
+			this.wattmeter_6.x = this.p3.x - cache_8 * global.utils.cosine(this.theta_m90);
+			this.wattmeter_6.y = this.p3.y - cache_9 * global.utils.sine(this.theta_m90);
 			this.meter_symbol.set_bounds(
 				this.bounds.left + this.bounds.get_width() * 0.4,
 				this.bounds.top + this.bounds.get_height() * 0.4,
@@ -731,14 +731,14 @@ class WattMeter {
 		this.c_x = this.bounds.get_center_x();
 		this.c_y = this.bounds.get_center_y();
 		if (this.elm.flip === global.FLIP_0) {
-			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+			this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
 		} else if (this.elm.flip === global.FLIP_180) {
-			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.PI_DIV_2;
+			this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) + global.CONSTANTS.PI_DIV_2;
 		} else {
-			this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
+			this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
 		}
-		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
-		this.phi = global.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
+		this.theta = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+		this.phi = global.utils.retrieve_angle_radian(this.c_x - this.p2.x, this.c_y - this.p2.y);
 		this.build_element();
 	}
 	increment_rotation(): void {
@@ -762,7 +762,7 @@ class WattMeter {
 		this.elm.properties['Wattage'] = 0;
 	}
 	push_voltage(v1: number, v2: number): void {
-		if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+		if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
 			let curr: number = (v1 - v2) / global.settings.WIRE_RESISTANCE;
 			let voltage: number = Math.max(v1, v2);
 			let power: number = curr * voltage;
@@ -774,17 +774,17 @@ class WattMeter {
 		return simulation_manager.node_size + simulation_manager.ELEMENT_WATTMETER_OFFSET + this.simulation_id;
 	}
 	recolor(): void {
-		if (global.selected) {
-			if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-				this.line_paint.set_color(global.SELECTED_COLOR);
-				this.point_paint.set_color(global.SELECTED_COLOR);
-				this.text_paint.set_color(global.SELECTED_COLOR);
-				this.meter_symbol.set_color(global.SELECTED_COLOR);
+		if (global.variables.selected) {
+			if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+				this.line_paint.set_color(global.COLORS.SELECTED_COLOR);
+				this.point_paint.set_color(global.COLORS.SELECTED_COLOR);
+				this.text_paint.set_color(global.COLORS.SELECTED_COLOR);
+				this.meter_symbol.set_color(global.COLORS.SELECTED_COLOR);
 			} else {
-				this.line_paint.set_color(global.ELEMENT_COLOR);
-				this.point_paint.set_color(global.ELEMENT_COLOR);
-				this.text_paint.set_color(global.ELEMENT_COLOR);
-				this.meter_symbol.set_color(global.ELEMENT_COLOR);
+				this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.meter_symbol.set_color(global.COLORS.ELEMENT_COLOR);
 			}
 		} else {
 			if (this.multi_selected) {
@@ -793,29 +793,29 @@ class WattMeter {
 				this.text_paint.set_color(global.MULTI_SELECTED_COLOR);
 				this.meter_symbol.set_color(global.MULTI_SELECTED_COLOR);
 			} else {
-				this.line_paint.set_color(global.ELEMENT_COLOR);
-				this.point_paint.set_color(global.ELEMENT_COLOR);
-				this.text_paint.set_color(global.ELEMENT_COLOR);
-				this.meter_symbol.set_color(global.ELEMENT_COLOR);
+				this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.meter_symbol.set_color(global.COLORS.ELEMENT_COLOR);
 			}
 		}
 		this.scope_index_check = scope_manager.find_entry_index(this.elm.id, this.elm.type);
 		if (this.scope_index_check > -1) {
 			if (this.scope_index_check === graph_window.SCOPE_0_INDEX) {
-				this.meter_trace.set_color(global.TRACE_I_COLOR);
+				this.meter_trace.set_color(global.COLORS.TRACE_I_COLOR);
 			} else if (this.scope_index_check === graph_window.SCOPE_1_INDEX) {
-				this.meter_trace.set_color(global.TRACE_II_COLOR);
+				this.meter_trace.set_color(global.COLORS.TRACE_II_COLOR);
 			} else if (this.scope_index_check === graph_window.SCOPE_2_INDEX) {
-				this.meter_trace.set_color(global.TRACE_III_COLOR);
+				this.meter_trace.set_color(global.COLORS.TRACE_III_COLOR);
 			} else {
-				this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
+				this.meter_trace.set_color(global.COLORS.TRACE_DEFAULT_COLOR);
 			}
 		} else {
-			this.meter_trace.set_color(global.TRACE_DEFAULT_COLOR);
+			this.meter_trace.set_color(global.COLORS.TRACE_DEFAULT_COLOR);
 		}
 	}
 	is_selected_element(): boolean {
-		return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
+		return global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type;
 	}
 	draw_component(canvas: GraphicsEngine): void {
 		this.wire_reference_maintenance();
@@ -825,7 +825,7 @@ class WattMeter {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
 		if (
-			global.picture_request_flag ||
+			global.flags.picture_request_flag ||
 			(this.c_x >= view_port.left - global.variables.node_space_x &&
 				this.c_x - global.variables.node_space_x <= view_port.right &&
 				this.c_y >= view_port.top + -global.variables.node_space_y &&
@@ -861,15 +861,15 @@ class WattMeter {
 						this.bounds.bottom + this.bounds.get_height() * 0.2,
 						this.text_paint
 					);
-					if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+					if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
-							global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),
+							global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),
 							this.c_x,
 							this.bounds.bottom + this.bounds.get_height() * 0.4,
 							this.text_paint
 						);
-						this.text_paint.set_color(global.ELEMENT_COLOR);
+						this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
 					}
 				}
 				canvas.restore();
@@ -882,10 +882,10 @@ class WattMeter {
 						this.bounds.bottom + this.bounds.get_height() * 0.2,
 						this.text_paint
 					);
-					if (global.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+					if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
-							global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),
+							global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),
 							this.c_x,
 							this.bounds.bottom + this.bounds.get_height() * 0.4,
 							this.text_paint
@@ -897,26 +897,26 @@ class WattMeter {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
-					this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
+					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
 					global.NODE_HINTS &&
 					!multi_select_manager.multi_select &&
 					!this.multi_selected &&
-					!global.signal_add_element &&
-					!global.signal_history_lock &&
-					!global.picture_request_flag &&
-					!global.flag_save_circuit &&
-					!global.flag_save_image &&
-					!global.flag_menu_element_toolbox &&
-					!global.flag_select_timestep &&
-					!global.flag_element_options &&
-					!global.flag_element_options_edit &&
-					!global.flag_zoom &&
-					!global.flag_graph &&
-					!global.flag_simulating &&
-					!global.flag_select_settings &&
-					!global.flag_select_element &&
-					!global.flag_remove_all &&
-					!global.signal_add_element
+					!global.flags.signal_add_element &&
+					!global.flags.signal_history_lock &&
+					!global.flags.picture_request_flag &&
+					!global.flags.flag_save_circuit &&
+					!global.flags.flag_save_image &&
+					!global.flags.flag_menu_element_toolbox &&
+					!global.flags.flag_select_timestep &&
+					!global.flags.flag_element_options &&
+					!global.flags.flag_element_options_edit &&
+					!global.flags.flag_zoom &&
+					!global.flags.flag_graph &&
+					!global.flags.flag_simulating &&
+					!global.flags.flag_select_settings &&
+					!global.flags.flag_select_element &&
+					!global.flags.flag_remove_all &&
+					!global.flags.signal_add_element
 				) {
 					if (this.elm.consistent()) {
 						let node_id_array: Array<number> = this.elm.get_nodes();
@@ -932,7 +932,7 @@ class WattMeter {
 		}
 	}
 	draw_trace(canvas: GraphicsEngine): void {
-		if (global.flag_simulating) {
+		if (global.flags.flag_simulating) {
 			this.meter_trace.draw_trace(canvas, this.bounds.left, 0);
 		}
 	}
@@ -940,52 +940,52 @@ class WattMeter {
 		if (this.elm.properties['Test Voltage'] !== 1e-9) {
 			this.elm.properties['Test Voltage'] = 1e-9;
 		}
-		if (!global.not_null(this.line_buffer)) {
+		if (!global.utils.not_null(this.line_buffer)) {
 			this.line_buffer = [];
 		}
-		if (!global.not_null(this.circle_buffer)) {
+		if (!global.utils.not_null(this.circle_buffer)) {
 			this.circle_buffer = [];
 		}
-		if (!global.not_null(this.build_element_flag)) {
+		if (!global.utils.not_null(this.build_element_flag)) {
 			this.build_element_flag = false;
 		}
-		if (!global.not_null(this.angle)) {
+		if (!global.utils.not_null(this.angle)) {
 			this.angle = 0;
 		}
-		if (!global.not_null(this.indexer)) {
+		if (!global.utils.not_null(this.indexer)) {
 			this.indexer = 0;
 		}
-		if (!global.not_null(this.initialized)) {
+		if (!global.utils.not_null(this.initialized)) {
 			this.initialized = false;
 		}
-		if (!global.not_null(this.x_axis_length)) {
+		if (!global.utils.not_null(this.x_axis_length)) {
 			this.x_axis_length = 600;
 		}
-		if (!global.not_null(this.y_axis_length)) {
+		if (!global.utils.not_null(this.y_axis_length)) {
 			this.y_axis_length = 100;
 		}
-		if (!global.not_null(this.ratio)) {
+		if (!global.utils.not_null(this.ratio)) {
 			this.ratio = 0.75;
 		}
-		if (!global.not_null(this.multi_selected)) {
+		if (!global.utils.not_null(this.multi_selected)) {
 			this.multi_selected = false;
 		}
-		if (!global.not_null(this.resize_meter_trace)) {
+		if (!global.utils.not_null(this.resize_meter_trace)) {
 			this.resize_meter_trace = false;
 		}
-		if (!global.not_null(this.scope_index_check)) {
+		if (!global.utils.not_null(this.scope_index_check)) {
 			this.scope_index_check = -1;
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TIME_DATA_TEMPLATE);
 		let keys: Array<string> = Object.keys(this.elm.properties);
 		for (var i: number = keys.length - 1; i > -1; i--) {
 			if (typeof this.elm.properties[keys[i]] === 'number') {
 				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-					time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
 				}
 			}
 		}

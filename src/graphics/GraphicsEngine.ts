@@ -364,8 +364,8 @@ class GraphicsEngine {
 		this.radius = (global.CONSTANTS.ZERO_PT_FIVE + Math.max(rect.get_width() >> 1, rect.get_height() >> 1)) >> global.CONSTANTS.ZERO;
 		this.x = (global.CONSTANTS.ZERO_PT_FIVE + rect.get_center_x()) >> global.CONSTANTS.ZERO;
 		this.y = (global.CONSTANTS.ZERO_PT_FIVE + rect.get_center_y()) >> global.CONSTANTS.ZERO;
-		this.end_degree_radians = (end_degree * global.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
-		this.start_degree_radians = (start_degree * global.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
+		this.end_degree_radians = (end_degree * global.CONSTANTS.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
+		this.start_degree_radians = (start_degree * global.CONSTANTS.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
 		this.apply_paint(paint, false);
 		this.ctx.arc(this.x, this.y, this.radius, this.start_degree_radians, this.end_degree_radians, true);
 		switch (paint.paint_style) {
@@ -389,14 +389,14 @@ class GraphicsEngine {
 		this.y = (global.CONSTANTS.ZERO_PT_FIVE + y1 + y2) >> 1;
 		this.temp_x = (global.CONSTANTS.ZERO_PT_FIVE + x1) >> global.CONSTANTS.ZERO;
 		this.temp_y = (global.CONSTANTS.ZERO_PT_FIVE + y1) >> global.CONSTANTS.ZERO;
-		this.degree = global.retrieve_angle_radian(x2 - x1, y2 - y1) - global.PI_DIV_2;
+		this.degree = global.utils.retrieve_angle_radian(x2 - x1, y2 - y1) - global.CONSTANTS.PI_DIV_2;
 		this.general_path.reset();
 		this.general_path.move_to(this.temp_x, this.temp_y);
 		this.general_path.curve_to(
 			this.temp_x,
 			this.temp_y,
-			(this.x + amplitude * global.cosine(this.degree)) >> global.CONSTANTS.ZERO,
-			(this.y + amplitude * global.sine(this.degree)) >> global.CONSTANTS.ZERO,
+			(this.x + amplitude * global.utils.cosine(this.degree)) >> global.CONSTANTS.ZERO,
+			(this.y + amplitude * global.utils.sine(this.degree)) >> global.CONSTANTS.ZERO,
 			(global.CONSTANTS.ZERO_PT_FIVE + x2) >> global.CONSTANTS.ZERO,
 			(global.CONSTANTS.ZERO_PT_FIVE + y2) >> global.CONSTANTS.ZERO
 		);
@@ -406,8 +406,8 @@ class GraphicsEngine {
 		this.radius = (global.CONSTANTS.ZERO_PT_FIVE + radius) >> global.CONSTANTS.ZERO;
 		this.x = (global.CONSTANTS.ZERO_PT_FIVE + c_x) >> global.CONSTANTS.ZERO;
 		this.y = (global.CONSTANTS.ZERO_PT_FIVE + c_y) >> global.CONSTANTS.ZERO;
-		this.end_degree_radians = (end_degree * global.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
-		this.start_degree_radians = (start_degree * global.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
+		this.end_degree_radians = (end_degree * global.CONSTANTS.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
+		this.start_degree_radians = (start_degree * global.CONSTANTS.NEG_PI_DIV_180) >> global.CONSTANTS.ZERO;
 		this.apply_paint(paint, false);
 		this.ctx.arc(this.x, this.y, this.radius, this.start_degree_radians, this.end_degree_radians, true);
 		switch (paint.paint_style) {
@@ -493,9 +493,9 @@ class GraphicsEngine {
 		}
 	}
 	rotate(x: number, y: number, angle: number): void {
-		this.r_theta = ((global.CONSTANTS.ZERO_PT_FIVE + angle) >> global.CONSTANTS.ZERO) * global.PI_DIV_180;
-		this.transform_var_1 = global.sine(this.r_theta);
-		this.transform_var_2 = global.cosine(this.r_theta);
+		this.r_theta = ((global.CONSTANTS.ZERO_PT_FIVE + angle) >> global.CONSTANTS.ZERO) * global.CONSTANTS.PI_DIV_180;
+		this.transform_var_1 = global.utils.sine(this.r_theta);
+		this.transform_var_2 = global.utils.cosine(this.r_theta);
 		this.r_x = (global.CONSTANTS.ZERO_PT_FIVE + x) >> global.CONSTANTS.ZERO;
 		this.r_y = (global.CONSTANTS.ZERO_PT_FIVE + y) >> global.CONSTANTS.ZERO;
 		this.ctx.transform(this.transform_var_2, this.transform_var_1, -this.transform_var_1, this.transform_var_2, this.r_x, this.r_y);

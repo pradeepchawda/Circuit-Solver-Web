@@ -13,51 +13,51 @@ class ElementWindow {
         this.first_touch_x = 0;
         this.first_touch_y = 0;
         this.line_paint = new Paint();
-        this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-        this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-        this.line_paint.set_paint_join(this.line_paint.join.MITER);
-        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.line_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.line_paint.set_text_size(global.canvas_text_size_4);
-        this.line_paint.set_font(global.DEFAULT_FONT);
+        this.line_paint.set_paint_style(PAINT.style.STROKE);
+        this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.line_paint.set_paint_join(PAINT.join.MITER);
+        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+        this.line_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
-        this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+        this.line_paint.set_paint_align(PAINT.align.CENTER);
         this.fill_paint = new Paint();
-        this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
-        this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
-        this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.fill_paint.set_text_size(global.canvas_text_size_4);
-        this.fill_paint.set_font(global.DEFAULT_FONT);
+        this.fill_paint.set_paint_style(PAINT.style.FILL);
+        this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.fill_paint.set_paint_join(PAINT.join.MITER);
+        this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+        this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
-        this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
+        this.fill_paint.set_paint_align(PAINT.align.CENTER);
         this.text_paint = new Paint();
-        this.text_paint.set_paint_style(this.text_paint.style.FILL);
-        this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-        this.text_paint.set_paint_join(this.text_paint.join.MITER);
-        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-        if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(2 * global.canvas_text_size_6);
+        this.text_paint.set_paint_style(PAINT.style.FILL);
+        this.text_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.text_paint.set_paint_join(PAINT.join.MITER);
+        this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+        if (global.CONSTANTS.MOBILE_MODE) {
+            this.text_paint.set_text_size(2 * global.variables.canvas_text_size_6);
         }
         else {
-            this.text_paint.set_text_size(global.canvas_text_size_6);
+            this.text_paint.set_text_size(global.variables.canvas_text_size_6);
         }
         this.text_paint.set_paint_baseline(this.text_paint.baseline.ALPHABETIC);
-        this.text_paint.set_font(global.DEFAULT_FONT);
+        this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
-        this.text_paint.set_paint_align(this.text_paint.align.CENTER);
+        this.text_paint.set_paint_align(PAINT.align.CENTER);
         this.hover_paint = new Paint();
-        this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
-        this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
-        this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
-        this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
-        this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
-        this.hover_paint.set_text_size(global.canvas_text_size_5);
-        this.hover_paint.set_font(global.DEFAULT_FONT);
+        this.hover_paint.set_paint_style(PAINT.style.FILL);
+        this.hover_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.hover_paint.set_paint_join(PAINT.join.MITER);
+        this.hover_paint.set_stroke_width(0.6 * global.variables.canvas_stroke_width_3);
+        this.hover_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
+        this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.hover_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
-        this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
+        this.hover_paint.set_paint_align(PAINT.align.CENTER);
         this.bounds = new RectF(left, top, right, bottom);
         this.load_positions();
         this.page_number = 0;
@@ -219,17 +219,17 @@ class ElementWindow {
         let height = 0;
         for (var i = 0; i < this.MAX_ICONS; i++) {
             temp_bounds.left = this.bounds.left + i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
-            temp_bounds.top = this.bounds.top + global.canvas_stroke_width_3;
+            temp_bounds.top = this.bounds.top + global.variables.canvas_stroke_width_3;
             temp_bounds.right = this.bounds.left + ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
-            temp_bounds.bottom = this.bounds.bottom - global.canvas_stroke_width_3;
+            temp_bounds.bottom = this.bounds.bottom - global.variables.canvas_stroke_width_3;
             height = temp_bounds.get_height();
             temp_bounds.set_center2(temp_bounds.get_center_x(), temp_bounds.get_center_y(), height, height);
             this.positions.push(new RectF(temp_bounds.left, temp_bounds.top, temp_bounds.right, temp_bounds.bottom));
         }
     }
     update() {
-        if (global.flag_menu_element_toolbox) {
-            if (!global.mouse_keyboard_lock) {
+        if (global.flags.flag_menu_element_toolbox) {
+            if (!global.variables.mouse_keyboard_lock) {
                 {
                     /* #INSERT_GENERATE_ELEMENT_WINDOW_ICON_UPDATE# */
                     /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -308,12 +308,12 @@ class ElementWindow {
     }
     mouse_wheel() {
         if (this.ENABLE_MOUSE_WHEEL) {
-            if (global.flag_menu_element_toolbox) {
-                if (!global.mouse_keyboard_lock) {
+            if (global.flags.flag_menu_element_toolbox) {
+                if (!global.variables.mouse_keyboard_lock) {
                     this.mouse_wheel_counter++;
                     if (this.mouse_wheel_counter >= this.MOUSE_WHEEL_COUNTER_MAX) {
                         //@ts-expect-error
-                        if (global.mouse_wheel_event.wheelDelta < 0 || global.mouse_wheel_event.detail > 0) {
+                        if (global.events.mouse_wheel_event.wheelDelta < 0 || global.events.mouse_wheel_event.detail > 0) {
                             if (this.page_number < this.MAX_PAGE_NUMBER) {
                                 this.page_number++;
                             }
@@ -330,10 +330,10 @@ class ElementWindow {
         }
     }
     mouse_down() {
-        if (global.flag_menu_element_toolbox) {
-            if (!global.mouse_keyboard_lock) {
-                this.first_touch_x = global.mouse_x;
-                this.first_touch_y = global.mouse_y;
+        if (global.flags.flag_menu_element_toolbox) {
+            if (!global.variables.mouse_keyboard_lock) {
+                this.first_touch_x = global.variables.mouse_x;
+                this.first_touch_y = global.variables.mouse_y;
                 let cached_value = this.bounds.get_width() / this.MAX_ICONS;
                 /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_DOWN# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -406,22 +406,22 @@ class ElementWindow {
                 this.tptz_symbol.mouse_down(this.page_number, cached_value, this.bounds.get_height());
                 this.transformer_symbol.mouse_down(this.page_number, cached_value, this.bounds.get_height());
                 /* <!-- END AUTOMATICALLY GENERATED !--> */
-                if (global.MOBILE_MODE) {
-                    if (this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+                if (global.CONSTANTS.MOBILE_MODE) {
+                    if (this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
                         this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
-                        global.component_touched = true;
+                        global.variables.component_touched = true;
                     }
-                    else if (this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+                    else if (this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
                         this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
-                        global.component_touched = true;
+                        global.variables.component_touched = true;
                     }
                 }
             }
         }
     }
     mouse_move() {
-        if (global.flag_menu_element_toolbox) {
-            if (!global.mouse_keyboard_lock) {
+        if (global.flags.flag_menu_element_toolbox) {
+            if (!global.variables.mouse_keyboard_lock) {
                 let cached_value = this.bounds.get_width() / this.MAX_ICONS;
                 /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -498,21 +498,21 @@ class ElementWindow {
         }
     }
     mouse_up() {
-        if (global.flag_menu_element_toolbox) {
-            if (!global.mouse_keyboard_lock) {
-                if (this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+        if (global.flags.flag_menu_element_toolbox) {
+            if (!global.variables.mouse_keyboard_lock) {
+                if (this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
                     this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
                     if (this.page_number > 0) {
                         this.page_number--;
                     }
-                    global.component_touched = true;
+                    global.variables.component_touched = true;
                 }
-                else if (this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+                else if (this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
                     this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
                     if (this.page_number < this.MAX_PAGE_NUMBER) {
                         this.page_number++;
                     }
-                    global.component_touched = true;
+                    global.variables.component_touched = true;
                 }
                 let cached_value = this.bounds.get_width() / this.MAX_ICONS;
                 /* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_UP# */
@@ -663,23 +663,23 @@ class ElementWindow {
         this.tptz_symbol.resize(this.positions[this.tptz_symbol.index]);
         this.transformer_symbol.resize(this.positions[this.transformer_symbol.index]);
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.line_paint.set_text_size(global.canvas_text_size_4);
-        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.fill_paint.set_text_size(global.canvas_text_size_4);
-        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
-        if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(2 * global.canvas_text_size_6);
+        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.line_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        if (global.CONSTANTS.MOBILE_MODE) {
+            this.text_paint.set_text_size(2 * global.variables.canvas_text_size_6);
         }
         else {
-            this.text_paint.set_text_size(global.canvas_text_size_6);
+            this.text_paint.set_text_size(global.variables.canvas_text_size_6);
         }
-        this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
-        this.hover_paint.set_text_size(global.canvas_text_size_5);
+        this.hover_paint.set_stroke_width(0.6 * global.variables.canvas_stroke_width_3);
+        this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
     }
     draw_hover(canvas) {
         for (var i = 0; i < this.positions.length; i++) {
-            if (this.positions[i].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
+            if (this.positions[i].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
                 if (i !== this.NAVIGATE_BACK_INDEX && i !== this.NAVIGATE_FORWARD_INDEX) {
                     if (this.hover_limits(this.page_number, i, this.element_index, this.MAX_PAGE_NUMBER)) {
                         canvas.draw_rect3(this.positions[i].get_center_x(), this.positions[i].get_center_y(), this.positions[i].get_width() * 1.25, this.positions[i].get_height() * 1.25, this.hover_paint);
@@ -717,9 +717,9 @@ class ElementWindow {
         }
     }
     draw_window(canvas) {
-        if (global.flag_menu_element_toolbox) {
+        if (global.flags.flag_menu_element_toolbox) {
             canvas.draw_rect2(this.bounds, this.fill_paint);
-            if (global.MOBILE_MODE === false) {
+            if (global.CONSTANTS.MOBILE_MODE === false) {
                 this.draw_hover(canvas);
             }
             if (this.page_number > 0) {

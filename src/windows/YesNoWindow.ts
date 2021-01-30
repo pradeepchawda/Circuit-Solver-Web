@@ -96,55 +96,55 @@ class YesNoWindow {
 		this.first_touch_y = 0;
 	}
 	mouse_down(): void {
-		if (global.flag_remove_all) {
-			this.first_touch_x = global.mouse_x;
-			this.first_touch_y = global.mouse_y;
+		if (global.flags.flag_remove_all) {
+			this.first_touch_x = global.variables.mouse_x;
+			this.first_touch_y = global.variables.mouse_y;
 		}
 	}
 	mouse_move(): void {
-		if (global.flag_remove_all) {
+		if (global.flags.flag_remove_all) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				this.hover();
 			}
 		}
 	}
 	mouse_up(): void {
-		if (global.flag_remove_all) {
-			if (!global.mouse_keyboard_lock) {
-				if (!this.bounds.contains_xy(global.mouse_x, global.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
-					menu_bar.handle_remove_all_flag(!global.flag_remove_all);
-					global.component_touched = true;
-				} else if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
+		if (global.flags.flag_remove_all) {
+			if (!global.variables.mouse_keyboard_lock) {
+				if (!this.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && !this.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
+					global.variables.component_touched = true;
+				} else if (this.option_0.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
 					engine_functions.clear_all_elements();
 					scope_manager.clear_entries();
 					graph_window.reset();
 					global.variables.history['packet'].push(engine_functions.history_snapshot());
-					menu_bar.handle_remove_all_flag(!global.flag_remove_all);
+					menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
 					global.variables.user_file.title = 'untitled';
-					global.component_touched = true;
+					global.variables.component_touched = true;
 					bottom_menu.resize_bottom_menu();
-				} else if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
-					menu_bar.handle_remove_all_flag(!global.flag_remove_all);
-					global.component_touched = true;
+				} else if (this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
+					global.variables.component_touched = true;
 				}
 			}
 		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (global.flag_remove_all) {
-			if (key_event['event'].code === global.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODE_ESCAPE) {
-				menu_bar.handle_remove_all_flag(!global.flag_remove_all);
-				global.component_touched = true;
+		if (global.flags.flag_remove_all) {
+			if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
+				menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
+				global.variables.component_touched = true;
 			}
 		}
 	}
 	hover(): void {
-		if (this.option_0.contains_xy(global.mouse_x, global.mouse_y)) {
+		if (this.option_0.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 			this.yes_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 		} else {
 			this.yes_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		}
-		if (this.option_1.contains_xy(global.mouse_x, global.mouse_y)) {
+		if (this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 			this.no_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 		} else {
 			this.no_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
@@ -177,7 +177,7 @@ class YesNoWindow {
 		this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.flag_remove_all) {
+		if (global.flags.flag_remove_all) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}

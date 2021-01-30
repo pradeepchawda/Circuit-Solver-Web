@@ -132,25 +132,25 @@ class OnScreenKeyboard {
 		};
 		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 14;
 		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 1.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
 		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 15;
 		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 1.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
 		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 30;
 		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.0;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
 		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 42;
 		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
 		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 43;
 		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
 		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 55;
 		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.0;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
 		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 60;
 		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 5.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
 		this.KEYBOARD_KEYS = [];
 		this.flag_key_down = false;
 		this.flag_key_up = false;
@@ -341,10 +341,10 @@ class OnScreenKeyboard {
 		}
 	}
 	mouse_down(): void {
-		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
+		if (global.CONSTANTS.MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit)) {
 			this.flag_key_up = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
-				if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
+				if (this.KEYBOARD_KEYS[i].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 					this.flag_key_down = true;
 					this.hover_index = i;
 					break;
@@ -353,22 +353,30 @@ class OnScreenKeyboard {
 		}
 	}
 	mouse_move(): void {
-		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
+		if (
+			global.CONSTANTS.MOBILE_MODE &&
+			(global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit) &&
+			this.flag_key_down
+		) {
 		}
 	}
 	mouse_up(): void {
-		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit) && this.flag_key_down) {
+		if (
+			global.CONSTANTS.MOBILE_MODE &&
+			(global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit) &&
+			this.flag_key_down
+		) {
 			this.hover_index = -1;
 			let FOUND: boolean = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
-				if (this.KEYBOARD_KEYS[i].contains_xy(global.mouse_x, global.mouse_y)) {
+				if (this.KEYBOARD_KEYS[i].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 					FOUND = true;
 					if (this.KEYBOARD_MAPPING[i].length === 1 && this.approve_keys(i)) {
 						this.KEYBOARD_KEY_EVENT.code = global.key_to_code(this.KEYBOARD_MAPPING[i]);
-						global.key_down_event_flag = true;
-						global.key_up_event_flag = true;
-						global.key_down_event_queue.push({
-							event: global.copy(this.KEYBOARD_KEY_EVENT),
+						global.flags.key_down_event_flag = true;
+						global.flags.key_up_event_flag = true;
+						global.events.key_down_event_queue.push({
+							event: global.utils.copy(this.KEYBOARD_KEY_EVENT),
 							alt: false,
 							shift: this.flag_shift,
 							ctrl: false,
@@ -385,11 +393,11 @@ class OnScreenKeyboard {
 							break;
 						} else if (this.KEYBOARD_MAPPING[i] === 'ENTER') {
 							this.flag_enter = !this.flag_enter;
-							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_ENTER;
-							global.key_down_event_flag = true;
-							global.key_up_event_flag = true;
-							global.key_down_event_queue.push({
-								event: global.copy(this.KEYBOARD_KEY_EVENT),
+							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODES.KEY_CODE_ENTER;
+							global.flags.key_down_event_flag = true;
+							global.flags.key_up_event_flag = true;
+							global.events.key_down_event_queue.push({
+								event: global.utils.copy(this.KEYBOARD_KEY_EVENT),
 								alt: false,
 								shift: this.flag_shift,
 								ctrl: false,
@@ -397,11 +405,11 @@ class OnScreenKeyboard {
 							});
 							break;
 						} else if (this.KEYBOARD_MAPPING[i] === '<<') {
-							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODE_BACKSPACE;
-							global.key_down_event_flag = true;
-							global.key_up_event_flag = true;
-							global.key_down_event_queue.push({
-								event: global.copy(this.KEYBOARD_KEY_EVENT),
+							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODES.KEY_CODE_BACKSPACE;
+							global.flags.key_down_event_flag = true;
+							global.flags.key_up_event_flag = true;
+							global.events.key_down_event_queue.push({
+								event: global.utils.copy(this.KEYBOARD_KEY_EVENT),
 								alt: false,
 								shift: this.flag_shift,
 								ctrl: false,
@@ -446,12 +454,12 @@ class OnScreenKeyboard {
 		}
 	}
 	draw_keyboard(canvas: GraphicsEngine): void {
-		if (global.CONSTANTS.MOBILE_MODE && (global.flag_save_circuit || global.flag_save_image || global.flag_select_timestep || global.flag_element_options_edit)) {
-			if (global.flag_element_options_edit === true || global.flag_select_timestep === true) {
-				if (global.selected_type !== global.ELEMENT_TYPES.TYPE_NOTE && global.selected_type !== global.ELEMENT_TYPES.TYPE_NET) {
+		if (global.CONSTANTS.MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit)) {
+			if (global.flags.flag_element_options_edit === true || global.flags.flag_select_timestep === true) {
+				if (global.variables.selected_type !== global.ELEMENT_TYPES.TYPE_NOTE && global.variables.selected_type !== global.ELEMENT_TYPES.TYPE_NET) {
 					this.engineering_keyboard_mode = true;
 				} else {
-					if (global.flag_element_options_edit) {
+					if (global.flags.flag_element_options_edit) {
 						this.engineering_keyboard_mode = false;
 					} else {
 						this.engineering_keyboard_mode = true;

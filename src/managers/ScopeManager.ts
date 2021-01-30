@@ -28,13 +28,13 @@ class ScopeManager {
 	get_units(index: number): string {
 		if (index > -1 && index < this.entry.length) {
 			if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
-				return global.PROPERTY_VOLTMETER['units'];
+				return global.PROPERTY.PROPERTY_VOLTMETER['units'];
 			} else if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_AMMETER) {
-				return global.PROPERTY_AMMETER['units'];
+				return global.PROPERTY.PROPERTY_AMMETER['units'];
 			} else if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_OHMMETER) {
-				return global.PROPERTY_OHMMETER['units'];
+				return global.PROPERTY.PROPERTY_OHMMETER['units'];
 			} else if (this.entry[index]['element_type'] === global.ELEMENT_TYPES.TYPE_WATTMETER) {
-				return global.PROPERTY_WATTMETER['units'];
+				return global.PROPERTY.PROPERTY_WATTMETER['units'];
 			}
 		}
 		return '';
@@ -90,7 +90,7 @@ class ScopeManager {
 	}
 	update_scopes(): void {
 		this.index = -1;
-		this.met_max = global.meter_max();
+		this.met_max = global.utils.meter_max();
 		this.iteration_size = Math.max(this.met_max, this.entry.length);
 		this.v_side_1 = 0;
 		this.v_side_2 = 0;

@@ -90,8 +90,8 @@ class Element2 {
 		return y * sqrt + x;
 	}
 	snap_to_grid(x1: number, y1: number): Array<number> {
-		x1 = global.limit(x1, workspace.bounds.left + global.variables.node_space_x * 1.5, workspace.bounds.right - global.variables.node_space_x * 1.25);
-		y1 = global.limit(y1, workspace.bounds.top + global.variables.node_space_y * 1.5, workspace.bounds.bottom - global.variables.node_space_y * 1.25);
+		x1 = global.utils.limit(x1, workspace.bounds.left + global.variables.node_space_x * 1.5, workspace.bounds.right - global.variables.node_space_x * 1.25);
+		y1 = global.utils.limit(y1, workspace.bounds.top + global.variables.node_space_y * 1.5, workspace.bounds.bottom - global.variables.node_space_y * 1.25);
 		let sqrt: number = this.round(global.settings.SQRT_MAXNODES);
 		let x_1: number = Math.floor((((x1 - workspace.bounds.left) * this.FUDGE_FACTOR) / workspace.bounds.get_width()) * sqrt);
 		let y_1: number = Math.floor((((y1 - workspace.bounds.top) * this.FUDGE_FACTOR) / workspace.bounds.get_height()) * sqrt);

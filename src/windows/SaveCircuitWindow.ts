@@ -55,7 +55,7 @@ class SaveCircuitWindow {
 		this.point_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.point_paint.set_paint_join(PAINT.join.MITER);
 		this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.point_paint.set_color(global.ELEMENT_COLOR);
+		this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.point_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.point_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
@@ -143,7 +143,7 @@ class SaveCircuitWindow {
 		this.exit_button.draw_fill = false;
 		this.exit_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-		this.input_button.text = global.exponentiate_quickly(global.time_step);
+		this.input_button.text = global.utils.exponentiate_quickly(global.time_step);
 		this.input_button.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.input_button.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 		this.input_button.draw_stroke = true;
@@ -171,26 +171,26 @@ class SaveCircuitWindow {
 		this.ascending_flag = false;
 	}
 	mouse_down(): void {
-		if (global.flag_save_circuit) {
+		if (global.flags.flag_save_circuit) {
 			if (
-				this.title_bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
-				!this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)
+				this.title_bounds.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
+				!this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)
 			) {
-				this.anchor_x = global.mouse_x - this.offset_x;
-				this.anchor_y = global.mouse_y - this.offset_y;
+				this.anchor_x = global.variables.mouse_x - this.offset_x;
+				this.anchor_y = global.variables.mouse_y - this.offset_y;
 				this.window_anchored = false;
 			}
-			this.first_touch_x = global.mouse_x;
-			this.first_touch_y = global.mouse_y;
+			this.first_touch_x = global.variables.mouse_x;
+			this.first_touch_y = global.variables.mouse_y;
 			this.initial_cursor_down = this.insert_cursor(false, false);
 			this.mouse_down_flag = true;
 		}
 	}
 	mouse_move(): void {
-		if (global.flag_save_circuit) {
+		if (global.flags.flag_save_circuit) {
 			if (!this.window_anchored) {
-				this.offset_x = global.mouse_x - this.anchor_x;
-				this.offset_y = global.mouse_y - this.anchor_y;
+				this.offset_x = global.variables.mouse_x - this.anchor_x;
+				this.offset_y = global.variables.mouse_y - this.anchor_y;
 				if (this.bounds.right + this.offset_x >= view_port.right) {
 					this.offset_x = view_port.right - this.bounds.right;
 				}
@@ -217,56 +217,56 @@ class SaveCircuitWindow {
 		}
 	}
 	mouse_up(canvas: GraphicsEngine): void {
-		if (global.flag_save_circuit) {
-			if (!global.mouse_keyboard_lock) {
+		if (global.flags.flag_save_circuit) {
+			if (!global.variables.mouse_keyboard_lock) {
 				if (this.window_anchored) {
 					this.insert_cursor(true, false);
 					this.initial_cursor_down = -1;
 					if (
-						!this.bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						!this.bounds.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						!this.bounds.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						if (global.CONSTANTS.MOBILE_MODE) {
-							if (!on_screen_keyboard.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-								menu_bar.handle_save_circuit_flag(!global.flag_save_circuit);
-								global.component_touched = true;
+							if (!on_screen_keyboard.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+								menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+								global.variables.component_touched = true;
 							}
 						} else {
-							menu_bar.handle_save_circuit_flag(!global.flag_save_circuit);
-							global.component_touched = true;
+							menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+							global.variables.component_touched = true;
 						}
 					} else if (
-						this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.okay_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						this.zoom_save_restore(canvas);
-						menu_bar.handle_save_circuit_flag(!global.flag_save_circuit);
-						global.component_touched = true;
+						menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+						global.variables.component_touched = true;
 					} else if (
-						this.cancel_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.cancel_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						menu_bar.handle_save_circuit_flag(!global.flag_save_circuit);
-						global.component_touched = true;
+						menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+						global.variables.component_touched = true;
 					} else if (
-						this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.exit_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						menu_bar.handle_save_circuit_flag(!global.flag_save_circuit);
-						global.component_touched = true;
+						menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+						global.variables.component_touched = true;
 					} else if (
-						this.input_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						if (this.select_all) {
-							if (this.select_all && !global.mouse_double_click_event_flag) {
+							if (this.select_all && !global.flags.mouse_double_click_event_flag) {
 								this.select_all = false;
 							}
 						}
 					}
 				} else {
-					this.anchor_x = global.mouse_x - this.offset_x;
-					this.anchor_y = global.mouse_y - this.offset_y;
+					this.anchor_x = global.variables.mouse_x - this.offset_x;
+					this.anchor_y = global.variables.mouse_y - this.offset_y;
 				}
 				this.window_anchored = true;
 				this.mouse_down_flag = false;
@@ -276,8 +276,8 @@ class SaveCircuitWindow {
 	insert_cursor(is_mouse_up: boolean, is_mouse_move: boolean): number {
 		let min: number = this.input_button.get_center_x() - this.measured_text * 0.5;
 		let max: number = this.input_button.get_center_x() + this.measured_text * 0.5;
-		let remapped_x: number = global.mouse_x - this.offset_x;
-		let remapped_y: number = global.mouse_y - this.offset_y;
+		let remapped_x: number = global.variables.mouse_x - this.offset_x;
+		let remapped_y: number = global.variables.mouse_y - this.offset_y;
 		if (remapped_x <= min) {
 			remapped_x = min;
 		}
@@ -308,23 +308,23 @@ class SaveCircuitWindow {
 		return insert_at;
 	}
 	key_down(key_event: KEY_EVENT_T, canvas: GraphicsEngine): void {
-		if (global.flag_save_circuit) {
+		if (global.flags.flag_save_circuit) {
 			this.handle_keyboard(key_event, canvas);
 		}
 	}
 	key_up() {
-		if (global.flag_save_circuit) {
+		if (global.flags.flag_save_circuit) {
 		}
 	}
 	handle_keyboard(key_event: KEY_EVENT_T, canvas: GraphicsEngine): void {
-		if (global.is_alpha_numeric(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
+		if (global.utils.is_alpha_numeric(key_event) && key_event['event'].code !== global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 			if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 				if (!this.select_all) {
 					if (this.select_start !== -1 && this.select_end !== -1) {
 						this.handle_partial_select();
 					}
 					this.input_button.text =
-						this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+						this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 					if (this.cursor_position < this.input_button.text.length) {
 						this.cursor_position++;
 					}
@@ -333,7 +333,7 @@ class SaveCircuitWindow {
 					this.cursor_position = 0;
 					this.select_all = false;
 					this.input_button.text =
-						this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+						this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 					if (this.cursor_position < this.input_button.text.length) {
 						this.cursor_position++;
 					}
@@ -344,13 +344,13 @@ class SaveCircuitWindow {
 					this.cursor_position = 0;
 					this.select_all = false;
 					this.input_button.text =
-						this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+						this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 					if (this.cursor_position < this.input_button.text.length) {
 						this.cursor_position++;
 					}
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
 			if (this.input_button.text.length > 0) {
 				if (!this.select_all) {
 					if (this.select_start === this.select_end) {
@@ -371,7 +371,7 @@ class SaveCircuitWindow {
 					this.select_all = false;
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 			if (this.input_button.text.length > 0) {
 				if (!this.select_all) {
 					if (this.select_start === this.select_end) {
@@ -391,7 +391,7 @@ class SaveCircuitWindow {
 					this.select_all = false;
 				}
 			}
-		} else if ((key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) && !key_event['shift']) {
+		} else if ((key_event['event'].code === global.KEY_CODES.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODES.KEY_CODE_NUMPAD_MINUS) && !key_event['shift']) {
 			if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 				if (!this.select_all) {
 					if (this.select_start !== -1 && this.select_end !== -1) {
@@ -411,7 +411,7 @@ class SaveCircuitWindow {
 					}
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
 			if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 				if (!this.select_all) {
 					if (this.select_start !== -1 && this.select_end !== -1) {
@@ -431,10 +431,10 @@ class SaveCircuitWindow {
 					}
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER && !key_event['ctrl']) {
 			this.zoom_save_restore(canvas);
-			menu_bar.handle_save_circuit_flag(!global.flag_save_circuit);
-		} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
+			menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
 			if (key_event['shift'] === false) {
 				this.select_start = -1;
 				this.select_end = -1;
@@ -466,7 +466,7 @@ class SaveCircuitWindow {
 					}
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
 			if (key_event['shift'] === false) {
 				this.select_start = -1;
 				this.select_end = -1;
@@ -498,9 +498,9 @@ class SaveCircuitWindow {
 					}
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_ESCAPE && !key_event['ctrl']) {
-			menu_bar.handle_save_circuit_flag(!global.flag_save_circuit);
-		} else if (key_event['event'].code === global.KEY_CODE_HOME) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE && !key_event['ctrl']) {
+			menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_HOME) {
 			if (key_event['shift'] === false) {
 				this.select_start = -1;
 				this.select_end = -1;
@@ -533,7 +533,7 @@ class SaveCircuitWindow {
 					}
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_END && !key_event['ctrl']) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_END && !key_event['ctrl']) {
 			if (key_event['shift'] === false) {
 				this.reset_cursor();
 			} else {
@@ -563,7 +563,7 @@ class SaveCircuitWindow {
 					}
 				}
 			}
-		} else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
+		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_A && key_event['ctrl'] === true) {
 			this.select_all = false;
 			this.select_start = 0;
 			this.ascending_flag = true;
@@ -645,8 +645,8 @@ class SaveCircuitWindow {
 		this.select_end = -1;
 	}
 	double_click(): void {
-		if (global.mouse_double_click_event_flag) {
-			if (this.input_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)) {
+		if (global.flags.mouse_double_click_event_flag) {
+			if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
 				this.select_all = !this.select_all;
 				if (this.select_all) {
 					this.select_start = 0;
@@ -703,7 +703,7 @@ class SaveCircuitWindow {
 		}
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.flag_save_circuit) {
+		if (global.flags.flag_save_circuit) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}
@@ -718,7 +718,7 @@ class SaveCircuitWindow {
 			canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
 			this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
-			if (this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
 				this.okay_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.okay_button.fill_paint.set_alpha(255);
 			} else {
@@ -726,7 +726,7 @@ class SaveCircuitWindow {
 				this.okay_button.fill_paint.set_alpha(130);
 			}
 			this.okay_button.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
-			if (this.cancel_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
 				this.cancel_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.cancel_button.fill_paint.set_alpha(255);
 			} else {
@@ -768,7 +768,7 @@ class SaveCircuitWindow {
 				this.input_button.get_center_y() + this.offset_y,
 				this.input_button.text_paint
 			);
-			if (this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
 				canvas.draw_rect(
 					this.exit_button.left + this.offset_x,
 					this.exit_button.top + this.offset_y,

@@ -42,7 +42,7 @@ class Trace {
 		this.trace_stroke_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.trace_stroke_paint.set_paint_join(PAINT.join.MITER);
 		this.trace_stroke_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
-		this.trace_stroke_paint.set_color(global.TRACE_DEFAULT_COLOR);
+		this.trace_stroke_paint.set_color(global.COLORS.TRACE_DEFAULT_COLOR);
 		this.trace_stroke_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.trace_stroke_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.trace_stroke_paint.set_alpha(255);
@@ -52,7 +52,7 @@ class Trace {
 		this.trace_fill_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.trace_fill_paint.set_paint_join(PAINT.join.MITER);
 		this.trace_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
-		this.trace_fill_paint.set_color(global.TRACE_DEFAULT_COLOR);
+		this.trace_fill_paint.set_color(global.COLORS.TRACE_DEFAULT_COLOR);
 		this.trace_fill_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.trace_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.trace_fill_paint.set_alpha(255);
@@ -124,8 +124,8 @@ class Trace {
 	get_value(index: number): Array<string> {
 		let ret: Array<string> = [];
 		if (index > -1 && index < this.magnitude_list.length && index < Math.round(this.x_axis_length >> 1) - 2) {
-			ret.push(global.exponentiate_quickly(this.magnitude_list[index].x));
-			ret.push(global.exponentiate_quickly(-this.magnitude_list[index].y));
+			ret.push(global.utils.exponentiate_quickly(this.magnitude_list[index].x));
+			ret.push(global.utils.exponentiate_quickly(-this.magnitude_list[index].y));
 		}
 		return ret;
 	}
@@ -166,7 +166,7 @@ class Trace {
 		let constant: number = this.width / (this.x_axis_length >> 1);
 		let constant2: number = (this.height * this.ratio) / this.temporary_norm;
 		if (this.temporary_norm > 0) {
-			if (global.not_null(value / this.temporary_norm)) {
+			if (global.utils.not_null(value / this.temporary_norm)) {
 				this.trace.push(new PointF(this.trace.length * constant + this.trim, value * constant2));
 			} else {
 				this.trace.push(new PointF(this.trace.length * constant + this.trim, 0));
@@ -218,13 +218,13 @@ class Trace {
 		}
 	}
 	patch(): void {
-		if (!global.not_null(this.x_axis_length)) {
+		if (!global.utils.not_null(this.x_axis_length)) {
 			this.x_axis_length = 600;
 		}
-		if (!global.not_null(this.y_axis_length)) {
+		if (!global.utils.not_null(this.y_axis_length)) {
 			this.y_axis_length = 100;
 		}
-		if (!global.not_null(this.ratio)) {
+		if (!global.utils.not_null(this.ratio)) {
 			this.ratio = 0.75;
 		}
 	}

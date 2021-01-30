@@ -75,7 +75,7 @@ class StringOperator {
 	exponentiate(input: string): string {
 		if (input === '0') {
 			return '0';
-		} else if (!global.not_null(input)) {
+		} else if (!global.utils.not_null(input)) {
 			return '0';
 		} else {
 			return this.correction(this.process(this.format_exponent(input)) + this.prefix[this.index]);

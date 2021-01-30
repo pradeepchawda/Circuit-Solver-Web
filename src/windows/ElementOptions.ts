@@ -99,7 +99,7 @@ class ElementOptions {
 		this.line_paint_alt = new Paint();
 		this.line_paint_alt.set_paint_style(PAINT.style.STROKE);
 		this.line_paint_alt.set_paint_cap(PAINT.cap.ROUND);
-		this.line_paint_alt.set_paint_join(PAINT.cap.ROUND);
+		this.line_paint_alt.set_paint_join(PAINT.join.ROUND);
 		this.line_paint_alt.set_stroke_width(temp_stroke_width);
 		this.line_paint_alt.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.line_paint_alt.set_text_size(global.variables.canvas_text_size_4);
@@ -109,7 +109,7 @@ class ElementOptions {
 		this.meter_line_paint = new Paint();
 		this.meter_line_paint.set_paint_style(PAINT.style.STROKE);
 		this.meter_line_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.meter_line_paint.set_paint_join(PAINT.cap.ROUND);
+		this.meter_line_paint.set_paint_join(PAINT.join.ROUND);
 		this.meter_line_paint.set_stroke_width(temp_stroke_width);
 		this.meter_line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.meter_line_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -322,8 +322,8 @@ class ElementOptions {
 		this.map_options();
 	}
 	update(): void {
-		if (global.selected) {
-			switch (global.selected_type) {
+		if (global.variables.selected) {
+			switch (global.variables.selected_type) {
 				/* #INSERT_GENERATE_ELEMENT_OPTIONS_UPDATE# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 				case global.ELEMENT_TYPES.TYPE_RESISTOR:
@@ -543,74 +543,74 @@ class ElementOptions {
 	}
 	mouse_down(): void {
 		if (
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox &&
-			!global.flag_graph
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox &&
+			!global.flags.flag_graph
 		) {
-			if (global.selected) {
+			if (global.variables.selected) {
 				if (this.opts['c0'] !== this.NO_ICON) {
-					if (this.option_0.contains_xywh(global.mouse_x, global.mouse_y, this.option_0.get_width() * 1.25, this.option_0.get_height() * 1.25)) {
-						global.component_touched = true;
+					if (this.option_0.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.option_0.get_width() * 1.25, this.option_0.get_height() * 1.25)) {
+						global.variables.component_touched = true;
 					}
 				}
 				if (this.opts['c1'] !== this.NO_ICON) {
-					if (this.option_1.contains_xywh(global.mouse_x, global.mouse_y, this.option_1.get_width() * 1.25, this.option_1.get_height() * 1.25)) {
-						global.component_touched = true;
+					if (this.option_1.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.option_1.get_width() * 1.25, this.option_1.get_height() * 1.25)) {
+						global.variables.component_touched = true;
 					}
 				}
 				if (this.opts['c2'] !== this.NO_ICON) {
-					if (this.option_2.contains_xywh(global.mouse_x, global.mouse_y, this.option_2.get_width() * 1.25, this.option_2.get_height() * 1.25)) {
-						global.component_touched = true;
+					if (this.option_2.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.option_2.get_width() * 1.25, this.option_2.get_height() * 1.25)) {
+						global.variables.component_touched = true;
 					}
 				}
 				if (this.opts['c3'] !== this.NO_ICON) {
-					if (this.option_3.contains_xywh(global.mouse_x, global.mouse_y, this.option_3.get_width() * 1.25, this.option_3.get_height() * 1.25)) {
-						global.component_touched = true;
+					if (this.option_3.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.option_3.get_width() * 1.25, this.option_3.get_height() * 1.25)) {
+						global.variables.component_touched = true;
 					}
 				}
-				this.first_touch_x = global.mouse_x;
-				this.first_touch_y = global.mouse_y;
+				this.first_touch_x = global.variables.mouse_x;
+				this.first_touch_y = global.variables.mouse_y;
 			}
 		}
 	}
 	mouse_move(): void {}
 	mouse_up(): void {
-		if (!global.mouse_keyboard_lock) {
+		if (!global.variables.mouse_keyboard_lock) {
 			if (
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_zoom &&
-				!global.flag_element_options &&
-				!global.flag_element_options_edit &&
-				!global.flag_select_element &&
-				!global.flag_select_timestep &&
-				!global.flag_select_settings &&
-				!global.flag_remove_all &&
-				!global.flag_menu_element_toolbox &&
-				!global.flag_graph
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_select_element &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_remove_all &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.flag_graph
 			) {
-				if (global.selected) {
-					if (this.option_0.contains_xy(global.mouse_x, global.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
+				if (global.variables.selected) {
+					if (this.option_0.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_0.contains_xy(this.first_touch_x, this.first_touch_y)) {
 						this.handle_options('c0');
 						global.flags.signal_build_element = true;
 					}
-					if (this.option_1.contains_xy(global.mouse_x, global.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					if (this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
 						this.handle_options('c1');
 						global.flags.signal_build_element = true;
 					}
-					if (this.option_2.contains_xy(global.mouse_x, global.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					if (this.option_2.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_2.contains_xy(this.first_touch_x, this.first_touch_y)) {
 						this.handle_options('c2');
 						global.flags.signal_build_element = true;
 					}
-					if (this.option_3.contains_xy(global.mouse_x, global.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
+					if (this.option_3.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_3.contains_xy(this.first_touch_x, this.first_touch_y)) {
 						this.handle_options('c3');
 						global.flags.signal_build_element = true;
 					}
@@ -620,24 +620,24 @@ class ElementOptions {
 	}
 	handle_options(key: string): void {
 		if (this.opts[key] === this.EDIT_ICON) {
-			menu_bar.handle_element_options_flag(!global.flag_element_options);
+			menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
 		} else if (this.opts[key] === this.EYE_ICON) {
 			this.handle_eye_option();
-		} else if (this.opts[key] === this.TRASH_ICON && !global.flag_simulating) {
+		} else if (this.opts[key] === this.TRASH_ICON && !global.flags.flag_simulating) {
 			this.handle_trash_option();
-		} else if (this.opts[key] === this.FLIP_ICON && !global.flag_simulating) {
+		} else if (this.opts[key] === this.FLIP_ICON && !global.flags.flag_simulating) {
 			this.handle_flip_option();
-		} else if (this.opts[key] === this.ROTATE_ICON && !global.flag_simulating) {
+		} else if (this.opts[key] === this.ROTATE_ICON && !global.flags.flag_simulating) {
 			this.handle_rotate_option();
-		} else if (this.opts[key] === this.WIRE_ICON && !global.flag_simulating) {
+		} else if (this.opts[key] === this.WIRE_ICON && !global.flags.flag_simulating) {
 			this.handle_wire_option();
 		}
-		global.component_touched = true;
+		global.variables.component_touched = true;
 	}
 	handle_wire_option(): void {
 		let index: number = -1;
-		if (global.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
-			index = engine_functions.get_wire(global.selected_id);
+		if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
+			index = engine_functions.get_wire(global.variables.selected_id);
 			if (index > -1 && index < wires.length) {
 				wires[index].increment_style();
 			}
@@ -647,416 +647,416 @@ class ElementOptions {
 		let index: number = -1;
 		/* #INSERT_GENERATE_ELEMENT_OPTIONS_FLIP# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		if (global.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
-			index = engine_functions.get_resistor(global.selected_id);
+		if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+			index = engine_functions.get_resistor(global.variables.selected_id);
 
 			if (index < resistors.length) {
 				resistors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
-			index = engine_functions.get_capacitor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+			index = engine_functions.get_capacitor(global.variables.selected_id);
 
 			if (index < capacitors.length) {
 				capacitors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
-			index = engine_functions.get_inductor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+			index = engine_functions.get_inductor(global.variables.selected_id);
 
 			if (index < inductors.length) {
 				inductors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
-			index = engine_functions.get_ground(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
+			index = engine_functions.get_ground(global.variables.selected_id);
 
 			if (index < grounds.length) {
 				grounds[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
-			index = engine_functions.get_dcsource(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+			index = engine_functions.get_dcsource(global.variables.selected_id);
 
 			if (index < dcsources.length) {
 				dcsources[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
-			index = engine_functions.get_dccurrent(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+			index = engine_functions.get_dccurrent(global.variables.selected_id);
 
 			if (index < dccurrents.length) {
 				dccurrents[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
-			index = engine_functions.get_acsource(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+			index = engine_functions.get_acsource(global.variables.selected_id);
 
 			if (index < acsources.length) {
 				acsources[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
-			index = engine_functions.get_accurrent(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+			index = engine_functions.get_accurrent(global.variables.selected_id);
 
 			if (index < accurrents.length) {
 				accurrents[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
-			index = engine_functions.get_squarewave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+			index = engine_functions.get_squarewave(global.variables.selected_id);
 
 			if (index < squarewaves.length) {
 				squarewaves[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
-			index = engine_functions.get_sawwave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
+			index = engine_functions.get_sawwave(global.variables.selected_id);
 
 			if (index < sawwaves.length) {
 				sawwaves[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
-			index = engine_functions.get_trianglewave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
+			index = engine_functions.get_trianglewave(global.variables.selected_id);
 
 			if (index < trianglewaves.length) {
 				trianglewaves[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
-			index = engine_functions.get_constant(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+			index = engine_functions.get_constant(global.variables.selected_id);
 
 			if (index < constants.length) {
 				constants[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
-			index = engine_functions.get_wire(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
+			index = engine_functions.get_wire(global.variables.selected_id);
 
 			if (index < wires.length) {
 				wires[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
-			index = engine_functions.get_net(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
+			index = engine_functions.get_net(global.variables.selected_id);
 
 			if (index < nets.length) {
 				nets[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
-			index = engine_functions.get_note(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
+			index = engine_functions.get_note(global.variables.selected_id);
 
 			if (index < notes.length) {
 				notes[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
-			index = engine_functions.get_rail(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
+			index = engine_functions.get_rail(global.variables.selected_id);
 
 			if (index < rails.length) {
 				rails[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
-			index = engine_functions.get_voltmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+			index = engine_functions.get_voltmeter(global.variables.selected_id);
 
 			if (index < voltmeters.length) {
 				voltmeters[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
-			index = engine_functions.get_ohmmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+			index = engine_functions.get_ohmmeter(global.variables.selected_id);
 
 			if (index < ohmmeters.length) {
 				ohmmeters[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
-			index = engine_functions.get_ammeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
+			index = engine_functions.get_ammeter(global.variables.selected_id);
 
 			if (index < ammeters.length) {
 				ammeters[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
-			index = engine_functions.get_wattmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+			index = engine_functions.get_wattmeter(global.variables.selected_id);
 
 			if (index < wattmeters.length) {
 				wattmeters[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
-			index = engine_functions.get_fuse(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
+			index = engine_functions.get_fuse(global.variables.selected_id);
 
 			if (index < fuses.length) {
 				fuses[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
-			index = engine_functions.get_spst(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
+			index = engine_functions.get_spst(global.variables.selected_id);
 
 			if (index < spsts.length) {
 				spsts[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
-			index = engine_functions.get_spdt(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
+			index = engine_functions.get_spdt(global.variables.selected_id);
 
 			if (index < spdts.length) {
 				spdts[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
-			index = engine_functions.get_not(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
+			index = engine_functions.get_not(global.variables.selected_id);
 
 			if (index < nots.length) {
 				nots[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
-			index = engine_functions.get_diode(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
+			index = engine_functions.get_diode(global.variables.selected_id);
 
 			if (index < diodes.length) {
 				diodes[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
-			index = engine_functions.get_led(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
+			index = engine_functions.get_led(global.variables.selected_id);
 
 			if (index < leds.length) {
 				leds[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
-			index = engine_functions.get_zener(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
+			index = engine_functions.get_zener(global.variables.selected_id);
 
 			if (index < zeners.length) {
 				zeners[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
-			index = engine_functions.get_potentiometer(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+			index = engine_functions.get_potentiometer(global.variables.selected_id);
 
 			if (index < potentiometers.length) {
 				potentiometers[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
-			index = engine_functions.get_and(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
+			index = engine_functions.get_and(global.variables.selected_id);
 
 			if (index < ands.length) {
 				ands[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
-			index = engine_functions.get_or(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
+			index = engine_functions.get_or(global.variables.selected_id);
 
 			if (index < ors.length) {
 				ors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
-			index = engine_functions.get_nand(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
+			index = engine_functions.get_nand(global.variables.selected_id);
 
 			if (index < nands.length) {
 				nands[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
-			index = engine_functions.get_nor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
+			index = engine_functions.get_nor(global.variables.selected_id);
 
 			if (index < nors.length) {
 				nors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
-			index = engine_functions.get_xor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
+			index = engine_functions.get_xor(global.variables.selected_id);
 
 			if (index < xors.length) {
 				xors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
-			index = engine_functions.get_xnor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
+			index = engine_functions.get_xnor(global.variables.selected_id);
 
 			if (index < xnors.length) {
 				xnors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
-			index = engine_functions.get_dff(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
+			index = engine_functions.get_dff(global.variables.selected_id);
 
 			if (index < dffs.length) {
 				dffs[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
-			index = engine_functions.get_vsat(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
+			index = engine_functions.get_vsat(global.variables.selected_id);
 
 			if (index < vsats.length) {
 				vsats[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
-			index = engine_functions.get_adder(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
+			index = engine_functions.get_adder(global.variables.selected_id);
 
 			if (index < adders.length) {
 				adders[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
-			index = engine_functions.get_subtractor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
+			index = engine_functions.get_subtractor(global.variables.selected_id);
 
 			if (index < subtractors.length) {
 				subtractors[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
-			index = engine_functions.get_multiplier(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
+			index = engine_functions.get_multiplier(global.variables.selected_id);
 
 			if (index < multipliers.length) {
 				multipliers[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
-			index = engine_functions.get_divider(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
+			index = engine_functions.get_divider(global.variables.selected_id);
 
 			if (index < dividers.length) {
 				dividers[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
-			index = engine_functions.get_gain(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
+			index = engine_functions.get_gain(global.variables.selected_id);
 
 			if (index < gains.length) {
 				gains[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
-			index = engine_functions.get_absval(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
+			index = engine_functions.get_absval(global.variables.selected_id);
 
 			if (index < absvals.length) {
 				absvals[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
-			index = engine_functions.get_vcsw(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
+			index = engine_functions.get_vcsw(global.variables.selected_id);
 
 			if (index < vcsws.length) {
 				vcsws[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
-			index = engine_functions.get_vcvs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
+			index = engine_functions.get_vcvs(global.variables.selected_id);
 
 			if (index < vcvss.length) {
 				vcvss[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
-			index = engine_functions.get_vccs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
+			index = engine_functions.get_vccs(global.variables.selected_id);
 
 			if (index < vccss.length) {
 				vccss[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
-			index = engine_functions.get_cccs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
+			index = engine_functions.get_cccs(global.variables.selected_id);
 
 			if (index < cccss.length) {
 				cccss[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
-			index = engine_functions.get_ccvs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
+			index = engine_functions.get_ccvs(global.variables.selected_id);
 
 			if (index < ccvss.length) {
 				ccvss[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
-			index = engine_functions.get_opamp(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
+			index = engine_functions.get_opamp(global.variables.selected_id);
 
 			if (index < opamps.length) {
 				opamps[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
-			index = engine_functions.get_nmosfet(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
+			index = engine_functions.get_nmosfet(global.variables.selected_id);
 
 			if (index < nmosfets.length) {
 				nmosfets[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
-			index = engine_functions.get_pmosfet(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
+			index = engine_functions.get_pmosfet(global.variables.selected_id);
 
 			if (index < pmosfets.length) {
 				pmosfets[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
-			index = engine_functions.get_npn(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
+			index = engine_functions.get_npn(global.variables.selected_id);
 
 			if (index < npns.length) {
 				npns[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
-			index = engine_functions.get_pnp(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
+			index = engine_functions.get_pnp(global.variables.selected_id);
 
 			if (index < pnps.length) {
 				pnps[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
-			index = engine_functions.get_adc(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
+			index = engine_functions.get_adc(global.variables.selected_id);
 
 			if (index < adcs.length) {
 				adcs[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
-			index = engine_functions.get_dac(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
+			index = engine_functions.get_dac(global.variables.selected_id);
 
 			if (index < dacs.length) {
 				dacs[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
-			index = engine_functions.get_samplers(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
+			index = engine_functions.get_samplers(global.variables.selected_id);
 
 			if (index < sandhs.length) {
 				sandhs[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
-			index = engine_functions.get_pwm(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
+			index = engine_functions.get_pwm(global.variables.selected_id);
 
 			if (index < pwms.length) {
 				pwms[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
-			index = engine_functions.get_integrator(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+			index = engine_functions.get_integrator(global.variables.selected_id);
 
 			if (index < integrators.length) {
 				integrators[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
-			index = engine_functions.get_differentiator(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+			index = engine_functions.get_differentiator(global.variables.selected_id);
 
 			if (index < differentiators.length) {
 				differentiators[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
-			index = engine_functions.get_lowpass(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
+			index = engine_functions.get_lowpass(global.variables.selected_id);
 
 			if (index < lowpasses.length) {
 				lowpasses[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
-			index = engine_functions.get_highpass(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
+			index = engine_functions.get_highpass(global.variables.selected_id);
 
 			if (index < highpasses.length) {
 				highpasses[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
-			index = engine_functions.get_relay(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
+			index = engine_functions.get_relay(global.variables.selected_id);
 
 			if (index < relays.length) {
 				relays[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
-			index = engine_functions.get_pid(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
+			index = engine_functions.get_pid(global.variables.selected_id);
 
 			if (index < pids.length) {
 				pids[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
-			index = engine_functions.get_lut(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
+			index = engine_functions.get_lut(global.variables.selected_id);
 
 			if (index < luts.length) {
 				luts[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
-			index = engine_functions.get_vcr(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
+			index = engine_functions.get_vcr(global.variables.selected_id);
 
 			if (index < vcrs.length) {
 				vcrs[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
-			index = engine_functions.get_vcca(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
+			index = engine_functions.get_vcca(global.variables.selected_id);
 
 			if (index < vccas.length) {
 				vccas[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
-			index = engine_functions.get_vcl(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
+			index = engine_functions.get_vcl(global.variables.selected_id);
 
 			if (index < vcls.length) {
 				vcls[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
-			index = engine_functions.get_grt(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
+			index = engine_functions.get_grt(global.variables.selected_id);
 
 			if (index < grts.length) {
 				grts[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
-			index = engine_functions.get_tptz(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
+			index = engine_functions.get_tptz(global.variables.selected_id);
 
 			if (index < tptzs.length) {
 				tptzs[index].increment_flip();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
-			index = engine_functions.get_transformer(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
+			index = engine_functions.get_transformer(global.variables.selected_id);
 
 			if (index < transformers.length) {
 				transformers[index].increment_flip();
@@ -1068,8 +1068,8 @@ class ElementOptions {
 		let index: number = -1;
 		/* #INSERT_GENERATE_ELEMENT_OPTIONS_SCOPE_ENTRY# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		if (global.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
-			index = engine_functions.get_voltmeter(global.selected_id);
+		if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+			index = engine_functions.get_voltmeter(global.variables.selected_id);
 
 			if (index < voltmeters.length) {
 				if (!scope_manager.find_entry(voltmeters[index].elm.id, voltmeters[index].elm.type)) {
@@ -1080,8 +1080,8 @@ class ElementOptions {
 					global.variables.history['packet'].push(engine_functions.history_snapshot());
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
-			index = engine_functions.get_ohmmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+			index = engine_functions.get_ohmmeter(global.variables.selected_id);
 
 			if (index < ohmmeters.length) {
 				if (!scope_manager.find_entry(ohmmeters[index].elm.id, ohmmeters[index].elm.type)) {
@@ -1092,8 +1092,8 @@ class ElementOptions {
 					global.variables.history['packet'].push(engine_functions.history_snapshot());
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
-			index = engine_functions.get_ammeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
+			index = engine_functions.get_ammeter(global.variables.selected_id);
 
 			if (index < ammeters.length) {
 				if (!scope_manager.find_entry(ammeters[index].elm.id, ammeters[index].elm.type)) {
@@ -1104,8 +1104,8 @@ class ElementOptions {
 					global.variables.history['packet'].push(engine_functions.history_snapshot());
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
-			index = engine_functions.get_wattmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+			index = engine_functions.get_wattmeter(global.variables.selected_id);
 
 			if (index < wattmeters.length) {
 				if (!scope_manager.find_entry(wattmeters[index].elm.id, wattmeters[index].elm.type)) {
@@ -1123,410 +1123,410 @@ class ElementOptions {
 		let index: number = -1;
 		/* #INSERT_GENERATE_ELEMENT_OPTIONS_ROTATE# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		if (global.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
-			index = engine_functions.get_resistor(global.selected_id);
+		if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+			index = engine_functions.get_resistor(global.variables.selected_id);
 
 			if (index < resistors.length) {
 				resistors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
-			index = engine_functions.get_capacitor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+			index = engine_functions.get_capacitor(global.variables.selected_id);
 
 			if (index < capacitors.length) {
 				capacitors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
-			index = engine_functions.get_inductor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+			index = engine_functions.get_inductor(global.variables.selected_id);
 
 			if (index < inductors.length) {
 				inductors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
-			index = engine_functions.get_ground(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
+			index = engine_functions.get_ground(global.variables.selected_id);
 
 			if (index < grounds.length) {
 				grounds[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
-			index = engine_functions.get_dcsource(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+			index = engine_functions.get_dcsource(global.variables.selected_id);
 
 			if (index < dcsources.length) {
 				dcsources[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
-			index = engine_functions.get_dccurrent(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+			index = engine_functions.get_dccurrent(global.variables.selected_id);
 
 			if (index < dccurrents.length) {
 				dccurrents[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
-			index = engine_functions.get_acsource(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+			index = engine_functions.get_acsource(global.variables.selected_id);
 
 			if (index < acsources.length) {
 				acsources[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
-			index = engine_functions.get_accurrent(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+			index = engine_functions.get_accurrent(global.variables.selected_id);
 
 			if (index < accurrents.length) {
 				accurrents[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
-			index = engine_functions.get_squarewave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+			index = engine_functions.get_squarewave(global.variables.selected_id);
 
 			if (index < squarewaves.length) {
 				squarewaves[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
-			index = engine_functions.get_sawwave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
+			index = engine_functions.get_sawwave(global.variables.selected_id);
 
 			if (index < sawwaves.length) {
 				sawwaves[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
-			index = engine_functions.get_trianglewave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
+			index = engine_functions.get_trianglewave(global.variables.selected_id);
 
 			if (index < trianglewaves.length) {
 				trianglewaves[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
-			index = engine_functions.get_constant(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+			index = engine_functions.get_constant(global.variables.selected_id);
 
 			if (index < constants.length) {
 				constants[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
-			index = engine_functions.get_net(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
+			index = engine_functions.get_net(global.variables.selected_id);
 
 			if (index < nets.length) {
 				nets[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
-			index = engine_functions.get_note(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
+			index = engine_functions.get_note(global.variables.selected_id);
 
 			if (index < notes.length) {
 				notes[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
-			index = engine_functions.get_rail(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
+			index = engine_functions.get_rail(global.variables.selected_id);
 
 			if (index < rails.length) {
 				rails[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
-			index = engine_functions.get_voltmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+			index = engine_functions.get_voltmeter(global.variables.selected_id);
 
 			if (index < voltmeters.length) {
 				voltmeters[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
-			index = engine_functions.get_ohmmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+			index = engine_functions.get_ohmmeter(global.variables.selected_id);
 
 			if (index < ohmmeters.length) {
 				ohmmeters[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
-			index = engine_functions.get_ammeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
+			index = engine_functions.get_ammeter(global.variables.selected_id);
 
 			if (index < ammeters.length) {
 				ammeters[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
-			index = engine_functions.get_wattmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+			index = engine_functions.get_wattmeter(global.variables.selected_id);
 
 			if (index < wattmeters.length) {
 				wattmeters[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
-			index = engine_functions.get_fuse(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
+			index = engine_functions.get_fuse(global.variables.selected_id);
 
 			if (index < fuses.length) {
 				fuses[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
-			index = engine_functions.get_spst(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
+			index = engine_functions.get_spst(global.variables.selected_id);
 
 			if (index < spsts.length) {
 				spsts[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
-			index = engine_functions.get_spdt(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
+			index = engine_functions.get_spdt(global.variables.selected_id);
 
 			if (index < spdts.length) {
 				spdts[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
-			index = engine_functions.get_not(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
+			index = engine_functions.get_not(global.variables.selected_id);
 
 			if (index < nots.length) {
 				nots[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
-			index = engine_functions.get_diode(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
+			index = engine_functions.get_diode(global.variables.selected_id);
 
 			if (index < diodes.length) {
 				diodes[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
-			index = engine_functions.get_led(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
+			index = engine_functions.get_led(global.variables.selected_id);
 
 			if (index < leds.length) {
 				leds[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
-			index = engine_functions.get_zener(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
+			index = engine_functions.get_zener(global.variables.selected_id);
 
 			if (index < zeners.length) {
 				zeners[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
-			index = engine_functions.get_potentiometer(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+			index = engine_functions.get_potentiometer(global.variables.selected_id);
 
 			if (index < potentiometers.length) {
 				potentiometers[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
-			index = engine_functions.get_and(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
+			index = engine_functions.get_and(global.variables.selected_id);
 
 			if (index < ands.length) {
 				ands[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
-			index = engine_functions.get_or(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
+			index = engine_functions.get_or(global.variables.selected_id);
 
 			if (index < ors.length) {
 				ors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
-			index = engine_functions.get_nand(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
+			index = engine_functions.get_nand(global.variables.selected_id);
 
 			if (index < nands.length) {
 				nands[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
-			index = engine_functions.get_nor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
+			index = engine_functions.get_nor(global.variables.selected_id);
 
 			if (index < nors.length) {
 				nors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
-			index = engine_functions.get_xor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
+			index = engine_functions.get_xor(global.variables.selected_id);
 
 			if (index < xors.length) {
 				xors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
-			index = engine_functions.get_xnor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
+			index = engine_functions.get_xnor(global.variables.selected_id);
 
 			if (index < xnors.length) {
 				xnors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
-			index = engine_functions.get_dff(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
+			index = engine_functions.get_dff(global.variables.selected_id);
 
 			if (index < dffs.length) {
 				dffs[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
-			index = engine_functions.get_vsat(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
+			index = engine_functions.get_vsat(global.variables.selected_id);
 
 			if (index < vsats.length) {
 				vsats[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
-			index = engine_functions.get_adder(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
+			index = engine_functions.get_adder(global.variables.selected_id);
 
 			if (index < adders.length) {
 				adders[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
-			index = engine_functions.get_subtractor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
+			index = engine_functions.get_subtractor(global.variables.selected_id);
 
 			if (index < subtractors.length) {
 				subtractors[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
-			index = engine_functions.get_multiplier(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
+			index = engine_functions.get_multiplier(global.variables.selected_id);
 
 			if (index < multipliers.length) {
 				multipliers[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
-			index = engine_functions.get_divider(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
+			index = engine_functions.get_divider(global.variables.selected_id);
 
 			if (index < dividers.length) {
 				dividers[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
-			index = engine_functions.get_gain(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
+			index = engine_functions.get_gain(global.variables.selected_id);
 
 			if (index < gains.length) {
 				gains[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
-			index = engine_functions.get_absval(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
+			index = engine_functions.get_absval(global.variables.selected_id);
 
 			if (index < absvals.length) {
 				absvals[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
-			index = engine_functions.get_vcsw(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
+			index = engine_functions.get_vcsw(global.variables.selected_id);
 
 			if (index < vcsws.length) {
 				vcsws[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
-			index = engine_functions.get_vcvs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
+			index = engine_functions.get_vcvs(global.variables.selected_id);
 
 			if (index < vcvss.length) {
 				vcvss[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
-			index = engine_functions.get_vccs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
+			index = engine_functions.get_vccs(global.variables.selected_id);
 
 			if (index < vccss.length) {
 				vccss[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
-			index = engine_functions.get_cccs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
+			index = engine_functions.get_cccs(global.variables.selected_id);
 
 			if (index < cccss.length) {
 				cccss[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
-			index = engine_functions.get_ccvs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
+			index = engine_functions.get_ccvs(global.variables.selected_id);
 
 			if (index < ccvss.length) {
 				ccvss[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
-			index = engine_functions.get_opamp(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
+			index = engine_functions.get_opamp(global.variables.selected_id);
 
 			if (index < opamps.length) {
 				opamps[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
-			index = engine_functions.get_nmosfet(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
+			index = engine_functions.get_nmosfet(global.variables.selected_id);
 
 			if (index < nmosfets.length) {
 				nmosfets[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
-			index = engine_functions.get_pmosfet(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
+			index = engine_functions.get_pmosfet(global.variables.selected_id);
 
 			if (index < pmosfets.length) {
 				pmosfets[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
-			index = engine_functions.get_npn(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
+			index = engine_functions.get_npn(global.variables.selected_id);
 
 			if (index < npns.length) {
 				npns[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
-			index = engine_functions.get_pnp(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
+			index = engine_functions.get_pnp(global.variables.selected_id);
 
 			if (index < pnps.length) {
 				pnps[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
-			index = engine_functions.get_adc(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
+			index = engine_functions.get_adc(global.variables.selected_id);
 
 			if (index < adcs.length) {
 				adcs[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
-			index = engine_functions.get_dac(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
+			index = engine_functions.get_dac(global.variables.selected_id);
 
 			if (index < dacs.length) {
 				dacs[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
-			index = engine_functions.get_samplers(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
+			index = engine_functions.get_samplers(global.variables.selected_id);
 
 			if (index < sandhs.length) {
 				sandhs[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
-			index = engine_functions.get_pwm(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
+			index = engine_functions.get_pwm(global.variables.selected_id);
 
 			if (index < pwms.length) {
 				pwms[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
-			index = engine_functions.get_integrator(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+			index = engine_functions.get_integrator(global.variables.selected_id);
 
 			if (index < integrators.length) {
 				integrators[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
-			index = engine_functions.get_differentiator(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+			index = engine_functions.get_differentiator(global.variables.selected_id);
 
 			if (index < differentiators.length) {
 				differentiators[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
-			index = engine_functions.get_lowpass(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
+			index = engine_functions.get_lowpass(global.variables.selected_id);
 
 			if (index < lowpasses.length) {
 				lowpasses[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
-			index = engine_functions.get_highpass(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
+			index = engine_functions.get_highpass(global.variables.selected_id);
 
 			if (index < highpasses.length) {
 				highpasses[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
-			index = engine_functions.get_relay(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
+			index = engine_functions.get_relay(global.variables.selected_id);
 
 			if (index < relays.length) {
 				relays[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
-			index = engine_functions.get_pid(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
+			index = engine_functions.get_pid(global.variables.selected_id);
 
 			if (index < pids.length) {
 				pids[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
-			index = engine_functions.get_lut(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
+			index = engine_functions.get_lut(global.variables.selected_id);
 
 			if (index < luts.length) {
 				luts[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
-			index = engine_functions.get_vcr(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
+			index = engine_functions.get_vcr(global.variables.selected_id);
 
 			if (index < vcrs.length) {
 				vcrs[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
-			index = engine_functions.get_vcca(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
+			index = engine_functions.get_vcca(global.variables.selected_id);
 
 			if (index < vccas.length) {
 				vccas[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
-			index = engine_functions.get_vcl(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
+			index = engine_functions.get_vcl(global.variables.selected_id);
 
 			if (index < vcls.length) {
 				vcls[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
-			index = engine_functions.get_grt(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
+			index = engine_functions.get_grt(global.variables.selected_id);
 
 			if (index < grts.length) {
 				grts[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
-			index = engine_functions.get_tptz(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
+			index = engine_functions.get_tptz(global.variables.selected_id);
 
 			if (index < tptzs.length) {
 				tptzs[index].increment_rotation();
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
-			index = engine_functions.get_transformer(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
+			index = engine_functions.get_transformer(global.variables.selected_id);
 
 			if (index < transformers.length) {
 				transformers[index].increment_rotation();
@@ -1538,484 +1538,484 @@ class ElementOptions {
 		let index: number = -1;
 		/* #INSERT_GENERATE_ELEMENT_OPTIONS_REMOVE# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		if (global.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
-			index = engine_functions.get_resistor(global.selected_id);
+		if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+			index = engine_functions.get_resistor(global.variables.selected_id);
 
 			if (index < resistors.length) {
 				engine_functions.remove_resistor(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
-			index = engine_functions.get_capacitor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+			index = engine_functions.get_capacitor(global.variables.selected_id);
 
 			if (index < capacitors.length) {
 				engine_functions.remove_capacitor(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
-			index = engine_functions.get_inductor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+			index = engine_functions.get_inductor(global.variables.selected_id);
 
 			if (index < inductors.length) {
 				engine_functions.remove_inductor(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
-			index = engine_functions.get_ground(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
+			index = engine_functions.get_ground(global.variables.selected_id);
 
 			if (index < grounds.length) {
 				engine_functions.remove_ground(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
-			index = engine_functions.get_dcsource(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+			index = engine_functions.get_dcsource(global.variables.selected_id);
 
 			if (index < dcsources.length) {
 				engine_functions.remove_dcsource(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
-			index = engine_functions.get_dccurrent(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+			index = engine_functions.get_dccurrent(global.variables.selected_id);
 
 			if (index < dccurrents.length) {
 				engine_functions.remove_dccurrent(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
-			index = engine_functions.get_acsource(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+			index = engine_functions.get_acsource(global.variables.selected_id);
 
 			if (index < acsources.length) {
 				engine_functions.remove_acsource(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
-			index = engine_functions.get_accurrent(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+			index = engine_functions.get_accurrent(global.variables.selected_id);
 
 			if (index < accurrents.length) {
 				engine_functions.remove_accurrent(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
-			index = engine_functions.get_squarewave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+			index = engine_functions.get_squarewave(global.variables.selected_id);
 
 			if (index < squarewaves.length) {
 				engine_functions.remove_squarewave(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
-			index = engine_functions.get_sawwave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
+			index = engine_functions.get_sawwave(global.variables.selected_id);
 
 			if (index < sawwaves.length) {
 				engine_functions.remove_sawwave(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
-			index = engine_functions.get_trianglewave(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
+			index = engine_functions.get_trianglewave(global.variables.selected_id);
 
 			if (index < trianglewaves.length) {
 				engine_functions.remove_trianglewave(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
-			index = engine_functions.get_constant(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+			index = engine_functions.get_constant(global.variables.selected_id);
 
 			if (index < constants.length) {
 				engine_functions.remove_constant(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
-			index = engine_functions.get_wire(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
+			index = engine_functions.get_wire(global.variables.selected_id);
 
 			if (index < wires.length) {
 				engine_functions.remove_wire(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
-			index = engine_functions.get_net(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
+			index = engine_functions.get_net(global.variables.selected_id);
 
 			if (index < nets.length) {
 				engine_functions.remove_net(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
-			index = engine_functions.get_note(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
+			index = engine_functions.get_note(global.variables.selected_id);
 
 			if (index < notes.length) {
 				engine_functions.remove_note(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
-			index = engine_functions.get_rail(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
+			index = engine_functions.get_rail(global.variables.selected_id);
 
 			if (index < rails.length) {
 				engine_functions.remove_rail(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
-			index = engine_functions.get_voltmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+			index = engine_functions.get_voltmeter(global.variables.selected_id);
 
 			if (index < voltmeters.length) {
 				engine_functions.remove_voltmeter(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
-			index = engine_functions.get_ohmmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+			index = engine_functions.get_ohmmeter(global.variables.selected_id);
 
 			if (index < ohmmeters.length) {
 				engine_functions.remove_ohmmeter(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
-			index = engine_functions.get_ammeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
+			index = engine_functions.get_ammeter(global.variables.selected_id);
 
 			if (index < ammeters.length) {
 				engine_functions.remove_ammeter(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
-			index = engine_functions.get_wattmeter(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+			index = engine_functions.get_wattmeter(global.variables.selected_id);
 
 			if (index < wattmeters.length) {
 				engine_functions.remove_wattmeter(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
-			index = engine_functions.get_fuse(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
+			index = engine_functions.get_fuse(global.variables.selected_id);
 
 			if (index < fuses.length) {
 				engine_functions.remove_fuse(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
-			index = engine_functions.get_spst(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
+			index = engine_functions.get_spst(global.variables.selected_id);
 
 			if (index < spsts.length) {
 				engine_functions.remove_spst(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
-			index = engine_functions.get_spdt(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
+			index = engine_functions.get_spdt(global.variables.selected_id);
 
 			if (index < spdts.length) {
 				engine_functions.remove_spdt(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
-			index = engine_functions.get_not(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
+			index = engine_functions.get_not(global.variables.selected_id);
 
 			if (index < nots.length) {
 				engine_functions.remove_not(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
-			index = engine_functions.get_diode(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
+			index = engine_functions.get_diode(global.variables.selected_id);
 
 			if (index < diodes.length) {
 				engine_functions.remove_diode(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
-			index = engine_functions.get_led(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
+			index = engine_functions.get_led(global.variables.selected_id);
 
 			if (index < leds.length) {
 				engine_functions.remove_led(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
-			index = engine_functions.get_zener(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
+			index = engine_functions.get_zener(global.variables.selected_id);
 
 			if (index < zeners.length) {
 				engine_functions.remove_zener(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
-			index = engine_functions.get_potentiometer(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+			index = engine_functions.get_potentiometer(global.variables.selected_id);
 
 			if (index < potentiometers.length) {
 				engine_functions.remove_potentiometer(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
-			index = engine_functions.get_and(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
+			index = engine_functions.get_and(global.variables.selected_id);
 
 			if (index < ands.length) {
 				engine_functions.remove_and(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
-			index = engine_functions.get_or(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
+			index = engine_functions.get_or(global.variables.selected_id);
 
 			if (index < ors.length) {
 				engine_functions.remove_or(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
-			index = engine_functions.get_nand(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
+			index = engine_functions.get_nand(global.variables.selected_id);
 
 			if (index < nands.length) {
 				engine_functions.remove_nand(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
-			index = engine_functions.get_nor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
+			index = engine_functions.get_nor(global.variables.selected_id);
 
 			if (index < nors.length) {
 				engine_functions.remove_nor(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
-			index = engine_functions.get_xor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
+			index = engine_functions.get_xor(global.variables.selected_id);
 
 			if (index < xors.length) {
 				engine_functions.remove_xor(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
-			index = engine_functions.get_xnor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
+			index = engine_functions.get_xnor(global.variables.selected_id);
 
 			if (index < xnors.length) {
 				engine_functions.remove_xnor(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
-			index = engine_functions.get_dff(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
+			index = engine_functions.get_dff(global.variables.selected_id);
 
 			if (index < dffs.length) {
 				engine_functions.remove_dff(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
-			index = engine_functions.get_vsat(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
+			index = engine_functions.get_vsat(global.variables.selected_id);
 
 			if (index < vsats.length) {
 				engine_functions.remove_vsat(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
-			index = engine_functions.get_adder(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
+			index = engine_functions.get_adder(global.variables.selected_id);
 
 			if (index < adders.length) {
 				engine_functions.remove_adder(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
-			index = engine_functions.get_subtractor(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
+			index = engine_functions.get_subtractor(global.variables.selected_id);
 
 			if (index < subtractors.length) {
 				engine_functions.remove_subtractor(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
-			index = engine_functions.get_multiplier(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
+			index = engine_functions.get_multiplier(global.variables.selected_id);
 
 			if (index < multipliers.length) {
 				engine_functions.remove_multiplier(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
-			index = engine_functions.get_divider(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
+			index = engine_functions.get_divider(global.variables.selected_id);
 
 			if (index < dividers.length) {
 				engine_functions.remove_divider(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
-			index = engine_functions.get_gain(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
+			index = engine_functions.get_gain(global.variables.selected_id);
 
 			if (index < gains.length) {
 				engine_functions.remove_gain(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
-			index = engine_functions.get_absval(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
+			index = engine_functions.get_absval(global.variables.selected_id);
 
 			if (index < absvals.length) {
 				engine_functions.remove_absval(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
-			index = engine_functions.get_vcsw(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
+			index = engine_functions.get_vcsw(global.variables.selected_id);
 
 			if (index < vcsws.length) {
 				engine_functions.remove_vcsw(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
-			index = engine_functions.get_vcvs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
+			index = engine_functions.get_vcvs(global.variables.selected_id);
 
 			if (index < vcvss.length) {
 				engine_functions.remove_vcvs(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
-			index = engine_functions.get_vccs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
+			index = engine_functions.get_vccs(global.variables.selected_id);
 
 			if (index < vccss.length) {
 				engine_functions.remove_vccs(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
-			index = engine_functions.get_cccs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
+			index = engine_functions.get_cccs(global.variables.selected_id);
 
 			if (index < cccss.length) {
 				engine_functions.remove_cccs(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
-			index = engine_functions.get_ccvs(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
+			index = engine_functions.get_ccvs(global.variables.selected_id);
 
 			if (index < ccvss.length) {
 				engine_functions.remove_ccvs(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
-			index = engine_functions.get_opamp(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
+			index = engine_functions.get_opamp(global.variables.selected_id);
 
 			if (index < opamps.length) {
 				engine_functions.remove_opamp(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
-			index = engine_functions.get_nmosfet(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
+			index = engine_functions.get_nmosfet(global.variables.selected_id);
 
 			if (index < nmosfets.length) {
 				engine_functions.remove_nmosfet(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
-			index = engine_functions.get_pmosfet(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
+			index = engine_functions.get_pmosfet(global.variables.selected_id);
 
 			if (index < pmosfets.length) {
 				engine_functions.remove_pmosfet(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
-			index = engine_functions.get_npn(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
+			index = engine_functions.get_npn(global.variables.selected_id);
 
 			if (index < npns.length) {
 				engine_functions.remove_npn(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
-			index = engine_functions.get_pnp(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
+			index = engine_functions.get_pnp(global.variables.selected_id);
 
 			if (index < pnps.length) {
 				engine_functions.remove_pnp(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
-			index = engine_functions.get_adc(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
+			index = engine_functions.get_adc(global.variables.selected_id);
 
 			if (index < adcs.length) {
 				engine_functions.remove_adc(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
-			index = engine_functions.get_dac(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
+			index = engine_functions.get_dac(global.variables.selected_id);
 
 			if (index < dacs.length) {
 				engine_functions.remove_dac(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
-			index = engine_functions.get_samplers(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
+			index = engine_functions.get_samplers(global.variables.selected_id);
 
 			if (index < sandhs.length) {
 				engine_functions.remove_samplers(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
-			index = engine_functions.get_pwm(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
+			index = engine_functions.get_pwm(global.variables.selected_id);
 
 			if (index < pwms.length) {
 				engine_functions.remove_pwm(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
-			index = engine_functions.get_integrator(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+			index = engine_functions.get_integrator(global.variables.selected_id);
 
 			if (index < integrators.length) {
 				engine_functions.remove_integrator(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
-			index = engine_functions.get_differentiator(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+			index = engine_functions.get_differentiator(global.variables.selected_id);
 
 			if (index < differentiators.length) {
 				engine_functions.remove_differentiator(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
-			index = engine_functions.get_lowpass(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
+			index = engine_functions.get_lowpass(global.variables.selected_id);
 
 			if (index < lowpasses.length) {
 				engine_functions.remove_lowpass(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
-			index = engine_functions.get_highpass(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
+			index = engine_functions.get_highpass(global.variables.selected_id);
 
 			if (index < highpasses.length) {
 				engine_functions.remove_highpass(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
-			index = engine_functions.get_relay(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
+			index = engine_functions.get_relay(global.variables.selected_id);
 
 			if (index < relays.length) {
 				engine_functions.remove_relay(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
-			index = engine_functions.get_pid(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
+			index = engine_functions.get_pid(global.variables.selected_id);
 
 			if (index < pids.length) {
 				engine_functions.remove_pid(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
-			index = engine_functions.get_lut(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
+			index = engine_functions.get_lut(global.variables.selected_id);
 
 			if (index < luts.length) {
 				engine_functions.remove_lut(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
-			index = engine_functions.get_vcr(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
+			index = engine_functions.get_vcr(global.variables.selected_id);
 
 			if (index < vcrs.length) {
 				engine_functions.remove_vcr(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
-			index = engine_functions.get_vcca(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
+			index = engine_functions.get_vcca(global.variables.selected_id);
 
 			if (index < vccas.length) {
 				engine_functions.remove_vcca(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
-			index = engine_functions.get_vcl(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
+			index = engine_functions.get_vcl(global.variables.selected_id);
 
 			if (index < vcls.length) {
 				engine_functions.remove_vcl(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
-			index = engine_functions.get_grt(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
+			index = engine_functions.get_grt(global.variables.selected_id);
 
 			if (index < grts.length) {
 				engine_functions.remove_grt(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
-			index = engine_functions.get_tptz(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
+			index = engine_functions.get_tptz(global.variables.selected_id);
 
 			if (index < tptzs.length) {
 				engine_functions.remove_tptz(index);
 				global.variables.history['packet'].push(engine_functions.history_snapshot());
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
-			index = engine_functions.get_transformer(global.selected_id);
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
+			index = engine_functions.get_transformer(global.variables.selected_id);
 
 			if (index < transformers.length) {
 				engine_functions.remove_transformer(index);
@@ -2645,30 +2645,30 @@ class ElementOptions {
 		this.icon_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 	}
 	update_color(): void {
-		if (!global.flag_simulating) {
+		if (!global.flags.flag_simulating) {
 			this.icon_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 			this.line_paint_alt.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		} else {
-			this.icon_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
-			this.line_paint_alt.set_color(global.MENU_ICON_INACTIVE_COLOR);
+			this.icon_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
+			this.line_paint_alt.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
 		}
 	}
 	draw_options(canvas: GraphicsEngine): void {
-		if (global.flag_idle && !global.flag_menu_element_toolbox && !global.flag_graph) {
-			if (global.selected) {
+		if (global.flags.flag_idle && !global.flags.flag_menu_element_toolbox && !global.flags.flag_graph) {
+			if (global.variables.selected) {
 				if (this.show_0) {
 					if (
-						this.option_0.contains_xy(global.mouse_x, global.mouse_y) &&
-						!global.flag_menu_element_toolbox &&
-						!global.flag_zoom &&
-						!global.flag_select_settings &&
-						!global.flag_save_image &&
-						!global.flag_save_circuit &&
-						!global.flag_select_timestep &&
-						!global.flag_element_options_edit &&
-						!global.flag_element_options &&
-						!global.flag_graph &&
-						!global.flag_remove_all &&
+						this.option_0.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+						!global.flags.flag_menu_element_toolbox &&
+						!global.flags.flag_zoom &&
+						!global.flags.flag_select_settings &&
+						!global.flags.flag_save_image &&
+						!global.flags.flag_save_circuit &&
+						!global.flags.flag_select_timestep &&
+						!global.flags.flag_element_options_edit &&
+						!global.flags.flag_element_options &&
+						!global.flags.flag_graph &&
+						!global.flags.flag_remove_all &&
 						!global.CONSTANTS.MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_0, 1.1, this.hover_paint);
@@ -2680,13 +2680,13 @@ class ElementOptions {
 							this.update_color();
 							this.draw_rotate(this.option_0, canvas);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('R', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
 							}
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('E', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2695,7 +2695,7 @@ class ElementOptions {
 							canvas.draw_path(this.trash_path0, this.icon_paint);
 							canvas.draw_path(this.trash_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('DEL', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2704,13 +2704,13 @@ class ElementOptions {
 							canvas.draw_path(this.flip_path0, this.icon_paint);
 							canvas.draw_path(this.flip_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('F', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
 							}
 							break;
 						case this.WIRE_ICON:
 							this.draw_wire_style(this.option_0, canvas);
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('R', this.option_0.left - (this.option_0.get_width() >> 2), this.option_0.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2720,17 +2720,17 @@ class ElementOptions {
 				}
 				if (this.show_1) {
 					if (
-						this.option_1.contains_xy(global.mouse_x, global.mouse_y) &&
-						!global.flag_menu_element_toolbox &&
-						!global.flag_zoom &&
-						!global.flag_select_settings &&
-						!global.flag_save_image &&
-						!global.flag_save_circuit &&
-						!global.flag_select_timestep &&
-						!global.flag_element_options_edit &&
-						!global.flag_element_options &&
-						!global.flag_graph &&
-						!global.flag_remove_all &&
+						this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+						!global.flags.flag_menu_element_toolbox &&
+						!global.flags.flag_zoom &&
+						!global.flags.flag_select_settings &&
+						!global.flags.flag_save_image &&
+						!global.flags.flag_save_circuit &&
+						!global.flags.flag_select_timestep &&
+						!global.flags.flag_element_options_edit &&
+						!global.flags.flag_element_options &&
+						!global.flags.flag_graph &&
+						!global.flags.flag_remove_all &&
 						!global.CONSTANTS.MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_1, 1.1, this.hover_paint);
@@ -2744,13 +2744,13 @@ class ElementOptions {
 							this.update_color();
 							this.draw_rotate(this.option_1, canvas);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('R', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
 							}
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('E', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2759,7 +2759,7 @@ class ElementOptions {
 							canvas.draw_path(this.trash_path0, this.icon_paint);
 							canvas.draw_path(this.trash_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('DEL', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2768,13 +2768,13 @@ class ElementOptions {
 							canvas.draw_path(this.flip_path0, this.icon_paint);
 							canvas.draw_path(this.flip_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('F', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
 							}
 							break;
 						case this.EYE_ICON:
-							if (scope_manager.find_entry(global.selected_id, global.selected_type)) {
-								this.meter_line_paint.set_color(global.SELECTED_COLOR);
+							if (scope_manager.find_entry(global.variables.selected_id, global.variables.selected_type)) {
+								this.meter_line_paint.set_color(global.COLORS.SELECTED_COLOR);
 							} else {
 								this.meter_line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 							}
@@ -2795,7 +2795,7 @@ class ElementOptions {
 								this.meter_line_paint
 							);
 							canvas.draw_circle(this.option_1.get_center_x(), this.option_1.get_center_y(), this.option_1.get_width() * 0.1, this.meter_line_paint);
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('E', this.option_1.left - (this.option_1.get_width() >> 2), this.option_1.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2805,17 +2805,17 @@ class ElementOptions {
 				}
 				if (this.show_2) {
 					if (
-						this.option_2.contains_xy(global.mouse_x, global.mouse_y) &&
-						!global.flag_menu_element_toolbox &&
-						!global.flag_zoom &&
-						!global.flag_select_settings &&
-						!global.flag_save_image &&
-						!global.flag_save_circuit &&
-						!global.flag_select_timestep &&
-						!global.flag_element_options_edit &&
-						!global.flag_element_options &&
-						!global.flag_graph &&
-						!global.flag_remove_all &&
+						this.option_2.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+						!global.flags.flag_menu_element_toolbox &&
+						!global.flags.flag_zoom &&
+						!global.flags.flag_select_settings &&
+						!global.flags.flag_save_image &&
+						!global.flags.flag_save_circuit &&
+						!global.flags.flag_select_timestep &&
+						!global.flags.flag_element_options_edit &&
+						!global.flags.flag_element_options &&
+						!global.flags.flag_graph &&
+						!global.flags.flag_remove_all &&
 						!global.CONSTANTS.MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_2, 1.1, this.hover_paint);
@@ -2827,13 +2827,13 @@ class ElementOptions {
 							this.update_color();
 							this.draw_rotate(this.option_2, canvas);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('R', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
 							}
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('E', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2842,7 +2842,7 @@ class ElementOptions {
 							canvas.draw_path(this.trash_path0, this.icon_paint);
 							canvas.draw_path(this.trash_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('DEL', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2851,7 +2851,7 @@ class ElementOptions {
 							canvas.draw_path(this.flip_path0, this.icon_paint);
 							canvas.draw_path(this.flip_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('F', this.option_2.left - (this.option_2.get_width() >> 2), this.option_2.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2861,17 +2861,17 @@ class ElementOptions {
 				}
 				if (this.show_3) {
 					if (
-						this.option_3.contains_xy(global.mouse_x, global.mouse_y) &&
-						!global.flag_menu_element_toolbox &&
-						!global.flag_zoom &&
-						!global.flag_select_settings &&
-						!global.flag_save_image &&
-						!global.flag_save_circuit &&
-						!global.flag_select_timestep &&
-						!global.flag_element_options_edit &&
-						!global.flag_element_options &&
-						!global.flag_graph &&
-						!global.flag_remove_all &&
+						this.option_3.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+						!global.flags.flag_menu_element_toolbox &&
+						!global.flags.flag_zoom &&
+						!global.flags.flag_select_settings &&
+						!global.flags.flag_save_image &&
+						!global.flags.flag_save_circuit &&
+						!global.flags.flag_select_timestep &&
+						!global.flags.flag_element_options_edit &&
+						!global.flags.flag_element_options &&
+						!global.flags.flag_graph &&
+						!global.flags.flag_remove_all &&
 						!global.CONSTANTS.MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_3, 1.1, this.hover_paint);
@@ -2883,13 +2883,13 @@ class ElementOptions {
 							this.update_color();
 							this.draw_rotate(this.option_3, canvas);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('R', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
 							}
 							break;
 						case this.EDIT_ICON:
 							canvas.draw_path(this.edit_path0, this.icon_paint);
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('E', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2898,7 +2898,7 @@ class ElementOptions {
 							canvas.draw_path(this.trash_path0, this.icon_paint);
 							canvas.draw_path(this.trash_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('DEL', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2907,7 +2907,7 @@ class ElementOptions {
 							canvas.draw_path(this.flip_path0, this.icon_paint);
 							canvas.draw_path(this.flip_path1, this.icon_paint);
 							this.restore_color();
-							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+							if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
 								canvas.draw_text('F', this.option_3.left - (this.option_3.get_width() >> 2), this.option_3.get_center_y(), this.text_paint);
 							}
 							break;
@@ -2932,26 +2932,26 @@ class ElementOptions {
 	draw_wire_style(rect: RectF, canvas: GraphicsEngine): void {
 		let cached_width: number = rect.get_width() * 0.303;
 		let cached_height: number = rect.get_height() * 0.303;
-		if (global.selected_wire_style === global.WIRE_STYLE_0) {
+		if (global.variables.selected_wire_style === global.CONSTANTS.WIRE_STYLE_0) {
 			canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
-		} else if (global.selected_wire_style === global.WIRE_STYLE_1) {
+		} else if (global.variables.selected_wire_style === global.CONSTANTS.WIRE_STYLE_1) {
 			canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.top + cached_height, this.line_paint_alt);
 			canvas.draw_line(rect.right - cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
-		} else if (global.selected_wire_style === global.WIRE_STYLE_2) {
+		} else if (global.variables.selected_wire_style === global.CONSTANTS.WIRE_STYLE_2) {
 			canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_line(rect.right - cached_width, rect.top + cached_height, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
 			canvas.draw_line(rect.left + cached_width, rect.bottom - cached_width, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
-		} else if (global.selected_wire_style === global.WIRE_STYLE_3) {
+		} else if (global.variables.selected_wire_style === global.CONSTANTS.WIRE_STYLE_3) {
 			canvas.draw_circle(rect.right - cached_width, rect.bottom - cached_width, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_circle(rect.left + cached_width, rect.top + cached_height, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.left + cached_width, rect.bottom - cached_width, this.line_paint_alt);
 			canvas.draw_line(rect.left + cached_width, rect.bottom - cached_width, rect.right - cached_width, rect.bottom - cached_width, this.line_paint_alt);
-		} else if (global.selected_wire_style === global.WIRE_STYLE_4) {
+		} else if (global.variables.selected_wire_style === global.CONSTANTS.WIRE_STYLE_4) {
 			canvas.draw_circle(rect.left + cached_width, rect.bottom - cached_width, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_circle(rect.right - cached_width, rect.top + cached_height, global.variables.canvas_stroke_width_1, this.line_paint_alt);
 			canvas.draw_line(rect.left + cached_width, rect.top + cached_height, rect.right - cached_width, rect.top + cached_height, this.line_paint_alt);

@@ -327,8 +327,8 @@ class ElementWindow {
 		}
 	}
 	update(): void {
-		if (global.flag_menu_element_toolbox) {
-			if (!global.mouse_keyboard_lock) {
+		if (global.flags.flag_menu_element_toolbox) {
+			if (!global.variables.mouse_keyboard_lock) {
 				{
 					/* #INSERT_GENERATE_ELEMENT_WINDOW_ICON_UPDATE# */
 					/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -407,12 +407,12 @@ class ElementWindow {
 	}
 	mouse_wheel(): void {
 		if (this.ENABLE_MOUSE_WHEEL) {
-			if (global.flag_menu_element_toolbox) {
-				if (!global.mouse_keyboard_lock) {
+			if (global.flags.flag_menu_element_toolbox) {
+				if (!global.variables.mouse_keyboard_lock) {
 					this.mouse_wheel_counter++;
 					if (this.mouse_wheel_counter >= this.MOUSE_WHEEL_COUNTER_MAX) {
 						//@ts-expect-error
-						if (global.mouse_wheel_event.wheelDelta < 0 || global.mouse_wheel_event.detail > 0) {
+						if (global.events.mouse_wheel_event.wheelDelta < 0 || global.events.mouse_wheel_event.detail > 0) {
 							if (this.page_number < this.MAX_PAGE_NUMBER) {
 								this.page_number++;
 							}
@@ -428,10 +428,10 @@ class ElementWindow {
 		}
 	}
 	mouse_down(): void {
-		if (global.flag_menu_element_toolbox) {
-			if (!global.mouse_keyboard_lock) {
-				this.first_touch_x = global.mouse_x;
-				this.first_touch_y = global.mouse_y;
+		if (global.flags.flag_menu_element_toolbox) {
+			if (!global.variables.mouse_keyboard_lock) {
+				this.first_touch_x = global.variables.mouse_x;
+				this.first_touch_y = global.variables.mouse_y;
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
 				/* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_DOWN# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -506,23 +506,23 @@ class ElementWindow {
 				/* <!-- END AUTOMATICALLY GENERATED !--> */
 				if (global.CONSTANTS.MOBILE_MODE) {
 					if (
-						this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+						this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
 						this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 					) {
-						global.component_touched = true;
+						global.variables.component_touched = true;
 					} else if (
-						this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+						this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
 						this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 					) {
-						global.component_touched = true;
+						global.variables.component_touched = true;
 					}
 				}
 			}
 		}
 	}
 	mouse_move(): void {
-		if (global.flag_menu_element_toolbox) {
-			if (!global.mouse_keyboard_lock) {
+		if (global.flags.flag_menu_element_toolbox) {
+			if (!global.variables.mouse_keyboard_lock) {
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
 				/* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_MOVE# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -599,24 +599,24 @@ class ElementWindow {
 		}
 	}
 	mouse_up(): void {
-		if (global.flag_menu_element_toolbox) {
-			if (!global.mouse_keyboard_lock) {
+		if (global.flags.flag_menu_element_toolbox) {
+			if (!global.variables.mouse_keyboard_lock) {
 				if (
-					this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+					this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
 					this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 				) {
 					if (this.page_number > 0) {
 						this.page_number--;
 					}
-					global.component_touched = true;
+					global.variables.component_touched = true;
 				} else if (
-					this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
+					this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
 					this.positions[this.NAVIGATE_FORWARD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
 				) {
 					if (this.page_number < this.MAX_PAGE_NUMBER) {
 						this.page_number++;
 					}
-					global.component_touched = true;
+					global.variables.component_touched = true;
 				}
 				let cached_value: number = this.bounds.get_width() / this.MAX_ICONS;
 				/* #INSERT_GENERATE_ELEMENT_WINDOW_MOUSE_UP# */
@@ -782,7 +782,7 @@ class ElementWindow {
 	}
 	draw_hover(canvas: GraphicsEngine): void {
 		for (var i: number = 0; i < this.positions.length; i++) {
-			if (this.positions[i].contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
+			if (this.positions[i].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())) {
 				if (i !== this.NAVIGATE_BACK_INDEX && i !== this.NAVIGATE_FORWARD_INDEX) {
 					if (this.hover_limits(this.page_number, i, this.element_index, this.MAX_PAGE_NUMBER)) {
 						canvas.draw_rect3(this.positions[i].get_center_x(), this.positions[i].get_center_y(), this.positions[i].get_width() * 1.25, this.positions[i].get_height() * 1.25, this.hover_paint);
@@ -816,7 +816,7 @@ class ElementWindow {
 		}
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.flag_menu_element_toolbox) {
+		if (global.flags.flag_menu_element_toolbox) {
 			canvas.draw_rect2(this.bounds, this.fill_paint);
 			if (global.CONSTANTS.MOBILE_MODE === false) {
 				this.draw_hover(canvas);

@@ -71,1332 +71,1332 @@ class EngineFunctions {
 		}
 	}
 	handle_nearest_neighbors(temp_translation_lock: boolean): void {
-		if (!global.is_dragging && !global.signal_history_lock) {
-			if (!global.is_right_click) {
-				if (global.selected_type > -1) {
-					global.selection_nearest_neighbors = [];
+		if (!global.variables.is_dragging && !global.flags.signal_history_lock) {
+			if (!global.variables.is_right_click) {
+				if (global.variables.selected_type > -1) {
+					global.variables.selection_nearest_neighbors = [];
 					global.nearest_neighbor_index = 0;
-					let width: number = 1.5125 * global.selected_bounds.get_width();
+					let width: number = 1.5125 * global.variables.selected_bounds.get_width();
 					/* #INSERT_GENERATE_FIND_SELECTION_NEIGHBORS# */
 					/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 					for (var i: number = 0; i < resistors.length; i++) {
-						if (resistors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (resistors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: resistors[i].elm.type,
 								Id: resistors[i].elm.id
 							});
-							if (resistors[i].elm.type === global.selected_type && resistors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (resistors[i].elm.type === global.variables.selected_type && resistors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < capacitors.length; i++) {
-						if (capacitors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (capacitors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: capacitors[i].elm.type,
 								Id: capacitors[i].elm.id
 							});
-							if (capacitors[i].elm.type === global.selected_type && capacitors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (capacitors[i].elm.type === global.variables.selected_type && capacitors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < inductors.length; i++) {
-						if (inductors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (inductors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: inductors[i].elm.type,
 								Id: inductors[i].elm.id
 							});
-							if (inductors[i].elm.type === global.selected_type && inductors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (inductors[i].elm.type === global.variables.selected_type && inductors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < grounds.length; i++) {
-						if (grounds[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (grounds[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: grounds[i].elm.type,
 								Id: grounds[i].elm.id
 							});
-							if (grounds[i].elm.type === global.selected_type && grounds[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (grounds[i].elm.type === global.variables.selected_type && grounds[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < dcsources.length; i++) {
-						if (dcsources[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (dcsources[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: dcsources[i].elm.type,
 								Id: dcsources[i].elm.id
 							});
-							if (dcsources[i].elm.type === global.selected_type && dcsources[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (dcsources[i].elm.type === global.variables.selected_type && dcsources[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < dccurrents.length; i++) {
-						if (dccurrents[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (dccurrents[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: dccurrents[i].elm.type,
 								Id: dccurrents[i].elm.id
 							});
-							if (dccurrents[i].elm.type === global.selected_type && dccurrents[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (dccurrents[i].elm.type === global.variables.selected_type && dccurrents[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < acsources.length; i++) {
-						if (acsources[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (acsources[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: acsources[i].elm.type,
 								Id: acsources[i].elm.id
 							});
-							if (acsources[i].elm.type === global.selected_type && acsources[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (acsources[i].elm.type === global.variables.selected_type && acsources[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < accurrents.length; i++) {
-						if (accurrents[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (accurrents[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: accurrents[i].elm.type,
 								Id: accurrents[i].elm.id
 							});
-							if (accurrents[i].elm.type === global.selected_type && accurrents[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (accurrents[i].elm.type === global.variables.selected_type && accurrents[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < squarewaves.length; i++) {
-						if (squarewaves[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (squarewaves[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: squarewaves[i].elm.type,
 								Id: squarewaves[i].elm.id
 							});
-							if (squarewaves[i].elm.type === global.selected_type && squarewaves[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (squarewaves[i].elm.type === global.variables.selected_type && squarewaves[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < sawwaves.length; i++) {
-						if (sawwaves[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (sawwaves[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: sawwaves[i].elm.type,
 								Id: sawwaves[i].elm.id
 							});
-							if (sawwaves[i].elm.type === global.selected_type && sawwaves[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (sawwaves[i].elm.type === global.variables.selected_type && sawwaves[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < trianglewaves.length; i++) {
-						if (trianglewaves[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (trianglewaves[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: trianglewaves[i].elm.type,
 								Id: trianglewaves[i].elm.id
 							});
-							if (trianglewaves[i].elm.type === global.selected_type && trianglewaves[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (trianglewaves[i].elm.type === global.variables.selected_type && trianglewaves[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < constants.length; i++) {
-						if (constants[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (constants[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: constants[i].elm.type,
 								Id: constants[i].elm.id
 							});
-							if (constants[i].elm.type === global.selected_type && constants[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (constants[i].elm.type === global.variables.selected_type && constants[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < wires.length; i++) {
-						if (wires[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (wires[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: wires[i].elm.type,
 								Id: wires[i].elm.id
 							});
-							if (wires[i].elm.type === global.selected_type && wires[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (wires[i].elm.type === global.variables.selected_type && wires[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < nets.length; i++) {
-						if (nets[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (nets[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: nets[i].elm.type,
 								Id: nets[i].elm.id
 							});
-							if (nets[i].elm.type === global.selected_type && nets[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (nets[i].elm.type === global.variables.selected_type && nets[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < notes.length; i++) {
-						if (notes[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (notes[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: notes[i].elm.type,
 								Id: notes[i].elm.id
 							});
-							if (notes[i].elm.type === global.selected_type && notes[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (notes[i].elm.type === global.variables.selected_type && notes[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < rails.length; i++) {
-						if (rails[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (rails[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: rails[i].elm.type,
 								Id: rails[i].elm.id
 							});
-							if (rails[i].elm.type === global.selected_type && rails[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (rails[i].elm.type === global.variables.selected_type && rails[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < voltmeters.length; i++) {
-						if (voltmeters[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (voltmeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: voltmeters[i].elm.type,
 								Id: voltmeters[i].elm.id
 							});
-							if (voltmeters[i].elm.type === global.selected_type && voltmeters[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (voltmeters[i].elm.type === global.variables.selected_type && voltmeters[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < ohmmeters.length; i++) {
-						if (ohmmeters[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (ohmmeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: ohmmeters[i].elm.type,
 								Id: ohmmeters[i].elm.id
 							});
-							if (ohmmeters[i].elm.type === global.selected_type && ohmmeters[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (ohmmeters[i].elm.type === global.variables.selected_type && ohmmeters[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < ammeters.length; i++) {
-						if (ammeters[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (ammeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: ammeters[i].elm.type,
 								Id: ammeters[i].elm.id
 							});
-							if (ammeters[i].elm.type === global.selected_type && ammeters[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (ammeters[i].elm.type === global.variables.selected_type && ammeters[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < wattmeters.length; i++) {
-						if (wattmeters[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (wattmeters[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: wattmeters[i].elm.type,
 								Id: wattmeters[i].elm.id
 							});
-							if (wattmeters[i].elm.type === global.selected_type && wattmeters[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (wattmeters[i].elm.type === global.variables.selected_type && wattmeters[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < fuses.length; i++) {
-						if (fuses[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (fuses[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: fuses[i].elm.type,
 								Id: fuses[i].elm.id
 							});
-							if (fuses[i].elm.type === global.selected_type && fuses[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (fuses[i].elm.type === global.variables.selected_type && fuses[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < spsts.length; i++) {
-						if (spsts[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (spsts[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: spsts[i].elm.type,
 								Id: spsts[i].elm.id
 							});
-							if (spsts[i].elm.type === global.selected_type && spsts[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (spsts[i].elm.type === global.variables.selected_type && spsts[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < spdts.length; i++) {
-						if (spdts[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (spdts[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: spdts[i].elm.type,
 								Id: spdts[i].elm.id
 							});
-							if (spdts[i].elm.type === global.selected_type && spdts[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (spdts[i].elm.type === global.variables.selected_type && spdts[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < nots.length; i++) {
-						if (nots[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (nots[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: nots[i].elm.type,
 								Id: nots[i].elm.id
 							});
-							if (nots[i].elm.type === global.selected_type && nots[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (nots[i].elm.type === global.variables.selected_type && nots[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < diodes.length; i++) {
-						if (diodes[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (diodes[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: diodes[i].elm.type,
 								Id: diodes[i].elm.id
 							});
-							if (diodes[i].elm.type === global.selected_type && diodes[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (diodes[i].elm.type === global.variables.selected_type && diodes[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < leds.length; i++) {
-						if (leds[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (leds[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: leds[i].elm.type,
 								Id: leds[i].elm.id
 							});
-							if (leds[i].elm.type === global.selected_type && leds[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (leds[i].elm.type === global.variables.selected_type && leds[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < zeners.length; i++) {
-						if (zeners[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (zeners[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: zeners[i].elm.type,
 								Id: zeners[i].elm.id
 							});
-							if (zeners[i].elm.type === global.selected_type && zeners[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (zeners[i].elm.type === global.variables.selected_type && zeners[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < potentiometers.length; i++) {
-						if (potentiometers[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (potentiometers[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: potentiometers[i].elm.type,
 								Id: potentiometers[i].elm.id
 							});
-							if (potentiometers[i].elm.type === global.selected_type && potentiometers[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (potentiometers[i].elm.type === global.variables.selected_type && potentiometers[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < ands.length; i++) {
-						if (ands[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (ands[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: ands[i].elm.type,
 								Id: ands[i].elm.id
 							});
-							if (ands[i].elm.type === global.selected_type && ands[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (ands[i].elm.type === global.variables.selected_type && ands[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < ors.length; i++) {
-						if (ors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (ors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: ors[i].elm.type,
 								Id: ors[i].elm.id
 							});
-							if (ors[i].elm.type === global.selected_type && ors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (ors[i].elm.type === global.variables.selected_type && ors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < nands.length; i++) {
-						if (nands[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (nands[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: nands[i].elm.type,
 								Id: nands[i].elm.id
 							});
-							if (nands[i].elm.type === global.selected_type && nands[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (nands[i].elm.type === global.variables.selected_type && nands[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < nors.length; i++) {
-						if (nors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (nors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: nors[i].elm.type,
 								Id: nors[i].elm.id
 							});
-							if (nors[i].elm.type === global.selected_type && nors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (nors[i].elm.type === global.variables.selected_type && nors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < xors.length; i++) {
-						if (xors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (xors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: xors[i].elm.type,
 								Id: xors[i].elm.id
 							});
-							if (xors[i].elm.type === global.selected_type && xors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (xors[i].elm.type === global.variables.selected_type && xors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < xnors.length; i++) {
-						if (xnors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (xnors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: xnors[i].elm.type,
 								Id: xnors[i].elm.id
 							});
-							if (xnors[i].elm.type === global.selected_type && xnors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (xnors[i].elm.type === global.variables.selected_type && xnors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < dffs.length; i++) {
-						if (dffs[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (dffs[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: dffs[i].elm.type,
 								Id: dffs[i].elm.id
 							});
-							if (dffs[i].elm.type === global.selected_type && dffs[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (dffs[i].elm.type === global.variables.selected_type && dffs[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < vsats.length; i++) {
-						if (vsats[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (vsats[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: vsats[i].elm.type,
 								Id: vsats[i].elm.id
 							});
-							if (vsats[i].elm.type === global.selected_type && vsats[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (vsats[i].elm.type === global.variables.selected_type && vsats[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < adders.length; i++) {
-						if (adders[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (adders[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: adders[i].elm.type,
 								Id: adders[i].elm.id
 							});
-							if (adders[i].elm.type === global.selected_type && adders[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (adders[i].elm.type === global.variables.selected_type && adders[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < subtractors.length; i++) {
-						if (subtractors[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (subtractors[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: subtractors[i].elm.type,
 								Id: subtractors[i].elm.id
 							});
-							if (subtractors[i].elm.type === global.selected_type && subtractors[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (subtractors[i].elm.type === global.variables.selected_type && subtractors[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < multipliers.length; i++) {
-						if (multipliers[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (multipliers[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: multipliers[i].elm.type,
 								Id: multipliers[i].elm.id
 							});
-							if (multipliers[i].elm.type === global.selected_type && multipliers[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (multipliers[i].elm.type === global.variables.selected_type && multipliers[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < dividers.length; i++) {
-						if (dividers[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (dividers[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: dividers[i].elm.type,
 								Id: dividers[i].elm.id
 							});
-							if (dividers[i].elm.type === global.selected_type && dividers[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (dividers[i].elm.type === global.variables.selected_type && dividers[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < gains.length; i++) {
-						if (gains[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (gains[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: gains[i].elm.type,
 								Id: gains[i].elm.id
 							});
-							if (gains[i].elm.type === global.selected_type && gains[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (gains[i].elm.type === global.variables.selected_type && gains[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < absvals.length; i++) {
-						if (absvals[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (absvals[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: absvals[i].elm.type,
 								Id: absvals[i].elm.id
 							});
-							if (absvals[i].elm.type === global.selected_type && absvals[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (absvals[i].elm.type === global.variables.selected_type && absvals[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < vcsws.length; i++) {
-						if (vcsws[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (vcsws[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: vcsws[i].elm.type,
 								Id: vcsws[i].elm.id
 							});
-							if (vcsws[i].elm.type === global.selected_type && vcsws[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (vcsws[i].elm.type === global.variables.selected_type && vcsws[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < vcvss.length; i++) {
-						if (vcvss[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (vcvss[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: vcvss[i].elm.type,
 								Id: vcvss[i].elm.id
 							});
-							if (vcvss[i].elm.type === global.selected_type && vcvss[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (vcvss[i].elm.type === global.variables.selected_type && vcvss[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < vccss.length; i++) {
-						if (vccss[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (vccss[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: vccss[i].elm.type,
 								Id: vccss[i].elm.id
 							});
-							if (vccss[i].elm.type === global.selected_type && vccss[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (vccss[i].elm.type === global.variables.selected_type && vccss[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < cccss.length; i++) {
-						if (cccss[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (cccss[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: cccss[i].elm.type,
 								Id: cccss[i].elm.id
 							});
-							if (cccss[i].elm.type === global.selected_type && cccss[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (cccss[i].elm.type === global.variables.selected_type && cccss[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < ccvss.length; i++) {
-						if (ccvss[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (ccvss[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: ccvss[i].elm.type,
 								Id: ccvss[i].elm.id
 							});
-							if (ccvss[i].elm.type === global.selected_type && ccvss[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (ccvss[i].elm.type === global.variables.selected_type && ccvss[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < opamps.length; i++) {
-						if (opamps[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (opamps[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: opamps[i].elm.type,
 								Id: opamps[i].elm.id
 							});
-							if (opamps[i].elm.type === global.selected_type && opamps[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (opamps[i].elm.type === global.variables.selected_type && opamps[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < nmosfets.length; i++) {
-						if (nmosfets[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (nmosfets[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: nmosfets[i].elm.type,
 								Id: nmosfets[i].elm.id
 							});
-							if (nmosfets[i].elm.type === global.selected_type && nmosfets[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (nmosfets[i].elm.type === global.variables.selected_type && nmosfets[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < pmosfets.length; i++) {
-						if (pmosfets[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (pmosfets[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: pmosfets[i].elm.type,
 								Id: pmosfets[i].elm.id
 							});
-							if (pmosfets[i].elm.type === global.selected_type && pmosfets[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (pmosfets[i].elm.type === global.variables.selected_type && pmosfets[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < npns.length; i++) {
-						if (npns[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (npns[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: npns[i].elm.type,
 								Id: npns[i].elm.id
 							});
-							if (npns[i].elm.type === global.selected_type && npns[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (npns[i].elm.type === global.variables.selected_type && npns[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < pnps.length; i++) {
-						if (pnps[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (pnps[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: pnps[i].elm.type,
 								Id: pnps[i].elm.id
 							});
-							if (pnps[i].elm.type === global.selected_type && pnps[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (pnps[i].elm.type === global.variables.selected_type && pnps[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < adcs.length; i++) {
-						if (adcs[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (adcs[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: adcs[i].elm.type,
 								Id: adcs[i].elm.id
 							});
-							if (adcs[i].elm.type === global.selected_type && adcs[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (adcs[i].elm.type === global.variables.selected_type && adcs[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < dacs.length; i++) {
-						if (dacs[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (dacs[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: dacs[i].elm.type,
 								Id: dacs[i].elm.id
 							});
-							if (dacs[i].elm.type === global.selected_type && dacs[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (dacs[i].elm.type === global.variables.selected_type && dacs[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < sandhs.length; i++) {
-						if (sandhs[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (sandhs[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: sandhs[i].elm.type,
 								Id: sandhs[i].elm.id
 							});
-							if (sandhs[i].elm.type === global.selected_type && sandhs[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (sandhs[i].elm.type === global.variables.selected_type && sandhs[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < pwms.length; i++) {
-						if (pwms[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (pwms[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: pwms[i].elm.type,
 								Id: pwms[i].elm.id
 							});
-							if (pwms[i].elm.type === global.selected_type && pwms[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (pwms[i].elm.type === global.variables.selected_type && pwms[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < integrators.length; i++) {
-						if (integrators[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (integrators[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: integrators[i].elm.type,
 								Id: integrators[i].elm.id
 							});
-							if (integrators[i].elm.type === global.selected_type && integrators[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (integrators[i].elm.type === global.variables.selected_type && integrators[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < differentiators.length; i++) {
-						if (differentiators[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (differentiators[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: differentiators[i].elm.type,
 								Id: differentiators[i].elm.id
 							});
-							if (differentiators[i].elm.type === global.selected_type && differentiators[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (differentiators[i].elm.type === global.variables.selected_type && differentiators[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < lowpasses.length; i++) {
-						if (lowpasses[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (lowpasses[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: lowpasses[i].elm.type,
 								Id: lowpasses[i].elm.id
 							});
-							if (lowpasses[i].elm.type === global.selected_type && lowpasses[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (lowpasses[i].elm.type === global.variables.selected_type && lowpasses[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < highpasses.length; i++) {
-						if (highpasses[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (highpasses[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: highpasses[i].elm.type,
 								Id: highpasses[i].elm.id
 							});
-							if (highpasses[i].elm.type === global.selected_type && highpasses[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (highpasses[i].elm.type === global.variables.selected_type && highpasses[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < relays.length; i++) {
-						if (relays[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (relays[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: relays[i].elm.type,
 								Id: relays[i].elm.id
 							});
-							if (relays[i].elm.type === global.selected_type && relays[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (relays[i].elm.type === global.variables.selected_type && relays[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < pids.length; i++) {
-						if (pids[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (pids[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: pids[i].elm.type,
 								Id: pids[i].elm.id
 							});
-							if (pids[i].elm.type === global.selected_type && pids[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (pids[i].elm.type === global.variables.selected_type && pids[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < luts.length; i++) {
-						if (luts[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (luts[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: luts[i].elm.type,
 								Id: luts[i].elm.id
 							});
-							if (luts[i].elm.type === global.selected_type && luts[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (luts[i].elm.type === global.variables.selected_type && luts[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < vcrs.length; i++) {
-						if (vcrs[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (vcrs[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: vcrs[i].elm.type,
 								Id: vcrs[i].elm.id
 							});
-							if (vcrs[i].elm.type === global.selected_type && vcrs[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (vcrs[i].elm.type === global.variables.selected_type && vcrs[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < vccas.length; i++) {
-						if (vccas[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (vccas[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: vccas[i].elm.type,
 								Id: vccas[i].elm.id
 							});
-							if (vccas[i].elm.type === global.selected_type && vccas[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (vccas[i].elm.type === global.variables.selected_type && vccas[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < vcls.length; i++) {
-						if (vcls[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (vcls[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: vcls[i].elm.type,
 								Id: vcls[i].elm.id
 							});
-							if (vcls[i].elm.type === global.selected_type && vcls[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (vcls[i].elm.type === global.variables.selected_type && vcls[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < grts.length; i++) {
-						if (grts[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (grts[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: grts[i].elm.type,
 								Id: grts[i].elm.id
 							});
-							if (grts[i].elm.type === global.selected_type && grts[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (grts[i].elm.type === global.variables.selected_type && grts[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < tptzs.length; i++) {
-						if (tptzs[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (tptzs[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: tptzs[i].elm.type,
 								Id: tptzs[i].elm.id
 							});
-							if (tptzs[i].elm.type === global.selected_type && tptzs[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (tptzs[i].elm.type === global.variables.selected_type && tptzs[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					for (var i: number = 0; i < transformers.length; i++) {
-						if (transformers[i].bounds.is_near(global.selected_bounds, width)) {
-							global.selection_nearest_neighbors.push({
+						if (transformers[i].bounds.is_near(global.variables.selected_bounds, width)) {
+							global.variables.selection_nearest_neighbors.push({
 								Type: transformers[i].elm.type,
 								Id: transformers[i].elm.id
 							});
-							if (transformers[i].elm.type === global.selected_type && transformers[i].elm.id === global.selected_id) {
-								global.nearest_neighbor_index = global.selection_nearest_neighbors.length - 1;
+							if (transformers[i].elm.type === global.variables.selected_type && transformers[i].elm.id === global.variables.selected_id) {
+								global.nearest_neighbor_index = global.variables.selection_nearest_neighbors.length - 1;
 							}
 						}
 					}
 					/* <!-- END AUTOMATICALLY GENERATED !--> */
 				}
 			} else {
-				if (global.selected_type > -1 && temp_translation_lock) {
-					if (global.selection_nearest_neighbors.length > 1) {
+				if (global.variables.selected_type > -1 && temp_translation_lock) {
+					if (global.variables.selection_nearest_neighbors.length > 1) {
 						global.nearest_neighbor_index++;
-						if (global.nearest_neighbor_index >= global.selection_nearest_neighbors.length) {
+						if (global.nearest_neighbor_index >= global.variables.selection_nearest_neighbors.length) {
 							global.nearest_neighbor_index = 0;
 						}
 						let index: number = -1;
 						/* #INSERT_GENERATE_SWAP_SELECTION_NEIGHBORS# */
 						/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RESISTOR) {
 							for (var i: number = 0; i < resistors.length; i++) {
-								if (resistors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (resistors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									resistors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
 							for (var i: number = 0; i < capacitors.length; i++) {
-								if (capacitors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (capacitors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									capacitors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
 							for (var i: number = 0; i < inductors.length; i++) {
-								if (inductors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (inductors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									inductors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GROUND) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GROUND) {
 							for (var i: number = 0; i < grounds.length; i++) {
-								if (grounds[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (grounds[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									grounds[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
 							for (var i: number = 0; i < dcsources.length; i++) {
-								if (dcsources[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (dcsources[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									dcsources[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
 							for (var i: number = 0; i < dccurrents.length; i++) {
-								if (dccurrents[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (dccurrents[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									dccurrents[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
 							for (var i: number = 0; i < acsources.length; i++) {
-								if (acsources[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (acsources[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									acsources[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
 							for (var i: number = 0; i < accurrents.length; i++) {
-								if (accurrents[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (accurrents[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									accurrents[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
 							for (var i: number = 0; i < squarewaves.length; i++) {
-								if (squarewaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (squarewaves[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									squarewaves[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAW) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAW) {
 							for (var i: number = 0; i < sawwaves.length; i++) {
-								if (sawwaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (sawwaves[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									sawwaves[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRI) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRI) {
 							for (var i: number = 0; i < trianglewaves.length; i++) {
-								if (trianglewaves[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (trianglewaves[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									trianglewaves[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CONSTANT) {
 							for (var i: number = 0; i < constants.length; i++) {
-								if (constants[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (constants[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									constants[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WIRE) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WIRE) {
 							for (var i: number = 0; i < wires.length; i++) {
-								if (wires[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (wires[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									wires[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NET) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NET) {
 							for (var i: number = 0; i < nets.length; i++) {
-								if (nets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (nets[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									nets[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOTE) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOTE) {
 							for (var i: number = 0; i < notes.length; i++) {
-								if (notes[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (notes[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									notes[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RAIL) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_RAIL) {
 							for (var i: number = 0; i < rails.length; i++) {
-								if (rails[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (rails[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									rails[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
 							for (var i: number = 0; i < voltmeters.length; i++) {
-								if (voltmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (voltmeters[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									voltmeters[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OHMMETER) {
 							for (var i: number = 0; i < ohmmeters.length; i++) {
-								if (ohmmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (ohmmeters[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									ohmmeters[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AMMETER) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AMMETER) {
 							for (var i: number = 0; i < ammeters.length; i++) {
-								if (ammeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (ammeters[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									ammeters[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_WATTMETER) {
 							for (var i: number = 0; i < wattmeters.length; i++) {
-								if (wattmeters[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (wattmeters[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									wattmeters[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_FUSE) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_FUSE) {
 							for (var i: number = 0; i < fuses.length; i++) {
-								if (fuses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (fuses[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									fuses[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPST) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPST) {
 							for (var i: number = 0; i < spsts.length; i++) {
-								if (spsts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (spsts[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									spsts[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPDT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SPDT) {
 							for (var i: number = 0; i < spdts.length; i++) {
-								if (spdts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (spdts[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									spdts[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOT) {
 							for (var i: number = 0; i < nots.length; i++) {
-								if (nots[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (nots[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									nots[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIODE) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIODE) {
 							for (var i: number = 0; i < diodes.length; i++) {
-								if (diodes[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (diodes[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									diodes[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LED) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LED) {
 							for (var i: number = 0; i < leds.length; i++) {
-								if (leds[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (leds[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									leds[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ZENER) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ZENER) {
 							for (var i: number = 0; i < zeners.length; i++) {
-								if (zeners[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (zeners[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									zeners[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
 							for (var i: number = 0; i < potentiometers.length; i++) {
-								if (potentiometers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (potentiometers[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									potentiometers[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AND) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_AND) {
 							for (var i: number = 0; i < ands.length; i++) {
-								if (ands[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (ands[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									ands[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OR) {
 							for (var i: number = 0; i < ors.length; i++) {
-								if (ors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (ors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									ors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NAND) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NAND) {
 							for (var i: number = 0; i < nands.length; i++) {
-								if (nands[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (nands[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									nands[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NOR) {
 							for (var i: number = 0; i < nors.length; i++) {
-								if (nors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (nors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									nors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XOR) {
 							for (var i: number = 0; i < xors.length; i++) {
-								if (xors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (xors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									xors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XNOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_XNOR) {
 							for (var i: number = 0; i < xnors.length; i++) {
-								if (xnors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (xnors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									xnors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DFF) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DFF) {
 							for (var i: number = 0; i < dffs.length; i++) {
-								if (dffs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (dffs[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									dffs[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VSAT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VSAT) {
 							for (var i: number = 0; i < vsats.length; i++) {
-								if (vsats[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (vsats[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									vsats[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADD) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADD) {
 							for (var i: number = 0; i < adders.length; i++) {
-								if (adders[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (adders[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									adders[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SUB) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SUB) {
 							for (var i: number = 0; i < subtractors.length; i++) {
-								if (subtractors[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (subtractors[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									subtractors[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_MUL) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_MUL) {
 							for (var i: number = 0; i < multipliers.length; i++) {
-								if (multipliers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (multipliers[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									multipliers[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIV) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIV) {
 							for (var i: number = 0; i < dividers.length; i++) {
-								if (dividers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (dividers[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									dividers[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GAIN) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GAIN) {
 							for (var i: number = 0; i < gains.length; i++) {
-								if (gains[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (gains[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									gains[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ABS) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ABS) {
 							for (var i: number = 0; i < absvals.length; i++) {
-								if (absvals[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (absvals[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									absvals[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCSW) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCSW) {
 							for (var i: number = 0; i < vcsws.length; i++) {
-								if (vcsws[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (vcsws[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									vcsws[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCVS) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCVS) {
 							for (var i: number = 0; i < vcvss.length; i++) {
-								if (vcvss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (vcvss[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									vcvss[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCS) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCS) {
 							for (var i: number = 0; i < vccss.length; i++) {
-								if (vccss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (vccss[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									vccss[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCCS) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCCS) {
 							for (var i: number = 0; i < cccss.length; i++) {
-								if (cccss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (cccss[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									cccss[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCVS) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_CCVS) {
 							for (var i: number = 0; i < ccvss.length; i++) {
-								if (ccvss[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (ccvss[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									ccvss[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OPAMP) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_OPAMP) {
 							for (var i: number = 0; i < opamps.length; i++) {
-								if (opamps[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (opamps[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									opamps[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NMOS) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NMOS) {
 							for (var i: number = 0; i < nmosfets.length; i++) {
-								if (nmosfets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (nmosfets[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									nmosfets[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PMOS) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PMOS) {
 							for (var i: number = 0; i < pmosfets.length; i++) {
-								if (pmosfets[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (pmosfets[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									pmosfets[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NPN) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_NPN) {
 							for (var i: number = 0; i < npns.length; i++) {
-								if (npns[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (npns[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									npns[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PNP) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PNP) {
 							for (var i: number = 0; i < pnps.length; i++) {
-								if (pnps[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (pnps[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									pnps[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADC) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_ADC) {
 							for (var i: number = 0; i < adcs.length; i++) {
-								if (adcs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (adcs[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									adcs[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DAC) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DAC) {
 							for (var i: number = 0; i < dacs.length; i++) {
-								if (dacs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (dacs[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									dacs[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAH) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_SAH) {
 							for (var i: number = 0; i < sandhs.length; i++) {
-								if (sandhs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (sandhs[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									sandhs[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PWM) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PWM) {
 							for (var i: number = 0; i < pwms.length; i++) {
-								if (pwms[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (pwms[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									pwms[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
 							for (var i: number = 0; i < integrators.length; i++) {
-								if (integrators[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (integrators[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									integrators[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
 							for (var i: number = 0; i < differentiators.length; i++) {
-								if (differentiators[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (differentiators[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									differentiators[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LPF) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LPF) {
 							for (var i: number = 0; i < lowpasses.length; i++) {
-								if (lowpasses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (lowpasses[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									lowpasses[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_HPF) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_HPF) {
 							for (var i: number = 0; i < highpasses.length; i++) {
-								if (highpasses[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (highpasses[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									highpasses[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_REL) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_REL) {
 							for (var i: number = 0; i < relays.length; i++) {
-								if (relays[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (relays[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									relays[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PID) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_PID) {
 							for (var i: number = 0; i < pids.length; i++) {
-								if (pids[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (pids[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									pids[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LUT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_LUT) {
 							for (var i: number = 0; i < luts.length; i++) {
-								if (luts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (luts[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									luts[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCR) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCR) {
 							for (var i: number = 0; i < vcrs.length; i++) {
-								if (vcrs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (vcrs[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									vcrs[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCA) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCCA) {
 							for (var i: number = 0; i < vccas.length; i++) {
-								if (vccas[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (vccas[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									vccas[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCL) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_VCL) {
 							for (var i: number = 0; i < vcls.length; i++) {
-								if (vcls[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (vcls[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									vcls[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GRT) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_GRT) {
 							for (var i: number = 0; i < grts.length; i++) {
-								if (grts[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (grts[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									grts[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TPTZ) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TPTZ) {
 							for (var i: number = 0; i < tptzs.length; i++) {
-								if (tptzs[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (tptzs[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									tptzs[i].select();
 									break;
 								}
 							}
 						}
-						if (global.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRAN) {
+						if (global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Type'] === global.ELEMENT_TYPES.TYPE_TRAN) {
 							for (var i: number = 0; i < transformers.length; i++) {
-								if (transformers[i].elm.id === global.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
+								if (transformers[i].elm.id === global.variables.selection_nearest_neighbors[global.nearest_neighbor_index]['Id']) {
 									transformers[i].select();
 									break;
 								}
@@ -3422,10 +3422,10 @@ class EngineFunctions {
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	add_resistor(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3436,21 +3436,21 @@ class EngineFunctions {
 		if (index < resistors.length) {
 			resistors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = resistors[index].elm.id;
-			global.focused_type = resistors[index].elm.type;
-			global.focused_bounds = global.copy(resistors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = resistors[index].elm.id;
+			global.variables.focused_type = resistors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(resistors[index].bounds);
+			global.variables.focused = true;
 			resistors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_capacitor(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3461,21 +3461,21 @@ class EngineFunctions {
 		if (index < capacitors.length) {
 			capacitors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = capacitors[index].elm.id;
-			global.focused_type = capacitors[index].elm.type;
-			global.focused_bounds = global.copy(capacitors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = capacitors[index].elm.id;
+			global.variables.focused_type = capacitors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(capacitors[index].bounds);
+			global.variables.focused = true;
 			capacitors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_inductor(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3486,19 +3486,19 @@ class EngineFunctions {
 		if (index < inductors.length) {
 			inductors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = inductors[index].elm.id;
-			global.focused_type = inductors[index].elm.type;
-			global.focused_bounds = global.copy(inductors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = inductors[index].elm.id;
+			global.variables.focused_type = inductors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(inductors[index].bounds);
+			global.variables.focused = true;
 			inductors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_ground(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x;
-		this.y1 = global.mouse_y;
+		this.x1 = global.variables.mouse_x;
+		this.y1 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
@@ -3508,21 +3508,21 @@ class EngineFunctions {
 		if (index < grounds.length) {
 			grounds[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = grounds[index].elm.id;
-			global.focused_type = grounds[index].elm.type;
-			global.focused_bounds = global.copy(grounds[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = grounds[index].elm.id;
+			global.variables.focused_type = grounds[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(grounds[index].bounds);
+			global.variables.focused = true;
 			grounds[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_dcsource(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3533,21 +3533,21 @@ class EngineFunctions {
 		if (index < dcsources.length) {
 			dcsources[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = dcsources[index].elm.id;
-			global.focused_type = dcsources[index].elm.type;
-			global.focused_bounds = global.copy(dcsources[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = dcsources[index].elm.id;
+			global.variables.focused_type = dcsources[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(dcsources[index].bounds);
+			global.variables.focused = true;
 			dcsources[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_dccurrent(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3558,21 +3558,21 @@ class EngineFunctions {
 		if (index < dccurrents.length) {
 			dccurrents[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = dccurrents[index].elm.id;
-			global.focused_type = dccurrents[index].elm.type;
-			global.focused_bounds = global.copy(dccurrents[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = dccurrents[index].elm.id;
+			global.variables.focused_type = dccurrents[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(dccurrents[index].bounds);
+			global.variables.focused = true;
 			dccurrents[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_acsource(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3583,21 +3583,21 @@ class EngineFunctions {
 		if (index < acsources.length) {
 			acsources[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = acsources[index].elm.id;
-			global.focused_type = acsources[index].elm.type;
-			global.focused_bounds = global.copy(acsources[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = acsources[index].elm.id;
+			global.variables.focused_type = acsources[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(acsources[index].bounds);
+			global.variables.focused = true;
 			acsources[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_accurrent(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3608,21 +3608,21 @@ class EngineFunctions {
 		if (index < accurrents.length) {
 			accurrents[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = accurrents[index].elm.id;
-			global.focused_type = accurrents[index].elm.type;
-			global.focused_bounds = global.copy(accurrents[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = accurrents[index].elm.id;
+			global.variables.focused_type = accurrents[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(accurrents[index].bounds);
+			global.variables.focused = true;
 			accurrents[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_squarewave(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3633,21 +3633,21 @@ class EngineFunctions {
 		if (index < squarewaves.length) {
 			squarewaves[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = squarewaves[index].elm.id;
-			global.focused_type = squarewaves[index].elm.type;
-			global.focused_bounds = global.copy(squarewaves[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = squarewaves[index].elm.id;
+			global.variables.focused_type = squarewaves[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(squarewaves[index].bounds);
+			global.variables.focused = true;
 			squarewaves[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_sawwave(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3658,21 +3658,21 @@ class EngineFunctions {
 		if (index < sawwaves.length) {
 			sawwaves[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = sawwaves[index].elm.id;
-			global.focused_type = sawwaves[index].elm.type;
-			global.focused_bounds = global.copy(sawwaves[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = sawwaves[index].elm.id;
+			global.variables.focused_type = sawwaves[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(sawwaves[index].bounds);
+			global.variables.focused = true;
 			sawwaves[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_trianglewave(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3683,19 +3683,19 @@ class EngineFunctions {
 		if (index < trianglewaves.length) {
 			trianglewaves[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = trianglewaves[index].elm.id;
-			global.focused_type = trianglewaves[index].elm.type;
-			global.focused_bounds = global.copy(trianglewaves[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = trianglewaves[index].elm.id;
+			global.variables.focused_type = trianglewaves[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(trianglewaves[index].bounds);
+			global.variables.focused = true;
 			trianglewaves[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_constant(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x;
-		this.y1 = global.mouse_y;
+		this.x1 = global.variables.mouse_x;
+		this.y1 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
@@ -3705,19 +3705,19 @@ class EngineFunctions {
 		if (index < constants.length) {
 			constants[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = constants[index].elm.id;
-			global.focused_type = constants[index].elm.type;
-			global.focused_bounds = global.copy(constants[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = constants[index].elm.id;
+			global.variables.focused_type = constants[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(constants[index].bounds);
+			global.variables.focused = true;
 			constants[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_net(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x;
-		this.y1 = global.mouse_y;
+		this.x1 = global.variables.mouse_x;
+		this.y1 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
@@ -3727,19 +3727,19 @@ class EngineFunctions {
 		if (index < nets.length) {
 			nets[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = nets[index].elm.id;
-			global.focused_type = nets[index].elm.type;
-			global.focused_bounds = global.copy(nets[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = nets[index].elm.id;
+			global.variables.focused_type = nets[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(nets[index].bounds);
+			global.variables.focused = true;
 			nets[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_note(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x;
-		this.y1 = global.mouse_y;
+		this.x1 = global.variables.mouse_x;
+		this.y1 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
@@ -3749,19 +3749,19 @@ class EngineFunctions {
 		if (index < notes.length) {
 			notes[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = notes[index].elm.id;
-			global.focused_type = notes[index].elm.type;
-			global.focused_bounds = global.copy(notes[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = notes[index].elm.id;
+			global.variables.focused_type = notes[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(notes[index].bounds);
+			global.variables.focused = true;
 			notes[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_rail(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x;
-		this.y1 = global.mouse_y;
+		this.x1 = global.variables.mouse_x;
+		this.y1 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		this.mapper1.map_node1(p1[0], p1[1]);
@@ -3771,21 +3771,21 @@ class EngineFunctions {
 		if (index < rails.length) {
 			rails[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = rails[index].elm.id;
-			global.focused_type = rails[index].elm.type;
-			global.focused_bounds = global.copy(rails[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = rails[index].elm.id;
+			global.variables.focused_type = rails[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(rails[index].bounds);
+			global.variables.focused = true;
 			rails[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_voltmeter(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3796,21 +3796,21 @@ class EngineFunctions {
 		if (index < voltmeters.length) {
 			voltmeters[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = voltmeters[index].elm.id;
-			global.focused_type = voltmeters[index].elm.type;
-			global.focused_bounds = global.copy(voltmeters[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = voltmeters[index].elm.id;
+			global.variables.focused_type = voltmeters[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(voltmeters[index].bounds);
+			global.variables.focused = true;
 			voltmeters[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_ohmmeter(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3821,21 +3821,21 @@ class EngineFunctions {
 		if (index < ohmmeters.length) {
 			ohmmeters[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = ohmmeters[index].elm.id;
-			global.focused_type = ohmmeters[index].elm.type;
-			global.focused_bounds = global.copy(ohmmeters[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = ohmmeters[index].elm.id;
+			global.variables.focused_type = ohmmeters[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(ohmmeters[index].bounds);
+			global.variables.focused = true;
 			ohmmeters[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_ammeter(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3846,23 +3846,23 @@ class EngineFunctions {
 		if (index < ammeters.length) {
 			ammeters[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = ammeters[index].elm.id;
-			global.focused_type = ammeters[index].elm.type;
-			global.focused_bounds = global.copy(ammeters[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = ammeters[index].elm.id;
+			global.variables.focused_type = ammeters[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(ammeters[index].bounds);
+			global.variables.focused = true;
 			ammeters[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_wattmeter(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -3874,21 +3874,21 @@ class EngineFunctions {
 		if (index < wattmeters.length) {
 			wattmeters[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = wattmeters[index].elm.id;
-			global.focused_type = wattmeters[index].elm.type;
-			global.focused_bounds = global.copy(wattmeters[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = wattmeters[index].elm.id;
+			global.variables.focused_type = wattmeters[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(wattmeters[index].bounds);
+			global.variables.focused = true;
 			wattmeters[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_fuse(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3899,21 +3899,21 @@ class EngineFunctions {
 		if (index < fuses.length) {
 			fuses[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = fuses[index].elm.id;
-			global.focused_type = fuses[index].elm.type;
-			global.focused_bounds = global.copy(fuses[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = fuses[index].elm.id;
+			global.variables.focused_type = fuses[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(fuses[index].bounds);
+			global.variables.focused = true;
 			fuses[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_spst(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3924,23 +3924,23 @@ class EngineFunctions {
 		if (index < spsts.length) {
 			spsts[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = spsts[index].elm.id;
-			global.focused_type = spsts[index].elm.type;
-			global.focused_bounds = global.copy(spsts[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = spsts[index].elm.id;
+			global.variables.focused_type = spsts[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(spsts[index].bounds);
+			global.variables.focused = true;
 			spsts[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_spdt(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -3952,21 +3952,21 @@ class EngineFunctions {
 		if (index < spdts.length) {
 			spdts[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = spdts[index].elm.id;
-			global.focused_type = spdts[index].elm.type;
-			global.focused_bounds = global.copy(spdts[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = spdts[index].elm.id;
+			global.variables.focused_type = spdts[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(spdts[index].bounds);
+			global.variables.focused = true;
 			spdts[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_not(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -3977,21 +3977,21 @@ class EngineFunctions {
 		if (index < nots.length) {
 			nots[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = nots[index].elm.id;
-			global.focused_type = nots[index].elm.type;
-			global.focused_bounds = global.copy(nots[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = nots[index].elm.id;
+			global.variables.focused_type = nots[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(nots[index].bounds);
+			global.variables.focused = true;
 			nots[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_diode(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4002,21 +4002,21 @@ class EngineFunctions {
 		if (index < diodes.length) {
 			diodes[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = diodes[index].elm.id;
-			global.focused_type = diodes[index].elm.type;
-			global.focused_bounds = global.copy(diodes[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = diodes[index].elm.id;
+			global.variables.focused_type = diodes[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(diodes[index].bounds);
+			global.variables.focused = true;
 			diodes[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_led(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4027,21 +4027,21 @@ class EngineFunctions {
 		if (index < leds.length) {
 			leds[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = leds[index].elm.id;
-			global.focused_type = leds[index].elm.type;
-			global.focused_bounds = global.copy(leds[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = leds[index].elm.id;
+			global.variables.focused_type = leds[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(leds[index].bounds);
+			global.variables.focused = true;
 			leds[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_zener(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4052,23 +4052,23 @@ class EngineFunctions {
 		if (index < zeners.length) {
 			zeners[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = zeners[index].elm.id;
-			global.focused_type = zeners[index].elm.type;
-			global.focused_bounds = global.copy(zeners[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = zeners[index].elm.id;
+			global.variables.focused_type = zeners[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(zeners[index].bounds);
+			global.variables.focused = true;
 			zeners[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_potentiometer(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4080,23 +4080,23 @@ class EngineFunctions {
 		if (index < potentiometers.length) {
 			potentiometers[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = potentiometers[index].elm.id;
-			global.focused_type = potentiometers[index].elm.type;
-			global.focused_bounds = global.copy(potentiometers[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = potentiometers[index].elm.id;
+			global.variables.focused_type = potentiometers[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(potentiometers[index].bounds);
+			global.variables.focused = true;
 			potentiometers[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_and(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4108,23 +4108,23 @@ class EngineFunctions {
 		if (index < ands.length) {
 			ands[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = ands[index].elm.id;
-			global.focused_type = ands[index].elm.type;
-			global.focused_bounds = global.copy(ands[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = ands[index].elm.id;
+			global.variables.focused_type = ands[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(ands[index].bounds);
+			global.variables.focused = true;
 			ands[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_or(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4136,23 +4136,23 @@ class EngineFunctions {
 		if (index < ors.length) {
 			ors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = ors[index].elm.id;
-			global.focused_type = ors[index].elm.type;
-			global.focused_bounds = global.copy(ors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = ors[index].elm.id;
+			global.variables.focused_type = ors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(ors[index].bounds);
+			global.variables.focused = true;
 			ors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_nand(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4164,23 +4164,23 @@ class EngineFunctions {
 		if (index < nands.length) {
 			nands[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = nands[index].elm.id;
-			global.focused_type = nands[index].elm.type;
-			global.focused_bounds = global.copy(nands[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = nands[index].elm.id;
+			global.variables.focused_type = nands[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(nands[index].bounds);
+			global.variables.focused = true;
 			nands[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_nor(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4192,23 +4192,23 @@ class EngineFunctions {
 		if (index < nors.length) {
 			nors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = nors[index].elm.id;
-			global.focused_type = nors[index].elm.type;
-			global.focused_bounds = global.copy(nors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = nors[index].elm.id;
+			global.variables.focused_type = nors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(nors[index].bounds);
+			global.variables.focused = true;
 			nors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_xor(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4220,23 +4220,23 @@ class EngineFunctions {
 		if (index < xors.length) {
 			xors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = xors[index].elm.id;
-			global.focused_type = xors[index].elm.type;
-			global.focused_bounds = global.copy(xors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = xors[index].elm.id;
+			global.variables.focused_type = xors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(xors[index].bounds);
+			global.variables.focused = true;
 			xors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_xnor(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4248,25 +4248,25 @@ class EngineFunctions {
 		if (index < xnors.length) {
 			xnors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = xnors[index].elm.id;
-			global.focused_type = xnors[index].elm.type;
-			global.focused_bounds = global.copy(xnors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = xnors[index].elm.id;
+			global.variables.focused_type = xnors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(xnors[index].bounds);
+			global.variables.focused = true;
 			xnors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_dff(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x4 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y4 = global.mouse_y + 2 * global.variables.node_space_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x4 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y4 = global.variables.mouse_y + 2 * global.variables.node_space_y;
 
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
@@ -4279,21 +4279,21 @@ class EngineFunctions {
 		if (index < dffs.length) {
 			dffs[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = dffs[index].elm.id;
-			global.focused_type = dffs[index].elm.type;
-			global.focused_bounds = global.copy(dffs[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = dffs[index].elm.id;
+			global.variables.focused_type = dffs[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(dffs[index].bounds);
+			global.variables.focused = true;
 			dffs[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_vsat(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4304,23 +4304,23 @@ class EngineFunctions {
 		if (index < vsats.length) {
 			vsats[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = vsats[index].elm.id;
-			global.focused_type = vsats[index].elm.type;
-			global.focused_bounds = global.copy(vsats[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = vsats[index].elm.id;
+			global.variables.focused_type = vsats[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(vsats[index].bounds);
+			global.variables.focused = true;
 			vsats[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_adder(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4332,23 +4332,23 @@ class EngineFunctions {
 		if (index < adders.length) {
 			adders[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = adders[index].elm.id;
-			global.focused_type = adders[index].elm.type;
-			global.focused_bounds = global.copy(adders[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = adders[index].elm.id;
+			global.variables.focused_type = adders[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(adders[index].bounds);
+			global.variables.focused = true;
 			adders[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_subtractor(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4360,23 +4360,23 @@ class EngineFunctions {
 		if (index < subtractors.length) {
 			subtractors[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = subtractors[index].elm.id;
-			global.focused_type = subtractors[index].elm.type;
-			global.focused_bounds = global.copy(subtractors[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = subtractors[index].elm.id;
+			global.variables.focused_type = subtractors[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(subtractors[index].bounds);
+			global.variables.focused = true;
 			subtractors[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_multiplier(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4388,23 +4388,23 @@ class EngineFunctions {
 		if (index < multipliers.length) {
 			multipliers[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = multipliers[index].elm.id;
-			global.focused_type = multipliers[index].elm.type;
-			global.focused_bounds = global.copy(multipliers[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = multipliers[index].elm.id;
+			global.variables.focused_type = multipliers[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(multipliers[index].bounds);
+			global.variables.focused = true;
 			multipliers[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_divider(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4416,21 +4416,21 @@ class EngineFunctions {
 		if (index < dividers.length) {
 			dividers[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = dividers[index].elm.id;
-			global.focused_type = dividers[index].elm.type;
-			global.focused_bounds = global.copy(dividers[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = dividers[index].elm.id;
+			global.variables.focused_type = dividers[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(dividers[index].bounds);
+			global.variables.focused = true;
 			dividers[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_gain(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4441,21 +4441,21 @@ class EngineFunctions {
 		if (index < gains.length) {
 			gains[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = gains[index].elm.id;
-			global.focused_type = gains[index].elm.type;
-			global.focused_bounds = global.copy(gains[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = gains[index].elm.id;
+			global.variables.focused_type = gains[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(gains[index].bounds);
+			global.variables.focused = true;
 			gains[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_absval(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4466,23 +4466,23 @@ class EngineFunctions {
 		if (index < absvals.length) {
 			absvals[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = absvals[index].elm.id;
-			global.focused_type = absvals[index].elm.type;
-			global.focused_bounds = global.copy(absvals[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = absvals[index].elm.id;
+			global.variables.focused_type = absvals[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(absvals[index].bounds);
+			global.variables.focused = true;
 			absvals[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_vcsw(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4494,25 +4494,25 @@ class EngineFunctions {
 		if (index < vcsws.length) {
 			vcsws[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = vcsws[index].elm.id;
-			global.focused_type = vcsws[index].elm.type;
-			global.focused_bounds = global.copy(vcsws[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = vcsws[index].elm.id;
+			global.variables.focused_type = vcsws[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(vcsws[index].bounds);
+			global.variables.focused = true;
 			vcsws[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_vcvs(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x4 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y4 = global.mouse_y + 2 * global.variables.node_space_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x4 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y4 = global.variables.mouse_y + 2 * global.variables.node_space_y;
 
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
@@ -4525,25 +4525,25 @@ class EngineFunctions {
 		if (index < vcvss.length) {
 			vcvss[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = vcvss[index].elm.id;
-			global.focused_type = vcvss[index].elm.type;
-			global.focused_bounds = global.copy(vcvss[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = vcvss[index].elm.id;
+			global.variables.focused_type = vcvss[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(vcvss[index].bounds);
+			global.variables.focused = true;
 			vcvss[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_vccs(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x4 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y4 = global.mouse_y + 2 * global.variables.node_space_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x4 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y4 = global.variables.mouse_y + 2 * global.variables.node_space_y;
 
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
@@ -4556,25 +4556,25 @@ class EngineFunctions {
 		if (index < vccss.length) {
 			vccss[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = vccss[index].elm.id;
-			global.focused_type = vccss[index].elm.type;
-			global.focused_bounds = global.copy(vccss[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = vccss[index].elm.id;
+			global.variables.focused_type = vccss[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(vccss[index].bounds);
+			global.variables.focused = true;
 			vccss[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_cccs(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x4 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y4 = global.mouse_y + 2 * global.variables.node_space_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x4 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y4 = global.variables.mouse_y + 2 * global.variables.node_space_y;
 
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
@@ -4587,25 +4587,25 @@ class EngineFunctions {
 		if (index < cccss.length) {
 			cccss[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = cccss[index].elm.id;
-			global.focused_type = cccss[index].elm.type;
-			global.focused_bounds = global.copy(cccss[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = cccss[index].elm.id;
+			global.variables.focused_type = cccss[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(cccss[index].bounds);
+			global.variables.focused = true;
 			cccss[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_ccvs(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x4 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y4 = global.mouse_y + 2 * global.variables.node_space_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x4 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y4 = global.variables.mouse_y + 2 * global.variables.node_space_y;
 
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
@@ -4618,23 +4618,23 @@ class EngineFunctions {
 		if (index < ccvss.length) {
 			ccvss[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = ccvss[index].elm.id;
-			global.focused_type = ccvss[index].elm.type;
-			global.focused_bounds = global.copy(ccvss[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = ccvss[index].elm.id;
+			global.variables.focused_type = ccvss[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(ccvss[index].bounds);
+			global.variables.focused = true;
 			ccvss[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_opamp(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4646,23 +4646,23 @@ class EngineFunctions {
 		if (index < opamps.length) {
 			opamps[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = opamps[index].elm.id;
-			global.focused_type = opamps[index].elm.type;
-			global.focused_bounds = global.copy(opamps[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = opamps[index].elm.id;
+			global.variables.focused_type = opamps[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(opamps[index].bounds);
+			global.variables.focused = true;
 			opamps[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_nmosfet(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4674,23 +4674,23 @@ class EngineFunctions {
 		if (index < nmosfets.length) {
 			nmosfets[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = nmosfets[index].elm.id;
-			global.focused_type = nmosfets[index].elm.type;
-			global.focused_bounds = global.copy(nmosfets[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = nmosfets[index].elm.id;
+			global.variables.focused_type = nmosfets[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(nmosfets[index].bounds);
+			global.variables.focused = true;
 			nmosfets[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_pmosfet(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4702,23 +4702,23 @@ class EngineFunctions {
 		if (index < pmosfets.length) {
 			pmosfets[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = pmosfets[index].elm.id;
-			global.focused_type = pmosfets[index].elm.type;
-			global.focused_bounds = global.copy(pmosfets[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = pmosfets[index].elm.id;
+			global.variables.focused_type = pmosfets[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(pmosfets[index].bounds);
+			global.variables.focused = true;
 			pmosfets[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_npn(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4730,23 +4730,23 @@ class EngineFunctions {
 		if (index < npns.length) {
 			npns[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = npns[index].elm.id;
-			global.focused_type = npns[index].elm.type;
-			global.focused_bounds = global.copy(npns[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = npns[index].elm.id;
+			global.variables.focused_type = npns[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(npns[index].bounds);
+			global.variables.focused = true;
 			npns[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_pnp(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4758,21 +4758,21 @@ class EngineFunctions {
 		if (index < pnps.length) {
 			pnps[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = pnps[index].elm.id;
-			global.focused_type = pnps[index].elm.type;
-			global.focused_bounds = global.copy(pnps[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = pnps[index].elm.id;
+			global.variables.focused_type = pnps[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(pnps[index].bounds);
+			global.variables.focused = true;
 			pnps[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_adc(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4783,21 +4783,21 @@ class EngineFunctions {
 		if (index < adcs.length) {
 			adcs[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = adcs[index].elm.id;
-			global.focused_type = adcs[index].elm.type;
-			global.focused_bounds = global.copy(adcs[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = adcs[index].elm.id;
+			global.variables.focused_type = adcs[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(adcs[index].bounds);
+			global.variables.focused = true;
 			adcs[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_dac(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4808,23 +4808,23 @@ class EngineFunctions {
 		if (index < dacs.length) {
 			dacs[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = dacs[index].elm.id;
-			global.focused_type = dacs[index].elm.type;
-			global.focused_bounds = global.copy(dacs[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = dacs[index].elm.id;
+			global.variables.focused_type = dacs[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(dacs[index].bounds);
+			global.variables.focused = true;
 			dacs[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_samplers(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4836,23 +4836,23 @@ class EngineFunctions {
 		if (index < sandhs.length) {
 			sandhs[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = sandhs[index].elm.id;
-			global.focused_type = sandhs[index].elm.type;
-			global.focused_bounds = global.copy(sandhs[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = sandhs[index].elm.id;
+			global.variables.focused_type = sandhs[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(sandhs[index].bounds);
+			global.variables.focused = true;
 			sandhs[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_pwm(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -4864,21 +4864,21 @@ class EngineFunctions {
 		if (index < pwms.length) {
 			pwms[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = pwms[index].elm.id;
-			global.focused_type = pwms[index].elm.type;
-			global.focused_bounds = global.copy(pwms[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = pwms[index].elm.id;
+			global.variables.focused_type = pwms[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(pwms[index].bounds);
+			global.variables.focused = true;
 			pwms[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_integrator(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4889,21 +4889,21 @@ class EngineFunctions {
 		if (index < integrators.length) {
 			integrators[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = integrators[index].elm.id;
-			global.focused_type = integrators[index].elm.type;
-			global.focused_bounds = global.copy(integrators[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = integrators[index].elm.id;
+			global.variables.focused_type = integrators[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(integrators[index].bounds);
+			global.variables.focused = true;
 			integrators[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_differentiator(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4914,21 +4914,21 @@ class EngineFunctions {
 		if (index < differentiators.length) {
 			differentiators[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = differentiators[index].elm.id;
-			global.focused_type = differentiators[index].elm.type;
-			global.focused_bounds = global.copy(differentiators[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = differentiators[index].elm.id;
+			global.variables.focused_type = differentiators[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(differentiators[index].bounds);
+			global.variables.focused = true;
 			differentiators[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_lowpass(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4939,21 +4939,21 @@ class EngineFunctions {
 		if (index < lowpasses.length) {
 			lowpasses[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = lowpasses[index].elm.id;
-			global.focused_type = lowpasses[index].elm.type;
-			global.focused_bounds = global.copy(lowpasses[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = lowpasses[index].elm.id;
+			global.variables.focused_type = lowpasses[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(lowpasses[index].bounds);
+			global.variables.focused = true;
 			lowpasses[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_highpass(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -4964,25 +4964,25 @@ class EngineFunctions {
 		if (index < highpasses.length) {
 			highpasses[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = highpasses[index].elm.id;
-			global.focused_type = highpasses[index].elm.type;
-			global.focused_bounds = global.copy(highpasses[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = highpasses[index].elm.id;
+			global.variables.focused_type = highpasses[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(highpasses[index].bounds);
+			global.variables.focused = true;
 			highpasses[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_relay(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x4 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y4 = global.mouse_y + 2 * global.variables.node_space_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x4 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y4 = global.variables.mouse_y + 2 * global.variables.node_space_y;
 
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
@@ -4995,23 +4995,23 @@ class EngineFunctions {
 		if (index < relays.length) {
 			relays[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = relays[index].elm.id;
-			global.focused_type = relays[index].elm.type;
-			global.focused_bounds = global.copy(relays[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = relays[index].elm.id;
+			global.variables.focused_type = relays[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(relays[index].bounds);
+			global.variables.focused = true;
 			relays[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_pid(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -5023,21 +5023,21 @@ class EngineFunctions {
 		if (index < pids.length) {
 			pids[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = pids[index].elm.id;
-			global.focused_type = pids[index].elm.type;
-			global.focused_bounds = global.copy(pids[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = pids[index].elm.id;
+			global.variables.focused_type = pids[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(pids[index].bounds);
+			global.variables.focused = true;
 			pids[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_lut(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -5048,23 +5048,23 @@ class EngineFunctions {
 		if (index < luts.length) {
 			luts[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = luts[index].elm.id;
-			global.focused_type = luts[index].elm.type;
-			global.focused_bounds = global.copy(luts[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = luts[index].elm.id;
+			global.variables.focused_type = luts[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(luts[index].bounds);
+			global.variables.focused = true;
 			luts[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_vcr(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -5076,23 +5076,23 @@ class EngineFunctions {
 		if (index < vcrs.length) {
 			vcrs[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = vcrs[index].elm.id;
-			global.focused_type = vcrs[index].elm.type;
-			global.focused_bounds = global.copy(vcrs[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = vcrs[index].elm.id;
+			global.variables.focused_type = vcrs[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(vcrs[index].bounds);
+			global.variables.focused = true;
 			vcrs[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_vcca(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -5104,23 +5104,23 @@ class EngineFunctions {
 		if (index < vccas.length) {
 			vccas[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = vccas[index].elm.id;
-			global.focused_type = vccas[index].elm.type;
-			global.focused_bounds = global.copy(vccas[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = vccas[index].elm.id;
+			global.variables.focused_type = vccas[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(vccas[index].bounds);
+			global.variables.focused = true;
 			vccas[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_vcl(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -5132,23 +5132,23 @@ class EngineFunctions {
 		if (index < vcls.length) {
 			vcls[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = vcls[index].elm.id;
-			global.focused_type = vcls[index].elm.type;
-			global.focused_bounds = global.copy(vcls[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = vcls[index].elm.id;
+			global.variables.focused_type = vcls[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(vcls[index].bounds);
+			global.variables.focused = true;
 			vcls[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_grt(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x;
-		this.y2 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x;
+		this.y2 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper3.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper3.snap_to_grid(this.x2, this.y2);
@@ -5160,21 +5160,21 @@ class EngineFunctions {
 		if (index < grts.length) {
 			grts[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = grts[index].elm.id;
-			global.focused_type = grts[index].elm.type;
-			global.focused_bounds = global.copy(grts[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = grts[index].elm.id;
+			global.variables.focused_type = grts[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(grts[index].bounds);
+			global.variables.focused = true;
 			grts[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_tptz(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y;
-		this.x2 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y;
+		this.x2 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y;
 
 		let p1: Array<number> = this.mapper2.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper2.snap_to_grid(this.x2, this.y2);
@@ -5185,25 +5185,25 @@ class EngineFunctions {
 		if (index < tptzs.length) {
 			tptzs[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = tptzs[index].elm.id;
-			global.focused_type = tptzs[index].elm.type;
-			global.focused_bounds = global.copy(tptzs[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = tptzs[index].elm.id;
+			global.variables.focused_type = tptzs[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(tptzs[index].bounds);
+			global.variables.focused = true;
 			tptzs[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
 	add_transformer(): void {
 		this.reset_selection(true);
-		this.x1 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y1 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x2 = global.mouse_x - 2 * global.variables.node_space_x;
-		this.y2 = global.mouse_y + 2 * global.variables.node_space_y;
-		this.x3 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y3 = global.mouse_y - 2 * global.variables.node_space_y;
-		this.x4 = global.mouse_x + 2 * global.variables.node_space_x;
-		this.y4 = global.mouse_y + 2 * global.variables.node_space_y;
+		this.x1 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y1 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x2 = global.variables.mouse_x - 2 * global.variables.node_space_x;
+		this.y2 = global.variables.mouse_y + 2 * global.variables.node_space_y;
+		this.x3 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y3 = global.variables.mouse_y - 2 * global.variables.node_space_y;
+		this.x4 = global.variables.mouse_x + 2 * global.variables.node_space_x;
+		this.y4 = global.variables.mouse_y + 2 * global.variables.node_space_y;
 
 		let p1: Array<number> = this.mapper4.snap_to_grid(this.x1, this.y1);
 		let p2: Array<number> = this.mapper4.snap_to_grid(this.x2, this.y2);
@@ -5216,12 +5216,12 @@ class EngineFunctions {
 		if (index < transformers.length) {
 			transformers[index].is_translating = false;
 			global.flags.signal_build_element = true;
-			global.focused_id = transformers[index].elm.id;
-			global.focused_type = transformers[index].elm.type;
-			global.focused_bounds = global.copy(transformers[index].bounds);
-			global.focused = true;
+			global.variables.focused_id = transformers[index].elm.id;
+			global.variables.focused_type = transformers[index].elm.type;
+			global.variables.focused_bounds = global.utils.copy(transformers[index].bounds);
+			global.variables.focused = true;
 			transformers[index].select();
-			global.component_touched = true;
+			global.variables.component_touched = true;
 		}
 	}
 
@@ -6054,22 +6054,22 @@ class EngineFunctions {
 		}
 	}
 	image_manager() {
-		if (global.picture_request_flag) {
+		if (global.flags.picture_request_flag) {
 			this.capture_image();
-			global.picture_request_flag = false;
+			global.flags.picture_request_flag = false;
 		}
 	}
 	parse_elements(packet: string) {
-		global.focused = false;
-		global.focused_id = global.CONSTANTS.NULL;
-		global.focused_type = global.CONSTANTS.NULL;
-		global.focused_bounds = global.CONSTANTS.NULL;
-		global.selected_id = global.CONSTANTS.NULL;
-		global.selected_type = -1;
-		global.selected_bounds = global.CONSTANTS.NULL;
-		global.selected_properties = global.CONSTANTS.NULL;
-		global.selected = false;
-		global.multi_selected = false;
+		global.variables.focused = false;
+		global.variables.focused_id = global.CONSTANTS.NULL;
+		global.variables.focused_type = global.CONSTANTS.NULL;
+		global.variables.focused_bounds = global.CONSTANTS.NULL;
+		global.variables.selected_id = global.CONSTANTS.NULL;
+		global.variables.selected_type = -1;
+		global.variables.selected_bounds = global.CONSTANTS.NULL;
+		global.variables.selected_properties = global.CONSTANTS.NULL;
+		global.variables.selected = false;
+		global.variables.multi_selected = false;
 		this.clear_all_elements();
 		scope_manager.clear_entries();
 		graph_window.reset();
@@ -6097,21 +6097,21 @@ class EngineFunctions {
 	}
 	rebuild_elements(obj: any) {
 		if (obj.elm.type === global.ELEMENT_TYPES.TYPE_META_DATA) {
-			if (global.not_null(obj.user_settings)) {
+			if (global.utils.not_null(obj.user_settings)) {
 				Object.keys(global.settings).forEach(function (key) {
-					if (global.not_null(obj.user_settings[key])) {
-						global.settings[key] = global.copy(obj.user_settings[key]);
+					if (global.utils.not_null(obj.user_settings[key])) {
+						global.settings[key] = global.utils.copy(obj.user_settings[key]);
 					}
 				});
 			}
-			if (global.not_null(obj.user_scope_settings)) {
-				scope_manager.entry = global.copy(obj.user_scope_settings);
+			if (global.utils.not_null(obj.user_scope_settings)) {
+				scope_manager.entry = global.utils.copy(obj.user_scope_settings);
 			}
-			if (global.not_null(obj.user_timestep)) {
+			if (global.utils.not_null(obj.user_timestep)) {
 				global.time_step = obj.user_timestep;
 				bottom_menu.resize_bottom_menu();
 			}
-			if (global.not_null(obj.file_name)) {
+			if (global.utils.not_null(obj.file_name)) {
 				global.variables.user_file.title = obj.file_name;
 			}
 		}
@@ -6422,12 +6422,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_RESISTOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_RESISTOR[key];
 			}
 		});
 		Object.keys(Resistor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Resistor[key];
 			}
 		});
@@ -6452,12 +6452,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_CAPACITOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CAPACITOR[key];
 			}
 		});
 		Object.keys(Capacitor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Capacitor[key];
 			}
 		});
@@ -6490,12 +6490,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_INDUCTOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_INDUCTOR[key];
 			}
 		});
 		Object.keys(Inductor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Inductor[key];
 			}
 		});
@@ -6520,12 +6520,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_GROUND).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_GROUND[key];
 			}
 		});
 		Object.keys(Ground).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Ground[key];
 			}
 		});
@@ -6550,12 +6550,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_DCSOURCE).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DCSOURCE[key];
 			}
 		});
 		Object.keys(DCSource).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = DCSource[key];
 			}
 		});
@@ -6580,12 +6580,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_DCCURRENT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DCCURRENT[key];
 			}
 		});
 		Object.keys(DCCurrent).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = DCCurrent[key];
 			}
 		});
@@ -6612,12 +6612,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_ACSOURCE).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ACSOURCE[key];
 			}
 		});
 		Object.keys(ACSource).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = ACSource[key];
 			}
 		});
@@ -6644,12 +6644,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_ACCURRENT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ACCURRENT[key];
 			}
 		});
 		Object.keys(ACCurrent).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = ACCurrent[key];
 			}
 		});
@@ -6674,12 +6674,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_SQUAREWAVE).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SQUAREWAVE[key];
 			}
 		});
 		Object.keys(SquareWave).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = SquareWave[key];
 			}
 		});
@@ -6704,12 +6704,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_SAW).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SAW[key];
 			}
 		});
 		Object.keys(SawWave).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = SawWave[key];
 			}
 		});
@@ -6734,12 +6734,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_TRI).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_TRI[key];
 			}
 		});
 		Object.keys(TriangleWave).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = TriangleWave[key];
 			}
 		});
@@ -6764,12 +6764,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_CONSTANT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CONSTANT[key];
 			}
 		});
 		Object.keys(Constant).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Constant[key];
 			}
 		});
@@ -6795,12 +6795,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_WIRE).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_WIRE[key];
 			}
 		});
 		Object.keys(Wire).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Wire[key];
 			}
 		});
@@ -6825,12 +6825,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_NET).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NET[key];
 			}
 		});
 		Object.keys(Net).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Net[key];
 			}
 		});
@@ -6855,12 +6855,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_NOTE).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NOTE[key];
 			}
 		});
 		Object.keys(Note).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Note[key];
 			}
 		});
@@ -6885,12 +6885,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_RAIL).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_RAIL[key];
 			}
 		});
 		Object.keys(Rail).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Rail[key];
 			}
 		});
@@ -6927,12 +6927,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VOLTMETER).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VOLTMETER[key];
 			}
 		});
 		Object.keys(VoltMeter).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltMeter[key];
 			}
 		});
@@ -6969,12 +6969,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_OHMMETER).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_OHMMETER[key];
 			}
 		});
 		Object.keys(OhmMeter).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = OhmMeter[key];
 			}
 		});
@@ -7011,12 +7011,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_AMMETER).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_AMMETER[key];
 			}
 		});
 		Object.keys(AmMeter).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = AmMeter[key];
 			}
 		});
@@ -7053,12 +7053,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_WATTMETER).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_WATTMETER[key];
 			}
 		});
 		Object.keys(WattMeter).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = WattMeter[key];
 			}
 		});
@@ -7083,12 +7083,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_FUSE).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_FUSE[key];
 			}
 		});
 		Object.keys(Fuse).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Fuse[key];
 			}
 		});
@@ -7113,12 +7113,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_SPST).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SPST[key];
 			}
 		});
 		Object.keys(SinglePoleSingleThrow).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = SinglePoleSingleThrow[key];
 			}
 		});
@@ -7143,12 +7143,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_SPDT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SPDT[key];
 			}
 		});
 		Object.keys(SinglePoleDoubleThrow).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = SinglePoleDoubleThrow[key];
 			}
 		});
@@ -7173,12 +7173,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_NOT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NOT[key];
 			}
 		});
 		Object.keys(NOTGate).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = NOTGate[key];
 			}
 		});
@@ -7203,12 +7203,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_DIODE).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DIODE[key];
 			}
 		});
 		Object.keys(Diode).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Diode[key];
 			}
 		});
@@ -7233,12 +7233,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_LED).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_LED[key];
 			}
 		});
 		Object.keys(LightEmittingDiode).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = LightEmittingDiode[key];
 			}
 		});
@@ -7263,12 +7263,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_ZENER).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ZENER[key];
 			}
 		});
 		Object.keys(ZenerDiode).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = ZenerDiode[key];
 			}
 		});
@@ -7293,12 +7293,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_POTENTIOMETER).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_POTENTIOMETER[key];
 			}
 		});
 		Object.keys(Potentiometer).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Potentiometer[key];
 			}
 		});
@@ -7323,12 +7323,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_AND).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_AND[key];
 			}
 		});
 		Object.keys(ANDGate).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = ANDGate[key];
 			}
 		});
@@ -7353,12 +7353,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_OR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_OR[key];
 			}
 		});
 		Object.keys(ORGate).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = ORGate[key];
 			}
 		});
@@ -7383,12 +7383,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_NAND).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NAND[key];
 			}
 		});
 		Object.keys(NANDGate).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = NANDGate[key];
 			}
 		});
@@ -7413,12 +7413,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_NOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NOR[key];
 			}
 		});
 		Object.keys(NORGate).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = NORGate[key];
 			}
 		});
@@ -7443,12 +7443,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_XOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_XOR[key];
 			}
 		});
 		Object.keys(XORGate).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = XORGate[key];
 			}
 		});
@@ -7473,12 +7473,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_XNOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_XNOR[key];
 			}
 		});
 		Object.keys(XNORGate).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = XNORGate[key];
 			}
 		});
@@ -7503,12 +7503,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_DFF).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DFF[key];
 			}
 		});
 		Object.keys(DFlipFlop).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = DFlipFlop[key];
 			}
 		});
@@ -7533,12 +7533,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VSAT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VSAT[key];
 			}
 		});
 		Object.keys(VoltageSaturation).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltageSaturation[key];
 			}
 		});
@@ -7563,12 +7563,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_ADD).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ADD[key];
 			}
 		});
 		Object.keys(Adder).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Adder[key];
 			}
 		});
@@ -7593,12 +7593,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_SUB).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SUB[key];
 			}
 		});
 		Object.keys(Subtractor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Subtractor[key];
 			}
 		});
@@ -7623,12 +7623,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_MUL).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_MUL[key];
 			}
 		});
 		Object.keys(Multiplier).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Multiplier[key];
 			}
 		});
@@ -7653,12 +7653,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_DIV).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DIV[key];
 			}
 		});
 		Object.keys(Divider).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Divider[key];
 			}
 		});
@@ -7683,12 +7683,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_GAIN).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_GAIN[key];
 			}
 		});
 		Object.keys(GainBlock).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = GainBlock[key];
 			}
 		});
@@ -7713,12 +7713,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_ABS).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ABS[key];
 			}
 		});
 		Object.keys(AbsoluteValue).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = AbsoluteValue[key];
 			}
 		});
@@ -7743,12 +7743,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VCSW).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCSW[key];
 			}
 		});
 		Object.keys(VoltageControlledSwitch).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltageControlledSwitch[key];
 			}
 		});
@@ -7773,12 +7773,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VCVS).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCVS[key];
 			}
 		});
 		Object.keys(VoltageControlledVoltageSource).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltageControlledVoltageSource[key];
 			}
 		});
@@ -7803,12 +7803,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VCCS).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCCS[key];
 			}
 		});
 		Object.keys(VoltageControlledCurrentSource).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltageControlledCurrentSource[key];
 			}
 		});
@@ -7833,12 +7833,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_CCCS).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CCCS[key];
 			}
 		});
 		Object.keys(CurrentControlledCurrentSource).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = CurrentControlledCurrentSource[key];
 			}
 		});
@@ -7863,12 +7863,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_CCVS).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_CCVS[key];
 			}
 		});
 		Object.keys(CurrentControlledVoltageSource).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = CurrentControlledVoltageSource[key];
 			}
 		});
@@ -7893,12 +7893,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_OPAMP).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_OPAMP[key];
 			}
 		});
 		Object.keys(OperationalAmplifier).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = OperationalAmplifier[key];
 			}
 		});
@@ -7923,12 +7923,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_NMOS).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NMOS[key];
 			}
 		});
 		Object.keys(NChannelMOSFET).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = NChannelMOSFET[key];
 			}
 		});
@@ -7953,12 +7953,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_PMOS).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PMOS[key];
 			}
 		});
 		Object.keys(PChannelMOSFET).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = PChannelMOSFET[key];
 			}
 		});
@@ -7983,12 +7983,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_NPN).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_NPN[key];
 			}
 		});
 		Object.keys(NPNBipolarJunctionTransistor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = NPNBipolarJunctionTransistor[key];
 			}
 		});
@@ -8013,12 +8013,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_PNP).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PNP[key];
 			}
 		});
 		Object.keys(PNPBipolarJunctionTransistor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = PNPBipolarJunctionTransistor[key];
 			}
 		});
@@ -8043,12 +8043,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_ADC).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_ADC[key];
 			}
 		});
 		Object.keys(ADCModule).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = ADCModule[key];
 			}
 		});
@@ -8073,12 +8073,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_DAC).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DAC[key];
 			}
 		});
 		Object.keys(DACModule).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = DACModule[key];
 			}
 		});
@@ -8103,12 +8103,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_SAH).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_SAH[key];
 			}
 		});
 		Object.keys(SampleAndHold).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = SampleAndHold[key];
 			}
 		});
@@ -8133,12 +8133,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_PWM).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PWM[key];
 			}
 		});
 		Object.keys(PulseWidthModulator).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = PulseWidthModulator[key];
 			}
 		});
@@ -8163,12 +8163,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_INTEGRATOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_INTEGRATOR[key];
 			}
 		});
 		Object.keys(IntegratorModule).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = IntegratorModule[key];
 			}
 		});
@@ -8193,12 +8193,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_DIFFERENTIATOR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_DIFFERENTIATOR[key];
 			}
 		});
 		Object.keys(DifferentiatorModule).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = DifferentiatorModule[key];
 			}
 		});
@@ -8223,12 +8223,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_LPF).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_LPF[key];
 			}
 		});
 		Object.keys(LowPassFilter).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = LowPassFilter[key];
 			}
 		});
@@ -8253,12 +8253,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_HPF).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_HPF[key];
 			}
 		});
 		Object.keys(HighPassFilter).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = HighPassFilter[key];
 			}
 		});
@@ -8283,12 +8283,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_REL).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_REL[key];
 			}
 		});
 		Object.keys(Relay).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Relay[key];
 			}
 		});
@@ -8314,12 +8314,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_PID).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_PID[key];
 			}
 		});
 		Object.keys(PIDModule).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = PIDModule[key];
 			}
 		});
@@ -8344,12 +8344,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_LUT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_LUT[key];
 			}
 		});
 		Object.keys(LookUpTable).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = LookUpTable[key];
 			}
 		});
@@ -8374,12 +8374,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VCR).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCR[key];
 			}
 		});
 		Object.keys(VoltageControlledResistor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltageControlledResistor[key];
 			}
 		});
@@ -8404,12 +8404,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VCCA).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCCA[key];
 			}
 		});
 		Object.keys(VoltageControlledCapacitor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltageControlledCapacitor[key];
 			}
 		});
@@ -8442,12 +8442,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_VCL).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_VCL[key];
 			}
 		});
 		Object.keys(VoltageControlledInductor).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = VoltageControlledInductor[key];
 			}
 		});
@@ -8472,12 +8472,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_GRT).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_GRT[key];
 			}
 		});
 		Object.keys(GreaterThan).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = GreaterThan[key];
 			}
 		});
@@ -8503,12 +8503,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_TPTZ).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_TPTZ[key];
 			}
 		});
 		Object.keys(TPTZModule).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = TPTZModule[key];
 			}
 		});
@@ -8533,12 +8533,12 @@ class EngineFunctions {
 		obj.bounds.anchored = true;
 
 		Object.keys(global.PROPERTY_TRAN).forEach(function (key) {
-			if (!global.not_null(obj.elm.properties[key])) {
+			if (!global.utils.not_null(obj.elm.properties[key])) {
 				obj.elm.properties[key] = global.PROPERTY_TRAN[key];
 			}
 		});
 		Object.keys(Transformer).forEach(function (key) {
-			if (!global.not_null(obj[key])) {
+			if (!global.utils.not_null(obj[key])) {
 				obj[key] = Transformer[key];
 			}
 		});
@@ -8700,8 +8700,8 @@ class EngineFunctions {
 		let packet: Array<string> = [];
 		let indexer: number = 0;
 		this.meta_data.elm.properties['date'] = global.get_date_stamp();
-		this.meta_data.user_scope_settings = global.copy(scope_manager.entry);
-		this.meta_data.user_settings = global.copy(global.settings);
+		this.meta_data.user_scope_settings = global.utils.copy(scope_manager.entry);
+		this.meta_data.user_settings = global.utils.copy(global.settings);
 		this.meta_data.user_timestep = global.time_step;
 		this.meta_data.file_name = global.variables.user_file.title;
 		this.meta_data.calibration_string = workspace.bounds.left + ', ' + workspace.bounds.top + ', ' + workspace.bounds.right + ', ' + workspace.bounds.bottom;
@@ -8927,8 +8927,8 @@ class EngineFunctions {
 			resistors[index].remove_focus();
 			resistors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			resistors.splice(index, 1);
 		}
 	}
@@ -8939,8 +8939,8 @@ class EngineFunctions {
 			capacitors[index].remove_focus();
 			capacitors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			capacitors.splice(index, 1);
 		}
 	}
@@ -8951,8 +8951,8 @@ class EngineFunctions {
 			inductors[index].remove_focus();
 			inductors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			inductors.splice(index, 1);
 		}
 	}
@@ -8963,8 +8963,8 @@ class EngineFunctions {
 			grounds[index].remove_focus();
 			grounds[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			grounds.splice(index, 1);
 		}
 	}
@@ -8975,8 +8975,8 @@ class EngineFunctions {
 			dcsources[index].remove_focus();
 			dcsources[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			dcsources.splice(index, 1);
 		}
 	}
@@ -8987,8 +8987,8 @@ class EngineFunctions {
 			dccurrents[index].remove_focus();
 			dccurrents[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			dccurrents.splice(index, 1);
 		}
 	}
@@ -8999,8 +8999,8 @@ class EngineFunctions {
 			acsources[index].remove_focus();
 			acsources[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			acsources.splice(index, 1);
 		}
 	}
@@ -9011,8 +9011,8 @@ class EngineFunctions {
 			accurrents[index].remove_focus();
 			accurrents[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			accurrents.splice(index, 1);
 		}
 	}
@@ -9023,8 +9023,8 @@ class EngineFunctions {
 			squarewaves[index].remove_focus();
 			squarewaves[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			squarewaves.splice(index, 1);
 		}
 	}
@@ -9035,8 +9035,8 @@ class EngineFunctions {
 			sawwaves[index].remove_focus();
 			sawwaves[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			sawwaves.splice(index, 1);
 		}
 	}
@@ -9047,8 +9047,8 @@ class EngineFunctions {
 			trianglewaves[index].remove_focus();
 			trianglewaves[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			trianglewaves.splice(index, 1);
 		}
 	}
@@ -9059,8 +9059,8 @@ class EngineFunctions {
 			constants[index].remove_focus();
 			constants[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			constants.splice(index, 1);
 		}
 	}
@@ -9071,8 +9071,8 @@ class EngineFunctions {
 			wires[index].remove_focus();
 			wires[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			wires.splice(index, 1);
 		}
 	}
@@ -9083,8 +9083,8 @@ class EngineFunctions {
 			nets[index].remove_focus();
 			nets[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			nets.splice(index, 1);
 		}
 	}
@@ -9095,8 +9095,8 @@ class EngineFunctions {
 			notes[index].remove_focus();
 			notes[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			notes.splice(index, 1);
 		}
 	}
@@ -9107,8 +9107,8 @@ class EngineFunctions {
 			rails[index].remove_focus();
 			rails[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			rails.splice(index, 1);
 		}
 	}
@@ -9121,8 +9121,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(voltmeters[index].elm.id, voltmeters[index].elm.type);
 
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			voltmeters.splice(index, 1);
 		}
 	}
@@ -9135,8 +9135,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(ohmmeters[index].elm.id, ohmmeters[index].elm.type);
 
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			ohmmeters.splice(index, 1);
 		}
 	}
@@ -9149,8 +9149,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(ammeters[index].elm.id, ammeters[index].elm.type);
 
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			ammeters.splice(index, 1);
 		}
 	}
@@ -9163,8 +9163,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(wattmeters[index].elm.id, wattmeters[index].elm.type);
 
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			wattmeters.splice(index, 1);
 		}
 	}
@@ -9175,8 +9175,8 @@ class EngineFunctions {
 			fuses[index].remove_focus();
 			fuses[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			fuses.splice(index, 1);
 		}
 	}
@@ -9187,8 +9187,8 @@ class EngineFunctions {
 			spsts[index].remove_focus();
 			spsts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			spsts.splice(index, 1);
 		}
 	}
@@ -9199,8 +9199,8 @@ class EngineFunctions {
 			spdts[index].remove_focus();
 			spdts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			spdts.splice(index, 1);
 		}
 	}
@@ -9211,8 +9211,8 @@ class EngineFunctions {
 			nots[index].remove_focus();
 			nots[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			nots.splice(index, 1);
 		}
 	}
@@ -9223,8 +9223,8 @@ class EngineFunctions {
 			diodes[index].remove_focus();
 			diodes[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			diodes.splice(index, 1);
 		}
 	}
@@ -9235,8 +9235,8 @@ class EngineFunctions {
 			leds[index].remove_focus();
 			leds[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			leds.splice(index, 1);
 		}
 	}
@@ -9247,8 +9247,8 @@ class EngineFunctions {
 			zeners[index].remove_focus();
 			zeners[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			zeners.splice(index, 1);
 		}
 	}
@@ -9259,8 +9259,8 @@ class EngineFunctions {
 			potentiometers[index].remove_focus();
 			potentiometers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			potentiometers.splice(index, 1);
 		}
 	}
@@ -9271,8 +9271,8 @@ class EngineFunctions {
 			ands[index].remove_focus();
 			ands[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			ands.splice(index, 1);
 		}
 	}
@@ -9283,8 +9283,8 @@ class EngineFunctions {
 			ors[index].remove_focus();
 			ors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			ors.splice(index, 1);
 		}
 	}
@@ -9295,8 +9295,8 @@ class EngineFunctions {
 			nands[index].remove_focus();
 			nands[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			nands.splice(index, 1);
 		}
 	}
@@ -9307,8 +9307,8 @@ class EngineFunctions {
 			nors[index].remove_focus();
 			nors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			nors.splice(index, 1);
 		}
 	}
@@ -9319,8 +9319,8 @@ class EngineFunctions {
 			xors[index].remove_focus();
 			xors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			xors.splice(index, 1);
 		}
 	}
@@ -9331,8 +9331,8 @@ class EngineFunctions {
 			xnors[index].remove_focus();
 			xnors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			xnors.splice(index, 1);
 		}
 	}
@@ -9343,8 +9343,8 @@ class EngineFunctions {
 			dffs[index].remove_focus();
 			dffs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			dffs.splice(index, 1);
 		}
 	}
@@ -9355,8 +9355,8 @@ class EngineFunctions {
 			vsats[index].remove_focus();
 			vsats[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			vsats.splice(index, 1);
 		}
 	}
@@ -9367,8 +9367,8 @@ class EngineFunctions {
 			adders[index].remove_focus();
 			adders[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			adders.splice(index, 1);
 		}
 	}
@@ -9379,8 +9379,8 @@ class EngineFunctions {
 			subtractors[index].remove_focus();
 			subtractors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			subtractors.splice(index, 1);
 		}
 	}
@@ -9391,8 +9391,8 @@ class EngineFunctions {
 			multipliers[index].remove_focus();
 			multipliers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			multipliers.splice(index, 1);
 		}
 	}
@@ -9403,8 +9403,8 @@ class EngineFunctions {
 			dividers[index].remove_focus();
 			dividers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			dividers.splice(index, 1);
 		}
 	}
@@ -9415,8 +9415,8 @@ class EngineFunctions {
 			gains[index].remove_focus();
 			gains[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			gains.splice(index, 1);
 		}
 	}
@@ -9427,8 +9427,8 @@ class EngineFunctions {
 			absvals[index].remove_focus();
 			absvals[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			absvals.splice(index, 1);
 		}
 	}
@@ -9439,8 +9439,8 @@ class EngineFunctions {
 			vcsws[index].remove_focus();
 			vcsws[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			vcsws.splice(index, 1);
 		}
 	}
@@ -9451,8 +9451,8 @@ class EngineFunctions {
 			vcvss[index].remove_focus();
 			vcvss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			vcvss.splice(index, 1);
 		}
 	}
@@ -9463,8 +9463,8 @@ class EngineFunctions {
 			vccss[index].remove_focus();
 			vccss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			vccss.splice(index, 1);
 		}
 	}
@@ -9475,8 +9475,8 @@ class EngineFunctions {
 			cccss[index].remove_focus();
 			cccss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			cccss.splice(index, 1);
 		}
 	}
@@ -9487,8 +9487,8 @@ class EngineFunctions {
 			ccvss[index].remove_focus();
 			ccvss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			ccvss.splice(index, 1);
 		}
 	}
@@ -9499,8 +9499,8 @@ class EngineFunctions {
 			opamps[index].remove_focus();
 			opamps[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			opamps.splice(index, 1);
 		}
 	}
@@ -9511,8 +9511,8 @@ class EngineFunctions {
 			nmosfets[index].remove_focus();
 			nmosfets[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			nmosfets.splice(index, 1);
 		}
 	}
@@ -9523,8 +9523,8 @@ class EngineFunctions {
 			pmosfets[index].remove_focus();
 			pmosfets[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			pmosfets.splice(index, 1);
 		}
 	}
@@ -9535,8 +9535,8 @@ class EngineFunctions {
 			npns[index].remove_focus();
 			npns[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			npns.splice(index, 1);
 		}
 	}
@@ -9547,8 +9547,8 @@ class EngineFunctions {
 			pnps[index].remove_focus();
 			pnps[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			pnps.splice(index, 1);
 		}
 	}
@@ -9559,8 +9559,8 @@ class EngineFunctions {
 			adcs[index].remove_focus();
 			adcs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			adcs.splice(index, 1);
 		}
 	}
@@ -9571,8 +9571,8 @@ class EngineFunctions {
 			dacs[index].remove_focus();
 			dacs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			dacs.splice(index, 1);
 		}
 	}
@@ -9583,8 +9583,8 @@ class EngineFunctions {
 			sandhs[index].remove_focus();
 			sandhs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			sandhs.splice(index, 1);
 		}
 	}
@@ -9595,8 +9595,8 @@ class EngineFunctions {
 			pwms[index].remove_focus();
 			pwms[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			pwms.splice(index, 1);
 		}
 	}
@@ -9607,8 +9607,8 @@ class EngineFunctions {
 			integrators[index].remove_focus();
 			integrators[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			integrators.splice(index, 1);
 		}
 	}
@@ -9619,8 +9619,8 @@ class EngineFunctions {
 			differentiators[index].remove_focus();
 			differentiators[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			differentiators.splice(index, 1);
 		}
 	}
@@ -9631,8 +9631,8 @@ class EngineFunctions {
 			lowpasses[index].remove_focus();
 			lowpasses[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			lowpasses.splice(index, 1);
 		}
 	}
@@ -9643,8 +9643,8 @@ class EngineFunctions {
 			highpasses[index].remove_focus();
 			highpasses[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			highpasses.splice(index, 1);
 		}
 	}
@@ -9655,8 +9655,8 @@ class EngineFunctions {
 			relays[index].remove_focus();
 			relays[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			relays.splice(index, 1);
 		}
 	}
@@ -9667,8 +9667,8 @@ class EngineFunctions {
 			pids[index].remove_focus();
 			pids[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			pids.splice(index, 1);
 		}
 	}
@@ -9679,8 +9679,8 @@ class EngineFunctions {
 			luts[index].remove_focus();
 			luts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			luts.splice(index, 1);
 		}
 	}
@@ -9691,8 +9691,8 @@ class EngineFunctions {
 			vcrs[index].remove_focus();
 			vcrs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			vcrs.splice(index, 1);
 		}
 	}
@@ -9703,8 +9703,8 @@ class EngineFunctions {
 			vccas[index].remove_focus();
 			vccas[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			vccas.splice(index, 1);
 		}
 	}
@@ -9715,8 +9715,8 @@ class EngineFunctions {
 			vcls[index].remove_focus();
 			vcls[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			vcls.splice(index, 1);
 		}
 	}
@@ -9727,8 +9727,8 @@ class EngineFunctions {
 			grts[index].remove_focus();
 			grts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			grts.splice(index, 1);
 		}
 	}
@@ -9739,8 +9739,8 @@ class EngineFunctions {
 			tptzs[index].remove_focus();
 			tptzs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			tptzs.splice(index, 1);
 		}
 	}
@@ -9751,38 +9751,38 @@ class EngineFunctions {
 			transformers[index].remove_focus();
 			transformers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.signal_wire_deleted = true;
-			global.signal_wire_deleted_counter = 0;
+			global.flags.signal_wire_deleted = true;
+			global.variables.signal_wire_deleted_counter = 0;
 			transformers.splice(index, 1);
 		}
 	}
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	reset_selection(urgent: boolean): void {
 		if (
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.mouse_keyboard_lock &&
-			!global.signal_history_lock
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.variables.mouse_keyboard_lock &&
+			!global.flags.signal_history_lock
 		) {
-			if (!global.is_right_click) {
-				if (global.selected) {
-					if (!global.component_touched || urgent) {
-						global.selected_id = global.CONSTANTS.NULL;
-						global.selected_type = -1;
-						global.selected_bounds = global.CONSTANTS.NULL;
-						global.selected_properties = global.CONSTANTS.NULL;
-						global.selected = false;
+			if (!global.variables.is_right_click) {
+				if (global.variables.selected) {
+					if (!global.variables.component_touched || urgent) {
+						global.variables.selected_id = global.CONSTANTS.NULL;
+						global.variables.selected_type = -1;
+						global.variables.selected_bounds = global.CONSTANTS.NULL;
+						global.variables.selected_properties = global.CONSTANTS.NULL;
+						global.variables.selected = false;
 					}
 				}
-				if (!global.component_touched || urgent || global.selected) {
+				if (!global.variables.component_touched || urgent || global.variables.selected) {
 					/* #INSERT_GENERATE_RESET_MULTI_SELECT_ELEMENTS# */
 					/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 					for (var i: number = 0; i < resistors.length; i++) {
@@ -9995,10 +9995,10 @@ class EngineFunctions {
 					/* <!-- END AUTOMATICALLY GENERATED !--> */
 				}
 			}
-			global.component_touched = false;
+			global.variables.component_touched = false;
 		}
-		if (!global.is_right_click) {
-			if (!global.selected) {
+		if (!global.variables.is_right_click) {
+			if (!global.variables.selected) {
 				multi_select_manager.refresh_multi_select();
 			}
 		}
@@ -10283,554 +10283,554 @@ class EngineFunctions {
 	draw_selected_components(canvas: GraphicsEngine): void {
 		/* #INSERT_GENERATE_DRAW_SELECTED# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		if (global.selected) {
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+		if (global.variables.selected) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
 				for (var i: number = 0; i < resistors.length; i++) {
-					if (global.selected_id === resistors[i].elm.id) {
+					if (global.variables.selected_id === resistors[i].elm.id) {
 						resistors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
 				for (var i: number = 0; i < capacitors.length; i++) {
-					if (global.selected_id === capacitors[i].elm.id) {
+					if (global.variables.selected_id === capacitors[i].elm.id) {
 						capacitors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
 				for (var i: number = 0; i < inductors.length; i++) {
-					if (global.selected_id === inductors[i].elm.id) {
+					if (global.variables.selected_id === inductors[i].elm.id) {
 						inductors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
 				for (var i: number = 0; i < grounds.length; i++) {
-					if (global.selected_id === grounds[i].elm.id) {
+					if (global.variables.selected_id === grounds[i].elm.id) {
 						grounds[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
 				for (var i: number = 0; i < dcsources.length; i++) {
-					if (global.selected_id === dcsources[i].elm.id) {
+					if (global.variables.selected_id === dcsources[i].elm.id) {
 						dcsources[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
 				for (var i: number = 0; i < dccurrents.length; i++) {
-					if (global.selected_id === dccurrents[i].elm.id) {
+					if (global.variables.selected_id === dccurrents[i].elm.id) {
 						dccurrents[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
 				for (var i: number = 0; i < acsources.length; i++) {
-					if (global.selected_id === acsources[i].elm.id) {
+					if (global.variables.selected_id === acsources[i].elm.id) {
 						acsources[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
 				for (var i: number = 0; i < accurrents.length; i++) {
-					if (global.selected_id === accurrents[i].elm.id) {
+					if (global.variables.selected_id === accurrents[i].elm.id) {
 						accurrents[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
 				for (var i: number = 0; i < squarewaves.length; i++) {
-					if (global.selected_id === squarewaves[i].elm.id) {
+					if (global.variables.selected_id === squarewaves[i].elm.id) {
 						squarewaves[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
 				for (var i: number = 0; i < sawwaves.length; i++) {
-					if (global.selected_id === sawwaves[i].elm.id) {
+					if (global.variables.selected_id === sawwaves[i].elm.id) {
 						sawwaves[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
 				for (var i: number = 0; i < trianglewaves.length; i++) {
-					if (global.selected_id === trianglewaves[i].elm.id) {
+					if (global.variables.selected_id === trianglewaves[i].elm.id) {
 						trianglewaves[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
 				for (var i: number = 0; i < constants.length; i++) {
-					if (global.selected_id === constants[i].elm.id) {
+					if (global.variables.selected_id === constants[i].elm.id) {
 						constants[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WIRE) {
 				for (var i: number = 0; i < wires.length; i++) {
-					if (global.selected_id === wires[i].elm.id) {
+					if (global.variables.selected_id === wires[i].elm.id) {
 						wires[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
 				for (var i: number = 0; i < nets.length; i++) {
-					if (global.selected_id === nets[i].elm.id) {
+					if (global.variables.selected_id === nets[i].elm.id) {
 						nets[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
 				for (var i: number = 0; i < notes.length; i++) {
-					if (global.selected_id === notes[i].elm.id) {
+					if (global.variables.selected_id === notes[i].elm.id) {
 						notes[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
 				for (var i: number = 0; i < rails.length; i++) {
-					if (global.selected_id === rails[i].elm.id) {
+					if (global.variables.selected_id === rails[i].elm.id) {
 						rails[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
 				for (var i: number = 0; i < voltmeters.length; i++) {
-					if (global.selected_id === voltmeters[i].elm.id) {
+					if (global.variables.selected_id === voltmeters[i].elm.id) {
 						voltmeters[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
 				for (var i: number = 0; i < ohmmeters.length; i++) {
-					if (global.selected_id === ohmmeters[i].elm.id) {
+					if (global.variables.selected_id === ohmmeters[i].elm.id) {
 						ohmmeters[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
 				for (var i: number = 0; i < ammeters.length; i++) {
-					if (global.selected_id === ammeters[i].elm.id) {
+					if (global.variables.selected_id === ammeters[i].elm.id) {
 						ammeters[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
 				for (var i: number = 0; i < wattmeters.length; i++) {
-					if (global.selected_id === wattmeters[i].elm.id) {
+					if (global.variables.selected_id === wattmeters[i].elm.id) {
 						wattmeters[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
 				for (var i: number = 0; i < fuses.length; i++) {
-					if (global.selected_id === fuses[i].elm.id) {
+					if (global.variables.selected_id === fuses[i].elm.id) {
 						fuses[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
 				for (var i: number = 0; i < spsts.length; i++) {
-					if (global.selected_id === spsts[i].elm.id) {
+					if (global.variables.selected_id === spsts[i].elm.id) {
 						spsts[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
 				for (var i: number = 0; i < spdts.length; i++) {
-					if (global.selected_id === spdts[i].elm.id) {
+					if (global.variables.selected_id === spdts[i].elm.id) {
 						spdts[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
 				for (var i: number = 0; i < nots.length; i++) {
-					if (global.selected_id === nots[i].elm.id) {
+					if (global.variables.selected_id === nots[i].elm.id) {
 						nots[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
 				for (var i: number = 0; i < diodes.length; i++) {
-					if (global.selected_id === diodes[i].elm.id) {
+					if (global.variables.selected_id === diodes[i].elm.id) {
 						diodes[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
 				for (var i: number = 0; i < leds.length; i++) {
-					if (global.selected_id === leds[i].elm.id) {
+					if (global.variables.selected_id === leds[i].elm.id) {
 						leds[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
 				for (var i: number = 0; i < zeners.length; i++) {
-					if (global.selected_id === zeners[i].elm.id) {
+					if (global.variables.selected_id === zeners[i].elm.id) {
 						zeners[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
 				for (var i: number = 0; i < potentiometers.length; i++) {
-					if (global.selected_id === potentiometers[i].elm.id) {
+					if (global.variables.selected_id === potentiometers[i].elm.id) {
 						potentiometers[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
 				for (var i: number = 0; i < ands.length; i++) {
-					if (global.selected_id === ands[i].elm.id) {
+					if (global.variables.selected_id === ands[i].elm.id) {
 						ands[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
 				for (var i: number = 0; i < ors.length; i++) {
-					if (global.selected_id === ors[i].elm.id) {
+					if (global.variables.selected_id === ors[i].elm.id) {
 						ors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
 				for (var i: number = 0; i < nands.length; i++) {
-					if (global.selected_id === nands[i].elm.id) {
+					if (global.variables.selected_id === nands[i].elm.id) {
 						nands[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
 				for (var i: number = 0; i < nors.length; i++) {
-					if (global.selected_id === nors[i].elm.id) {
+					if (global.variables.selected_id === nors[i].elm.id) {
 						nors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
 				for (var i: number = 0; i < xors.length; i++) {
-					if (global.selected_id === xors[i].elm.id) {
+					if (global.variables.selected_id === xors[i].elm.id) {
 						xors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
 				for (var i: number = 0; i < xnors.length; i++) {
-					if (global.selected_id === xnors[i].elm.id) {
+					if (global.variables.selected_id === xnors[i].elm.id) {
 						xnors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
 				for (var i: number = 0; i < dffs.length; i++) {
-					if (global.selected_id === dffs[i].elm.id) {
+					if (global.variables.selected_id === dffs[i].elm.id) {
 						dffs[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
 				for (var i: number = 0; i < vsats.length; i++) {
-					if (global.selected_id === vsats[i].elm.id) {
+					if (global.variables.selected_id === vsats[i].elm.id) {
 						vsats[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
 				for (var i: number = 0; i < adders.length; i++) {
-					if (global.selected_id === adders[i].elm.id) {
+					if (global.variables.selected_id === adders[i].elm.id) {
 						adders[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
 				for (var i: number = 0; i < subtractors.length; i++) {
-					if (global.selected_id === subtractors[i].elm.id) {
+					if (global.variables.selected_id === subtractors[i].elm.id) {
 						subtractors[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
 				for (var i: number = 0; i < multipliers.length; i++) {
-					if (global.selected_id === multipliers[i].elm.id) {
+					if (global.variables.selected_id === multipliers[i].elm.id) {
 						multipliers[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
 				for (var i: number = 0; i < dividers.length; i++) {
-					if (global.selected_id === dividers[i].elm.id) {
+					if (global.variables.selected_id === dividers[i].elm.id) {
 						dividers[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
 				for (var i: number = 0; i < gains.length; i++) {
-					if (global.selected_id === gains[i].elm.id) {
+					if (global.variables.selected_id === gains[i].elm.id) {
 						gains[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
 				for (var i: number = 0; i < absvals.length; i++) {
-					if (global.selected_id === absvals[i].elm.id) {
+					if (global.variables.selected_id === absvals[i].elm.id) {
 						absvals[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
 				for (var i: number = 0; i < vcsws.length; i++) {
-					if (global.selected_id === vcsws[i].elm.id) {
+					if (global.variables.selected_id === vcsws[i].elm.id) {
 						vcsws[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
 				for (var i: number = 0; i < vcvss.length; i++) {
-					if (global.selected_id === vcvss[i].elm.id) {
+					if (global.variables.selected_id === vcvss[i].elm.id) {
 						vcvss[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
 				for (var i: number = 0; i < vccss.length; i++) {
-					if (global.selected_id === vccss[i].elm.id) {
+					if (global.variables.selected_id === vccss[i].elm.id) {
 						vccss[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
 				for (var i: number = 0; i < cccss.length; i++) {
-					if (global.selected_id === cccss[i].elm.id) {
+					if (global.variables.selected_id === cccss[i].elm.id) {
 						cccss[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
 				for (var i: number = 0; i < ccvss.length; i++) {
-					if (global.selected_id === ccvss[i].elm.id) {
+					if (global.variables.selected_id === ccvss[i].elm.id) {
 						ccvss[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
 				for (var i: number = 0; i < opamps.length; i++) {
-					if (global.selected_id === opamps[i].elm.id) {
+					if (global.variables.selected_id === opamps[i].elm.id) {
 						opamps[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
 				for (var i: number = 0; i < nmosfets.length; i++) {
-					if (global.selected_id === nmosfets[i].elm.id) {
+					if (global.variables.selected_id === nmosfets[i].elm.id) {
 						nmosfets[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
 				for (var i: number = 0; i < pmosfets.length; i++) {
-					if (global.selected_id === pmosfets[i].elm.id) {
+					if (global.variables.selected_id === pmosfets[i].elm.id) {
 						pmosfets[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
 				for (var i: number = 0; i < npns.length; i++) {
-					if (global.selected_id === npns[i].elm.id) {
+					if (global.variables.selected_id === npns[i].elm.id) {
 						npns[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
 				for (var i: number = 0; i < pnps.length; i++) {
-					if (global.selected_id === pnps[i].elm.id) {
+					if (global.variables.selected_id === pnps[i].elm.id) {
 						pnps[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
 				for (var i: number = 0; i < adcs.length; i++) {
-					if (global.selected_id === adcs[i].elm.id) {
+					if (global.variables.selected_id === adcs[i].elm.id) {
 						adcs[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
 				for (var i: number = 0; i < dacs.length; i++) {
-					if (global.selected_id === dacs[i].elm.id) {
+					if (global.variables.selected_id === dacs[i].elm.id) {
 						dacs[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
 				for (var i: number = 0; i < sandhs.length; i++) {
-					if (global.selected_id === sandhs[i].elm.id) {
+					if (global.variables.selected_id === sandhs[i].elm.id) {
 						sandhs[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
 				for (var i: number = 0; i < pwms.length; i++) {
-					if (global.selected_id === pwms[i].elm.id) {
+					if (global.variables.selected_id === pwms[i].elm.id) {
 						pwms[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
 				for (var i: number = 0; i < integrators.length; i++) {
-					if (global.selected_id === integrators[i].elm.id) {
+					if (global.variables.selected_id === integrators[i].elm.id) {
 						integrators[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
 				for (var i: number = 0; i < differentiators.length; i++) {
-					if (global.selected_id === differentiators[i].elm.id) {
+					if (global.variables.selected_id === differentiators[i].elm.id) {
 						differentiators[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
 				for (var i: number = 0; i < lowpasses.length; i++) {
-					if (global.selected_id === lowpasses[i].elm.id) {
+					if (global.variables.selected_id === lowpasses[i].elm.id) {
 						lowpasses[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
 				for (var i: number = 0; i < highpasses.length; i++) {
-					if (global.selected_id === highpasses[i].elm.id) {
+					if (global.variables.selected_id === highpasses[i].elm.id) {
 						highpasses[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
 				for (var i: number = 0; i < relays.length; i++) {
-					if (global.selected_id === relays[i].elm.id) {
+					if (global.variables.selected_id === relays[i].elm.id) {
 						relays[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
 				for (var i: number = 0; i < pids.length; i++) {
-					if (global.selected_id === pids[i].elm.id) {
+					if (global.variables.selected_id === pids[i].elm.id) {
 						pids[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
 				for (var i: number = 0; i < luts.length; i++) {
-					if (global.selected_id === luts[i].elm.id) {
+					if (global.variables.selected_id === luts[i].elm.id) {
 						luts[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
 				for (var i: number = 0; i < vcrs.length; i++) {
-					if (global.selected_id === vcrs[i].elm.id) {
+					if (global.variables.selected_id === vcrs[i].elm.id) {
 						vcrs[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
 				for (var i: number = 0; i < vccas.length; i++) {
-					if (global.selected_id === vccas[i].elm.id) {
+					if (global.variables.selected_id === vccas[i].elm.id) {
 						vccas[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
 				for (var i: number = 0; i < vcls.length; i++) {
-					if (global.selected_id === vcls[i].elm.id) {
+					if (global.variables.selected_id === vcls[i].elm.id) {
 						vcls[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
 				for (var i: number = 0; i < grts.length; i++) {
-					if (global.selected_id === grts[i].elm.id) {
+					if (global.variables.selected_id === grts[i].elm.id) {
 						grts[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
 				for (var i: number = 0; i < tptzs.length; i++) {
-					if (global.selected_id === tptzs[i].elm.id) {
+					if (global.variables.selected_id === tptzs[i].elm.id) {
 						tptzs[i].draw_component(canvas);
 						break;
 					}
 				}
 			}
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
 				for (var i: number = 0; i < transformers.length; i++) {
-					if (global.selected_id === transformers[i].elm.id) {
+					if (global.variables.selected_id === transformers[i].elm.id) {
 						transformers[i].draw_component(canvas);
 						break;
 					}
@@ -10891,8 +10891,8 @@ class EngineFunctions {
 	capture_image() {
 		let temp_zoom: number = global.variables.workspace_zoom_scale;
 		global.variables.workspace_zoom_scale = global.PICTURE_ZOOM;
-		global.mouse_x = workspace.bounds.get_center_x();
-		global.mouse_y = workspace.bounds.get_center_y();
+		global.variables.mouse_x = workspace.bounds.get_center_x();
+		global.variables.mouse_y = workspace.bounds.get_center_y();
 		/* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 		for (var i: number = 0; i < voltmeters.length; i++) {
@@ -10947,8 +10947,8 @@ class EngineFunctions {
 		}
 		workspace.workspace_translate_bounds(temp_left, temp_top);
 		global.variables.workspace_zoom_scale = temp_zoom;
-		global.mouse_x = workspace.bounds.get_center_x();
-		global.mouse_y = workspace.bounds.get_center_y();
+		global.variables.mouse_x = workspace.bounds.get_center_x();
+		global.variables.mouse_y = workspace.bounds.get_center_y();
 		workspace.workspace_zoom();
 		global.variables.canvas_stroke_width_1_zoom = global.variables.canvas_stroke_width_base * 2.25 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_stroke_width_2_zoom = global.variables.canvas_stroke_width_base * 2.65 * global.variables.workspace_zoom_scale;

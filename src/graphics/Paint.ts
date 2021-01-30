@@ -176,31 +176,31 @@ class Paint {
 		}
 	}
 	patch(): void {
-		if (!global.not_null(this.baseline)) {
+		if (!global.utils.not_null(this.baseline)) {
 			this.baseline = new PaintBaseline();
 		}
-		if (!global.not_null(this.metric_array)) {
+		if (!global.utils.not_null(this.metric_array)) {
 			this.metric_array = [];
 		}
-		if (!global.not_null(this.saved_metric)) {
+		if (!global.utils.not_null(this.saved_metric)) {
 			this.saved_metric = global.CONSTANTS.NULL;
 		}
-		if (!global.not_null(this.garbage_collector_size)) {
+		if (!global.utils.not_null(this.garbage_collector_size)) {
 			this.garbage_collector_size = 16;
 		}
-		if (!global.not_null(this.paint_style)) {
+		if (!global.utils.not_null(this.paint_style)) {
 			this.paint_style = this.style.STROKE;
 		}
-		if (!global.not_null(this.paint_cap)) {
+		if (!global.utils.not_null(this.paint_cap)) {
 			this.paint_cap = this.cap.ROUND;
 		}
-		if (!global.not_null(this.paint_join)) {
+		if (!global.utils.not_null(this.paint_join)) {
 			this.paint_join = this.join.MITER;
 		}
-		if (!global.not_null(this.text_align)) {
+		if (!global.utils.not_null(this.text_align)) {
 			this.text_align = this.align.CENTER;
 		}
-		if (!global.not_null(this.text_baseline)) {
+		if (!global.utils.not_null(this.text_baseline)) {
 			this.text_baseline = this.baseline.MIDDLE;
 		}
 		if (this.garbage_collector_size != 16) {

@@ -79,7 +79,7 @@ class SimulationManager {
         global.is_singular = false;
         this.first_matrix_build = true;
         this.reset_simulation();
-        if (global.system_options['values'][global.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.ON) {
+        if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.CONSTANTS.ON) {
             global.time_step = this.determine_optimal_timestep();
             bottom_menu.resize_bottom_menu();
         }
@@ -186,10 +186,10 @@ class SimulationManager {
         this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
         this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        toast.set_text(language_manager.START_SIMULATION[global.LANGUAGES[global.language_index]]);
+        toast.set_text(language_manager.START_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
         toast.show();
         this.solutions_ready = false;
-        global.signal_build_element = true;
+        global.flags.signal_build_element = true;
         this.initialized = true;
     }
     determine_optimal_timestep() {
@@ -404,16 +404,16 @@ class SimulationManager {
             this.time_data.push(transformers[i].time_data());
         }
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        let max_frequency = global.ZERO;
+        let max_frequency = global.CONSTANTS.ZERO;
         let min_frequency = Number.MAX_VALUE;
-        let max_resistance = global.ZERO;
+        let max_resistance = global.CONSTANTS.ZERO;
         let min_resistance = Number.MAX_VALUE;
-        let max_capacitance = global.ZERO;
+        let max_capacitance = global.CONSTANTS.ZERO;
         let min_capacitance = Number.MAX_VALUE;
-        let max_inductance = global.ZERO;
+        let max_inductance = global.CONSTANTS.ZERO;
         let min_inductance = Number.MAX_VALUE;
-        let parallel_resistance = global.ZERO;
-        let series_resistance = global.ZERO;
+        let parallel_resistance = global.CONSTANTS.ZERO;
+        let series_resistance = global.CONSTANTS.ZERO;
         let parallel_series_updated = false;
         let min_freq_updated = false;
         let max_freq_updated = false;
@@ -425,56 +425,56 @@ class SimulationManager {
         let max_ind_updated = false;
         for (var i = 0; i < this.time_data.length; i++) {
             if (this.time_data[i]['Resistance'] > 0) {
-                parallel_resistance += global.copy(1.0 / this.time_data[i]['Resistance']);
-                series_resistance += global.copy(this.time_data[i]['Resistance']);
+                parallel_resistance += global.utils.copy(1.0 / this.time_data[i]['Resistance']);
+                series_resistance += global.utils.copy(this.time_data[i]['Resistance']);
                 if (!parallel_series_updated) {
                     parallel_series_updated = true;
                 }
             }
             if (this.time_data[i]['Frequency'] < min_frequency && this.time_data[i]['Frequency'] > 0) {
-                min_frequency = global.copy(this.time_data[i]['Frequency']);
+                min_frequency = global.utils.copy(this.time_data[i]['Frequency']);
                 if (!min_freq_updated) {
                     min_freq_updated = true;
                 }
             }
             if (this.time_data[i]['Frequency'] > max_frequency && this.time_data[i]['Frequency'] > 0) {
-                max_frequency = global.copy(this.time_data[i]['Frequency']);
+                max_frequency = global.utils.copy(this.time_data[i]['Frequency']);
                 if (!max_freq_updated) {
                     max_freq_updated = true;
                 }
             }
             if (this.time_data[i]['Capacitance'] > max_capacitance && this.time_data[i]['Capacitance'] > 0) {
-                max_capacitance = global.copy(this.time_data[i]['Capacitance']);
+                max_capacitance = global.utils.copy(this.time_data[i]['Capacitance']);
                 if (!max_cap_updated) {
                     max_cap_updated = true;
                 }
             }
             if (this.time_data[i]['Resistance'] > max_resistance && this.time_data[i]['Resistance'] > 0) {
-                max_resistance = global.copy(this.time_data[i]['Resistance']);
+                max_resistance = global.utils.copy(this.time_data[i]['Resistance']);
                 if (!max_res_updated) {
                     max_res_updated = true;
                 }
             }
             if (this.time_data[i]['Inductance'] > max_inductance && this.time_data[i]['Inductance'] > 0) {
-                max_inductance = global.copy(this.time_data[i]['Inductance']);
+                max_inductance = global.utils.copy(this.time_data[i]['Inductance']);
                 if (!max_ind_updated) {
                     max_ind_updated = true;
                 }
             }
             if (this.time_data[i]['Capacitance'] < min_capacitance && this.time_data[i]['Capacitance'] > 0) {
-                min_capacitance = global.copy(this.time_data[i]['Capacitance']);
+                min_capacitance = global.utils.copy(this.time_data[i]['Capacitance']);
                 if (!min_cap_updated) {
                     min_cap_updated = true;
                 }
             }
             if (this.time_data[i]['Resistance'] < min_resistance && this.time_data[i]['Resistance'] > 0) {
-                min_resistance = global.copy(this.time_data[i]['Resistance']);
+                min_resistance = global.utils.copy(this.time_data[i]['Resistance']);
                 if (!min_res_updated) {
                     min_res_updated = true;
                 }
             }
             if (this.time_data[i]['Inductance'] < min_inductance && this.time_data[i]['Inductance'] > 0) {
-                min_inductance = global.copy(this.time_data[i]['Inductance']);
+                min_inductance = global.utils.copy(this.time_data[i]['Inductance']);
                 if (!min_ind_updated) {
                     min_ind_updated = true;
                 }
@@ -549,7 +549,7 @@ class SimulationManager {
         this.simulation_step = 0;
         this.solutions_ready = false;
         global.is_singular = false;
-        toast.set_text(language_manager.STOP_SIMULATION[global.LANGUAGES[global.language_index]]);
+        toast.set_text(language_manager.STOP_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
         toast.show();
     }
     reset_elements() {
@@ -990,10 +990,10 @@ class SimulationManager {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     simulate() {
-        if (global.flag_simulating && this.initialized) {
+        if (global.flags.flag_simulating && this.initialized) {
             if (this.simulation_step === 0) {
                 this.solve();
-                if (this.continue_solving && !global.MOBILE_MODE) {
+                if (this.continue_solving && !global.CONSTANTS.MOBILE_MODE) {
                     this.solve();
                 }
             }
@@ -1001,23 +1001,23 @@ class SimulationManager {
                 this.update_reactive_elements();
                 if (!this.continue_solving || this.iterator >= global.settings.ITL4 || global.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
                     if (this.iterator >= global.settings.ITL4) {
-                        menu_bar.handle_simulation_flag(!global.flag_simulating);
-                        toast.set_text(language_manager.CONVERGENCE_ERROR[global.LANGUAGES[global.language_index]]);
+                        menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
+                        toast.set_text(language_manager.CONVERGENCE_ERROR[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                         toast.show();
                     }
                     else if (global.is_singular) {
-                        menu_bar.handle_simulation_flag(!global.flag_simulating);
-                        toast.set_text(language_manager.SINGULAR_MATRIX[global.LANGUAGES[global.language_index]]);
+                        menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
+                        toast.set_text(language_manager.SINGULAR_MATRIX[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                         toast.show();
                     }
                     else if (global.simulation_time >= this.SIMULATION_MAX_TIME) {
-                        menu_bar.handle_simulation_flag(!global.flag_simulating);
-                        toast.set_text(language_manager.END_OF_TIME[global.LANGUAGES[global.language_index]]);
+                        menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
+                        toast.set_text(language_manager.END_OF_TIME[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                         toast.show();
                     }
                 }
-                global.canvas_draw_request_counter = 0;
-                global.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
+                global.flags.canvas_draw_request = true;
                 this.continue_solving = true;
                 this.iterator = 0;
                 this.update_vir();
@@ -1052,7 +1052,7 @@ class SimulationManager {
                     matrix_x_copy = linear_algebra.matrix(this.node_size + this.offset, 1);
                 }
                 else {
-                    matrix_x_copy = global.copy(matrix_x);
+                    matrix_x_copy = global.utils.copy(matrix_x);
                     this.first_x_matrix_copy = false;
                 }
             }

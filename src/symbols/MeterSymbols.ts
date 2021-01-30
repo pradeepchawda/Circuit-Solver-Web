@@ -26,7 +26,7 @@ class MeterSymbols {
 		this.meter_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.meter_paint.set_paint_join(PAINT.join.MITER);
 		this.meter_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
-		this.meter_paint.set_color(global.ELEMENT_COLOR);
+		this.meter_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.meter_paint.set_text_size(global.variables.canvas_text_size_1);
 		this.meter_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.meter_paint.set_alpha(255);
@@ -48,7 +48,7 @@ class MeterSymbols {
 	reset(setter: number, style: number): void {
 		this.meter_type = setter;
 		if (style === this.STYLE_0) {
-			this.meter_paint.set_color(global.ELEMENT_COLOR);
+			this.meter_paint.set_color(global.COLORS.ELEMENT_COLOR);
 			this.meter_paint.set_paint_style(PAINT.style.STROKE);
 			this.meter_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 			this.meter_paint.set_paint_cap(PAINT.cap.ROUND);

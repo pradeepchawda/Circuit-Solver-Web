@@ -60,7 +60,7 @@ class Workspace {
 		this.work_area_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.work_area_paint.set_paint_join(PAINT.join.MITER);
 		this.work_area_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.work_area_paint.set_color(global.WORKSPACE_WORK_AREA_COLOR);
+		this.work_area_paint.set_color(global.COLORS.WORKSPACE_WORK_AREA_COLOR);
 		this.work_area_paint.set_text_size(25);
 		this.work_area_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.work_area_paint.set_alpha(255);
@@ -91,8 +91,8 @@ class Workspace {
 			this.bounds.set_center2(
 				this.bounds.get_center_x(),
 				this.bounds.get_center_y(),
-				global.natural_width * global.variables.workspace_zoom_scale,
-				global.natural_height * global.variables.workspace_zoom_scale
+				global.variables.natural_width * global.variables.workspace_zoom_scale,
+				global.variables.natural_height * global.variables.workspace_zoom_scale
 			);
 		}
 		global.variables.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
@@ -109,8 +109,8 @@ class Workspace {
 		global.variables.signal_build_counter = 0;
 		this.bounds.left = global.variables.delta_x;
 		this.bounds.top = global.variables.delta_y;
-		this.bounds.right = this.bounds.left + global.natural_width * global.variables.workspace_zoom_scale;
-		this.bounds.bottom = this.bounds.top + global.natural_height * global.variables.workspace_zoom_scale;
+		this.bounds.right = this.bounds.left + global.variables.natural_width * global.variables.workspace_zoom_scale;
+		this.bounds.bottom = this.bounds.top + global.variables.natural_height * global.variables.workspace_zoom_scale;
 		global.variables.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
 		global.variables.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
 		/* #INSERT_METER_RESIZE_TRACE# */

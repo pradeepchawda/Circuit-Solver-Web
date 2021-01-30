@@ -45,7 +45,7 @@ class Inductor {
 	constructor(type: number, id: number, n1: number, n2: number) {
 		this.initialized = false;
 		this.bounds = new RectF(0, 0, 0, 0);
-		this.elm = new Element2(id, type, global.copy(global.PROPERTY_INDUCTOR));
+		this.elm = new Element2(id, type, global.utils.copy(global.PROPERTY_INDUCTOR));
 		this.elm.set_nodes(n1, n2);
 		if (this.elm.consistent()) {
 			this.bounds.set_center2(
@@ -67,8 +67,8 @@ class Inductor {
 			this.p1.set_point(nodes[this.elm.n1].location.x, nodes[this.elm.n1].location.y);
 			this.p2.set_point(nodes[this.elm.n2].location.x, nodes[this.elm.n2].location.y);
 		}
-		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+		this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
+		this.theta = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 		this.inductor_arc_0 = new Arc(0, 0, 0, 0, global.variables.canvas_stroke_width_5_zoom);
 		this.inductor_arc_1 = new Arc(0, 0, 0, 0, global.variables.canvas_stroke_width_5_zoom);
 		this.inductor_arc_2 = new Arc(0, 0, 0, 0, global.variables.canvas_stroke_width_5_zoom);
@@ -95,7 +95,7 @@ class Inductor {
 		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.line_paint.set_paint_join(PAINT.join.MITER);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
-		this.line_paint.set_color(global.ELEMENT_COLOR);
+		this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
@@ -105,7 +105,7 @@ class Inductor {
 		this.point_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.point_paint.set_paint_join(PAINT.join.MITER);
 		this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
-		this.point_paint.set_color(global.ELEMENT_COLOR);
+		this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 		this.point_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
@@ -115,7 +115,7 @@ class Inductor {
 		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.text_paint.set_paint_join(PAINT.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
-		this.text_paint.set_color(global.ELEMENT_COLOR);
+		this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
@@ -213,34 +213,34 @@ class Inductor {
 	}
 	mouse_down(): void {
 		if (
-			global.flag_idle &&
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox
+			global.flags.flag_idle &&
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox
 		) {
-			if (!global.focused && !global.component_touched && !global.multi_selected) {
-				if (this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.component_touched) {
+			if (!global.variables.focused && !global.variables.component_touched && !global.variables.multi_selected) {
+				if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1) && !global.variables.component_touched) {
 					this.is_translating = false;
-					global.focused_id = this.elm.id;
-					global.focused_type = this.elm.type;
-					global.focused_bounds = global.copy(this.bounds);
-					global.focused = true;
-					global.component_touched = true;
+					global.variables.focused_id = this.elm.id;
+					global.variables.focused_type = this.elm.type;
+					global.variables.focused_bounds = global.utils.copy(this.bounds);
+					global.variables.focused = true;
+					global.variables.component_touched = true;
 				} else {
-					if (this.elm.consistent() && !global.component_touched && !global.flag_simulating) {
-						if (nodes[this.elm.n1].contains_xy(global.mouse_x, global.mouse_y)) {
+					if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
+						if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 							this.handle_wire_builder(this.elm.n1, global.ANCHOR_POINT['p1']);
-							global.component_touched = true;
-						} else if (nodes[this.elm.n2].contains_xy(global.mouse_x, global.mouse_y)) {
+							global.variables.component_touched = true;
+						} else if (nodes[this.elm.n2].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 							this.handle_wire_builder(this.elm.n2, global.ANCHOR_POINT['p2']);
-							global.component_touched = true;
+							global.variables.component_touched = true;
 						}
 					}
 				}
@@ -287,21 +287,21 @@ class Inductor {
 		this.anchor_wires();
 	}
 	mouse_move(): void {
-		if (global.flag_idle && !global.flag_simulating) {
-			if (global.focused) {
-				if (global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-					global.is_dragging = false;
+		if (global.flags.flag_idle && !global.flags.flag_simulating) {
+			if (global.variables.focused) {
+				if (global.variables.focused_id === this.elm.id && global.variables.focused_type === this.elm.type) {
+					global.variables.is_dragging = false;
 					if (!this.is_translating) {
-						if (!this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
+						if (!this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() >> 1, this.bounds.get_height() >> 1)) {
 							this.release_nodes();
 							this.bounds.anchored = false;
 							this.is_translating = true;
-							global.component_translating = true;
+							global.variables.component_translating = true;
 							this.select();
 						}
 					} else {
-						this.m_x = global.mouse_x;
-						this.m_y = global.mouse_y;
+						this.m_x = global.variables.mouse_x;
+						this.m_y = global.variables.mouse_y;
 						if (this.m_x < workspace.bounds.left + 2.5 * global.variables.node_space_x) {
 							this.m_x = workspace.bounds.left + 2.5 * global.variables.node_space_x;
 						} else if (this.m_x > workspace.bounds.right - 2.0 * global.variables.node_space_x) {
@@ -323,8 +323,8 @@ class Inductor {
 		}
 	}
 	mouse_up(): void {
-		if (global.flag_idle) {
-			if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
+		if (global.flags.flag_idle) {
+			if (global.variables.focused && global.variables.focused_id === this.elm.id && global.variables.focused_type === this.elm.type) {
 				if (this.is_translating) {
 					this.is_translating = false;
 					this.capture_nodes();
@@ -332,27 +332,27 @@ class Inductor {
 					this.bounds.anchored = true;
 					this.anchor_wires();
 				} else {
-					if (!global.selected) {
+					if (!global.variables.selected) {
 						this.select();
 					} else {
-						if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-							global.selected_id = global.CONSTANTS.NULL;
-							global.selected_type = -1;
-							global.selected_bounds = global.CONSTANTS.NULL;
-							global.selected_properties = global.CONSTANTS.NULL;
-							global.selected = false;
+						if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+							global.variables.selected_id = global.CONSTANTS.NULL;
+							global.variables.selected_type = -1;
+							global.variables.selected_bounds = global.CONSTANTS.NULL;
+							global.variables.selected_properties = global.CONSTANTS.NULL;
+							global.variables.selected = false;
 						} else {
 							this.select();
 						}
 					}
 				}
-				global.focused_id = global.CONSTANTS.NULL;
-				global.focused_type = global.CONSTANTS.NULL;
-				global.focused_bounds = global.CONSTANTS.NULL;
-				global.focused = false;
+				global.variables.focused_id = global.CONSTANTS.NULL;
+				global.variables.focused_type = global.CONSTANTS.NULL;
+				global.variables.focused_bounds = global.CONSTANTS.NULL;
+				global.variables.focused = false;
 			}
-			if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-				global.selected_bounds = global.copy(this.bounds);
+			if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+				global.variables.selected_bounds = global.utils.copy(this.bounds);
 			}
 		}
 	}
@@ -360,33 +360,33 @@ class Inductor {
 		if (global.variables.wire_builder['step'] !== 0) {
 			wire_manager.reset_wire_builder();
 		}
-		global.selected_id = this.elm.id;
-		global.selected_type = this.elm.type;
-		global.selected_bounds = global.copy(this.bounds);
-		global.selected_properties = global.copy(this.elm.properties);
-		global.selected_wire_style = global.CONSTANTS.NULL;
-		global.selected = true;
+		global.variables.selected_id = this.elm.id;
+		global.variables.selected_type = this.elm.type;
+		global.variables.selected_bounds = global.utils.copy(this.bounds);
+		global.variables.selected_properties = global.utils.copy(this.elm.properties);
+		global.variables.selected_wire_style = global.CONSTANTS.NULL;
+		global.variables.selected = true;
 	}
 	remove_focus(): void {
-		if (global.focused && global.focused_id === this.elm.id && global.focused_type === this.elm.type) {
-			global.focused_id = global.CONSTANTS.NULL;
-			global.focused_type = global.CONSTANTS.NULL;
-			global.focused_bounds = global.CONSTANTS.NULL;
-			global.focused = false;
+		if (global.variables.focused && global.variables.focused_id === this.elm.id && global.variables.focused_type === this.elm.type) {
+			global.variables.focused_id = global.CONSTANTS.NULL;
+			global.variables.focused_type = global.CONSTANTS.NULL;
+			global.variables.focused_bounds = global.CONSTANTS.NULL;
+			global.variables.focused = false;
 		}
 	}
 	remove_selection(): void {
-		if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-			global.selected_id = global.CONSTANTS.NULL;
-			global.selected_type = -1;
-			global.selected_bounds = global.CONSTANTS.NULL;
-			global.selected_properties = global.CONSTANTS.NULL;
-			global.selected_wire_style = global.CONSTANTS.NULL;
-			global.selected = false;
+		if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+			global.variables.selected_id = global.CONSTANTS.NULL;
+			global.variables.selected_type = -1;
+			global.variables.selected_bounds = global.CONSTANTS.NULL;
+			global.variables.selected_properties = global.CONSTANTS.NULL;
+			global.variables.selected_wire_style = global.CONSTANTS.NULL;
+			global.variables.selected = false;
 		}
 	}
 	wire_reference_maintenance(): void {
-		if (this.wire_reference.length > 0 && global.signal_wire_deleted) {
+		if (this.wire_reference.length > 0 && global.flags.signal_wire_deleted) {
 			let id: number = -1;
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -493,26 +493,26 @@ class Inductor {
 			let cache_1: number = 1.5 * this.y_space;
 			let cache_2: number = this.x_space;
 			let cache_3: number = this.y_space;
-			this.connect1_x = this.c_x - cache_2 * global.cosine(this.theta);
-			this.connect1_y = this.c_y - cache_3 * global.sine(this.theta);
-			this.connect2_x = this.c_x + cache_2 * global.cosine(this.theta);
-			this.connect2_y = this.c_y + cache_3 * global.sine(this.theta);
-			this.ind_0.x = this.c_x + cache_2 * global.cosine(this.theta);
-			this.ind_0.y = this.c_y + cache_3 * global.sine(this.theta);
-			this.ind_1.x = this.c_x + (cache_2 >> 1) * global.cosine(this.theta);
-			this.ind_1.y = this.c_y + (cache_3 >> 1) * global.sine(this.theta);
-			this.ind_2.x = this.c_x + (cache_2 >> 1) * global.cosine(this.theta - global.to_radians(180));
-			this.ind_2.y = this.c_y + (cache_3 >> 1) * global.sine(this.theta - global.to_radians(180));
-			this.ind_3.x = this.c_x + cache_2 * global.cosine(this.theta - global.to_radians(180));
-			this.ind_3.y = this.c_y + cache_3 * global.sine(this.theta - global.to_radians(180));
-			this.ind_4.x = (this.ind_0.x + this.ind_1.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-			this.ind_4.y = (this.ind_0.y + this.ind_1.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-			this.ind_5.x = (this.c_x + this.ind_1.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-			this.ind_5.y = (this.c_y + this.ind_1.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-			this.ind_6.x = (this.c_x + this.ind_2.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-			this.ind_6.y = (this.c_y + this.ind_2.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
-			this.ind_7.x = (this.ind_3.x + this.ind_2.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.cosine(this.theta - global.to_radians(90));
-			this.ind_7.y = (this.ind_3.y + this.ind_2.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.sine(this.theta - global.to_radians(90));
+			this.connect1_x = this.c_x - cache_2 * global.utils.cosine(this.theta);
+			this.connect1_y = this.c_y - cache_3 * global.utils.sine(this.theta);
+			this.connect2_x = this.c_x + cache_2 * global.utils.cosine(this.theta);
+			this.connect2_y = this.c_y + cache_3 * global.utils.sine(this.theta);
+			this.ind_0.x = this.c_x + cache_2 * global.utils.cosine(this.theta);
+			this.ind_0.y = this.c_y + cache_3 * global.utils.sine(this.theta);
+			this.ind_1.x = this.c_x + (cache_2 >> 1) * global.utils.cosine(this.theta);
+			this.ind_1.y = this.c_y + (cache_3 >> 1) * global.utils.sine(this.theta);
+			this.ind_2.x = this.c_x + (cache_2 >> 1) * global.utils.cosine(this.theta - global.to_radians(180));
+			this.ind_2.y = this.c_y + (cache_3 >> 1) * global.utils.sine(this.theta - global.to_radians(180));
+			this.ind_3.x = this.c_x + cache_2 * global.utils.cosine(this.theta - global.to_radians(180));
+			this.ind_3.y = this.c_y + cache_3 * global.utils.sine(this.theta - global.to_radians(180));
+			this.ind_4.x = (this.ind_0.x + this.ind_1.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.utils.cosine(this.theta - global.to_radians(90));
+			this.ind_4.y = (this.ind_0.y + this.ind_1.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.utils.sine(this.theta - global.to_radians(90));
+			this.ind_5.x = (this.c_x + this.ind_1.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.utils.cosine(this.theta - global.to_radians(90));
+			this.ind_5.y = (this.c_y + this.ind_1.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.utils.sine(this.theta - global.to_radians(90));
+			this.ind_6.x = (this.c_x + this.ind_2.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.utils.cosine(this.theta - global.to_radians(90));
+			this.ind_6.y = (this.c_y + this.ind_2.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.utils.sine(this.theta - global.to_radians(90));
+			this.ind_7.x = (this.ind_3.x + this.ind_2.x) * global.CONSTANTS.ZERO_PT_FIVE + cache_0 * global.utils.cosine(this.theta - global.to_radians(90));
+			this.ind_7.y = (this.ind_3.y + this.ind_2.y) * global.CONSTANTS.ZERO_PT_FIVE + cache_1 * global.utils.sine(this.theta - global.to_radians(90));
 			this.inductor_arc_0.set_points(this.ind_0.x, this.ind_0.y, this.ind_1.x, this.ind_1.y);
 			this.inductor_arc_0.amplitude = global.variables.canvas_stroke_width_5_zoom;
 			this.inductor_arc_1.set_points(this.ind_1.x, this.ind_1.y, this.c_x, this.c_y);
@@ -563,8 +563,8 @@ class Inductor {
 		this.y_space = global.variables.node_space_y >> 1;
 		this.c_x = this.bounds.get_center_x();
 		this.c_y = this.bounds.get_center_y();
-		this.theta_m90 = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.PI_DIV_2;
-		this.theta = global.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
+		this.theta_m90 = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y) - global.CONSTANTS.PI_DIV_2;
+		this.theta = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 		this.build_element();
 	}
 	update_inductor() {
@@ -578,7 +578,7 @@ class Inductor {
 	reset_inductor() {
 		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / global.time_step;
 		this.elm.properties['Transient Voltage'] = 0;
-		this.elm.properties['Transient Current'] = global.copy(this.elm.properties['Initial Current']);
+		this.elm.properties['Transient Current'] = global.utils.copy(this.elm.properties['Initial Current']);
 		this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
 	}
 	conserve_energy(): void {
@@ -595,23 +595,23 @@ class Inductor {
 	}
 	increment_flip(): void {}
 	recolor(): void {
-		if (global.selected) {
-			if (global.selected_id === this.elm.id && global.selected_type === this.elm.type) {
-				this.line_paint.set_color(global.SELECTED_COLOR);
-				this.point_paint.set_color(global.SELECTED_COLOR);
-				this.text_paint.set_color(global.SELECTED_COLOR);
-				this.inductor_arc_0.set_color(global.SELECTED_COLOR);
-				this.inductor_arc_1.set_color(global.SELECTED_COLOR);
-				this.inductor_arc_2.set_color(global.SELECTED_COLOR);
-				this.inductor_arc_3.set_color(global.SELECTED_COLOR);
+		if (global.variables.selected) {
+			if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
+				this.line_paint.set_color(global.COLORS.SELECTED_COLOR);
+				this.point_paint.set_color(global.COLORS.SELECTED_COLOR);
+				this.text_paint.set_color(global.COLORS.SELECTED_COLOR);
+				this.inductor_arc_0.set_color(global.COLORS.SELECTED_COLOR);
+				this.inductor_arc_1.set_color(global.COLORS.SELECTED_COLOR);
+				this.inductor_arc_2.set_color(global.COLORS.SELECTED_COLOR);
+				this.inductor_arc_3.set_color(global.COLORS.SELECTED_COLOR);
 			} else {
-				this.line_paint.set_color(global.ELEMENT_COLOR);
-				this.point_paint.set_color(global.ELEMENT_COLOR);
-				this.text_paint.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_0.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_1.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_2.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_3.set_color(global.ELEMENT_COLOR);
+				this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_0.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_1.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_2.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_3.set_color(global.COLORS.ELEMENT_COLOR);
 			}
 		} else {
 			if (this.multi_selected) {
@@ -623,18 +623,18 @@ class Inductor {
 				this.inductor_arc_2.set_color(global.MULTI_SELECTED_COLOR);
 				this.inductor_arc_3.set_color(global.MULTI_SELECTED_COLOR);
 			} else {
-				this.line_paint.set_color(global.ELEMENT_COLOR);
-				this.point_paint.set_color(global.ELEMENT_COLOR);
-				this.text_paint.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_0.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_1.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_2.set_color(global.ELEMENT_COLOR);
-				this.inductor_arc_3.set_color(global.ELEMENT_COLOR);
+				this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_0.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_1.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_2.set_color(global.COLORS.ELEMENT_COLOR);
+				this.inductor_arc_3.set_color(global.COLORS.ELEMENT_COLOR);
 			}
 		}
 	}
 	is_selected_element(): boolean {
-		return global.selected_id === this.elm.id && global.selected_type === this.elm.type;
+		return global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type;
 	}
 	draw_component(canvas: GraphicsEngine): void {
 		this.wire_reference_maintenance();
@@ -644,7 +644,7 @@ class Inductor {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
 		if (
-			global.picture_request_flag ||
+			global.flags.picture_request_flag ||
 			(this.c_x >= view_port.left - global.variables.node_space_x &&
 				this.c_x - global.variables.node_space_x <= view_port.right &&
 				this.c_y >= view_port.top + -global.variables.node_space_y &&
@@ -671,7 +671,7 @@ class Inductor {
 				this.angle = global.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 				if (this.angle > 170 && this.angle < 190) {
 					canvas.draw_text(
-						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
+						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
 						this.c_x,
 						this.bounds.top + this.bounds.get_height() * 0.2,
 						this.text_paint
@@ -684,7 +684,7 @@ class Inductor {
 					);
 				} else if (this.angle > -10 && this.angle < 10) {
 					canvas.draw_text(
-						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
+						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
 						this.c_x,
 						this.bounds.top + this.bounds.get_height() * 0.1,
 						this.text_paint
@@ -698,7 +698,7 @@ class Inductor {
 				} else if (this.angle > 260 && this.angle < 280) {
 					canvas.rotate(this.c_x, this.c_y, -90);
 					canvas.draw_text(
-						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
+						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
 						this.c_x,
 						this.bounds.top + this.bounds.get_height() * 0.1,
 						this.text_paint
@@ -713,7 +713,7 @@ class Inductor {
 				} else if (this.angle > 80 && this.angle < 100) {
 					canvas.rotate(this.c_x, this.c_y, 90);
 					canvas.draw_text(
-						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
+						global.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Inductance'])).replace('{UNIT}', this.elm.properties['units']),
 						this.c_x,
 						this.bounds.top + this.bounds.get_height() * 0.1,
 						this.text_paint
@@ -730,26 +730,26 @@ class Inductor {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
-					this.bounds.contains_xywh(global.mouse_x, global.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
+					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
 					global.NODE_HINTS &&
 					!multi_select_manager.multi_select &&
 					!this.multi_selected &&
-					!global.signal_add_element &&
-					!global.signal_history_lock &&
-					!global.picture_request_flag &&
-					!global.flag_save_circuit &&
-					!global.flag_save_image &&
-					!global.flag_menu_element_toolbox &&
-					!global.flag_select_timestep &&
-					!global.flag_element_options &&
-					!global.flag_element_options_edit &&
-					!global.flag_zoom &&
-					!global.flag_graph &&
-					!global.flag_simulating &&
-					!global.flag_select_settings &&
-					!global.flag_select_element &&
-					!global.flag_remove_all &&
-					!global.signal_add_element
+					!global.flags.signal_add_element &&
+					!global.flags.signal_history_lock &&
+					!global.flags.picture_request_flag &&
+					!global.flags.flag_save_circuit &&
+					!global.flags.flag_save_image &&
+					!global.flags.flag_menu_element_toolbox &&
+					!global.flags.flag_select_timestep &&
+					!global.flags.flag_element_options &&
+					!global.flags.flag_element_options_edit &&
+					!global.flags.flag_zoom &&
+					!global.flags.flag_graph &&
+					!global.flags.flag_simulating &&
+					!global.flags.flag_select_settings &&
+					!global.flags.flag_select_element &&
+					!global.flags.flag_remove_all &&
+					!global.flags.signal_add_element
 				) {
 					if (this.elm.consistent()) {
 						let node_id_array: Array<number> = this.elm.get_nodes();
@@ -765,37 +765,37 @@ class Inductor {
 		}
 	}
 	patch(): void {
-		if (!global.not_null(this.line_buffer)) {
+		if (!global.utils.not_null(this.line_buffer)) {
 			this.line_buffer = [];
 		}
-		if (!global.not_null(this.circle_buffer)) {
+		if (!global.utils.not_null(this.circle_buffer)) {
 			this.circle_buffer = [];
 		}
-		if (!global.not_null(this.build_element_flag)) {
+		if (!global.utils.not_null(this.build_element_flag)) {
 			this.build_element_flag = false;
 		}
-		if (!global.not_null(this.angle)) {
+		if (!global.utils.not_null(this.angle)) {
 			this.angle = 0;
 		}
-		if (!global.not_null(this.indexer)) {
+		if (!global.utils.not_null(this.indexer)) {
 			this.indexer = 0;
 		}
-		if (!global.not_null(this.initialized)) {
+		if (!global.utils.not_null(this.initialized)) {
 			this.initialized = false;
 		}
-		if (!global.not_null(this.multi_selected)) {
+		if (!global.utils.not_null(this.multi_selected)) {
 			this.multi_selected = false;
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
 		/* #INSERT_GENERATE_TIME_DATA# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		let time_data: TIME_DATA_TEMPLATE_T = global.copy(global.TIME_DATA_TEMPLATE);
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TIME_DATA_TEMPLATE);
 		let keys: Array<string> = Object.keys(this.elm.properties);
 		for (var i: number = keys.length - 1; i > -1; i--) {
 			if (typeof this.elm.properties[keys[i]] === 'number') {
 				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-					time_data[keys[i]] = global.copy(this.elm.properties[keys[i]]);
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
 				}
 			}
 		}

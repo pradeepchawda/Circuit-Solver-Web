@@ -83,7 +83,7 @@ class GraphWindow {
 		this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.fill_paint.set_paint_join(PAINT.join.MITER);
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.fill_paint.set_color(global.GRAPH_AREA_COLOR);
+		this.fill_paint.set_color(global.COLORS.GRAPH_AREA_COLOR);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
@@ -117,7 +117,7 @@ class GraphWindow {
 		this.graph_text_a_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.graph_text_a_paint.set_paint_join(PAINT.join.MITER);
 		this.graph_text_a_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.graph_text_a_paint.set_color(global.TRACE_I_COLOR);
+		this.graph_text_a_paint.set_color(global.COLORS.TRACE_I_COLOR);
 		this.graph_text_a_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.graph_text_a_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.graph_text_a_paint.set_alpha(255);
@@ -127,7 +127,7 @@ class GraphWindow {
 		this.graph_text_b_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.graph_text_b_paint.set_paint_join(PAINT.join.MITER);
 		this.graph_text_b_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.graph_text_b_paint.set_color(global.TRACE_II_COLOR);
+		this.graph_text_b_paint.set_color(global.COLORS.TRACE_II_COLOR);
 		this.graph_text_b_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.graph_text_b_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.graph_text_b_paint.set_alpha(255);
@@ -137,7 +137,7 @@ class GraphWindow {
 		this.graph_text_c_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.graph_text_c_paint.set_paint_join(PAINT.join.MITER);
 		this.graph_text_c_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.graph_text_c_paint.set_color(global.TRACE_III_COLOR);
+		this.graph_text_c_paint.set_color(global.COLORS.TRACE_III_COLOR);
 		this.graph_text_c_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.graph_text_c_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.graph_text_c_paint.set_alpha(255);
@@ -145,11 +145,11 @@ class GraphWindow {
 		this.x_axis = new Array(this.GRAPH_X_AXIS_LENGTH).fill(new PointF(0, 0));
 		this.y_axis = new Array(this.GRAPH_Y_AXIS_LENGTH).fill(new PointF(0, 0));
 		this.graph_trace_a = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
-		this.graph_trace_a.set_color(global.TRACE_I_COLOR);
+		this.graph_trace_a.set_color(global.COLORS.TRACE_I_COLOR);
 		this.graph_trace_b = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
-		this.graph_trace_b.set_color(global.TRACE_II_COLOR);
+		this.graph_trace_b.set_color(global.COLORS.TRACE_II_COLOR);
 		this.graph_trace_c = new Trace(this.GRAPH_X_AXIS_LENGTH, this.GRAPH_Y_AXIS_LENGTH, this.ratio);
-		this.graph_trace_c.set_color(global.TRACE_III_COLOR);
+		this.graph_trace_c.set_color(global.COLORS.TRACE_III_COLOR);
 		this.meter_hover_index = -1;
 		this.time_axis_value = '';
 		this.time_tag = '';
@@ -257,10 +257,10 @@ class GraphWindow {
 		this.graph_trace_c.push(value, t);
 	}
 	mouse_down(): void {
-		if (global.flag_graph) {
-			this.first_touch_x = global.mouse_x;
-			this.first_touch_y = global.mouse_y;
-			if (this.download_button.contains_xy(global.mouse_x, global.mouse_y)) {
+		if (global.flags.flag_graph) {
+			this.first_touch_x = global.variables.mouse_x;
+			this.first_touch_y = global.variables.mouse_y;
+			if (this.download_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 				this.generate_csv();
 			}
 		}
@@ -314,28 +314,28 @@ class GraphWindow {
 		}
 	}
 	mouse_move(): void {
-		if (global.flag_graph) {
+		if (global.flags.flag_graph) {
 			this.mouse_hover();
 		}
 	}
 	mouse_up(): void {}
 	mouse_hover(): void {
-		if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-			this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.GRAPH_X_AXIS_LENGTH)) * 0.5);
+		if (this.inner_bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+			this.meter_hover_index = Math.round(((global.variables.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.GRAPH_X_AXIS_LENGTH)) * 0.5);
 		} else {
 			this.meter_hover_index = -1;
 		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (global.flag_graph) {
-			if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
-				menu_bar.handle_graph_flag(!global.flag_graph);
-				global.component_touched = true;
+		if (global.flags.flag_graph) {
+			if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
+				menu_bar.handle_graph_flag(!global.flags.flag_graph);
+				global.variables.component_touched = true;
 			}
 		}
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.flag_graph) {
+		if (global.flags.flag_graph) {
 			canvas.draw_rect2(this.bounds, this.fill_paint);
 			canvas.draw_rect2(this.inner_bounds, this.line_paint);
 			let cached_value: number = this.x_axis.length >> 1;
@@ -460,7 +460,7 @@ class GraphWindow {
 					canvas.draw_text(
 						this.time_axis_value + 's',
 						this.inner_bounds.right -
-							this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   ') -
+							this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   ') -
 							this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
 							view_port.view_width * 0.1,
 						this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
@@ -471,7 +471,7 @@ class GraphWindow {
 			if (this.graph_trace_a.magnitude_list.length > 0) {
 				for (var i: number = Math.round(this.GRAPH_X_AXIS_LENGTH * 0.1); i < Math.round(this.GRAPH_X_AXIS_LENGTH >> 1); i += Math.round(this.GRAPH_X_AXIS_LENGTH * 0.1)) {
 					if (i < this.graph_trace_a.magnitude_list.length) {
-						this.time_tag = global.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
+						this.time_tag = global.utils.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
 						canvas.draw_text(
 							this.time_tag + 's',
 							view_port.left + this.graph_trace_a.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
@@ -485,7 +485,7 @@ class GraphWindow {
 			} else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length > 0) {
 				for (var i: number = (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1; i < this.GRAPH_X_AXIS_LENGTH >> 1; i += (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1) {
 					if (i < this.graph_trace_b.magnitude_list.length) {
-						this.time_tag = global.exponentiate_quickly(this.graph_trace_b.magnitude_list[i].x);
+						this.time_tag = global.utils.exponentiate_quickly(this.graph_trace_b.magnitude_list[i].x);
 						canvas.draw_text(
 							this.time_tag + 's',
 							view_port.left + this.graph_trace_b.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
@@ -499,7 +499,7 @@ class GraphWindow {
 			} else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length === 0 && this.graph_trace_c.magnitude_list.length > 0) {
 				for (var i: number = (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1; i < this.GRAPH_X_AXIS_LENGTH >> 1; i += (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1) {
 					if (i < this.graph_trace_c.magnitude_list.length) {
-						this.time_tag = global.exponentiate_quickly(this.graph_trace_c.magnitude_list[i].x);
+						this.time_tag = global.utils.exponentiate_quickly(this.graph_trace_c.magnitude_list[i].x);
 						canvas.draw_text(
 							this.time_tag + 's',
 							view_port.left + this.graph_trace_c.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1),
@@ -512,12 +512,12 @@ class GraphWindow {
 				}
 			}
 			canvas.draw_text(
-				global.exponentiate_quickly(global.time_step) + 's/step',
-				this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   '),
+				global.utils.exponentiate_quickly(global.time_step) + 's/step',
+				this.inner_bounds.right - this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   '),
 				this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 				this.text_paint
 			);
-			if (this.download_button.contains_xy(global.mouse_x, global.mouse_y) && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.download_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && !global.CONSTANTS.MOBILE_MODE) {
 				this.download_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.download_button.draw_button(canvas);
 				this.download_button.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);

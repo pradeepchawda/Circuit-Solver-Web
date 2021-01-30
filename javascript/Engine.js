@@ -1,5 +1,6 @@
 'use strict';
 /* #START_GLOBAL_EXTRACT# */
+var PAINT = new Paint();
 var global = new Global();
 //@ts-ignore
 String.prototype.hashCode = function () {
@@ -38,8 +39,8 @@ function save_image_mobile(title, canvas) {
         };
     });
 }
-var file_reader = global.NULL;
-if (global.MOBILE_MODE) {
+var file_reader = global.CONSTANTS.NULL;
+if (global.CONSTANTS.MOBILE_MODE) {
     file_reader = document.getElementById('file_explorer_mobile');
 }
 else {
@@ -52,58 +53,58 @@ function file_event(input) {
     reader.onload = function (e) {
         let text = reader.result;
         let title = input.files[0].name.split('.')[0];
-        if (title.length > global.MAX_TEXT_LENGTH) {
-            title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
+        if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+            title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
         }
-        global.user_file.title = title;
+        global.variables.user_file.title = title;
         bottom_menu.resize_bottom_menu();
-        global.user_file.content = text;
-        global.user_file_selected = true;
-        global.canvas_draw_event = true;
+        global.variables.user_file.content = text;
+        global.variables.user_file_selected = true;
+        global.flags.canvas_draw_event = true;
     };
     reader.onerror = function (err) { };
     reader.readAsText(input.files[0]);
 }
 function file_event_mobile(title, data) {
-    if (title.length > global.MAX_TEXT_LENGTH) {
-        title = title.substring(0, global.MAX_TEXT_LENGTH) + '...';
+    if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+        title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
     }
-    global.user_file.title = title;
+    global.variables.user_file.title = title;
     bottom_menu.resize_bottom_menu();
-    global.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
+    global.variables.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
 }
 function restore_system_options(index, value) {
-    if (index === global.SYSTEM_OPTION_LANGUAGE) {
-        for (var i = 0; i < global.LANGUAGES.length; i++) {
-            if (value === global.LANGUAGES[i]) {
-                global.language_index = i;
+    if (index === global.CONSTANTS.SYSTEM_OPTION_LANGUAGE) {
+        for (var i = 0; i < global.CONSTANTS.LANGUAGES.length; i++) {
+            if (value === global.CONSTANTS.LANGUAGES[i]) {
+                global.variables.language_index = i;
             }
         }
     }
-    global.system_options['values'][index] = value;
+    global.variables.system_options['values'][index] = value;
 }
 function restore_zoom_offset(zoom, delta_x, dx, x_offset, delta_y, dy, y_offset) {
-    global.workspace_zoom_scale = Number(zoom);
-    global.dx = Number(dx);
-    global.dy = Number(dy);
-    global.x_offset = Number(x_offset);
-    global.y_offset = Number(y_offset);
-    global.delta_x = Number(delta_x);
-    global.delta_y = Number(delta_y);
+    global.variables.workspace_zoom_scale = Number(zoom);
+    global.variables.dx = Number(dx);
+    global.variables.dy = Number(dy);
+    global.variables.x_offset = Number(x_offset);
+    global.variables.y_offset = Number(y_offset);
+    global.variables.delta_x = Number(delta_x);
+    global.variables.delta_y = Number(delta_y);
     workspace.workspace_zoom();
-    global.draw_block = true;
-    global.signal_build_element = true;
+    global.flags.draw_block = true;
+    global.flags.signal_build_element = true;
 }
 function handle_file_loading() {
-    global.user_file_selected = true;
-    global.canvas_draw_event = true;
+    global.variables.user_file_selected = true;
+    global.flags.canvas_draw_event = true;
     try {
-        engine_functions.parse_elements(global.user_file.content);
+        engine_functions.parse_elements(global.variables.user_file.content);
     }
     catch (error) { }
-    global.history_manager['packet'].push(engine_functions.history_snapshot());
-    global.draw_block = true;
-    global.user_file_selected = false;
+    global.variables.history['packet'].push(engine_functions.history_snapshot());
+    global.flags.draw_block = true;
+    global.variables.user_file_selected = false;
     mouse_event_latch = false;
 }
 var solver_container = document.getElementById('solver');
@@ -114,19 +115,19 @@ surface.style.zIndex = '0';
 surface.style.position = 'absolute';
 solver_container.appendChild(surface);
 var ctx = surface.getContext('2d');
-var virtual_surface = new VirtualCanvas(1, 1, global.virtual_canvas_id++);
+var virtual_surface = new VirtualCanvas(1, 1, global.variables.virtual_canvas_id++);
 var linear_algebra = new LinearAlgebra();
 var language_manager = new LanguageManager();
 var shortcut_manager = new ShortcutManager();
 var string_operator = new StringOperator();
 var multi_select_manager = new MultiSelectManager();
 var canvas_aspect_ratio = 1.333;
-if (global.MOBILE_MODE) {
+if (global.CONSTANTS.MOBILE_MODE) {
     canvas_aspect_ratio = 1.618;
 }
 var view_port = new Viewport(canvas_aspect_ratio, 800, 800 / canvas_aspect_ratio);
-var workspace = new Workspace(0, 0, 0, 0, global.workspace_zoom_scale);
-var simulation_manager = global.NULL;
+var workspace = new Workspace(0, 0, 0, 0, global.variables.workspace_zoom_scale);
+var simulation_manager = global.CONSTANTS.NULL;
 var scope_manager = new ScopeManager();
 var matrix_a = linear_algebra.matrix(1, 1);
 var matrix_z = linear_algebra.matrix(1, 1);
@@ -205,24 +206,24 @@ var tptzs = [];
 var transformers = [];
 /* <!-- END AUTOMATICALLY GENERATED !--> */
 var on_screen_keyboard = new OnScreenKeyboard();
-var toast = global.NULL;
+var toast = global.CONSTANTS.NULL;
 var history_manager = new HistoryManager();
-var element_options = global.NULL;
-var menu_bar = global.NULL;
-var bottom_menu = global.NULL;
-var time_step_window = global.NULL;
-var save_circuit_window = global.NULL;
-var save_image_window = global.NULL;
-var element_options_window = global.NULL;
-var element_options_edit_window = global.NULL;
-var zoom_window = global.NULL;
-var settings_window = global.NULL;
-var yes_no_window = global.NULL;
+var element_options = global.CONSTANTS.NULL;
+var menu_bar = global.CONSTANTS.NULL;
+var bottom_menu = global.CONSTANTS.NULL;
+var time_step_window = global.CONSTANTS.NULL;
+var save_circuit_window = global.CONSTANTS.NULL;
+var save_image_window = global.CONSTANTS.NULL;
+var element_options_window = global.CONSTANTS.NULL;
+var element_options_edit_window = global.CONSTANTS.NULL;
+var zoom_window = global.CONSTANTS.NULL;
+var settings_window = global.CONSTANTS.NULL;
+var yes_no_window = global.CONSTANTS.NULL;
 var wire_manager = new WireManager();
 var engine_functions = new EngineFunctions();
 var nodes = [];
 var node_manager = new NodeManager();
-var graph_window = global.NULL;
+var graph_window = global.CONSTANTS.NULL;
 var FPS = 30;
 var FPS_DIV_ARRAY = [2, 2];
 var fps_counter = 0;
@@ -230,18 +231,18 @@ var fps_index = 0;
 var fps_compare = FPS_DIV_ARRAY[fps_index];
 var fps_div = 0;
 var general_paint = new Paint();
-var webpage_document_title = global.NULL;
+var webpage_document_title = global.CONSTANTS.NULL;
 var last_webpage_document_title = 'untitled';
 var mouse_event_latch = false;
 /* #END_GLOBAL_EXTRACT# */
 function load_app() {
     browser_detection();
-    workspace = new Workspace(view_port.left, view_port.top, view_port.view_width, view_port.view_height, global.workspace_zoom_scale);
-    global.last_surface_width = 0;
-    global.last_surface_height = 0;
+    workspace = new Workspace(view_port.left, view_port.top, view_port.view_width, view_port.view_height, global.variables.workspace_zoom_scale);
+    global.utils.last_surface_width = 0;
+    global.utils.last_surface_height = 0;
     let canvas = new GraphicsEngine(virtual_surface.context);
     let fifo_index = 0;
-    let touch = global.NULL;
+    let touch = global.CONSTANTS.NULL;
     let temp_draw_signal = false;
     let node_space_x_cache = 0;
     let node_space_y_cache = 0;
@@ -249,18 +250,18 @@ function load_app() {
     let mult_node_space_y_cache = 0;
     let node_length = 0;
     general_paint = new Paint();
-    general_paint.set_paint_style(general_paint.style.FILL);
-    general_paint.set_paint_cap(general_paint.cap.ROUND);
-    general_paint.set_paint_join(general_paint.join.MITER);
-    general_paint.set_stroke_width(global.canvas_stroke_width_1);
-    if (global.MOBILE_MODE) {
-        general_paint.set_color(global.GENERAL_WHITE_COLOR);
+    general_paint.set_paint_style(PAINT.style.FILL);
+    general_paint.set_paint_cap(PAINT.cap.ROUND);
+    general_paint.set_paint_join(PAINT.join.MITER);
+    general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+    if (global.CONSTANTS.MOBILE_MODE) {
+        general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
     }
     else {
-        general_paint.set_color(global.GENERAL_BLACK_COLOR);
+        general_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
     }
-    general_paint.set_text_size(global.canvas_text_size_5);
-    general_paint.set_font(global.DEFAULT_FONT);
+    general_paint.set_text_size(global.variables.canvas_text_size_5);
+    general_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
     general_paint.set_alpha(255);
     general_paint.set_paint_align(general_paint.align.LEFT);
     function initialize(step) {
@@ -268,7 +269,7 @@ function load_app() {
             toast = new Toast();
             resize_canvas();
             engine_functions.create_nodes(workspace.bounds);
-            global.history_manager['packet'].push(engine_functions.history_snapshot());
+            global.variables.history['packet'].push(engine_functions.history_snapshot());
         }
         else if (step === 1) {
             menu_bar = new MenuBar();
@@ -291,23 +292,23 @@ function load_app() {
         }
         else if (step === 4) {
             register_cross_platform_listeners();
-            if (!global.MOBILE_MODE) {
+            if (!global.CONSTANTS.MOBILE_MODE) {
                 window.addEventListener('keydown', key_down, false);
                 window.addEventListener('keyup', key_up, false);
             }
             window.addEventListener('resize', resize_canvas, false);
-            if (!global.MOBILE_MODE) {
+            if (!global.CONSTANTS.MOBILE_MODE) {
                 window.addEventListener('dblclick', double_click, false);
                 webpage_document_title = document.getElementById('title_text');
             }
-            if (global.system_options['values'][global.SYSTEM_OPTION_STRETCH_WINDOW] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.CONSTANTS.ON) {
                 view_port.apply_spread_factor = true;
-                global.force_resize_event = true;
+                global.flags.force_resize_event = true;
             }
         }
     }
     function register_cross_platform_listeners() {
-        if (global.MOBILE_MODE === true) {
+        if (global.CONSTANTS.MOBILE_MODE === true) {
             surface.addEventListener('touchstart', mouse_down, false);
             surface.addEventListener('touchmove', mouse_move, false);
             surface.addEventListener('touchend', mouse_up, false);
@@ -317,8 +318,8 @@ function load_app() {
             surface.addEventListener('mousemove', mouse_move, false);
             surface.addEventListener('mouseup', mouse_up, false);
         }
-        if (!global.MOBILE_MODE) {
-            if (global.browser_firefox) {
+        if (!global.CONSTANTS.MOBILE_MODE) {
+            if (global.variables.browser_firefox) {
                 surface.addEventListener('DOMMouseScroll', mouse_wheel, false);
             }
             else {
@@ -327,38 +328,38 @@ function load_app() {
         }
     }
     function start_system() {
-        if (!global.MOBILE_MODE) {
+        if (!global.CONSTANTS.MOBILE_MODE) {
             register();
         }
         main();
     }
     function resize_canvas() {
-        global.device_pixel_ratio = window.devicePixelRatio;
-        if (global.resize_event === false) {
-            global.last_view_port_right = view_port.right;
-            global.last_view_port_bottom = view_port.bottom;
-            global.last_view_port_width = view_port.view_width;
-            global.last_view_port_height = view_port.view_height;
-            global.last_surface_width = surface.width;
-            global.last_surface_height = surface.height;
+        global.variables.device_pixel_ratio = window.devicePixelRatio;
+        if (global.flags.flag_resize_event === false) {
+            global.utils.last_view_port_right = view_port.right;
+            global.utils.last_view_port_bottom = view_port.bottom;
+            global.utils.last_view_port_width = view_port.view_width;
+            global.utils.last_view_port_height = view_port.view_height;
+            global.utils.last_surface_width = surface.width;
+            global.utils.last_surface_height = surface.height;
         }
-        solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
-        solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
+        solver_container.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
+        solver_container.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
         solver_container.style.background = 'black';
-        view_port.resize(canvas_aspect_ratio, window.innerWidth * global.device_pixel_ratio, window.innerHeight * global.device_pixel_ratio);
-        surface.width = window.innerWidth * global.device_pixel_ratio;
-        surface.height = window.innerHeight * global.device_pixel_ratio;
-        surface.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
-        surface.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
-        global.resize_w_factor = view_port.view_width / global.last_view_port_width;
-        global.resize_h_factor = view_port.view_height / global.last_view_port_height;
-        if (global.MOBILE_MODE) {
-            global.canvas_stroke_width_base = 0.000775 * view_port.view_width;
-            global.canvas_text_size_base = 0.000775 * view_port.view_width;
+        view_port.resize(canvas_aspect_ratio, window.innerWidth * global.variables.device_pixel_ratio, window.innerHeight * global.variables.device_pixel_ratio);
+        surface.width = window.innerWidth * global.variables.device_pixel_ratio;
+        surface.height = window.innerHeight * global.variables.device_pixel_ratio;
+        surface.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
+        surface.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
+        global.utils.resize_w_factor = view_port.view_width / global.utils.last_view_port_width;
+        global.utils.resize_h_factor = view_port.view_height / global.utils.last_view_port_height;
+        if (global.CONSTANTS.MOBILE_MODE) {
+            global.variables.canvas_stroke_width_base = 0.000775 * view_port.view_width;
+            global.variables.canvas_text_size_base = 0.000775 * view_port.view_width;
         }
         else {
-            global.canvas_stroke_width_base = 0.000725 * view_port.view_width;
-            global.canvas_text_size_base = 0.000725 * view_port.view_width;
+            global.variables.canvas_stroke_width_base = 0.000725 * view_port.view_width;
+            global.variables.canvas_text_size_base = 0.000725 * view_port.view_width;
         }
         try {
             ctx.globalCompositeOperation = 'copy';
@@ -373,22 +374,22 @@ function load_app() {
             ctx.msImageSmoothingEnabled = false;
         }
         catch (e) { }
-        global.canvas_stroke_width_1 = global.canvas_stroke_width_base * 2.25;
-        global.canvas_stroke_width_2 = global.canvas_stroke_width_base * 2.65;
-        global.canvas_stroke_width_3 = global.canvas_stroke_width_base * 9;
-        global.canvas_stroke_width_4 = global.canvas_stroke_width_base * 16;
-        global.canvas_stroke_width_5 = global.canvas_stroke_width_base * 21;
-        global.canvas_stroke_width_6 = global.canvas_stroke_width_base * 43;
-        global.canvas_text_size_1 = global.canvas_text_size_base * 2.25;
-        global.canvas_text_size_2 = global.canvas_text_size_base * 2.65;
-        global.canvas_text_size_3 = global.canvas_text_size_base * 9;
-        global.canvas_text_size_4 = global.canvas_text_size_base * 16;
-        global.canvas_text_size_5 = global.canvas_text_size_base * 21;
-        global.canvas_text_size_6 = global.canvas_text_size_base * 43;
-        global.signal_build_element = true;
-        global.signal_build_counter = 0;
+        global.variables.canvas_stroke_width_1 = global.variables.canvas_stroke_width_base * 2.25;
+        global.variables.canvas_stroke_width_2 = global.variables.canvas_stroke_width_base * 2.65;
+        global.variables.canvas_stroke_width_3 = global.variables.canvas_stroke_width_base * 9;
+        global.variables.canvas_stroke_width_4 = global.variables.canvas_stroke_width_base * 16;
+        global.variables.canvas_stroke_width_5 = global.variables.canvas_stroke_width_base * 21;
+        global.variables.canvas_stroke_width_6 = global.variables.canvas_stroke_width_base * 43;
+        global.variables.canvas_text_size_1 = global.variables.canvas_text_size_base * 2.25;
+        global.variables.canvas_text_size_2 = global.variables.canvas_text_size_base * 2.65;
+        global.variables.canvas_text_size_3 = global.variables.canvas_text_size_base * 9;
+        global.variables.canvas_text_size_4 = global.variables.canvas_text_size_base * 16;
+        global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
+        global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
+        global.flags.signal_build_element = true;
+        global.variables.signal_build_counter = 0;
         virtual_surface.resize();
-        global.resize_event = true;
+        global.flags.flag_resize_event = true;
         canvas.on_resize();
         surface.style.backfaceVisibility = 'hidden';
         if (surface.style.visibility === 'hidden') {
@@ -396,37 +397,40 @@ function load_app() {
         }
     }
     function mouse_down(mouse_event) {
-        if (global.system_initialization['completed']) {
-            if (global.MOBILE_MODE === false) {
-                global.mouse_x = mouse_event.clientX * global.device_pixel_ratio;
-                global.mouse_y = mouse_event.clientY * global.device_pixel_ratio;
+        if (global.variables.system_initialization['completed']) {
+            if (global.CONSTANTS.MOBILE_MODE === false) {
+                global.variables.mouse_x = mouse_event.clientX * global.variables.device_pixel_ratio;
+                global.variables.mouse_y = mouse_event.clientY * global.variables.device_pixel_ratio;
             }
             else {
                 //@ts-ignore
                 touch = mouse_event.touches[0];
-                global.mouse_x = touch.clientX * global.device_pixel_ratio;
-                global.mouse_y = touch.clientY * global.device_pixel_ratio;
+                global.variables.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+                global.variables.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
             }
             if (bottom_menu.handle_file_explorer()) {
-                if (!global.user_file_selected) {
+                if (!global.variables.user_file_selected) {
                     file_reader.click();
                 }
                 else {
-                    toast.set_text(language_manager.TRY_AGAIN[global.LANGUAGES[global.language_index]]);
+                    toast.set_text(language_manager.TRY_AGAIN[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                     toast.show();
                 }
             }
             else {
                 if (!mouse_event_latch) {
-                    if (global.MOBILE_MODE) {
-                        if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-                            global.mouse_down_event_flag = true;
-                            global.mouse_down_event_queue.push(mouse_event);
+                    if (global.CONSTANTS.MOBILE_MODE) {
+                        if (global.variables.mouse_x >= view_port.left &&
+                            global.variables.mouse_x <= view_port.right &&
+                            global.variables.mouse_y >= view_port.top &&
+                            global.variables.mouse_y <= view_port.bottom) {
+                            global.flags.mouse_down_event_flag = true;
+                            global.events.mouse_down_event_queue.push(mouse_event);
                         }
                     }
                     else {
-                        global.mouse_down_event_flag = true;
-                        global.mouse_down_event_queue.push(mouse_event);
+                        global.flags.mouse_down_event_flag = true;
+                        global.events.mouse_down_event_queue.push(mouse_event);
                     }
                 }
             }
@@ -435,16 +439,16 @@ function load_app() {
         mouse_event.stopPropagation();
     }
     function mouse_move(mouse_event) {
-        if (!global.mouse_move_event_flag) {
-            if (global.MOBILE_MODE) {
-                if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-                    global.mouse_move_event = mouse_event;
-                    global.mouse_move_event_flag = true;
+        if (!global.flags.mouse_move_event_flag) {
+            if (global.CONSTANTS.MOBILE_MODE) {
+                if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
+                    global.events.mouse_move_event = mouse_event;
+                    global.flags.mouse_move_event_flag = true;
                 }
             }
             else {
-                global.mouse_move_event = mouse_event;
-                global.mouse_move_event_flag = true;
+                global.events.mouse_move_event = mouse_event;
+                global.flags.mouse_move_event_flag = true;
             }
         }
         mouse_event.preventDefault();
@@ -452,39 +456,39 @@ function load_app() {
     }
     function mouse_up(mouse_event) {
         if (mouse_event_latch) {
-            if (global.MOBILE_MODE) {
-                if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-                    global.mouse_up_event_flag = true;
-                    global.mouse_up_event_queue.push(mouse_event);
+            if (global.CONSTANTS.MOBILE_MODE) {
+                if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
+                    global.flags.mouse_up_event_flag = true;
+                    global.events.mouse_up_event_queue.push(mouse_event);
                 }
             }
             else {
-                global.mouse_up_event_flag = true;
-                global.mouse_up_event_queue.push(mouse_event);
+                global.flags.mouse_up_event_flag = true;
+                global.events.mouse_up_event_queue.push(mouse_event);
             }
         }
         mouse_event.preventDefault();
         mouse_event.stopPropagation();
     }
     function mouse_wheel(mouse_event) {
-        if (!global.mouse_wheel_event_flag && !global.MOBILE_MODE) {
-            global.mouse_wheel_event_flag = true;
-            global.mouse_wheel_event_queue.push(mouse_event);
+        if (!global.flags.mouse_wheel_event_flag && !global.CONSTANTS.MOBILE_MODE) {
+            global.flags.mouse_wheel_event_flag = true;
+            global.events.mouse_wheel_event_queue.push(mouse_event);
         }
         mouse_event.preventDefault();
         mouse_event.stopPropagation();
     }
     function double_click(mouse_event) {
-        if (!global.MOBILE_MODE) {
-            global.mouse_double_click_event_flag = true;
-            global.mouse_double_click_event_queue.push(mouse_event);
+        if (!global.CONSTANTS.MOBILE_MODE) {
+            global.flags.mouse_double_click_event_flag = true;
+            global.events.mouse_double_click_event_queue.push(mouse_event);
         }
         mouse_event.preventDefault();
         mouse_event.stopPropagation();
     }
     function key_down(key_event) {
-        global.key_down_event_flag = true;
-        global.key_down_event_queue.push({
+        global.flags.key_down_event_flag = true;
+        global.events.key_down_event_queue.push({
             event: key_event,
             alt: key_event.getModifierState('Alt'),
             shift: key_event.getModifierState('Shift'),
@@ -495,8 +499,8 @@ function load_app() {
         key_event.stopPropagation();
     }
     function key_up(key_event) {
-        global.key_up_event_flag = true;
-        global.key_up_event_queue.push({
+        global.flags.key_up_event_flag = true;
+        global.events.key_up_event_queue.push({
             event: key_event,
             alt: key_event.getModifierState('Alt'),
             shift: key_event.getModifierState('Shift'),
@@ -507,12 +511,12 @@ function load_app() {
         key_event.stopPropagation();
     }
     function resize_components() {
-        global.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
+        global.variables.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
         if (global.settings.WORKSPACE_PERFECT_SQUARE) {
-            global.natural_width = global.natural_height;
+            global.variables.natural_width = global.variables.natural_height;
         }
         else {
-            global.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
+            global.variables.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
         }
         workspace.workspace_resize();
         reset_zoom();
@@ -547,153 +551,153 @@ function load_app() {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     function handle_zoom(mouse_event) {
-        if (!global.focused) {
-            global.x_offset = (global.mouse_x - global.delta_x) / global.workspace_zoom_scale;
-            global.y_offset = (global.mouse_y - global.delta_y) / global.workspace_zoom_scale;
+        if (!global.variables.focused) {
+            global.variables.x_offset = (global.variables.mouse_x - global.variables.delta_x) / global.variables.workspace_zoom_scale;
+            global.variables.y_offset = (global.variables.mouse_y - global.variables.delta_y) / global.variables.workspace_zoom_scale;
             //@ts-ignore
             if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
-                if (global.workspace_zoom_scale > global.ZOOM_MIN) {
-                    global.workspace_zoom_scale /= global.ZOOM_FACTOR;
+                if (global.variables.workspace_zoom_scale > global.CONSTANTS.ZOOM_MIN) {
+                    global.variables.workspace_zoom_scale /= global.CONSTANTS.ZOOM_FACTOR;
                 }
             }
             else {
-                if (global.workspace_zoom_scale < global.ZOOM_MAX) {
-                    global.workspace_zoom_scale *= global.ZOOM_FACTOR;
+                if (global.variables.workspace_zoom_scale < global.CONSTANTS.ZOOM_MAX) {
+                    global.variables.workspace_zoom_scale *= global.CONSTANTS.ZOOM_FACTOR;
                 }
             }
-            global.delta_x = global.mouse_x - global.x_offset * global.workspace_zoom_scale;
-            global.delta_y = global.mouse_y - global.y_offset * global.workspace_zoom_scale;
+            global.variables.delta_x = global.variables.mouse_x - global.variables.x_offset * global.variables.workspace_zoom_scale;
+            global.variables.delta_y = global.variables.mouse_y - global.variables.y_offset * global.variables.workspace_zoom_scale;
             workspace.workspace_zoom();
         }
     }
     function reset_zoom() {
-        global.x_offset = 0;
-        global.y_offset = 0;
-        global.delta_x = workspace.bounds.left;
-        global.delta_y = workspace.bounds.top;
+        global.variables.x_offset = 0;
+        global.variables.y_offset = 0;
+        global.variables.delta_x = workspace.bounds.left;
+        global.variables.delta_y = workspace.bounds.top;
     }
     function normal_draw_permissions() {
-        if (global.system_initialization['completed']) {
-            return (global.resize_event ||
-                global.mouse_down_event_flag ||
-                global.mouse_move_event_flag ||
-                global.mouse_up_event_flag ||
-                global.mouse_wheel_event_flag ||
-                global.mouse_double_click_event_flag ||
-                global.key_up_event_flag ||
-                global.key_down_event_flag ||
-                global.picture_request_flag ||
-                global.flag_simulating ||
+        if (global.variables.system_initialization['completed']) {
+            return (global.flags.flag_resize_event ||
+                global.flags.mouse_down_event_flag ||
+                global.flags.mouse_move_event_flag ||
+                global.flags.mouse_up_event_flag ||
+                global.flags.mouse_wheel_event_flag ||
+                global.flags.mouse_double_click_event_flag ||
+                global.flags.key_up_event_flag ||
+                global.flags.key_down_event_flag ||
+                global.flags.picture_request_flag ||
+                global.flags.flag_simulating ||
                 !workspace.draw_to_screen ||
                 toast.draw_text ||
-                !global.system_initialization['completed']);
+                !global.variables.system_initialization['completed']);
         }
         else {
-            return (global.resize_event ||
-                global.mouse_down_event_flag ||
-                global.mouse_move_event_flag ||
-                global.mouse_up_event_flag ||
-                global.mouse_wheel_event_flag ||
-                global.mouse_double_click_event_flag ||
-                global.key_up_event_flag ||
-                global.key_down_event_flag ||
-                global.picture_request_flag ||
-                global.flag_simulating ||
-                !global.system_initialization['completed']);
+            return (global.flags.flag_resize_event ||
+                global.flags.mouse_down_event_flag ||
+                global.flags.mouse_move_event_flag ||
+                global.flags.mouse_up_event_flag ||
+                global.flags.mouse_wheel_event_flag ||
+                global.flags.mouse_double_click_event_flag ||
+                global.flags.key_up_event_flag ||
+                global.flags.key_down_event_flag ||
+                global.flags.picture_request_flag ||
+                global.flags.flag_simulating ||
+                !global.variables.system_initialization['completed']);
         }
     }
     function system_loop() {
         try {
             if (normal_draw_permissions()) {
-                global.canvas_redraw_counter = 0;
-                global.canvas_draw_event = true;
+                global.variables.canvas_redraw_counter = 0;
+                global.flags.canvas_draw_event = true;
             }
-            if (global.canvas_draw_event) {
-                if (global.system_initialization['completed']) {
+            if (global.flags.canvas_draw_event) {
+                if (global.variables.system_initialization['completed']) {
                     temp_draw_signal =
-                        !global.flag_simulating ||
-                            global.resize_event ||
-                            global.mouse_down_event_flag ||
-                            global.mouse_move_event_flag ||
-                            global.mouse_up_event_flag ||
-                            global.mouse_wheel_event_flag ||
-                            global.mouse_double_click_event_flag ||
-                            global.key_up_event_flag ||
-                            global.key_down_event_flag ||
-                            global.picture_request_flag ||
+                        !global.flags.flag_simulating ||
+                            global.flags.flag_resize_event ||
+                            global.flags.mouse_down_event_flag ||
+                            global.flags.mouse_move_event_flag ||
+                            global.flags.mouse_up_event_flag ||
+                            global.flags.mouse_wheel_event_flag ||
+                            global.flags.mouse_double_click_event_flag ||
+                            global.flags.key_up_event_flag ||
+                            global.flags.key_down_event_flag ||
+                            global.flags.picture_request_flag ||
                             !workspace.draw_to_screen ||
                             toast.draw_text;
                 }
                 else {
                     temp_draw_signal =
-                        !global.flag_simulating ||
-                            global.resize_event ||
-                            global.mouse_down_event_flag ||
-                            global.mouse_move_event_flag ||
-                            global.mouse_up_event_flag ||
-                            global.mouse_wheel_event_flag ||
-                            global.mouse_double_click_event_flag ||
-                            global.key_up_event_flag ||
-                            global.key_down_event_flag ||
-                            global.picture_request_flag ||
+                        !global.flags.flag_simulating ||
+                            global.flags.flag_resize_event ||
+                            global.flags.mouse_down_event_flag ||
+                            global.flags.mouse_move_event_flag ||
+                            global.flags.mouse_up_event_flag ||
+                            global.flags.mouse_wheel_event_flag ||
+                            global.flags.mouse_double_click_event_flag ||
+                            global.flags.key_up_event_flag ||
+                            global.flags.key_down_event_flag ||
+                            global.flags.picture_request_flag ||
                             !workspace.draw_to_screen;
                 }
-                global.last_selected = global.selected;
+                global.variables.last_selected = global.variables.selected;
                 update();
-                if (global.last_selected !== global.selected) {
+                if (global.variables.last_selected !== global.variables.selected) {
                     wire_manager.reset_wire_builder();
                 }
-                if (global.force_resize_event) {
-                    global.signal_build_element = true;
-                    global.signal_build_counter = 0;
-                    global.force_resize_event = false;
-                    global.draw_block = true;
+                if (global.flags.force_resize_event) {
+                    global.flags.signal_build_element = true;
+                    global.variables.signal_build_counter = 0;
+                    global.flags.force_resize_event = false;
+                    global.flags.draw_block = true;
                     resize_canvas();
                 }
                 fps_div ^= 1;
-                if (((fps_div == 1 || temp_draw_signal) && global.flag_simulating) || !global.flag_simulating) {
-                    if (global.system_initialization['completed']) {
-                        if ((global.flag_simulating && global.canvas_draw_request) || temp_draw_signal) {
-                            if (!global.on_restore_event) {
-                                if (!global.draw_block) {
+                if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
+                    if (global.variables.system_initialization['completed']) {
+                        if ((global.flags.flag_simulating && global.flags.canvas_draw_request) || temp_draw_signal) {
+                            if (!global.flags.on_restore_event) {
+                                if (!global.flags.draw_block) {
                                     ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
                                 }
                                 canvas.release();
                                 canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
                                 draw();
-                                if (global.draw_block) {
-                                    global.draw_block = false;
+                                if (global.flags.draw_block) {
+                                    global.flags.draw_block = false;
                                 }
                             }
-                            if (global.canvas_draw_request) {
-                                if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-                                    global.canvas_draw_request_counter = 0;
-                                    global.canvas_draw_request = false;
+                            if (global.flags.canvas_draw_request) {
+                                if (global.variables.canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+                                    global.variables.canvas_draw_request_counter = 0;
+                                    global.flags.canvas_draw_request = false;
                                 }
                             }
                         }
                     }
                 }
-                if (global.signal_build_element) {
-                    if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
-                        global.signal_build_element = false;
-                        global.signal_build_counter = 0;
+                if (global.flags.signal_build_element) {
+                    if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
+                        global.flags.signal_build_element = false;
+                        global.variables.signal_build_counter = 0;
                     }
                 }
-                if (global.signal_wire_deleted) {
-                    if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-                        global.signal_wire_deleted = false;
-                        global.signal_wire_deleted_counter = 0;
+                if (global.flags.signal_wire_deleted) {
+                    if (global.variables.signal_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+                        global.flags.signal_wire_deleted = false;
+                        global.variables.signal_wire_deleted_counter = 0;
                     }
                 }
-                if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
-                    global.canvas_redraw_counter = 0;
-                    global.canvas_draw_event = false;
+                if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
+                    global.variables.canvas_redraw_counter = 0;
+                    global.flags.canvas_draw_event = false;
                 }
             }
         }
         catch (e) {
-            if (!global.DEVELOPER_MODE && !global.MOBILE_MODE) {
+            if (!global.CONSTANTS.DEVELOPER_MODE && !global.CONSTANTS.MOBILE_MODE) {
                 let post_data = e + '\r\n' + e.stack + '\r\n';
                 let url = 'solver_errors.php?msg="' + post_data + '"';
                 let method = 'POST';
@@ -710,121 +714,121 @@ function load_app() {
         }
     }
     function update() {
-        if (global.system_initialization['completed']) {
+        if (global.variables.system_initialization['completed']) {
             engine_functions.file_manager();
-            global.component_translating = false;
-            if (global.MOBILE_MODE) {
-                if (global.on_restore_event) {
-                    global.signal_build_element = true;
+            global.variables.component_translating = false;
+            if (global.CONSTANTS.MOBILE_MODE) {
+                if (global.flags.on_restore_event) {
+                    global.flags.signal_build_element = true;
                     window.JsInterface.onRestore();
-                    global.on_restore_event = false;
+                    global.flags.on_restore_event = false;
                 }
             }
-            if (global.mouse_down_event_queue.length > 0 && !mouse_event_latch) {
-                fifo_index = global.mouse_down_event_queue.length - 1;
-                global.mouse_down_event = global.mouse_down_event_queue[fifo_index];
+            if (global.events.mouse_down_event_queue.length > 0 && !mouse_event_latch) {
+                fifo_index = global.events.mouse_down_event_queue.length - 1;
+                global.events.mouse_down_event = global.events.mouse_down_event_queue[fifo_index];
                 mouse_event_latch = true;
                 handle_mouse_down();
-                global.mouse_down_event_queue.splice(fifo_index, 1);
-                if (global.mouse_down_event_queue.length === 0) {
-                    global.mouse_down_event_flag = false;
+                global.events.mouse_down_event_queue.splice(fifo_index, 1);
+                if (global.events.mouse_down_event_queue.length === 0) {
+                    global.flags.mouse_down_event_flag = false;
                 }
-                global.canvas_draw_request = true;
-                global.canvas_draw_request_counter = 0;
+                global.flags.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
             }
-            if (global.mouse_move_event_flag) {
+            if (global.flags.mouse_move_event_flag) {
                 handle_mouse_move();
-                global.canvas_draw_request = true;
-                global.canvas_draw_request_counter = 0;
-                global.mouse_move_event_flag = false;
+                global.flags.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
+                global.flags.mouse_move_event_flag = false;
             }
-            if (global.mouse_up_event_queue.length > 0 && mouse_event_latch) {
-                fifo_index = global.mouse_up_event_queue.length - 1;
-                global.mouse_up_event = global.mouse_up_event_queue[fifo_index];
+            if (global.events.mouse_up_event_queue.length > 0 && mouse_event_latch) {
+                fifo_index = global.events.mouse_up_event_queue.length - 1;
+                global.events.mouse_up_event = global.events.mouse_up_event_queue[fifo_index];
                 mouse_event_latch = false;
                 handle_mouse_up();
-                global.mouse_up_event_queue.splice(fifo_index, 1);
-                if (global.mouse_up_event_queue.length === 0) {
-                    global.mouse_up_event_flag = false;
-                    global.mouse_move_event_flag = false;
-                    global.is_dragging = false;
+                global.events.mouse_up_event_queue.splice(fifo_index, 1);
+                if (global.events.mouse_up_event_queue.length === 0) {
+                    global.flags.mouse_up_event_flag = false;
+                    global.flags.mouse_move_event_flag = false;
+                    global.variables.is_dragging = false;
                 }
-                global.canvas_draw_request = true;
-                global.canvas_draw_request_counter = 0;
+                global.flags.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
             }
-            if (global.mouse_double_click_event_queue.length > 0) {
-                fifo_index = global.mouse_double_click_event_queue.length - 1;
-                global.mouse_double_click_event = global.mouse_double_click_event_queue[fifo_index];
+            if (global.events.mouse_double_click_event_queue.length > 0) {
+                fifo_index = global.events.mouse_double_click_event_queue.length - 1;
+                global.events.mouse_double_click_event = global.events.mouse_double_click_event_queue[fifo_index];
                 handle_double_click();
-                global.mouse_double_click_event_queue.splice(fifo_index, 1);
-                if (global.mouse_double_click_event_queue.length === 0) {
-                    global.mouse_double_click_event_flag = false;
+                global.events.mouse_double_click_event_queue.splice(fifo_index, 1);
+                if (global.events.mouse_double_click_event_queue.length === 0) {
+                    global.flags.mouse_double_click_event_flag = false;
                 }
-                global.canvas_draw_request = true;
-                global.canvas_draw_request_counter = 0;
+                global.flags.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
             }
-            if (global.mouse_wheel_event_queue.length > 0) {
-                fifo_index = global.mouse_wheel_event_queue.length - 1;
-                global.mouse_wheel_event = global.mouse_wheel_event_queue[fifo_index];
+            if (global.events.mouse_wheel_event_queue.length > 0) {
+                fifo_index = global.events.mouse_wheel_event_queue.length - 1;
+                global.events.mouse_wheel_event = global.events.mouse_wheel_event_queue[fifo_index];
                 handle_mouse_wheel();
-                global.mouse_wheel_event_queue.splice(fifo_index, 1);
-                if (global.mouse_wheel_event_queue.length === 0) {
-                    global.mouse_wheel_event_flag = false;
+                global.events.mouse_wheel_event_queue.splice(fifo_index, 1);
+                if (global.events.mouse_wheel_event_queue.length === 0) {
+                    global.flags.mouse_wheel_event_flag = false;
                 }
-                global.canvas_draw_request = true;
-                global.canvas_draw_request_counter = 0;
-                global.is_dragging = false;
+                global.flags.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
+                global.variables.is_dragging = false;
             }
-            if (global.resize_event) {
-                general_paint.set_stroke_width(global.canvas_stroke_width_1);
-                if (global.MOBILE_MODE) {
-                    general_paint.set_color(global.GENERAL_WHITE_COLOR);
+            if (global.flags.flag_resize_event) {
+                general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+                if (global.CONSTANTS.MOBILE_MODE) {
+                    general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
                 }
                 else {
-                    general_paint.set_color(global.GENERAL_BLACK_COLOR);
+                    general_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
                 }
-                general_paint.set_text_size(global.canvas_text_size_5);
-                global.mouse_x = 0;
-                global.mouse_y = 0;
+                general_paint.set_text_size(global.variables.canvas_text_size_5);
+                global.variables.mouse_x = 0;
+                global.variables.mouse_y = 0;
                 reset_zoom();
                 resize_components();
-                global.resize_event = false;
+                global.flags.flag_resize_event = false;
             }
-            if (global.key_down_event_queue.length > 0) {
-                fifo_index = global.key_down_event_queue.length - 1;
-                global.key_down_event = global.key_down_event_queue[fifo_index];
+            if (global.events.key_down_event_queue.length > 0) {
+                fifo_index = global.events.key_down_event_queue.length - 1;
+                global.events.key_down_event = global.events.key_down_event_queue[fifo_index];
                 handle_key_down();
-                global.key_down_event_queue.splice(fifo_index, 1);
-                if (global.key_down_event_queue.length === 0) {
-                    global.key_down_event_flag = false;
+                global.events.key_down_event_queue.splice(fifo_index, 1);
+                if (global.events.key_down_event_queue.length === 0) {
+                    global.flags.key_down_event_flag = false;
                 }
-                global.canvas_draw_request = true;
-                global.canvas_draw_request_counter = 0;
+                global.flags.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
             }
-            if (global.key_up_event_queue.length > 0) {
-                fifo_index = global.key_up_event_queue.length - 1;
-                global.key_up_event = global.key_up_event_queue[fifo_index];
+            if (global.events.key_up_event_queue.length > 0) {
+                fifo_index = global.events.key_up_event_queue.length - 1;
+                global.events.key_up_event = global.events.key_up_event_queue[fifo_index];
                 handle_key_up();
-                global.key_down_event_queue = [];
-                global.key_up_event_queue.splice(fifo_index, 1);
-                if (global.key_up_event_queue.length === 0) {
-                    global.key_up_event_flag = false;
+                global.events.key_down_event_queue = [];
+                global.events.key_up_event_queue.splice(fifo_index, 1);
+                if (global.events.key_up_event_queue.length === 0) {
+                    global.flags.key_up_event_flag = false;
                 }
-                global.canvas_draw_request = true;
-                global.canvas_draw_request_counter = 0;
+                global.flags.canvas_draw_request = true;
+                global.variables.canvas_draw_request_counter = 0;
             }
-            if (global.mouse_keyboard_lock) {
-                global.mouse_keyboard_lock = false;
+            if (global.variables.mouse_keyboard_lock) {
+                global.variables.mouse_keyboard_lock = false;
             }
-            if (global.flag_idle &&
-                !global.flag_save_image &&
-                !global.flag_save_circuit &&
-                !global.flag_zoom &&
-                !global.flag_element_options &&
-                !global.flag_element_options_edit &&
-                !global.flag_select_timestep &&
-                !global.flag_select_settings &&
-                !global.flag_remove_all) {
+            if (global.flags.flag_idle &&
+                !global.flags.flag_save_image &&
+                !global.flags.flag_save_circuit &&
+                !global.flags.flag_zoom &&
+                !global.flags.flag_element_options &&
+                !global.flags.flag_element_options_edit &&
+                !global.flags.flag_select_timestep &&
+                !global.flags.flag_select_settings &&
+                !global.flags.flag_remove_all) {
                 simulation_manager.simulate();
                 /* #INSERT_GENERATE_UPDATE# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -1020,63 +1024,63 @@ function load_app() {
                 element_options.update();
                 history_manager.watch();
                 wire_manager.watch();
-                if (!global.MOBILE_MODE) {
-                    if (last_webpage_document_title !== global.user_file.title) {
-                        webpage_document_title.innerHTML = global.user_file.title;
-                        last_webpage_document_title = global.user_file.title;
+                if (!global.CONSTANTS.MOBILE_MODE) {
+                    if (last_webpage_document_title !== global.variables.user_file.title) {
+                        webpage_document_title.innerHTML = global.variables.user_file.title;
+                        last_webpage_document_title = global.variables.user_file.title;
                     }
                 }
             }
         }
         else {
-            initialize(global.system_initialization['step']);
-            global.system_initialization['step']++;
-            if (global.system_initialization['step'] >= global.system_initialization['max']) {
-                if (global.MOBILE_MODE) {
-                    global.on_restore_event = true;
+            initialize(global.variables.system_initialization['step']);
+            global.variables.system_initialization['step']++;
+            if (global.variables.system_initialization['step'] >= global.variables.system_initialization['max']) {
+                if (global.CONSTANTS.MOBILE_MODE) {
+                    global.flags.on_restore_event = true;
                 }
-                global.system_initialization['step'] = 0;
-                global.system_initialization['completed'] = true;
-                global.signal_build_element = true;
+                global.variables.system_initialization['step'] = 0;
+                global.variables.system_initialization['completed'] = true;
+                global.flags.signal_build_element = true;
             }
         }
     }
     function refactor_sizes() {
-        global.canvas_stroke_width_1_zoom = global.canvas_stroke_width_base * 2.25 * global.workspace_zoom_scale;
-        global.canvas_stroke_width_2_zoom = global.canvas_stroke_width_base * 2.65 * global.workspace_zoom_scale;
-        global.canvas_stroke_width_3_zoom = global.canvas_stroke_width_base * 9 * global.workspace_zoom_scale;
-        global.canvas_stroke_width_4_zoom = global.canvas_stroke_width_base * 16 * global.workspace_zoom_scale;
-        global.canvas_stroke_width_5_zoom = global.canvas_stroke_width_base * 21 * global.workspace_zoom_scale;
-        global.canvas_stroke_width_6_zoom = global.canvas_stroke_width_base * 43 * global.workspace_zoom_scale;
-        global.canvas_text_size_1_zoom = global.canvas_text_size_base * 2.25 * global.workspace_zoom_scale;
-        global.canvas_text_size_2_zoom = global.canvas_text_size_base * 2.65 * global.workspace_zoom_scale;
-        global.canvas_text_size_3_zoom = global.canvas_text_size_base * 9 * global.workspace_zoom_scale;
-        global.canvas_text_size_4_zoom = global.canvas_text_size_base * 16 * global.workspace_zoom_scale;
-        global.canvas_text_size_5_zoom = global.canvas_text_size_base * 21 * global.workspace_zoom_scale;
-        global.canvas_text_size_6_zoom = global.canvas_text_size_base * 43 * global.workspace_zoom_scale;
+        global.variables.canvas_stroke_width_1_zoom = global.variables.canvas_stroke_width_base * 2.25 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_stroke_width_2_zoom = global.variables.canvas_stroke_width_base * 2.65 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_stroke_width_3_zoom = global.variables.canvas_stroke_width_base * 9 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_stroke_width_4_zoom = global.variables.canvas_stroke_width_base * 16 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_stroke_width_5_zoom = global.variables.canvas_stroke_width_base * 21 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_stroke_width_6_zoom = global.variables.canvas_stroke_width_base * 43 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_text_size_1_zoom = global.variables.canvas_text_size_base * 2.25 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_text_size_2_zoom = global.variables.canvas_text_size_base * 2.65 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_text_size_3_zoom = global.variables.canvas_text_size_base * 9 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
+        global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
     }
     function draw() {
         refactor_sizes();
         engine_functions.image_manager();
-        if (!global.picture_request_flag) {
-            if (!global.MOBILE_MODE) {
-                if (global.flag_idle &&
-                    !global.flag_save_image &&
-                    !global.flag_save_circuit &&
-                    !global.flag_zoom &&
-                    !global.flag_element_options &&
-                    !global.flag_element_options_edit &&
-                    !global.flag_select_element &&
-                    !global.flag_select_timestep &&
-                    !global.flag_select_settings &&
-                    !global.flag_remove_all &&
-                    !global.flag_menu_element_toolbox &&
-                    !global.flag_graph) {
+        if (!global.flags.picture_request_flag) {
+            if (!global.CONSTANTS.MOBILE_MODE) {
+                if (global.flags.flag_idle &&
+                    !global.flags.flag_save_image &&
+                    !global.flags.flag_save_circuit &&
+                    !global.flags.flag_zoom &&
+                    !global.flags.flag_element_options &&
+                    !global.flags.flag_element_options_edit &&
+                    !global.flags.flag_select_element &&
+                    !global.flags.flag_select_timestep &&
+                    !global.flags.flag_select_settings &&
+                    !global.flags.flag_remove_all &&
+                    !global.flags.flag_menu_element_toolbox &&
+                    !global.flags.flag_graph) {
                     multi_select_manager.reset_enveloping_bounds();
                 }
-                if (global.signal_build_element) {
-                    node_space_x_cache = 0.29375 * global.node_space_x;
-                    node_space_y_cache = 0.29375 * global.node_space_y;
+                if (global.flags.signal_build_element) {
+                    node_space_x_cache = 0.29375 * global.variables.node_space_x;
+                    node_space_y_cache = 0.29375 * global.variables.node_space_y;
                     mult_node_space_x_cache = 1.25 * node_space_x_cache;
                     mult_node_space_y_cache = 1.25 * node_space_y_cache;
                     node_length = nodes.length;
@@ -1088,7 +1092,7 @@ function load_app() {
                         nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
                     }
                 }
-                if (global.DEVELOPER_MODE) {
+                if (global.CONSTANTS.DEVELOPER_MODE) {
                     node_length = nodes.length;
                     for (var i = 0; i < node_length; i++) {
                         nodes[i].draw(canvas);
@@ -1103,9 +1107,9 @@ function load_app() {
                 engine_functions.draw_wires(canvas);
                 engine_functions.draw_selected_components(canvas);
                 engine_functions.draw_meter_traces(canvas);
-                if (global.wire_builder['step'] > 0) {
-                    global.node_line_buffer = [];
-                    global.node_line_buffer_index = 0;
+                if (global.variables.wire_builder['step'] > 0) {
+                    global.variables.node_line_buffer = [];
+                    global.variables.node_line_buffer_index = 0;
                     node_length = nodes.length;
                     for (var i = 0; i < node_length; i++) {
                         nodes[i].draw(canvas);
@@ -1114,9 +1118,9 @@ function load_app() {
                         }
                         nodes[node_length - 1 - i].draw(canvas);
                     }
-                    if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
-                        canvas.draw_line_buffer(global.node_line_buffer, nodes[global.wire_builder['n1']].node_line_paint);
-                        canvas.draw_rect2(nodes[global.wire_builder['n1']].bounds, nodes[global.wire_builder['n1']].node_fill_paint);
+                    if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
+                        canvas.draw_line_buffer(global.variables.node_line_buffer, nodes[global.variables.wire_builder['n1']].node_line_paint);
+                        canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);
                     }
                 }
                 multi_select_manager.draw_bounds(canvas);
@@ -1135,20 +1139,20 @@ function load_app() {
                 toast.draw_toast(canvas);
             }
             else {
-                if (global.flag_idle &&
-                    !global.flag_save_image &&
-                    !global.flag_save_circuit &&
-                    !global.flag_zoom &&
-                    !global.flag_element_options &&
-                    !global.flag_element_options_edit &&
-                    !global.flag_select_timestep &&
-                    !global.flag_select_settings &&
-                    !global.flag_remove_all) {
+                if (global.flags.flag_idle &&
+                    !global.flags.flag_save_image &&
+                    !global.flags.flag_save_circuit &&
+                    !global.flags.flag_zoom &&
+                    !global.flags.flag_element_options &&
+                    !global.flags.flag_element_options_edit &&
+                    !global.flags.flag_select_timestep &&
+                    !global.flags.flag_select_settings &&
+                    !global.flags.flag_remove_all) {
                     workspace.workspace_draw(canvas);
-                    if (!global.flag_graph) {
-                        if (global.signal_build_element) {
-                            node_space_x_cache = 0.29375 * global.node_space_x;
-                            node_space_y_cache = 0.29375 * global.node_space_y;
+                    if (!global.flags.flag_graph) {
+                        if (global.flags.signal_build_element) {
+                            node_space_x_cache = 0.29375 * global.variables.node_space_x;
+                            node_space_y_cache = 0.29375 * global.variables.node_space_y;
                             mult_node_space_x_cache = 1.25 * node_space_x_cache;
                             mult_node_space_y_cache = 1.25 * node_space_y_cache;
                             node_length = nodes.length;
@@ -1160,7 +1164,7 @@ function load_app() {
                                 nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
                             }
                         }
-                        if (global.DEVELOPER_MODE) {
+                        if (global.CONSTANTS.DEVELOPER_MODE) {
                             node_length = nodes.length;
                             for (var i = 0; i < node_length; i++) {
                                 nodes[i].draw(canvas);
@@ -1174,9 +1178,9 @@ function load_app() {
                         engine_functions.draw_wires(canvas);
                         engine_functions.draw_selected_components(canvas);
                         engine_functions.draw_meter_traces(canvas);
-                        if (global.wire_builder['step'] > 0) {
-                            global.node_line_buffer = [];
-                            global.node_line_buffer_index = 0;
+                        if (global.variables.wire_builder['step'] > 0) {
+                            global.variables.node_line_buffer = [];
+                            global.variables.node_line_buffer_index = 0;
                             node_length = nodes.length;
                             for (var i = 0; i < node_length; i++) {
                                 nodes[i].draw(canvas);
@@ -1185,9 +1189,9 @@ function load_app() {
                                 }
                                 nodes[node_length - 1 - i].draw(canvas);
                             }
-                            if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
-                                canvas.draw_line_buffer(global.node_line_buffer, nodes[global.wire_builder['n1']].node_line_paint);
-                                canvas.draw_rect2(nodes[global.wire_builder['n1']].bounds, nodes[global.wire_builder['n1']].node_fill_paint);
+                            if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
+                                canvas.draw_line_buffer(global.variables.node_line_buffer, nodes[global.variables.wire_builder['n1']].node_line_paint);
+                                canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);
                             }
                         }
                         element_options.draw_options(canvas);
@@ -1208,43 +1212,43 @@ function load_app() {
                 toast.draw_toast(canvas);
             }
         }
-        if (global.DEVELOPER_MODE) {
-            canvas.draw_circle(global.mouse_x, global.mouse_y, 20, general_paint);
-            canvas.draw_text(global.mouse_x + ', ' + global.mouse_y, global.mouse_x, global.mouse_y + 50, general_paint);
+        if (global.CONSTANTS.DEVELOPER_MODE) {
+            canvas.draw_circle(global.variables.mouse_x, global.variables.mouse_y, 20, general_paint);
+            canvas.draw_text(global.variables.mouse_x + ', ' + global.variables.mouse_y, global.variables.mouse_x, global.variables.mouse_y + 50, general_paint);
         }
         view_port.draw_viewport(canvas);
     }
     function handle_mouse_down() {
-        global.component_touched = false;
-        if (global.MOBILE_MODE === false) {
-            global.mouse_x = global.mouse_down_event.clientX * global.device_pixel_ratio;
-            global.mouse_y = global.mouse_down_event.clientY * global.device_pixel_ratio;
+        global.variables.component_touched = false;
+        if (global.CONSTANTS.MOBILE_MODE === false) {
+            global.variables.mouse_x = global.events.mouse_down_event.clientX * global.variables.device_pixel_ratio;
+            global.variables.mouse_y = global.events.mouse_down_event.clientY * global.variables.device_pixel_ratio;
         }
         else {
             //@ts-expect-error
-            touch = global.mouse_down_event.touches[0];
-            global.mouse_x = touch.clientX * global.device_pixel_ratio;
-            global.mouse_y = touch.clientY * global.device_pixel_ratio;
+            touch = global.events.mouse_down_event.touches[0];
+            global.variables.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+            global.variables.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
         }
-        global.last_mouse_x = global.mouse_x;
-        global.last_mouse_y = global.mouse_y;
-        global.is_touching = true;
-        global.mouse_down_x = global.mouse_x;
-        global.mouse_down_y = global.mouse_y;
-        global.translation_lock = true;
-        if (!global.MOBILE_MODE) {
-            if ('which' in global.mouse_down_event) {
-                global.is_right_click = global.mouse_down_event.which === 3;
+        global.variables.last_mouse_x = global.variables.mouse_x;
+        global.variables.last_mouse_y = global.variables.mouse_y;
+        global.variables.is_touching = true;
+        global.variables.mouse_down_x = global.variables.mouse_x;
+        global.variables.mouse_down_y = global.variables.mouse_y;
+        global.variables.translation_lock = true;
+        if (!global.CONSTANTS.MOBILE_MODE) {
+            if ('which' in global.events.mouse_down_event) {
+                global.variables.is_right_click = global.events.mouse_down_event.which === 3;
             }
-            else if ('button' in global.mouse_down_event) {
+            else if ('button' in global.events.mouse_down_event) {
                 //@ts-expect-error
-                global.is_right_click = global.mouse_down_event.button === 2;
+                global.variables.is_right_click = global.events.mouse_down_event.button === 2;
             }
         }
         else {
-            global.is_right_click = false;
+            global.variables.is_right_click = false;
         }
-        if (!global.is_right_click) {
+        if (!global.variables.is_right_click) {
             element_options.mouse_down();
             bottom_menu.mouse_down();
             time_step_window.mouse_down();
@@ -1260,24 +1264,24 @@ function load_app() {
             multi_select_manager.mouse_down();
             on_screen_keyboard.mouse_down();
         }
-        if (!global.flag_save_image &&
-            !global.flag_save_circuit &&
-            !global.flag_zoom &&
-            !global.flag_element_options &&
-            !global.flag_element_options_edit &&
-            !global.flag_graph &&
-            !global.flag_select_element &&
-            !global.flag_select_timestep &&
-            !global.flag_select_settings &&
-            !global.flag_remove_all &&
-            !global.flag_menu_element_toolbox) {
-            if (global.MOBILE_MODE === false) {
-                if (global.is_right_click) {
-                    global.is_dragging = true;
-                    global.temp_is_dragging = global.is_dragging;
+        if (!global.flags.flag_save_image &&
+            !global.flags.flag_save_circuit &&
+            !global.flags.flag_zoom &&
+            !global.flags.flag_element_options &&
+            !global.flags.flag_element_options_edit &&
+            !global.flags.flag_graph &&
+            !global.flags.flag_select_element &&
+            !global.flags.flag_select_timestep &&
+            !global.flags.flag_select_settings &&
+            !global.flags.flag_remove_all &&
+            !global.flags.flag_menu_element_toolbox) {
+            if (global.CONSTANTS.MOBILE_MODE === false) {
+                if (global.variables.is_right_click) {
+                    global.variables.is_dragging = true;
+                    global.variables.temp_is_dragging = global.variables.is_dragging;
                 }
             }
-            if (!global.is_dragging) {
+            if (!global.variables.is_dragging) {
                 /* #INSERT_GENERATE_MOUSE_DOWN# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 for (var i = 0; i < resistors.length; i++) {
@@ -1489,48 +1493,50 @@ function load_app() {
                     wires[i].mouse_down();
                 }
             }
-            if (global.MOBILE_MODE === true) {
-                if (global.component_touched === false) {
-                    global.is_dragging = true;
-                    global.temp_is_dragging = global.is_dragging;
-                    global.is_right_click = true;
+            if (global.CONSTANTS.MOBILE_MODE === true) {
+                if (global.variables.component_touched === false) {
+                    global.variables.is_dragging = true;
+                    global.variables.temp_is_dragging = global.variables.is_dragging;
+                    global.variables.is_right_click = true;
                 }
             }
         }
     }
     function handle_mouse_move() {
-        global.last_mouse_x = global.mouse_x;
-        global.last_mouse_y = global.mouse_y;
-        if (global.MOBILE_MODE === false) {
-            global.mouse_x = global.mouse_move_event.clientX * global.device_pixel_ratio;
-            global.mouse_y = global.mouse_move_event.clientY * global.device_pixel_ratio;
+        global.variables.last_mouse_x = global.variables.mouse_x;
+        global.variables.last_mouse_y = global.variables.mouse_y;
+        if (global.CONSTANTS.MOBILE_MODE === false) {
+            global.variables.mouse_x = global.events.mouse_move_event.clientX * global.variables.device_pixel_ratio;
+            global.variables.mouse_y = global.events.mouse_move_event.clientY * global.variables.device_pixel_ratio;
         }
         else {
             //@ts-expect-error
-            touch = global.mouse_move_event.touches[0];
-            global.mouse_x = touch.clientX * global.device_pixel_ratio;
-            global.mouse_y = touch.clientY * global.device_pixel_ratio;
+            touch = global.events.mouse_move_event.touches[0];
+            global.variables.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+            global.variables.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
         }
-        global.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
-        global.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
-        if (global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.node_space_x, global.node_space_y) && global.translation_lock) {
-            global.translation_lock = false;
-            global.is_dragging = global.temp_is_dragging;
+        global.variables.dx = -(global.variables.last_mouse_x - global.variables.mouse_x) * global.settings.TRANSLATION_SCALE;
+        global.variables.dy = -(global.variables.last_mouse_y - global.variables.mouse_y) * global.settings.TRANSLATION_SCALE;
+        if (global.utils.norm(global.variables.mouse_down_x - global.variables.mouse_x, global.variables.mouse_down_y - global.variables.mouse_y) >
+            0.5 * Math.min(global.variables.node_space_x, global.variables.node_space_y) &&
+            global.variables.translation_lock) {
+            global.variables.translation_lock = false;
+            global.variables.is_dragging = global.variables.temp_is_dragging;
         }
-        if (global.translation_lock) {
-            global.is_dragging = false;
+        if (global.variables.translation_lock) {
+            global.variables.is_dragging = false;
         }
-        if (!global.flag_save_image &&
-            !global.flag_save_circuit &&
-            !global.flag_zoom &&
-            !global.flag_element_options &&
-            !global.flag_element_options_edit &&
-            !global.flag_graph &&
-            !global.flag_select_element &&
-            !global.flag_select_timestep &&
-            !global.flag_select_settings &&
-            !global.flag_remove_all) {
-            if (global.flag_idle && !global.flag_simulating) {
+        if (!global.flags.flag_save_image &&
+            !global.flags.flag_save_circuit &&
+            !global.flags.flag_zoom &&
+            !global.flags.flag_element_options &&
+            !global.flags.flag_element_options_edit &&
+            !global.flags.flag_graph &&
+            !global.flags.flag_select_element &&
+            !global.flags.flag_select_timestep &&
+            !global.flags.flag_select_settings &&
+            !global.flags.flag_remove_all) {
+            if (global.flags.flag_idle && !global.flags.flag_simulating) {
                 /* #INSERT_GENERATE_MOUSE_MOVE# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
                 for (var i = 0; i < resistors.length; i++) {
@@ -1756,38 +1762,38 @@ function load_app() {
         yes_no_window.mouse_move();
         graph_window.mouse_move();
         multi_select_manager.mouse_move();
-        if (global.is_dragging) {
+        if (global.variables.is_dragging) {
             handle_workspace_drag();
         }
     }
     function handle_mouse_up() {
-        let temp_translation_lock = global.translation_lock;
-        global.translation_lock = true;
-        global.mouse_down_x = -1;
-        global.mouse_down_y = -1;
-        if (global.MOBILE_MODE === false) {
-            global.mouse_x = global.mouse_up_event.clientX * global.device_pixel_ratio;
-            global.mouse_y = global.mouse_up_event.clientY * global.device_pixel_ratio;
+        let temp_translation_lock = global.variables.translation_lock;
+        global.variables.translation_lock = true;
+        global.variables.mouse_down_x = -1;
+        global.variables.mouse_down_y = -1;
+        if (global.CONSTANTS.MOBILE_MODE === false) {
+            global.variables.mouse_x = global.events.mouse_up_event.clientX * global.variables.device_pixel_ratio;
+            global.variables.mouse_y = global.events.mouse_up_event.clientY * global.variables.device_pixel_ratio;
         }
         else {
         }
-        global.last_mouse_x = global.mouse_x;
-        global.last_mouse_y = global.mouse_y;
-        global.is_touching = false;
-        global.is_dragging = false;
-        global.temp_is_dragging = global.is_dragging;
-        if (!global.flag_save_image &&
-            !global.flag_save_circuit &&
-            !global.flag_zoom &&
-            !global.flag_element_options &&
-            !global.flag_element_options_edit &&
-            !global.flag_graph &&
-            !global.flag_select_element &&
-            !global.flag_select_timestep &&
-            !global.flag_select_settings &&
-            !global.flag_remove_all) {
-            if (!global.component_touched && !global.is_right_click) {
-                if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
+        global.variables.last_mouse_x = global.variables.mouse_x;
+        global.variables.last_mouse_y = global.variables.mouse_y;
+        global.variables.is_touching = false;
+        global.variables.is_dragging = false;
+        global.variables.temp_is_dragging = global.variables.is_dragging;
+        if (!global.flags.flag_save_image &&
+            !global.flags.flag_save_circuit &&
+            !global.flags.flag_zoom &&
+            !global.flags.flag_element_options &&
+            !global.flags.flag_element_options_edit &&
+            !global.flags.flag_graph &&
+            !global.flags.flag_select_element &&
+            !global.flags.flag_select_timestep &&
+            !global.flags.flag_select_settings &&
+            !global.flags.flag_remove_all) {
+            if (!global.variables.component_touched && !global.variables.is_right_click) {
+                if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
                     wire_manager.reset_wire_builder();
                 }
             }
@@ -2002,13 +2008,13 @@ function load_app() {
         for (var i = wires.length - 1; i > -1; i--) {
             wires[i].mouse_up();
         }
-        if (global.signal_wire_created) {
-            global.history_manager['packet'].push(engine_functions.history_snapshot());
-            global.signal_wire_created = false;
+        if (global.flags.signal_wire_created) {
+            global.variables.history['packet'].push(engine_functions.history_snapshot());
+            global.flags.signal_wire_created = false;
         }
-        let component_touched = global.component_touched;
-        if (!global.component_touched) {
-            global.component_touched = true;
+        let component_touched = global.variables.component_touched;
+        if (!global.variables.component_touched) {
+            global.variables.component_touched = true;
         }
         menu_bar.mouse_up();
         bottom_menu.mouse_up();
@@ -2024,77 +2030,77 @@ function load_app() {
         yes_no_window.mouse_up();
         on_screen_keyboard.mouse_up();
         multi_select_manager.mouse_up();
-        global.component_touched = component_touched;
+        global.variables.component_touched = component_touched;
         engine_functions.reset_selection(false);
         engine_functions.handle_nearest_neighbors(temp_translation_lock);
-        global.signal_history_lock = false;
+        global.flags.signal_history_lock = false;
     }
     function handle_mouse_wheel() {
-        global.mouse_x = global.mouse_wheel_event.clientX * global.device_pixel_ratio;
-        global.mouse_y = global.mouse_wheel_event.clientY * global.device_pixel_ratio;
-        if (!global.flag_save_image &&
-            !global.flag_save_circuit &&
-            !global.flag_zoom &&
-            !global.flag_element_options &&
-            !global.flag_element_options_edit &&
-            !global.flag_graph &&
-            !global.flag_select_element &&
-            !global.flag_select_timestep &&
-            !global.flag_select_settings &&
-            !global.flag_remove_all &&
-            !global.flag_menu_element_toolbox) {
-            handle_zoom(global.mouse_wheel_event);
+        global.variables.mouse_x = global.events.mouse_wheel_event.clientX * global.variables.device_pixel_ratio;
+        global.variables.mouse_y = global.events.mouse_wheel_event.clientY * global.variables.device_pixel_ratio;
+        if (!global.flags.flag_save_image &&
+            !global.flags.flag_save_circuit &&
+            !global.flags.flag_zoom &&
+            !global.flags.flag_element_options &&
+            !global.flags.flag_element_options_edit &&
+            !global.flags.flag_graph &&
+            !global.flags.flag_select_element &&
+            !global.flags.flag_select_timestep &&
+            !global.flags.flag_select_settings &&
+            !global.flags.flag_remove_all &&
+            !global.flags.flag_menu_element_toolbox) {
+            handle_zoom(global.events.mouse_wheel_event);
         }
         menu_bar.mouse_wheel();
     }
     function handle_double_click() {
-        global.mouse_x = global.mouse_double_click_event.clientX * global.device_pixel_ratio;
-        global.mouse_y = global.mouse_double_click_event.clientY * global.device_pixel_ratio;
+        global.variables.mouse_x = global.events.mouse_double_click_event.clientX * global.variables.device_pixel_ratio;
+        global.variables.mouse_y = global.events.mouse_double_click_event.clientY * global.variables.device_pixel_ratio;
         time_step_window.double_click();
         save_image_window.double_click();
         save_circuit_window.double_click();
         element_options_edit_window.double_click();
     }
     function handle_key_down() {
-        time_step_window.key_down(global.key_down_event);
-        save_circuit_window.key_down(global.key_down_event, canvas);
-        save_image_window.key_down(global.key_down_event);
-        settings_window.key_down(global.key_down_event);
-        yes_no_window.key_down(global.key_down_event);
-        zoom_window.key_down(global.key_down_event);
-        menu_bar.key_down(global.key_down_event);
-        graph_window.key_down(global.key_down_event);
-        element_options_window.key_down(global.key_down_event);
-        element_options_edit_window.key_down(global.key_down_event);
-        multi_select_manager.key_down(global.key_down_event);
-        shortcut_manager.listen(global.key_down_event);
+        time_step_window.key_down(global.events.key_down_event);
+        save_circuit_window.key_down(global.events.key_down_event, canvas);
+        save_image_window.key_down(global.events.key_down_event);
+        settings_window.key_down(global.events.key_down_event);
+        yes_no_window.key_down(global.events.key_down_event);
+        zoom_window.key_down(global.events.key_down_event);
+        menu_bar.key_down(global.events.key_down_event);
+        graph_window.key_down(global.events.key_down_event);
+        element_options_window.key_down(global.events.key_down_event);
+        element_options_edit_window.key_down(global.events.key_down_event);
+        multi_select_manager.key_down(global.events.key_down_event);
+        shortcut_manager.listen(global.events.key_down_event);
     }
     function handle_key_up() {
-        multi_select_manager.key_up(global.key_up_event);
+        multi_select_manager.key_up(global.events.key_up_event);
     }
     function handle_workspace_drag() {
         let sqrt = Math.round(global.settings.SQRT_MAXNODES * 0.75);
-        let x_space = sqrt * global.node_space_x;
-        let y_space = sqrt * global.node_space_y;
-        if (workspace.bounds.left + global.dx < view_port.left - x_space) {
-            global.dx = view_port.left - x_space - workspace.bounds.left;
+        let x_space = sqrt * global.variables.node_space_x;
+        let y_space = sqrt * global.variables.node_space_y;
+        if (workspace.bounds.left + global.variables.dx < view_port.left - x_space) {
+            global.variables.dx = view_port.left - x_space - workspace.bounds.left;
         }
-        if (workspace.bounds.right + global.dx > view_port.right + x_space) {
-            global.dx = view_port.right + x_space - workspace.bounds.right;
+        if (workspace.bounds.right + global.variables.dx > view_port.right + x_space) {
+            global.variables.dx = view_port.right + x_space - workspace.bounds.right;
         }
-        if (workspace.bounds.top + global.dy < view_port.top - y_space) {
-            global.dy = view_port.top - y_space - workspace.bounds.top;
+        if (workspace.bounds.top + global.variables.dy < view_port.top - y_space) {
+            global.variables.dy = view_port.top - y_space - workspace.bounds.top;
         }
-        if (workspace.bounds.bottom + global.dy > view_port.bottom + y_space) {
-            global.dy = view_port.bottom + y_space - workspace.bounds.bottom;
+        if (workspace.bounds.bottom + global.variables.dy > view_port.bottom + y_space) {
+            global.variables.dy = view_port.bottom + y_space - workspace.bounds.bottom;
         }
-        workspace.workspace_translate_bounds(global.dx, global.dy);
-        global.delta_x += global.dx;
-        global.delta_y += global.dy;
+        workspace.workspace_translate_bounds(global.variables.dx, global.variables.dy);
+        global.variables.delta_x += global.variables.dx;
+        global.variables.delta_y += global.variables.dy;
     }
     function register() {
-        if (!global.DEVELOPER_MODE) {
-            let post_data = 'pinged @ {' + global.get_time_stamp() + '}';
+        if (!global.CONSTANTS.DEVELOPER_MODE) {
+            let post_data = 'pinged @ {' + global.utils.get_time_stamp() + '}';
             let url = 'analytics.php?msg="' + post_data + '"';
             let method = 'POST';
             let should_be_async = true;
@@ -2110,20 +2116,20 @@ function load_app() {
     }
     function browser_detection() {
         if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) !== -1) {
-            global.browser_opera = true;
+            global.variables.browser_opera = true;
         }
         else if (navigator.userAgent.indexOf('Chrome') !== -1) {
-            global.browser_chrome = true;
+            global.variables.browser_chrome = true;
         }
         else if (navigator.userAgent.indexOf('Safari') !== -1) {
-            global.browser_safari = true;
+            global.variables.browser_safari = true;
         }
         else if (navigator.userAgent.indexOf('Firefox') !== -1) {
-            global.browser_firefox = true;
+            global.variables.browser_firefox = true;
             //@ts-ignore
         }
         else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true) {
-            global.browser_ie = true;
+            global.variables.browser_ie = true;
         }
     }
     function main() {

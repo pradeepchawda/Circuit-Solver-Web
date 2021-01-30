@@ -57,7 +57,7 @@ class ToggleSwitch extends RectF {
 		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(PAINT.align.CENTER);
-		this.state = global.ON;
+		this.state = global.CONSTANTS.ON;
 	}
 	resize_paint(): void {
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
@@ -81,7 +81,7 @@ class ToggleSwitch extends RectF {
 		if (this.draw_fill) {
 			canvas.draw_rect2(this, this.fill_paint);
 		}
-		if (this.state === global.ON) {
+		if (this.state === global.CONSTANTS.ON) {
 			canvas.draw_rect(this.get_center_x() + padding, this.top + padding, this.right - padding, this.bottom - padding, this.toggle_paint);
 			if (this.draw_text) {
 				canvas.draw_text(this.state, this.left + this.get_width() * 0.25, this.get_center_y(), this.text_paint);
@@ -101,7 +101,7 @@ class ToggleSwitch extends RectF {
 		if (this.draw_fill) {
 			canvas.draw_rect(this.left + offset_x, this.top + offset_y, this.right + offset_x, this.bottom + offset_y, this.fill_paint);
 		}
-		if (this.state === global.ON) {
+		if (this.state === global.CONSTANTS.ON) {
 			canvas.draw_rect(
 				this.get_center_x() + padding + offset_x,
 				this.top + padding + offset_y,

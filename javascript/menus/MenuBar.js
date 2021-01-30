@@ -1,11 +1,11 @@
 'use strict';
 class MenuBar {
     constructor() {
-        let temp_stroke_width = 0.65 * global.canvas_stroke_width_3;
+        let temp_stroke_width = 0.65 * global.variables.canvas_stroke_width_3;
         this.MAX_ICONS = 8;
-        if (global.MOBILE_MODE) {
+        if (global.CONSTANTS.MOBILE_MODE) {
             this.height_ratio = 0.15;
-            temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
+            temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
         }
         else {
             this.height_ratio = 0.1;
@@ -22,165 +22,165 @@ class MenuBar {
         this.UP_DOWN_INDEX = 7;
         this.escape_interrupt = false;
         this.line_paint = new Paint();
-        this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-        this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-        this.line_paint.set_paint_join(this.line_paint.join.MITER);
+        this.line_paint.set_paint_style(PAINT.style.STROKE);
+        this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.line_paint.set_paint_join(PAINT.join.MITER);
         this.line_paint.set_stroke_width(temp_stroke_width);
-        this.line_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.line_paint.set_text_size(global.canvas_text_size_5);
-        this.line_paint.set_font(global.DEFAULT_FONT);
+        this.line_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+        this.line_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
-        this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+        this.line_paint.set_paint_align(PAINT.align.CENTER);
         this.fill_paint = new Paint();
-        this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
-        this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
-        this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
+        this.fill_paint.set_paint_style(PAINT.style.FILL);
+        this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.fill_paint.set_paint_join(PAINT.join.MITER);
         this.fill_paint.set_stroke_width(temp_stroke_width);
-        this.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.fill_paint.set_text_size(global.canvas_text_size_5);
-        this.fill_paint.set_font(global.DEFAULT_FONT);
+        this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+        this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
-        this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
+        this.fill_paint.set_paint_align(PAINT.align.CENTER);
         this.line_paint_alt = new Paint();
-        this.line_paint_alt.set_paint_style(this.line_paint_alt.style.STROKE);
-        this.line_paint_alt.set_paint_cap(this.line_paint_alt.cap.ROUND);
-        this.line_paint_alt.set_paint_join(this.line_paint_alt.join.MITER);
+        this.line_paint_alt.set_paint_style(PAINT.style.STROKE);
+        this.line_paint_alt.set_paint_cap(PAINT.cap.ROUND);
+        this.line_paint_alt.set_paint_join(PAINT.join.MITER);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
         this.line_paint_alt.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.line_paint_alt.set_text_size(global.canvas_text_size_5);
-        this.line_paint_alt.set_font(global.DEFAULT_FONT);
+        this.line_paint_alt.set_text_size(global.variables.canvas_text_size_5);
+        this.line_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.line_paint_alt.set_alpha(255);
-        this.line_paint_alt.set_paint_align(this.line_paint_alt.align.CENTER);
+        this.line_paint_alt.set_paint_align(PAINT.align.CENTER);
         this.fill_paint_alt = new Paint();
-        this.fill_paint_alt.set_paint_style(this.fill_paint_alt.style.FILL);
-        this.fill_paint_alt.set_paint_cap(this.fill_paint_alt.cap.ROUND);
-        this.fill_paint_alt.set_paint_join(this.fill_paint_alt.join.MITER);
+        this.fill_paint_alt.set_paint_style(PAINT.style.FILL);
+        this.fill_paint_alt.set_paint_cap(PAINT.cap.ROUND);
+        this.fill_paint_alt.set_paint_join(PAINT.join.MITER);
         this.fill_paint_alt.set_stroke_width(temp_stroke_width);
-        this.fill_paint_alt.set_color(global.GENERAL_BOUNDS_COLOR);
-        this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
-        this.fill_paint_alt.set_font(global.DEFAULT_FONT);
+        this.fill_paint_alt.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+        this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
+        this.fill_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.fill_paint_alt.set_alpha(255);
-        this.fill_paint_alt.set_paint_align(this.fill_paint_alt.align.CENTER);
+        this.fill_paint_alt.set_paint_align(PAINT.align.CENTER);
         this.up_down_paint = new Paint();
-        this.up_down_paint.set_paint_style(this.up_down_paint.style.FILL);
-        this.up_down_paint.set_paint_cap(this.up_down_paint.cap.ROUND);
-        this.up_down_paint.set_paint_join(this.up_down_paint.join.MITER);
+        this.up_down_paint.set_paint_style(PAINT.style.FILL);
+        this.up_down_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.up_down_paint.set_paint_join(PAINT.join.MITER);
         this.up_down_paint.set_stroke_width(temp_stroke_width);
-        this.up_down_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.up_down_paint.set_text_size(global.canvas_text_size_5);
-        this.up_down_paint.set_font(global.DEFAULT_FONT);
+        this.up_down_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+        this.up_down_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.up_down_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.up_down_paint.set_alpha(255);
-        this.up_down_paint.set_paint_align(this.up_down_paint.align.CENTER);
+        this.up_down_paint.set_paint_align(PAINT.align.CENTER);
         this.add_paint = new Paint();
-        this.add_paint.set_paint_style(this.add_paint.style.FILL);
-        this.add_paint.set_paint_cap(this.add_paint.cap.ROUND);
-        this.add_paint.set_paint_join(this.add_paint.join.MITER);
+        this.add_paint.set_paint_style(PAINT.style.FILL);
+        this.add_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.add_paint.set_paint_join(PAINT.join.MITER);
         this.add_paint.set_stroke_width(temp_stroke_width);
         this.add_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.add_paint.set_text_size(global.canvas_text_size_5);
-        this.add_paint.set_font(global.DEFAULT_FONT);
+        this.add_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.add_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.add_paint.set_alpha(255);
-        this.add_paint.set_paint_align(this.add_paint.align.CENTER);
+        this.add_paint.set_paint_align(PAINT.align.CENTER);
         this.go_paint = new Paint();
-        this.go_paint.set_paint_style(this.go_paint.style.FILL);
+        this.go_paint.set_paint_style(PAINT.style.FILL);
         this.go_paint.set_paint_cap(this.go_paint.cap.BUTT);
-        this.go_paint.set_paint_join(this.go_paint.join.MITER);
+        this.go_paint.set_paint_join(PAINT.join.MITER);
         this.go_paint.set_stroke_width(temp_stroke_width);
         this.go_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.go_paint.set_text_size(global.canvas_text_size_5);
-        this.go_paint.set_font(global.DEFAULT_FONT);
+        this.go_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.go_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.go_paint.set_alpha(255);
-        this.go_paint.set_paint_align(this.go_paint.align.CENTER);
+        this.go_paint.set_paint_align(PAINT.align.CENTER);
         this.hover_paint = new Paint();
-        this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
-        this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
-        this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
+        this.hover_paint.set_paint_style(PAINT.style.FILL);
+        this.hover_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.hover_paint.set_paint_join(PAINT.join.MITER);
         this.hover_paint.set_stroke_width(temp_stroke_width);
-        this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
-        this.hover_paint.set_text_size(global.canvas_text_size_5);
-        this.hover_paint.set_font(global.DEFAULT_FONT);
+        this.hover_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
+        this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.hover_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
-        this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
+        this.hover_paint.set_paint_align(PAINT.align.CENTER);
         this.undo_paint = new Paint();
-        this.undo_paint.set_paint_style(this.undo_paint.style.FILL);
-        this.undo_paint.set_paint_cap(this.undo_paint.cap.ROUND);
-        this.undo_paint.set_paint_join(this.undo_paint.join.MITER);
+        this.undo_paint.set_paint_style(PAINT.style.FILL);
+        this.undo_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.undo_paint.set_paint_join(PAINT.join.MITER);
         this.undo_paint.set_stroke_width(temp_stroke_width);
         this.undo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.undo_paint.set_text_size(global.canvas_text_size_5);
-        this.undo_paint.set_font(global.DEFAULT_FONT);
+        this.undo_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.undo_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.undo_paint.set_alpha(255);
-        this.undo_paint.set_paint_align(this.undo_paint.align.CENTER);
+        this.undo_paint.set_paint_align(PAINT.align.CENTER);
         this.redo_paint = new Paint();
-        this.redo_paint.set_paint_style(this.redo_paint.style.FILL);
-        this.redo_paint.set_paint_cap(this.redo_paint.cap.ROUND);
-        this.redo_paint.set_paint_join(this.redo_paint.join.MITER);
+        this.redo_paint.set_paint_style(PAINT.style.FILL);
+        this.redo_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.redo_paint.set_paint_join(PAINT.join.MITER);
         this.redo_paint.set_stroke_width(temp_stroke_width);
         this.redo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.redo_paint.set_text_size(global.canvas_text_size_5);
-        this.redo_paint.set_font(global.DEFAULT_FONT);
+        this.redo_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.redo_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.redo_paint.set_alpha(255);
-        this.redo_paint.set_paint_align(this.redo_paint.align.CENTER);
+        this.redo_paint.set_paint_align(PAINT.align.CENTER);
         this.remove_all_paint = new Paint();
-        this.remove_all_paint.set_paint_style(this.remove_all_paint.style.STROKE);
-        this.remove_all_paint.set_paint_cap(this.remove_all_paint.cap.ROUND);
-        this.remove_all_paint.set_paint_join(this.remove_all_paint.join.MITER);
+        this.remove_all_paint.set_paint_style(PAINT.style.STROKE);
+        this.remove_all_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.remove_all_paint.set_paint_join(PAINT.join.MITER);
         this.remove_all_paint.set_stroke_width(temp_stroke_width);
         this.remove_all_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.remove_all_paint.set_text_size(global.canvas_text_size_5);
-        this.remove_all_paint.set_font(global.DEFAULT_FONT);
+        this.remove_all_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.remove_all_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.remove_all_paint.set_alpha(255);
-        this.remove_all_paint.set_paint_align(this.remove_all_paint.align.CENTER);
+        this.remove_all_paint.set_paint_align(PAINT.align.CENTER);
         this.settings_paint = new Paint();
-        this.settings_paint.set_paint_style(this.settings_paint.style.FILL);
-        this.settings_paint.set_paint_cap(this.settings_paint.cap.ROUND);
-        this.settings_paint.set_paint_join(this.settings_paint.join.MITER);
+        this.settings_paint.set_paint_style(PAINT.style.FILL);
+        this.settings_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.settings_paint.set_paint_join(PAINT.join.MITER);
         this.settings_paint.set_stroke_width(temp_stroke_width);
         this.settings_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.settings_paint.set_text_size(global.canvas_text_size_5);
-        this.settings_paint.set_font(global.DEFAULT_FONT);
+        this.settings_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.settings_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.settings_paint.set_alpha(255);
-        this.settings_paint.set_paint_align(this.settings_paint.align.CENTER);
+        this.settings_paint.set_paint_align(PAINT.align.CENTER);
         this.zoom_paint = new Paint();
-        this.zoom_paint.set_paint_style(this.zoom_paint.style.STROKE);
-        this.zoom_paint.set_paint_cap(this.zoom_paint.cap.ROUND);
-        this.zoom_paint.set_paint_join(this.zoom_paint.join.MITER);
+        this.zoom_paint.set_paint_style(PAINT.style.STROKE);
+        this.zoom_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.zoom_paint.set_paint_join(PAINT.join.MITER);
         this.zoom_paint.set_stroke_width(temp_stroke_width);
         this.zoom_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.zoom_paint.set_text_size(global.canvas_text_size_5);
-        this.zoom_paint.set_font(global.DEFAULT_FONT);
+        this.zoom_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.zoom_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.zoom_paint.set_alpha(255);
-        this.zoom_paint.set_paint_align(this.zoom_paint.align.CENTER);
+        this.zoom_paint.set_paint_align(PAINT.align.CENTER);
         this.save_circuit_paint = new Paint();
-        this.save_circuit_paint.set_paint_style(this.save_circuit_paint.style.FILL);
-        this.save_circuit_paint.set_paint_cap(this.save_circuit_paint.cap.ROUND);
-        this.save_circuit_paint.set_paint_join(this.save_circuit_paint.join.MITER);
+        this.save_circuit_paint.set_paint_style(PAINT.style.FILL);
+        this.save_circuit_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.save_circuit_paint.set_paint_join(PAINT.join.MITER);
         this.save_circuit_paint.set_stroke_width(temp_stroke_width);
         this.save_circuit_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.save_circuit_paint.set_text_size(global.canvas_text_size_5);
-        this.save_circuit_paint.set_font(global.DEFAULT_FONT);
+        this.save_circuit_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.save_circuit_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.save_circuit_paint.set_alpha(255);
-        this.save_circuit_paint.set_paint_align(this.save_circuit_paint.align.CENTER);
+        this.save_circuit_paint.set_paint_align(PAINT.align.CENTER);
         this.save_image_fill_paint = new Paint();
-        this.save_image_fill_paint.set_paint_style(this.save_image_fill_paint.style.FILL);
-        this.save_image_fill_paint.set_paint_cap(this.save_image_fill_paint.cap.ROUND);
-        this.save_image_fill_paint.set_paint_join(this.save_image_fill_paint.join.MITER);
+        this.save_image_fill_paint.set_paint_style(PAINT.style.FILL);
+        this.save_image_fill_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.save_image_fill_paint.set_paint_join(PAINT.join.MITER);
         this.save_image_fill_paint.set_stroke_width(temp_stroke_width);
         this.save_image_fill_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
-        this.save_image_fill_paint.set_text_size(global.canvas_text_size_5);
-        this.save_image_fill_paint.set_font(global.DEFAULT_FONT);
+        this.save_image_fill_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.save_image_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.save_image_fill_paint.set_alpha(255);
-        this.save_image_fill_paint.set_paint_align(this.save_image_fill_paint.align.CENTER);
+        this.save_image_fill_paint.set_paint_align(PAINT.align.CENTER);
         this.text_paint = new Paint();
-        this.text_paint.set_paint_style(this.text_paint.style.FILL);
-        this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-        this.text_paint.set_paint_join(this.text_paint.join.MITER);
+        this.text_paint.set_paint_style(PAINT.style.FILL);
+        this.text_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.text_paint.set_paint_join(PAINT.join.MITER);
         this.text_paint.set_stroke_width(temp_stroke_width);
-        this.text_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.text_paint.set_text_size(global.canvas_text_size_5);
-        this.text_paint.set_font(global.DEFAULT_FONT);
+        this.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
+        this.text_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
-        this.text_paint.set_paint_align(this.text_paint.align.CENTER);
+        this.text_paint.set_paint_align(PAINT.align.CENTER);
         this.save_ckt_path1 = new Path();
         this.save_ckt_path2 = new Path();
         this.go_path = new Path();
@@ -191,11 +191,11 @@ class MenuBar {
         this.graph_button = new RectF(0, 0, 0, 0);
         this.settings_button = new RectF(0, 0, 0, 0);
         this.sine_wave = new SineWave(0, 0, 0, 0, 1);
-        this.sine_wave.sine_wave_paint.set_color(global.GENERAL_WHITE_COLOR);
+        this.sine_wave.sine_wave_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.sine_wave.resize(this.sine_wave.STYLE_1);
         this.base_width = this.bounds.get_width() / this.MAX_ICONS;
         this.load_icons();
-        this.element_window = new ElementWindow(this.bounds.left, this.bounds.bottom + (global.canvas_stroke_width_4 >> 1), this.bounds.right, this.bounds.bottom + this.bounds.get_height() - (global.canvas_stroke_width_4 >> 1));
+        this.element_window = new ElementWindow(this.bounds.left, this.bounds.bottom + (global.variables.canvas_stroke_width_4 >> 1), this.bounds.right, this.bounds.bottom + this.bounds.get_height() - (global.variables.canvas_stroke_width_4 >> 1));
         this.first_touch_x = 0;
         this.first_touch_y = 0;
         this.line_buffer = [];
@@ -207,14 +207,14 @@ class MenuBar {
         let height = 0;
         for (var i = 0; i < this.MAX_ICONS; i++) {
             temp_bounds.left = this.bounds.left + i * ((this.bounds.right - this.bounds.left) / this.MAX_ICONS);
-            temp_bounds.top = this.bounds.top + global.canvas_stroke_width_4;
+            temp_bounds.top = this.bounds.top + global.variables.canvas_stroke_width_4;
             temp_bounds.right = this.bounds.left + ((i + 1) * (this.bounds.right - this.bounds.left)) / this.MAX_ICONS;
-            temp_bounds.bottom = this.bounds.bottom - global.canvas_stroke_width_4;
+            temp_bounds.bottom = this.bounds.bottom - global.variables.canvas_stroke_width_4;
             height = temp_bounds.get_height();
             temp_bounds.set_center2(temp_bounds.get_center_x(), temp_bounds.get_center_y(), height, height);
             this.menu_icons.push(new RectF(temp_bounds.left, temp_bounds.top, temp_bounds.right, temp_bounds.bottom));
         }
-        this.graph_button.set_bounds(this.menu_icons[this.REMOVE_ALL_INDEX].left, this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 2 * global.canvas_stroke_width_4, this.menu_icons[this.REMOVE_ALL_INDEX].right, this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 3 * global.canvas_stroke_width_4 + this.menu_icons[this.REMOVE_ALL_INDEX].get_height() - global.canvas_stroke_width_4);
+        this.graph_button.set_bounds(this.menu_icons[this.REMOVE_ALL_INDEX].left, this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 2 * global.variables.canvas_stroke_width_4, this.menu_icons[this.REMOVE_ALL_INDEX].right, this.menu_icons[this.REMOVE_ALL_INDEX].bottom + 3 * global.variables.canvas_stroke_width_4 + this.menu_icons[this.REMOVE_ALL_INDEX].get_height() - global.variables.canvas_stroke_width_4);
         this.settings_button.set_bounds(this.menu_icons[this.REMOVE_ALL_INDEX].left, view_port.bottom - 2.5 * this.menu_icons[this.REMOVE_ALL_INDEX].get_height(), this.menu_icons[this.REMOVE_ALL_INDEX].right, view_port.bottom - 1.5 * this.menu_icons[this.REMOVE_ALL_INDEX].get_height());
         this.sine_wave.set_points(this.graph_button.left + this.graph_button.get_width() * 0.275, this.graph_button.bottom - this.graph_button.get_height() * 0.275, this.graph_button.right - this.graph_button.get_width() * 0.275, this.graph_button.get_center_y() - this.graph_button.get_height() * 0.2);
         this.sine_wave.amplitude = this.graph_button.get_height() * 0.2125;
@@ -352,135 +352,135 @@ class MenuBar {
         this.settings_path.close();
     }
     resize_menu_bar() {
-        let temp_stroke_width = 0.65 * global.canvas_stroke_width_3;
-        if (global.MOBILE_MODE) {
-            temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
+        let temp_stroke_width = 0.65 * global.variables.canvas_stroke_width_3;
+        if (global.CONSTANTS.MOBILE_MODE) {
+            temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
         }
         this.bounds.set_bounds(view_port.left, view_port.top, view_port.right, view_port.top + view_port.view_height * this.height_ratio);
         this.base_width = this.bounds.get_width() / this.MAX_ICONS;
         this.load_icons();
         this.line_paint.set_stroke_width(temp_stroke_width);
-        this.line_paint.set_text_size(global.canvas_text_size_5);
+        this.line_paint.set_text_size(global.variables.canvas_text_size_5);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
-        this.line_paint_alt.set_text_size(global.canvas_text_size_5);
+        this.line_paint_alt.set_text_size(global.variables.canvas_text_size_5);
         this.fill_paint.set_stroke_width(temp_stroke_width);
-        this.fill_paint.set_text_size(global.canvas_text_size_5);
+        this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
         this.fill_paint_alt.set_stroke_width(temp_stroke_width);
-        this.fill_paint_alt.set_text_size(global.canvas_text_size_5);
+        this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
         this.add_paint.set_stroke_width(temp_stroke_width);
-        this.add_paint.set_text_size(global.canvas_text_size_5);
+        this.add_paint.set_text_size(global.variables.canvas_text_size_5);
         this.up_down_paint.set_stroke_width(temp_stroke_width);
-        this.up_down_paint.set_text_size(global.canvas_text_size_5);
+        this.up_down_paint.set_text_size(global.variables.canvas_text_size_5);
         this.go_paint.set_stroke_width(temp_stroke_width);
-        this.go_paint.set_text_size(global.canvas_text_size_5);
+        this.go_paint.set_text_size(global.variables.canvas_text_size_5);
         this.hover_paint.set_stroke_width(temp_stroke_width);
-        this.hover_paint.set_text_size(global.canvas_text_size_5);
+        this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
         this.undo_paint.set_stroke_width(temp_stroke_width);
-        this.undo_paint.set_text_size(global.canvas_text_size_5);
+        this.undo_paint.set_text_size(global.variables.canvas_text_size_5);
         this.redo_paint.set_stroke_width(temp_stroke_width);
-        this.redo_paint.set_text_size(global.canvas_text_size_5);
+        this.redo_paint.set_text_size(global.variables.canvas_text_size_5);
         this.text_paint.set_stroke_width(temp_stroke_width);
-        this.text_paint.set_text_size(global.canvas_text_size_5);
+        this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         this.remove_all_paint.set_stroke_width(temp_stroke_width);
-        this.remove_all_paint.set_text_size(global.canvas_text_size_5);
+        this.remove_all_paint.set_text_size(global.variables.canvas_text_size_5);
         this.settings_paint.set_stroke_width(temp_stroke_width);
-        this.settings_paint.set_text_size(global.canvas_text_size_5);
+        this.settings_paint.set_text_size(global.variables.canvas_text_size_5);
         this.zoom_paint.set_stroke_width(temp_stroke_width);
-        this.zoom_paint.set_text_size(global.canvas_text_size_5);
+        this.zoom_paint.set_text_size(global.variables.canvas_text_size_5);
         this.save_circuit_paint.set_stroke_width(temp_stroke_width);
-        this.save_circuit_paint.set_text_size(global.canvas_text_size_5);
+        this.save_circuit_paint.set_text_size(global.variables.canvas_text_size_5);
         this.save_image_fill_paint.set_stroke_width(temp_stroke_width);
-        this.save_image_fill_paint.set_text_size(global.canvas_text_size_5);
-        this.element_window.resize_window(this.bounds.left, this.bounds.bottom + (global.canvas_stroke_width_4 >> 1), this.bounds.right, this.bounds.bottom + this.bounds.get_height() - (global.canvas_stroke_width_4 >> 1));
+        this.save_image_fill_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.element_window.resize_window(this.bounds.left, this.bounds.bottom + (global.variables.canvas_stroke_width_4 >> 1), this.bounds.right, this.bounds.bottom + this.bounds.get_height() - (global.variables.canvas_stroke_width_4 >> 1));
         this.sine_wave.resize(this.sine_wave.STYLE_1);
         this.sine_wave.sine_wave_paint.set_stroke_width(temp_stroke_width);
     }
     update() {
-        if (global.flag_menu_element_toolbox) {
+        if (global.flags.flag_menu_element_toolbox) {
             this.element_window.update();
         }
     }
     mouse_wheel() {
-        if (!global.focused) {
+        if (!global.variables.focused) {
             this.element_window.mouse_wheel();
         }
     }
     mouse_down() {
-        if (!global.focused) {
+        if (!global.variables.focused) {
             this.element_window.mouse_down();
-            if (global.flag_menu_open) {
-                if (this.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-                    global.component_touched = true;
+            if (global.flags.flag_menu_open) {
+                if (this.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+                    global.variables.component_touched = true;
                 }
             }
             else {
                 if (this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], false) || this.contains(this.menu_icons[this.UP_DOWN_INDEX], true)) {
-                    global.component_touched = true;
+                    global.variables.component_touched = true;
                 }
             }
             if (this.contains(this.graph_button, false) || this.contains(this.settings_button, false)) {
-                global.component_touched = true;
+                global.variables.component_touched = true;
             }
-            this.first_touch_x = global.mouse_x;
-            this.first_touch_y = global.mouse_y;
+            this.first_touch_x = global.variables.mouse_x;
+            this.first_touch_y = global.variables.mouse_y;
         }
     }
     mouse_move() {
-        if (!global.focused) {
+        if (!global.variables.focused) {
             this.element_window.mouse_move();
         }
     }
     mouse_up() {
-        if (!global.is_right_click && !this.escape_interrupt) {
-            if (!global.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed && global.component_touched) {
+        if (!global.variables.is_right_click && !this.escape_interrupt) {
+            if (!global.variables.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed && global.variables.component_touched) {
                 let cached_value = this.base_width;
                 if (this.contains(this.menu_icons[this.UP_DOWN_INDEX], true) &&
                     this.menu_icons[this.UP_DOWN_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                    if (!global.flag_zoom &&
-                        !global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_select_element &&
-                        !global.flag_select_settings &&
-                        !global.flag_select_timestep &&
-                        !global.flag_remove_all &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_element_options) {
-                        if (global.flag_menu_open) {
-                            this.handle_menu_open_flag(!global.flag_menu_open);
-                            global.component_touched = true;
+                    if (!global.flags.flag_zoom &&
+                        !global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_remove_all &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_element_options) {
+                        if (global.flags.flag_menu_open) {
+                            this.handle_menu_open_flag(!global.flags.flag_menu_open);
+                            global.variables.component_touched = true;
                         }
                         else {
                             if (this.contains(this.menu_icons[this.UP_DOWN_INDEX], false)) {
-                                this.handle_menu_open_flag(!global.flag_menu_open);
-                                global.component_touched = true;
+                                this.handle_menu_open_flag(!global.flags.flag_menu_open);
+                                global.variables.component_touched = true;
                             }
                         }
                     }
                 }
                 else if (((this.contains(this.menu_icons[this.ADD_INDEX], true) && this.menu_icons[this.ADD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) ||
-                    (!this.contains(this.element_window.bounds, false) && global.flag_menu_element_toolbox)) &&
-                    !global.flag_graph &&
-                    !global.signal_add_element) {
-                    if (!global.flag_zoom &&
-                        !global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_select_element &&
-                        !global.flag_select_settings &&
-                        !global.flag_select_timestep &&
-                        !global.flag_remove_all &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_element_options &&
-                        !global.signal_add_element &&
-                        !global.flag_simulating) {
-                        if (global.flag_menu_open) {
+                    (!this.contains(this.element_window.bounds, false) && global.flags.flag_menu_element_toolbox)) &&
+                    !global.flags.flag_graph &&
+                    !global.flags.signal_add_element) {
+                    if (!global.flags.flag_zoom &&
+                        !global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_remove_all &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.signal_add_element &&
+                        !global.flags.flag_simulating) {
+                        if (global.flags.flag_menu_open) {
                             if (this.contains(this.menu_icons[this.ADD_INDEX], true)) {
-                                this.handle_menu_open_down_flag(!global.flag_menu_element_toolbox);
-                                global.component_touched = true;
+                                this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
+                                global.variables.component_touched = true;
                             }
                             else {
-                                if (global.flag_menu_element_toolbox && !global.signal_add_element && !this.element_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
-                                    this.handle_menu_open_down_flag(!global.flag_menu_element_toolbox);
-                                    global.component_touched = true;
+                                if (global.flags.flag_menu_element_toolbox && !global.flags.signal_add_element && !this.element_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                                    this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
+                                    global.variables.component_touched = true;
                                 }
                             }
                         }
@@ -488,214 +488,214 @@ class MenuBar {
                 }
                 else if (this.contains(this.graph_button, false) ||
                     (!this.contains(graph_window.bounds, false) &&
-                        ((!this.contains(this.menu_icons[this.GO_INDEX], true) && global.flag_graph) || (this.contains(this.menu_icons[this.GO_INDEX], true) && !global.flag_menu_open)))) {
+                        ((!this.contains(this.menu_icons[this.GO_INDEX], true) && global.flags.flag_graph) || (this.contains(this.menu_icons[this.GO_INDEX], true) && !global.flags.flag_menu_open)))) {
                     if (this.contains(this.graph_button, false) && this.graph_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                        if (!global.flag_save_image &&
-                            !global.flag_save_circuit &&
-                            !global.flag_zoom &&
-                            !global.flag_element_options &&
-                            !global.flag_element_options_edit &&
-                            !global.flag_select_element &&
-                            !global.flag_select_timestep &&
-                            !global.flag_select_settings &&
-                            !global.flag_remove_all &&
-                            !global.flag_menu_element_toolbox) {
-                            this.handle_graph_flag(!global.flag_graph);
-                            global.component_touched = true;
+                        if (!global.flags.flag_save_image &&
+                            !global.flags.flag_save_circuit &&
+                            !global.flags.flag_zoom &&
+                            !global.flags.flag_element_options &&
+                            !global.flags.flag_element_options_edit &&
+                            !global.flags.flag_select_element &&
+                            !global.flags.flag_select_timestep &&
+                            !global.flags.flag_select_settings &&
+                            !global.flags.flag_remove_all &&
+                            !global.flags.flag_menu_element_toolbox) {
+                            this.handle_graph_flag(!global.flags.flag_graph);
+                            global.variables.component_touched = true;
                         }
                     }
                     else {
-                        if (global.flag_graph) {
-                            if (!global.flag_save_image &&
-                                !global.flag_save_circuit &&
-                                !global.flag_zoom &&
-                                !global.flag_element_options &&
-                                !global.flag_element_options_edit &&
-                                !global.flag_select_element &&
-                                !global.flag_select_timestep &&
-                                !global.flag_select_settings &&
-                                !global.flag_remove_all &&
-                                !global.flag_menu_element_toolbox &&
+                        if (global.flags.flag_graph) {
+                            if (!global.flags.flag_save_image &&
+                                !global.flags.flag_save_circuit &&
+                                !global.flags.flag_zoom &&
+                                !global.flags.flag_element_options &&
+                                !global.flags.flag_element_options_edit &&
+                                !global.flags.flag_select_element &&
+                                !global.flags.flag_select_timestep &&
+                                !global.flags.flag_select_settings &&
+                                !global.flags.flag_remove_all &&
+                                !global.flags.flag_menu_element_toolbox &&
                                 !graph_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
-                                this.handle_graph_flag(!global.flag_graph);
-                                global.component_touched = true;
+                                this.handle_graph_flag(!global.flags.flag_graph);
+                                global.variables.component_touched = true;
                             }
                         }
                     }
                 }
                 else if (this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], true)) {
-                    if (!global.flag_menu_open) {
+                    if (!global.flags.flag_menu_open) {
                         if (this.contains(this.menu_icons[this.REMOVE_ALL_INDEX], false) &&
                             this.menu_icons[this.REMOVE_ALL_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                            if (!global.flag_save_image &&
-                                !global.flag_save_circuit &&
-                                !global.flag_element_options &&
-                                !global.flag_element_options_edit &&
-                                !global.flag_graph &&
-                                !global.flag_select_element &&
-                                !global.flag_select_timestep &&
-                                !global.flag_select_settings &&
-                                !global.flag_remove_all &&
-                                !global.flag_menu_open &&
-                                !global.flag_zoom) {
-                                this.handle_zoom_flag(!global.flag_zoom);
-                                global.component_touched = true;
+                            if (!global.flags.flag_save_image &&
+                                !global.flags.flag_save_circuit &&
+                                !global.flags.flag_element_options &&
+                                !global.flags.flag_element_options_edit &&
+                                !global.flags.flag_graph &&
+                                !global.flags.flag_select_element &&
+                                !global.flags.flag_select_timestep &&
+                                !global.flags.flag_select_settings &&
+                                !global.flags.flag_remove_all &&
+                                !global.flags.flag_menu_open &&
+                                !global.flags.flag_zoom) {
+                                this.handle_zoom_flag(!global.flags.flag_zoom);
+                                global.variables.component_touched = true;
                             }
                         }
                     }
                     else {
-                        if (!global.flag_simulating &&
-                            !global.flag_save_image &&
-                            !global.flag_save_circuit &&
-                            !global.flag_zoom &&
-                            !global.flag_element_options &&
-                            !global.flag_element_options_edit &&
-                            !global.flag_graph &&
-                            !global.flag_select_element &&
-                            !global.flag_select_timestep &&
-                            !global.flag_select_settings &&
-                            !global.flag_remove_all &&
-                            global.flag_menu_open &&
-                            !global.flag_menu_element_toolbox &&
+                        if (!global.flags.flag_simulating &&
+                            !global.flags.flag_save_image &&
+                            !global.flags.flag_save_circuit &&
+                            !global.flags.flag_zoom &&
+                            !global.flags.flag_element_options &&
+                            !global.flags.flag_element_options_edit &&
+                            !global.flags.flag_graph &&
+                            !global.flags.flag_select_element &&
+                            !global.flags.flag_select_timestep &&
+                            !global.flags.flag_select_settings &&
+                            !global.flags.flag_remove_all &&
+                            global.flags.flag_menu_open &&
+                            !global.flags.flag_menu_element_toolbox &&
                             this.menu_icons[this.REMOVE_ALL_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                            this.handle_remove_all_flag(!global.flag_remove_all);
-                            global.component_touched = true;
+                            this.handle_remove_all_flag(!global.flags.flag_remove_all);
+                            global.variables.component_touched = true;
                         }
                     }
                 }
                 else if (this.contains(this.settings_button, false) && this.settings_button.contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                    if (!global.flag_simulating &&
-                        !global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_zoom &&
-                        !global.flag_element_options &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_graph &&
-                        !global.flag_select_element &&
-                        !global.flag_select_timestep &&
-                        !global.flag_select_settings &&
-                        !global.flag_remove_all) {
-                        this.handle_select_settings_flag(!global.flag_select_settings);
-                        global.component_touched = true;
+                    if (!global.flags.flag_simulating &&
+                        !global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_zoom &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_graph &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_remove_all) {
+                        this.handle_select_settings_flag(!global.flags.flag_select_settings);
+                        global.variables.component_touched = true;
                     }
                 }
                 else if (this.contains(this.menu_icons[this.SAVE_INDEX], true) &&
                     this.menu_icons[this.SAVE_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                    if (!global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_zoom &&
-                        !global.flag_element_options &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_graph &&
-                        !global.flag_select_element &&
-                        !global.flag_select_timestep &&
-                        !global.flag_select_settings &&
-                        !global.flag_remove_all &&
-                        global.flag_menu_open &&
-                        !global.flag_menu_element_toolbox) {
-                        this.handle_save_circuit_flag(!global.flag_save_circuit);
-                        global.component_touched = true;
+                    if (!global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_zoom &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_graph &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_remove_all &&
+                        global.flags.flag_menu_open &&
+                        !global.flags.flag_menu_element_toolbox) {
+                        this.handle_save_circuit_flag(!global.flags.flag_save_circuit);
+                        global.variables.component_touched = true;
                     }
                 }
                 else if (this.contains(this.menu_icons[this.SAVE_IMG_INDEX], true) &&
                     this.menu_icons[this.SAVE_IMG_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                    if (!global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_zoom &&
-                        !global.flag_element_options &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_graph &&
-                        !global.flag_select_element &&
-                        !global.flag_select_timestep &&
-                        !global.flag_select_settings &&
-                        !global.flag_remove_all &&
-                        global.flag_menu_open &&
-                        !global.flag_menu_element_toolbox) {
-                        this.handle_save_image_flag(!global.flag_save_image);
-                        global.component_touched = true;
+                    if (!global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_zoom &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_graph &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_remove_all &&
+                        global.flags.flag_menu_open &&
+                        !global.flags.flag_menu_element_toolbox) {
+                        this.handle_save_image_flag(!global.flags.flag_save_image);
+                        global.variables.component_touched = true;
                     }
                 }
                 else if (this.contains(this.menu_icons[this.UNDO_INDEX], true) &&
                     this.menu_icons[this.UNDO_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                    if (!global.flag_simulating &&
-                        !global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_zoom &&
-                        !global.flag_element_options &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_graph &&
-                        !global.flag_select_element &&
-                        !global.flag_select_timestep &&
-                        !global.flag_select_settings &&
-                        !global.flag_remove_all &&
-                        global.flag_menu_open &&
-                        !global.flag_menu_element_toolbox) {
+                    if (!global.flags.flag_simulating &&
+                        !global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_zoom &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_graph &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_remove_all &&
+                        global.flags.flag_menu_open &&
+                        !global.flags.flag_menu_element_toolbox) {
                         this.handle_undo_flag();
-                        global.component_touched = true;
+                        global.variables.component_touched = true;
                     }
                 }
                 else if (this.contains(this.menu_icons[this.REDO_INDEX], true) &&
                     this.menu_icons[this.REDO_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                    if (!global.flag_simulating &&
-                        !global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_zoom &&
-                        !global.flag_element_options &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_graph &&
-                        !global.flag_select_element &&
-                        !global.flag_select_timestep &&
-                        !global.flag_select_settings &&
-                        !global.flag_remove_all &&
-                        global.flag_menu_open &&
-                        !global.flag_menu_element_toolbox) {
+                    if (!global.flags.flag_simulating &&
+                        !global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_zoom &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_graph &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_remove_all &&
+                        global.flags.flag_menu_open &&
+                        !global.flags.flag_menu_element_toolbox) {
                         this.handle_redo_flag();
-                        global.component_touched = true;
+                        global.variables.component_touched = true;
                     }
                 }
                 else if (this.contains(this.menu_icons[this.GO_INDEX], true) &&
                     this.menu_icons[this.GO_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) {
-                    if (!global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_zoom &&
-                        !global.flag_element_options &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_select_element &&
-                        !global.flag_select_timestep &&
-                        !global.flag_select_settings &&
-                        !global.flag_remove_all &&
-                        global.flag_menu_open &&
-                        !global.flag_menu_element_toolbox) {
-                        this.handle_simulation_flag(!global.flag_simulating);
-                        global.component_touched = true;
+                    if (!global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_zoom &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_remove_all &&
+                        global.flags.flag_menu_open &&
+                        !global.flags.flag_menu_element_toolbox) {
+                        this.handle_simulation_flag(!global.flags.flag_simulating);
+                        global.variables.component_touched = true;
                     }
                 }
                 this.element_window.mouse_up();
             }
-            else if (!global.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed) {
-                if ((this.contains(this.menu_icons[this.ADD_INDEX], true) || (!this.contains(this.element_window.bounds, false) && global.flag_menu_element_toolbox)) &&
-                    !global.flag_graph &&
-                    !global.signal_add_element) {
-                    if (!global.flag_zoom &&
-                        !global.flag_save_image &&
-                        !global.flag_save_circuit &&
-                        !global.flag_select_element &&
-                        !global.flag_select_settings &&
-                        !global.flag_select_timestep &&
-                        !global.flag_remove_all &&
-                        !global.flag_element_options_edit &&
-                        !global.flag_element_options &&
-                        !global.signal_add_element &&
-                        !global.flag_simulating) {
-                        if (global.flag_menu_open) {
+            else if (!global.variables.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed) {
+                if ((this.contains(this.menu_icons[this.ADD_INDEX], true) || (!this.contains(this.element_window.bounds, false) && global.flags.flag_menu_element_toolbox)) &&
+                    !global.flags.flag_graph &&
+                    !global.flags.signal_add_element) {
+                    if (!global.flags.flag_zoom &&
+                        !global.flags.flag_save_image &&
+                        !global.flags.flag_save_circuit &&
+                        !global.flags.flag_select_element &&
+                        !global.flags.flag_select_settings &&
+                        !global.flags.flag_select_timestep &&
+                        !global.flags.flag_remove_all &&
+                        !global.flags.flag_element_options_edit &&
+                        !global.flags.flag_element_options &&
+                        !global.flags.signal_add_element &&
+                        !global.flags.flag_simulating) {
+                        if (global.flags.flag_menu_open) {
                             if (this.contains(this.menu_icons[this.ADD_INDEX], true)) {
-                                this.handle_menu_open_down_flag(!global.flag_menu_element_toolbox);
-                                global.component_touched = true;
+                                this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
+                                global.variables.component_touched = true;
                             }
                             else {
-                                if (global.flag_menu_element_toolbox && !global.signal_add_element) {
-                                    this.handle_menu_open_down_flag(!global.flag_menu_element_toolbox);
-                                    global.component_touched = true;
+                                if (global.flags.flag_menu_element_toolbox && !global.flags.signal_add_element) {
+                                    this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
+                                    global.variables.component_touched = true;
                                 }
                             }
                         }
@@ -709,140 +709,140 @@ class MenuBar {
         }
     }
     handle_element_options_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_element_options = ON;
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_element_options = ON;
         if (ON) {
-            element_options_window.title_bounds.text = global.selected_properties['tag'] + global.selected_id;
+            element_options_window.title_bounds.text = global.variables.selected_properties['tag'] + global.variables.selected_id;
         }
-        if (global.DEVELOPER_MODE) {
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('ELEMENT OPTIONS');
         }
     }
     handle_element_options_edit_flag(ON) {
-        global.mouse_keyboard_lock = true;
+        global.variables.mouse_keyboard_lock = true;
         if (ON) {
             element_options_edit_window.reset_cursor();
         }
-        global.signal_build_element = true;
-        global.signal_build_counter = 0;
-        global.flag_element_options_edit = ON;
-        if (global.DEVELOPER_MODE) {
+        global.flags.signal_build_element = true;
+        global.variables.signal_build_counter = 0;
+        global.flags.flag_element_options_edit = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('ELEMENT OPTIONS EDIT');
         }
     }
     handle_undo_flag() {
-        global.mouse_keyboard_lock = true;
+        global.variables.mouse_keyboard_lock = true;
         history_manager.undo();
-        if (global.DEVELOPER_MODE) {
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('UNDO');
         }
     }
     handle_redo_flag() {
-        global.mouse_keyboard_lock = true;
+        global.variables.mouse_keyboard_lock = true;
         history_manager.redo();
-        if (global.DEVELOPER_MODE) {
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('REDO');
         }
     }
     handle_menu_open_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_menu_open = ON;
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_menu_open = ON;
         if (!ON) {
-            global.flag_menu_element_toolbox = ON;
+            global.flags.flag_menu_element_toolbox = ON;
         }
-        if (global.DEVELOPER_MODE) {
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('MENU OPEN');
         }
     }
     handle_menu_open_down_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_menu_element_toolbox = ON;
-        if (global.DEVELOPER_MODE) {
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_menu_element_toolbox = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('MENU OPEN DOWN');
         }
     }
     handle_save_image_flag(ON) {
         if (ON) {
-            save_image_window.input_button.text = global.user_file.title;
+            save_image_window.input_button.text = global.variables.user_file.title;
             save_image_window.reset_cursor();
         }
-        global.mouse_keyboard_lock = true;
-        global.flag_save_image = ON;
-        if (global.DEVELOPER_MODE) {
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_save_image = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('SAVE IMAGE');
         }
     }
     handle_save_circuit_flag(ON) {
         if (ON) {
-            save_circuit_window.input_button.text = global.user_file.title;
+            save_circuit_window.input_button.text = global.variables.user_file.title;
             save_circuit_window.reset_cursor();
         }
         bottom_menu.resize_bottom_menu();
-        global.mouse_keyboard_lock = true;
-        global.flag_save_circuit = ON;
-        if (global.DEVELOPER_MODE) {
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_save_circuit = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('SAVE CIRCUIT');
         }
     }
     handle_select_settings_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_select_settings = ON;
-        if (global.DEVELOPER_MODE) {
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_select_settings = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('SETTINGS');
         }
     }
     handle_simulation_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_simulating = ON;
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_simulating = ON;
         if (ON) {
             simulation_manager.setup();
         }
         else {
             simulation_manager.terminate();
         }
-        if (global.DEVELOPER_MODE) {
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('SIMULATION ' + (ON ? 'START' : 'END'));
         }
     }
     handle_graph_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_graph = ON;
-        if (global.DEVELOPER_MODE) {
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_graph = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('GRAPH');
         }
     }
     handle_remove_all_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_remove_all = ON;
-        if (global.DEVELOPER_MODE) {
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_remove_all = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('REMOVE ALL');
         }
     }
     handle_zoom_flag(ON) {
-        global.mouse_keyboard_lock = true;
-        global.flag_zoom = ON;
-        if (global.DEVELOPER_MODE) {
+        global.variables.mouse_keyboard_lock = true;
+        global.flags.flag_zoom = ON;
+        if (global.CONSTANTS.DEVELOPER_MODE) {
             console.log('ZOOM');
         }
     }
     key_down(key_event) {
-        if (global.flag_menu_open) {
-            if (!global.flag_zoom &&
-                !global.flag_save_image &&
-                !global.flag_save_circuit &&
-                !global.flag_select_element &&
-                !global.flag_select_settings &&
-                !global.flag_select_timestep &&
-                !global.flag_remove_all &&
-                !global.flag_element_options_edit &&
-                !global.flag_element_options &&
-                !global.signal_add_element &&
-                !global.flag_simulating) {
-                if (global.flag_menu_open) {
-                    if (global.flag_menu_element_toolbox && !global.signal_add_element) {
-                        if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
-                            this.handle_menu_open_down_flag(!global.flag_menu_element_toolbox);
-                            global.component_touched = true;
+        if (global.flags.flag_menu_open) {
+            if (!global.flags.flag_zoom &&
+                !global.flags.flag_save_image &&
+                !global.flags.flag_save_circuit &&
+                !global.flags.flag_select_element &&
+                !global.flags.flag_select_settings &&
+                !global.flags.flag_select_timestep &&
+                !global.flags.flag_remove_all &&
+                !global.flags.flag_element_options_edit &&
+                !global.flags.flag_element_options &&
+                !global.flags.signal_add_element &&
+                !global.flags.flag_simulating) {
+                if (global.flags.flag_menu_open) {
+                    if (global.flags.flag_menu_element_toolbox && !global.flags.signal_add_element) {
+                        if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
+                            this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
+                            global.variables.component_touched = true;
                         }
                     }
                 }
@@ -851,137 +851,137 @@ class MenuBar {
     }
     contains(rect, adjust) {
         if (!adjust) {
-            return rect.contains_xy(global.mouse_x, global.mouse_y);
+            return rect.contains_xy(global.variables.mouse_x, global.variables.mouse_y);
         }
         else {
-            return rect.contains_xywh(global.mouse_x, global.mouse_y, this.base_width, this.bounds.get_height());
+            return rect.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.base_width, this.bounds.get_height());
         }
     }
     recolor() {
-        if (global.flag_simulating) {
+        if (global.flags.flag_simulating) {
             this.go_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
         }
         else {
-            if (!global.flag_menu_element_toolbox) {
+            if (!global.flags.flag_menu_element_toolbox) {
                 this.go_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
             }
             else {
-                this.go_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.go_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
-        if (global.flag_graph) {
+        if (global.flags.flag_graph) {
             this.sine_wave.sine_wave_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
         }
         else {
             this.sine_wave.sine_wave_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
         }
         if (history_manager.history_index > 0) {
-            if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
+            if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
                 this.undo_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
             }
             else {
-                this.undo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.undo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
         else {
-            if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
+            if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
                 this.undo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
             }
             else {
-                this.undo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.undo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
         if (history_manager.history_index < history_manager.history.length - 1) {
-            if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
+            if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
                 this.redo_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
             }
             else {
-                this.redo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.redo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
         else {
-            if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
+            if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
                 this.redo_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
             }
             else {
-                this.redo_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.redo_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
-        if (global.flag_menu_element_toolbox) {
-            if (!global.flag_simulating && !global.flag_graph) {
+        if (global.flags.flag_menu_element_toolbox) {
+            if (!global.flags.flag_simulating && !global.flags.flag_graph) {
                 this.add_paint.set_color(global.MENU_ICON_ACTIVE_COLOR);
             }
             else {
-                this.add_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.add_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
         else {
-            if (!global.flag_simulating && !global.flag_graph) {
+            if (!global.flags.flag_simulating && !global.flags.flag_graph) {
                 this.add_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
             }
             else {
-                this.add_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.add_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
-        if (global.flag_menu_open) {
-            if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
+        if (global.flags.flag_menu_open) {
+            if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
                 this.remove_all_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
             }
             else {
-                this.remove_all_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+                this.remove_all_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
             }
         }
-        if (!global.flag_simulating && !global.flag_graph && !global.flag_menu_element_toolbox) {
+        if (!global.flags.flag_simulating && !global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
             this.settings_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
         }
         else {
-            this.settings_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+            this.settings_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
         }
-        if (!global.flag_graph && !global.flag_menu_element_toolbox) {
+        if (!global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
             this.zoom_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
         }
         else {
-            this.zoom_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+            this.zoom_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
         }
-        if (!global.flag_graph && !global.flag_menu_element_toolbox) {
+        if (!global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
             this.save_circuit_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
         }
         else {
-            this.save_circuit_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+            this.save_circuit_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
         }
-        if (!global.flag_graph && !global.flag_menu_element_toolbox) {
+        if (!global.flags.flag_graph && !global.flags.flag_menu_element_toolbox) {
             this.save_image_fill_paint.set_color(global.MENU_ICON_DEFAULT_COLOR);
         }
         else {
-            this.save_image_fill_paint.set_color(global.MENU_ICON_INACTIVE_COLOR);
+            this.save_image_fill_paint.set_color(global.COLORS.MENU_ICON_INACTIVE_COLOR);
         }
     }
     draw_menu_bar(canvas) {
         this.recolor();
-        let temp_stroke_width = 0.65 * global.canvas_stroke_width_3;
-        if (global.MOBILE_MODE) {
-            temp_stroke_width = 0.85 * global.canvas_stroke_width_3;
+        let temp_stroke_width = 0.65 * global.variables.canvas_stroke_width_3;
+        if (global.CONSTANTS.MOBILE_MODE) {
+            temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
         }
-        if (global.flag_menu_open) {
-            if (global.flag_menu_element_toolbox) {
-                if (!global.MOBILE_MODE) {
-                    canvas.draw_color2(global.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+        if (global.flags.flag_menu_open) {
+            if (global.flags.flag_menu_element_toolbox) {
+                if (!global.CONSTANTS.MOBILE_MODE) {
+                    canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
                 }
             }
             canvas.draw_rect2(this.bounds, this.fill_paint);
-            if (!global.flag_save_image &&
-                !global.flag_save_circuit &&
-                !global.flag_remove_all &&
-                !global.flag_select_settings &&
-                !global.flag_select_timestep &&
-                !global.flag_element_options &&
-                !global.flag_element_options_edit &&
-                !global.flag_zoom &&
+            if (!global.flags.flag_save_image &&
+                !global.flags.flag_save_circuit &&
+                !global.flags.flag_remove_all &&
+                !global.flags.flag_select_settings &&
+                !global.flags.flag_select_timestep &&
+                !global.flags.flag_element_options &&
+                !global.flags.flag_element_options_edit &&
+                !global.flags.flag_zoom &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.MOBILE_MODE) {
+                !global.CONSTANTS.MOBILE_MODE) {
                 let cached_value = this.base_width;
                 for (var i = 0; i < this.menu_icons.length; i++) {
-                    if (this.menu_icons[i].contains_xywh(global.mouse_x, global.mouse_y, cached_value, this.bounds.get_height())) {
+                    if (this.menu_icons[i].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, cached_value, this.bounds.get_height())) {
                         canvas.draw_rect3(this.menu_icons[i].get_center_x(), this.menu_icons[i].get_center_y(), cached_value, this.bounds.get_height(), this.hover_paint);
                     }
                 }
@@ -997,17 +997,17 @@ class MenuBar {
             canvas.draw_line_buffer(this.line_buffer, this.remove_all_paint);
             indexer = 0;
             this.line_buffer = [];
-            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
                 canvas.draw_text('X', this.menu_icons[this.REMOVE_ALL_INDEX].left, this.menu_icons[this.REMOVE_ALL_INDEX].top, this.text_paint);
             }
             canvas.draw_path(this.save_ckt_path1, this.save_circuit_paint);
             canvas.draw_path(this.save_ckt_path2, this.save_circuit_paint);
-            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
                 canvas.draw_text('S', this.menu_icons[this.SAVE_INDEX].left, this.menu_icons[this.SAVE_INDEX].top, this.text_paint);
             }
             canvas.draw_path(this.save_img_path, this.save_image_fill_paint);
             canvas.draw_circle(this.menu_icons[this.SAVE_IMG_INDEX].get_center_x(), this.menu_icons[this.SAVE_IMG_INDEX].get_center_y(), this.menu_icons[this.SAVE_IMG_INDEX].get_width() >> 3, this.fill_paint_alt);
-            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
                 canvas.draw_text('I', this.menu_icons[this.SAVE_IMG_INDEX].left, this.menu_icons[this.SAVE_IMG_INDEX].top, this.text_paint);
             }
             let width_rshift_3 = this.menu_icons[this.ADD_INDEX].get_width() >> 3;
@@ -1018,10 +1018,10 @@ class MenuBar {
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             indexer = 0;
             this.line_buffer = [];
-            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
                 canvas.draw_text('N', this.menu_icons[this.ADD_INDEX].left, this.menu_icons[this.ADD_INDEX].top, this.text_paint);
             }
-            if (!global.flag_simulating) {
+            if (!global.flags.flag_simulating) {
                 canvas.draw_path(this.go_path, this.go_paint);
             }
             else {
@@ -1029,15 +1029,15 @@ class MenuBar {
                 let h_pad = this.menu_icons[this.GO_INDEX].get_height() * 0.333;
                 canvas.draw_rect(this.menu_icons[this.GO_INDEX].get_center_x() - w_pad, this.menu_icons[this.GO_INDEX].get_center_y() - h_pad, this.menu_icons[this.GO_INDEX].get_center_x() + w_pad, this.menu_icons[this.GO_INDEX].get_center_y() + h_pad, this.go_paint);
             }
-            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
                 canvas.draw_text('A', this.menu_icons[this.GO_INDEX].left, this.menu_icons[this.GO_INDEX].top, this.text_paint);
             }
             canvas.draw_path(this.undo_path, this.undo_paint);
-            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
                 canvas.draw_text('Z', this.menu_icons[this.UNDO_INDEX].left, this.menu_icons[this.UNDO_INDEX].top, this.text_paint);
             }
             canvas.draw_path(this.redo_path, this.redo_paint);
-            if (global.system_options['values'][global.SYSTEM_OPTION_SHORTCUT_HINTS] === global.ON) {
+            if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] === global.CONSTANTS.ON) {
                 canvas.draw_text('Y', this.menu_icons[this.REDO_INDEX].left, this.menu_icons[this.REDO_INDEX].top, this.text_paint);
             }
             canvas.draw_arrow(this.menu_icons[this.UP_DOWN_INDEX].get_center_x(), this.menu_icons[this.UP_DOWN_INDEX].get_center_y(), this.menu_icons[this.UP_DOWN_INDEX].get_width() * 0.4, true, this.up_down_paint);
@@ -1046,35 +1046,35 @@ class MenuBar {
             let indexer = 0;
             this.line_buffer = [];
             canvas.draw_circle3(this.menu_icons[this.REMOVE_ALL_INDEX], 1.15, this.fill_paint);
-            if (this.menu_icons[this.REMOVE_ALL_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
-                !global.flag_menu_element_toolbox &&
-                !global.flag_menu_element_toolbox &&
-                !global.flag_simulating &&
-                !global.flag_zoom &&
-                !global.flag_select_settings &&
-                !global.flag_save_image &&
-                !global.flag_save_circuit &&
-                !global.flag_select_timestep &&
-                !global.flag_element_options_edit &&
-                !global.flag_element_options &&
-                !global.flag_graph &&
-                !global.flag_remove_all &&
+            if (this.menu_icons[this.REMOVE_ALL_INDEX].contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+                !global.flags.flag_menu_element_toolbox &&
+                !global.flags.flag_menu_element_toolbox &&
+                !global.flags.flag_simulating &&
+                !global.flags.flag_zoom &&
+                !global.flags.flag_select_settings &&
+                !global.flags.flag_save_image &&
+                !global.flags.flag_save_circuit &&
+                !global.flags.flag_select_timestep &&
+                !global.flags.flag_element_options_edit &&
+                !global.flags.flag_element_options &&
+                !global.flags.flag_graph &&
+                !global.flags.flag_remove_all &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.MOBILE_MODE) {
+                !global.CONSTANTS.MOBILE_MODE) {
                 canvas.draw_circle3(this.menu_icons[this.REMOVE_ALL_INDEX], 1.15, this.hover_paint);
             }
             canvas.draw_circle3(this.menu_icons[this.UP_DOWN_INDEX], 1.15, this.fill_paint);
-            if (this.menu_icons[this.UP_DOWN_INDEX].contains_xy(global.mouse_x, global.mouse_y) &&
-                !global.flag_zoom &&
-                !global.flag_select_settings &&
-                !global.flag_save_image &&
-                !global.flag_save_circuit &&
-                !global.flag_select_timestep &&
-                !global.flag_element_options_edit &&
-                !global.flag_element_options &&
-                !global.flag_remove_all &&
+            if (this.menu_icons[this.UP_DOWN_INDEX].contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+                !global.flags.flag_zoom &&
+                !global.flags.flag_select_settings &&
+                !global.flags.flag_save_image &&
+                !global.flags.flag_save_circuit &&
+                !global.flags.flag_select_timestep &&
+                !global.flags.flag_element_options_edit &&
+                !global.flags.flag_element_options &&
+                !global.flags.flag_remove_all &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.MOBILE_MODE) {
+                !global.CONSTANTS.MOBILE_MODE) {
                 canvas.draw_circle3(this.menu_icons[this.UP_DOWN_INDEX], 1.15, this.hover_paint);
             }
             canvas.draw_arrow(this.menu_icons[this.UP_DOWN_INDEX].get_center_x(), this.menu_icons[this.UP_DOWN_INDEX].get_center_y(), this.menu_icons[this.UP_DOWN_INDEX].get_width() * 0.3, false, this.up_down_paint);
@@ -1090,23 +1090,23 @@ class MenuBar {
             this.line_buffer[indexer++] = Array(this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 - pad_h, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_x() - width_rshift_3, this.menu_icons[this.REMOVE_ALL_INDEX].get_center_y() - width_rshift_3 + pad_h);
             canvas.draw_line_buffer(this.line_buffer, this.zoom_paint);
         }
-        if (!global.flag_menu_element_toolbox) {
+        if (!global.flags.flag_menu_element_toolbox) {
             let indexer = 0;
             this.line_buffer = [];
             canvas.draw_circle3(this.graph_button, 1.15, this.fill_paint);
-            if (this.graph_button.contains_xy(global.mouse_x, global.mouse_y) &&
-                !global.flag_menu_element_toolbox &&
-                !global.flag_menu_element_toolbox &&
-                !global.flag_zoom &&
-                !global.flag_select_settings &&
-                !global.flag_save_image &&
-                !global.flag_save_circuit &&
-                !global.flag_select_timestep &&
-                !global.flag_element_options_edit &&
-                !global.flag_element_options &&
-                !global.flag_remove_all &&
+            if (this.graph_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+                !global.flags.flag_menu_element_toolbox &&
+                !global.flags.flag_menu_element_toolbox &&
+                !global.flags.flag_zoom &&
+                !global.flags.flag_select_settings &&
+                !global.flags.flag_save_image &&
+                !global.flags.flag_save_circuit &&
+                !global.flags.flag_select_timestep &&
+                !global.flags.flag_element_options_edit &&
+                !global.flags.flag_element_options &&
+                !global.flags.flag_remove_all &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.MOBILE_MODE) {
+                !global.CONSTANTS.MOBILE_MODE) {
                 canvas.draw_circle3(this.graph_button, 1.15, this.hover_paint);
             }
             this.sine_wave.draw_sine_wave(canvas, 1);
@@ -1116,38 +1116,38 @@ class MenuBar {
             canvas.draw_line_buffer(this.line_buffer, this.sine_wave.sine_wave_paint);
         }
         canvas.draw_circle3(this.settings_button, 1.15, this.fill_paint);
-        if (this.settings_button.contains_xy(global.mouse_x, global.mouse_y) &&
-            !global.flag_menu_element_toolbox &&
-            !global.flag_simulating &&
-            !global.flag_zoom &&
-            !global.flag_select_settings &&
-            !global.flag_save_image &&
-            !global.flag_save_circuit &&
-            !global.flag_select_timestep &&
-            !global.flag_element_options_edit &&
-            !global.flag_element_options &&
-            !global.flag_graph &&
-            !global.flag_remove_all &&
+        if (this.settings_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+            !global.flags.flag_menu_element_toolbox &&
+            !global.flags.flag_simulating &&
+            !global.flags.flag_zoom &&
+            !global.flags.flag_select_settings &&
+            !global.flags.flag_save_image &&
+            !global.flags.flag_save_circuit &&
+            !global.flags.flag_select_timestep &&
+            !global.flags.flag_element_options_edit &&
+            !global.flags.flag_element_options &&
+            !global.flags.flag_graph &&
+            !global.flags.flag_remove_all &&
             !multi_select_manager.ctrl_pressed_started &&
-            !global.MOBILE_MODE) {
+            !global.CONSTANTS.MOBILE_MODE) {
             canvas.draw_circle3(this.settings_button, 1.15, this.hover_paint);
         }
         canvas.draw_path(this.settings_path, this.settings_paint);
-        if (this.settings_button.contains_xy(global.mouse_x, global.mouse_y) &&
-            !global.flag_menu_element_toolbox &&
-            !global.flag_menu_element_toolbox &&
-            !global.flag_simulating &&
-            !global.flag_zoom &&
-            !global.flag_select_settings &&
-            !global.flag_save_image &&
-            !global.flag_save_circuit &&
-            !global.flag_select_timestep &&
-            !global.flag_element_options_edit &&
-            !global.flag_element_options &&
-            !global.flag_graph &&
-            !global.flag_remove_all &&
+        if (this.settings_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) &&
+            !global.flags.flag_menu_element_toolbox &&
+            !global.flags.flag_menu_element_toolbox &&
+            !global.flags.flag_simulating &&
+            !global.flags.flag_zoom &&
+            !global.flags.flag_select_settings &&
+            !global.flags.flag_save_image &&
+            !global.flags.flag_save_circuit &&
+            !global.flags.flag_select_timestep &&
+            !global.flags.flag_element_options_edit &&
+            !global.flags.flag_element_options &&
+            !global.flags.flag_graph &&
+            !global.flags.flag_remove_all &&
             !multi_select_manager.ctrl_pressed_started &&
-            !global.MOBILE_MODE) {
+            !global.CONSTANTS.MOBILE_MODE) {
             canvas.draw_circle(this.settings_button.get_center_x(), this.settings_button.get_center_y(), this.settings_button.get_width() * 0.125, this.hover_paint);
         }
         else {

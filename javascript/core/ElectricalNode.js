@@ -3,43 +3,43 @@ class ElectricalNode {
     constructor(x, y, id) {
         this.location = new PointF(x, y);
         this.node_line_paint = new Paint();
-        this.node_line_paint.set_paint_style(this.node_line_paint.style.STROKE);
-        this.node_line_paint.set_paint_cap(this.node_line_paint.cap.ROUND);
-        this.node_line_paint.set_paint_join(this.node_line_paint.join.MITER);
-        this.node_line_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.node_line_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.node_line_paint.set_text_size(global.canvas_text_size_5);
-        this.node_line_paint.set_font(global.DEFAULT_FONT);
+        this.node_line_paint.set_paint_style(PAINT.style.STROKE);
+        this.node_line_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.node_line_paint.set_paint_join(PAINT.join.MITER);
+        this.node_line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.node_line_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
+        this.node_line_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.node_line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.node_line_paint.set_alpha(192);
-        this.node_line_paint.set_paint_align(this.node_line_paint.align.CENTER);
+        this.node_line_paint.set_paint_align(PAINT.align.CENTER);
         this.node_fill_paint = new Paint();
-        this.node_fill_paint.set_paint_style(this.node_fill_paint.style.FILL);
-        this.node_fill_paint.set_paint_cap(this.node_fill_paint.cap.ROUND);
-        this.node_fill_paint.set_paint_join(this.node_fill_paint.join.MITER);
-        this.node_fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.node_fill_paint.set_color(global.GENERAL_CYAN_COLOR);
-        this.node_fill_paint.set_text_size(global.canvas_text_size_5);
-        this.node_fill_paint.set_font(global.DEFAULT_FONT);
+        this.node_fill_paint.set_paint_style(PAINT.style.FILL);
+        this.node_fill_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.node_fill_paint.set_paint_join(PAINT.join.MITER);
+        this.node_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.node_fill_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
+        this.node_fill_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.node_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.node_fill_paint.set_alpha(192);
-        this.node_fill_paint.set_paint_align(this.node_fill_paint.align.CENTER);
+        this.node_fill_paint.set_paint_align(PAINT.align.CENTER);
         this.node_fill_paint_alt = new Paint();
-        this.node_fill_paint_alt.set_paint_style(this.node_fill_paint_alt.style.FILL);
-        this.node_fill_paint_alt.set_paint_cap(this.node_fill_paint_alt.cap.ROUND);
-        this.node_fill_paint_alt.set_paint_join(this.node_fill_paint_alt.join.MITER);
-        this.node_fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
-        this.node_fill_paint_alt.set_color(global.GENERAL_GREEN_COLOR);
-        this.node_fill_paint_alt.set_text_size(global.canvas_text_size_5);
-        this.node_fill_paint_alt.set_font(global.DEFAULT_FONT);
+        this.node_fill_paint_alt.set_paint_style(PAINT.style.FILL);
+        this.node_fill_paint_alt.set_paint_cap(PAINT.cap.ROUND);
+        this.node_fill_paint_alt.set_paint_join(PAINT.join.MITER);
+        this.node_fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.node_fill_paint_alt.set_color(global.COLORS.GENERAL_GREEN_COLOR);
+        this.node_fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
+        this.node_fill_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.node_fill_paint_alt.set_alpha(192);
-        this.node_fill_paint_alt.set_paint_align(this.node_fill_paint_alt.align.CENTER);
+        this.node_fill_paint_alt.set_paint_align(PAINT.align.CENTER);
         this.id = id;
         this.simulation_id = -1;
         this.references = [];
         this.column = Math.floor(this.id / Math.round(global.settings.SQRT_MAXNODES));
         this.row = this.id % Math.round(global.settings.SQRT_MAXNODES);
-        let node_space_x = 1.175 * (global.node_space_x >> 2);
-        let node_space_y = 1.175 * (global.node_space_y >> 2);
-        if (global.MOBILE_MODE) {
+        let node_space_x = 1.175 * (global.variables.node_space_x >> 2);
+        let node_space_y = 1.175 * (global.variables.node_space_y >> 2);
+        if (global.CONSTANTS.MOBILE_MODE) {
             node_space_x *= 1.25;
             node_space_y *= 1.25;
         }
@@ -48,21 +48,21 @@ class ElectricalNode {
         this.loc_y_precalc = this.column * global.settings.INV_SQRT_M_1;
     }
     resize(n_x, n_y, m_n_x, m_n_y) {
-        if (global.signal_build_element) {
+        if (global.flags.signal_build_element) {
             this.location.x = workspace.bounds.left + this.loc_x_precalc * workspace.bounds.get_width();
             this.location.y = workspace.bounds.top + this.loc_y_precalc * workspace.bounds.get_height();
-            if (!global.MOBILE_MODE) {
+            if (!global.CONSTANTS.MOBILE_MODE) {
                 this.bounds.set_bounds(this.location.x - n_x, this.location.y - n_y, this.location.x + n_x, this.location.y + n_y);
             }
             else {
                 this.bounds.set_bounds(this.location.x - m_n_x, this.location.y - m_n_y, this.location.x + m_n_x, this.location.y + m_n_y);
             }
-            this.node_line_paint.set_stroke_width(global.canvas_stroke_width_1);
-            this.node_line_paint.set_text_size(global.canvas_text_size_5);
-            this.node_fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-            this.node_fill_paint.set_text_size(global.canvas_text_size_5);
-            this.node_fill_paint_alt.set_stroke_width(global.canvas_stroke_width_1);
-            this.node_fill_paint_alt.set_text_size(global.canvas_text_size_5);
+            this.node_line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.node_line_paint.set_text_size(global.variables.canvas_text_size_5);
+            this.node_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.node_fill_paint.set_text_size(global.variables.canvas_text_size_5);
+            this.node_fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.node_fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
         }
     }
     set_color(color) {
@@ -133,10 +133,10 @@ class ElectricalNode {
         let count = 0;
         let index = -1;
         for (var i = 0; i < this.references.length; i++) {
-            if (this.references[i].type === global.TYPE_NOTE) {
+            if (this.references[i].type === global.ELEMENT_TYPES.TYPE_NOTE) {
                 index = engine_functions.get_note(this.references[i].id);
                 if (index > -1 && index < notes.length) {
-                    if (notes[index].elm.properties['Show Marker'] === global.OFF) {
+                    if (notes[index].elm.properties['Show Marker'] === global.CONSTANTS.OFF) {
                         count++;
                     }
                 }
@@ -163,18 +163,18 @@ class ElectricalNode {
     }
     draw(canvas) {
         if (this.references.length > 0) {
-            if (global.DEVELOPER_MODE) {
-                canvas.draw_circle(this.location.x, this.location.y, 2 * global.canvas_stroke_width_3, this.node_line_paint);
+            if (global.CONSTANTS.DEVELOPER_MODE) {
+                canvas.draw_circle(this.location.x, this.location.y, 2 * global.variables.canvas_stroke_width_3, this.node_line_paint);
                 canvas.draw_text(this.debug_info(), this.location.x, this.location.y, this.node_line_paint);
             }
             else {
-                if (global.wire_builder['step'] > 0) {
-                    if (global.wire_builder['n1'] > -1 && global.wire_builder['n1'] < global.settings.MAXNODES) {
-                        if (global.wire_builder['n1'] !== this.id && this.draw_node_builder_helper()) {
-                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
-                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
-                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
-                            global.node_line_buffer[global.node_line_buffer_index++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
+                if (global.variables.wire_builder['step'] > 0) {
+                    if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
+                        if (global.variables.wire_builder['n1'] !== this.id && this.draw_node_builder_helper()) {
+                            global.variables.node_line_buffer[global.variables.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top);
+                            global.variables.node_line_buffer[global.variables.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.bottom, this.bounds.right, this.bounds.bottom);
+                            global.variables.node_line_buffer[global.variables.node_line_buffer_index++] = Array(this.bounds.left, this.bounds.top, this.bounds.left, this.bounds.bottom);
+                            global.variables.node_line_buffer[global.variables.node_line_buffer_index++] = Array(this.bounds.right, this.bounds.top, this.bounds.right, this.bounds.bottom);
                         }
                     }
                 }

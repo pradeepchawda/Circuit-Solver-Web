@@ -33,7 +33,7 @@ class Constants {
 	public readonly TEXT_STYLE_4: string;
 	public readonly TEXT_STYLE_5: string;
 	public readonly ANCHOR_POINT: ANCHOR_POINT_T;
-	public readonly WIRE_REFERENCE: WIRE_REFERENCE_T;
+	public readonly wire_reference: WIRE_REFERENCE_T;
 	public readonly LANGUAGES: Array<string>;
 	public readonly LANGUAGE_INDEX_ENGLISH: number;
 	public readonly LANGUAGE_INDEX_SPANISH: number;

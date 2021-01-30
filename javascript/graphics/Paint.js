@@ -116,7 +116,7 @@ class Paint {
     }
     search_array(txt) {
         this.temp_boolean = false;
-        this.saved_metric = global.NULL;
+        this.saved_metric = global.CONSTANTS.NULL;
         for (var i = 0; i < this.metric_array.length; i++) {
             if (!this.temp_boolean) {
                 if (this.metric_array[i]['text'] === txt && this.metric_array[i]['font'] === this.font && this.metric_array[i]['text size'] === this.text_size) {
@@ -153,31 +153,31 @@ class Paint {
         }
     }
     patch() {
-        if (!global.not_null(this.baseline)) {
+        if (!global.utils.not_null(this.baseline)) {
             this.baseline = new PaintBaseline();
         }
-        if (!global.not_null(this.metric_array)) {
+        if (!global.utils.not_null(this.metric_array)) {
             this.metric_array = [];
         }
-        if (!global.not_null(this.saved_metric)) {
-            this.saved_metric = global.NULL;
+        if (!global.utils.not_null(this.saved_metric)) {
+            this.saved_metric = global.CONSTANTS.NULL;
         }
-        if (!global.not_null(this.garbage_collector_size)) {
+        if (!global.utils.not_null(this.garbage_collector_size)) {
             this.garbage_collector_size = 16;
         }
-        if (!global.not_null(this.paint_style)) {
+        if (!global.utils.not_null(this.paint_style)) {
             this.paint_style = this.style.STROKE;
         }
-        if (!global.not_null(this.paint_cap)) {
+        if (!global.utils.not_null(this.paint_cap)) {
             this.paint_cap = this.cap.ROUND;
         }
-        if (!global.not_null(this.paint_join)) {
+        if (!global.utils.not_null(this.paint_join)) {
             this.paint_join = this.join.MITER;
         }
-        if (!global.not_null(this.text_align)) {
+        if (!global.utils.not_null(this.text_align)) {
             this.text_align = this.align.CENTER;
         }
-        if (!global.not_null(this.text_baseline)) {
+        if (!global.utils.not_null(this.text_baseline)) {
             this.text_baseline = this.baseline.MIDDLE;
         }
         if (this.garbage_collector_size != 16) {

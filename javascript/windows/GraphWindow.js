@@ -11,13 +11,13 @@ class GraphWindow {
         this.SCOPE_2_INDEX = 2;
         this.bounds.left = view_port.left;
         this.bounds.right = view_port.right;
-        this.bounds.top = menu_bar.graph_button.bottom + 2 * global.canvas_stroke_width_3;
+        this.bounds.top = menu_bar.graph_button.bottom + 2 * global.variables.canvas_stroke_width_3;
         this.bounds.bottom = view_port.bottom;
         this.width = 1;
         this.height = 1;
         this.trim = 1;
-        this.padding = global.canvas_stroke_width_5;
-        if (global.MOBILE_MODE) {
+        this.padding = global.variables.canvas_stroke_width_5;
+        if (global.CONSTANTS.MOBILE_MODE) {
             this.BUTTON_WIDTH_RATIO = 0.12;
             this.BUTTON_HEIGHT_RATIO = 0.08;
         }
@@ -26,88 +26,88 @@ class GraphWindow {
             this.BUTTON_HEIGHT_RATIO = 0.05;
         }
         this.line_paint = new Paint();
-        this.line_paint.set_paint_style(this.line_paint.style.STROKE);
-        this.line_paint.set_paint_cap(this.line_paint.cap.ROUND);
-        this.line_paint.set_paint_join(this.line_paint.join.MITER);
-        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.line_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.line_paint.set_text_size(global.canvas_text_size_4);
-        this.line_paint.set_font(global.DEFAULT_FONT);
+        this.line_paint.set_paint_style(PAINT.style.STROKE);
+        this.line_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.line_paint.set_paint_join(PAINT.join.MITER);
+        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+        this.line_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.line_paint.set_alpha(255);
-        this.line_paint.set_paint_align(this.line_paint.align.CENTER);
+        this.line_paint.set_paint_align(PAINT.align.CENTER);
         this.bounds_paint = new Paint();
-        this.bounds_paint.set_paint_style(this.bounds_paint.style.FILL);
-        this.bounds_paint.set_paint_cap(this.bounds_paint.cap.ROUND);
-        this.bounds_paint.set_paint_join(this.bounds_paint.join.MITER);
-        this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.bounds_paint.set_color(global.GENERAL_GRAY_COLOR);
-        this.bounds_paint.set_text_size(global.canvas_text_size_4);
-        this.bounds_paint.set_font(global.DEFAULT_FONT);
+        this.bounds_paint.set_paint_style(PAINT.style.FILL);
+        this.bounds_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.bounds_paint.set_paint_join(PAINT.join.MITER);
+        this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.bounds_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
+        this.bounds_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.bounds_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
-        this.bounds_paint.set_paint_align(this.bounds_paint.align.CENTER);
+        this.bounds_paint.set_paint_align(PAINT.align.CENTER);
         this.fill_paint = new Paint();
-        this.fill_paint.set_paint_style(this.fill_paint.style.FILL);
-        this.fill_paint.set_paint_cap(this.fill_paint.cap.ROUND);
-        this.fill_paint.set_paint_join(this.fill_paint.join.MITER);
-        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.fill_paint.set_paint_style(PAINT.style.FILL);
+        this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.fill_paint.set_paint_join(PAINT.join.MITER);
+        this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.fill_paint.set_color(global.GRAPH_AREA_COLOR);
-        this.fill_paint.set_text_size(global.canvas_text_size_4);
-        this.fill_paint.set_font(global.DEFAULT_FONT);
+        this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
-        this.fill_paint.set_paint_align(this.fill_paint.align.CENTER);
+        this.fill_paint.set_paint_align(PAINT.align.CENTER);
         this.text_paint = new Paint();
-        this.text_paint.set_paint_style(this.text_paint.style.FILL);
-        this.text_paint.set_paint_cap(this.text_paint.cap.ROUND);
-        this.text_paint.set_paint_join(this.text_paint.join.MITER);
-        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.text_paint.set_color(global.GENERAL_RED_COLOR);
-        if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(global.canvas_text_size_5);
+        this.text_paint.set_paint_style(PAINT.style.FILL);
+        this.text_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.text_paint.set_paint_join(PAINT.join.MITER);
+        this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.text_paint.set_color(global.COLORS.GENERAL_RED_COLOR);
+        if (global.CONSTANTS.MOBILE_MODE) {
+            this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
         else {
-            this.text_paint.set_text_size(global.canvas_text_size_4);
+            this.text_paint.set_text_size(global.variables.canvas_text_size_4);
         }
-        this.text_paint.set_font(global.DEFAULT_FONT);
+        this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(this.text_paint.align.LEFT);
         this.hover_paint = new Paint();
-        this.hover_paint.set_paint_style(this.hover_paint.style.FILL);
-        this.hover_paint.set_paint_cap(this.hover_paint.cap.ROUND);
-        this.hover_paint.set_paint_join(this.hover_paint.join.MITER);
-        this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
-        this.hover_paint.set_color(global.GENERAL_HOVER_COLOR);
-        this.hover_paint.set_text_size(global.canvas_text_size_5);
-        this.hover_paint.set_font(global.DEFAULT_FONT);
+        this.hover_paint.set_paint_style(PAINT.style.FILL);
+        this.hover_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.hover_paint.set_paint_join(PAINT.join.MITER);
+        this.hover_paint.set_stroke_width(0.6 * global.variables.canvas_stroke_width_3);
+        this.hover_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
+        this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.hover_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.hover_paint.set_alpha(255);
-        this.hover_paint.set_paint_align(this.hover_paint.align.CENTER);
+        this.hover_paint.set_paint_align(PAINT.align.CENTER);
         this.graph_text_a_paint = new Paint();
-        this.graph_text_a_paint.set_paint_style(this.graph_text_a_paint.style.FILL);
-        this.graph_text_a_paint.set_paint_cap(this.graph_text_a_paint.cap.ROUND);
-        this.graph_text_a_paint.set_paint_join(this.graph_text_a_paint.join.MITER);
-        this.graph_text_a_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.graph_text_a_paint.set_paint_style(PAINT.style.FILL);
+        this.graph_text_a_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.graph_text_a_paint.set_paint_join(PAINT.join.MITER);
+        this.graph_text_a_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.graph_text_a_paint.set_color(global.TRACE_I_COLOR);
-        this.graph_text_a_paint.set_text_size(global.canvas_text_size_4);
-        this.graph_text_a_paint.set_font(global.DEFAULT_FONT);
+        this.graph_text_a_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.graph_text_a_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.graph_text_a_paint.set_alpha(255);
         this.graph_text_a_paint.set_paint_align(this.graph_text_a_paint.align.LEFT);
         this.graph_text_b_paint = new Paint();
-        this.graph_text_b_paint.set_paint_style(this.graph_text_b_paint.style.FILL);
-        this.graph_text_b_paint.set_paint_cap(this.graph_text_b_paint.cap.ROUND);
-        this.graph_text_b_paint.set_paint_join(this.graph_text_b_paint.join.MITER);
-        this.graph_text_b_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.graph_text_b_paint.set_paint_style(PAINT.style.FILL);
+        this.graph_text_b_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.graph_text_b_paint.set_paint_join(PAINT.join.MITER);
+        this.graph_text_b_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.graph_text_b_paint.set_color(global.TRACE_II_COLOR);
-        this.graph_text_b_paint.set_text_size(global.canvas_text_size_4);
-        this.graph_text_b_paint.set_font(global.DEFAULT_FONT);
+        this.graph_text_b_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.graph_text_b_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.graph_text_b_paint.set_alpha(255);
         this.graph_text_b_paint.set_paint_align(this.graph_text_b_paint.align.LEFT);
         this.graph_text_c_paint = new Paint();
-        this.graph_text_c_paint.set_paint_style(this.graph_text_c_paint.style.FILL);
-        this.graph_text_c_paint.set_paint_cap(this.graph_text_c_paint.cap.ROUND);
-        this.graph_text_c_paint.set_paint_join(this.graph_text_c_paint.join.MITER);
-        this.graph_text_c_paint.set_stroke_width(global.canvas_stroke_width_1);
+        this.graph_text_c_paint.set_paint_style(PAINT.style.FILL);
+        this.graph_text_c_paint.set_paint_cap(PAINT.cap.ROUND);
+        this.graph_text_c_paint.set_paint_join(PAINT.join.MITER);
+        this.graph_text_c_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.graph_text_c_paint.set_color(global.TRACE_III_COLOR);
-        this.graph_text_c_paint.set_text_size(global.canvas_text_size_4);
-        this.graph_text_c_paint.set_font(global.DEFAULT_FONT);
+        this.graph_text_c_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.graph_text_c_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.graph_text_c_paint.set_alpha(255);
         this.graph_text_c_paint.set_paint_align(this.graph_text_c_paint.align.LEFT);
         this.x_axis = new Array(this.GRAPH_X_AXIS_LENGTH).fill(new PointF(0, 0));
@@ -123,15 +123,15 @@ class GraphWindow {
         this.time_tag = '';
         this.load_axis();
         let padding = 0.0125 * this.bounds.get_width();
-        if (global.MOBILE_MODE) {
+        if (global.CONSTANTS.MOBILE_MODE) {
             padding = 0.00875 * this.bounds.get_width();
         }
         let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
         let height = this.BUTTON_HEIGHT_RATIO * this.bounds.get_height();
         this.download_button = new Button(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
         this.download_button.text = 'CSV';
-        this.download_button.text_paint.set_color(global.GENERAL_WHITE_COLOR);
-        this.download_button.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
+        this.download_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+        this.download_button.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
         this.download_button.fill_paint.set_alpha(255);
         this.download_button.draw_stroke = false;
         this.download_button.draw_fill = true;
@@ -163,38 +163,38 @@ class GraphWindow {
         }
     }
     resize_window() {
-        this.padding = global.canvas_stroke_width_5;
+        this.padding = global.variables.canvas_stroke_width_5;
         this.bounds.left = view_port.left;
         this.bounds.right = view_port.right;
-        this.bounds.top = menu_bar.graph_button.bottom + 2 * global.canvas_stroke_width_3;
+        this.bounds.top = menu_bar.graph_button.bottom + 2 * global.variables.canvas_stroke_width_3;
         this.bounds.bottom = view_port.bottom;
         this.load_axis();
-        this.line_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.line_paint.set_text_size(global.canvas_text_size_4);
-        this.text_paint.set_stroke_width(global.canvas_stroke_width_1);
-        if (global.MOBILE_MODE) {
-            this.text_paint.set_text_size(global.canvas_text_size_5);
+        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.line_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        if (global.CONSTANTS.MOBILE_MODE) {
+            this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
         else {
-            this.text_paint.set_text_size(global.canvas_text_size_4);
+            this.text_paint.set_text_size(global.variables.canvas_text_size_4);
         }
-        this.fill_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.fill_paint.set_text_size(global.canvas_text_size_4);
-        this.bounds_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.bounds_paint.set_text_size(global.canvas_text_size_4);
-        this.graph_text_a_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.graph_text_a_paint.set_text_size(global.canvas_text_size_4);
-        this.graph_text_b_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.graph_text_b_paint.set_text_size(global.canvas_text_size_4);
-        this.graph_text_c_paint.set_stroke_width(global.canvas_stroke_width_1);
-        this.graph_text_c_paint.set_text_size(global.canvas_text_size_4);
-        this.hover_paint.set_stroke_width(0.6 * global.canvas_stroke_width_3);
-        this.hover_paint.set_text_size(global.canvas_text_size_5);
+        this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.bounds_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.graph_text_a_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.graph_text_a_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.graph_text_b_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.graph_text_b_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.graph_text_c_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.graph_text_c_paint.set_text_size(global.variables.canvas_text_size_4);
+        this.hover_paint.set_stroke_width(0.6 * global.variables.canvas_stroke_width_3);
+        this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
         this.graph_trace_a.resize_trace();
         this.graph_trace_b.resize_trace();
         this.graph_trace_c.resize_trace();
         let padding = 0.0125 * this.bounds.get_width();
-        if (global.MOBILE_MODE) {
+        if (global.CONSTANTS.MOBILE_MODE) {
             padding = 0.00875 * this.bounds.get_width();
         }
         let width = this.BUTTON_WIDTH_RATIO * this.bounds.get_width();
@@ -228,10 +228,10 @@ class GraphWindow {
         this.graph_trace_c.push(value, t);
     }
     mouse_down() {
-        if (global.flag_graph) {
-            this.first_touch_x = global.mouse_x;
-            this.first_touch_y = global.mouse_y;
-            if (this.download_button.contains_xy(global.mouse_x, global.mouse_y)) {
+        if (global.flags.flag_graph) {
+            this.first_touch_x = global.variables.mouse_x;
+            this.first_touch_y = global.variables.mouse_y;
+            if (this.download_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
                 this.generate_csv();
             }
         }
@@ -281,41 +281,41 @@ class GraphWindow {
             temp_str += '\n';
             str += time_stamp + temp_str;
         }
-        if (!global.MOBILE_MODE) {
-            save_file(global.user_file.title + '_csv.txt', str);
+        if (!global.CONSTANTS.MOBILE_MODE) {
+            save_file(global.variables.user_file.title + '_csv.txt', str);
         }
         else {
-            window.JsInterface.javascript_native_hook('push-csv', global.user_file.title + '_csv.txt', str);
+            window.JsInterface.javascript_native_hook('push-csv', global.variables.user_file.title + '_csv.txt', str);
         }
     }
     mouse_move() {
-        if (global.flag_graph) {
+        if (global.flags.flag_graph) {
             this.mouse_hover();
         }
     }
     mouse_up() { }
     mouse_hover() {
-        if (this.inner_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-            this.meter_hover_index = Math.round(((global.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.GRAPH_X_AXIS_LENGTH)) * 0.5);
+        if (this.inner_bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+            this.meter_hover_index = Math.round(((global.variables.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.GRAPH_X_AXIS_LENGTH)) * 0.5);
         }
         else {
             this.meter_hover_index = -1;
         }
     }
     key_down(key_event) {
-        if (global.flag_graph) {
-            if (key_event['event'].code === global.KEY_CODE_ESCAPE) {
-                menu_bar.handle_graph_flag(!global.flag_graph);
-                global.component_touched = true;
+        if (global.flags.flag_graph) {
+            if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
+                menu_bar.handle_graph_flag(!global.flags.flag_graph);
+                global.variables.component_touched = true;
             }
         }
     }
     draw_window(canvas) {
-        if (global.flag_graph) {
+        if (global.flags.flag_graph) {
             canvas.draw_rect2(this.bounds, this.fill_paint);
             canvas.draw_rect2(this.inner_bounds, this.line_paint);
             let cached_value = this.x_axis.length >> 1;
-            let cached_value_t_p_o1 = (global.ZERO_PT_FIVE + cached_value * 0.1) >> global.ZERO;
+            let cached_value_t_p_o1 = (global.CONSTANTS.ZERO_PT_FIVE + cached_value * 0.1) >> global.CONSTANTS.ZERO;
             let temp = 0;
             let index = 0;
             for (var i = 0; i < cached_value; i += cached_value_t_p_o1) {
@@ -324,7 +324,7 @@ class GraphWindow {
             }
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
             if (scope_manager.entry.length > 0) {
-                canvas.draw_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX), this.bounds.get_center_x() - 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_a_paint);
+                canvas.draw_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX), this.bounds.get_center_x() - 1.25 * global.variables.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_0_INDEX))), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_a_paint);
                 if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_a.trace.length) {
                     if (this.graph_trace_a.get_value(this.meter_hover_index)[1] !== '') {
                         canvas.draw_text(this.graph_trace_a.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_0_INDEX), this.inner_bounds.left, this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_a_paint);
@@ -333,7 +333,7 @@ class GraphWindow {
                         canvas.draw_text('0' + scope_manager.get_units(this.SCOPE_0_INDEX), this.inner_bounds.left, this.inner_bounds.top - (this.inner_bounds.top - this.bounds.top) * 0.5, this.graph_text_a_paint);
                     }
                     this.time_axis_value = this.graph_trace_a.get_value(this.meter_hover_index)[0];
-                    if (global.MOBILE_MODE) {
+                    if (global.CONSTANTS.MOBILE_MODE) {
                         canvas.draw_line(this.bounds.left + this.graph_trace_a.trace[this.meter_hover_index].x, this.inner_bounds.top, this.bounds.left + this.graph_trace_a.trace[this.meter_hover_index].x, this.inner_bounds.bottom, this.line_paint);
                     }
                 }
@@ -348,13 +348,13 @@ class GraphWindow {
                         canvas.draw_text('0' + scope_manager.get_units(this.SCOPE_1_INDEX), this.inner_bounds.left + view_port.view_width * 0.1, this.inner_bounds.top - (this.inner_bounds.top - this.bounds.top) * 0.5, this.graph_text_b_paint);
                     }
                     this.time_axis_value = this.graph_trace_b.get_value(this.meter_hover_index)[0];
-                    if (global.MOBILE_MODE) {
+                    if (global.CONSTANTS.MOBILE_MODE) {
                         canvas.draw_line(this.bounds.left + this.graph_trace_b.trace[this.meter_hover_index].x, this.inner_bounds.top, this.bounds.left + this.graph_trace_b.trace[this.meter_hover_index].x, this.inner_bounds.bottom, this.line_paint);
                     }
                 }
             }
             if (scope_manager.entry.length > 2) {
-                canvas.draw_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX), this.bounds.get_center_x() + 1.25 * global.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX))), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_c_paint);
+                canvas.draw_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX), this.bounds.get_center_x() + 1.25 * global.variables.canvas_text_size_base * (3.5 * this.text_paint.measure_text(scope_manager.get_scope_name(this.SCOPE_2_INDEX))), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_c_paint);
                 if (this.meter_hover_index > -1 && this.meter_hover_index < this.graph_trace_c.trace.length) {
                     if (this.graph_trace_c.get_value(this.meter_hover_index)[1] !== '') {
                         canvas.draw_text(this.graph_trace_c.get_value(this.meter_hover_index)[1] + scope_manager.get_units(this.SCOPE_2_INDEX), this.inner_bounds.left + view_port.view_width * 0.2, this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.graph_text_c_paint);
@@ -363,7 +363,7 @@ class GraphWindow {
                         canvas.draw_text('0' + scope_manager.get_units(this.SCOPE_2_INDEX), this.inner_bounds.left + view_port.view_width * 0.2, this.inner_bounds.top - (this.inner_bounds.top - this.bounds.top) * 0.5, this.graph_text_c_paint);
                     }
                     this.time_axis_value = this.graph_trace_c.get_value(this.meter_hover_index)[0];
-                    if (global.MOBILE_MODE) {
+                    if (global.CONSTANTS.MOBILE_MODE) {
                         canvas.draw_line(this.bounds.left + this.graph_trace_c.trace[this.meter_hover_index].x, this.inner_bounds.top, this.bounds.left + this.graph_trace_c.trace[this.meter_hover_index].x, this.inner_bounds.bottom, this.line_paint);
                     }
                 }
@@ -372,7 +372,7 @@ class GraphWindow {
                 if (this.meter_hover_index > -1 &&
                     (this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)) {
                     canvas.draw_text(this.time_axis_value + 's', this.inner_bounds.right -
-                        this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   ') -
+                        this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   ') -
                         this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
                         view_port.view_width * 0.1, this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
                 }
@@ -380,8 +380,8 @@ class GraphWindow {
             if (this.graph_trace_a.magnitude_list.length > 0) {
                 for (var i = Math.round(this.GRAPH_X_AXIS_LENGTH * 0.1); i < Math.round(this.GRAPH_X_AXIS_LENGTH >> 1); i += Math.round(this.GRAPH_X_AXIS_LENGTH * 0.1)) {
                     if (i < this.graph_trace_a.magnitude_list.length) {
-                        this.time_tag = global.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
-                        canvas.draw_text(this.time_tag + 's', view_port.left + this.graph_trace_a.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1), this.inner_bounds.bottom - global.canvas_stroke_width_6, this.text_paint);
+                        this.time_tag = global.utils.exponentiate_quickly(this.graph_trace_a.magnitude_list[i].x);
+                        canvas.draw_text(this.time_tag + 's', view_port.left + this.graph_trace_a.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1), this.inner_bounds.bottom - global.variables.canvas_stroke_width_6, this.text_paint);
                     }
                     else {
                         break;
@@ -391,8 +391,8 @@ class GraphWindow {
             else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length > 0) {
                 for (var i = (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1; i < this.GRAPH_X_AXIS_LENGTH >> 1; i += (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1) {
                     if (i < this.graph_trace_b.magnitude_list.length) {
-                        this.time_tag = global.exponentiate_quickly(this.graph_trace_b.magnitude_list[i].x);
-                        canvas.draw_text(this.time_tag + 's', view_port.left + this.graph_trace_b.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1), this.inner_bounds.bottom - global.canvas_stroke_width_6, this.text_paint);
+                        this.time_tag = global.utils.exponentiate_quickly(this.graph_trace_b.magnitude_list[i].x);
+                        canvas.draw_text(this.time_tag + 's', view_port.left + this.graph_trace_b.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1), this.inner_bounds.bottom - global.variables.canvas_stroke_width_6, this.text_paint);
                     }
                     else {
                         break;
@@ -402,19 +402,19 @@ class GraphWindow {
             else if (this.graph_trace_a.magnitude_list.length === 0 && this.graph_trace_b.magnitude_list.length === 0 && this.graph_trace_c.magnitude_list.length > 0) {
                 for (var i = (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1; i < this.GRAPH_X_AXIS_LENGTH >> 1; i += (this.GRAPH_X_AXIS_LENGTH >> 1) * 0.1) {
                     if (i < this.graph_trace_c.magnitude_list.length) {
-                        this.time_tag = global.exponentiate_quickly(this.graph_trace_c.magnitude_list[i].x);
-                        canvas.draw_text(this.time_tag + 's', view_port.left + this.graph_trace_c.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1), this.inner_bounds.bottom - global.canvas_stroke_width_6, this.text_paint);
+                        this.time_tag = global.utils.exponentiate_quickly(this.graph_trace_c.magnitude_list[i].x);
+                        canvas.draw_text(this.time_tag + 's', view_port.left + this.graph_trace_c.trace[i].x - (this.text_paint.measure_text(this.time_tag) >> 1), this.inner_bounds.bottom - global.variables.canvas_stroke_width_6, this.text_paint);
                     }
                     else {
                         break;
                     }
                 }
             }
-            canvas.draw_text(global.exponentiate_quickly(global.time_step) + 's/step', this.inner_bounds.right - this.text_paint.measure_text(global.exponentiate_quickly(global.time_step) + 's/step   '), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
-            if (this.download_button.contains_xy(global.mouse_x, global.mouse_y) && !global.MOBILE_MODE) {
-                this.download_button.fill_paint.set_color(global.GENERAL_HOVER_COLOR);
+            canvas.draw_text(global.utils.exponentiate_quickly(global.time_step) + 's/step', this.inner_bounds.right - this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   '), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
+            if (this.download_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && !global.CONSTANTS.MOBILE_MODE) {
+                this.download_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
                 this.download_button.draw_button(canvas);
-                this.download_button.fill_paint.set_color(global.GENERAL_BOUNDS_COLOR);
+                this.download_button.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
             }
             else {
                 this.download_button.draw_button(canvas);

@@ -294,7 +294,7 @@ function load_app(): void {
 				window.addEventListener('dblclick', double_click, false);
 				webpage_document_title = document.getElementById('title_text');
 			}
-			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.ON) {
+			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.CONSTANTS.ON) {
 				view_port.apply_spread_factor = true;
 				global.flags.force_resize_event = true;
 			}
@@ -388,13 +388,13 @@ function load_app(): void {
 	function mouse_down(mouse_event: MouseEvent): void {
 		if (global.variables.system_initialization['completed']) {
 			if (global.CONSTANTS.MOBILE_MODE === false) {
-				global.mouse_x = mouse_event.clientX * global.variables.device_pixel_ratio;
-				global.mouse_y = mouse_event.clientY * global.variables.device_pixel_ratio;
+				global.variables.mouse_x = mouse_event.clientX * global.variables.device_pixel_ratio;
+				global.variables.mouse_y = mouse_event.clientY * global.variables.device_pixel_ratio;
 			} else {
 				//@ts-ignore
 				touch = mouse_event.touches[0];
-				global.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
-				global.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
+				global.variables.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+				global.variables.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
 			}
 			if (bottom_menu.handle_file_explorer()) {
 				if (!global.variables.user_file_selected) {
@@ -406,13 +406,18 @@ function load_app(): void {
 			} else {
 				if (!mouse_event_latch) {
 					if (global.CONSTANTS.MOBILE_MODE) {
-						if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-							global.mouse_down_event_flag = true;
-							global.mouse_down_event_queue.push(mouse_event);
+						if (
+							global.variables.mouse_x >= view_port.left &&
+							global.variables.mouse_x <= view_port.right &&
+							global.variables.mouse_y >= view_port.top &&
+							global.variables.mouse_y <= view_port.bottom
+						) {
+							global.flags.mouse_down_event_flag = true;
+							global.events.mouse_down_event_queue.push(mouse_event);
 						}
 					} else {
-						global.mouse_down_event_flag = true;
-						global.mouse_down_event_queue.push(mouse_event);
+						global.flags.mouse_down_event_flag = true;
+						global.events.mouse_down_event_queue.push(mouse_event);
 					}
 				}
 			}
@@ -421,15 +426,15 @@ function load_app(): void {
 		mouse_event.stopPropagation();
 	}
 	function mouse_move(mouse_event: MouseEvent): void {
-		if (!global.mouse_move_event_flag) {
+		if (!global.flags.mouse_move_event_flag) {
 			if (global.CONSTANTS.MOBILE_MODE) {
-				if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-					global.mouse_move_event = mouse_event;
-					global.mouse_move_event_flag = true;
+				if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
+					global.events.mouse_move_event = mouse_event;
+					global.flags.mouse_move_event_flag = true;
 				}
 			} else {
-				global.mouse_move_event = mouse_event;
-				global.mouse_move_event_flag = true;
+				global.events.mouse_move_event = mouse_event;
+				global.flags.mouse_move_event_flag = true;
 			}
 		}
 		mouse_event.preventDefault();
@@ -438,37 +443,37 @@ function load_app(): void {
 	function mouse_up(mouse_event: MouseEvent): void {
 		if (mouse_event_latch) {
 			if (global.CONSTANTS.MOBILE_MODE) {
-				if (global.mouse_x >= view_port.left && global.mouse_x <= view_port.right && global.mouse_y >= view_port.top && global.mouse_y <= view_port.bottom) {
-					global.mouse_up_event_flag = true;
-					global.mouse_up_event_queue.push(mouse_event);
+				if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
+					global.flags.mouse_up_event_flag = true;
+					global.events.mouse_up_event_queue.push(mouse_event);
 				}
 			} else {
-				global.mouse_up_event_flag = true;
-				global.mouse_up_event_queue.push(mouse_event);
+				global.flags.mouse_up_event_flag = true;
+				global.events.mouse_up_event_queue.push(mouse_event);
 			}
 		}
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
 	function mouse_wheel(mouse_event: MouseEvent): void {
-		if (!global.mouse_wheel_event_flag && !global.CONSTANTS.MOBILE_MODE) {
-			global.mouse_wheel_event_flag = true;
-			global.mouse_wheel_event_queue.push(mouse_event);
+		if (!global.flags.mouse_wheel_event_flag && !global.CONSTANTS.MOBILE_MODE) {
+			global.flags.mouse_wheel_event_flag = true;
+			global.events.mouse_wheel_event_queue.push(mouse_event);
 		}
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
 	function double_click(mouse_event: MouseEvent): void {
 		if (!global.CONSTANTS.MOBILE_MODE) {
-			global.mouse_double_click_event_flag = true;
-			global.mouse_double_click_event_queue.push(mouse_event);
+			global.flags.mouse_double_click_event_flag = true;
+			global.events.mouse_double_click_event_queue.push(mouse_event);
 		}
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
 	function key_down(key_event: KeyboardEvent): void {
-		global.key_down_event_flag = true;
-		global.key_down_event_queue.push({
+		global.flags.key_down_event_flag = true;
+		global.events.key_down_event_queue.push({
 			event: key_event,
 			alt: key_event.getModifierState('Alt'),
 			shift: key_event.getModifierState('Shift'),
@@ -479,8 +484,8 @@ function load_app(): void {
 		key_event.stopPropagation();
 	}
 	function key_up(key_event: KeyboardEvent): void {
-		global.key_up_event_flag = true;
-		global.key_up_event_queue.push({
+		global.flags.key_up_event_flag = true;
+		global.events.key_up_event_queue.push({
 			event: key_event,
 			alt: key_event.getModifierState('Alt'),
 			shift: key_event.getModifierState('Shift'),
@@ -491,11 +496,11 @@ function load_app(): void {
 		key_event.stopPropagation();
 	}
 	function resize_components(): void {
-		global.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
+		global.variables.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
 		if (global.settings.WORKSPACE_PERFECT_SQUARE) {
-			global.natural_width = global.natural_height;
+			global.variables.natural_width = global.variables.natural_height;
 		} else {
-			global.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
+			global.variables.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
 		}
 		workspace.workspace_resize();
 		reset_zoom();
@@ -530,21 +535,21 @@ function load_app(): void {
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	function handle_zoom(mouse_event: MouseEvent): void {
-		if (!global.focused) {
-			global.variables.x_offset = (global.mouse_x - global.variables.delta_x) / global.variables.workspace_zoom_scale;
-			global.variables.y_offset = (global.mouse_y - global.variables.delta_y) / global.variables.workspace_zoom_scale;
+		if (!global.variables.focused) {
+			global.variables.x_offset = (global.variables.mouse_x - global.variables.delta_x) / global.variables.workspace_zoom_scale;
+			global.variables.y_offset = (global.variables.mouse_y - global.variables.delta_y) / global.variables.workspace_zoom_scale;
 			//@ts-ignore
 			if (mouse_event.wheelDelta < 0 || mouse_event.detail > 0) {
-				if (global.variables.workspace_zoom_scale > global.ZOOM_MIN) {
-					global.variables.workspace_zoom_scale /= global.ZOOM_FACTOR;
+				if (global.variables.workspace_zoom_scale > global.CONSTANTS.ZOOM_MIN) {
+					global.variables.workspace_zoom_scale /= global.CONSTANTS.ZOOM_FACTOR;
 				}
 			} else {
-				if (global.variables.workspace_zoom_scale < global.ZOOM_MAX) {
-					global.variables.workspace_zoom_scale *= global.ZOOM_FACTOR;
+				if (global.variables.workspace_zoom_scale < global.CONSTANTS.ZOOM_MAX) {
+					global.variables.workspace_zoom_scale *= global.CONSTANTS.ZOOM_FACTOR;
 				}
 			}
-			global.variables.delta_x = global.mouse_x - global.variables.x_offset * global.variables.workspace_zoom_scale;
-			global.variables.delta_y = global.mouse_y - global.variables.y_offset * global.variables.workspace_zoom_scale;
+			global.variables.delta_x = global.variables.mouse_x - global.variables.x_offset * global.variables.workspace_zoom_scale;
+			global.variables.delta_y = global.variables.mouse_y - global.variables.y_offset * global.variables.workspace_zoom_scale;
 			workspace.workspace_zoom();
 		}
 	}
@@ -558,15 +563,15 @@ function load_app(): void {
 		if (global.variables.system_initialization['completed']) {
 			return (
 				global.flags.flag_resize_event ||
-				global.mouse_down_event_flag ||
-				global.mouse_move_event_flag ||
-				global.mouse_up_event_flag ||
-				global.mouse_wheel_event_flag ||
-				global.mouse_double_click_event_flag ||
-				global.key_up_event_flag ||
-				global.key_down_event_flag ||
-				global.picture_request_flag ||
-				global.flag_simulating ||
+				global.flags.mouse_down_event_flag ||
+				global.flags.mouse_move_event_flag ||
+				global.flags.mouse_up_event_flag ||
+				global.flags.mouse_wheel_event_flag ||
+				global.flags.mouse_double_click_event_flag ||
+				global.flags.key_up_event_flag ||
+				global.flags.key_down_event_flag ||
+				global.flags.picture_request_flag ||
+				global.flags.flag_simulating ||
 				!workspace.draw_to_screen ||
 				toast.draw_text ||
 				!global.variables.system_initialization['completed']
@@ -574,15 +579,15 @@ function load_app(): void {
 		} else {
 			return (
 				global.flags.flag_resize_event ||
-				global.mouse_down_event_flag ||
-				global.mouse_move_event_flag ||
-				global.mouse_up_event_flag ||
-				global.mouse_wheel_event_flag ||
-				global.mouse_double_click_event_flag ||
-				global.key_up_event_flag ||
-				global.key_down_event_flag ||
-				global.picture_request_flag ||
-				global.flag_simulating ||
+				global.flags.mouse_down_event_flag ||
+				global.flags.mouse_move_event_flag ||
+				global.flags.mouse_up_event_flag ||
+				global.flags.mouse_wheel_event_flag ||
+				global.flags.mouse_double_click_event_flag ||
+				global.flags.key_up_event_flag ||
+				global.flags.key_down_event_flag ||
+				global.flags.picture_request_flag ||
+				global.flags.flag_simulating ||
 				!global.variables.system_initialization['completed']
 			);
 		}
@@ -590,41 +595,41 @@ function load_app(): void {
 	function system_loop(): void {
 		try {
 			if (normal_draw_permissions()) {
-				global.canvas_redraw_counter = 0;
+				global.variables.canvas_redraw_counter = 0;
 				global.flags.canvas_draw_event = true;
 			}
 			if (global.flags.canvas_draw_event) {
 				if (global.variables.system_initialization['completed']) {
 					temp_draw_signal =
-						!global.flag_simulating ||
+						!global.flags.flag_simulating ||
 						global.flags.flag_resize_event ||
-						global.mouse_down_event_flag ||
-						global.mouse_move_event_flag ||
-						global.mouse_up_event_flag ||
-						global.mouse_wheel_event_flag ||
-						global.mouse_double_click_event_flag ||
-						global.key_up_event_flag ||
-						global.key_down_event_flag ||
-						global.picture_request_flag ||
+						global.flags.mouse_down_event_flag ||
+						global.flags.mouse_move_event_flag ||
+						global.flags.mouse_up_event_flag ||
+						global.flags.mouse_wheel_event_flag ||
+						global.flags.mouse_double_click_event_flag ||
+						global.flags.key_up_event_flag ||
+						global.flags.key_down_event_flag ||
+						global.flags.picture_request_flag ||
 						!workspace.draw_to_screen ||
 						toast.draw_text;
 				} else {
 					temp_draw_signal =
-						!global.flag_simulating ||
+						!global.flags.flag_simulating ||
 						global.flags.flag_resize_event ||
-						global.mouse_down_event_flag ||
-						global.mouse_move_event_flag ||
-						global.mouse_up_event_flag ||
-						global.mouse_wheel_event_flag ||
-						global.mouse_double_click_event_flag ||
-						global.key_up_event_flag ||
-						global.key_down_event_flag ||
-						global.picture_request_flag ||
+						global.flags.mouse_down_event_flag ||
+						global.flags.mouse_move_event_flag ||
+						global.flags.mouse_up_event_flag ||
+						global.flags.mouse_wheel_event_flag ||
+						global.flags.mouse_double_click_event_flag ||
+						global.flags.key_up_event_flag ||
+						global.flags.key_down_event_flag ||
+						global.flags.picture_request_flag ||
 						!workspace.draw_to_screen;
 				}
-				global.last_selected = global.selected;
+				global.variables.last_selected = global.variables.selected;
 				update();
-				if (global.last_selected !== global.selected) {
+				if (global.variables.last_selected !== global.variables.selected) {
 					wire_manager.reset_wire_builder();
 				}
 				if (global.flags.force_resize_event) {
@@ -635,10 +640,10 @@ function load_app(): void {
 					resize_canvas();
 				}
 				fps_div ^= 1;
-				if (((fps_div == 1 || temp_draw_signal) && global.flag_simulating) || !global.flag_simulating) {
+				if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
 					if (global.variables.system_initialization['completed']) {
-						if ((global.flag_simulating && global.canvas_draw_request) || temp_draw_signal) {
-							if (!global.on_restore_event) {
+						if ((global.flags.flag_simulating && global.flags.canvas_draw_request) || temp_draw_signal) {
+							if (!global.flags.on_restore_event) {
 								if (!global.flags.draw_block) {
 									ctx.drawImage(
 										virtual_surface.get_surface(),
@@ -659,29 +664,29 @@ function load_app(): void {
 									global.flags.draw_block = false;
 								}
 							}
-							if (global.canvas_draw_request) {
-								if (global.canvas_draw_request_counter++ >= global.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-									global.canvas_draw_request_counter = 0;
-									global.canvas_draw_request = false;
+							if (global.flags.canvas_draw_request) {
+								if (global.variables.canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+									global.variables.canvas_draw_request_counter = 0;
+									global.flags.canvas_draw_request = false;
 								}
 							}
 						}
 					}
 				}
 				if (global.flags.signal_build_element) {
-					if (global.variables.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
+					if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
 						global.flags.signal_build_element = false;
 						global.variables.signal_build_counter = 0;
 					}
 				}
-				if (global.signal_wire_deleted) {
-					if (global.signal_wire_deleted_counter++ >= global.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-						global.signal_wire_deleted = false;
-						global.signal_wire_deleted_counter = 0;
+				if (global.flags.signal_wire_deleted) {
+					if (global.variables.signal_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+						global.flags.signal_wire_deleted = false;
+						global.variables.signal_wire_deleted_counter = 0;
 					}
 				}
-				if (global.canvas_redraw_counter++ > global.CANVAS_REDRAW_MAX) {
-					global.canvas_redraw_counter = 0;
+				if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
+					global.variables.canvas_redraw_counter = 0;
 					global.flags.canvas_draw_event = false;
 				}
 			}
@@ -705,68 +710,68 @@ function load_app(): void {
 	function update(): void {
 		if (global.variables.system_initialization['completed']) {
 			engine_functions.file_manager();
-			global.component_translating = false;
+			global.variables.component_translating = false;
 			if (global.CONSTANTS.MOBILE_MODE) {
-				if (global.on_restore_event) {
+				if (global.flags.on_restore_event) {
 					global.flags.signal_build_element = true;
 					window.JsInterface.onRestore();
-					global.on_restore_event = false;
+					global.flags.on_restore_event = false;
 				}
 			}
-			if (global.mouse_down_event_queue.length > 0 && !mouse_event_latch) {
-				fifo_index = global.mouse_down_event_queue.length - 1;
-				global.mouse_down_event = global.mouse_down_event_queue[fifo_index];
+			if (global.events.mouse_down_event_queue.length > 0 && !mouse_event_latch) {
+				fifo_index = global.events.mouse_down_event_queue.length - 1;
+				global.events.mouse_down_event = global.events.mouse_down_event_queue[fifo_index];
 				mouse_event_latch = true;
 				handle_mouse_down();
-				global.mouse_down_event_queue.splice(fifo_index, 1);
-				if (global.mouse_down_event_queue.length === 0) {
-					global.mouse_down_event_flag = false;
+				global.events.mouse_down_event_queue.splice(fifo_index, 1);
+				if (global.events.mouse_down_event_queue.length === 0) {
+					global.flags.mouse_down_event_flag = false;
 				}
-				global.canvas_draw_request = true;
-				global.canvas_draw_request_counter = 0;
+				global.flags.canvas_draw_request = true;
+				global.variables.canvas_draw_request_counter = 0;
 			}
-			if (global.mouse_move_event_flag) {
+			if (global.flags.mouse_move_event_flag) {
 				handle_mouse_move();
-				global.canvas_draw_request = true;
-				global.canvas_draw_request_counter = 0;
-				global.mouse_move_event_flag = false;
+				global.flags.canvas_draw_request = true;
+				global.variables.canvas_draw_request_counter = 0;
+				global.flags.mouse_move_event_flag = false;
 			}
-			if (global.mouse_up_event_queue.length > 0 && mouse_event_latch) {
-				fifo_index = global.mouse_up_event_queue.length - 1;
-				global.mouse_up_event = global.mouse_up_event_queue[fifo_index];
+			if (global.events.mouse_up_event_queue.length > 0 && mouse_event_latch) {
+				fifo_index = global.events.mouse_up_event_queue.length - 1;
+				global.events.mouse_up_event = global.events.mouse_up_event_queue[fifo_index];
 				mouse_event_latch = false;
 				handle_mouse_up();
-				global.mouse_up_event_queue.splice(fifo_index, 1);
-				if (global.mouse_up_event_queue.length === 0) {
-					global.mouse_up_event_flag = false;
-					global.mouse_move_event_flag = false;
-					global.is_dragging = false;
+				global.events.mouse_up_event_queue.splice(fifo_index, 1);
+				if (global.events.mouse_up_event_queue.length === 0) {
+					global.flags.mouse_up_event_flag = false;
+					global.flags.mouse_move_event_flag = false;
+					global.variables.is_dragging = false;
 				}
-				global.canvas_draw_request = true;
-				global.canvas_draw_request_counter = 0;
+				global.flags.canvas_draw_request = true;
+				global.variables.canvas_draw_request_counter = 0;
 			}
-			if (global.mouse_double_click_event_queue.length > 0) {
-				fifo_index = global.mouse_double_click_event_queue.length - 1;
-				global.mouse_double_click_event = global.mouse_double_click_event_queue[fifo_index];
+			if (global.events.mouse_double_click_event_queue.length > 0) {
+				fifo_index = global.events.mouse_double_click_event_queue.length - 1;
+				global.events.mouse_double_click_event = global.events.mouse_double_click_event_queue[fifo_index];
 				handle_double_click();
-				global.mouse_double_click_event_queue.splice(fifo_index, 1);
-				if (global.mouse_double_click_event_queue.length === 0) {
-					global.mouse_double_click_event_flag = false;
+				global.events.mouse_double_click_event_queue.splice(fifo_index, 1);
+				if (global.events.mouse_double_click_event_queue.length === 0) {
+					global.flags.mouse_double_click_event_flag = false;
 				}
-				global.canvas_draw_request = true;
-				global.canvas_draw_request_counter = 0;
+				global.flags.canvas_draw_request = true;
+				global.variables.canvas_draw_request_counter = 0;
 			}
-			if (global.mouse_wheel_event_queue.length > 0) {
-				fifo_index = global.mouse_wheel_event_queue.length - 1;
-				global.mouse_wheel_event = global.mouse_wheel_event_queue[fifo_index];
+			if (global.events.mouse_wheel_event_queue.length > 0) {
+				fifo_index = global.events.mouse_wheel_event_queue.length - 1;
+				global.events.mouse_wheel_event = global.events.mouse_wheel_event_queue[fifo_index];
 				handle_mouse_wheel();
-				global.mouse_wheel_event_queue.splice(fifo_index, 1);
-				if (global.mouse_wheel_event_queue.length === 0) {
-					global.mouse_wheel_event_flag = false;
+				global.events.mouse_wheel_event_queue.splice(fifo_index, 1);
+				if (global.events.mouse_wheel_event_queue.length === 0) {
+					global.flags.mouse_wheel_event_flag = false;
 				}
-				global.canvas_draw_request = true;
-				global.canvas_draw_request_counter = 0;
-				global.is_dragging = false;
+				global.flags.canvas_draw_request = true;
+				global.variables.canvas_draw_request_counter = 0;
+				global.variables.is_dragging = false;
 			}
 			if (global.flags.flag_resize_event) {
 				general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
@@ -776,48 +781,48 @@ function load_app(): void {
 					general_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 				}
 				general_paint.set_text_size(global.variables.canvas_text_size_5);
-				global.mouse_x = 0;
-				global.mouse_y = 0;
+				global.variables.mouse_x = 0;
+				global.variables.mouse_y = 0;
 				reset_zoom();
 				resize_components();
 				global.flags.flag_resize_event = false;
 			}
-			if (global.key_down_event_queue.length > 0) {
-				fifo_index = global.key_down_event_queue.length - 1;
-				global.key_down_event = global.key_down_event_queue[fifo_index];
+			if (global.events.key_down_event_queue.length > 0) {
+				fifo_index = global.events.key_down_event_queue.length - 1;
+				global.events.key_down_event = global.events.key_down_event_queue[fifo_index];
 				handle_key_down();
-				global.key_down_event_queue.splice(fifo_index, 1);
-				if (global.key_down_event_queue.length === 0) {
-					global.key_down_event_flag = false;
+				global.events.key_down_event_queue.splice(fifo_index, 1);
+				if (global.events.key_down_event_queue.length === 0) {
+					global.flags.key_down_event_flag = false;
 				}
-				global.canvas_draw_request = true;
-				global.canvas_draw_request_counter = 0;
+				global.flags.canvas_draw_request = true;
+				global.variables.canvas_draw_request_counter = 0;
 			}
-			if (global.key_up_event_queue.length > 0) {
-				fifo_index = global.key_up_event_queue.length - 1;
-				global.key_up_event = global.key_up_event_queue[fifo_index];
+			if (global.events.key_up_event_queue.length > 0) {
+				fifo_index = global.events.key_up_event_queue.length - 1;
+				global.events.key_up_event = global.events.key_up_event_queue[fifo_index];
 				handle_key_up();
-				global.key_down_event_queue = [];
-				global.key_up_event_queue.splice(fifo_index, 1);
-				if (global.key_up_event_queue.length === 0) {
-					global.key_up_event_flag = false;
+				global.events.key_down_event_queue = [];
+				global.events.key_up_event_queue.splice(fifo_index, 1);
+				if (global.events.key_up_event_queue.length === 0) {
+					global.flags.key_up_event_flag = false;
 				}
-				global.canvas_draw_request = true;
-				global.canvas_draw_request_counter = 0;
+				global.flags.canvas_draw_request = true;
+				global.variables.canvas_draw_request_counter = 0;
 			}
-			if (global.mouse_keyboard_lock) {
-				global.mouse_keyboard_lock = false;
+			if (global.variables.mouse_keyboard_lock) {
+				global.variables.mouse_keyboard_lock = false;
 			}
 			if (
-				global.flag_idle &&
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_zoom &&
-				!global.flag_element_options &&
-				!global.flag_element_options_edit &&
-				!global.flag_select_timestep &&
-				!global.flag_select_settings &&
-				!global.flag_remove_all
+				global.flags.flag_idle &&
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_remove_all
 			) {
 				simulation_manager.simulate();
 				/* #INSERT_GENERATE_UPDATE# */
@@ -1026,7 +1031,7 @@ function load_app(): void {
 			global.variables.system_initialization['step']++;
 			if (global.variables.system_initialization['step'] >= global.variables.system_initialization['max']) {
 				if (global.CONSTANTS.MOBILE_MODE) {
-					global.on_restore_event = true;
+					global.flags.on_restore_event = true;
 				}
 				global.variables.system_initialization['step'] = 0;
 				global.variables.system_initialization['completed'] = true;
@@ -1051,21 +1056,21 @@ function load_app(): void {
 	function draw(): void {
 		refactor_sizes();
 		engine_functions.image_manager();
-		if (!global.picture_request_flag) {
+		if (!global.flags.picture_request_flag) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				if (
-					global.flag_idle &&
-					!global.flag_save_image &&
-					!global.flag_save_circuit &&
-					!global.flag_zoom &&
-					!global.flag_element_options &&
-					!global.flag_element_options_edit &&
-					!global.flag_select_element &&
-					!global.flag_select_timestep &&
-					!global.flag_select_settings &&
-					!global.flag_remove_all &&
-					!global.flag_menu_element_toolbox &&
-					!global.flag_graph
+					global.flags.flag_idle &&
+					!global.flags.flag_save_image &&
+					!global.flags.flag_save_circuit &&
+					!global.flags.flag_zoom &&
+					!global.flags.flag_element_options &&
+					!global.flags.flag_element_options_edit &&
+					!global.flags.flag_select_element &&
+					!global.flags.flag_select_timestep &&
+					!global.flags.flag_select_settings &&
+					!global.flags.flag_remove_all &&
+					!global.flags.flag_menu_element_toolbox &&
+					!global.flags.flag_graph
 				) {
 					multi_select_manager.reset_enveloping_bounds();
 				}
@@ -1130,18 +1135,18 @@ function load_app(): void {
 				toast.draw_toast(canvas);
 			} else {
 				if (
-					global.flag_idle &&
-					!global.flag_save_image &&
-					!global.flag_save_circuit &&
-					!global.flag_zoom &&
-					!global.flag_element_options &&
-					!global.flag_element_options_edit &&
-					!global.flag_select_timestep &&
-					!global.flag_select_settings &&
-					!global.flag_remove_all
+					global.flags.flag_idle &&
+					!global.flags.flag_save_image &&
+					!global.flags.flag_save_circuit &&
+					!global.flags.flag_zoom &&
+					!global.flags.flag_element_options &&
+					!global.flags.flag_element_options_edit &&
+					!global.flags.flag_select_timestep &&
+					!global.flags.flag_select_settings &&
+					!global.flags.flag_remove_all
 				) {
 					workspace.workspace_draw(canvas);
-					if (!global.flag_graph) {
+					if (!global.flags.flag_graph) {
 						if (global.flags.signal_build_element) {
 							node_space_x_cache = 0.29375 * global.variables.node_space_x;
 							node_space_y_cache = 0.29375 * global.variables.node_space_y;
@@ -1205,39 +1210,39 @@ function load_app(): void {
 			}
 		}
 		if (global.CONSTANTS.DEVELOPER_MODE) {
-			canvas.draw_circle(global.mouse_x, global.mouse_y, 20, general_paint);
-			canvas.draw_text(global.mouse_x + ', ' + global.mouse_y, global.mouse_x, global.mouse_y + 50, general_paint);
+			canvas.draw_circle(global.variables.mouse_x, global.variables.mouse_y, 20, general_paint);
+			canvas.draw_text(global.variables.mouse_x + ', ' + global.variables.mouse_y, global.variables.mouse_x, global.variables.mouse_y + 50, general_paint);
 		}
 		view_port.draw_viewport(canvas);
 	}
 	function handle_mouse_down(): void {
-		global.component_touched = false;
+		global.variables.component_touched = false;
 		if (global.CONSTANTS.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_down_event.clientX * global.variables.device_pixel_ratio;
-			global.mouse_y = global.mouse_down_event.clientY * global.variables.device_pixel_ratio;
+			global.variables.mouse_x = global.events.mouse_down_event.clientX * global.variables.device_pixel_ratio;
+			global.variables.mouse_y = global.events.mouse_down_event.clientY * global.variables.device_pixel_ratio;
 		} else {
 			//@ts-expect-error
-			touch = global.mouse_down_event.touches[0];
-			global.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
-			global.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
+			touch = global.events.mouse_down_event.touches[0];
+			global.variables.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+			global.variables.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
 		}
-		global.last_mouse_x = global.mouse_x;
-		global.last_mouse_y = global.mouse_y;
-		global.is_touching = true;
-		global.mouse_down_x = global.mouse_x;
-		global.mouse_down_y = global.mouse_y;
-		global.translation_lock = true;
+		global.variables.last_mouse_x = global.variables.mouse_x;
+		global.variables.last_mouse_y = global.variables.mouse_y;
+		global.variables.is_touching = true;
+		global.variables.mouse_down_x = global.variables.mouse_x;
+		global.variables.mouse_down_y = global.variables.mouse_y;
+		global.variables.translation_lock = true;
 		if (!global.CONSTANTS.MOBILE_MODE) {
-			if ('which' in global.mouse_down_event) {
-				global.is_right_click = global.mouse_down_event.which === 3;
-			} else if ('button' in global.mouse_down_event) {
+			if ('which' in global.events.mouse_down_event) {
+				global.variables.is_right_click = global.events.mouse_down_event.which === 3;
+			} else if ('button' in global.events.mouse_down_event) {
 				//@ts-expect-error
-				global.is_right_click = global.mouse_down_event.button === 2;
+				global.variables.is_right_click = global.events.mouse_down_event.button === 2;
 			}
 		} else {
-			global.is_right_click = false;
+			global.variables.is_right_click = false;
 		}
-		if (!global.is_right_click) {
+		if (!global.variables.is_right_click) {
 			element_options.mouse_down();
 			bottom_menu.mouse_down();
 			time_step_window.mouse_down();
@@ -1254,25 +1259,25 @@ function load_app(): void {
 			on_screen_keyboard.mouse_down();
 		}
 		if (
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox
 		) {
 			if (global.CONSTANTS.MOBILE_MODE === false) {
-				if (global.is_right_click) {
-					global.is_dragging = true;
-					global.temp_is_dragging = global.is_dragging;
+				if (global.variables.is_right_click) {
+					global.variables.is_dragging = true;
+					global.variables.temp_is_dragging = global.variables.is_dragging;
 				}
 			}
-			if (!global.is_dragging) {
+			if (!global.variables.is_dragging) {
 				/* #INSERT_GENERATE_MOUSE_DOWN# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 				for (var i: number = 0; i < resistors.length; i++) {
@@ -1485,51 +1490,52 @@ function load_app(): void {
 				}
 			}
 			if (global.CONSTANTS.MOBILE_MODE === true) {
-				if (global.component_touched === false) {
-					global.is_dragging = true;
-					global.temp_is_dragging = global.is_dragging;
-					global.is_right_click = true;
+				if (global.variables.component_touched === false) {
+					global.variables.is_dragging = true;
+					global.variables.temp_is_dragging = global.variables.is_dragging;
+					global.variables.is_right_click = true;
 				}
 			}
 		}
 	}
 	function handle_mouse_move(): void {
-		global.last_mouse_x = global.mouse_x;
-		global.last_mouse_y = global.mouse_y;
+		global.variables.last_mouse_x = global.variables.mouse_x;
+		global.variables.last_mouse_y = global.variables.mouse_y;
 		if (global.CONSTANTS.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_move_event.clientX * global.variables.device_pixel_ratio;
-			global.mouse_y = global.mouse_move_event.clientY * global.variables.device_pixel_ratio;
+			global.variables.mouse_x = global.events.mouse_move_event.clientX * global.variables.device_pixel_ratio;
+			global.variables.mouse_y = global.events.mouse_move_event.clientY * global.variables.device_pixel_ratio;
 		} else {
 			//@ts-expect-error
-			touch = global.mouse_move_event.touches[0];
-			global.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
-			global.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
+			touch = global.events.mouse_move_event.touches[0];
+			global.variables.mouse_x = touch.clientX * global.variables.device_pixel_ratio;
+			global.variables.mouse_y = touch.clientY * global.variables.device_pixel_ratio;
 		}
-		global.variables.dx = -(global.last_mouse_x - global.mouse_x) * global.settings.TRANSLATION_SCALE;
-		global.variables.dy = -(global.last_mouse_y - global.mouse_y) * global.settings.TRANSLATION_SCALE;
+		global.variables.dx = -(global.variables.last_mouse_x - global.variables.mouse_x) * global.settings.TRANSLATION_SCALE;
+		global.variables.dy = -(global.variables.last_mouse_y - global.variables.mouse_y) * global.settings.TRANSLATION_SCALE;
 		if (
-			global.norm(global.mouse_down_x - global.mouse_x, global.mouse_down_y - global.mouse_y) > 0.5 * Math.min(global.variables.node_space_x, global.variables.node_space_y) &&
-			global.translation_lock
+			global.utils.norm(global.variables.mouse_down_x - global.variables.mouse_x, global.variables.mouse_down_y - global.variables.mouse_y) >
+				0.5 * Math.min(global.variables.node_space_x, global.variables.node_space_y) &&
+			global.variables.translation_lock
 		) {
-			global.translation_lock = false;
-			global.is_dragging = global.temp_is_dragging;
+			global.variables.translation_lock = false;
+			global.variables.is_dragging = global.variables.temp_is_dragging;
 		}
-		if (global.translation_lock) {
-			global.is_dragging = false;
+		if (global.variables.translation_lock) {
+			global.variables.is_dragging = false;
 		}
 		if (
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all
 		) {
-			if (global.flag_idle && !global.flag_simulating) {
+			if (global.flags.flag_idle && !global.flags.flag_simulating) {
 				/* #INSERT_GENERATE_MOUSE_MOVE# */
 				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 				for (var i: number = 0; i < resistors.length; i++) {
@@ -1755,38 +1761,38 @@ function load_app(): void {
 		yes_no_window.mouse_move();
 		graph_window.mouse_move();
 		multi_select_manager.mouse_move();
-		if (global.is_dragging) {
+		if (global.variables.is_dragging) {
 			handle_workspace_drag();
 		}
 	}
 	function handle_mouse_up(): void {
-		let temp_translation_lock: boolean = global.translation_lock;
-		global.translation_lock = true;
-		global.mouse_down_x = -1;
-		global.mouse_down_y = -1;
+		let temp_translation_lock: boolean = global.variables.translation_lock;
+		global.variables.translation_lock = true;
+		global.variables.mouse_down_x = -1;
+		global.variables.mouse_down_y = -1;
 		if (global.CONSTANTS.MOBILE_MODE === false) {
-			global.mouse_x = global.mouse_up_event.clientX * global.variables.device_pixel_ratio;
-			global.mouse_y = global.mouse_up_event.clientY * global.variables.device_pixel_ratio;
+			global.variables.mouse_x = global.events.mouse_up_event.clientX * global.variables.device_pixel_ratio;
+			global.variables.mouse_y = global.events.mouse_up_event.clientY * global.variables.device_pixel_ratio;
 		} else {
 		}
-		global.last_mouse_x = global.mouse_x;
-		global.last_mouse_y = global.mouse_y;
-		global.is_touching = false;
-		global.is_dragging = false;
-		global.temp_is_dragging = global.is_dragging;
+		global.variables.last_mouse_x = global.variables.mouse_x;
+		global.variables.last_mouse_y = global.variables.mouse_y;
+		global.variables.is_touching = false;
+		global.variables.is_dragging = false;
+		global.variables.temp_is_dragging = global.variables.is_dragging;
 		if (
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all
 		) {
-			if (!global.component_touched && !global.is_right_click) {
+			if (!global.variables.component_touched && !global.variables.is_right_click) {
 				if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
 					wire_manager.reset_wire_builder();
 				}
@@ -2002,13 +2008,13 @@ function load_app(): void {
 		for (var i: number = wires.length - 1; i > -1; i--) {
 			wires[i].mouse_up();
 		}
-		if (global.signal_wire_created) {
+		if (global.flags.signal_wire_created) {
 			global.variables.history['packet'].push(engine_functions.history_snapshot());
-			global.signal_wire_created = false;
+			global.flags.signal_wire_created = false;
 		}
-		let component_touched: boolean = global.component_touched;
-		if (!global.component_touched) {
-			global.component_touched = true;
+		let component_touched: boolean = global.variables.component_touched;
+		if (!global.variables.component_touched) {
+			global.variables.component_touched = true;
 		}
 		menu_bar.mouse_up();
 		bottom_menu.mouse_up();
@@ -2024,55 +2030,55 @@ function load_app(): void {
 		yes_no_window.mouse_up();
 		on_screen_keyboard.mouse_up();
 		multi_select_manager.mouse_up();
-		global.component_touched = component_touched;
+		global.variables.component_touched = component_touched;
 		engine_functions.reset_selection(false);
 		engine_functions.handle_nearest_neighbors(temp_translation_lock);
-		global.signal_history_lock = false;
+		global.flags.signal_history_lock = false;
 	}
 	function handle_mouse_wheel(): void {
-		global.mouse_x = global.mouse_wheel_event.clientX * global.variables.device_pixel_ratio;
-		global.mouse_y = global.mouse_wheel_event.clientY * global.variables.device_pixel_ratio;
+		global.variables.mouse_x = global.events.mouse_wheel_event.clientX * global.variables.device_pixel_ratio;
+		global.variables.mouse_y = global.events.mouse_wheel_event.clientY * global.variables.device_pixel_ratio;
 		if (
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox
 		) {
-			handle_zoom(global.mouse_wheel_event);
+			handle_zoom(global.events.mouse_wheel_event);
 		}
 		menu_bar.mouse_wheel();
 	}
 	function handle_double_click(): void {
-		global.mouse_x = global.mouse_double_click_event.clientX * global.variables.device_pixel_ratio;
-		global.mouse_y = global.mouse_double_click_event.clientY * global.variables.device_pixel_ratio;
+		global.variables.mouse_x = global.events.mouse_double_click_event.clientX * global.variables.device_pixel_ratio;
+		global.variables.mouse_y = global.events.mouse_double_click_event.clientY * global.variables.device_pixel_ratio;
 		time_step_window.double_click();
 		save_image_window.double_click();
 		save_circuit_window.double_click();
 		element_options_edit_window.double_click();
 	}
 	function handle_key_down(): void {
-		time_step_window.key_down(global.key_down_event);
-		save_circuit_window.key_down(global.key_down_event, canvas);
-		save_image_window.key_down(global.key_down_event);
-		settings_window.key_down(global.key_down_event);
-		yes_no_window.key_down(global.key_down_event);
-		zoom_window.key_down(global.key_down_event);
-		menu_bar.key_down(global.key_down_event);
-		graph_window.key_down(global.key_down_event);
-		element_options_window.key_down(global.key_down_event);
-		element_options_edit_window.key_down(global.key_down_event);
-		multi_select_manager.key_down(global.key_down_event);
-		shortcut_manager.listen(global.key_down_event);
+		time_step_window.key_down(global.events.key_down_event);
+		save_circuit_window.key_down(global.events.key_down_event, canvas);
+		save_image_window.key_down(global.events.key_down_event);
+		settings_window.key_down(global.events.key_down_event);
+		yes_no_window.key_down(global.events.key_down_event);
+		zoom_window.key_down(global.events.key_down_event);
+		menu_bar.key_down(global.events.key_down_event);
+		graph_window.key_down(global.events.key_down_event);
+		element_options_window.key_down(global.events.key_down_event);
+		element_options_edit_window.key_down(global.events.key_down_event);
+		multi_select_manager.key_down(global.events.key_down_event);
+		shortcut_manager.listen(global.events.key_down_event);
 	}
 	function handle_key_up(): void {
-		multi_select_manager.key_up(global.key_up_event);
+		multi_select_manager.key_up(global.events.key_up_event);
 	}
 	function handle_workspace_drag(): void {
 		let sqrt: number = Math.round(global.settings.SQRT_MAXNODES * 0.75);
@@ -2096,7 +2102,7 @@ function load_app(): void {
 	}
 	function register(): void {
 		if (!global.CONSTANTS.DEVELOPER_MODE) {
-			let post_data: string = 'pinged @ {' + global.get_time_stamp() + '}';
+			let post_data: string = 'pinged @ {' + global.utils.get_time_stamp() + '}';
 			let url: string = 'analytics.php?msg="' + post_data + '"';
 			let method: string = 'POST';
 			let should_be_async: boolean = true;

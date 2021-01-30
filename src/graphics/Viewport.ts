@@ -23,13 +23,13 @@ class Viewport {
 		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.line_paint.set_paint_join(PAINT.join.MITER);
 		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
-		this.line_paint.set_color(global.MENU_HIGHLIGHT_COLOR);
+		this.line_paint.set_color(global.COLORS.MENU_HIGHLIGHT_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
 		this.line_paint.set_paint_align(PAINT.align.CENTER);
 		this.DRAW_BOUNDS_FLAG = false;
-		if (global.CONSTANTS.MOBILE_MODE === true || global.DESKTOP_MODE === true) {
+		if (global.CONSTANTS.MOBILE_MODE === true || global.CONSTANTS.DESKTOP_MODE === true) {
 			this.apply_spread_factor = true;
 		} else {
 			this.apply_spread_factor = false;

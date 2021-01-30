@@ -35,7 +35,7 @@ class MultiSelectManager {
 		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.line_paint.set_paint_join(PAINT.join.MITER);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.line_paint.set_color(global.MULTI_SELECTED_COLOR);
+		this.line_paint.set_color(global.COLORS.MULTI_SELECTED_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
@@ -71,7 +71,7 @@ class MultiSelectManager {
 		this.draw_bounds_flag = new RectF(0, 0, 0, 0);
 	}
 	reset_enveloping_bounds(): void {
-		global.multi_selected = false;
+		global.variables.multi_selected = false;
 		this.selected_components_bounds.left = -this.OFFSCREEN_X;
 		this.selected_components_bounds.top = -this.OFFSCREEN_Y;
 		this.selected_components_bounds.right = this.OFFSCREEN_X + 1;
@@ -79,13 +79,13 @@ class MultiSelectManager {
 	}
 	refresh_multi_select(): void {
 		this.multi_selected_element = false;
-		if (global.selected) {
-			if (!global.component_touched) {
-				global.selected_id = global.CONSTANTS.NULL;
-				global.selected_type = -1;
-				global.selected_bounds = global.CONSTANTS.NULL;
-				global.selected_properties = global.CONSTANTS.NULL;
-				global.selected = false;
+		if (global.variables.selected) {
+			if (!global.variables.component_touched) {
+				global.variables.selected_id = global.CONSTANTS.NULL;
+				global.variables.selected_type = -1;
+				global.variables.selected_bounds = global.CONSTANTS.NULL;
+				global.variables.selected_properties = global.CONSTANTS.NULL;
+				global.variables.selected = false;
 			}
 		}
 		if (this.multi_select) {
@@ -519,19 +519,19 @@ class MultiSelectManager {
 	key_down(key_event: KEY_EVENT_T): void {
 		if (this.enable_keys && !global.CONSTANTS.MOBILE_MODE) {
 			if (
-				!global.flag_simulating &&
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_zoom &&
-				!global.flag_element_options &&
-				!global.flag_element_options_edit &&
-				!global.flag_graph &&
-				!global.flag_select_element &&
-				!global.flag_select_timestep &&
-				!global.flag_select_settings &&
-				!global.flag_remove_all &&
-				!global.flag_menu_element_toolbox &&
-				!global.signal_history_lock
+				!global.flags.flag_simulating &&
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_graph &&
+				!global.flags.flag_select_element &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_remove_all &&
+				!global.flags.flag_menu_element_toolbox &&
+				!global.flags.signal_history_lock
 			) {
 				if (key_event['ctrl']) {
 					this.ctrl_pressed_started = true;
@@ -540,7 +540,7 @@ class MultiSelectManager {
 		}
 	}
 	key_up(key_event: KEY_EVENT_T): void {
-		if (this.enable_keys && !global.signal_history_lock && !global.CONSTANTS.MOBILE_MODE) {
+		if (this.enable_keys && !global.flags.signal_history_lock && !global.CONSTANTS.MOBILE_MODE) {
 			if (!this.mouse_down_flag) {
 				this.ctrl_pressed_started = false;
 				this.ctrl_pressed = false;
@@ -550,62 +550,62 @@ class MultiSelectManager {
 	}
 	mouse_down(): void {
 		if (
-			!global.flag_simulating &&
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox &&
-			!global.signal_history_lock &&
+			!global.flags.flag_simulating &&
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox &&
+			!global.flags.signal_history_lock &&
 			!global.CONSTANTS.MOBILE_MODE
 		) {
-			if (this.enable_keys && !global.signal_history_lock) {
+			if (this.enable_keys && !global.flags.signal_history_lock) {
 				this.mouse_down_flag = true;
 				if (this.ctrl_pressed_started) {
 					this.ctrl_pressed_started = true;
 					this.multi_select = true;
-					this.select_x = global.mouse_x;
-					this.select_y = global.mouse_y;
-					this.multi_select_bounds.left = global.mouse_x;
-					this.multi_select_bounds.top = global.mouse_y;
-					this.multi_select_bounds.right = global.mouse_x;
-					this.multi_select_bounds.bottom = global.mouse_y;
+					this.select_x = global.variables.mouse_x;
+					this.select_y = global.variables.mouse_y;
+					this.multi_select_bounds.left = global.variables.mouse_x;
+					this.multi_select_bounds.top = global.variables.mouse_y;
+					this.multi_select_bounds.right = global.variables.mouse_x;
+					this.multi_select_bounds.bottom = global.variables.mouse_y;
 					this.selected_components_bounds.left = -this.OFFSCREEN_X;
 					this.selected_components_bounds.top = -this.OFFSCREEN_Y;
 					this.selected_components_bounds.right = this.OFFSCREEN_X + 1;
 					this.selected_components_bounds.bottom = this.OFFSCREEN_Y + 1;
 				}
 			} else {
-				if (!global.component_touched) {
+				if (!global.variables.component_touched) {
 					this.ctrl_pressed_started = true;
 					this.multi_select = true;
-					this.select_x = global.mouse_x;
-					this.select_y = global.mouse_y;
-					this.multi_select_bounds.left = global.mouse_x;
-					this.multi_select_bounds.top = global.mouse_y;
-					this.multi_select_bounds.right = global.mouse_x;
-					this.multi_select_bounds.bottom = global.mouse_y;
+					this.select_x = global.variables.mouse_x;
+					this.select_y = global.variables.mouse_y;
+					this.multi_select_bounds.left = global.variables.mouse_x;
+					this.multi_select_bounds.top = global.variables.mouse_y;
+					this.multi_select_bounds.right = global.variables.mouse_x;
+					this.multi_select_bounds.bottom = global.variables.mouse_y;
 					this.selected_components_bounds.left = -this.OFFSCREEN_X;
 					this.selected_components_bounds.top = -this.OFFSCREEN_Y;
 					this.selected_components_bounds.right = this.OFFSCREEN_X + 1;
 					this.selected_components_bounds.bottom = this.OFFSCREEN_Y + 1;
 				}
 			}
-			if (global.multi_selected) {
-				this.delta_center_x = global.mouse_x;
-				this.delta_center_y = global.mouse_y;
+			if (global.variables.multi_selected) {
+				this.delta_center_x = global.variables.mouse_x;
+				this.delta_center_y = global.variables.mouse_y;
 				this.delta_dx = 0;
 				this.delta_dy = 0;
 				this.delta_last_dx = 0;
 				this.delta_last_dy = 0;
 				this.elements_moved = false;
-				if (this.selected_components_bounds.contains_xy(global.mouse_x, global.mouse_y)) {
+				if (this.selected_components_bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 					this.delta_latch = true;
 				} else {
 					this.delta_latch = false;
@@ -615,33 +615,33 @@ class MultiSelectManager {
 	}
 	mouse_move(): void {
 		if (
-			!global.flag_simulating &&
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox &&
-			!global.signal_history_lock &&
+			!global.flags.flag_simulating &&
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox &&
+			!global.flags.signal_history_lock &&
 			!global.CONSTANTS.MOBILE_MODE
 		) {
 			if (this.ctrl_pressed_started) {
-				if (Math.abs(global.mouse_x - this.select_x) > global.variables.node_space_x || Math.abs(global.mouse_y - this.select_y) > global.variables.node_space_y) {
+				if (Math.abs(global.variables.mouse_x - this.select_x) > global.variables.node_space_x || Math.abs(global.variables.mouse_y - this.select_y) > global.variables.node_space_y) {
 					this.ctrl_pressed = true;
 				}
-				if (global.component_translating) {
+				if (global.variables.component_translating) {
 					this.ctrl_pressed = false;
 					this.ctrl_pressed_started = false;
 				}
 			}
-			if (global.multi_selected && this.delta_latch) {
-				this.delta_end_x = global.mouse_x;
-				this.delta_end_y = global.mouse_y;
+			if (global.variables.multi_selected && this.delta_latch) {
+				this.delta_end_x = global.variables.mouse_x;
+				this.delta_end_y = global.variables.mouse_y;
 				if (this.delta_center_x > 0 && this.delta_center_y > 0) {
 					this.delta_last_dx = this.delta_dx;
 					this.delta_last_dy = this.delta_dy;
@@ -654,19 +654,19 @@ class MultiSelectManager {
 			}
 		}
 		if (this.ctrl_pressed) {
-			if (global.mouse_x >= this.select_x) {
+			if (global.variables.mouse_x >= this.select_x) {
 				this.multi_select_bounds.left = this.select_x;
-				this.multi_select_bounds.right = global.mouse_x;
+				this.multi_select_bounds.right = global.variables.mouse_x;
 			} else {
 				this.multi_select_bounds.right = this.select_x;
-				this.multi_select_bounds.left = global.mouse_x;
+				this.multi_select_bounds.left = global.variables.mouse_x;
 			}
-			if (global.mouse_y >= this.select_y) {
+			if (global.variables.mouse_y >= this.select_y) {
 				this.multi_select_bounds.top = this.select_y;
-				this.multi_select_bounds.bottom = global.mouse_y;
+				this.multi_select_bounds.bottom = global.variables.mouse_y;
 			} else {
 				this.multi_select_bounds.bottom = this.select_y;
-				this.multi_select_bounds.top = global.mouse_y;
+				this.multi_select_bounds.top = global.variables.mouse_y;
 			}
 		}
 	}
@@ -1264,26 +1264,26 @@ class MultiSelectManager {
 			}
 
 			/* <!-- END AUTOMATICALLY GENERATED !--> */
-			if (!global.component_touched) {
-				global.component_touched = true;
+			if (!global.variables.component_touched) {
+				global.variables.component_touched = true;
 			}
 		}
 	}
 	determine_enveloping_bounds(bounds: RectF): void {
 		if (
-			!global.flag_save_image &&
-			!global.flag_save_circuit &&
-			!global.flag_zoom &&
-			!global.flag_element_options &&
-			!global.flag_element_options_edit &&
-			!global.flag_graph &&
-			!global.flag_select_element &&
-			!global.flag_select_timestep &&
-			!global.flag_select_settings &&
-			!global.flag_remove_all &&
-			!global.flag_menu_element_toolbox
+			!global.flags.flag_save_image &&
+			!global.flags.flag_save_circuit &&
+			!global.flags.flag_zoom &&
+			!global.flags.flag_element_options &&
+			!global.flags.flag_element_options_edit &&
+			!global.flags.flag_graph &&
+			!global.flags.flag_select_element &&
+			!global.flags.flag_select_timestep &&
+			!global.flags.flag_select_settings &&
+			!global.flags.flag_remove_all &&
+			!global.flags.flag_menu_element_toolbox
 		) {
-			global.multi_selected = true;
+			global.variables.multi_selected = true;
 			this.selected_components_bounds.left = Math.min(this.selected_components_bounds.left, bounds.left - global.variables.node_space_x);
 			this.selected_components_bounds.top = Math.min(this.selected_components_bounds.top, bounds.top - global.variables.node_space_y);
 			this.selected_components_bounds.right = Math.max(this.selected_components_bounds.right, bounds.right + global.variables.node_space_x);
@@ -1293,22 +1293,22 @@ class MultiSelectManager {
 	draw_bounds(canvas: GraphicsEngine): void {
 		if (this.multi_select) {
 			if (
-				!global.flag_save_image &&
-				!global.flag_save_circuit &&
-				!global.flag_zoom &&
-				!global.flag_element_options &&
-				!global.flag_element_options_edit &&
-				!global.flag_graph &&
-				!global.flag_select_element &&
-				!global.flag_select_timestep &&
-				!global.flag_select_settings &&
-				!global.flag_remove_all &&
-				!global.flag_menu_element_toolbox
+				!global.flags.flag_save_image &&
+				!global.flags.flag_save_circuit &&
+				!global.flags.flag_zoom &&
+				!global.flags.flag_element_options &&
+				!global.flags.flag_element_options_edit &&
+				!global.flags.flag_graph &&
+				!global.flags.flag_select_element &&
+				!global.flags.flag_select_timestep &&
+				!global.flags.flag_select_settings &&
+				!global.flags.flag_remove_all &&
+				!global.flags.flag_menu_element_toolbox
 			) {
 				canvas.draw_rect2(this.multi_select_bounds, this.fill_paint);
 			}
 		}
-		if (global.multi_selected) {
+		if (global.variables.multi_selected) {
 			if (
 				this.selected_components_bounds.left > this.OFFSCREEN_X >> 1 &&
 				this.selected_components_bounds.top > this.OFFSCREEN_Y >> 1 &&

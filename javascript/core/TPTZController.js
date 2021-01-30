@@ -1,7 +1,7 @@
 'use strict';
 class TPTZController {
     constructor(tptz_buffer) {
-        this.buffer = global.copy(tptz_buffer);
+        this.buffer = global.utils.copy(tptz_buffer);
         this.x = [0, 0];
         this.y = [0, 0];
         this.a1 = 0;
@@ -31,6 +31,6 @@ class TPTZController {
         return this._y;
     }
     set_tptz_coefficients(tptz_buffer) {
-        this.buffer = global.copy(tptz_buffer);
+        this.buffer = global.utils.copy(tptz_buffer);
     }
 }

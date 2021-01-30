@@ -56,7 +56,7 @@ class ElementOptionsEditWindow {
 		this.point_paint.set_paint_cap(PAINT.cap.ROUND);
 		this.point_paint.set_paint_join(PAINT.join.MITER);
 		this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		this.point_paint.set_color(global.ELEMENT_COLOR);
+		this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.point_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.point_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.point_paint.set_alpha(255);
@@ -179,26 +179,26 @@ class ElementOptionsEditWindow {
 		this.input_button.text = text;
 	}
 	mouse_down(): void {
-		if (global.flag_element_options_edit) {
+		if (global.flags.flag_element_options_edit) {
 			if (
-				this.title_bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
-				!this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)
+				this.title_bounds.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
+				!this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)
 			) {
-				this.anchor_x = global.mouse_x - this.offset_x;
-				this.anchor_y = global.mouse_y - this.offset_y;
+				this.anchor_x = global.variables.mouse_x - this.offset_x;
+				this.anchor_y = global.variables.mouse_y - this.offset_y;
 				this.window_anchored = false;
 			}
-			this.first_touch_x = global.mouse_x;
-			this.first_touch_y = global.mouse_y;
+			this.first_touch_x = global.variables.mouse_x;
+			this.first_touch_y = global.variables.mouse_y;
 			this.initial_cursor_down = this.insert_cursor(false, false);
 			this.mouse_down_flag = true;
 		}
 	}
 	mouse_move(): void {
-		if (global.flag_element_options_edit) {
+		if (global.flags.flag_element_options_edit) {
 			if (!this.window_anchored) {
-				this.offset_x = global.mouse_x - this.anchor_x;
-				this.offset_y = global.mouse_y - this.anchor_y;
+				this.offset_x = global.variables.mouse_x - this.anchor_x;
+				this.offset_y = global.variables.mouse_y - this.anchor_y;
 				if (this.bounds.right + this.offset_x >= view_port.right) {
 					this.offset_x = view_port.right - this.bounds.right;
 				}
@@ -225,67 +225,67 @@ class ElementOptionsEditWindow {
 		}
 	}
 	mouse_up(): void {
-		if (global.flag_element_options_edit) {
-			if (!global.mouse_keyboard_lock) {
+		if (global.flags.flag_element_options_edit) {
+			if (!global.variables.mouse_keyboard_lock) {
 				if (this.window_anchored) {
 					this.insert_cursor(true, false);
 					this.initial_cursor_down = -1;
 					if (
-						!this.bounds.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						!this.bounds.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						!this.bounds.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						if (global.CONSTANTS.MOBILE_MODE) {
-							if (!on_screen_keyboard.bounds.contains_xy(global.mouse_x, global.mouse_y)) {
-								menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-								menu_bar.handle_element_options_flag(!global.flag_element_options);
-								global.component_touched = true;
-								global.mouse_keyboard_lock = true;
+							if (!on_screen_keyboard.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
+								menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+								menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
+								global.variables.component_touched = true;
+								global.variables.mouse_keyboard_lock = true;
 							}
 						} else {
-							menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-							menu_bar.handle_element_options_flag(!global.flag_element_options);
-							global.component_touched = true;
-							global.mouse_keyboard_lock = true;
+							menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+							menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
+							global.variables.component_touched = true;
+							global.variables.mouse_keyboard_lock = true;
 						}
 					} else if (
-						this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.okay_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						if (!this.push_property_update()) {
-							menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-							menu_bar.handle_element_options_flag(!global.flag_element_options);
+							menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+							menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
 						}
-						global.component_touched = true;
-						global.mouse_keyboard_lock = true;
+						global.variables.component_touched = true;
+						global.variables.mouse_keyboard_lock = true;
 					} else if (
-						this.cancel_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.cancel_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-						menu_bar.handle_element_options_flag(!global.flag_element_options);
-						global.component_touched = true;
-						global.mouse_keyboard_lock = true;
+						menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+						menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
+						global.variables.component_touched = true;
+						global.variables.mouse_keyboard_lock = true;
 					} else if (
-						this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.exit_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-						menu_bar.handle_element_options_flag(!global.flag_element_options);
-						global.component_touched = true;
-						global.mouse_keyboard_lock = true;
+						menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+						menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
+						global.variables.component_touched = true;
+						global.variables.mouse_keyboard_lock = true;
 					} else if (
-						this.input_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) &&
+						this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						if (this.select_all) {
-							if (this.select_all && !global.mouse_double_click_event_flag) {
+							if (this.select_all && !global.flags.mouse_double_click_event_flag) {
 								this.select_all = false;
 							}
 						}
 					}
 				} else {
-					this.anchor_x = global.mouse_x - this.offset_x;
-					this.anchor_y = global.mouse_y - this.offset_y;
+					this.anchor_x = global.variables.mouse_x - this.offset_x;
+					this.anchor_y = global.variables.mouse_y - this.offset_y;
 				}
 				this.window_anchored = true;
 				this.mouse_down_flag = false;
@@ -295,8 +295,8 @@ class ElementOptionsEditWindow {
 	insert_cursor(is_mouse_up: boolean, is_mouse_move: boolean): number {
 		let min: number = this.input_button.get_center_x() - this.measured_text * 0.5;
 		let max: number = this.input_button.get_center_x() + this.measured_text * 0.5;
-		let remapped_x: number = global.mouse_x - this.offset_x;
-		let remapped_y: number = global.mouse_y - this.offset_y;
+		let remapped_x: number = global.variables.mouse_x - this.offset_x;
+		let remapped_y: number = global.variables.mouse_y - this.offset_y;
 		if (remapped_x <= min) {
 			remapped_x = min;
 		}
@@ -327,26 +327,26 @@ class ElementOptionsEditWindow {
 		return insert_at;
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (global.flag_element_options_edit) {
-			if (!global.mouse_keyboard_lock) {
+		if (global.flags.flag_element_options_edit) {
+			if (!global.variables.mouse_keyboard_lock) {
 				this.handle_keyboard(key_event);
 			}
 		}
 	}
 	key_up(key_event: KEY_EVENT_T): void {
-		if (global.flag_element_options_edit) {
+		if (global.flags.flag_element_options_edit) {
 		}
 	}
 	handle_keyboard(key_event: KEY_EVENT_T): void {
-		if (!this.special_type(global.selected_type)) {
-			if (global.is_valid_si_units(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
+		if (!this.special_type(global.variables.selected_type)) {
+			if (global.utils.is_valid_si_units(key_event) && key_event['event'].code !== global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 				if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 					if (!this.select_all) {
 						if (this.select_start !== -1 && this.select_end !== -1) {
 							this.handle_partial_select();
 						}
 						this.input_button.text =
-							this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+							this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 						if (this.cursor_position < this.input_button.text.length) {
 							this.cursor_position++;
 						}
@@ -355,7 +355,7 @@ class ElementOptionsEditWindow {
 						this.cursor_position = 0;
 						this.select_all = false;
 						this.input_button.text =
-							this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+							this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 						if (this.cursor_position < this.input_button.text.length) {
 							this.cursor_position++;
 						}
@@ -366,13 +366,13 @@ class ElementOptionsEditWindow {
 						this.cursor_position = 0;
 						this.select_all = false;
 						this.input_button.text =
-							this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+							this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 						if (this.cursor_position < this.input_button.text.length) {
 							this.cursor_position++;
 						}
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
 				if (this.input_button.text.length > 0) {
 					if (!this.select_all) {
 						if (this.select_start === this.select_end) {
@@ -393,7 +393,7 @@ class ElementOptionsEditWindow {
 						this.select_all = false;
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 				if (this.input_button.text.length > 0) {
 					if (!this.select_all) {
 						if (this.select_start === this.select_end) {
@@ -413,7 +413,7 @@ class ElementOptionsEditWindow {
 						this.select_all = false;
 					}
 				}
-			} else if ((key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) && !key_event['shift']) {
+			} else if ((key_event['event'].code === global.KEY_CODES.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODES.KEY_CODE_NUMPAD_MINUS) && !key_event['shift']) {
 				if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 					if (!this.select_all) {
 						if (this.select_start !== -1 && this.select_end !== -1) {
@@ -433,7 +433,7 @@ class ElementOptionsEditWindow {
 						}
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
 				if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 					if (!this.select_all) {
 						if (this.select_start !== -1 && this.select_end !== -1) {
@@ -453,12 +453,12 @@ class ElementOptionsEditWindow {
 						}
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER && !key_event['ctrl']) {
 				if (!this.push_property_update()) {
-					menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-					menu_bar.handle_element_options_flag(!global.flag_element_options);
+					menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+					menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
 				if (key_event['shift'] === false) {
 					this.select_start = -1;
 					this.select_end = -1;
@@ -490,7 +490,7 @@ class ElementOptionsEditWindow {
 						}
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
 				if (key_event['shift'] === false) {
 					this.select_start = -1;
 					this.select_end = -1;
@@ -522,10 +522,10 @@ class ElementOptionsEditWindow {
 						}
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_ESCAPE && !key_event['ctrl']) {
-				menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-				menu_bar.handle_element_options_flag(!global.flag_element_options);
-			} else if (key_event['event'].code === global.KEY_CODE_HOME) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE && !key_event['ctrl']) {
+				menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+				menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_HOME) {
 				if (key_event['shift'] === false) {
 					this.select_start = -1;
 					this.select_end = -1;
@@ -558,7 +558,7 @@ class ElementOptionsEditWindow {
 						}
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_END && !key_event['ctrl']) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_END && !key_event['ctrl']) {
 				if (key_event['shift'] === false) {
 					this.reset_cursor();
 				} else {
@@ -588,7 +588,7 @@ class ElementOptionsEditWindow {
 						}
 					}
 				}
-			} else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
+			} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_A && key_event['ctrl'] === true) {
 				this.select_all = false;
 				this.select_start = 0;
 				this.ascending_flag = true;
@@ -596,15 +596,15 @@ class ElementOptionsEditWindow {
 				this.cursor_position = this.input_button.text.length;
 			}
 		} else {
-			if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
-				if (global.is_alpha_numeric_note(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
+			if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
+				if (global.utils.is_alpha_numeric_note(key_event) && key_event['event'].code !== global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 					if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 						if (!this.select_all) {
 							if (this.select_start !== -1 && this.select_end !== -1) {
 								this.handle_partial_select();
 							}
 							this.input_button.text =
-								this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+								this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 							if (this.cursor_position < this.input_button.text.length) {
 								this.cursor_position++;
 							}
@@ -613,7 +613,7 @@ class ElementOptionsEditWindow {
 							this.cursor_position = 0;
 							this.select_all = false;
 							this.input_button.text =
-								this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+								this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 							if (this.cursor_position < this.input_button.text.length) {
 								this.cursor_position++;
 							}
@@ -624,13 +624,13 @@ class ElementOptionsEditWindow {
 							this.cursor_position = 0;
 							this.select_all = false;
 							this.input_button.text =
-								this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+								this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 							if (this.cursor_position < this.input_button.text.length) {
 								this.cursor_position++;
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
 					if (this.input_button.text.length > 0) {
 						if (!this.select_all) {
 							if (this.select_start === this.select_end) {
@@ -651,7 +651,7 @@ class ElementOptionsEditWindow {
 							this.select_all = false;
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 					if (this.input_button.text.length > 0) {
 						if (!this.select_all) {
 							if (this.select_start === this.select_end) {
@@ -671,7 +671,7 @@ class ElementOptionsEditWindow {
 							this.select_all = false;
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODES.KEY_CODE_NUMPAD_MINUS) {
 					if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 						if (!this.select_all) {
 							if (this.select_start !== -1 && this.select_end !== -1) {
@@ -691,7 +691,7 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
 					if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 						if (!this.select_all) {
 							if (this.select_start !== -1 && this.select_end !== -1) {
@@ -711,12 +711,12 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER && !key_event['ctrl']) {
 					if (!this.push_property_update()) {
-						menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-						menu_bar.handle_element_options_flag(!global.flag_element_options);
+						menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+						menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
 					if (key_event['shift'] === false) {
 						this.select_start = -1;
 						this.select_end = -1;
@@ -748,7 +748,7 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
 					if (key_event['shift'] === false) {
 						this.select_start = -1;
 						this.select_end = -1;
@@ -780,10 +780,10 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ESCAPE && !key_event['ctrl']) {
-					menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-					menu_bar.handle_element_options_flag(!global.flag_element_options);
-				} else if (key_event['event'].code === global.KEY_CODE_HOME) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE && !key_event['ctrl']) {
+					menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+					menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_HOME) {
 					if (key_event['shift'] === false) {
 						this.select_start = -1;
 						this.select_end = -1;
@@ -816,7 +816,7 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_END && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_END && !key_event['ctrl']) {
 					if (key_event['shift'] === false) {
 						this.reset_cursor();
 					} else {
@@ -846,22 +846,22 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_A && key_event['ctrl'] === true) {
 					this.select_all = false;
 					this.select_start = 0;
 					this.ascending_flag = true;
 					this.select_end = this.input_button.text.length;
 					this.cursor_position = this.input_button.text.length;
 				}
-			} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
-				if (global.is_alpha_numeric(key_event) && key_event['event'].code !== global.KEY_CODE_DELETE && !key_event['ctrl']) {
+			} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
+				if (global.utils.is_alpha_numeric(key_event) && key_event['event'].code !== global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 					if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 						if (!this.select_all) {
 							if (this.select_start !== -1 && this.select_end !== -1) {
 								this.handle_partial_select();
 							}
 							this.input_button.text =
-								this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+								this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 							if (this.cursor_position < this.input_button.text.length) {
 								this.cursor_position++;
 							}
@@ -870,7 +870,7 @@ class ElementOptionsEditWindow {
 							this.cursor_position = 0;
 							this.select_all = false;
 							this.input_button.text =
-								this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+								this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 							if (this.cursor_position < this.input_button.text.length) {
 								this.cursor_position++;
 							}
@@ -881,13 +881,13 @@ class ElementOptionsEditWindow {
 							this.cursor_position = 0;
 							this.select_all = false;
 							this.input_button.text =
-								this.input_button.text.substring(0, this.cursor_position) + global.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
+								this.input_button.text.substring(0, this.cursor_position) + global.utils.decode_key(key_event) + this.input_button.text.substring(this.cursor_position, this.input_button.text.length);
 							if (this.cursor_position < this.input_button.text.length) {
 								this.cursor_position++;
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_BACKSPACE && !key_event['ctrl']) {
 					if (this.input_button.text.length > 0) {
 						if (!this.select_all) {
 							if (this.select_start === this.select_end) {
@@ -908,7 +908,7 @@ class ElementOptionsEditWindow {
 							this.select_all = false;
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_DELETE && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_DELETE && !key_event['ctrl']) {
 					if (this.input_button.text.length > 0) {
 						if (!this.select_all) {
 							if (this.select_start === this.select_end) {
@@ -928,7 +928,7 @@ class ElementOptionsEditWindow {
 							this.select_all = false;
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODE_NUMPAD_MINUS) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_MINUS || key_event['event'].code === global.KEY_CODES.KEY_CODE_NUMPAD_MINUS) {
 					if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 						if (!this.select_all) {
 							if (this.select_start !== -1 && this.select_end !== -1) {
@@ -948,7 +948,7 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_PERIOD && !key_event['shift'] && !key_event['ctrl']) {
 					if (this.input_button.text.length < global.CONSTANTS.MAX_TEXT_LENGTH) {
 						if (!this.select_all) {
 							if (this.select_start !== -1 && this.select_end !== -1) {
@@ -968,12 +968,12 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ENTER && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER && !key_event['ctrl']) {
 					if (!this.push_property_update()) {
-						menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-						menu_bar.handle_element_options_flag(!global.flag_element_options);
+						menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+						menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
 					if (key_event['shift'] === false) {
 						this.select_start = -1;
 						this.select_end = -1;
@@ -1005,7 +1005,7 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT && !key_event['ctrl']) {
 					if (key_event['shift'] === false) {
 						this.select_start = -1;
 						this.select_end = -1;
@@ -1037,10 +1037,10 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_ESCAPE && !key_event['ctrl']) {
-					menu_bar.handle_element_options_edit_flag(!global.flag_element_options_edit);
-					menu_bar.handle_element_options_flag(!global.flag_element_options);
-				} else if (key_event['event'].code === global.KEY_CODE_HOME) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE && !key_event['ctrl']) {
+					menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
+					menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_HOME) {
 					if (key_event['shift'] === false) {
 						this.select_start = -1;
 						this.select_end = -1;
@@ -1073,7 +1073,7 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_END && !key_event['ctrl']) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_END && !key_event['ctrl']) {
 					if (key_event['shift'] === false) {
 						this.reset_cursor();
 					} else {
@@ -1103,7 +1103,7 @@ class ElementOptionsEditWindow {
 							}
 						}
 					}
-				} else if (key_event['event'].code === global.KEY_CODE_A && key_event['ctrl'] === true) {
+				} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_A && key_event['ctrl'] === true) {
 					this.select_all = false;
 					this.select_start = 0;
 					this.ascending_flag = true;
@@ -1123,50 +1123,58 @@ class ElementOptionsEditWindow {
 		let ERROR_FLAG: boolean = false;
 		/* #INSERT_GENERATE_ELEMENT_UPDATE_PROPERTY# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		if (global.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+		if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
 			var index: number = -1;
-			index = engine_functions.get_resistor(global.selected_id);
+			index = engine_functions.get_resistor(global.variables.selected_id);
 			if (index < resistors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					resistors[index].elm.properties[resistors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
 			var index: number = -1;
-			index = engine_functions.get_capacitor(global.selected_id);
+			index = engine_functions.get_capacitor(global.variables.selected_id);
 			if (index < capacitors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					capacitors[index].elm.properties[capacitors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
@@ -1176,25 +1184,29 @@ class ElementOptionsEditWindow {
 					capacitors[index].conserve_energy();
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
 			var index: number = -1;
-			index = engine_functions.get_inductor(global.selected_id);
+			index = engine_functions.get_inductor(global.variables.selected_id);
 			if (index < inductors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					inductors[index].elm.properties[inductors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
@@ -1204,1391 +1216,1611 @@ class ElementOptionsEditWindow {
 					inductors[index].conserve_energy();
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
 			var index: number = -1;
-			index = engine_functions.get_ground(global.selected_id);
+			index = engine_functions.get_ground(global.variables.selected_id);
 			if (index < grounds.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					grounds[index].elm.properties[grounds[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
 			var index: number = -1;
-			index = engine_functions.get_dcsource(global.selected_id);
+			index = engine_functions.get_dcsource(global.variables.selected_id);
 			if (index < dcsources.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					dcsources[index].elm.properties[dcsources[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
 			var index: number = -1;
-			index = engine_functions.get_dccurrent(global.selected_id);
+			index = engine_functions.get_dccurrent(global.variables.selected_id);
 			if (index < dccurrents.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					dccurrents[index].elm.properties[dccurrents[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
 			var index: number = -1;
-			index = engine_functions.get_acsource(global.selected_id);
+			index = engine_functions.get_acsource(global.variables.selected_id);
 			if (index < acsources.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					acsources[index].elm.properties[acsources[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
 			var index: number = -1;
-			index = engine_functions.get_accurrent(global.selected_id);
+			index = engine_functions.get_accurrent(global.variables.selected_id);
 			if (index < accurrents.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					accurrents[index].elm.properties[accurrents[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
 			var index: number = -1;
-			index = engine_functions.get_squarewave(global.selected_id);
+			index = engine_functions.get_squarewave(global.variables.selected_id);
 			if (index < squarewaves.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					squarewaves[index].elm.properties[squarewaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
 			var index: number = -1;
-			index = engine_functions.get_sawwave(global.selected_id);
+			index = engine_functions.get_sawwave(global.variables.selected_id);
 			if (index < sawwaves.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					sawwaves[index].elm.properties[sawwaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
 			var index: number = -1;
-			index = engine_functions.get_trianglewave(global.selected_id);
+			index = engine_functions.get_trianglewave(global.variables.selected_id);
 			if (index < trianglewaves.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					trianglewaves[index].elm.properties[trianglewaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
 			var index: number = -1;
-			index = engine_functions.get_constant(global.selected_id);
+			index = engine_functions.get_constant(global.variables.selected_id);
 			if (index < constants.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					constants[index].elm.properties[constants[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
 			var index: number = -1;
-			index = engine_functions.get_net(global.selected_id);
+			index = engine_functions.get_net(global.variables.selected_id);
 			if (index < nets.length) {
-				let value: string = global.copy(this.input_button.text);
-				global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+				let value: string = global.utils.copy(this.input_button.text);
+				global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = value;
 				nets[index].elm.properties[nets[index].elm.properties['options'][this.option_index]] = value;
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
 			var index: number = -1;
-			index = engine_functions.get_note(global.selected_id);
+			index = engine_functions.get_note(global.variables.selected_id);
 			if (index < notes.length) {
-				let value: string = global.copy(this.input_button.text);
-				global.selected_properties[global.selected_properties['options'][this.option_index]] = value;
+				let value: string = global.utils.copy(this.input_button.text);
+				global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = value;
 				notes[index].elm.properties[notes[index].elm.properties['options'][this.option_index]] = value;
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
 			var index: number = -1;
-			index = engine_functions.get_rail(global.selected_id);
+			index = engine_functions.get_rail(global.variables.selected_id);
 			if (index < rails.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					rails[index].elm.properties[rails[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
 			var index: number = -1;
-			index = engine_functions.get_voltmeter(global.selected_id);
+			index = engine_functions.get_voltmeter(global.variables.selected_id);
 			if (index < voltmeters.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					voltmeters[index].elm.properties[voltmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
 			var index: number = -1;
-			index = engine_functions.get_ohmmeter(global.selected_id);
+			index = engine_functions.get_ohmmeter(global.variables.selected_id);
 			if (index < ohmmeters.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					ohmmeters[index].elm.properties[ohmmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
 			var index: number = -1;
-			index = engine_functions.get_ammeter(global.selected_id);
+			index = engine_functions.get_ammeter(global.variables.selected_id);
 			if (index < ammeters.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					ammeters[index].elm.properties[ammeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
 			var index: number = -1;
-			index = engine_functions.get_wattmeter(global.selected_id);
+			index = engine_functions.get_wattmeter(global.variables.selected_id);
 			if (index < wattmeters.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					wattmeters[index].elm.properties[wattmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
 			var index: number = -1;
-			index = engine_functions.get_fuse(global.selected_id);
+			index = engine_functions.get_fuse(global.variables.selected_id);
 			if (index < fuses.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					fuses[index].elm.properties[fuses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
 			var index: number = -1;
-			index = engine_functions.get_spst(global.selected_id);
+			index = engine_functions.get_spst(global.variables.selected_id);
 			if (index < spsts.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					spsts[index].elm.properties[spsts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
 			var index: number = -1;
-			index = engine_functions.get_spdt(global.selected_id);
+			index = engine_functions.get_spdt(global.variables.selected_id);
 			if (index < spdts.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					spdts[index].elm.properties[spdts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
 			var index: number = -1;
-			index = engine_functions.get_not(global.selected_id);
+			index = engine_functions.get_not(global.variables.selected_id);
 			if (index < nots.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					nots[index].elm.properties[nots[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
 			var index: number = -1;
-			index = engine_functions.get_diode(global.selected_id);
+			index = engine_functions.get_diode(global.variables.selected_id);
 			if (index < diodes.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					diodes[index].elm.properties[diodes[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
 			var index: number = -1;
-			index = engine_functions.get_led(global.selected_id);
+			index = engine_functions.get_led(global.variables.selected_id);
 			if (index < leds.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					leds[index].elm.properties[leds[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
 			var index: number = -1;
-			index = engine_functions.get_zener(global.selected_id);
+			index = engine_functions.get_zener(global.variables.selected_id);
 			if (index < zeners.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					zeners[index].elm.properties[zeners[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
 			var index: number = -1;
-			index = engine_functions.get_potentiometer(global.selected_id);
+			index = engine_functions.get_potentiometer(global.variables.selected_id);
 			if (index < potentiometers.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					potentiometers[index].elm.properties[potentiometers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
 			var index: number = -1;
-			index = engine_functions.get_and(global.selected_id);
+			index = engine_functions.get_and(global.variables.selected_id);
 			if (index < ands.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					ands[index].elm.properties[ands[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
 			var index: number = -1;
-			index = engine_functions.get_or(global.selected_id);
+			index = engine_functions.get_or(global.variables.selected_id);
 			if (index < ors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					ors[index].elm.properties[ors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
 			var index: number = -1;
-			index = engine_functions.get_nand(global.selected_id);
+			index = engine_functions.get_nand(global.variables.selected_id);
 			if (index < nands.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					nands[index].elm.properties[nands[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
 			var index: number = -1;
-			index = engine_functions.get_nor(global.selected_id);
+			index = engine_functions.get_nor(global.variables.selected_id);
 			if (index < nors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					nors[index].elm.properties[nors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
 			var index: number = -1;
-			index = engine_functions.get_xor(global.selected_id);
+			index = engine_functions.get_xor(global.variables.selected_id);
 			if (index < xors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					xors[index].elm.properties[xors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
 			var index: number = -1;
-			index = engine_functions.get_xnor(global.selected_id);
+			index = engine_functions.get_xnor(global.variables.selected_id);
 			if (index < xnors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					xnors[index].elm.properties[xnors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
 			var index: number = -1;
-			index = engine_functions.get_dff(global.selected_id);
+			index = engine_functions.get_dff(global.variables.selected_id);
 			if (index < dffs.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					dffs[index].elm.properties[dffs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
 			var index: number = -1;
-			index = engine_functions.get_vsat(global.selected_id);
+			index = engine_functions.get_vsat(global.variables.selected_id);
 			if (index < vsats.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					vsats[index].elm.properties[vsats[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
 			var index: number = -1;
-			index = engine_functions.get_adder(global.selected_id);
+			index = engine_functions.get_adder(global.variables.selected_id);
 			if (index < adders.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					adders[index].elm.properties[adders[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
 			var index: number = -1;
-			index = engine_functions.get_subtractor(global.selected_id);
+			index = engine_functions.get_subtractor(global.variables.selected_id);
 			if (index < subtractors.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					subtractors[index].elm.properties[subtractors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
 			var index: number = -1;
-			index = engine_functions.get_multiplier(global.selected_id);
+			index = engine_functions.get_multiplier(global.variables.selected_id);
 			if (index < multipliers.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					multipliers[index].elm.properties[multipliers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
 			var index: number = -1;
-			index = engine_functions.get_divider(global.selected_id);
+			index = engine_functions.get_divider(global.variables.selected_id);
 			if (index < dividers.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					dividers[index].elm.properties[dividers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
 			var index: number = -1;
-			index = engine_functions.get_gain(global.selected_id);
+			index = engine_functions.get_gain(global.variables.selected_id);
 			if (index < gains.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					gains[index].elm.properties[gains[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
 			var index: number = -1;
-			index = engine_functions.get_absval(global.selected_id);
+			index = engine_functions.get_absval(global.variables.selected_id);
 			if (index < absvals.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					absvals[index].elm.properties[absvals[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
 			var index: number = -1;
-			index = engine_functions.get_vcsw(global.selected_id);
+			index = engine_functions.get_vcsw(global.variables.selected_id);
 			if (index < vcsws.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					vcsws[index].elm.properties[vcsws[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
 			var index: number = -1;
-			index = engine_functions.get_vcvs(global.selected_id);
+			index = engine_functions.get_vcvs(global.variables.selected_id);
 			if (index < vcvss.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					vcvss[index].elm.properties[vcvss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
 			var index: number = -1;
-			index = engine_functions.get_vccs(global.selected_id);
+			index = engine_functions.get_vccs(global.variables.selected_id);
 			if (index < vccss.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					vccss[index].elm.properties[vccss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
 			var index: number = -1;
-			index = engine_functions.get_cccs(global.selected_id);
+			index = engine_functions.get_cccs(global.variables.selected_id);
 			if (index < cccss.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					cccss[index].elm.properties[cccss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
 			var index: number = -1;
-			index = engine_functions.get_ccvs(global.selected_id);
+			index = engine_functions.get_ccvs(global.variables.selected_id);
 			if (index < ccvss.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					ccvss[index].elm.properties[ccvss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
 			var index: number = -1;
-			index = engine_functions.get_opamp(global.selected_id);
+			index = engine_functions.get_opamp(global.variables.selected_id);
 			if (index < opamps.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					opamps[index].elm.properties[opamps[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
 			var index: number = -1;
-			index = engine_functions.get_nmosfet(global.selected_id);
+			index = engine_functions.get_nmosfet(global.variables.selected_id);
 			if (index < nmosfets.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					nmosfets[index].elm.properties[nmosfets[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
 			var index: number = -1;
-			index = engine_functions.get_pmosfet(global.selected_id);
+			index = engine_functions.get_pmosfet(global.variables.selected_id);
 			if (index < pmosfets.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					pmosfets[index].elm.properties[pmosfets[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
 			var index: number = -1;
-			index = engine_functions.get_npn(global.selected_id);
+			index = engine_functions.get_npn(global.variables.selected_id);
 			if (index < npns.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					npns[index].elm.properties[npns[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
 			var index: number = -1;
-			index = engine_functions.get_pnp(global.selected_id);
+			index = engine_functions.get_pnp(global.variables.selected_id);
 			if (index < pnps.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					pnps[index].elm.properties[pnps[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
 			var index: number = -1;
-			index = engine_functions.get_adc(global.selected_id);
+			index = engine_functions.get_adc(global.variables.selected_id);
 			if (index < adcs.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					adcs[index].elm.properties[adcs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
 			var index: number = -1;
-			index = engine_functions.get_dac(global.selected_id);
+			index = engine_functions.get_dac(global.variables.selected_id);
 			if (index < dacs.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					dacs[index].elm.properties[dacs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
 			var index: number = -1;
-			index = engine_functions.get_samplers(global.selected_id);
+			index = engine_functions.get_samplers(global.variables.selected_id);
 			if (index < sandhs.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					sandhs[index].elm.properties[sandhs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
 			var index: number = -1;
-			index = engine_functions.get_pwm(global.selected_id);
+			index = engine_functions.get_pwm(global.variables.selected_id);
 			if (index < pwms.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					pwms[index].elm.properties[pwms[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
 			var index: number = -1;
-			index = engine_functions.get_integrator(global.selected_id);
+			index = engine_functions.get_integrator(global.variables.selected_id);
 			if (index < integrators.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					integrators[index].elm.properties[integrators[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
 			var index: number = -1;
-			index = engine_functions.get_differentiator(global.selected_id);
+			index = engine_functions.get_differentiator(global.variables.selected_id);
 			if (index < differentiators.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					differentiators[index].elm.properties[differentiators[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
 			var index: number = -1;
-			index = engine_functions.get_lowpass(global.selected_id);
+			index = engine_functions.get_lowpass(global.variables.selected_id);
 			if (index < lowpasses.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					lowpasses[index].elm.properties[lowpasses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
 			var index: number = -1;
-			index = engine_functions.get_highpass(global.selected_id);
+			index = engine_functions.get_highpass(global.variables.selected_id);
 			if (index < highpasses.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					highpasses[index].elm.properties[highpasses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
 			var index: number = -1;
-			index = engine_functions.get_relay(global.selected_id);
+			index = engine_functions.get_relay(global.variables.selected_id);
 			if (index < relays.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					relays[index].elm.properties[relays[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
@@ -2598,200 +2830,232 @@ class ElementOptionsEditWindow {
 					relays[index].conserve_energy();
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
 			var index: number = -1;
-			index = engine_functions.get_pid(global.selected_id);
+			index = engine_functions.get_pid(global.variables.selected_id);
 			if (index < pids.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					pids[index].elm.properties[pids[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
 			var index: number = -1;
-			index = engine_functions.get_lut(global.selected_id);
+			index = engine_functions.get_lut(global.variables.selected_id);
 			if (index < luts.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					luts[index].elm.properties[luts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
 			var index: number = -1;
-			index = engine_functions.get_vcr(global.selected_id);
+			index = engine_functions.get_vcr(global.variables.selected_id);
 			if (index < vcrs.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					vcrs[index].elm.properties[vcrs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
 			var index: number = -1;
-			index = engine_functions.get_vcca(global.selected_id);
+			index = engine_functions.get_vcca(global.variables.selected_id);
 			if (index < vccas.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					vccas[index].elm.properties[vccas[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
 			var index: number = -1;
-			index = engine_functions.get_vcl(global.selected_id);
+			index = engine_functions.get_vcl(global.variables.selected_id);
 			if (index < vcls.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					vcls[index].elm.properties[vcls[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
 			var index: number = -1;
-			index = engine_functions.get_grt(global.selected_id);
+			index = engine_functions.get_grt(global.variables.selected_id);
 			if (index < grts.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					grts[index].elm.properties[grts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
 			var index: number = -1;
-			index = engine_functions.get_tptz(global.selected_id);
+			index = engine_functions.get_tptz(global.variables.selected_id);
 			if (index < tptzs.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					tptzs[index].elm.properties[tptzs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
 					ERROR_FLAG = true;
 				}
 			}
-		} else if (global.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
 			var index: number = -1;
-			index = engine_functions.get_transformer(global.selected_id);
+			index = engine_functions.get_transformer(global.variables.selected_id);
 			if (index < transformers.length) {
 				let value: number = string_operator.parse(this.input_button.text);
 				if (
 					Math.abs(value) === 0 ||
-					(Math.abs(value) >= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) &&
-						Math.abs(value) <= Math.abs(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]))
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
 				) {
-					global.selected_properties[global.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
 					transformers[index].elm.properties[transformers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
 				} else {
 					toast.set_text(
 						'PARAM = [|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MIN]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
 							'|, ' +
 							'|' +
-							global.exponentiate_quickly(global.selected_properties['option_limits'][global.selected_properties['options'][this.option_index]][global.PROPERTY_LIMIT_MAX]) +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
 							'|]'
 					);
 					toast.show();
@@ -2825,8 +3089,8 @@ class ElementOptionsEditWindow {
 		this.select_end = -1;
 	}
 	double_click(): void {
-		if (global.mouse_double_click_event_flag) {
-			if (this.input_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y)) {
+		if (global.flags.mouse_double_click_event_flag) {
+			if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
 				this.select_all = !this.select_all;
 				if (this.select_all) {
 					this.select_start = 0;
@@ -2883,7 +3147,7 @@ class ElementOptionsEditWindow {
 		}
 	}
 	draw_window(canvas: GraphicsEngine): void {
-		if (global.flag_element_options_edit) {
+		if (global.flags.flag_element_options_edit) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}
@@ -2897,7 +3161,7 @@ class ElementOptionsEditWindow {
 			canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
 			this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
-			if (this.okay_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
 				this.okay_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.okay_button.fill_paint.set_alpha(255);
 			} else {
@@ -2905,7 +3169,7 @@ class ElementOptionsEditWindow {
 				this.okay_button.fill_paint.set_alpha(130);
 			}
 			this.okay_button.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
-			if (this.cancel_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
 				this.cancel_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.cancel_button.fill_paint.set_alpha(255);
 			} else {
@@ -2947,7 +3211,7 @@ class ElementOptionsEditWindow {
 				this.input_button.get_center_y() + this.offset_y,
 				this.input_button.text_paint
 			);
-			if (this.exit_button.contains_xy(global.mouse_x - this.offset_x, global.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
 				canvas.draw_rect(
 					this.exit_button.left + this.offset_x,
 					this.exit_button.top + this.offset_y,
