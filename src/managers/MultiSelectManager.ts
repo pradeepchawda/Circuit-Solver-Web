@@ -707,7 +707,7 @@ class MultiSelectManager {
 		}
 		if (dx !== 0 || dy !== 0) {
 			global.flags.signal_build_element = true;
-			global.signal_build_counter = 0;
+			global.variables.signal_build_counter = 0;
 			this.elements_moved = true;
 			/* #INSERT_GENERATE_MULTI_SELECT_ELEMENT_MOVE# */
 			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */

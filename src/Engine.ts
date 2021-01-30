@@ -327,23 +327,23 @@ function load_app(): void {
 	function resize_canvas(): void {
 		global.variables.device_pixel_ratio = window.devicePixelRatio;
 		if (global.flags.flag_resize_event === false) {
-			global.last_view_port_right = view_port.right;
-			global.last_view_port_bottom = view_port.bottom;
-			global.last_view_port_width = view_port.view_width;
-			global.last_view_port_height = view_port.view_height;
+			global.utils.last_view_port_right = view_port.right;
+			global.utils.last_view_port_bottom = view_port.bottom;
+			global.utils.last_view_port_width = view_port.view_width;
+			global.utils.last_view_port_height = view_port.view_height;
 			global.utils.last_surface_width = surface.width;
 			global.utils.last_surface_height = surface.height;
 		}
-		solver_container.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
-		solver_container.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
+		solver_container.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
+		solver_container.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
 		solver_container.style.background = 'black';
 		view_port.resize(canvas_aspect_ratio, window.innerWidth * global.variables.device_pixel_ratio, window.innerHeight * global.variables.device_pixel_ratio);
 		surface.width = window.innerWidth * global.variables.device_pixel_ratio;
 		surface.height = window.innerHeight * global.variables.device_pixel_ratio;
-		surface.style.width = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
-		surface.style.height = global.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
-		global.resize_w_factor = view_port.view_width / global.last_view_port_width;
-		global.resize_h_factor = view_port.view_height / global.last_view_port_height;
+		surface.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerWidth));
+		surface.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', <string>(<unknown>window.innerHeight));
+		global.utils.resize_w_factor = view_port.view_width / global.utils.last_view_port_width;
+		global.utils.resize_h_factor = view_port.view_height / global.utils.last_view_port_height;
 		if (global.CONSTANTS.MOBILE_MODE) {
 			global.variables.canvas_stroke_width_base = 0.000775 * view_port.view_width;
 			global.variables.canvas_text_size_base = 0.000775 * view_port.view_width;
@@ -376,7 +376,7 @@ function load_app(): void {
 		global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
 		global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
 		global.flags.signal_build_element = true;
-		global.signal_build_counter = 0;
+		global.variables.signal_build_counter = 0;
 		virtual_surface.resize();
 		global.flags.flag_resize_event = true;
 		canvas.on_resize();
@@ -386,7 +386,7 @@ function load_app(): void {
 		}
 	}
 	function mouse_down(mouse_event: MouseEvent): void {
-		if (global.system_initialization['completed']) {
+		if (global.variables.system_initialization['completed']) {
 			if (global.CONSTANTS.MOBILE_MODE === false) {
 				global.mouse_x = mouse_event.clientX * global.variables.device_pixel_ratio;
 				global.mouse_y = mouse_event.clientY * global.variables.device_pixel_ratio;
@@ -555,7 +555,7 @@ function load_app(): void {
 		global.variables.delta_y = workspace.bounds.top;
 	}
 	function normal_draw_permissions(): boolean {
-		if (global.system_initialization['completed']) {
+		if (global.variables.system_initialization['completed']) {
 			return (
 				global.flags.flag_resize_event ||
 				global.mouse_down_event_flag ||
@@ -569,7 +569,7 @@ function load_app(): void {
 				global.flag_simulating ||
 				!workspace.draw_to_screen ||
 				toast.draw_text ||
-				!global.system_initialization['completed']
+				!global.variables.system_initialization['completed']
 			);
 		} else {
 			return (
@@ -583,7 +583,7 @@ function load_app(): void {
 				global.key_down_event_flag ||
 				global.picture_request_flag ||
 				global.flag_simulating ||
-				!global.system_initialization['completed']
+				!global.variables.system_initialization['completed']
 			);
 		}
 	}
@@ -594,7 +594,7 @@ function load_app(): void {
 				global.flags.canvas_draw_event = true;
 			}
 			if (global.flags.canvas_draw_event) {
-				if (global.system_initialization['completed']) {
+				if (global.variables.system_initialization['completed']) {
 					temp_draw_signal =
 						!global.flag_simulating ||
 						global.flags.flag_resize_event ||
@@ -629,14 +629,14 @@ function load_app(): void {
 				}
 				if (global.flags.force_resize_event) {
 					global.flags.signal_build_element = true;
-					global.signal_build_counter = 0;
+					global.variables.signal_build_counter = 0;
 					global.flags.force_resize_event = false;
 					global.flags.draw_block = true;
 					resize_canvas();
 				}
 				fps_div ^= 1;
 				if (((fps_div == 1 || temp_draw_signal) && global.flag_simulating) || !global.flag_simulating) {
-					if (global.system_initialization['completed']) {
+					if (global.variables.system_initialization['completed']) {
 						if ((global.flag_simulating && global.canvas_draw_request) || temp_draw_signal) {
 							if (!global.on_restore_event) {
 								if (!global.flags.draw_block) {
@@ -669,9 +669,9 @@ function load_app(): void {
 					}
 				}
 				if (global.flags.signal_build_element) {
-					if (global.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
+					if (global.variables.signal_build_counter++ >= global.SIGNAL_BUILD_COUNTER_MAX) {
 						global.flags.signal_build_element = false;
-						global.signal_build_counter = 0;
+						global.variables.signal_build_counter = 0;
 					}
 				}
 				if (global.signal_wire_deleted) {
@@ -703,7 +703,7 @@ function load_app(): void {
 		}
 	}
 	function update(): void {
-		if (global.system_initialization['completed']) {
+		if (global.variables.system_initialization['completed']) {
 			engine_functions.file_manager();
 			global.component_translating = false;
 			if (global.CONSTANTS.MOBILE_MODE) {
@@ -1022,14 +1022,14 @@ function load_app(): void {
 				}
 			}
 		} else {
-			initialize(global.system_initialization['step']);
-			global.system_initialization['step']++;
-			if (global.system_initialization['step'] >= global.system_initialization['max']) {
+			initialize(global.variables.system_initialization['step']);
+			global.variables.system_initialization['step']++;
+			if (global.variables.system_initialization['step'] >= global.variables.system_initialization['max']) {
 				if (global.CONSTANTS.MOBILE_MODE) {
 					global.on_restore_event = true;
 				}
-				global.system_initialization['step'] = 0;
-				global.system_initialization['completed'] = true;
+				global.variables.system_initialization['step'] = 0;
+				global.variables.system_initialization['completed'] = true;
 				global.flags.signal_build_element = true;
 			}
 		}

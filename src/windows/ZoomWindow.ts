@@ -230,7 +230,7 @@ class ZoomWindow {
 	set_zoom(zoom: number): void {
 		if (zoom >= global.ZOOM_MIN && zoom <= global.ZOOM_MAX) {
 			global.flags.signal_build_element = true;
-			global.signal_build_counter = 0;
+			global.variables.signal_build_counter = 0;
 			global.variables.workspace_zoom_scale = zoom;
 			global.variables.x_offset = 0;
 			global.variables.y_offset = 0;

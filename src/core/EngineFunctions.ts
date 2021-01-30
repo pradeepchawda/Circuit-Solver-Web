@@ -6400,7 +6400,7 @@ class EngineFunctions {
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		global.flags.signal_build_element = true;
-		global.signal_build_counter = 0;
+		global.variables.signal_build_counter = 0;
 	}
 	/* #INSERT_GENERATE_REBUILD_ELEMENTS# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -10937,7 +10937,7 @@ class EngineFunctions {
 		global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
 		for (var i: number = 0; i < global.PICTURE_REQUEST_MAX_TIME; i++) {
 			global.flags.signal_build_element = true;
-			global.signal_build_counter = 0;
+			global.variables.signal_build_counter = 0;
 			this.snapshot(temp_surface, temp_canvas);
 		}
 		if (!global.CONSTANTS.MOBILE_MODE) {
