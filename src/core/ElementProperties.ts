@@ -73,10 +73,8 @@ class ElementProperties {
 	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
 	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
-
 	public readonly 'PROPERTY_LIMIT_MIN': number;
 	public readonly 'PROPERTY_LIMIT_MAX': number;
-
 	constructor(CONSTANTS: Constants, settings: Settings) {
 		this.PROPERTY_LIMIT_MIN = 0;
 		this.PROPERTY_LIMIT_MAX = 1;

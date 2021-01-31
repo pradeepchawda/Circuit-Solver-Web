@@ -13,78 +13,78 @@ class SimulationManager {
 	public first_x_matrix_copy: boolean;
 	public first_x_matrix_solution: boolean;
 	public time_data: Array<TIME_DATA_TEMPLATE_T>;
-	/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS_DECLARATION# */
-	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-	public ELEMENT_RESISTOR_OFFSET: number;
-	public ELEMENT_CAPACITOR_OFFSET: number;
-	public ELEMENT_INDUCTOR_OFFSET: number;
-	public ELEMENT_GROUND_OFFSET: number;
-	public ELEMENT_DCSOURCE_OFFSET: number;
-	public ELEMENT_DCCURRENT_OFFSET: number;
-	public ELEMENT_ACSOURCE_OFFSET: number;
-	public ELEMENT_ACCURRENT_OFFSET: number;
-	public ELEMENT_SQUAREWAVE_OFFSET: number;
-	public ELEMENT_SAW_OFFSET: number;
-	public ELEMENT_TRI_OFFSET: number;
-	public ELEMENT_CONSTANT_OFFSET: number;
-	public ELEMENT_WIRE_OFFSET: number;
-	public ELEMENT_NET_OFFSET: number;
-	public ELEMENT_NOTE_OFFSET: number;
-	public ELEMENT_RAIL_OFFSET: number;
-	public ELEMENT_VOLTMETER_OFFSET: number;
-	public ELEMENT_OHMMETER_OFFSET: number;
-	public ELEMENT_AMMETER_OFFSET: number;
-	public ELEMENT_WATTMETER_OFFSET: number;
-	public ELEMENT_FUSE_OFFSET: number;
-	public ELEMENT_SPST_OFFSET: number;
-	public ELEMENT_SPDT_OFFSET: number;
-	public ELEMENT_NOT_OFFSET: number;
-	public ELEMENT_DIODE_OFFSET: number;
-	public ELEMENT_LED_OFFSET: number;
-	public ELEMENT_ZENER_OFFSET: number;
-	public ELEMENT_POTENTIOMETER_OFFSET: number;
-	public ELEMENT_AND_OFFSET: number;
-	public ELEMENT_OR_OFFSET: number;
-	public ELEMENT_NAND_OFFSET: number;
-	public ELEMENT_NOR_OFFSET: number;
-	public ELEMENT_XOR_OFFSET: number;
-	public ELEMENT_XNOR_OFFSET: number;
-	public ELEMENT_DFF_OFFSET: number;
-	public ELEMENT_VSAT_OFFSET: number;
-	public ELEMENT_ADD_OFFSET: number;
-	public ELEMENT_SUB_OFFSET: number;
-	public ELEMENT_MUL_OFFSET: number;
-	public ELEMENT_DIV_OFFSET: number;
-	public ELEMENT_GAIN_OFFSET: number;
-	public ELEMENT_ABS_OFFSET: number;
-	public ELEMENT_VCSW_OFFSET: number;
-	public ELEMENT_VCVS_OFFSET: number;
-	public ELEMENT_VCCS_OFFSET: number;
-	public ELEMENT_CCCS_OFFSET: number;
-	public ELEMENT_CCVS_OFFSET: number;
-	public ELEMENT_OPAMP_OFFSET: number;
-	public ELEMENT_NMOS_OFFSET: number;
-	public ELEMENT_PMOS_OFFSET: number;
-	public ELEMENT_NPN_OFFSET: number;
-	public ELEMENT_PNP_OFFSET: number;
-	public ELEMENT_ADC_OFFSET: number;
-	public ELEMENT_DAC_OFFSET: number;
-	public ELEMENT_SAH_OFFSET: number;
-	public ELEMENT_PWM_OFFSET: number;
-	public ELEMENT_INTEGRATOR_OFFSET: number;
-	public ELEMENT_DIFFERENTIATOR_OFFSET: number;
-	public ELEMENT_LPF_OFFSET: number;
-	public ELEMENT_HPF_OFFSET: number;
-	public ELEMENT_REL_OFFSET: number;
-	public ELEMENT_PID_OFFSET: number;
-	public ELEMENT_LUT_OFFSET: number;
-	public ELEMENT_VCR_OFFSET: number;
-	public ELEMENT_VCCA_OFFSET: number;
-	public ELEMENT_VCL_OFFSET: number;
-	public ELEMENT_GRT_OFFSET: number;
-	public ELEMENT_TPTZ_OFFSET: number;
-	public ELEMENT_TRAN_OFFSET: number;
-	/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS_DECLARATION# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+    public ELEMENT_RESISTOR_OFFSET : number;
+    public ELEMENT_CAPACITOR_OFFSET : number;
+    public ELEMENT_INDUCTOR_OFFSET : number;
+    public ELEMENT_GROUND_OFFSET : number;
+    public ELEMENT_DCSOURCE_OFFSET : number;
+    public ELEMENT_DCCURRENT_OFFSET : number;
+    public ELEMENT_ACSOURCE_OFFSET : number;
+    public ELEMENT_ACCURRENT_OFFSET : number;
+    public ELEMENT_SQUAREWAVE_OFFSET : number;
+    public ELEMENT_SAW_OFFSET : number;
+    public ELEMENT_TRI_OFFSET : number;
+    public ELEMENT_CONSTANT_OFFSET : number;
+    public ELEMENT_WIRE_OFFSET : number;
+    public ELEMENT_NET_OFFSET : number;
+    public ELEMENT_NOTE_OFFSET : number;
+    public ELEMENT_RAIL_OFFSET : number;
+    public ELEMENT_VOLTMETER_OFFSET : number;
+    public ELEMENT_OHMMETER_OFFSET : number;
+    public ELEMENT_AMMETER_OFFSET : number;
+    public ELEMENT_WATTMETER_OFFSET : number;
+    public ELEMENT_FUSE_OFFSET : number;
+    public ELEMENT_SPST_OFFSET : number;
+    public ELEMENT_SPDT_OFFSET : number;
+    public ELEMENT_NOT_OFFSET : number;
+    public ELEMENT_DIODE_OFFSET : number;
+    public ELEMENT_LED_OFFSET : number;
+    public ELEMENT_ZENER_OFFSET : number;
+    public ELEMENT_POTENTIOMETER_OFFSET : number;
+    public ELEMENT_AND_OFFSET : number;
+    public ELEMENT_OR_OFFSET : number;
+    public ELEMENT_NAND_OFFSET : number;
+    public ELEMENT_NOR_OFFSET : number;
+    public ELEMENT_XOR_OFFSET : number;
+    public ELEMENT_XNOR_OFFSET : number;
+    public ELEMENT_DFF_OFFSET : number;
+    public ELEMENT_VSAT_OFFSET : number;
+    public ELEMENT_ADD_OFFSET : number;
+    public ELEMENT_SUB_OFFSET : number;
+    public ELEMENT_MUL_OFFSET : number;
+    public ELEMENT_DIV_OFFSET : number;
+    public ELEMENT_GAIN_OFFSET : number;
+    public ELEMENT_ABS_OFFSET : number;
+    public ELEMENT_VCSW_OFFSET : number;
+    public ELEMENT_VCVS_OFFSET : number;
+    public ELEMENT_VCCS_OFFSET : number;
+    public ELEMENT_CCCS_OFFSET : number;
+    public ELEMENT_CCVS_OFFSET : number;
+    public ELEMENT_OPAMP_OFFSET : number;
+    public ELEMENT_NMOS_OFFSET : number;
+    public ELEMENT_PMOS_OFFSET : number;
+    public ELEMENT_NPN_OFFSET : number;
+    public ELEMENT_PNP_OFFSET : number;
+    public ELEMENT_ADC_OFFSET : number;
+    public ELEMENT_DAC_OFFSET : number;
+    public ELEMENT_SAH_OFFSET : number;
+    public ELEMENT_PWM_OFFSET : number;
+    public ELEMENT_INTEGRATOR_OFFSET : number;
+    public ELEMENT_DIFFERENTIATOR_OFFSET : number;
+    public ELEMENT_LPF_OFFSET : number;
+    public ELEMENT_HPF_OFFSET : number;
+    public ELEMENT_REL_OFFSET : number;
+    public ELEMENT_PID_OFFSET : number;
+    public ELEMENT_LUT_OFFSET : number;
+    public ELEMENT_VCR_OFFSET : number;
+    public ELEMENT_VCCA_OFFSET : number;
+    public ELEMENT_VCL_OFFSET : number;
+    public ELEMENT_GRT_OFFSET : number;
+    public ELEMENT_TPTZ_OFFSET : number;
+    public ELEMENT_TRAN_OFFSET : number;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	constructor() {
 		this.node_size = 0;
 		this.offset = 0;
@@ -99,51 +99,51 @@ class SimulationManager {
 		this.first_x_matrix_copy = true;
 		this.first_x_matrix_solution = false;
 		this.time_data = [];
-		/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.ELEMENT_DCSOURCE_OFFSET = 0;
-		this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-		this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-		this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
-		this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-		this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
-		this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
-		this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
-		this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-		this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
-		this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
-		this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
-		this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
-		this.ELEMENT_NAND_OFFSET = this.ELEMENT_OR_OFFSET + ors.length;
-		this.ELEMENT_NOR_OFFSET = this.ELEMENT_NAND_OFFSET + nands.length;
-		this.ELEMENT_XOR_OFFSET = this.ELEMENT_NOR_OFFSET + nors.length;
-		this.ELEMENT_XNOR_OFFSET = this.ELEMENT_XOR_OFFSET + xors.length;
-		this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
-		this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + dffs.length;
-		this.ELEMENT_ADD_OFFSET = this.ELEMENT_VSAT_OFFSET + vsats.length;
-		this.ELEMENT_SUB_OFFSET = this.ELEMENT_ADD_OFFSET + adders.length;
-		this.ELEMENT_MUL_OFFSET = this.ELEMENT_SUB_OFFSET + subtractors.length;
-		this.ELEMENT_DIV_OFFSET = this.ELEMENT_MUL_OFFSET + multipliers.length;
-		this.ELEMENT_GAIN_OFFSET = this.ELEMENT_DIV_OFFSET + dividers.length;
-		this.ELEMENT_ABS_OFFSET = this.ELEMENT_GAIN_OFFSET + gains.length;
-		this.ELEMENT_VCVS_OFFSET = this.ELEMENT_ABS_OFFSET + absvals.length;
-		this.ELEMENT_CCCS_OFFSET = this.ELEMENT_VCVS_OFFSET + vcvss.length;
-		this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
-		this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + ccvss.length;
-		this.ELEMENT_ADC_OFFSET = this.ELEMENT_OPAMP_OFFSET + opamps.length;
-		this.ELEMENT_DAC_OFFSET = this.ELEMENT_ADC_OFFSET + adcs.length;
-		this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
-		this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
-		this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
-		this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-		this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
-		this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
-		this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
-		this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
-		this.ELEMENT_GRT_OFFSET = this.ELEMENT_LUT_OFFSET + luts.length;
-		this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
-		this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+    this.ELEMENT_DCSOURCE_OFFSET = 0;
+    this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
+    this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
+    this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
+    this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
+    this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
+    this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
+    this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
+    this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
+    this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
+    this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
+    this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
+    this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
+    this.ELEMENT_NAND_OFFSET = this.ELEMENT_OR_OFFSET + ors.length;
+    this.ELEMENT_NOR_OFFSET = this.ELEMENT_NAND_OFFSET + nands.length;
+    this.ELEMENT_XOR_OFFSET = this.ELEMENT_NOR_OFFSET + nors.length;
+    this.ELEMENT_XNOR_OFFSET = this.ELEMENT_XOR_OFFSET + xors.length;
+    this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
+    this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + dffs.length;
+    this.ELEMENT_ADD_OFFSET = this.ELEMENT_VSAT_OFFSET + vsats.length;
+    this.ELEMENT_SUB_OFFSET = this.ELEMENT_ADD_OFFSET + adders.length;
+    this.ELEMENT_MUL_OFFSET = this.ELEMENT_SUB_OFFSET + subtractors.length;
+    this.ELEMENT_DIV_OFFSET = this.ELEMENT_MUL_OFFSET + multipliers.length;
+    this.ELEMENT_GAIN_OFFSET = this.ELEMENT_DIV_OFFSET + dividers.length;
+    this.ELEMENT_ABS_OFFSET = this.ELEMENT_GAIN_OFFSET + gains.length;
+    this.ELEMENT_VCVS_OFFSET = this.ELEMENT_ABS_OFFSET + absvals.length;
+    this.ELEMENT_CCCS_OFFSET = this.ELEMENT_VCVS_OFFSET + vcvss.length;
+    this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
+    this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + ccvss.length;
+    this.ELEMENT_ADC_OFFSET = this.ELEMENT_OPAMP_OFFSET + opamps.length;
+    this.ELEMENT_DAC_OFFSET = this.ELEMENT_ADC_OFFSET + adcs.length;
+    this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
+    this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
+    this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
+    this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
+    this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
+    this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
+    this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
+    this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
+    this.ELEMENT_GRT_OFFSET = this.ELEMENT_LUT_OFFSET + luts.length;
+    this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
+    this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset_simulation(): void {
 		this.initialized = false;
@@ -178,97 +178,55 @@ class SimulationManager {
 		node_manager.assign_node_simulation_ids();
 		engine_functions.assign_element_simulation_ids();
 		this.node_size = node_manager.active_nodes.length;
-		/* #INSERT_GENERATE_SIMULATION_MATRIX_SIZE# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.offset =
-			dcsources.length +
-			acsources.length +
-			squarewaves.length +
-			sawwaves.length +
-			trianglewaves.length +
-			constants.length +
-			rails.length +
-			ohmmeters.length +
-			ammeters.length +
-			wattmeters.length +
-			nots.length +
-			ands.length +
-			ors.length +
-			nands.length +
-			nors.length +
-			xors.length +
-			xnors.length +
-			2 * dffs.length +
-			vsats.length +
-			adders.length +
-			subtractors.length +
-			multipliers.length +
-			dividers.length +
-			gains.length +
-			absvals.length +
-			vcvss.length +
-			cccss.length +
-			2 * ccvss.length +
-			opamps.length +
-			adcs.length +
-			dacs.length +
-			sandhs.length +
-			pwms.length +
-			integrators.length +
-			differentiators.length +
-			lowpasses.length +
-			highpasses.length +
-			pids.length +
-			luts.length +
-			grts.length +
-			tptzs.length +
-			transformers.length;
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		this.ELEMENT_DCSOURCE_OFFSET = 0;
-		this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
-		this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
-		this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
-		this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
-		this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
-		this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
-		this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
-		this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
-		this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
-		this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
-		this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
-		this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
-		this.ELEMENT_NAND_OFFSET = this.ELEMENT_OR_OFFSET + ors.length;
-		this.ELEMENT_NOR_OFFSET = this.ELEMENT_NAND_OFFSET + nands.length;
-		this.ELEMENT_XOR_OFFSET = this.ELEMENT_NOR_OFFSET + nors.length;
-		this.ELEMENT_XNOR_OFFSET = this.ELEMENT_XOR_OFFSET + xors.length;
-		this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
-		this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + dffs.length;
-		this.ELEMENT_ADD_OFFSET = this.ELEMENT_VSAT_OFFSET + vsats.length;
-		this.ELEMENT_SUB_OFFSET = this.ELEMENT_ADD_OFFSET + adders.length;
-		this.ELEMENT_MUL_OFFSET = this.ELEMENT_SUB_OFFSET + subtractors.length;
-		this.ELEMENT_DIV_OFFSET = this.ELEMENT_MUL_OFFSET + multipliers.length;
-		this.ELEMENT_GAIN_OFFSET = this.ELEMENT_DIV_OFFSET + dividers.length;
-		this.ELEMENT_ABS_OFFSET = this.ELEMENT_GAIN_OFFSET + gains.length;
-		this.ELEMENT_VCVS_OFFSET = this.ELEMENT_ABS_OFFSET + absvals.length;
-		this.ELEMENT_CCCS_OFFSET = this.ELEMENT_VCVS_OFFSET + vcvss.length;
-		this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
-		this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + ccvss.length;
-		this.ELEMENT_ADC_OFFSET = this.ELEMENT_OPAMP_OFFSET + opamps.length;
-		this.ELEMENT_DAC_OFFSET = this.ELEMENT_ADC_OFFSET + adcs.length;
-		this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
-		this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
-		this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
-		this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
-		this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
-		this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
-		this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
-		this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
-		this.ELEMENT_GRT_OFFSET = this.ELEMENT_LUT_OFFSET + luts.length;
-		this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
-		this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_SIMULATION_MATRIX_SIZE# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+this.offset = dcsources.length + acsources.length + squarewaves.length + sawwaves.length + trianglewaves.length + constants.length + rails.length + ohmmeters.length + ammeters.length + wattmeters.length + nots.length + ands.length + ors.length + nands.length + nors.length + xors.length + xnors.length + 2 * dffs.length + vsats.length + adders.length + subtractors.length + multipliers.length + dividers.length + gains.length + absvals.length + vcvss.length + cccss.length + 2 * ccvss.length + opamps.length + adcs.length + dacs.length + sandhs.length + pwms.length + integrators.length + differentiators.length + lowpasses.length + highpasses.length + pids.length + luts.length + grts.length + tptzs.length + transformers.length;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+    this.ELEMENT_DCSOURCE_OFFSET = 0;
+    this.ELEMENT_ACSOURCE_OFFSET = this.ELEMENT_DCSOURCE_OFFSET + dcsources.length;
+    this.ELEMENT_SQUAREWAVE_OFFSET = this.ELEMENT_ACSOURCE_OFFSET + acsources.length;
+    this.ELEMENT_SAW_OFFSET = this.ELEMENT_SQUAREWAVE_OFFSET + squarewaves.length;
+    this.ELEMENT_TRI_OFFSET = this.ELEMENT_SAW_OFFSET + sawwaves.length;
+    this.ELEMENT_CONSTANT_OFFSET = this.ELEMENT_TRI_OFFSET + trianglewaves.length;
+    this.ELEMENT_RAIL_OFFSET = this.ELEMENT_CONSTANT_OFFSET + constants.length;
+    this.ELEMENT_OHMMETER_OFFSET = this.ELEMENT_RAIL_OFFSET + rails.length;
+    this.ELEMENT_AMMETER_OFFSET = this.ELEMENT_OHMMETER_OFFSET + ohmmeters.length;
+    this.ELEMENT_WATTMETER_OFFSET = this.ELEMENT_AMMETER_OFFSET + ammeters.length;
+    this.ELEMENT_NOT_OFFSET = this.ELEMENT_WATTMETER_OFFSET + wattmeters.length;
+    this.ELEMENT_AND_OFFSET = this.ELEMENT_NOT_OFFSET + nots.length;
+    this.ELEMENT_OR_OFFSET = this.ELEMENT_AND_OFFSET + ands.length;
+    this.ELEMENT_NAND_OFFSET = this.ELEMENT_OR_OFFSET + ors.length;
+    this.ELEMENT_NOR_OFFSET = this.ELEMENT_NAND_OFFSET + nands.length;
+    this.ELEMENT_XOR_OFFSET = this.ELEMENT_NOR_OFFSET + nors.length;
+    this.ELEMENT_XNOR_OFFSET = this.ELEMENT_XOR_OFFSET + xors.length;
+    this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
+    this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + dffs.length;
+    this.ELEMENT_ADD_OFFSET = this.ELEMENT_VSAT_OFFSET + vsats.length;
+    this.ELEMENT_SUB_OFFSET = this.ELEMENT_ADD_OFFSET + adders.length;
+    this.ELEMENT_MUL_OFFSET = this.ELEMENT_SUB_OFFSET + subtractors.length;
+    this.ELEMENT_DIV_OFFSET = this.ELEMENT_MUL_OFFSET + multipliers.length;
+    this.ELEMENT_GAIN_OFFSET = this.ELEMENT_DIV_OFFSET + dividers.length;
+    this.ELEMENT_ABS_OFFSET = this.ELEMENT_GAIN_OFFSET + gains.length;
+    this.ELEMENT_VCVS_OFFSET = this.ELEMENT_ABS_OFFSET + absvals.length;
+    this.ELEMENT_CCCS_OFFSET = this.ELEMENT_VCVS_OFFSET + vcvss.length;
+    this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
+    this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + ccvss.length;
+    this.ELEMENT_ADC_OFFSET = this.ELEMENT_OPAMP_OFFSET + opamps.length;
+    this.ELEMENT_DAC_OFFSET = this.ELEMENT_ADC_OFFSET + adcs.length;
+    this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
+    this.ELEMENT_PWM_OFFSET = this.ELEMENT_SAH_OFFSET + sandhs.length;
+    this.ELEMENT_INTEGRATOR_OFFSET = this.ELEMENT_PWM_OFFSET + pwms.length;
+    this.ELEMENT_DIFFERENTIATOR_OFFSET = this.ELEMENT_INTEGRATOR_OFFSET + integrators.length;
+    this.ELEMENT_LPF_OFFSET = this.ELEMENT_DIFFERENTIATOR_OFFSET + differentiators.length;
+    this.ELEMENT_HPF_OFFSET = this.ELEMENT_LPF_OFFSET + lowpasses.length;
+    this.ELEMENT_PID_OFFSET = this.ELEMENT_HPF_OFFSET + highpasses.length;
+    this.ELEMENT_LUT_OFFSET = this.ELEMENT_PID_OFFSET + pids.length;
+    this.ELEMENT_GRT_OFFSET = this.ELEMENT_LUT_OFFSET + luts.length;
+    this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
+    this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 		toast.set_text(language_manager.START_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 		toast.show();
 		this.solutions_ready = false;
@@ -277,216 +235,216 @@ class SimulationManager {
 	}
 	determine_optimal_timestep(): number {
 		this.time_data.splice(0, this.time_data.length);
-		/* #INSERT_GENERATE_PUSH_TIME_DATA# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < resistors.length; i++) {
-			this.time_data.push(resistors[i].time_data());
-		}
-		for (var i: number = 0; i < capacitors.length; i++) {
-			this.time_data.push(capacitors[i].time_data());
-		}
-		for (var i: number = 0; i < inductors.length; i++) {
-			this.time_data.push(inductors[i].time_data());
-		}
-		for (var i: number = 0; i < grounds.length; i++) {
-			this.time_data.push(grounds[i].time_data());
-		}
-		for (var i: number = 0; i < dcsources.length; i++) {
-			this.time_data.push(dcsources[i].time_data());
-		}
-		for (var i: number = 0; i < dccurrents.length; i++) {
-			this.time_data.push(dccurrents[i].time_data());
-		}
-		for (var i: number = 0; i < acsources.length; i++) {
-			this.time_data.push(acsources[i].time_data());
-		}
-		for (var i: number = 0; i < accurrents.length; i++) {
-			this.time_data.push(accurrents[i].time_data());
-		}
-		for (var i: number = 0; i < squarewaves.length; i++) {
-			this.time_data.push(squarewaves[i].time_data());
-		}
-		for (var i: number = 0; i < sawwaves.length; i++) {
-			this.time_data.push(sawwaves[i].time_data());
-		}
-		for (var i: number = 0; i < trianglewaves.length; i++) {
-			this.time_data.push(trianglewaves[i].time_data());
-		}
-		for (var i: number = 0; i < constants.length; i++) {
-			this.time_data.push(constants[i].time_data());
-		}
-		for (var i: number = 0; i < wires.length; i++) {
-			this.time_data.push(wires[i].time_data());
-		}
-		for (var i: number = 0; i < nets.length; i++) {
-			this.time_data.push(nets[i].time_data());
-		}
-		for (var i: number = 0; i < notes.length; i++) {
-			this.time_data.push(notes[i].time_data());
-		}
-		for (var i: number = 0; i < rails.length; i++) {
-			this.time_data.push(rails[i].time_data());
-		}
-		for (var i: number = 0; i < voltmeters.length; i++) {
-			this.time_data.push(voltmeters[i].time_data());
-		}
-		for (var i: number = 0; i < ohmmeters.length; i++) {
-			this.time_data.push(ohmmeters[i].time_data());
-		}
-		for (var i: number = 0; i < ammeters.length; i++) {
-			this.time_data.push(ammeters[i].time_data());
-		}
-		for (var i: number = 0; i < wattmeters.length; i++) {
-			this.time_data.push(wattmeters[i].time_data());
-		}
-		for (var i: number = 0; i < fuses.length; i++) {
-			this.time_data.push(fuses[i].time_data());
-		}
-		for (var i: number = 0; i < spsts.length; i++) {
-			this.time_data.push(spsts[i].time_data());
-		}
-		for (var i: number = 0; i < spdts.length; i++) {
-			this.time_data.push(spdts[i].time_data());
-		}
-		for (var i: number = 0; i < nots.length; i++) {
-			this.time_data.push(nots[i].time_data());
-		}
-		for (var i: number = 0; i < diodes.length; i++) {
-			this.time_data.push(diodes[i].time_data());
-		}
-		for (var i: number = 0; i < leds.length; i++) {
-			this.time_data.push(leds[i].time_data());
-		}
-		for (var i: number = 0; i < zeners.length; i++) {
-			this.time_data.push(zeners[i].time_data());
-		}
-		for (var i: number = 0; i < potentiometers.length; i++) {
-			this.time_data.push(potentiometers[i].time_data());
-		}
-		for (var i: number = 0; i < ands.length; i++) {
-			this.time_data.push(ands[i].time_data());
-		}
-		for (var i: number = 0; i < ors.length; i++) {
-			this.time_data.push(ors[i].time_data());
-		}
-		for (var i: number = 0; i < nands.length; i++) {
-			this.time_data.push(nands[i].time_data());
-		}
-		for (var i: number = 0; i < nors.length; i++) {
-			this.time_data.push(nors[i].time_data());
-		}
-		for (var i: number = 0; i < xors.length; i++) {
-			this.time_data.push(xors[i].time_data());
-		}
-		for (var i: number = 0; i < xnors.length; i++) {
-			this.time_data.push(xnors[i].time_data());
-		}
-		for (var i: number = 0; i < dffs.length; i++) {
-			this.time_data.push(dffs[i].time_data());
-		}
-		for (var i: number = 0; i < vsats.length; i++) {
-			this.time_data.push(vsats[i].time_data());
-		}
-		for (var i: number = 0; i < adders.length; i++) {
-			this.time_data.push(adders[i].time_data());
-		}
-		for (var i: number = 0; i < subtractors.length; i++) {
-			this.time_data.push(subtractors[i].time_data());
-		}
-		for (var i: number = 0; i < multipliers.length; i++) {
-			this.time_data.push(multipliers[i].time_data());
-		}
-		for (var i: number = 0; i < dividers.length; i++) {
-			this.time_data.push(dividers[i].time_data());
-		}
-		for (var i: number = 0; i < gains.length; i++) {
-			this.time_data.push(gains[i].time_data());
-		}
-		for (var i: number = 0; i < absvals.length; i++) {
-			this.time_data.push(absvals[i].time_data());
-		}
-		for (var i: number = 0; i < vcsws.length; i++) {
-			this.time_data.push(vcsws[i].time_data());
-		}
-		for (var i: number = 0; i < vcvss.length; i++) {
-			this.time_data.push(vcvss[i].time_data());
-		}
-		for (var i: number = 0; i < vccss.length; i++) {
-			this.time_data.push(vccss[i].time_data());
-		}
-		for (var i: number = 0; i < cccss.length; i++) {
-			this.time_data.push(cccss[i].time_data());
-		}
-		for (var i: number = 0; i < ccvss.length; i++) {
-			this.time_data.push(ccvss[i].time_data());
-		}
-		for (var i: number = 0; i < opamps.length; i++) {
-			this.time_data.push(opamps[i].time_data());
-		}
-		for (var i: number = 0; i < nmosfets.length; i++) {
-			this.time_data.push(nmosfets[i].time_data());
-		}
-		for (var i: number = 0; i < pmosfets.length; i++) {
-			this.time_data.push(pmosfets[i].time_data());
-		}
-		for (var i: number = 0; i < npns.length; i++) {
-			this.time_data.push(npns[i].time_data());
-		}
-		for (var i: number = 0; i < pnps.length; i++) {
-			this.time_data.push(pnps[i].time_data());
-		}
-		for (var i: number = 0; i < adcs.length; i++) {
-			this.time_data.push(adcs[i].time_data());
-		}
-		for (var i: number = 0; i < dacs.length; i++) {
-			this.time_data.push(dacs[i].time_data());
-		}
-		for (var i: number = 0; i < sandhs.length; i++) {
-			this.time_data.push(sandhs[i].time_data());
-		}
-		for (var i: number = 0; i < pwms.length; i++) {
-			this.time_data.push(pwms[i].time_data());
-		}
-		for (var i: number = 0; i < integrators.length; i++) {
-			this.time_data.push(integrators[i].time_data());
-		}
-		for (var i: number = 0; i < differentiators.length; i++) {
-			this.time_data.push(differentiators[i].time_data());
-		}
-		for (var i: number = 0; i < lowpasses.length; i++) {
-			this.time_data.push(lowpasses[i].time_data());
-		}
-		for (var i: number = 0; i < highpasses.length; i++) {
-			this.time_data.push(highpasses[i].time_data());
-		}
-		for (var i: number = 0; i < relays.length; i++) {
-			this.time_data.push(relays[i].time_data());
-		}
-		for (var i: number = 0; i < pids.length; i++) {
-			this.time_data.push(pids[i].time_data());
-		}
-		for (var i: number = 0; i < luts.length; i++) {
-			this.time_data.push(luts[i].time_data());
-		}
-		for (var i: number = 0; i < vcrs.length; i++) {
-			this.time_data.push(vcrs[i].time_data());
-		}
-		for (var i: number = 0; i < vccas.length; i++) {
-			this.time_data.push(vccas[i].time_data());
-		}
-		for (var i: number = 0; i < vcls.length; i++) {
-			this.time_data.push(vcls[i].time_data());
-		}
-		for (var i: number = 0; i < grts.length; i++) {
-			this.time_data.push(grts[i].time_data());
-		}
-		for (var i: number = 0; i < tptzs.length; i++) {
-			this.time_data.push(tptzs[i].time_data());
-		}
-		for (var i: number = 0; i < transformers.length; i++) {
-			this.time_data.push(transformers[i].time_data());
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_PUSH_TIME_DATA# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < resistors.length; i++) {
+          this.time_data.push(resistors[i].time_data());
+      }
+			for (var i : number = 0; i < capacitors.length; i++) {
+          this.time_data.push(capacitors[i].time_data());
+      }
+			for (var i : number = 0; i < inductors.length; i++) {
+          this.time_data.push(inductors[i].time_data());
+      }
+			for (var i : number = 0; i < grounds.length; i++) {
+          this.time_data.push(grounds[i].time_data());
+      }
+			for (var i : number = 0; i < dcsources.length; i++) {
+          this.time_data.push(dcsources[i].time_data());
+      }
+			for (var i : number = 0; i < dccurrents.length; i++) {
+          this.time_data.push(dccurrents[i].time_data());
+      }
+			for (var i : number = 0; i < acsources.length; i++) {
+          this.time_data.push(acsources[i].time_data());
+      }
+			for (var i : number = 0; i < accurrents.length; i++) {
+          this.time_data.push(accurrents[i].time_data());
+      }
+			for (var i : number = 0; i < squarewaves.length; i++) {
+          this.time_data.push(squarewaves[i].time_data());
+      }
+			for (var i : number = 0; i < sawwaves.length; i++) {
+          this.time_data.push(sawwaves[i].time_data());
+      }
+			for (var i : number = 0; i < trianglewaves.length; i++) {
+          this.time_data.push(trianglewaves[i].time_data());
+      }
+			for (var i : number = 0; i < constants.length; i++) {
+          this.time_data.push(constants[i].time_data());
+      }
+			for (var i : number = 0; i < wires.length; i++) {
+          this.time_data.push(wires[i].time_data());
+      }
+			for (var i : number = 0; i < nets.length; i++) {
+          this.time_data.push(nets[i].time_data());
+      }
+			for (var i : number = 0; i < notes.length; i++) {
+          this.time_data.push(notes[i].time_data());
+      }
+			for (var i : number = 0; i < rails.length; i++) {
+          this.time_data.push(rails[i].time_data());
+      }
+			for (var i : number = 0; i < voltmeters.length; i++) {
+          this.time_data.push(voltmeters[i].time_data());
+      }
+			for (var i : number = 0; i < ohmmeters.length; i++) {
+          this.time_data.push(ohmmeters[i].time_data());
+      }
+			for (var i : number = 0; i < ammeters.length; i++) {
+          this.time_data.push(ammeters[i].time_data());
+      }
+			for (var i : number = 0; i < wattmeters.length; i++) {
+          this.time_data.push(wattmeters[i].time_data());
+      }
+			for (var i : number = 0; i < fuses.length; i++) {
+          this.time_data.push(fuses[i].time_data());
+      }
+			for (var i : number = 0; i < spsts.length; i++) {
+          this.time_data.push(spsts[i].time_data());
+      }
+			for (var i : number = 0; i < spdts.length; i++) {
+          this.time_data.push(spdts[i].time_data());
+      }
+			for (var i : number = 0; i < nots.length; i++) {
+          this.time_data.push(nots[i].time_data());
+      }
+			for (var i : number = 0; i < diodes.length; i++) {
+          this.time_data.push(diodes[i].time_data());
+      }
+			for (var i : number = 0; i < leds.length; i++) {
+          this.time_data.push(leds[i].time_data());
+      }
+			for (var i : number = 0; i < zeners.length; i++) {
+          this.time_data.push(zeners[i].time_data());
+      }
+			for (var i : number = 0; i < potentiometers.length; i++) {
+          this.time_data.push(potentiometers[i].time_data());
+      }
+			for (var i : number = 0; i < ands.length; i++) {
+          this.time_data.push(ands[i].time_data());
+      }
+			for (var i : number = 0; i < ors.length; i++) {
+          this.time_data.push(ors[i].time_data());
+      }
+			for (var i : number = 0; i < nands.length; i++) {
+          this.time_data.push(nands[i].time_data());
+      }
+			for (var i : number = 0; i < nors.length; i++) {
+          this.time_data.push(nors[i].time_data());
+      }
+			for (var i : number = 0; i < xors.length; i++) {
+          this.time_data.push(xors[i].time_data());
+      }
+			for (var i : number = 0; i < xnors.length; i++) {
+          this.time_data.push(xnors[i].time_data());
+      }
+			for (var i : number = 0; i < dffs.length; i++) {
+          this.time_data.push(dffs[i].time_data());
+      }
+			for (var i : number = 0; i < vsats.length; i++) {
+          this.time_data.push(vsats[i].time_data());
+      }
+			for (var i : number = 0; i < adders.length; i++) {
+          this.time_data.push(adders[i].time_data());
+      }
+			for (var i : number = 0; i < subtractors.length; i++) {
+          this.time_data.push(subtractors[i].time_data());
+      }
+			for (var i : number = 0; i < multipliers.length; i++) {
+          this.time_data.push(multipliers[i].time_data());
+      }
+			for (var i : number = 0; i < dividers.length; i++) {
+          this.time_data.push(dividers[i].time_data());
+      }
+			for (var i : number = 0; i < gains.length; i++) {
+          this.time_data.push(gains[i].time_data());
+      }
+			for (var i : number = 0; i < absvals.length; i++) {
+          this.time_data.push(absvals[i].time_data());
+      }
+			for (var i : number = 0; i < vcsws.length; i++) {
+          this.time_data.push(vcsws[i].time_data());
+      }
+			for (var i : number = 0; i < vcvss.length; i++) {
+          this.time_data.push(vcvss[i].time_data());
+      }
+			for (var i : number = 0; i < vccss.length; i++) {
+          this.time_data.push(vccss[i].time_data());
+      }
+			for (var i : number = 0; i < cccss.length; i++) {
+          this.time_data.push(cccss[i].time_data());
+      }
+			for (var i : number = 0; i < ccvss.length; i++) {
+          this.time_data.push(ccvss[i].time_data());
+      }
+			for (var i : number = 0; i < opamps.length; i++) {
+          this.time_data.push(opamps[i].time_data());
+      }
+			for (var i : number = 0; i < nmosfets.length; i++) {
+          this.time_data.push(nmosfets[i].time_data());
+      }
+			for (var i : number = 0; i < pmosfets.length; i++) {
+          this.time_data.push(pmosfets[i].time_data());
+      }
+			for (var i : number = 0; i < npns.length; i++) {
+          this.time_data.push(npns[i].time_data());
+      }
+			for (var i : number = 0; i < pnps.length; i++) {
+          this.time_data.push(pnps[i].time_data());
+      }
+			for (var i : number = 0; i < adcs.length; i++) {
+          this.time_data.push(adcs[i].time_data());
+      }
+			for (var i : number = 0; i < dacs.length; i++) {
+          this.time_data.push(dacs[i].time_data());
+      }
+			for (var i : number = 0; i < sandhs.length; i++) {
+          this.time_data.push(sandhs[i].time_data());
+      }
+			for (var i : number = 0; i < pwms.length; i++) {
+          this.time_data.push(pwms[i].time_data());
+      }
+			for (var i : number = 0; i < integrators.length; i++) {
+          this.time_data.push(integrators[i].time_data());
+      }
+			for (var i : number = 0; i < differentiators.length; i++) {
+          this.time_data.push(differentiators[i].time_data());
+      }
+			for (var i : number = 0; i < lowpasses.length; i++) {
+          this.time_data.push(lowpasses[i].time_data());
+      }
+			for (var i : number = 0; i < highpasses.length; i++) {
+          this.time_data.push(highpasses[i].time_data());
+      }
+			for (var i : number = 0; i < relays.length; i++) {
+          this.time_data.push(relays[i].time_data());
+      }
+			for (var i : number = 0; i < pids.length; i++) {
+          this.time_data.push(pids[i].time_data());
+      }
+			for (var i : number = 0; i < luts.length; i++) {
+          this.time_data.push(luts[i].time_data());
+      }
+			for (var i : number = 0; i < vcrs.length; i++) {
+          this.time_data.push(vcrs[i].time_data());
+      }
+			for (var i : number = 0; i < vccas.length; i++) {
+          this.time_data.push(vccas[i].time_data());
+      }
+			for (var i : number = 0; i < vcls.length; i++) {
+          this.time_data.push(vcls[i].time_data());
+      }
+			for (var i : number = 0; i < grts.length; i++) {
+          this.time_data.push(grts[i].time_data());
+      }
+			for (var i : number = 0; i < tptzs.length; i++) {
+          this.time_data.push(tptzs[i].time_data());
+      }
+			for (var i : number = 0; i < transformers.length; i++) {
+          this.time_data.push(transformers[i].time_data());
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 		let max_frequency: number = global.CONSTANTS.ZERO;
 		let min_frequency: number = Number.MAX_VALUE;
 		let max_resistance: number = global.CONSTANTS.ZERO;
@@ -635,323 +593,323 @@ class SimulationManager {
 		toast.show();
 	}
 	reset_elements(): void {
-		/* #INSERT_GENERATE_RESET_ELEMENTS# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < resistors.length; i++) {
-			resistors[i].reset();
-		}
-		for (var i: number = 0; i < capacitors.length; i++) {
-			capacitors[i].reset();
-		}
-		for (var i: number = 0; i < inductors.length; i++) {
-			inductors[i].reset();
-		}
-		for (var i: number = 0; i < grounds.length; i++) {
-			grounds[i].reset();
-		}
-		for (var i: number = 0; i < dcsources.length; i++) {
-			dcsources[i].reset();
-		}
-		for (var i: number = 0; i < dccurrents.length; i++) {
-			dccurrents[i].reset();
-		}
-		for (var i: number = 0; i < acsources.length; i++) {
-			acsources[i].reset();
-		}
-		for (var i: number = 0; i < accurrents.length; i++) {
-			accurrents[i].reset();
-		}
-		for (var i: number = 0; i < squarewaves.length; i++) {
-			squarewaves[i].reset();
-		}
-		for (var i: number = 0; i < sawwaves.length; i++) {
-			sawwaves[i].reset();
-		}
-		for (var i: number = 0; i < trianglewaves.length; i++) {
-			trianglewaves[i].reset();
-		}
-		for (var i: number = 0; i < constants.length; i++) {
-			constants[i].reset();
-		}
-		for (var i: number = 0; i < wires.length; i++) {
-			wires[i].reset();
-		}
-		for (var i: number = 0; i < nets.length; i++) {
-			nets[i].reset();
-		}
-		for (var i: number = 0; i < notes.length; i++) {
-			notes[i].reset();
-		}
-		for (var i: number = 0; i < rails.length; i++) {
-			rails[i].reset();
-		}
-		for (var i: number = 0; i < voltmeters.length; i++) {
-			voltmeters[i].reset();
-		}
-		for (var i: number = 0; i < ohmmeters.length; i++) {
-			ohmmeters[i].reset();
-		}
-		for (var i: number = 0; i < ammeters.length; i++) {
-			ammeters[i].reset();
-		}
-		for (var i: number = 0; i < wattmeters.length; i++) {
-			wattmeters[i].reset();
-		}
-		for (var i: number = 0; i < fuses.length; i++) {
-			fuses[i].reset();
-		}
-		for (var i: number = 0; i < spsts.length; i++) {
-			spsts[i].reset();
-		}
-		for (var i: number = 0; i < spdts.length; i++) {
-			spdts[i].reset();
-		}
-		for (var i: number = 0; i < nots.length; i++) {
-			nots[i].reset();
-		}
-		for (var i: number = 0; i < diodes.length; i++) {
-			diodes[i].reset();
-		}
-		for (var i: number = 0; i < leds.length; i++) {
-			leds[i].reset();
-		}
-		for (var i: number = 0; i < zeners.length; i++) {
-			zeners[i].reset();
-		}
-		for (var i: number = 0; i < potentiometers.length; i++) {
-			potentiometers[i].reset();
-		}
-		for (var i: number = 0; i < ands.length; i++) {
-			ands[i].reset();
-		}
-		for (var i: number = 0; i < ors.length; i++) {
-			ors[i].reset();
-		}
-		for (var i: number = 0; i < nands.length; i++) {
-			nands[i].reset();
-		}
-		for (var i: number = 0; i < nors.length; i++) {
-			nors[i].reset();
-		}
-		for (var i: number = 0; i < xors.length; i++) {
-			xors[i].reset();
-		}
-		for (var i: number = 0; i < xnors.length; i++) {
-			xnors[i].reset();
-		}
-		for (var i: number = 0; i < dffs.length; i++) {
-			dffs[i].reset();
-		}
-		for (var i: number = 0; i < vsats.length; i++) {
-			vsats[i].reset();
-		}
-		for (var i: number = 0; i < adders.length; i++) {
-			adders[i].reset();
-		}
-		for (var i: number = 0; i < subtractors.length; i++) {
-			subtractors[i].reset();
-		}
-		for (var i: number = 0; i < multipliers.length; i++) {
-			multipliers[i].reset();
-		}
-		for (var i: number = 0; i < dividers.length; i++) {
-			dividers[i].reset();
-		}
-		for (var i: number = 0; i < gains.length; i++) {
-			gains[i].reset();
-		}
-		for (var i: number = 0; i < absvals.length; i++) {
-			absvals[i].reset();
-		}
-		for (var i: number = 0; i < vcsws.length; i++) {
-			vcsws[i].reset();
-		}
-		for (var i: number = 0; i < vcvss.length; i++) {
-			vcvss[i].reset();
-		}
-		for (var i: number = 0; i < vccss.length; i++) {
-			vccss[i].reset();
-		}
-		for (var i: number = 0; i < cccss.length; i++) {
-			cccss[i].reset();
-		}
-		for (var i: number = 0; i < ccvss.length; i++) {
-			ccvss[i].reset();
-		}
-		for (var i: number = 0; i < opamps.length; i++) {
-			opamps[i].reset();
-		}
-		for (var i: number = 0; i < nmosfets.length; i++) {
-			nmosfets[i].reset();
-		}
-		for (var i: number = 0; i < pmosfets.length; i++) {
-			pmosfets[i].reset();
-		}
-		for (var i: number = 0; i < npns.length; i++) {
-			npns[i].reset();
-		}
-		for (var i: number = 0; i < pnps.length; i++) {
-			pnps[i].reset();
-		}
-		for (var i: number = 0; i < adcs.length; i++) {
-			adcs[i].reset();
-		}
-		for (var i: number = 0; i < dacs.length; i++) {
-			dacs[i].reset();
-		}
-		for (var i: number = 0; i < sandhs.length; i++) {
-			sandhs[i].reset();
-		}
-		for (var i: number = 0; i < pwms.length; i++) {
-			pwms[i].reset();
-		}
-		for (var i: number = 0; i < integrators.length; i++) {
-			integrators[i].reset();
-		}
-		for (var i: number = 0; i < differentiators.length; i++) {
-			differentiators[i].reset();
-		}
-		for (var i: number = 0; i < lowpasses.length; i++) {
-			lowpasses[i].reset();
-		}
-		for (var i: number = 0; i < highpasses.length; i++) {
-			highpasses[i].reset();
-		}
-		for (var i: number = 0; i < relays.length; i++) {
-			relays[i].reset();
-		}
-		for (var i: number = 0; i < pids.length; i++) {
-			pids[i].reset();
-		}
-		for (var i: number = 0; i < luts.length; i++) {
-			luts[i].reset();
-		}
-		for (var i: number = 0; i < vcrs.length; i++) {
-			vcrs[i].reset();
-		}
-		for (var i: number = 0; i < vccas.length; i++) {
-			vccas[i].reset();
-		}
-		for (var i: number = 0; i < vcls.length; i++) {
-			vcls[i].reset();
-		}
-		for (var i: number = 0; i < grts.length; i++) {
-			grts[i].reset();
-		}
-		for (var i: number = 0; i < tptzs.length; i++) {
-			tptzs[i].reset();
-		}
-		for (var i: number = 0; i < transformers.length; i++) {
-			transformers[i].reset();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_RESET_ELEMENTS# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < resistors.length; i++) {
+          resistors[i].reset();
+      }
+			for (var i : number = 0; i < capacitors.length; i++) {
+          capacitors[i].reset();
+      }
+			for (var i : number = 0; i < inductors.length; i++) {
+          inductors[i].reset();
+      }
+			for (var i : number = 0; i < grounds.length; i++) {
+          grounds[i].reset();
+      }
+			for (var i : number = 0; i < dcsources.length; i++) {
+          dcsources[i].reset();
+      }
+			for (var i : number = 0; i < dccurrents.length; i++) {
+          dccurrents[i].reset();
+      }
+			for (var i : number = 0; i < acsources.length; i++) {
+          acsources[i].reset();
+      }
+			for (var i : number = 0; i < accurrents.length; i++) {
+          accurrents[i].reset();
+      }
+			for (var i : number = 0; i < squarewaves.length; i++) {
+          squarewaves[i].reset();
+      }
+			for (var i : number = 0; i < sawwaves.length; i++) {
+          sawwaves[i].reset();
+      }
+			for (var i : number = 0; i < trianglewaves.length; i++) {
+          trianglewaves[i].reset();
+      }
+			for (var i : number = 0; i < constants.length; i++) {
+          constants[i].reset();
+      }
+			for (var i : number = 0; i < wires.length; i++) {
+          wires[i].reset();
+      }
+			for (var i : number = 0; i < nets.length; i++) {
+          nets[i].reset();
+      }
+			for (var i : number = 0; i < notes.length; i++) {
+          notes[i].reset();
+      }
+			for (var i : number = 0; i < rails.length; i++) {
+          rails[i].reset();
+      }
+			for (var i : number = 0; i < voltmeters.length; i++) {
+          voltmeters[i].reset();
+      }
+			for (var i : number = 0; i < ohmmeters.length; i++) {
+          ohmmeters[i].reset();
+      }
+			for (var i : number = 0; i < ammeters.length; i++) {
+          ammeters[i].reset();
+      }
+			for (var i : number = 0; i < wattmeters.length; i++) {
+          wattmeters[i].reset();
+      }
+			for (var i : number = 0; i < fuses.length; i++) {
+          fuses[i].reset();
+      }
+			for (var i : number = 0; i < spsts.length; i++) {
+          spsts[i].reset();
+      }
+			for (var i : number = 0; i < spdts.length; i++) {
+          spdts[i].reset();
+      }
+			for (var i : number = 0; i < nots.length; i++) {
+          nots[i].reset();
+      }
+			for (var i : number = 0; i < diodes.length; i++) {
+          diodes[i].reset();
+      }
+			for (var i : number = 0; i < leds.length; i++) {
+          leds[i].reset();
+      }
+			for (var i : number = 0; i < zeners.length; i++) {
+          zeners[i].reset();
+      }
+			for (var i : number = 0; i < potentiometers.length; i++) {
+          potentiometers[i].reset();
+      }
+			for (var i : number = 0; i < ands.length; i++) {
+          ands[i].reset();
+      }
+			for (var i : number = 0; i < ors.length; i++) {
+          ors[i].reset();
+      }
+			for (var i : number = 0; i < nands.length; i++) {
+          nands[i].reset();
+      }
+			for (var i : number = 0; i < nors.length; i++) {
+          nors[i].reset();
+      }
+			for (var i : number = 0; i < xors.length; i++) {
+          xors[i].reset();
+      }
+			for (var i : number = 0; i < xnors.length; i++) {
+          xnors[i].reset();
+      }
+			for (var i : number = 0; i < dffs.length; i++) {
+          dffs[i].reset();
+      }
+			for (var i : number = 0; i < vsats.length; i++) {
+          vsats[i].reset();
+      }
+			for (var i : number = 0; i < adders.length; i++) {
+          adders[i].reset();
+      }
+			for (var i : number = 0; i < subtractors.length; i++) {
+          subtractors[i].reset();
+      }
+			for (var i : number = 0; i < multipliers.length; i++) {
+          multipliers[i].reset();
+      }
+			for (var i : number = 0; i < dividers.length; i++) {
+          dividers[i].reset();
+      }
+			for (var i : number = 0; i < gains.length; i++) {
+          gains[i].reset();
+      }
+			for (var i : number = 0; i < absvals.length; i++) {
+          absvals[i].reset();
+      }
+			for (var i : number = 0; i < vcsws.length; i++) {
+          vcsws[i].reset();
+      }
+			for (var i : number = 0; i < vcvss.length; i++) {
+          vcvss[i].reset();
+      }
+			for (var i : number = 0; i < vccss.length; i++) {
+          vccss[i].reset();
+      }
+			for (var i : number = 0; i < cccss.length; i++) {
+          cccss[i].reset();
+      }
+			for (var i : number = 0; i < ccvss.length; i++) {
+          ccvss[i].reset();
+      }
+			for (var i : number = 0; i < opamps.length; i++) {
+          opamps[i].reset();
+      }
+			for (var i : number = 0; i < nmosfets.length; i++) {
+          nmosfets[i].reset();
+      }
+			for (var i : number = 0; i < pmosfets.length; i++) {
+          pmosfets[i].reset();
+      }
+			for (var i : number = 0; i < npns.length; i++) {
+          npns[i].reset();
+      }
+			for (var i : number = 0; i < pnps.length; i++) {
+          pnps[i].reset();
+      }
+			for (var i : number = 0; i < adcs.length; i++) {
+          adcs[i].reset();
+      }
+			for (var i : number = 0; i < dacs.length; i++) {
+          dacs[i].reset();
+      }
+			for (var i : number = 0; i < sandhs.length; i++) {
+          sandhs[i].reset();
+      }
+			for (var i : number = 0; i < pwms.length; i++) {
+          pwms[i].reset();
+      }
+			for (var i : number = 0; i < integrators.length; i++) {
+          integrators[i].reset();
+      }
+			for (var i : number = 0; i < differentiators.length; i++) {
+          differentiators[i].reset();
+      }
+			for (var i : number = 0; i < lowpasses.length; i++) {
+          lowpasses[i].reset();
+      }
+			for (var i : number = 0; i < highpasses.length; i++) {
+          highpasses[i].reset();
+      }
+			for (var i : number = 0; i < relays.length; i++) {
+          relays[i].reset();
+      }
+			for (var i : number = 0; i < pids.length; i++) {
+          pids[i].reset();
+      }
+			for (var i : number = 0; i < luts.length; i++) {
+          luts[i].reset();
+      }
+			for (var i : number = 0; i < vcrs.length; i++) {
+          vcrs[i].reset();
+      }
+			for (var i : number = 0; i < vccas.length; i++) {
+          vccas[i].reset();
+      }
+			for (var i : number = 0; i < vcls.length; i++) {
+          vcls[i].reset();
+      }
+			for (var i : number = 0; i < grts.length; i++) {
+          grts[i].reset();
+      }
+			for (var i : number = 0; i < tptzs.length; i++) {
+          tptzs[i].reset();
+      }
+			for (var i : number = 0; i < transformers.length; i++) {
+          transformers[i].reset();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset_memory_devices(): void {
-		/* #INSERT_GENERATE_RESET_MEMORY_ELEMENTS# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < fuses.length; i++) {
-			fuses[i].reset_fuse();
-		}
-		for (var i: number = 0; i < dffs.length; i++) {
-			dffs[i].reset_dff();
-		}
-		for (var i: number = 0; i < sandhs.length; i++) {
-			sandhs[i].reset_samplers();
-		}
-		for (var i: number = 0; i < lowpasses.length; i++) {
-			lowpasses[i].reset_lowpass();
-		}
-		for (var i: number = 0; i < highpasses.length; i++) {
-			highpasses[i].reset_highpass();
-		}
-		for (var i: number = 0; i < pids.length; i++) {
-			pids[i].reset_pid();
-		}
-		for (var i: number = 0; i < tptzs.length; i++) {
-			tptzs[i].reset_tptz();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_RESET_MEMORY_ELEMENTS# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < fuses.length; i++) {
+          fuses[i].reset_fuse();
+      }
+			for (var i : number = 0; i < dffs.length; i++) {
+          dffs[i].reset_dff();
+      }
+			for (var i : number = 0; i < sandhs.length; i++) {
+          sandhs[i].reset_samplers();
+      }
+			for (var i : number = 0; i < lowpasses.length; i++) {
+          lowpasses[i].reset_lowpass();
+      }
+			for (var i : number = 0; i < highpasses.length; i++) {
+          highpasses[i].reset_highpass();
+      }
+			for (var i : number = 0; i < pids.length; i++) {
+          pids[i].reset_pid();
+      }
+			for (var i : number = 0; i < tptzs.length; i++) {
+          tptzs[i].reset_tptz();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset_reactive_elements(): void {
-		/* #INSERT_GENERATE_RESET_REACTIVE_ELEMENTS_TEMPLATE# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < capacitors.length; i++) {
-			capacitors[i].reset_capacitor();
-		}
-		for (var i: number = 0; i < inductors.length; i++) {
-			inductors[i].reset_inductor();
-		}
-		for (var i: number = 0; i < relays.length; i++) {
-			relays[i].reset_relay();
-		}
-		for (var i: number = 0; i < vccas.length; i++) {
-			vccas[i].reset_vcca();
-		}
-		for (var i: number = 0; i < vcls.length; i++) {
-			vcls[i].reset_vcl();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_RESET_REACTIVE_ELEMENTS_TEMPLATE# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < capacitors.length; i++) {
+          capacitors[i].reset_capacitor();
+      }
+			for (var i : number = 0; i < inductors.length; i++) {
+          inductors[i].reset_inductor();
+      }
+			for (var i : number = 0; i < relays.length; i++) {
+          relays[i].reset_relay();
+      }
+			for (var i : number = 0; i < vccas.length; i++) {
+          vccas[i].reset_vcca();
+      }
+			for (var i : number = 0; i < vcls.length; i++) {
+          vcls[i].reset_vcl();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset_non_linear_elements(): void {
-		/* #INSERT_GENERATE_RESET_NON_LINEAR_ELEMENTS# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < diodes.length; i++) {
-			diodes[i].reset_diode();
-		}
-		for (var i: number = 0; i < leds.length; i++) {
-			leds[i].reset_led();
-		}
-		for (var i: number = 0; i < zeners.length; i++) {
-			zeners[i].reset_zener();
-		}
-		for (var i: number = 0; i < nmosfets.length; i++) {
-			nmosfets[i].reset_nmosfet();
-		}
-		for (var i: number = 0; i < pmosfets.length; i++) {
-			pmosfets[i].reset_pmosfet();
-		}
-		for (var i: number = 0; i < npns.length; i++) {
-			npns[i].reset_npn();
-		}
-		for (var i: number = 0; i < pnps.length; i++) {
-			pnps[i].reset_pnp();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_RESET_NON_LINEAR_ELEMENTS# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < diodes.length; i++) {
+          diodes[i].reset_diode();
+      }
+			for (var i : number = 0; i < leds.length; i++) {
+          leds[i].reset_led();
+      }
+			for (var i : number = 0; i < zeners.length; i++) {
+          zeners[i].reset_zener();
+      }
+			for (var i : number = 0; i < nmosfets.length; i++) {
+          nmosfets[i].reset_nmosfet();
+      }
+			for (var i : number = 0; i < pmosfets.length; i++) {
+          pmosfets[i].reset_pmosfet();
+      }
+			for (var i : number = 0; i < npns.length; i++) {
+          npns[i].reset_npn();
+      }
+			for (var i : number = 0; i < pnps.length; i++) {
+          pnps[i].reset_pnp();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset_meter_values(): void {
 		graph_window.reset();
-		/* #INSERT_GENERATE_RESET_METER_TRACE# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < voltmeters.length; i++) {
-			voltmeters[i].reset_trace();
-		}
-		for (var i: number = 0; i < ohmmeters.length; i++) {
-			ohmmeters[i].reset_trace();
-		}
-		for (var i: number = 0; i < ammeters.length; i++) {
-			ammeters[i].reset_trace();
-		}
-		for (var i: number = 0; i < wattmeters.length; i++) {
-			wattmeters[i].reset_trace();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_RESET_METER_TRACE# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < voltmeters.length; i++) {
+          voltmeters[i].reset_trace();
+      }
+			for (var i : number = 0; i < ohmmeters.length; i++) {
+          ohmmeters[i].reset_trace();
+      }
+			for (var i : number = 0; i < ammeters.length; i++) {
+          ammeters[i].reset_trace();
+      }
+			for (var i : number = 0; i < wattmeters.length; i++) {
+          wattmeters[i].reset_trace();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	clear_meter_values(): void {
-		/* #INSERT_GENERATE_RESET_METER# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < voltmeters.length; i++) {
-			voltmeters[i].reset_meter();
-		}
-		for (var i: number = 0; i < ohmmeters.length; i++) {
-			ohmmeters[i].reset_meter();
-		}
-		for (var i: number = 0; i < ammeters.length; i++) {
-			ammeters[i].reset_meter();
-		}
-		for (var i: number = 0; i < wattmeters.length; i++) {
-			wattmeters[i].reset_meter();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_RESET_METER# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < voltmeters.length; i++) {
+          voltmeters[i].reset_meter();
+      }
+			for (var i : number = 0; i < ohmmeters.length; i++) {
+          ohmmeters[i].reset_meter();
+      }
+			for (var i : number = 0; i < ammeters.length; i++) {
+          ammeters[i].reset_meter();
+      }
+			for (var i : number = 0; i < wattmeters.length; i++) {
+          wattmeters[i].reset_meter();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	update_vir(): void {
 		if (global.simulation_time >= global.time_step + global.time_step) {
@@ -1020,50 +978,50 @@ class SimulationManager {
 		}
 	}
 	non_linear_update(): void {
-		/* #INSERT_GENERATE_NON_LINEAR_CHECK# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < diodes.length; i++) {
-			diodes[i].update();
-		}
-		for (var i: number = 0; i < leds.length; i++) {
-			leds[i].update();
-		}
-		for (var i: number = 0; i < zeners.length; i++) {
-			zeners[i].update();
-		}
-		for (var i: number = 0; i < nmosfets.length; i++) {
-			nmosfets[i].update();
-		}
-		for (var i: number = 0; i < pmosfets.length; i++) {
-			pmosfets[i].update();
-		}
-		for (var i: number = 0; i < npns.length; i++) {
-			npns[i].update();
-		}
-		for (var i: number = 0; i < pnps.length; i++) {
-			pnps[i].update();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_NON_LINEAR_CHECK# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < diodes.length; i++) {
+          diodes[i].update();
+      }
+			for (var i : number = 0; i < leds.length; i++) {
+          leds[i].update();
+      }
+			for (var i : number = 0; i < zeners.length; i++) {
+          zeners[i].update();
+      }
+			for (var i : number = 0; i < nmosfets.length; i++) {
+          nmosfets[i].update();
+      }
+			for (var i : number = 0; i < pmosfets.length; i++) {
+          pmosfets[i].update();
+      }
+			for (var i : number = 0; i < npns.length; i++) {
+          npns[i].update();
+      }
+			for (var i : number = 0; i < pnps.length; i++) {
+          pnps[i].update();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	update_reactive_elements(): void {
-		/* #INSERT_GENERATE_UPDATE_REACTIVE_ELEMENTS_TEMPLATE_II# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < capacitors.length; i++) {
-			capacitors[i].update_capacitor();
-		}
-		for (var i: number = 0; i < inductors.length; i++) {
-			inductors[i].update_inductor();
-		}
-		for (var i: number = 0; i < relays.length; i++) {
-			relays[i].update_relay();
-		}
-		for (var i: number = 0; i < vccas.length; i++) {
-			vccas[i].update_vcca();
-		}
-		for (var i: number = 0; i < vcls.length; i++) {
-			vcls[i].update_vcl();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+/* #INSERT_GENERATE_UPDATE_REACTIVE_ELEMENTS_TEMPLATE_II# */
+/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i : number = 0; i < capacitors.length; i++) {
+          capacitors[i].update_capacitor();
+      }
+			for (var i : number = 0; i < inductors.length; i++) {
+          inductors[i].update_inductor();
+      }
+			for (var i : number = 0; i < relays.length; i++) {
+          relays[i].update_relay();
+      }
+			for (var i : number = 0; i < vccas.length; i++) {
+          vccas[i].update_vcca();
+      }
+			for (var i : number = 0; i < vcls.length; i++) {
+          vcls[i].update_vcl();
+      }
+/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	simulate(): void {
 		if (global.flags.flag_simulating && this.initialized) {
