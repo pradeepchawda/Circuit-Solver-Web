@@ -54,7 +54,7 @@ class Viewport {
 		this.bottom = this.center_y + (this.view_height >> 1);
 		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 		global.variables.signal_build_counter = 0;
 	}
 	resize(aspect_ratio: number, screen_width: number, screen_height: number): void {
@@ -78,7 +78,7 @@ class Viewport {
 		this.bottom = this.center_y + (this.view_height >> 1);
 		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 		global.variables.signal_build_counter = 0;
 	}
 	draw_viewport(canvas: GraphicsEngine): void {

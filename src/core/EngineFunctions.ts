@@ -71,7 +71,7 @@ class EngineFunctions {
 		}
 	}
 	handle_nearest_neighbors(temp_translation_lock: boolean): void {
-		if (!global.variables.is_dragging && !global.flags.signal_history_lock) {
+		if (!global.variables.is_dragging && !global.flags.flag_history_lock) {
 			if (!global.variables.is_right_click) {
 				if (global.variables.selected_type > -1) {
 					global.variables.selection_nearest_neighbors = [];
@@ -3435,7 +3435,7 @@ class EngineFunctions {
 		var index: number = resistors.length - 1;
 		if (index < resistors.length) {
 			resistors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = resistors[index].elm.id;
 			global.variables.focused_type = resistors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(resistors[index].bounds);
@@ -3460,7 +3460,7 @@ class EngineFunctions {
 		var index: number = capacitors.length - 1;
 		if (index < capacitors.length) {
 			capacitors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = capacitors[index].elm.id;
 			global.variables.focused_type = capacitors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(capacitors[index].bounds);
@@ -3485,7 +3485,7 @@ class EngineFunctions {
 		var index: number = inductors.length - 1;
 		if (index < inductors.length) {
 			inductors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = inductors[index].elm.id;
 			global.variables.focused_type = inductors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(inductors[index].bounds);
@@ -3507,7 +3507,7 @@ class EngineFunctions {
 		var index: number = grounds.length - 1;
 		if (index < grounds.length) {
 			grounds[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = grounds[index].elm.id;
 			global.variables.focused_type = grounds[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(grounds[index].bounds);
@@ -3532,7 +3532,7 @@ class EngineFunctions {
 		var index: number = dcsources.length - 1;
 		if (index < dcsources.length) {
 			dcsources[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = dcsources[index].elm.id;
 			global.variables.focused_type = dcsources[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(dcsources[index].bounds);
@@ -3557,7 +3557,7 @@ class EngineFunctions {
 		var index: number = dccurrents.length - 1;
 		if (index < dccurrents.length) {
 			dccurrents[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = dccurrents[index].elm.id;
 			global.variables.focused_type = dccurrents[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(dccurrents[index].bounds);
@@ -3582,7 +3582,7 @@ class EngineFunctions {
 		var index: number = acsources.length - 1;
 		if (index < acsources.length) {
 			acsources[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = acsources[index].elm.id;
 			global.variables.focused_type = acsources[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(acsources[index].bounds);
@@ -3607,7 +3607,7 @@ class EngineFunctions {
 		var index: number = accurrents.length - 1;
 		if (index < accurrents.length) {
 			accurrents[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = accurrents[index].elm.id;
 			global.variables.focused_type = accurrents[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(accurrents[index].bounds);
@@ -3632,7 +3632,7 @@ class EngineFunctions {
 		var index: number = squarewaves.length - 1;
 		if (index < squarewaves.length) {
 			squarewaves[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = squarewaves[index].elm.id;
 			global.variables.focused_type = squarewaves[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(squarewaves[index].bounds);
@@ -3657,7 +3657,7 @@ class EngineFunctions {
 		var index: number = sawwaves.length - 1;
 		if (index < sawwaves.length) {
 			sawwaves[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = sawwaves[index].elm.id;
 			global.variables.focused_type = sawwaves[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(sawwaves[index].bounds);
@@ -3682,7 +3682,7 @@ class EngineFunctions {
 		var index: number = trianglewaves.length - 1;
 		if (index < trianglewaves.length) {
 			trianglewaves[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = trianglewaves[index].elm.id;
 			global.variables.focused_type = trianglewaves[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(trianglewaves[index].bounds);
@@ -3704,7 +3704,7 @@ class EngineFunctions {
 		var index: number = constants.length - 1;
 		if (index < constants.length) {
 			constants[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = constants[index].elm.id;
 			global.variables.focused_type = constants[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(constants[index].bounds);
@@ -3726,7 +3726,7 @@ class EngineFunctions {
 		var index: number = nets.length - 1;
 		if (index < nets.length) {
 			nets[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = nets[index].elm.id;
 			global.variables.focused_type = nets[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(nets[index].bounds);
@@ -3748,7 +3748,7 @@ class EngineFunctions {
 		var index: number = notes.length - 1;
 		if (index < notes.length) {
 			notes[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = notes[index].elm.id;
 			global.variables.focused_type = notes[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(notes[index].bounds);
@@ -3770,7 +3770,7 @@ class EngineFunctions {
 		var index: number = rails.length - 1;
 		if (index < rails.length) {
 			rails[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = rails[index].elm.id;
 			global.variables.focused_type = rails[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(rails[index].bounds);
@@ -3795,7 +3795,7 @@ class EngineFunctions {
 		var index: number = voltmeters.length - 1;
 		if (index < voltmeters.length) {
 			voltmeters[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = voltmeters[index].elm.id;
 			global.variables.focused_type = voltmeters[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(voltmeters[index].bounds);
@@ -3820,7 +3820,7 @@ class EngineFunctions {
 		var index: number = ohmmeters.length - 1;
 		if (index < ohmmeters.length) {
 			ohmmeters[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = ohmmeters[index].elm.id;
 			global.variables.focused_type = ohmmeters[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(ohmmeters[index].bounds);
@@ -3845,7 +3845,7 @@ class EngineFunctions {
 		var index: number = ammeters.length - 1;
 		if (index < ammeters.length) {
 			ammeters[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = ammeters[index].elm.id;
 			global.variables.focused_type = ammeters[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(ammeters[index].bounds);
@@ -3873,7 +3873,7 @@ class EngineFunctions {
 		var index: number = wattmeters.length - 1;
 		if (index < wattmeters.length) {
 			wattmeters[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = wattmeters[index].elm.id;
 			global.variables.focused_type = wattmeters[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(wattmeters[index].bounds);
@@ -3898,7 +3898,7 @@ class EngineFunctions {
 		var index: number = fuses.length - 1;
 		if (index < fuses.length) {
 			fuses[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = fuses[index].elm.id;
 			global.variables.focused_type = fuses[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(fuses[index].bounds);
@@ -3923,7 +3923,7 @@ class EngineFunctions {
 		var index: number = spsts.length - 1;
 		if (index < spsts.length) {
 			spsts[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = spsts[index].elm.id;
 			global.variables.focused_type = spsts[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(spsts[index].bounds);
@@ -3951,7 +3951,7 @@ class EngineFunctions {
 		var index: number = spdts.length - 1;
 		if (index < spdts.length) {
 			spdts[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = spdts[index].elm.id;
 			global.variables.focused_type = spdts[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(spdts[index].bounds);
@@ -3976,7 +3976,7 @@ class EngineFunctions {
 		var index: number = nots.length - 1;
 		if (index < nots.length) {
 			nots[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = nots[index].elm.id;
 			global.variables.focused_type = nots[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(nots[index].bounds);
@@ -4001,7 +4001,7 @@ class EngineFunctions {
 		var index: number = diodes.length - 1;
 		if (index < diodes.length) {
 			diodes[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = diodes[index].elm.id;
 			global.variables.focused_type = diodes[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(diodes[index].bounds);
@@ -4026,7 +4026,7 @@ class EngineFunctions {
 		var index: number = leds.length - 1;
 		if (index < leds.length) {
 			leds[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = leds[index].elm.id;
 			global.variables.focused_type = leds[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(leds[index].bounds);
@@ -4051,7 +4051,7 @@ class EngineFunctions {
 		var index: number = zeners.length - 1;
 		if (index < zeners.length) {
 			zeners[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = zeners[index].elm.id;
 			global.variables.focused_type = zeners[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(zeners[index].bounds);
@@ -4079,7 +4079,7 @@ class EngineFunctions {
 		var index: number = potentiometers.length - 1;
 		if (index < potentiometers.length) {
 			potentiometers[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = potentiometers[index].elm.id;
 			global.variables.focused_type = potentiometers[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(potentiometers[index].bounds);
@@ -4107,7 +4107,7 @@ class EngineFunctions {
 		var index: number = ands.length - 1;
 		if (index < ands.length) {
 			ands[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = ands[index].elm.id;
 			global.variables.focused_type = ands[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(ands[index].bounds);
@@ -4135,7 +4135,7 @@ class EngineFunctions {
 		var index: number = ors.length - 1;
 		if (index < ors.length) {
 			ors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = ors[index].elm.id;
 			global.variables.focused_type = ors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(ors[index].bounds);
@@ -4163,7 +4163,7 @@ class EngineFunctions {
 		var index: number = nands.length - 1;
 		if (index < nands.length) {
 			nands[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = nands[index].elm.id;
 			global.variables.focused_type = nands[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(nands[index].bounds);
@@ -4191,7 +4191,7 @@ class EngineFunctions {
 		var index: number = nors.length - 1;
 		if (index < nors.length) {
 			nors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = nors[index].elm.id;
 			global.variables.focused_type = nors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(nors[index].bounds);
@@ -4219,7 +4219,7 @@ class EngineFunctions {
 		var index: number = xors.length - 1;
 		if (index < xors.length) {
 			xors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = xors[index].elm.id;
 			global.variables.focused_type = xors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(xors[index].bounds);
@@ -4247,7 +4247,7 @@ class EngineFunctions {
 		var index: number = xnors.length - 1;
 		if (index < xnors.length) {
 			xnors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = xnors[index].elm.id;
 			global.variables.focused_type = xnors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(xnors[index].bounds);
@@ -4278,7 +4278,7 @@ class EngineFunctions {
 		var index: number = dffs.length - 1;
 		if (index < dffs.length) {
 			dffs[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = dffs[index].elm.id;
 			global.variables.focused_type = dffs[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(dffs[index].bounds);
@@ -4303,7 +4303,7 @@ class EngineFunctions {
 		var index: number = vsats.length - 1;
 		if (index < vsats.length) {
 			vsats[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = vsats[index].elm.id;
 			global.variables.focused_type = vsats[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(vsats[index].bounds);
@@ -4331,7 +4331,7 @@ class EngineFunctions {
 		var index: number = adders.length - 1;
 		if (index < adders.length) {
 			adders[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = adders[index].elm.id;
 			global.variables.focused_type = adders[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(adders[index].bounds);
@@ -4359,7 +4359,7 @@ class EngineFunctions {
 		var index: number = subtractors.length - 1;
 		if (index < subtractors.length) {
 			subtractors[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = subtractors[index].elm.id;
 			global.variables.focused_type = subtractors[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(subtractors[index].bounds);
@@ -4387,7 +4387,7 @@ class EngineFunctions {
 		var index: number = multipliers.length - 1;
 		if (index < multipliers.length) {
 			multipliers[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = multipliers[index].elm.id;
 			global.variables.focused_type = multipliers[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(multipliers[index].bounds);
@@ -4415,7 +4415,7 @@ class EngineFunctions {
 		var index: number = dividers.length - 1;
 		if (index < dividers.length) {
 			dividers[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = dividers[index].elm.id;
 			global.variables.focused_type = dividers[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(dividers[index].bounds);
@@ -4440,7 +4440,7 @@ class EngineFunctions {
 		var index: number = gains.length - 1;
 		if (index < gains.length) {
 			gains[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = gains[index].elm.id;
 			global.variables.focused_type = gains[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(gains[index].bounds);
@@ -4465,7 +4465,7 @@ class EngineFunctions {
 		var index: number = absvals.length - 1;
 		if (index < absvals.length) {
 			absvals[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = absvals[index].elm.id;
 			global.variables.focused_type = absvals[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(absvals[index].bounds);
@@ -4493,7 +4493,7 @@ class EngineFunctions {
 		var index: number = vcsws.length - 1;
 		if (index < vcsws.length) {
 			vcsws[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = vcsws[index].elm.id;
 			global.variables.focused_type = vcsws[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(vcsws[index].bounds);
@@ -4524,7 +4524,7 @@ class EngineFunctions {
 		var index: number = vcvss.length - 1;
 		if (index < vcvss.length) {
 			vcvss[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = vcvss[index].elm.id;
 			global.variables.focused_type = vcvss[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(vcvss[index].bounds);
@@ -4555,7 +4555,7 @@ class EngineFunctions {
 		var index: number = vccss.length - 1;
 		if (index < vccss.length) {
 			vccss[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = vccss[index].elm.id;
 			global.variables.focused_type = vccss[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(vccss[index].bounds);
@@ -4586,7 +4586,7 @@ class EngineFunctions {
 		var index: number = cccss.length - 1;
 		if (index < cccss.length) {
 			cccss[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = cccss[index].elm.id;
 			global.variables.focused_type = cccss[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(cccss[index].bounds);
@@ -4617,7 +4617,7 @@ class EngineFunctions {
 		var index: number = ccvss.length - 1;
 		if (index < ccvss.length) {
 			ccvss[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = ccvss[index].elm.id;
 			global.variables.focused_type = ccvss[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(ccvss[index].bounds);
@@ -4645,7 +4645,7 @@ class EngineFunctions {
 		var index: number = opamps.length - 1;
 		if (index < opamps.length) {
 			opamps[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = opamps[index].elm.id;
 			global.variables.focused_type = opamps[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(opamps[index].bounds);
@@ -4673,7 +4673,7 @@ class EngineFunctions {
 		var index: number = nmosfets.length - 1;
 		if (index < nmosfets.length) {
 			nmosfets[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = nmosfets[index].elm.id;
 			global.variables.focused_type = nmosfets[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(nmosfets[index].bounds);
@@ -4701,7 +4701,7 @@ class EngineFunctions {
 		var index: number = pmosfets.length - 1;
 		if (index < pmosfets.length) {
 			pmosfets[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = pmosfets[index].elm.id;
 			global.variables.focused_type = pmosfets[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(pmosfets[index].bounds);
@@ -4729,7 +4729,7 @@ class EngineFunctions {
 		var index: number = npns.length - 1;
 		if (index < npns.length) {
 			npns[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = npns[index].elm.id;
 			global.variables.focused_type = npns[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(npns[index].bounds);
@@ -4757,7 +4757,7 @@ class EngineFunctions {
 		var index: number = pnps.length - 1;
 		if (index < pnps.length) {
 			pnps[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = pnps[index].elm.id;
 			global.variables.focused_type = pnps[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(pnps[index].bounds);
@@ -4782,7 +4782,7 @@ class EngineFunctions {
 		var index: number = adcs.length - 1;
 		if (index < adcs.length) {
 			adcs[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = adcs[index].elm.id;
 			global.variables.focused_type = adcs[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(adcs[index].bounds);
@@ -4807,7 +4807,7 @@ class EngineFunctions {
 		var index: number = dacs.length - 1;
 		if (index < dacs.length) {
 			dacs[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = dacs[index].elm.id;
 			global.variables.focused_type = dacs[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(dacs[index].bounds);
@@ -4835,7 +4835,7 @@ class EngineFunctions {
 		var index: number = sandhs.length - 1;
 		if (index < sandhs.length) {
 			sandhs[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = sandhs[index].elm.id;
 			global.variables.focused_type = sandhs[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(sandhs[index].bounds);
@@ -4863,7 +4863,7 @@ class EngineFunctions {
 		var index: number = pwms.length - 1;
 		if (index < pwms.length) {
 			pwms[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = pwms[index].elm.id;
 			global.variables.focused_type = pwms[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(pwms[index].bounds);
@@ -4888,7 +4888,7 @@ class EngineFunctions {
 		var index: number = integrators.length - 1;
 		if (index < integrators.length) {
 			integrators[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = integrators[index].elm.id;
 			global.variables.focused_type = integrators[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(integrators[index].bounds);
@@ -4913,7 +4913,7 @@ class EngineFunctions {
 		var index: number = differentiators.length - 1;
 		if (index < differentiators.length) {
 			differentiators[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = differentiators[index].elm.id;
 			global.variables.focused_type = differentiators[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(differentiators[index].bounds);
@@ -4938,7 +4938,7 @@ class EngineFunctions {
 		var index: number = lowpasses.length - 1;
 		if (index < lowpasses.length) {
 			lowpasses[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = lowpasses[index].elm.id;
 			global.variables.focused_type = lowpasses[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(lowpasses[index].bounds);
@@ -4963,7 +4963,7 @@ class EngineFunctions {
 		var index: number = highpasses.length - 1;
 		if (index < highpasses.length) {
 			highpasses[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = highpasses[index].elm.id;
 			global.variables.focused_type = highpasses[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(highpasses[index].bounds);
@@ -4994,7 +4994,7 @@ class EngineFunctions {
 		var index: number = relays.length - 1;
 		if (index < relays.length) {
 			relays[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = relays[index].elm.id;
 			global.variables.focused_type = relays[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(relays[index].bounds);
@@ -5022,7 +5022,7 @@ class EngineFunctions {
 		var index: number = pids.length - 1;
 		if (index < pids.length) {
 			pids[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = pids[index].elm.id;
 			global.variables.focused_type = pids[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(pids[index].bounds);
@@ -5047,7 +5047,7 @@ class EngineFunctions {
 		var index: number = luts.length - 1;
 		if (index < luts.length) {
 			luts[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = luts[index].elm.id;
 			global.variables.focused_type = luts[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(luts[index].bounds);
@@ -5075,7 +5075,7 @@ class EngineFunctions {
 		var index: number = vcrs.length - 1;
 		if (index < vcrs.length) {
 			vcrs[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = vcrs[index].elm.id;
 			global.variables.focused_type = vcrs[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(vcrs[index].bounds);
@@ -5103,7 +5103,7 @@ class EngineFunctions {
 		var index: number = vccas.length - 1;
 		if (index < vccas.length) {
 			vccas[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = vccas[index].elm.id;
 			global.variables.focused_type = vccas[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(vccas[index].bounds);
@@ -5131,7 +5131,7 @@ class EngineFunctions {
 		var index: number = vcls.length - 1;
 		if (index < vcls.length) {
 			vcls[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = vcls[index].elm.id;
 			global.variables.focused_type = vcls[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(vcls[index].bounds);
@@ -5159,7 +5159,7 @@ class EngineFunctions {
 		var index: number = grts.length - 1;
 		if (index < grts.length) {
 			grts[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = grts[index].elm.id;
 			global.variables.focused_type = grts[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(grts[index].bounds);
@@ -5184,7 +5184,7 @@ class EngineFunctions {
 		var index: number = tptzs.length - 1;
 		if (index < tptzs.length) {
 			tptzs[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = tptzs[index].elm.id;
 			global.variables.focused_type = tptzs[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(tptzs[index].bounds);
@@ -5215,7 +5215,7 @@ class EngineFunctions {
 		var index: number = transformers.length - 1;
 		if (index < transformers.length) {
 			transformers[index].is_translating = false;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.focused_id = transformers[index].elm.id;
 			global.variables.focused_type = transformers[index].elm.type;
 			global.variables.focused_bounds = global.utils.copy(transformers[index].bounds);
@@ -6054,9 +6054,9 @@ class EngineFunctions {
 		}
 	}
 	image_manager() {
-		if (global.flags.picture_request_flag) {
+		if (global.flags.flag_picture_request) {
 			this.capture_image();
-			global.flags.picture_request_flag = false;
+			global.flags.flag_picture_request = false;
 		}
 	}
 	parse_elements(packet: string) {
@@ -6399,7 +6399,7 @@ class EngineFunctions {
 			transformers.push(this.rebuild_transformer(obj));
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 		global.variables.signal_build_counter = 0;
 	}
 	/* #INSERT_GENERATE_REBUILD_ELEMENTS# */
@@ -8927,8 +8927,8 @@ class EngineFunctions {
 			resistors[index].remove_focus();
 			resistors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			resistors.splice(index, 1);
 		}
 	}
@@ -8939,8 +8939,8 @@ class EngineFunctions {
 			capacitors[index].remove_focus();
 			capacitors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			capacitors.splice(index, 1);
 		}
 	}
@@ -8951,8 +8951,8 @@ class EngineFunctions {
 			inductors[index].remove_focus();
 			inductors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			inductors.splice(index, 1);
 		}
 	}
@@ -8963,8 +8963,8 @@ class EngineFunctions {
 			grounds[index].remove_focus();
 			grounds[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			grounds.splice(index, 1);
 		}
 	}
@@ -8975,8 +8975,8 @@ class EngineFunctions {
 			dcsources[index].remove_focus();
 			dcsources[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			dcsources.splice(index, 1);
 		}
 	}
@@ -8987,8 +8987,8 @@ class EngineFunctions {
 			dccurrents[index].remove_focus();
 			dccurrents[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			dccurrents.splice(index, 1);
 		}
 	}
@@ -8999,8 +8999,8 @@ class EngineFunctions {
 			acsources[index].remove_focus();
 			acsources[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			acsources.splice(index, 1);
 		}
 	}
@@ -9011,8 +9011,8 @@ class EngineFunctions {
 			accurrents[index].remove_focus();
 			accurrents[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			accurrents.splice(index, 1);
 		}
 	}
@@ -9023,8 +9023,8 @@ class EngineFunctions {
 			squarewaves[index].remove_focus();
 			squarewaves[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			squarewaves.splice(index, 1);
 		}
 	}
@@ -9035,8 +9035,8 @@ class EngineFunctions {
 			sawwaves[index].remove_focus();
 			sawwaves[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			sawwaves.splice(index, 1);
 		}
 	}
@@ -9047,8 +9047,8 @@ class EngineFunctions {
 			trianglewaves[index].remove_focus();
 			trianglewaves[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			trianglewaves.splice(index, 1);
 		}
 	}
@@ -9059,8 +9059,8 @@ class EngineFunctions {
 			constants[index].remove_focus();
 			constants[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			constants.splice(index, 1);
 		}
 	}
@@ -9071,8 +9071,8 @@ class EngineFunctions {
 			wires[index].remove_focus();
 			wires[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			wires.splice(index, 1);
 		}
 	}
@@ -9083,8 +9083,8 @@ class EngineFunctions {
 			nets[index].remove_focus();
 			nets[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			nets.splice(index, 1);
 		}
 	}
@@ -9095,8 +9095,8 @@ class EngineFunctions {
 			notes[index].remove_focus();
 			notes[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			notes.splice(index, 1);
 		}
 	}
@@ -9107,8 +9107,8 @@ class EngineFunctions {
 			rails[index].remove_focus();
 			rails[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			rails.splice(index, 1);
 		}
 	}
@@ -9121,8 +9121,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(voltmeters[index].elm.id, voltmeters[index].elm.type);
 
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			voltmeters.splice(index, 1);
 		}
 	}
@@ -9135,8 +9135,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(ohmmeters[index].elm.id, ohmmeters[index].elm.type);
 
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			ohmmeters.splice(index, 1);
 		}
 	}
@@ -9149,8 +9149,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(ammeters[index].elm.id, ammeters[index].elm.type);
 
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			ammeters.splice(index, 1);
 		}
 	}
@@ -9163,8 +9163,8 @@ class EngineFunctions {
 			wire_manager.reset_wire_builder();
 			scope_manager.remove(wattmeters[index].elm.id, wattmeters[index].elm.type);
 
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			wattmeters.splice(index, 1);
 		}
 	}
@@ -9175,8 +9175,8 @@ class EngineFunctions {
 			fuses[index].remove_focus();
 			fuses[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			fuses.splice(index, 1);
 		}
 	}
@@ -9187,8 +9187,8 @@ class EngineFunctions {
 			spsts[index].remove_focus();
 			spsts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			spsts.splice(index, 1);
 		}
 	}
@@ -9199,8 +9199,8 @@ class EngineFunctions {
 			spdts[index].remove_focus();
 			spdts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			spdts.splice(index, 1);
 		}
 	}
@@ -9211,8 +9211,8 @@ class EngineFunctions {
 			nots[index].remove_focus();
 			nots[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			nots.splice(index, 1);
 		}
 	}
@@ -9223,8 +9223,8 @@ class EngineFunctions {
 			diodes[index].remove_focus();
 			diodes[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			diodes.splice(index, 1);
 		}
 	}
@@ -9235,8 +9235,8 @@ class EngineFunctions {
 			leds[index].remove_focus();
 			leds[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			leds.splice(index, 1);
 		}
 	}
@@ -9247,8 +9247,8 @@ class EngineFunctions {
 			zeners[index].remove_focus();
 			zeners[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			zeners.splice(index, 1);
 		}
 	}
@@ -9259,8 +9259,8 @@ class EngineFunctions {
 			potentiometers[index].remove_focus();
 			potentiometers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			potentiometers.splice(index, 1);
 		}
 	}
@@ -9271,8 +9271,8 @@ class EngineFunctions {
 			ands[index].remove_focus();
 			ands[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			ands.splice(index, 1);
 		}
 	}
@@ -9283,8 +9283,8 @@ class EngineFunctions {
 			ors[index].remove_focus();
 			ors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			ors.splice(index, 1);
 		}
 	}
@@ -9295,8 +9295,8 @@ class EngineFunctions {
 			nands[index].remove_focus();
 			nands[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			nands.splice(index, 1);
 		}
 	}
@@ -9307,8 +9307,8 @@ class EngineFunctions {
 			nors[index].remove_focus();
 			nors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			nors.splice(index, 1);
 		}
 	}
@@ -9319,8 +9319,8 @@ class EngineFunctions {
 			xors[index].remove_focus();
 			xors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			xors.splice(index, 1);
 		}
 	}
@@ -9331,8 +9331,8 @@ class EngineFunctions {
 			xnors[index].remove_focus();
 			xnors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			xnors.splice(index, 1);
 		}
 	}
@@ -9343,8 +9343,8 @@ class EngineFunctions {
 			dffs[index].remove_focus();
 			dffs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			dffs.splice(index, 1);
 		}
 	}
@@ -9355,8 +9355,8 @@ class EngineFunctions {
 			vsats[index].remove_focus();
 			vsats[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			vsats.splice(index, 1);
 		}
 	}
@@ -9367,8 +9367,8 @@ class EngineFunctions {
 			adders[index].remove_focus();
 			adders[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			adders.splice(index, 1);
 		}
 	}
@@ -9379,8 +9379,8 @@ class EngineFunctions {
 			subtractors[index].remove_focus();
 			subtractors[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			subtractors.splice(index, 1);
 		}
 	}
@@ -9391,8 +9391,8 @@ class EngineFunctions {
 			multipliers[index].remove_focus();
 			multipliers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			multipliers.splice(index, 1);
 		}
 	}
@@ -9403,8 +9403,8 @@ class EngineFunctions {
 			dividers[index].remove_focus();
 			dividers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			dividers.splice(index, 1);
 		}
 	}
@@ -9415,8 +9415,8 @@ class EngineFunctions {
 			gains[index].remove_focus();
 			gains[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			gains.splice(index, 1);
 		}
 	}
@@ -9427,8 +9427,8 @@ class EngineFunctions {
 			absvals[index].remove_focus();
 			absvals[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			absvals.splice(index, 1);
 		}
 	}
@@ -9439,8 +9439,8 @@ class EngineFunctions {
 			vcsws[index].remove_focus();
 			vcsws[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			vcsws.splice(index, 1);
 		}
 	}
@@ -9451,8 +9451,8 @@ class EngineFunctions {
 			vcvss[index].remove_focus();
 			vcvss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			vcvss.splice(index, 1);
 		}
 	}
@@ -9463,8 +9463,8 @@ class EngineFunctions {
 			vccss[index].remove_focus();
 			vccss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			vccss.splice(index, 1);
 		}
 	}
@@ -9475,8 +9475,8 @@ class EngineFunctions {
 			cccss[index].remove_focus();
 			cccss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			cccss.splice(index, 1);
 		}
 	}
@@ -9487,8 +9487,8 @@ class EngineFunctions {
 			ccvss[index].remove_focus();
 			ccvss[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			ccvss.splice(index, 1);
 		}
 	}
@@ -9499,8 +9499,8 @@ class EngineFunctions {
 			opamps[index].remove_focus();
 			opamps[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			opamps.splice(index, 1);
 		}
 	}
@@ -9511,8 +9511,8 @@ class EngineFunctions {
 			nmosfets[index].remove_focus();
 			nmosfets[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			nmosfets.splice(index, 1);
 		}
 	}
@@ -9523,8 +9523,8 @@ class EngineFunctions {
 			pmosfets[index].remove_focus();
 			pmosfets[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			pmosfets.splice(index, 1);
 		}
 	}
@@ -9535,8 +9535,8 @@ class EngineFunctions {
 			npns[index].remove_focus();
 			npns[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			npns.splice(index, 1);
 		}
 	}
@@ -9547,8 +9547,8 @@ class EngineFunctions {
 			pnps[index].remove_focus();
 			pnps[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			pnps.splice(index, 1);
 		}
 	}
@@ -9559,8 +9559,8 @@ class EngineFunctions {
 			adcs[index].remove_focus();
 			adcs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			adcs.splice(index, 1);
 		}
 	}
@@ -9571,8 +9571,8 @@ class EngineFunctions {
 			dacs[index].remove_focus();
 			dacs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			dacs.splice(index, 1);
 		}
 	}
@@ -9583,8 +9583,8 @@ class EngineFunctions {
 			sandhs[index].remove_focus();
 			sandhs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			sandhs.splice(index, 1);
 		}
 	}
@@ -9595,8 +9595,8 @@ class EngineFunctions {
 			pwms[index].remove_focus();
 			pwms[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			pwms.splice(index, 1);
 		}
 	}
@@ -9607,8 +9607,8 @@ class EngineFunctions {
 			integrators[index].remove_focus();
 			integrators[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			integrators.splice(index, 1);
 		}
 	}
@@ -9619,8 +9619,8 @@ class EngineFunctions {
 			differentiators[index].remove_focus();
 			differentiators[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			differentiators.splice(index, 1);
 		}
 	}
@@ -9631,8 +9631,8 @@ class EngineFunctions {
 			lowpasses[index].remove_focus();
 			lowpasses[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			lowpasses.splice(index, 1);
 		}
 	}
@@ -9643,8 +9643,8 @@ class EngineFunctions {
 			highpasses[index].remove_focus();
 			highpasses[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			highpasses.splice(index, 1);
 		}
 	}
@@ -9655,8 +9655,8 @@ class EngineFunctions {
 			relays[index].remove_focus();
 			relays[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			relays.splice(index, 1);
 		}
 	}
@@ -9667,8 +9667,8 @@ class EngineFunctions {
 			pids[index].remove_focus();
 			pids[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			pids.splice(index, 1);
 		}
 	}
@@ -9679,8 +9679,8 @@ class EngineFunctions {
 			luts[index].remove_focus();
 			luts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			luts.splice(index, 1);
 		}
 	}
@@ -9691,8 +9691,8 @@ class EngineFunctions {
 			vcrs[index].remove_focus();
 			vcrs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			vcrs.splice(index, 1);
 		}
 	}
@@ -9703,8 +9703,8 @@ class EngineFunctions {
 			vccas[index].remove_focus();
 			vccas[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			vccas.splice(index, 1);
 		}
 	}
@@ -9715,8 +9715,8 @@ class EngineFunctions {
 			vcls[index].remove_focus();
 			vcls[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			vcls.splice(index, 1);
 		}
 	}
@@ -9727,8 +9727,8 @@ class EngineFunctions {
 			grts[index].remove_focus();
 			grts[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			grts.splice(index, 1);
 		}
 	}
@@ -9739,8 +9739,8 @@ class EngineFunctions {
 			tptzs[index].remove_focus();
 			tptzs[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			tptzs.splice(index, 1);
 		}
 	}
@@ -9751,8 +9751,8 @@ class EngineFunctions {
 			transformers[index].remove_focus();
 			transformers[index].remove_selection();
 			wire_manager.reset_wire_builder();
-			global.flags.signal_wire_deleted = true;
-			global.variables.signal_wire_deleted_counter = 0;
+			global.flags.flag_wire_deleted = true;
+			global.variables.flag_wire_deleted_counter = 0;
 			transformers.splice(index, 1);
 		}
 	}
@@ -9770,7 +9770,7 @@ class EngineFunctions {
 			!global.flags.flag_select_settings &&
 			!global.flags.flag_remove_all &&
 			!global.variables.mouse_keyboard_lock &&
-			!global.flags.signal_history_lock
+			!global.flags.flag_history_lock
 		) {
 			if (!global.variables.is_right_click) {
 				if (global.variables.selected) {
@@ -10936,7 +10936,7 @@ class EngineFunctions {
 		global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
 		for (var i: number = 0; i < global.CONSTANTS.PICTURE_REQUEST_MAX_TIME; i++) {
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 			global.variables.signal_build_counter = 0;
 			this.snapshot(temp_surface, temp_canvas);
 		}

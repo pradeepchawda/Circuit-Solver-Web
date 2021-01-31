@@ -110,7 +110,7 @@ class TimeStepWindow {
         this.exit_button.draw_fill = false;
         this.exit_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-        this.input_button.text = global.utils.exponentiate_quickly(global.time_step);
+        this.input_button.text = global.utils.exponentiate_quickly(simulation_manager.time_step);
         this.input_button.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.input_button.draw_stroke = true;
@@ -219,7 +219,7 @@ class TimeStepWindow {
                     }
                     else if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
                         this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)) {
-                        if (this.select_all && !global.flags.mouse_double_click_event_flag) {
+                        if (this.select_all && !global.flags.flag_mouse_double_click_event) {
                             this.select_all = false;
                         }
                     }
@@ -407,7 +407,7 @@ class TimeStepWindow {
             }
         }
         else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER && !key_event['ctrl']) {
-            global.time_step = string_operator.parse(this.input_button.text);
+            simulation_manager.time_step = string_operator.parse(this.input_button.text);
             bottom_menu.handle_timestep_flag(!global.flags.flag_select_timestep);
         }
         else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
@@ -583,7 +583,7 @@ class TimeStepWindow {
         this.select_end = -1;
     }
     double_click() {
-        if (global.flags.mouse_double_click_event_flag) {
+        if (global.flags.flag_mouse_double_click_event) {
             if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
                 this.select_all = !this.select_all;
                 if (this.select_all) {

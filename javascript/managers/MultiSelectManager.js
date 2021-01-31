@@ -505,7 +505,7 @@ class MultiSelectManager {
                 !global.flags.flag_select_settings &&
                 !global.flags.flag_remove_all &&
                 !global.flags.flag_menu_element_toolbox &&
-                !global.flags.signal_history_lock) {
+                !global.flags.flag_history_lock) {
                 if (key_event['ctrl']) {
                     this.ctrl_pressed_started = true;
                 }
@@ -513,7 +513,7 @@ class MultiSelectManager {
         }
     }
     key_up(key_event) {
-        if (this.enable_keys && !global.flags.signal_history_lock && !global.CONSTANTS.MOBILE_MODE) {
+        if (this.enable_keys && !global.flags.flag_history_lock && !global.CONSTANTS.MOBILE_MODE) {
             if (!this.mouse_down_flag) {
                 this.ctrl_pressed_started = false;
                 this.ctrl_pressed = false;
@@ -534,9 +534,9 @@ class MultiSelectManager {
             !global.flags.flag_select_settings &&
             !global.flags.flag_remove_all &&
             !global.flags.flag_menu_element_toolbox &&
-            !global.flags.signal_history_lock &&
+            !global.flags.flag_history_lock &&
             !global.CONSTANTS.MOBILE_MODE) {
-            if (this.enable_keys && !global.flags.signal_history_lock) {
+            if (this.enable_keys && !global.flags.flag_history_lock) {
                 this.mouse_down_flag = true;
                 if (this.ctrl_pressed_started) {
                     this.ctrl_pressed_started = true;
@@ -599,7 +599,7 @@ class MultiSelectManager {
             !global.flags.flag_select_settings &&
             !global.flags.flag_remove_all &&
             !global.flags.flag_menu_element_toolbox &&
-            !global.flags.signal_history_lock &&
+            !global.flags.flag_history_lock &&
             !global.CONSTANTS.MOBILE_MODE) {
             if (this.ctrl_pressed_started) {
                 if (Math.abs(global.variables.mouse_x - this.select_x) > global.variables.node_space_x || Math.abs(global.variables.mouse_y - this.select_y) > global.variables.node_space_y) {
@@ -679,7 +679,7 @@ class MultiSelectManager {
             }
         }
         if (dx !== 0 || dy !== 0) {
-            global.flags.signal_build_element = true;
+            global.flags.flag_build_element = true;
             global.variables.signal_build_counter = 0;
             this.elements_moved = true;
             /* #INSERT_GENERATE_MULTI_SELECT_ELEMENT_MOVE# */

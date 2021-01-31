@@ -1,7 +1,5 @@
 'use strict';
 class SineWave {
-	public readonly STYLE_0: number;
-	public readonly STYLE_1: number;
 	public amplitude: number;
 	public sine_wave_paint: Paint;
 	public x1: number;
@@ -15,8 +13,6 @@ class SineWave {
 	public last_y1: number;
 	public last_y2: number;
 	constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
-		this.STYLE_0 = 0;
-		this.STYLE_1 = 1;
 		this.amplitude = amplitude;
 		this.sine_wave_paint = new Paint();
 		this.sine_wave_paint.set_paint_style(PAINT.style.STROKE);
@@ -56,10 +52,10 @@ class SineWave {
 		this.sine_wave_paint.set_color(color);
 	}
 	resize(style: number): void {
-		if (style === this.STYLE_0) {
+		if (style === global.CONSTANTS.SINE_WAVE_STYLE_0) {
 			this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2_zoom);
 			this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4_zoom);
-		} else if (style === this.STYLE_1) {
+		} else if (style === global.CONSTANTS.SINE_WAVE_STYLE_1) {
 			this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 			this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4);
 		}

@@ -97,7 +97,7 @@ class Workspace {
 		}
 		global.variables.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
 		global.variables.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-		if (!this.first_resize_flag || global.flags.force_resize_event) {
+		if (!this.first_resize_flag || global.flags.flag_force_resize_event) {
 			zoom_window.set_zoom(global.variables.workspace_zoom_scale);
 			this.first_resize_flag = true;
 		}
@@ -105,7 +105,7 @@ class Workspace {
 	}
 	workspace_zoom(): void {
 		this.grid_moved = true;
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 		global.variables.signal_build_counter = 0;
 		this.bounds.left = global.variables.delta_x;
 		this.bounds.top = global.variables.delta_y;
@@ -113,25 +113,25 @@ class Workspace {
 		this.bounds.bottom = this.bounds.top + global.variables.natural_height * global.variables.workspace_zoom_scale;
 		global.variables.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
 		global.variables.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-/* #INSERT_METER_RESIZE_TRACE# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-for (var i : number = 0; i < voltmeters.length; i++) {
-      voltmeters[i].resize_meter_trace = true;
-    }
-for (var i : number = 0; i < ohmmeters.length; i++) {
-      ohmmeters[i].resize_meter_trace = true;
-    }
-for (var i : number = 0; i < ammeters.length; i++) {
-      ammeters[i].resize_meter_trace = true;
-    }
-for (var i : number = 0; i < wattmeters.length; i++) {
-      wattmeters[i].resize_meter_trace = true;
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_METER_RESIZE_TRACE# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		for (var i: number = 0; i < voltmeters.length; i++) {
+			voltmeters[i].resize_meter_trace = true;
+		}
+		for (var i: number = 0; i < ohmmeters.length; i++) {
+			ohmmeters[i].resize_meter_trace = true;
+		}
+		for (var i: number = 0; i < ammeters.length; i++) {
+			ammeters[i].resize_meter_trace = true;
+		}
+		for (var i: number = 0; i < wattmeters.length; i++) {
+			wattmeters[i].resize_meter_trace = true;
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	workspace_translate_bounds(dx: number, dy: number): void {
 		this.grid_moved = true;
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 		global.variables.signal_build_counter = 0;
 		this.bounds.left += dx;
 		this.bounds.right += dx;

@@ -278,7 +278,7 @@ class ElementOptionsWindow {
 			}
 			global.variables.component_touched = true;
 			global.variables.mouse_keyboard_lock = true;
-			global.flags.signal_build_element = true;
+			global.flags.flag_build_element = true;
 		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {

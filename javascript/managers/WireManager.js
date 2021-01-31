@@ -35,7 +35,7 @@ class WireManager {
                         if (index > -1 && index < wires.length) {
                             wires[index].select();
                         }
-                        global.flags.signal_wire_created = true;
+                        global.flags.flag_wire_created = true;
                     }
                 }
                 else {

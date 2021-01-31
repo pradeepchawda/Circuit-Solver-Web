@@ -74,7 +74,7 @@ class Workspace {
         }
         global.variables.node_space_x = this.bounds.get_width() / global.settings.SQRT_MAXNODES;
         global.variables.node_space_y = this.bounds.get_height() / global.settings.SQRT_MAXNODES;
-        if (!this.first_resize_flag || global.flags.force_resize_event) {
+        if (!this.first_resize_flag || global.flags.flag_force_resize_event) {
             zoom_window.set_zoom(global.variables.workspace_zoom_scale);
             this.first_resize_flag = true;
         }
@@ -82,7 +82,7 @@ class Workspace {
     }
     workspace_zoom() {
         this.grid_moved = true;
-        global.flags.signal_build_element = true;
+        global.flags.flag_build_element = true;
         global.variables.signal_build_counter = 0;
         this.bounds.left = global.variables.delta_x;
         this.bounds.top = global.variables.delta_y;
@@ -108,7 +108,7 @@ class Workspace {
     }
     workspace_translate_bounds(dx, dy) {
         this.grid_moved = true;
-        global.flags.signal_build_element = true;
+        global.flags.flag_build_element = true;
         global.variables.signal_build_counter = 0;
         this.bounds.left += dx;
         this.bounds.right += dx;

@@ -110,7 +110,7 @@ class SaveImageWindow {
         this.exit_button.draw_fill = false;
         this.exit_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-        this.input_button.text = global.utils.exponentiate_quickly(global.time_step);
+        this.input_button.text = global.utils.exponentiate_quickly(simulation_manager.time_step);
         this.input_button.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.input_button.draw_stroke = true;
@@ -204,8 +204,8 @@ class SaveImageWindow {
                     }
                     else if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
                         this.okay_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)) {
-                        if (!global.flags.picture_request_flag) {
-                            global.flags.picture_request_flag = true;
+                        if (!global.flags.flag_picture_request) {
+                            global.flags.flag_picture_request = true;
                         }
                         menu_bar.handle_save_image_flag(!global.flags.flag_save_image);
                         global.variables.component_touched = true;
@@ -223,7 +223,7 @@ class SaveImageWindow {
                     else if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
                         this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)) {
                         if (this.select_all) {
-                            if (this.select_all && !global.flags.mouse_double_click_event_flag) {
+                            if (this.select_all && !global.flags.flag_mouse_double_click_event) {
                                 this.select_all = false;
                             }
                         }
@@ -412,8 +412,8 @@ class SaveImageWindow {
             }
         }
         else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER && !key_event['ctrl']) {
-            if (!global.flags.picture_request_flag) {
-                global.flags.picture_request_flag = true;
+            if (!global.flags.flag_picture_request) {
+                global.flags.flag_picture_request = true;
             }
             menu_bar.handle_save_image_flag(!global.flags.flag_save_image);
         }
@@ -590,7 +590,7 @@ class SaveImageWindow {
         this.select_end = -1;
     }
     double_click() {
-        if (global.flags.mouse_double_click_event_flag) {
+        if (global.flags.flag_mouse_double_click_event) {
             if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
                 this.select_all = !this.select_all;
                 if (this.select_all) {

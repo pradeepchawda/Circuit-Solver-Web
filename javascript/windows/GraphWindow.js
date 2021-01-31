@@ -372,7 +372,7 @@ class GraphWindow {
                 if (this.meter_hover_index > -1 &&
                     (this.meter_hover_index < this.graph_trace_a.trace.length || this.meter_hover_index < this.graph_trace_b.trace.length || this.meter_hover_index < this.graph_trace_c.trace.length)) {
                     canvas.draw_text(this.time_axis_value + 's', this.inner_bounds.right -
-                        this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   ') -
+                        this.text_paint.measure_text(global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step   ') -
                         this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
                         view_port.view_width * 0.1, this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
                 }
@@ -410,7 +410,7 @@ class GraphWindow {
                     }
                 }
             }
-            canvas.draw_text(global.utils.exponentiate_quickly(global.time_step) + 's/step', this.inner_bounds.right - this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   '), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
+            canvas.draw_text(global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step', this.inner_bounds.right - this.text_paint.measure_text(global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step   '), this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1), this.text_paint);
             if (this.download_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && !global.CONSTANTS.MOBILE_MODE) {
                 this.download_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
                 this.download_button.draw_button(canvas);

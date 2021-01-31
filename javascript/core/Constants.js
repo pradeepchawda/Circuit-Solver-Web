@@ -1,6 +1,7 @@
 'use strict';
 class Constants {
     constructor() {
+        let indexer = 0;
         this.NULL = null;
         this.MOBILE_MODE = false;
         this.DESKTOP_MODE = false;
@@ -40,7 +41,7 @@ class Constants {
         this.TEXT_STYLE_4 = 'Style4';
         this.TEXT_STYLE_5 = 'Style5';
         this.DEFAULT_FONT = 'Arial';
-        let indexer = 0;
+        indexer = 0;
         this.SYSTEM_OPTION_LANGUAGE = indexer++;
         this.SYSTEM_OPTION_AUTOMATIC_TIMESTEP = indexer++;
         this.SYSTEM_OPTION_SHORTCUT_HINTS = indexer++;

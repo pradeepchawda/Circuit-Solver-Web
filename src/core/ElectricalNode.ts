@@ -60,7 +60,7 @@ class ElectricalNode {
 		this.loc_y_precalc = this.column * global.settings.INV_SQRT_M_1;
 	}
 	resize(n_x: number, n_y: number, m_n_x: number, m_n_y: number): void {
-		if (global.flags.signal_build_element) {
+		if (global.flags.flag_build_element) {
 			this.location.x = workspace.bounds.left + this.loc_x_precalc * workspace.bounds.get_width();
 			this.location.y = workspace.bounds.top + this.loc_y_precalc * workspace.bounds.get_height();
 			if (!global.CONSTANTS.MOBILE_MODE) {

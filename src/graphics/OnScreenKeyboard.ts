@@ -1,6 +1,21 @@
 'use strict';
 class OnScreenKeyboard {
 	public readonly KEYBOARD_MAX_KEYS: number;
+	public readonly LETTER_ROW_1: string;
+	public readonly LETTER_ROW_2: string;
+	public readonly LETTER_ROW_3: string;
+	public readonly KEYBOARD_LETTER_REF: Array<number>;
+	public readonly KEYBOARD_SPECIAL_REF: Array<number>;
+	public readonly KEYBOARD_MAPPING: Array<string>;
+	public readonly KEYBOARD_INCREMENT_AT: Array<number>;
+	public readonly KEYBOARD_BLOCK_EXPAND: Array<number>;
+	public readonly KEYBOARD_EXPAND_TEMPLATE: KEYBOARD_EXPAND_T;
+	public readonly KEYBOARD_KEYS: Array<RectF>;
+	public readonly ENGINEERING_KEYBOARD_FILTER: RegExp;
+	public readonly FILE_NAME_KEYBOARD_FILTER: RegExp;
+	public readonly ENGINEERING_KEYBOARD_FILTER_INDEX: Array<boolean>;
+	public readonly FILE_NAME_KEYBOARD_FILTER_INDEX: Array<boolean>;
+	public readonly KEYBOARD_KEY_EVENT: ON_SCREEN_KEYBOARD_KEY_EVENT_T;
 	public bounds: RectF;
 	public height_ratio: number;
 	public line_paint: Paint;
@@ -12,9 +27,6 @@ class OnScreenKeyboard {
 	public flag_shift: boolean;
 	public flag_enter: boolean;
 	public cap_ref: number;
-	public readonly LETTER_ROW_1: string;
-	public readonly LETTER_ROW_2: string;
-	public readonly LETTER_ROW_3: string;
 	public alt_1_ref: number;
 	public alt_2_ref: number;
 	public exit_ref: number;
@@ -25,22 +37,10 @@ class OnScreenKeyboard {
 	public ctrl_1_ref: number;
 	public ctrl_2_ref: number;
 	public shift_2_ref: number;
-	public readonly KEYBOARD_LETTER_REF: Array<number>;
-	public readonly KEYBOARD_SPECIAL_REF: Array<number>;
-	public readonly KEYBOARD_MAPPING: Array<string>;
-	public readonly KEYBOARD_INCREMENT_AT: Array<number>;
-	public readonly KEYBOARD_BLOCK_EXPAND: Array<number>;
-	public readonly KEYBOARD_EXPAND_TEMPLATE: KEYBOARD_EXPAND_T;
-	public readonly KEYBOARD_KEYS: Array<RectF>;
 	public flag_key_down: boolean;
 	public flag_key_up: boolean;
 	public engineering_keyboard_mode: boolean;
-	public readonly ENGINEERING_KEYBOARD_FILTER: RegExp;
-	public readonly FILE_NAME_KEYBOARD_FILTER: RegExp;
-	public readonly ENGINEERING_KEYBOARD_FILTER_INDEX: Array<boolean>;
-	public readonly FILE_NAME_KEYBOARD_FILTER_INDEX: Array<boolean>;
 	public hover_index: number;
-	public readonly KEYBOARD_KEY_EVENT: ON_SCREEN_KEYBOARD_KEY_EVENT_T;
 	public line_buffer: Array<Array<number>>;
 	constructor() {
 		this.KEYBOARD_MAX_KEYS = 67;
@@ -373,8 +373,8 @@ class OnScreenKeyboard {
 					FOUND = true;
 					if (this.KEYBOARD_MAPPING[i].length === 1 && this.approve_keys(i)) {
 						this.KEYBOARD_KEY_EVENT.code = global.utils.key_to_code(this.KEYBOARD_MAPPING[i]);
-						global.flags.key_down_event_flag = true;
-						global.flags.key_up_event_flag = true;
+						global.flags.flag_key_down_event = true;
+						global.flags.flag_key_up_event = true;
 						global.events.key_down_event_queue.push({
 							event: global.utils.copy(this.KEYBOARD_KEY_EVENT),
 							alt: false,
@@ -394,8 +394,8 @@ class OnScreenKeyboard {
 						} else if (this.KEYBOARD_MAPPING[i] === 'ENTER') {
 							this.flag_enter = !this.flag_enter;
 							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODES.KEY_CODE_ENTER;
-							global.flags.key_down_event_flag = true;
-							global.flags.key_up_event_flag = true;
+							global.flags.flag_key_down_event = true;
+							global.flags.flag_key_up_event = true;
 							global.events.key_down_event_queue.push({
 								event: global.utils.copy(this.KEYBOARD_KEY_EVENT),
 								alt: false,
@@ -406,8 +406,8 @@ class OnScreenKeyboard {
 							break;
 						} else if (this.KEYBOARD_MAPPING[i] === '<<') {
 							this.KEYBOARD_KEY_EVENT.code = global.KEY_CODES.KEY_CODE_BACKSPACE;
-							global.flags.key_down_event_flag = true;
-							global.flags.key_up_event_flag = true;
+							global.flags.flag_key_down_event = true;
+							global.flags.flag_key_up_event = true;
 							global.events.key_down_event_queue.push({
 								event: global.utils.copy(this.KEYBOARD_KEY_EVENT),
 								alt: false,

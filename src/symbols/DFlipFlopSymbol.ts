@@ -153,7 +153,7 @@ class DFlipFlopSymbol {
 				!this.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)
 			) {
 				shortcut_manager.temp_history_snapshot = engine_functions.history_snapshot();
-				global.flags.signal_history_lock = true;
+				global.flags.flag_history_lock = true;
 				engine_functions.add_dff();
 				this.flag_add_element = false;
 			}
@@ -164,7 +164,7 @@ class DFlipFlopSymbol {
 			if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, width, height)) {
 				if (!this.flag_add_element) {
 					this.flag_add_element = true;
-					global.flags.signal_add_element = true;
+					global.flags.flag_add_element = true;
 					global.variables.component_touched = true;
 				}
 			}
@@ -184,7 +184,7 @@ class DFlipFlopSymbol {
 			if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, width, height)) {
 			}
 			this.flag_add_element = false;
-			global.flags.signal_add_element = false;
+			global.flags.flag_add_element = false;
 		}
 	}
 	build_element() {
@@ -279,7 +279,7 @@ class DFlipFlopSymbol {
 			canvas.draw_text('D', this.dff_10.x, this.dff_10.y, this.text_paint);
 			canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
 			canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);
-			if (this.draw_tag && !global.flags.signal_add_element) {
+			if (this.draw_tag && !global.flags.flag_add_element) {
 				this.text_bounds.left = this.bounds.get_center_x() - 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);
 				this.text_bounds.top = this.bounds.bottom + this.bounds.get_height() - this.height_ratio * this.bounds.get_height();
 				this.text_bounds.right = this.bounds.get_center_x() + 1.25 * (this.text_paint_alt.measure_text(this.TAG) >> 1);

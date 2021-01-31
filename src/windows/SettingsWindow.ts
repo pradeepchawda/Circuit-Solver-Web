@@ -308,11 +308,11 @@ class SettingsWindow {
 					if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.CONSTANTS.OFF) {
 						global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] = global.CONSTANTS.ON;
 						view_port.apply_spread_factor = true;
-						global.flags.force_resize_event = true;
+						global.flags.flag_force_resize_event = true;
 					} else {
 						global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] = global.CONSTANTS.OFF;
 						view_port.apply_spread_factor = false;
-						global.flags.force_resize_event = true;
+						global.flags.flag_force_resize_event = true;
 					}
 				}
 				global.variables.component_touched = true;

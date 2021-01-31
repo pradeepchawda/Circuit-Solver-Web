@@ -11,9 +11,6 @@ class Global {
 	public utils: Util;
 	public settings: Settings;
 	public variables: Variables;
-
-
-
 	constructor() {
 		this.settings = new Settings();
 		this.CONSTANTS = new Constants();
@@ -26,7 +23,5 @@ class Global {
 		this.flags = new Flags();
 		this.utils = new Util(this.CONSTANTS, this.TEMPLATES, this.KEY_CODES);
 		this.variables = new Variables(this.CONSTANTS, this.COLORS);
-
-
 	}
 }

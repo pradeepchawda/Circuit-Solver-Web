@@ -378,7 +378,7 @@ class XNORGate {
         }
     }
     wire_reference_maintenance() {
-        if (this.wire_reference.length > 0 && global.flags.signal_wire_deleted) {
+        if (this.wire_reference.length > 0 && global.flags.flag_wire_deleted) {
             let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -510,7 +510,7 @@ class XNORGate {
         }
     }
     build_element() {
-        if (this.build_element_flag || global.flags.signal_build_element) {
+        if (this.build_element_flag || global.flags.flag_build_element) {
             let cache_0 = 1.5 * this.x_space;
             let cache_1 = 1.5 * this.y_space;
             let cache_2 = 0.75 * this.x_space;
@@ -559,7 +559,7 @@ class XNORGate {
         }
     }
     resize() {
-        if (this.build_element_flag || global.flags.signal_build_element) {
+        if (this.build_element_flag || global.flags.flag_build_element) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
                     this.equilateral_center = global.utils.equilateral_triangle_center(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x, nodes[this.elm.n3].location.x, nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y, nodes[this.elm.n3].location.y);
@@ -641,7 +641,7 @@ class XNORGate {
         if (this.multi_selected) {
             multi_select_manager.determine_enveloping_bounds(this.bounds);
         }
-        if (global.flags.picture_request_flag ||
+        if (global.flags.flag_picture_request ||
             (this.c_x >= view_port.left - global.variables.node_space_x &&
                 this.c_x - global.variables.node_space_x <= view_port.right &&
                 this.c_y >= view_port.top + -global.variables.node_space_y &&
@@ -688,9 +688,9 @@ class XNORGate {
                     global.CONSTANTS.NODE_HINTS &&
                     !multi_select_manager.multi_select &&
                     !this.multi_selected &&
-                    !global.flags.signal_add_element &&
-                    !global.flags.signal_history_lock &&
-                    !global.flags.picture_request_flag &&
+                    !global.flags.flag_add_element &&
+                    !global.flags.flag_history_lock &&
+                    !global.flags.flag_picture_request &&
                     !global.flags.flag_save_circuit &&
                     !global.flags.flag_save_image &&
                     !global.flags.flag_menu_element_toolbox &&
@@ -703,7 +703,7 @@ class XNORGate {
                     !global.flags.flag_select_settings &&
                     !global.flags.flag_select_element &&
                     !global.flags.flag_remove_all &&
-                    !global.flags.signal_add_element) {
+                    !global.flags.flag_add_element) {
                     if (this.elm.consistent()) {
                         let node_id_array = this.elm.get_nodes();
                         for (var i = 0; i < node_id_array.length; i++) {

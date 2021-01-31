@@ -21,32 +21,31 @@ class Util {
 	public readonly ELEMENT_VAL_TEMPLATE: string;
 	public readonly KEY_EVENT_CODES: any;
 	public readonly KEY_EVENT_CODES_KEYS: Array<string>;
-	public 'last_surface_width': number;
-	public 'last_surface_height': number;
-	public 'last_view_port_width': number;
-	public 'last_view_port_height': number;
-	public 'last_view_port_right': number;
-	public 'last_view_port_bottom': number;
-	public 'general_integer': number;
-	public 'general_integer2': number;
-	public 'general_integer3': number;
-	public 'general_integer4': number;
-	public 'general_integer5': number;
-	public 'resize_w_factor': number;
-	public 'resize_h_factor': number;
-	public 'angle_search_obj': ANGLE_STRUCT_T;
-	public 'angle_radian_search_obj': ANGLE_STRUCT_T;
-	public 'angle_array': Array<ANGLE_STRUCT_T>;
-	public 'angle_radian_array': Array<ANGLE_STRUCT_T>;
-	public 'saved_angle': number;
-	public 'saved_angle_radians': number;
-	public 'temp_boolean': boolean;
-	public 'general_index': number;
-	public 'element_max_array': Array<number>;
-	public 'meter_max_array': Array<number>;
-	public 'non_linear_max_array': Array<number>;
-	public 'max_general_number': number;
-
+	public last_surface_width: number;
+	public last_surface_height: number;
+	public last_view_port_width: number;
+	public last_view_port_height: number;
+	public last_view_port_right: number;
+	public last_view_port_bottom: number;
+	public general_integer: number;
+	public general_integer2: number;
+	public general_integer3: number;
+	public general_integer4: number;
+	public general_integer5: number;
+	public resize_w_factor: number;
+	public resize_h_factor: number;
+	public angle_search_obj: ANGLE_STRUCT_T;
+	public angle_radian_search_obj: ANGLE_STRUCT_T;
+	public angle_array: Array<ANGLE_STRUCT_T>;
+	public angle_radian_array: Array<ANGLE_STRUCT_T>;
+	public saved_angle: number;
+	public saved_angle_radians: number;
+	public temp_boolean: boolean;
+	public general_index: number;
+	public element_max_array: Array<number>;
+	public meter_max_array: Array<number>;
+	public non_linear_max_array: Array<number>;
+	public max_general_number: number;
 	constructor(CONSTANTS: Constants, TEMPLATES: Templates, KEY_CODES: KeyCodes) {
 		this.TRIG_SINE_TABLE = CONSTANTS.TRIG_SINE_TABLE;
 		this.TRIG_TABLE_SCALE_CONSTANT = CONSTANTS.TRIG_TABLE_SCALE_CONSTANT;
@@ -310,10 +309,80 @@ class Util {
 		return str;
 	}
 	element_max(): number {
-/* #INSERT_GENERATE_MAX_ELEMENT# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-this.element_max_array = Array(resistors.length, capacitors.length, inductors.length, grounds.length, dcsources.length, dccurrents.length, acsources.length, accurrents.length, squarewaves.length, sawwaves.length, trianglewaves.length, constants.length, wires.length, nets.length, notes.length, rails.length, voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length, fuses.length, spsts.length, spdts.length, nots.length, diodes.length, leds.length, zeners.length, potentiometers.length, ands.length, ors.length, nands.length, nors.length, xors.length, xnors.length, dffs.length, vsats.length, adders.length, subtractors.length, multipliers.length, dividers.length, gains.length, absvals.length, vcsws.length, vcvss.length, vccss.length, cccss.length, ccvss.length, opamps.length, nmosfets.length, pmosfets.length, npns.length, pnps.length, adcs.length, dacs.length, sandhs.length, pwms.length, integrators.length, differentiators.length, lowpasses.length, highpasses.length, relays.length, pids.length, luts.length, vcrs.length, vccas.length, vcls.length, grts.length, tptzs.length, transformers.length);
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_MAX_ELEMENT# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		this.element_max_array = Array(
+			resistors.length,
+			capacitors.length,
+			inductors.length,
+			grounds.length,
+			dcsources.length,
+			dccurrents.length,
+			acsources.length,
+			accurrents.length,
+			squarewaves.length,
+			sawwaves.length,
+			trianglewaves.length,
+			constants.length,
+			wires.length,
+			nets.length,
+			notes.length,
+			rails.length,
+			voltmeters.length,
+			ohmmeters.length,
+			ammeters.length,
+			wattmeters.length,
+			fuses.length,
+			spsts.length,
+			spdts.length,
+			nots.length,
+			diodes.length,
+			leds.length,
+			zeners.length,
+			potentiometers.length,
+			ands.length,
+			ors.length,
+			nands.length,
+			nors.length,
+			xors.length,
+			xnors.length,
+			dffs.length,
+			vsats.length,
+			adders.length,
+			subtractors.length,
+			multipliers.length,
+			dividers.length,
+			gains.length,
+			absvals.length,
+			vcsws.length,
+			vcvss.length,
+			vccss.length,
+			cccss.length,
+			ccvss.length,
+			opamps.length,
+			nmosfets.length,
+			pmosfets.length,
+			npns.length,
+			pnps.length,
+			adcs.length,
+			dacs.length,
+			sandhs.length,
+			pwms.length,
+			integrators.length,
+			differentiators.length,
+			lowpasses.length,
+			highpasses.length,
+			relays.length,
+			pids.length,
+			luts.length,
+			vcrs.length,
+			vccas.length,
+			vcls.length,
+			grts.length,
+			tptzs.length,
+			transformers.length
+		);
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.element_max_array.length; i++) {
 			if (this.element_max_array[i] > this.max_general_number) {
@@ -323,10 +392,10 @@ this.element_max_array = Array(resistors.length, capacitors.length, inductors.le
 		return this.max_general_number;
 	}
 	meter_max(): number {
-/* #INSERT_GENERATE_MAX_METER# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_MAX_METER# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.length, wattmeters.length);
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.meter_max_array.length; i++) {
 			if (this.meter_max_array[i] > this.max_general_number) {
@@ -336,10 +405,10 @@ this.meter_max_array = Array(voltmeters.length, ohmmeters.length, ammeters.lengt
 		return this.max_general_number;
 	}
 	non_linear_max(): number {
-/* #INSERT_GENERATE_MAX_NON_LINEAR# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_MAX_NON_LINEAR# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		this.non_linear_max_array = Array(diodes.length, leds.length, zeners.length, nmosfets.length, pmosfets.length, npns.length, pnps.length);
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		this.max_general_number = 0;
 		for (var i: number = 0; i < this.non_linear_max_array.length; i++) {
 			if (this.non_linear_max_array[i] > this.max_general_number) {

@@ -288,7 +288,7 @@ class SimulationManager {
 		toast.set_text(language_manager.START_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
 		toast.show();
 		this.solutions_ready = false;
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 		this.initialized = true;
 	}
 	determine_optimal_timestep(): number {
@@ -1105,8 +1105,8 @@ class SimulationManager {
 						toast.show();
 					}
 				}
-				global.variables.canvas_draw_request_counter = 0;
-				global.flags.canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
+				global.flags.flag_canvas_draw_request = true;
 				this.continue_solving = true;
 				this.iterator = 0;
 				this.update_vir();

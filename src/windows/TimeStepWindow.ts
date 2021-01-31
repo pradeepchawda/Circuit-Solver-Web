@@ -257,7 +257,7 @@ class TimeStepWindow {
 						this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						if (this.select_all && !global.flags.mouse_double_click_event_flag) {
+						if (this.select_all && !global.flags.flag_mouse_double_click_event) {
 							this.select_all = false;
 						}
 					}
@@ -587,7 +587,7 @@ class TimeStepWindow {
 		this.select_end = -1;
 	}
 	double_click(): void {
-		if (global.flags.mouse_double_click_event_flag) {
+		if (global.flags.flag_mouse_double_click_event) {
 			if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
 				this.select_all = !this.select_all;
 				if (this.select_all) {

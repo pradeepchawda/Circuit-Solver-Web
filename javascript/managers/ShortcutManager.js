@@ -56,7 +56,7 @@ class ShortcutManager {
                         }
                     }
                     else if (!global.flags.flag_simulating) {
-                        if (!global.flags.signal_add_element) {
+                        if (!global.flags.flag_add_element) {
                             this.handle_add_element_flag(key_event);
                         }
                         else {
@@ -354,12 +354,12 @@ class ShortcutManager {
     }
     handle_escape_shortcut(key_event) {
         if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
-            if (global.flags.signal_history_lock && this.temp_history_snapshot !== '') {
+            if (global.flags.flag_history_lock && this.temp_history_snapshot !== '') {
                 engine_functions.parse_elements(this.temp_history_snapshot);
                 this.temp_history_snapshot = '';
-                global.flags.signal_history_lock = false;
-                if (global.flags.signal_add_element) {
-                    global.flags.signal_add_element = false;
+                global.flags.flag_history_lock = false;
+                if (global.flags.flag_add_element) {
+                    global.flags.flag_add_element = false;
                     menu_bar.escape_interrupt = true;
                     menu_bar.mouse_move();
                 }
@@ -419,7 +419,7 @@ class ShortcutManager {
             key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN ||
             key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT ||
             key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-            global.flags.signal_build_element = true;
+            global.flags.flag_build_element = true;
             if (global.variables.selected) {
                 /* #INSERT_GENERATE_HANDLE_SELECT_ELEMENTS_MOVE# */
                 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -1589,7 +1589,7 @@ class ShortcutManager {
             key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN ||
             key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT ||
             key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-            global.flags.signal_build_element = true;
+            global.flags.flag_build_element = true;
             this.multi_moved_element = false;
             let elm_max = global.utils.element_max();
             for (var i = 0; i < elm_max; i++) {
@@ -2176,7 +2176,7 @@ class ShortcutManager {
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (this.command === this.SHORTCUT_ROTATE) {
-            global.flags.signal_build_element = true;
+            global.flags.flag_build_element = true;
             let index = -1;
             /* #INSERT_GENERATE_ELEMENT_ROTATE_SHORTCUT# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -2704,7 +2704,7 @@ class ShortcutManager {
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (this.command === this.SHORTCUT_FLIP) {
-            global.flags.signal_build_element = true;
+            global.flags.flag_build_element = true;
             let index = -1;
             /* #INSERT_GENERATE_ELEMENT_FLIP_SHORTCUT# */
             /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -3679,7 +3679,7 @@ class ShortcutManager {
         this.command = key_event['event'].code;
         this.caps = key_event['caps'];
         if (this.command === this.SHORTCUT_PASTE) {
-            global.flags.signal_build_element = true;
+            global.flags.flag_build_element = true;
             this.temp_history_snapshot = engine_functions.history_snapshot();
             let id = -1;
             let index = -1;
@@ -3694,7 +3694,7 @@ class ShortcutManager {
                         resistors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         resistors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         resistors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
@@ -3705,7 +3705,7 @@ class ShortcutManager {
                         capacitors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         capacitors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         capacitors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
@@ -3716,7 +3716,7 @@ class ShortcutManager {
                         inductors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         inductors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         inductors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_GROUND) {
@@ -3727,7 +3727,7 @@ class ShortcutManager {
                         grounds[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         grounds[index].elm.set_rotation(global.variables.clipboard_rotation);
                         grounds[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
@@ -3738,7 +3738,7 @@ class ShortcutManager {
                         dcsources[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         dcsources[index].elm.set_rotation(global.variables.clipboard_rotation);
                         dcsources[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
@@ -3749,7 +3749,7 @@ class ShortcutManager {
                         dccurrents[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         dccurrents[index].elm.set_rotation(global.variables.clipboard_rotation);
                         dccurrents[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
@@ -3760,7 +3760,7 @@ class ShortcutManager {
                         acsources[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         acsources[index].elm.set_rotation(global.variables.clipboard_rotation);
                         acsources[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
@@ -3771,7 +3771,7 @@ class ShortcutManager {
                         accurrents[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         accurrents[index].elm.set_rotation(global.variables.clipboard_rotation);
                         accurrents[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
@@ -3782,7 +3782,7 @@ class ShortcutManager {
                         squarewaves[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         squarewaves[index].elm.set_rotation(global.variables.clipboard_rotation);
                         squarewaves[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_SAW) {
@@ -3793,7 +3793,7 @@ class ShortcutManager {
                         sawwaves[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         sawwaves[index].elm.set_rotation(global.variables.clipboard_rotation);
                         sawwaves[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_TRI) {
@@ -3804,7 +3804,7 @@ class ShortcutManager {
                         trianglewaves[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         trianglewaves[index].elm.set_rotation(global.variables.clipboard_rotation);
                         trianglewaves[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
@@ -3815,7 +3815,7 @@ class ShortcutManager {
                         constants[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         constants[index].elm.set_rotation(global.variables.clipboard_rotation);
                         constants[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_NET) {
@@ -3826,7 +3826,7 @@ class ShortcutManager {
                         nets[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         nets[index].elm.set_rotation(global.variables.clipboard_rotation);
                         nets[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_NOTE) {
@@ -3837,7 +3837,7 @@ class ShortcutManager {
                         notes[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         notes[index].elm.set_rotation(global.variables.clipboard_rotation);
                         notes[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_RAIL) {
@@ -3848,7 +3848,7 @@ class ShortcutManager {
                         rails[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         rails[index].elm.set_rotation(global.variables.clipboard_rotation);
                         rails[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
@@ -3859,7 +3859,7 @@ class ShortcutManager {
                         voltmeters[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         voltmeters[index].elm.set_rotation(global.variables.clipboard_rotation);
                         voltmeters[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
@@ -3870,7 +3870,7 @@ class ShortcutManager {
                         ohmmeters[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         ohmmeters[index].elm.set_rotation(global.variables.clipboard_rotation);
                         ohmmeters[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
@@ -3881,7 +3881,7 @@ class ShortcutManager {
                         ammeters[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         ammeters[index].elm.set_rotation(global.variables.clipboard_rotation);
                         ammeters[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
@@ -3892,7 +3892,7 @@ class ShortcutManager {
                         wattmeters[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         wattmeters[index].elm.set_rotation(global.variables.clipboard_rotation);
                         wattmeters[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_FUSE) {
@@ -3903,7 +3903,7 @@ class ShortcutManager {
                         fuses[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         fuses[index].elm.set_rotation(global.variables.clipboard_rotation);
                         fuses[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_SPST) {
@@ -3914,7 +3914,7 @@ class ShortcutManager {
                         spsts[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         spsts[index].elm.set_rotation(global.variables.clipboard_rotation);
                         spsts[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_SPDT) {
@@ -3925,7 +3925,7 @@ class ShortcutManager {
                         spdts[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         spdts[index].elm.set_rotation(global.variables.clipboard_rotation);
                         spdts[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_NOT) {
@@ -3936,7 +3936,7 @@ class ShortcutManager {
                         nots[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         nots[index].elm.set_rotation(global.variables.clipboard_rotation);
                         nots[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_DIODE) {
@@ -3947,7 +3947,7 @@ class ShortcutManager {
                         diodes[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         diodes[index].elm.set_rotation(global.variables.clipboard_rotation);
                         diodes[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_LED) {
@@ -3958,7 +3958,7 @@ class ShortcutManager {
                         leds[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         leds[index].elm.set_rotation(global.variables.clipboard_rotation);
                         leds[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_ZENER) {
@@ -3969,7 +3969,7 @@ class ShortcutManager {
                         zeners[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         zeners[index].elm.set_rotation(global.variables.clipboard_rotation);
                         zeners[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
@@ -3980,7 +3980,7 @@ class ShortcutManager {
                         potentiometers[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         potentiometers[index].elm.set_rotation(global.variables.clipboard_rotation);
                         potentiometers[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_AND) {
@@ -3991,7 +3991,7 @@ class ShortcutManager {
                         ands[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         ands[index].elm.set_rotation(global.variables.clipboard_rotation);
                         ands[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_OR) {
@@ -4002,7 +4002,7 @@ class ShortcutManager {
                         ors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         ors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         ors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_NAND) {
@@ -4013,7 +4013,7 @@ class ShortcutManager {
                         nands[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         nands[index].elm.set_rotation(global.variables.clipboard_rotation);
                         nands[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_NOR) {
@@ -4024,7 +4024,7 @@ class ShortcutManager {
                         nors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         nors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         nors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_XOR) {
@@ -4035,7 +4035,7 @@ class ShortcutManager {
                         xors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         xors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         xors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_XNOR) {
@@ -4046,7 +4046,7 @@ class ShortcutManager {
                         xnors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         xnors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         xnors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_DFF) {
@@ -4057,7 +4057,7 @@ class ShortcutManager {
                         dffs[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         dffs[index].elm.set_rotation(global.variables.clipboard_rotation);
                         dffs[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VSAT) {
@@ -4068,7 +4068,7 @@ class ShortcutManager {
                         vsats[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         vsats[index].elm.set_rotation(global.variables.clipboard_rotation);
                         vsats[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_ADD) {
@@ -4079,7 +4079,7 @@ class ShortcutManager {
                         adders[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         adders[index].elm.set_rotation(global.variables.clipboard_rotation);
                         adders[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_SUB) {
@@ -4090,7 +4090,7 @@ class ShortcutManager {
                         subtractors[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         subtractors[index].elm.set_rotation(global.variables.clipboard_rotation);
                         subtractors[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_MUL) {
@@ -4101,7 +4101,7 @@ class ShortcutManager {
                         multipliers[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         multipliers[index].elm.set_rotation(global.variables.clipboard_rotation);
                         multipliers[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_DIV) {
@@ -4112,7 +4112,7 @@ class ShortcutManager {
                         dividers[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         dividers[index].elm.set_rotation(global.variables.clipboard_rotation);
                         dividers[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_GAIN) {
@@ -4123,7 +4123,7 @@ class ShortcutManager {
                         gains[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         gains[index].elm.set_rotation(global.variables.clipboard_rotation);
                         gains[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_ABS) {
@@ -4134,7 +4134,7 @@ class ShortcutManager {
                         absvals[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         absvals[index].elm.set_rotation(global.variables.clipboard_rotation);
                         absvals[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VCSW) {
@@ -4145,7 +4145,7 @@ class ShortcutManager {
                         vcsws[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         vcsws[index].elm.set_rotation(global.variables.clipboard_rotation);
                         vcsws[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VCVS) {
@@ -4156,7 +4156,7 @@ class ShortcutManager {
                         vcvss[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         vcvss[index].elm.set_rotation(global.variables.clipboard_rotation);
                         vcvss[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VCCS) {
@@ -4167,7 +4167,7 @@ class ShortcutManager {
                         vccss[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         vccss[index].elm.set_rotation(global.variables.clipboard_rotation);
                         vccss[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_CCCS) {
@@ -4178,7 +4178,7 @@ class ShortcutManager {
                         cccss[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         cccss[index].elm.set_rotation(global.variables.clipboard_rotation);
                         cccss[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_CCVS) {
@@ -4189,7 +4189,7 @@ class ShortcutManager {
                         ccvss[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         ccvss[index].elm.set_rotation(global.variables.clipboard_rotation);
                         ccvss[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
@@ -4200,7 +4200,7 @@ class ShortcutManager {
                         opamps[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         opamps[index].elm.set_rotation(global.variables.clipboard_rotation);
                         opamps[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_NMOS) {
@@ -4211,7 +4211,7 @@ class ShortcutManager {
                         nmosfets[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         nmosfets[index].elm.set_rotation(global.variables.clipboard_rotation);
                         nmosfets[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_PMOS) {
@@ -4222,7 +4222,7 @@ class ShortcutManager {
                         pmosfets[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         pmosfets[index].elm.set_rotation(global.variables.clipboard_rotation);
                         pmosfets[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_NPN) {
@@ -4233,7 +4233,7 @@ class ShortcutManager {
                         npns[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         npns[index].elm.set_rotation(global.variables.clipboard_rotation);
                         npns[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_PNP) {
@@ -4244,7 +4244,7 @@ class ShortcutManager {
                         pnps[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         pnps[index].elm.set_rotation(global.variables.clipboard_rotation);
                         pnps[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_ADC) {
@@ -4255,7 +4255,7 @@ class ShortcutManager {
                         adcs[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         adcs[index].elm.set_rotation(global.variables.clipboard_rotation);
                         adcs[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_DAC) {
@@ -4266,7 +4266,7 @@ class ShortcutManager {
                         dacs[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         dacs[index].elm.set_rotation(global.variables.clipboard_rotation);
                         dacs[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_SAH) {
@@ -4277,7 +4277,7 @@ class ShortcutManager {
                         sandhs[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         sandhs[index].elm.set_rotation(global.variables.clipboard_rotation);
                         sandhs[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_PWM) {
@@ -4288,7 +4288,7 @@ class ShortcutManager {
                         pwms[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         pwms[index].elm.set_rotation(global.variables.clipboard_rotation);
                         pwms[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
@@ -4299,7 +4299,7 @@ class ShortcutManager {
                         integrators[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         integrators[index].elm.set_rotation(global.variables.clipboard_rotation);
                         integrators[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
@@ -4310,7 +4310,7 @@ class ShortcutManager {
                         differentiators[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         differentiators[index].elm.set_rotation(global.variables.clipboard_rotation);
                         differentiators[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_LPF) {
@@ -4321,7 +4321,7 @@ class ShortcutManager {
                         lowpasses[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         lowpasses[index].elm.set_rotation(global.variables.clipboard_rotation);
                         lowpasses[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_HPF) {
@@ -4332,7 +4332,7 @@ class ShortcutManager {
                         highpasses[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         highpasses[index].elm.set_rotation(global.variables.clipboard_rotation);
                         highpasses[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_REL) {
@@ -4343,7 +4343,7 @@ class ShortcutManager {
                         relays[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         relays[index].elm.set_rotation(global.variables.clipboard_rotation);
                         relays[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_PID) {
@@ -4354,7 +4354,7 @@ class ShortcutManager {
                         pids[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         pids[index].elm.set_rotation(global.variables.clipboard_rotation);
                         pids[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_LUT) {
@@ -4365,7 +4365,7 @@ class ShortcutManager {
                         luts[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         luts[index].elm.set_rotation(global.variables.clipboard_rotation);
                         luts[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VCR) {
@@ -4376,7 +4376,7 @@ class ShortcutManager {
                         vcrs[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         vcrs[index].elm.set_rotation(global.variables.clipboard_rotation);
                         vcrs[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VCCA) {
@@ -4387,7 +4387,7 @@ class ShortcutManager {
                         vccas[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         vccas[index].elm.set_rotation(global.variables.clipboard_rotation);
                         vccas[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_VCL) {
@@ -4398,7 +4398,7 @@ class ShortcutManager {
                         vcls[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         vcls[index].elm.set_rotation(global.variables.clipboard_rotation);
                         vcls[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_GRT) {
@@ -4409,7 +4409,7 @@ class ShortcutManager {
                         grts[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         grts[index].elm.set_rotation(global.variables.clipboard_rotation);
                         grts[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
@@ -4420,7 +4420,7 @@ class ShortcutManager {
                         tptzs[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         tptzs[index].elm.set_rotation(global.variables.clipboard_rotation);
                         tptzs[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 else if (global.variables.clipboard_type === global.ELEMENT_TYPES.TYPE_TRAN) {
@@ -4431,7 +4431,7 @@ class ShortcutManager {
                         transformers[index].elm.set_properties(global.utils.copy(global.variables.clipboard_property));
                         transformers[index].elm.set_rotation(global.variables.clipboard_rotation);
                         transformers[index].elm.set_flip(global.variables.clipboard_flip);
-                        global.flags.signal_history_lock = true;
+                        global.flags.flag_history_lock = true;
                     }
                 }
                 /* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -4448,26 +4448,26 @@ class ShortcutManager {
         if (i > -1 && i < resistors.length) {
             if (resistors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         resistors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         resistors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         resistors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         resistors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4479,26 +4479,26 @@ class ShortcutManager {
         if (i > -1 && i < capacitors.length) {
             if (capacitors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         capacitors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         capacitors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         capacitors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         capacitors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4510,26 +4510,26 @@ class ShortcutManager {
         if (i > -1 && i < inductors.length) {
             if (inductors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         inductors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         inductors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         inductors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         inductors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4541,26 +4541,26 @@ class ShortcutManager {
         if (i > -1 && i < grounds.length) {
             if (grounds[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         grounds[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         grounds[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         grounds[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         grounds[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4572,26 +4572,26 @@ class ShortcutManager {
         if (i > -1 && i < dcsources.length) {
             if (dcsources[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         dcsources[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         dcsources[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dcsources[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dcsources[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4603,26 +4603,26 @@ class ShortcutManager {
         if (i > -1 && i < dccurrents.length) {
             if (dccurrents[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         dccurrents[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         dccurrents[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dccurrents[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dccurrents[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4634,26 +4634,26 @@ class ShortcutManager {
         if (i > -1 && i < acsources.length) {
             if (acsources[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         acsources[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         acsources[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         acsources[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         acsources[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4665,26 +4665,26 @@ class ShortcutManager {
         if (i > -1 && i < accurrents.length) {
             if (accurrents[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         accurrents[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         accurrents[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         accurrents[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         accurrents[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4696,26 +4696,26 @@ class ShortcutManager {
         if (i > -1 && i < squarewaves.length) {
             if (squarewaves[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         squarewaves[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         squarewaves[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         squarewaves[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         squarewaves[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4727,26 +4727,26 @@ class ShortcutManager {
         if (i > -1 && i < sawwaves.length) {
             if (sawwaves[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         sawwaves[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         sawwaves[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         sawwaves[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         sawwaves[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4758,26 +4758,26 @@ class ShortcutManager {
         if (i > -1 && i < trianglewaves.length) {
             if (trianglewaves[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         trianglewaves[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         trianglewaves[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         trianglewaves[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         trianglewaves[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4789,26 +4789,26 @@ class ShortcutManager {
         if (i > -1 && i < constants.length) {
             if (constants[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         constants[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         constants[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         constants[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         constants[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4820,26 +4820,26 @@ class ShortcutManager {
         if (i > -1 && i < wires.length) {
             if (wires[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         wires[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         wires[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         wires[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         wires[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4851,26 +4851,26 @@ class ShortcutManager {
         if (i > -1 && i < nets.length) {
             if (nets[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         nets[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         nets[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nets[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nets[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4882,26 +4882,26 @@ class ShortcutManager {
         if (i > -1 && i < notes.length) {
             if (notes[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         notes[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         notes[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         notes[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         notes[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4913,26 +4913,26 @@ class ShortcutManager {
         if (i > -1 && i < rails.length) {
             if (rails[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         rails[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         rails[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         rails[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         rails[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4944,26 +4944,26 @@ class ShortcutManager {
         if (i > -1 && i < voltmeters.length) {
             if (voltmeters[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         voltmeters[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         voltmeters[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         voltmeters[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         voltmeters[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -4975,26 +4975,26 @@ class ShortcutManager {
         if (i > -1 && i < ohmmeters.length) {
             if (ohmmeters[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         ohmmeters[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         ohmmeters[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ohmmeters[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ohmmeters[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5006,26 +5006,26 @@ class ShortcutManager {
         if (i > -1 && i < ammeters.length) {
             if (ammeters[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         ammeters[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         ammeters[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ammeters[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ammeters[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5037,26 +5037,26 @@ class ShortcutManager {
         if (i > -1 && i < wattmeters.length) {
             if (wattmeters[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         wattmeters[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         wattmeters[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         wattmeters[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         wattmeters[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5068,26 +5068,26 @@ class ShortcutManager {
         if (i > -1 && i < fuses.length) {
             if (fuses[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         fuses[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         fuses[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         fuses[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         fuses[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5099,26 +5099,26 @@ class ShortcutManager {
         if (i > -1 && i < spsts.length) {
             if (spsts[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         spsts[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         spsts[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         spsts[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         spsts[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5130,26 +5130,26 @@ class ShortcutManager {
         if (i > -1 && i < spdts.length) {
             if (spdts[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         spdts[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         spdts[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         spdts[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         spdts[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5161,26 +5161,26 @@ class ShortcutManager {
         if (i > -1 && i < nots.length) {
             if (nots[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         nots[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         nots[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nots[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nots[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5192,26 +5192,26 @@ class ShortcutManager {
         if (i > -1 && i < diodes.length) {
             if (diodes[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         diodes[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         diodes[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         diodes[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         diodes[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5223,26 +5223,26 @@ class ShortcutManager {
         if (i > -1 && i < leds.length) {
             if (leds[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         leds[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         leds[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         leds[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         leds[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5254,26 +5254,26 @@ class ShortcutManager {
         if (i > -1 && i < zeners.length) {
             if (zeners[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         zeners[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         zeners[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         zeners[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         zeners[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5285,26 +5285,26 @@ class ShortcutManager {
         if (i > -1 && i < potentiometers.length) {
             if (potentiometers[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         potentiometers[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         potentiometers[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         potentiometers[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         potentiometers[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5316,26 +5316,26 @@ class ShortcutManager {
         if (i > -1 && i < ands.length) {
             if (ands[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         ands[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         ands[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ands[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ands[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5347,26 +5347,26 @@ class ShortcutManager {
         if (i > -1 && i < ors.length) {
             if (ors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         ors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         ors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5378,26 +5378,26 @@ class ShortcutManager {
         if (i > -1 && i < nands.length) {
             if (nands[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         nands[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         nands[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nands[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nands[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5409,26 +5409,26 @@ class ShortcutManager {
         if (i > -1 && i < nors.length) {
             if (nors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         nors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         nors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5440,26 +5440,26 @@ class ShortcutManager {
         if (i > -1 && i < xors.length) {
             if (xors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         xors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         xors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         xors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         xors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5471,26 +5471,26 @@ class ShortcutManager {
         if (i > -1 && i < xnors.length) {
             if (xnors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         xnors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         xnors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         xnors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         xnors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5502,26 +5502,26 @@ class ShortcutManager {
         if (i > -1 && i < dffs.length) {
             if (dffs[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         dffs[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         dffs[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dffs[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dffs[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5533,26 +5533,26 @@ class ShortcutManager {
         if (i > -1 && i < vsats.length) {
             if (vsats[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         vsats[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         vsats[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vsats[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vsats[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5564,26 +5564,26 @@ class ShortcutManager {
         if (i > -1 && i < adders.length) {
             if (adders[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         adders[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         adders[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         adders[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         adders[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5595,26 +5595,26 @@ class ShortcutManager {
         if (i > -1 && i < subtractors.length) {
             if (subtractors[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         subtractors[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         subtractors[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         subtractors[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         subtractors[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5626,26 +5626,26 @@ class ShortcutManager {
         if (i > -1 && i < multipliers.length) {
             if (multipliers[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         multipliers[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         multipliers[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         multipliers[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         multipliers[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5657,26 +5657,26 @@ class ShortcutManager {
         if (i > -1 && i < dividers.length) {
             if (dividers[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         dividers[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         dividers[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dividers[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dividers[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5688,26 +5688,26 @@ class ShortcutManager {
         if (i > -1 && i < gains.length) {
             if (gains[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         gains[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         gains[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         gains[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         gains[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5719,26 +5719,26 @@ class ShortcutManager {
         if (i > -1 && i < absvals.length) {
             if (absvals[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         absvals[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         absvals[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         absvals[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         absvals[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5750,26 +5750,26 @@ class ShortcutManager {
         if (i > -1 && i < vcsws.length) {
             if (vcsws[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         vcsws[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         vcsws[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcsws[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcsws[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5781,26 +5781,26 @@ class ShortcutManager {
         if (i > -1 && i < vcvss.length) {
             if (vcvss[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         vcvss[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         vcvss[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcvss[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcvss[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5812,26 +5812,26 @@ class ShortcutManager {
         if (i > -1 && i < vccss.length) {
             if (vccss[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         vccss[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         vccss[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vccss[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vccss[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5843,26 +5843,26 @@ class ShortcutManager {
         if (i > -1 && i < cccss.length) {
             if (cccss[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         cccss[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         cccss[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         cccss[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         cccss[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5874,26 +5874,26 @@ class ShortcutManager {
         if (i > -1 && i < ccvss.length) {
             if (ccvss[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         ccvss[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         ccvss[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ccvss[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         ccvss[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5905,26 +5905,26 @@ class ShortcutManager {
         if (i > -1 && i < opamps.length) {
             if (opamps[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         opamps[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         opamps[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         opamps[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         opamps[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5936,26 +5936,26 @@ class ShortcutManager {
         if (i > -1 && i < nmosfets.length) {
             if (nmosfets[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         nmosfets[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         nmosfets[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nmosfets[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         nmosfets[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5967,26 +5967,26 @@ class ShortcutManager {
         if (i > -1 && i < pmosfets.length) {
             if (pmosfets[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         pmosfets[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         pmosfets[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pmosfets[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pmosfets[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -5998,26 +5998,26 @@ class ShortcutManager {
         if (i > -1 && i < npns.length) {
             if (npns[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         npns[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         npns[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         npns[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         npns[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6029,26 +6029,26 @@ class ShortcutManager {
         if (i > -1 && i < pnps.length) {
             if (pnps[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         pnps[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         pnps[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pnps[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pnps[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6060,26 +6060,26 @@ class ShortcutManager {
         if (i > -1 && i < adcs.length) {
             if (adcs[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         adcs[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         adcs[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         adcs[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         adcs[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6091,26 +6091,26 @@ class ShortcutManager {
         if (i > -1 && i < dacs.length) {
             if (dacs[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         dacs[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         dacs[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dacs[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         dacs[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6122,26 +6122,26 @@ class ShortcutManager {
         if (i > -1 && i < sandhs.length) {
             if (sandhs[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         sandhs[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         sandhs[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         sandhs[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         sandhs[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6153,26 +6153,26 @@ class ShortcutManager {
         if (i > -1 && i < pwms.length) {
             if (pwms[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         pwms[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         pwms[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pwms[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pwms[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6184,26 +6184,26 @@ class ShortcutManager {
         if (i > -1 && i < integrators.length) {
             if (integrators[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         integrators[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         integrators[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         integrators[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         integrators[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6215,26 +6215,26 @@ class ShortcutManager {
         if (i > -1 && i < differentiators.length) {
             if (differentiators[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         differentiators[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         differentiators[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         differentiators[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         differentiators[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6246,26 +6246,26 @@ class ShortcutManager {
         if (i > -1 && i < lowpasses.length) {
             if (lowpasses[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         lowpasses[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         lowpasses[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         lowpasses[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         lowpasses[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6277,26 +6277,26 @@ class ShortcutManager {
         if (i > -1 && i < highpasses.length) {
             if (highpasses[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         highpasses[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         highpasses[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         highpasses[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         highpasses[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6308,26 +6308,26 @@ class ShortcutManager {
         if (i > -1 && i < relays.length) {
             if (relays[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         relays[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         relays[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         relays[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         relays[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6339,26 +6339,26 @@ class ShortcutManager {
         if (i > -1 && i < pids.length) {
             if (pids[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         pids[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         pids[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pids[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         pids[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6370,26 +6370,26 @@ class ShortcutManager {
         if (i > -1 && i < luts.length) {
             if (luts[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         luts[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         luts[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         luts[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         luts[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6401,26 +6401,26 @@ class ShortcutManager {
         if (i > -1 && i < vcrs.length) {
             if (vcrs[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         vcrs[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         vcrs[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcrs[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcrs[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6432,26 +6432,26 @@ class ShortcutManager {
         if (i > -1 && i < vccas.length) {
             if (vccas[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         vccas[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         vccas[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vccas[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vccas[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6463,26 +6463,26 @@ class ShortcutManager {
         if (i > -1 && i < vcls.length) {
             if (vcls[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         vcls[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         vcls[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcls[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         vcls[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6494,26 +6494,26 @@ class ShortcutManager {
         if (i > -1 && i < grts.length) {
             if (grts[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         grts[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         grts[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         grts[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         grts[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6525,26 +6525,26 @@ class ShortcutManager {
         if (i > -1 && i < tptzs.length) {
             if (tptzs[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         tptzs[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         tptzs[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         tptzs[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         tptzs[i].move_element(global.variables.node_space_x, 0);
                     }
@@ -6556,26 +6556,26 @@ class ShortcutManager {
         if (i > -1 && i < transformers.length) {
             if (transformers[i].multi_selected) {
                 if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_UP) {
-                    if (multi_select_manager.selected_components_bounds.top > (workspace.bounds.top + global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.top > workspace.bounds.top + global.variables.node_space_y) {
                         this.multi_moved_element = true;
-                        global.flags.signal_build_element = true;
+                        global.flags.flag_build_element = true;
                         transformers[i].move_element(0, -global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_DOWN) {
-                    if (multi_select_manager.selected_components_bounds.bottom < (workspace.bounds.bottom - global.variables.node_space_y)) {
+                    if (multi_select_manager.selected_components_bounds.bottom < workspace.bounds.bottom - global.variables.node_space_y) {
                         this.multi_moved_element = true;
                         transformers[i].move_element(0, global.variables.node_space_y);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT) {
-                    if (multi_select_manager.selected_components_bounds.left > (workspace.bounds.left + global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.left > workspace.bounds.left + global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         transformers[i].move_element(-global.variables.node_space_x, 0);
                     }
                 }
                 else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_RIGHT) {
-                    if (multi_select_manager.selected_components_bounds.right < (workspace.bounds.right - global.variables.node_space_x)) {
+                    if (multi_select_manager.selected_components_bounds.right < workspace.bounds.right - global.variables.node_space_x) {
                         this.multi_moved_element = true;
                         transformers[i].move_element(global.variables.node_space_x, 0);
                     }

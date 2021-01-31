@@ -59,12 +59,12 @@ class SimulationManager {
         this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
         this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
-        this.v_max_err = [];
-        this.i_max_err = [];
-        this.v_locked = false;
-        this.i_locked = false;
-        this.v_conv = false;
-        this.i_conv = false;
+        this.max_voltage_error = [];
+        this.max_current_error = [];
+        this.voltage_error_locked = false;
+        this.current_error_locked = false;
+        this.voltage_converged = false;
+        this.current_converged = false;
         this.time_step = 5e-6;
         this.simulation_time = 0;
     }
@@ -196,7 +196,7 @@ class SimulationManager {
         toast.set_text(language_manager.START_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
         toast.show();
         this.solutions_ready = false;
-        global.flags.signal_build_element = true;
+        global.flags.flag_build_element = true;
         this.initialized = true;
     }
     determine_optimal_timestep() {
@@ -894,58 +894,58 @@ class SimulationManager {
     convergence_check() {
         if (this.node_size > 0 && matrix_x.length === matrix_x_copy.length) {
             if (this.first_error_check) {
-                this.v_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
-                this.i_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
+                this.max_voltage_error = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
+                this.max_current_error = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
                 this.first_error_check = false;
             }
             else {
-                for (var i = 0; i < this.v_max_err.length; i++) {
-                    for (var j = 0; j < this.v_max_err[0].length; j++) {
-                        this.v_max_err[i][j] = 0;
-                        this.i_max_err[i][j] = 0;
+                for (var i = 0; i < this.max_voltage_error.length; i++) {
+                    for (var j = 0; j < this.max_voltage_error[0].length; j++) {
+                        this.max_voltage_error[i][j] = 0;
+                        this.max_current_error[i][j] = 0;
                     }
                 }
             }
-            this.v_locked = false;
-            this.i_locked = false;
-            this.v_conv = false;
-            this.i_conv = false;
+            this.voltage_error_locked = false;
+            this.current_error_locked = false;
+            this.voltage_converged = false;
+            this.current_converged = false;
             for (var i = 0; i < matrix_x.length; i++) {
                 if (i < this.node_size) {
-                    this.v_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
+                    this.max_voltage_error[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
                 }
                 else {
-                    this.i_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
+                    this.max_current_error[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
                 }
             }
             for (var i = 0; i < matrix_x.length; i++) {
                 if (i < this.node_size) {
-                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * this.v_max_err[i][0] + global.settings.VNTOL) {
-                        if (!this.v_locked) {
-                            this.v_conv = true;
+                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * this.max_voltage_error[i][0] + global.settings.VNTOL) {
+                        if (!this.voltage_error_locked) {
+                            this.voltage_converged = true;
                         }
                     }
                     else {
-                        this.v_locked = true;
-                        this.v_conv = false;
+                        this.voltage_error_locked = true;
+                        this.voltage_converged = false;
                     }
                 }
                 else {
-                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * this.i_max_err[i][0] + global.settings.ABSTOL) {
-                        if (!this.i_locked) {
-                            this.i_conv = true;
+                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * this.max_current_error[i][0] + global.settings.ABSTOL) {
+                        if (!this.current_error_locked) {
+                            this.current_converged = true;
                         }
                     }
                     else {
-                        this.i_locked = true;
-                        this.i_conv = false;
+                        this.current_error_locked = true;
+                        this.current_converged = false;
                     }
                 }
             }
             if (matrix_x.length - this.node_size <= 0) {
-                this.i_conv = true;
+                this.current_converged = true;
             }
-            if (!this.v_conv || !this.i_conv) {
+            if (!this.voltage_converged || !this.current_converged) {
                 this.continue_solving = true;
             }
         }
@@ -1023,8 +1023,8 @@ class SimulationManager {
                         toast.show();
                     }
                 }
-                global.variables.canvas_draw_request_counter = 0;
-                global.flags.canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
+                global.flags.flag_canvas_draw_request = true;
                 this.continue_solving = true;
                 this.iterator = 0;
                 this.update_vir();

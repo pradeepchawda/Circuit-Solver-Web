@@ -363,7 +363,7 @@ class AmMeter {
         }
     }
     wire_reference_maintenance() {
-        if (this.wire_reference.length > 0 && global.flags.signal_wire_deleted) {
+        if (this.wire_reference.length > 0 && global.flags.flag_wire_deleted) {
             let id = -1;
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -473,7 +473,7 @@ class AmMeter {
         }
     }
     build_element() {
-        if (this.build_element_flag || global.flags.signal_build_element) {
+        if (this.build_element_flag || global.flags.flag_build_element) {
             let cache_0 = 1.25 * this.x_space;
             let cache_1 = 1.25 * this.y_space;
             let cache_2 = this.x_space;
@@ -492,7 +492,7 @@ class AmMeter {
         }
     }
     resize() {
-        if (this.build_element_flag || global.flags.signal_build_element || this.resize_meter_trace) {
+        if (this.build_element_flag || global.flags.flag_build_element || this.resize_meter_trace) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
                     this.bounds.set_center2(global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x), global.utils.get_average2(nodes[this.elm.n1].location.y, nodes[this.elm.n2].location.y), global.variables.node_space_x * 2, global.variables.node_space_y * 2);
@@ -556,9 +556,11 @@ class AmMeter {
         this.elm.properties['Current'] = 0;
     }
     push_current(current) {
-        if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+        if (global.flags.flag_simulating &&
+            simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+            simulation_manager.solutions_ready) {
             this.elm.properties['Current'] = current;
-            this.meter_trace.push(current, global.simulation_time);
+            this.meter_trace.push(current, simulation_manager.simulation_time);
         }
     }
     get_simulation_index() {
@@ -622,7 +624,7 @@ class AmMeter {
         if (this.multi_selected) {
             multi_select_manager.determine_enveloping_bounds(this.bounds);
         }
-        if (global.flags.picture_request_flag ||
+        if (global.flags.flag_picture_request ||
             (this.c_x >= view_port.left - global.variables.node_space_x &&
                 this.c_x - global.variables.node_space_x <= view_port.right &&
                 this.c_y >= view_port.top + -global.variables.node_space_y &&
@@ -651,7 +653,9 @@ class AmMeter {
             this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
             if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
                 if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-                    if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+                    if (global.flags.flag_simulating &&
+                        simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+                        simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Current'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.025, this.text_paint);
                         this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -664,7 +668,9 @@ class AmMeter {
                 canvas.rotate(this.c_x, this.c_y, -90);
                 this.meter_symbol.draw_symbol(canvas);
                 if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-                    if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+                    if (global.flags.flag_simulating &&
+                        simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+                        simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Current'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.025, this.text_paint);
                         this.recolor();
@@ -679,9 +685,9 @@ class AmMeter {
                     global.CONSTANTS.NODE_HINTS &&
                     !multi_select_manager.multi_select &&
                     !this.multi_selected &&
-                    !global.flags.signal_add_element &&
-                    !global.flags.signal_history_lock &&
-                    !global.flags.picture_request_flag &&
+                    !global.flags.flag_add_element &&
+                    !global.flags.flag_history_lock &&
+                    !global.flags.flag_picture_request &&
                     !global.flags.flag_save_circuit &&
                     !global.flags.flag_save_image &&
                     !global.flags.flag_menu_element_toolbox &&
@@ -694,7 +700,7 @@ class AmMeter {
                     !global.flags.flag_select_settings &&
                     !global.flags.flag_select_element &&
                     !global.flags.flag_remove_all &&
-                    !global.flags.signal_add_element) {
+                    !global.flags.flag_add_element) {
                     if (this.elm.consistent()) {
                         let node_id_array = this.elm.get_nodes();
                         for (var i = 0; i < node_id_array.length; i++) {

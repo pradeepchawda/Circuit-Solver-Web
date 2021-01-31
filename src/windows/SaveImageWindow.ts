@@ -239,8 +239,8 @@ class SaveImageWindow {
 						this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						this.okay_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						if (!global.flags.picture_request_flag) {
-							global.flags.picture_request_flag = true;
+						if (!global.flags.flag_picture_request) {
+							global.flags.flag_picture_request = true;
 						}
 						menu_bar.handle_save_image_flag(!global.flags.flag_save_image);
 						global.variables.component_touched = true;
@@ -261,7 +261,7 @@ class SaveImageWindow {
 						this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						if (this.select_all) {
-							if (this.select_all && !global.flags.mouse_double_click_event_flag) {
+							if (this.select_all && !global.flags.flag_mouse_double_click_event) {
 								this.select_all = false;
 							}
 						}
@@ -434,8 +434,8 @@ class SaveImageWindow {
 				}
 			}
 		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER && !key_event['ctrl']) {
-			if (!global.flags.picture_request_flag) {
-				global.flags.picture_request_flag = true;
+			if (!global.flags.flag_picture_request) {
+				global.flags.flag_picture_request = true;
 			}
 			menu_bar.handle_save_image_flag(!global.flags.flag_save_image);
 		} else if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ARROW_LEFT && !key_event['ctrl']) {
@@ -594,7 +594,7 @@ class SaveImageWindow {
 		this.select_end = -1;
 	}
 	double_click(): void {
-		if (global.flags.mouse_double_click_event_flag) {
+		if (global.flags.flag_mouse_double_click_event) {
 			if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
 				this.select_all = !this.select_all;
 				if (this.select_all) {

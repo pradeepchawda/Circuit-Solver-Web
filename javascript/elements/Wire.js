@@ -205,10 +205,10 @@ class Wire {
             this.wire_point.x = global.utils.get_average2(this.p1.x, this.p2.x);
             this.wire_point.y = global.utils.get_average2(this.p1.y, this.p2.y);
         }
-        global.flags.signal_build_element = true;
+        global.flags.flag_build_element = true;
     }
     refactor() {
-        if (this.build_element_flag || global.flags.signal_build_element) {
+        if (this.build_element_flag || global.flags.flag_build_element) {
             this.x_space = global.variables.node_space_x >> 1;
             this.y_space = global.variables.node_space_y >> 1;
             this.c_x = this.bounds.get_center_x();
@@ -216,7 +216,7 @@ class Wire {
         }
     }
     resize() {
-        if (this.build_element_flag || global.flags.signal_build_element) {
+        if (this.build_element_flag || global.flags.flag_build_element) {
             this.update_wire_style();
             if (this.elm.consistent()) {
                 this.c_x = global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);
@@ -363,7 +363,10 @@ class Wire {
             this.line_buffer = [];
             this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-            if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step) {
+            if (global.flags.flag_simulating &&
+                simulation_manager.solutions_ready &&
+                this.is_selected_element() &&
+                simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step) {
                 if (this.elm.consistent()) {
                     this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
                     if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
@@ -389,7 +392,10 @@ class Wire {
             this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
             this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-            if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step + global.time_step) {
+            if (global.flags.flag_simulating &&
+                simulation_manager.solutions_ready &&
+                this.is_selected_element() &&
+                simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step) {
                 if (this.elm.consistent()) {
                     if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                         if (global.utils.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.utils.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {

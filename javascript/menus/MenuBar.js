@@ -460,7 +460,7 @@ class MenuBar {
                 else if (((this.contains(this.menu_icons[this.ADD_INDEX], true) && this.menu_icons[this.ADD_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, cached_value, this.bounds.get_height())) ||
                     (!this.contains(this.element_window.bounds, false) && global.flags.flag_menu_element_toolbox)) &&
                     !global.flags.flag_graph &&
-                    !global.flags.signal_add_element) {
+                    !global.flags.flag_add_element) {
                     if (!global.flags.flag_zoom &&
                         !global.flags.flag_save_image &&
                         !global.flags.flag_save_circuit &&
@@ -470,7 +470,7 @@ class MenuBar {
                         !global.flags.flag_remove_all &&
                         !global.flags.flag_element_options_edit &&
                         !global.flags.flag_element_options &&
-                        !global.flags.signal_add_element &&
+                        !global.flags.flag_add_element &&
                         !global.flags.flag_simulating) {
                         if (global.flags.flag_menu_open) {
                             if (this.contains(this.menu_icons[this.ADD_INDEX], true)) {
@@ -478,7 +478,7 @@ class MenuBar {
                                 global.variables.component_touched = true;
                             }
                             else {
-                                if (global.flags.flag_menu_element_toolbox && !global.flags.signal_add_element && !this.element_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
+                                if (global.flags.flag_menu_element_toolbox && !global.flags.flag_add_element && !this.element_window.bounds.contains_xy(this.first_touch_x, this.first_touch_y)) {
                                     this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
                                     global.variables.component_touched = true;
                                 }
@@ -675,7 +675,7 @@ class MenuBar {
             else if (!global.variables.mouse_keyboard_lock && !multi_select_manager.ctrl_pressed) {
                 if ((this.contains(this.menu_icons[this.ADD_INDEX], true) || (!this.contains(this.element_window.bounds, false) && global.flags.flag_menu_element_toolbox)) &&
                     !global.flags.flag_graph &&
-                    !global.flags.signal_add_element) {
+                    !global.flags.flag_add_element) {
                     if (!global.flags.flag_zoom &&
                         !global.flags.flag_save_image &&
                         !global.flags.flag_save_circuit &&
@@ -685,7 +685,7 @@ class MenuBar {
                         !global.flags.flag_remove_all &&
                         !global.flags.flag_element_options_edit &&
                         !global.flags.flag_element_options &&
-                        !global.flags.signal_add_element &&
+                        !global.flags.flag_add_element &&
                         !global.flags.flag_simulating) {
                         if (global.flags.flag_menu_open) {
                             if (this.contains(this.menu_icons[this.ADD_INDEX], true)) {
@@ -693,7 +693,7 @@ class MenuBar {
                                 global.variables.component_touched = true;
                             }
                             else {
-                                if (global.flags.flag_menu_element_toolbox && !global.flags.signal_add_element) {
+                                if (global.flags.flag_menu_element_toolbox && !global.flags.flag_add_element) {
                                     this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
                                     global.variables.component_touched = true;
                                 }
@@ -723,7 +723,7 @@ class MenuBar {
         if (ON) {
             element_options_edit_window.reset_cursor();
         }
-        global.flags.signal_build_element = true;
+        global.flags.flag_build_element = true;
         global.variables.signal_build_counter = 0;
         global.flags.flag_element_options_edit = ON;
         if (global.CONSTANTS.DEVELOPER_MODE) {
@@ -836,10 +836,10 @@ class MenuBar {
                 !global.flags.flag_remove_all &&
                 !global.flags.flag_element_options_edit &&
                 !global.flags.flag_element_options &&
-                !global.flags.signal_add_element &&
+                !global.flags.flag_add_element &&
                 !global.flags.flag_simulating) {
                 if (global.flags.flag_menu_open) {
-                    if (global.flags.flag_menu_element_toolbox && !global.flags.signal_add_element) {
+                    if (global.flags.flag_menu_element_toolbox && !global.flags.flag_add_element) {
                         if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
                             this.handle_menu_open_down_flag(!global.flags.flag_menu_element_toolbox);
                             global.variables.component_touched = true;

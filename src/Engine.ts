@@ -59,7 +59,7 @@ function file_event(input: HTMLInputElement): void {
 		bottom_menu.resize_bottom_menu();
 		global.variables.user_file.content = text;
 		global.variables.user_file_selected = true;
-		global.flags.canvas_draw_event = true;
+		global.flags.flag_canvas_draw_event = true;
 	};
 	reader.onerror = function (err: ProgressEvent<FileReader>) {};
 	reader.readAsText(input.files[0]);
@@ -91,17 +91,17 @@ function restore_zoom_offset(zoom: number, delta_x: number, dx: number, x_offset
 	global.variables.delta_x = Number(delta_x);
 	global.variables.delta_y = Number(delta_y);
 	workspace.workspace_zoom();
-	global.flags.draw_block = true;
-	global.flags.signal_build_element = true;
+	global.flags.flag_draw_block = true;
+	global.flags.flag_build_element = true;
 }
 function handle_file_loading(): void {
 	global.variables.user_file_selected = true;
-	global.flags.canvas_draw_event = true;
+	global.flags.flag_canvas_draw_event = true;
 	try {
 		engine_functions.parse_elements(global.variables.user_file.content);
 	} catch (error) {}
 	global.variables.history['packet'].push(engine_functions.history_snapshot());
-	global.flags.draw_block = true;
+	global.flags.flag_draw_block = true;
 	global.variables.user_file_selected = false;
 	mouse_event_latch = false;
 }
@@ -133,75 +133,75 @@ var matrix_x: Array<Array<number>> = linear_algebra.matrix(1, 1);
 var matrix_x_copy: Array<Array<number>> = linear_algebra.matrix(1, 1);
 /* #INSERT_GENERATE_CREATE_ELEMENT_INSTANCE# */
 /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-var resistors : Array<Resistor> = [];
-var capacitors : Array<Capacitor> = [];
-var inductors : Array<Inductor> = [];
-var grounds : Array<Ground> = [];
-var dcsources : Array<DCSource> = [];
-var dccurrents : Array<DCCurrent> = [];
-var acsources : Array<ACSource> = [];
-var accurrents : Array<ACCurrent> = [];
-var squarewaves : Array<SquareWave> = [];
-var sawwaves : Array<SawWave> = [];
-var trianglewaves : Array<TriangleWave> = [];
-var constants : Array<Constant> = [];
-var wires : Array<Wire> = [];
-var nets : Array<Net> = [];
-var notes : Array<Note> = [];
-var rails : Array<Rail> = [];
-var voltmeters : Array<VoltMeter> = [];
-var ohmmeters : Array<OhmMeter> = [];
-var ammeters : Array<AmMeter> = [];
-var wattmeters : Array<WattMeter> = [];
-var fuses : Array<Fuse> = [];
-var spsts : Array<SinglePoleSingleThrow> = [];
-var spdts : Array<SinglePoleDoubleThrow> = [];
-var nots : Array<NOTGate> = [];
-var diodes : Array<Diode> = [];
-var leds : Array<LightEmittingDiode> = [];
-var zeners : Array<ZenerDiode> = [];
-var potentiometers : Array<Potentiometer> = [];
-var ands : Array<ANDGate> = [];
-var ors : Array<ORGate> = [];
-var nands : Array<NANDGate> = [];
-var nors : Array<NORGate> = [];
-var xors : Array<XORGate> = [];
-var xnors : Array<XNORGate> = [];
-var dffs : Array<DFlipFlop> = [];
-var vsats : Array<VoltageSaturation> = [];
-var adders : Array<Adder> = [];
-var subtractors : Array<Subtractor> = [];
-var multipliers : Array<Multiplier> = [];
-var dividers : Array<Divider> = [];
-var gains : Array<GainBlock> = [];
-var absvals : Array<AbsoluteValue> = [];
-var vcsws : Array<VoltageControlledSwitch> = [];
-var vcvss : Array<VoltageControlledVoltageSource> = [];
-var vccss : Array<VoltageControlledCurrentSource> = [];
-var cccss : Array<CurrentControlledCurrentSource> = [];
-var ccvss : Array<CurrentControlledVoltageSource> = [];
-var opamps : Array<OperationalAmplifier> = [];
-var nmosfets : Array<NChannelMOSFET> = [];
-var pmosfets : Array<PChannelMOSFET> = [];
-var npns : Array<NPNBipolarJunctionTransistor> = [];
-var pnps : Array<PNPBipolarJunctionTransistor> = [];
-var adcs : Array<ADCModule> = [];
-var dacs : Array<DACModule> = [];
-var sandhs : Array<SampleAndHold> = [];
-var pwms : Array<PulseWidthModulator> = [];
-var integrators : Array<IntegratorModule> = [];
-var differentiators : Array<DifferentiatorModule> = [];
-var lowpasses : Array<LowPassFilter> = [];
-var highpasses : Array<HighPassFilter> = [];
-var relays : Array<Relay> = [];
-var pids : Array<PIDModule> = [];
-var luts : Array<LookUpTable> = [];
-var vcrs : Array<VoltageControlledResistor> = [];
-var vccas : Array<VoltageControlledCapacitor> = [];
-var vcls : Array<VoltageControlledInductor> = [];
-var grts : Array<GreaterThan> = [];
-var tptzs : Array<TPTZModule> = [];
-var transformers : Array<Transformer> = [];
+var resistors: Array<Resistor> = [];
+var capacitors: Array<Capacitor> = [];
+var inductors: Array<Inductor> = [];
+var grounds: Array<Ground> = [];
+var dcsources: Array<DCSource> = [];
+var dccurrents: Array<DCCurrent> = [];
+var acsources: Array<ACSource> = [];
+var accurrents: Array<ACCurrent> = [];
+var squarewaves: Array<SquareWave> = [];
+var sawwaves: Array<SawWave> = [];
+var trianglewaves: Array<TriangleWave> = [];
+var constants: Array<Constant> = [];
+var wires: Array<Wire> = [];
+var nets: Array<Net> = [];
+var notes: Array<Note> = [];
+var rails: Array<Rail> = [];
+var voltmeters: Array<VoltMeter> = [];
+var ohmmeters: Array<OhmMeter> = [];
+var ammeters: Array<AmMeter> = [];
+var wattmeters: Array<WattMeter> = [];
+var fuses: Array<Fuse> = [];
+var spsts: Array<SinglePoleSingleThrow> = [];
+var spdts: Array<SinglePoleDoubleThrow> = [];
+var nots: Array<NOTGate> = [];
+var diodes: Array<Diode> = [];
+var leds: Array<LightEmittingDiode> = [];
+var zeners: Array<ZenerDiode> = [];
+var potentiometers: Array<Potentiometer> = [];
+var ands: Array<ANDGate> = [];
+var ors: Array<ORGate> = [];
+var nands: Array<NANDGate> = [];
+var nors: Array<NORGate> = [];
+var xors: Array<XORGate> = [];
+var xnors: Array<XNORGate> = [];
+var dffs: Array<DFlipFlop> = [];
+var vsats: Array<VoltageSaturation> = [];
+var adders: Array<Adder> = [];
+var subtractors: Array<Subtractor> = [];
+var multipliers: Array<Multiplier> = [];
+var dividers: Array<Divider> = [];
+var gains: Array<GainBlock> = [];
+var absvals: Array<AbsoluteValue> = [];
+var vcsws: Array<VoltageControlledSwitch> = [];
+var vcvss: Array<VoltageControlledVoltageSource> = [];
+var vccss: Array<VoltageControlledCurrentSource> = [];
+var cccss: Array<CurrentControlledCurrentSource> = [];
+var ccvss: Array<CurrentControlledVoltageSource> = [];
+var opamps: Array<OperationalAmplifier> = [];
+var nmosfets: Array<NChannelMOSFET> = [];
+var pmosfets: Array<PChannelMOSFET> = [];
+var npns: Array<NPNBipolarJunctionTransistor> = [];
+var pnps: Array<PNPBipolarJunctionTransistor> = [];
+var adcs: Array<ADCModule> = [];
+var dacs: Array<DACModule> = [];
+var sandhs: Array<SampleAndHold> = [];
+var pwms: Array<PulseWidthModulator> = [];
+var integrators: Array<IntegratorModule> = [];
+var differentiators: Array<DifferentiatorModule> = [];
+var lowpasses: Array<LowPassFilter> = [];
+var highpasses: Array<HighPassFilter> = [];
+var relays: Array<Relay> = [];
+var pids: Array<PIDModule> = [];
+var luts: Array<LookUpTable> = [];
+var vcrs: Array<VoltageControlledResistor> = [];
+var vccas: Array<VoltageControlledCapacitor> = [];
+var vcls: Array<VoltageControlledInductor> = [];
+var grts: Array<GreaterThan> = [];
+var tptzs: Array<TPTZModule> = [];
+var transformers: Array<Transformer> = [];
 /* <!-- END AUTOMATICALLY GENERATED !--> */
 var on_screen_keyboard: OnScreenKeyboard = new OnScreenKeyboard();
 var toast: Toast = global.CONSTANTS.NULL;
@@ -260,11 +260,12 @@ function load_app(): void {
 	general_paint.set_text_size(global.variables.canvas_text_size_5);
 	general_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 	general_paint.set_alpha(255);
-	general_paint.set_paint_align(general_paint.align.LEFT);
+	general_paint.set_paint_align(PAINT.align.LEFT);
 	function initialize(step: number): void {
 		if (step === 0) {
 			toast = new Toast();
 			resize_canvas();
+			simulation_manager = new SimulationManager();
 			engine_functions.create_nodes(workspace.bounds);
 			global.variables.history['packet'].push(engine_functions.history_snapshot());
 		} else if (step === 1) {
@@ -277,12 +278,11 @@ function load_app(): void {
 			save_circuit_window = new SaveCircuitWindow();
 			save_image_window = new SaveImageWindow();
 			element_options_window = new ElementOptionsWindow();
-			element_options_edit_window = new ElementOptionsEditWindow();
 		} else if (step === 3) {
+			element_options_edit_window = new ElementOptionsEditWindow();
 			zoom_window = new ZoomWindow();
 			settings_window = new SettingsWindow();
 			yes_no_window = new YesNoWindow();
-			simulation_manager = new SimulationManager();
 		} else if (step === 4) {
 			register_cross_platform_listeners();
 			if (!global.CONSTANTS.MOBILE_MODE) {
@@ -296,7 +296,7 @@ function load_app(): void {
 			}
 			if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.CONSTANTS.ON) {
 				view_port.apply_spread_factor = true;
-				global.flags.force_resize_event = true;
+				global.flags.flag_force_resize_event = true;
 			}
 		}
 	}
@@ -375,7 +375,7 @@ function load_app(): void {
 		global.variables.canvas_text_size_4 = global.variables.canvas_text_size_base * 16;
 		global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
 		global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 		global.variables.signal_build_counter = 0;
 		virtual_surface.resize();
 		global.flags.flag_resize_event = true;
@@ -412,11 +412,11 @@ function load_app(): void {
 							global.variables.mouse_y >= view_port.top &&
 							global.variables.mouse_y <= view_port.bottom
 						) {
-							global.flags.mouse_down_event_flag = true;
+							global.flags.flag_mouse_down_event = true;
 							global.events.mouse_down_event_queue.push(mouse_event);
 						}
 					} else {
-						global.flags.mouse_down_event_flag = true;
+						global.flags.flag_mouse_down_event = true;
 						global.events.mouse_down_event_queue.push(mouse_event);
 					}
 				}
@@ -426,15 +426,15 @@ function load_app(): void {
 		mouse_event.stopPropagation();
 	}
 	function mouse_move(mouse_event: MouseEvent): void {
-		if (!global.flags.mouse_move_event_flag) {
+		if (!global.flags.flag_mouse_move_event) {
 			if (global.CONSTANTS.MOBILE_MODE) {
 				if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
 					global.events.mouse_move_event = mouse_event;
-					global.flags.mouse_move_event_flag = true;
+					global.flags.flag_mouse_move_event = true;
 				}
 			} else {
 				global.events.mouse_move_event = mouse_event;
-				global.flags.mouse_move_event_flag = true;
+				global.flags.flag_mouse_move_event = true;
 			}
 		}
 		mouse_event.preventDefault();
@@ -444,11 +444,11 @@ function load_app(): void {
 		if (mouse_event_latch) {
 			if (global.CONSTANTS.MOBILE_MODE) {
 				if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
-					global.flags.mouse_up_event_flag = true;
+					global.flags.flag_mouse_up_event = true;
 					global.events.mouse_up_event_queue.push(mouse_event);
 				}
 			} else {
-				global.flags.mouse_up_event_flag = true;
+				global.flags.flag_mouse_up_event = true;
 				global.events.mouse_up_event_queue.push(mouse_event);
 			}
 		}
@@ -456,8 +456,8 @@ function load_app(): void {
 		mouse_event.stopPropagation();
 	}
 	function mouse_wheel(mouse_event: MouseEvent): void {
-		if (!global.flags.mouse_wheel_event_flag && !global.CONSTANTS.MOBILE_MODE) {
-			global.flags.mouse_wheel_event_flag = true;
+		if (!global.flags.flag_mouse_wheel_event && !global.CONSTANTS.MOBILE_MODE) {
+			global.flags.flag_mouse_wheel_event = true;
 			global.events.mouse_wheel_event_queue.push(mouse_event);
 		}
 		mouse_event.preventDefault();
@@ -465,14 +465,14 @@ function load_app(): void {
 	}
 	function double_click(mouse_event: MouseEvent): void {
 		if (!global.CONSTANTS.MOBILE_MODE) {
-			global.flags.mouse_double_click_event_flag = true;
+			global.flags.flag_mouse_double_click_event = true;
 			global.events.mouse_double_click_event_queue.push(mouse_event);
 		}
 		mouse_event.preventDefault();
 		mouse_event.stopPropagation();
 	}
 	function key_down(key_event: KeyboardEvent): void {
-		global.flags.key_down_event_flag = true;
+		global.flags.flag_key_down_event = true;
 		global.events.key_down_event_queue.push({
 			event: key_event,
 			alt: key_event.getModifierState('Alt'),
@@ -484,7 +484,7 @@ function load_app(): void {
 		key_event.stopPropagation();
 	}
 	function key_up(key_event: KeyboardEvent): void {
-		global.flags.key_up_event_flag = true;
+		global.flags.flag_key_up_event = true;
 		global.events.key_up_event_queue.push({
 			event: key_event,
 			alt: key_event.getModifierState('Alt'),
@@ -518,21 +518,21 @@ function load_app(): void {
 		graph_window.resize_window();
 		toast.resize_toast();
 		on_screen_keyboard.resize_keyboard();
-/* #INSERT_METER_RESIZE_TRACE# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-for (var i : number = 0; i < voltmeters.length; i++) {
-      voltmeters[i].resize_meter_trace = true;
-    }
-for (var i : number = 0; i < ohmmeters.length; i++) {
-      ohmmeters[i].resize_meter_trace = true;
-    }
-for (var i : number = 0; i < ammeters.length; i++) {
-      ammeters[i].resize_meter_trace = true;
-    }
-for (var i : number = 0; i < wattmeters.length; i++) {
-      wattmeters[i].resize_meter_trace = true;
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_METER_RESIZE_TRACE# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		for (var i: number = 0; i < voltmeters.length; i++) {
+			voltmeters[i].resize_meter_trace = true;
+		}
+		for (var i: number = 0; i < ohmmeters.length; i++) {
+			ohmmeters[i].resize_meter_trace = true;
+		}
+		for (var i: number = 0; i < ammeters.length; i++) {
+			ammeters[i].resize_meter_trace = true;
+		}
+		for (var i: number = 0; i < wattmeters.length; i++) {
+			wattmeters[i].resize_meter_trace = true;
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	function handle_zoom(mouse_event: MouseEvent): void {
 		if (!global.variables.focused) {
@@ -563,14 +563,14 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 		if (global.variables.system_initialization['completed']) {
 			return (
 				global.flags.flag_resize_event ||
-				global.flags.mouse_down_event_flag ||
-				global.flags.mouse_move_event_flag ||
-				global.flags.mouse_up_event_flag ||
-				global.flags.mouse_wheel_event_flag ||
-				global.flags.mouse_double_click_event_flag ||
-				global.flags.key_up_event_flag ||
-				global.flags.key_down_event_flag ||
-				global.flags.picture_request_flag ||
+				global.flags.flag_mouse_down_event ||
+				global.flags.flag_mouse_move_event ||
+				global.flags.flag_mouse_up_event ||
+				global.flags.flag_mouse_wheel_event ||
+				global.flags.flag_mouse_double_click_event ||
+				global.flags.flag_key_up_event ||
+				global.flags.flag_key_down_event ||
+				global.flags.flag_picture_request ||
 				global.flags.flag_simulating ||
 				!workspace.draw_to_screen ||
 				toast.draw_text ||
@@ -579,14 +579,14 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 		} else {
 			return (
 				global.flags.flag_resize_event ||
-				global.flags.mouse_down_event_flag ||
-				global.flags.mouse_move_event_flag ||
-				global.flags.mouse_up_event_flag ||
-				global.flags.mouse_wheel_event_flag ||
-				global.flags.mouse_double_click_event_flag ||
-				global.flags.key_up_event_flag ||
-				global.flags.key_down_event_flag ||
-				global.flags.picture_request_flag ||
+				global.flags.flag_mouse_down_event ||
+				global.flags.flag_mouse_move_event ||
+				global.flags.flag_mouse_up_event ||
+				global.flags.flag_mouse_wheel_event ||
+				global.flags.flag_mouse_double_click_event ||
+				global.flags.flag_key_up_event ||
+				global.flags.flag_key_down_event ||
+				global.flags.flag_picture_request ||
 				global.flags.flag_simulating ||
 				!global.variables.system_initialization['completed']
 			);
@@ -596,35 +596,35 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 		try {
 			if (normal_draw_permissions()) {
 				global.variables.canvas_redraw_counter = 0;
-				global.flags.canvas_draw_event = true;
+				global.flags.flag_canvas_draw_event = true;
 			}
-			if (global.flags.canvas_draw_event) {
+			if (global.flags.flag_canvas_draw_event) {
 				if (global.variables.system_initialization['completed']) {
 					temp_draw_signal =
 						!global.flags.flag_simulating ||
 						global.flags.flag_resize_event ||
-						global.flags.mouse_down_event_flag ||
-						global.flags.mouse_move_event_flag ||
-						global.flags.mouse_up_event_flag ||
-						global.flags.mouse_wheel_event_flag ||
-						global.flags.mouse_double_click_event_flag ||
-						global.flags.key_up_event_flag ||
-						global.flags.key_down_event_flag ||
-						global.flags.picture_request_flag ||
+						global.flags.flag_mouse_down_event ||
+						global.flags.flag_mouse_move_event ||
+						global.flags.flag_mouse_up_event ||
+						global.flags.flag_mouse_wheel_event ||
+						global.flags.flag_mouse_double_click_event ||
+						global.flags.flag_key_up_event ||
+						global.flags.flag_key_down_event ||
+						global.flags.flag_picture_request ||
 						!workspace.draw_to_screen ||
 						toast.draw_text;
 				} else {
 					temp_draw_signal =
 						!global.flags.flag_simulating ||
 						global.flags.flag_resize_event ||
-						global.flags.mouse_down_event_flag ||
-						global.flags.mouse_move_event_flag ||
-						global.flags.mouse_up_event_flag ||
-						global.flags.mouse_wheel_event_flag ||
-						global.flags.mouse_double_click_event_flag ||
-						global.flags.key_up_event_flag ||
-						global.flags.key_down_event_flag ||
-						global.flags.picture_request_flag ||
+						global.flags.flag_mouse_down_event ||
+						global.flags.flag_mouse_move_event ||
+						global.flags.flag_mouse_up_event ||
+						global.flags.flag_mouse_wheel_event ||
+						global.flags.flag_mouse_double_click_event ||
+						global.flags.flag_key_up_event ||
+						global.flags.flag_key_down_event ||
+						global.flags.flag_picture_request ||
 						!workspace.draw_to_screen;
 				}
 				global.variables.last_selected = global.variables.selected;
@@ -632,19 +632,19 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				if (global.variables.last_selected !== global.variables.selected) {
 					wire_manager.reset_wire_builder();
 				}
-				if (global.flags.force_resize_event) {
-					global.flags.signal_build_element = true;
+				if (global.flags.flag_force_resize_event) {
+					global.flags.flag_build_element = true;
 					global.variables.signal_build_counter = 0;
-					global.flags.force_resize_event = false;
-					global.flags.draw_block = true;
+					global.flags.flag_force_resize_event = false;
+					global.flags.flag_draw_block = true;
 					resize_canvas();
 				}
 				fps_div ^= 1;
 				if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
 					if (global.variables.system_initialization['completed']) {
-						if ((global.flags.flag_simulating && global.flags.canvas_draw_request) || temp_draw_signal) {
-							if (!global.flags.on_restore_event) {
-								if (!global.flags.draw_block) {
+						if ((global.flags.flag_simulating && global.flags.flag_canvas_draw_request) || temp_draw_signal) {
+							if (!global.flags.flag_on_restore_event) {
+								if (!global.flags.flag_draw_block) {
 									ctx.drawImage(
 										virtual_surface.get_surface(),
 										view_port.left,
@@ -660,34 +660,34 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 								canvas.release();
 								canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 								draw();
-								if (global.flags.draw_block) {
-									global.flags.draw_block = false;
+								if (global.flags.flag_draw_block) {
+									global.flags.flag_draw_block = false;
 								}
 							}
-							if (global.flags.canvas_draw_request) {
-								if (global.variables.canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-									global.variables.canvas_draw_request_counter = 0;
-									global.flags.canvas_draw_request = false;
+							if (global.flags.flag_canvas_draw_request) {
+								if (global.variables.flag_canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+									global.variables.flag_canvas_draw_request_counter = 0;
+									global.flags.flag_canvas_draw_request = false;
 								}
 							}
 						}
 					}
 				}
-				if (global.flags.signal_build_element) {
+				if (global.flags.flag_build_element) {
 					if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
-						global.flags.signal_build_element = false;
+						global.flags.flag_build_element = false;
 						global.variables.signal_build_counter = 0;
 					}
 				}
-				if (global.flags.signal_wire_deleted) {
-					if (global.variables.signal_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-						global.flags.signal_wire_deleted = false;
-						global.variables.signal_wire_deleted_counter = 0;
+				if (global.flags.flag_wire_deleted) {
+					if (global.variables.flag_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+						global.flags.flag_wire_deleted = false;
+						global.variables.flag_wire_deleted_counter = 0;
 					}
 				}
 				if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
 					global.variables.canvas_redraw_counter = 0;
-					global.flags.canvas_draw_event = false;
+					global.flags.flag_canvas_draw_event = false;
 				}
 			}
 		} catch (e) {
@@ -712,10 +712,10 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 			engine_functions.file_manager();
 			global.variables.component_translating = false;
 			if (global.CONSTANTS.MOBILE_MODE) {
-				if (global.flags.on_restore_event) {
-					global.flags.signal_build_element = true;
+				if (global.flags.flag_on_restore_event) {
+					global.flags.flag_build_element = true;
 					window.JsInterface.onRestore();
-					global.flags.on_restore_event = false;
+					global.flags.flag_on_restore_event = false;
 				}
 			}
 			if (global.events.mouse_down_event_queue.length > 0 && !mouse_event_latch) {
@@ -725,16 +725,16 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				handle_mouse_down();
 				global.events.mouse_down_event_queue.splice(fifo_index, 1);
 				if (global.events.mouse_down_event_queue.length === 0) {
-					global.flags.mouse_down_event_flag = false;
+					global.flags.flag_mouse_down_event = false;
 				}
-				global.flags.canvas_draw_request = true;
-				global.variables.canvas_draw_request_counter = 0;
+				global.flags.flag_canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
 			}
-			if (global.flags.mouse_move_event_flag) {
+			if (global.flags.flag_mouse_move_event) {
 				handle_mouse_move();
-				global.flags.canvas_draw_request = true;
-				global.variables.canvas_draw_request_counter = 0;
-				global.flags.mouse_move_event_flag = false;
+				global.flags.flag_canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
+				global.flags.flag_mouse_move_event = false;
 			}
 			if (global.events.mouse_up_event_queue.length > 0 && mouse_event_latch) {
 				fifo_index = global.events.mouse_up_event_queue.length - 1;
@@ -743,12 +743,12 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				handle_mouse_up();
 				global.events.mouse_up_event_queue.splice(fifo_index, 1);
 				if (global.events.mouse_up_event_queue.length === 0) {
-					global.flags.mouse_up_event_flag = false;
-					global.flags.mouse_move_event_flag = false;
+					global.flags.flag_mouse_up_event = false;
+					global.flags.flag_mouse_move_event = false;
 					global.variables.is_dragging = false;
 				}
-				global.flags.canvas_draw_request = true;
-				global.variables.canvas_draw_request_counter = 0;
+				global.flags.flag_canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
 			}
 			if (global.events.mouse_double_click_event_queue.length > 0) {
 				fifo_index = global.events.mouse_double_click_event_queue.length - 1;
@@ -756,10 +756,10 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				handle_double_click();
 				global.events.mouse_double_click_event_queue.splice(fifo_index, 1);
 				if (global.events.mouse_double_click_event_queue.length === 0) {
-					global.flags.mouse_double_click_event_flag = false;
+					global.flags.flag_mouse_double_click_event = false;
 				}
-				global.flags.canvas_draw_request = true;
-				global.variables.canvas_draw_request_counter = 0;
+				global.flags.flag_canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
 			}
 			if (global.events.mouse_wheel_event_queue.length > 0) {
 				fifo_index = global.events.mouse_wheel_event_queue.length - 1;
@@ -767,10 +767,10 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				handle_mouse_wheel();
 				global.events.mouse_wheel_event_queue.splice(fifo_index, 1);
 				if (global.events.mouse_wheel_event_queue.length === 0) {
-					global.flags.mouse_wheel_event_flag = false;
+					global.flags.flag_mouse_wheel_event = false;
 				}
-				global.flags.canvas_draw_request = true;
-				global.variables.canvas_draw_request_counter = 0;
+				global.flags.flag_canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
 				global.variables.is_dragging = false;
 			}
 			if (global.flags.flag_resize_event) {
@@ -793,10 +793,10 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				handle_key_down();
 				global.events.key_down_event_queue.splice(fifo_index, 1);
 				if (global.events.key_down_event_queue.length === 0) {
-					global.flags.key_down_event_flag = false;
+					global.flags.flag_key_down_event = false;
 				}
-				global.flags.canvas_draw_request = true;
-				global.variables.canvas_draw_request_counter = 0;
+				global.flags.flag_canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
 			}
 			if (global.events.key_up_event_queue.length > 0) {
 				fifo_index = global.events.key_up_event_queue.length - 1;
@@ -805,10 +805,10 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				global.events.key_down_event_queue = [];
 				global.events.key_up_event_queue.splice(fifo_index, 1);
 				if (global.events.key_up_event_queue.length === 0) {
-					global.flags.key_up_event_flag = false;
+					global.flags.flag_key_up_event = false;
 				}
-				global.flags.canvas_draw_request = true;
-				global.variables.canvas_draw_request_counter = 0;
+				global.flags.flag_canvas_draw_request = true;
+				global.variables.flag_canvas_draw_request_counter = 0;
 			}
 			if (global.variables.mouse_keyboard_lock) {
 				global.variables.mouse_keyboard_lock = false;
@@ -825,195 +825,195 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				!global.flags.flag_remove_all
 			) {
 				simulation_manager.simulate();
-/* #INSERT_GENERATE_UPDATE# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-			for (var i : number = 0; i < resistors.length; i++) {
-				resistors[i].update();
-	}
-			for (var i : number = 0; i < capacitors.length; i++) {
-				capacitors[i].update();
-	}
-			for (var i : number = 0; i < inductors.length; i++) {
-				inductors[i].update();
-	}
-			for (var i : number = 0; i < grounds.length; i++) {
-				grounds[i].update();
-	}
-			for (var i : number = 0; i < dcsources.length; i++) {
-				dcsources[i].update();
-	}
-			for (var i : number = 0; i < dccurrents.length; i++) {
-				dccurrents[i].update();
-	}
-			for (var i : number = 0; i < acsources.length; i++) {
-				acsources[i].update();
-	}
-			for (var i : number = 0; i < accurrents.length; i++) {
-				accurrents[i].update();
-	}
-			for (var i : number = 0; i < squarewaves.length; i++) {
-				squarewaves[i].update();
-	}
-			for (var i : number = 0; i < sawwaves.length; i++) {
-				sawwaves[i].update();
-	}
-			for (var i : number = 0; i < trianglewaves.length; i++) {
-				trianglewaves[i].update();
-	}
-			for (var i : number = 0; i < constants.length; i++) {
-				constants[i].update();
-	}
-			for (var i : number = 0; i < wires.length; i++) {
-				wires[i].update();
-	}
-			for (var i : number = 0; i < nets.length; i++) {
-				nets[i].update();
-	}
-			for (var i : number = 0; i < notes.length; i++) {
-				notes[i].update();
-	}
-			for (var i : number = 0; i < rails.length; i++) {
-				rails[i].update();
-	}
-			for (var i : number = 0; i < voltmeters.length; i++) {
-				voltmeters[i].update();
-	}
-			for (var i : number = 0; i < ohmmeters.length; i++) {
-				ohmmeters[i].update();
-	}
-			for (var i : number = 0; i < ammeters.length; i++) {
-				ammeters[i].update();
-	}
-			for (var i : number = 0; i < wattmeters.length; i++) {
-				wattmeters[i].update();
-	}
-			for (var i : number = 0; i < fuses.length; i++) {
-				fuses[i].update();
-	}
-			for (var i : number = 0; i < spsts.length; i++) {
-				spsts[i].update();
-	}
-			for (var i : number = 0; i < spdts.length; i++) {
-				spdts[i].update();
-	}
-			for (var i : number = 0; i < nots.length; i++) {
-				nots[i].update();
-	}
-			for (var i : number = 0; i < potentiometers.length; i++) {
-				potentiometers[i].update();
-	}
-			for (var i : number = 0; i < ands.length; i++) {
-				ands[i].update();
-	}
-			for (var i : number = 0; i < ors.length; i++) {
-				ors[i].update();
-	}
-			for (var i : number = 0; i < nands.length; i++) {
-				nands[i].update();
-	}
-			for (var i : number = 0; i < nors.length; i++) {
-				nors[i].update();
-	}
-			for (var i : number = 0; i < xors.length; i++) {
-				xors[i].update();
-	}
-			for (var i : number = 0; i < xnors.length; i++) {
-				xnors[i].update();
-	}
-			for (var i : number = 0; i < dffs.length; i++) {
-				dffs[i].update();
-	}
-			for (var i : number = 0; i < vsats.length; i++) {
-				vsats[i].update();
-	}
-			for (var i : number = 0; i < adders.length; i++) {
-				adders[i].update();
-	}
-			for (var i : number = 0; i < subtractors.length; i++) {
-				subtractors[i].update();
-	}
-			for (var i : number = 0; i < multipliers.length; i++) {
-				multipliers[i].update();
-	}
-			for (var i : number = 0; i < dividers.length; i++) {
-				dividers[i].update();
-	}
-			for (var i : number = 0; i < gains.length; i++) {
-				gains[i].update();
-	}
-			for (var i : number = 0; i < absvals.length; i++) {
-				absvals[i].update();
-	}
-			for (var i : number = 0; i < vcsws.length; i++) {
-				vcsws[i].update();
-	}
-			for (var i : number = 0; i < vcvss.length; i++) {
-				vcvss[i].update();
-	}
-			for (var i : number = 0; i < vccss.length; i++) {
-				vccss[i].update();
-	}
-			for (var i : number = 0; i < cccss.length; i++) {
-				cccss[i].update();
-	}
-			for (var i : number = 0; i < ccvss.length; i++) {
-				ccvss[i].update();
-	}
-			for (var i : number = 0; i < opamps.length; i++) {
-				opamps[i].update();
-	}
-			for (var i : number = 0; i < adcs.length; i++) {
-				adcs[i].update();
-	}
-			for (var i : number = 0; i < dacs.length; i++) {
-				dacs[i].update();
-	}
-			for (var i : number = 0; i < sandhs.length; i++) {
-				sandhs[i].update();
-	}
-			for (var i : number = 0; i < pwms.length; i++) {
-				pwms[i].update();
-	}
-			for (var i : number = 0; i < integrators.length; i++) {
-				integrators[i].update();
-	}
-			for (var i : number = 0; i < differentiators.length; i++) {
-				differentiators[i].update();
-	}
-			for (var i : number = 0; i < lowpasses.length; i++) {
-				lowpasses[i].update();
-	}
-			for (var i : number = 0; i < highpasses.length; i++) {
-				highpasses[i].update();
-	}
-			for (var i : number = 0; i < relays.length; i++) {
-				relays[i].update();
-	}
-			for (var i : number = 0; i < pids.length; i++) {
-				pids[i].update();
-	}
-			for (var i : number = 0; i < luts.length; i++) {
-				luts[i].update();
-	}
-			for (var i : number = 0; i < vcrs.length; i++) {
-				vcrs[i].update();
-	}
-			for (var i : number = 0; i < vccas.length; i++) {
-				vccas[i].update();
-	}
-			for (var i : number = 0; i < vcls.length; i++) {
-				vcls[i].update();
-	}
-			for (var i : number = 0; i < grts.length; i++) {
-				grts[i].update();
-	}
-			for (var i : number = 0; i < tptzs.length; i++) {
-				tptzs[i].update();
-	}
-			for (var i : number = 0; i < transformers.length; i++) {
-				transformers[i].update();
-	}
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+				/* #INSERT_GENERATE_UPDATE# */
+				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+				for (var i: number = 0; i < resistors.length; i++) {
+					resistors[i].update();
+				}
+				for (var i: number = 0; i < capacitors.length; i++) {
+					capacitors[i].update();
+				}
+				for (var i: number = 0; i < inductors.length; i++) {
+					inductors[i].update();
+				}
+				for (var i: number = 0; i < grounds.length; i++) {
+					grounds[i].update();
+				}
+				for (var i: number = 0; i < dcsources.length; i++) {
+					dcsources[i].update();
+				}
+				for (var i: number = 0; i < dccurrents.length; i++) {
+					dccurrents[i].update();
+				}
+				for (var i: number = 0; i < acsources.length; i++) {
+					acsources[i].update();
+				}
+				for (var i: number = 0; i < accurrents.length; i++) {
+					accurrents[i].update();
+				}
+				for (var i: number = 0; i < squarewaves.length; i++) {
+					squarewaves[i].update();
+				}
+				for (var i: number = 0; i < sawwaves.length; i++) {
+					sawwaves[i].update();
+				}
+				for (var i: number = 0; i < trianglewaves.length; i++) {
+					trianglewaves[i].update();
+				}
+				for (var i: number = 0; i < constants.length; i++) {
+					constants[i].update();
+				}
+				for (var i: number = 0; i < wires.length; i++) {
+					wires[i].update();
+				}
+				for (var i: number = 0; i < nets.length; i++) {
+					nets[i].update();
+				}
+				for (var i: number = 0; i < notes.length; i++) {
+					notes[i].update();
+				}
+				for (var i: number = 0; i < rails.length; i++) {
+					rails[i].update();
+				}
+				for (var i: number = 0; i < voltmeters.length; i++) {
+					voltmeters[i].update();
+				}
+				for (var i: number = 0; i < ohmmeters.length; i++) {
+					ohmmeters[i].update();
+				}
+				for (var i: number = 0; i < ammeters.length; i++) {
+					ammeters[i].update();
+				}
+				for (var i: number = 0; i < wattmeters.length; i++) {
+					wattmeters[i].update();
+				}
+				for (var i: number = 0; i < fuses.length; i++) {
+					fuses[i].update();
+				}
+				for (var i: number = 0; i < spsts.length; i++) {
+					spsts[i].update();
+				}
+				for (var i: number = 0; i < spdts.length; i++) {
+					spdts[i].update();
+				}
+				for (var i: number = 0; i < nots.length; i++) {
+					nots[i].update();
+				}
+				for (var i: number = 0; i < potentiometers.length; i++) {
+					potentiometers[i].update();
+				}
+				for (var i: number = 0; i < ands.length; i++) {
+					ands[i].update();
+				}
+				for (var i: number = 0; i < ors.length; i++) {
+					ors[i].update();
+				}
+				for (var i: number = 0; i < nands.length; i++) {
+					nands[i].update();
+				}
+				for (var i: number = 0; i < nors.length; i++) {
+					nors[i].update();
+				}
+				for (var i: number = 0; i < xors.length; i++) {
+					xors[i].update();
+				}
+				for (var i: number = 0; i < xnors.length; i++) {
+					xnors[i].update();
+				}
+				for (var i: number = 0; i < dffs.length; i++) {
+					dffs[i].update();
+				}
+				for (var i: number = 0; i < vsats.length; i++) {
+					vsats[i].update();
+				}
+				for (var i: number = 0; i < adders.length; i++) {
+					adders[i].update();
+				}
+				for (var i: number = 0; i < subtractors.length; i++) {
+					subtractors[i].update();
+				}
+				for (var i: number = 0; i < multipliers.length; i++) {
+					multipliers[i].update();
+				}
+				for (var i: number = 0; i < dividers.length; i++) {
+					dividers[i].update();
+				}
+				for (var i: number = 0; i < gains.length; i++) {
+					gains[i].update();
+				}
+				for (var i: number = 0; i < absvals.length; i++) {
+					absvals[i].update();
+				}
+				for (var i: number = 0; i < vcsws.length; i++) {
+					vcsws[i].update();
+				}
+				for (var i: number = 0; i < vcvss.length; i++) {
+					vcvss[i].update();
+				}
+				for (var i: number = 0; i < vccss.length; i++) {
+					vccss[i].update();
+				}
+				for (var i: number = 0; i < cccss.length; i++) {
+					cccss[i].update();
+				}
+				for (var i: number = 0; i < ccvss.length; i++) {
+					ccvss[i].update();
+				}
+				for (var i: number = 0; i < opamps.length; i++) {
+					opamps[i].update();
+				}
+				for (var i: number = 0; i < adcs.length; i++) {
+					adcs[i].update();
+				}
+				for (var i: number = 0; i < dacs.length; i++) {
+					dacs[i].update();
+				}
+				for (var i: number = 0; i < sandhs.length; i++) {
+					sandhs[i].update();
+				}
+				for (var i: number = 0; i < pwms.length; i++) {
+					pwms[i].update();
+				}
+				for (var i: number = 0; i < integrators.length; i++) {
+					integrators[i].update();
+				}
+				for (var i: number = 0; i < differentiators.length; i++) {
+					differentiators[i].update();
+				}
+				for (var i: number = 0; i < lowpasses.length; i++) {
+					lowpasses[i].update();
+				}
+				for (var i: number = 0; i < highpasses.length; i++) {
+					highpasses[i].update();
+				}
+				for (var i: number = 0; i < relays.length; i++) {
+					relays[i].update();
+				}
+				for (var i: number = 0; i < pids.length; i++) {
+					pids[i].update();
+				}
+				for (var i: number = 0; i < luts.length; i++) {
+					luts[i].update();
+				}
+				for (var i: number = 0; i < vcrs.length; i++) {
+					vcrs[i].update();
+				}
+				for (var i: number = 0; i < vccas.length; i++) {
+					vccas[i].update();
+				}
+				for (var i: number = 0; i < vcls.length; i++) {
+					vcls[i].update();
+				}
+				for (var i: number = 0; i < grts.length; i++) {
+					grts[i].update();
+				}
+				for (var i: number = 0; i < tptzs.length; i++) {
+					tptzs[i].update();
+				}
+				for (var i: number = 0; i < transformers.length; i++) {
+					transformers[i].update();
+				}
+				/* <!-- END AUTOMATICALLY GENERATED !--> */
 				menu_bar.update();
 				bottom_menu.update();
 				element_options.update();
@@ -1031,11 +1031,11 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 			global.variables.system_initialization['step']++;
 			if (global.variables.system_initialization['step'] >= global.variables.system_initialization['max']) {
 				if (global.CONSTANTS.MOBILE_MODE) {
-					global.flags.on_restore_event = true;
+					global.flags.flag_on_restore_event = true;
 				}
 				global.variables.system_initialization['step'] = 0;
 				global.variables.system_initialization['completed'] = true;
-				global.flags.signal_build_element = true;
+				global.flags.flag_build_element = true;
 			}
 		}
 	}
@@ -1056,7 +1056,7 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 	function draw(): void {
 		refactor_sizes();
 		engine_functions.image_manager();
-		if (!global.flags.picture_request_flag) {
+		if (!global.flags.flag_picture_request) {
 			if (!global.CONSTANTS.MOBILE_MODE) {
 				if (
 					global.flags.flag_idle &&
@@ -1074,7 +1074,7 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				) {
 					multi_select_manager.reset_enveloping_bounds();
 				}
-				if (global.flags.signal_build_element) {
+				if (global.flags.flag_build_element) {
 					node_space_x_cache = 0.29375 * global.variables.node_space_x;
 					node_space_y_cache = 0.29375 * global.variables.node_space_y;
 					mult_node_space_x_cache = 1.25 * node_space_x_cache;
@@ -1147,7 +1147,7 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				) {
 					workspace.workspace_draw(canvas);
 					if (!global.flags.flag_graph) {
-						if (global.flags.signal_build_element) {
+						if (global.flags.flag_build_element) {
 							node_space_x_cache = 0.29375 * global.variables.node_space_x;
 							node_space_y_cache = 0.29375 * global.variables.node_space_y;
 							mult_node_space_x_cache = 1.25 * node_space_x_cache;
@@ -1278,213 +1278,213 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 				}
 			}
 			if (!global.variables.is_dragging) {
-/* #INSERT_GENERATE_MOUSE_DOWN# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-			for (var i : number = 0; i < resistors.length; i++) {
-          resistors[i].mouse_down();
-    }
-			for (var i : number = 0; i < capacitors.length; i++) {
-          capacitors[i].mouse_down();
-    }
-			for (var i : number = 0; i < inductors.length; i++) {
-          inductors[i].mouse_down();
-    }
-			for (var i : number = 0; i < grounds.length; i++) {
-          grounds[i].mouse_down();
-    }
-			for (var i : number = 0; i < dcsources.length; i++) {
-          dcsources[i].mouse_down();
-    }
-			for (var i : number = 0; i < dccurrents.length; i++) {
-          dccurrents[i].mouse_down();
-    }
-			for (var i : number = 0; i < acsources.length; i++) {
-          acsources[i].mouse_down();
-    }
-			for (var i : number = 0; i < accurrents.length; i++) {
-          accurrents[i].mouse_down();
-    }
-			for (var i : number = 0; i < squarewaves.length; i++) {
-          squarewaves[i].mouse_down();
-    }
-			for (var i : number = 0; i < sawwaves.length; i++) {
-          sawwaves[i].mouse_down();
-    }
-			for (var i : number = 0; i < trianglewaves.length; i++) {
-          trianglewaves[i].mouse_down();
-    }
-			for (var i : number = 0; i < constants.length; i++) {
-          constants[i].mouse_down();
-    }
-			for (var i : number = 0; i < nets.length; i++) {
-          nets[i].mouse_down();
-    }
-			for (var i : number = 0; i < notes.length; i++) {
-          notes[i].mouse_down();
-    }
-			for (var i : number = 0; i < rails.length; i++) {
-          rails[i].mouse_down();
-    }
-			for (var i : number = 0; i < voltmeters.length; i++) {
-          voltmeters[i].mouse_down();
-    }
-			for (var i : number = 0; i < ohmmeters.length; i++) {
-          ohmmeters[i].mouse_down();
-    }
-			for (var i : number = 0; i < ammeters.length; i++) {
-          ammeters[i].mouse_down();
-    }
-			for (var i : number = 0; i < wattmeters.length; i++) {
-          wattmeters[i].mouse_down();
-    }
-			for (var i : number = 0; i < fuses.length; i++) {
-          fuses[i].mouse_down();
-    }
-			for (var i : number = 0; i < spsts.length; i++) {
-          spsts[i].mouse_down();
-    }
-			for (var i : number = 0; i < spdts.length; i++) {
-          spdts[i].mouse_down();
-    }
-			for (var i : number = 0; i < nots.length; i++) {
-          nots[i].mouse_down();
-    }
-			for (var i : number = 0; i < diodes.length; i++) {
-          diodes[i].mouse_down();
-    }
-			for (var i : number = 0; i < leds.length; i++) {
-          leds[i].mouse_down();
-    }
-			for (var i : number = 0; i < zeners.length; i++) {
-          zeners[i].mouse_down();
-    }
-			for (var i : number = 0; i < potentiometers.length; i++) {
-          potentiometers[i].mouse_down();
-    }
-			for (var i : number = 0; i < ands.length; i++) {
-          ands[i].mouse_down();
-    }
-			for (var i : number = 0; i < ors.length; i++) {
-          ors[i].mouse_down();
-    }
-			for (var i : number = 0; i < nands.length; i++) {
-          nands[i].mouse_down();
-    }
-			for (var i : number = 0; i < nors.length; i++) {
-          nors[i].mouse_down();
-    }
-			for (var i : number = 0; i < xors.length; i++) {
-          xors[i].mouse_down();
-    }
-			for (var i : number = 0; i < xnors.length; i++) {
-          xnors[i].mouse_down();
-    }
-			for (var i : number = 0; i < dffs.length; i++) {
-          dffs[i].mouse_down();
-    }
-			for (var i : number = 0; i < vsats.length; i++) {
-          vsats[i].mouse_down();
-    }
-			for (var i : number = 0; i < adders.length; i++) {
-          adders[i].mouse_down();
-    }
-			for (var i : number = 0; i < subtractors.length; i++) {
-          subtractors[i].mouse_down();
-    }
-			for (var i : number = 0; i < multipliers.length; i++) {
-          multipliers[i].mouse_down();
-    }
-			for (var i : number = 0; i < dividers.length; i++) {
-          dividers[i].mouse_down();
-    }
-			for (var i : number = 0; i < gains.length; i++) {
-          gains[i].mouse_down();
-    }
-			for (var i : number = 0; i < absvals.length; i++) {
-          absvals[i].mouse_down();
-    }
-			for (var i : number = 0; i < vcsws.length; i++) {
-          vcsws[i].mouse_down();
-    }
-			for (var i : number = 0; i < vcvss.length; i++) {
-          vcvss[i].mouse_down();
-    }
-			for (var i : number = 0; i < vccss.length; i++) {
-          vccss[i].mouse_down();
-    }
-			for (var i : number = 0; i < cccss.length; i++) {
-          cccss[i].mouse_down();
-    }
-			for (var i : number = 0; i < ccvss.length; i++) {
-          ccvss[i].mouse_down();
-    }
-			for (var i : number = 0; i < opamps.length; i++) {
-          opamps[i].mouse_down();
-    }
-			for (var i : number = 0; i < nmosfets.length; i++) {
-          nmosfets[i].mouse_down();
-    }
-			for (var i : number = 0; i < pmosfets.length; i++) {
-          pmosfets[i].mouse_down();
-    }
-			for (var i : number = 0; i < npns.length; i++) {
-          npns[i].mouse_down();
-    }
-			for (var i : number = 0; i < pnps.length; i++) {
-          pnps[i].mouse_down();
-    }
-			for (var i : number = 0; i < adcs.length; i++) {
-          adcs[i].mouse_down();
-    }
-			for (var i : number = 0; i < dacs.length; i++) {
-          dacs[i].mouse_down();
-    }
-			for (var i : number = 0; i < sandhs.length; i++) {
-          sandhs[i].mouse_down();
-    }
-			for (var i : number = 0; i < pwms.length; i++) {
-          pwms[i].mouse_down();
-    }
-			for (var i : number = 0; i < integrators.length; i++) {
-          integrators[i].mouse_down();
-    }
-			for (var i : number = 0; i < differentiators.length; i++) {
-          differentiators[i].mouse_down();
-    }
-			for (var i : number = 0; i < lowpasses.length; i++) {
-          lowpasses[i].mouse_down();
-    }
-			for (var i : number = 0; i < highpasses.length; i++) {
-          highpasses[i].mouse_down();
-    }
-			for (var i : number = 0; i < relays.length; i++) {
-          relays[i].mouse_down();
-    }
-			for (var i : number = 0; i < pids.length; i++) {
-          pids[i].mouse_down();
-    }
-			for (var i : number = 0; i < luts.length; i++) {
-          luts[i].mouse_down();
-    }
-			for (var i : number = 0; i < vcrs.length; i++) {
-          vcrs[i].mouse_down();
-    }
-			for (var i : number = 0; i < vccas.length; i++) {
-          vccas[i].mouse_down();
-    }
-			for (var i : number = 0; i < vcls.length; i++) {
-          vcls[i].mouse_down();
-    }
-			for (var i : number = 0; i < grts.length; i++) {
-          grts[i].mouse_down();
-    }
-			for (var i : number = 0; i < tptzs.length; i++) {
-          tptzs[i].mouse_down();
-    }
-			for (var i : number = 0; i < transformers.length; i++) {
-          transformers[i].mouse_down();
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+				/* #INSERT_GENERATE_MOUSE_DOWN# */
+				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+				for (var i: number = 0; i < resistors.length; i++) {
+					resistors[i].mouse_down();
+				}
+				for (var i: number = 0; i < capacitors.length; i++) {
+					capacitors[i].mouse_down();
+				}
+				for (var i: number = 0; i < inductors.length; i++) {
+					inductors[i].mouse_down();
+				}
+				for (var i: number = 0; i < grounds.length; i++) {
+					grounds[i].mouse_down();
+				}
+				for (var i: number = 0; i < dcsources.length; i++) {
+					dcsources[i].mouse_down();
+				}
+				for (var i: number = 0; i < dccurrents.length; i++) {
+					dccurrents[i].mouse_down();
+				}
+				for (var i: number = 0; i < acsources.length; i++) {
+					acsources[i].mouse_down();
+				}
+				for (var i: number = 0; i < accurrents.length; i++) {
+					accurrents[i].mouse_down();
+				}
+				for (var i: number = 0; i < squarewaves.length; i++) {
+					squarewaves[i].mouse_down();
+				}
+				for (var i: number = 0; i < sawwaves.length; i++) {
+					sawwaves[i].mouse_down();
+				}
+				for (var i: number = 0; i < trianglewaves.length; i++) {
+					trianglewaves[i].mouse_down();
+				}
+				for (var i: number = 0; i < constants.length; i++) {
+					constants[i].mouse_down();
+				}
+				for (var i: number = 0; i < nets.length; i++) {
+					nets[i].mouse_down();
+				}
+				for (var i: number = 0; i < notes.length; i++) {
+					notes[i].mouse_down();
+				}
+				for (var i: number = 0; i < rails.length; i++) {
+					rails[i].mouse_down();
+				}
+				for (var i: number = 0; i < voltmeters.length; i++) {
+					voltmeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < ohmmeters.length; i++) {
+					ohmmeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < ammeters.length; i++) {
+					ammeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < wattmeters.length; i++) {
+					wattmeters[i].mouse_down();
+				}
+				for (var i: number = 0; i < fuses.length; i++) {
+					fuses[i].mouse_down();
+				}
+				for (var i: number = 0; i < spsts.length; i++) {
+					spsts[i].mouse_down();
+				}
+				for (var i: number = 0; i < spdts.length; i++) {
+					spdts[i].mouse_down();
+				}
+				for (var i: number = 0; i < nots.length; i++) {
+					nots[i].mouse_down();
+				}
+				for (var i: number = 0; i < diodes.length; i++) {
+					diodes[i].mouse_down();
+				}
+				for (var i: number = 0; i < leds.length; i++) {
+					leds[i].mouse_down();
+				}
+				for (var i: number = 0; i < zeners.length; i++) {
+					zeners[i].mouse_down();
+				}
+				for (var i: number = 0; i < potentiometers.length; i++) {
+					potentiometers[i].mouse_down();
+				}
+				for (var i: number = 0; i < ands.length; i++) {
+					ands[i].mouse_down();
+				}
+				for (var i: number = 0; i < ors.length; i++) {
+					ors[i].mouse_down();
+				}
+				for (var i: number = 0; i < nands.length; i++) {
+					nands[i].mouse_down();
+				}
+				for (var i: number = 0; i < nors.length; i++) {
+					nors[i].mouse_down();
+				}
+				for (var i: number = 0; i < xors.length; i++) {
+					xors[i].mouse_down();
+				}
+				for (var i: number = 0; i < xnors.length; i++) {
+					xnors[i].mouse_down();
+				}
+				for (var i: number = 0; i < dffs.length; i++) {
+					dffs[i].mouse_down();
+				}
+				for (var i: number = 0; i < vsats.length; i++) {
+					vsats[i].mouse_down();
+				}
+				for (var i: number = 0; i < adders.length; i++) {
+					adders[i].mouse_down();
+				}
+				for (var i: number = 0; i < subtractors.length; i++) {
+					subtractors[i].mouse_down();
+				}
+				for (var i: number = 0; i < multipliers.length; i++) {
+					multipliers[i].mouse_down();
+				}
+				for (var i: number = 0; i < dividers.length; i++) {
+					dividers[i].mouse_down();
+				}
+				for (var i: number = 0; i < gains.length; i++) {
+					gains[i].mouse_down();
+				}
+				for (var i: number = 0; i < absvals.length; i++) {
+					absvals[i].mouse_down();
+				}
+				for (var i: number = 0; i < vcsws.length; i++) {
+					vcsws[i].mouse_down();
+				}
+				for (var i: number = 0; i < vcvss.length; i++) {
+					vcvss[i].mouse_down();
+				}
+				for (var i: number = 0; i < vccss.length; i++) {
+					vccss[i].mouse_down();
+				}
+				for (var i: number = 0; i < cccss.length; i++) {
+					cccss[i].mouse_down();
+				}
+				for (var i: number = 0; i < ccvss.length; i++) {
+					ccvss[i].mouse_down();
+				}
+				for (var i: number = 0; i < opamps.length; i++) {
+					opamps[i].mouse_down();
+				}
+				for (var i: number = 0; i < nmosfets.length; i++) {
+					nmosfets[i].mouse_down();
+				}
+				for (var i: number = 0; i < pmosfets.length; i++) {
+					pmosfets[i].mouse_down();
+				}
+				for (var i: number = 0; i < npns.length; i++) {
+					npns[i].mouse_down();
+				}
+				for (var i: number = 0; i < pnps.length; i++) {
+					pnps[i].mouse_down();
+				}
+				for (var i: number = 0; i < adcs.length; i++) {
+					adcs[i].mouse_down();
+				}
+				for (var i: number = 0; i < dacs.length; i++) {
+					dacs[i].mouse_down();
+				}
+				for (var i: number = 0; i < sandhs.length; i++) {
+					sandhs[i].mouse_down();
+				}
+				for (var i: number = 0; i < pwms.length; i++) {
+					pwms[i].mouse_down();
+				}
+				for (var i: number = 0; i < integrators.length; i++) {
+					integrators[i].mouse_down();
+				}
+				for (var i: number = 0; i < differentiators.length; i++) {
+					differentiators[i].mouse_down();
+				}
+				for (var i: number = 0; i < lowpasses.length; i++) {
+					lowpasses[i].mouse_down();
+				}
+				for (var i: number = 0; i < highpasses.length; i++) {
+					highpasses[i].mouse_down();
+				}
+				for (var i: number = 0; i < relays.length; i++) {
+					relays[i].mouse_down();
+				}
+				for (var i: number = 0; i < pids.length; i++) {
+					pids[i].mouse_down();
+				}
+				for (var i: number = 0; i < luts.length; i++) {
+					luts[i].mouse_down();
+				}
+				for (var i: number = 0; i < vcrs.length; i++) {
+					vcrs[i].mouse_down();
+				}
+				for (var i: number = 0; i < vccas.length; i++) {
+					vccas[i].mouse_down();
+				}
+				for (var i: number = 0; i < vcls.length; i++) {
+					vcls[i].mouse_down();
+				}
+				for (var i: number = 0; i < grts.length; i++) {
+					grts[i].mouse_down();
+				}
+				for (var i: number = 0; i < tptzs.length; i++) {
+					tptzs[i].mouse_down();
+				}
+				for (var i: number = 0; i < transformers.length; i++) {
+					transformers[i].mouse_down();
+				}
+				/* <!-- END AUTOMATICALLY GENERATED !--> */
 				for (var i: number = wires.length - 1; i > -1; i--) {
 					wires[i].mouse_down();
 				}
@@ -1536,213 +1536,213 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 			!global.flags.flag_remove_all
 		) {
 			if (global.flags.flag_idle && !global.flags.flag_simulating) {
-/* #INSERT_GENERATE_MOUSE_MOVE# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-			for (var i : number = 0; i < resistors.length; i++) {
-          resistors[i].mouse_move();
-    }
-			for (var i : number = 0; i < capacitors.length; i++) {
-          capacitors[i].mouse_move();
-    }
-			for (var i : number = 0; i < inductors.length; i++) {
-          inductors[i].mouse_move();
-    }
-			for (var i : number = 0; i < grounds.length; i++) {
-          grounds[i].mouse_move();
-    }
-			for (var i : number = 0; i < dcsources.length; i++) {
-          dcsources[i].mouse_move();
-    }
-			for (var i : number = 0; i < dccurrents.length; i++) {
-          dccurrents[i].mouse_move();
-    }
-			for (var i : number = 0; i < acsources.length; i++) {
-          acsources[i].mouse_move();
-    }
-			for (var i : number = 0; i < accurrents.length; i++) {
-          accurrents[i].mouse_move();
-    }
-			for (var i : number = 0; i < squarewaves.length; i++) {
-          squarewaves[i].mouse_move();
-    }
-			for (var i : number = 0; i < sawwaves.length; i++) {
-          sawwaves[i].mouse_move();
-    }
-			for (var i : number = 0; i < trianglewaves.length; i++) {
-          trianglewaves[i].mouse_move();
-    }
-			for (var i : number = 0; i < constants.length; i++) {
-          constants[i].mouse_move();
-    }
-			for (var i : number = 0; i < nets.length; i++) {
-          nets[i].mouse_move();
-    }
-			for (var i : number = 0; i < notes.length; i++) {
-          notes[i].mouse_move();
-    }
-			for (var i : number = 0; i < rails.length; i++) {
-          rails[i].mouse_move();
-    }
-			for (var i : number = 0; i < voltmeters.length; i++) {
-          voltmeters[i].mouse_move();
-    }
-			for (var i : number = 0; i < ohmmeters.length; i++) {
-          ohmmeters[i].mouse_move();
-    }
-			for (var i : number = 0; i < ammeters.length; i++) {
-          ammeters[i].mouse_move();
-    }
-			for (var i : number = 0; i < wattmeters.length; i++) {
-          wattmeters[i].mouse_move();
-    }
-			for (var i : number = 0; i < fuses.length; i++) {
-          fuses[i].mouse_move();
-    }
-			for (var i : number = 0; i < spsts.length; i++) {
-          spsts[i].mouse_move();
-    }
-			for (var i : number = 0; i < spdts.length; i++) {
-          spdts[i].mouse_move();
-    }
-			for (var i : number = 0; i < nots.length; i++) {
-          nots[i].mouse_move();
-    }
-			for (var i : number = 0; i < diodes.length; i++) {
-          diodes[i].mouse_move();
-    }
-			for (var i : number = 0; i < leds.length; i++) {
-          leds[i].mouse_move();
-    }
-			for (var i : number = 0; i < zeners.length; i++) {
-          zeners[i].mouse_move();
-    }
-			for (var i : number = 0; i < potentiometers.length; i++) {
-          potentiometers[i].mouse_move();
-    }
-			for (var i : number = 0; i < ands.length; i++) {
-          ands[i].mouse_move();
-    }
-			for (var i : number = 0; i < ors.length; i++) {
-          ors[i].mouse_move();
-    }
-			for (var i : number = 0; i < nands.length; i++) {
-          nands[i].mouse_move();
-    }
-			for (var i : number = 0; i < nors.length; i++) {
-          nors[i].mouse_move();
-    }
-			for (var i : number = 0; i < xors.length; i++) {
-          xors[i].mouse_move();
-    }
-			for (var i : number = 0; i < xnors.length; i++) {
-          xnors[i].mouse_move();
-    }
-			for (var i : number = 0; i < dffs.length; i++) {
-          dffs[i].mouse_move();
-    }
-			for (var i : number = 0; i < vsats.length; i++) {
-          vsats[i].mouse_move();
-    }
-			for (var i : number = 0; i < adders.length; i++) {
-          adders[i].mouse_move();
-    }
-			for (var i : number = 0; i < subtractors.length; i++) {
-          subtractors[i].mouse_move();
-    }
-			for (var i : number = 0; i < multipliers.length; i++) {
-          multipliers[i].mouse_move();
-    }
-			for (var i : number = 0; i < dividers.length; i++) {
-          dividers[i].mouse_move();
-    }
-			for (var i : number = 0; i < gains.length; i++) {
-          gains[i].mouse_move();
-    }
-			for (var i : number = 0; i < absvals.length; i++) {
-          absvals[i].mouse_move();
-    }
-			for (var i : number = 0; i < vcsws.length; i++) {
-          vcsws[i].mouse_move();
-    }
-			for (var i : number = 0; i < vcvss.length; i++) {
-          vcvss[i].mouse_move();
-    }
-			for (var i : number = 0; i < vccss.length; i++) {
-          vccss[i].mouse_move();
-    }
-			for (var i : number = 0; i < cccss.length; i++) {
-          cccss[i].mouse_move();
-    }
-			for (var i : number = 0; i < ccvss.length; i++) {
-          ccvss[i].mouse_move();
-    }
-			for (var i : number = 0; i < opamps.length; i++) {
-          opamps[i].mouse_move();
-    }
-			for (var i : number = 0; i < nmosfets.length; i++) {
-          nmosfets[i].mouse_move();
-    }
-			for (var i : number = 0; i < pmosfets.length; i++) {
-          pmosfets[i].mouse_move();
-    }
-			for (var i : number = 0; i < npns.length; i++) {
-          npns[i].mouse_move();
-    }
-			for (var i : number = 0; i < pnps.length; i++) {
-          pnps[i].mouse_move();
-    }
-			for (var i : number = 0; i < adcs.length; i++) {
-          adcs[i].mouse_move();
-    }
-			for (var i : number = 0; i < dacs.length; i++) {
-          dacs[i].mouse_move();
-    }
-			for (var i : number = 0; i < sandhs.length; i++) {
-          sandhs[i].mouse_move();
-    }
-			for (var i : number = 0; i < pwms.length; i++) {
-          pwms[i].mouse_move();
-    }
-			for (var i : number = 0; i < integrators.length; i++) {
-          integrators[i].mouse_move();
-    }
-			for (var i : number = 0; i < differentiators.length; i++) {
-          differentiators[i].mouse_move();
-    }
-			for (var i : number = 0; i < lowpasses.length; i++) {
-          lowpasses[i].mouse_move();
-    }
-			for (var i : number = 0; i < highpasses.length; i++) {
-          highpasses[i].mouse_move();
-    }
-			for (var i : number = 0; i < relays.length; i++) {
-          relays[i].mouse_move();
-    }
-			for (var i : number = 0; i < pids.length; i++) {
-          pids[i].mouse_move();
-    }
-			for (var i : number = 0; i < luts.length; i++) {
-          luts[i].mouse_move();
-    }
-			for (var i : number = 0; i < vcrs.length; i++) {
-          vcrs[i].mouse_move();
-    }
-			for (var i : number = 0; i < vccas.length; i++) {
-          vccas[i].mouse_move();
-    }
-			for (var i : number = 0; i < vcls.length; i++) {
-          vcls[i].mouse_move();
-    }
-			for (var i : number = 0; i < grts.length; i++) {
-          grts[i].mouse_move();
-    }
-			for (var i : number = 0; i < tptzs.length; i++) {
-          tptzs[i].mouse_move();
-    }
-			for (var i : number = 0; i < transformers.length; i++) {
-          transformers[i].mouse_move();
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+				/* #INSERT_GENERATE_MOUSE_MOVE# */
+				/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+				for (var i: number = 0; i < resistors.length; i++) {
+					resistors[i].mouse_move();
+				}
+				for (var i: number = 0; i < capacitors.length; i++) {
+					capacitors[i].mouse_move();
+				}
+				for (var i: number = 0; i < inductors.length; i++) {
+					inductors[i].mouse_move();
+				}
+				for (var i: number = 0; i < grounds.length; i++) {
+					grounds[i].mouse_move();
+				}
+				for (var i: number = 0; i < dcsources.length; i++) {
+					dcsources[i].mouse_move();
+				}
+				for (var i: number = 0; i < dccurrents.length; i++) {
+					dccurrents[i].mouse_move();
+				}
+				for (var i: number = 0; i < acsources.length; i++) {
+					acsources[i].mouse_move();
+				}
+				for (var i: number = 0; i < accurrents.length; i++) {
+					accurrents[i].mouse_move();
+				}
+				for (var i: number = 0; i < squarewaves.length; i++) {
+					squarewaves[i].mouse_move();
+				}
+				for (var i: number = 0; i < sawwaves.length; i++) {
+					sawwaves[i].mouse_move();
+				}
+				for (var i: number = 0; i < trianglewaves.length; i++) {
+					trianglewaves[i].mouse_move();
+				}
+				for (var i: number = 0; i < constants.length; i++) {
+					constants[i].mouse_move();
+				}
+				for (var i: number = 0; i < nets.length; i++) {
+					nets[i].mouse_move();
+				}
+				for (var i: number = 0; i < notes.length; i++) {
+					notes[i].mouse_move();
+				}
+				for (var i: number = 0; i < rails.length; i++) {
+					rails[i].mouse_move();
+				}
+				for (var i: number = 0; i < voltmeters.length; i++) {
+					voltmeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < ohmmeters.length; i++) {
+					ohmmeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < ammeters.length; i++) {
+					ammeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < wattmeters.length; i++) {
+					wattmeters[i].mouse_move();
+				}
+				for (var i: number = 0; i < fuses.length; i++) {
+					fuses[i].mouse_move();
+				}
+				for (var i: number = 0; i < spsts.length; i++) {
+					spsts[i].mouse_move();
+				}
+				for (var i: number = 0; i < spdts.length; i++) {
+					spdts[i].mouse_move();
+				}
+				for (var i: number = 0; i < nots.length; i++) {
+					nots[i].mouse_move();
+				}
+				for (var i: number = 0; i < diodes.length; i++) {
+					diodes[i].mouse_move();
+				}
+				for (var i: number = 0; i < leds.length; i++) {
+					leds[i].mouse_move();
+				}
+				for (var i: number = 0; i < zeners.length; i++) {
+					zeners[i].mouse_move();
+				}
+				for (var i: number = 0; i < potentiometers.length; i++) {
+					potentiometers[i].mouse_move();
+				}
+				for (var i: number = 0; i < ands.length; i++) {
+					ands[i].mouse_move();
+				}
+				for (var i: number = 0; i < ors.length; i++) {
+					ors[i].mouse_move();
+				}
+				for (var i: number = 0; i < nands.length; i++) {
+					nands[i].mouse_move();
+				}
+				for (var i: number = 0; i < nors.length; i++) {
+					nors[i].mouse_move();
+				}
+				for (var i: number = 0; i < xors.length; i++) {
+					xors[i].mouse_move();
+				}
+				for (var i: number = 0; i < xnors.length; i++) {
+					xnors[i].mouse_move();
+				}
+				for (var i: number = 0; i < dffs.length; i++) {
+					dffs[i].mouse_move();
+				}
+				for (var i: number = 0; i < vsats.length; i++) {
+					vsats[i].mouse_move();
+				}
+				for (var i: number = 0; i < adders.length; i++) {
+					adders[i].mouse_move();
+				}
+				for (var i: number = 0; i < subtractors.length; i++) {
+					subtractors[i].mouse_move();
+				}
+				for (var i: number = 0; i < multipliers.length; i++) {
+					multipliers[i].mouse_move();
+				}
+				for (var i: number = 0; i < dividers.length; i++) {
+					dividers[i].mouse_move();
+				}
+				for (var i: number = 0; i < gains.length; i++) {
+					gains[i].mouse_move();
+				}
+				for (var i: number = 0; i < absvals.length; i++) {
+					absvals[i].mouse_move();
+				}
+				for (var i: number = 0; i < vcsws.length; i++) {
+					vcsws[i].mouse_move();
+				}
+				for (var i: number = 0; i < vcvss.length; i++) {
+					vcvss[i].mouse_move();
+				}
+				for (var i: number = 0; i < vccss.length; i++) {
+					vccss[i].mouse_move();
+				}
+				for (var i: number = 0; i < cccss.length; i++) {
+					cccss[i].mouse_move();
+				}
+				for (var i: number = 0; i < ccvss.length; i++) {
+					ccvss[i].mouse_move();
+				}
+				for (var i: number = 0; i < opamps.length; i++) {
+					opamps[i].mouse_move();
+				}
+				for (var i: number = 0; i < nmosfets.length; i++) {
+					nmosfets[i].mouse_move();
+				}
+				for (var i: number = 0; i < pmosfets.length; i++) {
+					pmosfets[i].mouse_move();
+				}
+				for (var i: number = 0; i < npns.length; i++) {
+					npns[i].mouse_move();
+				}
+				for (var i: number = 0; i < pnps.length; i++) {
+					pnps[i].mouse_move();
+				}
+				for (var i: number = 0; i < adcs.length; i++) {
+					adcs[i].mouse_move();
+				}
+				for (var i: number = 0; i < dacs.length; i++) {
+					dacs[i].mouse_move();
+				}
+				for (var i: number = 0; i < sandhs.length; i++) {
+					sandhs[i].mouse_move();
+				}
+				for (var i: number = 0; i < pwms.length; i++) {
+					pwms[i].mouse_move();
+				}
+				for (var i: number = 0; i < integrators.length; i++) {
+					integrators[i].mouse_move();
+				}
+				for (var i: number = 0; i < differentiators.length; i++) {
+					differentiators[i].mouse_move();
+				}
+				for (var i: number = 0; i < lowpasses.length; i++) {
+					lowpasses[i].mouse_move();
+				}
+				for (var i: number = 0; i < highpasses.length; i++) {
+					highpasses[i].mouse_move();
+				}
+				for (var i: number = 0; i < relays.length; i++) {
+					relays[i].mouse_move();
+				}
+				for (var i: number = 0; i < pids.length; i++) {
+					pids[i].mouse_move();
+				}
+				for (var i: number = 0; i < luts.length; i++) {
+					luts[i].mouse_move();
+				}
+				for (var i: number = 0; i < vcrs.length; i++) {
+					vcrs[i].mouse_move();
+				}
+				for (var i: number = 0; i < vccas.length; i++) {
+					vccas[i].mouse_move();
+				}
+				for (var i: number = 0; i < vcls.length; i++) {
+					vcls[i].mouse_move();
+				}
+				for (var i: number = 0; i < grts.length; i++) {
+					grts[i].mouse_move();
+				}
+				for (var i: number = 0; i < tptzs.length; i++) {
+					tptzs[i].mouse_move();
+				}
+				for (var i: number = 0; i < transformers.length; i++) {
+					transformers[i].mouse_move();
+				}
+				/* <!-- END AUTOMATICALLY GENERATED !--> */
 			}
 		}
 		for (var i: number = wires.length - 1; i > -1; i--) {
@@ -1797,220 +1797,220 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 					wire_manager.reset_wire_builder();
 				}
 			}
-/* #INSERT_GENERATE_MOUSE_UP# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-			for (var i : number = 0; i < resistors.length; i++) {
-          resistors[i].mouse_up();
-    }
-			for (var i : number = 0; i < capacitors.length; i++) {
-          capacitors[i].mouse_up();
-    }
-			for (var i : number = 0; i < inductors.length; i++) {
-          inductors[i].mouse_up();
-    }
-			for (var i : number = 0; i < grounds.length; i++) {
-          grounds[i].mouse_up();
-    }
-			for (var i : number = 0; i < dcsources.length; i++) {
-          dcsources[i].mouse_up();
-    }
-			for (var i : number = 0; i < dccurrents.length; i++) {
-          dccurrents[i].mouse_up();
-    }
-			for (var i : number = 0; i < acsources.length; i++) {
-          acsources[i].mouse_up();
-    }
-			for (var i : number = 0; i < accurrents.length; i++) {
-          accurrents[i].mouse_up();
-    }
-			for (var i : number = 0; i < squarewaves.length; i++) {
-          squarewaves[i].mouse_up();
-    }
-			for (var i : number = 0; i < sawwaves.length; i++) {
-          sawwaves[i].mouse_up();
-    }
-			for (var i : number = 0; i < trianglewaves.length; i++) {
-          trianglewaves[i].mouse_up();
-    }
-			for (var i : number = 0; i < constants.length; i++) {
-          constants[i].mouse_up();
-    }
-			for (var i : number = 0; i < nets.length; i++) {
-          nets[i].mouse_up();
-    }
-			for (var i : number = 0; i < notes.length; i++) {
-          notes[i].mouse_up();
-    }
-			for (var i : number = 0; i < rails.length; i++) {
-          rails[i].mouse_up();
-    }
-			for (var i : number = 0; i < voltmeters.length; i++) {
-          voltmeters[i].mouse_up();
-    }
-			for (var i : number = 0; i < ohmmeters.length; i++) {
-          ohmmeters[i].mouse_up();
-    }
-			for (var i : number = 0; i < ammeters.length; i++) {
-          ammeters[i].mouse_up();
-    }
-			for (var i : number = 0; i < wattmeters.length; i++) {
-          wattmeters[i].mouse_up();
-    }
-			for (var i : number = 0; i < fuses.length; i++) {
-          fuses[i].mouse_up();
-    }
-			for (var i : number = 0; i < spsts.length; i++) {
-          spsts[i].mouse_up();
-    }
-			for (var i : number = 0; i < spdts.length; i++) {
-          spdts[i].mouse_up();
-    }
-			for (var i : number = 0; i < nots.length; i++) {
-          nots[i].mouse_up();
-    }
-			for (var i : number = 0; i < diodes.length; i++) {
-          diodes[i].mouse_up();
-    }
-			for (var i : number = 0; i < leds.length; i++) {
-          leds[i].mouse_up();
-    }
-			for (var i : number = 0; i < zeners.length; i++) {
-          zeners[i].mouse_up();
-    }
-			for (var i : number = 0; i < potentiometers.length; i++) {
-          potentiometers[i].mouse_up();
-    }
-			for (var i : number = 0; i < ands.length; i++) {
-          ands[i].mouse_up();
-    }
-			for (var i : number = 0; i < ors.length; i++) {
-          ors[i].mouse_up();
-    }
-			for (var i : number = 0; i < nands.length; i++) {
-          nands[i].mouse_up();
-    }
-			for (var i : number = 0; i < nors.length; i++) {
-          nors[i].mouse_up();
-    }
-			for (var i : number = 0; i < xors.length; i++) {
-          xors[i].mouse_up();
-    }
-			for (var i : number = 0; i < xnors.length; i++) {
-          xnors[i].mouse_up();
-    }
-			for (var i : number = 0; i < dffs.length; i++) {
-          dffs[i].mouse_up();
-    }
-			for (var i : number = 0; i < vsats.length; i++) {
-          vsats[i].mouse_up();
-    }
-			for (var i : number = 0; i < adders.length; i++) {
-          adders[i].mouse_up();
-    }
-			for (var i : number = 0; i < subtractors.length; i++) {
-          subtractors[i].mouse_up();
-    }
-			for (var i : number = 0; i < multipliers.length; i++) {
-          multipliers[i].mouse_up();
-    }
-			for (var i : number = 0; i < dividers.length; i++) {
-          dividers[i].mouse_up();
-    }
-			for (var i : number = 0; i < gains.length; i++) {
-          gains[i].mouse_up();
-    }
-			for (var i : number = 0; i < absvals.length; i++) {
-          absvals[i].mouse_up();
-    }
-			for (var i : number = 0; i < vcsws.length; i++) {
-          vcsws[i].mouse_up();
-    }
-			for (var i : number = 0; i < vcvss.length; i++) {
-          vcvss[i].mouse_up();
-    }
-			for (var i : number = 0; i < vccss.length; i++) {
-          vccss[i].mouse_up();
-    }
-			for (var i : number = 0; i < cccss.length; i++) {
-          cccss[i].mouse_up();
-    }
-			for (var i : number = 0; i < ccvss.length; i++) {
-          ccvss[i].mouse_up();
-    }
-			for (var i : number = 0; i < opamps.length; i++) {
-          opamps[i].mouse_up();
-    }
-			for (var i : number = 0; i < nmosfets.length; i++) {
-          nmosfets[i].mouse_up();
-    }
-			for (var i : number = 0; i < pmosfets.length; i++) {
-          pmosfets[i].mouse_up();
-    }
-			for (var i : number = 0; i < npns.length; i++) {
-          npns[i].mouse_up();
-    }
-			for (var i : number = 0; i < pnps.length; i++) {
-          pnps[i].mouse_up();
-    }
-			for (var i : number = 0; i < adcs.length; i++) {
-          adcs[i].mouse_up();
-    }
-			for (var i : number = 0; i < dacs.length; i++) {
-          dacs[i].mouse_up();
-    }
-			for (var i : number = 0; i < sandhs.length; i++) {
-          sandhs[i].mouse_up();
-    }
-			for (var i : number = 0; i < pwms.length; i++) {
-          pwms[i].mouse_up();
-    }
-			for (var i : number = 0; i < integrators.length; i++) {
-          integrators[i].mouse_up();
-    }
-			for (var i : number = 0; i < differentiators.length; i++) {
-          differentiators[i].mouse_up();
-    }
-			for (var i : number = 0; i < lowpasses.length; i++) {
-          lowpasses[i].mouse_up();
-    }
-			for (var i : number = 0; i < highpasses.length; i++) {
-          highpasses[i].mouse_up();
-    }
-			for (var i : number = 0; i < relays.length; i++) {
-          relays[i].mouse_up();
-    }
-			for (var i : number = 0; i < pids.length; i++) {
-          pids[i].mouse_up();
-    }
-			for (var i : number = 0; i < luts.length; i++) {
-          luts[i].mouse_up();
-    }
-			for (var i : number = 0; i < vcrs.length; i++) {
-          vcrs[i].mouse_up();
-    }
-			for (var i : number = 0; i < vccas.length; i++) {
-          vccas[i].mouse_up();
-    }
-			for (var i : number = 0; i < vcls.length; i++) {
-          vcls[i].mouse_up();
-    }
-			for (var i : number = 0; i < grts.length; i++) {
-          grts[i].mouse_up();
-    }
-			for (var i : number = 0; i < tptzs.length; i++) {
-          tptzs[i].mouse_up();
-    }
-			for (var i : number = 0; i < transformers.length; i++) {
-          transformers[i].mouse_up();
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+			/* #INSERT_GENERATE_MOUSE_UP# */
+			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i: number = 0; i < resistors.length; i++) {
+				resistors[i].mouse_up();
+			}
+			for (var i: number = 0; i < capacitors.length; i++) {
+				capacitors[i].mouse_up();
+			}
+			for (var i: number = 0; i < inductors.length; i++) {
+				inductors[i].mouse_up();
+			}
+			for (var i: number = 0; i < grounds.length; i++) {
+				grounds[i].mouse_up();
+			}
+			for (var i: number = 0; i < dcsources.length; i++) {
+				dcsources[i].mouse_up();
+			}
+			for (var i: number = 0; i < dccurrents.length; i++) {
+				dccurrents[i].mouse_up();
+			}
+			for (var i: number = 0; i < acsources.length; i++) {
+				acsources[i].mouse_up();
+			}
+			for (var i: number = 0; i < accurrents.length; i++) {
+				accurrents[i].mouse_up();
+			}
+			for (var i: number = 0; i < squarewaves.length; i++) {
+				squarewaves[i].mouse_up();
+			}
+			for (var i: number = 0; i < sawwaves.length; i++) {
+				sawwaves[i].mouse_up();
+			}
+			for (var i: number = 0; i < trianglewaves.length; i++) {
+				trianglewaves[i].mouse_up();
+			}
+			for (var i: number = 0; i < constants.length; i++) {
+				constants[i].mouse_up();
+			}
+			for (var i: number = 0; i < nets.length; i++) {
+				nets[i].mouse_up();
+			}
+			for (var i: number = 0; i < notes.length; i++) {
+				notes[i].mouse_up();
+			}
+			for (var i: number = 0; i < rails.length; i++) {
+				rails[i].mouse_up();
+			}
+			for (var i: number = 0; i < voltmeters.length; i++) {
+				voltmeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < ohmmeters.length; i++) {
+				ohmmeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < ammeters.length; i++) {
+				ammeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < wattmeters.length; i++) {
+				wattmeters[i].mouse_up();
+			}
+			for (var i: number = 0; i < fuses.length; i++) {
+				fuses[i].mouse_up();
+			}
+			for (var i: number = 0; i < spsts.length; i++) {
+				spsts[i].mouse_up();
+			}
+			for (var i: number = 0; i < spdts.length; i++) {
+				spdts[i].mouse_up();
+			}
+			for (var i: number = 0; i < nots.length; i++) {
+				nots[i].mouse_up();
+			}
+			for (var i: number = 0; i < diodes.length; i++) {
+				diodes[i].mouse_up();
+			}
+			for (var i: number = 0; i < leds.length; i++) {
+				leds[i].mouse_up();
+			}
+			for (var i: number = 0; i < zeners.length; i++) {
+				zeners[i].mouse_up();
+			}
+			for (var i: number = 0; i < potentiometers.length; i++) {
+				potentiometers[i].mouse_up();
+			}
+			for (var i: number = 0; i < ands.length; i++) {
+				ands[i].mouse_up();
+			}
+			for (var i: number = 0; i < ors.length; i++) {
+				ors[i].mouse_up();
+			}
+			for (var i: number = 0; i < nands.length; i++) {
+				nands[i].mouse_up();
+			}
+			for (var i: number = 0; i < nors.length; i++) {
+				nors[i].mouse_up();
+			}
+			for (var i: number = 0; i < xors.length; i++) {
+				xors[i].mouse_up();
+			}
+			for (var i: number = 0; i < xnors.length; i++) {
+				xnors[i].mouse_up();
+			}
+			for (var i: number = 0; i < dffs.length; i++) {
+				dffs[i].mouse_up();
+			}
+			for (var i: number = 0; i < vsats.length; i++) {
+				vsats[i].mouse_up();
+			}
+			for (var i: number = 0; i < adders.length; i++) {
+				adders[i].mouse_up();
+			}
+			for (var i: number = 0; i < subtractors.length; i++) {
+				subtractors[i].mouse_up();
+			}
+			for (var i: number = 0; i < multipliers.length; i++) {
+				multipliers[i].mouse_up();
+			}
+			for (var i: number = 0; i < dividers.length; i++) {
+				dividers[i].mouse_up();
+			}
+			for (var i: number = 0; i < gains.length; i++) {
+				gains[i].mouse_up();
+			}
+			for (var i: number = 0; i < absvals.length; i++) {
+				absvals[i].mouse_up();
+			}
+			for (var i: number = 0; i < vcsws.length; i++) {
+				vcsws[i].mouse_up();
+			}
+			for (var i: number = 0; i < vcvss.length; i++) {
+				vcvss[i].mouse_up();
+			}
+			for (var i: number = 0; i < vccss.length; i++) {
+				vccss[i].mouse_up();
+			}
+			for (var i: number = 0; i < cccss.length; i++) {
+				cccss[i].mouse_up();
+			}
+			for (var i: number = 0; i < ccvss.length; i++) {
+				ccvss[i].mouse_up();
+			}
+			for (var i: number = 0; i < opamps.length; i++) {
+				opamps[i].mouse_up();
+			}
+			for (var i: number = 0; i < nmosfets.length; i++) {
+				nmosfets[i].mouse_up();
+			}
+			for (var i: number = 0; i < pmosfets.length; i++) {
+				pmosfets[i].mouse_up();
+			}
+			for (var i: number = 0; i < npns.length; i++) {
+				npns[i].mouse_up();
+			}
+			for (var i: number = 0; i < pnps.length; i++) {
+				pnps[i].mouse_up();
+			}
+			for (var i: number = 0; i < adcs.length; i++) {
+				adcs[i].mouse_up();
+			}
+			for (var i: number = 0; i < dacs.length; i++) {
+				dacs[i].mouse_up();
+			}
+			for (var i: number = 0; i < sandhs.length; i++) {
+				sandhs[i].mouse_up();
+			}
+			for (var i: number = 0; i < pwms.length; i++) {
+				pwms[i].mouse_up();
+			}
+			for (var i: number = 0; i < integrators.length; i++) {
+				integrators[i].mouse_up();
+			}
+			for (var i: number = 0; i < differentiators.length; i++) {
+				differentiators[i].mouse_up();
+			}
+			for (var i: number = 0; i < lowpasses.length; i++) {
+				lowpasses[i].mouse_up();
+			}
+			for (var i: number = 0; i < highpasses.length; i++) {
+				highpasses[i].mouse_up();
+			}
+			for (var i: number = 0; i < relays.length; i++) {
+				relays[i].mouse_up();
+			}
+			for (var i: number = 0; i < pids.length; i++) {
+				pids[i].mouse_up();
+			}
+			for (var i: number = 0; i < luts.length; i++) {
+				luts[i].mouse_up();
+			}
+			for (var i: number = 0; i < vcrs.length; i++) {
+				vcrs[i].mouse_up();
+			}
+			for (var i: number = 0; i < vccas.length; i++) {
+				vccas[i].mouse_up();
+			}
+			for (var i: number = 0; i < vcls.length; i++) {
+				vcls[i].mouse_up();
+			}
+			for (var i: number = 0; i < grts.length; i++) {
+				grts[i].mouse_up();
+			}
+			for (var i: number = 0; i < tptzs.length; i++) {
+				tptzs[i].mouse_up();
+			}
+			for (var i: number = 0; i < transformers.length; i++) {
+				transformers[i].mouse_up();
+			}
+			/* <!-- END AUTOMATICALLY GENERATED !--> */
 		}
 		for (var i: number = wires.length - 1; i > -1; i--) {
 			wires[i].mouse_up();
 		}
-		if (global.flags.signal_wire_created) {
+		if (global.flags.flag_wire_created) {
 			global.variables.history['packet'].push(engine_functions.history_snapshot());
-			global.flags.signal_wire_created = false;
+			global.flags.flag_wire_created = false;
 		}
 		let component_touched: boolean = global.variables.component_touched;
 		if (!global.variables.component_touched) {
@@ -2033,7 +2033,7 @@ for (var i : number = 0; i < wattmeters.length; i++) {
 		global.variables.component_touched = component_touched;
 		engine_functions.reset_selection(false);
 		engine_functions.handle_nearest_neighbors(temp_translation_lock);
-		global.flags.signal_history_lock = false;
+		global.flags.flag_history_lock = false;
 	}
 	function handle_mouse_wheel(): void {
 		global.variables.mouse_x = global.events.mouse_wheel_event.clientX * global.variables.device_pixel_ratio;

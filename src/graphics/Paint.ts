@@ -19,7 +19,6 @@ class Paint {
 	public saved_metric: PAINT_METRICS_T;
 	public garbage_collector_size: number;
 	private temp_boolean: boolean;
-	private readonly FONT_TEMPLATE: string;
 	private paint_surface: VirtualCanvas;
 	private last_font: string;
 	private last_text_size: number;
@@ -44,7 +43,6 @@ class Paint {
 		this.saved_metric = null;
 		this.garbage_collector_size = 16;
 		this.temp_boolean = false;
-		this.FONT_TEMPLATE = 'spx f';
 		this.paint_surface = new VirtualCanvas(1, 1, -1);
 		this.last_font = '';
 		this.last_text_size = -1;
@@ -115,7 +113,7 @@ class Paint {
 	}
 	measure(txt: string): PAINT_METRICS_T {
 		if (this.last_font !== this.font || this.last_text_size !== this.text_size) {
-			this.paint_surface.context.font = this.FONT_TEMPLATE.replace('s', this.text_size + '').replace('f', this.font);
+			this.paint_surface.context.font = global.TEMPLATES.FONT_TEMPLATE.replace('s', this.text_size + '').replace('f', this.font);
 			this.last_font = this.font;
 			this.last_text_size = this.text_size;
 		}

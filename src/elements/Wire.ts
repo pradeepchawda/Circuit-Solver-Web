@@ -225,10 +225,10 @@ class Wire {
 			this.wire_point.x = global.utils.get_average2(this.p1.x, this.p2.x);
 			this.wire_point.y = global.utils.get_average2(this.p1.y, this.p2.y);
 		}
-		global.flags.signal_build_element = true;
+		global.flags.flag_build_element = true;
 	}
 	refactor(): void {
-		if (this.build_element_flag || global.flags.signal_build_element) {
+		if (this.build_element_flag || global.flags.flag_build_element) {
 			this.x_space = global.variables.node_space_x >> 1;
 			this.y_space = global.variables.node_space_y >> 1;
 			this.c_x = this.bounds.get_center_x();
@@ -236,7 +236,7 @@ class Wire {
 		}
 	}
 	resize(): void {
-		if (this.build_element_flag || global.flags.signal_build_element) {
+		if (this.build_element_flag || global.flags.flag_build_element) {
 			this.update_wire_style();
 			if (this.elm.consistent()) {
 				this.c_x = global.utils.get_average2(nodes[this.elm.n1].location.x, nodes[this.elm.n2].location.x);

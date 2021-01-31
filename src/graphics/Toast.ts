@@ -1,8 +1,8 @@
 'use strict';
 class Toast {
 	private readonly HEIGHT_FACTOR: number;
-	private readonly MAX_SECONDS: number;
-	private readonly MAX_TIME: number;
+	private readonly MAX_ITERATIONS: number;
+	private readonly TOAST_FPS: number;
 	private height_ratio: number;
 	private line_paint: Paint;
 	private fill_paint: Paint;
@@ -58,8 +58,8 @@ class Toast {
 		this.text_paint.set_paint_align(PAINT.align.CENTER);
 		this.text = '';
 		this.timer = 0;
-		this.MAX_SECONDS = 2;
-		this.MAX_TIME = FPS;
+		this.MAX_ITERATIONS = 2;
+		this.TOAST_FPS = FPS;
 		this.draw_text = false;
 		this.bounds = new RectF(0, 0, 0, 0);
 		this.toast_request_draw = false;
@@ -69,7 +69,7 @@ class Toast {
 	update(): void {
 		if (this.draw_text) {
 			this.timer++;
-			if (this.timer >= this.MAX_TIME * this.MAX_SECONDS) {
+			if (this.timer >= this.TOAST_FPS * this.MAX_ITERATIONS) {
 				this.reset();
 			}
 		}

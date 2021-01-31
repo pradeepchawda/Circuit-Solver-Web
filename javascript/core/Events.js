@@ -10,6 +10,8 @@ class Events {
         this.mouse_up_event_queue = [];
         this.mouse_wheel_event_queue = [];
         this.mouse_double_click_event_queue = [];
+        this.key_down_event_queue = [];
+        this.key_up_event_queue = [];
         this.key_down_event = {
             event: null,
             alt: false,
@@ -24,7 +26,5 @@ class Events {
             ctrl: false,
             caps: false
         };
-        this.key_down_event_queue = [];
-        this.key_up_event_queue = [];
     }
 }

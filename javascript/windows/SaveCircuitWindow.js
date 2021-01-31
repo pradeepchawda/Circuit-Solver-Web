@@ -110,7 +110,7 @@ class SaveCircuitWindow {
         this.exit_button.draw_fill = false;
         this.exit_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-        this.input_button.text = global.utils.exponentiate_quickly(global.time_step);
+        this.input_button.text = global.utils.exponentiate_quickly(simulation_manager.time_step);
         this.input_button.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.input_button.draw_stroke = true;
@@ -221,7 +221,7 @@ class SaveCircuitWindow {
                     else if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
                         this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)) {
                         if (this.select_all) {
-                            if (this.select_all && !global.flags.mouse_double_click_event_flag) {
+                            if (this.select_all && !global.flags.flag_mouse_double_click_event) {
                                 this.select_all = false;
                             }
                         }
@@ -575,7 +575,7 @@ class SaveCircuitWindow {
         let delta_y = global.variables.delta_y;
         let last_dx = global.variables.dx;
         let last_dy = global.variables.dy;
-        global.flags.signal_build_element = true;
+        global.flags.flag_build_element = true;
         global.variables.signal_build_counter = 0;
         global.variables.workspace_zoom_scale = 1.0;
         global.variables.x_offset = 0;
@@ -620,8 +620,8 @@ class SaveCircuitWindow {
         global.variables.delta_x = delta_x;
         global.variables.delta_y = delta_y;
         workspace.workspace_zoom();
-        global.flags.draw_block = true;
-        global.flags.signal_build_element = true;
+        global.flags.flag_draw_block = true;
+        global.flags.flag_build_element = true;
     }
     handle_partial_select() {
         if (this.select_start !== this.select_end) {
@@ -642,7 +642,7 @@ class SaveCircuitWindow {
         this.select_end = -1;
     }
     double_click() {
-        if (global.flags.mouse_double_click_event_flag) {
+        if (global.flags.flag_mouse_double_click_event) {
             if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
                 this.select_all = !this.select_all;
                 if (this.select_all) {

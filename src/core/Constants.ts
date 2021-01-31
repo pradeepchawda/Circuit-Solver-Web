@@ -70,8 +70,10 @@ class Constants {
 	public readonly MAX_TEXT_LENGTH: number;
 	public readonly ALPHA_ARRAY: Array<number>;
 	public readonly GARBAGE_COLLECTOR_SIZE: number;
-
+	public readonly SINE_WAVE_STYLE_0: number;
+	public readonly SINE_WAVE_STYLE_1: number;
 	constructor() {
+		let indexer: number = 0;
 		this.NULL = null;
 		this.MOBILE_MODE = false;
 		this.DESKTOP_MODE = false;
@@ -110,7 +112,7 @@ class Constants {
 		this.TEXT_STYLE_4 = 'Style4';
 		this.TEXT_STYLE_5 = 'Style5';
 		this.DEFAULT_FONT = 'Arial';
-		let indexer: number = 0;
+		indexer = 0;
 		this.SYSTEM_OPTION_LANGUAGE = indexer++;
 		this.SYSTEM_OPTION_AUTOMATIC_TIMESTEP = indexer++;
 		this.SYSTEM_OPTION_SHORTCUT_HINTS = indexer++;
@@ -155,5 +157,7 @@ class Constants {
 			this.ALPHA_ARRAY.push(i / 256.0);
 		}
 		this.GARBAGE_COLLECTOR_SIZE = 16;
+		this.SINE_WAVE_STYLE_0 = 0;
+		this.SINE_WAVE_STYLE_1 = 1;
 	}
 }

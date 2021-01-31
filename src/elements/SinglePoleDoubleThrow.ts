@@ -402,7 +402,7 @@ class SinglePoleDoubleThrow {
 		}
 	}
 	wire_reference_maintenance(): void {
-		if (this.wire_reference.length > 0 && global.flags.signal_wire_deleted) {
+		if (this.wire_reference.length > 0 && global.flags.flag_wire_deleted) {
 			let id: number = -1;
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
@@ -522,7 +522,7 @@ class SinglePoleDoubleThrow {
 		}
 	}
 	build_element(): void {
-		if (this.build_element_flag || global.flags.signal_build_element) {
+		if (this.build_element_flag || global.flags.flag_build_element) {
 			this.spdt_0.x = this.p1.x + this.x_space * global.utils.cosine(this.theta_m90);
 			this.spdt_0.y = this.p1.y + this.y_space * global.utils.sine(this.theta_m90);
 			this.spdt_1.x = this.p2.x + this.x_space * global.utils.cosine(this.theta_m90);
@@ -533,7 +533,7 @@ class SinglePoleDoubleThrow {
 		}
 	}
 	resize(): void {
-		if (this.build_element_flag || global.flags.signal_build_element) {
+		if (this.build_element_flag || global.flags.flag_build_element) {
 			if (this.bounds.anchored) {
 				if (this.elm.consistent()) {
 					this.equilateral_center = global.utils.equilateral_triangle_center(
@@ -619,7 +619,7 @@ class SinglePoleDoubleThrow {
 			multi_select_manager.determine_enveloping_bounds(this.bounds);
 		}
 		if (
-			global.flags.picture_request_flag ||
+			global.flags.flag_picture_request ||
 			(this.c_x >= view_port.left - global.variables.node_space_x &&
 				this.c_x - global.variables.node_space_x <= view_port.right &&
 				this.c_y >= view_port.top + -global.variables.node_space_y &&
@@ -673,9 +673,9 @@ class SinglePoleDoubleThrow {
 					global.CONSTANTS.NODE_HINTS &&
 					!multi_select_manager.multi_select &&
 					!this.multi_selected &&
-					!global.flags.signal_add_element &&
-					!global.flags.signal_history_lock &&
-					!global.flags.picture_request_flag &&
+					!global.flags.flag_add_element &&
+					!global.flags.flag_history_lock &&
+					!global.flags.flag_picture_request &&
 					!global.flags.flag_save_circuit &&
 					!global.flags.flag_save_image &&
 					!global.flags.flag_menu_element_toolbox &&
@@ -688,7 +688,7 @@ class SinglePoleDoubleThrow {
 					!global.flags.flag_select_settings &&
 					!global.flags.flag_select_element &&
 					!global.flags.flag_remove_all &&
-					!global.flags.signal_add_element
+					!global.flags.flag_add_element
 				) {
 					if (this.elm.consistent()) {
 						let node_id_array: Array<number> = this.elm.get_nodes();
@@ -727,20 +727,20 @@ class SinglePoleDoubleThrow {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {}
 }

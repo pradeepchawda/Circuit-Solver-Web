@@ -278,7 +278,7 @@ class ElementOptionsEditWindow {
 						this.input_button.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
 						if (this.select_all) {
-							if (this.select_all && !global.flags.mouse_double_click_event_flag) {
+							if (this.select_all && !global.flags.flag_mouse_double_click_event) {
 								this.select_all = false;
 							}
 						}
@@ -1121,1295 +1121,1949 @@ class ElementOptionsEditWindow {
 	}
 	push_property_update(): boolean {
 		let ERROR_FLAG: boolean = false;
-/* #INSERT_GENERATE_ELEMENT_UPDATE_PROPERTY# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-    if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
-      var index : number= -1;
-      index = engine_functions.get_resistor(global.variables.selected_id);
-      if (index < resistors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          resistors[index].elm.properties[resistors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
-      var index : number= -1;
-      index = engine_functions.get_capacitor(global.variables.selected_id);
-      if (index < capacitors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          capacitors[index].elm.properties[capacitors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-        if (capacitors[index].elm.properties[
-            'options'][this.option_index] === 'Capacitance') {
-          capacitors[index].conserve_energy();
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
-      var index : number= -1;
-      index = engine_functions.get_inductor(global.variables.selected_id);
-      if (index < inductors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          inductors[index].elm.properties[inductors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-        if (inductors[index].elm.properties[
-            'options'][this.option_index] === 'Inductance') {
-          inductors[index].conserve_energy();
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
-      var index : number= -1;
-      index = engine_functions.get_ground(global.variables.selected_id);
-      if (index < grounds.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          grounds[index].elm.properties[grounds[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
-      var index : number= -1;
-      index = engine_functions.get_dcsource(global.variables.selected_id);
-      if (index < dcsources.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          dcsources[index].elm.properties[dcsources[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
-      var index : number= -1;
-      index = engine_functions.get_dccurrent(global.variables.selected_id);
-      if (index < dccurrents.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          dccurrents[index].elm.properties[dccurrents[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
-      var index : number= -1;
-      index = engine_functions.get_acsource(global.variables.selected_id);
-      if (index < acsources.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          acsources[index].elm.properties[acsources[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
-      var index : number= -1;
-      index = engine_functions.get_accurrent(global.variables.selected_id);
-      if (index < accurrents.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          accurrents[index].elm.properties[accurrents[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
-      var index : number= -1;
-      index = engine_functions.get_squarewave(global.variables.selected_id);
-      if (index < squarewaves.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          squarewaves[index].elm.properties[squarewaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
-      var index : number= -1;
-      index = engine_functions.get_sawwave(global.variables.selected_id);
-      if (index < sawwaves.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          sawwaves[index].elm.properties[sawwaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
-      var index : number= -1;
-      index = engine_functions.get_trianglewave(global.variables.selected_id);
-      if (index < trianglewaves.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          trianglewaves[index].elm.properties[trianglewaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
-      var index : number= -1;
-      index = engine_functions.get_constant(global.variables.selected_id);
-      if (index < constants.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          constants[index].elm.properties[constants[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
-      var index : number= -1;
-      index = engine_functions.get_net(global.variables.selected_id);
-      if (index < nets.length) {
-let value : string = global.utils.copy(this.input_button.text);
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = value;
-          nets[index].elm.properties[nets[index].elm.properties['options'][this.option_index]] = value;
-
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
-      var index : number= -1;
-      index = engine_functions.get_note(global.variables.selected_id);
-      if (index < notes.length) {
-let value : string = global.utils.copy(this.input_button.text);
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = value;
-          notes[index].elm.properties[notes[index].elm.properties['options'][this.option_index]] = value;
-
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
-      var index : number= -1;
-      index = engine_functions.get_rail(global.variables.selected_id);
-      if (index < rails.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          rails[index].elm.properties[rails[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
-      var index : number= -1;
-      index = engine_functions.get_voltmeter(global.variables.selected_id);
-      if (index < voltmeters.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          voltmeters[index].elm.properties[voltmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
-      var index : number= -1;
-      index = engine_functions.get_ohmmeter(global.variables.selected_id);
-      if (index < ohmmeters.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          ohmmeters[index].elm.properties[ohmmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
-      var index : number= -1;
-      index = engine_functions.get_ammeter(global.variables.selected_id);
-      if (index < ammeters.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          ammeters[index].elm.properties[ammeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
-      var index : number= -1;
-      index = engine_functions.get_wattmeter(global.variables.selected_id);
-      if (index < wattmeters.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          wattmeters[index].elm.properties[wattmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
-      var index : number= -1;
-      index = engine_functions.get_fuse(global.variables.selected_id);
-      if (index < fuses.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          fuses[index].elm.properties[fuses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
-      var index : number= -1;
-      index = engine_functions.get_spst(global.variables.selected_id);
-      if (index < spsts.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          spsts[index].elm.properties[spsts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
-      var index : number= -1;
-      index = engine_functions.get_spdt(global.variables.selected_id);
-      if (index < spdts.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          spdts[index].elm.properties[spdts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
-      var index : number= -1;
-      index = engine_functions.get_not(global.variables.selected_id);
-      if (index < nots.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          nots[index].elm.properties[nots[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
-      var index : number= -1;
-      index = engine_functions.get_diode(global.variables.selected_id);
-      if (index < diodes.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          diodes[index].elm.properties[diodes[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
-      var index : number= -1;
-      index = engine_functions.get_led(global.variables.selected_id);
-      if (index < leds.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          leds[index].elm.properties[leds[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
-      var index : number= -1;
-      index = engine_functions.get_zener(global.variables.selected_id);
-      if (index < zeners.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          zeners[index].elm.properties[zeners[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
-      var index : number= -1;
-      index = engine_functions.get_potentiometer(global.variables.selected_id);
-      if (index < potentiometers.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          potentiometers[index].elm.properties[potentiometers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
-      var index : number= -1;
-      index = engine_functions.get_and(global.variables.selected_id);
-      if (index < ands.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          ands[index].elm.properties[ands[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
-      var index : number= -1;
-      index = engine_functions.get_or(global.variables.selected_id);
-      if (index < ors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          ors[index].elm.properties[ors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
-      var index : number= -1;
-      index = engine_functions.get_nand(global.variables.selected_id);
-      if (index < nands.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          nands[index].elm.properties[nands[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
-      var index : number= -1;
-      index = engine_functions.get_nor(global.variables.selected_id);
-      if (index < nors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          nors[index].elm.properties[nors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
-      var index : number= -1;
-      index = engine_functions.get_xor(global.variables.selected_id);
-      if (index < xors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          xors[index].elm.properties[xors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
-      var index : number= -1;
-      index = engine_functions.get_xnor(global.variables.selected_id);
-      if (index < xnors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          xnors[index].elm.properties[xnors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
-      var index : number= -1;
-      index = engine_functions.get_dff(global.variables.selected_id);
-      if (index < dffs.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          dffs[index].elm.properties[dffs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
-      var index : number= -1;
-      index = engine_functions.get_vsat(global.variables.selected_id);
-      if (index < vsats.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vsats[index].elm.properties[vsats[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
-      var index : number= -1;
-      index = engine_functions.get_adder(global.variables.selected_id);
-      if (index < adders.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          adders[index].elm.properties[adders[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
-      var index : number= -1;
-      index = engine_functions.get_subtractor(global.variables.selected_id);
-      if (index < subtractors.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          subtractors[index].elm.properties[subtractors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
-      var index : number= -1;
-      index = engine_functions.get_multiplier(global.variables.selected_id);
-      if (index < multipliers.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          multipliers[index].elm.properties[multipliers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
-      var index : number= -1;
-      index = engine_functions.get_divider(global.variables.selected_id);
-      if (index < dividers.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          dividers[index].elm.properties[dividers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
-      var index : number= -1;
-      index = engine_functions.get_gain(global.variables.selected_id);
-      if (index < gains.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          gains[index].elm.properties[gains[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
-      var index : number= -1;
-      index = engine_functions.get_absval(global.variables.selected_id);
-      if (index < absvals.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          absvals[index].elm.properties[absvals[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
-      var index : number= -1;
-      index = engine_functions.get_vcsw(global.variables.selected_id);
-      if (index < vcsws.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vcsws[index].elm.properties[vcsws[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
-      var index : number= -1;
-      index = engine_functions.get_vcvs(global.variables.selected_id);
-      if (index < vcvss.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vcvss[index].elm.properties[vcvss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
-      var index : number= -1;
-      index = engine_functions.get_vccs(global.variables.selected_id);
-      if (index < vccss.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vccss[index].elm.properties[vccss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
-      var index : number= -1;
-      index = engine_functions.get_cccs(global.variables.selected_id);
-      if (index < cccss.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          cccss[index].elm.properties[cccss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
-      var index : number= -1;
-      index = engine_functions.get_ccvs(global.variables.selected_id);
-      if (index < ccvss.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          ccvss[index].elm.properties[ccvss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
-      var index : number= -1;
-      index = engine_functions.get_opamp(global.variables.selected_id);
-      if (index < opamps.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          opamps[index].elm.properties[opamps[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
-      var index : number= -1;
-      index = engine_functions.get_nmosfet(global.variables.selected_id);
-      if (index < nmosfets.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          nmosfets[index].elm.properties[nmosfets[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
-      var index : number= -1;
-      index = engine_functions.get_pmosfet(global.variables.selected_id);
-      if (index < pmosfets.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          pmosfets[index].elm.properties[pmosfets[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
-      var index : number= -1;
-      index = engine_functions.get_npn(global.variables.selected_id);
-      if (index < npns.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          npns[index].elm.properties[npns[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
-      var index : number= -1;
-      index = engine_functions.get_pnp(global.variables.selected_id);
-      if (index < pnps.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          pnps[index].elm.properties[pnps[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
-      var index : number= -1;
-      index = engine_functions.get_adc(global.variables.selected_id);
-      if (index < adcs.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          adcs[index].elm.properties[adcs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
-      var index : number= -1;
-      index = engine_functions.get_dac(global.variables.selected_id);
-      if (index < dacs.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          dacs[index].elm.properties[dacs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
-      var index : number= -1;
-      index = engine_functions.get_samplers(global.variables.selected_id);
-      if (index < sandhs.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          sandhs[index].elm.properties[sandhs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
-      var index : number= -1;
-      index = engine_functions.get_pwm(global.variables.selected_id);
-      if (index < pwms.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          pwms[index].elm.properties[pwms[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
-      var index : number= -1;
-      index = engine_functions.get_integrator(global.variables.selected_id);
-      if (index < integrators.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          integrators[index].elm.properties[integrators[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
-      var index : number= -1;
-      index = engine_functions.get_differentiator(global.variables.selected_id);
-      if (index < differentiators.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          differentiators[index].elm.properties[differentiators[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
-      var index : number= -1;
-      index = engine_functions.get_lowpass(global.variables.selected_id);
-      if (index < lowpasses.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          lowpasses[index].elm.properties[lowpasses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
-      var index : number= -1;
-      index = engine_functions.get_highpass(global.variables.selected_id);
-      if (index < highpasses.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          highpasses[index].elm.properties[highpasses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
-      var index : number= -1;
-      index = engine_functions.get_relay(global.variables.selected_id);
-      if (index < relays.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          relays[index].elm.properties[relays[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-        if (relays[index].elm.properties[
-            'options'][this.option_index] === 'Inductance') {
-          relays[index].conserve_energy();
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
-      var index : number= -1;
-      index = engine_functions.get_pid(global.variables.selected_id);
-      if (index < pids.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          pids[index].elm.properties[pids[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
-      var index : number= -1;
-      index = engine_functions.get_lut(global.variables.selected_id);
-      if (index < luts.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          luts[index].elm.properties[luts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
-      var index : number= -1;
-      index = engine_functions.get_vcr(global.variables.selected_id);
-      if (index < vcrs.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vcrs[index].elm.properties[vcrs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
-      var index : number= -1;
-      index = engine_functions.get_vcca(global.variables.selected_id);
-      if (index < vccas.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vccas[index].elm.properties[vccas[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
-      var index : number= -1;
-      index = engine_functions.get_vcl(global.variables.selected_id);
-      if (index < vcls.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          vcls[index].elm.properties[vcls[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
-      var index : number= -1;
-      index = engine_functions.get_grt(global.variables.selected_id);
-      if (index < grts.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          grts[index].elm.properties[grts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
-      var index : number= -1;
-      index = engine_functions.get_tptz(global.variables.selected_id);
-      if (index < tptzs.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          tptzs[index].elm.properties[tptzs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-    else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
-      var index : number= -1;
-      index = engine_functions.get_transformer(global.variables.selected_id);
-      if (index < transformers.length) {
-let value : number = string_operator.parse(this.input_button.text);
-        if (Math.abs(value) === 0 || (Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
-          Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))) {
-          global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
-          transformers[index].elm.properties[transformers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
-        } else {
-          toast.set_text('PARAM = [|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this
-            .option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) + '|, ' + '|' + global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables
-            .selected_properties['options'][this.option_index]
-          ][global.PROPERTY.PROPERTY_LIMIT_MAX]) + '|]');
-          toast.show();
-          ERROR_FLAG = true;
-        }
-      }
-    }
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		/* #INSERT_GENERATE_ELEMENT_UPDATE_PROPERTY# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RESISTOR) {
+			var index: number = -1;
+			index = engine_functions.get_resistor(global.variables.selected_id);
+			if (index < resistors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					resistors[index].elm.properties[resistors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CAPACITOR) {
+			var index: number = -1;
+			index = engine_functions.get_capacitor(global.variables.selected_id);
+			if (index < capacitors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					capacitors[index].elm.properties[capacitors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+				if (capacitors[index].elm.properties['options'][this.option_index] === 'Capacitance') {
+					capacitors[index].conserve_energy();
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INDUCTOR) {
+			var index: number = -1;
+			index = engine_functions.get_inductor(global.variables.selected_id);
+			if (index < inductors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					inductors[index].elm.properties[inductors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+				if (inductors[index].elm.properties['options'][this.option_index] === 'Inductance') {
+					inductors[index].conserve_energy();
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GROUND) {
+			var index: number = -1;
+			index = engine_functions.get_ground(global.variables.selected_id);
+			if (index < grounds.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					grounds[index].elm.properties[grounds[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCSOURCE) {
+			var index: number = -1;
+			index = engine_functions.get_dcsource(global.variables.selected_id);
+			if (index < dcsources.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					dcsources[index].elm.properties[dcsources[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DCCURRENT) {
+			var index: number = -1;
+			index = engine_functions.get_dccurrent(global.variables.selected_id);
+			if (index < dccurrents.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					dccurrents[index].elm.properties[dccurrents[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACSOURCE) {
+			var index: number = -1;
+			index = engine_functions.get_acsource(global.variables.selected_id);
+			if (index < acsources.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					acsources[index].elm.properties[acsources[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ACCURRENT) {
+			var index: number = -1;
+			index = engine_functions.get_accurrent(global.variables.selected_id);
+			if (index < accurrents.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					accurrents[index].elm.properties[accurrents[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SQUAREWAVE) {
+			var index: number = -1;
+			index = engine_functions.get_squarewave(global.variables.selected_id);
+			if (index < squarewaves.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					squarewaves[index].elm.properties[squarewaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAW) {
+			var index: number = -1;
+			index = engine_functions.get_sawwave(global.variables.selected_id);
+			if (index < sawwaves.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					sawwaves[index].elm.properties[sawwaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRI) {
+			var index: number = -1;
+			index = engine_functions.get_trianglewave(global.variables.selected_id);
+			if (index < trianglewaves.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					trianglewaves[index].elm.properties[trianglewaves[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CONSTANT) {
+			var index: number = -1;
+			index = engine_functions.get_constant(global.variables.selected_id);
+			if (index < constants.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					constants[index].elm.properties[constants[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NET) {
+			var index: number = -1;
+			index = engine_functions.get_net(global.variables.selected_id);
+			if (index < nets.length) {
+				let value: string = global.utils.copy(this.input_button.text);
+				global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = value;
+				nets[index].elm.properties[nets[index].elm.properties['options'][this.option_index]] = value;
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOTE) {
+			var index: number = -1;
+			index = engine_functions.get_note(global.variables.selected_id);
+			if (index < notes.length) {
+				let value: string = global.utils.copy(this.input_button.text);
+				global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = value;
+				notes[index].elm.properties[notes[index].elm.properties['options'][this.option_index]] = value;
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_RAIL) {
+			var index: number = -1;
+			index = engine_functions.get_rail(global.variables.selected_id);
+			if (index < rails.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					rails[index].elm.properties[rails[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VOLTMETER) {
+			var index: number = -1;
+			index = engine_functions.get_voltmeter(global.variables.selected_id);
+			if (index < voltmeters.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					voltmeters[index].elm.properties[voltmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OHMMETER) {
+			var index: number = -1;
+			index = engine_functions.get_ohmmeter(global.variables.selected_id);
+			if (index < ohmmeters.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					ohmmeters[index].elm.properties[ohmmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AMMETER) {
+			var index: number = -1;
+			index = engine_functions.get_ammeter(global.variables.selected_id);
+			if (index < ammeters.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					ammeters[index].elm.properties[ammeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_WATTMETER) {
+			var index: number = -1;
+			index = engine_functions.get_wattmeter(global.variables.selected_id);
+			if (index < wattmeters.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					wattmeters[index].elm.properties[wattmeters[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_FUSE) {
+			var index: number = -1;
+			index = engine_functions.get_fuse(global.variables.selected_id);
+			if (index < fuses.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					fuses[index].elm.properties[fuses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPST) {
+			var index: number = -1;
+			index = engine_functions.get_spst(global.variables.selected_id);
+			if (index < spsts.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					spsts[index].elm.properties[spsts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SPDT) {
+			var index: number = -1;
+			index = engine_functions.get_spdt(global.variables.selected_id);
+			if (index < spdts.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					spdts[index].elm.properties[spdts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOT) {
+			var index: number = -1;
+			index = engine_functions.get_not(global.variables.selected_id);
+			if (index < nots.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					nots[index].elm.properties[nots[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIODE) {
+			var index: number = -1;
+			index = engine_functions.get_diode(global.variables.selected_id);
+			if (index < diodes.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					diodes[index].elm.properties[diodes[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LED) {
+			var index: number = -1;
+			index = engine_functions.get_led(global.variables.selected_id);
+			if (index < leds.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					leds[index].elm.properties[leds[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ZENER) {
+			var index: number = -1;
+			index = engine_functions.get_zener(global.variables.selected_id);
+			if (index < zeners.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					zeners[index].elm.properties[zeners[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_POTENTIOMETER) {
+			var index: number = -1;
+			index = engine_functions.get_potentiometer(global.variables.selected_id);
+			if (index < potentiometers.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					potentiometers[index].elm.properties[potentiometers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_AND) {
+			var index: number = -1;
+			index = engine_functions.get_and(global.variables.selected_id);
+			if (index < ands.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					ands[index].elm.properties[ands[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OR) {
+			var index: number = -1;
+			index = engine_functions.get_or(global.variables.selected_id);
+			if (index < ors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					ors[index].elm.properties[ors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NAND) {
+			var index: number = -1;
+			index = engine_functions.get_nand(global.variables.selected_id);
+			if (index < nands.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					nands[index].elm.properties[nands[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NOR) {
+			var index: number = -1;
+			index = engine_functions.get_nor(global.variables.selected_id);
+			if (index < nors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					nors[index].elm.properties[nors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XOR) {
+			var index: number = -1;
+			index = engine_functions.get_xor(global.variables.selected_id);
+			if (index < xors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					xors[index].elm.properties[xors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_XNOR) {
+			var index: number = -1;
+			index = engine_functions.get_xnor(global.variables.selected_id);
+			if (index < xnors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					xnors[index].elm.properties[xnors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DFF) {
+			var index: number = -1;
+			index = engine_functions.get_dff(global.variables.selected_id);
+			if (index < dffs.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					dffs[index].elm.properties[dffs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VSAT) {
+			var index: number = -1;
+			index = engine_functions.get_vsat(global.variables.selected_id);
+			if (index < vsats.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					vsats[index].elm.properties[vsats[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADD) {
+			var index: number = -1;
+			index = engine_functions.get_adder(global.variables.selected_id);
+			if (index < adders.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					adders[index].elm.properties[adders[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SUB) {
+			var index: number = -1;
+			index = engine_functions.get_subtractor(global.variables.selected_id);
+			if (index < subtractors.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					subtractors[index].elm.properties[subtractors[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_MUL) {
+			var index: number = -1;
+			index = engine_functions.get_multiplier(global.variables.selected_id);
+			if (index < multipliers.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					multipliers[index].elm.properties[multipliers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIV) {
+			var index: number = -1;
+			index = engine_functions.get_divider(global.variables.selected_id);
+			if (index < dividers.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					dividers[index].elm.properties[dividers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GAIN) {
+			var index: number = -1;
+			index = engine_functions.get_gain(global.variables.selected_id);
+			if (index < gains.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					gains[index].elm.properties[gains[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ABS) {
+			var index: number = -1;
+			index = engine_functions.get_absval(global.variables.selected_id);
+			if (index < absvals.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					absvals[index].elm.properties[absvals[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCSW) {
+			var index: number = -1;
+			index = engine_functions.get_vcsw(global.variables.selected_id);
+			if (index < vcsws.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					vcsws[index].elm.properties[vcsws[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCVS) {
+			var index: number = -1;
+			index = engine_functions.get_vcvs(global.variables.selected_id);
+			if (index < vcvss.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					vcvss[index].elm.properties[vcvss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCS) {
+			var index: number = -1;
+			index = engine_functions.get_vccs(global.variables.selected_id);
+			if (index < vccss.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					vccss[index].elm.properties[vccss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCCS) {
+			var index: number = -1;
+			index = engine_functions.get_cccs(global.variables.selected_id);
+			if (index < cccss.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					cccss[index].elm.properties[cccss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_CCVS) {
+			var index: number = -1;
+			index = engine_functions.get_ccvs(global.variables.selected_id);
+			if (index < ccvss.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					ccvss[index].elm.properties[ccvss[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_OPAMP) {
+			var index: number = -1;
+			index = engine_functions.get_opamp(global.variables.selected_id);
+			if (index < opamps.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					opamps[index].elm.properties[opamps[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NMOS) {
+			var index: number = -1;
+			index = engine_functions.get_nmosfet(global.variables.selected_id);
+			if (index < nmosfets.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					nmosfets[index].elm.properties[nmosfets[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PMOS) {
+			var index: number = -1;
+			index = engine_functions.get_pmosfet(global.variables.selected_id);
+			if (index < pmosfets.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					pmosfets[index].elm.properties[pmosfets[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_NPN) {
+			var index: number = -1;
+			index = engine_functions.get_npn(global.variables.selected_id);
+			if (index < npns.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					npns[index].elm.properties[npns[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PNP) {
+			var index: number = -1;
+			index = engine_functions.get_pnp(global.variables.selected_id);
+			if (index < pnps.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					pnps[index].elm.properties[pnps[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_ADC) {
+			var index: number = -1;
+			index = engine_functions.get_adc(global.variables.selected_id);
+			if (index < adcs.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					adcs[index].elm.properties[adcs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DAC) {
+			var index: number = -1;
+			index = engine_functions.get_dac(global.variables.selected_id);
+			if (index < dacs.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					dacs[index].elm.properties[dacs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_SAH) {
+			var index: number = -1;
+			index = engine_functions.get_samplers(global.variables.selected_id);
+			if (index < sandhs.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					sandhs[index].elm.properties[sandhs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PWM) {
+			var index: number = -1;
+			index = engine_functions.get_pwm(global.variables.selected_id);
+			if (index < pwms.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					pwms[index].elm.properties[pwms[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_INTEGRATOR) {
+			var index: number = -1;
+			index = engine_functions.get_integrator(global.variables.selected_id);
+			if (index < integrators.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					integrators[index].elm.properties[integrators[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_DIFFERENTIATOR) {
+			var index: number = -1;
+			index = engine_functions.get_differentiator(global.variables.selected_id);
+			if (index < differentiators.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					differentiators[index].elm.properties[differentiators[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LPF) {
+			var index: number = -1;
+			index = engine_functions.get_lowpass(global.variables.selected_id);
+			if (index < lowpasses.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					lowpasses[index].elm.properties[lowpasses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_HPF) {
+			var index: number = -1;
+			index = engine_functions.get_highpass(global.variables.selected_id);
+			if (index < highpasses.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					highpasses[index].elm.properties[highpasses[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_REL) {
+			var index: number = -1;
+			index = engine_functions.get_relay(global.variables.selected_id);
+			if (index < relays.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					relays[index].elm.properties[relays[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+				if (relays[index].elm.properties['options'][this.option_index] === 'Inductance') {
+					relays[index].conserve_energy();
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_PID) {
+			var index: number = -1;
+			index = engine_functions.get_pid(global.variables.selected_id);
+			if (index < pids.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					pids[index].elm.properties[pids[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_LUT) {
+			var index: number = -1;
+			index = engine_functions.get_lut(global.variables.selected_id);
+			if (index < luts.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					luts[index].elm.properties[luts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCR) {
+			var index: number = -1;
+			index = engine_functions.get_vcr(global.variables.selected_id);
+			if (index < vcrs.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					vcrs[index].elm.properties[vcrs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCCA) {
+			var index: number = -1;
+			index = engine_functions.get_vcca(global.variables.selected_id);
+			if (index < vccas.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					vccas[index].elm.properties[vccas[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_VCL) {
+			var index: number = -1;
+			index = engine_functions.get_vcl(global.variables.selected_id);
+			if (index < vcls.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					vcls[index].elm.properties[vcls[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_GRT) {
+			var index: number = -1;
+			index = engine_functions.get_grt(global.variables.selected_id);
+			if (index < grts.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					grts[index].elm.properties[grts[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TPTZ) {
+			var index: number = -1;
+			index = engine_functions.get_tptz(global.variables.selected_id);
+			if (index < tptzs.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					tptzs[index].elm.properties[tptzs[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		} else if (global.variables.selected_type === global.ELEMENT_TYPES.TYPE_TRAN) {
+			var index: number = -1;
+			index = engine_functions.get_transformer(global.variables.selected_id);
+			if (index < transformers.length) {
+				let value: number = string_operator.parse(this.input_button.text);
+				if (
+					Math.abs(value) === 0 ||
+					(Math.abs(value) >= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]) &&
+						Math.abs(value) <= Math.abs(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]))
+				) {
+					global.variables.selected_properties[global.variables.selected_properties['options'][this.option_index]] = <string>(<unknown>value);
+					transformers[index].elm.properties[transformers[index].elm.properties['options'][this.option_index]] = <string>(<unknown>value);
+				} else {
+					toast.set_text(
+						'PARAM = [|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MIN]
+							) +
+							'|, ' +
+							'|' +
+							global.utils.exponentiate_quickly(
+								global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]
+							) +
+							'|]'
+					);
+					toast.show();
+					ERROR_FLAG = true;
+				}
+			}
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		if (!ERROR_FLAG) {
 			global.variables.history['packet'].push(engine_functions.history_snapshot());
 			this.option_index = -1;
@@ -2435,7 +3089,7 @@ let value : number = string_operator.parse(this.input_button.text);
 		this.select_end = -1;
 	}
 	double_click(): void {
-		if (global.flags.mouse_double_click_event_flag) {
+		if (global.flags.flag_mouse_double_click_event) {
 			if (this.input_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y)) {
 				this.select_all = !this.select_all;
 				if (this.select_all) {

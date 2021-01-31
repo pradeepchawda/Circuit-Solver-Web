@@ -97,7 +97,7 @@ class SampleAndHoldSymbol {
             if (workspace.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, workspace.bounds.get_width() - 4.5 * global.variables.node_space_x, workspace.bounds.get_height() - 4.5 * global.variables.node_space_y) &&
                 !this.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
                 shortcut_manager.temp_history_snapshot = engine_functions.history_snapshot();
-                global.flags.signal_history_lock = true;
+                global.flags.flag_history_lock = true;
                 engine_functions.add_samplers();
                 this.flag_add_element = false;
             }
@@ -108,7 +108,7 @@ class SampleAndHoldSymbol {
             if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, width, height)) {
                 if (!this.flag_add_element) {
                     this.flag_add_element = true;
-                    global.flags.signal_add_element = true;
+                    global.flags.flag_add_element = true;
                     global.variables.component_touched = true;
                 }
             }
@@ -129,7 +129,7 @@ class SampleAndHoldSymbol {
             if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, width, height)) {
             }
             this.flag_add_element = false;
-            global.flags.signal_add_element = false;
+            global.flags.flag_add_element = false;
         }
     }
     build_element() {

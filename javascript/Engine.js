@@ -60,7 +60,7 @@ function file_event(input) {
         bottom_menu.resize_bottom_menu();
         global.variables.user_file.content = text;
         global.variables.user_file_selected = true;
-        global.flags.canvas_draw_event = true;
+        global.flags.flag_canvas_draw_event = true;
     };
     reader.onerror = function (err) { };
     reader.readAsText(input.files[0]);
@@ -92,18 +92,18 @@ function restore_zoom_offset(zoom, delta_x, dx, x_offset, delta_y, dy, y_offset)
     global.variables.delta_x = Number(delta_x);
     global.variables.delta_y = Number(delta_y);
     workspace.workspace_zoom();
-    global.flags.draw_block = true;
-    global.flags.signal_build_element = true;
+    global.flags.flag_draw_block = true;
+    global.flags.flag_build_element = true;
 }
 function handle_file_loading() {
     global.variables.user_file_selected = true;
-    global.flags.canvas_draw_event = true;
+    global.flags.flag_canvas_draw_event = true;
     try {
         engine_functions.parse_elements(global.variables.user_file.content);
     }
     catch (error) { }
     global.variables.history['packet'].push(engine_functions.history_snapshot());
-    global.flags.draw_block = true;
+    global.flags.flag_draw_block = true;
     global.variables.user_file_selected = false;
     mouse_event_latch = false;
 }
@@ -268,6 +268,7 @@ function load_app() {
         if (step === 0) {
             toast = new Toast();
             resize_canvas();
+            simulation_manager = new SimulationManager();
             engine_functions.create_nodes(workspace.bounds);
             global.variables.history['packet'].push(engine_functions.history_snapshot());
         }
@@ -288,7 +289,6 @@ function load_app() {
             zoom_window = new ZoomWindow();
             settings_window = new SettingsWindow();
             yes_no_window = new YesNoWindow();
-            simulation_manager = new SimulationManager();
         }
         else if (step === 4) {
             register_cross_platform_listeners();
@@ -303,7 +303,7 @@ function load_app() {
             }
             if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.CONSTANTS.ON) {
                 view_port.apply_spread_factor = true;
-                global.flags.force_resize_event = true;
+                global.flags.flag_force_resize_event = true;
             }
         }
     }
@@ -386,7 +386,7 @@ function load_app() {
         global.variables.canvas_text_size_4 = global.variables.canvas_text_size_base * 16;
         global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
         global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
-        global.flags.signal_build_element = true;
+        global.flags.flag_build_element = true;
         global.variables.signal_build_counter = 0;
         virtual_surface.resize();
         global.flags.flag_resize_event = true;
@@ -424,12 +424,12 @@ function load_app() {
                             global.variables.mouse_x <= view_port.right &&
                             global.variables.mouse_y >= view_port.top &&
                             global.variables.mouse_y <= view_port.bottom) {
-                            global.flags.mouse_down_event_flag = true;
+                            global.flags.flag_mouse_down_event = true;
                             global.events.mouse_down_event_queue.push(mouse_event);
                         }
                     }
                     else {
-                        global.flags.mouse_down_event_flag = true;
+                        global.flags.flag_mouse_down_event = true;
                         global.events.mouse_down_event_queue.push(mouse_event);
                     }
                 }
@@ -439,16 +439,16 @@ function load_app() {
         mouse_event.stopPropagation();
     }
     function mouse_move(mouse_event) {
-        if (!global.flags.mouse_move_event_flag) {
+        if (!global.flags.flag_mouse_move_event) {
             if (global.CONSTANTS.MOBILE_MODE) {
                 if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
                     global.events.mouse_move_event = mouse_event;
-                    global.flags.mouse_move_event_flag = true;
+                    global.flags.flag_mouse_move_event = true;
                 }
             }
             else {
                 global.events.mouse_move_event = mouse_event;
-                global.flags.mouse_move_event_flag = true;
+                global.flags.flag_mouse_move_event = true;
             }
         }
         mouse_event.preventDefault();
@@ -458,12 +458,12 @@ function load_app() {
         if (mouse_event_latch) {
             if (global.CONSTANTS.MOBILE_MODE) {
                 if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
-                    global.flags.mouse_up_event_flag = true;
+                    global.flags.flag_mouse_up_event = true;
                     global.events.mouse_up_event_queue.push(mouse_event);
                 }
             }
             else {
-                global.flags.mouse_up_event_flag = true;
+                global.flags.flag_mouse_up_event = true;
                 global.events.mouse_up_event_queue.push(mouse_event);
             }
         }
@@ -471,8 +471,8 @@ function load_app() {
         mouse_event.stopPropagation();
     }
     function mouse_wheel(mouse_event) {
-        if (!global.flags.mouse_wheel_event_flag && !global.CONSTANTS.MOBILE_MODE) {
-            global.flags.mouse_wheel_event_flag = true;
+        if (!global.flags.flag_mouse_wheel_event && !global.CONSTANTS.MOBILE_MODE) {
+            global.flags.flag_mouse_wheel_event = true;
             global.events.mouse_wheel_event_queue.push(mouse_event);
         }
         mouse_event.preventDefault();
@@ -480,14 +480,14 @@ function load_app() {
     }
     function double_click(mouse_event) {
         if (!global.CONSTANTS.MOBILE_MODE) {
-            global.flags.mouse_double_click_event_flag = true;
+            global.flags.flag_mouse_double_click_event = true;
             global.events.mouse_double_click_event_queue.push(mouse_event);
         }
         mouse_event.preventDefault();
         mouse_event.stopPropagation();
     }
     function key_down(key_event) {
-        global.flags.key_down_event_flag = true;
+        global.flags.flag_key_down_event = true;
         global.events.key_down_event_queue.push({
             event: key_event,
             alt: key_event.getModifierState('Alt'),
@@ -499,7 +499,7 @@ function load_app() {
         key_event.stopPropagation();
     }
     function key_up(key_event) {
-        global.flags.key_up_event_flag = true;
+        global.flags.flag_key_up_event = true;
         global.events.key_up_event_queue.push({
             event: key_event,
             alt: key_event.getModifierState('Alt'),
@@ -579,14 +579,14 @@ function load_app() {
     function normal_draw_permissions() {
         if (global.variables.system_initialization['completed']) {
             return (global.flags.flag_resize_event ||
-                global.flags.mouse_down_event_flag ||
-                global.flags.mouse_move_event_flag ||
-                global.flags.mouse_up_event_flag ||
-                global.flags.mouse_wheel_event_flag ||
-                global.flags.mouse_double_click_event_flag ||
-                global.flags.key_up_event_flag ||
-                global.flags.key_down_event_flag ||
-                global.flags.picture_request_flag ||
+                global.flags.flag_mouse_down_event ||
+                global.flags.flag_mouse_move_event ||
+                global.flags.flag_mouse_up_event ||
+                global.flags.flag_mouse_wheel_event ||
+                global.flags.flag_mouse_double_click_event ||
+                global.flags.flag_key_up_event ||
+                global.flags.flag_key_down_event ||
+                global.flags.flag_picture_request ||
                 global.flags.flag_simulating ||
                 !workspace.draw_to_screen ||
                 toast.draw_text ||
@@ -594,134 +594,133 @@ function load_app() {
         }
         else {
             return (global.flags.flag_resize_event ||
-                global.flags.mouse_down_event_flag ||
-                global.flags.mouse_move_event_flag ||
-                global.flags.mouse_up_event_flag ||
-                global.flags.mouse_wheel_event_flag ||
-                global.flags.mouse_double_click_event_flag ||
-                global.flags.key_up_event_flag ||
-                global.flags.key_down_event_flag ||
-                global.flags.picture_request_flag ||
+                global.flags.flag_mouse_down_event ||
+                global.flags.flag_mouse_move_event ||
+                global.flags.flag_mouse_up_event ||
+                global.flags.flag_mouse_wheel_event ||
+                global.flags.flag_mouse_double_click_event ||
+                global.flags.flag_key_up_event ||
+                global.flags.flag_key_down_event ||
+                global.flags.flag_picture_request ||
                 global.flags.flag_simulating ||
                 !global.variables.system_initialization['completed']);
         }
     }
     function system_loop() {
-        try {
-            if (normal_draw_permissions()) {
-                global.variables.canvas_redraw_counter = 0;
-                global.flags.canvas_draw_event = true;
+        // try {
+        if (normal_draw_permissions()) {
+            global.variables.canvas_redraw_counter = 0;
+            global.flags.flag_canvas_draw_event = true;
+        }
+        if (global.flags.flag_canvas_draw_event) {
+            if (global.variables.system_initialization['completed']) {
+                temp_draw_signal =
+                    !global.flags.flag_simulating ||
+                        global.flags.flag_resize_event ||
+                        global.flags.flag_mouse_down_event ||
+                        global.flags.flag_mouse_move_event ||
+                        global.flags.flag_mouse_up_event ||
+                        global.flags.flag_mouse_wheel_event ||
+                        global.flags.flag_mouse_double_click_event ||
+                        global.flags.flag_key_up_event ||
+                        global.flags.flag_key_down_event ||
+                        global.flags.flag_picture_request ||
+                        !workspace.draw_to_screen ||
+                        toast.draw_text;
             }
-            if (global.flags.canvas_draw_event) {
+            else {
+                temp_draw_signal =
+                    !global.flags.flag_simulating ||
+                        global.flags.flag_resize_event ||
+                        global.flags.flag_mouse_down_event ||
+                        global.flags.flag_mouse_move_event ||
+                        global.flags.flag_mouse_up_event ||
+                        global.flags.flag_mouse_wheel_event ||
+                        global.flags.flag_mouse_double_click_event ||
+                        global.flags.flag_key_up_event ||
+                        global.flags.flag_key_down_event ||
+                        global.flags.flag_picture_request ||
+                        !workspace.draw_to_screen;
+            }
+            global.variables.last_selected = global.variables.selected;
+            update();
+            if (global.variables.last_selected !== global.variables.selected) {
+                wire_manager.reset_wire_builder();
+            }
+            if (global.flags.flag_force_resize_event) {
+                global.flags.flag_build_element = true;
+                global.variables.signal_build_counter = 0;
+                global.flags.flag_force_resize_event = false;
+                global.flags.flag_draw_block = true;
+                resize_canvas();
+            }
+            fps_div ^= 1;
+            if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
                 if (global.variables.system_initialization['completed']) {
-                    temp_draw_signal =
-                        !global.flags.flag_simulating ||
-                            global.flags.flag_resize_event ||
-                            global.flags.mouse_down_event_flag ||
-                            global.flags.mouse_move_event_flag ||
-                            global.flags.mouse_up_event_flag ||
-                            global.flags.mouse_wheel_event_flag ||
-                            global.flags.mouse_double_click_event_flag ||
-                            global.flags.key_up_event_flag ||
-                            global.flags.key_down_event_flag ||
-                            global.flags.picture_request_flag ||
-                            !workspace.draw_to_screen ||
-                            toast.draw_text;
-                }
-                else {
-                    temp_draw_signal =
-                        !global.flags.flag_simulating ||
-                            global.flags.flag_resize_event ||
-                            global.flags.mouse_down_event_flag ||
-                            global.flags.mouse_move_event_flag ||
-                            global.flags.mouse_up_event_flag ||
-                            global.flags.mouse_wheel_event_flag ||
-                            global.flags.mouse_double_click_event_flag ||
-                            global.flags.key_up_event_flag ||
-                            global.flags.key_down_event_flag ||
-                            global.flags.picture_request_flag ||
-                            !workspace.draw_to_screen;
-                }
-                global.variables.last_selected = global.variables.selected;
-                update();
-                if (global.variables.last_selected !== global.variables.selected) {
-                    wire_manager.reset_wire_builder();
-                }
-                if (global.flags.force_resize_event) {
-                    global.flags.signal_build_element = true;
-                    global.variables.signal_build_counter = 0;
-                    global.flags.force_resize_event = false;
-                    global.flags.draw_block = true;
-                    resize_canvas();
-                }
-                fps_div ^= 1;
-                if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
-                    if (global.variables.system_initialization['completed']) {
-                        if ((global.flags.flag_simulating && global.flags.canvas_draw_request) || temp_draw_signal) {
-                            if (!global.flags.on_restore_event) {
-                                if (!global.flags.draw_block) {
-                                    ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                                }
-                                canvas.release();
-                                canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                                draw();
-                                if (global.flags.draw_block) {
-                                    global.flags.draw_block = false;
-                                }
+                    if ((global.flags.flag_simulating && global.flags.flag_canvas_draw_request) || temp_draw_signal) {
+                        if (!global.flags.flag_on_restore_event) {
+                            if (!global.flags.flag_draw_block) {
+                                ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
                             }
-                            if (global.flags.canvas_draw_request) {
-                                if (global.variables.canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-                                    global.variables.canvas_draw_request_counter = 0;
-                                    global.flags.canvas_draw_request = false;
-                                }
+                            canvas.release();
+                            canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                            draw();
+                            if (global.flags.flag_draw_block) {
+                                global.flags.flag_draw_block = false;
+                            }
+                        }
+                        if (global.flags.flag_canvas_draw_request) {
+                            if (global.variables.flag_canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+                                global.variables.flag_canvas_draw_request_counter = 0;
+                                global.flags.flag_canvas_draw_request = false;
                             }
                         }
                     }
                 }
-                if (global.flags.signal_build_element) {
-                    if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
-                        global.flags.signal_build_element = false;
-                        global.variables.signal_build_counter = 0;
-                    }
-                }
-                if (global.flags.signal_wire_deleted) {
-                    if (global.variables.signal_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-                        global.flags.signal_wire_deleted = false;
-                        global.variables.signal_wire_deleted_counter = 0;
-                    }
-                }
-                if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
-                    global.variables.canvas_redraw_counter = 0;
-                    global.flags.canvas_draw_event = false;
+            }
+            if (global.flags.flag_build_element) {
+                if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
+                    global.flags.flag_build_element = false;
+                    global.variables.signal_build_counter = 0;
                 }
             }
-        }
-        catch (e) {
-            if (!global.CONSTANTS.DEVELOPER_MODE && !global.CONSTANTS.MOBILE_MODE) {
-                let post_data = e + '\r\n' + e.stack + '\r\n';
-                let url = 'solver_errors.php?msg="' + post_data + '"';
-                let method = 'POST';
-                let should_be_async = true;
-                let request = new XMLHttpRequest();
-                request.onload = function () {
-                    let status = request.status;
-                    let data = request.responseText;
-                };
-                request.open(method, url, should_be_async);
-                request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-                request.send(post_data);
+            if (global.flags.flag_wire_deleted) {
+                if (global.variables.flag_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+                    global.flags.flag_wire_deleted = false;
+                    global.variables.flag_wire_deleted_counter = 0;
+                }
+            }
+            if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
+                global.variables.canvas_redraw_counter = 0;
+                global.flags.flag_canvas_draw_event = false;
             }
         }
+        // } catch (e) {
+        // 	if (!global.CONSTANTS.DEVELOPER_MODE && !global.CONSTANTS.MOBILE_MODE) {
+        // 		let post_data: string = e + '\r\n' + e.stack + '\r\n';
+        // 		let url: string = 'solver_errors.php?msg="' + post_data + '"';
+        // 		let method: string = 'POST';
+        // 		let should_be_async: boolean = true;
+        // 		let request: XMLHttpRequest = new XMLHttpRequest();
+        // 		request.onload = function (): void {
+        // 			let status: number = request.status;
+        // 			let data: string = request.responseText;
+        // 		};
+        // 		request.open(method, url, should_be_async);
+        // 		request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+        // 		request.send(post_data);
+        // 	}
+        // }
     }
     function update() {
         if (global.variables.system_initialization['completed']) {
             engine_functions.file_manager();
             global.variables.component_translating = false;
             if (global.CONSTANTS.MOBILE_MODE) {
-                if (global.flags.on_restore_event) {
-                    global.flags.signal_build_element = true;
+                if (global.flags.flag_on_restore_event) {
+                    global.flags.flag_build_element = true;
                     window.JsInterface.onRestore();
-                    global.flags.on_restore_event = false;
+                    global.flags.flag_on_restore_event = false;
                 }
             }
             if (global.events.mouse_down_event_queue.length > 0 && !mouse_event_latch) {
@@ -731,16 +730,16 @@ function load_app() {
                 handle_mouse_down();
                 global.events.mouse_down_event_queue.splice(fifo_index, 1);
                 if (global.events.mouse_down_event_queue.length === 0) {
-                    global.flags.mouse_down_event_flag = false;
+                    global.flags.flag_mouse_down_event = false;
                 }
-                global.flags.canvas_draw_request = true;
-                global.variables.canvas_draw_request_counter = 0;
+                global.flags.flag_canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
             }
-            if (global.flags.mouse_move_event_flag) {
+            if (global.flags.flag_mouse_move_event) {
                 handle_mouse_move();
-                global.flags.canvas_draw_request = true;
-                global.variables.canvas_draw_request_counter = 0;
-                global.flags.mouse_move_event_flag = false;
+                global.flags.flag_canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
+                global.flags.flag_mouse_move_event = false;
             }
             if (global.events.mouse_up_event_queue.length > 0 && mouse_event_latch) {
                 fifo_index = global.events.mouse_up_event_queue.length - 1;
@@ -749,12 +748,12 @@ function load_app() {
                 handle_mouse_up();
                 global.events.mouse_up_event_queue.splice(fifo_index, 1);
                 if (global.events.mouse_up_event_queue.length === 0) {
-                    global.flags.mouse_up_event_flag = false;
-                    global.flags.mouse_move_event_flag = false;
+                    global.flags.flag_mouse_up_event = false;
+                    global.flags.flag_mouse_move_event = false;
                     global.variables.is_dragging = false;
                 }
-                global.flags.canvas_draw_request = true;
-                global.variables.canvas_draw_request_counter = 0;
+                global.flags.flag_canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
             }
             if (global.events.mouse_double_click_event_queue.length > 0) {
                 fifo_index = global.events.mouse_double_click_event_queue.length - 1;
@@ -762,10 +761,10 @@ function load_app() {
                 handle_double_click();
                 global.events.mouse_double_click_event_queue.splice(fifo_index, 1);
                 if (global.events.mouse_double_click_event_queue.length === 0) {
-                    global.flags.mouse_double_click_event_flag = false;
+                    global.flags.flag_mouse_double_click_event = false;
                 }
-                global.flags.canvas_draw_request = true;
-                global.variables.canvas_draw_request_counter = 0;
+                global.flags.flag_canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
             }
             if (global.events.mouse_wheel_event_queue.length > 0) {
                 fifo_index = global.events.mouse_wheel_event_queue.length - 1;
@@ -773,10 +772,10 @@ function load_app() {
                 handle_mouse_wheel();
                 global.events.mouse_wheel_event_queue.splice(fifo_index, 1);
                 if (global.events.mouse_wheel_event_queue.length === 0) {
-                    global.flags.mouse_wheel_event_flag = false;
+                    global.flags.flag_mouse_wheel_event = false;
                 }
-                global.flags.canvas_draw_request = true;
-                global.variables.canvas_draw_request_counter = 0;
+                global.flags.flag_canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
                 global.variables.is_dragging = false;
             }
             if (global.flags.flag_resize_event) {
@@ -800,10 +799,10 @@ function load_app() {
                 handle_key_down();
                 global.events.key_down_event_queue.splice(fifo_index, 1);
                 if (global.events.key_down_event_queue.length === 0) {
-                    global.flags.key_down_event_flag = false;
+                    global.flags.flag_key_down_event = false;
                 }
-                global.flags.canvas_draw_request = true;
-                global.variables.canvas_draw_request_counter = 0;
+                global.flags.flag_canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
             }
             if (global.events.key_up_event_queue.length > 0) {
                 fifo_index = global.events.key_up_event_queue.length - 1;
@@ -812,10 +811,10 @@ function load_app() {
                 global.events.key_down_event_queue = [];
                 global.events.key_up_event_queue.splice(fifo_index, 1);
                 if (global.events.key_up_event_queue.length === 0) {
-                    global.flags.key_up_event_flag = false;
+                    global.flags.flag_key_up_event = false;
                 }
-                global.flags.canvas_draw_request = true;
-                global.variables.canvas_draw_request_counter = 0;
+                global.flags.flag_canvas_draw_request = true;
+                global.variables.flag_canvas_draw_request_counter = 0;
             }
             if (global.variables.mouse_keyboard_lock) {
                 global.variables.mouse_keyboard_lock = false;
@@ -1037,11 +1036,11 @@ function load_app() {
             global.variables.system_initialization['step']++;
             if (global.variables.system_initialization['step'] >= global.variables.system_initialization['max']) {
                 if (global.CONSTANTS.MOBILE_MODE) {
-                    global.flags.on_restore_event = true;
+                    global.flags.flag_on_restore_event = true;
                 }
                 global.variables.system_initialization['step'] = 0;
                 global.variables.system_initialization['completed'] = true;
-                global.flags.signal_build_element = true;
+                global.flags.flag_build_element = true;
             }
         }
     }
@@ -1062,7 +1061,7 @@ function load_app() {
     function draw() {
         refactor_sizes();
         engine_functions.image_manager();
-        if (!global.flags.picture_request_flag) {
+        if (!global.flags.flag_picture_request) {
             if (!global.CONSTANTS.MOBILE_MODE) {
                 if (global.flags.flag_idle &&
                     !global.flags.flag_save_image &&
@@ -1078,7 +1077,7 @@ function load_app() {
                     !global.flags.flag_graph) {
                     multi_select_manager.reset_enveloping_bounds();
                 }
-                if (global.flags.signal_build_element) {
+                if (global.flags.flag_build_element) {
                     node_space_x_cache = 0.29375 * global.variables.node_space_x;
                     node_space_y_cache = 0.29375 * global.variables.node_space_y;
                     mult_node_space_x_cache = 1.25 * node_space_x_cache;
@@ -1150,7 +1149,7 @@ function load_app() {
                     !global.flags.flag_remove_all) {
                     workspace.workspace_draw(canvas);
                     if (!global.flags.flag_graph) {
-                        if (global.flags.signal_build_element) {
+                        if (global.flags.flag_build_element) {
                             node_space_x_cache = 0.29375 * global.variables.node_space_x;
                             node_space_y_cache = 0.29375 * global.variables.node_space_y;
                             mult_node_space_x_cache = 1.25 * node_space_x_cache;
@@ -2008,9 +2007,9 @@ function load_app() {
         for (var i = wires.length - 1; i > -1; i--) {
             wires[i].mouse_up();
         }
-        if (global.flags.signal_wire_created) {
+        if (global.flags.flag_wire_created) {
             global.variables.history['packet'].push(engine_functions.history_snapshot());
-            global.flags.signal_wire_created = false;
+            global.flags.flag_wire_created = false;
         }
         let component_touched = global.variables.component_touched;
         if (!global.variables.component_touched) {
@@ -2033,7 +2032,7 @@ function load_app() {
         global.variables.component_touched = component_touched;
         engine_functions.reset_selection(false);
         engine_functions.handle_nearest_neighbors(temp_translation_lock);
-        global.flags.signal_history_lock = false;
+        global.flags.flag_history_lock = false;
     }
     function handle_mouse_wheel() {
         global.variables.mouse_x = global.events.mouse_wheel_event.clientX * global.variables.device_pixel_ratio;

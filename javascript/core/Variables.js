@@ -36,7 +36,7 @@ class Variables {
         this.clipboard_property = CONSTANTS.NULL;
         this.component_translating = false;
         this.signal_build_counter = 0;
-        this.signal_wire_deleted_counter = 0;
+        this.flag_wire_deleted_counter = 0;
         this.component_touched = false;
         this.mouse_keyboard_lock = false;
         this.translation_lock = true;
@@ -110,7 +110,7 @@ class Variables {
         }
         this.user_file_selected = false;
         this.user_file = new Circuit();
-        this.canvas_draw_request_counter = 0;
+        this.flag_canvas_draw_request_counter = 0;
         this.canvas_redraw_counter = 0;
         this.canvas_stroke_width_base = 1;
         this.canvas_stroke_width_1 = 2.25;
