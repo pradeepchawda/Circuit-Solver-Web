@@ -27,7 +27,7 @@ class Variables {
 	public clipboard_flip: number;
 	public clipboard_property: any;
 	public component_translating: boolean;
-	public signal_build_counter: number;
+	public flag_build_counter: number;
 	public flag_wire_deleted_counter: number;
 	public component_touched: boolean;
 	public mouse_keyboard_lock: boolean;
@@ -130,7 +130,7 @@ class Variables {
 		this.clipboard_flip = CONSTANTS.NULL;
 		this.clipboard_property = CONSTANTS.NULL;
 		this.component_translating = false;
-		this.signal_build_counter = 0;
+		this.flag_build_counter = 0;
 		this.flag_wire_deleted_counter = 0;
 		this.component_touched = false;
 		this.mouse_keyboard_lock = false;

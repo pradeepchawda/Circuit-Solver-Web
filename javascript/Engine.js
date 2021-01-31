@@ -387,7 +387,7 @@ function load_app() {
         global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
         global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
         global.flags.flag_build_element = true;
-        global.variables.signal_build_counter = 0;
+        global.variables.flag_build_counter = 0;
         virtual_surface.resize();
         global.flags.flag_resize_event = true;
         canvas.on_resize();
@@ -649,7 +649,7 @@ function load_app() {
                 }
                 if (global.flags.flag_force_resize_event) {
                     global.flags.flag_build_element = true;
-                    global.variables.signal_build_counter = 0;
+                    global.variables.flag_build_counter = 0;
                     global.flags.flag_force_resize_event = false;
                     global.flags.flag_draw_block = true;
                     resize_canvas();
@@ -679,9 +679,9 @@ function load_app() {
                     }
                 }
                 if (global.flags.flag_build_element) {
-                    if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
+                    if (global.variables.flag_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
                         global.flags.flag_build_element = false;
-                        global.variables.signal_build_counter = 0;
+                        global.variables.flag_build_counter = 0;
                     }
                 }
                 if (global.flags.flag_wire_deleted) {

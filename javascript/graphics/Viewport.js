@@ -39,7 +39,7 @@ class Viewport {
         this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
         this.line_paint.set_text_size(global.variables.canvas_text_size_4);
         global.flags.flag_build_element = true;
-        global.variables.signal_build_counter = 0;
+        global.variables.flag_build_counter = 0;
     }
     resize(aspect_ratio, screen_width, screen_height) {
         this.screen_width = screen_width;
@@ -63,7 +63,7 @@ class Viewport {
         this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
         this.line_paint.set_text_size(global.variables.canvas_text_size_4);
         global.flags.flag_build_element = true;
-        global.variables.signal_build_counter = 0;
+        global.variables.flag_build_counter = 0;
     }
     draw_viewport(canvas) {
         if (this.OPTION_DRAW_BOUNDS) {

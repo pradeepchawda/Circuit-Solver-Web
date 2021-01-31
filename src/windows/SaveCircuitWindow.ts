@@ -580,7 +580,7 @@ class SaveCircuitWindow {
 		let last_dx: number = global.variables.dx;
 		let last_dy: number = global.variables.dy;
 		global.flags.flag_build_element = true;
-		global.variables.signal_build_counter = 0;
+		global.variables.flag_build_counter = 0;
 		global.variables.workspace_zoom_scale = 1.0;
 		global.variables.x_offset = 0;
 		global.variables.y_offset = 0;

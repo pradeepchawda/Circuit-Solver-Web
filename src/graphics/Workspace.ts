@@ -106,7 +106,7 @@ class Workspace {
 	workspace_zoom(): void {
 		this.grid_moved = true;
 		global.flags.flag_build_element = true;
-		global.variables.signal_build_counter = 0;
+		global.variables.flag_build_counter = 0;
 		this.bounds.left = global.variables.delta_x;
 		this.bounds.top = global.variables.delta_y;
 		this.bounds.right = this.bounds.left + global.variables.natural_width * global.variables.workspace_zoom_scale;
@@ -132,7 +132,7 @@ class Workspace {
 	workspace_translate_bounds(dx: number, dy: number): void {
 		this.grid_moved = true;
 		global.flags.flag_build_element = true;
-		global.variables.signal_build_counter = 0;
+		global.variables.flag_build_counter = 0;
 		this.bounds.left += dx;
 		this.bounds.right += dx;
 		this.bounds.top += dy;

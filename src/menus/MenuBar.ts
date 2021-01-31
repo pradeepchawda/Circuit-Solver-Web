@@ -853,7 +853,7 @@ class MenuBar {
 			element_options_edit_window.reset_cursor();
 		}
 		global.flags.flag_build_element = true;
-		global.variables.signal_build_counter = 0;
+		global.variables.flag_build_counter = 0;
 		global.flags.flag_element_options_edit = ON;
 		if (global.CONSTANTS.DEVELOPER_MODE) {
 			console.log('ELEMENT OPTIONS EDIT');
