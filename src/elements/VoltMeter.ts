@@ -611,9 +611,13 @@ class VoltMeter {
 		this.elm.properties['Voltage'] = 0;
 	}
 	push_voltage(voltage: number): void {
-		if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+		if (
+			global.flags.flag_simulating &&
+			simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+			simulation_manager.solutions_ready
+		) {
 			this.elm.properties['Voltage'] = voltage;
-			this.meter_trace.push(voltage, global.simulation_time);
+			this.meter_trace.push(voltage, simulation_manager.simulation_time);
 		}
 	}
 	recolor(): void {
@@ -697,7 +701,11 @@ class VoltMeter {
 			this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 			if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-					if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+					if (
+						global.flags.flag_simulating &&
+						simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+						simulation_manager.solutions_ready
+					) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
 							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -719,7 +727,11 @@ class VoltMeter {
 				canvas.rotate(this.c_x, this.c_y, -90);
 				this.meter_symbol.draw_symbol(canvas);
 				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-					if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+					if (
+						global.flags.flag_simulating &&
+						simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+						simulation_manager.solutions_ready
+					) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
 							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -819,20 +831,20 @@ class VoltMeter {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['Voltage'] = 0;

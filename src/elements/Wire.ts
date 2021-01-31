@@ -433,7 +433,12 @@ class Wire {
 			this.line_buffer = [];
 			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-			if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step) {
+			if (
+				global.flags.flag_simulating &&
+				simulation_manager.solutions_ready &&
+				this.is_selected_element() &&
+				simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step
+			) {
 				if (this.elm.consistent()) {
 					this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 					if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
@@ -471,7 +476,12 @@ class Wire {
 			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
 			this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-			if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && global.simulation_time >= global.time_step + global.time_step + global.time_step) {
+			if (
+				global.flags.flag_simulating &&
+				simulation_manager.solutions_ready &&
+				this.is_selected_element() &&
+				simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step
+			) {
 				if (this.elm.consistent()) {
 					if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 						if (global.utils.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.utils.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {
@@ -567,20 +577,20 @@ class Wire {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {}
 }

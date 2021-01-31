@@ -185,7 +185,7 @@ class PIDModule {
 				if (this.elm.properties['Input Voltage2'] > 0.5 * this.elm.properties['High Voltage']) {
 					this.pid_controller.reset();
 				}
-				this.elm.properties['Output Voltage'] = this.pid_controller.get_output(global.simulation_time, this.elm.properties['Input Voltage1']);
+				this.elm.properties['Output Voltage'] = this.pid_controller.get_output(simulation_manager.simulation_time, this.elm.properties['Input Voltage1']);
 			}
 		} else {
 			this.pid_controller.reset();
@@ -884,20 +884,20 @@ class PIDModule {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.pid_controller.reset();

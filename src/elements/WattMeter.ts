@@ -762,12 +762,16 @@ class WattMeter {
 		this.elm.properties['Wattage'] = 0;
 	}
 	push_voltage(v1: number, v2: number): void {
-		if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+		if (
+			global.flags.flag_simulating &&
+			simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+			simulation_manager.solutions_ready
+		) {
 			let curr: number = (v1 - v2) / global.settings.WIRE_RESISTANCE;
 			let voltage: number = Math.max(v1, v2);
 			let power: number = curr * voltage;
 			this.elm.properties['Wattage'] = power;
-			this.meter_trace.push(power, global.simulation_time);
+			this.meter_trace.push(power, simulation_manager.simulation_time);
 		}
 	}
 	get_simulation_index(): number {
@@ -861,7 +865,11 @@ class WattMeter {
 						this.bounds.bottom + this.bounds.get_height() * 0.2,
 						this.text_paint
 					);
-					if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+					if (
+						global.flags.flag_simulating &&
+						simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+						simulation_manager.solutions_ready
+					) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
 							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -882,7 +890,11 @@ class WattMeter {
 						this.bounds.bottom + this.bounds.get_height() * 0.2,
 						this.text_paint
 					);
-					if (global.flags.flag_simulating && global.simulation_time >= global.time_step + global.time_step + global.time_step && simulation_manager.solutions_ready) {
+					if (
+						global.flags.flag_simulating &&
+						simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
+						simulation_manager.solutions_ready
+					) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
 							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -978,20 +990,20 @@ class WattMeter {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['Wattage'] = 0;

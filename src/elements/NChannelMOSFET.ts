@@ -161,7 +161,7 @@ class NChannelMOSFET {
 		this.angle = 0;
 	}
 	lpf(inp: number): number {
-		this._alpha = (2.0 * Math.PI * global.time_step * this.f_cutoff) / (2.0 * Math.PI * global.time_step * this.f_cutoff + 1.0);
+		this._alpha = (2.0 * Math.PI * simulation_manager.time_step * this.f_cutoff) / (2.0 * Math.PI * simulation_manager.time_step * this.f_cutoff + 1.0);
 		this.y_hat = this._alpha * inp + (1 - this._alpha) * this.y_out;
 		this.y_out = this.y_hat;
 		return this.y_hat;

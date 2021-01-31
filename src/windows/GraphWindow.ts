@@ -460,7 +460,7 @@ class GraphWindow {
 					canvas.draw_text(
 						this.time_axis_value + 's',
 						this.inner_bounds.right -
-							this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   ') -
+							this.text_paint.measure_text(global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step   ') -
 							this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
 							view_port.view_width * 0.1,
 						this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
@@ -512,8 +512,8 @@ class GraphWindow {
 				}
 			}
 			canvas.draw_text(
-				global.utils.exponentiate_quickly(global.time_step) + 's/step',
-				this.inner_bounds.right - this.text_paint.measure_text(global.utils.exponentiate_quickly(global.time_step) + 's/step   '),
+				global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step',
+				this.inner_bounds.right - this.text_paint.measure_text(global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step   '),
 				this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 				this.text_paint
 			);

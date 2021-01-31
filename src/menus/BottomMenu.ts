@@ -63,7 +63,7 @@ class BottomMenu {
 		this.file_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
 		this.file_button.resize_paint();
 		this.time_step_button = new Button(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + 2 * global.variables.canvas_stroke_width_4, view_port.right, view_port.bottom);
-		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(global.time_step));
+		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(simulation_manager.time_step));
 		this.time_step_button.draw_stroke = false;
 		this.time_step_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
 		this.time_step_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
@@ -145,7 +145,7 @@ class BottomMenu {
 					!global.flags.flag_remove_all
 				) {
 					if (this.time_step_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-						time_step_window.input_button.text = global.utils.exponentiate_quickly(global.time_step);
+						time_step_window.input_button.text = global.utils.exponentiate_quickly(simulation_manager.time_step);
 						this.handle_timestep_flag(!global.flags.flag_select_timestep);
 						global.variables.component_touched = true;
 					}
@@ -282,7 +282,7 @@ class BottomMenu {
 	draw_bottom_menu(canvas: GraphicsEngine): void {
 		this.recolor();
 		this.file_button.text = language_manager.FILE[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + global.variables.user_file.title;
-		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(global.time_step));
+		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(simulation_manager.time_step));
 		this.time_step_button_width = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
 		let padding: number = 2 * global.variables.canvas_stroke_width_4;
 		this.file_button.set_bounds(

@@ -172,13 +172,13 @@ class Relay {
 		}
 	}
 	reset_relay() {
-		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / global.time_step;
+		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
 		this.elm.properties['Transient Voltage'] = 0;
 		this.elm.properties['Transient Current'] = global.utils.copy(this.elm.properties['Initial Current']);
 		this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
 	}
 	conserve_energy(): void {
-		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / global.time_step;
+		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
 		this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
 	}
 	update(): void {
@@ -731,7 +731,7 @@ class Relay {
 			this.line_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, this.relay_3.x, this.relay_3.y);
 			this.line_buffer[this.indexer++] = Array(this.relay_2.x, this.relay_2.y, this.relay_7.x, this.relay_7.y);
 			if (this.elm.properties['Transient Current'] >= this.elm.properties['Turn on Current']) {
-				if (global.flags.flag_simulating && simulation_manager.solutions_ready && global.simulation_time > global.time_step + global.time_step) {
+				if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_time > simulation_manager.time_step + simulation_manager.time_step) {
 					this.line_buffer[this.indexer++] = Array(this.relay_7.x, this.relay_7.y, this.relay_9.x, this.relay_9.y);
 				} else {
 					this.line_buffer[this.indexer++] = Array(this.relay_7.x, this.relay_7.y, this.relay_8.x, this.relay_8.y);
@@ -844,20 +844,20 @@ class Relay {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {}
 }

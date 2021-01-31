@@ -643,7 +643,7 @@ class VoltageControlledSwitch {
 			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
 			this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.connect2_x, this.connect2_y);
 			if (this.elm.properties['Output Voltage'] < this.elm.properties['High Voltage'] * 0.5) {
-				if (global.flags.flag_simulating && simulation_manager.solutions_ready && global.simulation_time > global.time_step + global.time_step) {
+				if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_time > simulation_manager.time_step + simulation_manager.time_step) {
 					this.line_buffer[this.indexer++] = Array(this.connect1_x, this.connect1_y, this.connect2_x, this.connect2_y);
 				} else {
 					this.line_buffer[this.indexer++] = Array(this.connect1_x, this.connect1_y, this.vcsw_0.x, this.vcsw_0.y);
@@ -761,20 +761,20 @@ class VoltageControlledSwitch {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['Output Voltage'] = 0;

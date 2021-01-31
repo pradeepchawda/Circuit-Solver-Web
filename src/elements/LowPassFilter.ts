@@ -174,7 +174,8 @@ class LowPassFilter {
 		}
 	}
 	lowpass_filter(input: number): number {
-		this.elm.properties['Alpha'] = (2.0 * Math.PI * global.time_step * this.elm.properties['Cutoff Frequency']) / (2.0 * Math.PI * global.time_step * this.elm.properties['Cutoff Frequency'] + 1.0);
+		this.elm.properties['Alpha'] =
+			(2.0 * Math.PI * simulation_manager.time_step * this.elm.properties['Cutoff Frequency']) / (2.0 * Math.PI * simulation_manager.time_step * this.elm.properties['Cutoff Frequency'] + 1.0);
 		this.elm.properties['Y Hat'] = this.elm.properties['Alpha'] * input + (1 - this.elm.properties['Alpha']) * this.elm.properties['Y Out'];
 		this.elm.properties['Y Out'] = global.utils.copy(this.elm.properties['Y Hat']);
 		return this.elm.properties['Y Hat'];
@@ -746,20 +747,20 @@ class LowPassFilter {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['Y Hat'] = 0;

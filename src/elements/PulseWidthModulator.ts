@@ -169,7 +169,7 @@ class PulseWidthModulator {
 	update(): void {
 		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
 			if (this.elm.consistent()) {
-				if (global.simulation_time < global.time_step + global.time_step || this.elm.properties['Counter'] >= this.elm.properties['Postscaler']) {
+				if (simulation_manager.simulation_time < simulation_manager.time_step + simulation_manager.time_step || this.elm.properties['Counter'] >= this.elm.properties['Postscaler']) {
 					this.elm.properties['Input Voltage1'] = global.utils.limit(engine_functions.get_voltage(this.elm.n1, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
 					this.elm.properties['Input Voltage2'] = global.utils.limit(engine_functions.get_voltage(this.elm.n2, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
 					if (this.elm.properties['Counter'] >= this.elm.properties['Postscaler']) {
@@ -178,13 +178,16 @@ class PulseWidthModulator {
 				}
 				this.elm.properties['Last Output Voltage'] = this.elm.properties['Output Voltage'];
 				this.elm.properties['Output Voltage'] = global.utils.copy(this.elm.properties['A']);
-				if (Math.abs(this.elm.properties['Last Output Voltage'] - this.elm.properties['Output Voltage']) > 0 || global.simulation_time < global.time_step + global.time_step) {
+				if (
+					Math.abs(this.elm.properties['Last Output Voltage'] - this.elm.properties['Output Voltage']) > 0 ||
+					simulation_manager.simulation_time < simulation_manager.time_step + simulation_manager.time_step
+				) {
 					this.elm.properties['Frequency'] = global.utils.map_range(this.elm.properties['Input Voltage1'], this.elm.properties['Min Frequency'], this.elm.properties['Max Frequency']);
 					this.elm.properties['Duty'] = global.utils.map_range(this.elm.properties['Input Voltage2'], this.elm.properties['Min Duty'], this.elm.properties['Max Duty']);
 					this.elm.properties['Counter']++;
 				}
 				this.elm.properties['Saw Wave'] =
-					0.5 - (1 / Math.PI) * Math.atan(1.0 / Math.tan(global.simulation_time * Math.PI * this.elm.properties['Frequency'] + global.utils.to_radians(this.elm.properties['Phase'])));
+					0.5 - (1 / Math.PI) * Math.atan(1.0 / Math.tan(simulation_manager.simulation_time * Math.PI * this.elm.properties['Frequency'] + global.utils.to_radians(this.elm.properties['Phase'])));
 				if (this.elm.properties['Saw Wave'] > 1.0 - this.elm.properties['Duty'] * 0.01) {
 					this.elm.properties['A'] = global.utils.copy(this.elm.properties['High Voltage']);
 				} else {
@@ -862,20 +865,20 @@ class PulseWidthModulator {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['A'] = 0;

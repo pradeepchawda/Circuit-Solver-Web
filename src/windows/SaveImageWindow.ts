@@ -143,7 +143,7 @@ class SaveImageWindow {
 		this.exit_button.draw_fill = false;
 		this.exit_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
-		this.input_button.text = global.utils.exponentiate_quickly(global.time_step);
+		this.input_button.text = global.utils.exponentiate_quickly(simulation_manager.time_step);
 		this.input_button.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.input_button.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 		this.input_button.draw_stroke = true;

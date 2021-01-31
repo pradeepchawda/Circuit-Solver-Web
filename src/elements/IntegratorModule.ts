@@ -146,14 +146,14 @@ class IntegratorModule {
 	update(): void {
 		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
 			if (this.elm.consistent()) {
-				if (global.simulation_time < global.time_step * 1.5) {
+				if (simulation_manager.simulation_time < simulation_manager.time_step * 1.5) {
 					this.elm.properties['Last Value'] = global.utils.copy(this.elm.properties['Initial Value']);
 					this.elm.properties['Input Voltage'] = engine_functions.get_voltage(this.elm.n1, -1);
 					this.elm.properties['Output Voltage'] = this.elm.properties['Initial Value'];
 				} else {
 					this.elm.properties['Last Value'] = global.utils.copy(this.elm.properties['Input Voltage']);
 					this.elm.properties['Input Voltage'] = engine_functions.get_voltage(this.elm.n1, -1);
-					this.elm.properties['Output Voltage'] += (this.elm.properties['Input Voltage'] + this.elm.properties['Last Value']) * 0.5 * global.time_step;
+					this.elm.properties['Output Voltage'] += (this.elm.properties['Input Voltage'] + this.elm.properties['Last Value']) * 0.5 * simulation_manager.time_step;
 				}
 				this.elm.properties['Output Voltage'] = global.utils.limit(this.elm.properties['Output Voltage'], this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
 			}
@@ -721,20 +721,20 @@ class IntegratorModule {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
 		this.elm.properties['Output Voltage'] = 0;
