@@ -10881,7 +10881,7 @@ class EngineFunctions {
 		engine_functions.draw_wires(canvas);
 		engine_functions.draw_selected_components(canvas);
 		engine_functions.draw_meter_traces(canvas);
-		canvas.draw_text(language_manager.WATERMARK, 5, 10, general_paint);
+		canvas.draw_text(language_manager.WATERMARK, 5, 1.5 * general_paint.get_text_size(), general_paint);
 		if (global.variables.wire_builder['step'] > 0) {
 			if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
 				canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);

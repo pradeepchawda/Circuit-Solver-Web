@@ -94,7 +94,6 @@ class Variables {
 	public canvas_text_size_6_zoom: number;
 	public move_paint: Paint;
 	public history: HISTORY_T;
-
 	constructor(CONSTANTS: Constants, COLORS: Colors) {
 		this.device_pixel_ratio = 1;
 		this.system_initialization = {
@@ -107,7 +106,6 @@ class Variables {
 		} else {
 			this.workspace_zoom_scale = 1.0;
 		}
-
 		this.natural_width = 0;
 		this.natural_height = 0;
 		this.virtual_canvas_id = 0;
