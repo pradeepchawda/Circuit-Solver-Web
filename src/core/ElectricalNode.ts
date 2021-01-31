@@ -164,9 +164,8 @@ class ElectricalNode {
 	}
 	debug_info(): string {
 		let str: string = '';
-		let DEBUG_TEMPLATE: string = '({ID},{TYPE}),';
 		for (var i: number = 0; i < this.references.length; i++) {
-			str += DEBUG_TEMPLATE.replace('{ID}', <string>(<unknown>this.references[i].id)).replace('{TYPE}', <string>(<unknown>this.references[i].type));
+			str += global.TEMPLATES.DEBUG_TEMPLATE.replace('{ID}', <string>(<unknown>this.references[i].id)).replace('{TYPE}', <string>(<unknown>this.references[i].type));
 		}
 		return str;
 	}

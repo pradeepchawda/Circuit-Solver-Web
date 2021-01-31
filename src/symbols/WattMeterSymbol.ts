@@ -1,5 +1,6 @@
 'use strict';
 class WattMeterSymbol {
+	public readonly TAG: string;
 	public index: number;
 	public page: number;
 	public bounds: RectF;
@@ -30,7 +31,6 @@ class WattMeterSymbol {
 	public text_background_paint: Paint;
 	public meter_symbol: MeterSymbols;
 	public flag_add_element: boolean;
-	public readonly TAG: string;
 	public draw_tag: boolean;
 	public text_bounds: RectF;
 	public height_ratio: number;
@@ -105,7 +105,7 @@ class WattMeterSymbol {
 		this.text_background_paint.set_alpha(255);
 		this.text_background_paint.set_paint_align(paint.align.CENTER);
 		this.meter_symbol = new MeterSymbols();
-		this.meter_symbol.reset(this.meter_symbol.METER_POWER, this.meter_symbol.STYLE_0);
+		this.meter_symbol.reset(global.CONSTANTS.METER_SYMBOL_POWER, global.CONSTANTS.METER_STYLE_0);
 		this.meter_symbol.set_bounds(
 			this.bounds.left + this.bounds.get_width() * 0.4,
 			this.bounds.top + this.bounds.get_height() * 0.4,
@@ -189,7 +189,7 @@ class WattMeterSymbol {
 			this.bounds.right - this.bounds.get_width() * 0.4,
 			this.bounds.bottom - this.bounds.get_height() * 0.4
 		);
-		this.meter_symbol.resize_symbol(this.meter_symbol.STYLE_1);
+		this.meter_symbol.resize_symbol(global.CONSTANTS.METER_STYLE_1);
 	}
 	resize(rect: RectF) {
 		this.bounds.set_bounds(rect.left, rect.top, rect.right, rect.bottom);

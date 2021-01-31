@@ -3,15 +3,15 @@ class Arc {
     constructor(x1, y1, x2, y2, amplitude) {
         this.amplitude = amplitude;
         this.arc_paint = new Paint();
-        this.arc_paint.set_paint_style(PAINT.style.STROKE);
-        this.arc_paint.set_paint_cap(PAINT.cap.ROUND);
-        this.arc_paint.set_paint_join(PAINT.join.MITER);
+        this.arc_paint.set_paint_style(paint.style.STROKE);
+        this.arc_paint.set_paint_cap(paint.cap.ROUND);
+        this.arc_paint.set_paint_join(paint.join.MITER);
         this.arc_paint.set_stroke_width(global.variables.canvas_stroke_width_2_zoom);
         this.arc_paint.set_color(global.COLORS.ELEMENT_COLOR);
         this.arc_paint.set_text_size(global.variables.canvas_text_size_4_zoom);
         this.arc_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.arc_paint.set_alpha(255);
-        this.arc_paint.set_paint_align(PAINT.align.CENTER);
+        this.arc_paint.set_paint_align(paint.align.CENTER);
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;

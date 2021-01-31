@@ -152,7 +152,7 @@ class WattMeter {
 		this.text_paint.set_paint_align(paint.align.CENTER);
 		this.is_translating = false;
 		this.meter_symbol = new MeterSymbols();
-		this.meter_symbol.reset(this.meter_symbol.METER_POWER, this.meter_symbol.STYLE_0);
+		this.meter_symbol.reset(global.CONSTANTS.METER_SYMBOL_POWER, global.CONSTANTS.METER_STYLE_0);
 		this.meter_symbol.set_bounds(
 			this.bounds.left + this.bounds.get_width() * 0.4,
 			this.bounds.top + this.bounds.get_height() * 0.4,
@@ -675,7 +675,7 @@ class WattMeter {
 				this.bounds.right - this.bounds.get_width() * 0.4,
 				this.bounds.bottom - this.bounds.get_height() * 0.4
 			);
-			this.meter_symbol.resize_symbol(this.meter_symbol.STYLE_0);
+			this.meter_symbol.resize_symbol(global.CONSTANTS.METER_STYLE_0);
 			this.build_element_flag = false;
 		}
 	}

@@ -3,35 +3,35 @@ class ElectricalNode {
     constructor(x, y, id) {
         this.location = new PointF(x, y);
         this.node_line_paint = new Paint();
-        this.node_line_paint.set_paint_style(PAINT.style.STROKE);
-        this.node_line_paint.set_paint_cap(PAINT.cap.ROUND);
-        this.node_line_paint.set_paint_join(PAINT.join.MITER);
+        this.node_line_paint.set_paint_style(paint.style.STROKE);
+        this.node_line_paint.set_paint_cap(paint.cap.ROUND);
+        this.node_line_paint.set_paint_join(paint.join.MITER);
         this.node_line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.node_line_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         this.node_line_paint.set_text_size(global.variables.canvas_text_size_5);
         this.node_line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.node_line_paint.set_alpha(192);
-        this.node_line_paint.set_paint_align(PAINT.align.CENTER);
+        this.node_line_paint.set_paint_align(paint.align.CENTER);
         this.node_fill_paint = new Paint();
-        this.node_fill_paint.set_paint_style(PAINT.style.FILL);
-        this.node_fill_paint.set_paint_cap(PAINT.cap.ROUND);
-        this.node_fill_paint.set_paint_join(PAINT.join.MITER);
+        this.node_fill_paint.set_paint_style(paint.style.FILL);
+        this.node_fill_paint.set_paint_cap(paint.cap.ROUND);
+        this.node_fill_paint.set_paint_join(paint.join.MITER);
         this.node_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.node_fill_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         this.node_fill_paint.set_text_size(global.variables.canvas_text_size_5);
         this.node_fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.node_fill_paint.set_alpha(192);
-        this.node_fill_paint.set_paint_align(PAINT.align.CENTER);
+        this.node_fill_paint.set_paint_align(paint.align.CENTER);
         this.node_fill_paint_alt = new Paint();
-        this.node_fill_paint_alt.set_paint_style(PAINT.style.FILL);
-        this.node_fill_paint_alt.set_paint_cap(PAINT.cap.ROUND);
-        this.node_fill_paint_alt.set_paint_join(PAINT.join.MITER);
+        this.node_fill_paint_alt.set_paint_style(paint.style.FILL);
+        this.node_fill_paint_alt.set_paint_cap(paint.cap.ROUND);
+        this.node_fill_paint_alt.set_paint_join(paint.join.MITER);
         this.node_fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.node_fill_paint_alt.set_color(global.COLORS.GENERAL_GREEN_COLOR);
         this.node_fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
         this.node_fill_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.node_fill_paint_alt.set_alpha(192);
-        this.node_fill_paint_alt.set_paint_align(PAINT.align.CENTER);
+        this.node_fill_paint_alt.set_paint_align(paint.align.CENTER);
         this.id = id;
         this.simulation_id = -1;
         this.references = [];
@@ -155,9 +155,8 @@ class ElectricalNode {
     }
     debug_info() {
         let str = '';
-        let DEBUG_TEMPLATE = '({ID},{TYPE}),';
         for (var i = 0; i < this.references.length; i++) {
-            str += DEBUG_TEMPLATE.replace('{ID}', this.references[i].id).replace('{TYPE}', this.references[i].type);
+            str += global.TEMPLATES.DEBUG_TEMPLATE.replace('{ID}', this.references[i].id).replace('{TYPE}', this.references[i].type);
         }
         return str;
     }

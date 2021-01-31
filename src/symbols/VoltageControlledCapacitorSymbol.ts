@@ -1,5 +1,6 @@
 'use strict';
 class VoltageControlledCapacitorSymbol {
+	public readonly TAG: string;
 	public index: number;
 	public page: number;
 	public bounds: RectF;
@@ -34,7 +35,6 @@ class VoltageControlledCapacitorSymbol {
 	public text_paint: Paint;
 	public text_background_paint: Paint;
 	public flag_add_element: boolean;
-	public readonly TAG: string;
 	public draw_tag: boolean;
 	public text_bounds: RectF;
 	public height_ratio: number;

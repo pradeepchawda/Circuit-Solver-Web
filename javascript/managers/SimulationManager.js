@@ -79,7 +79,7 @@ class SimulationManager {
         this.first_error_check = true;
         this.first_x_matrix_copy = true;
         this.first_x_matrix_solution = false;
-        linear_algebra.first_lup_solve = true;
+        linear_algebra.flag_first_solution = true;
     }
     setup() {
         this.patch();

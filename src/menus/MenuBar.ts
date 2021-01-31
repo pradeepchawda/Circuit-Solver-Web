@@ -1,9 +1,6 @@
 'use strict';
 class MenuBar {
 	public readonly MAX_ICONS: number;
-	public readonly height_ratio: number;
-	public bounds: RectF;
-	public menu_icons: Array<RectF>;
 	public readonly REMOVE_ALL_INDEX: number;
 	public readonly SAVE_INDEX: number;
 	public readonly SAVE_IMG_INDEX: number;
@@ -12,6 +9,9 @@ class MenuBar {
 	public readonly GO_INDEX: number;
 	public readonly ADD_INDEX: number;
 	public readonly UP_DOWN_INDEX: number;
+	public height_ratio: number;
+	public bounds: RectF;
+	public menu_icons: Array<RectF>;
 	public escape_interrupt: boolean;
 	public line_paint: Paint;
 	public fill_paint: Paint;

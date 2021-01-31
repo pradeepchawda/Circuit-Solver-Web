@@ -535,7 +535,7 @@ class ACCurrent {
 			this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
 			this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 			this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
-			this.sine_wave.resize(this.sine_wave.STYLE_0);
+			this.sine_wave.resize(global.CONSTANTS.SINE_WAVE_STYLE_0);
 		}
 	}
 	refactor(): void {

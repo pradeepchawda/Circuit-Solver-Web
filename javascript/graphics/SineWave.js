@@ -1,19 +1,17 @@
 'use strict';
 class SineWave {
     constructor(x1, y1, x2, y2, amplitude) {
-        this.STYLE_0 = 0;
-        this.STYLE_1 = 1;
         this.amplitude = amplitude;
         this.sine_wave_paint = new Paint();
-        this.sine_wave_paint.set_paint_style(PAINT.style.STROKE);
-        this.sine_wave_paint.set_paint_cap(PAINT.cap.ROUND);
-        this.sine_wave_paint.set_paint_join(PAINT.join.MITER);
+        this.sine_wave_paint.set_paint_style(paint.style.STROKE);
+        this.sine_wave_paint.set_paint_cap(paint.cap.ROUND);
+        this.sine_wave_paint.set_paint_join(paint.join.MITER);
         this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.sine_wave_paint.set_color(global.COLORS.ELEMENT_COLOR);
         this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4);
         this.sine_wave_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.sine_wave_paint.set_alpha(255);
-        this.sine_wave_paint.set_paint_align(PAINT.align.CENTER);
+        this.sine_wave_paint.set_paint_align(paint.align.CENTER);
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -42,11 +40,11 @@ class SineWave {
         this.sine_wave_paint.set_color(color);
     }
     resize(style) {
-        if (style === this.STYLE_0) {
+        if (style === global.CONSTANTS.SINE_WAVE_STYLE_0) {
             this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2_zoom);
             this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4_zoom);
         }
-        else if (style === this.STYLE_1) {
+        else if (style === global.CONSTANTS.SINE_WAVE_STYLE_1) {
             this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
             this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4);
         }

@@ -9,7 +9,7 @@ class OnScreenKeyboard {
 	public readonly KEYBOARD_MAPPING: Array<string>;
 	public readonly KEYBOARD_INCREMENT_AT: Array<number>;
 	public readonly KEYBOARD_BLOCK_EXPAND: Array<number>;
-	public readonly KEYBOARD_EXPAND_TEMPLATE: KEYBOARD_EXPAND_T;
+	public readonly KEYBOARD_EXPAND_FORMAT: KEYBOARD_EXPAND_T;
 	public readonly KEYBOARD_KEYS: Array<RectF>;
 	public readonly ENGINEERING_KEYBOARD_FILTER: RegExp;
 	public readonly FILE_NAME_KEYBOARD_FILTER: RegExp;
@@ -126,31 +126,31 @@ class OnScreenKeyboard {
 		this.KEYBOARD_INCREMENT_AT.push(29);
 		this.KEYBOARD_INCREMENT_AT.push(42);
 		this.KEYBOARD_INCREMENT_AT.push(55);
-		this.KEYBOARD_EXPAND_TEMPLATE = {
+		this.KEYBOARD_EXPAND_FORMAT = {
 			Id: null,
 			Factor: null
 		};
-		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 14;
-		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 1.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
-		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 15;
-		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 1.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
-		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 30;
-		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.0;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
-		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 42;
-		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
-		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 43;
-		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
-		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 55;
-		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 2.0;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
-		this.KEYBOARD_EXPAND_TEMPLATE['Id'] = 60;
-		this.KEYBOARD_EXPAND_TEMPLATE['Factor'] = 5.5;
-		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_TEMPLATE));
+		this.KEYBOARD_EXPAND_FORMAT['Id'] = 14;
+		this.KEYBOARD_EXPAND_FORMAT['Factor'] = 1.5;
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_FORMAT));
+		this.KEYBOARD_EXPAND_FORMAT['Id'] = 15;
+		this.KEYBOARD_EXPAND_FORMAT['Factor'] = 1.5;
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_FORMAT));
+		this.KEYBOARD_EXPAND_FORMAT['Id'] = 30;
+		this.KEYBOARD_EXPAND_FORMAT['Factor'] = 2.0;
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_FORMAT));
+		this.KEYBOARD_EXPAND_FORMAT['Id'] = 42;
+		this.KEYBOARD_EXPAND_FORMAT['Factor'] = 2.5;
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_FORMAT));
+		this.KEYBOARD_EXPAND_FORMAT['Id'] = 43;
+		this.KEYBOARD_EXPAND_FORMAT['Factor'] = 2.5;
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_FORMAT));
+		this.KEYBOARD_EXPAND_FORMAT['Id'] = 55;
+		this.KEYBOARD_EXPAND_FORMAT['Factor'] = 2.0;
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_FORMAT));
+		this.KEYBOARD_EXPAND_FORMAT['Id'] = 60;
+		this.KEYBOARD_EXPAND_FORMAT['Factor'] = 5.5;
+		this.KEYBOARD_BLOCK_EXPAND.push(global.utils.copy(this.KEYBOARD_EXPAND_FORMAT));
 		this.KEYBOARD_KEYS = [];
 		this.flag_key_down = false;
 		this.flag_key_up = false;

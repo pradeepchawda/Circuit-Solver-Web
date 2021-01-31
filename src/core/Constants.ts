@@ -72,6 +72,13 @@ class Constants {
 	public readonly GARBAGE_COLLECTOR_SIZE: number;
 	public readonly SINE_WAVE_STYLE_0: number;
 	public readonly SINE_WAVE_STYLE_1: number;
+	public readonly METER_STYLE_0: number;
+	public readonly METER_STYLE_1: number;
+	public readonly METER_SYMBOL_VOLTAGE: number;
+	public readonly METER_SYMBOL_CURRENT: number;
+	public readonly METER_SYMBOL_RESISTANCE: number;
+	public readonly METER_SYMBOL_POWER: number;
+
 	constructor() {
 		let indexer: number = 0;
 		this.NULL = null;
@@ -159,5 +166,11 @@ class Constants {
 		this.GARBAGE_COLLECTOR_SIZE = 16;
 		this.SINE_WAVE_STYLE_0 = 0;
 		this.SINE_WAVE_STYLE_1 = 1;
+		this.METER_STYLE_0 = 0;
+		this.METER_STYLE_1 = 1;
+		this.METER_SYMBOL_VOLTAGE = 0;
+		this.METER_SYMBOL_CURRENT = 1;
+		this.METER_SYMBOL_RESISTANCE = 2;
+		this.METER_SYMBOL_POWER = 3;
 	}
 }

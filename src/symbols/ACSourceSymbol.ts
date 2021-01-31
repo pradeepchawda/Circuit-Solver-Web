@@ -1,5 +1,6 @@
 'use strict';
 class ACSourceSymbol {
+	public readonly TAG: string;
 	public index: number;
 	public page: number;
 	public bounds: RectF;
@@ -23,7 +24,6 @@ class ACSourceSymbol {
 	public sine_wave_p2: PointF;
 	public sine_wave: SineWave;
 	public flag_add_element: boolean;
-	public readonly TAG: string;
 	public draw_tag: boolean;
 	public text_bounds: RectF;
 	public height_ratio: number;
@@ -177,7 +177,7 @@ class ACSourceSymbol {
 		this.point_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 		this.text_paint.set_text_size(global.variables.canvas_text_size_4);
-		this.sine_wave.resize(this.sine_wave.STYLE_1);
+		this.sine_wave.resize(global.CONSTANTS.SINE_WAVE_STYLE_1);
 	}
 	recolor() {
 		if (this.flag_add_element) {

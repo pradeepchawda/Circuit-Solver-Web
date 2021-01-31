@@ -8,7 +8,6 @@ class Button extends RectF {
 	public line_paint: Paint;
 	public fill_paint: Paint;
 	public text_paint: Paint;
-	private readonly TEXT_UNDERSCORE_TEMPLATE: string;
 	constructor(left: number, top: number, right: number, bottom: number) {
 		super(left, top, right, bottom);
 		this.text = '';
@@ -50,7 +49,6 @@ class Button extends RectF {
 		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
 		this.text_paint.set_paint_align(paint.align.CENTER);
-		this.TEXT_UNDERSCORE_TEMPLATE = '{TEXT}_';
 	}
 	resize_paint(): void {
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
@@ -71,7 +69,7 @@ class Button extends RectF {
 		if (!this.draw_cursor) {
 			canvas.draw_text(this.text, x, y, this.text_paint);
 		} else {
-			canvas.draw_text(this.TEXT_UNDERSCORE_TEMPLATE.replace('{TEXT}', this.text), x, y, this.text_paint);
+			canvas.draw_text(global.TEMPLATES.TEXT_UNDERSCORE_TEMPLATE.replace('{TEXT}', this.text), x, y, this.text_paint);
 		}
 	}
 	draw_button(canvas: GraphicsEngine): void {

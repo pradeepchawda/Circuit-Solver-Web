@@ -3,7 +3,7 @@ class GraphicsEngine {
     constructor(ctx) {
         this.ctx = ctx;
         this.fill_paint = new Paint();
-        this.fill_paint.set_paint_style(PAINT.style.FILL);
+        this.fill_paint.set_paint_style(paint.style.FILL);
         this.width = 0;
         this.height = 0;
         this.x = 0;
@@ -31,7 +31,6 @@ class GraphicsEngine {
         this.last_text_align = '';
         this.last_line_cap = '';
         this.ENABLE_LINE_JOIN = true;
-        this.FONT_TEMPLATE = 'spx f';
         this.FAST_PI_MUL_2 = 7;
         this.PI_MUL_2 = Math.PI * 2;
         this.dict = null;
@@ -63,7 +62,7 @@ class GraphicsEngine {
     }
     apply_paint(paint, is_text) {
         this.ctx.beginPath();
-        if (PAINT.style.FILL === paint.paint_style) {
+        if (paint.style.FILL === paint.paint_style) {
             this.ctx.fillStyle = paint.color;
             this.last_fill_color = paint.color;
         }
@@ -77,7 +76,7 @@ class GraphicsEngine {
                 this.last_text_align = paint.text_align;
             }
             if (this.last_text_size !== paint.text_size || this.last_font !== paint.font) {
-                this.ctx.font = this.FONT_TEMPLATE.replace('s', paint.text_size).replace('f', paint.font);
+                this.ctx.font = global.TEMPLATES.FONT_TEMPLATE.replace('s', paint.text_size).replace('f', paint.font);
                 this.last_text_size = paint.text_size;
                 this.last_font = paint.font;
             }

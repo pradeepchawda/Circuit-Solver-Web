@@ -1,7 +1,7 @@
 'use strict';
 class Viewport {
-	public line_paint: Paint;
 	public readonly OPTION_DRAW_BOUNDS: boolean;
+	public line_paint: Paint;
 	public apply_spread_factor: boolean;
 	public screen_width: number;
 	public screen_height: number;

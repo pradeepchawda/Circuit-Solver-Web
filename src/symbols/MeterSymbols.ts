@@ -1,12 +1,7 @@
 'use strict';
 class MeterSymbols {
 	public bounds: RectF;
-	public METER_VOLTAGE: number;
-	public METER_CURRENT: number;
-	public METER_RESISTANCE: number;
-	public METER_POWER: number;
-	public STYLE_0: number;
-	public STYLE_1: number;
+
 	public meter_type: number;
 	public meter_paint: Paint;
 	public points: Array<PointF>;
@@ -14,13 +9,8 @@ class MeterSymbols {
 	public circle_buffer: Array<Array<number>>;
 	constructor() {
 		this.bounds = new RectF(0, 0, 0, 0);
-		this.METER_VOLTAGE = 0;
-		this.METER_CURRENT = 1;
-		this.METER_RESISTANCE = 2;
-		this.METER_POWER = 3;
-		this.STYLE_0 = 0;
-		this.STYLE_1 = 1;
-		this.meter_type = this.METER_VOLTAGE;
+
+		this.meter_type = global.CONSTANTS.METER_SYMBOL_VOLTAGE;
 		this.meter_paint = new Paint();
 		this.meter_paint.set_paint_style(paint.style.STROKE);
 		this.meter_paint.set_paint_cap(paint.cap.ROUND);
@@ -47,12 +37,12 @@ class MeterSymbols {
 	}
 	reset(setter: number, style: number): void {
 		this.meter_type = setter;
-		if (style === this.STYLE_0) {
+		if (style === global.CONSTANTS.METER_STYLE_0) {
 			this.meter_paint.set_color(global.COLORS.ELEMENT_COLOR);
 			this.meter_paint.set_paint_style(paint.style.STROKE);
 			this.meter_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 			this.meter_paint.set_paint_cap(paint.cap.ROUND);
-		} else if (style === this.STYLE_1) {
+		} else if (style === global.CONSTANTS.METER_STYLE_1) {
 			this.meter_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
 			this.meter_paint.set_paint_style(paint.style.STROKE);
 			this.meter_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
@@ -67,17 +57,17 @@ class MeterSymbols {
 	populate(): void {
 		let temp_width: number = this.bounds.get_width() >> 2;
 		let temp_height: number = this.bounds.get_height() >> 2;
-		if (this.meter_type === this.METER_CURRENT) {
+		if (this.meter_type === global.CONSTANTS.METER_SYMBOL_CURRENT) {
 			this.points.push(new PointF(this.bounds.get_center_x(), this.bounds.top));
 			this.points.push(new PointF(this.bounds.get_center_x() - temp_width, this.bounds.get_center_y()));
 			this.points.push(new PointF(this.bounds.left, this.bounds.bottom));
 			this.points.push(new PointF(this.bounds.get_center_x() + temp_width, this.bounds.get_center_y()));
 			this.points.push(new PointF(this.bounds.right, this.bounds.bottom));
-		} else if (this.meter_type === this.METER_VOLTAGE) {
+		} else if (this.meter_type === global.CONSTANTS.METER_SYMBOL_VOLTAGE) {
 			this.points.push(new PointF(this.bounds.left, this.bounds.top));
 			this.points.push(new PointF(this.bounds.get_center_x(), this.bounds.bottom));
 			this.points.push(new PointF(this.bounds.right, this.bounds.top));
-		} else if (this.meter_type === this.METER_RESISTANCE) {
+		} else if (this.meter_type === global.CONSTANTS.METER_SYMBOL_RESISTANCE) {
 			this.points.push(new PointF(this.bounds.left, this.bounds.bottom));
 			this.points.push(new PointF(this.bounds.left + temp_width, this.bounds.bottom));
 			this.points.push(new PointF(this.bounds.left + temp_width, this.bounds.bottom - temp_height));
@@ -90,7 +80,7 @@ class MeterSymbols {
 			this.points.push(new PointF(this.bounds.right - temp_width, this.bounds.bottom - temp_height));
 			this.points.push(new PointF(this.bounds.right - temp_width, this.bounds.bottom));
 			this.points.push(new PointF(this.bounds.right, this.bounds.bottom));
-		} else if (this.meter_type === this.METER_POWER) {
+		} else if (this.meter_type === global.CONSTANTS.METER_SYMBOL_POWER) {
 			this.points.push(new PointF(this.bounds.left, this.bounds.top));
 			this.points.push(new PointF(this.bounds.left + this.bounds.get_width() * 0.25, this.bounds.bottom));
 			this.points.push(new PointF(this.bounds.get_center_x(), this.bounds.get_center_y()));
@@ -101,7 +91,7 @@ class MeterSymbols {
 	edit(type: number): void {
 		let temp_width: number = this.bounds.get_width() >> 2;
 		let temp_height: number = this.bounds.get_height() >> 2;
-		if (type === this.METER_CURRENT) {
+		if (type === global.CONSTANTS.METER_SYMBOL_CURRENT) {
 			this.points[0].x = this.bounds.get_center_x();
 			this.points[0].y = this.bounds.top;
 			this.points[1].x = this.bounds.get_center_x() - temp_width;
@@ -112,14 +102,14 @@ class MeterSymbols {
 			this.points[3].y = this.bounds.get_center_y();
 			this.points[4].x = this.bounds.right;
 			this.points[4].y = this.bounds.bottom;
-		} else if (type === this.METER_VOLTAGE) {
+		} else if (type === global.CONSTANTS.METER_SYMBOL_VOLTAGE) {
 			this.points[0].x = this.bounds.left;
 			this.points[0].y = this.bounds.top;
 			this.points[1].x = this.bounds.get_center_x();
 			this.points[1].y = this.bounds.bottom;
 			this.points[2].x = this.bounds.right;
 			this.points[2].y = this.bounds.top;
-		} else if (type === this.METER_RESISTANCE) {
+		} else if (type === global.CONSTANTS.METER_SYMBOL_RESISTANCE) {
 			this.points[0].x = this.bounds.left;
 			this.points[0].y = this.bounds.bottom;
 			this.points[1].x = this.bounds.left + temp_width;
@@ -144,7 +134,7 @@ class MeterSymbols {
 			this.points[10].y = this.bounds.bottom;
 			this.points[11].x = this.bounds.right;
 			this.points[11].y = this.bounds.bottom;
-		} else if (type === this.METER_POWER) {
+		} else if (type === global.CONSTANTS.METER_SYMBOL_POWER) {
 			this.points[0].x = this.bounds.left;
 			this.points[0].y = this.bounds.top;
 			this.points[1].x = this.bounds.left + this.bounds.get_width() * 0.25;
@@ -158,10 +148,10 @@ class MeterSymbols {
 		}
 	}
 	resize_symbol(style: number): void {
-		if (style === this.STYLE_0) {
+		if (style === global.CONSTANTS.METER_STYLE_0) {
 			this.meter_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 			this.meter_paint.set_text_size(global.variables.canvas_text_size_1);
-		} else if (style === this.STYLE_1) {
+		} else if (style === global.CONSTANTS.METER_STYLE_1) {
 			this.meter_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 			this.meter_paint.set_text_size(global.variables.canvas_text_size_4);
 		}
@@ -170,16 +160,16 @@ class MeterSymbols {
 		let indexer: number = 0;
 		this.circle_buffer = [];
 		this.line_buffer = [];
-		if (this.meter_type === this.METER_CURRENT) {
+		if (this.meter_type === global.CONSTANTS.METER_SYMBOL_CURRENT) {
 			this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
 			this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
 			this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[3].x, this.points[3].y);
 			this.line_buffer[indexer++] = Array(this.points[3].x, this.points[3].y, this.points[4].x, this.points[4].y);
 			this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[3].x, this.points[3].y);
-		} else if (this.meter_type === this.METER_VOLTAGE) {
+		} else if (this.meter_type === global.CONSTANTS.METER_SYMBOL_VOLTAGE) {
 			this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
 			this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
-		} else if (this.meter_type === this.METER_RESISTANCE) {
+		} else if (this.meter_type === global.CONSTANTS.METER_SYMBOL_RESISTANCE) {
 			this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
 			this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
 			this.line_buffer[indexer++] = Array(this.points[2].x, this.points[2].y, this.points[3].x, this.points[3].y);
@@ -191,7 +181,7 @@ class MeterSymbols {
 			this.line_buffer[indexer++] = Array(this.points[8].x, this.points[8].y, this.points[9].x, this.points[9].y);
 			this.line_buffer[indexer++] = Array(this.points[9].x, this.points[9].y, this.points[10].x, this.points[10].y);
 			this.line_buffer[indexer++] = Array(this.points[10].x, this.points[10].y, this.points[11].x, this.points[11].y);
-		} else if (this.meter_type === this.METER_POWER) {
+		} else if (this.meter_type === global.CONSTANTS.METER_SYMBOL_POWER) {
 			this.line_buffer[indexer++] = Array(this.points[0].x, this.points[0].y, this.points[1].x, this.points[1].y);
 			this.line_buffer[indexer++] = Array(this.points[1].x, this.points[1].y, this.points[2].x, this.points[2].y);
 			this.line_buffer[indexer++] = Array(this.points[2].x, this.points[2].y, this.points[3].x, this.points[3].y);

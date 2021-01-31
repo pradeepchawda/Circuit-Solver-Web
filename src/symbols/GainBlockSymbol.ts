@@ -1,5 +1,6 @@
 'use strict';
 class GainBlockSymbol {
+	public readonly TAG: string;
 	public index: number;
 	public page: number;
 	public bounds: RectF;
@@ -26,7 +27,6 @@ class GainBlockSymbol {
 	public text_paint_alt: Paint;
 	public text_background_paint: Paint;
 	public flag_add_element: boolean;
-	public readonly TAG: string;
 	public draw_tag: boolean;
 	public text_bounds: RectF;
 	public height_ratio: number;

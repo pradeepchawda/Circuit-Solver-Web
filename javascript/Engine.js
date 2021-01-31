@@ -1,6 +1,6 @@
 'use strict';
 /* #START_GLOBAL_EXTRACT# */
-var PAINT = new Paint();
+var paint = new Paint();
 var global = new Global();
 //@ts-ignore
 String.prototype.hashCode = function () {
@@ -218,7 +218,7 @@ var element_options_window = global.CONSTANTS.NULL;
 var element_options_edit_window = global.CONSTANTS.NULL;
 var zoom_window = global.CONSTANTS.NULL;
 var settings_window = global.CONSTANTS.NULL;
-var yes_no_window = global.CONSTANTS.NULL;
+var confirm_window = global.CONSTANTS.NULL;
 var wire_manager = new WireManager();
 var engine_functions = new EngineFunctions();
 var nodes = [];
@@ -250,9 +250,9 @@ function load_app() {
     let mult_node_space_y_cache = 0;
     let node_length = 0;
     general_paint = new Paint();
-    general_paint.set_paint_style(PAINT.style.FILL);
-    general_paint.set_paint_cap(PAINT.cap.ROUND);
-    general_paint.set_paint_join(PAINT.join.MITER);
+    general_paint.set_paint_style(paint.style.FILL);
+    general_paint.set_paint_cap(paint.cap.ROUND);
+    general_paint.set_paint_join(paint.join.MITER);
     general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
     if (global.CONSTANTS.MOBILE_MODE) {
         general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
@@ -263,7 +263,7 @@ function load_app() {
     general_paint.set_text_size(global.variables.canvas_text_size_5);
     general_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
     general_paint.set_alpha(255);
-    general_paint.set_paint_align(general_paint.align.LEFT);
+    general_paint.set_paint_align(paint.align.LEFT);
     function initialize(step) {
         if (step === 0) {
             toast = new Toast();
@@ -283,12 +283,12 @@ function load_app() {
             save_circuit_window = new SaveCircuitWindow();
             save_image_window = new SaveImageWindow();
             element_options_window = new ElementOptionsWindow();
-            element_options_edit_window = new ElementOptionsEditWindow();
         }
         else if (step === 3) {
+            element_options_edit_window = new ElementOptionsEditWindow();
             zoom_window = new ZoomWindow();
             settings_window = new SettingsWindow();
-            yes_no_window = new YesNoWindow();
+            confirm_window = new ConfirmWindow();
         }
         else if (step === 4) {
             register_cross_platform_listeners();
@@ -530,7 +530,7 @@ function load_app() {
         element_options_edit_window.resize_window();
         zoom_window.resize_window();
         settings_window.resize_window();
-        yes_no_window.resize_window();
+        confirm_window.resize_window();
         graph_window.resize_window();
         toast.resize_toast();
         on_screen_keyboard.resize_keyboard();
@@ -588,7 +588,7 @@ function load_app() {
                 global.flags.flag_key_down_event ||
                 global.flags.flag_picture_request ||
                 global.flags.flag_simulating ||
-                !workspace.draw_to_screen ||
+                !workspace.flag_draw_to_screen ||
                 toast.draw_text ||
                 !global.variables.system_initialization['completed']);
         }
@@ -607,110 +607,111 @@ function load_app() {
         }
     }
     function system_loop() {
-        // try {
-        if (normal_draw_permissions()) {
-            global.variables.canvas_redraw_counter = 0;
-            global.flags.flag_canvas_draw_event = true;
-        }
-        if (global.flags.flag_canvas_draw_event) {
-            if (global.variables.system_initialization['completed']) {
-                temp_draw_signal =
-                    !global.flags.flag_simulating ||
-                        global.flags.flag_resize_event ||
-                        global.flags.flag_mouse_down_event ||
-                        global.flags.flag_mouse_move_event ||
-                        global.flags.flag_mouse_up_event ||
-                        global.flags.flag_mouse_wheel_event ||
-                        global.flags.flag_mouse_double_click_event ||
-                        global.flags.flag_key_up_event ||
-                        global.flags.flag_key_down_event ||
-                        global.flags.flag_picture_request ||
-                        !workspace.draw_to_screen ||
-                        toast.draw_text;
+        try {
+            if (normal_draw_permissions()) {
+                global.variables.canvas_redraw_counter = 0;
+                global.flags.flag_canvas_draw_event = true;
             }
-            else {
-                temp_draw_signal =
-                    !global.flags.flag_simulating ||
-                        global.flags.flag_resize_event ||
-                        global.flags.flag_mouse_down_event ||
-                        global.flags.flag_mouse_move_event ||
-                        global.flags.flag_mouse_up_event ||
-                        global.flags.flag_mouse_wheel_event ||
-                        global.flags.flag_mouse_double_click_event ||
-                        global.flags.flag_key_up_event ||
-                        global.flags.flag_key_down_event ||
-                        global.flags.flag_picture_request ||
-                        !workspace.draw_to_screen;
-            }
-            global.variables.last_selected = global.variables.selected;
-            update();
-            if (global.variables.last_selected !== global.variables.selected) {
-                wire_manager.reset_wire_builder();
-            }
-            if (global.flags.flag_force_resize_event) {
-                global.flags.flag_build_element = true;
-                global.variables.signal_build_counter = 0;
-                global.flags.flag_force_resize_event = false;
-                global.flags.flag_draw_block = true;
-                resize_canvas();
-            }
-            fps_div ^= 1;
-            if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
+            if (global.flags.flag_canvas_draw_event) {
                 if (global.variables.system_initialization['completed']) {
-                    if ((global.flags.flag_simulating && global.flags.flag_canvas_draw_request) || temp_draw_signal) {
-                        if (!global.flags.flag_on_restore_event) {
-                            if (!global.flags.flag_draw_block) {
-                                ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                    temp_draw_signal =
+                        !global.flags.flag_simulating ||
+                            global.flags.flag_resize_event ||
+                            global.flags.flag_mouse_down_event ||
+                            global.flags.flag_mouse_move_event ||
+                            global.flags.flag_mouse_up_event ||
+                            global.flags.flag_mouse_wheel_event ||
+                            global.flags.flag_mouse_double_click_event ||
+                            global.flags.flag_key_up_event ||
+                            global.flags.flag_key_down_event ||
+                            global.flags.flag_picture_request ||
+                            !workspace.flag_draw_to_screen ||
+                            toast.draw_text;
+                }
+                else {
+                    temp_draw_signal =
+                        !global.flags.flag_simulating ||
+                            global.flags.flag_resize_event ||
+                            global.flags.flag_mouse_down_event ||
+                            global.flags.flag_mouse_move_event ||
+                            global.flags.flag_mouse_up_event ||
+                            global.flags.flag_mouse_wheel_event ||
+                            global.flags.flag_mouse_double_click_event ||
+                            global.flags.flag_key_up_event ||
+                            global.flags.flag_key_down_event ||
+                            global.flags.flag_picture_request ||
+                            !workspace.flag_draw_to_screen;
+                }
+                global.variables.last_selected = global.variables.selected;
+                update();
+                if (global.variables.last_selected !== global.variables.selected) {
+                    wire_manager.reset_wire_builder();
+                }
+                if (global.flags.flag_force_resize_event) {
+                    global.flags.flag_build_element = true;
+                    global.variables.signal_build_counter = 0;
+                    global.flags.flag_force_resize_event = false;
+                    global.flags.flag_draw_block = true;
+                    resize_canvas();
+                }
+                fps_div ^= 1;
+                if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
+                    if (global.variables.system_initialization['completed']) {
+                        if ((global.flags.flag_simulating && global.flags.flag_canvas_draw_request) || temp_draw_signal) {
+                            if (!global.flags.flag_on_restore_event) {
+                                if (!global.flags.flag_draw_block) {
+                                    ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                                }
+                                canvas.release();
+                                canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                                draw();
+                                if (global.flags.flag_draw_block) {
+                                    global.flags.flag_draw_block = false;
+                                }
                             }
-                            canvas.release();
-                            canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                            draw();
-                            if (global.flags.flag_draw_block) {
-                                global.flags.flag_draw_block = false;
-                            }
-                        }
-                        if (global.flags.flag_canvas_draw_request) {
-                            if (global.variables.flag_canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-                                global.variables.flag_canvas_draw_request_counter = 0;
-                                global.flags.flag_canvas_draw_request = false;
+                            if (global.flags.flag_canvas_draw_request) {
+                                if (global.variables.flag_canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+                                    global.variables.flag_canvas_draw_request_counter = 0;
+                                    global.flags.flag_canvas_draw_request = false;
+                                }
                             }
                         }
                     }
                 }
-            }
-            if (global.flags.flag_build_element) {
-                if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
-                    global.flags.flag_build_element = false;
-                    global.variables.signal_build_counter = 0;
+                if (global.flags.flag_build_element) {
+                    if (global.variables.signal_build_counter++ >= global.CONSTANTS.SIGNAL_BUILD_COUNTER_MAX) {
+                        global.flags.flag_build_element = false;
+                        global.variables.signal_build_counter = 0;
+                    }
                 }
-            }
-            if (global.flags.flag_wire_deleted) {
-                if (global.variables.flag_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
-                    global.flags.flag_wire_deleted = false;
-                    global.variables.flag_wire_deleted_counter = 0;
+                if (global.flags.flag_wire_deleted) {
+                    if (global.variables.flag_wire_deleted_counter++ >= global.CONSTANTS.SIGNAL_WIRE_DELETED_COUNTER_MAX) {
+                        global.flags.flag_wire_deleted = false;
+                        global.variables.flag_wire_deleted_counter = 0;
+                    }
                 }
-            }
-            if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
-                global.variables.canvas_redraw_counter = 0;
-                global.flags.flag_canvas_draw_event = false;
+                if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
+                    global.variables.canvas_redraw_counter = 0;
+                    global.flags.flag_canvas_draw_event = false;
+                }
             }
         }
-        // } catch (e) {
-        // 	if (!global.CONSTANTS.DEVELOPER_MODE && !global.CONSTANTS.MOBILE_MODE) {
-        // 		let post_data: string = e + '\r\n' + e.stack + '\r\n';
-        // 		let url: string = 'solver_errors.php?msg="' + post_data + '"';
-        // 		let method: string = 'POST';
-        // 		let should_be_async: boolean = true;
-        // 		let request: XMLHttpRequest = new XMLHttpRequest();
-        // 		request.onload = function (): void {
-        // 			let status: number = request.status;
-        // 			let data: string = request.responseText;
-        // 		};
-        // 		request.open(method, url, should_be_async);
-        // 		request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-        // 		request.send(post_data);
-        // 	}
-        // }
+        catch (e) {
+            if (!global.CONSTANTS.DEVELOPER_MODE && !global.CONSTANTS.MOBILE_MODE) {
+                let post_data = e + '\r\n' + e.stack + '\r\n';
+                let url = 'solver_errors.php?msg="' + post_data + '"';
+                let method = 'POST';
+                let should_be_async = true;
+                let request = new XMLHttpRequest();
+                request.onload = function () {
+                    let status = request.status;
+                    let data = request.responseText;
+                };
+                request.open(method, url, should_be_async);
+                request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+                request.send(post_data);
+            }
+        }
     }
     function update() {
         if (global.variables.system_initialization['completed']) {
@@ -1133,7 +1134,7 @@ function load_app() {
                 element_options_edit_window.draw_window(canvas);
                 zoom_window.draw_window(canvas);
                 settings_window.draw_window(canvas);
-                yes_no_window.draw_window(canvas);
+                confirm_window.draw_window(canvas);
                 graph_window.draw_window(canvas);
                 toast.draw_toast(canvas);
             }
@@ -1205,7 +1206,7 @@ function load_app() {
                 element_options_edit_window.draw_window(canvas);
                 zoom_window.draw_window(canvas);
                 settings_window.draw_window(canvas);
-                yes_no_window.draw_window(canvas);
+                confirm_window.draw_window(canvas);
                 graph_window.draw_window(canvas);
                 on_screen_keyboard.draw_keyboard(canvas);
                 toast.draw_toast(canvas);
@@ -1259,7 +1260,7 @@ function load_app() {
             graph_window.mouse_down();
             zoom_window.mouse_down();
             settings_window.mouse_down();
-            yes_no_window.mouse_down();
+            confirm_window.mouse_down();
             multi_select_manager.mouse_down();
             on_screen_keyboard.mouse_down();
         }
@@ -1758,7 +1759,7 @@ function load_app() {
         element_options_edit_window.mouse_move();
         zoom_window.mouse_move();
         settings_window.mouse_move();
-        yes_no_window.mouse_move();
+        confirm_window.mouse_move();
         graph_window.mouse_move();
         multi_select_manager.mouse_move();
         if (global.variables.is_dragging) {
@@ -2026,7 +2027,7 @@ function load_app() {
         graph_window.mouse_up();
         zoom_window.mouse_up();
         settings_window.mouse_up();
-        yes_no_window.mouse_up();
+        confirm_window.mouse_up();
         on_screen_keyboard.mouse_up();
         multi_select_manager.mouse_up();
         global.variables.component_touched = component_touched;
@@ -2065,7 +2066,7 @@ function load_app() {
         save_circuit_window.key_down(global.events.key_down_event, canvas);
         save_image_window.key_down(global.events.key_down_event);
         settings_window.key_down(global.events.key_down_event);
-        yes_no_window.key_down(global.events.key_down_event);
+        confirm_window.key_down(global.events.key_down_event);
         zoom_window.key_down(global.events.key_down_event);
         menu_bar.key_down(global.events.key_down_event);
         graph_window.key_down(global.events.key_down_event);

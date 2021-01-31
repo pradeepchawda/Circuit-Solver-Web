@@ -1,8 +1,5 @@
 'use strict';
 class BottomMenu {
-	public readonly VERSION_TAG_TEMPLATE: string;
-	public readonly TIMESTEP_TEMPLATE: string;
-	public readonly FILE_BUTTON_TEXT_TEMPLATE: string;
 	public readonly INITIAL_RESIZE_COUNTER_MAX: number;
 	public draw_bottom_path: boolean;
 	public time_step_button_width: number;
@@ -19,9 +16,6 @@ class BottomMenu {
 	constructor() {
 		this.draw_bottom_path = true;
 		this.time_step_button_width = 1;
-		this.VERSION_TAG_TEMPLATE = 'v{VERSION_TAG}   ';
-		this.TIMESTEP_TEMPLATE = 'Δt:={TIMESTEP}s';
-		this.FILE_BUTTON_TEXT_TEMPLATE = '  {TEXT}  ';
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(paint.style.STROKE);
 		this.line_paint.set_paint_cap(paint.cap.ROUND);
@@ -63,7 +57,7 @@ class BottomMenu {
 		this.file_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
 		this.file_button.resize_paint();
 		this.time_step_button = new Button(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + 2 * global.variables.canvas_stroke_width_4, view_port.right, view_port.bottom);
-		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(simulation_manager.time_step));
+		this.time_step_button.text = global.TEMPLATES.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(simulation_manager.time_step));
 		this.time_step_button.draw_stroke = false;
 		this.time_step_button.text_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
 		this.time_step_button.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
@@ -282,13 +276,13 @@ class BottomMenu {
 	draw_bottom_menu(canvas: GraphicsEngine): void {
 		this.recolor();
 		this.file_button.text = language_manager.FILE[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + global.variables.user_file.title;
-		this.time_step_button.text = this.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(simulation_manager.time_step));
+		this.time_step_button.text = global.TEMPLATES.TIMESTEP_TEMPLATE.replace('{TIMESTEP}', global.utils.exponentiate_quickly(simulation_manager.time_step));
 		this.time_step_button_width = 1.25 * this.time_step_button.text_paint.measure_text(this.time_step_button.text);
 		let padding: number = 2 * global.variables.canvas_stroke_width_4;
 		this.file_button.set_bounds(
 			view_port.left,
 			menu_bar.settings_button.bottom + padding,
-			view_port.left + this.file_button.text_paint.measure_text(this.FILE_BUTTON_TEXT_TEMPLATE.replace('{TEXT}', this.file_button.text)),
+			view_port.left + this.file_button.text_paint.measure_text(global.TEMPLATES.FILE_BUTTON_TEXT_TEMPLATE.replace('{TEXT}', this.file_button.text)),
 			view_port.bottom
 		);
 		this.time_step_button.set_bounds(view_port.right - this.time_step_button_width, menu_bar.settings_button.bottom + padding, view_port.right, view_port.bottom);
@@ -318,6 +312,6 @@ class BottomMenu {
 		}
 		this.file_button.draw_button(canvas);
 		this.time_step_button.draw_button(canvas);
-		canvas.draw_text(this.VERSION_TAG_TEMPLATE.replace('{VERSION_TAG}', global.CONSTANTS.VERSION_TAG), view_port.right, menu_bar.settings_button.bottom, this.text_paint);
+		canvas.draw_text(global.TEMPLATES.VERSION_TAG_TEMPLATE.replace('{VERSION_TAG}', global.CONSTANTS.VERSION_TAG), view_port.right, menu_bar.settings_button.bottom, this.text_paint);
 	}
 }

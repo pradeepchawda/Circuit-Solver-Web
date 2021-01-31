@@ -122,7 +122,7 @@ class OhmMeter {
 		this.text_paint.set_paint_align(paint.align.CENTER);
 		this.is_translating = false;
 		this.meter_symbol = new MeterSymbols();
-		this.meter_symbol.reset(this.meter_symbol.METER_RESISTANCE, this.meter_symbol.STYLE_0);
+		this.meter_symbol.reset(global.CONSTANTS.METER_SYMBOL_RESISTANCE, global.CONSTANTS.METER_STYLE_0);
 		this.meter_symbol.set_bounds(
 			this.bounds.left + this.bounds.get_width() * 0.4,
 			this.bounds.top + this.bounds.get_height() * 0.4,
@@ -535,7 +535,7 @@ class OhmMeter {
 			this.plus_point.x = this.c_x - cache_0 * global.utils.cosine(this.theta) - cache_0 * global.utils.cosine(this.theta_m90);
 			this.plus_point.y = this.c_y - cache_1 * global.utils.sine(this.theta) - cache_1 * global.utils.sine(this.theta_m90);
 			this.meter_symbol.set_bounds(this.bounds.left + w_cache, this.bounds.top + h_cache, this.bounds.right - w_cache, this.bounds.bottom - h_cache);
-			this.meter_symbol.resize_symbol(this.meter_symbol.STYLE_0);
+			this.meter_symbol.resize_symbol(global.CONSTANTS.METER_STYLE_0);
 			this.build_element_flag = false;
 		}
 	}

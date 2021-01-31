@@ -86,5 +86,13 @@ class Constants {
             this.ALPHA_ARRAY.push(i / 256.0);
         }
         this.GARBAGE_COLLECTOR_SIZE = 16;
+        this.SINE_WAVE_STYLE_0 = 0;
+        this.SINE_WAVE_STYLE_1 = 1;
+        this.METER_STYLE_0 = 0;
+        this.METER_STYLE_1 = 1;
+        this.METER_SYMBOL_VOLTAGE = 0;
+        this.METER_SYMBOL_CURRENT = 1;
+        this.METER_SYMBOL_RESISTANCE = 2;
+        this.METER_SYMBOL_POWER = 3;
     }
 }

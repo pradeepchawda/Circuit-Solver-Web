@@ -19,7 +19,7 @@ class ShortcutManager {
         this.SHORTCUT_TOGGLE_SWITCH = global.KEY_CODES.KEY_CODE_SPACE;
         this.multi_moved_element = false;
         this.multi_deleted_element = false;
-        this.ENABLE_ARROW_KEYS = true;
+        this.OPTION_ENABLE_ARROW_KEYS = true;
         this.temp_history_snapshot = '';
         this.command = '';
         this.shift = false;
@@ -50,7 +50,7 @@ class ShortcutManager {
                         this.handle_add_element_flag(key_event);
                         this.handle_escape_shortcut(key_event);
                         this.handle_select_all(key_event);
-                        if (this.ENABLE_ARROW_KEYS) {
+                        if (this.OPTION_ENABLE_ARROW_KEYS) {
                             this.handle_arrow_keys_multi_select(key_event);
                             this.handle_arrow_keys_select(key_event);
                         }
@@ -70,7 +70,7 @@ class ShortcutManager {
                         this.handle_toggle_switches(key_event);
                         this.handle_query_shortcut(key_event);
                     }
-                    if (this.ENABLE_ARROW_KEYS) {
+                    if (this.OPTION_ENABLE_ARROW_KEYS) {
                         this.handle_arrow_keys_menu_open_down(key_event);
                     }
                 }
