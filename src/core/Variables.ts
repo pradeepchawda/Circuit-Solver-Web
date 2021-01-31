@@ -56,17 +56,14 @@ class Variables {
 	public 'y_offset': number;
 	public 'node_space_x': number;
 	public 'node_space_y': number;
-
+	public anchor_point: ANCHOR_POINT_T;
+	public wire_reference: WIRE_REFERENCE_T;
 	public 'wire_builder': WIRE_BUILDER_T;
-
 	public 'language_index_counter': number;
-
 	public 'language_index': number;
 	public 'system_options': SYSTEM_OPTIONS_T;
-
 	public 'user_file_selected': boolean;
 	public 'user_file': Circuit;
-
 	public 'canvas_draw_request_counter': number;
 	public 'canvas_redraw_counter': number;
 	public 'canvas_stroke_width_base': number;
@@ -113,9 +110,7 @@ class Variables {
 
 		this.natural_width = 0;
 		this.natural_height = 0;
-
 		this.virtual_canvas_id = 0;
-
 		this.focused = false;
 		this.focused_id = CONSTANTS.NULL;
 		this.focused_type = CONSTANTS.NULL;
@@ -135,20 +130,17 @@ class Variables {
 		this.clipboard_flip = CONSTANTS.NULL;
 		this.clipboard_property = CONSTANTS.NULL;
 		this.component_translating = false;
-
 		this.signal_build_counter = 0;
 		this.signal_wire_deleted_counter = 0;
 		this.component_touched = false;
 		this.mouse_keyboard_lock = false;
 		this.translation_lock = true;
 		this.is_singular = false;
-
 		this.browser_ie = false;
 		this.browser_chrome = false;
 		this.browser_opera = false;
 		this.browser_firefox = false;
 		this.browser_safari = false;
-
 		this.mouse_down_x = 0;
 		this.mouse_down_y = 0;
 		this.last_mouse_x = 0;
@@ -167,7 +159,6 @@ class Variables {
 		this.y_offset = 0;
 		this.node_space_x = 0;
 		this.node_space_y = 0;
-
 		this.wire_builder = {
 			n1: -1,
 			id1: -1,
@@ -185,18 +176,25 @@ class Variables {
 			},
 			step: 0
 		};
-
+		this.anchor_point = {
+			p1: 0,
+			p2: 1,
+			p3: 2,
+			p4: 3
+		};
+		this.wire_reference = {
+			wire_id: -1,
+			anchor_point: -1,
+			linkage: -1
+		};
 		this.history = {
 			packet: []
 		};
-
 		this.language_index = CONSTANTS.LANGUAGE_INDEX_ENGLISH;
 		this.system_options = {
 			options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
 			values: [CONSTANTS.LANGUAGES[this.language_index], CONSTANTS.ON, CONSTANTS.ON, CONSTANTS.OFF, CONSTANTS.OFF, CONSTANTS.OFF]
 		};
-		// this.circle_buffer = [];
-		// this.line_buffer = [];
 		this.node_line_buffer = [];
 		this.node_line_buffer_index = 0;
 
@@ -206,10 +204,8 @@ class Variables {
 		if (CONSTANTS.DESKTOP_MODE || CONSTANTS.DESKTOP_MODE) {
 			this.system_options['values'][CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] = CONSTANTS.ON;
 		}
-
 		this.user_file_selected = false;
 		this.user_file = new Circuit();
-
 		this.canvas_draw_request_counter = 0;
 		this.canvas_redraw_counter = 0;
 		this.canvas_stroke_width_base = 1;

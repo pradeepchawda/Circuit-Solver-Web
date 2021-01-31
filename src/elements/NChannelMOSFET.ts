@@ -253,7 +253,7 @@ class NChannelMOSFET {
 		}
 	}
 	gmin_step(step: number, error: number): void {
-		this.gmin = global.gmin_default;
+		this.gmin = global.settings.GMIN_DEFAULT;
 		if (simulation_manager.iterator > step && error > global.settings.TOLERANCE) {
 			this.gmin = Math.exp(-24.723 * (1.0 - 0.99 * (simulation_manager.iterator / global.settings.ITL4)));
 		}
@@ -396,13 +396,13 @@ class NChannelMOSFET {
 				} else {
 					if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
 						if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-							this.handle_wire_builder(this.elm.n1, global.CONSTANTS.anchor_point['p1']);
+							this.handle_wire_builder(this.elm.n1, global.variables.anchor_point['p1']);
 							global.variables.component_touched = true;
 						} else if (nodes[this.elm.n2].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-							this.handle_wire_builder(this.elm.n2, global.CONSTANTS.anchor_point['p2']);
+							this.handle_wire_builder(this.elm.n2, global.variables.anchor_point['p2']);
 							global.variables.component_touched = true;
 						} else if (nodes[this.elm.n3].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-							this.handle_wire_builder(this.elm.n3, global.CONSTANTS.anchor_point['p3']);
+							this.handle_wire_builder(this.elm.n3, global.variables.anchor_point['p3']);
 							global.variables.component_touched = true;
 						}
 					}
@@ -567,7 +567,7 @@ class NChannelMOSFET {
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
 				if (id > -1 && id < wires.length) {
-					if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
+					if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p1']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[0];
@@ -576,7 +576,7 @@ class NChannelMOSFET {
 							wires[id].p2.y = vertices[1];
 							wires[id].p2.x = vertices[0];
 						}
-					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p2']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[2];
@@ -585,7 +585,7 @@ class NChannelMOSFET {
 							wires[id].p2.x = vertices[2];
 							wires[id].p2.y = vertices[3];
 						}
-					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p3']) {
 						wires[id].release_nodes();
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[4];
@@ -608,7 +608,7 @@ class NChannelMOSFET {
 			for (var i: number = this.wire_reference.length - 1; i > -1; i--) {
 				id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
 				if (id > -1 && id < wires.length) {
-					if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
+					if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p1']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[0];
 							wires[id].p1.y = vertices[1];
@@ -617,7 +617,7 @@ class NChannelMOSFET {
 							wires[id].p2.y = vertices[1];
 						}
 						wires[id].capture_nodes();
-					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p2']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[2];
 							wires[id].p1.y = vertices[3];
@@ -626,7 +626,7 @@ class NChannelMOSFET {
 							wires[id].p2.y = vertices[3];
 						}
 						wires[id].capture_nodes();
-					} else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p3']) {
+					} else if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p3']) {
 						if (this.wire_reference[i]['linkage'] === 0) {
 							wires[id].p1.x = vertices[4];
 							wires[id].p1.y = vertices[5];
@@ -948,20 +948,20 @@ class NChannelMOSFET {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {}
 }

@@ -32,8 +32,6 @@ class Constants {
 	public readonly TEXT_STYLE_3: string;
 	public readonly TEXT_STYLE_4: string;
 	public readonly TEXT_STYLE_5: string;
-	public readonly anchor_point: ANCHOR_POINT_T;
-	public readonly wire_reference: WIRE_REFERENCE_T;
 	public readonly LANGUAGES: Array<string>;
 	public readonly LANGUAGE_INDEX_ENGLISH: number;
 	public readonly LANGUAGE_INDEX_SPANISH: number;
@@ -111,17 +109,6 @@ class Constants {
 		this.TEXT_STYLE_3 = 'Style3';
 		this.TEXT_STYLE_4 = 'Style4';
 		this.TEXT_STYLE_5 = 'Style5';
-		this.anchor_point = {
-			p1: 0,
-			p2: 1,
-			p3: 2,
-			p4: 3
-		};
-		this.wire_reference = {
-			wire_id: -1,
-			anchor_point: -1,
-			linkage: -1
-		};
 		this.DEFAULT_FONT = 'Arial';
 		let indexer: number = 0;
 		this.SYSTEM_OPTION_LANGUAGE = indexer++;

@@ -44,6 +44,8 @@ class Settings {
 	public MIN_POSTSCALER: number;
 	public MIN_TIME_CONSTANT: number;
 	public MAX_TIME_CONSTANT: number;
+	public THERMAL_VOLTAGE: number;
+	public GMIN_DEFAULT: number;
 	constructor() {
 		this.WORKSPACE_PERFECT_SQUARE = true;
 		this.WORKSPACE_RATIO_Y = 0.45;
@@ -93,6 +95,8 @@ class Settings {
 		this.MIN_POSTSCALER = 1;
 		this.MIN_TIME_CONSTANT = 100e-9;
 		this.MAX_TIME_CONSTANT = 10;
+		this.THERMAL_VOLTAGE = 25.6e-3;
+		this.GMIN_DEFAULT = 1e-9;
 	}
 	patch(): void {
 		this.WORKSPACE_PERFECT_SQUARE = true;
@@ -143,5 +147,7 @@ class Settings {
 		this.MIN_POSTSCALER = 1;
 		this.MIN_TIME_CONSTANT = 100e-9;
 		this.MAX_TIME_CONSTANT = 10;
+		this.THERMAL_VOLTAGE = 25.6e-3;
+		this.GMIN_DEFAULT = 1e-9;
 	}
 }

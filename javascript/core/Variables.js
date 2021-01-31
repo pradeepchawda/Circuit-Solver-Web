@@ -81,6 +81,17 @@ class Variables {
             },
             step: 0
         };
+        this.anchor_point = {
+            p1: 0,
+            p2: 1,
+            p3: 2,
+            p4: 3
+        };
+        this.wire_reference = {
+            wire_id: -1,
+            anchor_point: -1,
+            linkage: -1
+        };
         this.history = {
             packet: []
         };
@@ -89,8 +100,6 @@ class Variables {
             options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
             values: [CONSTANTS.LANGUAGES[this.language_index], CONSTANTS.ON, CONSTANTS.ON, CONSTANTS.OFF, CONSTANTS.OFF, CONSTANTS.OFF]
         };
-        // this.circle_buffer = [];
-        // this.line_buffer = [];
         this.node_line_buffer = [];
         this.node_line_buffer_index = 0;
         if (CONSTANTS.MOBILE_MODE) {

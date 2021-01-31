@@ -189,11 +189,11 @@ class VoltMeter {
                 else {
                     if (this.elm.consistent() && !global.variables.component_touched && !global.flags.flag_simulating) {
                         if (nodes[this.elm.n1].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n1, global.CONSTANTS.anchor_point['p1']);
+                            this.handle_wire_builder(this.elm.n1, global.variables.anchor_point['p1']);
                             global.variables.component_touched = true;
                         }
                         else if (nodes[this.elm.n2].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
-                            this.handle_wire_builder(this.elm.n2, global.CONSTANTS.anchor_point['p2']);
+                            this.handle_wire_builder(this.elm.n2, global.variables.anchor_point['p2']);
                             global.variables.component_touched = true;
                         }
                     }
@@ -375,7 +375,7 @@ class VoltMeter {
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
-                    if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
+                    if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p1']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[0];
@@ -386,7 +386,7 @@ class VoltMeter {
                             wires[id].p2.x = vertices[0];
                         }
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p2']) {
                         wires[id].release_nodes();
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[2];
@@ -411,7 +411,7 @@ class VoltMeter {
             for (var i = this.wire_reference.length - 1; i > -1; i--) {
                 id = engine_functions.get_wire(this.wire_reference[i]['wire_id']);
                 if (id > -1 && id < wires.length) {
-                    if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p1']) {
+                    if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p1']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[0];
                             wires[id].p1.y = vertices[1];
@@ -422,7 +422,7 @@ class VoltMeter {
                         }
                         wires[id].capture_nodes();
                     }
-                    else if (this.wire_reference[i]['anchor_point'] === global.CONSTANTS.anchor_point['p2']) {
+                    else if (this.wire_reference[i]['anchor_point'] === global.variables.anchor_point['p2']) {
                         if (this.wire_reference[i]['linkage'] === 0) {
                             wires[id].p1.x = vertices[2];
                             wires[id].p1.y = vertices[3];

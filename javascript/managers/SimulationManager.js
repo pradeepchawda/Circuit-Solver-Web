@@ -1,6 +1,5 @@
 'use strict';
 class SimulationManager {
-    /* <!-- END AUTOMATICALLY GENERATED !--> */
     constructor() {
         this.node_size = 0;
         this.offset = 0;
@@ -60,10 +59,18 @@ class SimulationManager {
         this.ELEMENT_TPTZ_OFFSET = this.ELEMENT_GRT_OFFSET + grts.length;
         this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
+        this.v_max_err = [];
+        this.i_max_err = [];
+        this.v_locked = false;
+        this.i_locked = false;
+        this.v_conv = false;
+        this.i_conv = false;
+        this.time_step = 5e-6;
+        this.simulation_time = 0;
     }
     reset_simulation() {
         this.initialized = false;
-        global.simulation_time = 0;
+        this.simulation_time = 0;
         this.continue_solving = true;
         this.solutions_ready = false;
         this.iterator = 0;
@@ -80,7 +87,7 @@ class SimulationManager {
         this.first_matrix_build = true;
         this.reset_simulation();
         if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_AUTOMATIC_TIMESTEP] === global.CONSTANTS.ON) {
-            global.time_step = this.determine_optimal_timestep();
+            this.time_step = this.determine_optimal_timestep();
             bottom_menu.resize_bottom_menu();
         }
         else {
@@ -97,7 +104,49 @@ class SimulationManager {
         this.node_size = node_manager.active_nodes.length;
         /* #INSERT_GENERATE_SIMULATION_MATRIX_SIZE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        this.offset = dcsources.length + acsources.length + squarewaves.length + sawwaves.length + trianglewaves.length + constants.length + rails.length + ohmmeters.length + ammeters.length + wattmeters.length + nots.length + ands.length + ors.length + nands.length + nors.length + xors.length + xnors.length + 2 * dffs.length + vsats.length + adders.length + subtractors.length + multipliers.length + dividers.length + gains.length + absvals.length + vcvss.length + cccss.length + 2 * ccvss.length + opamps.length + adcs.length + dacs.length + sandhs.length + pwms.length + integrators.length + differentiators.length + lowpasses.length + highpasses.length + pids.length + luts.length + grts.length + tptzs.length + transformers.length;
+        this.offset =
+            dcsources.length +
+                acsources.length +
+                squarewaves.length +
+                sawwaves.length +
+                trianglewaves.length +
+                constants.length +
+                rails.length +
+                ohmmeters.length +
+                ammeters.length +
+                wattmeters.length +
+                nots.length +
+                ands.length +
+                ors.length +
+                nands.length +
+                nors.length +
+                xors.length +
+                xnors.length +
+                2 * dffs.length +
+                vsats.length +
+                adders.length +
+                subtractors.length +
+                multipliers.length +
+                dividers.length +
+                gains.length +
+                absvals.length +
+                vcvss.length +
+                cccss.length +
+                2 * ccvss.length +
+                opamps.length +
+                adcs.length +
+                dacs.length +
+                sandhs.length +
+                pwms.length +
+                integrators.length +
+                differentiators.length +
+                lowpasses.length +
+                highpasses.length +
+                pids.length +
+                luts.length +
+                grts.length +
+                tptzs.length +
+                transformers.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         /* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
@@ -503,7 +552,7 @@ class SimulationManager {
         this.initialized = false;
         this.continue_solving = true;
         this.iterator = 0;
-        global.simulation_time = 0;
+        this.simulation_time = 0;
         this.simulation_step = 0;
         this.solutions_ready = false;
         global.variables.is_singular = false;
@@ -830,7 +879,7 @@ class SimulationManager {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     update_vir() {
-        if (global.simulation_time >= global.time_step + global.time_step) {
+        if (this.simulation_time >= this.time_step + this.time_step) {
             scope_manager.update_scopes();
         }
         else {
@@ -845,58 +894,58 @@ class SimulationManager {
     convergence_check() {
         if (this.node_size > 0 && matrix_x.length === matrix_x_copy.length) {
             if (this.first_error_check) {
-                global.v_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
-                global.i_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
+                this.v_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
+                this.i_max_err = linear_algebra.matrix(matrix_x.length, matrix_x[0].length);
                 this.first_error_check = false;
             }
             else {
-                for (var i = 0; i < global.v_max_err.length; i++) {
-                    for (var j = 0; j < global.v_max_err[0].length; j++) {
-                        global.v_max_err[i][j] = 0;
-                        global.i_max_err[i][j] = 0;
+                for (var i = 0; i < this.v_max_err.length; i++) {
+                    for (var j = 0; j < this.v_max_err[0].length; j++) {
+                        this.v_max_err[i][j] = 0;
+                        this.i_max_err[i][j] = 0;
                     }
                 }
             }
-            global.v_locked = false;
-            global.i_locked = false;
-            global.v_conv = false;
-            global.i_conv = false;
+            this.v_locked = false;
+            this.i_locked = false;
+            this.v_conv = false;
+            this.i_conv = false;
             for (var i = 0; i < matrix_x.length; i++) {
                 if (i < this.node_size) {
-                    global.v_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
+                    this.v_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.VNTOL);
                 }
                 else {
-                    global.i_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
+                    this.i_max_err[i][0] = Math.max(Math.max(Math.abs(matrix_x[i][0]), Math.abs(matrix_x_copy[i][0])), global.settings.ABSTOL);
                 }
             }
             for (var i = 0; i < matrix_x.length; i++) {
                 if (i < this.node_size) {
-                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.v_max_err[i][0] + global.settings.VNTOL) {
-                        if (!global.v_locked) {
-                            global.v_conv = true;
+                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * this.v_max_err[i][0] + global.settings.VNTOL) {
+                        if (!this.v_locked) {
+                            this.v_conv = true;
                         }
                     }
                     else {
-                        global.v_locked = true;
-                        global.v_conv = false;
+                        this.v_locked = true;
+                        this.v_conv = false;
                     }
                 }
                 else {
-                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * global.i_max_err[i][0] + global.settings.ABSTOL) {
-                        if (!global.i_locked) {
-                            global.i_conv = true;
+                    if (Math.abs(matrix_x[i][0] - matrix_x_copy[i][0]) < global.settings.RELTOL * this.i_max_err[i][0] + global.settings.ABSTOL) {
+                        if (!this.i_locked) {
+                            this.i_conv = true;
                         }
                     }
                     else {
-                        global.i_locked = true;
-                        global.i_conv = false;
+                        this.i_locked = true;
+                        this.i_conv = false;
                     }
                 }
             }
             if (matrix_x.length - this.node_size <= 0) {
-                global.i_conv = true;
+                this.i_conv = true;
             }
-            if (!global.v_conv || !global.i_conv) {
+            if (!this.v_conv || !this.i_conv) {
                 this.continue_solving = true;
             }
         }
@@ -957,7 +1006,7 @@ class SimulationManager {
             }
             else {
                 this.update_reactive_elements();
-                if (!this.continue_solving || this.iterator >= global.settings.ITL4 || global.variables.is_singular || global.simulation_time >= this.SIMULATION_MAX_TIME) {
+                if (!this.continue_solving || this.iterator >= global.settings.ITL4 || global.variables.is_singular || this.simulation_time >= this.SIMULATION_MAX_TIME) {
                     if (this.iterator >= global.settings.ITL4) {
                         menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
                         toast.set_text(language_manager.CONVERGENCE_ERROR[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
@@ -968,7 +1017,7 @@ class SimulationManager {
                         toast.set_text(language_manager.SINGULAR_MATRIX[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                         toast.show();
                     }
-                    else if (global.simulation_time >= this.SIMULATION_MAX_TIME) {
+                    else if (this.simulation_time >= this.SIMULATION_MAX_TIME) {
                         menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
                         toast.set_text(language_manager.END_OF_TIME[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
                         toast.show();
@@ -980,7 +1029,7 @@ class SimulationManager {
                 this.iterator = 0;
                 this.update_vir();
                 this.led_check();
-                global.simulation_time += global.time_step;
+                this.simulation_time += this.time_step;
                 this.simulation_step = 0;
             }
         }

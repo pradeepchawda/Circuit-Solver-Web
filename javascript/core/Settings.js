@@ -50,6 +50,8 @@ class Settings {
         this.MIN_POSTSCALER = 1;
         this.MIN_TIME_CONSTANT = 100e-9;
         this.MAX_TIME_CONSTANT = 10;
+        this.THERMAL_VOLTAGE = 25.6e-3;
+        this.GMIN_DEFAULT = 1e-9;
     }
     patch() {
         this.WORKSPACE_PERFECT_SQUARE = true;
@@ -101,5 +103,7 @@ class Settings {
         this.MIN_POSTSCALER = 1;
         this.MIN_TIME_CONSTANT = 100e-9;
         this.MAX_TIME_CONSTANT = 10;
+        this.THERMAL_VOLTAGE = 25.6e-3;
+        this.GMIN_DEFAULT = 1e-9;
     }
 }
