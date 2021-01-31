@@ -1,5 +1,5 @@
 'use strict';
-class YesNoWindow {
+class ConfirmWindow {
 	public readonly PADDING: number;
 	public line_paint: Paint;
 	public bounds_paint: Paint;
@@ -17,59 +17,59 @@ class YesNoWindow {
 	constructor() {
 		this.PADDING = 0.025;
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(PAINT.style.STROKE);
-		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_paint_style(paint.style.STROKE);
+		this.line_paint.set_paint_cap(paint.cap.ROUND);
+		this.line_paint.set_paint_join(paint.join.MITER);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(PAINT.align.CENTER);
+		this.line_paint.set_paint_align(paint.align.CENTER);
 		this.bounds_paint = new Paint();
-		this.bounds_paint.set_paint_style(PAINT.style.FILL);
-		this.bounds_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.bounds_paint.set_paint_join(PAINT.join.MITER);
+		this.bounds_paint.set_paint_style(paint.style.FILL);
+		this.bounds_paint.set_paint_cap(paint.cap.ROUND);
+		this.bounds_paint.set_paint_join(paint.join.MITER);
 		this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.bounds_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
 		this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.bounds_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
-		this.bounds_paint.set_paint_align(PAINT.align.CENTER);
+		this.bounds_paint.set_paint_align(paint.align.CENTER);
 		this.fill_paint = new Paint();
-		this.fill_paint.set_paint_style(PAINT.style.FILL);
-		this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.fill_paint.set_paint_join(PAINT.join.MITER);
+		this.fill_paint.set_paint_style(paint.style.FILL);
+		this.fill_paint.set_paint_cap(paint.cap.ROUND);
+		this.fill_paint.set_paint_join(paint.join.MITER);
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
-		this.fill_paint.set_paint_align(PAINT.align.CENTER);
+		this.fill_paint.set_paint_align(paint.align.CENTER);
 		this.yes_paint = new Paint();
-		this.yes_paint.set_paint_style(PAINT.style.FILL);
-		this.yes_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.yes_paint.set_paint_join(PAINT.join.MITER);
+		this.yes_paint.set_paint_style(paint.style.FILL);
+		this.yes_paint.set_paint_cap(paint.cap.ROUND);
+		this.yes_paint.set_paint_join(paint.join.MITER);
 		this.yes_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.yes_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.yes_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.yes_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.yes_paint.set_alpha(255);
-		this.yes_paint.set_paint_align(PAINT.align.CENTER);
+		this.yes_paint.set_paint_align(paint.align.CENTER);
 		this.no_paint = new Paint();
-		this.no_paint.set_paint_style(PAINT.style.FILL);
-		this.no_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.no_paint.set_paint_join(PAINT.join.MITER);
+		this.no_paint.set_paint_style(paint.style.FILL);
+		this.no_paint.set_paint_cap(paint.cap.ROUND);
+		this.no_paint.set_paint_join(paint.join.MITER);
 		this.no_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.no_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.no_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.no_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.no_paint.set_alpha(255);
-		this.no_paint.set_paint_align(PAINT.align.CENTER);
+		this.no_paint.set_paint_align(paint.align.CENTER);
 		this.text_paint = new Paint();
-		this.text_paint.set_paint_style(PAINT.style.FILL);
-		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.text_paint.set_paint_join(PAINT.join.MITER);
+		this.text_paint.set_paint_style(paint.style.FILL);
+		this.text_paint.set_paint_cap(paint.cap.ROUND);
+		this.text_paint.set_paint_join(paint.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		if (global.CONSTANTS.MOBILE_MODE) {
@@ -79,7 +79,7 @@ class YesNoWindow {
 		}
 		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
-		this.text_paint.set_paint_align(PAINT.align.CENTER);
+		this.text_paint.set_paint_align(paint.align.CENTER);
 		if (global.CONSTANTS.MOBILE_MODE) {
 			this.width = view_port.view_width * 0.175;
 			this.height = view_port.view_height * 0.13125;

@@ -1,6 +1,6 @@
 'use strict';
 /* #START_GLOBAL_EXTRACT# */
-var PAINT: Paint = new Paint();
+var paint: Paint = new Paint();
 var global: Global = new Global();
 //@ts-ignore
 String.prototype.hashCode = function (): number {
@@ -216,7 +216,7 @@ var element_options_window: ElementOptionsWindow = global.CONSTANTS.NULL;
 var element_options_edit_window: ElementOptionsEditWindow = global.CONSTANTS.NULL;
 var zoom_window: ZoomWindow = global.CONSTANTS.NULL;
 var settings_window: SettingsWindow = global.CONSTANTS.NULL;
-var yes_no_window: YesNoWindow = global.CONSTANTS.NULL;
+var confirm_window: ConfirmWindow = global.CONSTANTS.NULL;
 var wire_manager: WireManager = new WireManager();
 var engine_functions: EngineFunctions = new EngineFunctions();
 var nodes: Array<ElectricalNode> = [];
@@ -248,9 +248,9 @@ function load_app(): void {
 	let mult_node_space_y_cache: number = 0;
 	let node_length: number = 0;
 	general_paint = new Paint();
-	general_paint.set_paint_style(PAINT.style.FILL);
-	general_paint.set_paint_cap(PAINT.cap.ROUND);
-	general_paint.set_paint_join(PAINT.join.MITER);
+	general_paint.set_paint_style(paint.style.FILL);
+	general_paint.set_paint_cap(paint.cap.ROUND);
+	general_paint.set_paint_join(paint.join.MITER);
 	general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 	if (global.CONSTANTS.MOBILE_MODE) {
 		general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
@@ -260,7 +260,7 @@ function load_app(): void {
 	general_paint.set_text_size(global.variables.canvas_text_size_5);
 	general_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 	general_paint.set_alpha(255);
-	general_paint.set_paint_align(PAINT.align.LEFT);
+	general_paint.set_paint_align(paint.align.LEFT);
 	function initialize(step: number): void {
 		if (step === 0) {
 			toast = new Toast();
@@ -282,7 +282,7 @@ function load_app(): void {
 			element_options_edit_window = new ElementOptionsEditWindow();
 			zoom_window = new ZoomWindow();
 			settings_window = new SettingsWindow();
-			yes_no_window = new YesNoWindow();
+			confirm_window = new ConfirmWindow();
 		} else if (step === 4) {
 			register_cross_platform_listeners();
 			if (!global.CONSTANTS.MOBILE_MODE) {
@@ -514,7 +514,7 @@ function load_app(): void {
 		element_options_edit_window.resize_window();
 		zoom_window.resize_window();
 		settings_window.resize_window();
-		yes_no_window.resize_window();
+		confirm_window.resize_window();
 		graph_window.resize_window();
 		toast.resize_toast();
 		on_screen_keyboard.resize_keyboard();
@@ -572,7 +572,7 @@ function load_app(): void {
 				global.flags.flag_key_down_event ||
 				global.flags.flag_picture_request ||
 				global.flags.flag_simulating ||
-				!workspace.draw_to_screen ||
+				!workspace.flag_draw_to_screen ||
 				toast.draw_text ||
 				!global.variables.system_initialization['completed']
 			);
@@ -611,7 +611,7 @@ function load_app(): void {
 						global.flags.flag_key_up_event ||
 						global.flags.flag_key_down_event ||
 						global.flags.flag_picture_request ||
-						!workspace.draw_to_screen ||
+						!workspace.flag_draw_to_screen ||
 						toast.draw_text;
 				} else {
 					temp_draw_signal =
@@ -625,7 +625,7 @@ function load_app(): void {
 						global.flags.flag_key_up_event ||
 						global.flags.flag_key_down_event ||
 						global.flags.flag_picture_request ||
-						!workspace.draw_to_screen;
+						!workspace.flag_draw_to_screen;
 				}
 				global.variables.last_selected = global.variables.selected;
 				update();
@@ -1130,7 +1130,7 @@ function load_app(): void {
 				element_options_edit_window.draw_window(canvas);
 				zoom_window.draw_window(canvas);
 				settings_window.draw_window(canvas);
-				yes_no_window.draw_window(canvas);
+				confirm_window.draw_window(canvas);
 				graph_window.draw_window(canvas);
 				toast.draw_toast(canvas);
 			} else {
@@ -1203,7 +1203,7 @@ function load_app(): void {
 				element_options_edit_window.draw_window(canvas);
 				zoom_window.draw_window(canvas);
 				settings_window.draw_window(canvas);
-				yes_no_window.draw_window(canvas);
+				confirm_window.draw_window(canvas);
 				graph_window.draw_window(canvas);
 				on_screen_keyboard.draw_keyboard(canvas);
 				toast.draw_toast(canvas);
@@ -1254,7 +1254,7 @@ function load_app(): void {
 			graph_window.mouse_down();
 			zoom_window.mouse_down();
 			settings_window.mouse_down();
-			yes_no_window.mouse_down();
+			confirm_window.mouse_down();
 			multi_select_manager.mouse_down();
 			on_screen_keyboard.mouse_down();
 		}
@@ -1758,7 +1758,7 @@ function load_app(): void {
 		element_options_edit_window.mouse_move();
 		zoom_window.mouse_move();
 		settings_window.mouse_move();
-		yes_no_window.mouse_move();
+		confirm_window.mouse_move();
 		graph_window.mouse_move();
 		multi_select_manager.mouse_move();
 		if (global.variables.is_dragging) {
@@ -2027,7 +2027,7 @@ function load_app(): void {
 		graph_window.mouse_up();
 		zoom_window.mouse_up();
 		settings_window.mouse_up();
-		yes_no_window.mouse_up();
+		confirm_window.mouse_up();
 		on_screen_keyboard.mouse_up();
 		multi_select_manager.mouse_up();
 		global.variables.component_touched = component_touched;
@@ -2068,7 +2068,7 @@ function load_app(): void {
 		save_circuit_window.key_down(global.events.key_down_event, canvas);
 		save_image_window.key_down(global.events.key_down_event);
 		settings_window.key_down(global.events.key_down_event);
-		yes_no_window.key_down(global.events.key_down_event);
+		confirm_window.key_down(global.events.key_down_event);
 		zoom_window.key_down(global.events.key_down_event);
 		menu_bar.key_down(global.events.key_down_event);
 		graph_window.key_down(global.events.key_down_event);

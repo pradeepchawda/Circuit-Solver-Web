@@ -43,7 +43,7 @@ class GraphicsEngine {
 	constructor(ctx: CanvasRenderingContext2D) {
 		this.ctx = ctx;
 		this.fill_paint = new Paint();
-		this.fill_paint.set_paint_style(PAINT.style.FILL);
+		this.fill_paint.set_paint_style(paint.style.FILL);
 		this.width = 0;
 		this.height = 0;
 		this.x = 0;
@@ -103,7 +103,7 @@ class GraphicsEngine {
 	}
 	apply_paint(paint: Paint, is_text: boolean): void {
 		this.ctx.beginPath();
-		if (PAINT.style.FILL === paint.paint_style) {
+		if (paint.style.FILL === paint.paint_style) {
 			this.ctx.fillStyle = paint.color;
 			this.last_fill_color = paint.color;
 		}

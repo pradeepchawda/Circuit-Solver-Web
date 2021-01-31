@@ -186,7 +186,7 @@ declare type COLOR_ARRAY_T = {
 	greenyellow: string;
 	honeydew: string;
 	hotpink: string;
-	'indianred ': string;
+	indianred: string;
 	indigo: string;
 	ivory: string;
 	khaki: string;

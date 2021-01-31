@@ -23,29 +23,29 @@ class Toast {
 			this.HEIGHT_FACTOR = 0.5;
 		}
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(PAINT.style.STROKE);
-		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_paint_style(paint.style.STROKE);
+		this.line_paint.set_paint_cap(paint.cap.ROUND);
+		this.line_paint.set_paint_join(paint.join.MITER);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(PAINT.align.CENTER);
+		this.line_paint.set_paint_align(paint.align.CENTER);
 		this.fill_paint = new Paint();
-		this.fill_paint.set_paint_style(PAINT.style.FILL);
-		this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.fill_paint.set_paint_join(PAINT.join.MITER);
+		this.fill_paint.set_paint_style(paint.style.FILL);
+		this.fill_paint.set_paint_cap(paint.cap.ROUND);
+		this.fill_paint.set_paint_join(paint.join.MITER);
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
-		this.fill_paint.set_paint_align(PAINT.align.CENTER);
+		this.fill_paint.set_paint_align(paint.align.CENTER);
 		this.text_paint = new Paint();
-		this.text_paint.set_paint_style(PAINT.style.FILL);
-		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.text_paint.set_paint_join(PAINT.join.MITER);
+		this.text_paint.set_paint_style(paint.style.FILL);
+		this.text_paint.set_paint_cap(paint.cap.ROUND);
+		this.text_paint.set_paint_join(paint.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		if (global.CONSTANTS.MOBILE_MODE) {
@@ -55,7 +55,7 @@ class Toast {
 		}
 		this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.text_paint.set_alpha(255);
-		this.text_paint.set_paint_align(PAINT.align.CENTER);
+		this.text_paint.set_paint_align(paint.align.CENTER);
 		this.text = '';
 		this.timer = 0;
 		this.MAX_ITERATIONS = 2;

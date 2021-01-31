@@ -1,7 +1,7 @@
 'use strict';
 class Viewport {
 	public line_paint: Paint;
-	public readonly DRAW_BOUNDS_FLAG: boolean;
+	public readonly OPTION_DRAW_BOUNDS: boolean;
 	public apply_spread_factor: boolean;
 	public screen_width: number;
 	public screen_height: number;
@@ -19,16 +19,16 @@ class Viewport {
 	public bottom: number;
 	constructor(aspect_ratio: number, screen_width: number, screen_height: number) {
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(PAINT.style.STROKE);
-		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_paint_style(paint.style.STROKE);
+		this.line_paint.set_paint_cap(paint.cap.ROUND);
+		this.line_paint.set_paint_join(paint.join.MITER);
 		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
 		this.line_paint.set_color(global.COLORS.MENU_HIGHLIGHT_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(PAINT.align.CENTER);
-		this.DRAW_BOUNDS_FLAG = false;
+		this.line_paint.set_paint_align(paint.align.CENTER);
+		this.OPTION_DRAW_BOUNDS = false;
 		if (global.CONSTANTS.MOBILE_MODE === true || global.CONSTANTS.DESKTOP_MODE === true) {
 			this.apply_spread_factor = true;
 		} else {
@@ -82,7 +82,7 @@ class Viewport {
 		global.variables.signal_build_counter = 0;
 	}
 	draw_viewport(canvas: GraphicsEngine): void {
-		if (this.DRAW_BOUNDS_FLAG) {
+		if (this.OPTION_DRAW_BOUNDS) {
 			canvas.draw_rect(this.left, this.top, this.right, this.bottom, this.line_paint);
 		}
 	}

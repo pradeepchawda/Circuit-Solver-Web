@@ -15,15 +15,15 @@ class SineWave {
 	constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
 		this.amplitude = amplitude;
 		this.sine_wave_paint = new Paint();
-		this.sine_wave_paint.set_paint_style(PAINT.style.STROKE);
-		this.sine_wave_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.sine_wave_paint.set_paint_join(PAINT.join.MITER);
+		this.sine_wave_paint.set_paint_style(paint.style.STROKE);
+		this.sine_wave_paint.set_paint_cap(paint.cap.ROUND);
+		this.sine_wave_paint.set_paint_join(paint.join.MITER);
 		this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 		this.sine_wave_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.sine_wave_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.sine_wave_paint.set_alpha(255);
-		this.sine_wave_paint.set_paint_align(PAINT.align.CENTER);
+		this.sine_wave_paint.set_paint_align(paint.align.CENTER);
 		this.x1 = x1;
 		this.x2 = x2;
 		this.y1 = y1;

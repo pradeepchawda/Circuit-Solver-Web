@@ -1,10 +1,11 @@
 'use strict';
 class BottomMenu {
-	public draw_bottom_path: boolean;
-	public time_step_button_width: number;
 	public readonly VERSION_TAG_TEMPLATE: string;
 	public readonly TIMESTEP_TEMPLATE: string;
 	public readonly FILE_BUTTON_TEXT_TEMPLATE: string;
+	public readonly INITIAL_RESIZE_COUNTER_MAX: number;
+	public draw_bottom_path: boolean;
+	public time_step_button_width: number;
 	public line_paint: Paint;
 	public fill_paint: Paint;
 	public text_paint: Paint;
@@ -14,7 +15,6 @@ class BottomMenu {
 	public first_touch_x: number;
 	public first_touch_y: number;
 	public initial_resize_counter: number;
-	public readonly INITIAL_RESIZE_COUNTER_MAX: number;
 	public reload_bottom_path: boolean;
 	constructor() {
 		this.draw_bottom_path = true;
@@ -23,29 +23,29 @@ class BottomMenu {
 		this.TIMESTEP_TEMPLATE = 'Δt:={TIMESTEP}s';
 		this.FILE_BUTTON_TEXT_TEMPLATE = '  {TEXT}  ';
 		this.line_paint = new Paint();
-		this.line_paint.set_paint_style(PAINT.style.STROKE);
-		this.line_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.line_paint.set_paint_join(PAINT.join.MITER);
+		this.line_paint.set_paint_style(paint.style.STROKE);
+		this.line_paint.set_paint_cap(paint.cap.ROUND);
+		this.line_paint.set_paint_join(paint.join.MITER);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_3);
 		this.line_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.line_paint.set_alpha(255);
-		this.line_paint.set_paint_align(PAINT.align.CENTER);
+		this.line_paint.set_paint_align(paint.align.CENTER);
 		this.fill_paint = new Paint();
-		this.fill_paint.set_paint_style(PAINT.style.FILL);
-		this.fill_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.fill_paint.set_paint_join(PAINT.join.MITER);
+		this.fill_paint.set_paint_style(paint.style.FILL);
+		this.fill_paint.set_paint_cap(paint.cap.ROUND);
+		this.fill_paint.set_paint_join(paint.join.MITER);
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_3);
 		this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
 		this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.fill_paint.set_alpha(255);
-		this.fill_paint.set_paint_align(PAINT.align.CENTER);
+		this.fill_paint.set_paint_align(paint.align.CENTER);
 		this.text_paint = new Paint();
-		this.text_paint.set_paint_style(PAINT.style.FILL);
-		this.text_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.text_paint.set_paint_join(PAINT.join.MITER);
+		this.text_paint.set_paint_style(paint.style.FILL);
+		this.text_paint.set_paint_cap(paint.cap.ROUND);
+		this.text_paint.set_paint_join(paint.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 		if (global.CONSTANTS.MOBILE_MODE) {

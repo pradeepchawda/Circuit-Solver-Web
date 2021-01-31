@@ -235,14 +235,14 @@ class Variables {
 		this.canvas_text_size_5_zoom = 21;
 		this.canvas_text_size_6_zoom = 43;
 		this.move_paint = new Paint();
-		this.move_paint.set_paint_style(PAINT.style.FILL);
-		this.move_paint.set_paint_cap(PAINT.cap.ROUND);
-		this.move_paint.set_paint_join(PAINT.join.MITER);
+		this.move_paint.set_paint_style(paint.style.FILL);
+		this.move_paint.set_paint_cap(paint.cap.ROUND);
+		this.move_paint.set_paint_join(paint.join.MITER);
 		this.move_paint.set_stroke_width(this.canvas_stroke_width_1);
 		this.move_paint.set_color(COLORS.GENERAL_GRAY_COLOR);
 		this.move_paint.set_text_size(this.canvas_text_size_1);
 		this.move_paint.set_font(CONSTANTS.DEFAULT_FONT);
 		this.move_paint.set_alpha(60);
-		this.move_paint.set_paint_align(PAINT.align.CENTER);
+		this.move_paint.set_paint_align(paint.align.CENTER);
 	}
 }
