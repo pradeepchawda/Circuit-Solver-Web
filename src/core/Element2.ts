@@ -1,5 +1,6 @@
 'use strict';
 class Element2 {
+	public readonly FUDGE_FACTOR: number;
 	public n1: number;
 	public n2: number;
 	public type: number;
@@ -9,7 +10,6 @@ class Element2 {
 	public flip: number;
 	public properties: ELEMENT_PROPERTY_T;
 	public wire_style: number;
-	public readonly FUDGE_FACTOR: number;
 	constructor(id: number, type: number, properties: ELEMENT_PROPERTY_T) {
 		this.n1 = -1;
 		this.n2 = -1;

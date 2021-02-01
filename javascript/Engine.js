@@ -1,6 +1,6 @@
 'use strict';
 /* #START_GLOBAL_EXTRACT# */
-var paint = new Paint();
+const paint = new Paint();
 var global = new Global();
 //@ts-ignore
 String.prototype.hashCode = function () {
