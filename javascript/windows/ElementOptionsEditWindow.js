@@ -68,7 +68,13 @@ class ElementOptionsEditWindow {
             this.width = view_port.view_width * 0.15;
             this.height = view_port.view_height * 0.075;
         }
-        this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+        if (global.CONSTANTS.MOBILE_MODE) {
+            let c_y = 0.25 * view_port.view_height;
+            this.bounds = new RectF(view_port.center_x - this.width, c_y - this.height, view_port.center_x + this.width, c_y + this.height);
+        }
+        else {
+            this.bounds = new RectF(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+        }
         this.title_bounds = new Button(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
         this.title_bounds.text = '';
         this.title_bounds.text_paint.set_paint_align(this.title_bounds.text_paint.align.LEFT);
@@ -2774,7 +2780,14 @@ class ElementOptionsEditWindow {
             this.width = view_port.view_width * 0.15;
             this.height = view_port.view_height * 0.075;
         }
-        this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+        if (global.CONSTANTS.MOBILE_MODE) {
+            let c_y = 0.25 * view_port.view_height;
+            this.bounds.set_bounds(view_port.center_x - this.width, c_y - this.height, view_port.center_x + this.width, c_y + this.height);
+            this.offset_y = 0;
+        }
+        else {
+            this.bounds.set_bounds(view_port.center_x - this.width, view_port.center_y - this.height, view_port.center_x + this.width, view_port.center_y + this.height);
+        }
         this.title_bounds.set_bounds(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.top + this.TITLE_HEIGHT_RATIO * this.bounds.get_height());
         this.title_bounds.resize_paint();
         let padding = this.PADDING * this.bounds.get_width();
@@ -2806,11 +2819,6 @@ class ElementOptionsEditWindow {
         this.select_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.select_paint.set_text_size(global.variables.canvas_text_size_4);
         this.reset_cursor();
-        if (global.CONSTANTS.MOBILE_MODE) {
-            if (this.bounds.bottom + this.offset_y >= on_screen_keyboard.bounds.top) {
-                this.offset_y = -0.25 * view_port.view_height;
-            }
-        }
     }
     draw_window(canvas) {
         if (global.flags.flag_element_options_edit) {
