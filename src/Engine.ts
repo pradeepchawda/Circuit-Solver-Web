@@ -228,7 +228,8 @@ var fps_counter: number = 0;
 var fps_index: number = 0;
 var fps_compare: number = FPS_DIV_ARRAY[fps_index];
 var fps_div: number = 0;
-var general_paint: Paint = new Paint();
+var watermark_paint: Paint = new Paint();
+var web_link_paint: Paint = new Paint();
 var webpage_document_title: HTMLElement = global.CONSTANTS.NULL;
 var last_webpage_document_title: string = 'untitled';
 var mouse_event_latch: boolean = false;
@@ -247,20 +248,32 @@ function load_app(): void {
 	let mult_node_space_x_cache: number = 0;
 	let mult_node_space_y_cache: number = 0;
 	let node_length: number = 0;
-	general_paint = new Paint();
-	general_paint.set_paint_style(paint.style.FILL);
-	general_paint.set_paint_cap(paint.cap.ROUND);
-	general_paint.set_paint_join(paint.join.MITER);
-	general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+	watermark_paint = new Paint();
+	watermark_paint.set_paint_style(paint.style.FILL);
+	watermark_paint.set_paint_cap(paint.cap.ROUND);
+	watermark_paint.set_paint_join(paint.join.MITER);
+	watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 	if (global.CONSTANTS.MOBILE_MODE) {
-		general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+		watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 	} else {
-		general_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
+		watermark_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 	}
-	general_paint.set_text_size(global.variables.canvas_text_size_5);
-	general_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
-	general_paint.set_alpha(255);
-	general_paint.set_paint_align(paint.align.LEFT);
+	watermark_paint.set_text_size(global.variables.canvas_text_size_5);
+	watermark_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
+	watermark_paint.set_alpha(255);
+	watermark_paint.set_paint_align(paint.align.LEFT);
+
+	web_link_paint = new Paint();
+	web_link_paint.set_paint_style(paint.style.FILL);
+	web_link_paint.set_paint_cap(paint.cap.ROUND);
+	web_link_paint.set_paint_join(paint.join.MITER);
+	web_link_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+	web_link_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+	web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+	web_link_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
+	web_link_paint.set_alpha(255);
+	web_link_paint.set_paint_align(paint.align.CENTER);
+
 	function initialize(step: number): void {
 		if (step === 0) {
 			toast = new Toast();
@@ -774,13 +787,16 @@ function load_app(): void {
 				global.variables.is_dragging = false;
 			}
 			if (global.flags.flag_resize_event) {
-				general_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+				watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 				if (global.CONSTANTS.MOBILE_MODE) {
-					general_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+					watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 				} else {
-					general_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
+					watermark_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
 				}
-				general_paint.set_text_size(global.variables.canvas_text_size_5);
+				watermark_paint.set_text_size(global.variables.canvas_text_size_5);
+				web_link_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+				web_link_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+				web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
 				global.variables.mouse_x = 0;
 				global.variables.mouse_y = 0;
 				reset_zoom();
@@ -1052,6 +1068,7 @@ function load_app(): void {
 		global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
+		web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
 	}
 	function draw(): void {
 		refactor_sizes();
@@ -1098,11 +1115,15 @@ function load_app(): void {
 						nodes[node_length - 1 - i].draw(canvas);
 					}
 				}
+				global.variables.element_on_board = false;
 				workspace.workspace_draw(canvas);
 				engine_functions.draw_unselected_components(canvas);
 				engine_functions.draw_wires(canvas);
 				engine_functions.draw_selected_components(canvas);
 				engine_functions.draw_meter_traces(canvas);
+				if (!global.variables.element_on_board && global.CONSTANTS.DESKTOP_MODE) {
+					canvas.draw_text(language_manager.WEB_LINK, workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), web_link_paint);
+				}
 				if (global.variables.wire_builder['step'] > 0) {
 					global.variables.node_line_buffer = [];
 					global.variables.node_line_buffer_index = 0;
@@ -1171,10 +1192,14 @@ function load_app(): void {
 								nodes[node_length - 1 - i].draw(canvas);
 							}
 						}
+						global.variables.element_on_board = false;
 						engine_functions.draw_unselected_components(canvas);
 						engine_functions.draw_wires(canvas);
 						engine_functions.draw_selected_components(canvas);
 						engine_functions.draw_meter_traces(canvas);
+						if (!global.variables.element_on_board) {
+							canvas.draw_text(language_manager.WEB_LINK, workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), web_link_paint);
+						}
 						if (global.variables.wire_builder['step'] > 0) {
 							global.variables.node_line_buffer = [];
 							global.variables.node_line_buffer_index = 0;
@@ -1210,8 +1235,8 @@ function load_app(): void {
 			}
 		}
 		if (global.CONSTANTS.DEVELOPER_MODE) {
-			canvas.draw_circle(global.variables.mouse_x, global.variables.mouse_y, 20, general_paint);
-			canvas.draw_text(global.variables.mouse_x + ', ' + global.variables.mouse_y, global.variables.mouse_x, global.variables.mouse_y + 50, general_paint);
+			canvas.draw_circle(global.variables.mouse_x, global.variables.mouse_y, 20, watermark_paint);
+			canvas.draw_text(global.variables.mouse_x + ', ' + global.variables.mouse_y, global.variables.mouse_x, global.variables.mouse_y + 50, watermark_paint);
 		}
 		view_port.draw_viewport(canvas);
 	}

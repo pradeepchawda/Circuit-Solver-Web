@@ -94,6 +94,8 @@ class Variables {
 	public canvas_text_size_6_zoom: number;
 	public move_paint: Paint;
 	public history: HISTORY_T;
+	public element_on_board: boolean = false;
+
 	constructor(CONSTANTS: Constants, COLORS: Colors) {
 		this.device_pixel_ratio = 1;
 		this.system_initialization = {

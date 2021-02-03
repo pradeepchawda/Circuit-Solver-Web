@@ -1,6 +1,7 @@
 'use strict';
 class LanguageManager {
 	public readonly WATERMARK: string;
+	public readonly WEB_LINK: string;
 	public readonly TEXT_PADDING: string;
 	public readonly CONNECTION_NOT_ALLOWED: LANGUAGE_T;
 	public readonly STRETCH_WINDOW: LANGUAGE_T;
@@ -112,7 +113,8 @@ class LanguageManager {
 	public readonly TAG_TRAN: string;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	constructor() {
-		this.WATERMARK = 'Created by Circuit Solver (www.androidcircuitsolver.app/html)';
+		this.WATERMARK = 'Created by Circuit Solver : { www.androidcircuitsolver.app/html }';
+		this.WEB_LINK = 'Visit : { www.androidcircuitsolver.app/html }';
 		this.TEXT_PADDING = '    ';
 		this.CONNECTION_NOT_ALLOWED = {
 			English: 'Connection not allowed',

@@ -10003,279 +10003,347 @@ class EngineFunctions {
 			}
 		}
 	}
-	draw_unselected_components(canvas) {
+	draw_unselected_components(canvas: GraphicsEngine) {
 		/* #INSERT_GENERATE_DRAW_UNSELECTED# */
 		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 		for (var i: number = 0; i < resistors.length; i++) {
 			resistors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < capacitors.length; i++) {
 			capacitors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < inductors.length; i++) {
 			inductors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < grounds.length; i++) {
 			grounds[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < dcsources.length; i++) {
 			dcsources[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < dccurrents.length; i++) {
 			dccurrents[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < acsources.length; i++) {
 			acsources[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < accurrents.length; i++) {
 			accurrents[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < squarewaves.length; i++) {
 			squarewaves[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < sawwaves.length; i++) {
 			sawwaves[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < trianglewaves.length; i++) {
 			trianglewaves[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < constants.length; i++) {
 			constants[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < nets.length; i++) {
 			nets[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < notes.length; i++) {
 			notes[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < rails.length; i++) {
 			rails[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < voltmeters.length; i++) {
 			voltmeters[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < ohmmeters.length; i++) {
 			ohmmeters[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < ammeters.length; i++) {
 			ammeters[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < wattmeters.length; i++) {
 			wattmeters[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < fuses.length; i++) {
 			fuses[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < spsts.length; i++) {
 			spsts[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < spdts.length; i++) {
 			spdts[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < nots.length; i++) {
 			nots[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < diodes.length; i++) {
 			diodes[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < leds.length; i++) {
 			leds[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < zeners.length; i++) {
 			zeners[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < potentiometers.length; i++) {
 			potentiometers[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < ands.length; i++) {
 			ands[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < ors.length; i++) {
 			ors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < nands.length; i++) {
 			nands[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < nors.length; i++) {
 			nors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < xors.length; i++) {
 			xors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < xnors.length; i++) {
 			xnors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < dffs.length; i++) {
 			dffs[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < vsats.length; i++) {
 			vsats[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < adders.length; i++) {
 			adders[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < subtractors.length; i++) {
 			subtractors[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < multipliers.length; i++) {
 			multipliers[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < dividers.length; i++) {
 			dividers[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < gains.length; i++) {
 			gains[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < absvals.length; i++) {
 			absvals[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < vcsws.length; i++) {
 			vcsws[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < vcvss.length; i++) {
 			vcvss[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < vccss.length; i++) {
 			vccss[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < cccss.length; i++) {
 			cccss[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < ccvss.length; i++) {
 			ccvss[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < opamps.length; i++) {
 			opamps[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < nmosfets.length; i++) {
 			nmosfets[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < pmosfets.length; i++) {
 			pmosfets[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < npns.length; i++) {
 			npns[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < pnps.length; i++) {
 			pnps[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < adcs.length; i++) {
 			adcs[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < dacs.length; i++) {
 			dacs[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < sandhs.length; i++) {
 			sandhs[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < pwms.length; i++) {
 			pwms[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < integrators.length; i++) {
 			integrators[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < differentiators.length; i++) {
 			differentiators[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < lowpasses.length; i++) {
 			lowpasses[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < highpasses.length; i++) {
 			highpasses[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < relays.length; i++) {
 			relays[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < pids.length; i++) {
 			pids[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < luts.length; i++) {
 			luts[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < vcrs.length; i++) {
 			vcrs[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < vccas.length; i++) {
 			vccas[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < vcls.length; i++) {
 			vcls[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < grts.length; i++) {
 			grts[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < tptzs.length; i++) {
 			tptzs[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		for (var i: number = 0; i < transformers.length; i++) {
 			transformers[i].draw_component(canvas);
+			global.variables.element_on_board = true;
 		}
 
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
@@ -10288,6 +10356,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < resistors.length; i++) {
 					if (global.variables.selected_id === resistors[i].elm.id) {
 						resistors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10296,6 +10365,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < capacitors.length; i++) {
 					if (global.variables.selected_id === capacitors[i].elm.id) {
 						capacitors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10304,6 +10374,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < inductors.length; i++) {
 					if (global.variables.selected_id === inductors[i].elm.id) {
 						inductors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10312,6 +10383,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < grounds.length; i++) {
 					if (global.variables.selected_id === grounds[i].elm.id) {
 						grounds[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10320,6 +10392,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < dcsources.length; i++) {
 					if (global.variables.selected_id === dcsources[i].elm.id) {
 						dcsources[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10328,6 +10401,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < dccurrents.length; i++) {
 					if (global.variables.selected_id === dccurrents[i].elm.id) {
 						dccurrents[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10336,6 +10410,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < acsources.length; i++) {
 					if (global.variables.selected_id === acsources[i].elm.id) {
 						acsources[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10344,6 +10419,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < accurrents.length; i++) {
 					if (global.variables.selected_id === accurrents[i].elm.id) {
 						accurrents[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10352,6 +10428,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < squarewaves.length; i++) {
 					if (global.variables.selected_id === squarewaves[i].elm.id) {
 						squarewaves[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10360,6 +10437,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < sawwaves.length; i++) {
 					if (global.variables.selected_id === sawwaves[i].elm.id) {
 						sawwaves[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10368,6 +10446,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < trianglewaves.length; i++) {
 					if (global.variables.selected_id === trianglewaves[i].elm.id) {
 						trianglewaves[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10376,6 +10455,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < constants.length; i++) {
 					if (global.variables.selected_id === constants[i].elm.id) {
 						constants[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10384,6 +10464,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < wires.length; i++) {
 					if (global.variables.selected_id === wires[i].elm.id) {
 						wires[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10392,6 +10473,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < nets.length; i++) {
 					if (global.variables.selected_id === nets[i].elm.id) {
 						nets[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10400,6 +10482,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < notes.length; i++) {
 					if (global.variables.selected_id === notes[i].elm.id) {
 						notes[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10408,6 +10491,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < rails.length; i++) {
 					if (global.variables.selected_id === rails[i].elm.id) {
 						rails[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10416,6 +10500,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < voltmeters.length; i++) {
 					if (global.variables.selected_id === voltmeters[i].elm.id) {
 						voltmeters[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10424,6 +10509,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < ohmmeters.length; i++) {
 					if (global.variables.selected_id === ohmmeters[i].elm.id) {
 						ohmmeters[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10432,6 +10518,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < ammeters.length; i++) {
 					if (global.variables.selected_id === ammeters[i].elm.id) {
 						ammeters[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10440,6 +10527,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < wattmeters.length; i++) {
 					if (global.variables.selected_id === wattmeters[i].elm.id) {
 						wattmeters[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10448,6 +10536,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < fuses.length; i++) {
 					if (global.variables.selected_id === fuses[i].elm.id) {
 						fuses[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10456,6 +10545,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < spsts.length; i++) {
 					if (global.variables.selected_id === spsts[i].elm.id) {
 						spsts[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10464,6 +10554,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < spdts.length; i++) {
 					if (global.variables.selected_id === spdts[i].elm.id) {
 						spdts[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10472,6 +10563,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < nots.length; i++) {
 					if (global.variables.selected_id === nots[i].elm.id) {
 						nots[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10480,6 +10572,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < diodes.length; i++) {
 					if (global.variables.selected_id === diodes[i].elm.id) {
 						diodes[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10488,6 +10581,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < leds.length; i++) {
 					if (global.variables.selected_id === leds[i].elm.id) {
 						leds[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10496,6 +10590,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < zeners.length; i++) {
 					if (global.variables.selected_id === zeners[i].elm.id) {
 						zeners[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10504,6 +10599,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < potentiometers.length; i++) {
 					if (global.variables.selected_id === potentiometers[i].elm.id) {
 						potentiometers[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10512,6 +10608,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < ands.length; i++) {
 					if (global.variables.selected_id === ands[i].elm.id) {
 						ands[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10520,6 +10617,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < ors.length; i++) {
 					if (global.variables.selected_id === ors[i].elm.id) {
 						ors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10528,6 +10626,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < nands.length; i++) {
 					if (global.variables.selected_id === nands[i].elm.id) {
 						nands[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10536,6 +10635,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < nors.length; i++) {
 					if (global.variables.selected_id === nors[i].elm.id) {
 						nors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10544,6 +10644,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < xors.length; i++) {
 					if (global.variables.selected_id === xors[i].elm.id) {
 						xors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10552,6 +10653,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < xnors.length; i++) {
 					if (global.variables.selected_id === xnors[i].elm.id) {
 						xnors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10560,6 +10662,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < dffs.length; i++) {
 					if (global.variables.selected_id === dffs[i].elm.id) {
 						dffs[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10568,6 +10671,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < vsats.length; i++) {
 					if (global.variables.selected_id === vsats[i].elm.id) {
 						vsats[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10576,6 +10680,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < adders.length; i++) {
 					if (global.variables.selected_id === adders[i].elm.id) {
 						adders[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10584,6 +10689,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < subtractors.length; i++) {
 					if (global.variables.selected_id === subtractors[i].elm.id) {
 						subtractors[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10592,6 +10698,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < multipliers.length; i++) {
 					if (global.variables.selected_id === multipliers[i].elm.id) {
 						multipliers[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10600,6 +10707,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < dividers.length; i++) {
 					if (global.variables.selected_id === dividers[i].elm.id) {
 						dividers[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10608,6 +10716,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < gains.length; i++) {
 					if (global.variables.selected_id === gains[i].elm.id) {
 						gains[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10616,6 +10725,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < absvals.length; i++) {
 					if (global.variables.selected_id === absvals[i].elm.id) {
 						absvals[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10624,6 +10734,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < vcsws.length; i++) {
 					if (global.variables.selected_id === vcsws[i].elm.id) {
 						vcsws[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10632,6 +10743,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < vcvss.length; i++) {
 					if (global.variables.selected_id === vcvss[i].elm.id) {
 						vcvss[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10640,6 +10752,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < vccss.length; i++) {
 					if (global.variables.selected_id === vccss[i].elm.id) {
 						vccss[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10648,6 +10761,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < cccss.length; i++) {
 					if (global.variables.selected_id === cccss[i].elm.id) {
 						cccss[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10656,6 +10770,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < ccvss.length; i++) {
 					if (global.variables.selected_id === ccvss[i].elm.id) {
 						ccvss[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10664,6 +10779,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < opamps.length; i++) {
 					if (global.variables.selected_id === opamps[i].elm.id) {
 						opamps[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10672,6 +10788,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < nmosfets.length; i++) {
 					if (global.variables.selected_id === nmosfets[i].elm.id) {
 						nmosfets[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10680,6 +10797,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < pmosfets.length; i++) {
 					if (global.variables.selected_id === pmosfets[i].elm.id) {
 						pmosfets[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10688,6 +10806,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < npns.length; i++) {
 					if (global.variables.selected_id === npns[i].elm.id) {
 						npns[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10696,6 +10815,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < pnps.length; i++) {
 					if (global.variables.selected_id === pnps[i].elm.id) {
 						pnps[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10704,6 +10824,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < adcs.length; i++) {
 					if (global.variables.selected_id === adcs[i].elm.id) {
 						adcs[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10712,6 +10833,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < dacs.length; i++) {
 					if (global.variables.selected_id === dacs[i].elm.id) {
 						dacs[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10720,6 +10842,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < sandhs.length; i++) {
 					if (global.variables.selected_id === sandhs[i].elm.id) {
 						sandhs[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10728,6 +10851,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < pwms.length; i++) {
 					if (global.variables.selected_id === pwms[i].elm.id) {
 						pwms[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10736,6 +10860,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < integrators.length; i++) {
 					if (global.variables.selected_id === integrators[i].elm.id) {
 						integrators[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10744,6 +10869,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < differentiators.length; i++) {
 					if (global.variables.selected_id === differentiators[i].elm.id) {
 						differentiators[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10752,6 +10878,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < lowpasses.length; i++) {
 					if (global.variables.selected_id === lowpasses[i].elm.id) {
 						lowpasses[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10760,6 +10887,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < highpasses.length; i++) {
 					if (global.variables.selected_id === highpasses[i].elm.id) {
 						highpasses[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10768,6 +10896,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < relays.length; i++) {
 					if (global.variables.selected_id === relays[i].elm.id) {
 						relays[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10776,6 +10905,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < pids.length; i++) {
 					if (global.variables.selected_id === pids[i].elm.id) {
 						pids[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10784,6 +10914,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < luts.length; i++) {
 					if (global.variables.selected_id === luts[i].elm.id) {
 						luts[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10792,6 +10923,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < vcrs.length; i++) {
 					if (global.variables.selected_id === vcrs[i].elm.id) {
 						vcrs[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10800,6 +10932,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < vccas.length; i++) {
 					if (global.variables.selected_id === vccas[i].elm.id) {
 						vccas[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10808,6 +10941,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < vcls.length; i++) {
 					if (global.variables.selected_id === vcls[i].elm.id) {
 						vcls[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10816,6 +10950,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < grts.length; i++) {
 					if (global.variables.selected_id === grts[i].elm.id) {
 						grts[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10824,6 +10959,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < tptzs.length; i++) {
 					if (global.variables.selected_id === tptzs[i].elm.id) {
 						tptzs[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10832,6 +10968,7 @@ class EngineFunctions {
 				for (var i: number = 0; i < transformers.length; i++) {
 					if (global.variables.selected_id === transformers[i].elm.id) {
 						transformers[i].draw_component(canvas);
+						global.variables.element_on_board = true;
 						break;
 					}
 				}
@@ -10881,7 +11018,7 @@ class EngineFunctions {
 		engine_functions.draw_wires(canvas);
 		engine_functions.draw_selected_components(canvas);
 		engine_functions.draw_meter_traces(canvas);
-		canvas.draw_text(language_manager.WATERMARK, 5, 1.5 * general_paint.get_text_size(), general_paint);
+		canvas.draw_text(language_manager.WATERMARK, 5, 1.5 * watermark_paint.get_text_size(), watermark_paint);
 		if (global.variables.wire_builder['step'] > 0) {
 			if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
 				canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);

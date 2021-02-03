@@ -1,6 +1,7 @@
 'use strict';
 class Variables {
     constructor(CONSTANTS, COLORS) {
+        this.element_on_board = false;
         this.device_pixel_ratio = 1;
         this.system_initialization = {
             step: 0,
