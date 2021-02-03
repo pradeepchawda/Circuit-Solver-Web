@@ -5783,7 +5783,7 @@ class EngineFunctions {
 
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	map_node(node_id) {
+	map_node(node_id : number) {
 		this.temp = -1;
 		this.output = -1;
 		for (var i: number = 0; i < node_manager.active_nodes.length; i++) {
