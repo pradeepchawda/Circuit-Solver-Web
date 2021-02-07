@@ -618,7 +618,7 @@ class SaveCircuitWindow {
 		if (global.CONSTANTS.MOBILE_MODE) {
 			file_saver.click();
 		} else {
-			save_file(global.variables.user_file.title + '.txt', engine_functions.history_snapshot());
+			engine_functions.save_file(global.variables.user_file.title + '.txt', engine_functions.history_snapshot());
 		}
 		global.variables.workspace_zoom_scale = previous_zoom;
 		global.variables.dx = last_dx;

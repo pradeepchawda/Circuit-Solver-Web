@@ -25,6 +25,87 @@ class EngineFunctions {
         this.mapper3 = new Element3(-1, -1, global.CONSTANTS.NULL);
         this.mapper4 = new Element4(-1, -1, global.CONSTANTS.NULL);
     }
+    save_file(title, content) {
+        let blob = new Blob([content], {
+            type: 'text/plain;charset=utf-8'
+        });
+        //@ts-expect-error
+        saveAs(blob, title);
+    }
+    save_image(title, canvas) {
+        canvas.toBlob(function (blob) {
+            //@ts-expect-error
+            saveAs(blob, title);
+        });
+    }
+    save_image_mobile(title, canvas) {
+        canvas.toBlob(function (blob) {
+            let reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                window.JsInterface.javascript_native_hook('push-image', title, reader.result);
+            };
+        });
+    }
+    file_event(input) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            let text = reader.result;
+            let title = input.files[0].name.split('.')[0];
+            if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+                title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
+            }
+            global.variables.user_file.title = title;
+            bottom_menu.resize_bottom_menu();
+            global.variables.user_file.content = text;
+            global.variables.user_file_selected = true;
+            global.flags.flag_canvas_draw_event = true;
+        };
+        reader.onerror = function (err) { };
+        reader.readAsText(input.files[0]);
+    }
+    file_event_mobile(title, data) {
+        if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+            title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
+        }
+        global.variables.user_file.title = title;
+        bottom_menu.resize_bottom_menu();
+        global.variables.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
+    }
+    restore_system_options(index, value) {
+        if (index === global.CONSTANTS.SYSTEM_OPTION_LANGUAGE) {
+            for (var i = 0; i < global.CONSTANTS.LANGUAGES.length; i++) {
+                if (value === global.CONSTANTS.LANGUAGES[i]) {
+                    global.variables.language_index = i;
+                }
+            }
+        }
+        global.variables.system_options['values'][index] = value;
+    }
+    restore_zoom_offset(zoom, delta_x, dx, x_offset, delta_y, dy, y_offset) {
+        global.variables.workspace_zoom_scale = Number(zoom);
+        global.variables.dx = Number(dx);
+        global.variables.dy = Number(dy);
+        global.variables.x_offset = Number(x_offset);
+        global.variables.y_offset = Number(y_offset);
+        global.variables.delta_x = Number(delta_x);
+        global.variables.delta_y = Number(delta_y);
+        workspace.workspace_zoom();
+        global.flags.flag_draw_block = true;
+        global.flags.flag_build_element = true;
+    }
+    handle_file_loading() {
+        global.variables.user_file_selected = true;
+        global.flags.flag_canvas_draw_event = true;
+        try {
+            engine_functions.parse_elements(global.variables.user_file.content);
+        }
+        catch (error) { }
+        global.variables.history['packet'].push(engine_functions.history_snapshot());
+        global.flags.flag_draw_block = true;
+        global.variables.user_file_selected = false;
+        mouse_event_latch = false;
+    }
     create_nodes(bounds) {
         let counter_x = 0;
         let counter_y = 0;
@@ -10227,10 +10308,10 @@ class EngineFunctions {
             this.snapshot(temp_surface, temp_canvas);
         }
         if (!global.CONSTANTS.MOBILE_MODE) {
-            save_image(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+            this.save_image(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
         }
         else {
-            save_image_mobile(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+            this.save_image_mobile(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
         }
         workspace.workspace_translate_bounds(temp_left, temp_top);
         global.variables.workspace_zoom_scale = temp_zoom;

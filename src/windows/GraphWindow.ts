@@ -308,7 +308,7 @@ class GraphWindow {
 			str += time_stamp + temp_str;
 		}
 		if (!global.CONSTANTS.MOBILE_MODE) {
-			save_file(global.variables.user_file.title + '_csv.txt', str);
+			engine_functions.save_file(global.variables.user_file.title + '_csv.txt', str);
 		} else {
 			window.JsInterface.javascript_native_hook('push-csv', global.variables.user_file.title + '_csv.txt', str);
 		}

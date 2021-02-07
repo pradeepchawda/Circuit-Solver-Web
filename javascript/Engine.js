@@ -17,28 +17,6 @@ String.prototype.hashCode = function () {
     }
     return hash;
 };
-function save_file(title, content) {
-    let blob = new Blob([content], {
-        type: 'text/plain;charset=utf-8'
-    });
-    //@ts-expect-error
-    saveAs(blob, title);
-}
-function save_image(title, canvas) {
-    canvas.toBlob(function (blob) {
-        //@ts-expect-error
-        saveAs(blob, title);
-    });
-}
-function save_image_mobile(title, canvas) {
-    canvas.toBlob(function (blob) {
-        let reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-            window.JsInterface.javascript_native_hook('push-image', title, reader.result);
-        };
-    });
-}
 var file_reader = global.CONSTANTS.NULL;
 if (global.CONSTANTS.MOBILE_MODE) {
     file_reader = document.getElementById('file_explorer_mobile');
@@ -48,65 +26,6 @@ else {
 }
 var file_saver = document.getElementById('file_saver');
 var file_loader = document.getElementById('file_loader');
-function file_event(input) {
-    let reader = new FileReader();
-    reader.onload = function (e) {
-        let text = reader.result;
-        let title = input.files[0].name.split('.')[0];
-        if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
-            title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
-        }
-        global.variables.user_file.title = title;
-        bottom_menu.resize_bottom_menu();
-        global.variables.user_file.content = text;
-        global.variables.user_file_selected = true;
-        global.flags.flag_canvas_draw_event = true;
-    };
-    reader.onerror = function (err) { };
-    reader.readAsText(input.files[0]);
-}
-function file_event_mobile(title, data) {
-    if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
-        title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
-    }
-    global.variables.user_file.title = title;
-    bottom_menu.resize_bottom_menu();
-    global.variables.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
-}
-function restore_system_options(index, value) {
-    if (index === global.CONSTANTS.SYSTEM_OPTION_LANGUAGE) {
-        for (var i = 0; i < global.CONSTANTS.LANGUAGES.length; i++) {
-            if (value === global.CONSTANTS.LANGUAGES[i]) {
-                global.variables.language_index = i;
-            }
-        }
-    }
-    global.variables.system_options['values'][index] = value;
-}
-function restore_zoom_offset(zoom, delta_x, dx, x_offset, delta_y, dy, y_offset) {
-    global.variables.workspace_zoom_scale = Number(zoom);
-    global.variables.dx = Number(dx);
-    global.variables.dy = Number(dy);
-    global.variables.x_offset = Number(x_offset);
-    global.variables.y_offset = Number(y_offset);
-    global.variables.delta_x = Number(delta_x);
-    global.variables.delta_y = Number(delta_y);
-    workspace.workspace_zoom();
-    global.flags.flag_draw_block = true;
-    global.flags.flag_build_element = true;
-}
-function handle_file_loading() {
-    global.variables.user_file_selected = true;
-    global.flags.flag_canvas_draw_event = true;
-    try {
-        engine_functions.parse_elements(global.variables.user_file.content);
-    }
-    catch (error) { }
-    global.variables.history['packet'].push(engine_functions.history_snapshot());
-    global.flags.flag_draw_block = true;
-    global.variables.user_file_selected = false;
-    mouse_event_latch = false;
-}
 var solver_container = document.getElementById('solver');
 var surface = document.createElement('canvas');
 surface.id = 'canvas';

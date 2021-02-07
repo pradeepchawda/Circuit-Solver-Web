@@ -48,6 +48,86 @@ class EngineFunctions {
 		this.mapper3 = new Element3(-1, -1, global.CONSTANTS.NULL);
 		this.mapper4 = new Element4(-1, -1, global.CONSTANTS.NULL);
 	}
+	save_file(title: string, content: string): void {
+		let blob: Blob = new Blob([content], {
+			type: 'text/plain;charset=utf-8'
+		});
+		//@ts-expect-error
+		saveAs(blob, title);
+	}
+	save_image(title: string, canvas: HTMLCanvasElement): void {
+		canvas.toBlob(function (blob) {
+			//@ts-expect-error
+			saveAs(blob, title);
+		});
+	}
+	save_image_mobile(title: string, canvas: HTMLCanvasElement): void {
+		canvas.toBlob(function (blob: Blob) {
+			let reader: FileReader = new FileReader();
+			reader.readAsDataURL(blob);
+			reader.onloadend = function () {
+				window.JsInterface.javascript_native_hook('push-image', title, reader.result);
+			};
+		});
+	}
+	file_event(input: HTMLInputElement): void {
+		let reader: FileReader = new FileReader();
+		reader.onload = function (e: ProgressEvent<FileReader>): void {
+			let text: string = <string>(<unknown>reader.result);
+			let title: string = input.files[0].name.split('.')[0];
+			if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+				title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
+			}
+			global.variables.user_file.title = title;
+			bottom_menu.resize_bottom_menu();
+			global.variables.user_file.content = text;
+			global.variables.user_file_selected = true;
+			global.flags.flag_canvas_draw_event = true;
+		};
+		reader.onerror = function (err: ProgressEvent<FileReader>) {};
+		reader.readAsText(input.files[0]);
+	}
+	file_event_mobile(title: string, data: string): void {
+		if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+			title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
+		}
+		global.variables.user_file.title = title;
+		bottom_menu.resize_bottom_menu();
+		global.variables.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
+	}
+	restore_system_options(index: number, value: string): void {
+		if (index === global.CONSTANTS.SYSTEM_OPTION_LANGUAGE) {
+			for (var i: number = 0; i < global.CONSTANTS.LANGUAGES.length; i++) {
+				if (value === global.CONSTANTS.LANGUAGES[i]) {
+					global.variables.language_index = i;
+				}
+			}
+		}
+		global.variables.system_options['values'][index] = value;
+	}
+	restore_zoom_offset(zoom: number, delta_x: number, dx: number, x_offset: number, delta_y: number, dy: number, y_offset: number): void {
+		global.variables.workspace_zoom_scale = Number(zoom);
+		global.variables.dx = Number(dx);
+		global.variables.dy = Number(dy);
+		global.variables.x_offset = Number(x_offset);
+		global.variables.y_offset = Number(y_offset);
+		global.variables.delta_x = Number(delta_x);
+		global.variables.delta_y = Number(delta_y);
+		workspace.workspace_zoom();
+		global.flags.flag_draw_block = true;
+		global.flags.flag_build_element = true;
+	}
+	handle_file_loading(): void {
+		global.variables.user_file_selected = true;
+		global.flags.flag_canvas_draw_event = true;
+		try {
+			engine_functions.parse_elements(global.variables.user_file.content);
+		} catch (error) {}
+		global.variables.history['packet'].push(engine_functions.history_snapshot());
+		global.flags.flag_draw_block = true;
+		global.variables.user_file_selected = false;
+		mouse_event_latch = false;
+	}
 	create_nodes(bounds: RectF): void {
 		let counter_x: number = 0;
 		let counter_y: number = 0;
@@ -5783,7 +5863,7 @@ class EngineFunctions {
 
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	map_node(node_id : number) {
+	map_node(node_id: number) {
 		this.temp = -1;
 		this.output = -1;
 		for (var i: number = 0; i < node_manager.active_nodes.length; i++) {
@@ -11078,9 +11158,9 @@ class EngineFunctions {
 			this.snapshot(temp_surface, temp_canvas);
 		}
 		if (!global.CONSTANTS.MOBILE_MODE) {
-			save_image(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+			this.save_image(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
 		} else {
-			save_image_mobile(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+			this.save_image_mobile(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
 		}
 		workspace.workspace_translate_bounds(temp_left, temp_top);
 		global.variables.workspace_zoom_scale = temp_zoom;
