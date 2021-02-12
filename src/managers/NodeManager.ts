@@ -92,7 +92,7 @@ class NodeManager {
 			}
 		}
 	}
-	net_redundancy_check(n1: number, n2: number, net_list: Array<Array<number>>) {
+	net_redundancy_check(n1: number, n2: number, net_list: Array<Array<number>>): boolean {
 		let output: boolean = false;
 		for (var i: number = 0; i < net_list.length; i++) {
 			if ((n1 === net_list[i][0] && n2 === net_list[i][1]) || (n2 === net_list[i][0] && n1 === net_list[i][1])) {

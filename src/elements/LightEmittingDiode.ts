@@ -201,9 +201,9 @@ class LightEmittingDiode {
 			if (this.elm.consistent()) {
 				this.elm.properties['Last Voltage'] = this.elm.properties['Voltage'];
 				this.elm.properties['Last Current'] = this.elm.properties['Equivalent Current'];
-				let next_voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
-				let vcrit = this.calculate_vcrit();
-				let diode_voltage = 0;
+				let next_voltage: number = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+				let vcrit: number = this.calculate_vcrit();
+				let diode_voltage: number = 0;
 				if (next_voltage > this.damping_safety_factor * vcrit) {
 					diode_voltage = global.utils.log_damping(next_voltage, this.elm.properties['Voltage'], this.gamma, this.kappa);
 				} else if (diode_voltage < -this.damping_safety_factor * vcrit) {

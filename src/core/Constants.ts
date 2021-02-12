@@ -51,6 +51,8 @@ class Constants {
 	public readonly CANVAS_DRAW_REQUEST_COUNTER_MAX: number;
 	public readonly CANVAS_REDRAW_MAX: number;
 	public readonly PACKET_DIVIDER: string;
+	public readonly WIRE_DIVIDER: string;
+	public readonly ID_DIVIDER: string;
 	public readonly PI_DIV_2: number;
 	public readonly PI_DIV_4: number;
 	public readonly PI_MUL_3_DIV_4: number;
@@ -139,6 +141,8 @@ class Constants {
 		this.CANVAS_DRAW_REQUEST_COUNTER_MAX = 3;
 		this.CANVAS_REDRAW_MAX = 3;
 		this.PACKET_DIVIDER = '#DIVIDER#';
+		this.WIRE_DIVIDER = '#WIRE#';
+		this.ID_DIVIDER = '#ID#';
 		this.PI_DIV_2 = Math.PI * 0.5;
 		this.PI_DIV_4 = Math.PI * 0.25;
 		this.PI_MUL_3_DIV_4 = Math.PI * 0.75;

@@ -17,9 +17,10 @@ class ShortcutManager {
         this.SHORTCUT_QUERY = global.KEY_CODES.KEY_CODE_Q;
         this.SHORTCUT_RESET_WINDOW = global.KEY_CODES.KEY_CODE_M;
         this.SHORTCUT_TOGGLE_SWITCH = global.KEY_CODES.KEY_CODE_SPACE;
+        this.SHORTCUT_EXPORT = global.KEY_CODES.KEY_CODE_P;
+        this.OPTION_ENABLE_ARROW_KEYS = true;
         this.multi_moved_element = false;
         this.multi_deleted_element = false;
-        this.OPTION_ENABLE_ARROW_KEYS = true;
         this.temp_history_snapshot = '';
         this.command = '';
         this.shift = false;
@@ -94,7 +95,574 @@ class ShortcutManager {
                 !global.flags.flag_menu_element_toolbox) {
                 this.handle_save_image_flag(key_event);
                 this.handle_save_circuit_flag(key_event);
+                this.handle_file_export(key_event);
             }
+        }
+    }
+    handle_file_export(key_event) {
+        this.shift = key_event['shift'];
+        this.command = key_event['event'].code;
+        this.caps = key_event['caps'];
+        if (this.command === this.SHORTCUT_EXPORT && key_event['ctrl'] === true) {
+            let packet = [];
+            let indexer = 0;
+            /* #INSERT_GENERATE_ELEMENT_EXPORT_SHORTCUT# */
+            /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+            for (var i = 0; i < resistors.length; i++) {
+                packet[indexer++] = '"ref_id":' + resistors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(resistors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(resistors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < capacitors.length; i++) {
+                packet[indexer++] = '"ref_id":' + capacitors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(capacitors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(capacitors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < inductors.length; i++) {
+                packet[indexer++] = '"ref_id":' + inductors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(inductors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(inductors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < grounds.length; i++) {
+                packet[indexer++] = '"ref_id":' + grounds[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(grounds[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(grounds[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < dcsources.length; i++) {
+                packet[indexer++] = '"ref_id":' + dcsources[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dcsources[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dcsources[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < dccurrents.length; i++) {
+                packet[indexer++] = '"ref_id":' + dccurrents[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dccurrents[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dccurrents[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < acsources.length; i++) {
+                packet[indexer++] = '"ref_id":' + acsources[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(acsources[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(acsources[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < accurrents.length; i++) {
+                packet[indexer++] = '"ref_id":' + accurrents[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(accurrents[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(accurrents[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < squarewaves.length; i++) {
+                packet[indexer++] = '"ref_id":' + squarewaves[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(squarewaves[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(squarewaves[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < sawwaves.length; i++) {
+                packet[indexer++] = '"ref_id":' + sawwaves[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(sawwaves[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(sawwaves[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < trianglewaves.length; i++) {
+                packet[indexer++] = '"ref_id":' + trianglewaves[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(trianglewaves[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(trianglewaves[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < constants.length; i++) {
+                packet[indexer++] = '"ref_id":' + constants[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(constants[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(constants[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < nets.length; i++) {
+                packet[indexer++] = '"ref_id":' + nets[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nets[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nets[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < notes.length; i++) {
+                packet[indexer++] = '"ref_id":' + notes[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(notes[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(notes[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < rails.length; i++) {
+                packet[indexer++] = '"ref_id":' + rails[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(rails[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(rails[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < voltmeters.length; i++) {
+                packet[indexer++] = '"ref_id":' + voltmeters[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(voltmeters[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(voltmeters[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < ohmmeters.length; i++) {
+                packet[indexer++] = '"ref_id":' + ohmmeters[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ohmmeters[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ohmmeters[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < ammeters.length; i++) {
+                packet[indexer++] = '"ref_id":' + ammeters[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ammeters[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ammeters[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < wattmeters.length; i++) {
+                packet[indexer++] = '"ref_id":' + wattmeters[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(wattmeters[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(wattmeters[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < fuses.length; i++) {
+                packet[indexer++] = '"ref_id":' + fuses[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(fuses[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(fuses[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < spsts.length; i++) {
+                packet[indexer++] = '"ref_id":' + spsts[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(spsts[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(spsts[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < spdts.length; i++) {
+                packet[indexer++] = '"ref_id":' + spdts[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(spdts[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(spdts[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < nots.length; i++) {
+                packet[indexer++] = '"ref_id":' + nots[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nots[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nots[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < diodes.length; i++) {
+                packet[indexer++] = '"ref_id":' + diodes[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(diodes[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(diodes[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < leds.length; i++) {
+                packet[indexer++] = '"ref_id":' + leds[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(leds[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(leds[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < zeners.length; i++) {
+                packet[indexer++] = '"ref_id":' + zeners[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(zeners[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(zeners[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < potentiometers.length; i++) {
+                packet[indexer++] = '"ref_id":' + potentiometers[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(potentiometers[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(potentiometers[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < ands.length; i++) {
+                packet[indexer++] = '"ref_id":' + ands[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ands[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ands[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < ors.length; i++) {
+                packet[indexer++] = '"ref_id":' + ors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < nands.length; i++) {
+                packet[indexer++] = '"ref_id":' + nands[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nands[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nands[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < nors.length; i++) {
+                packet[indexer++] = '"ref_id":' + nors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < xors.length; i++) {
+                packet[indexer++] = '"ref_id":' + xors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(xors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(xors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < xnors.length; i++) {
+                packet[indexer++] = '"ref_id":' + xnors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(xnors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(xnors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < dffs.length; i++) {
+                packet[indexer++] = '"ref_id":' + dffs[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dffs[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dffs[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < vsats.length; i++) {
+                packet[indexer++] = '"ref_id":' + vsats[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vsats[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vsats[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < adders.length; i++) {
+                packet[indexer++] = '"ref_id":' + adders[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(adders[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(adders[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < subtractors.length; i++) {
+                packet[indexer++] = '"ref_id":' + subtractors[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(subtractors[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(subtractors[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < multipliers.length; i++) {
+                packet[indexer++] = '"ref_id":' + multipliers[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(multipliers[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(multipliers[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < dividers.length; i++) {
+                packet[indexer++] = '"ref_id":' + dividers[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dividers[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dividers[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < gains.length; i++) {
+                packet[indexer++] = '"ref_id":' + gains[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(gains[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(gains[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < absvals.length; i++) {
+                packet[indexer++] = '"ref_id":' + absvals[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(absvals[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(absvals[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < vcsws.length; i++) {
+                packet[indexer++] = '"ref_id":' + vcsws[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcsws[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcsws[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < vcvss.length; i++) {
+                packet[indexer++] = '"ref_id":' + vcvss[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcvss[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcvss[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < vccss.length; i++) {
+                packet[indexer++] = '"ref_id":' + vccss[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vccss[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vccss[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < cccss.length; i++) {
+                packet[indexer++] = '"ref_id":' + cccss[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(cccss[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(cccss[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < ccvss.length; i++) {
+                packet[indexer++] = '"ref_id":' + ccvss[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ccvss[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(ccvss[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < opamps.length; i++) {
+                packet[indexer++] = '"ref_id":' + opamps[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(opamps[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(opamps[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < nmosfets.length; i++) {
+                packet[indexer++] = '"ref_id":' + nmosfets[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nmosfets[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(nmosfets[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < pmosfets.length; i++) {
+                packet[indexer++] = '"ref_id":' + pmosfets[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pmosfets[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pmosfets[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < npns.length; i++) {
+                packet[indexer++] = '"ref_id":' + npns[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(npns[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(npns[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < pnps.length; i++) {
+                packet[indexer++] = '"ref_id":' + pnps[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pnps[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pnps[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < adcs.length; i++) {
+                packet[indexer++] = '"ref_id":' + adcs[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(adcs[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(adcs[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < dacs.length; i++) {
+                packet[indexer++] = '"ref_id":' + dacs[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dacs[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(dacs[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < sandhs.length; i++) {
+                packet[indexer++] = '"ref_id":' + sandhs[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(sandhs[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(sandhs[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < pwms.length; i++) {
+                packet[indexer++] = '"ref_id":' + pwms[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pwms[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pwms[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < integrators.length; i++) {
+                packet[indexer++] = '"ref_id":' + integrators[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(integrators[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(integrators[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < differentiators.length; i++) {
+                packet[indexer++] = '"ref_id":' + differentiators[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(differentiators[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(differentiators[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < lowpasses.length; i++) {
+                packet[indexer++] = '"ref_id":' + lowpasses[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(lowpasses[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(lowpasses[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < highpasses.length; i++) {
+                packet[indexer++] = '"ref_id":' + highpasses[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(highpasses[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(highpasses[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < relays.length; i++) {
+                packet[indexer++] = '"ref_id":' + relays[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(relays[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(relays[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < pids.length; i++) {
+                packet[indexer++] = '"ref_id":' + pids[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pids[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(pids[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < luts.length; i++) {
+                packet[indexer++] = '"ref_id":' + luts[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(luts[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(luts[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < vcrs.length; i++) {
+                packet[indexer++] = '"ref_id":' + vcrs[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcrs[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcrs[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < vccas.length; i++) {
+                packet[indexer++] = '"ref_id":' + vccas[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vccas[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vccas[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < vcls.length; i++) {
+                packet[indexer++] = '"ref_id":' + vcls[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcls[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(vcls[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < grts.length; i++) {
+                packet[indexer++] = '"ref_id":' + grts[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(grts[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(grts[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < tptzs.length; i++) {
+                packet[indexer++] = '"ref_id":' + tptzs[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(tptzs[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(tptzs[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            for (var i = 0; i < transformers.length; i++) {
+                packet[indexer++] = '"ref_id":' + transformers[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(transformers[i].elm.properties);
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = JSON.stringify(transformers[i].wire_reference);
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            /* <!-- END AUTOMATICALLY GENERATED !--> */
+            for (var i = 0; i < wires.length; i++) {
+                packet[indexer++] = '"ref_id":' + wires[i].elm.id;
+                packet[indexer++] = global.CONSTANTS.ID_DIVIDER + '\r\n';
+                packet[indexer++] = wires[i].elm.n1 + ', ' + wires[i].elm.n2;
+                packet[indexer++] = global.CONSTANTS.WIRE_DIVIDER + '\r\n';
+                packet[indexer++] = '<WIRE>';
+                packet[indexer++] = global.CONSTANTS.PACKET_DIVIDER + '\r\n';
+            }
+            engine_functions.save_file(global.variables.user_file.title + '_nl.txt', packet.join(''));
+            packet.splice(0, packet.length);
         }
     }
     handle_select_all(key_event) {
