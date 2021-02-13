@@ -657,7 +657,7 @@ class ElementProperties {
             options: ['Turns Ratio'],
             options_units: ['NP/NS'],
             option_limits: {
-                'NP/NS': [settings.MIN_GAIN, settings.MAX_GAIN]
+                'Turns Ratio': [settings.MIN_GAIN, settings.MAX_GAIN]
             }
         };
         this.PROPERTY_ADC = {

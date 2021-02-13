@@ -120,6 +120,7 @@ class ShortcutManager {
 			) {
 				this.handle_save_image_flag(key_event);
 				this.handle_save_circuit_flag(key_event);
+				this.handle_file_export(key_event);
 			}
 		}
 	}

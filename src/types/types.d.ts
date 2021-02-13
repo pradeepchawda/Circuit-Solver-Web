@@ -927,7 +927,7 @@ declare type PROPERTY_TRAN_T = {
 	options: Array<string>;
 	options_units: Array<string>;
 	option_limits: {
-		'NP/NS': Array<number>;
+		'Turns Ratio': Array<number>;
 	};
 };
 declare type PROPERTY_ADC_T = {
