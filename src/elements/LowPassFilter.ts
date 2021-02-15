@@ -149,11 +149,6 @@ class LowPassFilter {
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-	reset_lowpass() {
-		this.elm.properties['Y Hat'] = 0;
-		this.elm.properties['Y Out'] = 0;
-		this.elm.properties['Output Voltage'] = 0;
-	}
 	update(): void {
 		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
 			if (this.elm.consistent()) {

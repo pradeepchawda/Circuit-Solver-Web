@@ -575,12 +575,6 @@ class Inductor {
 			this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
 		}
 	}
-	reset_inductor() {
-		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
-		this.elm.properties['Transient Voltage'] = 0;
-		this.elm.properties['Transient Current'] = global.utils.copy(this.elm.properties['Initial Current']);
-		this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
-	}
 	conserve_energy(): void {
 		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
 		this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
@@ -803,5 +797,10 @@ class Inductor {
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {}
+	reset(): void {
+		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
+		this.elm.properties['Transient Voltage'] = 0;
+		this.elm.properties['Transient Current'] = global.utils.copy(this.elm.properties['Initial Current']);
+		this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
+	}
 }

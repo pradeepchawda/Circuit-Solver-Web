@@ -146,10 +146,6 @@ class TPTZModule {
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-	reset_tptz() {
-		this.tptz_controller.set_initial(0);
-		this.elm.properties['Output Voltage'] = 0;
-	}
 	update(): void {
 		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
 			if (this.elm.consistent()) {
@@ -737,6 +733,7 @@ class TPTZModule {
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
+		this.tptz_controller.set_initial(0);
 		this.elm.properties['Output Voltage'] = 0;
 	}
 }

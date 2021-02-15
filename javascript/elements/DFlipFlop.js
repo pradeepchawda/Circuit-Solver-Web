@@ -109,12 +109,6 @@ class DFlipFlop {
     push_reference(ref) {
         this.wire_reference.push(ref);
     }
-    reset_dff() {
-        this.elm.properties['Clock'] = 0;
-        this.elm.properties['Last Clock'] = 1;
-        this.elm.properties['Q'] = 0;
-        this.elm.properties['!Q'] = 1;
-    }
     update() {
         if (global.flags.flag_simulating && simulation_manager.solutions_ready) {
             if (this.elm.consistent()) {

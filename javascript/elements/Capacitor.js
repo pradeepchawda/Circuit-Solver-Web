@@ -512,12 +512,6 @@ class Capacitor {
             this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
         }
     }
-    reset_capacitor() {
-        this.elm.properties['Transient Resistance'] = simulation_manager.time_step / (2 * this.elm.properties['Capacitance']);
-        this.elm.properties['Transient Voltage'] = global.utils.copy(this.elm.properties['Initial Voltage']);
-        this.elm.properties['Transient Current'] = 0;
-        this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
-    }
     conserve_energy() {
         this.elm.properties['Transient Resistance'] = simulation_manager.time_step / (2 * this.elm.properties['Capacitance']);
         this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
@@ -673,5 +667,10 @@ class Capacitor {
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    reset() { }
+    reset() {
+        this.elm.properties['Transient Resistance'] = simulation_manager.time_step / (2 * this.elm.properties['Capacitance']);
+        this.elm.properties['Transient Voltage'] = global.utils.copy(this.elm.properties['Initial Voltage']);
+        this.elm.properties['Transient Current'] = 0;
+        this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
+    }
 }

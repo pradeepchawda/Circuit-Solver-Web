@@ -166,14 +166,6 @@ class Diode {
 			return false;
 		}
 	}
-	reset_diode(): void {
-		this.elm.properties['Voltage'] = 0;
-		this.elm.properties['Last Voltage'] = this.calculate_vcrit();
-		this.elm.properties['Last Current'] = global.settings.TOLERANCE * 2;
-		this.elm.properties['Resistance'] = global.settings.R_MAX;
-		this.elm.properties['Equivalent Current'] = 0;
-		this.update();
-	}
 	get_diode_error(): number {
 		return Math.abs(this.elm.properties['Voltage'] - this.elm.properties['Last Voltage']);
 	}
@@ -788,5 +780,12 @@ class Diode {
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {}
+	reset(): void {
+		this.elm.properties['Voltage'] = 0;
+		this.elm.properties['Last Voltage'] = this.calculate_vcrit();
+		this.elm.properties['Last Current'] = global.settings.TOLERANCE * 2;
+		this.elm.properties['Resistance'] = global.settings.R_MAX;
+		this.elm.properties['Equivalent Current'] = 0;
+		this.update();
+	}
 }

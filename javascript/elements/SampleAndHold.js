@@ -112,9 +112,6 @@ class SampleAndHold {
     push_reference(ref) {
         this.wire_reference.push(ref);
     }
-    reset_samplers() {
-        this.elm.properties['Output Voltage'] = 0;
-    }
     update() {
         if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
             if (this.elm.consistent()) {

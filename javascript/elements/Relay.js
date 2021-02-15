@@ -116,12 +116,6 @@ class Relay {
             this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
         }
     }
-    reset_relay() {
-        this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
-        this.elm.properties['Transient Voltage'] = 0;
-        this.elm.properties['Transient Current'] = global.utils.copy(this.elm.properties['Initial Current']);
-        this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
-    }
     conserve_energy() {
         this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
         this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
@@ -813,5 +807,10 @@ class Relay {
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    reset() { }
+    reset() {
+        this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
+        this.elm.properties['Transient Voltage'] = 0;
+        this.elm.properties['Transient Current'] = global.utils.copy(this.elm.properties['Initial Current']);
+        this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
+    }
 }

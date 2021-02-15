@@ -186,9 +186,6 @@ class SimulationManager {
 			this.time_data.splice(0, this.time_data.length);
 		}
 		this.reset_elements();
-		this.reset_memory_devices();
-		this.reset_reactive_elements();
-		this.reset_non_linear_elements();
 		this.reset_meter_values();
 		node_manager.generate_unique_nodes_list();
 		node_manager.assign_node_simulation_ids();
@@ -859,78 +856,6 @@ class SimulationManager {
 		}
 		for (var i: number = 0; i < transformers.length; i++) {
 			transformers[i].reset();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
-	}
-	reset_memory_devices(): void {
-		/* #INSERT_GENERATE_RESET_MEMORY_ELEMENTS# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < fuses.length; i++) {
-			fuses[i].reset_fuse();
-		}
-		for (var i: number = 0; i < dffs.length; i++) {
-			dffs[i].reset_dff();
-		}
-		for (var i: number = 0; i < sandhs.length; i++) {
-			sandhs[i].reset_samplers();
-		}
-		for (var i: number = 0; i < lowpasses.length; i++) {
-			lowpasses[i].reset_lowpass();
-		}
-		for (var i: number = 0; i < highpasses.length; i++) {
-			highpasses[i].reset_highpass();
-		}
-		for (var i: number = 0; i < pids.length; i++) {
-			pids[i].reset_pid();
-		}
-		for (var i: number = 0; i < tptzs.length; i++) {
-			tptzs[i].reset_tptz();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
-	}
-	reset_reactive_elements(): void {
-		/* #INSERT_GENERATE_RESET_REACTIVE_ELEMENTS_TEMPLATE# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < capacitors.length; i++) {
-			capacitors[i].reset_capacitor();
-		}
-		for (var i: number = 0; i < inductors.length; i++) {
-			inductors[i].reset_inductor();
-		}
-		for (var i: number = 0; i < relays.length; i++) {
-			relays[i].reset_relay();
-		}
-		for (var i: number = 0; i < vccas.length; i++) {
-			vccas[i].reset_vcca();
-		}
-		for (var i: number = 0; i < vcls.length; i++) {
-			vcls[i].reset_vcl();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
-	}
-	reset_non_linear_elements(): void {
-		/* #INSERT_GENERATE_RESET_NON_LINEAR_ELEMENTS# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < diodes.length; i++) {
-			diodes[i].reset_diode();
-		}
-		for (var i: number = 0; i < leds.length; i++) {
-			leds[i].reset_led();
-		}
-		for (var i: number = 0; i < zeners.length; i++) {
-			zeners[i].reset_zener();
-		}
-		for (var i: number = 0; i < nmosfets.length; i++) {
-			nmosfets[i].reset_nmosfet();
-		}
-		for (var i: number = 0; i < pmosfets.length; i++) {
-			pmosfets[i].reset_pmosfet();
-		}
-		for (var i: number = 0; i < npns.length; i++) {
-			npns[i].reset_npn();
-		}
-		for (var i: number = 0; i < pnps.length; i++) {
-			pnps[i].reset_pnp();
 		}
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}

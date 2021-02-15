@@ -205,16 +205,6 @@ class PChannelMOSFET {
 			return false;
 		}
 	}
-	reset_pmosfet() {
-		this.y_out = 0;
-		this.y_hat = 0;
-		this.elm.properties['Mosfet Mode'] = 0;
-		this.elm.properties['Vsg'] = 0;
-		this.elm.properties['Vsd'] = 0;
-		this.elm.properties['Last Vsg'] = 2;
-		this.elm.properties['Last Io'] = global.settings.TOLERANCE * 2;
-		this.update();
-	}
 	get_pmosfet_error() {
 		return Math.abs(this.elm.properties['Vsg'] - this.elm.properties['Last Vsg']);
 	}
@@ -963,5 +953,14 @@ class PChannelMOSFET {
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {}
+	reset(): void {
+		this.y_out = 0;
+		this.y_hat = 0;
+		this.elm.properties['Mosfet Mode'] = 0;
+		this.elm.properties['Vsg'] = 0;
+		this.elm.properties['Vsd'] = 0;
+		this.elm.properties['Last Vsg'] = 2;
+		this.elm.properties['Last Io'] = global.settings.TOLERANCE * 2;
+		this.update();
+	}
 }

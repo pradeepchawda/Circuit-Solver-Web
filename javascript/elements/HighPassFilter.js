@@ -98,12 +98,6 @@ class HighPassFilter {
     push_reference(ref) {
         this.wire_reference.push(ref);
     }
-    reset_highpass() {
-        this.elm.properties['Y Hat'] = 0;
-        this.elm.properties['Y Out'] = 0;
-        this.elm.properties['X Hat'] = 0;
-        this.elm.properties['Output Voltage'] = 0;
-    }
     update() {
         if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
             if (this.elm.consistent()) {

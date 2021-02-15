@@ -167,12 +167,6 @@ class VoltageControlledCapacitor {
 			this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
 		}
 	}
-	reset_vcca(): void {
-		this.elm.properties['Transient Resistance'] = simulation_manager.time_step / (2 * this.elm.properties['Output Capacitance']);
-		this.elm.properties['Transient Voltage'] = global.utils.copy(this.elm.properties['Initial Voltage']);
-		this.elm.properties['Transient Current'] = 0;
-		this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
-	}
 	conserve_energy(): void {
 		this.elm.properties['Transient Resistance'] = simulation_manager.time_step / (2 * this.elm.properties['Output Capacitance']);
 		this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
@@ -846,5 +840,10 @@ class VoltageControlledCapacitor {
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {}
+	reset(): void {
+		this.elm.properties['Transient Resistance'] = simulation_manager.time_step / (2 * this.elm.properties['Output Capacitance']);
+		this.elm.properties['Transient Voltage'] = global.utils.copy(this.elm.properties['Initial Voltage']);
+		this.elm.properties['Transient Current'] = 0;
+		this.elm.properties['Equivalent Current'] = -this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] - this.elm.properties['Transient Current'];
+	}
 }

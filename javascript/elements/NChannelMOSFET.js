@@ -144,16 +144,6 @@ class NChannelMOSFET {
             return false;
         }
     }
-    reset_nmosfet() {
-        this.y_out = 0;
-        this.y_hat = 0;
-        this.elm.properties['Mosfet Mode'] = 0;
-        this.elm.properties['Vgs'] = 0;
-        this.elm.properties['Vds'] = 0;
-        this.elm.properties['Last Vgs'] = 2;
-        this.elm.properties['Last Io'] = global.settings.TOLERANCE * 2;
-        this.update();
-    }
     get_nmosfet_error() {
         return Math.abs(this.elm.properties['Vgs'] - this.elm.properties['Last Vgs']);
     }
@@ -915,5 +905,14 @@ class NChannelMOSFET {
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    reset() { }
+    reset() {
+        this.y_out = 0;
+        this.y_hat = 0;
+        this.elm.properties['Mosfet Mode'] = 0;
+        this.elm.properties['Vgs'] = 0;
+        this.elm.properties['Vds'] = 0;
+        this.elm.properties['Last Vgs'] = 2;
+        this.elm.properties['Last Io'] = global.settings.TOLERANCE * 2;
+        this.update();
+    }
 }

@@ -149,13 +149,6 @@ class NPNBipolarJunctionTransistor {
             return false;
         }
     }
-    reset_npn() {
-        this.elm.properties['Vbe'] = 0;
-        this.elm.properties['Vbc'] = 0;
-        this.elm.properties['Last Vbe'] = this.calculate_vcrit();
-        this.elm.properties['Last Io'] = global.settings.TOLERANCE * 2;
-        this.update();
-    }
     get_npnbjt_error() {
         return Math.abs(this.elm.properties['Vbe'] - this.elm.properties['Last Vbe']);
     }
@@ -970,5 +963,11 @@ class NPNBipolarJunctionTransistor {
         return time_data;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
-    reset() { }
+    reset() {
+        this.elm.properties['Vbe'] = 0;
+        this.elm.properties['Vbc'] = 0;
+        this.elm.properties['Last Vbe'] = this.calculate_vcrit();
+        this.elm.properties['Last Io'] = global.settings.TOLERANCE * 2;
+        this.update();
+    }
 }
