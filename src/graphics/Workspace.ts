@@ -1,18 +1,18 @@
 'use strict';
 class Workspace {
-	public readonly OPTION_DRAW_GRID: boolean;
-	public flag_resize_flag: boolean;
+	private readonly OPTION_DRAW_GRID: boolean;
+	private flag_resize_flag: boolean;
 	public flag_draw_to_screen: boolean;
-	public view: RectF;
+	private view: RectF;
 	public bounds: RectF;
-	public view_paint: Paint;
-	public bounds_paint: Paint;
-	public grid_paint: Paint;
-	public work_area_paint: Paint;
-	public sqrt: number;
-	public sqrt_m_1: number;
-	public line_buffer: Array<Array<number>>;
-	public grid_moved: boolean;
+	private view_paint: Paint;
+	private bounds_paint: Paint;
+	private grid_paint: Paint;
+	private work_area_paint: Paint;
+	private sqrt: number;
+	private sqrt_m_1: number;
+	private line_buffer: Array<Array<number>>;
+	private grid_moved: boolean;
 	constructor(left: number, top: number, right: number, bottom: number, scale: number) {
 		this.flag_resize_flag = false;
 		this.flag_draw_to_screen = false;

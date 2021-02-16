@@ -15,9 +15,9 @@ class Paint {
 	public text_size: number;
 	public font: string;
 	public alpha: number;
-	public metric_array: Array<PAINT_METRICS_ARRAY_T>;
-	public saved_metric: PAINT_METRICS_T;
-	public garbage_collector_size: number;
+	private metric_array: Array<PAINT_METRICS_ARRAY_T>;
+	private saved_metric: PAINT_METRICS_T;
+	private garbage_collector_size: number;
 	private temp_boolean: boolean;
 	private paint_surface: VirtualCanvas;
 	private last_font: string;

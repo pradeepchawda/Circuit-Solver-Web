@@ -2,16 +2,16 @@
 class SineWave {
 	public amplitude: number;
 	public sine_wave_paint: Paint;
-	public x1: number;
-	public x2: number;
-	public y1: number;
-	public y2: number;
-	public c_x: number;
-	public c_y: number;
-	public last_x1: number;
-	public last_x2: number;
-	public last_y1: number;
-	public last_y2: number;
+	private x1: number;
+	private x2: number;
+	private y1: number;
+	private y2: number;
+	private c_x: number;
+	private c_y: number;
+	private last_x1: number;
+	private last_x2: number;
+	private last_y1: number;
+	private last_y2: number;
 	constructor(x1: number, y1: number, x2: number, y2: number, amplitude: number) {
 		this.amplitude = amplitude;
 		this.sine_wave_paint = new Paint();

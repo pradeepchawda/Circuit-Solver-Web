@@ -1,18 +1,18 @@
 'use strict';
 class Viewport {
-	public readonly OPTION_DRAW_BOUNDS: boolean;
-	public line_paint: Paint;
+	private readonly OPTION_DRAW_BOUNDS: boolean;
+	private line_paint: Paint;
 	public apply_spread_factor: boolean;
-	public screen_width: number;
-	public screen_height: number;
+	private screen_width: number;
+	private screen_height: number;
 	public center_x: number;
 	public center_y: number;
-	public aspect_ratio: number;
+	private aspect_ratio: number;
 	public view_width: number;
 	public view_height: number;
-	public width_spread_factor: number;
-	public height_spread_factor: number;
-	public spread_factor: number;
+	private width_spread_factor: number;
+	private height_spread_factor: number;
+	private spread_factor: number;
 	public left: number;
 	public top: number;
 	public right: number;
