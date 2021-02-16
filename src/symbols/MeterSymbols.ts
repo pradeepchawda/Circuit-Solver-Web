@@ -1,12 +1,12 @@
 'use strict';
 class MeterSymbols {
-	public bounds: RectF;
+	private bounds: RectF;
 
-	public meter_type: number;
-	public meter_paint: Paint;
-	public points: Array<PointF>;
-	public line_buffer: Array<Array<number>>;
-	public circle_buffer: Array<Array<number>>;
+	private meter_type: number;
+	private meter_paint: Paint;
+	private points: Array<PointF>;
+	private line_buffer: Array<Array<number>>;
+	private circle_buffer: Array<Array<number>>;
 	constructor() {
 		this.bounds = new RectF(0, 0, 0, 0);
 

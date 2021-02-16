@@ -1,18 +1,18 @@
 'use strict';
 class BottomMenu {
 	public readonly INITIAL_RESIZE_COUNTER_MAX: number;
-	public draw_bottom_path: boolean;
-	public time_step_button_width: number;
-	public line_paint: Paint;
-	public fill_paint: Paint;
-	public text_paint: Paint;
-	public bottom_path: Path;
-	public file_button: Button;
-	public time_step_button: Button;
-	public first_touch_x: number;
-	public first_touch_y: number;
-	public initial_resize_counter: number;
-	public reload_bottom_path: boolean;
+	private draw_bottom_path: boolean;
+	private time_step_button_width: number;
+	private line_paint: Paint;
+	private fill_paint: Paint;
+	private text_paint: Paint;
+	private bottom_path: Path;
+	private file_button: Button;
+	private time_step_button: Button;
+	private first_touch_x: number;
+	private first_touch_y: number;
+	private initial_resize_counter: number;
+	private reload_bottom_path: boolean;
 	constructor() {
 		this.draw_bottom_path = true;
 		this.time_step_button_width = 1;

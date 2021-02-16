@@ -1,15 +1,15 @@
 'use strict';
 class ScopeManager {
-	public readonly MAX_ENTRIES: number;
+	private readonly MAX_ENTRIES: number;
 	public entry: Array<SCOPE_ENTRY_T>;
-	public index: number;
-	public met_max: number;
-	public iteration_size: number;
-	public v_side_1: number;
-	public v_side_2: number;
-	public curr: number;
-	public voltage: number;
-	public power: number;
+	private index: number;
+	private met_max: number;
+	private iteration_size: number;
+	private v_side_1: number;
+	private v_side_2: number;
+	private curr: number;
+	private voltage: number;
+	private power: number;
 	constructor() {
 		this.MAX_ENTRIES = 3;
 		this.entry = [];

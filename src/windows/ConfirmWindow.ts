@@ -1,19 +1,19 @@
 'use strict';
 class ConfirmWindow {
-	public readonly PADDING: number;
-	public line_paint: Paint;
-	public bounds_paint: Paint;
-	public fill_paint: Paint;
-	public yes_paint: Paint;
-	public no_paint: Paint;
-	public text_paint: Paint;
-	public width: number;
-	public height: number;
-	public bounds: RectF;
-	public option_0: RectF;
-	public option_1: RectF;
-	public first_touch_x: number;
-	public first_touch_y: number;
+	private readonly PADDING: number;
+	private line_paint: Paint;
+	private bounds_paint: Paint;
+	private fill_paint: Paint;
+	private yes_paint: Paint;
+	private no_paint: Paint;
+	private text_paint: Paint;
+	private width: number;
+	private height: number;
+	private bounds: RectF;
+	private option_0: RectF;
+	private option_1: RectF;
+	private first_touch_x: number;
+	private first_touch_y: number;
 	constructor() {
 		this.PADDING = 0.025;
 		this.line_paint = new Paint();

@@ -1,18 +1,18 @@
 'use strict';
 class SimulationManager {
-	public readonly SIMULATION_MAX_TIME: number;
+	private readonly SIMULATION_MAX_TIME: number;
 	public node_size: number;
-	public offset: number;
-	public initialized: boolean;
-	public continue_solving: boolean;
+	private offset: number;
+	private initialized: boolean;
+	private continue_solving: boolean;
 	public iterator: number;
 	public solutions_ready: boolean;
 	public simulation_step: number;
-	public first_matrix_build: boolean;
-	public first_error_check: boolean;
-	public first_x_matrix_copy: boolean;
-	public first_x_matrix_solution: boolean;
-	public time_data: Array<TIME_DATA_TEMPLATE_T>;
+	private first_matrix_build: boolean;
+	private first_error_check: boolean;
+	private first_x_matrix_copy: boolean;
+	private first_x_matrix_solution: boolean;
+	private time_data: Array<TIME_DATA_TEMPLATE_T>;
 	/* #INSERT_GENERATE_ELEMENT_SIMULATION_OFFSETS_DECLARATION# */
 	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public ELEMENT_RESISTOR_OFFSET: number;
@@ -87,12 +87,12 @@ class SimulationManager {
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	public time_step: number;
 	public simulation_time: number;
-	public max_voltage_error: Array<Array<number>>;
-	public max_current_error: Array<Array<number>>;
-	public voltage_error_locked: boolean;
-	public current_error_locked: boolean;
-	public voltage_converged: boolean;
-	public current_converged: boolean;
+	private max_voltage_error: Array<Array<number>>;
+	private max_current_error: Array<Array<number>>;
+	private voltage_error_locked: boolean;
+	private current_error_locked: boolean;
+	private voltage_converged: boolean;
+	private current_converged: boolean;
 	constructor() {
 		this.node_size = 0;
 		this.offset = 0;

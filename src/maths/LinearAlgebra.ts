@@ -1,19 +1,19 @@
 'use strict';
 class LinearAlgebra {
-	public x_matrix: Array<Array<number>>;
-	public det_threshold: number;
-	public row: Array<number>;
-	public _i: number;
-	public _j: number;
-	public _k: number;
-	public _i_max: number;
-	public size: number;
-	public max_a: number;
-	public abs_a: number;
-	public p_vector: Array<number>;
-	public lup_det: number;
-	public general_vector: Array<number>;
-	public general_matrix: Array<Array<number>>;
+	private x_matrix: Array<Array<number>>;
+	private det_threshold: number;
+	private row: Array<number>;
+	private _i: number;
+	private _j: number;
+	private _k: number;
+	private _i_max: number;
+	private size: number;
+	private max_a: number;
+	private abs_a: number;
+	private p_vector: Array<number>;
+	private lup_det: number;
+	private general_vector: Array<number>;
+	private general_matrix: Array<Array<number>>;
 	public flag_first_solution: boolean;
 	constructor() {
 		this.x_matrix = [[0], [0]];
