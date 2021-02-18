@@ -517,7 +517,7 @@ class MultiSelectManager {
 		this.multi_select = false;
 	}
 	key_down(key_event: KEY_EVENT_T): void {
-		if (this.enable_keys && !global.CONSTANTS.MOBILE_MODE) {
+		if (this.enable_keys && !MOBILE_MODE) {
 			if (
 				!global.flags.flag_simulating &&
 				!global.flags.flag_save_image &&
@@ -540,7 +540,7 @@ class MultiSelectManager {
 		}
 	}
 	key_up(key_event: KEY_EVENT_T): void {
-		if (this.enable_keys && !global.flags.flag_history_lock && !global.CONSTANTS.MOBILE_MODE) {
+		if (this.enable_keys && !global.flags.flag_history_lock && !MOBILE_MODE) {
 			if (!this.mouse_down_flag) {
 				this.ctrl_pressed_started = false;
 				this.ctrl_pressed = false;
@@ -563,7 +563,7 @@ class MultiSelectManager {
 			!global.flags.flag_remove_all &&
 			!global.flags.flag_menu_element_toolbox &&
 			!global.flags.flag_history_lock &&
-			!global.CONSTANTS.MOBILE_MODE
+			!MOBILE_MODE
 		) {
 			if (this.enable_keys && !global.flags.flag_history_lock) {
 				this.mouse_down_flag = true;
@@ -628,7 +628,7 @@ class MultiSelectManager {
 			!global.flags.flag_remove_all &&
 			!global.flags.flag_menu_element_toolbox &&
 			!global.flags.flag_history_lock &&
-			!global.CONSTANTS.MOBILE_MODE
+			!MOBILE_MODE
 		) {
 			if (this.ctrl_pressed_started) {
 				if (Math.abs(global.variables.mouse_x - this.select_x) > global.variables.node_space_x || Math.abs(global.variables.mouse_y - this.select_y) > global.variables.node_space_y) {
@@ -671,7 +671,7 @@ class MultiSelectManager {
 		}
 	}
 	mouse_up(): void {
-		if (!global.CONSTANTS.MOBILE_MODE) {
+		if (!MOBILE_MODE) {
 			this.mouse_down_flag = false;
 			this.ctrl_pressed_started = false;
 			this.ctrl_pressed = false;

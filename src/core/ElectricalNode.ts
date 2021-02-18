@@ -51,7 +51,7 @@ class ElectricalNode {
 		this.row = this.id % Math.round(global.settings.SQRT_MAXNODES);
 		let node_space_x: number = 1.175 * (global.variables.node_space_x >> 2);
 		let node_space_y: number = 1.175 * (global.variables.node_space_y >> 2);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			node_space_x *= 1.25;
 			node_space_y *= 1.25;
 		}
@@ -63,7 +63,7 @@ class ElectricalNode {
 		if (global.flags.flag_build_element) {
 			this.location.x = workspace.bounds.left + this.loc_x_precalc * workspace.bounds.get_width();
 			this.location.y = workspace.bounds.top + this.loc_y_precalc * workspace.bounds.get_height();
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				this.bounds.set_bounds(this.location.x - n_x, this.location.y - n_y, this.location.x + n_x, this.location.y + n_y);
 			} else {
 				this.bounds.set_bounds(this.location.x - m_n_x, this.location.y - m_n_y, this.location.x + m_n_x, this.location.y + m_n_y);

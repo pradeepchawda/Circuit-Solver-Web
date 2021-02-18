@@ -484,11 +484,70 @@ class SimulationManager {
                 }
             }
         }
-        parallel_resistance = 1.0 / parallel_resistance;
+        if (!(min_resistance >= 1.0 / global.settings.R_MAX && min_resistance <= global.settings.R_MAX && max_resistance >= 1.0 / global.settings.R_MAX && max_resistance <= global.settings.R_MAX)) {
+            parallel_series_updated = false;
+            max_res_updated = false;
+            min_res_updated = false;
+        }
         if (!parallel_series_updated) {
             parallel_resistance = 376.73;
             series_resistance = 376.73;
         }
+        else {
+            parallel_resistance = 1.0 / parallel_resistance;
+        }
+        // let a = parallel_series_updated;
+        // let b = min_freq_updated;
+        // let c = max_freq_updated;
+        // let d = min_res_updated;
+        // let e = max_res_updated;
+        // let f = min_cap_updated;
+        // let g = max_cap_updated;
+        // let h = min_ind_updated;
+        // let j = max_ind_updated;
+        let ts_final = 1;
+        let multiplier = 0.016;
+        // let min_period: number = (1.0 / min_frequency) * multiplier;
+        // let max_period: number = (1.0 / max_frequency) * multiplier;
+        // let rc_parallel: number = Math.min(Math.max(parallel_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+        // let rc_series: number = Math.min(Math.max(series_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+        // let rl_parallel: number = Math.min(Math.max((min_inductance / parallel_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+        // let rl_series: number = Math.min(Math.max((min_inductance / series_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+        // let t_lc: number = Math.min(Math.max(Math.sqrt(min_capacitance * min_inductance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+        // if (a && !b && !c && d && e && !f && !g && !h && !j) {
+        // 	/* Resistace Updated. */
+        // 	ts_final = 1.0;
+        // } else if (!a && b && c && !d && !e && !f && !g && !h && !j) {
+        // 	/* Frequency Updated */
+        // 	ts_final = (1.0 / min_frequency) * multiplier;
+        // } else if (!a && !b && !c && !d && !e && f && g && !h && !j) {
+        // 	/* Capacitance Updated */
+        // 	ts_final = 1.0;
+        // } else if (!a && !b && !c && !d && !e && !f && !g && h && j) {
+        // 	/* Inductance Updated */
+        // 	ts_final = 1.0;
+        // } else if (a && !b && !c && d && e && f && g && !h && !j) {
+        // 	/* Resistace, Capacitance Updated. */
+        // 	ts_final = Math.min(rc_parallel, rc_series);
+        // } else if (a && !b && !c && d && e && !f && !g && h && j) {
+        // 	/* Resistace, Inductance Updated. */
+        // 	ts_final = Math.min(rl_parallel, rl_series);
+        // } else if (a && !b && !c && d && e && f && g && h && j) {
+        // 	/* Resistace, Capacitance, Inductance Updated. */
+        // 	ts_final = Math.min(Math.min(Math.min(Math.min(rc_parallel, rc_series), rl_parallel), rl_series), t_lc);
+        // } else if (a && b && c && d && e && f && g && h && j) {
+        // 	/* Resistace, Capacitance, Inductance, Frequency Updated. */
+        // 	ts_final = Math.min(Math.min(Math.min(Math.min(Math.min(Math.min(rc_parallel, rc_series), rl_parallel), rl_series), min_period), max_period), t_lc);
+        // } else if (!a && !b && !c && !d && !e && f && g && h && j) {
+        // 	/* Capacitance, Inductance Updated. */
+        // 	ts_final = t_lc;
+        // } else if (!a && b && c && !d && !e && f && g && !h && !j) {
+        // 	/* Capacitance, Frequency Updated. */
+        // 	ts_final = Math.min(Math.min(Math.min(min_period, max_period), rc_parallel), rc_series);
+        // } else if (!a && b && c && !d && !e && !f && !g && h && j) {
+        // 	/* Inductance, Frequency Updated. */
+        // 	ts_final = Math.min(Math.min(Math.min(min_period, max_period), rl_parallel), rl_series);
+        // }
         if (!min_freq_updated) {
             min_frequency = global.settings.MIN_FREQUENCY;
         }
@@ -513,8 +572,8 @@ class SimulationManager {
         if (!max_ind_updated) {
             max_inductance = global.settings.MAX_INDUCTANCE;
         }
-        let ts_final = 1;
-        let multiplier = 0.016;
+        // let ts_final: number = 1;
+        // let multiplier: number = 0.016;
         if (parallel_series_updated) {
             let rc_parallel = Math.min(Math.max(parallel_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
             let rl_parallel = Math.min(Math.max((min_inductance / parallel_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
@@ -925,7 +984,7 @@ class SimulationManager {
         if (global.flags.flag_simulating && this.initialized) {
             if (this.simulation_step === 0) {
                 this.solve();
-                if (this.continue_solving && !global.CONSTANTS.MOBILE_MODE) {
+                if (this.continue_solving && !MOBILE_MODE) {
                     this.solve();
                 }
             }

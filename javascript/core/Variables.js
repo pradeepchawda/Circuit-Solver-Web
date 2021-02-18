@@ -8,7 +8,7 @@ class Variables {
             max: 5,
             completed: false
         };
-        if (CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.workspace_zoom_scale = 2.5;
         }
         else {
@@ -103,10 +103,10 @@ class Variables {
         };
         this.node_line_buffer = [];
         this.node_line_buffer_index = 0;
-        if (CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.system_options['values'][CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] = CONSTANTS.OFF;
         }
-        if (CONSTANTS.DESKTOP_MODE || CONSTANTS.DESKTOP_MODE) {
+        if (DESKTOP_MODE || MOBILE_MODE) {
             this.system_options['values'][CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] = CONSTANTS.ON;
         }
         this.user_file_selected = false;

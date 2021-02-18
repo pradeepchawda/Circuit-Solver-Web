@@ -576,11 +576,22 @@ class SimulationManager {
 				}
 			}
 		}
-		parallel_resistance = 1.0 / parallel_resistance;
+		if (!(min_resistance >= 1.0 / global.settings.R_MAX && min_resistance <= global.settings.R_MAX && max_resistance >= 1.0 / global.settings.R_MAX && max_resistance <= global.settings.R_MAX)) {
+			parallel_series_updated = false;
+			max_res_updated = false;
+			min_res_updated = false;
+		}
+
 		if (!parallel_series_updated) {
 			parallel_resistance = 376.73;
 			series_resistance = 376.73;
+		} else {
+			parallel_resistance = 1.0 / parallel_resistance;
 		}
+
+		let ts_final: number = 1;
+		let multiplier: number = 0.016;
+
 		if (!min_freq_updated) {
 			min_frequency = global.settings.MIN_FREQUENCY;
 		}
@@ -605,8 +616,7 @@ class SimulationManager {
 		if (!max_ind_updated) {
 			max_inductance = global.settings.MAX_INDUCTANCE;
 		}
-		let ts_final: number = 1;
-		let multiplier: number = 0.016;
+
 		if (parallel_series_updated) {
 			let rc_parallel: number = Math.min(Math.max(parallel_resistance * min_capacitance * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
 			let rl_parallel: number = Math.min(Math.max((min_inductance / parallel_resistance) * multiplier, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
@@ -628,6 +638,7 @@ class SimulationManager {
 			let min_period: number = (1.0 / min_frequency) * multiplier;
 			ts_final = global.utils.min3(max_period, min_period, t_lc);
 			ts_final = Math.min(Math.max(ts_final, global.settings.MIN_TIME_CONSTANT), global.settings.MAX_TIME_CONSTANT);
+
 			if (!max_freq_updated && !min_freq_updated && !min_cap_updated && !max_cap_updated && !min_ind_updated && !max_ind_updated) {
 				ts_final = 1;
 			}
@@ -1010,7 +1021,7 @@ class SimulationManager {
 		if (global.flags.flag_simulating && this.initialized) {
 			if (this.simulation_step === 0) {
 				this.solve();
-				if (this.continue_solving && !global.CONSTANTS.MOBILE_MODE) {
+				if (this.continue_solving && !MOBILE_MODE) {
 					this.solve();
 				}
 			} else {

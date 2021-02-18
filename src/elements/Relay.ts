@@ -163,9 +163,9 @@ class Relay {
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-	update_relay() {
+	update_relay(): void {
 		if (this.elm.consistent() && simulation_manager.solutions_ready) {
-			let voltage = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
+			let voltage: number = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
 			this.elm.properties['Transient Voltage'] = voltage;
 			this.elm.properties['Transient Current'] = voltage / this.elm.properties['Transient Resistance'] + this.elm.properties['Equivalent Current'];
 			this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
@@ -740,7 +740,7 @@ class Relay {
 				canvas.draw_rect2(this.bounds, this.line_paint);
 				canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
 			}
-			if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+			if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 				this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 				if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 					canvas.rotate(this.c_x, this.c_y, -90);
@@ -772,7 +772,7 @@ class Relay {
 					);
 				}
 			}
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&

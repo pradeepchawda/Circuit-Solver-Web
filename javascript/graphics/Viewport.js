@@ -12,7 +12,7 @@ class Viewport {
         this.line_paint.set_alpha(255);
         this.line_paint.set_paint_align(paint.align.CENTER);
         this.OPTION_DRAW_BOUNDS = false;
-        if (global.CONSTANTS.MOBILE_MODE === true || global.CONSTANTS.DESKTOP_MODE === true) {
+        if (MOBILE_MODE === true || DESKTOP_MODE === true) {
             this.apply_spread_factor = true;
         }
         else {

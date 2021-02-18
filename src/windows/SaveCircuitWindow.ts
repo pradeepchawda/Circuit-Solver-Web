@@ -66,7 +66,7 @@ class SaveCircuitWindow {
 		this.text_paint.set_paint_join(paint.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_YELLOW_COLOR);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_5);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -104,14 +104,14 @@ class SaveCircuitWindow {
 		this.select_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.select_paint.set_alpha(64);
 		this.select_paint.set_paint_align(paint.align.CENTER);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.width = view_port.view_width * 0.2625;
 			this.height = view_port.view_height * 0.15;
 		} else {
 			this.width = view_port.view_width * 0.15;
 			this.height = view_port.view_height * 0.075;
 		}
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			let c_y = 0.25 * view_port.view_height;
 			this.bounds = new RectF(view_port.center_x - this.width, c_y - this.height, view_port.center_x + this.width, c_y + this.height);
 		} else {
@@ -205,7 +205,7 @@ class SaveCircuitWindow {
 				if (this.bounds.top + this.offset_y <= view_port.top) {
 					this.offset_y = view_port.top - this.bounds.top;
 				}
-				if (global.CONSTANTS.MOBILE_MODE) {
+				if (MOBILE_MODE) {
 					if (this.bounds.bottom + this.offset_y >= on_screen_keyboard.bounds.top) {
 						this.offset_y = on_screen_keyboard.bounds.top - this.bounds.bottom;
 					}
@@ -231,7 +231,7 @@ class SaveCircuitWindow {
 						!this.bounds.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
 						!this.bounds.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)
 					) {
-						if (global.CONSTANTS.MOBILE_MODE) {
+						if (MOBILE_MODE) {
 							if (!on_screen_keyboard.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 								menu_bar.handle_save_circuit_flag(!global.flags.flag_save_circuit);
 								global.variables.component_touched = true;
@@ -615,7 +615,7 @@ class SaveCircuitWindow {
 		engine_functions.draw_wires(canvas);
 		engine_functions.draw_selected_components(canvas);
 		engine_functions.draw_meter_traces(canvas);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			file_saver.click();
 		} else {
 			engine_functions.save_file(global.variables.user_file.title + '.txt', engine_functions.history_snapshot());
@@ -663,14 +663,14 @@ class SaveCircuitWindow {
 		}
 	}
 	resize_window(): void {
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.width = view_port.view_width * 0.2625;
 			this.height = view_port.view_height * 0.15;
 		} else {
 			this.width = view_port.view_width * 0.15;
 			this.height = view_port.view_height * 0.075;
 		}
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			let c_y = 0.25 * view_port.view_height;
 			this.bounds.set_bounds(view_port.center_x - this.width, c_y - this.height, view_port.center_x + this.width, c_y + this.height);
 			this.offset_y = 0;
@@ -697,7 +697,7 @@ class SaveCircuitWindow {
 		this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.bounds_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_5);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -710,10 +710,10 @@ class SaveCircuitWindow {
 	}
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.flags.flag_save_circuit) {
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}
-			if (global.CONSTANTS.MOBILE_MODE) {
+			if (MOBILE_MODE) {
 				if (this.bounds.bottom + this.offset_y >= on_screen_keyboard.bounds.top) {
 					this.offset_y = on_screen_keyboard.bounds.top - this.bounds.bottom;
 				}
@@ -724,7 +724,7 @@ class SaveCircuitWindow {
 			canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
 			this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
-			if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
 				this.okay_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.okay_button.fill_paint.set_alpha(255);
 			} else {
@@ -732,7 +732,7 @@ class SaveCircuitWindow {
 				this.okay_button.fill_paint.set_alpha(130);
 			}
 			this.okay_button.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
-			if (this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
 				this.cancel_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.cancel_button.fill_paint.set_alpha(255);
 			} else {
@@ -774,7 +774,7 @@ class SaveCircuitWindow {
 				this.input_button.get_center_y() + this.offset_y,
 				this.input_button.text_paint
 			);
-			if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
 				canvas.draw_rect(
 					this.exit_button.left + this.offset_x,
 					this.exit_button.top + this.offset_y,

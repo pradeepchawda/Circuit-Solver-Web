@@ -37,7 +37,7 @@ class ElementOptions {
 	constructor() {
 		let temp_stroke_width: number = 0.65 * global.variables.canvas_stroke_width_3;
 		this.MAX_ICONS = 8;
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
 		}
 		this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
@@ -275,7 +275,7 @@ class ElementOptions {
 	}
 	resize(): void {
 		let temp_stroke_width: number = 0.65 * global.variables.canvas_stroke_width_3;
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			temp_stroke_width = 0.85 * global.variables.canvas_stroke_width_3;
 		}
 		this.mb_x = menu_bar.menu_icons[menu_bar.UP_DOWN_INDEX].get_center_x();
@@ -2669,7 +2669,7 @@ class ElementOptions {
 						!global.flags.flag_element_options &&
 						!global.flags.flag_graph &&
 						!global.flags.flag_remove_all &&
-						!global.CONSTANTS.MOBILE_MODE
+						!MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_0, 1.1, this.hover_paint);
 					} else {
@@ -2731,7 +2731,7 @@ class ElementOptions {
 						!global.flags.flag_element_options &&
 						!global.flags.flag_graph &&
 						!global.flags.flag_remove_all &&
-						!global.CONSTANTS.MOBILE_MODE
+						!MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_1, 1.1, this.hover_paint);
 					} else {
@@ -2816,7 +2816,7 @@ class ElementOptions {
 						!global.flags.flag_element_options &&
 						!global.flags.flag_graph &&
 						!global.flags.flag_remove_all &&
-						!global.CONSTANTS.MOBILE_MODE
+						!MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_2, 1.1, this.hover_paint);
 					} else {
@@ -2872,7 +2872,7 @@ class ElementOptions {
 						!global.flags.flag_element_options &&
 						!global.flags.flag_graph &&
 						!global.flags.flag_remove_all &&
-						!global.CONSTANTS.MOBILE_MODE
+						!MOBILE_MODE
 					) {
 						canvas.draw_circle3(this.option_3, 1.1, this.hover_paint);
 					} else {

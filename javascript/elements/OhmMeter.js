@@ -649,7 +649,7 @@ class OhmMeter {
             }
             this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
             if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
-                if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+                if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     if (global.flags.flag_simulating &&
                         simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
                         simulation_manager.solutions_ready) {
@@ -664,7 +664,7 @@ class OhmMeter {
             else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
                 canvas.rotate(this.c_x, this.c_y, -90);
                 this.meter_symbol.draw_symbol(canvas);
-                if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+                if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     if (global.flags.flag_simulating &&
                         simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
                         simulation_manager.solutions_ready) {
@@ -676,7 +676,7 @@ class OhmMeter {
                 }
                 canvas.restore();
             }
-            if (!global.CONSTANTS.MOBILE_MODE) {
+            if (!MOBILE_MODE) {
                 if (global.variables.wire_builder['step'] === 0 &&
                     this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
                     global.CONSTANTS.NODE_HINTS &&

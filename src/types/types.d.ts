@@ -1098,6 +1098,7 @@ declare type PROPERTY_REL_T = {
 	'Turn on Current': number;
 	'Closed Resistance': number;
 	'Open Resistance': number;
+	'Transient Voltage': number;
 	tag: string;
 	units: string;
 	options: Array<string>;

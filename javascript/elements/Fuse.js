@@ -577,7 +577,7 @@ class Fuse {
                 canvas.draw_rect2(this.bounds, this.line_paint);
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+            if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                 this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
                 if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
                     canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Current Rating'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.1, this.text_paint);
@@ -590,7 +590,7 @@ class Fuse {
                     canvas.restore();
                 }
             }
-            if (!global.CONSTANTS.MOBILE_MODE) {
+            if (!MOBILE_MODE) {
                 if (global.variables.wire_builder['step'] === 0 &&
                     this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
                     global.CONSTANTS.NODE_HINTS &&

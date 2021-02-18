@@ -61,7 +61,7 @@ class DFlipFlopSymbol {
         this.text_paint.set_paint_join(paint.join.MITER);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(global.variables.canvas_text_size_4);
         }
         else {
@@ -122,7 +122,7 @@ class DFlipFlopSymbol {
         }
     }
     mouse_move(page, width, height) {
-        if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, width, height) && !global.CONSTANTS.MOBILE_MODE) {
+        if (this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, width, height) && !MOBILE_MODE) {
             this.draw_tag = true;
         }
         else {
@@ -186,7 +186,7 @@ class DFlipFlopSymbol {
         this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.point_paint.set_text_size(global.variables.canvas_text_size_4);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(global.variables.canvas_text_size_4);
         }
         else {

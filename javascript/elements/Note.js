@@ -513,7 +513,7 @@ class Note {
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
             if (this.elm.properties['Show Marker'] === global.CONSTANTS.ON) {
-                if (!global.CONSTANTS.MOBILE_MODE) {
+                if (!MOBILE_MODE) {
                     if (global.variables.wire_builder['step'] === 0 &&
                         !global.flags.flag_menu_element_toolbox &&
                         this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&

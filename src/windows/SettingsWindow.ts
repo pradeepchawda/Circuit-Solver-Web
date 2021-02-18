@@ -34,13 +34,13 @@ class SettingsWindow {
 		this.TITLE_HEIGHT_RATIO = 0.1;
 		this.BUTTON_WIDTH_RATIO = 0.3;
 		this.BUTTON_HEIGHT_RATIO = 0.1;
-		if (global.CONSTANTS.MOBILE_MODE === false) {
+		if (MOBILE_MODE === false) {
 			this.PADDING = 0.0175;
 		} else {
 			this.PADDING = 0.0125;
 		}
 		this.ATTRIBUTE_SIZE = 6;
-		if (global.CONSTANTS.MOBILE_MODE === false) {
+		if (MOBILE_MODE === false) {
 			this.ATTRIBUTE_SHOW_SIZE = 4;
 		} else {
 			this.ATTRIBUTE_SHOW_SIZE = 2;
@@ -72,7 +72,7 @@ class SettingsWindow {
 		this.text_paint.set_paint_join(paint.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_YELLOW_COLOR);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_5);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -106,7 +106,7 @@ class SettingsWindow {
 		this.value_paint.set_paint_join(paint.join.MITER);
 		this.value_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.value_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.value_paint.set_text_size(global.variables.canvas_text_size_5);
 		} else {
 			this.value_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -124,7 +124,7 @@ class SettingsWindow {
 		this.bounds_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.bounds_paint.set_alpha(255);
 		this.bounds_paint.set_paint_align(paint.align.CENTER);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.width = view_port.view_width * 0.2;
 			this.height = view_port.view_height * 0.4;
 		} else {
@@ -318,7 +318,9 @@ class SettingsWindow {
 				global.variables.component_touched = true;
 			}
 		}
-		bottom_menu.resize_bottom_menu();
+		if (!HEADLESS_MODE) {
+			bottom_menu.resize_bottom_menu();
+		}
 	}
 	key_down(key_event: KEY_EVENT_T): void {
 		if (global.flags.flag_select_settings) {
@@ -339,7 +341,7 @@ class SettingsWindow {
 		}
 	}
 	resize_window(): void {
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.width = view_port.view_width * 0.2;
 			this.height = view_port.view_height * 0.4;
 		} else {
@@ -368,13 +370,13 @@ class SettingsWindow {
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_5);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_4);
 		}
 		this.value_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.value_paint.set_text_size(global.variables.canvas_text_size_5);
 		} else {
 			this.value_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -394,7 +396,7 @@ class SettingsWindow {
 	}
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.flags.flag_select_settings) {
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
 			}
 			this.title_bounds.text = language_manager.SYSTEM_SETTINGS[global.CONSTANTS.LANGUAGES[global.variables.language_index]];
@@ -402,7 +404,7 @@ class SettingsWindow {
 			canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
 			this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
 			this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
-			if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
 				this.okay_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.okay_button.fill_paint.set_alpha(255);
 			} else {
@@ -413,7 +415,7 @@ class SettingsWindow {
 			for (var i: number = 0; i < this.ATTRIBUTE_SHOW_SIZE; i++) {
 				if (global.utils.not_null(global.variables.system_options)) {
 					if (i < global.variables.system_options['options'].length && global.utils.not_null(this.attributes[i])) {
-						if (this.attributes[i].contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+						if (this.attributes[i].contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
 							canvas.draw_rect(
 								this.attributes[i].left + this.offset_x,
 								this.attributes[i].top + this.offset_y,
@@ -495,7 +497,7 @@ class SettingsWindow {
 					}
 				}
 			}
-			if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+			if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
 				canvas.draw_rect(
 					this.exit_button.left + this.offset_x,
 					this.exit_button.top + this.offset_y,

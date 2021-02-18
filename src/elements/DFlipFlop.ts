@@ -172,7 +172,7 @@ class DFlipFlop {
 				this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) - 0.5));
 				this.elm.properties['Clock'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n2, -1) - 0.5));
 				if (Math.abs(this.elm.properties['Last Clock'] - this.elm.properties['Clock']) > 0.5 && this.elm.properties['Clock'] > 0.5) {
-					let q_next = 0;
+					let q_next: number = 0;
 					if (this.elm.properties['Clock'] >= 0.5 && this.elm.properties['Input Voltage1'] <= 0.5) {
 						q_next = 0;
 					} else if (this.elm.properties['Clock'] >= 0.5 && this.elm.properties['Input Voltage1'] >= 0.5) {
@@ -740,7 +740,7 @@ class DFlipFlop {
 			}
 			this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 			if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
-				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+				if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 					canvas.rotate(this.c_x, this.c_y, -90);
 					canvas.draw_text(
 						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
@@ -754,7 +754,7 @@ class DFlipFlop {
 				canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
 				canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);
 			} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
-				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+				if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 					canvas.draw_text(
 						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
 						this.c_x,
@@ -766,7 +766,7 @@ class DFlipFlop {
 				canvas.draw_text('Q', this.dff_11.x, this.dff_11.y, this.text_paint);
 				canvas.draw_text('/Q', this.dff_12.x, this.dff_12.y, this.text_paint);
 			}
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&

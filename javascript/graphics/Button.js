@@ -33,7 +33,7 @@ class Button extends RectF {
         this.text_paint.set_paint_join(paint.join.MITER);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.text_paint.set_color(global.COLORS.GENERAL_BLUE_COLOR);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
         else {
@@ -49,7 +49,7 @@ class Button extends RectF {
         this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
         else {

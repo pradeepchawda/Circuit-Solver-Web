@@ -17,23 +17,25 @@ String.prototype.hashCode = function () {
     }
     return hash;
 };
-var file_reader = global.CONSTANTS.NULL;
-if (global.CONSTANTS.MOBILE_MODE) {
-    file_reader = document.getElementById('file_explorer_mobile');
+if (!HEADLESS_MODE) {
+    var file_reader = global.CONSTANTS.NULL;
+    if (MOBILE_MODE) {
+        file_reader = document.getElementById('file_explorer_mobile');
+    }
+    else {
+        file_reader = document.getElementById('file_explorer');
+    }
+    var file_saver = document.getElementById('file_saver');
+    var file_loader = document.getElementById('file_loader');
+    var solver_container = document.getElementById('solver');
+    var surface = document.createElement('canvas');
+    surface.id = 'canvas';
+    surface.style.visibility = 'hidden';
+    surface.style.zIndex = '0';
+    surface.style.position = 'absolute';
+    solver_container.appendChild(surface);
+    var ctx = surface.getContext('2d');
 }
-else {
-    file_reader = document.getElementById('file_explorer');
-}
-var file_saver = document.getElementById('file_saver');
-var file_loader = document.getElementById('file_loader');
-var solver_container = document.getElementById('solver');
-var surface = document.createElement('canvas');
-surface.id = 'canvas';
-surface.style.visibility = 'hidden';
-surface.style.zIndex = '0';
-surface.style.position = 'absolute';
-solver_container.appendChild(surface);
-var ctx = surface.getContext('2d');
 var virtual_surface = new VirtualCanvas(1, 1, global.variables.virtual_canvas_id++);
 var linear_algebra = new LinearAlgebra();
 var language_manager = new LanguageManager();
@@ -41,7 +43,7 @@ var shortcut_manager = new ShortcutManager();
 var string_operator = new StringOperator();
 var multi_select_manager = new MultiSelectManager();
 var canvas_aspect_ratio = 1.333;
-if (global.CONSTANTS.MOBILE_MODE) {
+if (MOBILE_MODE) {
     canvas_aspect_ratio = 1.618;
 }
 var view_port = new Viewport(canvas_aspect_ratio, 800, 800 / canvas_aspect_ratio);
@@ -143,8 +145,8 @@ var engine_functions = new EngineFunctions();
 var nodes = [];
 var node_manager = new NodeManager();
 var graph_window = global.CONSTANTS.NULL;
-var FPS = 30;
-var FPS_DIV_ARRAY = [2, 2];
+const FPS = 30;
+const FPS_DIV_ARRAY = [2, 2];
 var fps_counter = 0;
 var fps_index = 0;
 var fps_compare = FPS_DIV_ARRAY[fps_index];
@@ -174,7 +176,7 @@ function load_app() {
     watermark_paint.set_paint_cap(paint.cap.ROUND);
     watermark_paint.set_paint_join(paint.join.MITER);
     watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-    if (global.CONSTANTS.MOBILE_MODE) {
+    if (MOBILE_MODE) {
         watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
     }
     else {
@@ -222,14 +224,18 @@ function load_app() {
         }
         else if (step === 4) {
             register_cross_platform_listeners();
-            if (!global.CONSTANTS.MOBILE_MODE) {
-                window.addEventListener('keydown', key_down, false);
-                window.addEventListener('keyup', key_up, false);
+            if (!MOBILE_MODE) {
+                if (!HEADLESS_MODE) {
+                    window.addEventListener('keydown', key_down, false);
+                    window.addEventListener('keyup', key_up, false);
+                }
             }
             window.addEventListener('resize', resize_canvas, false);
-            if (!global.CONSTANTS.MOBILE_MODE) {
-                window.addEventListener('dblclick', double_click, false);
-                webpage_document_title = document.getElementById('title_text');
+            if (!MOBILE_MODE) {
+                if (!HEADLESS_MODE) {
+                    window.addEventListener('dblclick', double_click, false);
+                    webpage_document_title = document.getElementById('title_text');
+                }
             }
             if (global.variables.system_options['values'][global.CONSTANTS.SYSTEM_OPTION_STRETCH_WINDOW] === global.CONSTANTS.ON) {
                 view_port.apply_spread_factor = true;
@@ -238,97 +244,101 @@ function load_app() {
         }
     }
     function register_cross_platform_listeners() {
-        if (global.CONSTANTS.MOBILE_MODE === true) {
-            surface.addEventListener('touchstart', mouse_down, false);
-            surface.addEventListener('touchmove', mouse_move, false);
-            surface.addEventListener('touchend', mouse_up, false);
-        }
-        else {
-            surface.addEventListener('mousedown', mouse_down, false);
-            surface.addEventListener('mousemove', mouse_move, false);
-            surface.addEventListener('mouseup', mouse_up, false);
-        }
-        if (!global.CONSTANTS.MOBILE_MODE) {
-            if (global.variables.browser_firefox) {
-                surface.addEventListener('DOMMouseScroll', mouse_wheel, false);
+        if (!HEADLESS_MODE) {
+            if (MOBILE_MODE === true) {
+                surface.addEventListener('touchstart', mouse_down, false);
+                surface.addEventListener('touchmove', mouse_move, false);
+                surface.addEventListener('touchend', mouse_up, false);
             }
             else {
-                surface.addEventListener('mousewheel', mouse_wheel, false);
+                surface.addEventListener('mousedown', mouse_down, false);
+                surface.addEventListener('mousemove', mouse_move, false);
+                surface.addEventListener('mouseup', mouse_up, false);
+            }
+            if (!MOBILE_MODE) {
+                if (global.variables.browser_firefox) {
+                    surface.addEventListener('DOMMouseScroll', mouse_wheel, false);
+                }
+                else {
+                    surface.addEventListener('mousewheel', mouse_wheel, false);
+                }
             }
         }
     }
     function start_system() {
-        if (!global.CONSTANTS.MOBILE_MODE) {
+        if (!MOBILE_MODE) {
             register();
         }
         main();
     }
     function resize_canvas() {
-        global.variables.device_pixel_ratio = window.devicePixelRatio;
-        if (global.flags.flag_resize_event === false) {
-            global.utils.last_view_port_right = view_port.right;
-            global.utils.last_view_port_bottom = view_port.bottom;
-            global.utils.last_view_port_width = view_port.view_width;
-            global.utils.last_view_port_height = view_port.view_height;
-            global.utils.last_surface_width = surface.width;
-            global.utils.last_surface_height = surface.height;
-        }
-        solver_container.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
-        solver_container.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
-        solver_container.style.background = 'black';
-        view_port.resize(canvas_aspect_ratio, window.innerWidth * global.variables.device_pixel_ratio, window.innerHeight * global.variables.device_pixel_ratio);
-        surface.width = window.innerWidth * global.variables.device_pixel_ratio;
-        surface.height = window.innerHeight * global.variables.device_pixel_ratio;
-        surface.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
-        surface.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
-        global.utils.resize_w_factor = view_port.view_width / global.utils.last_view_port_width;
-        global.utils.resize_h_factor = view_port.view_height / global.utils.last_view_port_height;
-        if (global.CONSTANTS.MOBILE_MODE) {
-            global.variables.canvas_stroke_width_base = 0.000775 * view_port.view_width;
-            global.variables.canvas_text_size_base = 0.000775 * view_port.view_width;
-        }
-        else {
-            global.variables.canvas_stroke_width_base = 0.000725 * view_port.view_width;
-            global.variables.canvas_text_size_base = 0.000725 * view_port.view_width;
-        }
-        try {
-            ctx.globalCompositeOperation = 'copy';
-            ctx.imageSmoothingEnabled = false;
-            //@ts-expect-error
-            ctx.mozImageSmoothingEnabled = false;
-            //@ts-expect-error
-            ctx.oImageSmoothingEnabled = false;
-            //@ts-expect-error
-            ctx.webkitImageSmoothingEnabled = false;
-            //@ts-expect-error
-            ctx.msImageSmoothingEnabled = false;
-        }
-        catch (e) { }
-        global.variables.canvas_stroke_width_1 = global.variables.canvas_stroke_width_base * 2.25;
-        global.variables.canvas_stroke_width_2 = global.variables.canvas_stroke_width_base * 2.65;
-        global.variables.canvas_stroke_width_3 = global.variables.canvas_stroke_width_base * 9;
-        global.variables.canvas_stroke_width_4 = global.variables.canvas_stroke_width_base * 16;
-        global.variables.canvas_stroke_width_5 = global.variables.canvas_stroke_width_base * 21;
-        global.variables.canvas_stroke_width_6 = global.variables.canvas_stroke_width_base * 43;
-        global.variables.canvas_text_size_1 = global.variables.canvas_text_size_base * 2.25;
-        global.variables.canvas_text_size_2 = global.variables.canvas_text_size_base * 2.65;
-        global.variables.canvas_text_size_3 = global.variables.canvas_text_size_base * 9;
-        global.variables.canvas_text_size_4 = global.variables.canvas_text_size_base * 16;
-        global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
-        global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
-        global.flags.flag_build_element = true;
-        global.variables.flag_build_counter = 0;
-        virtual_surface.resize();
-        global.flags.flag_resize_event = true;
-        canvas.on_resize();
-        surface.style.backfaceVisibility = 'hidden';
-        if (surface.style.visibility === 'hidden') {
-            surface.style.visibility = 'visible';
+        if (!HEADLESS_MODE) {
+            global.variables.device_pixel_ratio = window.devicePixelRatio;
+            if (global.flags.flag_resize_event === false) {
+                global.utils.last_view_port_right = view_port.right;
+                global.utils.last_view_port_bottom = view_port.bottom;
+                global.utils.last_view_port_width = view_port.view_width;
+                global.utils.last_view_port_height = view_port.view_height;
+                global.utils.last_surface_width = surface.width;
+                global.utils.last_surface_height = surface.height;
+            }
+            solver_container.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
+            solver_container.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
+            solver_container.style.background = 'black';
+            view_port.resize(canvas_aspect_ratio, window.innerWidth * global.variables.device_pixel_ratio, window.innerHeight * global.variables.device_pixel_ratio);
+            surface.width = window.innerWidth * global.variables.device_pixel_ratio;
+            surface.height = window.innerHeight * global.variables.device_pixel_ratio;
+            surface.style.width = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerWidth);
+            surface.style.height = global.TEMPLATES.PIXEL_TEMPLATE.replace('{VALUE}', window.innerHeight);
+            global.utils.resize_w_factor = view_port.view_width / global.utils.last_view_port_width;
+            global.utils.resize_h_factor = view_port.view_height / global.utils.last_view_port_height;
+            if (MOBILE_MODE) {
+                global.variables.canvas_stroke_width_base = 0.000775 * view_port.view_width;
+                global.variables.canvas_text_size_base = 0.000775 * view_port.view_width;
+            }
+            else {
+                global.variables.canvas_stroke_width_base = 0.000725 * view_port.view_width;
+                global.variables.canvas_text_size_base = 0.000725 * view_port.view_width;
+            }
+            try {
+                ctx.globalCompositeOperation = 'copy';
+                ctx.imageSmoothingEnabled = false;
+                //@ts-expect-error
+                ctx.mozImageSmoothingEnabled = false;
+                //@ts-expect-error
+                ctx.oImageSmoothingEnabled = false;
+                //@ts-expect-error
+                ctx.webkitImageSmoothingEnabled = false;
+                //@ts-expect-error
+                ctx.msImageSmoothingEnabled = false;
+            }
+            catch (e) { }
+            global.variables.canvas_stroke_width_1 = global.variables.canvas_stroke_width_base * 2.25;
+            global.variables.canvas_stroke_width_2 = global.variables.canvas_stroke_width_base * 2.65;
+            global.variables.canvas_stroke_width_3 = global.variables.canvas_stroke_width_base * 9;
+            global.variables.canvas_stroke_width_4 = global.variables.canvas_stroke_width_base * 16;
+            global.variables.canvas_stroke_width_5 = global.variables.canvas_stroke_width_base * 21;
+            global.variables.canvas_stroke_width_6 = global.variables.canvas_stroke_width_base * 43;
+            global.variables.canvas_text_size_1 = global.variables.canvas_text_size_base * 2.25;
+            global.variables.canvas_text_size_2 = global.variables.canvas_text_size_base * 2.65;
+            global.variables.canvas_text_size_3 = global.variables.canvas_text_size_base * 9;
+            global.variables.canvas_text_size_4 = global.variables.canvas_text_size_base * 16;
+            global.variables.canvas_text_size_5 = global.variables.canvas_text_size_base * 21;
+            global.variables.canvas_text_size_6 = global.variables.canvas_text_size_base * 43;
+            global.flags.flag_build_element = true;
+            global.variables.flag_build_counter = 0;
+            virtual_surface.resize();
+            global.flags.flag_resize_event = true;
+            canvas.on_resize();
+            surface.style.backfaceVisibility = 'hidden';
+            if (surface.style.visibility === 'hidden') {
+                surface.style.visibility = 'visible';
+            }
         }
     }
     function mouse_down(mouse_event) {
         if (global.variables.system_initialization['completed']) {
-            if (global.CONSTANTS.MOBILE_MODE === false) {
+            if (MOBILE_MODE === false) {
                 global.variables.mouse_x = mouse_event.clientX * global.variables.device_pixel_ratio;
                 global.variables.mouse_y = mouse_event.clientY * global.variables.device_pixel_ratio;
             }
@@ -349,7 +359,7 @@ function load_app() {
             }
             else {
                 if (!mouse_event_latch) {
-                    if (global.CONSTANTS.MOBILE_MODE) {
+                    if (MOBILE_MODE) {
                         if (global.variables.mouse_x >= view_port.left &&
                             global.variables.mouse_x <= view_port.right &&
                             global.variables.mouse_y >= view_port.top &&
@@ -370,7 +380,7 @@ function load_app() {
     }
     function mouse_move(mouse_event) {
         if (!global.flags.flag_mouse_move_event) {
-            if (global.CONSTANTS.MOBILE_MODE) {
+            if (MOBILE_MODE) {
                 if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
                     global.events.mouse_move_event = mouse_event;
                     global.flags.flag_mouse_move_event = true;
@@ -386,7 +396,7 @@ function load_app() {
     }
     function mouse_up(mouse_event) {
         if (mouse_event_latch) {
-            if (global.CONSTANTS.MOBILE_MODE) {
+            if (MOBILE_MODE) {
                 if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
                     global.flags.flag_mouse_up_event = true;
                     global.events.mouse_up_event_queue.push(mouse_event);
@@ -401,7 +411,7 @@ function load_app() {
         mouse_event.stopPropagation();
     }
     function mouse_wheel(mouse_event) {
-        if (!global.flags.flag_mouse_wheel_event && !global.CONSTANTS.MOBILE_MODE) {
+        if (!global.flags.flag_mouse_wheel_event && !MOBILE_MODE) {
             global.flags.flag_mouse_wheel_event = true;
             global.events.mouse_wheel_event_queue.push(mouse_event);
         }
@@ -409,7 +419,7 @@ function load_app() {
         mouse_event.stopPropagation();
     }
     function double_click(mouse_event) {
-        if (!global.CONSTANTS.MOBILE_MODE) {
+        if (!MOBILE_MODE) {
             global.flags.flag_mouse_double_click_event = true;
             global.events.mouse_double_click_event_queue.push(mouse_event);
         }
@@ -441,44 +451,46 @@ function load_app() {
         key_event.stopPropagation();
     }
     function resize_components() {
-        global.variables.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
-        if (global.settings.WORKSPACE_PERFECT_SQUARE) {
-            global.variables.natural_width = global.variables.natural_height;
+        if (!HEADLESS_MODE) {
+            global.variables.natural_height = 2 * (view_port.view_height * global.settings.WORKSPACE_RATIO_Y);
+            if (global.settings.WORKSPACE_PERFECT_SQUARE) {
+                global.variables.natural_width = global.variables.natural_height;
+            }
+            else {
+                global.variables.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
+            }
+            workspace.workspace_resize();
+            reset_zoom();
+            menu_bar.resize_menu_bar();
+            bottom_menu.resize_bottom_menu();
+            element_options.resize();
+            time_step_window.resize_window();
+            save_circuit_window.resize_window();
+            save_image_window.resize_window();
+            element_options_window.resize_window();
+            element_options_edit_window.resize_window();
+            zoom_window.resize_window();
+            settings_window.resize_window();
+            confirm_window.resize_window();
+            graph_window.resize_window();
+            toast.resize_toast();
+            on_screen_keyboard.resize_keyboard();
+            /* #INSERT_METER_RESIZE_TRACE# */
+            /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+            for (var i = 0; i < voltmeters.length; i++) {
+                voltmeters[i].resize_meter_trace = true;
+            }
+            for (var i = 0; i < ohmmeters.length; i++) {
+                ohmmeters[i].resize_meter_trace = true;
+            }
+            for (var i = 0; i < ammeters.length; i++) {
+                ammeters[i].resize_meter_trace = true;
+            }
+            for (var i = 0; i < wattmeters.length; i++) {
+                wattmeters[i].resize_meter_trace = true;
+            }
+            /* <!-- END AUTOMATICALLY GENERATED !--> */
         }
-        else {
-            global.variables.natural_width = 2 * (view_port.view_width * global.settings.WORKSPACE_RATIO_X);
-        }
-        workspace.workspace_resize();
-        reset_zoom();
-        menu_bar.resize_menu_bar();
-        bottom_menu.resize_bottom_menu();
-        element_options.resize();
-        time_step_window.resize_window();
-        save_circuit_window.resize_window();
-        save_image_window.resize_window();
-        element_options_window.resize_window();
-        element_options_edit_window.resize_window();
-        zoom_window.resize_window();
-        settings_window.resize_window();
-        confirm_window.resize_window();
-        graph_window.resize_window();
-        toast.resize_toast();
-        on_screen_keyboard.resize_keyboard();
-        /* #INSERT_METER_RESIZE_TRACE# */
-        /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-        for (var i = 0; i < voltmeters.length; i++) {
-            voltmeters[i].resize_meter_trace = true;
-        }
-        for (var i = 0; i < ohmmeters.length; i++) {
-            ohmmeters[i].resize_meter_trace = true;
-        }
-        for (var i = 0; i < ammeters.length; i++) {
-            ammeters[i].resize_meter_trace = true;
-        }
-        for (var i = 0; i < wattmeters.length; i++) {
-            wattmeters[i].resize_meter_trace = true;
-        }
-        /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     function handle_zoom(mouse_event) {
         if (!global.variables.focused) {
@@ -577,32 +589,34 @@ function load_app() {
                 if (global.variables.last_selected !== global.variables.selected) {
                     wire_manager.reset_wire_builder();
                 }
-                if (global.flags.flag_force_resize_event) {
-                    global.flags.flag_build_element = true;
-                    global.variables.flag_build_counter = 0;
-                    global.flags.flag_force_resize_event = false;
-                    global.flags.flag_draw_block = true;
-                    resize_canvas();
-                }
-                fps_div ^= 1;
-                if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
-                    if (global.variables.system_initialization['completed']) {
-                        if ((global.flags.flag_simulating && global.flags.flag_canvas_draw_request) || temp_draw_signal) {
-                            if (!global.flags.flag_on_restore_event) {
-                                if (!global.flags.flag_draw_block) {
-                                    ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                if (!HEADLESS_MODE) {
+                    if (global.flags.flag_force_resize_event) {
+                        global.flags.flag_build_element = true;
+                        global.variables.flag_build_counter = 0;
+                        global.flags.flag_force_resize_event = false;
+                        global.flags.flag_draw_block = true;
+                        resize_canvas();
+                    }
+                    fps_div ^= 1;
+                    if (((fps_div == 1 || temp_draw_signal) && global.flags.flag_simulating) || !global.flags.flag_simulating) {
+                        if (global.variables.system_initialization['completed']) {
+                            if ((global.flags.flag_simulating && global.flags.flag_canvas_draw_request) || temp_draw_signal) {
+                                if (!global.flags.flag_on_restore_event) {
+                                    if (!global.flags.flag_draw_block) {
+                                        ctx.drawImage(virtual_surface.get_surface(), view_port.left, view_port.top, view_port.view_width, view_port.view_height, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                                    }
+                                    canvas.release();
+                                    canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
+                                    draw();
+                                    if (global.flags.flag_draw_block) {
+                                        global.flags.flag_draw_block = false;
+                                    }
                                 }
-                                canvas.release();
-                                canvas.clear_xywh(view_port.left, view_port.top, view_port.view_width, view_port.view_height);
-                                draw();
-                                if (global.flags.flag_draw_block) {
-                                    global.flags.flag_draw_block = false;
-                                }
-                            }
-                            if (global.flags.flag_canvas_draw_request) {
-                                if (global.variables.flag_canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
-                                    global.variables.flag_canvas_draw_request_counter = 0;
-                                    global.flags.flag_canvas_draw_request = false;
+                                if (global.flags.flag_canvas_draw_request) {
+                                    if (global.variables.flag_canvas_draw_request_counter++ >= global.CONSTANTS.CANVAS_DRAW_REQUEST_COUNTER_MAX) {
+                                        global.variables.flag_canvas_draw_request_counter = 0;
+                                        global.flags.flag_canvas_draw_request = false;
+                                    }
                                 }
                             }
                         }
@@ -627,19 +641,21 @@ function load_app() {
             }
         }
         catch (e) {
-            if (!global.CONSTANTS.DEVELOPER_MODE && !global.CONSTANTS.MOBILE_MODE) {
-                let post_data = e + '\r\n' + e.stack + '\r\n';
-                let url = 'solver_errors.php?msg="' + post_data + '"';
-                let method = 'POST';
-                let should_be_async = true;
-                let request = new XMLHttpRequest();
-                request.onload = function () {
-                    let status = request.status;
-                    let data = request.responseText;
-                };
-                request.open(method, url, should_be_async);
-                request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-                request.send(post_data);
+            if (!global.CONSTANTS.DEVELOPER_MODE && !MOBILE_MODE) {
+                if (!HEADLESS_MODE) {
+                    let post_data = e + '\r\n' + e.stack + '\r\n';
+                    let url = 'solver_errors.php?msg="' + post_data + '"';
+                    let method = 'POST';
+                    let should_be_async = true;
+                    let request = new XMLHttpRequest();
+                    request.onload = function () {
+                        let status = request.status;
+                        let data = request.responseText;
+                    };
+                    request.open(method, url, should_be_async);
+                    request.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+                    request.send(post_data);
+                }
             }
         }
     }
@@ -647,7 +663,7 @@ function load_app() {
         if (global.variables.system_initialization['completed']) {
             engine_functions.file_manager();
             global.variables.component_translating = false;
-            if (global.CONSTANTS.MOBILE_MODE) {
+            if (MOBILE_MODE) {
                 if (global.flags.flag_on_restore_event) {
                     global.flags.flag_build_element = true;
                     window.JsInterface.onRestore();
@@ -711,7 +727,7 @@ function load_app() {
             }
             if (global.flags.flag_resize_event) {
                 watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-                if (global.CONSTANTS.MOBILE_MODE) {
+                if (MOBILE_MODE) {
                     watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
                 }
                 else {
@@ -957,10 +973,12 @@ function load_app() {
                 element_options.update();
                 history_manager.watch();
                 wire_manager.watch();
-                if (!global.CONSTANTS.MOBILE_MODE) {
+                if (!MOBILE_MODE) {
                     if (last_webpage_document_title !== global.variables.user_file.title) {
-                        webpage_document_title.innerHTML = global.variables.user_file.title;
-                        last_webpage_document_title = global.variables.user_file.title;
+                        if (!HEADLESS_MODE) {
+                            webpage_document_title.innerHTML = global.variables.user_file.title;
+                            last_webpage_document_title = global.variables.user_file.title;
+                        }
                     }
                 }
             }
@@ -969,7 +987,7 @@ function load_app() {
             initialize(global.variables.system_initialization['step']);
             global.variables.system_initialization['step']++;
             if (global.variables.system_initialization['step'] >= global.variables.system_initialization['max']) {
-                if (global.CONSTANTS.MOBILE_MODE) {
+                if (MOBILE_MODE) {
                     global.flags.flag_on_restore_event = true;
                 }
                 global.variables.system_initialization['step'] = 0;
@@ -997,7 +1015,7 @@ function load_app() {
         refactor_sizes();
         engine_functions.image_manager();
         if (!global.flags.flag_picture_request) {
-            if (!global.CONSTANTS.MOBILE_MODE) {
+            if (!MOBILE_MODE) {
                 if (global.flags.flag_idle &&
                     !global.flags.flag_save_image &&
                     !global.flags.flag_save_circuit &&
@@ -1042,7 +1060,7 @@ function load_app() {
                 engine_functions.draw_wires(canvas);
                 engine_functions.draw_selected_components(canvas);
                 engine_functions.draw_meter_traces(canvas);
-                if (!global.variables.element_on_board && global.CONSTANTS.DESKTOP_MODE) {
+                if (!global.variables.element_on_board && DESKTOP_MODE) {
                     canvas.draw_text(language_manager.WEB_LINK, workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), web_link_paint);
                 }
                 if (global.variables.wire_builder['step'] > 0) {
@@ -1162,7 +1180,7 @@ function load_app() {
     }
     function handle_mouse_down() {
         global.variables.component_touched = false;
-        if (global.CONSTANTS.MOBILE_MODE === false) {
+        if (MOBILE_MODE === false) {
             global.variables.mouse_x = global.events.mouse_down_event.clientX * global.variables.device_pixel_ratio;
             global.variables.mouse_y = global.events.mouse_down_event.clientY * global.variables.device_pixel_ratio;
         }
@@ -1178,7 +1196,7 @@ function load_app() {
         global.variables.mouse_down_x = global.variables.mouse_x;
         global.variables.mouse_down_y = global.variables.mouse_y;
         global.variables.translation_lock = true;
-        if (!global.CONSTANTS.MOBILE_MODE) {
+        if (!MOBILE_MODE) {
             if ('which' in global.events.mouse_down_event) {
                 global.variables.is_right_click = global.events.mouse_down_event.which === 3;
             }
@@ -1217,7 +1235,7 @@ function load_app() {
             !global.flags.flag_select_settings &&
             !global.flags.flag_remove_all &&
             !global.flags.flag_menu_element_toolbox) {
-            if (global.CONSTANTS.MOBILE_MODE === false) {
+            if (MOBILE_MODE === false) {
                 if (global.variables.is_right_click) {
                     global.variables.is_dragging = true;
                     global.variables.temp_is_dragging = global.variables.is_dragging;
@@ -1435,7 +1453,7 @@ function load_app() {
                     wires[i].mouse_down();
                 }
             }
-            if (global.CONSTANTS.MOBILE_MODE === true) {
+            if (MOBILE_MODE === true) {
                 if (global.variables.component_touched === false) {
                     global.variables.is_dragging = true;
                     global.variables.temp_is_dragging = global.variables.is_dragging;
@@ -1447,7 +1465,7 @@ function load_app() {
     function handle_mouse_move() {
         global.variables.last_mouse_x = global.variables.mouse_x;
         global.variables.last_mouse_y = global.variables.mouse_y;
-        if (global.CONSTANTS.MOBILE_MODE === false) {
+        if (MOBILE_MODE === false) {
             global.variables.mouse_x = global.events.mouse_move_event.clientX * global.variables.device_pixel_ratio;
             global.variables.mouse_y = global.events.mouse_move_event.clientY * global.variables.device_pixel_ratio;
         }
@@ -1713,7 +1731,7 @@ function load_app() {
         global.variables.translation_lock = true;
         global.variables.mouse_down_x = -1;
         global.variables.mouse_down_y = -1;
-        if (global.CONSTANTS.MOBILE_MODE === false) {
+        if (MOBILE_MODE === false) {
             global.variables.mouse_x = global.events.mouse_up_event.clientX * global.variables.device_pixel_ratio;
             global.variables.mouse_y = global.events.mouse_up_event.clientY * global.variables.device_pixel_ratio;
         }
@@ -2057,21 +2075,23 @@ function load_app() {
         }
     }
     function browser_detection() {
-        if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) !== -1) {
-            global.variables.browser_opera = true;
-        }
-        else if (navigator.userAgent.indexOf('Chrome') !== -1) {
-            global.variables.browser_chrome = true;
-        }
-        else if (navigator.userAgent.indexOf('Safari') !== -1) {
-            global.variables.browser_safari = true;
-        }
-        else if (navigator.userAgent.indexOf('Firefox') !== -1) {
-            global.variables.browser_firefox = true;
-            //@ts-ignore
-        }
-        else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true) {
-            global.variables.browser_ie = true;
+        if (!HEADLESS_MODE) {
+            if ((navigator.userAgent.indexOf('Opera') || navigator.userAgent.indexOf('OPR')) !== -1) {
+                global.variables.browser_opera = true;
+            }
+            else if (navigator.userAgent.indexOf('Chrome') !== -1) {
+                global.variables.browser_chrome = true;
+            }
+            else if (navigator.userAgent.indexOf('Safari') !== -1) {
+                global.variables.browser_safari = true;
+            }
+            else if (navigator.userAgent.indexOf('Firefox') !== -1) {
+                global.variables.browser_firefox = true;
+                //@ts-ignore
+            }
+            else if (navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode === true) {
+                global.variables.browser_ie = true;
+            }
         }
     }
     function main() {

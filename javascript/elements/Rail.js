@@ -475,7 +475,7 @@ class Rail {
                 canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
                 this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y + 2 * this.y_space);
                 this.line_buffer[this.indexer++] = Array(this.c_x - this.x_space, this.c_y + 2 * this.y_space, this.c_x + this.x_space, this.c_y + 2 * this.y_space);
-                if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+                if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     canvas.rotate(this.c_x, this.c_y, 180);
                     canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -485,7 +485,7 @@ class Rail {
                 canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
                 this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x - 2 * this.x_space, this.c_y);
                 this.line_buffer[this.indexer++] = Array(this.c_x - 2 * this.x_space, this.c_y - this.y_space, this.c_x - 2 * this.x_space, this.c_y + this.y_space);
-                if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+                if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     canvas.rotate(this.c_x, this.c_y, -90);
                     canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -495,7 +495,7 @@ class Rail {
                 canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
                 this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x, this.c_y - 2 * this.y_space);
                 this.line_buffer[this.indexer++] = Array(this.c_x - this.x_space, this.c_y - 2 * this.y_space, this.c_x + this.x_space, this.c_y - 2 * this.y_space);
-                if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+                if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                 }
             }
@@ -503,7 +503,7 @@ class Rail {
                 canvas.draw_circle(this.c_x, this.c_y, global.variables.canvas_stroke_width_2_zoom, this.point_paint);
                 this.line_buffer[this.indexer++] = Array(this.c_x, this.c_y, this.c_x + 2 * this.x_space, this.c_y);
                 this.line_buffer[this.indexer++] = Array(this.c_x + 2 * this.x_space, this.c_y - this.y_space, this.c_x + 2 * this.x_space, this.c_y + this.y_space);
-                if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+                if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     canvas.rotate(this.c_x, this.c_y, 90);
                     canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top - this.bounds.get_height() * 0.1, this.text_paint);
                     canvas.restore();
@@ -514,7 +514,7 @@ class Rail {
                 canvas.draw_rect2(this.bounds, this.line_paint);
                 canvas.draw_text(this.wire_reference.length, this.c_x, this.c_y - 50, this.text_paint);
             }
-            if (!global.CONSTANTS.MOBILE_MODE) {
+            if (!MOBILE_MODE) {
                 if (global.variables.wire_builder['step'] === 0 &&
                     this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&
                     global.CONSTANTS.NODE_HINTS &&

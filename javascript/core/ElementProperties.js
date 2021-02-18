@@ -828,6 +828,7 @@ class ElementProperties {
             'Turn on Current': 10e-3,
             'Closed Resistance': settings.WIRE_RESISTANCE,
             'Open Resistance': settings.R_MAX * 0.5,
+            'Transient Voltage': 0,
             tag: 'RELAY',
             units: 'H',
             options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],

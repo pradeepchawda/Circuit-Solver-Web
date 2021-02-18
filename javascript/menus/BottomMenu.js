@@ -29,7 +29,7 @@ class BottomMenu {
         this.text_paint.set_paint_join(paint.join.MITER);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
         }
         else {
@@ -71,34 +71,36 @@ class BottomMenu {
     }
     update() { }
     resize_bottom_menu() {
-        this.initial_resize_counter = 0;
-        this.reload_bottom_path = true;
-        this.file_button.resize();
-        this.time_step_button.resize();
-        this.file_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.file_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
-        this.file_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.file_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
-        this.file_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.time_step_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.time_step_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
-        this.time_step_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.time_step_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
-        this.time_step_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        if (global.CONSTANTS.MOBILE_MODE) {
-            this.file_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
-            this.time_step_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
-        }
-        else {
-            this.file_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
-            this.time_step_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
-        }
-        this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        if (global.CONSTANTS.MOBILE_MODE) {
-            this.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
-        }
-        else {
-            this.text_paint.set_text_size(global.variables.canvas_text_size_5);
+        if (!HEADLESS_MODE) {
+            this.initial_resize_counter = 0;
+            this.reload_bottom_path = true;
+            this.file_button.resize();
+            this.time_step_button.resize();
+            this.file_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.file_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
+            this.file_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.file_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+            this.file_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.time_step_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.time_step_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
+            this.time_step_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            this.time_step_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+            this.time_step_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            if (MOBILE_MODE) {
+                this.file_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
+                this.time_step_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
+            }
+            else {
+                this.file_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
+                this.time_step_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
+            }
+            this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+            if (MOBILE_MODE) {
+                this.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
+            }
+            else {
+                this.text_paint.set_text_size(global.variables.canvas_text_size_5);
+            }
         }
     }
     mouse_down() {
@@ -136,7 +138,7 @@ class BottomMenu {
         }
     }
     handle_file_explorer() {
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             global.variables.mouse_keyboard_lock = false;
             global.variables.component_touched = false;
         }
@@ -167,7 +169,9 @@ class BottomMenu {
         if (ON) {
             time_step_window.reset_cursor();
         }
-        bottom_menu.resize_bottom_menu();
+        if (!HEADLESS_MODE) {
+            bottom_menu.resize_bottom_menu();
+        }
         global.flags.flag_select_timestep = ON;
     }
     recolor() {
@@ -186,7 +190,7 @@ class BottomMenu {
                 !global.flags.flag_graph &&
                 !global.flags.flag_remove_all &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.CONSTANTS.MOBILE_MODE) {
+                !MOBILE_MODE) {
                 this.file_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
             }
             else {
@@ -206,7 +210,7 @@ class BottomMenu {
                 !global.flags.flag_graph &&
                 !global.flags.flag_remove_all &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.CONSTANTS.MOBILE_MODE) {
+                !MOBILE_MODE) {
                 this.time_step_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
             }
             else {
@@ -228,7 +232,7 @@ class BottomMenu {
                 !global.flags.flag_graph &&
                 !global.flags.flag_remove_all &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.CONSTANTS.MOBILE_MODE) {
+                !MOBILE_MODE) {
                 this.file_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
             }
             else {
@@ -248,7 +252,7 @@ class BottomMenu {
                 !global.flags.flag_graph &&
                 !global.flags.flag_remove_all &&
                 !multi_select_manager.ctrl_pressed_started &&
-                !global.CONSTANTS.MOBILE_MODE) {
+                !MOBILE_MODE) {
                 this.time_step_button.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
             }
             else {

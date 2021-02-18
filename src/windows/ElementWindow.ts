@@ -126,7 +126,7 @@ class ElementWindow {
 		this.text_paint.set_paint_join(paint.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(2 * global.variables.canvas_text_size_6);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_6);
@@ -504,7 +504,7 @@ class ElementWindow {
 				this.tptz_symbol.mouse_down(this.page_number, cached_value, this.bounds.get_height());
 				this.transformer_symbol.mouse_down(this.page_number, cached_value, this.bounds.get_height());
 				/* <!-- END AUTOMATICALLY GENERATED !--> */
-				if (global.CONSTANTS.MOBILE_MODE) {
+				if (MOBILE_MODE) {
 					if (
 						this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height()) &&
 						this.positions[this.NAVIGATE_BACK_INDEX].contains_xywh(this.first_touch_x, this.first_touch_y, this.bounds.get_width() / this.MAX_ICONS, this.bounds.get_height())
@@ -772,7 +772,7 @@ class ElementWindow {
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(2 * global.variables.canvas_text_size_6);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_6);
@@ -818,7 +818,7 @@ class ElementWindow {
 	draw_window(canvas: GraphicsEngine): void {
 		if (global.flags.flag_menu_element_toolbox) {
 			canvas.draw_rect2(this.bounds, this.fill_paint);
-			if (global.CONSTANTS.MOBILE_MODE === false) {
+			if (MOBILE_MODE === false) {
 				this.draw_hover(canvas);
 			}
 			if (this.page_number > 0) {

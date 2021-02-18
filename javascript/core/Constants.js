@@ -3,11 +3,9 @@ class Constants {
     constructor() {
         let indexer = 0;
         this.NULL = null;
-        this.MOBILE_MODE = false;
-        this.DESKTOP_MODE = false;
         this.NODE_HINTS = true;
         this.VERSION_TAG = '1.1.02';
-        if (this.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.ZOOM_MAX = 3.5;
             this.ZOOM_MIN = 1.0;
         }

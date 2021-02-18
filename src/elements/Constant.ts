@@ -490,7 +490,7 @@ class Constant {
 				canvas.draw_line(this.c_x, this.c_y, this.c_x + this.x_space, this.c_y, this.line_paint);
 				canvas.draw_rect3(this.c_x + 1.5 * this.x_space, this.c_y, this.bounds.get_width() >> 2, this.bounds.get_width() >> 2, this.line_paint);
 			}
-			if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+			if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 				if (this.elm.rotation === global.CONSTANTS.ROTATION_90) {
 					canvas.draw_text(
 						global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Voltage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -529,7 +529,7 @@ class Constant {
 				canvas.draw_rect2(this.bounds, this.line_paint);
 				canvas.draw_text(<string>(<unknown>this.wire_reference.length), this.c_x, this.c_y - 50, this.text_paint);
 			}
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&

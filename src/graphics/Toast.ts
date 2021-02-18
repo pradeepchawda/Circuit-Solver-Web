@@ -15,7 +15,7 @@ class Toast {
 	private last_text: string;
 	private text_measure_div2: number;
 	constructor() {
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.height_ratio = 0.85;
 			this.HEIGHT_FACTOR = 0.7;
 		} else {
@@ -48,7 +48,7 @@ class Toast {
 		this.text_paint.set_paint_join(paint.join.MITER);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_5 * 1.25);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -95,7 +95,7 @@ class Toast {
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_5 * 1.25);
 		} else {
 			this.text_paint.set_text_size(global.variables.canvas_text_size_4);

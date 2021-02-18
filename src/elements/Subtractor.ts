@@ -755,7 +755,7 @@ class Subtractor {
 			this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 			if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 				canvas.draw_line(this.c_x, this.c_y + this.bounds.get_width() * 0.1, this.c_x, this.c_y - this.bounds.get_width() * 0.1, this.line_paint);
-				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+				if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 					canvas.rotate(this.c_x, this.c_y, -90);
 					canvas.draw_text(
 						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
@@ -767,7 +767,7 @@ class Subtractor {
 				}
 			} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
 				canvas.draw_line(this.c_x - this.bounds.get_width() * 0.1, this.c_y, this.c_x + this.bounds.get_width() * 0.1, this.c_y, this.line_paint);
-				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+				if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 					canvas.draw_text(
 						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
 						this.c_x,
@@ -776,7 +776,7 @@ class Subtractor {
 					);
 				}
 			}
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&

@@ -1,8 +1,6 @@
 'use strict';
 class Constants {
 	public readonly NULL: any;
-	public readonly MOBILE_MODE: boolean;
-	public readonly DESKTOP_MODE: boolean;
 	public readonly NODE_HINTS: boolean;
 	public readonly VERSION_TAG: string;
 	public readonly ZOOM_MAX: number;
@@ -84,11 +82,9 @@ class Constants {
 	constructor() {
 		let indexer: number = 0;
 		this.NULL = null;
-		this.MOBILE_MODE = false;
-		this.DESKTOP_MODE = false;
 		this.NODE_HINTS = true;
 		this.VERSION_TAG = '1.1.02';
-		if (this.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.ZOOM_MAX = 3.5;
 			this.ZOOM_MIN = 1.0;
 		} else {

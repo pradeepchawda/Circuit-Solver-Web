@@ -58,7 +58,7 @@ class ConfirmWindow {
         this.text_paint.set_paint_join(paint.join.MITER);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
         }
         else {
@@ -67,7 +67,7 @@ class ConfirmWindow {
         this.text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.text_paint.set_alpha(255);
         this.text_paint.set_paint_align(paint.align.CENTER);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.width = view_port.view_width * 0.175;
             this.height = view_port.view_height * 0.13125;
         }
@@ -91,7 +91,7 @@ class ConfirmWindow {
     }
     mouse_move() {
         if (global.flags.flag_remove_all) {
-            if (!global.CONSTANTS.MOBILE_MODE) {
+            if (!MOBILE_MODE) {
                 this.hover();
             }
         }
@@ -111,7 +111,9 @@ class ConfirmWindow {
                     menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
                     global.variables.user_file.title = 'untitled';
                     global.variables.component_touched = true;
-                    bottom_menu.resize_bottom_menu();
+                    if (!HEADLESS_MODE) {
+                        bottom_menu.resize_bottom_menu();
+                    }
                 }
                 else if (this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
                     menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
@@ -143,7 +145,7 @@ class ConfirmWindow {
         }
     }
     resize_window() {
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.width = view_port.view_width * 0.175;
             this.height = view_port.view_height * 0.13125;
         }
@@ -159,7 +161,7 @@ class ConfirmWindow {
         this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.line_paint.set_text_size(global.variables.canvas_text_size_5);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
         }
         else {
@@ -172,7 +174,7 @@ class ConfirmWindow {
     }
     draw_window(canvas) {
         if (global.flags.flag_remove_all) {
-            if (!global.CONSTANTS.MOBILE_MODE) {
+            if (!MOBILE_MODE) {
                 canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
             }
             canvas.draw_rect2(this.bounds, this.bounds_paint);

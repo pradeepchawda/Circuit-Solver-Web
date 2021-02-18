@@ -205,12 +205,7 @@ class WattMeter {
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-	update(): void {
-		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
-			if (this.elm.consistent()) {
-			}
-		}
-	}
+	update(): void {}
 	stamp(): void {
 		if (this.elm.consistent()) {
 			engine_functions.stamp_resistor(this.elm.n1, this.elm.n2, global.settings.WIRE_RESISTANCE);
@@ -858,7 +853,7 @@ class WattMeter {
 			if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 				canvas.rotate(this.c_x, this.c_y, -90);
 				this.meter_symbol.draw_symbol(canvas);
-				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+				if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 					canvas.draw_text(
 						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
 						this.c_x,
@@ -883,7 +878,7 @@ class WattMeter {
 				canvas.restore();
 			} else if ((this.angle > 260 && this.angle < 280) || (this.angle > 80 && this.angle < 100)) {
 				this.meter_symbol.draw_symbol(canvas);
-				if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+				if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 					canvas.draw_text(
 						global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', <string>(<unknown>this.elm.id)),
 						this.c_x,
@@ -906,7 +901,7 @@ class WattMeter {
 					}
 				}
 			}
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&

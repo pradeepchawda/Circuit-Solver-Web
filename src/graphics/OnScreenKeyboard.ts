@@ -322,7 +322,7 @@ class OnScreenKeyboard {
 		}
 	}
 	resize_keyboard(): void {
-		if (global.CONSTANTS.MOBILE_MODE) {
+		if (MOBILE_MODE) {
 			this.bounds.left = view_port.left;
 			this.bounds.right = view_port.right;
 			this.bounds.top = view_port.bottom - view_port.view_height * this.height_ratio;
@@ -341,7 +341,7 @@ class OnScreenKeyboard {
 		}
 	}
 	mouse_down(): void {
-		if (global.CONSTANTS.MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit)) {
+		if (MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit)) {
 			this.flag_key_up = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
 				if (this.KEYBOARD_KEYS[i].contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
@@ -353,19 +353,11 @@ class OnScreenKeyboard {
 		}
 	}
 	mouse_move(): void {
-		if (
-			global.CONSTANTS.MOBILE_MODE &&
-			(global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit) &&
-			this.flag_key_down
-		) {
+		if (MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit) && this.flag_key_down) {
 		}
 	}
 	mouse_up(): void {
-		if (
-			global.CONSTANTS.MOBILE_MODE &&
-			(global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit) &&
-			this.flag_key_down
-		) {
+		if (MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit) && this.flag_key_down) {
 			this.hover_index = -1;
 			let FOUND: boolean = false;
 			for (var i: number = 0; i < this.KEYBOARD_MAPPING.length; i++) {
@@ -454,7 +446,7 @@ class OnScreenKeyboard {
 		}
 	}
 	draw_keyboard(canvas: GraphicsEngine): void {
-		if (global.CONSTANTS.MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit)) {
+		if (MOBILE_MODE && (global.flags.flag_save_circuit || global.flags.flag_save_image || global.flags.flag_select_timestep || global.flags.flag_element_options_edit)) {
 			if (global.flags.flag_element_options_edit === true || global.flags.flag_select_timestep === true) {
 				if (global.variables.selected_type !== global.ELEMENT_TYPES.TYPE_NOTE && global.variables.selected_type !== global.ELEMENT_TYPES.TYPE_NET) {
 					this.engineering_keyboard_mode = true;

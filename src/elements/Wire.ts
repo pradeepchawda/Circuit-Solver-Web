@@ -483,7 +483,7 @@ class Wire {
 				simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step
 			) {
 				if (this.elm.consistent()) {
-					if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+					if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 						if (global.utils.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.utils.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {
 							this.angle = global.utils.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y);
 							if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && global.utils.retrieve_angle(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) < 10)) {

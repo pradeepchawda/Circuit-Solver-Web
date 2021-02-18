@@ -31,7 +31,7 @@ class ElementOptionsEditWindow {
         this.text_paint.set_paint_join(paint.join.MITER);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.text_paint.set_color(global.COLORS.GENERAL_YELLOW_COLOR);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
         else {
@@ -60,7 +60,7 @@ class ElementOptionsEditWindow {
         this.bounds_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
         this.bounds_paint.set_paint_align(paint.align.CENTER);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.width = view_port.view_width * 0.2625;
             this.height = view_port.view_height * 0.15;
         }
@@ -68,7 +68,7 @@ class ElementOptionsEditWindow {
             this.width = view_port.view_width * 0.15;
             this.height = view_port.view_height * 0.075;
         }
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             let c_y = 0.25 * view_port.view_height;
             this.bounds = new RectF(view_port.center_x - this.width, c_y - this.height, view_port.center_x + this.width, c_y + this.height);
         }
@@ -178,7 +178,7 @@ class ElementOptionsEditWindow {
                 if (this.bounds.top + this.offset_y <= view_port.top) {
                     this.offset_y = view_port.top - this.bounds.top;
                 }
-                if (global.CONSTANTS.MOBILE_MODE) {
+                if (MOBILE_MODE) {
                     if (this.bounds.bottom + this.offset_y >= on_screen_keyboard.bounds.top) {
                         this.offset_y = on_screen_keyboard.bounds.top - this.bounds.bottom;
                     }
@@ -204,7 +204,7 @@ class ElementOptionsEditWindow {
                     this.initial_cursor_down = -1;
                     if (!this.bounds.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) &&
                         !this.bounds.contains_xy(this.first_touch_x - this.offset_x, this.first_touch_y - this.offset_y)) {
-                        if (global.CONSTANTS.MOBILE_MODE) {
+                        if (MOBILE_MODE) {
                             if (!on_screen_keyboard.bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
                                 menu_bar.handle_element_options_edit_flag(!global.flags.flag_element_options_edit);
                                 menu_bar.handle_element_options_flag(!global.flags.flag_element_options);
@@ -2772,7 +2772,7 @@ class ElementOptionsEditWindow {
         }
     }
     resize_window() {
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.width = view_port.view_width * 0.2625;
             this.height = view_port.view_height * 0.15;
         }
@@ -2780,7 +2780,7 @@ class ElementOptionsEditWindow {
             this.width = view_port.view_width * 0.15;
             this.height = view_port.view_height * 0.075;
         }
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             let c_y = 0.25 * view_port.view_height;
             this.bounds.set_bounds(view_port.center_x - this.width, c_y - this.height, view_port.center_x + this.width, c_y + this.height);
             this.offset_y = 0;
@@ -2808,7 +2808,7 @@ class ElementOptionsEditWindow {
         this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.bounds_paint.set_text_size(global.variables.canvas_text_size_4);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        if (global.CONSTANTS.MOBILE_MODE) {
+        if (MOBILE_MODE) {
             this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
         else {
@@ -2822,10 +2822,10 @@ class ElementOptionsEditWindow {
     }
     draw_window(canvas) {
         if (global.flags.flag_element_options_edit) {
-            if (!global.CONSTANTS.MOBILE_MODE) {
+            if (!MOBILE_MODE) {
                 canvas.draw_color2(global.COLORS.GENERAL_BLACK_COLOR, 130, view_port.left, view_port.top, view_port.view_width, view_port.view_height);
             }
-            if (global.CONSTANTS.MOBILE_MODE) {
+            if (MOBILE_MODE) {
                 if (this.bounds.bottom + this.offset_y >= on_screen_keyboard.bounds.top) {
                     this.offset_y = on_screen_keyboard.bounds.top - this.bounds.bottom;
                 }
@@ -2835,7 +2835,7 @@ class ElementOptionsEditWindow {
             canvas.draw_rect(this.bounds.left + this.offset_x, this.bounds.top + this.offset_y, this.bounds.right + this.offset_x, this.bounds.bottom + this.offset_y, this.bounds_paint);
             this.title_bounds.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
             this.title_bounds.draw_button_text(canvas, this.title_bounds.left + this.PADDING * this.title_bounds.get_width() + this.offset_x, this.title_bounds.get_center_y() + this.offset_y);
-            if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+            if (this.okay_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
                 this.okay_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
                 this.okay_button.fill_paint.set_alpha(255);
             }
@@ -2844,7 +2844,7 @@ class ElementOptionsEditWindow {
                 this.okay_button.fill_paint.set_alpha(130);
             }
             this.okay_button.draw_button_dxdy(canvas, this.offset_x, this.offset_y);
-            if (this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+            if (this.cancel_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
                 this.cancel_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
                 this.cancel_button.fill_paint.set_alpha(255);
             }
@@ -2870,7 +2870,7 @@ class ElementOptionsEditWindow {
                 canvas.draw_rect(this.input_button.get_center_x() - cached_measured_text + this.select_offset_x + this.offset_x, this.input_button.get_center_y() - this.input_button.get_height() * 0.35 + this.offset_y, this.input_button.get_center_x() - cached_measured_text + this.select_offset_x + this.offset_x + this.select_width, this.input_button.get_center_y() + this.input_button.get_height() * 0.35 + this.offset_y, this.select_paint);
             }
             canvas.draw_text('  _', this.input_button.get_center_x() - cached_measured_text + this.input_button.text_paint.measure_text(adj_text.substring(0, this.cursor_position)) + this.offset_x, this.input_button.get_center_y() + this.offset_y, this.input_button.text_paint);
-            if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !global.CONSTANTS.MOBILE_MODE) {
+            if (this.exit_button.contains_xy(global.variables.mouse_x - this.offset_x, global.variables.mouse_y - this.offset_y) && this.window_anchored && !MOBILE_MODE) {
                 canvas.draw_rect(this.exit_button.left + this.offset_x, this.exit_button.top + this.offset_y, this.exit_button.right + this.offset_x, this.exit_button.bottom + this.offset_y, this.hover_paint);
             }
             let width_mul_0p3636 = this.exit_button.get_width() * 0.3636;

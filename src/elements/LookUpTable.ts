@@ -146,7 +146,7 @@ class LookUpTable {
 	update(): void {
 		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
 			if (this.elm.consistent()) {
-				this.elm.properties['Input Voltage'] = global.utils.limit(engine_functions.get_voltage(this.elm.n1, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
+				this.elm.properties['Input Voltage1'] = global.utils.limit(engine_functions.get_voltage(this.elm.n1, -1), this.elm.properties['Low Voltage'], this.elm.properties['High Voltage']);
 				if (this.elm.properties['Interpolate'] === global.CONSTANTS.ON) {
 					this.elm.properties['Output Voltage'] = global.utils.linterp(
 						[
@@ -157,19 +157,19 @@ class LookUpTable {
 							this.elm.properties['High Voltage']
 						],
 						[this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']],
-						this.elm.properties['Input Voltage']
+						this.elm.properties['Input Voltage1']
 					);
 				} else if (this.elm.properties['Interpolate'] === global.CONSTANTS.OFF) {
 					let index: number = 0;
-					if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.2) {
+					if (this.elm.properties['Input Voltage1'] >= this.elm.properties['High Voltage'] * 0 && this.elm.properties['Input Voltage1'] <= this.elm.properties['High Voltage'] * 0.2) {
 						index = 0;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.2 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.4) {
+					} else if (this.elm.properties['Input Voltage1'] >= this.elm.properties['High Voltage'] * 0.2 && this.elm.properties['Input Voltage1'] <= this.elm.properties['High Voltage'] * 0.4) {
 						index = 1;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.4 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.6) {
+					} else if (this.elm.properties['Input Voltage1'] >= this.elm.properties['High Voltage'] * 0.4 && this.elm.properties['Input Voltage1'] <= this.elm.properties['High Voltage'] * 0.6) {
 						index = 2;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.6 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 0.8) {
+					} else if (this.elm.properties['Input Voltage1'] >= this.elm.properties['High Voltage'] * 0.6 && this.elm.properties['Input Voltage1'] <= this.elm.properties['High Voltage'] * 0.8) {
 						index = 3;
-					} else if (this.elm.properties['Input Voltage'] >= this.elm.properties['High Voltage'] * 0.8 && this.elm.properties['Input Voltage'] <= this.elm.properties['High Voltage'] * 1.0) {
+					} else if (this.elm.properties['Input Voltage1'] >= this.elm.properties['High Voltage'] * 0.8 && this.elm.properties['Input Voltage1'] <= this.elm.properties['High Voltage'] * 1.0) {
 						index = 4;
 					}
 					this.elm.properties['Output Voltage'] = [this.elm.properties['Elm0'], this.elm.properties['Elm1'], this.elm.properties['Elm2'], this.elm.properties['Elm3'], this.elm.properties['Elm4']][
@@ -660,7 +660,7 @@ class LookUpTable {
 			if (global.CONSTANTS.DEVELOPER_MODE) {
 				canvas.draw_rect2(this.bounds, this.line_paint);
 			}
-			if (global.variables.workspace_zoom_scale > 1.085 || (!global.CONSTANTS.MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
+			if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
 				this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 				if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
 					canvas.draw_text(
@@ -680,7 +680,7 @@ class LookUpTable {
 					canvas.restore();
 				}
 			}
-			if (!global.CONSTANTS.MOBILE_MODE) {
+			if (!MOBILE_MODE) {
 				if (
 					global.variables.wire_builder['step'] === 0 &&
 					this.bounds.contains_xywh(global.variables.mouse_x, global.variables.mouse_y, this.bounds.get_width() * 1.25, this.bounds.get_height() * 1.25) &&

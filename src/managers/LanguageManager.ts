@@ -114,7 +114,7 @@ class LanguageManager {
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	constructor() {
 		this.WATERMARK = 'Created by Circuit Solver : { www.androidcircuitsolver.app/html }';
-		this.WEB_LINK = 'Visit : { www.androidcircuitsolver.app/html }';
+		this.WEB_LINK = '{ www.androidcircuitsolver.app/html }';
 		this.TEXT_PADDING = '    ';
 		this.CONNECTION_NOT_ALLOWED = {
 			English: 'Connection not allowed',

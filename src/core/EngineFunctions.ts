@@ -49,50 +49,60 @@ class EngineFunctions {
 		this.mapper4 = new Element4(-1, -1, global.CONSTANTS.NULL);
 	}
 	save_file(title: string, content: string): void {
-		let blob: Blob = new Blob([content], {
-			type: 'text/plain;charset=utf-8'
-		});
-		//@ts-expect-error
-		saveAs(blob, title);
-	}
-	save_image(title: string, canvas: HTMLCanvasElement): void {
-		canvas.toBlob(function (blob) {
+		if (!HEADLESS_MODE) {
+			let blob: Blob = new Blob([content], {
+				type: 'text/plain;charset=utf-8'
+			});
 			//@ts-expect-error
 			saveAs(blob, title);
-		});
+		}
+	}
+	save_image(title: string, canvas: HTMLCanvasElement): void {
+		if (!HEADLESS_MODE) {
+			canvas.toBlob(function (blob) {
+				//@ts-expect-error
+				saveAs(blob, title);
+			});
+		}
 	}
 	save_image_mobile(title: string, canvas: HTMLCanvasElement): void {
-		canvas.toBlob(function (blob: Blob) {
-			let reader: FileReader = new FileReader();
-			reader.readAsDataURL(blob);
-			reader.onloadend = function () {
-				window.JsInterface.javascript_native_hook('push-image', title, reader.result);
-			};
-		});
+		if (!HEADLESS_MODE) {
+			canvas.toBlob(function (blob: Blob) {
+				let reader: FileReader = new FileReader();
+				reader.readAsDataURL(blob);
+				reader.onloadend = function () {
+					window.JsInterface.javascript_native_hook('push-image', title, reader.result);
+				};
+			});
+		}
 	}
 	file_event(input: HTMLInputElement): void {
-		let reader: FileReader = new FileReader();
-		reader.onload = function (e: ProgressEvent<FileReader>): void {
-			let text: string = <string>(<unknown>reader.result);
-			let title: string = input.files[0].name.split('.')[0];
-			if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
-				title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
-			}
-			global.variables.user_file.title = title;
-			bottom_menu.resize_bottom_menu();
-			global.variables.user_file.content = text;
-			global.variables.user_file_selected = true;
-			global.flags.flag_canvas_draw_event = true;
-		};
-		reader.onerror = function (err: ProgressEvent<FileReader>) {};
-		reader.readAsText(input.files[0]);
+		if (!HEADLESS_MODE) {
+			let reader: FileReader = new FileReader();
+			reader.onload = function (e: ProgressEvent<FileReader>): void {
+				let text: string = <string>(<unknown>reader.result);
+				let title: string = input.files[0].name.split('.')[0];
+				if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
+					title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
+				}
+				global.variables.user_file.title = title;
+				bottom_menu.resize_bottom_menu();
+				global.variables.user_file.content = text;
+				global.variables.user_file_selected = true;
+				global.flags.flag_canvas_draw_event = true;
+			};
+			reader.onerror = function (err: ProgressEvent<FileReader>) {};
+			reader.readAsText(input.files[0]);
+		}
 	}
 	file_event_mobile(title: string, data: string): void {
 		if (title.length > global.CONSTANTS.MAX_TEXT_LENGTH) {
 			title = title.substring(0, global.CONSTANTS.MAX_TEXT_LENGTH) + '...';
 		}
 		global.variables.user_file.title = title;
+				if (!HEADLESS_MODE) {
 		bottom_menu.resize_bottom_menu();
+				}
 		global.variables.user_file.content = data.replace(language_manager.QUOTE_ESCAPE, "'");
 	}
 	restore_system_options(index: number, value: string): void {
@@ -6189,7 +6199,9 @@ class EngineFunctions {
 			}
 			if (global.utils.not_null(obj.user_timestep)) {
 				simulation_manager.time_step = obj.user_timestep;
+								if (!HEADLESS_MODE) {
 				bottom_menu.resize_bottom_menu();
+								}
 			}
 			if (global.utils.not_null(obj.file_name)) {
 				global.variables.user_file.title = obj.file_name;
@@ -11106,93 +11118,95 @@ class EngineFunctions {
 		}
 	}
 	capture_image() {
-		let temp_zoom: number = global.variables.workspace_zoom_scale;
-		global.variables.workspace_zoom_scale = global.CONSTANTS.PICTURE_ZOOM;
-		global.variables.mouse_x = workspace.bounds.get_center_x();
-		global.variables.mouse_y = workspace.bounds.get_center_y();
-		/* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < voltmeters.length; i++) {
-			voltmeters[i].refresh_bounds();
+		if (!HEADLESS_MODE) {
+			let temp_zoom: number = global.variables.workspace_zoom_scale;
+			global.variables.workspace_zoom_scale = global.CONSTANTS.PICTURE_ZOOM;
+			global.variables.mouse_x = workspace.bounds.get_center_x();
+			global.variables.mouse_y = workspace.bounds.get_center_y();
+			/* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
+			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i: number = 0; i < voltmeters.length; i++) {
+				voltmeters[i].refresh_bounds();
+			}
+			for (var i: number = 0; i < ohmmeters.length; i++) {
+				ohmmeters[i].refresh_bounds();
+			}
+			for (var i: number = 0; i < ammeters.length; i++) {
+				ammeters[i].refresh_bounds();
+			}
+			for (var i: number = 0; i < wattmeters.length; i++) {
+				wattmeters[i].refresh_bounds();
+			}
+			/* <!-- END AUTOMATICALLY GENERATED !--> */
+			let temp_top: number = workspace.bounds.top;
+			let temp_left: number = workspace.bounds.left;
+			workspace.workspace_translate_bounds(-temp_left, -temp_top);
+			let temp_surface: HTMLCanvasElement = document.createElement('canvas');
+			temp_surface.width = workspace.bounds.get_width() + 1;
+			temp_surface.height = workspace.bounds.get_height() + 1;
+			temp_surface.id = 'temp_canvas';
+			temp_surface.style.position = 'absolute';
+			temp_surface.style.padding = '0';
+			temp_surface.style.margin = '0';
+			temp_surface.style.zIndex = '0';
+			temp_surface.style.visibility = 'hidden';
+			temp_surface.style.display = 'none';
+			let temp_ctx: CanvasRenderingContext2D = temp_surface.getContext('2d');
+			let temp_canvas: GraphicsEngine = new GraphicsEngine(temp_ctx);
+			global.variables.canvas_stroke_width_1_zoom = global.variables.canvas_stroke_width_base * 2.25 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_2_zoom = global.variables.canvas_stroke_width_base * 2.65 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_3_zoom = global.variables.canvas_stroke_width_base * 9 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_4_zoom = global.variables.canvas_stroke_width_base * 16 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_5_zoom = global.variables.canvas_stroke_width_base * 21 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_6_zoom = global.variables.canvas_stroke_width_base * 43 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_1_zoom = global.variables.canvas_text_size_base * 2.25 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_2_zoom = global.variables.canvas_text_size_base * 2.65 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_3_zoom = global.variables.canvas_text_size_base * 9 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
+			for (var i: number = 0; i < global.CONSTANTS.PICTURE_REQUEST_MAX_TIME; i++) {
+				global.flags.flag_build_element = true;
+				global.variables.flag_build_counter = 0;
+				this.snapshot(temp_surface, temp_canvas);
+			}
+			if (!MOBILE_MODE) {
+				this.save_image(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+			} else {
+				this.save_image_mobile(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
+			}
+			workspace.workspace_translate_bounds(temp_left, temp_top);
+			global.variables.workspace_zoom_scale = temp_zoom;
+			global.variables.mouse_x = workspace.bounds.get_center_x();
+			global.variables.mouse_y = workspace.bounds.get_center_y();
+			workspace.workspace_zoom();
+			global.variables.canvas_stroke_width_1_zoom = global.variables.canvas_stroke_width_base * 2.25 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_2_zoom = global.variables.canvas_stroke_width_base * 2.65 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_3_zoom = global.variables.canvas_stroke_width_base * 9 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_4_zoom = global.variables.canvas_stroke_width_base * 16 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_5_zoom = global.variables.canvas_stroke_width_base * 21 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_stroke_width_6_zoom = global.variables.canvas_stroke_width_base * 43 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_1_zoom = global.variables.canvas_text_size_base * 2.25 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_2_zoom = global.variables.canvas_text_size_base * 2.65 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_3_zoom = global.variables.canvas_text_size_base * 9 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
+			global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
+			/* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
+			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+			for (var i: number = 0; i < voltmeters.length; i++) {
+				voltmeters[i].refresh_bounds();
+			}
+			for (var i: number = 0; i < ohmmeters.length; i++) {
+				ohmmeters[i].refresh_bounds();
+			}
+			for (var i: number = 0; i < ammeters.length; i++) {
+				ammeters[i].refresh_bounds();
+			}
+			for (var i: number = 0; i < wattmeters.length; i++) {
+				wattmeters[i].refresh_bounds();
+			}
+			/* <!-- END AUTOMATICALLY GENERATED !--> */
+			temp_surface = global.CONSTANTS.NULL;
 		}
-		for (var i: number = 0; i < ohmmeters.length; i++) {
-			ohmmeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < ammeters.length; i++) {
-			ammeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < wattmeters.length; i++) {
-			wattmeters[i].refresh_bounds();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		let temp_top: number = workspace.bounds.top;
-		let temp_left: number = workspace.bounds.left;
-		workspace.workspace_translate_bounds(-temp_left, -temp_top);
-		let temp_surface: HTMLCanvasElement = document.createElement('canvas');
-		temp_surface.width = workspace.bounds.get_width() + 1;
-		temp_surface.height = workspace.bounds.get_height() + 1;
-		temp_surface.id = 'temp_canvas';
-		temp_surface.style.position = 'absolute';
-		temp_surface.style.padding = '0';
-		temp_surface.style.margin = '0';
-		temp_surface.style.zIndex = '0';
-		temp_surface.style.visibility = 'hidden';
-		temp_surface.style.display = 'none';
-		let temp_ctx: CanvasRenderingContext2D = temp_surface.getContext('2d');
-		let temp_canvas: GraphicsEngine = new GraphicsEngine(temp_ctx);
-		global.variables.canvas_stroke_width_1_zoom = global.variables.canvas_stroke_width_base * 2.25 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_2_zoom = global.variables.canvas_stroke_width_base * 2.65 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_3_zoom = global.variables.canvas_stroke_width_base * 9 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_4_zoom = global.variables.canvas_stroke_width_base * 16 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_5_zoom = global.variables.canvas_stroke_width_base * 21 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_6_zoom = global.variables.canvas_stroke_width_base * 43 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_1_zoom = global.variables.canvas_text_size_base * 2.25 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_2_zoom = global.variables.canvas_text_size_base * 2.65 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_3_zoom = global.variables.canvas_text_size_base * 9 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
-		for (var i: number = 0; i < global.CONSTANTS.PICTURE_REQUEST_MAX_TIME; i++) {
-			global.flags.flag_build_element = true;
-			global.variables.flag_build_counter = 0;
-			this.snapshot(temp_surface, temp_canvas);
-		}
-		if (!global.CONSTANTS.MOBILE_MODE) {
-			this.save_image(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
-		} else {
-			this.save_image_mobile(global.TEMPLATES.PNG_TEMPLATE.replace('{NAME}', save_image_window.input_button.text), temp_surface);
-		}
-		workspace.workspace_translate_bounds(temp_left, temp_top);
-		global.variables.workspace_zoom_scale = temp_zoom;
-		global.variables.mouse_x = workspace.bounds.get_center_x();
-		global.variables.mouse_y = workspace.bounds.get_center_y();
-		workspace.workspace_zoom();
-		global.variables.canvas_stroke_width_1_zoom = global.variables.canvas_stroke_width_base * 2.25 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_2_zoom = global.variables.canvas_stroke_width_base * 2.65 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_3_zoom = global.variables.canvas_stroke_width_base * 9 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_4_zoom = global.variables.canvas_stroke_width_base * 16 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_5_zoom = global.variables.canvas_stroke_width_base * 21 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_stroke_width_6_zoom = global.variables.canvas_stroke_width_base * 43 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_1_zoom = global.variables.canvas_text_size_base * 2.25 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_2_zoom = global.variables.canvas_text_size_base * 2.65 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_3_zoom = global.variables.canvas_text_size_base * 9 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
-		global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
-		/* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < voltmeters.length; i++) {
-			voltmeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < ohmmeters.length; i++) {
-			ohmmeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < ammeters.length; i++) {
-			ammeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < wattmeters.length; i++) {
-			wattmeters[i].refresh_bounds();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
-		temp_surface = global.CONSTANTS.NULL;
 	}
 }
