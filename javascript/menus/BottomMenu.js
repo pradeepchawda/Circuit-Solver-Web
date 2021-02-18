@@ -71,36 +71,34 @@ class BottomMenu {
     }
     update() { }
     resize_bottom_menu() {
-        if (!HEADLESS_MODE) {
-            this.initial_resize_counter = 0;
-            this.reload_bottom_path = true;
-            this.file_button.resize();
-            this.time_step_button.resize();
-            this.file_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-            this.file_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
-            this.file_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-            this.file_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
-            this.file_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-            this.time_step_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-            this.time_step_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
-            this.time_step_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-            this.time_step_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
-            this.time_step_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-            if (MOBILE_MODE) {
-                this.file_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
-                this.time_step_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
-            }
-            else {
-                this.file_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
-                this.time_step_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
-            }
-            this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-            if (MOBILE_MODE) {
-                this.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
-            }
-            else {
-                this.text_paint.set_text_size(global.variables.canvas_text_size_5);
-            }
+        this.initial_resize_counter = 0;
+        this.reload_bottom_path = true;
+        this.file_button.resize();
+        this.time_step_button.resize();
+        this.file_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.file_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.file_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.file_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.file_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.time_step_button.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.time_step_button.line_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.time_step_button.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.time_step_button.fill_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.time_step_button.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        if (MOBILE_MODE) {
+            this.file_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
+            this.time_step_button.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
+        }
+        else {
+            this.file_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
+            this.time_step_button.text_paint.set_text_size(global.variables.canvas_text_size_5);
+        }
+        this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        if (MOBILE_MODE) {
+            this.text_paint.set_text_size(0.75 * global.variables.canvas_text_size_6);
+        }
+        else {
+            this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
     }
     mouse_down() {
@@ -169,9 +167,7 @@ class BottomMenu {
         if (ON) {
             time_step_window.reset_cursor();
         }
-        if (!HEADLESS_MODE) {
-            bottom_menu.resize_bottom_menu();
-        }
+        bottom_menu.resize_bottom_menu();
         global.flags.flag_select_timestep = ON;
     }
     recolor() {

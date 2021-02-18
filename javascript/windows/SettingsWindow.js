@@ -283,9 +283,7 @@ class SettingsWindow {
                 global.variables.component_touched = true;
             }
         }
-        if (!HEADLESS_MODE) {
-            bottom_menu.resize_bottom_menu();
-        }
+        bottom_menu.resize_bottom_menu();
     }
     key_down(key_event) {
         if (global.flags.flag_select_settings) {

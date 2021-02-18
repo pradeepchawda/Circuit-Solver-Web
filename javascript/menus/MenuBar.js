@@ -777,9 +777,7 @@ class MenuBar {
             save_circuit_window.input_button.text = global.variables.user_file.title;
             save_circuit_window.reset_cursor();
         }
-        if (!HEADLESS_MODE) {
-            bottom_menu.resize_bottom_menu();
-        }
+        bottom_menu.resize_bottom_menu();
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_save_circuit = ON;
         if (global.CONSTANTS.DEVELOPER_MODE) {

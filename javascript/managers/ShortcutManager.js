@@ -3193,48 +3193,46 @@ class ShortcutManager {
         }
     }
     handle_query_shortcut(key_event) {
-        if (!HEADLESS_MODE) {
-            this.shift = key_event['shift'];
-            this.command = key_event['event'].code;
-            this.caps = key_event['caps'];
-            if (this.command === this.SHORTCUT_QUERY) {
-                var text_input = document.getElementById('text_input');
-                let MeterTemplate = {
-                    Tag: '',
-                    Value: -1
-                };
-                let solution_vector = [];
-                let met_max = global.utils.meter_max();
-                for (var i = 0; i < met_max; i++) {
-                    if (i < voltmeters.length) {
-                        MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + voltmeters[i].elm.id;
-                        MeterTemplate['Value'] = voltmeters[i].elm.properties['Voltage'];
-                        solution_vector.push(global.utils.copy(MeterTemplate));
-                    }
-                    if (i < ohmmeters.length) {
-                        MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + ohmmeters[i].elm.id;
-                        MeterTemplate['Value'] = ohmmeters[i].elm.properties['Sensed Resistance'];
-                        solution_vector.push(global.utils.copy(MeterTemplate));
-                    }
-                    if (i < ammeters.length) {
-                        MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + ammeters[i].elm.id;
-                        MeterTemplate['Value'] = ammeters[i].elm.properties['Current'];
-                        solution_vector.push(global.utils.copy(MeterTemplate));
-                    }
-                    if (i < wattmeters.length) {
-                        MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + wattmeters[i].elm.id;
-                        MeterTemplate['Value'] = wattmeters[i].elm.properties['Wattage'];
-                        solution_vector.push(global.utils.copy(MeterTemplate));
-                    }
+        this.shift = key_event['shift'];
+        this.command = key_event['event'].code;
+        this.caps = key_event['caps'];
+        if (this.command === this.SHORTCUT_QUERY) {
+            var text_input = document.getElementById('text_input');
+            let MeterTemplate = {
+                Tag: '',
+                Value: -1
+            };
+            let solution_vector = [];
+            let met_max = global.utils.meter_max();
+            for (var i = 0; i < met_max; i++) {
+                if (i < voltmeters.length) {
+                    MeterTemplate['Tag'] = voltmeters[i].elm.properties['tag'] + voltmeters[i].elm.id;
+                    MeterTemplate['Value'] = voltmeters[i].elm.properties['Voltage'];
+                    solution_vector.push(global.utils.copy(MeterTemplate));
                 }
-                //@ts-ignore
-                text_input.value = JSON.stringify(solution_vector);
-                //@ts-ignore
-                text_input.select();
-                //@ts-ignore
-                text_input.setSelectionRange(0, 99999);
-                document.execCommand('copy');
+                if (i < ohmmeters.length) {
+                    MeterTemplate['Tag'] = ohmmeters[i].elm.properties['tag'] + ohmmeters[i].elm.id;
+                    MeterTemplate['Value'] = ohmmeters[i].elm.properties['Sensed Resistance'];
+                    solution_vector.push(global.utils.copy(MeterTemplate));
+                }
+                if (i < ammeters.length) {
+                    MeterTemplate['Tag'] = ammeters[i].elm.properties['tag'] + ammeters[i].elm.id;
+                    MeterTemplate['Value'] = ammeters[i].elm.properties['Current'];
+                    solution_vector.push(global.utils.copy(MeterTemplate));
+                }
+                if (i < wattmeters.length) {
+                    MeterTemplate['Tag'] = wattmeters[i].elm.properties['tag'] + wattmeters[i].elm.id;
+                    MeterTemplate['Value'] = wattmeters[i].elm.properties['Wattage'];
+                    solution_vector.push(global.utils.copy(MeterTemplate));
+                }
             }
+            //@ts-ignore
+            text_input.value = JSON.stringify(solution_vector);
+            //@ts-ignore
+            text_input.select();
+            //@ts-ignore
+            text_input.setSelectionRange(0, 99999);
+            document.execCommand('copy');
         }
     }
     handle_undo_shortcut(key_event) {
