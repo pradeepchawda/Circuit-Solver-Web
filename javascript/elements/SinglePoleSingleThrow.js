@@ -474,7 +474,11 @@ class SinglePoleSingleThrow {
         }
     }
     build_element() {
-        if (this.build_element_flag || global.flags.flag_build_element) {
+        if ((this.build_element_flag || global.flags.flag_build_element) &&
+            this.c_x >= view_port.left - global.variables.node_space_x &&
+            this.c_x - global.variables.node_space_x <= view_port.right &&
+            this.c_y >= view_port.top + -global.variables.node_space_y &&
+            this.c_y - global.variables.node_space_y <= view_port.bottom) {
             this.connect1_x = this.c_x - this.x_space * global.utils.cosine(this.theta);
             this.connect1_y = this.c_y - this.y_space * global.utils.sine(this.theta);
             this.connect2_x = this.c_x + this.x_space * global.utils.cosine(this.theta);

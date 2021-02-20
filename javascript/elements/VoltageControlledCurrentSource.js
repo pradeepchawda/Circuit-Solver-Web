@@ -541,7 +541,11 @@ class VoltageControlledCurrentSource {
         }
     }
     build_element() {
-        if (this.build_element_flag || global.flags.flag_build_element) {
+        if ((this.build_element_flag || global.flags.flag_build_element) &&
+            this.c_x >= view_port.left - global.variables.node_space_x &&
+            this.c_x - global.variables.node_space_x <= view_port.right &&
+            this.c_y >= view_port.top + -global.variables.node_space_y &&
+            this.c_y - global.variables.node_space_y <= view_port.bottom) {
             let cache_0 = 3.0 * this.x_space;
             let cache_1 = 3.0 * this.y_space;
             let cache_2 = 1.414 * this.x_space;

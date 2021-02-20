@@ -472,7 +472,11 @@ class OhmMeter {
         }
     }
     build_element() {
-        if (this.build_element_flag || global.flags.flag_build_element) {
+        if ((this.build_element_flag || global.flags.flag_build_element) &&
+            this.c_x >= view_port.left - global.variables.node_space_x &&
+            this.c_x - global.variables.node_space_x <= view_port.right &&
+            this.c_y >= view_port.top + -global.variables.node_space_y &&
+            this.c_y - global.variables.node_space_y <= view_port.bottom) {
             let cache_0 = 1.25 * this.x_space;
             let cache_1 = 1.25 * this.y_space;
             let cache_2 = this.x_space;
