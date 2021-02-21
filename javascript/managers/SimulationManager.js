@@ -191,7 +191,7 @@ class SimulationManager {
         this.ELEMENT_TRAN_OFFSET = this.ELEMENT_TPTZ_OFFSET + tptzs.length;
         /* <!-- END AUTOMATICALLY GENERATED !--> */
         toast.set_text(language_manager.START_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
-        toast.show();
+        toast.show(global.COLORS.GENERAL_GREEN_COLOR);
         this.solutions_ready = false;
         global.flags.flag_build_element = true;
         this.initialized = true;
@@ -561,7 +561,7 @@ class SimulationManager {
         this.solutions_ready = false;
         global.variables.is_singular = false;
         toast.set_text(language_manager.STOP_SIMULATION[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
-        toast.show();
+        toast.show(global.COLORS.GENERAL_GREEN_COLOR);
     }
     reset_elements() {
         /* #INSERT_GENERATE_RESET_ELEMENTS# */
@@ -942,17 +942,17 @@ class SimulationManager {
                     if (this.iterator >= global.settings.ITL4) {
                         menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
                         toast.set_text(language_manager.CONVERGENCE_ERROR[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
-                        toast.show();
+                        toast.show(global.COLORS.GENERAL_RED_COLOR);
                     }
                     else if (global.variables.is_singular) {
                         menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
                         toast.set_text(language_manager.SINGULAR_MATRIX[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
-                        toast.show();
+                        toast.show(global.COLORS.GENERAL_RED_COLOR);
                     }
                     else if (this.simulation_time >= this.SIMULATION_MAX_TIME) {
                         menu_bar.handle_simulation_flag(!global.flags.flag_simulating);
                         toast.set_text(language_manager.END_OF_TIME[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
-                        toast.show();
+                        toast.show(global.COLORS.GENERAL_RED_COLOR);
                     }
                 }
                 global.variables.flag_canvas_draw_request_counter = 0;

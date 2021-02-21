@@ -336,7 +336,7 @@ function load_app(): void {
 					file_reader.click();
 				} else {
 					toast.set_text(language_manager.TRY_AGAIN[global.CONSTANTS.LANGUAGES[global.variables.language_index]]);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 				}
 			} else {
 				if (!mouse_event_latch) {

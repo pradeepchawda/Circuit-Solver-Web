@@ -1153,7 +1153,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1182,7 +1182,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 				if (capacitors[index].elm.properties['options'][this.option_index] === 'Capacitance') {
@@ -1214,7 +1214,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 				if (inductors[index].elm.properties['options'][this.option_index] === 'Inductance') {
@@ -1246,7 +1246,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1275,7 +1275,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1304,7 +1304,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1333,7 +1333,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1362,7 +1362,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1391,7 +1391,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1420,7 +1420,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1449,7 +1449,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1478,7 +1478,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1523,7 +1523,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1552,7 +1552,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1581,7 +1581,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1610,7 +1610,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1639,7 +1639,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1668,7 +1668,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1697,7 +1697,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1726,7 +1726,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1755,7 +1755,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1784,7 +1784,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1813,7 +1813,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1842,7 +1842,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1871,7 +1871,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1900,7 +1900,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1929,7 +1929,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1958,7 +1958,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -1987,7 +1987,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2016,7 +2016,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2045,7 +2045,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2074,7 +2074,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2103,7 +2103,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2132,7 +2132,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2161,7 +2161,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2190,7 +2190,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2219,7 +2219,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2248,7 +2248,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2277,7 +2277,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2306,7 +2306,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2335,7 +2335,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2364,7 +2364,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2393,7 +2393,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2422,7 +2422,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2451,7 +2451,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2480,7 +2480,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2509,7 +2509,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2538,7 +2538,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2567,7 +2567,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2596,7 +2596,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2625,7 +2625,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2654,7 +2654,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2683,7 +2683,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2712,7 +2712,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2741,7 +2741,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2770,7 +2770,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2799,7 +2799,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2828,7 +2828,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 				if (relays[index].elm.properties['options'][this.option_index] === 'Inductance') {
@@ -2860,7 +2860,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2889,7 +2889,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2918,7 +2918,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2947,7 +2947,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -2976,7 +2976,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -3005,7 +3005,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -3034,7 +3034,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}
@@ -3063,7 +3063,7 @@ class ElementOptionsEditWindow {
 							) +
 							'|]'
 					);
-					toast.show();
+					toast.show(global.COLORS.GENERAL_RED_COLOR);
 					ERROR_FLAG = true;
 				}
 			}

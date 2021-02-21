@@ -1206,7 +1206,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1229,7 +1229,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
                 if (capacitors[index].elm.properties['options'][this.option_index] === 'Capacitance') {
@@ -1255,7 +1255,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
                 if (inductors[index].elm.properties['options'][this.option_index] === 'Inductance') {
@@ -1281,7 +1281,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1304,7 +1304,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1327,7 +1327,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1350,7 +1350,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1373,7 +1373,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1396,7 +1396,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1419,7 +1419,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1442,7 +1442,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1465,7 +1465,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1506,7 +1506,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1529,7 +1529,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1552,7 +1552,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1575,7 +1575,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1598,7 +1598,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1621,7 +1621,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1644,7 +1644,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1667,7 +1667,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1690,7 +1690,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1713,7 +1713,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1736,7 +1736,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1759,7 +1759,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1782,7 +1782,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1805,7 +1805,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1828,7 +1828,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1851,7 +1851,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1874,7 +1874,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1897,7 +1897,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1920,7 +1920,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1943,7 +1943,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1966,7 +1966,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -1989,7 +1989,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2012,7 +2012,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2035,7 +2035,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2058,7 +2058,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2081,7 +2081,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2104,7 +2104,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2127,7 +2127,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2150,7 +2150,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2173,7 +2173,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2196,7 +2196,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2219,7 +2219,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2242,7 +2242,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2265,7 +2265,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2288,7 +2288,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2311,7 +2311,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2334,7 +2334,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2357,7 +2357,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2380,7 +2380,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2403,7 +2403,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2426,7 +2426,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2449,7 +2449,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2472,7 +2472,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2495,7 +2495,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2518,7 +2518,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2541,7 +2541,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
                 if (relays[index].elm.properties['options'][this.option_index] === 'Inductance') {
@@ -2567,7 +2567,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2590,7 +2590,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2613,7 +2613,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2636,7 +2636,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2659,7 +2659,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2682,7 +2682,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2705,7 +2705,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }
@@ -2728,7 +2728,7 @@ class ElementOptionsEditWindow {
                         '|' +
                         global.utils.exponentiate_quickly(global.variables.selected_properties['option_limits'][global.variables.selected_properties['options'][this.option_index]][global.PROPERTY.PROPERTY_LIMIT_MAX]) +
                         '|]');
-                    toast.show();
+                    toast.show(global.COLORS.GENERAL_RED_COLOR);
                     ERROR_FLAG = true;
                 }
             }

@@ -43,7 +43,7 @@ class WireManager {
                         global.variables.wire_builder['id1'] === global.variables.wire_builder['id2'] &&
                         global.variables.wire_builder['type1'] === global.variables.wire_builder['type2']) {
                         toast.set_text(language_manager.CONNECTION_NOT_ALLOWED[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + '.');
-                        toast.show();
+                        toast.show(global.COLORS.GENERAL_RED_COLOR);
                     }
                 }
                 this.reset_wire_builder();

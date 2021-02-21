@@ -13,7 +13,7 @@ class Toast {
         this.line_paint.set_paint_style(paint.style.STROKE);
         this.line_paint.set_paint_cap(paint.cap.ROUND);
         this.line_paint.set_paint_join(paint.join.MITER);
-        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.line_paint.set_text_size(global.variables.canvas_text_size_4);
         this.line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
@@ -24,7 +24,7 @@ class Toast {
         this.fill_paint.set_paint_cap(paint.cap.ROUND);
         this.fill_paint.set_paint_join(paint.join.MITER);
         this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+        this.fill_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
         this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
         this.fill_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.fill_paint.set_alpha(255);
@@ -73,12 +73,13 @@ class Toast {
         this.text = language_manager.TEXT_PADDING + str + language_manager.TEXT_PADDING;
         this.last_text = '-';
     }
-    show() {
+    show(color) {
+        this.fill_paint.set_color(color);
         this.timer = 0;
         this.draw_text = true;
     }
     resize_toast() {
-        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+        this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.line_paint.set_text_size(global.variables.canvas_text_size_4);
         this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -103,7 +104,7 @@ class Toast {
             this.bounds.right = view_port.center_x + this.text_measure_div2;
             this.bounds.bottom = view_port.top + view_port.view_height * (this.height_ratio + (1.0 - this.height_ratio) * this.HEIGHT_FACTOR);
             canvas.draw_rect2(this.bounds, this.fill_paint);
-            canvas.draw_rect2(this.bounds, this.line_paint);
+            // canvas.draw_rect2(this.bounds, this.line_paint);
             canvas.draw_text(this.text, this.bounds.get_center_x(), this.bounds.get_center_y(), this.text_paint);
             this.update();
         }

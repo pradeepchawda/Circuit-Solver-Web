@@ -3924,15 +3924,15 @@ class ShortcutManager {
 						toast.set_text(
 							language_manager.COPIED[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + ' {' + global.variables.selected_properties['tag'] + global.variables.selected_id + '}'
 						);
-						toast.show();
+						toast.show(global.COLORS.GENERAL_GREEN_COLOR);
 					} else {
 						toast.set_text(language_manager.CANNOT_COPY_WIRE[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + '.');
-						toast.show();
+						toast.show(global.COLORS.GENERAL_RED_COLOR);
 					}
 				}
 			} else {
 				toast.set_text(language_manager.CANNOT_MULTI_SELECT[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + '.');
-				toast.show();
+				toast.show(global.COLORS.GENERAL_RED_COLOR);
 			}
 		}
 	}
@@ -4632,7 +4632,7 @@ class ShortcutManager {
 				/* <!-- END AUTOMATICALLY GENERATED !--> */
 			} else {
 				toast.set_text(language_manager.NO_CLIPBOARD_DATA[global.CONSTANTS.LANGUAGES[global.variables.language_index]] + '.');
-				toast.show();
+				toast.show(global.COLORS.GENERAL_RED_COLOR);
 			}
 		}
 	}

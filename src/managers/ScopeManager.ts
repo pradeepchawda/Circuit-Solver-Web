@@ -76,9 +76,8 @@ class ScopeManager {
 				}
 			} else {
 				toast.set_text('SCOPE LIMIT = {' + this.MAX_ENTRIES + '}');
-				toast.show();
+				toast.show(global.COLORS.GENERAL_RED_COLOR);
 			}
-		} else {
 		}
 	}
 	remove(id: number, type: number): void {
