@@ -131,6 +131,10 @@ class ShortcutManager {
 		if (this.command === this.SHORTCUT_EXPORT && key_event['ctrl'] === true) {
 			let packet: Array<string> = [];
 			let indexer: number = 0;
+
+			packet[indexer++] = global.CONSTANTS.VERSION_TAG + '\r\n';
+			packet[indexer++] = global.CONSTANTS.VERSION_DIVIDER + '\r\n';
+
 			/* #INSERT_GENERATE_ELEMENT_EXPORT_SHORTCUT# */
 			/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 			for (var i: number = 0; i < resistors.length; i++) {

@@ -52,7 +52,7 @@ class ElementProperties {
             Resistance: 1.0 / settings.R_MAX,
             tag: 'DIO',
             units: '',
-            options: ['Emission Coefficient', 'Saturation Current'],
+            options: ['Emission Coefficient', 'Saturation Current', 'Series Resistance'],
             options_units: ['', 'A'],
             option_limits: {
                 'Emission Coefficient': [settings.MIN_GAIN, settings.MAX_GAIN],
@@ -71,7 +71,7 @@ class ElementProperties {
             Resistance: 1.0 / settings.R_MAX,
             tag: 'LED',
             units: '',
-            options: ['Emission Coefficient', 'Saturation Current', 'Wavelength'],
+            options: ['Emission Coefficient', 'Saturation Current', 'Wavelength', 'Series Resistance'],
             options_units: ['', 'A', 'nm'],
             option_limits: {
                 'Emission Coefficient': [settings.MIN_GAIN, settings.MAX_GAIN],
@@ -821,23 +821,28 @@ class ElementProperties {
         };
         this.PROPERTY_REL = {
             Inductance: 1.0e-3,
+            Status: 'OFF',
             'Transient Resistance': settings.R_MAX,
             'Transient Current': 0,
             'Equivalent Current': 0,
             'Initial Current': 0,
-            'Turn on Current': 10e-3,
             'Closed Resistance': settings.WIRE_RESISTANCE,
             'Open Resistance': settings.R_MAX * 0.5,
+            'Coil Resistance': 100,
+            'Must Operate Voltage': 3.75,
+            'Must Release Voltage': 250e-3,
             'Transient Voltage': 0,
+            'Input Voltage1': 0,
             tag: 'RELAY',
             units: 'H',
-            options: ['Inductance', 'Initial Current', 'Turn on Current', 'Closed Resistance'],
-            options_units: ['H', 'A', 'A', 'Ω'],
+            options: ['Inductance', 'Closed Resistance', 'Coil Resistance', 'Must Operate Voltage', 'Must Release Voltage'],
+            options_units: ['H', 'Ω', 'Ω', 'V', 'V'],
             option_limits: {
                 Inductance: [settings.MIN_INDUCTANCE, settings.MAX_INDUCTANCE],
-                'Initial Current': [settings.MIN_CURRENT, settings.MAX_CURRENT],
-                'Turn on Current': [settings.MIN_CURRENT, settings.MAX_CURRENT],
-                'Closed Resistance': [settings.WIRE_RESISTANCE, settings.R_MAX * 0.5]
+                'Closed Resistance': [settings.WIRE_RESISTANCE, settings.R_MAX * 0.5],
+                'Coil Resistance': [settings.WIRE_RESISTANCE, settings.R_MAX * 0.5],
+                'Must Operate Voltage': [settings.MIN_VOLTAGE, settings.MAX_VOLTAGE],
+                'Must Release Voltage': [settings.MIN_VOLTAGE, settings.MAX_VOLTAGE]
             }
         };
         this.PROPERTY_PID = {

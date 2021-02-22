@@ -1095,19 +1095,24 @@ declare type PROPERTY_REL_T = {
 	'Transient Current': number;
 	'Equivalent Current': number;
 	'Initial Current': number;
-	'Turn on Current': number;
 	'Closed Resistance': number;
 	'Open Resistance': number;
+	'Coil Resistance': number;
+	'Must Operate Voltage': number;
+	'Must Release Voltage': number;
 	'Transient Voltage': number;
+	'Input Voltage1': number;
+	Status: string;
 	tag: string;
 	units: string;
 	options: Array<string>;
 	options_units: Array<string>;
 	option_limits: {
 		Inductance: Array<number>;
-		'Initial Current': Array<number>;
-		'Turn on Current': Array<number>;
 		'Closed Resistance': Array<number>;
+		'Coil Resistance': Array<number>;
+		'Must Operate Voltage': Array<number>;
+		'Must Release Voltage': Array<number>;
 	};
 };
 declare type PROPERTY_PID_T = {

@@ -763,11 +763,7 @@ class WattMeter {
 		this.elm.properties['Wattage'] = 0;
 	}
 	push_voltage(v1: number, v2: number): void {
-		if (
-			global.flags.flag_simulating &&
-			simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-			simulation_manager.solutions_ready
-		) {
+		if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
 			let curr: number = (v1 - v2) / global.settings.WIRE_RESISTANCE;
 			let voltage: number = Math.max(v1, v2);
 			let power: number = curr * voltage;
@@ -866,11 +862,7 @@ class WattMeter {
 						this.bounds.bottom + this.bounds.get_height() * 0.2,
 						this.text_paint
 					);
-					if (
-						global.flags.flag_simulating &&
-						simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-						simulation_manager.solutions_ready
-					) {
+					if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
 							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),
@@ -891,11 +883,7 @@ class WattMeter {
 						this.bounds.bottom + this.bounds.get_height() * 0.2,
 						this.text_paint
 					);
-					if (
-						global.flags.flag_simulating &&
-						simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-						simulation_manager.solutions_ready
-					) {
+					if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
 						this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 						canvas.draw_text(
 							global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']),

@@ -166,7 +166,12 @@ class Relay {
 	update_relay(): void {
 		if (this.elm.consistent() && simulation_manager.solutions_ready) {
 			let voltage: number = engine_functions.get_voltage(this.elm.n1, this.elm.n2);
-			this.elm.properties['Transient Voltage'] = voltage;
+			this.elm.properties['Input Voltage1'] = voltage;
+			this.elm.properties['Transient Voltage'] =
+				voltage -
+				this.elm.properties['Coil Resistance'] *
+					(this.elm.properties['Equivalent Current'] / (1.0 + this.elm.properties['Coil Resistance'] / this.elm.properties['Transient Resistance']) +
+						voltage / (this.elm.properties['Transient Resistance'] + this.elm.properties['Coil Resistance']));
 			this.elm.properties['Transient Current'] = voltage / this.elm.properties['Transient Resistance'] + this.elm.properties['Equivalent Current'];
 			this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
 		}
@@ -175,11 +180,24 @@ class Relay {
 		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
 		this.elm.properties['Equivalent Current'] = this.elm.properties['Transient Voltage'] / this.elm.properties['Transient Resistance'] + this.elm.properties['Transient Current'];
 	}
-	update(): void {}
+	update(): void {
+		if (this.elm.properties['Input Voltage1'] >= this.elm.properties['Must Operate Voltage']) {
+			if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_time > simulation_manager.time_step) {
+				this.elm.properties['Status'] = global.CONSTANTS.ON;
+			}
+		} else if (this.elm.properties['Input Voltage1'] <= this.elm.properties['Must Release Voltage']) {
+			this.elm.properties['Status'] = global.CONSTANTS.OFF;
+		}
+	}
 	stamp(): void {
 		if (this.elm.consistent()) {
-			engine_functions.stamp_inductor(this.elm.n1, this.elm.n2, this.elm.properties['Transient Resistance'], this.elm.properties['Equivalent Current']);
-			if (this.elm.properties['Transient Current'] >= this.elm.properties['Turn on Current']) {
+			engine_functions.stamp_inductor(
+				this.elm.n1,
+				this.elm.n2,
+				this.elm.properties['Transient Resistance'] + this.elm.properties['Coil Resistance'],
+				this.elm.properties['Equivalent Current'] / (1 + this.elm.properties['Coil Resistance'] / this.elm.properties['Transient Resistance'])
+			);
+			if (this.elm.properties['Status'] === global.CONSTANTS.ON) {
 				engine_functions.stamp_resistor(this.elm.n3, this.elm.n4, this.elm.properties['Closed Resistance']);
 			} else {
 				engine_functions.stamp_node(this.elm.n3, this.elm.properties['Open Resistance']);
@@ -725,8 +743,9 @@ class Relay {
 			this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.relay_2.x, this.relay_2.y);
 			this.line_buffer[this.indexer++] = Array(this.p4.x, this.p4.y, this.relay_3.x, this.relay_3.y);
 			this.line_buffer[this.indexer++] = Array(this.relay_2.x, this.relay_2.y, this.relay_7.x, this.relay_7.y);
-			if (this.elm.properties['Transient Current'] >= this.elm.properties['Turn on Current']) {
-				if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_time > simulation_manager.time_step + simulation_manager.time_step) {
+
+			if (this.elm.properties['Status'] === global.CONSTANTS.ON) {
+				if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_time > simulation_manager.time_step) {
 					this.line_buffer[this.indexer++] = Array(this.relay_7.x, this.relay_7.y, this.relay_9.x, this.relay_9.y);
 				} else {
 					this.line_buffer[this.indexer++] = Array(this.relay_7.x, this.relay_7.y, this.relay_8.x, this.relay_8.y);
@@ -734,6 +753,7 @@ class Relay {
 			} else {
 				this.line_buffer[this.indexer++] = Array(this.relay_7.x, this.relay_7.y, this.relay_8.x, this.relay_8.y);
 			}
+
 			this.line_buffer[this.indexer++] = Array(this.relay_9.x, this.relay_9.y, this.relay_3.x, this.relay_3.y);
 			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
 			this.indexer = 0;
@@ -855,6 +875,8 @@ class Relay {
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {
+		this.elm.properties['Input Voltage1'] = 0;
+		this.elm.properties['Status'] = global.CONSTANTS.OFF;
 		this.elm.properties['Transient Resistance'] = (2 * this.elm.properties['Inductance']) / simulation_manager.time_step;
 		this.elm.properties['Transient Voltage'] = 0;
 		this.elm.properties['Transient Current'] = global.utils.copy(this.elm.properties['Initial Current']);

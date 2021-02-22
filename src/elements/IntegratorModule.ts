@@ -146,7 +146,7 @@ class IntegratorModule {
 	update(): void {
 		if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_step !== 0) {
 			if (this.elm.consistent()) {
-				if (simulation_manager.simulation_time < simulation_manager.time_step * 1.5) {
+				if (simulation_manager.simulation_time < simulation_manager.time_step) {
 					this.elm.properties['Last Value'] = global.utils.copy(this.elm.properties['Initial Value']);
 					this.elm.properties['Input Voltage'] = engine_functions.get_voltage(this.elm.n1, -1);
 					this.elm.properties['Output Voltage'] = this.elm.properties['Initial Value'];

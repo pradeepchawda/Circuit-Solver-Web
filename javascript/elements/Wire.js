@@ -363,10 +363,7 @@ class Wire {
             this.line_buffer = [];
             this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-            if (global.flags.flag_simulating &&
-                simulation_manager.solutions_ready &&
-                this.is_selected_element() &&
-                simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step) {
+            if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && simulation_manager.simulation_time >= simulation_manager.time_step) {
                 if (this.elm.consistent()) {
                     this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
                     if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
@@ -392,10 +389,7 @@ class Wire {
             this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
             this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
             canvas.draw_line_buffer(this.line_buffer, this.line_paint);
-            if (global.flags.flag_simulating &&
-                simulation_manager.solutions_ready &&
-                this.is_selected_element() &&
-                simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step) {
+            if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && simulation_manager.simulation_time >= simulation_manager.time_step) {
                 if (this.elm.consistent()) {
                     if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                         if (global.utils.norm(this.wire_point.x - this.p1.x, this.wire_point.y - this.p1.y) > global.utils.norm(this.p2.x - this.wire_point.x, this.p2.y - this.wire_point.y) * 1.05) {

@@ -649,7 +649,7 @@ class VoltageControlledSwitch {
 			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.connect1_x, this.connect1_y);
 			this.line_buffer[this.indexer++] = Array(this.p3.x, this.p3.y, this.connect2_x, this.connect2_y);
 			if (this.elm.properties['Output Voltage'] < this.elm.properties['High Voltage'] * 0.5) {
-				if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_time > simulation_manager.time_step + simulation_manager.time_step) {
+				if (global.flags.flag_simulating && simulation_manager.solutions_ready && simulation_manager.simulation_time > simulation_manager.time_step) {
 					this.line_buffer[this.indexer++] = Array(this.connect1_x, this.connect1_y, this.connect2_x, this.connect2_y);
 				} else {
 					this.line_buffer[this.indexer++] = Array(this.connect1_x, this.connect1_y, this.vcsw_0.x, this.vcsw_0.y);

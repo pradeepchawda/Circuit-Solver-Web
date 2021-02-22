@@ -560,9 +560,7 @@ class AmMeter {
         this.elm.properties['Current'] = 0;
     }
     push_current(current) {
-        if (global.flags.flag_simulating &&
-            simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-            simulation_manager.solutions_ready) {
+        if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
             this.elm.properties['Current'] = current;
             this.meter_trace.push(current, simulation_manager.simulation_time);
         }
@@ -657,9 +655,7 @@ class AmMeter {
             this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
             if ((this.angle > 170 && this.angle < 190) || (this.angle > -10 && this.angle < 10)) {
                 if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-                    if (global.flags.flag_simulating &&
-                        simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-                        simulation_manager.solutions_ready) {
+                    if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Current'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.025, this.text_paint);
                         this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -672,9 +668,7 @@ class AmMeter {
                 canvas.rotate(this.c_x, this.c_y, -90);
                 this.meter_symbol.draw_symbol(canvas);
                 if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
-                    if (global.flags.flag_simulating &&
-                        simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-                        simulation_manager.solutions_ready) {
+                    if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Current'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.top + this.bounds.get_height() * 0.025, this.text_paint);
                         this.recolor();

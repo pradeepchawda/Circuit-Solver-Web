@@ -701,9 +701,7 @@ class WattMeter {
         this.elm.properties['Wattage'] = 0;
     }
     push_voltage(v1, v2) {
-        if (global.flags.flag_simulating &&
-            simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-            simulation_manager.solutions_ready) {
+        if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
             let curr = (v1 - v2) / global.settings.WIRE_RESISTANCE;
             let voltage = Math.max(v1, v2);
             let power = curr * voltage;
@@ -802,9 +800,7 @@ class WattMeter {
                 this.meter_symbol.draw_symbol(canvas);
                 if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
-                    if (global.flags.flag_simulating &&
-                        simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-                        simulation_manager.solutions_ready) {
+                    if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.4, this.text_paint);
                         this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
@@ -816,9 +812,7 @@ class WattMeter {
                 this.meter_symbol.draw_symbol(canvas);
                 if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {
                     canvas.draw_text(global.TEMPLATES.ELEMENT_TAG_TEMPLATE.replace('{TAG}', this.elm.properties['tag']).replace('{ID}', this.elm.id), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.2, this.text_paint);
-                    if (global.flags.flag_simulating &&
-                        simulation_manager.simulation_time >= simulation_manager.time_step + simulation_manager.time_step + simulation_manager.time_step &&
-                        simulation_manager.solutions_ready) {
+                    if (global.flags.flag_simulating && simulation_manager.simulation_time >= simulation_manager.time_step && simulation_manager.solutions_ready) {
                         this.text_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
                         canvas.draw_text(global.TEMPLATES.ELEMENT_VAL_TEMPLATE.replace('{VAL}', global.utils.exponentiate_quickly(this.elm.properties['Wattage'])).replace('{UNIT}', this.elm.properties['units']), this.c_x, this.bounds.bottom + this.bounds.get_height() * 0.4, this.text_paint);
                         this.recolor();
