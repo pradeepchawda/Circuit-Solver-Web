@@ -132,7 +132,7 @@ class ShortcutManager {
 			let packet: Array<string> = [];
 			let indexer: number = 0;
 
-			packet[indexer++] = global.CONSTANTS.VERSION_TAG + '\r\n';
+			packet[indexer++] = global.CONSTANTS.VERSION_TAG;
 			packet[indexer++] = global.CONSTANTS.VERSION_DIVIDER + '\r\n';
 
 			/* #INSERT_GENERATE_ELEMENT_EXPORT_SHORTCUT# */
