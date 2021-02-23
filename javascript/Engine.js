@@ -464,6 +464,8 @@ function load_app() {
         graph_window.resize_window();
         toast.resize_toast();
         on_screen_keyboard.resize_keyboard();
+        global.variables.wire_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
+        global.variables.wire_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
         /* #INSERT_METER_RESIZE_TRACE# */
         /* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
         for (var i = 0; i < voltmeters.length; i++) {
@@ -1037,6 +1039,8 @@ function load_app() {
                     }
                 }
                 global.variables.element_on_board = false;
+                global.variables.wire_line_buffer = [];
+                global.variables.wire_line_buffer_index = 0;
                 workspace.workspace_draw(canvas);
                 engine_functions.draw_unselected_components(canvas);
                 engine_functions.draw_wires(canvas);
@@ -1113,6 +1117,8 @@ function load_app() {
                             }
                         }
                         global.variables.element_on_board = false;
+                        global.variables.wire_line_buffer = [];
+                        global.variables.wire_line_buffer_index = 0;
                         engine_functions.draw_unselected_components(canvas);
                         engine_functions.draw_wires(canvas);
                         engine_functions.draw_selected_components(canvas);

@@ -431,8 +431,12 @@ class Wire {
 		if (this.elm.wire_style === global.CONSTANTS.WIRE_STYLE_0) {
 			this.indexer = 0;
 			this.line_buffer = [];
-			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
-			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
+			if (!this.is_selected_element) {
+				global.variables.wire_line_buffer[global.variables.wire_line_buffer_index++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
+			} else {
+				this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.p2.x, this.p2.y);
+				canvas.draw_line_buffer(this.line_buffer, this.line_paint);
+			}
 			if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && simulation_manager.simulation_time >= simulation_manager.time_step) {
 				if (this.elm.consistent()) {
 					this.angle = global.utils.retrieve_angle(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
@@ -468,9 +472,14 @@ class Wire {
 			this.indexer = 0;
 			this.circle_buffer = [];
 			this.line_buffer = [];
-			this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
-			this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
-			canvas.draw_line_buffer(this.line_buffer, this.line_paint);
+			if (!this.is_selected_element) {
+				global.variables.wire_line_buffer[global.variables.wire_line_buffer_index++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
+				global.variables.wire_line_buffer[global.variables.wire_line_buffer_index++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
+			} else {
+				this.line_buffer[this.indexer++] = Array(this.p1.x, this.p1.y, this.wire_point.x, this.wire_point.y);
+				this.line_buffer[this.indexer++] = Array(this.p2.x, this.p2.y, this.wire_point.x, this.wire_point.y);
+				canvas.draw_line_buffer(this.line_buffer, this.line_paint);
+			}
 			if (global.flags.flag_simulating && simulation_manager.solutions_ready && this.is_selected_element() && simulation_manager.simulation_time >= simulation_manager.time_step) {
 				if (this.elm.consistent()) {
 					if (global.variables.workspace_zoom_scale > 1.085 || (!MOBILE_MODE && global.variables.workspace_zoom_scale >= 0.99)) {

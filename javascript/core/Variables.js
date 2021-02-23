@@ -103,6 +103,8 @@ class Variables {
         };
         this.node_line_buffer = [];
         this.node_line_buffer_index = 0;
+        this.wire_line_buffer = [];
+        this.wire_line_buffer_index = 0;
         if (MOBILE_MODE) {
             this.system_options['values'][CONSTANTS.SYSTEM_OPTION_SHORTCUT_HINTS] = CONSTANTS.OFF;
         }
@@ -149,5 +151,15 @@ class Variables {
         this.move_paint.set_font(CONSTANTS.DEFAULT_FONT);
         this.move_paint.set_alpha(60);
         this.move_paint.set_paint_align(paint.align.CENTER);
+        this.wire_paint = new Paint();
+        this.wire_paint.set_paint_style(paint.style.STROKE);
+        this.wire_paint.set_paint_cap(paint.cap.ROUND);
+        this.wire_paint.set_paint_join(paint.join.MITER);
+        this.wire_paint.set_stroke_width(this.canvas_stroke_width_1_zoom);
+        this.wire_paint.set_color(COLORS.ELEMENT_COLOR);
+        this.wire_paint.set_text_size(this.canvas_text_size_3_zoom);
+        this.wire_paint.set_font(CONSTANTS.DEFAULT_FONT);
+        this.wire_paint.set_alpha(255);
+        this.wire_paint.set_paint_align(paint.align.CENTER);
     }
 }

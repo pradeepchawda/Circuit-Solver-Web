@@ -10228,6 +10228,7 @@ class EngineFunctions {
         for (var i = 0; i < wires.length; i++) {
             wires[i].draw_component(canvas);
         }
+        canvas.draw_line_buffer(global.variables.wire_line_buffer, global.variables.wire_paint);
     }
     snapshot(surface, canvas) {
         canvas.clear(surface);
