@@ -113,8 +113,8 @@ class LanguageManager {
 	public readonly TAG_TRAN: string;
 	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	constructor() {
-		this.WATERMARK = 'Created by Circuit Solver : { www.androidcircuitsolver.app/html }';
-		this.WEB_LINK = '{ www.androidcircuitsolver.app/html }';
+		this.WATERMARK = 'Created by Circuit Solver : { www.androidcircuitsolver.com/app.html }';
+		this.WEB_LINK = '{ www.androidcircuitsolver.com/app.html }';
 		this.TEXT_PADDING = '    ';
 		this.CONNECTION_NOT_ALLOWED = {
 			English: 'Connection not allowed',

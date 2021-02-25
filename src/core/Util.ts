@@ -478,8 +478,7 @@ class Util {
 	}
 	get_time_stamp(): string {
 		let date: Date = new Date();
-		let TIMESTAMP_TEMPLATE: string = '{DATE}->{TIME_ZONE}';
-		return TIMESTAMP_TEMPLATE.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', <string>(<unknown>date.getTimezoneOffset()));
+		return '{DATE}->{TIME_ZONE}'.replace('{DATE}', date.toJSON()).replace('{TIME_ZONE}', <string>(<unknown>date.getTimezoneOffset()));
 	}
 	log_damping(next: number, now: number, gamma: number, kappa: number): number {
 		return now + (gamma / kappa) * this.signum(next - now) * this.logbx(Math.E, 1 + Math.abs(next - now) * kappa);
