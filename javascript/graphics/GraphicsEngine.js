@@ -62,7 +62,7 @@ class GraphicsEngine {
     }
     apply_paint(paint, is_text) {
         this.ctx.beginPath();
-        if (paint.style.FILL === paint.paint_style) {
+        if (paint.style.FILL === paint.paint_style || paint.style.FILL_AND_STROKE === paint.paint_style) {
             this.ctx.fillStyle = paint.color;
             this.last_fill_color = paint.color;
         }
