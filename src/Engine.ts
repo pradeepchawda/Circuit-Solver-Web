@@ -340,12 +340,13 @@ function load_app(): void {
 				}
 			} else {
 				if (!mouse_event_latch) {
-					if (MOBILE_MODE) {
+					if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
 						global.flags.flag_mouse_down_event = true;
-						global.events.mouse_down_event_queue.push(mouse_event);
-					} else {
-						global.flags.flag_mouse_down_event = true;
-						global.events.mouse_down_event_queue.push(mouse_event);
+						if (MOBILE_MODE) {
+							global.events.mouse_down_event_queue.push(mouse_event);
+						} else {
+							global.events.mouse_down_event_queue.push(mouse_event);
+						}
 					}
 				}
 			}
@@ -355,12 +356,13 @@ function load_app(): void {
 	}
 	function mouse_move(mouse_event: MouseEvent): void {
 		if (!global.flags.flag_mouse_move_event) {
-			if (MOBILE_MODE) {
-				global.events.mouse_move_event = mouse_event;
+			if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
 				global.flags.flag_mouse_move_event = true;
-			} else {
-				global.events.mouse_move_event = mouse_event;
-				global.flags.flag_mouse_move_event = true;
+				if (MOBILE_MODE) {
+					global.events.mouse_move_event = mouse_event;
+				} else {
+					global.events.mouse_move_event = mouse_event;
+				}
 			}
 		}
 		mouse_event.preventDefault();
@@ -368,12 +370,13 @@ function load_app(): void {
 	}
 	function mouse_up(mouse_event: MouseEvent): void {
 		if (mouse_event_latch) {
-			if (MOBILE_MODE) {
+			if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
 				global.flags.flag_mouse_up_event = true;
-				global.events.mouse_up_event_queue.push(mouse_event);
-			} else {
-				global.flags.flag_mouse_up_event = true;
-				global.events.mouse_up_event_queue.push(mouse_event);
+				if (MOBILE_MODE) {
+					global.events.mouse_up_event_queue.push(mouse_event);
+				} else {
+					global.events.mouse_up_event_queue.push(mouse_event);
+				}
 			}
 		}
 		mouse_event.preventDefault();
