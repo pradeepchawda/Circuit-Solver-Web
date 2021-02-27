@@ -429,56 +429,56 @@ class SimulationManager {
         let max_ind_updated = false;
         for (var i = 0; i < this.time_data.length; i++) {
             if (this.time_data[i]['Resistance'] > 0) {
-                parallel_resistance += global.utils.copy(1.0 / this.time_data[i]['Resistance']);
-                series_resistance += global.utils.copy(this.time_data[i]['Resistance']);
+                parallel_resistance += 1.0 / this.time_data[i]['Resistance'];
+                series_resistance += this.time_data[i]['Resistance'];
                 if (!parallel_series_updated) {
                     parallel_series_updated = true;
                 }
             }
             if (this.time_data[i]['Frequency'] < min_frequency && this.time_data[i]['Frequency'] > 0) {
-                min_frequency = global.utils.copy(this.time_data[i]['Frequency']);
+                min_frequency = this.time_data[i]['Frequency'];
                 if (!min_freq_updated) {
                     min_freq_updated = true;
                 }
             }
             if (this.time_data[i]['Frequency'] > max_frequency && this.time_data[i]['Frequency'] > 0) {
-                max_frequency = global.utils.copy(this.time_data[i]['Frequency']);
+                max_frequency = this.time_data[i]['Frequency'];
                 if (!max_freq_updated) {
                     max_freq_updated = true;
                 }
             }
             if (this.time_data[i]['Capacitance'] > max_capacitance && this.time_data[i]['Capacitance'] > 0) {
-                max_capacitance = global.utils.copy(this.time_data[i]['Capacitance']);
+                max_capacitance = this.time_data[i]['Capacitance'];
                 if (!max_cap_updated) {
                     max_cap_updated = true;
                 }
             }
             if (this.time_data[i]['Resistance'] > max_resistance && this.time_data[i]['Resistance'] > 0) {
-                max_resistance = global.utils.copy(this.time_data[i]['Resistance']);
+                max_resistance = this.time_data[i]['Resistance'];
                 if (!max_res_updated) {
                     max_res_updated = true;
                 }
             }
             if (this.time_data[i]['Inductance'] > max_inductance && this.time_data[i]['Inductance'] > 0) {
-                max_inductance = global.utils.copy(this.time_data[i]['Inductance']);
+                max_inductance = this.time_data[i]['Inductance'];
                 if (!max_ind_updated) {
                     max_ind_updated = true;
                 }
             }
             if (this.time_data[i]['Capacitance'] < min_capacitance && this.time_data[i]['Capacitance'] > 0) {
-                min_capacitance = global.utils.copy(this.time_data[i]['Capacitance']);
+                min_capacitance = this.time_data[i]['Capacitance'];
                 if (!min_cap_updated) {
                     min_cap_updated = true;
                 }
             }
             if (this.time_data[i]['Resistance'] < min_resistance && this.time_data[i]['Resistance'] > 0) {
-                min_resistance = global.utils.copy(this.time_data[i]['Resistance']);
+                min_resistance = this.time_data[i]['Resistance'];
                 if (!min_res_updated) {
                     min_res_updated = true;
                 }
             }
             if (this.time_data[i]['Inductance'] < min_inductance && this.time_data[i]['Inductance'] > 0) {
-                min_inductance = global.utils.copy(this.time_data[i]['Inductance']);
+                min_inductance = this.time_data[i]['Inductance'];
                 if (!min_ind_updated) {
                     min_ind_updated = true;
                 }
