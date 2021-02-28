@@ -150,6 +150,21 @@ class EngineFunctions {
 			}
 		}
 	}
+	force_element_rebuild()
+	{
+				global.flags.flag_build_element = true;
+		global.variables.flag_build_counter = 0;
+		global.flags.flag_canvas_draw_event = true;
+		global.variables.canvas_draw_counter = 0;
+		global.flags.flag_canvas_draw_request = true;
+		global.variables.flag_canvas_draw_request_counter = 0;
+		/* #INSERT_GENERATE_FORCE_ELEMENT_REBUILD# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		for (var i : number = 0; i < resistors.length; i++) {
+			resistors[i].build_element();
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
+	}
 	handle_nearest_neighbors(temp_translation_lock: boolean): void {
 		if (!global.variables.is_dragging && !global.flags.flag_history_lock) {
 			if (!global.variables.is_right_click) {

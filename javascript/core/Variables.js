@@ -114,7 +114,7 @@ class Variables {
         this.user_file_selected = false;
         this.user_file = new Circuit();
         this.flag_canvas_draw_request_counter = 0;
-        this.canvas_redraw_counter = 0;
+        this.canvas_draw_counter = 0;
         this.canvas_stroke_width_base = 1;
         this.canvas_stroke_width_1 = 2.25;
         this.canvas_stroke_width_2 = 2.5;

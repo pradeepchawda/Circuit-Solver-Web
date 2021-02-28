@@ -714,9 +714,6 @@ class MenuBar {
         if (ON) {
             element_options_window.title_bounds.text = global.variables.selected_properties['tag'] + global.variables.selected_id;
         }
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('ELEMENT OPTIONS');
-        }
     }
     handle_element_options_edit_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
@@ -725,24 +722,19 @@ class MenuBar {
         }
         global.flags.flag_build_element = true;
         global.variables.flag_build_counter = 0;
+        global.flags.flag_canvas_draw_event = true;
+        global.variables.canvas_draw_counter = 0;
+        global.flags.flag_canvas_draw_request = true;
+        global.variables.flag_canvas_draw_request_counter = 0;
         global.flags.flag_element_options_edit = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('ELEMENT OPTIONS EDIT');
-        }
     }
     handle_undo_flag() {
         global.variables.mouse_keyboard_lock = true;
         history_manager.undo();
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('UNDO');
-        }
     }
     handle_redo_flag() {
         global.variables.mouse_keyboard_lock = true;
         history_manager.redo();
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('REDO');
-        }
     }
     handle_menu_open_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
@@ -750,16 +742,10 @@ class MenuBar {
         if (!ON) {
             global.flags.flag_menu_element_toolbox = ON;
         }
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('MENU OPEN');
-        }
     }
     handle_menu_open_down_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_menu_element_toolbox = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('MENU OPEN DOWN');
-        }
     }
     handle_save_image_flag(ON) {
         if (ON) {
@@ -768,9 +754,6 @@ class MenuBar {
         }
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_save_image = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('SAVE IMAGE');
-        }
     }
     handle_save_circuit_flag(ON) {
         if (ON) {
@@ -780,16 +763,10 @@ class MenuBar {
         bottom_menu.resize_bottom_menu();
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_save_circuit = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('SAVE CIRCUIT');
-        }
     }
     handle_select_settings_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_select_settings = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('SETTINGS');
-        }
     }
     handle_simulation_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
@@ -800,30 +777,18 @@ class MenuBar {
         else {
             simulation_manager.terminate();
         }
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('SIMULATION ' + (ON ? 'START' : 'END'));
-        }
     }
     handle_graph_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_graph = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('GRAPH');
-        }
     }
     handle_remove_all_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_remove_all = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('REMOVE ALL');
-        }
     }
     handle_zoom_flag(ON) {
         global.variables.mouse_keyboard_lock = true;
         global.flags.flag_zoom = ON;
-        if (global.CONSTANTS.DEVELOPER_MODE) {
-            console.log('ZOOM');
-        }
     }
     key_down(key_event) {
         if (global.flags.flag_menu_open) {

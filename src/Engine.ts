@@ -524,7 +524,7 @@ function load_app(): void {
 	function system_loop(): void {
 		try {
 			if (normal_draw_permissions()) {
-				global.variables.canvas_redraw_counter = 0;
+				global.variables.canvas_draw_counter = 0;
 				global.flags.flag_canvas_draw_event = true;
 			}
 			if (global.flags.flag_canvas_draw_event) {
@@ -614,8 +614,8 @@ function load_app(): void {
 						global.variables.flag_wire_deleted_counter = 0;
 					}
 				}
-				if (global.variables.canvas_redraw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
-					global.variables.canvas_redraw_counter = 0;
+				if (global.variables.canvas_draw_counter++ > global.CONSTANTS.CANVAS_REDRAW_MAX) {
+					global.variables.canvas_draw_counter = 0;
 					global.flags.flag_canvas_draw_event = false;
 				}
 			}

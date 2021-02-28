@@ -811,7 +811,7 @@ class SimulationManager {
         /* <!-- END AUTOMATICALLY GENERATED !--> */
     }
     update_vir() {
-        if (this.simulation_time >= this.time_step + this.time_step) {
+        if (this.simulation_time >= 1.5 * this.time_step) {
             scope_manager.update_scopes();
         }
         else {
