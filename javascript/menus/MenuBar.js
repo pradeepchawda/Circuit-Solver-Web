@@ -720,12 +720,7 @@ class MenuBar {
         if (ON) {
             element_options_edit_window.reset_cursor();
         }
-        global.flags.flag_build_element = true;
-        global.variables.flag_build_counter = 0;
-        global.flags.flag_canvas_draw_event = true;
-        global.variables.canvas_draw_counter = 0;
-        global.flags.flag_canvas_draw_request = true;
-        global.variables.flag_canvas_draw_request_counter = 0;
+        engine_functions.force_element_rebuild();
         global.flags.flag_element_options_edit = ON;
     }
     handle_undo_flag() {

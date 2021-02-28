@@ -555,7 +555,6 @@ class Potentiometer {
         }
     }
     resize() {
-        console.log(this.build_element_flag, global.flags.flag_build_element, this.bounds.anchored, this.elm.consistent());
         if (this.build_element_flag || global.flags.flag_build_element) {
             if (this.bounds.anchored) {
                 if (this.elm.consistent()) {
