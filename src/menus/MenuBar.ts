@@ -849,7 +849,7 @@ class MenuBar {
 		if (ON) {
 			element_options_edit_window.reset_cursor();
 		}
-		engine_functions.force_element_rebuild();
+		engine_functions.rebuild_all_elements();
 		global.flags.flag_element_options_edit = ON;
 	}
 	handle_undo_flag(): void {

@@ -483,11 +483,13 @@ class Resistor {
 		}
 	}
 	build_element(): void {
-		if ((this.build_element_flag || global.flags.flag_build_element) &&
-				(this.c_x >= view_port.left - global.variables.node_space_x &&
-				this.c_x - global.variables.node_space_x <= view_port.right &&
-				this.c_y >= view_port.top + -global.variables.node_space_y &&
-				this.c_y - global.variables.node_space_y <= view_port.bottom)) {
+		if (
+			(this.build_element_flag || global.flags.flag_build_element) &&
+			this.c_x >= view_port.left - global.variables.node_space_x &&
+			this.c_x - global.variables.node_space_x <= view_port.right &&
+			this.c_y >= view_port.top + -global.variables.node_space_y &&
+			this.c_y - global.variables.node_space_y <= view_port.bottom
+		) {
 			let cache_0: number = 0.66 * this.x_space;
 			let cache_1: number = 0.66 * this.y_space;
 			let cache_2: number = 0.33 * this.x_space;
@@ -722,20 +724,20 @@ class Resistor {
 		}
 	}
 	time_data(): TIME_DATA_TEMPLATE_T {
-/* #INSERT_GENERATE_TIME_DATA# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-  let time_data : TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
-    let keys : Array<string> = Object.keys(this.elm.properties);
-    for (var i : number = keys.length - 1; i > -1; i--) {
-      if (typeof this.elm.properties[keys[i]] === 'number') {
-        if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
-          time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
-        }
-      }
-    }
+		/* #INSERT_GENERATE_TIME_DATA# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		let time_data: TIME_DATA_TEMPLATE_T = global.utils.copy(global.TEMPLATES.TIME_DATA_TEMPLATE);
+		let keys: Array<string> = Object.keys(this.elm.properties);
+		for (var i: number = keys.length - 1; i > -1; i--) {
+			if (typeof this.elm.properties[keys[i]] === 'number') {
+				if (keys[i] === 'Frequency' || keys[i] === 'Resistance' || keys[i] === 'Capacitance' || keys[i] === 'Inductance') {
+					time_data[keys[i]] = global.utils.copy(this.elm.properties[keys[i]]);
+				}
+			}
+		}
 
-    return time_data;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+		return time_data;
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
 	reset(): void {}
 }

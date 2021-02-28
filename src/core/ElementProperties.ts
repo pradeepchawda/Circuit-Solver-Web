@@ -1,8 +1,8 @@
 'use strict';
 class ElementProperties {
 	public readonly PROPERTY_META_DATA: PROPERTY_META_DATA_T;
-/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
-/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+	/* #INSERT_SYMBOL_ELEMENT_PROPERTY_DECLARATION# */
+	/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
 	public readonly PROPERTY_RESISTOR: PROPERTY_RESISTOR_T;
 	public readonly PROPERTY_CAPACITOR: PROPERTY_CAPACITOR_T;
 	public readonly PROPERTY_INDUCTOR: PROPERTY_INDUCTOR_T;
@@ -72,7 +72,7 @@ class ElementProperties {
 	public readonly PROPERTY_GRT: PROPERTY_GRT_T;
 	public readonly PROPERTY_TPTZ: PROPERTY_TPTZ_T;
 	public readonly PROPERTY_TRAN: PROPERTY_TRAN_T;
-/* <!-- END AUTOMATICALLY GENERATED !--> */
+	/* <!-- END AUTOMATICALLY GENERATED !--> */
 	public readonly PROPERTY_LIMIT_MIN: number;
 	public readonly PROPERTY_LIMIT_MAX: number;
 	constructor(CONSTANTS: Constants, settings: Settings) {
