@@ -114,8 +114,9 @@ class Toast {
 			this.bounds.top = view_port.top + view_port.view_height * this.height_ratio;
 			this.bounds.right = view_port.center_x + this.text_measure_div2;
 			this.bounds.bottom = view_port.top + view_port.view_height * (this.height_ratio + (1.0 - this.height_ratio) * this.HEIGHT_FACTOR);
+			canvas.draw_circle(this.bounds.left, this.bounds.get_center_y(), this.bounds.get_height() * 0.5, this.fill_paint);
+			canvas.draw_circle(this.bounds.right, this.bounds.get_center_y(), this.bounds.get_height() * 0.5, this.fill_paint);
 			canvas.draw_rect2(this.bounds, this.fill_paint);
-			// canvas.draw_rect2(this.bounds, this.line_paint);
 			canvas.draw_text(this.text, this.bounds.get_center_x(), this.bounds.get_center_y(), this.text_paint);
 			this.update();
 		}
