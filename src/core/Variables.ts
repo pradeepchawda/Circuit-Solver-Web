@@ -194,6 +194,7 @@ class Variables {
 			packet: []
 		};
 		this.language_index = CONSTANTS.LANGUAGE_INDEX_ENGLISH;
+		this.language_index_counter = CONSTANTS.LANGUAGE_INDEX_INDONESIAN + 1;
 		this.system_options = {
 			options: ['Language', 'Automatic Timestep', 'Shortcut Hints', 'Full Window', '', ''],
 			values: [CONSTANTS.LANGUAGES[this.language_index], CONSTANTS.ON, CONSTANTS.ON, CONSTANTS.OFF, CONSTANTS.OFF, CONSTANTS.OFF]
