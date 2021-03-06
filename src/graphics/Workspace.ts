@@ -9,8 +9,6 @@ class Workspace {
 	private bounds_paint: Paint;
 	private grid_paint: Paint;
 	private work_area_paint: Paint;
-	private sqrt: number;
-	private sqrt_m_1: number;
 	private line_buffer: Array<Array<number>>;
 	private grid_moved: boolean;
 	constructor(left: number, top: number, right: number, bottom: number, scale: number) {
@@ -65,8 +63,6 @@ class Workspace {
 		this.work_area_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 		this.work_area_paint.set_alpha(255);
 		this.work_area_paint.set_paint_align(paint.align.CENTER);
-		this.sqrt = -1;
-		this.sqrt_m_1 = -1;
 		this.OPTION_DRAW_GRID = false;
 		this.line_buffer = [];
 		this.grid_moved = true;

@@ -53,7 +53,7 @@ class Colors {
 		this.GENERAL_GREEN_COLOR = this.ColorNameToHex('green');
 		this.GENERAL_RED_COLOR = this.ColorNameToHex('red');
 		this.GENERAL_BLUE_COLOR = this.ColorNameToHex('blue');
-		this.GENERAL_BOUNDS_COLOR = '#404040';
+		this.GENERAL_BOUNDS_COLOR = '#2e2e2e';
 		this.GENERAL_FILL_COLOR = '#202020';
 		this.GENERAL_INPUT_COLOR = '#1e2325';
 		this.GENERAL_CYAN_COLOR = this.ColorNameToHex('cyan');

@@ -23,7 +23,7 @@ class OnScreenKeyboard {
         this.bounds_paint.set_paint_cap(paint.cap.ROUND);
         this.bounds_paint.set_paint_join(paint.join.MITER);
         this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.bounds_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+        this.bounds_paint.set_color(global.COLORS.GENERAL_INPUT_COLOR);
         this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
         this.bounds_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.bounds_paint.set_alpha(255);
@@ -43,7 +43,7 @@ class OnScreenKeyboard {
         this.fill_paint_alt.set_paint_cap(paint.cap.ROUND);
         this.fill_paint_alt.set_paint_join(paint.join.MITER);
         this.fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.fill_paint_alt.set_color(global.COLORS.GENERAL_GRAY_COLOR);
+        this.fill_paint_alt.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
         this.fill_paint_alt.set_font(global.CONSTANTS.DEFAULT_FONT);
         this.fill_paint_alt.set_alpha(255);
