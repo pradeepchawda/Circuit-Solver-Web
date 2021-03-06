@@ -25,6 +25,7 @@ class Colors {
 	public readonly GENERAL_BLUE_COLOR: string;
 	public readonly GENERAL_BOUNDS_COLOR: string;
 	public readonly GENERAL_FILL_COLOR: string;
+	public readonly GENERAL_INPUT_COLOR: string;
 	public readonly GENERAL_CYAN_COLOR: string;
 	public readonly GENERAL_HOVER_COLOR: string;
 	public readonly GENERAL_YELLOW_COLOR: string;
@@ -54,6 +55,7 @@ class Colors {
 		this.GENERAL_BLUE_COLOR = this.ColorNameToHex('blue');
 		this.GENERAL_BOUNDS_COLOR = '#404040';
 		this.GENERAL_FILL_COLOR = '#202020';
+		this.GENERAL_INPUT_COLOR = '#1e2325';
 		this.GENERAL_CYAN_COLOR = this.ColorNameToHex('cyan');
 		this.GENERAL_HOVER_COLOR = '#18d8d8';
 		this.GENERAL_YELLOW_COLOR = this.ColorNameToHex('yellow');

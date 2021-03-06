@@ -30,7 +30,7 @@ class ElementOptionsEditWindow {
         this.text_paint.set_paint_cap(paint.cap.ROUND);
         this.text_paint.set_paint_join(paint.join.MITER);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-        this.text_paint.set_color(global.COLORS.GENERAL_YELLOW_COLOR);
+        this.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         if (MOBILE_MODE) {
             this.text_paint.set_text_size(global.variables.canvas_text_size_5);
         }
@@ -107,13 +107,13 @@ class ElementOptionsEditWindow {
         this.exit_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button = new Button(this.title_bounds.left + padding, this.title_bounds.bottom + padding, this.cancel_button.right, this.okay_button.top - padding);
         this.input_button.text = '';
-        this.input_button.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+        this.input_button.fill_paint.set_color(global.COLORS.GENERAL_INPUT_COLOR);
         this.input_button.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.input_button.draw_stroke = true;
         this.input_button.draw_fill = true;
         this.input_button.draw_cursor = false;
         this.input_button.draw_text = false;
-        this.input_button.text_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
+        this.input_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.input_button.resize_paint();
         this.select_paint = new Paint();
         this.select_paint.set_paint_style(paint.style.FILL);
@@ -2877,7 +2877,7 @@ class ElementOptionsEditWindow {
             let height_mul_0p3636 = this.exit_button.get_height() * 0.3636;
             canvas.draw_line(this.exit_button.left + width_mul_0p3636 + this.offset_x, this.exit_button.top + height_mul_0p3636 + this.offset_y, this.exit_button.right - width_mul_0p3636 + this.offset_x, this.exit_button.bottom - height_mul_0p3636 + this.offset_y, this.line_paint);
             canvas.draw_line(this.exit_button.right - width_mul_0p3636 + this.offset_x, this.exit_button.top + height_mul_0p3636 + this.offset_y, this.exit_button.left + width_mul_0p3636 + this.offset_x, this.exit_button.bottom - height_mul_0p3636 + this.offset_y, this.line_paint);
-            canvas.draw_text('(' + this.input_button.text.length + ' / ' + global.CONSTANTS.MAX_TEXT_LENGTH + ')', this.input_button.left + this.offset_x, this.okay_button.get_center_y() + this.offset_y, this.text_paint);
+            canvas.draw_text('[' + this.input_button.text.length + ' / ' + global.CONSTANTS.MAX_TEXT_LENGTH + ']', this.input_button.left + this.offset_x, this.okay_button.get_center_y() + this.offset_y, this.text_paint);
         }
     }
 }
