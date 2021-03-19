@@ -18,7 +18,7 @@ class NetSymbol {
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(paint.style.STROKE);
         this.line_paint.set_paint_cap(paint.cap.ROUND);
-        this.line_paint.set_paint_join(paint.join.MITER);
+        this.line_paint.set_paint_join(paint.join.ROUND);
         this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.line_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -28,7 +28,7 @@ class NetSymbol {
         this.point_paint = new Paint();
         this.point_paint.set_paint_style(paint.style.FILL);
         this.point_paint.set_paint_cap(paint.cap.ROUND);
-        this.point_paint.set_paint_join(paint.join.MITER);
+        this.point_paint.set_paint_join(paint.join.ROUND);
         this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.point_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.point_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -38,7 +38,7 @@ class NetSymbol {
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(paint.style.FILL);
         this.text_paint.set_paint_cap(paint.cap.ROUND);
-        this.text_paint.set_paint_join(paint.join.MITER);
+        this.text_paint.set_paint_join(paint.join.ROUND);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.text_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -48,7 +48,7 @@ class NetSymbol {
         this.text_background_paint = new Paint();
         this.text_background_paint.set_paint_style(paint.style.FILL);
         this.text_background_paint.set_paint_cap(paint.cap.ROUND);
-        this.text_background_paint.set_paint_join(paint.join.MITER);
+        this.text_background_paint.set_paint_join(paint.join.ROUND);
         this.text_background_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.text_background_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
         this.text_background_paint.set_text_size(global.variables.canvas_text_size_4);

@@ -6,7 +6,7 @@ class MeterSymbols {
         this.meter_paint = new Paint();
         this.meter_paint.set_paint_style(paint.style.STROKE);
         this.meter_paint.set_paint_cap(paint.cap.ROUND);
-        this.meter_paint.set_paint_join(paint.join.MITER);
+        this.meter_paint.set_paint_join(paint.join.ROUND);
         this.meter_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.meter_paint.set_color(global.COLORS.ELEMENT_COLOR);
         this.meter_paint.set_text_size(global.variables.canvas_text_size_1);

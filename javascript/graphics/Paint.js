@@ -10,7 +10,7 @@ class Paint {
         this.stroke_width = 1;
         this.paint_style = this.style.STROKE;
         this.paint_cap = this.cap.ROUND;
-        this.paint_join = this.join.MITER;
+        this.paint_join = this.join.ROUND;
         this.text_align = this.align.CENTER;
         this.text_baseline = this.baseline.MIDDLE;
         this.text_size = 1;

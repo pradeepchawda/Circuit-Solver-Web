@@ -103,7 +103,7 @@ class ElementWindow {
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(paint.style.STROKE);
 		this.line_paint.set_paint_cap(paint.cap.ROUND);
-		this.line_paint.set_paint_join(paint.join.MITER);
+		this.line_paint.set_paint_join(paint.join.ROUND);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -113,7 +113,7 @@ class ElementWindow {
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(paint.style.FILL);
 		this.fill_paint.set_paint_cap(paint.cap.ROUND);
-		this.fill_paint.set_paint_join(paint.join.MITER);
+		this.fill_paint.set_paint_join(paint.join.ROUND);
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -123,7 +123,7 @@ class ElementWindow {
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(paint.style.FILL);
 		this.text_paint.set_paint_cap(paint.cap.ROUND);
-		this.text_paint.set_paint_join(paint.join.MITER);
+		this.text_paint.set_paint_join(paint.join.ROUND);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		if (MOBILE_MODE) {
@@ -138,7 +138,7 @@ class ElementWindow {
 		this.hover_paint = new Paint();
 		this.hover_paint.set_paint_style(paint.style.FILL);
 		this.hover_paint.set_paint_cap(paint.cap.ROUND);
-		this.hover_paint.set_paint_join(paint.join.MITER);
+		this.hover_paint.set_paint_join(paint.join.ROUND);
 		this.hover_paint.set_stroke_width(0.6 * global.variables.canvas_stroke_width_3);
 		this.hover_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 		this.hover_paint.set_text_size(global.variables.canvas_text_size_5);

@@ -1,11 +1,28 @@
 {
-	"name": "typescript_circuit_solver",
-	"version": "1.0.0",
-	"description": "Circuit Solver for the Web",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "PhasorSystems",
-	"license": "MIT"
+  "name": "typescript_circuit_solver",
+  "version": "1.0.0",
+  "description": "Circuit Solver for the Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PhasorSystems",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SummersEdge23/Circuit-Solver-Web.git"
+  },
+  "keywords": [
+    "circuit",
+    "simulator",
+    "circuit",
+    "simulation"
+  ],
+  "bugs": {
+    "url": "https://github.com/SummersEdge23/Circuit-Solver-Web/issues"
+  },
+  "homepage": "https://github.com/SummersEdge23/Circuit-Solver-Web#readme",
+  "dependencies": {
+    "@types/lodash": "^4.14.168"
+  }
 }

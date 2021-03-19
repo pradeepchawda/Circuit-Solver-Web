@@ -21,7 +21,7 @@ class Viewport {
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(paint.style.STROKE);
 		this.line_paint.set_paint_cap(paint.cap.ROUND);
-		this.line_paint.set_paint_join(paint.join.MITER);
+		this.line_paint.set_paint_join(paint.join.ROUND);
 		this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
 		this.line_paint.set_color(global.COLORS.MENU_HIGHLIGHT_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_4);

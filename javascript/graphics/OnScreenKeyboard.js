@@ -11,7 +11,7 @@ class OnScreenKeyboard {
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(paint.style.STROKE);
         this.line_paint.set_paint_cap(paint.cap.ROUND);
-        this.line_paint.set_paint_join(paint.join.MITER);
+        this.line_paint.set_paint_join(paint.join.ROUND);
         this.line_paint.set_stroke_width(1.5 * global.variables.canvas_stroke_width_2);
         this.line_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.line_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -21,7 +21,7 @@ class OnScreenKeyboard {
         this.bounds_paint = new Paint();
         this.bounds_paint.set_paint_style(paint.style.FILL);
         this.bounds_paint.set_paint_cap(paint.cap.ROUND);
-        this.bounds_paint.set_paint_join(paint.join.MITER);
+        this.bounds_paint.set_paint_join(paint.join.ROUND);
         this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.bounds_paint.set_color(global.COLORS.GENERAL_INPUT_COLOR);
         this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -31,7 +31,7 @@ class OnScreenKeyboard {
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(paint.style.FILL);
         this.fill_paint.set_paint_cap(paint.cap.ROUND);
-        this.fill_paint.set_paint_join(paint.join.MITER);
+        this.fill_paint.set_paint_join(paint.join.ROUND);
         this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.fill_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -41,7 +41,7 @@ class OnScreenKeyboard {
         this.fill_paint_alt = new Paint();
         this.fill_paint_alt.set_paint_style(paint.style.FILL);
         this.fill_paint_alt.set_paint_cap(paint.cap.ROUND);
-        this.fill_paint_alt.set_paint_join(paint.join.MITER);
+        this.fill_paint_alt.set_paint_join(paint.join.ROUND);
         this.fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.fill_paint_alt.set_color(global.COLORS.GENERAL_BLACK_COLOR);
         this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
@@ -51,7 +51,7 @@ class OnScreenKeyboard {
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(paint.style.FILL);
         this.text_paint.set_paint_cap(paint.cap.ROUND);
-        this.text_paint.set_paint_join(paint.join.MITER);
+        this.text_paint.set_paint_join(paint.join.ROUND);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.text_paint.set_text_size(global.variables.canvas_text_size_5);

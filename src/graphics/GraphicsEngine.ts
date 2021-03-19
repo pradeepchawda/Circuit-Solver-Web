@@ -39,6 +39,7 @@ class GraphicsEngine {
 	private radiusp: number;
 	private end_degree_radians: number;
 	private start_degree_radians: number;
+	private miter_limit : number;
 	constructor(ctx: CanvasRenderingContext2D) {
 		this.ctx = ctx;
 		this.fill_paint = new Paint();
@@ -69,6 +70,7 @@ class GraphicsEngine {
 		this.last_text_baseline = '';
 		this.last_text_align = '';
 		this.last_line_cap = '';
+		this.miter_limit = 10;
 		this.ENABLE_LINE_JOIN = true;
 		this.FAST_PI_MUL_2 = 7;
 		this.PI_MUL_2 = Math.PI * 2;
@@ -131,6 +133,7 @@ class GraphicsEngine {
 				}
 				if (this.ENABLE_LINE_JOIN && this.last_join !== paint.paint_join) {
 					this.ctx.lineJoin = paint.paint_join;
+					this.ctx.miterLimit = this.miter_limit;
 					this.last_join = paint.paint_join;
 				}
 				if (this.last_line_cap !== paint.paint_cap) {

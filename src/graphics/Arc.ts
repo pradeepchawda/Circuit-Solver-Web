@@ -12,7 +12,7 @@ class Arc {
 		this.arc_paint = new Paint();
 		this.arc_paint.set_paint_style(paint.style.STROKE);
 		this.arc_paint.set_paint_cap(paint.cap.ROUND);
-		this.arc_paint.set_paint_join(paint.join.MITER);
+		this.arc_paint.set_paint_join(paint.join.ROUND);
 		this.arc_paint.set_stroke_width(global.variables.canvas_stroke_width_2_zoom);
 		this.arc_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.arc_paint.set_text_size(global.variables.canvas_text_size_4_zoom);

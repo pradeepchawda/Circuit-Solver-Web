@@ -17,7 +17,7 @@ class SineWave {
 		this.sine_wave_paint = new Paint();
 		this.sine_wave_paint.set_paint_style(paint.style.STROKE);
 		this.sine_wave_paint.set_paint_cap(paint.cap.ROUND);
-		this.sine_wave_paint.set_paint_join(paint.join.MITER);
+		this.sine_wave_paint.set_paint_join(paint.join.ROUND);
 		this.sine_wave_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
 		this.sine_wave_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.sine_wave_paint.set_text_size(global.variables.canvas_text_size_4);

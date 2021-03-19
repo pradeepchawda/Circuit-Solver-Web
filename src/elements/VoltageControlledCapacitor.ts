@@ -98,7 +98,7 @@ class VoltageControlledCapacitor {
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(paint.style.STROKE);
 		this.line_paint.set_paint_cap(paint.cap.ROUND);
-		this.line_paint.set_paint_join(paint.join.MITER);
+		this.line_paint.set_paint_join(paint.join.ROUND);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.line_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
@@ -108,7 +108,7 @@ class VoltageControlledCapacitor {
 		this.point_paint = new Paint();
 		this.point_paint.set_paint_style(paint.style.FILL);
 		this.point_paint.set_paint_cap(paint.cap.ROUND);
-		this.point_paint.set_paint_join(paint.join.MITER);
+		this.point_paint.set_paint_join(paint.join.ROUND);
 		this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.point_paint.set_text_size(global.variables.canvas_text_size_3_zoom);
@@ -118,7 +118,7 @@ class VoltageControlledCapacitor {
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(paint.style.FILL);
 		this.text_paint.set_paint_cap(paint.cap.ROUND);
-		this.text_paint.set_paint_join(paint.join.MITER);
+		this.text_paint.set_paint_join(paint.join.ROUND);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1_zoom);
 		this.text_paint.set_color(global.COLORS.ELEMENT_COLOR);
 		this.text_paint.set_text_size(global.variables.canvas_text_size_3_zoom);

@@ -8,7 +8,7 @@ class ToggleSwitch extends RectF {
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(paint.style.STROKE);
         this.line_paint.set_paint_cap(paint.cap.ROUND);
-        this.line_paint.set_paint_join(paint.join.MITER);
+        this.line_paint.set_paint_join(paint.join.ROUND);
         this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_2);
         this.line_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
         this.line_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -18,7 +18,7 @@ class ToggleSwitch extends RectF {
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(paint.style.FILL);
         this.fill_paint.set_paint_cap(paint.cap.ROUND);
-        this.fill_paint.set_paint_join(paint.join.MITER);
+        this.fill_paint.set_paint_join(paint.join.ROUND);
         this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.fill_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -28,7 +28,7 @@ class ToggleSwitch extends RectF {
         this.toggle_paint = new Paint();
         this.toggle_paint.set_paint_style(paint.style.FILL);
         this.toggle_paint.set_paint_cap(paint.cap.ROUND);
-        this.toggle_paint.set_paint_join(paint.join.MITER);
+        this.toggle_paint.set_paint_join(paint.join.ROUND);
         this.toggle_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.toggle_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         this.toggle_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -38,7 +38,7 @@ class ToggleSwitch extends RectF {
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(paint.style.FILL);
         this.text_paint.set_paint_cap(paint.cap.ROUND);
-        this.text_paint.set_paint_join(paint.join.MITER);
+        this.text_paint.set_paint_join(paint.join.ROUND);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         if (MOBILE_MODE) {

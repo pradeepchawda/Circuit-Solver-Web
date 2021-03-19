@@ -17,7 +17,7 @@ class ElectricalNode {
 		this.node_line_paint = new Paint();
 		this.node_line_paint.set_paint_style(paint.style.STROKE);
 		this.node_line_paint.set_paint_cap(paint.cap.ROUND);
-		this.node_line_paint.set_paint_join(paint.join.MITER);
+		this.node_line_paint.set_paint_join(paint.join.ROUND);
 		this.node_line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.node_line_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
 		this.node_line_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -27,7 +27,7 @@ class ElectricalNode {
 		this.node_fill_paint = new Paint();
 		this.node_fill_paint.set_paint_style(paint.style.FILL);
 		this.node_fill_paint.set_paint_cap(paint.cap.ROUND);
-		this.node_fill_paint.set_paint_join(paint.join.MITER);
+		this.node_fill_paint.set_paint_join(paint.join.ROUND);
 		this.node_fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.node_fill_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
 		this.node_fill_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -37,7 +37,7 @@ class ElectricalNode {
 		this.node_fill_paint_alt = new Paint();
 		this.node_fill_paint_alt.set_paint_style(paint.style.FILL);
 		this.node_fill_paint_alt.set_paint_cap(paint.cap.ROUND);
-		this.node_fill_paint_alt.set_paint_join(paint.join.MITER);
+		this.node_fill_paint_alt.set_paint_join(paint.join.ROUND);
 		this.node_fill_paint_alt.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.node_fill_paint_alt.set_color(global.COLORS.GENERAL_GREEN_COLOR);
 		this.node_fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);

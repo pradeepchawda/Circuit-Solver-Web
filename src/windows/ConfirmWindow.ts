@@ -19,7 +19,7 @@ class ConfirmWindow {
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(paint.style.STROKE);
 		this.line_paint.set_paint_cap(paint.cap.ROUND);
-		this.line_paint.set_paint_join(paint.join.MITER);
+		this.line_paint.set_paint_join(paint.join.ROUND);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -29,7 +29,7 @@ class ConfirmWindow {
 		this.bounds_paint = new Paint();
 		this.bounds_paint.set_paint_style(paint.style.FILL);
 		this.bounds_paint.set_paint_cap(paint.cap.ROUND);
-		this.bounds_paint.set_paint_join(paint.join.MITER);
+		this.bounds_paint.set_paint_join(paint.join.ROUND);
 		this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.bounds_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
 		this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -39,7 +39,7 @@ class ConfirmWindow {
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(paint.style.FILL);
 		this.fill_paint.set_paint_cap(paint.cap.ROUND);
-		this.fill_paint.set_paint_join(paint.join.MITER);
+		this.fill_paint.set_paint_join(paint.join.ROUND);
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.fill_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -49,7 +49,7 @@ class ConfirmWindow {
 		this.yes_paint = new Paint();
 		this.yes_paint.set_paint_style(paint.style.FILL);
 		this.yes_paint.set_paint_cap(paint.cap.ROUND);
-		this.yes_paint.set_paint_join(paint.join.MITER);
+		this.yes_paint.set_paint_join(paint.join.ROUND);
 		this.yes_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.yes_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.yes_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -59,7 +59,7 @@ class ConfirmWindow {
 		this.no_paint = new Paint();
 		this.no_paint.set_paint_style(paint.style.FILL);
 		this.no_paint.set_paint_cap(paint.cap.ROUND);
-		this.no_paint.set_paint_join(paint.join.MITER);
+		this.no_paint.set_paint_join(paint.join.ROUND);
 		this.no_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.no_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.no_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -69,7 +69,7 @@ class ConfirmWindow {
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(paint.style.FILL);
 		this.text_paint.set_paint_cap(paint.cap.ROUND);
-		this.text_paint.set_paint_join(paint.join.MITER);
+		this.text_paint.set_paint_join(paint.join.ROUND);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		if (MOBILE_MODE) {

@@ -173,7 +173,7 @@ function load_app(): void {
 	watermark_paint = new Paint();
 	watermark_paint.set_paint_style(paint.style.FILL);
 	watermark_paint.set_paint_cap(paint.cap.ROUND);
-	watermark_paint.set_paint_join(paint.join.MITER);
+	watermark_paint.set_paint_join(paint.join.ROUND);
 	watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 	if (MOBILE_MODE) {
 		watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
@@ -187,7 +187,7 @@ function load_app(): void {
 	web_link_paint = new Paint();
 	web_link_paint.set_paint_style(paint.style.FILL);
 	web_link_paint.set_paint_cap(paint.cap.ROUND);
-	web_link_paint.set_paint_join(paint.join.MITER);
+	web_link_paint.set_paint_join(paint.join.ROUND);
 	web_link_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 	web_link_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 	web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);

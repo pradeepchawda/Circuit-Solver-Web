@@ -145,7 +145,7 @@ class Variables {
         this.move_paint = new Paint();
         this.move_paint.set_paint_style(paint.style.FILL);
         this.move_paint.set_paint_cap(paint.cap.ROUND);
-        this.move_paint.set_paint_join(paint.join.MITER);
+        this.move_paint.set_paint_join(paint.join.ROUND);
         this.move_paint.set_stroke_width(this.canvas_stroke_width_1);
         this.move_paint.set_color(COLORS.GENERAL_GRAY_COLOR);
         this.move_paint.set_text_size(this.canvas_text_size_1);
@@ -155,7 +155,7 @@ class Variables {
         this.wire_paint = new Paint();
         this.wire_paint.set_paint_style(paint.style.STROKE);
         this.wire_paint.set_paint_cap(paint.cap.ROUND);
-        this.wire_paint.set_paint_join(paint.join.MITER);
+        this.wire_paint.set_paint_join(paint.join.ROUND);
         this.wire_paint.set_stroke_width(this.canvas_stroke_width_1_zoom);
         this.wire_paint.set_color(COLORS.ELEMENT_COLOR);
         this.wire_paint.set_text_size(this.canvas_text_size_3_zoom);

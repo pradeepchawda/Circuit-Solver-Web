@@ -10,7 +10,7 @@ class Workspace {
         this.view_paint = new Paint();
         this.view_paint.set_paint_style(paint.style.STROKE);
         this.view_paint.set_paint_cap(paint.cap.ROUND);
-        this.view_paint.set_paint_join(paint.join.MITER);
+        this.view_paint.set_paint_join(paint.join.ROUND);
         this.view_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.view_paint.set_color(global.COLORS.GENERAL_GREEN_COLOR);
         this.view_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -20,7 +20,7 @@ class Workspace {
         this.bounds_paint = new Paint();
         this.bounds_paint.set_paint_style(paint.style.STROKE);
         this.bounds_paint.set_paint_cap(paint.cap.ROUND);
-        this.bounds_paint.set_paint_join(paint.join.MITER);
+        this.bounds_paint.set_paint_join(paint.join.ROUND);
         this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_3 >> 1);
         this.bounds_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
         this.bounds_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -30,7 +30,7 @@ class Workspace {
         this.grid_paint = new Paint();
         this.grid_paint.set_paint_style(paint.style.STROKE);
         this.grid_paint.set_paint_cap(paint.cap.ROUND);
-        this.grid_paint.set_paint_join(paint.join.MITER);
+        this.grid_paint.set_paint_join(paint.join.ROUND);
         this.grid_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.grid_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
         this.grid_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -40,7 +40,7 @@ class Workspace {
         this.work_area_paint = new Paint();
         this.work_area_paint.set_paint_style(paint.style.FILL);
         this.work_area_paint.set_paint_cap(paint.cap.ROUND);
-        this.work_area_paint.set_paint_join(paint.join.MITER);
+        this.work_area_paint.set_paint_join(paint.join.ROUND);
         this.work_area_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.work_area_paint.set_color(global.COLORS.WORKSPACE_WORK_AREA_COLOR);
         this.work_area_paint.set_text_size(25);

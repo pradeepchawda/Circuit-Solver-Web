@@ -24,7 +24,7 @@ class ZoomWindow {
 		this.line_paint = new Paint();
 		this.line_paint.set_paint_style(paint.style.STROKE);
 		this.line_paint.set_paint_cap(paint.cap.ROUND);
-		this.line_paint.set_paint_join(paint.join.MITER);
+		this.line_paint.set_paint_join(paint.join.ROUND);
 		this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		this.line_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -34,7 +34,7 @@ class ZoomWindow {
 		this.bounds_paint = new Paint();
 		this.bounds_paint.set_paint_style(paint.style.FILL);
 		this.bounds_paint.set_paint_cap(paint.cap.ROUND);
-		this.bounds_paint.set_paint_join(paint.join.MITER);
+		this.bounds_paint.set_paint_join(paint.join.ROUND);
 		this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.bounds_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
 		this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -44,7 +44,7 @@ class ZoomWindow {
 		this.fill_paint = new Paint();
 		this.fill_paint.set_paint_style(paint.style.FILL);
 		this.fill_paint.set_paint_cap(paint.cap.ROUND);
-		this.fill_paint.set_paint_join(paint.join.MITER);
+		this.fill_paint.set_paint_join(paint.join.ROUND);
 		this.fill_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.fill_paint.set_color(global.COLORS.GENERAL_GRAY_COLOR);
 		this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -54,7 +54,7 @@ class ZoomWindow {
 		this.text_paint = new Paint();
 		this.text_paint.set_paint_style(paint.style.FILL);
 		this.text_paint.set_paint_cap(paint.cap.ROUND);
-		this.text_paint.set_paint_join(paint.join.MITER);
+		this.text_paint.set_paint_join(paint.join.ROUND);
 		this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 		if (MOBILE_MODE) {
@@ -67,7 +67,7 @@ class ZoomWindow {
 		this.option_0_paint = new Paint();
 		this.option_0_paint.set_paint_style(paint.style.FILL);
 		this.option_0_paint.set_paint_cap(paint.cap.ROUND);
-		this.option_0_paint.set_paint_join(paint.join.MITER);
+		this.option_0_paint.set_paint_join(paint.join.ROUND);
 		this.option_0_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.option_0_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.option_0_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -77,7 +77,7 @@ class ZoomWindow {
 		this.option_1_paint = new Paint();
 		this.option_1_paint.set_paint_style(paint.style.FILL);
 		this.option_1_paint.set_paint_cap(paint.cap.ROUND);
-		this.option_1_paint.set_paint_join(paint.join.MITER);
+		this.option_1_paint.set_paint_join(paint.join.ROUND);
 		this.option_1_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.option_1_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.option_1_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -87,7 +87,7 @@ class ZoomWindow {
 		this.option_2_paint = new Paint();
 		this.option_2_paint.set_paint_style(paint.style.FILL);
 		this.option_2_paint.set_paint_cap(paint.cap.ROUND);
-		this.option_2_paint.set_paint_join(paint.join.MITER);
+		this.option_2_paint.set_paint_join(paint.join.ROUND);
 		this.option_2_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.option_2_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.option_2_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -97,7 +97,7 @@ class ZoomWindow {
 		this.option_3_paint = new Paint();
 		this.option_3_paint.set_paint_style(paint.style.FILL);
 		this.option_3_paint.set_paint_cap(paint.cap.ROUND);
-		this.option_3_paint.set_paint_join(paint.join.MITER);
+		this.option_3_paint.set_paint_join(paint.join.ROUND);
 		this.option_3_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 		this.option_3_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
 		this.option_3_paint.set_text_size(global.variables.canvas_text_size_5);

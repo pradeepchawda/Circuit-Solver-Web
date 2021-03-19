@@ -24,7 +24,7 @@ class MenuBar {
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(paint.style.STROKE);
         this.line_paint.set_paint_cap(paint.cap.ROUND);
-        this.line_paint.set_paint_join(paint.join.MITER);
+        this.line_paint.set_paint_join(paint.join.ROUND);
         this.line_paint.set_stroke_width(temp_stroke_width);
         this.line_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
         this.line_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -34,7 +34,7 @@ class MenuBar {
         this.fill_paint = new Paint();
         this.fill_paint.set_paint_style(paint.style.FILL);
         this.fill_paint.set_paint_cap(paint.cap.ROUND);
-        this.fill_paint.set_paint_join(paint.join.MITER);
+        this.fill_paint.set_paint_join(paint.join.ROUND);
         this.fill_paint.set_stroke_width(temp_stroke_width);
         this.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
         this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -44,7 +44,7 @@ class MenuBar {
         this.line_paint_alt = new Paint();
         this.line_paint_alt.set_paint_style(paint.style.STROKE);
         this.line_paint_alt.set_paint_cap(paint.cap.ROUND);
-        this.line_paint_alt.set_paint_join(paint.join.MITER);
+        this.line_paint_alt.set_paint_join(paint.join.ROUND);
         this.line_paint_alt.set_stroke_width(temp_stroke_width);
         this.line_paint_alt.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.line_paint_alt.set_text_size(global.variables.canvas_text_size_5);
@@ -54,7 +54,7 @@ class MenuBar {
         this.fill_paint_alt = new Paint();
         this.fill_paint_alt.set_paint_style(paint.style.FILL);
         this.fill_paint_alt.set_paint_cap(paint.cap.ROUND);
-        this.fill_paint_alt.set_paint_join(paint.join.MITER);
+        this.fill_paint_alt.set_paint_join(paint.join.ROUND);
         this.fill_paint_alt.set_stroke_width(temp_stroke_width);
         this.fill_paint_alt.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
         this.fill_paint_alt.set_text_size(global.variables.canvas_text_size_5);
@@ -64,7 +64,7 @@ class MenuBar {
         this.up_down_paint = new Paint();
         this.up_down_paint.set_paint_style(paint.style.FILL);
         this.up_down_paint.set_paint_cap(paint.cap.ROUND);
-        this.up_down_paint.set_paint_join(paint.join.MITER);
+        this.up_down_paint.set_paint_join(paint.join.ROUND);
         this.up_down_paint.set_stroke_width(temp_stroke_width);
         this.up_down_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.up_down_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -74,7 +74,7 @@ class MenuBar {
         this.add_paint = new Paint();
         this.add_paint.set_paint_style(paint.style.FILL);
         this.add_paint.set_paint_cap(paint.cap.ROUND);
-        this.add_paint.set_paint_join(paint.join.MITER);
+        this.add_paint.set_paint_join(paint.join.ROUND);
         this.add_paint.set_stroke_width(temp_stroke_width);
         this.add_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.add_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -84,7 +84,7 @@ class MenuBar {
         this.go_paint = new Paint();
         this.go_paint.set_paint_style(paint.style.FILL);
         this.go_paint.set_paint_cap(this.go_paint.cap.BUTT);
-        this.go_paint.set_paint_join(paint.join.MITER);
+        this.go_paint.set_paint_join(paint.join.ROUND);
         this.go_paint.set_stroke_width(temp_stroke_width);
         this.go_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.go_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -94,7 +94,7 @@ class MenuBar {
         this.hover_paint = new Paint();
         this.hover_paint.set_paint_style(paint.style.FILL);
         this.hover_paint.set_paint_cap(paint.cap.ROUND);
-        this.hover_paint.set_paint_join(paint.join.MITER);
+        this.hover_paint.set_paint_join(paint.join.ROUND);
         this.hover_paint.set_stroke_width(temp_stroke_width);
         this.hover_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
         this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -104,7 +104,7 @@ class MenuBar {
         this.undo_paint = new Paint();
         this.undo_paint.set_paint_style(paint.style.FILL);
         this.undo_paint.set_paint_cap(paint.cap.ROUND);
-        this.undo_paint.set_paint_join(paint.join.MITER);
+        this.undo_paint.set_paint_join(paint.join.ROUND);
         this.undo_paint.set_stroke_width(temp_stroke_width);
         this.undo_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.undo_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -114,7 +114,7 @@ class MenuBar {
         this.redo_paint = new Paint();
         this.redo_paint.set_paint_style(paint.style.FILL);
         this.redo_paint.set_paint_cap(paint.cap.ROUND);
-        this.redo_paint.set_paint_join(paint.join.MITER);
+        this.redo_paint.set_paint_join(paint.join.ROUND);
         this.redo_paint.set_stroke_width(temp_stroke_width);
         this.redo_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.redo_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -124,7 +124,7 @@ class MenuBar {
         this.remove_all_paint = new Paint();
         this.remove_all_paint.set_paint_style(paint.style.STROKE);
         this.remove_all_paint.set_paint_cap(paint.cap.ROUND);
-        this.remove_all_paint.set_paint_join(paint.join.MITER);
+        this.remove_all_paint.set_paint_join(paint.join.ROUND);
         this.remove_all_paint.set_stroke_width(temp_stroke_width);
         this.remove_all_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.remove_all_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -134,7 +134,7 @@ class MenuBar {
         this.settings_paint = new Paint();
         this.settings_paint.set_paint_style(paint.style.FILL);
         this.settings_paint.set_paint_cap(paint.cap.ROUND);
-        this.settings_paint.set_paint_join(paint.join.MITER);
+        this.settings_paint.set_paint_join(paint.join.ROUND);
         this.settings_paint.set_stroke_width(temp_stroke_width);
         this.settings_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.settings_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -144,7 +144,7 @@ class MenuBar {
         this.zoom_paint = new Paint();
         this.zoom_paint.set_paint_style(paint.style.STROKE);
         this.zoom_paint.set_paint_cap(paint.cap.ROUND);
-        this.zoom_paint.set_paint_join(paint.join.MITER);
+        this.zoom_paint.set_paint_join(paint.join.ROUND);
         this.zoom_paint.set_stroke_width(temp_stroke_width);
         this.zoom_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.zoom_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -154,7 +154,7 @@ class MenuBar {
         this.save_circuit_paint = new Paint();
         this.save_circuit_paint.set_paint_style(paint.style.FILL);
         this.save_circuit_paint.set_paint_cap(paint.cap.ROUND);
-        this.save_circuit_paint.set_paint_join(paint.join.MITER);
+        this.save_circuit_paint.set_paint_join(paint.join.ROUND);
         this.save_circuit_paint.set_stroke_width(temp_stroke_width);
         this.save_circuit_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.save_circuit_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -164,7 +164,7 @@ class MenuBar {
         this.save_image_fill_paint = new Paint();
         this.save_image_fill_paint.set_paint_style(paint.style.FILL);
         this.save_image_fill_paint.set_paint_cap(paint.cap.ROUND);
-        this.save_image_fill_paint.set_paint_join(paint.join.MITER);
+        this.save_image_fill_paint.set_paint_join(paint.join.ROUND);
         this.save_image_fill_paint.set_stroke_width(temp_stroke_width);
         this.save_image_fill_paint.set_color(global.COLORS.MENU_ICON_DEFAULT_COLOR);
         this.save_image_fill_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -174,7 +174,7 @@ class MenuBar {
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(paint.style.FILL);
         this.text_paint.set_paint_cap(paint.cap.ROUND);
-        this.text_paint.set_paint_join(paint.join.MITER);
+        this.text_paint.set_paint_join(paint.join.ROUND);
         this.text_paint.set_stroke_width(temp_stroke_width);
         this.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         this.text_paint.set_text_size(global.variables.canvas_text_size_5);

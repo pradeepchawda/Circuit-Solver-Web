@@ -8,7 +8,7 @@ class SaveImageWindow {
         this.line_paint = new Paint();
         this.line_paint.set_paint_style(paint.style.STROKE);
         this.line_paint.set_paint_cap(paint.cap.ROUND);
-        this.line_paint.set_paint_join(paint.join.MITER);
+        this.line_paint.set_paint_join(paint.join.ROUND);
         this.line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
         this.line_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -18,7 +18,7 @@ class SaveImageWindow {
         this.point_paint = new Paint();
         this.point_paint.set_paint_style(paint.style.FILL);
         this.point_paint.set_paint_cap(paint.cap.ROUND);
-        this.point_paint.set_paint_join(paint.join.MITER);
+        this.point_paint.set_paint_join(paint.join.ROUND);
         this.point_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.point_paint.set_color(global.COLORS.ELEMENT_COLOR);
         this.point_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -28,7 +28,7 @@ class SaveImageWindow {
         this.text_paint = new Paint();
         this.text_paint.set_paint_style(paint.style.FILL);
         this.text_paint.set_paint_cap(paint.cap.ROUND);
-        this.text_paint.set_paint_join(paint.join.MITER);
+        this.text_paint.set_paint_join(paint.join.ROUND);
         this.text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.text_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         if (MOBILE_MODE) {
@@ -43,7 +43,7 @@ class SaveImageWindow {
         this.hover_paint = new Paint();
         this.hover_paint.set_paint_style(paint.style.FILL);
         this.hover_paint.set_paint_cap(paint.cap.ROUND);
-        this.hover_paint.set_paint_join(paint.join.MITER);
+        this.hover_paint.set_paint_join(paint.join.ROUND);
         this.hover_paint.set_stroke_width(0.6 * global.variables.canvas_stroke_width_3);
         this.hover_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
         this.hover_paint.set_text_size(global.variables.canvas_text_size_5);
@@ -53,7 +53,7 @@ class SaveImageWindow {
         this.bounds_paint = new Paint();
         this.bounds_paint.set_paint_style(paint.style.FILL);
         this.bounds_paint.set_paint_cap(paint.cap.ROUND);
-        this.bounds_paint.set_paint_join(paint.join.MITER);
+        this.bounds_paint.set_paint_join(paint.join.ROUND);
         this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.bounds_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
         this.bounds_paint.set_text_size(global.variables.canvas_text_size_4);
@@ -63,7 +63,7 @@ class SaveImageWindow {
         this.select_paint = new Paint();
         this.select_paint.set_paint_style(paint.style.FILL);
         this.select_paint.set_paint_cap(paint.cap.ROUND);
-        this.select_paint.set_paint_join(paint.join.MITER);
+        this.select_paint.set_paint_join(paint.join.ROUND);
         this.select_paint.set_stroke_width(0.6 * global.variables.canvas_stroke_width_3);
         this.select_paint.set_color(global.COLORS.GENERAL_CYAN_COLOR);
         this.select_paint.set_text_size(global.variables.canvas_text_size_5);
