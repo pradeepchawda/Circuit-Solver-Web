@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/SummersEdge23/Circuit-Solver-Web#readme",
   "dependencies": {
-    "@types/lodash": "^4.14.168"
+    "@types/lodash": "^4.14.168",
+    "lodash": "^4.17.21"
   }
 }

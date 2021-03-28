@@ -169,7 +169,7 @@ class NORGate {
 			if (this.elm.consistent()) {
 				this.elm.properties['Input Voltage1'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n1, -1) / this.elm.properties['High Voltage'] - 0.5));
 				this.elm.properties['Input Voltage2'] = Math.tanh(10 * (engine_functions.get_voltage(this.elm.n2, -1) / this.elm.properties['High Voltage'] - 0.5));
-				this.elm.properties['Output Voltage'] = (this.elm.properties['High Voltage'] * 2.0) / (2.0 / (1 - this.elm.properties['Input Voltage1']) + 2.0 / (1 - this.elm.properties['Input Voltage2']));
+				this.elm.properties['Output Voltage'] = (this.elm.properties['High Voltage'] * 2.0) / (2.0 / (1 - this.elm.properties['Input Voltage1'] + global.CONSTANTS.ZERO_BIAS) + 2.0 / (1 - this.elm.properties['Input Voltage2'] + global.CONSTANTS.ZERO_BIAS));
 			}
 		}
 	}
@@ -640,7 +640,7 @@ class NORGate {
 		}
 		this.set_rotation(this.elm.rotation);
 	}
-	increment_flip(): void {}
+	increment_flip(): void { }
 	recolor(): void {
 		if (global.variables.selected) {
 			if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {

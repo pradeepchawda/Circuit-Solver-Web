@@ -126,8 +126,8 @@ class SimulationManager {
 		this.ELEMENT_NOR_OFFSET = this.ELEMENT_NAND_OFFSET + nands.length;
 		this.ELEMENT_XOR_OFFSET = this.ELEMENT_NOR_OFFSET + nors.length;
 		this.ELEMENT_XNOR_OFFSET = this.ELEMENT_XOR_OFFSET + xors.length;
-		this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
-		this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + dffs.length;
+		this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + xnors.length;
+		this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + 2 * dffs.length;
 		this.ELEMENT_ADD_OFFSET = this.ELEMENT_VSAT_OFFSET + vsats.length;
 		this.ELEMENT_SUB_OFFSET = this.ELEMENT_ADD_OFFSET + adders.length;
 		this.ELEMENT_MUL_OFFSET = this.ELEMENT_SUB_OFFSET + subtractors.length;
@@ -136,8 +136,8 @@ class SimulationManager {
 		this.ELEMENT_ABS_OFFSET = this.ELEMENT_GAIN_OFFSET + gains.length;
 		this.ELEMENT_VCVS_OFFSET = this.ELEMENT_ABS_OFFSET + absvals.length;
 		this.ELEMENT_CCCS_OFFSET = this.ELEMENT_VCVS_OFFSET + vcvss.length;
-		this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
-		this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + ccvss.length;
+		this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + cccss.length;
+		this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + 2 * ccvss.length;
 		this.ELEMENT_ADC_OFFSET = this.ELEMENT_OPAMP_OFFSET + opamps.length;
 		this.ELEMENT_DAC_OFFSET = this.ELEMENT_ADC_OFFSET + adcs.length;
 		this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;
@@ -256,8 +256,8 @@ class SimulationManager {
 		this.ELEMENT_NOR_OFFSET = this.ELEMENT_NAND_OFFSET + nands.length;
 		this.ELEMENT_XOR_OFFSET = this.ELEMENT_NOR_OFFSET + nors.length;
 		this.ELEMENT_XNOR_OFFSET = this.ELEMENT_XOR_OFFSET + xors.length;
-		this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + 1 * dffs.length;
-		this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + dffs.length;
+		this.ELEMENT_DFF_OFFSET = this.ELEMENT_XNOR_OFFSET + xnors.length;
+		this.ELEMENT_VSAT_OFFSET = this.ELEMENT_DFF_OFFSET + 2 * dffs.length;
 		this.ELEMENT_ADD_OFFSET = this.ELEMENT_VSAT_OFFSET + vsats.length;
 		this.ELEMENT_SUB_OFFSET = this.ELEMENT_ADD_OFFSET + adders.length;
 		this.ELEMENT_MUL_OFFSET = this.ELEMENT_SUB_OFFSET + subtractors.length;
@@ -266,8 +266,8 @@ class SimulationManager {
 		this.ELEMENT_ABS_OFFSET = this.ELEMENT_GAIN_OFFSET + gains.length;
 		this.ELEMENT_VCVS_OFFSET = this.ELEMENT_ABS_OFFSET + absvals.length;
 		this.ELEMENT_CCCS_OFFSET = this.ELEMENT_VCVS_OFFSET + vcvss.length;
-		this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + 1 * ccvss.length;
-		this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + ccvss.length;
+		this.ELEMENT_CCVS_OFFSET = this.ELEMENT_CCCS_OFFSET + cccss.length;
+		this.ELEMENT_OPAMP_OFFSET = this.ELEMENT_CCVS_OFFSET + 2 * ccvss.length;
 		this.ELEMENT_ADC_OFFSET = this.ELEMENT_OPAMP_OFFSET + opamps.length;
 		this.ELEMENT_DAC_OFFSET = this.ELEMENT_ADC_OFFSET + adcs.length;
 		this.ELEMENT_SAH_OFFSET = this.ELEMENT_DAC_OFFSET + dacs.length;

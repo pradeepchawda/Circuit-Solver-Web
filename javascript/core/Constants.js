@@ -4,7 +4,7 @@ class Constants {
         let indexer = 0;
         this.NULL = null;
         this.NODE_HINTS = true;
-        this.VERSION_TAG = '1.1.03';
+        this.VERSION_TAG = '1.1.04';
         if (MOBILE_MODE) {
             this.ZOOM_MAX = 3.5;
             this.ZOOM_MIN = 1.0;
@@ -15,6 +15,7 @@ class Constants {
         }
         this.ZERO_PT_FIVE = 0.5;
         this.ZERO = 0 >> 0;
+        this.ZERO_BIAS = 1e-18;
         this.ZOOM_FACTOR = 1.085;
         this.DEVELOPER_MODE = false;
         this.PRODUCTION_MODE = false;

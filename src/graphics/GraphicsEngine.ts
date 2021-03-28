@@ -39,7 +39,7 @@ class GraphicsEngine {
 	private radiusp: number;
 	private end_degree_radians: number;
 	private start_degree_radians: number;
-	private miter_limit : number;
+	private miter_limit: number;
 	constructor(ctx: CanvasRenderingContext2D) {
 		this.ctx = ctx;
 		this.fill_paint = new Paint();
