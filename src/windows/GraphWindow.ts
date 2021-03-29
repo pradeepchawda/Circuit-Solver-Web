@@ -163,7 +163,7 @@ class GraphWindow {
 		this.download_button = new Button(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
 		this.download_button.text = 'CSV';
 		this.download_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-		this.download_button.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+		this.download_button.fill_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
 		this.download_button.fill_paint.set_alpha(255);
 		this.download_button.draw_stroke = false;
 		this.download_button.draw_fill = true;
@@ -318,7 +318,7 @@ class GraphWindow {
 			this.mouse_hover();
 		}
 	}
-	mouse_up(): void {}
+	mouse_up(): void { }
 	mouse_hover(): void {
 		if (this.inner_bounds.contains_xy(global.variables.mouse_x, global.variables.mouse_y)) {
 			this.meter_hover_index = Math.round(((global.variables.mouse_x - this.inner_bounds.left) / (this.inner_bounds.get_width() / this.GRAPH_X_AXIS_LENGTH)) * 0.5);
@@ -460,9 +460,9 @@ class GraphWindow {
 					canvas.draw_text(
 						this.time_axis_value + 's',
 						this.inner_bounds.right -
-							this.text_paint.measure_text(global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step   ') -
-							this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
-							view_port.view_width * 0.1,
+						this.text_paint.measure_text(global.utils.exponentiate_quickly(simulation_manager.time_step) + 's/step   ') -
+						this.text_paint.measure_text(this.time_axis_value + 's') * 0.5 -
+						view_port.view_width * 0.1,
 						this.inner_bounds.top - ((this.inner_bounds.top - this.bounds.top) >> 1),
 						this.text_paint
 					);
@@ -520,7 +520,7 @@ class GraphWindow {
 			if (this.download_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && !MOBILE_MODE) {
 				this.download_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
 				this.download_button.draw_button(canvas);
-				this.download_button.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+				this.download_button.fill_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
 			} else {
 				this.download_button.draw_button(canvas);
 			}

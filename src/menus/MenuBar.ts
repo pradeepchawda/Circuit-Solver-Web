@@ -883,6 +883,8 @@ class MenuBar {
 		if (ON) {
 			save_circuit_window.input_button.text = global.variables.user_file.title;
 			save_circuit_window.reset_cursor();
+		} else {
+			global.variables.history['packet'].push(engine_functions.history_snapshot());
 		}
 		bottom_menu.resize_bottom_menu();
 		global.variables.mouse_keyboard_lock = true;

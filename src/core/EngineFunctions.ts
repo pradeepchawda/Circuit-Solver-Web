@@ -84,7 +84,7 @@ class EngineFunctions {
 			global.variables.user_file_selected = true;
 			global.flags.flag_canvas_draw_event = true;
 		};
-		reader.onerror = function (err: ProgressEvent<FileReader>) {};
+		reader.onerror = function (err: ProgressEvent<FileReader>) { };
 		reader.readAsText(input.files[0]);
 	}
 	file_event_mobile(title: string, data: string): void {
@@ -122,7 +122,7 @@ class EngineFunctions {
 		global.flags.flag_canvas_draw_event = true;
 		try {
 			engine_functions.parse_elements(global.variables.user_file.content);
-		} catch (error) {}
+		} catch (error) { }
 		global.variables.history['packet'].push(engine_functions.history_snapshot());
 		global.flags.flag_draw_block = true;
 		global.variables.user_file_selected = false;
@@ -6327,7 +6327,7 @@ class EngineFunctions {
 		if (global.variables.user_file_selected) {
 			try {
 				this.parse_elements(global.variables.user_file.content);
-			} catch (error) {}
+			} catch (error) { }
 			global.variables.history['packet'].push(engine_functions.history_snapshot());
 			global.variables.user_file_selected = false;
 			mouse_event_latch = false;
@@ -6388,11 +6388,11 @@ class EngineFunctions {
 				scope_manager.entry = global.utils.copy(obj.user_scope_settings);
 			}
 			if (global.utils.not_null(obj.user_timestep)) {
-				simulation_manager.time_step = obj.user_timestep;
+				simulation_manager.time_step = global.utils.copy(obj.user_timestep);
 				bottom_menu.resize_bottom_menu();
 			}
 			if (global.utils.not_null(obj.file_name)) {
-				global.variables.user_file.title = obj.file_name;
+				global.variables.user_file.title = global.utils.copy(obj.file_name);
 			}
 		}
 		/* #INSERT_GENERATE_SUPPORT_LEGACY_FILES# */
@@ -8982,8 +8982,8 @@ class EngineFunctions {
 		this.meta_data.elm.properties['date'] = global.utils.get_date_stamp();
 		this.meta_data.user_scope_settings = global.utils.copy(scope_manager.entry);
 		this.meta_data.user_settings = global.utils.copy(global.settings);
-		this.meta_data.user_timestep = simulation_manager.time_step;
-		this.meta_data.file_name = global.variables.user_file.title;
+		this.meta_data.user_timestep = global.utils.copy(simulation_manager.time_step);
+		this.meta_data.file_name = global.utils.copy(global.variables.user_file.title);
 		this.meta_data.calibration_string = workspace.bounds.left + ', ' + workspace.bounds.top + ', ' + workspace.bounds.right + ', ' + workspace.bounds.bottom;
 		packet[indexer++] = JSON.stringify(this.meta_data);
 		/* #INSERT_GENERATE_ELEMENT_HISTORY# */

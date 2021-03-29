@@ -131,7 +131,7 @@ class GraphWindow {
         this.download_button = new Button(this.inner_bounds.right - width, this.inner_bounds.top + padding, this.inner_bounds.right - padding, this.inner_bounds.top + padding + height);
         this.download_button.text = 'CSV';
         this.download_button.text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-        this.download_button.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+        this.download_button.fill_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
         this.download_button.fill_paint.set_alpha(255);
         this.download_button.draw_stroke = false;
         this.download_button.draw_fill = true;
@@ -414,7 +414,7 @@ class GraphWindow {
             if (this.download_button.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && !MOBILE_MODE) {
                 this.download_button.fill_paint.set_color(global.COLORS.GENERAL_HOVER_COLOR);
                 this.download_button.draw_button(canvas);
-                this.download_button.fill_paint.set_color(global.COLORS.GENERAL_BOUNDS_COLOR);
+                this.download_button.fill_paint.set_color(global.COLORS.GENERAL_FILL_COLOR);
             }
             else {
                 this.download_button.draw_button(canvas);

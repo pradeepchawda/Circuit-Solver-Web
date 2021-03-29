@@ -118,9 +118,9 @@ class ConfirmWindow {
 					engine_functions.clear_all_elements();
 					scope_manager.clear_entries();
 					graph_window.reset();
+					global.variables.user_file.title = 'untitled';
 					global.variables.history['packet'].push(engine_functions.history_snapshot());
 					menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
-					global.variables.user_file.title = 'untitled';
 					global.variables.component_touched = true;
 					bottom_menu.resize_bottom_menu();
 				} else if (this.option_1.contains_xy(global.variables.mouse_x, global.variables.mouse_y) && this.option_1.contains_xy(this.first_touch_x, this.first_touch_y)) {
