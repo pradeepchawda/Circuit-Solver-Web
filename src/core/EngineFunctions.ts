@@ -11282,6 +11282,7 @@ class EngineFunctions {
 	}
 	snapshot(surface: HTMLCanvasElement, canvas: GraphicsEngine): void {
 		canvas.clear(surface);
+		canvas.draw_color(surface, global.COLORS.GENERAL_BLACK_COLOR, 255);
 		let node_space_x_cache: number = 0.29375 * global.variables.node_space_x;
 		let node_space_y_cache: number = 0.29375 * global.variables.node_space_y;
 		let mult_node_space_x_cache: number = 1.25 * node_space_x_cache;
@@ -11294,6 +11295,8 @@ class EngineFunctions {
 			}
 			nodes[node_length - 1 - i].resize(node_space_x_cache, node_space_y_cache, mult_node_space_x_cache, mult_node_space_y_cache);
 		}
+		global.variables.wire_line_buffer = [];
+		global.variables.wire_line_buffer_index = 0;
 		workspace.workspace_draw(canvas);
 		engine_functions.draw_unselected_components(canvas);
 		engine_functions.draw_wires(canvas);
@@ -11311,21 +11314,7 @@ class EngineFunctions {
 		global.variables.workspace_zoom_scale = global.CONSTANTS.PICTURE_ZOOM;
 		global.variables.mouse_x = workspace.bounds.get_center_x();
 		global.variables.mouse_y = workspace.bounds.get_center_y();
-		/* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
-		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
-		for (var i: number = 0; i < voltmeters.length; i++) {
-			voltmeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < ohmmeters.length; i++) {
-			ohmmeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < ammeters.length; i++) {
-			ammeters[i].refresh_bounds();
-		}
-		for (var i: number = 0; i < wattmeters.length; i++) {
-			wattmeters[i].refresh_bounds();
-		}
-		/* <!-- END AUTOMATICALLY GENERATED !--> */
+		workspace.workspace_zoom();
 		let temp_top: number = workspace.bounds.top;
 		let temp_left: number = workspace.bounds.left;
 		workspace.workspace_translate_bounds(-temp_left, -temp_top);
@@ -11353,6 +11342,21 @@ class EngineFunctions {
 		global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
+		/* #INSERT_GENERATE_ENGINE_FUNCTION_REFRESH_TRACES# */
+		/* <!-- AUTOMATICALLY GENERATED DO NOT EDIT DIRECTLY !--> */
+		for (var i: number = 0; i < voltmeters.length; i++) {
+			voltmeters[i].refresh_bounds();
+		}
+		for (var i: number = 0; i < ohmmeters.length; i++) {
+			ohmmeters[i].refresh_bounds();
+		}
+		for (var i: number = 0; i < ammeters.length; i++) {
+			ammeters[i].refresh_bounds();
+		}
+		for (var i: number = 0; i < wattmeters.length; i++) {
+			wattmeters[i].refresh_bounds();
+		}
+		/* <!-- END AUTOMATICALLY GENERATED !--> */
 		for (var i: number = 0; i < global.CONSTANTS.PICTURE_REQUEST_MAX_TIME; i++) {
 			global.flags.flag_build_element = true;
 			global.variables.flag_build_counter = 0;

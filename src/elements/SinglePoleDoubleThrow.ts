@@ -148,7 +148,7 @@ class SinglePoleDoubleThrow {
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-	update(): void {}
+	update(): void { }
 	stamp(): void {
 		if (this.elm.consistent()) {
 			if (this.elm.properties['Switch State'] === global.CONSTANTS.ON) {
@@ -524,10 +524,10 @@ class SinglePoleDoubleThrow {
 	build_element(): void {
 		if (
 			(this.build_element_flag || global.flags.flag_build_element) &&
-			this.c_x >= view_port.left - global.variables.node_space_x &&
-			this.c_x - global.variables.node_space_x <= view_port.right &&
-			this.c_y >= view_port.top + -global.variables.node_space_y &&
-			this.c_y - global.variables.node_space_y <= view_port.bottom
+			((this.c_x >= view_port.left - global.variables.node_space_x &&
+				this.c_x - global.variables.node_space_x <= view_port.right &&
+				this.c_y >= view_port.top + -global.variables.node_space_y &&
+				this.c_y - global.variables.node_space_y <= view_port.bottom) || global.flags.flag_picture_request)
 		) {
 			this.spdt_0.x = this.p1.x + this.x_space * global.utils.cosine(this.theta_m90);
 			this.spdt_0.y = this.p1.y + this.y_space * global.utils.sine(this.theta_m90);
@@ -590,7 +590,7 @@ class SinglePoleDoubleThrow {
 		}
 		this.set_rotation(this.elm.rotation);
 	}
-	increment_flip(): void {}
+	increment_flip(): void { }
 	recolor(): void {
 		if (global.variables.selected) {
 			if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
@@ -748,5 +748,5 @@ class SinglePoleDoubleThrow {
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {}
+	reset(): void { }
 }

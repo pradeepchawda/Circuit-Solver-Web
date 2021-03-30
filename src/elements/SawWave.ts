@@ -147,8 +147,8 @@ class SawWave {
 				this.elm.n1,
 				this.elm.n2,
 				this.elm.properties['Offset'] -
-					((2 * this.elm.properties['Voltage']) / Math.PI) *
-						Math.atan(1.0 / Math.tan(simulation_manager.simulation_time * Math.PI * this.elm.properties['Frequency'] + global.utils.to_radians(this.elm.properties['Phase']))),
+				((2 * this.elm.properties['Voltage']) / Math.PI) *
+				Math.atan(1.0 / Math.tan(simulation_manager.simulation_time * Math.PI * this.elm.properties['Frequency'] + global.utils.to_radians(this.elm.properties['Phase']))),
 				simulation_manager.ELEMENT_SAW_OFFSET + this.simulation_id
 			);
 		}
@@ -487,10 +487,10 @@ class SawWave {
 	build_element(): void {
 		if (
 			(this.build_element_flag || global.flags.flag_build_element) &&
-			this.c_x >= view_port.left - global.variables.node_space_x &&
-			this.c_x - global.variables.node_space_x <= view_port.right &&
-			this.c_y >= view_port.top + -global.variables.node_space_y &&
-			this.c_y - global.variables.node_space_y <= view_port.bottom
+			((this.c_x >= view_port.left - global.variables.node_space_x &&
+				this.c_x - global.variables.node_space_x <= view_port.right &&
+				this.c_y >= view_port.top + -global.variables.node_space_y &&
+				this.c_y - global.variables.node_space_y <= view_port.bottom) || global.flags.flag_picture_request)
 		) {
 			let cache_0: number = 1.25 * this.x_space;
 			let cache_1: number = 1.25 * this.y_space;
@@ -554,7 +554,7 @@ class SawWave {
 		this.theta = global.utils.retrieve_angle_radian(this.p2.x - this.p1.x, this.p2.y - this.p1.y);
 		this.build_element();
 	}
-	update(): void {}
+	update(): void { }
 	increment_rotation(): void {
 		this.elm.rotation++;
 		if (this.elm.rotation > global.CONSTANTS.ROTATION_270) {
@@ -562,7 +562,7 @@ class SawWave {
 		}
 		this.set_rotation(this.elm.rotation);
 	}
-	increment_flip(): void {}
+	increment_flip(): void { }
 	map_rotation(): number {
 		if (this.elm.rotation === global.CONSTANTS.ROTATION_0 || this.elm.rotation === global.CONSTANTS.ROTATION_180) {
 			return this.x_space;
@@ -754,5 +754,5 @@ class SawWave {
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {}
+	reset(): void { }
 }

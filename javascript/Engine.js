@@ -174,12 +174,7 @@ function load_app() {
     watermark_paint.set_paint_cap(paint.cap.ROUND);
     watermark_paint.set_paint_join(paint.join.ROUND);
     watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-    if (MOBILE_MODE) {
-        watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-    }
-    else {
-        watermark_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
-    }
+    watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
     watermark_paint.set_text_size(global.variables.canvas_text_size_5);
     watermark_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
     watermark_paint.set_alpha(255);
@@ -707,19 +702,13 @@ function load_app() {
             }
             if (global.flags.flag_resize_event) {
                 watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-                if (MOBILE_MODE) {
-                    watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-                }
-                else {
-                    watermark_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
-                }
+                watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
                 watermark_paint.set_text_size(global.variables.canvas_text_size_5);
                 web_link_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
                 web_link_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
                 web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
                 global.variables.mouse_x = 0;
                 global.variables.mouse_y = 0;
-                reset_zoom();
                 resize_components();
                 global.flags.flag_resize_event = false;
             }

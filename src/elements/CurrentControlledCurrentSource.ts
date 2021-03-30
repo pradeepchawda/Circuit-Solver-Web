@@ -173,7 +173,7 @@ class CurrentControlledCurrentSource {
 	push_reference(ref: WIRE_REFERENCE_T): void {
 		this.wire_reference.push(ref);
 	}
-	update(): void {}
+	update(): void { }
 	stamp(): void {
 		if (this.elm.consistent()) {
 			engine_functions.stamp_cccs(this.elm.n1, this.elm.n2, this.elm.n3, this.elm.n4, -this.elm.properties['Gain'], simulation_manager.ELEMENT_CCCS_OFFSET + this.simulation_id);
@@ -572,10 +572,10 @@ class CurrentControlledCurrentSource {
 	build_element(): void {
 		if (
 			(this.build_element_flag || global.flags.flag_build_element) &&
-			this.c_x >= view_port.left - global.variables.node_space_x &&
-			this.c_x - global.variables.node_space_x <= view_port.right &&
-			this.c_y >= view_port.top + -global.variables.node_space_y &&
-			this.c_y - global.variables.node_space_y <= view_port.bottom
+			((this.c_x >= view_port.left - global.variables.node_space_x &&
+				this.c_x - global.variables.node_space_x <= view_port.right &&
+				this.c_y >= view_port.top + -global.variables.node_space_y &&
+				this.c_y - global.variables.node_space_y <= view_port.bottom) || global.flags.flag_picture_request)
 		) {
 			let cache_0: number = 3.0 * this.x_space;
 			let cache_1: number = 3.0 * this.y_space;
@@ -681,7 +681,7 @@ class CurrentControlledCurrentSource {
 		}
 		this.set_rotation(this.elm.rotation);
 	}
-	increment_flip(): void {}
+	increment_flip(): void { }
 	recolor(): void {
 		if (global.variables.selected) {
 			if (global.variables.selected_id === this.elm.id && global.variables.selected_type === this.elm.type) {
@@ -860,5 +860,5 @@ class CurrentControlledCurrentSource {
 		return time_data;
 		/* <!-- END AUTOMATICALLY GENERATED !--> */
 	}
-	reset(): void {}
+	reset(): void { }
 }

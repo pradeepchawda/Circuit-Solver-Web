@@ -175,11 +175,7 @@ function load_app(): void {
 	watermark_paint.set_paint_cap(paint.cap.ROUND);
 	watermark_paint.set_paint_join(paint.join.ROUND);
 	watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-	if (MOBILE_MODE) {
-		watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-	} else {
-		watermark_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
-	}
+	watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 	watermark_paint.set_text_size(global.variables.canvas_text_size_5);
 	watermark_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 	watermark_paint.set_alpha(255);
@@ -297,7 +293,7 @@ function load_app(): void {
 			ctx.webkitImageSmoothingEnabled = false;
 			//@ts-expect-error
 			ctx.msImageSmoothingEnabled = false;
-		} catch (e) {}
+		} catch (e) { }
 		global.variables.canvas_stroke_width_1 = global.variables.canvas_stroke_width_base * 2.25;
 		global.variables.canvas_stroke_width_2 = global.variables.canvas_stroke_width_base * 2.65;
 		global.variables.canvas_stroke_width_3 = global.variables.canvas_stroke_width_base * 9;
@@ -704,18 +700,13 @@ function load_app(): void {
 			}
 			if (global.flags.flag_resize_event) {
 				watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-				if (MOBILE_MODE) {
-					watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-				} else {
-					watermark_paint.set_color(global.COLORS.GENERAL_BLACK_COLOR);
-				}
+				watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 				watermark_paint.set_text_size(global.variables.canvas_text_size_5);
 				web_link_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 				web_link_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
 				web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
 				global.variables.mouse_x = 0;
 				global.variables.mouse_y = 0;
-				reset_zoom();
 				resize_components();
 				global.flags.flag_resize_event = false;
 			}
@@ -1459,7 +1450,7 @@ function load_app(): void {
 		global.variables.dy = -(global.variables.last_mouse_y - global.variables.mouse_y) * global.settings.TRANSLATION_SCALE;
 		if (
 			global.utils.norm(global.variables.mouse_down_x - global.variables.mouse_x, global.variables.mouse_down_y - global.variables.mouse_y) >
-				0.5 * Math.min(global.variables.node_space_x, global.variables.node_space_y) &&
+			0.5 * Math.min(global.variables.node_space_x, global.variables.node_space_y) &&
 			global.variables.translation_lock
 		) {
 			global.variables.translation_lock = false;

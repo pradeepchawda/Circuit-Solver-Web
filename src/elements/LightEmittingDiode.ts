@@ -569,10 +569,10 @@ class LightEmittingDiode {
 	build_element(): void {
 		if (
 			(this.build_element_flag || global.flags.flag_build_element) &&
-			this.c_x >= view_port.left - global.variables.node_space_x &&
-			this.c_x - global.variables.node_space_x <= view_port.right &&
-			this.c_y >= view_port.top + -global.variables.node_space_y &&
-			this.c_y - global.variables.node_space_y <= view_port.bottom
+			((this.c_x >= view_port.left - global.variables.node_space_x &&
+				this.c_x - global.variables.node_space_x <= view_port.right &&
+				this.c_y >= view_port.top + -global.variables.node_space_y &&
+				this.c_y - global.variables.node_space_y <= view_port.bottom) || global.flags.flag_picture_request)
 		) {
 			let cache_0: number = 1.25 * this.x_space;
 			let cache_1: number = 1.25 * this.y_space;
@@ -663,7 +663,7 @@ class LightEmittingDiode {
 		}
 		this.set_rotation(this.elm.rotation);
 	}
-	increment_flip(): void {}
+	increment_flip(): void { }
 	map_rotation(): number {
 		if (this.elm.rotation === global.CONSTANTS.ROTATION_0 || this.elm.rotation === global.CONSTANTS.ROTATION_180) {
 			return this.x_space;
