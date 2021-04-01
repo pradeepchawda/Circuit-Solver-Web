@@ -82,6 +82,49 @@ class ConfirmWindow {
         this.option_1 = new RectF(this.bounds.get_center_x() + padding * 0.5, this.bounds.bottom - padding - height, this.bounds.right - padding, this.bounds.bottom - padding);
         this.first_touch_x = 0;
         this.first_touch_y = 0;
+        this.tab_indexer = -1;
+        this.TAB_INDEX_MAX = 2;
+        this.tab_index_location = [
+            [this.option_0.get_center_x(), this.option_0.get_center_y()],
+            [this.option_1.get_center_x(), this.option_1.get_center_y()]
+        ];
+        this.OFFSCREEN_X = -500e3;
+        this.OFFSCREEN_Y = -500e3;
+    }
+    reset_tab() {
+        global.variables.mouse_x = this.OFFSCREEN_X;
+        global.variables.mouse_y = this.OFFSCREEN_Y;
+        this.tab_indexer = -1;
+        this.hover();
+    }
+    handle_tab() {
+        this.tab_indexer++;
+        if (this.tab_indexer >= this.TAB_INDEX_MAX) {
+            this.tab_indexer = 0;
+        }
+        global.variables.mouse_x = this.tab_index_location[this.tab_indexer][0];
+        global.variables.mouse_y = this.tab_index_location[this.tab_indexer][1];
+        this.hover();
+    }
+    handle_enter() {
+        if (this.tab_indexer > -1) {
+            global.variables.mouse_x = this.tab_index_location[this.tab_indexer][0];
+            global.variables.mouse_y = this.tab_index_location[this.tab_indexer][1];
+            if (this.tab_indexer == 0) {
+                engine_functions.clear_all_elements();
+                scope_manager.clear_entries();
+                graph_window.reset();
+                global.variables.user_file.title = 'untitled';
+                global.variables.history['packet'].push(engine_functions.history_snapshot());
+                bottom_menu.resize_bottom_menu();
+            }
+        }
+        global.variables.mouse_x = this.OFFSCREEN_X;
+        global.variables.mouse_y = this.OFFSCREEN_Y;
+        this.tab_indexer = -1;
+        this.hover();
+        menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
+        global.variables.component_touched = true;
     }
     mouse_down() {
         if (global.flags.flag_remove_all) {
@@ -122,7 +165,7 @@ class ConfirmWindow {
     }
     key_down(key_event) {
         if (global.flags.flag_remove_all) {
-            if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ENTER || key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
+            if (key_event['event'].code === global.KEY_CODES.KEY_CODE_ESCAPE) {
                 menu_bar.handle_remove_all_flag(!global.flags.flag_remove_all);
                 global.variables.component_touched = true;
             }
@@ -169,6 +212,8 @@ class ConfirmWindow {
         this.fill_paint.set_text_size(global.variables.canvas_text_size_5);
         this.bounds_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
         this.bounds_paint.set_text_size(global.variables.canvas_text_size_5);
+        this.tab_index_location[0] = [this.option_0.get_center_x(), this.option_0.get_center_y()];
+        this.tab_index_location[1] = [this.option_1.get_center_x(), this.option_1.get_center_y()];
     }
     draw_window(canvas) {
         if (global.flags.flag_remove_all) {

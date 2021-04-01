@@ -338,11 +338,7 @@ function load_app(): void {
 				if (!mouse_event_latch) {
 					if (global.variables.mouse_x >= view_port.left && global.variables.mouse_x <= view_port.right && global.variables.mouse_y >= view_port.top && global.variables.mouse_y <= view_port.bottom) {
 						global.flags.flag_mouse_down_event = true;
-						if (MOBILE_MODE) {
-							global.events.mouse_down_event_queue.push(mouse_event);
-						} else {
-							global.events.mouse_down_event_queue.push(mouse_event);
-						}
+						global.events.mouse_down_event_queue.push(mouse_event);
 					}
 				}
 			}

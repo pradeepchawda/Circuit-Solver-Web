@@ -80,6 +80,7 @@ class KeyCodes {
 	public readonly KEY_CODE_NUMPAD7: string;
 	public readonly KEY_CODE_NUMPAD8: string;
 	public readonly KEY_CODE_NUMPAD9: string;
+	public readonly KEY_CODE_TAB: string;
 	public readonly KEY_EVENT_CODES: any;
 	public readonly KEY_EVENT_CODES_KEYS: Array<string>;
 	constructor() {
@@ -163,6 +164,7 @@ class KeyCodes {
 		this.KEY_CODE_NUMPAD7 = 'Numpad7';
 		this.KEY_CODE_NUMPAD8 = 'Numpad8';
 		this.KEY_CODE_NUMPAD9 = 'Numpad9';
+		this.KEY_CODE_TAB = 'Tab';
 		this.KEY_EVENT_CODES = {
 			Escape: ['', '', ''],
 			Backquote: ['`', '~', '`'],

@@ -17,6 +17,8 @@ class ShortcutManager {
 	private readonly SHORTCUT_RESET_WINDOW: string;
 	private readonly SHORTCUT_TOGGLE_SWITCH: string;
 	private readonly SHORTCUT_EXPORT: string;
+	private readonly SHORTCUT_TAB: string;
+	private readonly SHORTCUT_ENTER: string;
 	private readonly OPTION_ENABLE_ARROW_KEYS: boolean;
 	private multi_moved_element: boolean;
 	private multi_deleted_element: boolean;
@@ -42,6 +44,8 @@ class ShortcutManager {
 		this.SHORTCUT_RESET_WINDOW = global.KEY_CODES.KEY_CODE_M;
 		this.SHORTCUT_TOGGLE_SWITCH = global.KEY_CODES.KEY_CODE_SPACE;
 		this.SHORTCUT_EXPORT = global.KEY_CODES.KEY_CODE_P;
+		this.SHORTCUT_TAB = global.KEY_CODES.KEY_CODE_TAB;
+		this.SHORTCUT_ENTER = global.KEY_CODES.KEY_CODE_ENTER;
 		this.OPTION_ENABLE_ARROW_KEYS = true;
 		this.multi_moved_element = false;
 		this.multi_deleted_element = false;
@@ -102,6 +106,7 @@ class ShortcutManager {
 					this.handle_simulate_shortcut(key_event);
 				}
 			}
+			this.handle_tab_indexing(key_event);
 			if (!global.flags.flag_save_image && !global.flags.flag_save_circuit && !global.flags.flag_element_options_edit && !global.flags.flag_select_timestep) {
 				this.handle_reset_window_shortcut(key_event);
 			}
@@ -121,6 +126,23 @@ class ShortcutManager {
 				this.handle_save_image_flag(key_event);
 				this.handle_save_circuit_flag(key_event);
 				this.handle_file_export(key_event);
+			}
+		}
+	}
+	handle_tab_indexing(key_event: KEY_EVENT_T): void {
+		this.shift = key_event['shift'];
+		this.command = key_event['event'].code;
+		this.caps = key_event['caps'];
+		if (this.command === this.SHORTCUT_TAB && key_event['ctrl'] === false) {
+			/* Quick testing for tab capability. */
+			if (global.flags.flag_remove_all) {
+				confirm_window.handle_tab();
+			}
+		}
+		else if (this.command === this.SHORTCUT_ENTER && key_event['ctrl'] === false) {
+			/* Quick testing for tab capability. */
+			if (global.flags.flag_remove_all) {
+				confirm_window.handle_enter();
 			}
 		}
 	}

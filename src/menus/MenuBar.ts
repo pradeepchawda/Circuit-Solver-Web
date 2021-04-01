@@ -909,6 +909,7 @@ class MenuBar {
 	}
 	handle_remove_all_flag(ON: boolean): void {
 		global.variables.mouse_keyboard_lock = true;
+		confirm_window.reset_tab();
 		global.flags.flag_remove_all = ON;
 	}
 	handle_zoom_flag(ON: boolean): void {
