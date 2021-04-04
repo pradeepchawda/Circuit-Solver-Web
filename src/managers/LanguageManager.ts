@@ -2,6 +2,7 @@
 class LanguageManager {
 	public readonly WATERMARK: string;
 	public readonly WEB_LINK: string;
+	public readonly DRAG_AND_DROP: LANGUAGE_T;
 	public readonly TEXT_PADDING: string;
 	public readonly CONNECTION_NOT_ALLOWED: LANGUAGE_T;
 	public readonly STRETCH_WINDOW: LANGUAGE_T;
@@ -115,6 +116,16 @@ class LanguageManager {
 	constructor() {
 		this.WATERMARK = 'Created by Circuit Solver : { www.androidcircuitsolver.com/app.html }';
 		this.WEB_LINK = '{ www.androidcircuitsolver.com/app.html }';
+		this.DRAG_AND_DROP = {
+			English: 'DRAG AND DROP',
+			Spanish: 'ARRASTRAR Y SOLTAR',
+			French: 'GLISSER DÉPOSER',
+			Italian: 'TRASCINARE E RILASCIARE',
+			Dutch: 'SLEPEN EN DALEN',
+			Russian: 'Перетащить и сбросить',
+			German: 'DRAG UND TROPFEN',
+			Indonesian: 'SERET DAN LEPAS'
+		};
 		this.TEXT_PADDING = '    ';
 		this.CONNECTION_NOT_ALLOWED = {
 			English: 'Connection not allowed',

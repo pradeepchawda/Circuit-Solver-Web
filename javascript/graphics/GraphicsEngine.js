@@ -114,6 +114,14 @@ class GraphicsEngine {
         this.ctx.lineTo((global.CONSTANTS.ZERO_PT_FIVE + x2) >> global.CONSTANTS.ZERO, (global.CONSTANTS.ZERO_PT_FIVE + y2) >> global.CONSTANTS.ZERO);
         this.ctx.stroke();
     }
+    draw_dashed_line(x1, y1, x2, y2, pattern, paint) {
+        this.apply_paint(paint, false);
+        this.ctx.setLineDash(pattern);
+        this.ctx.moveTo((global.CONSTANTS.ZERO_PT_FIVE + x1) >> global.CONSTANTS.ZERO, (global.CONSTANTS.ZERO_PT_FIVE + y1) >> global.CONSTANTS.ZERO);
+        this.ctx.lineTo((global.CONSTANTS.ZERO_PT_FIVE + x2) >> global.CONSTANTS.ZERO, (global.CONSTANTS.ZERO_PT_FIVE + y2) >> global.CONSTANTS.ZERO);
+        this.ctx.stroke();
+        this.ctx.setLineDash([]);
+    }
     draw_line_buffer(coords, paint) {
         this.apply_paint(paint, false);
         for (var i = coords.length - 1; i > -1; i--) {
@@ -122,6 +130,17 @@ class GraphicsEngine {
             this.ctx.lineTo((global.CONSTANTS.ZERO_PT_FIVE + this.cache[2]) >> global.CONSTANTS.ZERO, (global.CONSTANTS.ZERO_PT_FIVE + this.cache[3]) >> global.CONSTANTS.ZERO);
         }
         this.ctx.stroke();
+    }
+    draw_dashed_line_buffer(coords, pattern, paint) {
+        this.apply_paint(paint, false);
+        this.ctx.setLineDash(pattern);
+        for (var i = coords.length - 1; i > -1; i--) {
+            this.cache = coords[i];
+            this.ctx.moveTo((global.CONSTANTS.ZERO_PT_FIVE + this.cache[0]) >> global.CONSTANTS.ZERO, (global.CONSTANTS.ZERO_PT_FIVE + this.cache[1]) >> global.CONSTANTS.ZERO);
+            this.ctx.lineTo((global.CONSTANTS.ZERO_PT_FIVE + this.cache[2]) >> global.CONSTANTS.ZERO, (global.CONSTANTS.ZERO_PT_FIVE + this.cache[3]) >> global.CONSTANTS.ZERO);
+        }
+        this.ctx.stroke();
+        this.ctx.setLineDash([]);
     }
     draw_rect(left, top, right, bottom, paint) {
         this.width = (global.CONSTANTS.ZERO_PT_FIVE + (right - left)) >> global.CONSTANTS.ZERO;

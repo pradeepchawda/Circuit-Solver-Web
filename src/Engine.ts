@@ -151,7 +151,11 @@ var fps_index: number = 0;
 var fps_compare: number = FPS_DIV_ARRAY[fps_index];
 var fps_div: number = 0;
 var watermark_paint: Paint = new Paint();
-var web_link_paint: Paint = new Paint();
+var web_link_text_paint: Paint = new Paint();
+var drag_text_paint: Paint = new Paint();
+var drag_line_paint: Paint = new Paint();
+var drag_padding: number = 0;
+var drag_line_buffer: Array<Array<number>> = [];
 var webpage_document_title: HTMLElement = global.CONSTANTS.NULL;
 var last_webpage_document_title: string = 'untitled';
 var mouse_event_latch: boolean = false;
@@ -176,20 +180,40 @@ function load_app(): void {
 	watermark_paint.set_paint_join(paint.join.ROUND);
 	watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
 	watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-	watermark_paint.set_text_size(global.variables.canvas_text_size_5);
+	watermark_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
 	watermark_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
 	watermark_paint.set_alpha(255);
 	watermark_paint.set_paint_align(paint.align.LEFT);
-	web_link_paint = new Paint();
-	web_link_paint.set_paint_style(paint.style.FILL);
-	web_link_paint.set_paint_cap(paint.cap.ROUND);
-	web_link_paint.set_paint_join(paint.join.ROUND);
-	web_link_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-	web_link_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-	web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
-	web_link_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
-	web_link_paint.set_alpha(255);
-	web_link_paint.set_paint_align(paint.align.CENTER);
+	web_link_text_paint = new Paint();
+	web_link_text_paint.set_paint_style(paint.style.FILL);
+	web_link_text_paint.set_paint_cap(paint.cap.ROUND);
+	web_link_text_paint.set_paint_join(paint.join.ROUND);
+	web_link_text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+	web_link_text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+	web_link_text_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+	web_link_text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
+	web_link_text_paint.set_alpha(255);
+	web_link_text_paint.set_paint_align(paint.align.CENTER);
+	drag_text_paint = new Paint();
+	drag_text_paint.set_paint_style(paint.style.FILL);
+	drag_text_paint.set_paint_cap(paint.cap.ROUND);
+	drag_text_paint.set_paint_join(paint.join.ROUND);
+	drag_text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+	drag_text_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+	drag_text_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+	drag_text_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
+	drag_text_paint.set_alpha(255);
+	drag_text_paint.set_paint_align(paint.align.CENTER);
+	drag_line_paint = new Paint();
+	drag_line_paint.set_paint_style(paint.style.STROKE);
+	drag_line_paint.set_paint_cap(paint.cap.ROUND);
+	drag_line_paint.set_paint_join(paint.join.ROUND);
+	drag_line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+	drag_line_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
+	drag_line_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+	drag_line_paint.set_font(global.CONSTANTS.DEFAULT_FONT);
+	drag_line_paint.set_alpha(255);
+	drag_line_paint.set_paint_align(paint.align.CENTER);
 
 	function initialize(step: number): void {
 		if (step === 0) {
@@ -696,11 +720,13 @@ function load_app(): void {
 			}
 			if (global.flags.flag_resize_event) {
 				watermark_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-				watermark_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-				watermark_paint.set_text_size(global.variables.canvas_text_size_5);
-				web_link_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
-				web_link_paint.set_color(global.COLORS.GENERAL_WHITE_COLOR);
-				web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+				watermark_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+				web_link_text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+				web_link_text_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+				drag_text_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+				drag_text_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+				drag_line_paint.set_stroke_width(global.variables.canvas_stroke_width_1);
+				drag_line_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
 				global.variables.mouse_x = 0;
 				global.variables.mouse_y = 0;
 				resize_components();
@@ -971,7 +997,8 @@ function load_app(): void {
 		global.variables.canvas_text_size_4_zoom = global.variables.canvas_text_size_base * 16 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_text_size_5_zoom = global.variables.canvas_text_size_base * 21 * global.variables.workspace_zoom_scale;
 		global.variables.canvas_text_size_6_zoom = global.variables.canvas_text_size_base * 43 * global.variables.workspace_zoom_scale;
-		web_link_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+		web_link_text_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
+		drag_text_paint.set_text_size(global.variables.canvas_text_size_5_zoom);
 	}
 	function draw(): void {
 		refactor_sizes();
@@ -1026,9 +1053,7 @@ function load_app(): void {
 				engine_functions.draw_wires(canvas);
 				engine_functions.draw_selected_components(canvas);
 				engine_functions.draw_meter_traces(canvas);
-				if (!global.variables.element_on_board && DESKTOP_MODE) {
-					canvas.draw_text(language_manager.WEB_LINK, workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), web_link_paint);
-				}
+
 				if (global.variables.wire_builder['step'] > 0) {
 					global.variables.node_line_buffer = [];
 					global.variables.node_line_buffer_index = 0;
@@ -1043,6 +1068,59 @@ function load_app(): void {
 					if (global.variables.wire_builder['n1'] > -1 && global.variables.wire_builder['n1'] < global.settings.MAXNODES) {
 						canvas.draw_line_buffer(global.variables.node_line_buffer, nodes[global.variables.wire_builder['n1']].node_line_paint);
 						canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);
+					}
+				}
+				if (global.flags.flag_add_element) {
+					drag_padding = workspace.bounds.get_width() * 0.025;
+					drag_line_buffer = [];
+					if (view_port.left <= workspace.bounds.left ||
+						view_port.top <= workspace.bounds.top ||
+						view_port.right >= workspace.bounds.right ||
+						view_port.bottom >= workspace.bounds.bottom) {
+						canvas.draw_text(language_manager.DRAG_AND_DROP[global.CONSTANTS.LANGUAGES[global.variables.language_index]], workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), drag_text_paint);
+						drag_line_buffer.push([workspace.bounds.left + drag_padding,
+						workspace.bounds.bottom - drag_padding,
+						workspace.bounds.right - drag_padding,
+						workspace.bounds.bottom - drag_padding]);
+						drag_line_buffer.push([workspace.bounds.left + drag_padding,
+						workspace.bounds.top + drag_padding,
+						workspace.bounds.right - drag_padding,
+						workspace.bounds.top + drag_padding]);
+						drag_line_buffer.push([workspace.bounds.left + drag_padding,
+						workspace.bounds.top + drag_padding,
+						workspace.bounds.left + drag_padding,
+						workspace.bounds.bottom - drag_padding]);
+						drag_line_buffer.push([workspace.bounds.right - drag_padding,
+						workspace.bounds.top + drag_padding,
+						workspace.bounds.right - drag_padding,
+						workspace.bounds.bottom - drag_padding]);
+						canvas.draw_dashed_line_buffer(drag_line_buffer, [4, 12], drag_line_paint);
+					} else {
+						canvas.draw_text(language_manager.DRAG_AND_DROP[global.CONSTANTS.LANGUAGES[global.variables.language_index]], view_port.center_x, view_port.center_y, drag_text_paint);
+						drag_line_buffer.push([view_port.left + drag_padding,
+						view_port.bottom - drag_padding,
+						view_port.right - drag_padding,
+						view_port.bottom - drag_padding]);
+						drag_line_buffer.push([view_port.left + drag_padding,
+						view_port.top + drag_padding,
+						view_port.right - drag_padding,
+						view_port.top + drag_padding]);
+						drag_line_buffer.push([view_port.left + drag_padding,
+						view_port.top + drag_padding,
+						view_port.left + drag_padding,
+						view_port.bottom - drag_padding]);
+						drag_line_buffer.push([view_port.right - drag_padding,
+						view_port.top + drag_padding,
+						view_port.right - drag_padding,
+						view_port.bottom - drag_padding]);
+						canvas.draw_dashed_line_buffer(drag_line_buffer, [4, 12], drag_line_paint);
+					}
+				} else {
+					if (!global.variables.element_on_board && DESKTOP_MODE && !global.flags.flag_select_timestep &&
+						!global.flags.flag_select_settings && !global.flags.flag_graph &&
+						!global.flags.flag_zoom && !global.flags.flag_remove_all &&
+						!global.flags.flag_save_circuit && !global.flags.flag_save_image) {
+						canvas.draw_text(language_manager.WEB_LINK, workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), web_link_text_paint);
 					}
 				}
 				multi_select_manager.draw_bounds(canvas);
@@ -1104,9 +1182,7 @@ function load_app(): void {
 						engine_functions.draw_wires(canvas);
 						engine_functions.draw_selected_components(canvas);
 						engine_functions.draw_meter_traces(canvas);
-						if (!global.variables.element_on_board) {
-							canvas.draw_text(language_manager.WEB_LINK, workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), web_link_paint);
-						}
+
 						if (global.variables.wire_builder['step'] > 0) {
 							global.variables.node_line_buffer = [];
 							global.variables.node_line_buffer_index = 0;
@@ -1123,11 +1199,65 @@ function load_app(): void {
 								canvas.draw_rect2(nodes[global.variables.wire_builder['n1']].bounds, nodes[global.variables.wire_builder['n1']].node_fill_paint);
 							}
 						}
+						if (global.flags.flag_add_element) {
+							drag_padding = workspace.bounds.get_width() * 0.025;
+							drag_line_buffer = [];
+							if (view_port.left <= workspace.bounds.left ||
+								view_port.top <= workspace.bounds.top ||
+								view_port.right >= workspace.bounds.right ||
+								view_port.bottom >= workspace.bounds.bottom) {
+								canvas.draw_text(language_manager.DRAG_AND_DROP[global.CONSTANTS.LANGUAGES[global.variables.language_index]], workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), drag_text_paint);
+								drag_line_buffer.push([workspace.bounds.left + drag_padding,
+								workspace.bounds.bottom - drag_padding,
+								workspace.bounds.right - drag_padding,
+								workspace.bounds.bottom - drag_padding]);
+								drag_line_buffer.push([workspace.bounds.left + drag_padding,
+								workspace.bounds.top + drag_padding,
+								workspace.bounds.right - drag_padding,
+								workspace.bounds.top + drag_padding]);
+								drag_line_buffer.push([workspace.bounds.left + drag_padding,
+								workspace.bounds.top + drag_padding,
+								workspace.bounds.left + drag_padding,
+								workspace.bounds.bottom - drag_padding]);
+								drag_line_buffer.push([workspace.bounds.right - drag_padding,
+								workspace.bounds.top + drag_padding,
+								workspace.bounds.right - drag_padding,
+								workspace.bounds.bottom - drag_padding]);
+								canvas.draw_dashed_line_buffer(drag_line_buffer, [4, 12], drag_line_paint);
+							} else {
+								canvas.draw_text(language_manager.DRAG_AND_DROP[global.CONSTANTS.LANGUAGES[global.variables.language_index]], view_port.center_x, view_port.center_y, drag_text_paint);
+								drag_line_buffer.push([view_port.left + drag_padding,
+								view_port.bottom - drag_padding,
+								view_port.right - drag_padding,
+								view_port.bottom - drag_padding]);
+								drag_line_buffer.push([view_port.left + drag_padding,
+								view_port.top + drag_padding,
+								view_port.right - drag_padding,
+								view_port.top + drag_padding]);
+								drag_line_buffer.push([view_port.left + drag_padding,
+								view_port.top + drag_padding,
+								view_port.left + drag_padding,
+								view_port.bottom - drag_padding]);
+								drag_line_buffer.push([view_port.right - drag_padding,
+								view_port.top + drag_padding,
+								view_port.right - drag_padding,
+								view_port.bottom - drag_padding]);
+								canvas.draw_dashed_line_buffer(drag_line_buffer, [4, 12], drag_line_paint);
+							}
+						} else {
+							if (!global.variables.element_on_board && !global.flags.flag_select_timestep &&
+								!global.flags.flag_select_settings && !global.flags.flag_graph &&
+								!global.flags.flag_zoom && !global.flags.flag_remove_all &&
+								!global.flags.flag_save_circuit && !global.flags.flag_save_image) {
+								canvas.draw_text(language_manager.WEB_LINK, workspace.bounds.get_center_x(), workspace.bounds.get_center_y(), web_link_text_paint);
+							}
+						}
 						element_options.draw_options(canvas);
 						bottom_menu.draw_bottom_menu(canvas);
 					}
 					menu_bar.draw_menu_bar(canvas);
 				}
+
 				time_step_window.draw_window(canvas);
 				save_circuit_window.draw_window(canvas);
 				save_image_window.draw_window(canvas);
